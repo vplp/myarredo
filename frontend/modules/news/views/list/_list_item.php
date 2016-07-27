@@ -1,0 +1,29 @@
+<?php
+
+use yii\helpers\Html;
+
+/**
+ * @author Andrii Bondarchuk
+ * @copyright (c) 2016
+ */
+?>
+
+<div class="news">
+    <figure>
+        <?php if ($article->getArticleImage()): ?>
+            <img src="<?= $article->getArticleImage() ?>"
+                 alt="news"
+                 srcset="<?= $article->getArticleImage() ?> 620w,
+                         <?= $article->getArticleImage() ?> 540w,
+                         <?= $article->getArticleImage() ?> 320w"
+                 sizes="(min-width:1200px) 620px,
+                        (min-width:1000px) 430px,
+                        (min-width:620px)  580px, 280px">
+        <?php endif; ?>
+        <figcaption>
+            <p class="date"><?= $article->getPublishedTime() ?></p>
+            <p class="title"><?= Html::a(Html::encode($article['lang']['title']), $article->getUrl(), []) ?></p>
+        </figcaption>
+    </figure>
+    <div class="desc"><?= $article['lang']['description'] ?></div>
+</div>

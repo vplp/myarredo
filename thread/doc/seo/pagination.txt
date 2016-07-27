@@ -1,0 +1,10 @@
+ По prev/next  информация по адресу: https://support.google.com/webmasters/answer/1663744?hl=ru
+
+ Каждая страница пагинации должна содержать тег 
+<meta name="robots" content ="noindex, follow" />
+
+ К метаданным страниц пагинации должны добавляться соответствующие окон-чания, пример:
+для Title: «, стр. 3» [<title>…, стр. 3</title>]
+для Description: « - Страница 3.» [<meta name="description" content="... – Страница 3." />]
+
+(что бы небыло дублей страниц)

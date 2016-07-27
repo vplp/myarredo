@@ -1,0 +1,55 @@
+<?php
+
+namespace thread\app\web;
+
+use yii\base\ErrorException;
+use thread\app\web\interfaces\InjectionLanguage as iInjectionLanguage;
+
+/**
+ * Class UrlManager
+ *
+ * @package thread\components
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c) 2015, Thread
+ */
+final class UrlManager extends \yii\web\UrlManager
+{
+    /**
+     * @var
+     */
+    public $InjectionLanguageClass = InjectionLanguage::class;
+
+    /**
+     * @throws ErrorException
+     */
+    public function init()
+    {
+
+        if (!((new $this->InjectionLanguageClass) instanceof iInjectionLanguage)) {
+            throw new ErrorException($this->InjectionLanguageClass . ' must be implemented ' . iInjectionLanguage::class);
+        }
+
+        parent::init();
+    }
+
+    /**
+     *
+     * @param array $params
+     * @return string
+     */
+    public function createUrl($params)
+    {
+        return call_user_func([$this->InjectionLanguageClass, 'addLangToUrl'], parent::createUrl($params));
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getBaseUrl()
+    {
+        $this->setBaseUrl(call_user_func([$this->InjectionLanguageClass, 'getBaseUrl']));
+        return parent::getBaseUrl();
+    }
+
+}
