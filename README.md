@@ -1,4 +1,4 @@
-Vents Project
+CMS Project
 =============
 
 1. Clone project
