@@ -1,4 +1,4 @@
-CMS Project
+CMS CORE Project
 =============
 
 1. Clone project
