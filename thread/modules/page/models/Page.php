@@ -2,14 +2,16 @@
 
 namespace thread\modules\page\models;
 
-use thread\app\base\models\ActiveRecord;
-use thread\app\base\models\query\ActiveQuery;
-use thread\modules\page\Page as PageModule;
 use Yii;
 use yii\behaviors\AttributeBehavior;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Inflector;
-use yii\helpers\Url;
+use yii\helpers\{
+    ArrayHelper, Inflector, Url
+};
+//
+use thread\app\base\models\{
+    ActiveRecord, query\ActiveQuery
+};
+use thread\modules\page\Page as PageModule;
 
 /**
  * Class Page

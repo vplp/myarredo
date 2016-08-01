@@ -1,27 +1,30 @@
 <?php
-use thread\widgets\grid\SwitchboxColumn;
-use thread\widgets\grid\ActionEditColumn;
-use thread\widgets\grid\ActionToTrashColumn;
-use backend\themes\inspinia\widgets\GridView;
+//
 use yii\bootstrap\Html;
+//
+use thread\widgets\grid\SwitchboxColumn;
+//
+use backend\themes\inspinia\widgets\GridView;
 
-/**
- * @var \backend\modules\page\models\search\Page $model
- */
+$filter = new \backend\modules\menu\models\search\Menu();
+$filter->setAttributes(Yii::$app->getRequest()->get('Menu'));
 
 echo GridView::widget(
     [
         'dataProvider' => $model->search(Yii::$app->request->queryParams),
-        'title' => Yii::t('app', 'Menu'),
+        'filterModel' => $filter,
         'columns' => [
-            'lang.title',
+            [
+                'attribute' => 'title',
+                'value' => 'lang.title',
+                'label' => Yii::t('app', 'Title'),
+            ],
             [
                 'format' => 'raw',
                 'value' => function ($model) {
-//                    var_dump($model->items);
                     return Html::a(
-                        Yii::t('app', 'Items') . ': ' . ' (' . count($model->items) . ')',
-                        ['item/list', 'group_id' => $model->id]
+                        Yii::t('app', 'Items') . ': ' . ' (' . count($model['items']) . ')',
+                        ['item/list', 'group_id' => $model['id']]
                     );
                 }
             ],

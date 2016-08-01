@@ -3,8 +3,11 @@ namespace thread\widgets\grid;
 
 use yii\base\InvalidConfigException;
 use yii\grid\DataColumn;
-use yii\helpers\Html;
-use yii\helpers\Url;
+use yii\helpers\{
+    Html, Url
+};
+//
+use thread\app\base\models\ActiveRecord;
 
 /**
  * Class CheckboxActionColumn
@@ -32,11 +35,27 @@ class ActionCheckboxColumn extends DataColumn
     {
         parent::init();
         if (!$this->action) {
-            throw new InvalidConfigException(\Yii::t('app', 'You should set "action" attribute to "') . $this->attribute . '"');
+            throw new InvalidConfigException(\Yii::t('app',
+                    'You should set "action" attribute to "') . $this->attribute . '"');
         }
+//        if (empty($this->filter)) {
+//            $this->filter = \Yii::$app->formatter->booleanFormat;
+//        }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function renderFilterCellContent()
+    {
         if (empty($this->filter)) {
-            $this->filter = \Yii::$app->formatter->booleanFormat;
+
+            $model = $this->grid->filterModel;
+
+            $this->filter = Html::activeDropDownList($model, $this->attribute, ActiveRecord::statusKeyRange(),
+                ['class' => 'form-control', 'prompt' => '  ---  ']);
         }
+        return parent::renderFilterCellContent();
     }
 
     /**
@@ -51,6 +70,7 @@ class ActionCheckboxColumn extends DataColumn
                 'url' => Url::toRoute([$this->action]),
             ],
         ];
+
         /** @var \yii\db\ActiveRecord $model */
         return Html::checkbox(null, (int)$model->{$this->attribute}, $dataAttributes);
     }

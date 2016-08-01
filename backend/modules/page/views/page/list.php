@@ -1,15 +1,16 @@
 <?php
-use thread\widgets\grid\ActionEditColumn;
-use thread\widgets\grid\ActionToTrashColumn;
 //
 use backend\themes\inspinia\widgets\GridView;
+
+$filter = new \backend\modules\page\models\search\Page();
+$filter->setAttributes(Yii::$app->getRequest()->get('Page'));
 
 /**
  * @var \backend\modules\page\models\search\Page $model
  */
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
-    'title' => Yii::t('app', 'Pages'),
+    'filterModel' => $filter,
     'columns' => [
         [
             'attribute' => 'title',

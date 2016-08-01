@@ -2,25 +2,37 @@
 
 namespace backend\modules\menu\models\search;
 
-use backend\modules\menu\Menu as MenuModule;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\base\Model;
+//
+use backend\modules\menu\Menu as MenuModule;
+use backend\modules\menu\models\MenuLang;
 use backend\modules\menu\models\Menu as MenuModel;
-use yii\db\Query;
+
 
 class Menu extends MenuModel
 {
+    public $title;
+
     /**
      * @return array
      */
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at'], 'integer'],
-            [['alias'], 'string', 'max' => 255],
+            [['alias', 'title'], 'string', 'max' => 255],
+            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
-
+    /**
+     *
+     * @return array
+     */
+    public function scenarios()
+    {
+        return Model::scenarios();
+    }
     /**
      * Description
      *
@@ -50,18 +62,10 @@ class Menu extends MenuModel
             return $dataProvider;
         }
 
-        /** @var $query Query */
-        $query->andFilterWhere(
-            [
-                'id' => $this->id,
-                'created_at' => $this->created_at,
-                'updated_at' => $this->updated_at,
-            ]
-        );
-
         $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published])
-            ->andFilterWhere(['like', 'deleted', $this->deleted]);
+            ->andFilterWhere(['like', 'published', $this->published]);
+        //
+        $query->andFilterWhere(['like', MenuLang::tableName() . '.title', $this->title]);
 
         return $dataProvider;
     }
@@ -74,7 +78,7 @@ class Menu extends MenuModel
      */
     public function search($params)
     {
-        $query = MenuModel::find()->with(['lang'])->undeleted();
+        $query = MenuModel::find()->joinWith(['lang'])->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -86,7 +90,7 @@ class Menu extends MenuModel
      */
     public function trash($params)
     {
-        $query = MenuModel::find()->with(['lang'])->deleted();
+        $query = MenuModel::find()->joinWith(['lang'])->deleted();
         return $this->baseSearch($query, $params);
     }
 }

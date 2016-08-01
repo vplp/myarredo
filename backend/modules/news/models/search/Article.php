@@ -6,21 +6,37 @@ use thread\app\base\models\query\ActiveQuery;
 use Yii;
 use yii\data\ActiveDataProvider;
 use backend\modules\news\models\Article as ArticleModel;
+use backend\modules\news\models\ArticleLang;
+use yii\base\Model;
 
 class Article extends ArticleModel
 {
+    public $title;
+
     /**
      * @return array
      */
     public function rules()
     {
         return [
-            [['group_id', 'created_at', 'updated_at'], 'integer'],
-            [['published_time'], 'date', 'format' => 'php:' . Yii::$app->modules['news']->params['format']['date'], 'timestampAttribute' => 'published_time'],
-
-            [['alias', 'image_link'], 'string', 'max' => 255],
-            [['alias'], 'unique'],
+            [['alias', 'title'], 'string', 'max' => 255],
+            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
+//            [
+//                ['published_time'],
+//                'date',
+//                'format' => 'php:' . Yii::$app->modules['news']->params['format']['date'],
+//                'timestampAttribute' => 'published_time'
+//            ],
         ];
+    }
+
+    /**
+     *
+     * @return array
+     */
+    public function scenarios()
+    {
+        return Model::scenarios();
     }
 
     /**
@@ -48,14 +64,12 @@ class Article extends ArticleModel
             return $dataProvider;
         }
 
-        $query->joinWith(['lang', 'group']);
+        $query->with(['group']);
 
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ]);
-
+        $query->andFilterWhere(['like', 'alias', $this->alias])
+            ->andFilterWhere(['like', 'published', $this->published]);
+        //
+        $query->andFilterWhere(['like', ArticleLang::tableName() . '.title', $this->title]);
 
         return $dataProvider;
     }
@@ -66,7 +80,7 @@ class Article extends ArticleModel
      */
     public function search($params)
     {
-        $query = ArticleModel::find()->with(['lang'])->undeleted();
+        $query = ArticleModel::find()->joinWith(['lang'])->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -76,7 +90,7 @@ class Article extends ArticleModel
      */
     public function trash($params)
     {
-        $query = ArticleModel::find()->with(['lang'])->deleted();
+        $query = ArticleModel::find()->joinWith(['lang'])->deleted();
         return $this->baseSearch($query, $params);
     }
 }

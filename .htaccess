@@ -1,29 +1,5 @@
 AddDefaultCharset UTF-8
 
-Order Deny,Allow
-Deny from all
-Allow from  82.193.124.145
-Allow from  127.0.0.1
-Allow from  91.196.149.48/28
-Allow from  91.196.149.49
-Allow from  91.196.148.3
-Allow from  91.196.149.50
-Allow from  91.196.149.51
-Allow from  91.196.149.52
-Allow from  91.196.149.53
-Allow from  91.196.149.54
-Allow from  91.196.149.55
-Allow from  91.196.149.56
-Allow from  91.196.149.57
-Allow from  91.196.149.58
-Allow from  91.196.149.59
-Allow from  91.196.149.60
-Allow from  91.196.149.61
-Allow from  91.196.149.62
-Allow from  91.196.149.63
-Allow from  176.36.144.93
-Allow from  216.58.209.174
-
 # mod_autoindex
 <IfModule mod_autoindex.c>
   Options -Indexes

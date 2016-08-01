@@ -6,18 +6,31 @@ use thread\app\base\models\query\ActiveQuery;
 use Yii;
 use yii\data\ActiveDataProvider;
 use backend\modules\news\models\Group as GroupModel;
+use backend\modules\news\models\GroupLang;
+use yii\base\Model;
 
 class Group extends GroupModel
 {
+    public $title;
+
     /**
      * @return array
      */
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at'], 'integer'],
-            [['alias'], 'string', 'max' => 255],
+            [['alias', 'title'], 'string', 'max' => 255],
+            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
+    }
+
+    /**
+     *
+     * @return array
+     */
+    public function scenarios()
+    {
+        return Model::scenarios();
     }
 
     /**
@@ -45,15 +58,10 @@ class Group extends GroupModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ]);
-
         $query->andFilterWhere(['like', 'alias', $this->alias])
-                ->andFilterWhere(['like', 'published', $this->published])
-                ->andFilterWhere(['like', 'deleted', $this->deleted]);
+            ->andFilterWhere(['like', 'published', $this->published]);
+        //
+        $query->andFilterWhere(['like', GroupLang::tableName() . '.title', $this->title]);
 
         return $dataProvider;
     }
@@ -64,7 +72,7 @@ class Group extends GroupModel
      */
     public function search($params)
     {
-        $query = GroupModel::find()->with(['lang'])->undeleted();
+        $query = GroupModel::find()->joinWith(['lang'])->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -74,7 +82,7 @@ class Group extends GroupModel
      */
     public function trash($params)
     {
-        $query = GroupModel::find()->with(['lang'])->deleted();
+        $query = GroupModel::find()->joinWith(['lang'])->deleted();
         return $this->baseSearch($query, $params);
     }
 }

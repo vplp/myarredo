@@ -2,23 +2,36 @@
 
 namespace backend\modules\menu\models\search;
 
-use backend\modules\menu\Menu as MenuModule;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\base\Model;
+//
+use backend\modules\menu\Menu as MenuModule;
+use backend\modules\menu\models\MenuItemLang;
 use backend\modules\menu\models\MenuItem as ItemModel;
-use yii\db\Query;
 
 class MenuItem extends ItemModel
 {
+    public $title;
+
     /**
      * @return array
      */
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at'], 'integer'],
-            [['alias'], 'string', 'max' => 255],
+            [['alias', 'title'], 'string', 'max' => 255],
+            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
+    }
+
+    /**
+     *
+     * @return array
+     */
+    public function scenarios()
+    {
+        return Model::scenarios();
     }
 
     /**
@@ -49,17 +62,10 @@ class MenuItem extends ItemModel
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
-        /** @var $query Query */
-        $query->andFilterWhere(
-            [
-                'id' => $this->id,
-                'created_at' => $this->created_at,
-                'updated_at' => $this->updated_at,
-            ]
-        );
-
-        $query->andFilterWhere(['like', 'published', $this->published])
-            ->andFilterWhere(['like', 'deleted', $this->deleted]);
+        $query->andFilterWhere(['like', 'alias', $this->alias])
+            ->andFilterWhere(['like', 'published', $this->published]);
+        //
+        $query->andFilterWhere(['like', MenuItemLang::tableName() . '.title', $this->title]);
 
         return $dataProvider;
     }
@@ -72,7 +78,7 @@ class MenuItem extends ItemModel
     public function search($params)
     {
         $parent_id = Yii::$app->request->get('parent_id', 0);
-        $query = ItemModel::find()->with(['lang'])->parent_id($parent_id)->undeleted();
+        $query = ItemModel::find()->joinWith(['lang'])->parent_id($parent_id)->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -83,7 +89,8 @@ class MenuItem extends ItemModel
      */
     public function trash($params)
     {
-        $query = ItemModel::find()->with(['lang'])->deleted();
+        $parent_id = Yii::$app->request->get('parent_id', 0);
+        $query = ItemModel::find()->joinWith(['lang'])->parent_id($parent_id)->deleted();
         return $this->baseSearch($query, $params);
     }
 }

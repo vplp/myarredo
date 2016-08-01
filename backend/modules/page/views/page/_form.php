@@ -3,9 +3,9 @@ use thread\modules\seo\widgets\seo\SeoWidget;
 //
 use backend\modules\page\models\Page;
 use backend\modules\page\models\PageLang;
-use backend\themes\inspinia\widgets\forms\ActiveForm;
-use backend\themes\inspinia\widgets\Tabs;
-use backend\themes\inspinia\widgets\forms\Form;
+use backend\themes\inspinia\widgets\{
+    forms\ActiveForm, Tabs, forms\Form
+};
 
 
 /**
@@ -22,7 +22,7 @@ use backend\themes\inspinia\widgets\forms\Form;
     'items' => [
         [
             'label' => Yii::t('app', 'General'),
-            'content' => $this->render('formParts/_main', [
+            'content' => $this->render('parts/_main', [
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang,

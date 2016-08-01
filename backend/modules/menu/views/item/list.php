@@ -1,6 +1,12 @@
 <?php
-use yii\helpers\Html;
+use yii\helpers\{
+    Html, Url
+};
+//
 use backend\themes\inspinia\widgets\GridView;
+
+$filter = new \backend\modules\menu\models\search\MenuItem();
+$filter->setAttributes(Yii::$app->getRequest()->get('MenuItem'));
 
 /**
  * @var \backend\modules\menu\models\search\MenuItem $model
@@ -8,9 +14,15 @@ use backend\themes\inspinia\widgets\GridView;
 echo GridView::widget(
     [
         'dataProvider' => $model->search(Yii::$app->request->queryParams),
+        'filterModel' => $filter,
+        //TODO: Титула тут не должно быть
         'title' => Yii::t('app', 'Menu') . ' ' . $this->context->group->lang->title,
         'columns' => [
-            'lang.title',
+            [
+                'attribute' => 'title',
+                'value' => 'lang.title',
+                'label' => Yii::t('app', 'Title'),
+            ],
             [
                 'format' => 'raw',
                 'headerOptions' => ['class' => 'text-center col-sm-2'],
@@ -19,7 +31,9 @@ echo GridView::widget(
                     return Html::a(
                         'Подкатегории: ' . ' (' . count($model['items']) . ')',
                         [
-                            'list', 'group_id' => $model->group_id, 'parent_id' => $model->id
+                            'list',
+                            'group_id' => $model->group_id,
+                            'parent_id' => $model->id
                         ]
                     );
                 },
@@ -41,10 +55,18 @@ echo GridView::widget(
             [
                 'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class,
                 'updateLink' => function ($model) {
-                    return \yii\helpers\Url::toRoute(['update', 'group_id' => Yii::$app->getRequest()->get('group_id'), 'id' => $model->id]);
+                    return Url::toRoute([
+                        'update',
+                        'group_id' => $model['group_id'],
+                        'id' => $model['id']
+                    ]);
                 },
                 'deleteLink' => function ($model) {
-                    return \yii\helpers\Url::toRoute(['intrash', 'group_id' => Yii::$app->getRequest()->get('group_id'), 'id' => $model->id]);
+                    return Url::toRoute([
+                        'intrash',
+                        'group_id' => $model['group_id'],
+                        'id' => $model['id']
+                    ]);
                 }
             ],
         ]
