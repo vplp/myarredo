@@ -120,4 +120,12 @@ class Menu extends ActiveRecord
     {
         return $this->hasMany(MenuItem::class, ['group_id' => 'id'])->undeleted();
     }
+
+    /**
+     * @return int|string
+     */
+    public function getItemsCount()
+    {
+        return $this->getItems()->count();
+    }
 }

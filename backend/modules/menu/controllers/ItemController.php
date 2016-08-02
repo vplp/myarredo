@@ -8,7 +8,7 @@ use yii\helpers\Url;
 use thread\app\base\controllers\BackendController;
 //
 use backend\modules\menu\models\{
-    MenuItem, MenuItemLang, Menu
+    MenuItem, MenuItemLang, Menu, search\MenuItem as filterMenuItemModel
 };
 
 /**
@@ -18,6 +18,7 @@ class ItemController extends BackendController
 {
     public $model = MenuItem::class;
     public $modelLang = MenuItemLang::class;
+    public $filterModel = filterMenuItemModel::class;
     public $group = null;
     public $parent = null;
     public $title = 'Menu items';

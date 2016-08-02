@@ -1,5 +1,6 @@
 <?php
-
+//TODO: проверить ActiveForm
+//TODO: Доработать
 use yii\bootstrap\ActiveForm;
 use thread\widgets\HtmlForm;
 

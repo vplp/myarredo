@@ -9,10 +9,11 @@ use yii\base\Model;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use backend\modules\menu\Menu as MenuModule;
-use backend\modules\menu\models\MenuItemLang;
-use backend\modules\menu\models\MenuItem as ItemModel;
+use backend\modules\menu\models\{
+    MenuItem as MenuItemModel, MenuItemLang
+};
 
-class MenuItem extends ItemModel implements BaseBackendSearchModel
+class MenuItem extends MenuItemModel implements BaseBackendSearchModel
 {
     public $title;
 
@@ -80,7 +81,7 @@ class MenuItem extends ItemModel implements BaseBackendSearchModel
     public function search($params)
     {
         $parent_id = Yii::$app->request->get('parent_id', 0);
-        $query = ItemModel::find()->joinWith(['lang'])->parent_id($parent_id)->undeleted();
+        $query = MenuItemModel::find()->joinWith(['lang'])->parent_id($parent_id)->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -92,7 +93,7 @@ class MenuItem extends ItemModel implements BaseBackendSearchModel
     public function trash($params)
     {
         $parent_id = Yii::$app->request->get('parent_id', 0);
-        $query = ItemModel::find()->joinWith(['lang'])->parent_id($parent_id)->deleted();
+        $query = MenuItemModel::find()->joinWith(['lang'])->parent_id($parent_id)->deleted();
         return $this->baseSearch($query, $params);
     }
 }

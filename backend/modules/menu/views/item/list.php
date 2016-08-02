@@ -5,9 +5,6 @@ use yii\helpers\{
 //
 use backend\themes\inspinia\widgets\GridView;
 
-$filter = new \backend\modules\menu\models\search\MenuItem();
-$filter->setAttributes(Yii::$app->getRequest()->get('MenuItem'));
-
 /**
  * @var \backend\modules\menu\models\search\MenuItem $model
  */
@@ -15,8 +12,6 @@ echo GridView::widget(
     [
         'dataProvider' => $model->search(Yii::$app->request->queryParams),
         'filterModel' => $filter,
-        //TODO: Титула тут не должно быть
-        'title' => Yii::t('app', 'Menu') . ' ' . $this->context->group->lang->title,
         'columns' => [
             [
                 'attribute' => 'title',
@@ -37,12 +32,13 @@ echo GridView::widget(
                         ]
                     );
                 },
-                'visible' => (Yii::$app->request->get('parent_id')) ? false : true,
+                'visible' => (Yii::$app->getRequest()->get('parent_id')) ? false : true,
             ],
             [
                 'attribute' => 'link',
                 'format' => 'raw',
                 'value' => function ($model) {
+                    //TODO: Здесь должен быть метод из модели данных
                     return ($model->link_type == 'internal') ? $model->link : $model->link;
                 }
             ],

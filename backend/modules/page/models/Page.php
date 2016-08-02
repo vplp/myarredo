@@ -22,7 +22,6 @@ class Page extends CommonPageModel implements BaseBackendModel
      */
     public function behaviors()
     {
-
         return ArrayHelper::merge(
             parent::behaviors(),
             [

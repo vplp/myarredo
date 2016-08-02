@@ -3,9 +3,12 @@
 namespace thread\actions;
 
 use Yii;
-use yii\base\Action;
+use yii\base\{
+    Action, Exception
+};
 use yii\web\Response;
-use yii\base\Exception;
+use yii\db\ActiveRecord;
+use yii\log\Logger;
 
 /**
  * Class ListModel
@@ -61,6 +64,11 @@ class ListModel extends Action
     public $methodName = 'search';
 
     /**
+     * @var null|\Closure|\yii\db\ActiveRecord
+     */
+    public $filterModel = null;
+
+    /**
      * Access checking
      *
      * @var bool
@@ -101,17 +109,46 @@ class ListModel extends Action
      */
     public function run()
     {
+
         $this->controller->layout = $this->layout;
         if (Yii::$app->getRequest()->isAjax) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
             return $this->controller->renderPartial($this->view, [
                 'model' => $this->model,
+                'filter' => $this->getFilter()
             ]);
         } else {
             $this->controller->layout = $this->layout;
             return $this->controller->render($this->view, [
                 'model' => $this->model,
+                'filter' => $this->getFilter()
             ]);
+        }
+    }
+
+    /**
+     * @return null|\Closure|\yii\db\ActiveRecord
+     */
+    public function getFilter()
+    {
+        $filter = $this->filterModel;
+
+        if ($filter instanceof \Closure) {
+            return $filter();
+        } else {
+
+            try {
+                $filter = new $this->filterModel;
+
+                if ($filter instanceof ActiveRecord) {
+                    $filter->load(Yii::$app->getRequest()->queryParams);
+                    return $filter;
+                }
+
+            } catch (\Exception $e) {
+                Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
+                return null;
+            }
         }
     }
 }

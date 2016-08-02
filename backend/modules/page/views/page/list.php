@@ -2,9 +2,6 @@
 //
 use backend\themes\inspinia\widgets\GridView;
 
-$filter = new \backend\modules\page\models\search\Page();
-$filter->setAttributes(Yii::$app->getRequest()->get('Page'));
-
 /**
  * @var \backend\modules\page\models\search\Page $model
  */

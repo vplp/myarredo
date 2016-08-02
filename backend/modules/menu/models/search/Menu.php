@@ -9,8 +9,9 @@ use yii\base\Model;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use backend\modules\menu\Menu as MenuModule;
-use backend\modules\menu\models\MenuLang;
-use backend\modules\menu\models\Menu as MenuModel;
+use backend\modules\menu\models\{
+    Menu as MenuModel, MenuLang
+};
 
 
 class Menu extends MenuModel implements BaseBackendSearchModel
@@ -27,6 +28,7 @@ class Menu extends MenuModel implements BaseBackendSearchModel
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
+
     /**
      *
      * @return array
@@ -35,6 +37,7 @@ class Menu extends MenuModel implements BaseBackendSearchModel
     {
         return Model::scenarios();
     }
+
     /**
      * Description
      *

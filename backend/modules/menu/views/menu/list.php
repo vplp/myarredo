@@ -6,9 +6,6 @@ use thread\widgets\grid\SwitchboxColumn;
 //
 use backend\themes\inspinia\widgets\GridView;
 
-$filter = new \backend\modules\menu\models\search\Menu();
-$filter->setAttributes(Yii::$app->getRequest()->get('Menu'));
-
 echo GridView::widget(
     [
         'dataProvider' => $model->search(Yii::$app->request->queryParams),
@@ -23,7 +20,7 @@ echo GridView::widget(
                 'format' => 'raw',
                 'value' => function ($model) {
                     return Html::a(
-                        Yii::t('app', 'Items') . ': ' . ' (' . count($model['items']) . ')',
+                        Yii::t('app', 'Items') . ': ' . ' (' . $model->getItemsCount() . ')',
                         ['item/list', 'group_id' => $model['id']]
                     );
                 }

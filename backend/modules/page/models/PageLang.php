@@ -2,7 +2,6 @@
 
 namespace backend\modules\page\models;
 
-use Yii;
 use common\modules\page\models\PageLang as CommonPageLangModel;
 
 /**

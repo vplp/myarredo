@@ -3,10 +3,12 @@
 namespace thread\actions;
 
 use Yii;
-use yii\base\Action;
-use yii\base\Exception;
+use yii\base\{
+    Action, Exception
+};
 use yii\web\Response;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 //
 use thread\app\web\Pagination;
 
@@ -74,6 +76,11 @@ class ListQuery extends Action
     public $sort = '';
 
     /**
+     * @var array
+     */
+    public $pagination = [];
+
+    /**
      * Init action
      *
      * @inheritdoc
@@ -95,12 +102,10 @@ class ListQuery extends Action
     {
         $data = new ActiveDataProvider([
             'query' => $this->query,
-            'pagination' => [
-                'class' => Pagination::class,
-                'pageSize' => $this->recordOnPage
-            ]
+            'pagination' => $this->getPagination()
         ]);
         $data->query->addOrderBy($this->sort);
+
         if (Yii::$app->getRequest()->isAjax) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
             return $this->controller->renderPartial($this->view, [
@@ -113,5 +118,16 @@ class ListQuery extends Action
                 'pages' => $data->getPagination(),
             ]);
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function getPagination()
+    {
+        return ArrayHelper::merge([
+            'class' => Pagination::class,
+            'pageSize' => $this->recordOnPage
+        ], $this->pagination);
     }
 }

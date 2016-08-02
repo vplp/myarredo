@@ -3,8 +3,9 @@
 namespace thread\actions;
 
 use Closure;
-use yii\base\Action;
-use yii\base\Model;
+use yii\base\{
+    Action, Model
+};
 
 /**
  * Class ActionCRUD

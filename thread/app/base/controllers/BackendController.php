@@ -121,6 +121,11 @@ abstract class BackendController extends Controller
     protected $modelLang = '';
 
     /**
+     * @var string|\Closure
+     */
+    protected $filterModel = '';
+
+    /**
      * Перелік підключених Дій
      * @return array
      */
@@ -131,6 +136,7 @@ abstract class BackendController extends Controller
                 'class' => ListModel::class,
                 'modelClass' => $this->model,
                 'layout' => '@app/layouts/crud',
+                'filterModel' => $this->filterModel,
             ],
             'trash' => [
                 'class' => ListModel::class,
@@ -191,7 +197,8 @@ abstract class BackendController extends Controller
      */
     public function beforeAction($action)
     {
-        $this->actionListLinkStatus = Yii::$app->getSession()->get($this->module->id . "_" . $this->id . "_list", 'list');
+        $this->actionListLinkStatus = Yii::$app->getSession()->get($this->module->id . "_" . $this->id . "_list",
+            'list');
         return parent::beforeAction($action);
     }
 
