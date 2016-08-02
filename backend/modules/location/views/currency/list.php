@@ -1,18 +1,23 @@
 <?php
-use thread\widgets\grid\SwitchboxColumn;
-use thread\widgets\grid\ActionEditColumn;
-use thread\widgets\grid\ActionToTrashColumn;
 use backend\themes\inspinia\widgets\GridView;
 
 /**
  * @var \backend\modules\location\models\search\Currency $model
  */
+
+$filter = new \backend\modules\location\models\search\Currency();
+$filter->setAttributes(Yii::$app->getRequest()->get('Currency'));
+
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
-    'title' => Yii::t('app', 'Currency'),
+    'filterModel' => $filter,
     'columns' => [
         'alias',
-        'lang.title',
+        [
+            'attribute' => 'title',
+            'value' => 'lang.title',
+            'label' => Yii::t('app', 'Title'),
+        ],
         'course',
         [
             'class' => \thread\widgets\grid\ActionCheckboxColumn::class,

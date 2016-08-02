@@ -21,6 +21,15 @@ class Company extends CompanyModel
     }
 
     /**
+     *
+     * @return array
+     */
+    public function scenarios()
+    {
+        return Model::scenarios();
+    }
+
+    /**
      * @param ActiveQuery $query
      * @param array $params
      * @return ActiveDataProvider

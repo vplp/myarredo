@@ -1,16 +1,27 @@
 <?php
 namespace backend\modules\news\models;
 
-use backend\modules\news\News;
-use common\modules\news\models\Article as CommonArticleModel;
-use common\modules\seo\models\Seo;
-use thread\modules\seo\behaviors\SeoBehavior;
 use Yii;
 use yii\helpers\ArrayHelper;
+//
+use thread\modules\seo\behaviors\SeoBehavior;
+//
+use common\modules\news\models\Article as CommonArticleModel;
+use common\modules\seo\models\Seo;
+//
+use backend\modules\news\News;
 
 class Article extends CommonArticleModel
 {
 
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function search($params)
+    {
+        return (new search\Article())->search($params);
+    }
 
     /**
      * @return array

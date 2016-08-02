@@ -1,13 +1,16 @@
 <?php
 namespace backend\modules\news\models\search;
 
-use backend\modules\news\News as NewsModule;
-use thread\app\base\models\query\ActiveQuery;
 use Yii;
 use yii\data\ActiveDataProvider;
-use backend\modules\news\models\Group as GroupModel;
-use backend\modules\news\models\GroupLang;
 use yii\base\Model;
+//
+use thread\app\base\models\query\ActiveQuery;
+//
+use backend\modules\news\News as NewsModule;
+use backend\modules\news\models\{
+    Group as GroupModel, GroupLang
+};
 
 class Group extends GroupModel
 {

@@ -1,10 +1,12 @@
 <?php
 namespace backend\modules\page\controllers;
 
-use backend\modules\page\models\search\Page;
-use backend\modules\page\models\PageLang;
 use thread\app\base\controllers\BackendController;
-use yii\filters\AccessControl;
+//
+use backend\modules\page\models\{
+    Page, PageLang
+};
+
 
 /**
  * @author Roman Gonchar <roman.gonchar92@gmail.com>

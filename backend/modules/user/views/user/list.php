@@ -1,9 +1,9 @@
 <?php
 
+use yii\helpers\Html;
+//
 use backend\themes\inspinia\widgets\GridView;
 use backend\modules\user\models\Group;
-use yii\helpers\Html;
-use backend\modules\user\models\search\User;
 
 /**
  *
@@ -14,12 +14,12 @@ use backend\modules\user\models\search\User;
  * @var User $model
  */
 
-$searchModel = new User();
+$filter = new \backend\modules\user\models\search\User();
+$filter->setAttributes(Yii::$app->getRequest()->get('User'));
 
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
-    'title' => Yii::t('app', 'User'),
-    'filterModel'=> $searchModel,
+    'filterModel' => $filter,
     'columns' => [
         'username',
         [

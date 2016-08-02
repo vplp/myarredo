@@ -5,7 +5,7 @@ namespace thread\app\model\interfaces;
 /**
  * interface Languages
  *
- * @package thread\app\model\iface
+ * @package thread\app\model\interfaces
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c) 2015, Thread
  */

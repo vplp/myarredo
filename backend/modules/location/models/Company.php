@@ -9,13 +9,20 @@ namespace backend\modules\location\models;
 class Company extends \common\modules\location\models\Company
 {
     /**
-     * Find base Page object for current language active and undeleted
-     *
-     * @return ActiveQuery
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
      */
-    public static function findBase()
+    public function search($params)
     {
-        return parent::findBase()->_lang()->enabled();
+        return (new search\Company())->search($params);
     }
 
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function trash($params)
+    {
+        return (new search\Currency())->trash($params);
+    }
 }

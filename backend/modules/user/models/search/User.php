@@ -24,9 +24,16 @@ class User extends UserModel
     {
         return [
             [['username', 'email'], 'string', 'max' => 255],
-            [['group_id'], 'integer'],
-            [['sanatorium_id', 'company_id'], 'safe'],
+            [['group_id'], 'integer']
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public function scenarios()
+    {
+        return Model::scenarios();
     }
 
     /**
@@ -46,7 +53,7 @@ class User extends UserModel
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
-        
+
         $query->joinWith('group');
 
         $query->andFilterWhere([
@@ -66,8 +73,8 @@ class User extends UserModel
     public function search($params)
     {
         $query = UserModel::find()->joinWith([
-                    'group', 'group.lang',
-                ])->undeleted();
+            'group', 'group.lang',
+        ])->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -78,8 +85,8 @@ class User extends UserModel
     public function trash($params)
     {
         $query = UserModel::find()->joinWith([
-                    'group', 'group.lang',
-                ])->deleted();
+            'group', 'group.lang',
+        ])->deleted();
         return $this->baseSearch($query, $params);
     }
 }

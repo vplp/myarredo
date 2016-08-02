@@ -1,13 +1,15 @@
 <?php
 namespace backend\modules\menu\controllers;
 
-use backend\modules\menu\models\search\MenuItem;
-use backend\modules\menu\models\MenuItemLang;
-use backend\modules\menu\models\Menu;
-use thread\app\base\controllers\BackendController;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
+//
+use thread\app\base\controllers\BackendController;
+//
+use backend\modules\menu\models\{
+    MenuItem, MenuItemLang, Menu
+};
 
 /**
  * @author Roman Gonchar <roman.gonchar92@gmail.com>
@@ -19,6 +21,7 @@ class ItemController extends BackendController
     public $group = null;
     public $parent = null;
     public $title = 'Menu items';
+
     /**
      * Actions
      *
@@ -108,7 +111,6 @@ class ItemController extends BackendController
 
         return parent::beforeAction($action);
     }
-
 
 
 }

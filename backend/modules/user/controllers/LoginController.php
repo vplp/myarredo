@@ -2,10 +2,11 @@
 
 namespace backend\modules\user\controllers;
 
-use thread\app\base\controllers\BackendController;
-use thread\modules\user\models\form\SignInForm;
 use Yii;
 use yii\filters\AccessControl;
+//
+use thread\app\base\controllers\BackendController;
+use thread\modules\user\models\form\SignInForm;
 
 /**
  * Class LoginController
@@ -51,7 +52,7 @@ class LoginController extends BackendController
     {
         return [
             'captcha' => [
-                'class' => '\yii\captcha\CaptchaAction',
+                'class' => \yii\captcha\CaptchaAction::class,
             ],
         ];
     }

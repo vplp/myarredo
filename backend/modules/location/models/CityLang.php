@@ -1,7 +1,6 @@
 <?php
 
 namespace backend\modules\location\models;
-use Yii;
 
 /**
  * @author Roman Gonchar <roman.gonchar92@gmail.com>

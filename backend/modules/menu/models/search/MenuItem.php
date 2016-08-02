@@ -6,11 +6,13 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
+use thread\app\model\interfaces\search\BaseBackendSearchModel;
+//
 use backend\modules\menu\Menu as MenuModule;
 use backend\modules\menu\models\MenuItemLang;
 use backend\modules\menu\models\MenuItem as ItemModel;
 
-class MenuItem extends ItemModel
+class MenuItem extends ItemModel implements BaseBackendSearchModel
 {
     public $title;
 

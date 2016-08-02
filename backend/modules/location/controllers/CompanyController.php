@@ -1,9 +1,11 @@
 <?php
 namespace backend\modules\location\controllers;
 
-use backend\modules\location\models\search\Company;
-use backend\modules\location\models\CompanyLang;
 use thread\app\base\controllers\BackendController;
+//
+use backend\modules\location\models\{
+    Company, CompanyLang
+};
 
 /**
  * @author Roman Gonchar <roman.gonchar92@gmail.com>

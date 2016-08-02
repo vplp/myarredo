@@ -17,7 +17,7 @@ use common\modules\user\models\form\{
     ChangePassword, CreateForm, PasswordResetRequestForm, ResetPasswordForm
 };
 //
-use backend\modules\user\models\search\User;
+use backend\modules\user\models\User;
 
 
 

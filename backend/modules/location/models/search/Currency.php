@@ -2,22 +2,36 @@
 
 namespace backend\modules\location\models\search;
 
-use backend\modules\location\Location as LocationModule;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\base\Model;
+//
+use backend\modules\location\Location as LocationModule;
 use backend\modules\location\models\Currency as CurrencyModel;
+use backend\modules\location\models\CurrencyLang;
 
 class Currency extends CurrencyModel
 {
+    public $title;
+
     /**
      * @return array
      */
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at'], 'integer'],
-            [['alias'], 'string', 'max' => 255],
+            [['course'], 'double'],
+            [['alias', 'title'], 'string', 'max' => 255],
         ];
+    }
+
+    /**
+     *
+     * @return array
+     */
+    public function scenarios()
+    {
+        return Model::scenarios();
     }
 
     /**
@@ -49,15 +63,14 @@ class Currency extends CurrencyModel
 
         $query->andFilterWhere(
             [
-                'id' => $this->id,
-                'created_at' => $this->created_at,
-                'updated_at' => $this->updated_at,
+                'course' => $this->course,
             ]
         );
 
         $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published])
-            ->andFilterWhere(['like', 'deleted', $this->deleted]);
+            ->andFilterWhere(['like', 'published', $this->published]);
+        //
+        $query->andFilterWhere(['like', CurrencyLang::tableName() . '.title', $this->title]);
 
         return $dataProvider;
     }
@@ -70,7 +83,7 @@ class Currency extends CurrencyModel
      */
     public function search($params)
     {
-        $query = CurrencyModel::find()->with(['lang'])->undeleted();
+        $query = CurrencyModel::find()->joinWith(['lang'])->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -80,7 +93,7 @@ class Currency extends CurrencyModel
      */
     public function trash($params)
     {
-        $query = CurrencyModel::find()->with(['lang'])->deleted();
+        $query = CurrencyModel::find()->joinWith(['lang'])->deleted();
         return $this->baseSearch($query, $params);
     }
 }

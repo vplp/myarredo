@@ -3,17 +3,23 @@
 namespace thread\app\model\interfaces;
 
 /**
- * interface iLanguages
+ * interface BaseBackendModel
  *
  * @package thread\app\model\interfaces
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c) 2015, Thread
  */
-
-interface LanguageModel
+interface BaseBackendModel
 {
     /**
+     * @param $params
      * @return mixed
      */
-    public function getLanguages():array;
+    public function search($params);
+
+    /**
+     * @param $params
+     * @return mixed
+     */
+    public function trash($params);
 }

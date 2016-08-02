@@ -2,10 +2,14 @@
 
 namespace backend\modules\location\models\search;
 
-use backend\modules\location\Location as LocationModule;
 use Yii;
 use yii\data\ActiveDataProvider;
-use backend\modules\location\models\Country as CountryModel;
+use yii\base\Model;
+//
+use backend\modules\location\Location as LocationModule;
+use backend\modules\location\models\{
+    Country as CountryModel, CountryLang
+};
 
 class Country extends CountryModel
 {
@@ -15,9 +19,20 @@ class Country extends CountryModel
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at'], 'integer'],
-            [['alias'], 'string', 'max' => 255],
+            [['alias', 'title'], 'string', 'max' => 255],
+            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [['alpha2'], 'string', 'min' => 2, 'max' => 2],
+            [['alpha3'], 'string', 'min' => 3, 'max' => 3],
         ];
+    }
+
+    /**
+     *
+     * @return array
+     */
+    public function scenarios()
+    {
+        return Model::scenarios();
     }
 
     /**
@@ -47,17 +62,12 @@ class Country extends CountryModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(
-            [
-                'id' => $this->id,
-                'created_at' => $this->created_at,
-                'updated_at' => $this->updated_at,
-            ]
-        );
-
         $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published])
-            ->andFilterWhere(['like', 'deleted', $this->deleted]);
+            ->andFilterWhere(['like', 'alpha2', $this->alpha2])
+            ->andFilterWhere(['like', 'alpha3', $this->alpha3])
+            ->andFilterWhere(['like', 'published', $this->published]);
+        //
+        $query->andFilterWhere(['like', CountryLang::tableName() . '.title', $this->title]);
 
         return $dataProvider;
     }
@@ -70,7 +80,7 @@ class Country extends CountryModel
      */
     public function search($params)
     {
-        $query = CountryModel::find()->with(['lang'])->undeleted();
+        $query = CountryModel::find()->joinWith(['lang'])->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -80,7 +90,7 @@ class Country extends CountryModel
      */
     public function trash($params)
     {
-        $query = CountryModel::find()->with(['lang'])->deleted();
+        $query = CountryModel::find()->joinWith(['lang'])->deleted();
         return $this->baseSearch($query, $params);
     }
 }

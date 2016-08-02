@@ -2,9 +2,10 @@
 
 namespace backend\modules\user\controllers;
 
-use thread\app\base\controllers\BackendController;
 use Yii;
 use yii\filters\AccessControl;
+//
+use thread\app\base\controllers\BackendController;
 
 /**
  * Class UserController

@@ -7,13 +7,14 @@ use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
 use thread\app\base\models\query\ActiveQuery;
+use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use backend\modules\page\Page as PageModule;
 use backend\modules\page\models\{
     PageLang, Page as PageModel
 };
 
-class Page extends PageModel
+class Page extends PageModel implements BaseBackendSearchModel
 {
     public $title;
 

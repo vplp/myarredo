@@ -48,9 +48,9 @@ class GridView extends \yii\grid\GridView
      */
     public function renderTitle()
     {
-        $title = !empty($this->title) ? \Yii::t('app', $this->title) : $this->view->context->title;
+//        $title = !empty($this->title) ? \Yii::t('app', $this->title) : $this->view->context->title;
         $titleRow = Html::beginTag('div', ['class' => 'ibox-title']);
-        $titleRow .= '<h5>' . $title .'</h5>';
+//        $titleRow .= '<h5>' . $title .'</h5>';
         $titleRow .= Html::tag('div', $this->renderSummary(), ['class' => 'ibox-tools']);
         $titleRow .= Html::endTag('div');
         return $titleRow;

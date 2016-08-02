@@ -1,7 +1,6 @@
 <?php
 namespace thread\app\base\controllers;
 
-use thread\modules\user\models\User;
 use Yii;
 use yii\base\Model;
 use yii\filters\AccessControl;
@@ -15,13 +14,13 @@ use thread\actions\{
     AttributeSwitch, CreateWithLang, ListModel, UpdateWithLang, Delete
 };
 use thread\app\base\models\ActiveRecord;
-
+use thread\modules\user\models\User;
 
 /**
  * Class BackendController
  * Uses for base configuration of backend. All backend controllers methods should extends this one.
  *
- * @package thread\controllers\controllers
+ * @package thread\app\base\controllers
  */
 abstract class BackendController extends Controller
 {

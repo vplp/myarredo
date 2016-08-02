@@ -5,8 +5,10 @@ namespace backend\modules\user\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\user\models\Group as GroupModel;
 use yii\db\ActiveQuery;
+//
+use backend\modules\user\models\Group as GroupModel;
+use backend\modules\user\models\GroupLang;
 
 /**
  * Class Group
@@ -17,13 +19,17 @@ use yii\db\ActiveQuery;
  */
 class Group extends GroupModel
 {
+
+    public $title;
+
     /**
      * @return array
      */
     public function rules()
     {
         return [
-            [['alias'], 'string', 'max' => 255],
+            [['alias', 'title'], 'string', 'max' => 255],
+            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
 
@@ -51,10 +57,10 @@ class Group extends GroupModel
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
-        $query->andFilterWhere([
-            'id' => $this->id,
-        ]);
-        $query->andFilterWhere(['like', 'alias', $this->alias]);
+        $query->andFilterWhere(['like', 'alias', $this->alias])
+            ->andFilterWhere(['like', 'published', $this->published]);
+        //
+        $query->andFilterWhere(['like', GroupLang::tableName() . '.title', $this->title]);
         return $dataProvider;
     }
 

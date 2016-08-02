@@ -1,9 +1,11 @@
 <?php
 namespace backend\modules\location\controllers;
 
-use backend\modules\location\models\search\Currency;
-use backend\modules\location\models\CurrencyLang;
 use thread\app\base\controllers\BackendController;
+//
+use backend\modules\location\models\{
+    Currency, CurrencyLang
+};
 
 /**
  * @author Roman Gonchar <roman.gonchar92@gmail.com>

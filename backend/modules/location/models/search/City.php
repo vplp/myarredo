@@ -2,22 +2,38 @@
 
 namespace backend\modules\location\models\search;
 
-use backend\modules\location\Location as LocationModule;
 use Yii;
 use yii\data\ActiveDataProvider;
-use backend\modules\location\models\City as CityModel;
+use yii\base\Model;
+//
+use backend\modules\location\Location as LocationModule;
+use backend\modules\location\models\{
+    City as CityModel, CityLang
+};
 
 class City extends CityModel
 {
+    public $title;
+
     /**
      * @return array
      */
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at'], 'integer'],
-            [['alias'], 'string', 'max' => 255],
+            [['location_country_id'], 'integer'],
+            [['alias', 'title'], 'string', 'max' => 255],
+            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
+    }
+
+    /**
+     *
+     * @return array
+     */
+    public function scenarios()
+    {
+        return Model::scenarios();
     }
 
     /**
@@ -49,15 +65,14 @@ class City extends CityModel
 
         $query->andFilterWhere(
             [
-                'id' => $this->id,
-                'created_at' => $this->created_at,
-                'updated_at' => $this->updated_at,
+                'location_country_id' => $this->location_country_id,
             ]
         );
 
         $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published])
-            ->andFilterWhere(['like', 'deleted', $this->deleted]);
+            ->andFilterWhere(['like', 'published', $this->published]);
+        //
+        $query->andFilterWhere(['like', CityLang::tableName() . '.title', $this->title]);
 
         return $dataProvider;
     }
@@ -70,7 +85,7 @@ class City extends CityModel
      */
     public function search($params)
     {
-        $query = CityModel::find()->with(['lang'])->undeleted();
+        $query = CityModel::find()->joinWith(['lang'])->undeleted();
         return $this->baseSearch($query, $params);
     }
 

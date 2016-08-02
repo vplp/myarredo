@@ -1,13 +1,18 @@
 <?php
 namespace backend\modules\news\controllers;
 
-use thread\actions\fileapi\DeleteAction;
+
 use Yii;
-use backend\modules\news\models\search\Article;
-use backend\modules\news\models\ArticleLang;
-use thread\actions\fileapi\UploadAction;
-use thread\app\base\controllers\BackendController;
 use yii\helpers\ArrayHelper;
+//
+use thread\actions\fileapi\{
+    DeleteAction, UploadAction
+};
+use thread\app\base\controllers\BackendController;
+//
+use backend\modules\news\models\{
+    Article, ArticleLang
+};
 
 /**
  * @author Roman Gonchar <roman.gonchar92@gmail.com>

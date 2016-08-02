@@ -9,23 +9,24 @@ namespace backend\modules\location\models;
 class Country extends \common\modules\location\models\Country
 {
     /**
-     * Find base Page object for current language active and undeleted
-     *
-     * @return ActiveQuery
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
      */
-    public static function findBase()
+    public function search($params)
     {
-        return parent::findBase()->_lang()->enabled();
+        return (new search\Country())->search($params);
     }
 
     /**
-     * Find ONE Model object in array by its alias
-     *
-     * @param $alias
-     * @return mixed
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
      */
-    public static function findByAlias($alias)
+    public function trash($params)
     {
-        return self::findBase()->alias($alias)->asArray()->one();
+        return (new search\Currency())->trash($params);
+    }
+
+    public function getDropDownList(){
+
     }
 }

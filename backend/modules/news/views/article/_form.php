@@ -18,7 +18,7 @@ use backend\themes\inspinia\widgets\{
     'items' => [
         [
             'label' => Yii::t('app', 'General information'),
-            'content' => $this->render('formParts/_main', [
+            'content' => $this->render('parts/_main', [
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang
