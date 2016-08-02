@@ -36,6 +36,8 @@ return [
             'web/assets',
             'web/backend/assets',
             'web/uploads',
+            'web/robots.txt',
+            'web/sitemap.xml',
         ],
         'setExecutable' => [
             'yii',
@@ -49,6 +51,8 @@ return [
             'web/assets',
             'web/backend/assets',
             'web/uploads',
+            'web/robots.txt',
+            'web/sitemap.xml',
         ],
         'setExecutable' => [
             'yii',
