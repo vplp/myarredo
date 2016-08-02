@@ -4,6 +4,8 @@ namespace backend\modules\user\models;
 
 use Yii;
 use yii\data\ActiveDataProvider;
+//
+use thread\app\model\interfaces\BaseBackendModel;
 
 /**
  * Class User
@@ -12,7 +14,7 @@ use yii\data\ActiveDataProvider;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c) 2015, Thread
  */
-class User extends \thread\modules\user\models\User
+class User extends \thread\modules\user\models\User implements BaseBackendModel
 {
     /**
      * @param array $params

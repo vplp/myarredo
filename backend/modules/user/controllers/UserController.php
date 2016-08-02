@@ -13,12 +13,13 @@ use thread\app\base\controllers\BackendController;
 use thread\modules\user\models\Profile;
 use thread\actions\Update;
 //
-use common\modules\user\models\form\{
+use thread\modules\user\models\form\{
     ChangePassword, CreateForm, PasswordResetRequestForm, ResetPasswordForm
 };
 //
-use backend\modules\user\models\User;
-
+use backend\modules\user\models\{
+    User, search\User as filterUserModel
+};
 
 
 /**
@@ -34,6 +35,7 @@ class UserController extends BackendController
     public $label = "User";
     public $title = "User";
     protected $model = User::class;
+    protected $filterModel = filterUserModel::class;
 
     public function behaviors()
     {
@@ -80,7 +82,10 @@ class UserController extends BackendController
                 'update' => [
                     'class' => Update::class,
                     'redirect' => function () {
-                        return $_POST['save_and_exit'] ? $this->actionListLinkStatus : ['update', 'id' => $this->action->getModel()->id];
+                        return $_POST['save_and_exit'] ? $this->actionListLinkStatus : [
+                            'update',
+                            'id' => $this->action->getModel()->id
+                        ];
                     }
                 ],
             ]
@@ -98,7 +103,7 @@ class UserController extends BackendController
 
         $model = new CreateForm();
         $model->setScenario('userCreate');
-        
+
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
             $user = new User([
                 'group_id' => $model->group_id,
@@ -125,7 +130,10 @@ class UserController extends BackendController
 
                 if ($save) {
                     $transaction->commit();
-                    return $this->redirect(($_POST['save_and_exit']) ? $this->actionListLinkStatus : ['update', 'id' => $user->id]);
+                    return $this->redirect(($_POST['save_and_exit']) ? $this->actionListLinkStatus : [
+                        'update',
+                        'id' => $user->id
+                    ]);
                 } else {
                     $transaction->rollBack();
                 }

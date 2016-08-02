@@ -1,11 +1,12 @@
 <?php
 
 namespace backend\modules\user\controllers;
+
 //
 use thread\app\base\controllers\BackendController;
 //
 use backend\modules\user\models\{
-    Group, GroupLang
+    Group, GroupLang, search\Group as filterGroupModel
 };
 
 /**
@@ -21,4 +22,5 @@ class GroupController extends BackendController
     public $title = "User groups";
     protected $model = Group::class;
     protected $modelLang = GroupLang::class;
+    protected $filterModel = filterGroupModel::class;
 }

@@ -6,9 +6,6 @@ use thread\widgets\grid\SwitchboxColumn;
 //
 use backend\themes\inspinia\widgets\GridView;
 
-$filter = new \backend\modules\news\models\search\Group();
-$filter->setAttributes(Yii::$app->getRequest()->get('Group'));
-
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,

@@ -1,12 +1,10 @@
 <?php
 namespace backend\modules\page;
 
-use common\modules\page\Page as CommonPageModule;
-
 /**
  * @author Roman Gonchar <roman.gonchar92@gmail.com>
  */
-class Page extends CommonPageModule
+class Page extends \common\modules\page\Page
 {
     public $itemOnPage = 20;
 }

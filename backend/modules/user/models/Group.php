@@ -3,6 +3,9 @@
 namespace backend\modules\user\models;
 
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
+//
+use thread\app\model\interfaces\BaseBackendModel;
 
 /**
  * Class Group
@@ -11,7 +14,7 @@ use yii\data\ActiveDataProvider;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c) 2015, Thread
  */
-class Group extends \common\modules\user\models\Group
+class Group extends \common\modules\user\models\Group implements BaseBackendModel
 {
 
     /**

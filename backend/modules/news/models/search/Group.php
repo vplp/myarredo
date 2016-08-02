@@ -6,13 +6,14 @@ use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
 use thread\app\base\models\query\ActiveQuery;
+use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use backend\modules\news\News as NewsModule;
 use backend\modules\news\models\{
     Group as GroupModel, GroupLang
 };
 
-class Group extends GroupModel
+class Group extends GroupModel implements BaseBackendSearchModel
 {
     public $title;
 

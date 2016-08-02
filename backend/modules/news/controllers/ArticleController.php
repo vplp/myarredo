@@ -10,7 +10,7 @@ use thread\actions\fileapi\{
 use thread\app\base\controllers\BackendController;
 //
 use backend\modules\news\models\{
-    Article, ArticleLang
+    Article, ArticleLang, search\Article as filterArticleModel
 };
 
 /**
@@ -20,6 +20,7 @@ class ArticleController extends BackendController
 {
     public $model = Article::class;
     public $modelLang = ArticleLang::class;
+    public $filterModel = filterArticleModel::class;
     public $title = 'Article';
 
     /**

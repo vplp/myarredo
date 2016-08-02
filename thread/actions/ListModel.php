@@ -133,6 +133,9 @@ class ListModel extends Action
     {
         $filter = $this->filterModel;
 
+        if ($this->filterModel == null) {
+            return null;
+        }
         if ($filter instanceof \Closure) {
             return $filter();
         } else {

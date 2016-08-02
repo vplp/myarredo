@@ -1,15 +1,20 @@
 <?php
 namespace backend\modules\news\models\search;
 
-use backend\modules\news\News as NewsModule;
-use thread\app\base\models\query\ActiveQuery;
 use Yii;
 use yii\data\ActiveDataProvider;
-use backend\modules\news\models\Article as ArticleModel;
-use backend\modules\news\models\ArticleLang;
 use yii\base\Model;
+//
+use thread\app\base\models\query\ActiveQuery;
+use thread\app\model\interfaces\search\BaseBackendSearchModel;
+//
+use backend\modules\news\News as NewsModule;
+use backend\modules\news\models\{
+    Article as ArticleModel, ArticleLang
+};
 
-class Article extends ArticleModel
+
+class Article extends ArticleModel implements BaseBackendSearchModel
 {
     public $title;
 

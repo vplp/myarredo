@@ -4,7 +4,7 @@ namespace backend\modules\news\controllers;
 use thread\app\base\controllers\BackendController;
 //
 use backend\modules\news\models\{
-    Group, GroupLang
+    Group, GroupLang, search\Group as filterGroupModel
 };
 
 /**
@@ -14,5 +14,6 @@ class GroupController extends BackendController
 {
     public $model = Group::class;
     public $modelLang = GroupLang::class;
+    public $filterModel = filterGroupModel::class;
     public $title = 'Article groups';
 }

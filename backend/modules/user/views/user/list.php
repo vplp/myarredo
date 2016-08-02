@@ -14,9 +14,6 @@ use backend\modules\user\models\Group;
  * @var User $model
  */
 
-$filter = new \backend\modules\user\models\search\User();
-$filter->setAttributes(Yii::$app->getRequest()->get('User'));
-
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,

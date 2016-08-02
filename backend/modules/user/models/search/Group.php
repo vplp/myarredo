@@ -7,6 +7,8 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
 //
+use thread\app\model\interfaces\search\BaseBackendSearchModel;
+//
 use backend\modules\user\models\Group as GroupModel;
 use backend\modules\user\models\GroupLang;
 
@@ -17,7 +19,7 @@ use backend\modules\user\models\GroupLang;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c) 2015, Thread
  */
-class Group extends GroupModel
+class Group extends GroupModel implements BaseBackendSearchModel
 {
 
     public $title;
@@ -46,7 +48,7 @@ class Group extends GroupModel
      * @param array $params
      * @return ActiveDataProvider
      */
-    public function baseSearch(ActiveQuery $query, $params)
+    public function baseSearch($query, $params)
     {
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

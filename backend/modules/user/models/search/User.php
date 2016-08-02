@@ -5,8 +5,11 @@ namespace backend\modules\user\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\user\models\User as UserModel;
 use yii\db\ActiveQuery;
+//
+use thread\app\model\interfaces\search\BaseBackendSearchModel;
+//
+use backend\modules\user\models\User as UserModel;
 
 /**
  * Class User
@@ -15,7 +18,7 @@ use yii\db\ActiveQuery;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c) 2015, Thread
  */
-class User extends UserModel
+class User extends UserModel implements BaseBackendSearchModel
 {
     /**
      * @return array
@@ -41,7 +44,7 @@ class User extends UserModel
      * @param array $params
      * @return ActiveDataProvider
      */
-    public function baseSearch(ActiveQuery $query, $params)
+    public function baseSearch($query, $params)
     {
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -73,7 +76,8 @@ class User extends UserModel
     public function search($params)
     {
         $query = UserModel::find()->joinWith([
-            'group', 'group.lang',
+            'group',
+            'group.lang',
         ])->undeleted();
         return $this->baseSearch($query, $params);
     }
@@ -85,7 +89,8 @@ class User extends UserModel
     public function trash($params)
     {
         $query = UserModel::find()->joinWith([
-            'group', 'group.lang',
+            'group',
+            'group.lang',
         ])->deleted();
         return $this->baseSearch($query, $params);
     }

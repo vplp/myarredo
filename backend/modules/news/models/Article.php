@@ -5,13 +5,14 @@ use Yii;
 use yii\helpers\ArrayHelper;
 //
 use thread\modules\seo\behaviors\SeoBehavior;
+use thread\app\model\interfaces\BaseBackendModel;
 //
 use common\modules\news\models\Article as CommonArticleModel;
 use common\modules\seo\models\Seo;
 //
 use backend\modules\news\News;
 
-class Article extends CommonArticleModel
+class Article extends CommonArticleModel implements BaseBackendModel
 {
 
     /**
@@ -21,6 +22,15 @@ class Article extends CommonArticleModel
     public function search($params)
     {
         return (new search\Article())->search($params);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function trash($params)
+    {
+        return (new search\Article())->trash($params);
     }
 
     /**

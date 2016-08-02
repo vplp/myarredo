@@ -5,9 +5,11 @@ namespace backend\modules\news\models;
 use Yii;
 use yii\helpers\ArrayHelper;
 //
+use thread\app\model\interfaces\BaseBackendModel;
+//
 use common\modules\news\models\Group as CommonGroupModel;
 
-class Group extends CommonGroupModel
+class Group extends CommonGroupModel implements BaseBackendModel
 {
 
     /**
@@ -26,5 +28,14 @@ class Group extends CommonGroupModel
     public function search($params)
     {
         return (new search\Group())->search($params);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function trash($params)
+    {
+        return (new search\Group())->trash($params);
     }
 }

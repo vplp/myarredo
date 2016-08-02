@@ -6,9 +6,6 @@ use backend\themes\inspinia\widgets\GridView;
  * @var \backend\modules\user\models\search\Group $model
  */
 
-$filter = new \backend\modules\user\models\search\Group();
-$filter->setAttributes(Yii::$app->getRequest()->get('Group'));
-
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
