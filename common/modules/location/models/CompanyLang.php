@@ -1,7 +1,6 @@
 <?php
 
 namespace common\modules\location\models;
-use Yii;
 
 /**
  * Class CompanyLang

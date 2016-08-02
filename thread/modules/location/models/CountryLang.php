@@ -3,6 +3,8 @@
 namespace thread\modules\location\models;
 
 use Yii;
+//
+use thread\modules\location\Location as LocationModule;
 
 /**
  * Class CountryLang
@@ -20,7 +22,7 @@ class CountryLang extends \thread\app\base\models\ActiveRecordLang
      */
     public static function getDb()
     {
-        return \thread\modules\location\Location::getDb();
+        return LocationModule::getDb();
     }
 
     /**

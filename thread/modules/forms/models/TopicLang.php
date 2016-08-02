@@ -1,10 +1,12 @@
 <?php
 
 namespace thread\modules\forms\models;
-use thread\app\base\models\ActiveRecordLang;
-use thread\modules\forms\Forms;
+
 use Yii;
 use yii\helpers\ArrayHelper;
+//
+use thread\app\base\models\ActiveRecordLang;
+use thread\modules\forms\Forms as FormsModule;
 
 /**
  * Class TopicLang
@@ -25,7 +27,7 @@ class TopicLang extends ActiveRecordLang
      */
     public static function getDb()
     {
-        return Forms::getDb();
+        return FormsModule::getDb();
     }
 
     /**
@@ -43,7 +45,7 @@ class TopicLang extends ActiveRecordLang
     {
         return ArrayHelper::merge(parent::rules(), [
             [['title'], 'required'],
-            ['rid', 'exist', 'targetClass' => Group::class, 'targetAttribute' => 'id'],
+            ['rid', 'exist', 'targetClass' => Topic::class, 'targetAttribute' => 'id'],
             ['title', 'string', 'max' => 255],
         ]);
     }

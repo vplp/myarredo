@@ -2,8 +2,10 @@
 
 namespace thread\modules\location\models;
 
-use thread\app\base\models\ActiveRecordLang;
 use Yii;
+//
+use thread\app\base\models\ActiveRecordLang;
+use thread\modules\location\Location as LocationModule;
 
 /**
  * Class CompanyLang
@@ -18,7 +20,7 @@ class CompanyLang extends ActiveRecordLang
      */
     public static function getDb()
     {
-        return \thread\modules\location\Location::getDb();
+        return LocationModule::getDb();
     }
 
     /**
@@ -29,7 +31,6 @@ class CompanyLang extends ActiveRecordLang
     {
         return '{{%location_company_lang}}';
     }
-
 
     /**
      * Rules
@@ -46,7 +47,6 @@ class CompanyLang extends ActiveRecordLang
             [['title', 'street', 'house'], 'string', 'max' => 255]
         ];
     }
-
 
     /**
      * @return array

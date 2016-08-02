@@ -1,10 +1,13 @@
 <?php
 
 namespace thread\modules\forms\models;
-use thread\app\base\models\ActiveRecord;
-use thread\app\base\models\query\ActiveQuery;
-use thread\modules\forms\Forms;
+
 use Yii;
+//
+use thread\app\base\models\{
+    ActiveRecord, query\ActiveQuery
+};
+use thread\modules\forms\Forms as FormsModule;
 
 
 /**
@@ -32,7 +35,7 @@ class Topic extends ActiveRecord
      */
     public static function getDb()
     {
-        return Forms::getDb();
+        return FormsModule::getDb();
     }
 
     /**
@@ -42,9 +45,6 @@ class Topic extends ActiveRecord
     {
         return '{{%feedback_topics}}';
     }
-
-
-
 
     /**
      * @return array
@@ -92,6 +92,9 @@ class Topic extends ActiveRecord
         return $this->hasOne(TopicLang::class, ['rid' => 'id']);
     }
 
+    /**
+     * @return mixed
+     */
     public function getFeedbacks()
     {
         return $this->hasMany(FeedbackForm::class, ['topic_id' => 'id']);

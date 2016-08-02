@@ -2,8 +2,9 @@
 
 namespace thread\modules\user\models\form;
 
-use thread\modules\user\models\User;
 use Yii;
+//
+use thread\modules\user\models\User;
 
 /**
  * Password reset request form
@@ -15,14 +16,13 @@ class PasswordResetRequestForm extends CommonForm
      *
      * @return boolean whether the email was send
      */
+
+    //TODO: Смешано два метода
+
     public function sendEmail()
     {
         /* @var $user User */
-        $user = User::findOne([
-            'published' => 1,
-            'deleted' => 0,
-            'email' => $this->email,
-        ]);
+        $user = User::findByEmail($this->email);
 
         $user->setScenario('resetPassword');
         if (!$user) {

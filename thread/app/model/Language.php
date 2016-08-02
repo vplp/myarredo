@@ -2,8 +2,6 @@
 
 namespace thread\app\model;
 
-use yii\helpers\ArrayHelper;
-
 /**
  * class Language
  *

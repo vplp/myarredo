@@ -2,13 +2,14 @@
 
 namespace thread\modules\seo;
 
-use thread\app\base\module\abstracts\Module as aModule;
 use Yii;
+//
+use thread\app\base\module\abstracts\Module as aModule;
 
 /**
- * Class Page
+ * Class Seo
  *
- * @package thread\modules\page
+ * @package thread\modules\seo
  * @author Roman Gonchar <roman.gonchar92@gmail.com>
  * @copyright (c) 2016, VipDesign
  */
@@ -31,10 +32,15 @@ class Seo extends aModule
      */
     public $secretKey = 'thread';
 
+    /**
+     * @return null|object
+     * @throws \yii\base\InvalidConfigException
+     */
     public static function getDb()
     {
         return Yii::$app->get('db-core');
     }
+
     /**
      * @return string
      */

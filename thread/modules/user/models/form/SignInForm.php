@@ -1,8 +1,9 @@
 <?php
 namespace thread\modules\user\models\form;
 
-use thread\modules\user\models\Group;
 use Yii;
+//
+use thread\modules\user\models\Group;
 
 /**
  * Class SignInForm

@@ -1,9 +1,10 @@
 <?php
 namespace thread\modules\user\models\form;
 
-use thread\modules\user\models\User as UserModel;
-use yii\base\InvalidParamException;
 use Yii;
+use yii\base\InvalidParamException;
+//
+use thread\modules\user\models\User as UserModel;
 
 /**
  * Password reset form
@@ -33,7 +34,7 @@ class ResetPasswordForm extends CommonForm
         }
         parent::__construct($config);
     }
-    
+
     /**
      * Resets password.
      *

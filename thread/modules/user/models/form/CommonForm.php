@@ -2,13 +2,12 @@
 
 namespace thread\modules\user\models\form;
 
-use thread\modules\user\models\UserIdentity;
-use thread\modules\user\User;
-use thread\modules\user\models\User as UserModel;
 use Yii;
 use yii\base\Model;
 use yii\db\mssql\PDO;
-use yii\helpers\ArrayHelper;
+//
+use thread\modules\user\User;
+use thread\modules\user\models\User as UserModel;
 
 /**
  * class Common

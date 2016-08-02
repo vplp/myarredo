@@ -2,8 +2,9 @@
 
 namespace thread\modules\location;
 
-use thread\app\base\module\abstracts\Module as aModule;
 use Yii;
+//
+use thread\app\base\module\abstracts\Module as aModule;
 
 /**
  * Class Location
@@ -12,7 +13,8 @@ use Yii;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c) 2015, Thread
  */
-class Location extends aModule {
+class Location extends aModule
+{
 
     public $name = 'Location';
     public $configPath = __DIR__ . '/config.php';
@@ -28,5 +30,4 @@ class Location extends aModule {
     {
         return Yii::$app->get('db-core');
     }
-
 }

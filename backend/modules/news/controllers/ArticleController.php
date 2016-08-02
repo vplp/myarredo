@@ -1,7 +1,6 @@
 <?php
 namespace backend\modules\news\controllers;
 
-
 use Yii;
 use yii\helpers\ArrayHelper;
 //
@@ -34,10 +33,12 @@ class ArticleController extends BackendController
             [
                 'fileupload' => [
                     'class' => UploadAction::class,
+                    //TODO: на обсуждение
                     'path' => Yii::$app->getModule('news')->getUploadPath() . 'article'
                 ],
                 'filedelete' => [
                     'class' => DeleteAction::class,
+                    //TODO: на обсуждение
                     'path' => Yii::$app->getModule('news')->getUploadPath() . 'article',
                 ],
             ]

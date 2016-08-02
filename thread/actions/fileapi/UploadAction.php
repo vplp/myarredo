@@ -6,6 +6,7 @@ use Yii;
 use yii\base\{
     Action, DynamicModel, InvalidCallException
 };
+
 use yii\web\{
     BadRequestHttpException, Response, UploadedFile
 };
@@ -93,7 +94,11 @@ class UploadAction extends Action
                     $model->file->name = uniqid() . ((empty($model->file->extension)) ? '' : '.' . $model->file->extension);
                 }
                 if ($model->file->saveAs($this->path . $model->file->name)) {
-                    $result = ['key' => $model->file->name, 'caption' => $model->file->name, 'name' => $model->file->name];
+                    $result = [
+                        'key' => $model->file->name,
+                        'caption' => $model->file->name,
+                        'name' => $model->file->name
+                    ];
                 } else {
                     $result = ['error' => 'Can\'t upload file'];
                 }

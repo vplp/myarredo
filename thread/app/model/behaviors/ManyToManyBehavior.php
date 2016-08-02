@@ -4,9 +4,10 @@ namespace thread\app\model\behaviors;
 
 use Yii;
 use yii\base\Behavior;
-use yii\db\ActiveRecord;
+use yii\db\{
+    ActiveRecord, Exception
+};
 use yii\base\ErrorException;
-use yii\db\Exception;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -41,7 +42,7 @@ class ManyToManyBehavior extends Behavior
      * namespace на Таблицу  Many to Many . !! ОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР ДЛЯ
      * @var null
      */
-    const REL_TABLE ='relTable';
+    const REL_TABLE = 'relTable';
 
     /**
      * Events list
@@ -126,7 +127,7 @@ class ManyToManyBehavior extends Behavior
             $relTable = $params[self::REL_TABLE];
 
             /** Чистим бд если нет не одного параметра */
-            if (! $this->hasNewValue($attributeName)) {
+            if (!$this->hasNewValue($attributeName)) {
 
                 if (Yii::$app->getRequest()->isPost) {
                     if (is_array($relation->via)) {

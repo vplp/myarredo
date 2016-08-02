@@ -5,8 +5,9 @@ namespace thread\modules\seo\widgets\seo;
 use Yii;
 //
 use thread\app\base\widgets\Widget;
-use thread\modules\seo\models\Seo;
-use thread\modules\seo\models\SeoLang;
+use thread\modules\seo\models\{
+    Seo, SeoLang
+};
 
 /**
  * Class ActionDeleteColumn

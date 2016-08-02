@@ -39,4 +39,12 @@ class Group extends \common\modules\user\models\Group
     {
         return self::find()->joinWith(['lang'])->undeleted()->all();
     }
+
+    /**
+     * @return array
+     */
+    public static function dropDownList()
+    {
+        return ArrayHelper::map(self::findBase()->all(), 'id', 'lang.title');
+    }
 }

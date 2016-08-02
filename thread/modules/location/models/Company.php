@@ -2,30 +2,29 @@
 
 namespace thread\modules\location\models;
 
-use thread\app\base\models\ActiveRecord;
 use Yii;
+//
+use thread\app\base\models\ActiveRecord;
+use thread\modules\location\Location as LocationModule;
 
 /**
  * Class Company
  * @package thread\modules\location\models
  */
-
 class Company extends ActiveRecord
 {
 
     /**
      * @inheritdoc
      */
-
     public static function getDb()
     {
-        return \thread\modules\location\Location::getDb();
+        return LocationModule::getDb();
     }
 
     /**
      * @return string
      */
-
     public static function tableName()
     {
         return '{{%location_company}}';
@@ -34,7 +33,6 @@ class Company extends ActiveRecord
     /**
      * @return array
      */
-
     public function rules()
     {
         return [
@@ -46,7 +44,6 @@ class Company extends ActiveRecord
     /**
      * @inheritdoc
      */
-
     public function attributeLabels()
     {
         return [
@@ -82,11 +79,26 @@ class Company extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-
     public function getLang()
     {
         return $this->hasOne(CompanyLang::class, ['rid' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+
+    public function getCountry()
+    {
+        return $this->hasOne(Country::class, ['id' => 'country_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCity()
+    {
+        return $this->hasOne(City::class, ['id' => 'city_id']);
+    }
 
 }

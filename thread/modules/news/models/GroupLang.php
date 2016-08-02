@@ -2,10 +2,11 @@
 
 namespace thread\modules\news\models;
 
-use thread\app\base\models\ActiveRecordLang;
-use thread\modules\news\News;
 use Yii;
 use yii\helpers\ArrayHelper;
+//
+use thread\app\base\models\ActiveRecordLang;
+use thread\modules\news\News as NewsModule;
 
 /**
  * Class GroupLang
@@ -26,7 +27,7 @@ class GroupLang extends ActiveRecordLang
      */
     public static function getDb()
     {
-        return News::getDb();
+        return NewsModule::getDb();
     }
 
     /**

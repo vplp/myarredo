@@ -2,7 +2,6 @@
 namespace frontend\modules\forms\controllers;
 
 use Yii;
-use yii\helpers\ArrayHelper;
 use frontend\modules\forms\models\FeedbackForm;
 use yii\web\Response;
 
@@ -10,7 +9,7 @@ use yii\web\Response;
  * Class FeedbackformController
  *
  * @package frontend\modules\forms\controllers
- *  @author Alla Kuzmenko
+ * @author Alla Kuzmenko
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c) 2014, Thread
  */
@@ -32,16 +31,16 @@ class FeedbackformController extends \frontend\components\BaseController
         ];
     }
 
-
+    /**
+     * @return array|Response
+     */
     public function actionAdd()
     {
-
-
         $model = new $this->model;
         $model->setScenario('addfeedback');
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            $response = ['success' => 0, 'fields' => [], 'location'=>\yii\helpers\Url::toRoute('/home/home/index')];
+            $response = ['success' => 0, 'fields' => [], 'location' => \yii\helpers\Url::toRoute('/home/home/index')];
             Yii::$app->response->format = Response::FORMAT_JSON;
             if ($model->validate()) {
                 $status = $model->addFeedback();

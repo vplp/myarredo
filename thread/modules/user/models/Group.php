@@ -9,7 +9,7 @@ use yii\helpers\{
 };
 //
 use thread\app\base\models\ActiveRecord;
-use thread\modules\user\User as mUser;
+use thread\modules\user\User as UserModule;
 
 /**
  * Class Group
@@ -38,7 +38,7 @@ class Group extends ActiveRecord
      */
     public static function getDb()
     {
-        return mUser::getDb();
+        return UserModule::getDb();
     }
 
     /**
@@ -120,18 +120,5 @@ class Group extends ActiveRecord
     public function getLang()
     {
         return $this->hasOne(GroupLang::class, ['rid' => 'id']);
-    }
-
-    /**
-     * @return array
-     */
-    public static function dropDownList()
-    {
-        return ArrayHelper::map(self::findBase()->all(), 'id', 'lang.title');
-    }
-
-    public static function findBase()
-    {
-        return parent::findBase()->undeleted();
     }
 }

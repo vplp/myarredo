@@ -2,10 +2,7 @@
 
 namespace common\modules\news\models;
 
-use thread\modules\news\models\ArticleLang as BaseArticleLangModel;
-use Yii;
-
-class ArticleLang extends BaseArticleLangModel
+class ArticleLang extends \thread\modules\news\models\ArticleLang
 {
-    
+
 }

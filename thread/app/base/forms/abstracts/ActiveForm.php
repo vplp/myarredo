@@ -2,9 +2,9 @@
 namespace thread\app\base\forms\abstracts;
 
 use yii\base\Model;
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\web\JsExpression;
+use yii\helpers\{
+    Html, Url
+};
 
 /**
  * @author Roman Gonchar <roman.gonchar92@gmail.com>

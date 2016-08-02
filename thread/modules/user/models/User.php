@@ -6,6 +6,7 @@ use Yii;
 use yii\web\IdentityInterface;
 //
 use thread\app\base\models\ActiveRecord;
+use thread\modules\user\User as UserModule;
 
 /**
  * Class User
@@ -41,7 +42,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function getDb()
     {
-        return \thread\modules\user\User::getDb();
+        return UserModule::getDb();
     }
 
     /**
@@ -266,7 +267,7 @@ class User extends ActiveRecord implements IdentityInterface
             return false;
         }
 
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        $timestamp = (int)substr($token, strrpos($token, '_') + 1);
         $expire = Yii::$app->getModule('user')->passwordResetTokenExpire;
         return $timestamp + $expire >= time();
     }

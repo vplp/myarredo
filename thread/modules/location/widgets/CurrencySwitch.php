@@ -2,10 +2,12 @@
 
 namespace thread\modules\location\widgets;
 
-use frontend\components\SessionHelper;
 use Yii;
 use yii\web\Cookie;
+//
 use thread\modules\location\models\Currency;
+//TODO: !!!!!!!!!!! ЧТО я Ядре системы делает этя ссылка
+use frontend\components\SessionHelper;
 
 /**
  * Class CurrencySwitch
@@ -59,7 +61,7 @@ class CurrencySwitch extends \yii\bootstrap\Widget
         $this->items = Currency::getList();
         $this->current = $this->getCurrent();
 
-        if ((isset($this->items[$this->current]->id ))) {
+        if ((isset($this->items[$this->current]->id))) {
             Yii::$app->controller->currentCourseId = $this->items[$this->current]->id;
             SessionHelper::setCourseId($this->items[$this->current]->id);
         }

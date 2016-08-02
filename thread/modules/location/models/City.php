@@ -2,12 +2,13 @@
 
 namespace thread\modules\location\models;
 
-use thread\app\base\models\ActiveRecord;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\helpers\ArrayHelper;
-use thread\behaviors\TransliterateBehavior;
 use yii\helpers\Inflector;
+//
+use thread\app\base\models\ActiveRecord;
+use thread\modules\location\Location as LocationModule;
 
 class City extends ActiveRecord
 {
@@ -15,21 +16,18 @@ class City extends ActiveRecord
     /**
      * @inheritdoc
      */
-
     public static function getDb()
     {
-        return \thread\modules\location\Location::getDb();
+        return LocationModule::getDb();
     }
 
     /**
      * @return string
      */
-
     public static function tableName()
     {
         return '{{%location_city}}';
     }
-
 
     /**
      * @inheritdoc
@@ -57,7 +55,6 @@ class City extends ActiveRecord
     /**
      * @return array
      */
-
     public function rules()
     {
         return [
@@ -72,7 +69,6 @@ class City extends ActiveRecord
     /**
      * @inheritdoc
      */
-
     public function attributeLabels()
     {
         return [
@@ -107,11 +103,9 @@ class City extends ActiveRecord
         ];
     }
 
-
     /**
      * @return \yii\db\ActiveQuery
      */
-
     public function getLang()
     {
         return $this->hasOne(CityLang::class, ['rid' => 'id']);
@@ -120,7 +114,6 @@ class City extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-
     public function getCountry()
     {
         return $this->hasOne(Country::class, ['id' => 'location_country_id']);

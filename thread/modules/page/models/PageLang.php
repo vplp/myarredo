@@ -2,14 +2,14 @@
 
 namespace thread\modules\page\models;
 
-use thread\app\base\models\ActiveRecordLang;
-use thread\app\base\models\query\ActiveQuery;
+use Yii;
+use yii\helpers\ArrayHelper;
+//
+use thread\app\base\models\{
+    ActiveRecordLang, query\ActiveQuery
+};
 use thread\app\model\Language;
 use thread\modules\page\Page as PageModel;
-use Yii;
-use yii\db\ActiveRecord;
-use yii\helpers\ArrayHelper;
-use thread\behaviors\PurifierBehavior;
 
 /**
  * Class PageLang
@@ -86,21 +86,5 @@ class PageLang extends ActiveRecordLang
         return [
             'backend' => ['title', 'content'],
         ];
-    }
-
-    /**
-     * @return ActiveQuery
-     */
-    public function getPages()
-    {
-        return $this->hasMany(PageModel::class, ['rid' => 'id']);
-    }
-
-    /**
-     * @return ActiveQuery
-     */
-    public function getLangs()
-    {
-        return $this->hasMany(Language::class, ['lang' => 'id']);
     }
 }

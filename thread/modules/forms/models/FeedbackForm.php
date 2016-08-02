@@ -1,9 +1,11 @@
 <?php
 
 namespace thread\modules\forms\models;
+
+use Yii;
+//
 use thread\app\base\models\ActiveRecord;
 use thread\modules\forms\Forms as FormsModule;
-use Yii;
 
 /**
  * Class FeedbackForm
@@ -45,19 +47,19 @@ class FeedbackForm extends ActiveRecord
         return '{{%feedbacks}}';
     }
 
-
     /**
      * @return array
      */
     public function rules()
     {
         return [
-            [['name', 'question','topic_id', 'email'], 'required'],
+            [['name', 'question', 'topic_id', 'email'], 'required'],
             [['topic_id', 'created_at', 'updated_at'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['name', 'question'], 'string', 'max' => 255],
             [['email'], 'email'],
             [['phone'], 'string', 'max' => 20],
+            //TODO : Исправить правило АЛЛА
             [['phone'], 'string', 'max' => 5],
         ];
     }
@@ -71,7 +73,7 @@ class FeedbackForm extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'backend' => ['topic_id', 'name', 'phone', 'published', 'deleted'],
-            'addfeedback' => ['name', 'question','topic_id', 'email', 'phone'],
+            'addfeedback' => ['name', 'question', 'topic_id', 'email', 'phone'],
         ];
     }
 
@@ -102,20 +104,22 @@ class FeedbackForm extends ActiveRecord
         return $this->hasOne(Topic::class, ['id' => 'topic_id']);
     }
 
-    public function addFeedback() 
+    /**
+     * @return bool
+     */
+    //TODO: ДЛЯ АЛЛЫ ИСПРАВИТЬ И УБРАТЬ ИЗ ЯДРА СИСТЕМЫ
+    public function addFeedback()
     {
+        $transaction = self::getDb()->beginTransaction();
 
-            $transaction = self::getDb()->beginTransaction();
+        try {
+            $save = $this->save();
+            ($save) ? $transaction->commit() : $transaction->rollBack();
+        } catch (Exception $e) {
+            $transaction->rollBack();
+        }
 
-            try {
-                $save = $this->save();
-                ($save) ? $transaction->commit() : $transaction->rollBack();
-            } catch (Exception $e) {
-                $transaction->rollBack();
-            }
-
-            return $save;
-
+        return $save;
     }
 
 

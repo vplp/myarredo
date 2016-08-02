@@ -2,12 +2,14 @@
 
 namespace thread\modules\location\models;
 
-use thread\app\base\models\ActiveRecord;
 use Yii;
 use yii\behaviors\AttributeBehavior;
-use yii\helpers\ArrayHelper;
-use thread\behaviors\TransliterateBehavior;
-use yii\helpers\Inflector;
+use yii\helpers\{
+    ArrayHelper, Inflector
+};
+//
+use thread\app\base\models\ActiveRecord;
+use thread\modules\location\Location as LocationModule;
 
 /**
  * Class Country
@@ -25,7 +27,7 @@ class Country extends ActiveRecord
      */
     public static function getDb()
     {
-        return \thread\modules\location\Location::getDb();
+        return LocationModule::getDb();
     }
 
     /**
@@ -131,21 +133,11 @@ class Country extends ActiveRecord
     }
 
     /**
-     *
-     * @return yii\db\ActiveQuery
+     * @return \yii\db\ActiveQuery
      */
     public function getLang()
     {
         return $this->hasOne(CountryLang::class, ['rid' => 'id']);
-    }
-
-    /**
-     *
-     * @return yii\db\ActiveQuery
-     */
-    public function getCities()
-    {
-        return $this->hasMany(City::class, ['location_country_id' => 'id']);
     }
 
 }

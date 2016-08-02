@@ -2,6 +2,7 @@
 namespace backend\modules\news;
 
 use Yii;
+//
 use common\modules\news\News as CommonNewsModule;
 
 /**

@@ -2,10 +2,11 @@
 
 namespace thread\modules\seo\models;
 
-use thread\app\base\models\ActiveRecordLang;
-use thread\modules\seo\Seo as SeoModel;
 use Yii;
 use yii\helpers\ArrayHelper;
+//
+use thread\app\base\models\ActiveRecordLang;
+use thread\modules\seo\Seo as SeoModel;
 
 /**
  * Class PageLang

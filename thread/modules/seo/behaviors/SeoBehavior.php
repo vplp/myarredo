@@ -1,10 +1,11 @@
 <?php
 namespace thread\modules\seo\behaviors;
 
-use thread\modules\seo\models\Seo;
 use Yii;
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
+//
+use thread\modules\seo\models\Seo;
 
 class SeoBehavior extends Behavior
 {

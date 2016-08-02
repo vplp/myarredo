@@ -2,13 +2,14 @@
 
 namespace thread\modules\news\models;
 
-use thread\app\base\models\ActiveRecord;
-use thread\app\base\models\query\ActiveQuery;
-use thread\modules\news\News;
 use Yii;
 use yii\behaviors\AttributeBehavior;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Inflector;
+use yii\helpers\{
+    ArrayHelper, Inflector
+};
+//
+use thread\app\base\models\ActiveRecord;
+use thread\modules\news\News;
 
 /**
  * Class Group
@@ -107,13 +108,16 @@ class Group extends ActiveRecord
     }
 
     /**
-     * @return ActiveQuery
+     * @return mixed
      */
     public function getLang()
     {
         return $this->hasOne(GroupLang::class, ['rid' => 'id']);
     }
 
+    /**
+     * @return mixed
+     */
     public function getArticles()
     {
         return $this->hasMany(Article::class, ['group_id' => 'id']);

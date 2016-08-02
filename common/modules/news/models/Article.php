@@ -2,9 +2,9 @@
 namespace common\modules\news\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 //
 use thread\modules\news\models\Article as BaseArticleModel;
-use yii\helpers\ArrayHelper;
 
 /**
  * Class Article

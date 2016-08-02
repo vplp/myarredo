@@ -2,9 +2,10 @@
 
 namespace thread\modules\seo\models;
 
+use Yii;
+//
 use  thread\app\base\models\ActiveRecord;
 use thread\modules\seo\Seo as SeoModule;
-use Yii;
 
 /**
  * Class Page

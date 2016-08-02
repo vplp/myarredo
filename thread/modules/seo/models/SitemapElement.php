@@ -5,7 +5,6 @@ use Yii;
 //
 use thread\app\base\models\ActiveRecord;
 
-
 /**
  * Class SitemapElement
  *

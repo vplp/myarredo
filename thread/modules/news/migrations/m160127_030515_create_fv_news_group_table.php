@@ -2,6 +2,7 @@
 
 use yii\db\Migration;
 use thread\modules\news\News;
+use thread\modules\news\models\Group;
 
 /**
  * Class m160127_030515_create_fv_news_group_table
@@ -15,11 +16,12 @@ class m160127_030515_create_fv_news_group_table extends Migration
     /**
      * @var string
      */
-    public $tableNewsGroup = '{{%news_group}}';
+    public $tableNewsGroup = '';
 
     public function init()
     {
         $this->db = News::getDb();
+        $this->tableNewsGroup = Group::tableName();
         parent::init();
     }
 

@@ -6,7 +6,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 //
 use thread\app\base\models\ActiveRecordLang;
-use thread\modules\user\User as mUser;
+use thread\modules\user\User as UserModule;
 
 /**
  * class GroupLang
@@ -27,7 +27,7 @@ class GroupLang extends ActiveRecordLang
      */
     public static function getDb()
     {
-        return mUser::getDb();
+        return UserModule::getDb();
     }
 
     /**

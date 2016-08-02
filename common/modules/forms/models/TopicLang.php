@@ -2,8 +2,9 @@
 
 namespace common\modules\forms\models;
 
-use thread\modules\forms\models\TopicLang as BaseTopicLangModel;
 use Yii;
+//
+use thread\modules\forms\models\TopicLang as BaseTopicLangModel;
 
 class TopicLang extends BaseTopicLangModel
 {

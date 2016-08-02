@@ -1,9 +1,7 @@
 <?php
 namespace common\modules\page\models;
 
-use thread\modules\page\models\Page as ThreadPageModel;
-
-class Page extends ThreadPageModel
+class Page extends \thread\modules\page\models\Page
 {
     /** Для сео виджета */
     const COMMON_NAMESPACE = self::class;

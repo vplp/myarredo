@@ -2,11 +2,14 @@
 
 namespace thread\modules\location\models;
 
-use thread\app\base\models\ActiveRecord;
 use Yii;
 use yii\behaviors\AttributeBehavior;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Inflector;
+use yii\helpers\{
+    ArrayHelper, Inflector
+};
+//
+use thread\app\base\models\ActiveRecord;
+use thread\modules\location\Location as LocationModule;
 
 
 /**
@@ -25,7 +28,7 @@ class Currency extends ActiveRecord
      */
     public static function getDb()
     {
-        return \thread\modules\location\Location::getDb();
+        return LocationModule::getDb();
     }
 
     /**
@@ -112,21 +115,11 @@ class Currency extends ActiveRecord
     }
 
     /**
-     *
-     * @return yii\db\ActiveQuery
+     * @return \yii\db\ActiveQuery
      */
     public function getLang()
     {
         return $this->hasOne(CurrencyLang::class, ['rid' => 'id']);
-    }
-
-    /**
-     * The Base method for query construction of the method find
-     * @return yii\db\ActiveQuery
-     */
-    public static function find_base()
-    {
-        return self::find()->enabled();
     }
 
 }

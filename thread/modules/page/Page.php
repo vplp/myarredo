@@ -2,8 +2,9 @@
 
 namespace thread\modules\page;
 
-use thread\app\base\module\abstracts\Module as aModule;
 use Yii;
+//
+use thread\app\base\module\abstracts\Module as aModule;
 
 /**
  * Class Page
@@ -19,10 +20,7 @@ class Page extends aModule
     public $translationsBasePath = __DIR__ . '/messages';
     public $configPath = __DIR__ . '/config.php';
 
-
     /**
-     * Db connection
-     *
      * @return null|object
      * @throws \yii\base\InvalidConfigException
      */
@@ -30,7 +28,6 @@ class Page extends aModule
     {
         return Yii::$app->get('db-core');
     }
-
 
     /**
      * getImageBasePath
