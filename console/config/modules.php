@@ -8,7 +8,10 @@ return [
     /**
      * Example
      */
-//    'page' => [
-//        'class' => backend\modules\page\Page::class,
-//    ],
+    'seo' => [
+        'class' => thread\modules\seo\Seo::class,
+    ],
+    'page' => [
+        'class' => \thread\modules\page\Page::class,
+    ],
 ];

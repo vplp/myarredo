@@ -120,9 +120,7 @@ class Page extends ActiveRecord
      */
     public function getLang()
     {
-        //TODO: Это излишество - условие
-        return $this->hasOne(PageLang::class, ['rid' => 'id'])
-            ->andOnCondition(['lang' => \Yii::$app->language]);
+        return $this->hasOne(PageLang::class, ['rid' => 'id']);
     }
 
     /**
