@@ -32,7 +32,9 @@ class MigrateController extends \yii\console\controllers\MigrateController
                 continue;
             }
             $path = $this->migrationPath . DIRECTORY_SEPARATOR . $file;
-            if (preg_match('/^(m(\d{6}_\d{6})_.*?)\.php$/', $file, $matches) && !isset($applied[$matches[2]]) && is_file($path)) {
+            if (preg_match('/^(m(\d{6}_\d{6})_.*?)\.php$/', $file,
+                    $matches) && !isset($applied[$matches[2]]) && is_file($path)
+            ) {
                 $migrations[] = $matches[1];
             }
         }
@@ -49,12 +51,33 @@ class MigrateController extends \yii\console\controllers\MigrateController
     }
 
     /**
+     * Creates a new migration instance.
+     * @param string $class the migration class name
+     * @return \yii\db\MigrationInterface the migration instance
+     */
+    protected function createMigration($class)
+    {
+        $file = $this->migrationPath . DIRECTORY_SEPARATOR . $class . '.php';
+        if (!is_file($file)) {
+
+            foreach ($this->migrationPaths as $path) {
+                $file = \Yii::getAlias($path) . DIRECTORY_SEPARATOR . $class . '.php';
+                if (is_file($file)) {
+                    break;
+                }
+            }
+        }
+        require_once($file);
+
+        return new $class();
+    }
+
+    /**
      * @param null $path
      * @return array
      */
     protected function getMigrationsByPath($path = null, $applied)
     {
-
         $migrations = [];
 
         $handle = opendir($path);
@@ -62,13 +85,14 @@ class MigrateController extends \yii\console\controllers\MigrateController
             if ($file === '.' || $file === '..') {
                 continue;
             }
-            $path = $this->migrationPath . DIRECTORY_SEPARATOR . $file;
-            if (preg_match('/^(m(\d{6}_\d{6})_.*?)\.php$/', $file, $matches) && !isset($applied[$matches[2]]) && is_file($path)) {
-                $migrations[] = $matches[1];
+            $path = $path . DIRECTORY_SEPARATOR . $file;
+            if (preg_match('/^(m(\d{6}_\d{6})_.*?)\.php$/', $file, $matches)) {
+                if (isset($matches[1])) {
+                    array_push($migrations, $matches[1]);
+                }
             }
         }
         closedir($handle);
-        sort($migrations);
 
         return $migrations;
     }
