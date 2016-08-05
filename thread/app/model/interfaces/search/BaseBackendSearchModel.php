@@ -11,11 +11,23 @@ namespace thread\app\model\interfaces\search;
  */
 interface BaseBackendSearchModel
 {
+    /**
+     * @return mixed
+     */
     public function rules();
 
+    /**
+     * @return mixed
+     */
     public function scenarios();
 
+    /**
+     * @param $query
+     * @param $params
+     * @return mixed
+     */
     public function baseSearch($query, $params);
+
     /**
      * @param $params
      * @return mixed

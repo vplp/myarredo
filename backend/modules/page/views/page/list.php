@@ -12,7 +12,7 @@ echo GridView::widget([
         [
             'attribute' => 'title',
             'value' => 'lang.title',
-            'label' => Yii::t('app', 'Title'),
+            'label' => Yii::t('app', 'Title')
         ],
         [
             'class' => \thread\widgets\grid\ActionCheckboxColumn::class,

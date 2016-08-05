@@ -9,8 +9,9 @@ use yii\db\ActiveQuery;
 //
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
-use backend\modules\user\models\Group as GroupModel;
-use backend\modules\user\models\GroupLang;
+use backend\modules\user\models\{
+    Group as GroupModel, GroupLang
+};
 
 /**
  * Class Group

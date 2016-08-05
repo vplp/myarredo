@@ -1,0 +1,381 @@
+2016-08-01 12:42:05 [-][-][-][error][yii\db\Exception] PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php:603
+Stack trace:
+#0 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(603): PDO->__construct('mysql:host=loca...', 'root', '', NULL)
+#1 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(545): yii\db\Connection->createPdoInstance()
+#2 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(864): yii\db\Connection->open()
+#3 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(851): yii\db\Connection->getMasterPdo()
+#4 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(219): yii\db\Connection->getSlavePdo()
+#5 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(894): yii\db\Command->prepare(true)
+#6 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(362): yii\db\Command->queryInternal('fetchAll', NULL)
+#7 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\mysql\Schema.php(198): yii\db\Command->queryAll()
+#8 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\mysql\Schema.php(97): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#9 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Schema.php(149): yii\db\mysql\Schema->loadTableSchema('fv_migration')
+#10 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\MigrateController.php(178): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#11 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(627): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#12 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(102): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#13 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#14 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#15 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#16 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Controller.php(119): yii\base\Controller->runAction('', Array)
+#17 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Module.php(454): yii\console\Controller->runAction('', Array)
+#18 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#19 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#20 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#21 E:\htdocs\core-cms\yii(25): yii\base\Application->run()
+#22 {main}
+
+Next yii\db\Exception: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php:550
+Stack trace:
+#0 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(864): yii\db\Connection->open()
+#1 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(851): yii\db\Connection->getMasterPdo()
+#2 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(219): yii\db\Connection->getSlavePdo()
+#3 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(894): yii\db\Command->prepare(true)
+#4 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(362): yii\db\Command->queryInternal('fetchAll', NULL)
+#5 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\mysql\Schema.php(198): yii\db\Command->queryAll()
+#6 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\mysql\Schema.php(97): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#7 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Schema.php(149): yii\db\mysql\Schema->loadTableSchema('fv_migration')
+#8 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\MigrateController.php(178): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#9 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(627): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#10 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(102): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#11 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#12 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#13 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#14 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Controller.php(119): yii\base\Controller->runAction('', Array)
+#15 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Module.php(454): yii\console\Controller->runAction('', Array)
+#16 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#17 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#18 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#19 E:\htdocs\core-cms\yii(25): yii\base\Application->run()
+#20 {main}
+Additional Information:
+
+2016-08-01 12:42:05 [-][-][-][info][application] $_SERVER = [
+    'ACLOCAL_PATH' => '/mingw64/share/aclocal:/usr/share/aclocal'
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\Bogdan\\AppData\\Roaming'
+    'COMMONPROGRAMFILES' => 'C:\\Program Files\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'OX'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'DISPLAY' => 'needs-to-be-defined'
+    'EMAIL' => 'C:\\Users\\Bogdan\\AppData\\Roaming\\The Bat!'
+    'EXEPATH' => 'C:\\Program Files\\Git'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOME' => 'C:\\Users\\Bogdan'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Bogdan'
+    'HOSTNAME' => 'ox'
+    'INFOPATH' => '/usr/local/info:/usr/share/info:/usr/info:/share/info:'
+    'LANG' => 'ru_RU.UTF-8'
+    'LOCALAPPDATA' => 'C:\\Users\\Bogdan\\AppData\\Local'
+    'LOGONSERVER' => '\\\\OX'
+    'MANPATH' => '/mingw64/share/man:/usr/local/man:/usr/share/man:/usr/man:/share/man:'
+    'MSYSTEM' => 'MINGW64'
+    'NUMBER_OF_PROCESSORS' => '2'
+    'OLDPWD' => '/e/htdocs/core-cms/console'
+    'OS' => 'Windows_NT'
+    'PATH' => 'C:\\Users\\Bogdan\\bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\local\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\Bogdan\\bin;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;E:\\php7;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\VisualSVN Server\\bin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\TortoiseSVN\\bin;E:\\mysql\\bin;C:\\Program Files (x86)\\Skype\\Phone;D:\\;C:\\Ruby22-x64\\bin;E:\\Mongo\\bin;C:\\Users\\Bogdan\\AppData\\Roaming\\npm;C:\\Program Files\\Git\\usr\\bin\\vendor_perl;C:\\Program Files\\Git\\usr\\bin\\core_perl'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.RB;.RBW'
+    'PKG_CONFIG_PATH' => '/mingw64/lib/pkgconfig:/mingw64/share/pkgconfig'
+    'PLINK_PROTOCOL' => 'ssh'
+    'PRINTER' => 'Adobe PDF'
+    'PROCESSOR_ARCHITECTURE' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 58 Stepping 9, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '3a09'
+    'ProgramData' => 'C:\\ProgramData'
+    'PROGRAMFILES' => 'C:\\Program Files'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PS1' => '\\[\\033]0;$TITLEPREFIX:${PWD//[^[:ascii:]]/?}\\007\\]\\n\\[\\033[32m\\]\\u@\\h \\[\\033[35m\\]$MSYSTEM \\[\\033[33m\\]\\w\\[\\033[36m\\]`__git_ps1`\\[\\033[0m\\]\\n$ '
+    'PSModulePath' => 'C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'PWD' => '/e/htdocs/core-cms'
+    'SESSIONNAME' => 'Console'
+    'SHELL' => 'C:\\Program Files\\Git\\usr\\bin\\bash'
+    'SHLVL' => '1'
+    'SSH_AGENT_PID' => '10772'
+    'SSH_ASKPASS' => '/mingw64/libexec/git-core/git-gui--askpass'
+    'SSH_AUTH_SOCK' => '/tmp/ssh-u3jOQOvFwXXv/agent.5032'
+    'SYSTEMDRIVE' => 'C:'
+    'SYSTEMROOT' => 'C:\\WINDOWS'
+    'TEMP' => 'D:\\TEMP'
+    'TERM' => 'xterm'
+    'TMP' => 'D:\\TEMP'
+    'TMPDIR' => 'D:\\TEMP'
+    'USERDOMAIN' => 'ox'
+    'USERDOMAIN_ROAMINGPROFILE' => 'ox'
+    'USERNAME' => 'Bogdan'
+    'USERPROFILE' => 'C:\\Users\\Bogdan'
+    'VBOX_MSI_INSTALL_PATH' => 'D:\\Program Files\\Oracle\\VirtualBox\\'
+    'VISUALSVN_SERVER' => 'C:\\Program Files (x86)\\VisualSVN Server\\'
+    'WINDIR' => 'C:\\WINDOWS'
+    '_' => '/usr/bin/winpty'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1470055325.358
+    'REQUEST_TIME' => 1470055325
+    'argv' => [
+        0 => 'yii'
+        1 => 'migrate'
+    ]
+    'argc' => 2
+]
+2016-08-01 12:42:20 [-][-][-][error][yii\db\Exception] PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php:603
+Stack trace:
+#0 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(603): PDO->__construct('mysql:host=loca...', 'root', '', NULL)
+#1 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(545): yii\db\Connection->createPdoInstance()
+#2 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(864): yii\db\Connection->open()
+#3 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(851): yii\db\Connection->getMasterPdo()
+#4 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(219): yii\db\Connection->getSlavePdo()
+#5 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(894): yii\db\Command->prepare(true)
+#6 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(362): yii\db\Command->queryInternal('fetchAll', NULL)
+#7 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\mysql\Schema.php(198): yii\db\Command->queryAll()
+#8 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\mysql\Schema.php(97): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#9 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Schema.php(149): yii\db\mysql\Schema->loadTableSchema('fv_migration')
+#10 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\MigrateController.php(178): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#11 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(627): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#12 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(102): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#13 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#14 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#15 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#16 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Controller.php(119): yii\base\Controller->runAction('', Array)
+#17 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Module.php(454): yii\console\Controller->runAction('', Array)
+#18 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#19 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#20 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#21 E:\htdocs\core-cms\yii(25): yii\base\Application->run()
+#22 {main}
+
+Next yii\db\Exception: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php:550
+Stack trace:
+#0 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(864): yii\db\Connection->open()
+#1 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(851): yii\db\Connection->getMasterPdo()
+#2 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(219): yii\db\Connection->getSlavePdo()
+#3 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(894): yii\db\Command->prepare(true)
+#4 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(362): yii\db\Command->queryInternal('fetchAll', NULL)
+#5 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\mysql\Schema.php(198): yii\db\Command->queryAll()
+#6 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\mysql\Schema.php(97): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#7 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Schema.php(149): yii\db\mysql\Schema->loadTableSchema('fv_migration')
+#8 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\MigrateController.php(178): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#9 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(627): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#10 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(102): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#11 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#12 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#13 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#14 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Controller.php(119): yii\base\Controller->runAction('', Array)
+#15 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Module.php(454): yii\console\Controller->runAction('', Array)
+#16 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#17 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#18 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#19 E:\htdocs\core-cms\yii(25): yii\base\Application->run()
+#20 {main}
+Additional Information:
+
+2016-08-01 12:42:20 [-][-][-][info][application] $_SERVER = [
+    'ACLOCAL_PATH' => '/mingw64/share/aclocal:/usr/share/aclocal'
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\Bogdan\\AppData\\Roaming'
+    'COMMONPROGRAMFILES' => 'C:\\Program Files\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'OX'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'DISPLAY' => 'needs-to-be-defined'
+    'EMAIL' => 'C:\\Users\\Bogdan\\AppData\\Roaming\\The Bat!'
+    'EXEPATH' => 'C:\\Program Files\\Git'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOME' => 'C:\\Users\\Bogdan'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Bogdan'
+    'HOSTNAME' => 'ox'
+    'INFOPATH' => '/usr/local/info:/usr/share/info:/usr/info:/share/info:'
+    'LANG' => 'ru_RU.UTF-8'
+    'LOCALAPPDATA' => 'C:\\Users\\Bogdan\\AppData\\Local'
+    'LOGONSERVER' => '\\\\OX'
+    'MANPATH' => '/mingw64/share/man:/usr/local/man:/usr/share/man:/usr/man:/share/man:'
+    'MSYSTEM' => 'MINGW64'
+    'NUMBER_OF_PROCESSORS' => '2'
+    'OLDPWD' => '/e/htdocs/core-cms/console'
+    'OS' => 'Windows_NT'
+    'PATH' => 'C:\\Users\\Bogdan\\bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\local\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\Bogdan\\bin;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;E:\\php7;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\VisualSVN Server\\bin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\TortoiseSVN\\bin;E:\\mysql\\bin;C:\\Program Files (x86)\\Skype\\Phone;D:\\;C:\\Ruby22-x64\\bin;E:\\Mongo\\bin;C:\\Users\\Bogdan\\AppData\\Roaming\\npm;C:\\Program Files\\Git\\usr\\bin\\vendor_perl;C:\\Program Files\\Git\\usr\\bin\\core_perl'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.RB;.RBW'
+    'PKG_CONFIG_PATH' => '/mingw64/lib/pkgconfig:/mingw64/share/pkgconfig'
+    'PLINK_PROTOCOL' => 'ssh'
+    'PRINTER' => 'Adobe PDF'
+    'PROCESSOR_ARCHITECTURE' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 58 Stepping 9, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '3a09'
+    'ProgramData' => 'C:\\ProgramData'
+    'PROGRAMFILES' => 'C:\\Program Files'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PS1' => '\\[\\033]0;$TITLEPREFIX:${PWD//[^[:ascii:]]/?}\\007\\]\\n\\[\\033[32m\\]\\u@\\h \\[\\033[35m\\]$MSYSTEM \\[\\033[33m\\]\\w\\[\\033[36m\\]`__git_ps1`\\[\\033[0m\\]\\n$ '
+    'PSModulePath' => 'C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'PWD' => '/e/htdocs/core-cms'
+    'SESSIONNAME' => 'Console'
+    'SHELL' => 'C:\\Program Files\\Git\\usr\\bin\\bash'
+    'SHLVL' => '1'
+    'SSH_AGENT_PID' => '10772'
+    'SSH_ASKPASS' => '/mingw64/libexec/git-core/git-gui--askpass'
+    'SSH_AUTH_SOCK' => '/tmp/ssh-u3jOQOvFwXXv/agent.5032'
+    'SYSTEMDRIVE' => 'C:'
+    'SYSTEMROOT' => 'C:\\WINDOWS'
+    'TEMP' => 'D:\\TEMP'
+    'TERM' => 'xterm'
+    'TMP' => 'D:\\TEMP'
+    'TMPDIR' => 'D:\\TEMP'
+    'USERDOMAIN' => 'ox'
+    'USERDOMAIN_ROAMINGPROFILE' => 'ox'
+    'USERNAME' => 'Bogdan'
+    'USERPROFILE' => 'C:\\Users\\Bogdan'
+    'VBOX_MSI_INSTALL_PATH' => 'D:\\Program Files\\Oracle\\VirtualBox\\'
+    'VISUALSVN_SERVER' => 'C:\\Program Files (x86)\\VisualSVN Server\\'
+    'WINDIR' => 'C:\\WINDOWS'
+    '_' => '/usr/bin/winpty'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1470055340.0332
+    'REQUEST_TIME' => 1470055340
+    'argv' => [
+        0 => 'yii'
+        1 => 'migrate'
+    ]
+    'argc' => 2
+]
+2016-08-01 12:44:54 [-][-][-][error][yii\db\Exception] PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php:603
+Stack trace:
+#0 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(603): PDO->__construct('mysql:host=loca...', 'root', '', NULL)
+#1 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(545): yii\db\Connection->createPdoInstance()
+#2 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(864): yii\db\Connection->open()
+#3 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(851): yii\db\Connection->getMasterPdo()
+#4 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(219): yii\db\Connection->getSlavePdo()
+#5 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(894): yii\db\Command->prepare(true)
+#6 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(362): yii\db\Command->queryInternal('fetchAll', NULL)
+#7 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\mysql\Schema.php(198): yii\db\Command->queryAll()
+#8 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\mysql\Schema.php(97): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#9 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Schema.php(149): yii\db\mysql\Schema->loadTableSchema('fv_migration')
+#10 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\MigrateController.php(178): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#11 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(627): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#12 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(102): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#13 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#14 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#15 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#16 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Controller.php(119): yii\base\Controller->runAction('', Array)
+#17 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Module.php(454): yii\console\Controller->runAction('', Array)
+#18 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#19 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#20 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#21 E:\htdocs\core-cms\yii(25): yii\base\Application->run()
+#22 {main}
+
+Next yii\db\Exception: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php:550
+Stack trace:
+#0 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(864): yii\db\Connection->open()
+#1 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Connection.php(851): yii\db\Connection->getMasterPdo()
+#2 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(219): yii\db\Connection->getSlavePdo()
+#3 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(894): yii\db\Command->prepare(true)
+#4 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Command.php(362): yii\db\Command->queryInternal('fetchAll', NULL)
+#5 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\mysql\Schema.php(198): yii\db\Command->queryAll()
+#6 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\mysql\Schema.php(97): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#7 E:\htdocs\core-cms\vendor\yiisoft\yii2\db\Schema.php(149): yii\db\mysql\Schema->loadTableSchema('fv_migration')
+#8 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\MigrateController.php(178): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#9 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(627): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#10 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(102): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#11 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#12 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#13 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#14 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Controller.php(119): yii\base\Controller->runAction('', Array)
+#15 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Module.php(454): yii\console\Controller->runAction('', Array)
+#16 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#17 E:\htdocs\core-cms\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#18 E:\htdocs\core-cms\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#19 E:\htdocs\core-cms\yii(25): yii\base\Application->run()
+#20 {main}
+Additional Information:
+
+2016-08-01 12:44:54 [-][-][-][info][application] $_SERVER = [
+    'ACLOCAL_PATH' => '/mingw64/share/aclocal:/usr/share/aclocal'
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\Bogdan\\AppData\\Roaming'
+    'COMMONPROGRAMFILES' => 'C:\\Program Files\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'OX'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'DISPLAY' => 'needs-to-be-defined'
+    'EMAIL' => 'C:\\Users\\Bogdan\\AppData\\Roaming\\The Bat!'
+    'EXEPATH' => 'C:\\Program Files\\Git'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOME' => 'C:\\Users\\Bogdan'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Bogdan'
+    'HOSTNAME' => 'ox'
+    'INFOPATH' => '/usr/local/info:/usr/share/info:/usr/info:/share/info:'
+    'LANG' => 'ru_RU.UTF-8'
+    'LOCALAPPDATA' => 'C:\\Users\\Bogdan\\AppData\\Local'
+    'LOGONSERVER' => '\\\\OX'
+    'MANPATH' => '/mingw64/share/man:/usr/local/man:/usr/share/man:/usr/man:/share/man:'
+    'MSYSTEM' => 'MINGW64'
+    'NUMBER_OF_PROCESSORS' => '2'
+    'OLDPWD' => '/e/htdocs/core-cms/console'
+    'OS' => 'Windows_NT'
+    'PATH' => 'C:\\Users\\Bogdan\\bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\local\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\Bogdan\\bin;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;E:\\php7;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\VisualSVN Server\\bin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\TortoiseSVN\\bin;E:\\mysql\\bin;C:\\Program Files (x86)\\Skype\\Phone;D:\\;C:\\Ruby22-x64\\bin;E:\\Mongo\\bin;C:\\Users\\Bogdan\\AppData\\Roaming\\npm;C:\\Program Files\\Git\\usr\\bin\\vendor_perl;C:\\Program Files\\Git\\usr\\bin\\core_perl'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.RB;.RBW'
+    'PKG_CONFIG_PATH' => '/mingw64/lib/pkgconfig:/mingw64/share/pkgconfig'
+    'PLINK_PROTOCOL' => 'ssh'
+    'PRINTER' => 'Adobe PDF'
+    'PROCESSOR_ARCHITECTURE' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 58 Stepping 9, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '3a09'
+    'ProgramData' => 'C:\\ProgramData'
+    'PROGRAMFILES' => 'C:\\Program Files'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PS1' => '\\[\\033]0;$TITLEPREFIX:${PWD//[^[:ascii:]]/?}\\007\\]\\n\\[\\033[32m\\]\\u@\\h \\[\\033[35m\\]$MSYSTEM \\[\\033[33m\\]\\w\\[\\033[36m\\]`__git_ps1`\\[\\033[0m\\]\\n$ '
+    'PSModulePath' => 'C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'PWD' => '/e/htdocs/core-cms'
+    'SESSIONNAME' => 'Console'
+    'SHELL' => 'C:\\Program Files\\Git\\usr\\bin\\bash'
+    'SHLVL' => '1'
+    'SSH_AGENT_PID' => '10772'
+    'SSH_ASKPASS' => '/mingw64/libexec/git-core/git-gui--askpass'
+    'SSH_AUTH_SOCK' => '/tmp/ssh-u3jOQOvFwXXv/agent.5032'
+    'SYSTEMDRIVE' => 'C:'
+    'SYSTEMROOT' => 'C:\\WINDOWS'
+    'TEMP' => 'D:\\TEMP'
+    'TERM' => 'xterm'
+    'TMP' => 'D:\\TEMP'
+    'TMPDIR' => 'D:\\TEMP'
+    'USERDOMAIN' => 'ox'
+    'USERDOMAIN_ROAMINGPROFILE' => 'ox'
+    'USERNAME' => 'Bogdan'
+    'USERPROFILE' => 'C:\\Users\\Bogdan'
+    'VBOX_MSI_INSTALL_PATH' => 'D:\\Program Files\\Oracle\\VirtualBox\\'
+    'VISUALSVN_SERVER' => 'C:\\Program Files (x86)\\VisualSVN Server\\'
+    'WINDIR' => 'C:\\WINDOWS'
+    '_' => '/usr/bin/winpty'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1470055494.1231
+    'REQUEST_TIME' => 1470055494
+    'argv' => [
+        0 => 'yii'
+        1 => 'migrate'
+    ]
+    'argc' => 2
+]
