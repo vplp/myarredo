@@ -27,7 +27,6 @@ return [
                 '@thread/modules/news/migrations',
                 '@thread/modules/seo/migrations',
                 '@thread/modules/forms/migrations',
-                '@thread/modules/configs/migrations',
             ],
         ],
     ],
