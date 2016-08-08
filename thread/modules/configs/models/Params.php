@@ -51,6 +51,7 @@ class Params extends ActiveRecord
     public function rules()
     {
         return [
+            [['alias'], 'string', 'max' => 255],
             ['value', 'string', 'max' => 1024],
             [['created_at', 'updated_at', 'sort'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
@@ -65,7 +66,7 @@ class Params extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['published', 'deleted', 'value'],
+            'backend' => ['published', 'deleted', 'value', 'alias'],
         ];
     }
 
@@ -76,6 +77,7 @@ class Params extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'alias' => Yii::t('app', 'Alias'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
