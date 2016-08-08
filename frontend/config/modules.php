@@ -11,6 +11,9 @@ return [
     'home' => [
         'class' => \frontend\modules\home\Home::class,
     ],
+    'configs' => [
+        'class' => \frontend\modules\configs\Configs::class,
+    ],
     'user' => [
         'class' => \frontend\modules\user\User::class,
     ],

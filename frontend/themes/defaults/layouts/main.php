@@ -34,6 +34,7 @@ $this->beginPage()
         <!-- HEADER END-->
         <div class="container">
             <?= $content ?>
+            <?= Yii::$app->getModule('configs')->getParam(1)?>
         </div>
 
     </div>

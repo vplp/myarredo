@@ -11,6 +11,9 @@ return [
     'home' => [
         'class' => backend\modules\home\Home::class,
     ],
+    'configs' => [
+        'class' => backend\modules\configs\Configs::class,
+    ],
     'page' => [
         'class' => backend\modules\page\Page::class,
     ],
@@ -29,6 +32,9 @@ return [
     'menu' => [
         'class' => backend\modules\menu\Menu::class,
     ],
+    /**
+     *
+     */
     'forms' => [
         'class' => backend\modules\forms\Forms::class,
     ],

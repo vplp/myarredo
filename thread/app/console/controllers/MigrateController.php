@@ -92,6 +92,13 @@ class MigrateController extends \yii\console\controllers\MigrateController
                 }
             }
         }
+
+        foreach ($migrations as $key => $item) {
+            if (isset($applied[substr($item, 1, 13)])) {
+                unset($migrations[$key]);
+            }
+        }
+
         closedir($handle);
 
         return $migrations;

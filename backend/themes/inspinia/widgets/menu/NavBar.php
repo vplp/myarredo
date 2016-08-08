@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 class NavBar extends \yii\bootstrap\NavBar
 {
-    
+
     public $options = [
         'class' => 'navbar-default navbar-static-side',
         'role' => 'navigation'
@@ -63,21 +63,25 @@ class NavBar extends \yii\bootstrap\NavBar
         return [
             // STRUCTURE
             [
-                'label' => '<i class="fa fa-sitemap"></i><span class="nav-label">' . Yii::t('app', 'Structure') . '</span><span class="fa arrow"></span>',
+                'label' => '<i class="fa fa-sitemap"></i><span class="nav-label">' . Yii::t('app',
+                        'Structure') . '</span><span class="fa arrow"></span>',
                 'items' => [
                     [
-                        'label' => '<i class="fa fa-tasks"></i><span class="nav-label">' . Yii::t('app', 'Menu') . '</span>',
+                        'label' => '<i class="fa fa-tasks"></i><span class="nav-label">' . Yii::t('app',
+                                'Menu') . '</span>',
                         'url' => ['/menu/menu/list'],
                     ],
                     [
-                        'label' => '<i class="fa fa-file-text"></i> <span class="nav-label">' . Yii::t('app', 'Pages') . '</span>',
+                        'label' => '<i class="fa fa-file-text"></i> <span class="nav-label">' . Yii::t('app',
+                                'Pages') . '</span>',
                         'url' => ['/page/page/list']
                     ],
                 ]
             ],
             // NEWS
             [
-                'label' => '<i class="fa fa-newspaper-o"></i><span class="nav-label">' . Yii::t('app', 'News') . '</span><span class="fa arrow"></span>',
+                'label' => '<i class="fa fa-newspaper-o"></i><span class="nav-label">' . Yii::t('app',
+                        'News') . '</span><span class="fa arrow"></span>',
                 'url' => ['/news/article/list'],
                 'items' => [
                     [
@@ -92,7 +96,8 @@ class NavBar extends \yii\bootstrap\NavBar
             ],
             //SEO
             [
-                'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('app', 'Seo') . '</span> <span class="fa arrow"></span></a>',
+                'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('app',
+                        'Seo') . '</span> <span class="fa arrow"></span></a>',
                 'items' => [
                     [
                         'label' => Yii::t('app', 'Seo'),
@@ -107,7 +112,8 @@ class NavBar extends \yii\bootstrap\NavBar
 
             // USER
             [
-                'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('app', 'User') . '</span> <span class="fa arrow"></span></a>',
+                'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('app',
+                        'User') . '</span> <span class="fa arrow"></span></a>',
                 'items' => [
                     [
                         'label' => Yii::t('app', 'User list'),
@@ -121,7 +127,8 @@ class NavBar extends \yii\bootstrap\NavBar
             ],
             // LOCATION
             [
-                'label' => '<i class="fa fa-map-marker"></i><span class="nav-label">' . Yii::t('app', 'Location') . '</span><span class="fa arrow"></span>',
+                'label' => '<i class="fa fa-map-marker"></i><span class="nav-label">' . Yii::t('app',
+                        'Location') . '</span><span class="fa arrow"></span>',
                 'items' => [
                     [
                         'label' => Yii::t('app', 'Country'),
@@ -137,8 +144,10 @@ class NavBar extends \yii\bootstrap\NavBar
                     ],
                 ],
             ],
+            // FORMS
             [
-                'label' => '<i class="fa fa-file-o"></i><span class="nav-label">' . Yii::t('app', 'Forms') . '</span><span class="fa arrow"></span>',
+                'label' => '<i class="fa fa-file-o"></i><span class="nav-label">' . Yii::t('app',
+                        'Forms') . '</span><span class="fa arrow"></span>',
                 'items' => [
                     [
                         'label' => Yii::t('app', 'FeedbackForm'),
@@ -147,6 +156,17 @@ class NavBar extends \yii\bootstrap\NavBar
                     [
                         'label' => Yii::t('app', 'Topics'),
                         'url' => ['/forms/topic/list']
+                    ],
+                ],
+            ],
+            // CONFIGS
+            [
+                'label' => '<i class="fa fa-map-marker"></i><span class="nav-label">' . Yii::t('app',
+                        'Configs') . '</span><span class="fa arrow"></span>',
+                'items' => [
+                    [
+                        'label' => Yii::t('app', 'Params'),
+                        'url' => ['/configs/params/list']
                     ],
                 ],
             ],
