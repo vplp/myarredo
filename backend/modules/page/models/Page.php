@@ -8,9 +8,12 @@ use common\modules\page\models\Page as CommonPageModel;
 use thread\modules\seo\behaviors\SeoBehavior;
 use thread\app\model\interfaces\BaseBackendModel;
 
-
 /**
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
+ * Class Page
+ *
+ * @package backend\modules\page\models
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class Page extends CommonPageModel implements BaseBackendModel
 {

@@ -7,7 +7,7 @@ namespace thread\app\model\interfaces\search;
  *
  * @package thread\app\model\interfaces\search
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 interface BaseBackendSearchModel
 {

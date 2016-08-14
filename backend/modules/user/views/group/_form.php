@@ -5,7 +5,7 @@ use thread\widgets\HtmlForm;
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  *
  * @var \backend\modules\user\models\Group $model
  * @var \common\modules\user\models\GroupLang $modelLang

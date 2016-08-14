@@ -1,7 +1,7 @@
 <?php
 /**
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2014, Thread
+ * @copyright (c), Thread
  */
 $this->beginContent('@app/layouts/main.php');
 ?>

@@ -9,6 +9,13 @@ use thread\app\model\interfaces\BaseBackendModel;
 //
 use common\modules\news\models\Group as CommonGroupModel;
 
+/**
+ * Class Group
+ *
+ * @package backend\modules\news\models
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class Group extends CommonGroupModel implements BaseBackendModel
 {
 

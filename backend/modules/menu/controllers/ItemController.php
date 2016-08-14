@@ -2,8 +2,9 @@
 namespace backend\modules\menu\controllers;
 
 use Yii;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
+use yii\helpers\{
+    ArrayHelper, Url
+};
 //
 use thread\app\base\controllers\BackendController;
 //
@@ -12,7 +13,11 @@ use backend\modules\menu\models\{
 };
 
 /**
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
+ * Class ItemController
+ *
+ * @package backend\modules\menu\controllers
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class ItemController extends BackendController
 {
@@ -102,12 +107,11 @@ class ItemController extends BackendController
         }
 
         if ($groupId !== null) {
-            $this->group = Menu::find()->byID($groupId)->one();
+            $this->group = Menu::findById($groupId);
         }
 
-
         if ($parentId !== null) {
-            $this->parent = MenuItem::find()->byID($parentId)->one();
+            $this->parent = MenuItem::findById($parentId);
         }
 
         return parent::beforeAction($action);

@@ -16,7 +16,7 @@ use backend\modules\user\models\User as UserModel;
  *
  * @package admin\modules\user\models\search
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class User extends UserModel implements BaseBackendSearchModel
 {

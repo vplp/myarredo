@@ -2,7 +2,9 @@
 use thread\modules\seo\widgets\seo\SeoWidget;
 use thread\app\base\models\ActiveRecord;
 //
-use backend\modules\news\models\{Article, ArticleLang};
+use backend\modules\news\models\{
+    Article, ArticleLang
+};
 use backend\themes\inspinia\widgets\{
     forms\ActiveForm, forms\Form, Tabs
 };

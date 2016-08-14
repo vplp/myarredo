@@ -5,7 +5,11 @@ namespace backend\modules\menu\models;
 use thread\app\model\interfaces\BaseBackendModel;
 
 /**
- * @author Fantamas
+ * Class Menu
+ *
+ * @package backend\modules\menu\models
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class Menu extends \common\modules\menu\models\Menu implements BaseBackendModel
 {
@@ -25,5 +29,14 @@ class Menu extends \common\modules\menu\models\Menu implements BaseBackendModel
     public function trash($params)
     {
         return (new search\Menu())->trash($params);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function findById($id)
+    {
+        return self::find()->byID($id)->one();
     }
 }

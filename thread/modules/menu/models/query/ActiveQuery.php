@@ -8,7 +8,7 @@ namespace thread\modules\menu\models\query;
  *
  * @package thread\app\base\models
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class ActiveQuery extends \thread\app\base\models\query\ActiveQuery
 {

@@ -64,6 +64,8 @@ class Article extends CommonArticleModel implements BaseBackendModel
         ];
     }
 
+
+    //TODO Перемотреть
     /**
      * @return null|string
      */
@@ -80,6 +82,7 @@ class Article extends CommonArticleModel implements BaseBackendModel
         return $image;
     }
 
+    //TODO Убрать
     /**
      * @return array
      */
@@ -103,7 +106,7 @@ class Article extends CommonArticleModel implements BaseBackendModel
         return $imagesSources;
     }
 
-
+    //TODO Что с этим делать
     /**
      * @return $this
      */

@@ -9,16 +9,27 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $basePath = '@webroot/themes/defaults';
-    public $baseUrl = '@web/themes/defaults';
+    /**
+     * @var string
+     */
+    public $sourcePath = '@backend/themes/defaults/web';
+    /**
+     * @var array
+     */
     public $css = [
         'css/style.css'
     ];
+    /**
+     * @var array
+     */
     public $js = [
         'js/script.js'
     ];
+    /**
+     * @var array
+     */
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        \yii\web\YiiAsset::class,
+        \yii\bootstrap\BootstrapAsset::class,
     ];
 }

@@ -2,7 +2,7 @@
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 return [
     /**
@@ -14,14 +14,17 @@ return [
     'configs' => [
         'class' => backend\modules\configs\Configs::class,
     ],
+    'user' => [
+        'class' => backend\modules\user\User::class,
+    ],
+    'menu' => [
+        'class' => backend\modules\menu\Menu::class,
+    ],
     'page' => [
         'class' => backend\modules\page\Page::class,
     ],
     'news' => [
         'class' => backend\modules\news\News::class,
-    ],
-    'user' => [
-        'class' => backend\modules\user\User::class,
     ],
     'seo' => [
         'class' => backend\modules\seo\Seo::class,
@@ -29,13 +32,7 @@ return [
     'location' => [
         'class' => backend\modules\location\Location::class,
     ],
-    'menu' => [
-        'class' => backend\modules\menu\Menu::class,
-    ],
     /**
      *
      */
-    'forms' => [
-        'class' => backend\modules\forms\Forms::class,
-    ],
 ];

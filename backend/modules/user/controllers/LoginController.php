@@ -13,7 +13,7 @@ use thread\modules\user\models\form\SignInForm;
  *
  * @package admin\modules\user\controllers
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class LoginController extends BackendController
 {

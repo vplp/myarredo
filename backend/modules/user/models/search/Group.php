@@ -18,7 +18,7 @@ use backend\modules\user\models\{
  *
  * @package admin\modules\user\models\search
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class Group extends GroupModel implements BaseBackendSearchModel
 {

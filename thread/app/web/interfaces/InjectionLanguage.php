@@ -6,7 +6,7 @@ namespace thread\app\web\interfaces;
  *
  * @package thread\app\web\iface
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 interface InjectionLanguage
 {

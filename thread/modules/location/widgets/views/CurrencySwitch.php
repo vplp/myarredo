@@ -4,7 +4,7 @@ use yii\bootstrap\Nav;
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-left'],

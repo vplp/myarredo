@@ -2,9 +2,12 @@
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 return [
+    'configs' => [
+        'class' => \thread\modules\configs\components\ConfigsParams::class,
+    ],
     'languages' => [
         'class' => \thread\app\model\Languages::class,
         'languageModel' => \thread\app\model\Language::class,
@@ -69,7 +72,7 @@ return [
                 'fileMap' => [
                     'app' => 'app.php',
                 ]
-            ]            
+            ]
         ]
-    ],       
+    ],
 ];

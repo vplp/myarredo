@@ -2,7 +2,6 @@
 
 namespace backend\modules\user\controllers;
 
-//
 use thread\app\base\controllers\BackendController;
 //
 use backend\modules\user\models\{
@@ -14,7 +13,7 @@ use backend\modules\user\models\{
  *
  * @package admin\modules\user\controllers
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class GroupController extends BackendController
 {

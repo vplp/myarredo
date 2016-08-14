@@ -4,7 +4,7 @@ use yii\grid\GridView;
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 echo GridView::widget([
     'id' => 'grid',

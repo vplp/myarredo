@@ -8,6 +8,13 @@ use thread\app\model\interfaces\BaseBackendModel;
 //
 use common\modules\configs\models\Params as CommonParamsModel;
 
+/**
+ * Class Params
+ *
+ * @package backend\modules\configs\models
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class Params extends CommonParamsModel implements BaseBackendModel
 {
 

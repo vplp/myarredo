@@ -7,12 +7,13 @@ use yii\widgets\InputWidget;
 
 /**
  * Class Editor
- * 
+ *
  * @package admin\extensions\editors
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
-final class Editor extends InputWidget {
+final class Editor extends InputWidget
+{
 
     /**
      * Вибір редактору
@@ -27,20 +28,20 @@ final class Editor extends InputWidget {
 
     /**
      * Вибір налаштувань
-     * @var string 
+     * @var string
      */
     public $thema;
 
     /**
      * Редактор за замовчуванням
-     * @var string 
+     * @var string
      */
     private $_defaultEditor = 'Tinymce';
 
     /**
      * Перелік дозволених редакторів
-     * 
-     * @var arrray 
+     *
+     * @var arrray
      */
     private $_editors = [
         'Tinymce' => \thread\widgets\editors\tinymce\Tinymce::class,
@@ -49,11 +50,12 @@ final class Editor extends InputWidget {
 
     /**
      *
-     * @var string 
+     * @var string
      */
     public $language = '';
 
-    public function init() {
+    public function init()
+    {
 
         if (empty($this->language))
             $this->language = Yii::$app->language;
@@ -62,14 +64,15 @@ final class Editor extends InputWidget {
             $this->editor = $this->_defaultEditor;
     }
 
-    public function run() {
+    public function run()
+    {
         $e = $this->_editors[$this->editor];
         return $e::widget([
-                    'model' => $this->model,
-                    'attribute' => $this->attribute,
-                    'thema' => $this->thema,
-                    'language' => $this->language,
-                    'settings' => $this->settings,
+            'model' => $this->model,
+            'attribute' => $this->attribute,
+            'thema' => $this->thema,
+            'language' => $this->language,
+            'settings' => $this->settings,
         ]);
     }
 

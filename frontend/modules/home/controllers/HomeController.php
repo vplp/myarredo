@@ -9,7 +9,7 @@ use Yii;
  *
  * @package frontend\modules\home\controllers
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2014, Thread
+ * @copyright (c), Thread
  */
 class HomeController extends \frontend\components\BaseController
 {

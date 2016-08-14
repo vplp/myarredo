@@ -12,7 +12,7 @@ use thread\app\base\module\interfaces\Module as iModule;
  *
  * @package thread\app\base\module
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 abstract class Module extends \yii\base\Module implements iModule
 {

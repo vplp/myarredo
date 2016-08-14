@@ -2,11 +2,9 @@
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2014, Thread
+ * @copyright (c), Thread
  */
 use yii\helpers\Html;
-use backend\themes\inspinia\assets\AppAsset;
-
 ?>
 
 <?php $this->beginContent('@app/layouts/main.php'); ?>

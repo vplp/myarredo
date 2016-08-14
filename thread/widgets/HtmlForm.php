@@ -2,18 +2,18 @@
 
 namespace thread\widgets;
 
-use kartik\widgets\Select2;
-use thread\app\base\models\ActiveRecord;
 use Yii;
-use yii\helpers\Html;
-use yii\helpers\Url;
+use yii\helpers\{
+    Html, Url, ArrayHelper, Json
+};
 use yii\web\JsExpression;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Json;
-use kartik\widgets\DatePicker;
-use kartik\widgets\FileInput;
+//
+use kartik\widgets\{
+    DatePicker, FileInput, Select2 as kartikSelect2
+};
 use kartik\switchinput\SwitchInput;
-use kartik\widgets\Select2 as kartikSelect2;
+//
+use thread\app\base\models\ActiveRecord;
 use thread\widgets\editors\Editor;
 
 /**
@@ -21,7 +21,7 @@ use thread\widgets\editors\Editor;
  *
  * @package thread\app\components
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 final class HtmlForm
 {
@@ -61,16 +61,16 @@ final class HtmlForm
     {
         ?>
         <div class="form-group field-<?= Html::getInputId($model, $attribute) ?>">
-                <?= static::labelBlock($model, $attribute); ?>
-                <?=
-                Html::activeTextInput($model, $attribute, ArrayHelper::merge($options, [
-                        'placeholder' => Html::encode($model->getAttributeLabel($attribute)),
-                        'style' => 'width:100%',
-                        'class' => 'form-control',
-                    ])
-                );
-                ?>
-                <?= static::errorBlock($model, $attribute); ?>
+            <?= static::labelBlock($model, $attribute); ?>
+            <?=
+            Html::activeTextInput($model, $attribute, ArrayHelper::merge($options, [
+                'placeholder' => Html::encode($model->getAttributeLabel($attribute)),
+                'style' => 'width:100%',
+                'class' => 'form-control',
+            ])
+            );
+            ?>
+            <?= static::errorBlock($model, $attribute); ?>
         </div>
         <?php
     }
@@ -115,9 +115,9 @@ final class HtmlForm
             <div class="col-sm-10">
                 <?=
                 Html::activeTextInput($model, $attribute, ArrayHelper::merge([
-                            'placeholder' => Html::encode($model->getAttributeLabel($attribute)),
-                            'style' => 'width:100%',
-                            'class' => 'form-control'], $options));
+                    'placeholder' => Html::encode($model->getAttributeLabel($attribute)),
+                    'style' => 'width:100%',
+                    'class' => 'form-control'], $options));
                 ?>
                 <?= static::errorBlock($model, $attribute); ?>
             </div>
@@ -139,10 +139,10 @@ final class HtmlForm
             </div>
             <div class="col-sm-10">
                 <?= Html::activeTextarea($model, $attribute, ArrayHelper::merge($options, [
-                        'placeholder' => Html::encode($model->getAttributeLabel($attribute)),
-                        'style' => 'width:100%',
-                        'class' => 'form-control'
-                    ]));
+                    'placeholder' => Html::encode($model->getAttributeLabel($attribute)),
+                    'style' => 'width:100%',
+                    'class' => 'form-control'
+                ]));
                 static::errorBlock($model, $attribute); ?>
             </div>
         </div>
@@ -252,7 +252,6 @@ final class HtmlForm
     }
 
 
-
     /**
      * Випадаючий список на базі http://ivaynberg.github.io/select2
      * оформлений віджетом
@@ -265,21 +264,21 @@ final class HtmlForm
     public static function selected($model, $attribute, $datalist, $url = null, $setting = [])
     {
         $setting = ArrayHelper::merge([
-                    'width' => '100%',
-                    'ajax' => [
-                        'dataType' => 'json',
-                        'url' => $url,
-                        'data' => new JsExpression('function(term,page) { return {search:term}; }'),
-                        'results' => new JsExpression('function(data) { return {results:data}; }'),
-                        'delay' => 250,
-                        'current' => new JsExpression('function(){ return ' . Json::encode($datalist) . ';}'),
-                    ],
-                    'initSelection' => new JsExpression('function (element,callback) {
+            'width' => '100%',
+            'ajax' => [
+                'dataType' => 'json',
+                'url' => $url,
+                'data' => new JsExpression('function(term,page) { return {search:term}; }'),
+                'results' => new JsExpression('function(data) { return {results:data}; }'),
+                'delay' => 250,
+                'current' => new JsExpression('function(){ return ' . Json::encode($datalist) . ';}'),
+            ],
+            'initSelection' => new JsExpression('function (element,callback) {
                                  callback(' . new JsExpression(Json::encode($datalist)) . ');
                          }'),
-                    'multiple' => true,
-                    'minimumInputLength' => 3
-                        ], $setting);
+            'multiple' => true,
+            'minimumInputLength' => 3
+        ], $setting);
         ?>
         <div class="row form-group">
             <div class="col-sm-2">
@@ -342,52 +341,52 @@ final class HtmlForm
 
 
         echo kartikSelect2::widget(
-                ArrayHelper::merge($setting, [
-                    'name' => $name,
+            ArrayHelper::merge($setting, [
+                'name' => $name,
 //            'value' => '11',          //Так задавать стандартное значение
 //            'data' => ['11' => '11'], //
-                    'initValueText' => Yii::t('front', 'Country, city or resort name'),
-                    'options' =>
+                'initValueText' => Yii::t('front', 'Country, city or resort name'),
+                'options' =>
                     ['placeholder' => Yii::t('front', 'Country, city or resort name')],
-                    'pluginOptions' => [
-                        'allowClear' => true,
-                        'minimumInputLength' => 3,
-                        'language' => [
-                            'errorLoading' => new JsExpression("function () {
-                                return '". $errorLoading ."';
+                'pluginOptions' => [
+                    'allowClear' => true,
+                    'minimumInputLength' => 3,
+                    'language' => [
+                        'errorLoading' => new JsExpression("function () {
+                                return '" . $errorLoading . "';
                             }"),
-                            'inputTooShort' => new JsExpression("function (args) { 
+                        'inputTooShort' => new JsExpression("function (args) {
                                 var remainingChars = args.minimum - args.input.length;
                                 return '" . $inputTooShort . "';
                             }"),
-                            'inputTooLong' => new JsExpression("function (args) {
+                        'inputTooLong' => new JsExpression("function (args) {
                                 var overChars = args.input.length - args.maximum;
                                 return message = '" . $inputTooLong . "';
                             }"),
-                            'loadingMore' => new JsExpression("function () {
+                        'loadingMore' => new JsExpression("function () {
                                 return '" . $loadingMore . "';
                             }"),
-                            'maximumSelected' => new JsExpression("function (args) {
+                        'maximumSelected' => new JsExpression("function (args) {
                                 var message = '" . $maxSelected . "';
                                 return message;
                             }"),
-                            'noResults' => new JsExpression("function () {
+                        'noResults' => new JsExpression("function () {
                                 return '" . $noResults . "';
                             }"),
-                            'searching' => new JsExpression("function () {
+                        'searching' => new JsExpression("function () {
                                 return '" . $searching . "';
                             }"),
-                        ],
-                        'ajax' => [
-                            'url' => Url::to('filter/searchtitle'),
-                            'dataType' => 'json',
-                            'data' => new JsExpression('function(params) { return {q:params.term}; }')
-                        ],
-                        'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
-                        'templateResult' => new JsExpression('function(city) { return city.text; }'),
-                        'templateSelection' => new JsExpression('function (city) { return city.text; }'),
                     ],
-                ])
+                    'ajax' => [
+                        'url' => Url::to('filter/searchtitle'),
+                        'dataType' => 'json',
+                        'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                    ],
+                    'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
+                    'templateResult' => new JsExpression('function(city) { return city.text; }'),
+                    'templateSelection' => new JsExpression('function (city) { return city.text; }'),
+                ],
+            ])
         );
     }
 
@@ -472,24 +471,24 @@ final class HtmlForm
                         'accept' => 'image/*'
                     ],
                     'pluginOptions' =>
-                    ArrayHelper::merge([
-                        'uploadUrl' => Url::toRoute(['fileupload', 'input_file_name' => $name]),
-                        'uploadExtraData' => [
-                            '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
-                        ],
-                        'deleteExtraData' => [
-                            '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
-                        ],
-                        'uploadAsync' => true,
-                        'showUpload' => true,
-                        'showRemove' => false,
-                        'overwriteInitial' => false,
-                        'initialPreview' => $initImage,
-                        'initialPreviewConfig' => new JsExpression('[' . implode(',', $initImageConfig) . ']'),
-                        'minFileCount' => 1,
-                        'maxFileCount' => 2,
+                        ArrayHelper::merge([
+                            'uploadUrl' => Url::toRoute(['fileupload', 'input_file_name' => $name]),
+                            'uploadExtraData' => [
+                                '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
+                            ],
+                            'deleteExtraData' => [
+                                '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
+                            ],
+                            'uploadAsync' => true,
+                            'showUpload' => true,
+                            'showRemove' => false,
+                            'overwriteInitial' => false,
+                            'initialPreview' => $initImage,
+                            'initialPreviewConfig' => new JsExpression('[' . implode(',', $initImageConfig) . ']'),
+                            'minFileCount' => 1,
+                            'maxFileCount' => 2,
 //                        'maxFileSize' => '134217728999'
-                            ], $pluginOptions),
+                        ], $pluginOptions),
                     'pluginEvents' => [
                         'filebatchselected' => 'function(event, files) {
 //                               this.fileinput("upload");
@@ -537,7 +536,7 @@ final class HtmlForm
         $name = uniqid();
 
         $imagePreview = (isset($extra['image_url']) && !empty($extra['image_url'])) ?
-                Html::img($extra['image_url'], ['class' => 'file-preview-image', 'style' => ['max-height' => '150px']]) : '';
+            Html::img($extra['image_url'], ['class' => 'file-preview-image', 'style' => ['max-height' => '150px']]) : '';
         ?>
         <div class="row form-group">
             <div class="col-sm-12">
@@ -585,7 +584,7 @@ final class HtmlForm
         </div>
         <?php
     }
-    
+
     /**
      * Панель елементів інпутів відправки даних форми
      * @param $searchParamsModel
@@ -596,24 +595,24 @@ final class HtmlForm
     {
 
         echo DateRangePicker::widget([
-            'name'=> SearchParams::nameFullDate,
+            'name' => SearchParams::nameFullDate,
 //            'startAttribute'=> $searchParamsModel->getParamDateFrom(),
 //            'endAttribute'=> $searchParamsModel->getParamDateTo(),
 
-            'value'=> $searchParamsModel->getParamFullDate(),
-            'convertFormat'=>true,
+            'value' => $searchParamsModel->getParamFullDate(),
+            'convertFormat' => true,
             'options' => [
-                'class' =>'form-control',
+                'class' => 'form-control',
                 'minRangeDays' => 7,
 //                'placeholder' => 'Бла бла'
             ],
 
-            'pluginOptions'=>[
+            'pluginOptions' => [
 //                'id' => 'ndaterange',
                 'minRangeDays' => 7,
                 'minDate' => date('Y-m-d'),
                 'placeholder' => 'Дата',
-                'locale'=>['format'=> Yii::$app->params['formatDateRangePicker']]
+                'locale' => ['format' => Yii::$app->params['formatDateRangePicker']]
             ],
 
             'pluginEvents' => [

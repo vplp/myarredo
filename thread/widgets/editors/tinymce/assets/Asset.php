@@ -9,10 +9,12 @@ use yii\web\AssetBundle;
  * 
  * @package thread\extensions\editors\tinymce\assets
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class Asset extends AssetBundle {
-
+    /**
+     * @var array
+     */
     public $depends = [
         \yii\web\JqueryAsset::class,
         \yii\web\YiiAsset::class,

@@ -10,7 +10,7 @@ use thread\modules\user\models\Group;
  *
  * @package thread\modules\user\models
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class SignInForm extends CommonForm
 {

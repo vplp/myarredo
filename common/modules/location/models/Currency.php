@@ -6,7 +6,7 @@ namespace common\modules\location\models;
  *
  * @package thread\modules\location\models
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 
 class Currency extends \thread\modules\location\models\Currency

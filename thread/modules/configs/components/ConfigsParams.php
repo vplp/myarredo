@@ -7,8 +7,17 @@ use yii\base\Component;
 //
 use thread\modules\configs\models\Params;
 
+/**
+ * Class ConfigsParams
+ * @package thread\modules\configs\components
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class ConfigsParams extends Component
 {
+    /**
+     * @var array
+     */
     protected $cach = [];
 
     /**

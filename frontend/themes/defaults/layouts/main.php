@@ -5,7 +5,7 @@ use frontend\themes\defaults\assets\AppAsset;
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2014, Thread
+ * @copyright (c), Thread
  */
 AppAsset::register($this);
 

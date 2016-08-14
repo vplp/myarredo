@@ -5,7 +5,6 @@ namespace thread\modules\configs;
 use Yii;
 //
 use thread\app\base\module\abstracts\Module as aModule;
-use thread\modules\configs\models\Params;
 
 /**
  * Class Configs
@@ -30,16 +29,5 @@ class Configs extends aModule
     public static function getDb()
     {
         return Yii::$app->get('db-core');
-    }
-
-    /**
-     * @param $id
-     * @return string
-     */
-    public function getParam($id)
-    {
-        //TODO Добавить кеширование
-        $value = Params::find()->byID($id)->one();
-        return ($value !== null) ? $value['value'] : '';
     }
 }

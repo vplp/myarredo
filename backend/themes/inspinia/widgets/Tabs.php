@@ -2,9 +2,14 @@
 namespace backend\themes\inspinia\widgets;
 
 use yii\base\InvalidConfigException;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
+use yii\helpers\{
+    ArrayHelper, Html
+};
 
+/**
+ * Class Tabs
+ * @package backend\themes\inspinia\widgets
+ */
 class Tabs extends \yii\bootstrap\Tabs
 {
     /**
@@ -21,7 +26,7 @@ class Tabs extends \yii\bootstrap\Tabs
         $this->registerPlugin('tab');
 
         echo Html::beginTag('div', ['class' => 'tabs-container', 'style' => ['margin-bottom' => '15px']]);
-        echo Html::beginTag('div', ['class' => 'tabs-'.$this->position]);
+        echo Html::beginTag('div', ['class' => 'tabs-' . $this->position]);
 
         echo $this->renderItems();
 
@@ -84,6 +89,6 @@ class Tabs extends \yii\bootstrap\Tabs
         }
 //        var_dump($panes);
         return Html::tag('ul', implode("\n", $headers), $this->options)
-            . ($this->renderTabContent ? "\n" . Html::tag('div', implode("\n", $panes), ['class' => 'tab-content']) : '');
+        . ($this->renderTabContent ? "\n" . Html::tag('div', implode("\n", $panes), ['class' => 'tab-content']) : '');
     }
 }

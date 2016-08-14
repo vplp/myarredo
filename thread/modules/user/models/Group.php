@@ -26,7 +26,7 @@ use thread\modules\user\User as UserModule;
  *
  * @package thread\modules\user\models
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class Group extends ActiveRecord
 {

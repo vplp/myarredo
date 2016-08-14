@@ -9,11 +9,16 @@ use yii\web\AssetBundle;
  * 
  * @package thread\extensions\editors\tinymce\assets
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class AssetTinymce extends AssetBundle {
-
+    /**
+     * @var string
+     */
     public $sourcePath = '@vendor/tinymce/tinymce';
+    /**
+     * @var array
+     */
     public $js = [
         'tinymce.jquery.min.js',
     ];

@@ -10,7 +10,7 @@ use thread\app\base\models\query\ActiveQuery;
  *
  * @package thread\modules\user\models\query
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class ProfileQuery extends ActiveQuery
 {

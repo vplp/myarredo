@@ -26,12 +26,6 @@ class Article extends ArticleModel implements BaseBackendSearchModel
         return [
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
-//            [
-//                ['published_time'],
-//                'date',
-//                'format' => 'php:' . Yii::$app->modules['news']->params['format']['date'],
-//                'timestampAttribute' => 'published_time'
-//            ],
         ];
     }
 

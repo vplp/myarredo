@@ -44,7 +44,7 @@ class ParamsLang extends ActiveRecordLang
     {
         return ArrayHelper::merge(parent::rules(), [
             [['title'], 'required'],
-            ['rid', 'exist', 'targetClass' => Topic::class, 'targetAttribute' => 'id'],
+            ['rid', 'exist', 'targetClass' => Params::class, 'targetAttribute' => 'id'],
             ['title', 'string', 'max' => 255],
         ]);
     }

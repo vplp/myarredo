@@ -12,7 +12,7 @@ use thread\app\base\controllers\BackendController;
  *
  * @package admin\modules\user\controllers
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class LogoutController extends BackendController
 {
@@ -43,6 +43,9 @@ class LogoutController extends BackendController
         ];
     }
 
+    /**
+     * @return mixed
+     */
     public function actionIndex()
     {
         Yii::$app->user->logout();

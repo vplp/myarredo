@@ -8,7 +8,7 @@ use thread\app\base\models\ActiveRecord;
  *
  * @package app\modules\sitemap\models;
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class SitemapXMLElement extends ActiveRecord
 {

@@ -4,6 +4,8 @@
  * @var \backend\themes\inspinia\assets\AppAsset $bundle
  */
 
+//TODO : отрефакторить код
+
 $user = Yii::$app->getUser()->getIdentity();
 ?>
 <li class="nav-header">

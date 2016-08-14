@@ -17,7 +17,7 @@ use thread\app\base\module\abstracts\Module as aModule;
  *
  * @package thread\modules\user
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class User extends aModule
 {

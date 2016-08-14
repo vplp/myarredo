@@ -17,7 +17,7 @@ use thread\app\model\interfaces\{
  *
  * @package thread\app\model
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class Languages extends Component implements iLanguages
 {

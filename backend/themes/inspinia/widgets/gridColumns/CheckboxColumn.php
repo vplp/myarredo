@@ -1,10 +1,14 @@
 <?php
 namespace backend\themes\inspinia\widgets\gridColumns;
 
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
-use yii\helpers\Json;
+use yii\helpers\{
+    ArrayHelper, Html, Json
+};
 
+/**
+ * Class CheckboxColumn
+ * @package backend\themes\inspinia\widgets\gridColumns
+ */
 class CheckboxColumn extends \yii\grid\CheckboxColumn
 {
 

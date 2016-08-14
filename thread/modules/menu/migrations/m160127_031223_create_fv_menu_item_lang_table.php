@@ -8,7 +8,7 @@ use thread\modules\menu\Menu;
  *
  * @package thread\modules\menu
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class m160127_031223_create_fv_menu_item_lang_table extends Migration
 {

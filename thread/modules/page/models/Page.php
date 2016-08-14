@@ -27,7 +27,7 @@ use thread\modules\page\Page as PageModule;
  * @property Lang $lang
  *
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class Page extends ActiveRecord
 {

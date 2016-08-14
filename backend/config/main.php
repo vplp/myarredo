@@ -4,7 +4,7 @@ use yii\helpers\ArrayHelper;
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 return ArrayHelper::merge(ArrayHelper::merge(require(dirname(__DIR__, 2) . '/common/config/main.php'), [
     'id' => 'app-backend',

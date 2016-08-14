@@ -2,9 +2,14 @@
 namespace backend\themes\inspinia\widgets\menu;
 
 use Yii;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
+use yii\helpers\{
+    ArrayHelper, Html
+};
 
+/**
+ * Class NavBar
+ * @package backend\themes\inspinia\widgets\menu
+ */
 class NavBar extends \yii\bootstrap\NavBar
 {
 

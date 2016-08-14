@@ -7,7 +7,7 @@ namespace frontend\modules\configs;
  *
  * @package frontend\modules\configs
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class Configs extends \common\modules\configs\Configs
 {

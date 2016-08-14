@@ -2,19 +2,22 @@
 
 namespace backend\modules\user\controllers;
 
-use backend\modules\user\models\User;
-use common\modules\user\models\form\ChangePassword;
-use thread\app\base\controllers\BackendController;
 use Yii;
-use thread\actions\Update;
-use backend\modules\user\models\Profile;
 use yii\db\Exception;
-use yii\db\mssql\PDO;
 use yii\web\NotFoundHttpException;
+//
+use thread\app\base\controllers\BackendController;
+use thread\actions\Update;
+//
+use thread\modules\user\models\form\ChangePassword;
+//
+use backend\modules\user\models\{
+    User, Profile
+};
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class ProfileController extends BackendController
 {
@@ -36,7 +39,7 @@ class ProfileController extends BackendController
                 'class' => Update::class,
                 'modelClass' => $this->model,
                 'redirect' => function () {
-                    return $_POST['save_and_exit'] ? ['/user/user/list' ]: ['update', 'id' => $this->action->getModel()->id];
+                    return $_POST['save_and_exit'] ? ['/user/user/list'] : ['update', 'id' => $this->action->getModel()->id];
                 }
             ]
         ];

@@ -14,7 +14,11 @@ use backend\modules\news\models\{
 };
 
 /**
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
+ * Class ArticleController
+ *
+ * @package backend\modules\news\controllers
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class ArticleController extends BackendController
 {
@@ -34,13 +38,11 @@ class ArticleController extends BackendController
             [
                 'fileupload' => [
                     'class' => UploadAction::class,
-                    //TODO: на обсуждение
-                    'path' => Yii::$app->getModule('news')->getUploadPath() . 'article'
+                    'path' => $this->module->getUploadPath() . 'article'
                 ],
                 'filedelete' => [
                     'class' => DeleteAction::class,
-                    //TODO: на обсуждение
-                    'path' => Yii::$app->getModule('news')->getUploadPath() . 'article',
+                    'path' => $this->module->getUploadPath() . 'article',
                 ],
             ]
         );

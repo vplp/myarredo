@@ -12,7 +12,7 @@ use thread\app\model\interfaces\BaseBackendModel;
  *
  * @package admin\modules\user\models
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class User extends \thread\modules\user\models\User implements BaseBackendModel
 {

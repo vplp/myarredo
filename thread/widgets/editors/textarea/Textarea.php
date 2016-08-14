@@ -10,7 +10,7 @@ use yii\widgets\InputWidget;
  * 
  * @package thread\extensions\editors\textarea
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 final class Textarea extends InputWidget {
 
@@ -37,6 +37,9 @@ final class Textarea extends InputWidget {
      */
     private $_textarea;
 
+    /**
+     * @throws \yii\base\InvalidConfigException
+     */
     public function init() {
         parent::init();
 

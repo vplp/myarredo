@@ -9,7 +9,7 @@ use backend\modules\user\models\Group;
  *
  * @package admin\modules\menu\view
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  *
  * @var User $model
  */

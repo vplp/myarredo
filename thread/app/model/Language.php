@@ -7,7 +7,7 @@ namespace thread\app\model;
  *
  * @package thread\app\model
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 
 class Language implements interfaces\LanguageModel

@@ -33,7 +33,7 @@ use thread\modules\page\models\Page;
  *
  * @package thread\modules\menu\models
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class MenuItem extends ActiveRecord
 {

@@ -11,7 +11,7 @@ use thread\app\base\module\abstracts\Module as aModule;
  *
  * @package thread\modules\news
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class News extends aModule
 {

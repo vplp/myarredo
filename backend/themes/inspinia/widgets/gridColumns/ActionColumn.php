@@ -1,9 +1,10 @@
 <?php
 namespace backend\themes\inspinia\widgets\gridColumns;
 
-use thread\app\base\models\ActiveRecord;
 use yii\grid\Column;
 use yii\helpers\Html;
+//
+use thread\app\base\models\ActiveRecord;
 
 /**
  * @author Roman Gonchar <roman.gonchar92@gmail.com>

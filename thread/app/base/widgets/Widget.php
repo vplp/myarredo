@@ -6,7 +6,7 @@ namespace thread\app\base\widgets;
  *
  * @package thread\app\base
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 abstract class Widget extends \yii\base\Widget
 {

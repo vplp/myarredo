@@ -7,7 +7,7 @@ namespace backend\modules\user\models;
  *
  * @package admin\modules\user\models\search
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class GroupLang extends \common\modules\user\models\GroupLang
 {

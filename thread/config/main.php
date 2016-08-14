@@ -4,7 +4,7 @@ use yii\helpers\ArrayHelper;
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 //DEFINE SECTION
 require(__DIR__ . '/alias.php');

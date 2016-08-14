@@ -1,7 +1,7 @@
 <?php
 /**
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2014, Thread
+ * @copyright (c), Thread
  */
 $this->title = 'My Yii Application';
 ?>

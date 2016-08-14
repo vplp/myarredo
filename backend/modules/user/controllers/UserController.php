@@ -2,20 +2,14 @@
 namespace backend\modules\user\controllers;
 
 use Yii;
-use yii\base\InvalidParamException;
-use yii\db\mssql\PDO;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
-use yii\web\BadRequestHttpException;
-use yii\web\NotFoundHttpException;
 //
 use thread\app\base\controllers\BackendController;
-use thread\modules\user\models\Profile;
-use thread\actions\Update;
-//
-use thread\modules\user\models\form\{
-    ChangePassword, CreateForm, PasswordResetRequestForm, ResetPasswordForm
+use thread\modules\user\models\{
+    Profile, form\CreateForm
 };
+use thread\actions\Update;
 //
 use backend\modules\user\models\{
     User, search\User as filterUserModel
@@ -27,7 +21,7 @@ use backend\modules\user\models\{
  *
  * @package admin\modules\user\controllers
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class UserController extends BackendController
 {
@@ -45,17 +39,7 @@ class UserController extends BackendController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['error'],
-                        'roles' => ['?', '@'],
-                    ],
-                    [
-                        'allow' => true,
-                        'actions' => ['request-password-reset', 'reset-password'],
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'allow' => true,
-                        'actions' => ['create', 'update', 'list', 'validation', 'password-change'],
+                        'actions' => ['create', 'update', 'list', 'validation'],
                         'roles' => ['admin']
                     ],
                     [
@@ -149,57 +133,8 @@ class UserController extends BackendController
 
     /**
      * @param $id
-     * @return string
-     * @throws NotFoundHttpException
-     * @throws \Exception
+     * @return mixed
      */
-    public function actionPasswordChange($id)
-    {
-
-        $this->layout = '@app/layouts/crud';
-
-        $user = User::findIdentity($id);
-        if ($user === null) {
-            throw new NotFoundHttpException;
-        }
-
-        $this->label = Yii::t('app', 'Password change') . ' : ' . $user->username;
-
-        $model = new ChangePassword();
-        $model->setScenario('adminPasswordChange');
-        $model->username = $user->username;
-        $model->email = $user->email;
-
-        if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
-            if ($user !== null) {
-                $user->setScenario('passwordChange');
-                $user->setPassword($model->password);
-
-                /** @var PDO $transaction */
-                $transaction = $user::getDb()->beginTransaction();
-                try {
-                    $save = $user->save();
-                    if ($save) {
-                        $transaction->commit();
-                        if (Yii::$app->getRequest()->post('save_and_exit')) {
-                            return $this->redirect($this->actionListLinkStatus);
-                        } else {
-                            $model->addFlash(Yii::t('app', 'Password changed'));
-                        }
-                    } else {
-                        $transaction->rollBack();
-                    };
-                } catch (\Exception $e) {
-                    $transaction->rollBack();
-                    throw new \Exception($e);
-                }
-            }
-        }
-        return $this->render('passwordChange', [
-            'model' => $model,
-        ]);
-    }
-
     public function actionView($id)
     {
         $this->layout = '@app/layouts/crud';
@@ -208,54 +143,6 @@ class UserController extends BackendController
         return $this->render('_view_user', [
             'model' => $model,
             'backLink' => Yii::$app->request->referrer
-        ]);
-    }
-
-    /**
-     * Requests password reset.
-     *
-     * @return mixed
-     */
-    public function actionRequestPasswordReset()
-    {
-        $model = new PasswordResetRequestForm();
-        $model->setScenario('remind');
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-                return $this->goHome();
-            } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
-            }
-        }
-        $this->layout = '@app/layouts/nologin';
-        return $this->render('requestPasswordResetToken', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Resets password.
-     *
-     * @param string $token
-     * @return mixed
-     * @throws BadRequestHttpException
-     */
-    public function actionResetPassword($token)
-    {
-        try {
-            $model = new ResetPasswordForm($token);
-        } catch (InvalidParamException $e) {
-            throw new BadRequestHttpException($e->getMessage());
-        }
-        $model->setScenario('setPassword');
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->setPassword()) {
-            Yii::$app->session->setFlash('success', 'New password was saved.');
-            return $this->goHome();
-        }
-        $this->layout = '@app/layouts/nologin';
-        return $this->render('resetPassword', [
-            'model' => $model,
         ]);
     }
 }

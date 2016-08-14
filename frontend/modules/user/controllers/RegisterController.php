@@ -13,7 +13,7 @@ use yii\helpers\Url;
  *
  * @package frontend\modules\user\controllers
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class RegisterController extends BaseController
 {

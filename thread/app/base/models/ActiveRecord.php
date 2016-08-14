@@ -13,7 +13,7 @@ use yii\db\ActiveRecord as dbActiveRecord;
  *
  * @package thread\app\base\models
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 abstract class ActiveRecord extends dbActiveRecord
 {

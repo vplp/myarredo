@@ -6,6 +6,12 @@ use Yii;
 use thread\app\model\Language;
 use thread\app\base\widgets\Widget;
 
+/**
+ * Class LangSwitch
+ * @package backend\widgets\LangSwitch
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class LangSwitch extends Widget
 {
 
@@ -27,8 +33,9 @@ class LangSwitch extends Widget
      */
     protected $items = null;
 
-
-
+    /**
+     *
+     */
     public function init()
     {
         parent::init();
@@ -37,6 +44,9 @@ class LangSwitch extends Widget
         $this->current = $langModel->getCurrent()['label'];
     }
 
+    /**
+     * @return string
+     */
     public function run()
     {
         $items = [];

@@ -112,6 +112,7 @@ use backend\widgets\LangSwitch\LangSwitch;
 
 
             <li>
+                <!--    TODO: Ссылку в модуль    -->
                 <?= Html::a('<i class="fa fa-sign-out"></i>', ['/user/logout']) ?>
             </li>
         </ul>

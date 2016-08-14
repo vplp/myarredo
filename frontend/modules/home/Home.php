@@ -9,7 +9,7 @@ use thread\app\base\module\abstracts\Module as aModule;
  * 
  * @package frontend\modules\home
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2014, Thread
+ * @copyright (c), Thread
  */
 class Home extends aModule {
     

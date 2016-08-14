@@ -10,7 +10,7 @@ use thread\app\web\interfaces\InjectionLanguage as iInjectionLanguage;
  *
  * @package thread\components
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 final class UrlManager extends \yii\web\UrlManager
 {

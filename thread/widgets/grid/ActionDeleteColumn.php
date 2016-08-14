@@ -12,7 +12,7 @@ use thread\app\base\models\ActiveRecord;
  * Class ActionDeleteColumn
  * @package thread\app\components\grid
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class ActionDeleteColumn extends Column
 {

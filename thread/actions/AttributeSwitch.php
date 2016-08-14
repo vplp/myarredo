@@ -13,7 +13,7 @@ use thread\app\base\models\ActiveRecord;
  * 
  * @package thread\actions
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  *
   public function actions() {
   return [

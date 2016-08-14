@@ -2,10 +2,9 @@
 
 use backend\themes\inspinia\assets\AppAsset;
 
-
 /**
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2014, Thread
+ * @copyright (c), Thread
  */
 $bundle = AppAsset::register($this);
 

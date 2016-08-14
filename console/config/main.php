@@ -2,7 +2,7 @@
 return [
     'id' => 'app-console',
     'basePath' => dirname(__DIR__),
-    'runtimePath' => '@runtime/backend',
+    'runtimePath' => '@runtime/console',
     'bootstrap' => ['log'],
     'controllerNamespace' => 'console\controllers',
     'modules' => require('modules.php'),
@@ -10,7 +10,7 @@ return [
         'log' => [
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class' => \yii\log\FileTarget::class,
                     'levels' => ['error', 'warning'],
                 ],
             ],

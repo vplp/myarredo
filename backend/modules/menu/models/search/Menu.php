@@ -13,7 +13,13 @@ use backend\modules\menu\models\{
     Menu as MenuModel, MenuLang
 };
 
-
+/**
+ * Class Menu
+ *
+ * @package backend\modules\menu\models\search
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class Menu extends MenuModel implements BaseBackendSearchModel
 {
     public $title;

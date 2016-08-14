@@ -1,7 +1,5 @@
 <?php
 
-use yii\helpers\Html;
-//
 use thread\widgets\grid\SwitchboxColumn;
 //
 use backend\themes\inspinia\widgets\GridView;

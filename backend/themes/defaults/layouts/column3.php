@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2014, Thread
+ * @copyright (c), Thread
  */
 $this->beginContent('@app/layouts/base.php');
 ?>

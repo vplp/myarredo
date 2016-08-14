@@ -9,7 +9,7 @@ use thread\modules\user\User;
  * @package thread\modules\user
  * @author FilamentV <vortex.filament@gmail.com>
  * @author Roman Gonchar <roman.gonchar92@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class m160127_002330_create_fv_user_group_lang extends Migration
 {

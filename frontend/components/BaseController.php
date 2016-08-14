@@ -8,7 +8,7 @@ use yii\helpers\Url;
  *
  * @package frontend\controllers
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2014, Thread
+ * @copyright (c), Thread
  */
 abstract class BaseController extends \yii\web\Controller
 {

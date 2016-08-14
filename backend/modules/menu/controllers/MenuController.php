@@ -8,7 +8,11 @@ use backend\modules\menu\models\{
 };
 
 /**
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
+ * Class MenuController
+ *
+ * @package backend\modules\menu\controllers
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class MenuController extends BackendController
 {

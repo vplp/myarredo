@@ -4,10 +4,9 @@ namespace thread\widgets\editors\tinymce;
 
 use Yii;
 use yii\helpers\{
-    Html, Json
+    Html, Json, ArrayHelper
 };
 use yii\widgets\InputWidget;
-use yii\helpers\ArrayHelper;
 //
 use thread\widgets\editors\tinymce\assets\{
     Asset, AssetLang
@@ -15,12 +14,13 @@ use thread\widgets\editors\tinymce\assets\{
 
 /**
  * Class Tinymce
- * 
+ *
  * @package admin\extensions\editors\tinymce
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
-class Tinymce extends InputWidget {
+class Tinymce extends InputWidget
+{
 
     /**
      * Налаштування редактору
@@ -30,19 +30,19 @@ class Tinymce extends InputWidget {
 
     /**
      * Виклик налаштувань для редактору
-     * @var string ''|full|mini 
+     * @var string ''|full|mini
      */
     public $thema = '';
 
     /**
      * Мова інтерфейсу редатору
-     * @var string 
+     * @var string
      */
     public $language;
 
     /**
      * Посилання на файл, що містить переводи інтерфейсу мови
-     * @var string link 
+     * @var string link
      */
     protected $language_url;
 
@@ -54,7 +54,7 @@ class Tinymce extends InputWidget {
 
     /**
      *
-     * @var string 
+     * @var string
      */
     public $content_css = "/editor.css";
 
@@ -66,15 +66,19 @@ class Tinymce extends InputWidget {
     /**
      * @inheritdoc
      */
-    public function init() {
+    public function init()
+    {
         parent::init();
 
         switch ($this->thema) {
-            case 'mini' : $this->getMiniSetting();
+            case 'mini' :
+                $this->getMiniSetting();
                 break;
-            case 'full' : $this->getFullSetting();
+            case 'full' :
+                $this->getFullSetting();
                 break;
-            default : $this->getDefaultSetting();
+            default :
+                $this->getDefaultSetting();
                 break;
         }
 
@@ -83,8 +87,8 @@ class Tinymce extends InputWidget {
             $this->settings['selector'] = '#' . $this->options['id'];
 
             $this->_textarea = ($this->hasModel()) ?
-                    Html::activeTextarea($this->model, $this->attribute, $this->options) :
-                    Html::textarea($this->name, $this->value, $this->options);
+                Html::activeTextarea($this->model, $this->attribute, $this->options) :
+                Html::textarea($this->name, $this->value, $this->options);
         }
         /* Якщо [[options['selector']]] false видаляємо з налаштувань. */
         if (isset($this->settings['selector']) && $this->settings['selector'] === false) {
@@ -100,7 +104,8 @@ class Tinymce extends InputWidget {
     /**
      * @inheritdoc
      */
-    public function run() {
+    public function run()
+    {
         if ($this->_textarea !== null) {
             $this->registerClientScript();
             echo $this->_textarea;
@@ -110,7 +115,8 @@ class Tinymce extends InputWidget {
     /**
      * Регистрируем AssetBundle-ы виджета.
      */
-    public function registerClientScript() {
+    public function registerClientScript()
+    {
         $view = $this->getView();
         Asset::register($view);
         $assetslang = AssetLang::register($view);
@@ -134,9 +140,10 @@ class Tinymce extends InputWidget {
     }
 
     /**
-     * 
+     *
      */
-    protected function getDefaultSetting() {
+    protected function getDefaultSetting()
+    {
         $this->_defaultSettings = [
             'language' => $this->language,
             'language_url' => '',
@@ -151,9 +158,10 @@ class Tinymce extends InputWidget {
     }
 
     /**
-     * 
+     *
      */
-    protected function getMiniSetting() {
+    protected function getMiniSetting()
+    {
         $this->_defaultSettings = [
             'language' => $this->language,
             'relative_urls' => false,
@@ -168,9 +176,10 @@ class Tinymce extends InputWidget {
     }
 
     /**
-     * 
+     *
      */
-    protected function getFullSetting() {
+    protected function getFullSetting()
+    {
         $this->_defaultSettings = [
             'language' => $this->language,
             'relative_urls' => false,

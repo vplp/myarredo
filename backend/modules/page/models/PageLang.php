@@ -5,8 +5,11 @@ namespace backend\modules\page\models;
 use common\modules\page\models\PageLang as CommonPageLangModel;
 
 /**
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
- * @copyright (c) 2016, VipDesign
+ * Class PageLang
+ *
+ * @package backend\modules\page\models
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class PageLang extends CommonPageLangModel
 {

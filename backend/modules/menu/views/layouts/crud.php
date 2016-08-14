@@ -2,7 +2,7 @@
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2014, Thread
+ * @copyright (c), Thread
  */
 use yii\helpers\Html;
 use backend\themes\inspinia\assets\AppAsset;
@@ -16,7 +16,7 @@ $bundle = AppAsset::register($this);
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2><?= $this->context->title ?></h2>
-<!--                <ol class="breadcrumb">-->
+        <!--                <ol class="breadcrumb">-->
         <!--            <li>-->
         <!--                --><?php //= Html::a('Home', ['/']) ?>
         <!--            </li>-->
@@ -32,10 +32,10 @@ $bundle = AppAsset::register($this);
         <h2 class="btn-group" role="group">
             <?= Html::a('<i class="fa fa-plus"></i> ' . 'Create', [
                 'create',
-                'group_id' => Yii::$app->getRequest()->get('group_id'),
-                'parent_id' => Yii::$app->getRequest()->get('parent_id') ?? null
+                'group_id' => $this->context->group->id??null,
+                'parent_id' => $this->context->parent->id??null
             ], ['class' => 'btn btn-primary', 'title' => Yii::t('app', 'Trash')]) ?>
-            <?= Html::a('<i class="fa fa-trash"></i> ', ['trash', 'group_id' => Yii::$app->getRequest()->get('group_id')], ['class' => 'btn btn-default']) ?>
+            <?= Html::a('<i class="fa fa-trash"></i> ', ['trash', 'group_id' => $this->context->group->id??null], ['class' => 'btn btn-default']) ?>
         </h2>
     </div>
 </div>

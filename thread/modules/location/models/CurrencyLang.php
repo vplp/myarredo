@@ -12,7 +12,7 @@ use thread\modules\location\Location as LocationModule;
  *
  * @package thread\location\user\models
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class CurrencyLang extends ActiveRecordLang
 {

@@ -1,12 +1,18 @@
 <?php
 namespace backend\modules\seo\controllers;
 
-use backend\modules\seo\models\search\Seo;
-use backend\modules\seo\models\SeoLang;
 use thread\app\base\controllers\BackendController;
+//
+use backend\modules\seo\models\{
+    Seo, SeoLang
+};
 
 /**
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
+ * Class SeoController
+ *
+ * @package backend\modules\seo\controllers
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class SeoController extends BackendController
 {

@@ -13,7 +13,7 @@ use thread\modules\seo\models\{
  * Class ActionDeleteColumn
  * @package thread\app\components\grid
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class SeoWidget extends Widget
 {

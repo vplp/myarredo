@@ -7,7 +7,7 @@ namespace thread\app\base\module\interfaces;
  *
  * @package thread\app\base\module\interfaces
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 interface Module {
 

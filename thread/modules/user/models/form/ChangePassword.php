@@ -7,7 +7,7 @@ namespace thread\modules\user\models\form;
  *
  * @package thread\modules\user\models
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 class ChangePassword extends CommonForm
 {

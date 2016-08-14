@@ -2,17 +2,21 @@
 namespace backend\themes\inspinia\widgets\menu;
 
 use Yii;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
-use yii\helpers\Url;
+use yii\helpers\{
+    ArrayHelper, Html, Url
+};
 
+/**
+ * Class Menu
+ * @package backend\themes\inspinia\widgets\menu
+ */
 class Menu extends \yii\widgets\Menu
 {
     /**
      * @var array
      */
     public $items;
-    
+
     /**
      * @inheritdoc
      */
@@ -49,7 +53,7 @@ class Menu extends \yii\widgets\Menu
         $this->encodeLabels = false;
         parent::run();
     }
-    
+
     /**
      * Renders the content of a menu item.
      * Note that the container and the sub-menus are not rendered here.

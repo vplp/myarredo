@@ -2,12 +2,19 @@
 
 namespace backend\modules\seo\models\search;
 
-use backend\modules\seo\Seo as SeoModule;
-use thread\models\query\ActiveQuery;
 use Yii;
 use yii\data\ActiveDataProvider;
+//
+use backend\modules\seo\Seo as SeoModule;
 use backend\modules\seo\models\Seo as SeoModel;
 
+/**
+ * Class Seo
+ *
+ * @package backend\modules\seo\models\search
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class Seo extends SeoModel
 {
     /**
@@ -52,9 +59,9 @@ class Seo extends SeoModel
 
         $query->andFilterWhere(
             [
-            'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+                'id' => $this->id,
+                'created_at' => $this->created_at,
+                'updated_at' => $this->updated_at,
             ]
         );
 

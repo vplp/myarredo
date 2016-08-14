@@ -9,12 +9,17 @@ use yii\web\AssetBundle;
  * 
  * @package thread\extensions\editors\tinymce\assets
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @copyright (c), Thread
  */
 
 class AssetLang extends AssetBundle {
-
+    /**
+     * @var string
+     */
     public $sourcePath = __DIR__;
+    /**
+     * @var array
+     */
     public $js = [
         'langs/uk-UA.js',
         'langs/ru-RU.js',
