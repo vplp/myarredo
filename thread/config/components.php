@@ -5,7 +5,7 @@
  * @copyright (c), Thread
  */
 return [
-    'configs' => [
+    'param' => [
         'class' => \thread\modules\configs\components\ConfigsParams::class,
     ],
     'languages' => [
