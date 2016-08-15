@@ -33,10 +33,17 @@ return [
     ],
     'view' => [
         'theme' => [
-            'basePath' => '@app/themes/inspinia',
-            'baseUrl' => '@web/themes/inspinia',
+//            'basePath' => '@app/themes/inspinia',
+            'baseUrl' => '@web/themes/defaults',
             'pathMap' => [
-                '@app/layouts' => '@app/themes/inspinia/layouts',
+                '@app/layouts' => [
+//                    '@app/themes/inspinia/layouts',
+                    '@app/themes/defaults/layouts',
+                ],
+                '@app/modules' => [
+//                    '@app/themes/inspinia/modules',
+                    '@app/themes/defaults/layouts',
+                ]
             ],
         ],
     ],

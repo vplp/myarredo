@@ -1,6 +1,9 @@
 <?php
+use yii\grid\GridView;
 //
-use backend\themes\inspinia\widgets\GridView;
+use thread\widgets\grid\{
+    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+};
 
 /**
  * @var \backend\modules\page\models\search\Page $model
@@ -15,12 +18,15 @@ echo GridView::widget([
             'label' => Yii::t('app', 'Title')
         ],
         [
-            'class' => \thread\widgets\grid\ActionCheckboxColumn::class,
+            'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',
             'action' => 'published'
         ],
         [
-            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class
+            'class' => ActionEditColumn::class,
+        ],
+        [
+            'class' => ActionToTrashColumn::class
         ],
     ]
 ]);

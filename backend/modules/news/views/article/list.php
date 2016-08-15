@@ -1,8 +1,13 @@
 <?php
-use backend\themes\inspinia\widgets\GridView;
 
 use yii\helpers\Html;
+use yii\grid\GridView;
+//
 use kartik\widgets\DatePicker;
+//
+use thread\widgets\grid\{
+    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+};
 
 /**
  * @var \backend\modules\news\models\search\Article $model
@@ -35,15 +40,21 @@ echo GridView::widget([
                     'format' => 'dd.mm.yyyy',
                     'autoclose' => true,
                 ]
-            ])
+            ]),
+            'value' => function ($model) {
+                return $model->getPublishedTime();
+            },
         ],
         [
-            'class' => \thread\widgets\grid\ActionCheckboxColumn::class,
+            'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',
             'action' => 'published'
         ],
         [
-            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class
+            'class' => ActionEditColumn::class,
+        ],
+        [
+            'class' => ActionToTrashColumn::class
         ],
     ]
 ]);

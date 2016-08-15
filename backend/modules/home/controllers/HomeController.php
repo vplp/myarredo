@@ -15,7 +15,6 @@ use thread\app\base\controllers\BackendController;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-
 class HomeController extends BackendController
 {
     /**
@@ -31,8 +30,7 @@ class HomeController extends BackendController
     {
         return [
             'error' => [
-                'class' => ErrorAction::class,
-                'view' => Yii::$app->getUser()->isGuest ? '@app/layouts/nologin-error.php' : '@app/layouts/error.php'
+                'class' => ErrorAction::class
             ],
         ];
     }
@@ -53,6 +51,10 @@ class HomeController extends BackendController
      */
     public function beforeAction($action)
     {
+        if ($this->action->id == 'error') {
+            $this->layout = Yii::$app->getUser()->isGuest ? '@app/layouts/nologin-error.php' : '@app/layouts/error.php';
+        }
+
         return parent::beforeAction($action);
     }
 

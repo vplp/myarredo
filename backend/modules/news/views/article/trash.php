@@ -1,10 +1,12 @@
 <?php
-
+use yii\grid\GridView;
+//
+use kartik\widgets\DatePicker;
+//
 use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
 };
-//
-use backend\themes\inspinia\widgets\GridView;
+
 
 /**
  *
@@ -21,6 +23,12 @@ echo GridView::widget([
             'attribute' => 'title',
             'value' => 'lang.title',
             'label' => Yii::t('app', 'Title'),
+        ],
+        [
+            'attribute' => 'published_time',
+            'value' => function ($model) {
+                return $model->getPublishedTime();
+            },
         ],
         [
             'class' => ActionDeleteColumn::class,

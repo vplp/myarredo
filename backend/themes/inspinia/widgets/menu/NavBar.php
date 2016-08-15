@@ -149,21 +149,6 @@ class NavBar extends \yii\bootstrap\NavBar
                     ],
                 ],
             ],
-            // FORMS
-            [
-                'label' => '<i class="fa fa-file-o"></i><span class="nav-label">' . Yii::t('app',
-                        'Forms') . '</span><span class="fa arrow"></span>',
-                'items' => [
-                    [
-                        'label' => Yii::t('app', 'FeedbackForm'),
-                        'url' => ['/forms/feedbackform/list']
-                    ],
-                    [
-                        'label' => Yii::t('app', 'Topics'),
-                        'url' => ['/forms/topic/list']
-                    ],
-                ],
-            ],
             // CONFIGS
             [
                 'label' => '<i class="fa fa-map-marker"></i><span class="nav-label">' . Yii::t('app',

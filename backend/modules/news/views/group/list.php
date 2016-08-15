@@ -1,10 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+use yii\grid\GridView;
 //
-use thread\widgets\grid\SwitchboxColumn;
-//
-use backend\themes\inspinia\widgets\GridView;
+use thread\widgets\grid\{
+    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+};
 
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
@@ -20,16 +21,19 @@ echo GridView::widget([
             'format' => 'raw',
             'value' => function ($model) {
                 return Html::a(Yii::t('app', 'Articles') . ' (' . count($model->articles) . ')',
-                    ['/news/article/list']);
+                    ['/news/article/list', 'Article[group_id]' => $model['id']]);
             }
         ],
         [
-            'class' => \thread\widgets\grid\ActionCheckboxColumn::class,
+            'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',
             'action' => 'published'
         ],
         [
-            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class
+            'class' => ActionEditColumn::class,
+        ],
+        [
+            'class' => ActionToTrashColumn::class
         ],
     ]
 ]);

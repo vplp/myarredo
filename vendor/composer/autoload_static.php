@@ -51,6 +51,7 @@ class ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97
             'kartik\\plugins\\fileinput\\' => 25,
             'kartik\\plugins\\depdrop\\' => 23,
             'kartik\\growl\\' => 13,
+            'kartik\\grid\\' => 12,
             'kartik\\form\\' => 12,
             'kartik\\file\\' => 12,
             'kartik\\field\\' => 13,
@@ -207,6 +208,10 @@ class ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97
         'kartik\\growl\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-growl',
+        ),
+        'kartik\\grid\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-grid',
         ),
         'kartik\\form\\' => 
         array (

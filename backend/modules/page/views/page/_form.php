@@ -24,15 +24,23 @@ use backend\themes\inspinia\widgets\{
 <?= Tabs::widget([
     'items' => [
         [
-            'label' => Yii::t('app', 'General'),
-            'content' => $this->render('parts/_main', [
+            'label' => Yii::t('app', 'Page'),
+            'content' => $this->render('parts/_page', [
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang,
             ])
         ],
         [
-            'label' => Yii::t('app', 'SEO'),
+            'label' => Yii::t('app', 'Settings'),
+            'content' => $this->render('parts/_settings', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang,
+            ])
+        ],
+        [
+            'label' => Yii::t('app', 'Seo'),
             'content' => SeoWidget::widget(['nameSpaceModel' => Page::COMMON_NAMESPACE])
         ],
     ],

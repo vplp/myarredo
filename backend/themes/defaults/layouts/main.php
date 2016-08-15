@@ -1,12 +1,12 @@
 <?php
 
-//use Yii;
-use backend\themes\defaults\assets\AppAsset;
+use backend\themes\inspinia\assets\AppAsset;
+
 /**
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-AppAsset::register($this);
+$bundle = AppAsset::register($this);
 
 $this->beginPage()
 ?>
@@ -23,29 +23,18 @@ $this->beginPage()
     <body class="html">
     <?php $this->beginBody() ?>
 
-    <div class="wrapper clear r">
-        <!-- HEADER -->
-        <header>
-            <div class="wrap r h clear panel">
-                HEADER
+    <div id="wrapper">
+        <?= backend\themes\inspinia\widgets\menu\NavBar::widget(['bundle' => $bundle]); ?>
+        <div id="page-wrapper" class="gray-bg">
+            <?= $this->render('parts/_header', ['bundle' => $bundle]) ?>
+                <?= $content; ?>
+            <div class="footer">
+                <div>
+                    <strong>Copyright</strong> VipDesign &copy; <?= date('Y') ?>
+                </div>
             </div>
-        </header>
-        <!-- HEADER END-->
-        <div class="container">
-            <?= $content ?>
         </div>
-
     </div>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="wrap h clear">
-            <div class="copy">
-                Все права защищены.<br/>
-            </div>
-        </div>
-    </footer>
-    <!-- FOOTER END-->
 
     <?php $this->endBody() ?>
     </body>

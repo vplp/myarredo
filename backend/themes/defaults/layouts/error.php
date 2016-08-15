@@ -4,7 +4,8 @@
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-$this->beginContent('@app/layouts/main.php');
-?>
+use yii\helpers\Html;
+
+$this->beginContent('@app/layouts/base.php'); ?>
 <?= $content ?>
 <?php $this->endContent(); ?>
