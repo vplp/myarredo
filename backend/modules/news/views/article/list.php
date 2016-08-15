@@ -1,6 +1,9 @@
 <?php
 use backend\themes\inspinia\widgets\GridView;
 
+use yii\helpers\Html;
+use kartik\widgets\DatePicker;
+
 /**
  * @var \backend\modules\news\models\search\Article $model
  */
@@ -10,11 +13,30 @@ echo GridView::widget([
     'filterModel' => $filter,
     'columns' => [
         [
+            'attribute' => 'group_id',
+            'filter' => Html::activeDropDownList($filter, 'group_id', \backend\modules\news\models\Group::dropDownList(),
+                ['class' => 'form-control', 'prompt' => '  ---  '])
+        ],
+        [
             'attribute' => 'title',
             'value' => 'lang.title',
             'label' => Yii::t('app', 'Title'),
         ],
-        'published_time:date',
+        [
+            'attribute' => 'published_time',
+            'filter' => DatePicker::widget([
+                'model' => $filter,
+                'attribute' => 'date_from',
+                'attribute2' => 'date_to',
+                'options' => ['placeholder' => 'Start date'],
+                'options2' => ['placeholder' => 'End date'],
+                'type' => DatePicker::TYPE_RANGE,
+                'pluginOptions' => [
+                    'format' => 'dd.mm.yyyy',
+                    'autoclose' => true,
+                ]
+            ])
+        ],
         [
             'class' => \thread\widgets\grid\ActionCheckboxColumn::class,
             'attribute' => 'published',

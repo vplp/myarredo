@@ -5,4 +5,4 @@
  * @copyright (c) 2016, Thread
  */
 
-$rootDir = dirname(dirname(__DIR__));
+$rootDir = dirname(__DIR__, 2);

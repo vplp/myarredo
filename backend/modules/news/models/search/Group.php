@@ -13,6 +13,13 @@ use backend\modules\news\models\{
     Group as GroupModel, GroupLang
 };
 
+/**
+ * Class Group
+ *
+ * @package backend\modules\news\models\search
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class Group extends GroupModel implements BaseBackendSearchModel
 {
     public $title;

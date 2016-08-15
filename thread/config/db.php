@@ -6,7 +6,7 @@
  */
 return [
     'db' => [
-        'class' => yii\db\Connection::class,
+        'class' => \yii\db\Connection::class,
         'charset' => 'utf8',
         // Duration of schema cache.
         'schemaCacheDuration' => YII_ENV_DEV ? 0 : 3600,
@@ -15,7 +15,7 @@ return [
         'enableSchemaCache' => !YII_ENV_DEV,
     ],
     'db-core' => [
-        'class' => yii\db\Connection::class,
+        'class' => \yii\db\Connection::class,
         'charset' => 'utf8',
         'tablePrefix' => 'fv_',
         // Duration of schema cache.

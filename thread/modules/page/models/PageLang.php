@@ -5,11 +5,8 @@ namespace thread\modules\page\models;
 use Yii;
 use yii\helpers\ArrayHelper;
 //
-use thread\app\base\models\{
-    ActiveRecordLang, query\ActiveQuery
-};
-use thread\app\model\Language;
-use thread\modules\page\Page as PageModel;
+use thread\app\base\models\ActiveRecordLang;
+use thread\modules\page\Page as PageModule;
 
 /**
  * Class PageLang
@@ -23,8 +20,8 @@ use thread\modules\page\Page as PageModel;
  * @property PageLang[] $langs
  *
  * @package thread\modules\page\models
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
- * @copyright (c) 2016, VipDesign
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class PageLang extends ActiveRecordLang
 {
@@ -34,7 +31,7 @@ class PageLang extends ActiveRecordLang
      */
     public static function getDb()
     {
-        return PageModel::getDb();
+        return PageModule::getDb();
     }
 
     /**

@@ -38,11 +38,11 @@ class ArticleController extends BackendController
             [
                 'fileupload' => [
                     'class' => UploadAction::class,
-                    'path' => $this->module->getUploadPath() . 'article'
+                    'path' => $this->module->getArticleUploadPath()
                 ],
                 'filedelete' => [
                     'class' => DeleteAction::class,
-                    'path' => $this->module->getUploadPath() . 'article',
+                    'path' => $this->module->getArticleUploadPath()
                 ],
             ]
         );

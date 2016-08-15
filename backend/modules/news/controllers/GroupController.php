@@ -8,12 +8,16 @@ use backend\modules\news\models\{
 };
 
 /**
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
+ * Class GroupController
+ *
+ * @package backend\modules\news\controllers
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class GroupController extends BackendController
 {
     public $model = Group::class;
     public $modelLang = GroupLang::class;
     public $filterModel = filterGroupModel::class;
-    public $title = 'Article groups';
+    public $title = 'Groups';
 }

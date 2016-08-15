@@ -26,9 +26,9 @@ return [
         'loginUrl' => ['/user/login']
     ],
     'view' => [
-        'class' => 'yii\web\View',
+        'class' => \yii\web\View::class,
         'renderers' => [
-            'mustache' => 'yii\mustache\ViewRenderer'
+            'mustache' => \yii\mustache\ViewRenderer::class
         ]
     ]
 ];

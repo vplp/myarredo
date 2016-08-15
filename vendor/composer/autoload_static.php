@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit5df4786b39269b0b3179fcb2941bf5e0
+class ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97
 {
     public static $files = array (
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
@@ -53,8 +53,10 @@ class ComposerStaticInit5df4786b39269b0b3179fcb2941bf5e0
             'kartik\\growl\\' => 13,
             'kartik\\form\\' => 12,
             'kartik\\file\\' => 12,
+            'kartik\\field\\' => 13,
             'kartik\\depdrop\\' => 15,
             'kartik\\datetime\\' => 16,
+            'kartik\\daterange\\' => 17,
             'kartik\\date\\' => 12,
             'kartik\\color\\' => 13,
             'kartik\\base\\' => 12,
@@ -214,6 +216,10 @@ class ComposerStaticInit5df4786b39269b0b3179fcb2941bf5e0
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-fileinput',
         ),
+        'kartik\\field\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-field-range',
+        ),
         'kartik\\depdrop\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-depdrop',
@@ -221,6 +227,10 @@ class ComposerStaticInit5df4786b39269b0b3179fcb2941bf5e0
         'kartik\\datetime\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-datetimepicker',
+        ),
+        'kartik\\daterange\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-date-range',
         ),
         'kartik\\date\\' => 
         array (
@@ -821,10 +831,10 @@ class ComposerStaticInit5df4786b39269b0b3179fcb2941bf5e0
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit5df4786b39269b0b3179fcb2941bf5e0::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit5df4786b39269b0b3179fcb2941bf5e0::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit5df4786b39269b0b3179fcb2941bf5e0::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit5df4786b39269b0b3179fcb2941bf5e0::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97::$classMap;
 
         }, null, ClassLoader::class);
     }

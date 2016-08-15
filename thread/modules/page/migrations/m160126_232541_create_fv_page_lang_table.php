@@ -6,11 +6,11 @@ use thread\modules\page\Page;
 /**
  * Class m160126_232541_create_fv_page_lang_table
  *
- * @package thread\modules\page
- * @author Roman Gonchar <Roman Gonchar@gmail.com>
- * @copyright (c) 2016, VipDesign
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
-class m160126_232541_create_fv_page_lang_table extends Migration {
+class m160126_232541_create_fv_page_lang_table extends Migration
+{
 
     /**
      * Related Page table name
@@ -23,6 +23,15 @@ class m160126_232541_create_fv_page_lang_table extends Migration {
      * @var string
      */
     public $tablePageLang = '{{%page_lang}}';
+
+    /**
+     *
+     */
+    public function init()
+    {
+        $this->db = Page::getDb();
+        parent::init();
+    }
 
     /**
      * Implement migration

@@ -2,26 +2,26 @@
 
 use yii\db\Migration;
 use thread\modules\news\News;
-use thread\modules\news\models\Group;
 
 /**
  * Class m160127_030515_create_fv_news_group_table
  *
- * @package thread\modules\news
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
- * @copyright (c) 2016, VipDesign
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class m160127_030515_create_fv_news_group_table extends Migration
 {
     /**
      * @var string
      */
-    public $tableNewsGroup = '';
+    public $tableNewsGroup = '{{%news_group}}';
 
+    /**
+     *
+     */
     public function init()
     {
         $this->db = News::getDb();
-        $this->tableNewsGroup = Group::tableName();
         parent::init();
     }
 
@@ -38,7 +38,7 @@ class m160127_030515_create_fv_news_group_table extends Migration
             'published' => $this->boolean()->notNull()->defaultValue(0)->comment('Published'),
             'deleted' => $this->boolean()->notNull()->defaultValue(0)->comment('Deleted'),
         ]);
-        
+
         $this->createIndex('published', $this->tableNewsGroup, 'published');
         $this->createIndex('deleted', $this->tableNewsGroup, 'deleted');
     }

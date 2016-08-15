@@ -13,10 +13,16 @@ use backend\modules\news\models\{
     Article as ArticleModel, ArticleLang
 };
 
-
+/**
+ * Class Article
+ *
+ * @package backend\modules\news\models\search
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class Article extends ArticleModel implements BaseBackendSearchModel
 {
-    public $title;
+    public $title, $date_from, $date_to;
 
     /**
      * @return array
@@ -26,6 +32,25 @@ class Article extends ArticleModel implements BaseBackendSearchModel
         return [
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [['group_id'], 'integer'],
+            [
+                ['published_time'],
+                'date',
+                'format' => 'php:' . NewsModule::getFormatDate(),
+                'timestampAttribute' => 'published_time'
+            ],
+            [
+                ['date_from'],
+                'date',
+                'format' => 'php:' . NewsModule::getFormatDate(),
+                'timestampAttribute' => 'date_from'
+            ],
+            [
+                ['date_to'],
+                'date',
+                'format' => 'php:' . NewsModule::getFormatDate(),
+                'timestampAttribute' => 'date_to'
+            ],
         ];
     }
 
@@ -66,7 +91,12 @@ class Article extends ArticleModel implements BaseBackendSearchModel
         $query->with(['group']);
 
         $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published]);
+            ->andFilterWhere(['like', 'published', $this->published])
+            ->andFilterWhere(['like', 'published_time', $this->published_time])
+            ->andFilterWhere(['like', 'group_id', $this->group_id]);
+        //
+        $query->andFilterWhere(['>=', 'published_time', $this->date_from]);
+        $query->andFilterWhere(['<=', 'published_time', $this->date_to]);
         //
         $query->andFilterWhere(['like', ArticleLang::tableName() . '.title', $this->title]);
 

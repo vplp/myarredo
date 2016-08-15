@@ -1,7 +1,14 @@
 <?php
 
 use yii\db\Migration;
+use backend\modules\page\Page;
 
+/**
+ * Class m160720_141645_insert_default_page
+ *
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class m160720_141645_insert_default_page extends Migration
 {
     /**
@@ -16,6 +23,14 @@ class m160720_141645_insert_default_page extends Migration
      */
     public $tablePageLang = '{{%page_lang}}';
 
+    /**
+     *
+     */
+    public function init()
+    {
+        $this->db = Page::getDb();
+        parent::init();
+    }
 
     public function safeUp()
     {
@@ -35,7 +50,7 @@ class m160720_141645_insert_default_page extends Migration
                 [
                     'id' => 1,
                     'alias' => 'about',
-                    'image_link' => NULL,
+                    'image_link' => null,
                     'created_at' => time(),
                     'updated_at' => time(),
                     'published' => 1,
@@ -44,7 +59,7 @@ class m160720_141645_insert_default_page extends Migration
                 [
                     'id' => 2,
                     'alias' => 'privacy-policy',
-                    'image_link' => NULL,
+                    'image_link' => null,
                     'created_at' => time(),
                     'updated_at' => time(),
                     'published' => 1,
@@ -53,7 +68,7 @@ class m160720_141645_insert_default_page extends Migration
                 [
                     'id' => 3,
                     'alias' => 'contacts',
-                    'image_link' => NULL,
+                    'image_link' => null,
                     'created_at' => time(),
                     'updated_at' => time(),
                     'published' => 1,
@@ -62,7 +77,7 @@ class m160720_141645_insert_default_page extends Migration
                 [
                     'id' => 4,
                     'alias' => 'license-agreement',
-                    'image_link' => NULL,
+                    'image_link' => null,
                     'created_at' => time(),
                     'updated_at' => time(),
                     'published' => 1,
@@ -71,7 +86,7 @@ class m160720_141645_insert_default_page extends Migration
                 [
                     'id' => 5,
                     'alias' => 'certificates',
-                    'image_link' => NULL,
+                    'image_link' => null,
                     'created_at' => time(),
                     'updated_at' => time(),
                     'published' => 1,

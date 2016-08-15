@@ -14,12 +14,12 @@ return [
     ],
     //DEFAULT CACHE
     'cache' => [
-        'class' => yii\caching\FileCache::class,
+        'class' => \yii\caching\FileCache::class,
         'cachePath' => '@runtime',
         'keyPrefix' => 'thread'
     ],
     'mailer' => [
-        'class' => yii\swiftmailer\Mailer::class,
+        'class' => \yii\swiftmailer\Mailer::class,
 //        'viewPath' => '@common/mail',
         'useFileTransport' => true,
     ],

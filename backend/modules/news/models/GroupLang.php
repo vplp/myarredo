@@ -2,10 +2,6 @@
 
 namespace backend\modules\news\models;
 
-use Yii;
-//
-use common\modules\news\models\GroupLang as CommonGroupLangModel;
-
 /**
  * Class GroupLang
  *
@@ -13,7 +9,7 @@ use common\modules\news\models\GroupLang as CommonGroupLangModel;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class GroupLang extends CommonGroupLangModel
+class GroupLang extends \common\modules\news\models\GroupLang
 {
 
 }

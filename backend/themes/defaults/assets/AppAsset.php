@@ -5,7 +5,11 @@ namespace backend\themes\defaults\assets;
 use yii\web\AssetBundle;
 
 /**
- * Main backend application asset bundle.
+ * Class AppAsset
+ *
+ * @package backend\themes\defaults\assets
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class AppAsset extends AssetBundle
 {

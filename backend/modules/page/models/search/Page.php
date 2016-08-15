@@ -14,6 +14,13 @@ use backend\modules\page\models\{
     PageLang, Page as PageModel
 };
 
+/**
+ * Class Page
+ *
+ * @package backend\modules\page\models\search
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class Page extends PageModel implements BaseBackendSearchModel
 {
     public $title;

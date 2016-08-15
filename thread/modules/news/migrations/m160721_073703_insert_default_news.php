@@ -1,7 +1,14 @@
 <?php
 
 use yii\db\Migration;
+use thread\modules\news\News;
 
+/**
+ * Class m160721_073703_insert_default_news
+ *
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class m160721_073703_insert_default_news extends Migration
 {
     /**
@@ -24,6 +31,18 @@ class m160721_073703_insert_default_news extends Migration
      */
     public $tableNewsArticleLang = '{{%news_article_lang}}';
 
+    /**
+     *
+     */
+    public function init()
+    {
+        $this->db = News::getDb();
+        parent::init();
+    }
+
+    /**
+     *
+     */
     public function safeUp()
     {
         /** Insert news_group */

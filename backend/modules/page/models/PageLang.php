@@ -2,8 +2,6 @@
 
 namespace backend\modules\page\models;
 
-use common\modules\page\models\PageLang as CommonPageLangModel;
-
 /**
  * Class PageLang
  *
@@ -11,7 +9,7 @@ use common\modules\page\models\PageLang as CommonPageLangModel;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class PageLang extends CommonPageLangModel
+class PageLang extends \common\modules\page\models\PageLang
 {
     
 }

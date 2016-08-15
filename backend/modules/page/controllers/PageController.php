@@ -8,7 +8,11 @@ use backend\modules\page\models\{
 };
 
 /**
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
+ * Class PageController
+ *
+ * @package backend\modules\page\controllers
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class PageController extends BackendController
 {

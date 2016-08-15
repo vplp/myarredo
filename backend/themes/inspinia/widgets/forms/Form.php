@@ -2,16 +2,17 @@
 namespace backend\themes\inspinia\widgets\forms;
 
 use Yii;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
-use yii\helpers\Url;
+use yii\helpers\{
+    ArrayHelper, Html, Url
+};
 use yii\web\JsExpression;
 //
 use thread\widgets\editors\Editor;
 //
 use kartik\switchinput\SwitchInput;
-use kartik\widgets\DatePicker;
-use kartik\widgets\FileInput;
+use kartik\widgets\{
+    DatePicker, FileInput
+};
 
 /**
  * @author Roman Gonchar <roman.gonchar92@gmail.com>

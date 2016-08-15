@@ -2,50 +2,31 @@
 namespace common\modules\news\models;
 
 use Yii;
-use yii\helpers\ArrayHelper;
-//
-use thread\modules\news\models\Article as BaseArticleModel;
 
 /**
  * Class Article
- * @package common\modules\news\models
  *
- * @property string $gallery_link
+ * @package common\modules\news\models
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
-class Article extends BaseArticleModel
+class Article extends \thread\modules\news\models\Article
 {
     /** for seo */
     const COMMON_NAMESPACE = self::class;
 
     /**
-     * @inheritdoc
+     * @return null|string
      */
-    public function rules()
+    public function getArticleImage()
     {
-        return ArrayHelper::merge(parent::rules(), [
-            [['gallery_link'], 'string']
-        ]);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function scenarios()
-    {
-        return [
-            'published' => ['published'],
-            'deleted' => ['deleted'],
-            'backend' => ['group_id', 'alias', 'image_link', 'gallery_link', 'published', 'deleted', 'published_time'],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return ArrayHelper::merge(parent::attributeLabels(), [
-            'gallery_link' => Yii::t('app', 'Gallery'),
-        ]);
+        $newsModule = Yii::$app->getModule('news');
+        $path = $newsModule->getArticleUploadPath();
+        $url = $newsModule->getArticleUploadUrl();
+        $image = null;
+        if (!empty($this->image_link) && is_file($path . $this->image_link)) {
+            $image = $url . $this->image_link;
+        }
+        return $image;
     }
 }

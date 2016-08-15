@@ -19,8 +19,24 @@ use backend\themes\inspinia\widgets\{
 <?= Tabs::widget([
     'items' => [
         [
-            'label' => Yii::t('app', 'General information'),
+            'label' => Yii::t('app', 'General'),
             'content' => $this->render('parts/_main', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
+        [
+            'label' => Yii::t('app', 'Page'),
+            'content' => $this->render('parts/_content', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
+        [
+            'label' => Yii::t('app', 'Image'),
+            'content' => $this->render('parts/_image', [
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang

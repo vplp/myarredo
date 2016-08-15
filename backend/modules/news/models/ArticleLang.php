@@ -1,10 +1,6 @@
 <?php
 namespace backend\modules\news\models;
 
-use Yii;
-//
-use common\modules\news\models\ArticleLang as CommonArticleLangModel;
-
 /**
  * Class ArticleLang
  *
@@ -12,7 +8,7 @@ use common\modules\news\models\ArticleLang as CommonArticleLangModel;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class ArticleLang extends CommonArticleLangModel
+class ArticleLang extends \common\modules\news\models\ArticleLang
 {
 
 }

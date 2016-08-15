@@ -21,6 +21,8 @@ use thread\modules\user\models\User;
  * Uses for base configuration of backend. All backend controllers methods should extends this one.
  *
  * @package thread\app\base\controllers
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 abstract class BackendController extends Controller
 {

@@ -5,7 +5,11 @@ namespace backend\themes\inspinia\assets;
 use yii\web\AssetBundle;
 
 /**
- * Main backend application asset bundle.
+ * Class AppAsset
+ *
+ * @package backend\themes\inspinia\assets
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class AppAsset extends AssetBundle
 {

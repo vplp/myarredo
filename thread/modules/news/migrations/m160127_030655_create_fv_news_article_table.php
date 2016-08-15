@@ -4,11 +4,10 @@ use yii\db\Migration;
 use thread\modules\news\News;
 
 /**
- * Class m160127_030515_create_fv_news_group_table
+ * Class m160127_030655_create_fv_news_article_table
  *
- * @package thread\modules\news
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
- * @copyright (c) 2016, VipDesign
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class m160127_030655_create_fv_news_article_table extends Migration
 {
@@ -22,6 +21,9 @@ class m160127_030655_create_fv_news_article_table extends Migration
      */
     public $tableNewsGroup = '{{%news_group}}';
 
+    /**
+     *
+     */
     public function init()
     {
         $this->db = News::getDb();

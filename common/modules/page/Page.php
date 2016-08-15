@@ -2,7 +2,11 @@
 namespace common\modules\page;
 
 /**
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
+ * Class Page
+ *
+ * @package common\modules\page
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class Page extends \thread\modules\page\Page
 {
