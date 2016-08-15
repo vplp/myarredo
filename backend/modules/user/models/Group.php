@@ -36,14 +36,6 @@ class Group extends \common\modules\user\models\Group implements BaseBackendMode
     }
 
     /**
-     * @return array|null
-     */
-    public static function all()
-    {
-        return self::find()->joinWith(['lang'])->undeleted()->all();
-    }
-
-    /**
      * @return array
      */
     public static function dropDownList()

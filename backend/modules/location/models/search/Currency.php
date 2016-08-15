@@ -6,11 +6,21 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
+use thread\app\model\interfaces\search\BaseBackendSearchModel;
+//
 use backend\modules\location\Location as LocationModule;
-use backend\modules\location\models\Currency as CurrencyModel;
-use backend\modules\location\models\CurrencyLang;
+use backend\modules\location\models\{
+    Currency as CurrencyModel, CurrencyLang
+};
 
-class Currency extends CurrencyModel
+/**
+ * Class Currency
+ *
+ * @package backend\modules\location\models\search
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
+class Currency extends CurrencyModel implements BaseBackendSearchModel
 {
     public $title;
 
@@ -22,6 +32,7 @@ class Currency extends CurrencyModel
         return [
             [['course'], 'double'],
             [['alias', 'title'], 'string', 'max' => 255],
+            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
 

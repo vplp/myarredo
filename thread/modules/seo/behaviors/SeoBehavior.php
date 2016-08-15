@@ -7,6 +7,13 @@ use yii\db\ActiveRecord;
 //
 use thread\modules\seo\models\Seo;
 
+/**
+ * Class SeoBehavior
+ *
+ * @package thread\modules\seo\behaviors
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class SeoBehavior extends Behavior
 {
     /**
@@ -18,7 +25,6 @@ class SeoBehavior extends Behavior
      * @var null
      */
     public $model_id = null;
-
 
     /**
      *

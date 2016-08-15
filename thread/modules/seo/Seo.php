@@ -15,7 +15,6 @@ use thread\app\base\module\abstracts\Module as aModule;
  */
 class Seo extends aModule
 {
-
     public $name = 'Seo';
     public $translationsBasePath = __DIR__ . '/messages';
     public $configPath = __DIR__ . '/config.php';
@@ -39,13 +38,5 @@ class Seo extends aModule
     public static function getDb()
     {
         return Yii::$app->get('db-core');
-    }
-
-    /**
-     * @return string
-     */
-    public function getImageBasePath()
-    {
-        return Yii::getAlias('@uploads') . '/seo';
     }
 }

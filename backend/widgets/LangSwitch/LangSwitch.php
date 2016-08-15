@@ -3,7 +3,6 @@ namespace backend\widgets\LangSwitch;
 
 use Yii;
 //
-use thread\app\model\Language;
 use thread\app\base\widgets\Widget;
 
 /**
@@ -39,7 +38,7 @@ class LangSwitch extends Widget
     public function init()
     {
         parent::init();
-        $langModel = new Language;
+        $langModel = new Yii::$app->languages->languageModel;
         $this->items = $langModel->getLanguages();
         $this->current = $langModel->getCurrent()['label'];
     }

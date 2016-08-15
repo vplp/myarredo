@@ -4,7 +4,6 @@ namespace thread\modules\user\models\form;
 
 use Yii;
 use yii\base\Model;
-use yii\db\mssql\PDO;
 //
 use thread\modules\user\User;
 use thread\modules\user\models\User as UserModel;
@@ -51,7 +50,7 @@ class CommonForm extends Model
     }
 
     /**
-     * @return PDO
+     * @return string
      */
     public static function getDb()
     {

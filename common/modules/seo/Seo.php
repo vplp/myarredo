@@ -2,7 +2,11 @@
 namespace common\modules\seo;
 
 /**
- * @author Fantamas
+ * Class Seo
+ *
+ * @package common\modules\seo
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class Seo extends \thread\modules\seo\Seo
 {

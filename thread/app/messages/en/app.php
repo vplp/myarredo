@@ -15,7 +15,7 @@ return [
     'title' => 'Title',
     'Alias' => 'Alias',
     'alias' => 'Alias',
-    'Published' => 'Published',
+    'Published' => 'On',
     'published' => 'Published',
     'Show on index page' => 'Show on index page',
     'Position' => 'Position',

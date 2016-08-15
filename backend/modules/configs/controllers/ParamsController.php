@@ -8,7 +8,11 @@ use backend\modules\configs\models\{
 };
 
 /**
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
+ * Class ParamsController
+ *
+ * @package backend\modules\configs\controllers
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class ParamsController extends BackendController
 {

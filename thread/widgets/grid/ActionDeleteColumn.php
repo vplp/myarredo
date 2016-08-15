@@ -10,7 +10,8 @@ use thread\app\base\models\ActiveRecord;
 
 /**
  * Class ActionDeleteColumn
- * @package thread\app\components\grid
+ *
+ * @package thread\widgets\grid
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */

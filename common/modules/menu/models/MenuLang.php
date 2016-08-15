@@ -2,8 +2,11 @@
 namespace common\modules\menu\models;
 
 /**
- * Class Item
+ * Class MenuLang
+ *
  * @package common\modules\menu\models
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class MenuLang extends \thread\modules\menu\models\MenuLang
 {

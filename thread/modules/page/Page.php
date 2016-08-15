@@ -30,13 +30,18 @@ class Page extends aModule
     }
 
     /**
-     * getImageBasePath
-     *
      * @return string
      */
-    public function getImageBasePath()
+    public function getPageUploadPath()
     {
-        return Yii::getAlias('@uploads') . '/page';
+        return $this->getBaseUploadPath();
     }
 
+    /**
+     * @return string
+     */
+    public function getPageUploadUrl()
+    {
+        return $this->getBaseUploadUrl();
+    }
 }

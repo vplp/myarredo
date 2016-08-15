@@ -13,6 +13,13 @@ use backend\modules\configs\models\{
     Params as ParamsModel, ParamsLang
 };
 
+/**
+ * Class Params
+ *
+ * @package backend\modules\configs\models\search
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class Params extends ParamsModel implements BaseBackendSearchModel
 {
     public $title;

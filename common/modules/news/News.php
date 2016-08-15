@@ -18,7 +18,7 @@ class News extends \thread\modules\news\News
      */
     public function getArticleUploadPath()
     {
-        return Yii::getAlias('@uploads') . '/' . $this->name . '/article';
+        return $this->getBaseUploadPath() . '/article';
     }
 
     /**
@@ -27,6 +27,6 @@ class News extends \thread\modules\news\News
      */
     public function getArticleUploadUrl()
     {
-        return '/uploads/' . $this->name . '/article';
+        return $this->getBaseUploadUrl() . '/article';
     }
 }

@@ -1,10 +1,10 @@
 <?php
+use yii\grid\GridView;
+use yii\helpers\Html;
 //
-use yii\bootstrap\Html;
-//
-use thread\widgets\grid\SwitchboxColumn;
-//
-use backend\themes\inspinia\widgets\GridView;
+use thread\widgets\grid\{
+    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+};
 
 echo GridView::widget(
     [
@@ -26,12 +26,15 @@ echo GridView::widget(
                 }
             ],
             [
-                'class' => \thread\widgets\grid\ActionCheckboxColumn::class,
+                'class' => ActionCheckboxColumn::class,
                 'attribute' => 'published',
                 'action' => 'published'
             ],
             [
-                'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class,
+                'class' => ActionEditColumn::class,
+            ],
+            [
+                'class' => ActionToTrashColumn::class
             ],
         ]
     ]

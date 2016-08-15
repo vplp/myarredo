@@ -1,13 +1,17 @@
 <?php
 
 use yii\grid\GridView;
+//
+use thread\widgets\grid\{
+    ActionDeleteColumn, ActionRestoreColumn
+};
 
 /**
  * @var \backend\modules\user\models\User $model
  */
 echo GridView::widget([
-    'id' => 'grid',
     'dataProvider' => $model->trash(Yii::$app->request->queryParams),
+    'filterModel' => $filter,
     'columns' => [
         [
             'attribute' => 'group_id',
@@ -15,10 +19,10 @@ echo GridView::widget([
         ],
         'username',
         [
-            'class' => \thread\widgets\grid\ActionRestoreColumn::class,
+            'class' => ActionRestoreColumn::class,
         ],
         [
-            'class' => \thread\widgets\grid\ActionDeleteColumn::class
+            'class' => ActionDeleteColumn::class
         ],
     ]
 ]);

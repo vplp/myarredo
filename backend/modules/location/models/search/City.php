@@ -6,12 +6,14 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
+use thread\app\model\interfaces\search\BaseBackendSearchModel;
+//
 use backend\modules\location\Location as LocationModule;
 use backend\modules\location\models\{
     City as CityModel, CityLang
 };
 
-class City extends CityModel
+class City extends CityModel implements BaseBackendSearchModel
 {
     public $title;
 

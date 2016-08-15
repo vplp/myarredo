@@ -4,6 +4,10 @@ use yii\helpers\Html;
 //
 use backend\themes\inspinia\widgets\GridView;
 use backend\modules\user\models\Group;
+//
+use thread\widgets\grid\{
+    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+};
 
 /**
  *
@@ -18,14 +22,14 @@ echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
-        'username',
         [
             'attribute' => 'group_id',
             'value' => 'group.lang.title',
             'filter' => Group::dropDownList()
         ],
+        'username',
         [
-            'class' => \thread\widgets\grid\ActionCheckboxColumn::class,
+            'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',
             'action' => 'published'
         ],
@@ -43,7 +47,10 @@ echo GridView::widget([
             },
         ],
         [
-            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class
+            'class' => ActionEditColumn::class,
+        ],
+        [
+            'class' => ActionToTrashColumn::class
         ],
     ]
 ]);

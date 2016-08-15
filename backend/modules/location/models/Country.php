@@ -1,12 +1,16 @@
 <?php
 
 namespace backend\modules\location\models;
+use thread\app\model\interfaces\BaseBackendModel;
 
 /**
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
+ * Class Country
+ *
+ * @package backend\modules\location\models
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
-
-class Country extends \common\modules\location\models\Country
+class Country extends \common\modules\location\models\Country implements BaseBackendModel
 {
     /**
      * @param $params
@@ -24,9 +28,5 @@ class Country extends \common\modules\location\models\Country
     public function trash($params)
     {
         return (new search\Currency())->trash($params);
-    }
-
-    public function getDropDownList(){
-
     }
 }

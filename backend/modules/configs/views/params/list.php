@@ -1,8 +1,10 @@
 <?php
 
-use thread\widgets\grid\SwitchboxColumn;
+use yii\grid\GridView;
 //
-use backend\themes\inspinia\widgets\GridView;
+use thread\widgets\grid\{
+    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+};
 
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
@@ -15,7 +17,10 @@ echo GridView::widget([
         ],
         'value',
         [
-            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class
+            'class' => ActionEditColumn::class,
+        ],
+        [
+            'class' => ActionToTrashColumn::class
         ],
     ]
 ]);

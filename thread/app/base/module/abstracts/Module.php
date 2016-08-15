@@ -21,7 +21,7 @@ abstract class Module extends \yii\base\Module implements iModule
      * Назва модуля
      * @var string
      */
-    public $name = "Module";
+    public $name = "module";
 
     /**
      * Шлях до каталогу з повідомленнями
@@ -92,5 +92,21 @@ abstract class Module extends \yii\base\Module implements iModule
         return Yii::$app->get('db');
     }
 
+    /**
+     * Image upload path
+     * @return string
+     */
+    public function getBaseUploadPath()
+    {
+        return Yii::getAlias('@uploads') . '/' . $this->name . '/';
+    }
 
+    /**
+     * Image upload URL
+     * @return string
+     */
+    public function getBaseUploadUrl()
+    {
+        return '/uploads/' . $this->name . '/';
+    }
 }

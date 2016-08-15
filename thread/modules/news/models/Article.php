@@ -3,8 +3,9 @@
 namespace thread\modules\news\models;
 
 use Yii;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Inflector;
+use yii\helpers\{
+    ArrayHelper, Inflector
+};
 use yii\behaviors\AttributeBehavior;
 //
 use thread\app\base\models\ActiveRecord;

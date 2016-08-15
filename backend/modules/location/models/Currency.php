@@ -3,9 +3,12 @@
 namespace backend\modules\location\models;
 
 /**
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
+ * Class Currency
+ *
+ * @package backend\modules\location\models
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
-
 class Currency extends \common\modules\location\models\Currency
 {
     /**

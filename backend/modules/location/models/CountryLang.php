@@ -1,11 +1,13 @@
 <?php
 
 namespace backend\modules\location\models;
-use Yii;
 
 /**
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
- * @copyright (c) 2016, VipDesign
+ * Class CountryLang
+ *
+ * @package backend\modules\location\models
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class CountryLang extends \common\modules\location\models\CountryLang
 {

@@ -1,13 +1,14 @@
 <?php
-use backend\themes\inspinia\widgets\GridView;
-use backend\modules\location\models\Country;
 
+use yii\grid\GridView;
+use backend\modules\location\models\Country;
+//
+use thread\widgets\grid\{
+    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+};
 /**
  * @var \backend\modules\location\models\search\City $model
  */
-
-$filter = new \backend\modules\location\models\search\City();
-$filter->setAttributes(Yii::$app->getRequest()->get('City'));
 
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
@@ -24,13 +25,15 @@ echo GridView::widget([
             'filter' => Country::dropDownList()
         ],
         [
-            'class' => \thread\widgets\grid\ActionCheckboxColumn::class,
+            'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',
             'action' => 'published'
         ],
         [
-            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class
+            'class' => ActionEditColumn::class,
         ],
-
+        [
+            'class' => ActionToTrashColumn::class
+        ],
     ]
 ]);

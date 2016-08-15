@@ -2,9 +2,11 @@
 use yii\helpers\{
     Html, Url
 };
+use yii\grid\GridView;
 //
-use backend\themes\inspinia\widgets\GridView;
-
+use thread\widgets\grid\{
+    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+};
 /**
  * @var \backend\modules\menu\models\search\MenuItem $model
  */
@@ -19,22 +21,6 @@ echo GridView::widget(
                 'label' => Yii::t('app', 'Title'),
             ],
             [
-                'format' => 'raw',
-                'headerOptions' => ['class' => 'text-center col-sm-2'],
-                'contentOptions' => ['class' => 'text-center col-sm-2'],
-                'value' => function ($model) {
-                    return Html::a(
-                        'Подкатегории: ' . ' (' . count($model['items']) . ')',
-                        [
-                            'list',
-                            'group_id' => $model->group_id,
-                            'parent_id' => $model->id
-                        ]
-                    );
-                },
-                'visible' => (Yii::$app->getRequest()->get('parent_id')) ? false : true,
-            ],
-            [
                 'attribute' => 'link',
                 'format' => 'raw',
                 'value' => function ($model) {
@@ -44,7 +30,7 @@ echo GridView::widget(
             ],
             'position',
             [
-                'class' => \thread\widgets\grid\ActionCheckboxColumn::class,
+                'class' => ActionCheckboxColumn::class,
                 'attribute' => 'published',
                 'action' => 'published'
             ],

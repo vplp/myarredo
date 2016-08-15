@@ -6,12 +6,14 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
+use thread\app\model\interfaces\search\BaseBackendSearchModel;
+//
 use backend\modules\location\Location as LocationModule;
 use backend\modules\location\models\{
     Country as CountryModel, CountryLang
 };
 
-class Country extends CountryModel
+class Country extends CountryModel implements BaseBackendSearchModel
 {
     /**
      * @return array

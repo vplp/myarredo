@@ -16,7 +16,7 @@ use thread\app\base\module\abstracts\Module as aModule;
 class Configs extends aModule
 {
 
-    public $name = 'Configs';
+    public $name = 'configs';
     public $translationsBasePath = __DIR__ . '/messages';
     public $configPath = __DIR__ . '/config.php';
 

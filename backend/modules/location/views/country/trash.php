@@ -1,8 +1,10 @@
 <?php
 
-use thread\widgets\grid\ActionDeleteColumn;
-use thread\widgets\grid\ActionRestoreColumn;
-use backend\themes\inspinia\widgets\GridView;
+use yii\grid\GridView;
+//
+use thread\widgets\grid\{
+    ActionDeleteColumn, ActionRestoreColumn
+};
 
 /**
  *
@@ -13,15 +15,20 @@ use backend\themes\inspinia\widgets\GridView;
 
 echo GridView::widget([
     'dataProvider' => $model->trash(Yii::$app->request->queryParams),
+    'filterModel' => $filter,
     'columns' => [
         'alpha2',
         'alpha3',
-        'lang.title',
         [
-            'class' =>  ActionDeleteColumn::class,
+            'attribute' => 'title',
+            'value' => 'lang.title',
+            'label' => Yii::t('app', 'Title')
         ],
         [
-            'class' =>  ActionRestoreColumn::class
+            'class' => ActionDeleteColumn::class,
+        ],
+        [
+            'class' => ActionRestoreColumn::class
         ],
     ]
 ]);

@@ -35,7 +35,7 @@ class MenuItem extends \common\modules\menu\models\MenuItem implements BaseBacke
      * @param $id
      * @return mixed
      */
-    public function findById($id)
+    public static function findById($id)
     {
         return self::find()->byID($id)->one();
     }

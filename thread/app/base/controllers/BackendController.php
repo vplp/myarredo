@@ -144,6 +144,7 @@ abstract class BackendController extends Controller
                 'class' => ListModel::class,
                 'modelClass' => $this->model,
                 'layout' => '@app/layouts/trash',
+                'filterModel' => $this->filterModel,
                 'methodName' => 'trash',
                 'view' => 'trash'
             ],

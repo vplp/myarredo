@@ -1,11 +1,12 @@
 <?php
 namespace thread\modules\user\models\form;
 
-use thread\app\base\models\ActiveRecord;
-use thread\modules\user\models\Group;
-use thread\modules\user\models\Profile;
-use thread\modules\user\models\User;
 use yii\db\mssql\PDO;
+//
+use thread\app\base\models\ActiveRecord;
+use thread\modules\user\models\{
+    Group, Profile, User
+};
 
 /**
  * Class RegisterForm

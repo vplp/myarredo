@@ -12,7 +12,6 @@ use backend\themes\inspinia\widgets\forms\ActiveForm;
 
 <?= \backend\themes\inspinia\widgets\forms\Form::submit($model, $this); ?>
 
-<?= $form->field($model, 'title')->textInput(['maxlength' => true]); ?>
 <?= $form->field($model, 'alpha2')->textInput(['maxlength' => true]); ?>
 <?= $form->field($model, 'alpha3')->textInput(['maxlength' => true]); ?>
 <?= $form->field($model, 'iso')->textInput(['maxlength' => true]); ?>

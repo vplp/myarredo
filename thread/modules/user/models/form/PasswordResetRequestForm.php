@@ -7,7 +7,11 @@ use Yii;
 use thread\modules\user\models\User;
 
 /**
- * Password reset request form
+ * Class PasswordResetRequestForm
+ *
+ * @package thread\modules\user\models\form
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class PasswordResetRequestForm extends CommonForm
 {

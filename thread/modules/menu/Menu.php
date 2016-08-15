@@ -2,8 +2,9 @@
 
 namespace thread\modules\menu;
 
-use thread\app\base\module\abstracts\Module as aModule;
 use Yii;
+//
+use thread\app\base\module\abstracts\Module as aModule;
 
 /**
  * Class Menu

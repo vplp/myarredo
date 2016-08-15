@@ -2,9 +2,10 @@
 
 namespace thread\modules\menu\models;
 
-use thread\app\base\models\ActiveRecordLang;
 use Yii;
 use yii\helpers\ArrayHelper;
+//
+use thread\app\base\models\ActiveRecordLang;
 
 /**
  * Class MenuItemLang

@@ -1,21 +1,29 @@
 <?php
-
 use yii\grid\GridView;
+//
+use thread\widgets\grid\{
+    ActionDeleteColumn, ActionRestoreColumn
+};
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
 echo GridView::widget([
-    'id' => 'grid',
     'dataProvider' => $model->trash(Yii::$app->request->queryParams),
+    'filterModel' => $filter,
     'columns' => [
-        'lang.title',
         [
-            'class' => \thread\widgets\grid\ActionRestoreColumn::class,
+            'attribute' => 'title',
+            'value' => 'lang.title',
+            'label' => Yii::t('app', 'Title')
+        ],
+        'role',
+        [
+            'class' => ActionDeleteColumn::class,
         ],
         [
-            'class' => \thread\widgets\grid\ActionDeleteColumn::class
+            'class' => ActionRestoreColumn::class
         ],
     ]
 ]);

@@ -4,8 +4,8 @@ namespace thread\modules\menu\models;
 
 use Yii;
 use yii\db\ActiveQuery;
+//
 use thread\app\base\models\ActiveRecord;
-use thread\modules\menu\models\Menu;
 use thread\modules\page\models\Page;
 
 /**

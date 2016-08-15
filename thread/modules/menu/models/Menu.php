@@ -4,9 +4,11 @@ namespace thread\modules\menu\models;
 
 use Yii;
 use yii\behaviors\AttributeBehavior;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Inflector;
+use yii\helpers\{
+    ArrayHelper, Inflector
+};
 use yii\db\ActiveQuery;
+//
 use thread\app\base\models\ActiveRecord;
 
 /**
@@ -118,7 +120,7 @@ class Menu extends ActiveRecord
      */
     public function getItems()
     {
-        return $this->hasMany(MenuItem::class, ['group_id' => 'id'])->undeleted();
+        return $this->hasMany(MenuItem::class, ['group_id' => 'id']);
     }
 
     /**

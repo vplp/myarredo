@@ -2,11 +2,16 @@
 
 namespace backend\modules\location\models;
 
-/**
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
- */
+use thread\app\model\interfaces\BaseBackendModel;
 
-class City extends \common\modules\location\models\City
+/**
+ * Class City
+ *
+ * @package backend\modules\location\models
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
+class City extends \common\modules\location\models\City implements BaseBackendModel
 {
     /**
      * @param $params

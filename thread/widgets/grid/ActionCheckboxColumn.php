@@ -10,7 +10,11 @@ use yii\helpers\{
 use thread\app\base\models\ActiveRecord;
 
 /**
- * Class CheckboxActionColumn
+ * Class ActionCheckboxColumn
+ *
+ * @package thread\widgets\grid
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class ActionCheckboxColumn extends DataColumn
 {

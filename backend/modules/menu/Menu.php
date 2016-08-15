@@ -1,9 +1,12 @@
 <?php
 
 namespace backend\modules\menu;
-
 /**
- * @author Fantamas
+ * Class Menu
+ *
+ * @package backend\modules\menu
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class Menu extends \common\modules\menu\Menu
 {

@@ -10,6 +10,13 @@ use yii\helpers\Inflector;
 use thread\app\base\models\ActiveRecord;
 use thread\modules\location\Location as LocationModule;
 
+/**
+ * Class City
+ *
+ * @package thread\modules\location\models
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class City extends ActiveRecord
 {
 

@@ -2,8 +2,6 @@
 
 namespace backend\modules\configs\models;
 
-use common\modules\configs\models\ParamsLang as CommonParamsLangModel;
-
 /**
  * Class ParamsLang
  *
@@ -11,7 +9,7 @@ use common\modules\configs\models\ParamsLang as CommonParamsLangModel;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class ParamsLang extends CommonParamsLangModel
+class ParamsLang extends \common\modules\configs\models\ParamsLang
 {
 
 }
