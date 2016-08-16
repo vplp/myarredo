@@ -1,21 +1,20 @@
 <?php
 use thread\modules\seo\widgets\seo\SeoWidget;
-use thread\app\base\models\ActiveRecord;
+use thread\app\bootstrap\{
+    ActiveForm, Tabs
+};
 //
 use backend\modules\news\models\{
     Article, ArticleLang
 };
-use backend\themes\inspinia\widgets\{
-    forms\ActiveForm, forms\Form, Tabs
-};
 
 /**
  * @var Article $model
- * @var ArticleLang|ActiveRecord $modelLang
+ * @var ArticleLang $modelLang
  */
 ?>
 <?php $form = ActiveForm::begin(); ?>
-<?= Form::submit($model, $this); ?>
+<?= $form->submit($model, $this) ?>
 <?= Tabs::widget([
     'items' => [
         [
@@ -48,5 +47,5 @@ use backend\themes\inspinia\widgets\{
         ]
     ]
 ]) ?>
-<?= Form::submit($model, $this) ?>
-<?php ActiveForm::end();
+<?= $form->submit($model, $this) ?>
+<?php ActiveForm::end(); ?>

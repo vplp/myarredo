@@ -1,14 +1,15 @@
 <?php
-use backend\themes\inspinia\widgets\forms\ActiveForm;
+use thread\app\bootstrap\ActiveForm;
 
 /**
  * @var \backend\modules\news\models\GroupLang $modelLang
  * @var \backend\modules\news\models\Group $model
  */
-$form = ActiveForm::begin();
-echo \backend\themes\inspinia\widgets\forms\Form::submit($model, $this, 'left');
-echo $form->field($modelLang, 'title')->textInput(['maxlength' => true]);
-echo $form->field($model, 'alias')->textInput(['maxlength' => true]);
-echo $form->field($model, 'value')->textInput(['maxlength' => true]);
-echo \backend\themes\inspinia\widgets\forms\Form::submit($model, $this, 'left');
-ActiveForm::end();
+?>
+<?php $form = ActiveForm::begin(); ?>
+<?= $form->submit($model, $this) ?>
+<?= $form->text_line_lang($modelLang, 'title') ?>
+<?= $form->text_line($model, 'alias') ?>
+<?= $form->text_line($model, 'value') ?>
+<?= $form->submit($model, $this) ?>
+<?php ActiveForm::end(); ?>

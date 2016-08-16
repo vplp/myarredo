@@ -37,11 +37,11 @@ return [
             'baseUrl' => '@web/themes/defaults',
             'pathMap' => [
                 '@app/layouts' => [
-//                    '@app/themes/inspinia/layouts',
+                    '@app/themes/inspinia/layouts',
                     '@app/themes/defaults/layouts',
                 ],
                 '@app/modules' => [
-//                    '@app/themes/inspinia/modules',
+                    '@app/themes/inspinia/modules',
                     '@app/themes/defaults/layouts',
                 ]
             ],

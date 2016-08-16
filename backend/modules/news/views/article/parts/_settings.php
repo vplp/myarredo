@@ -9,19 +9,15 @@ use backend\modules\news\models\Group;
  * @var \backend\themes\inspinia\widgets\forms\ActiveForm $form
  */
 ?>
+<?= $form->field($model, 'group_id')->hiddenInput(['value' => 1])->label(false) ?>
 <?= $form->field($model, 'group_id')->dropDownList(ArrayHelper::merge(
     [0 => '---' . Yii::t('app', 'Choose group') . '---'],
     Group::getDropdownList()
 )) ?>
-<?= $form->field($modelLang, 'title', [
-    'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon">' . Yii::$app->language . '</span></div>',
-])->textInput(['maxlength' => true]) ?>
-<?= $form->field($model, 'alias')->textInput(['mexlength' => true]) ?>
-<?= $form->field($model, 'group_id')->hiddenInput(['value' => 1])->label(false) ?>
-<?= $form->field($modelLang, 'description', [
-    'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon">' . Yii::$app->language . '</span></div>',
-])->textarea([
+<?= $form->text_line_lang($modelLang, 'title') ?>
+<?= $form->text_line($model, 'alias') ?>
+<?= $form->text_line_lang($modelLang, 'description')->textarea([
     'style' => 'height:100px;'
 ]) ?>
 <?= $form->field($model, 'published_time')->datePicker($model->getPublishedTime()) ?>
-<?= $form->field($model, 'published')->checkbox() ?>
+<?= $form->switcher($model, 'published') ?>

@@ -1,15 +1,14 @@
 <?php
-//
+
 use thread\modules\seo\widgets\seo\SeoWidget;
+use thread\app\bootstrap\{
+    ActiveForm
+};
+use backend\themes\inspinia\widgets\Tabs;
 //
 use backend\modules\page\models\{
     Page, PageLang
 };
-//
-use backend\themes\inspinia\widgets\{
-    forms\ActiveForm, Tabs, forms\Form
-};
-
 
 /**
  * @var Page $model
@@ -18,19 +17,10 @@ use backend\themes\inspinia\widgets\{
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
-
-<?= Form::submit($model, $this) ?>
+<?= $form->submit($model, $this) ?>
 
 <?= Tabs::widget([
     'items' => [
-        [
-            'label' => Yii::t('app', 'Page'),
-            'content' => $this->render('parts/_page', [
-                'form' => $form,
-                'model' => $model,
-                'modelLang' => $modelLang,
-            ])
-        ],
         [
             'label' => Yii::t('app', 'Settings'),
             'content' => $this->render('parts/_settings', [
@@ -40,12 +30,19 @@ use backend\themes\inspinia\widgets\{
             ])
         ],
         [
-            'label' => Yii::t('app', 'SEO'),
+            'label' => Yii::t('app', 'Page'),
+            'content' => $this->render('parts/_page', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang,
+            ])
+        ],
+        [
+            'label' => Yii::t('app', 'Seo'),
             'content' => SeoWidget::widget(['nameSpaceModel' => Page::COMMON_NAMESPACE])
         ],
     ],
 ]); ?>
 
-<?= Form::submit($model, $this) ?>
-
+<?= $form->submit($model, $this) ?>
 <?php ActiveForm::end(); ?>

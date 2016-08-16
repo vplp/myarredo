@@ -2,20 +2,15 @@
 //TODO: Доработать
 use yii\helpers\Html;
 //
+use thread\app\bootstrap\ActiveForm;
 use thread\widgets\HtmlForm;
 //
 use backend\modules\menu\models\search\MenuItem;
-use backend\themes\inspinia\widgets\forms\ActiveForm;
 
 
 ?>
-
 <?php $form = ActiveForm::begin(); ?>
-<div class="row form-group">
-    <div class="col-sm-12">
-        <?php HtmlForm::buttonPanel($model, $this) ?>
-    </div>
-</div>
+<?= $form->submit($model, $this) ?>
 <?= Html::activeHiddenInput($model, 'group_id', ['value' => $this->context->group->id]) ?>
 <?= Html::activeHiddenInput($model, 'parent_id',
     [
@@ -25,29 +20,18 @@ use backend\themes\inspinia\widgets\forms\ActiveForm;
     ]
 ) ?>
 
-<?php HtmlForm::textInput($modelLang, 'title') ?>
-
+<?= $form->text_line_lang($modelLang, 'title') ?>
 <hr>
 <?php HtmlForm::dropDownList($model, 'link_type', MenuItem::linkTypeRange()) ?>
 <?php HtmlForm::dropDownList($model, 'link_target', MenuItem::linkTargetRange()) ?>
 
-<?php HtmlForm::textInput($model, 'link') ?>
+<?= $form->text_line($model, 'link') ?>
 <?php // TODO:: Зависимые дропдауны для выбора модуля и его элементов
 // HtmlForm::dropDownList($model, 'internal_source_id', Page::dropDownList()) ?>
 <hr>
 <?php HtmlForm::dropDownList($model, 'type', MenuItem::typeRange()) ?>
 
-<?php HtmlForm::textInput($model, 'position', ['value' => 0]) ?>
-
-<div class="row form-group">
-    <div class="col-sm-2">
-        <?php HtmlForm::switcher($model, 'published') ?>
-    </div>
-</div>
-<div class="row form-group">
-    <div class="col-sm-12">
-        <?php HtmlForm::buttonPanel($model, $this) ?>
-    </div>
-</div>
-
+<?= $form->text_line($model, 'position')->value(0) ?>
+<?= $form->switcher($model, 'published') ?>
+<?= $form->submit($model, $this) ?>
 <?php ActiveForm::end(); ?>

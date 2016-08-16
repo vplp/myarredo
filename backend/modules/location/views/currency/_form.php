@@ -1,6 +1,5 @@
 <?php
-use backend\themes\inspinia\widgets\forms\ActiveForm;
-use thread\widgets\HtmlForm;
+use thread\app\bootstrap\ActiveForm;
 
 /**
  * @var \backend\modules\location\models\Currency $model
@@ -10,18 +9,16 @@ use thread\widgets\HtmlForm;
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
+<?= $form->submit($model, $this) ?>
 
-<?= \backend\themes\inspinia\widgets\forms\Form::submit($model, $this); ?>
+<?= $form->text_line($model, 'alias') ?>
+<?= $form->text_line_lang($modelLang, 'title') ?>
+<?= $form->text_line($model, 'code1') ?>
+<?= $form->text_line($model, 'code2') ?>
+<?= $form->text_line($model, 'course') ?>
+<?= $form->text_line($model, 'currency_symbol') ?>
+<?= $form->switcher($model, 'published') ?>
 
-<?= $form->field($model, 'alias')->textInput(['maxlength']); ?>
-<?= $form->field($modelLang, 'title')->textInput(['maxlength']); ?>
-<?= $form->field($model, 'title')->textInput(['maxlength']); ?>
-<?= $form->field($model, 'code1')->textInput(['maxlength']); ?>
-<?= $form->field($model, 'code2')->textInput(['maxlength']); ?>
-<?= $form->field($model, 'course')->textInput(['maxlength']); ?>
-<?= $form->field($model, 'currency_symbol')->textInput(['maxlength']); ?>
-<?= $form->field($model, 'published')->checkbox(); ?>
-
-<?= \backend\themes\inspinia\widgets\forms\Form::submit($model, $this); ?>
+<?= $form->submit($model, $this) ?>
 
 <?php ActiveForm::end();

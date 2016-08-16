@@ -1,5 +1,5 @@
 <?php
-use backend\themes\inspinia\widgets\forms\ActiveForm;
+use thread\app\bootstrap\ActiveForm;
 
 /**
  * @var $model \backend\modules\location\models\City
@@ -9,15 +9,10 @@ use backend\themes\inspinia\widgets\forms\ActiveForm;
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
-
-<?= \backend\themes\inspinia\widgets\forms\Form::submit($model, $this); ?>
-
-<?= $form->field($model, 'alias')->textInput(['maxlength' => true]); ?>
-<?= $form->field($modelLang, 'title')->textInput(['maxlength' => true]); ?>
-
-<?= $form->field($model, 'location_country_id')->dropDownList(\backend\modules\location\models\Country::dropDownList()); ?>
-<?= $form->field($model, 'published')->checkbox(); ?>
-
-<?= \backend\themes\inspinia\widgets\forms\Form::submit($model, $this); ?>
-
+<?= $form->submit($model, $this) ?>
+<?= $form->text_line($model, 'alias') ?>
+<?= $form->text_line_lang($modelLang, 'title') ?>
+<?= $form->field($model, 'location_country_id')->dropDownList(\backend\modules\location\models\Country::dropDownList()) ?>
+<?= $form->switcher($model, 'published') ?>
+<?= $form->submit($model, $this) ?>
 <?php ActiveForm::end();

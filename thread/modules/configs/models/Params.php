@@ -51,6 +51,8 @@ class Params extends ActiveRecord
     public function rules()
     {
         return [
+            [['alias', 'value'], 'required'],
+            [['alias'], 'unique'],
             [['alias'], 'string', 'max' => 255],
             ['value', 'string', 'max' => 1024],
             [['created_at', 'updated_at', 'sort'], 'integer'],

@@ -26,7 +26,7 @@ abstract class BaseController extends \yii\web\Controller
 
 
     /**
-     * // TODO:: ПЕРЕДАЛАТЬ КАКУ, с поиском
+     * // TODO:: ПЕРЕДАЛАТЬ
      *
      * @param \yii\base\Action $action
      * @return bool

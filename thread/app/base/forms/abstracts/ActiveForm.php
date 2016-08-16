@@ -12,6 +12,7 @@ use yii\helpers\{
 abstract class ActiveForm extends \yii\bootstrap\ActiveForm
 {
 
+    public $enableClientValidation = true;
     /**
      * @inheritdoc
      */

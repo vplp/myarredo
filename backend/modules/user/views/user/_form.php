@@ -1,17 +1,17 @@
 <?php
 use backend\modules\user\models\Group;
 use thread\modules\user\models\User;
-use backend\themes\inspinia\widgets\forms\ActiveForm;
+use thread\app\bootstrap\ActiveForm;
 
 /**
  * @var User $model
  */
-$form = ActiveForm::begin();
 ?>
-<?= \backend\themes\inspinia\widgets\forms\Form::submit($model, $this); ?>
-<?= $form->field($model, 'username')->textInput(['maxlength' => true]); ?>
-<?= $form->field($model, 'email')->textInput(['maxlength' => true]); ?>
+<?php $form = ActiveForm::begin(); ?>
+<?= $form->submit($model, $this) ?>
+<?= $form->text_line($model, 'username') ?>
+<?= $form->text_line($model, 'email') ?>
 <?= $form->field($model, 'group_id')->dropDownList(Group::dropDownList()); ?>
-<?= $form->field($model, 'published')->checkbox(); ?>
-<?= \backend\themes\inspinia\widgets\forms\Form::submit($model, $this); ?>
+<?= $form->switcher($model, 'published') ?>
+<?= $form->submit($model, $this) ?>
 <?php ActiveForm::end();

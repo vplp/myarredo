@@ -1,5 +1,5 @@
 <?php
-//
+use thread\widgets\grid\ActionCheckboxColumn;
 use backend\themes\inspinia\widgets\GridView;
 
 /**
@@ -15,12 +15,12 @@ echo GridView::widget([
             'label' => Yii::t('app', 'Title')
         ],
         [
-            'class' => \thread\widgets\grid\ActionCheckboxColumn::class,
+            'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',
             'action' => 'published'
         ],
-//        [
-//            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class
-//        ],
+        [
+            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class
+        ],
     ]
 ]);

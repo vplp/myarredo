@@ -8,7 +8,7 @@ use yii\helpers\Url;
 use yii\web\{
     Controller, Response
 };
-use yii\widgets\ActiveForm;
+use thread\app\bootstrap\ActiveForm;
 //
 use thread\actions\{
     AttributeSwitch, CreateWithLang, ListModel, UpdateWithLang, Delete
@@ -39,12 +39,6 @@ abstract class BackendController extends Controller
     public $label = "";
 
     /**
-     * Хлібні крихти
-     * @var array ['label'=>'', url=>'']
-     */
-    public $breadcrumbs = [];
-
-    /**
      * Базовий layout
      * @var string
      */
@@ -56,6 +50,12 @@ abstract class BackendController extends Controller
      */
     public $actionListLinkStatus = "list";
 
+    /**
+     * BackendController constructor.
+     * @param $id
+     * @param $module
+     * @param array $config
+     */
     public function __construct($id, $module, $config = [])
     {
         parent::__construct($id, $module, $config);

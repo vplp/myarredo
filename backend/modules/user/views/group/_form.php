@@ -1,22 +1,18 @@
 <?php
 
-use backend\themes\inspinia\widgets\forms\ActiveForm;
-use thread\widgets\HtmlForm;
+use thread\app\bootstrap\ActiveForm;
 
 /**
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
- *
  * @var \backend\modules\user\models\Group $model
  * @var \common\modules\user\models\GroupLang $modelLang
  */
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
-<?= \backend\themes\inspinia\widgets\forms\Form::submit($model, $this); ?>
-<?= $form->field($modelLang, 'title')->textInput(['maxlength' => true]); ?>
-<?= $form->field($model, 'alias')->textInput(['maxlength' => true]); ?>
-<?= $model->isNewRecord ? $form->field($model, 'role')->textInput() : ''; ?>
-<?= $form->field($model, 'published')->checkbox() ?>
-<?= \backend\themes\inspinia\widgets\forms\Form::submit($model, $this); ?>
+<?= $form->submit($model, $this) ?>
+<?= $form->text_line_lang($modelLang, 'title') ?>
+<?= $form->text_line($model, 'alias') ?>
+<?= $model->isNewRecord ? $form->text_line($model, 'role') : '' ?>
+<?= $form->switcher($model, 'published') ?>
+<?= $form->submit($model, $this) ?>
 <?php ActiveForm::end();

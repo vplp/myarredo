@@ -1,5 +1,5 @@
 <?php
-use backend\themes\inspinia\widgets\forms\ActiveForm;
+use thread\app\bootstrap\ActiveForm;
 
 /**
  * @var ActiveForm $form
@@ -9,16 +9,11 @@ use backend\themes\inspinia\widgets\forms\ActiveForm;
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
-
-<?= \backend\themes\inspinia\widgets\forms\Form::submit($model, $this); ?>
-
-<?= $form->field($model, 'alpha2')->textInput(['maxlength' => true]); ?>
-<?= $form->field($model, 'alpha3')->textInput(['maxlength' => true]); ?>
-<?= $form->field($model, 'iso')->textInput(['maxlength' => true]); ?>
-<?= $form->field($modelLang, 'title')->textInput(['maxlength' => true]); ?>
-<?= $form->field($model, 'published')->checkbox(); ?>
-
-
-<?= \backend\themes\inspinia\widgets\forms\Form::submit($model, $this); ?>
-
+<?= $form->submit($model, $this) ?>
+<?= $form->text_line($model, 'alpha2') ?>
+<?= $form->text_line($model, 'alpha3') ?>
+<?= $form->text_line($model, 'iso') ?>
+<?= $form->text_line_lang($modelLang, 'title') ?>
+<?= $form->switcher($model, 'published') ?>
+<?= $form->submit($model, $this) ?>
 <?php ActiveForm::end();

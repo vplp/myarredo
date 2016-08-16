@@ -1,15 +1,13 @@
 <?php
-//
+
 use thread\modules\seo\widgets\seo\SeoWidget;
+use thread\app\bootstrap\{
+    ActiveForm, Tabs
+};
 //
 use backend\modules\page\models\{
     Page, PageLang
 };
-//
-use backend\themes\inspinia\widgets\{
-    forms\ActiveForm, Tabs, forms\Form
-};
-
 
 /**
  * @var Page $model
@@ -18,22 +16,21 @@ use backend\themes\inspinia\widgets\{
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
-
-<?= Form::submit($model, $this) ?>
+<?= $form->submit($model, $this) ?>
 
 <?= Tabs::widget([
     'items' => [
         [
-            'label' => Yii::t('app', 'Page'),
-            'content' => $this->render('parts/_page', [
+            'label' => Yii::t('app', 'Settings'),
+            'content' => $this->render('parts/_settings', [
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang,
             ])
         ],
         [
-            'label' => Yii::t('app', 'Settings'),
-            'content' => $this->render('parts/_settings', [
+            'label' => Yii::t('app', 'Page'),
+            'content' => $this->render('parts/_page', [
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang,
@@ -46,6 +43,5 @@ use backend\themes\inspinia\widgets\{
     ],
 ]); ?>
 
-<?= Form::submit($model, $this) ?>
-
+<?= $form->submit($model, $this) ?>
 <?php ActiveForm::end(); ?>
