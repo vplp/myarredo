@@ -48,4 +48,22 @@ class User extends aModule
     {
         return Url::toRoute(['/home/home/index']);
     }
+
+    /**
+     * @param $user_id
+     * @return string
+     */
+    public function getAvatarUploadPath($user_id)
+    {
+        return $this->getBaseUploadPath() . $user_id . '/profile';
+    }
+
+    /**
+     * @param $user_id
+     * @return string
+     */
+    public function getAvatarUploadUrl($user_id)
+    {
+        return $this->getBaseUploadUrl() . $user_id . '/profile';
+    }
 }

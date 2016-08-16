@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use backend\themes\inspinia\widgets\forms\ActiveForm;
+use thread\app\bootstrap\ActiveForm;
 
 /**
  * @var \backend\modules\user\models\User $model
@@ -14,8 +14,8 @@ use backend\themes\inspinia\widgets\forms\ActiveForm;
 ]); ?>
 <?= $form->field($model, 'username')->label(); ?>
 <?= $form->field($model, 'password')->passwordInput() ?>
-<div class="form-group">
-    <?= Html::submitButton(Yii::t('app', 'Login'), ['class' => 'btn btn-primary block full-width m-b', 'name' => 'login-button']) ?>
-</div>
-<?= Html::a('<small>' . Yii::t('app', 'Forgot password?') . '</small>', [\yii\helpers\Url::to('/user/user/request-password-reset')]) ?>
+    <div class="form-group">
+        <?= Html::submitButton(Yii::t('app', 'Login'), ['class' => 'btn btn-primary block full-width m-b', 'name' => 'login-button']) ?>
+    </div>
+<?= Html::a('<small>' . Yii::t('app', 'Forgot password?') . '</small>', ['/user/password/request-reset']) ?>
 <?php ActiveForm::end(); ?>

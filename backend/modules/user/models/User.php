@@ -2,7 +2,6 @@
 
 namespace backend\modules\user\models;
 
-use Yii;
 use yii\data\ActiveDataProvider;
 //
 use thread\app\model\interfaces\BaseBackendModel;

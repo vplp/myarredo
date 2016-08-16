@@ -1,14 +1,13 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
-//
-use backend\modules\user\models\Group;
 //
 use thread\widgets\grid\{
     ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
 };
-
+//
+use backend\themes\inspinia\widgets\GridView;
+use backend\modules\user\models\Group;
 /**
  *
  * @package admin\modules\menu\view
@@ -47,10 +46,7 @@ echo GridView::widget([
             },
         ],
         [
-            'class' => ActionEditColumn::class,
-        ],
-        [
-            'class' => ActionToTrashColumn::class
+            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class
         ],
     ]
 ]);

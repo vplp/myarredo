@@ -152,4 +152,19 @@ class Article extends ActiveRecord
     {
         return date('Y-m-d\TH:i:sO', $this->published_time);
     }
+
+    /**
+     * @return null|string
+     */
+    public function getArticleImage()
+    {
+        $module = Yii::$app->getModule('news');
+        $path = $module->getArticleUploadPath();
+        $url = $module->getArticleUploadUrl();
+        $image = null;
+        if (!empty($this->image_link) && is_file($path . $this->image_link)) {
+            $image = $url . $this->image_link;
+        }
+        return $image;
+    }
 }

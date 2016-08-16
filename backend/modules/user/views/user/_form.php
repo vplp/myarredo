@@ -1,7 +1,9 @@
 <?php
-use backend\modules\user\models\Group;
-use thread\modules\user\models\User;
 use thread\app\bootstrap\ActiveForm;
+//
+use backend\modules\user\models\{
+    Group, User
+};
 
 /**
  * @var User $model

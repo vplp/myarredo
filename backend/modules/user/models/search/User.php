@@ -27,7 +27,8 @@ class User extends UserModel implements BaseBackendSearchModel
     {
         return [
             [['username', 'email'], 'string', 'max' => 255],
-            [['group_id'], 'integer']
+            [['group_id'], 'integer'],
+            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
 
@@ -57,15 +58,15 @@ class User extends UserModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query->joinWith('group');
-
         $query->andFilterWhere([
             'id' => $this->id,
             'group_id' => $this->group_id
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'email', $this->email]);
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'published', $this->published]);
+
         return $dataProvider;
     }
 
@@ -75,7 +76,7 @@ class User extends UserModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = UserModel::find()->joinWith([
+        $query = UserModel::find()->with([
             'group',
             'group.lang',
         ])->undeleted();
@@ -88,7 +89,7 @@ class User extends UserModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = UserModel::find()->joinWith([
+        $query = UserModel::find()->with([
             'group',
             'group.lang',
         ])->deleted();

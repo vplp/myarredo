@@ -40,6 +40,6 @@ class Group extends \common\modules\user\models\Group implements BaseBackendMode
      */
     public static function dropDownList()
     {
-        return ArrayHelper::map(self::findBase()->all(), 'id', 'lang.title');
+        return ArrayHelper::map(self::findBase()->with(['lang'])->all(), 'id', 'lang.title');
     }
 }

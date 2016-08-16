@@ -5,7 +5,7 @@
 /* @var $model \frontend\modules\user\models\form\ResetPasswordForm */
 
 use yii\helpers\Html;
-use backend\themes\inspinia\widgets\forms\ActiveForm;
+use thread\app\bootstrap\ActiveForm;
 ?>
 
 <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>

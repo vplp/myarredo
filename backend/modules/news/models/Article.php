@@ -54,20 +54,6 @@ class Article extends CommonArticleModel implements BaseBackendModel
         );
     }
 
-    /**
-     * @inheritdoc
-     * @return array
-     */
-//    public function rules()
-//    {
-//        return [
-//            [['title', 'image_link', 'content'], 'required'],
-//            [['title', 'image_link', 'description', 'content'], 'string'],
-//            [['group_id', 'created_at', 'updated_at'], 'integer'],
-//            [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
-//        ];
-//    }
-
     //TODO Что с этим делать
     /**
      * @return $this

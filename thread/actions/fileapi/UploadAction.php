@@ -65,7 +65,9 @@ class UploadAction extends Action
         if ($this->path === null) {
             $this->path = Yii::getAlias('@temp');
         }
+        echo $this->path;
         $this->path = FileHelper::normalizePath(Yii::getAlias($this->path)) . DIRECTORY_SEPARATOR;
+        echo $this->path;
         if (!FileHelper::createDirectory($this->path)) {
             throw new InvalidCallException("Directory specified in 'path' attribute doesn't exist or cannot be created.");
         }

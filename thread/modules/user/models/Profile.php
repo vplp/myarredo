@@ -98,6 +98,22 @@ class Profile extends ActiveRecord
     }
 
     /**
+     * @return null|string
+     */
+    public function getAvatarImage()
+    {
+        $module = Yii::$app->getModule('user');
+        $path = $module->getAvatarUploadPath($this->user_id);
+        $url = $module->getAvatarUploadUrl($this->user_id);
+        echo $path;
+        $image = null;
+        if (!empty($this->image_link) && is_file($path . $this->image_link)) {
+            $image = $url . $this->image_link;
+        }
+        return $image;
+    }
+
+    /**
      * @param $user_id
      * @return mixed
      */

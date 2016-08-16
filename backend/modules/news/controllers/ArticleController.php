@@ -30,7 +30,6 @@ class ArticleController extends BackendController
     /**
      * @return array
      */
-
     public function actions()
     {
         return ArrayHelper::merge(

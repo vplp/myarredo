@@ -1,17 +1,18 @@
 <?php
-use backend\themes\inspinia\widgets\forms\ActiveForm;
 use yii\helpers\Html;
+//
+use thread\app\bootstrap\ActiveForm;
 
 /**
  * @var \backend\modules\user\models\Profile $model
  */
 ?>
 <?php $form = ActiveForm::begin(); ?>
-<?= \backend\themes\inspinia\widgets\forms\Form::submit($model, $this); ?>
-<?= $form->field($model, 'first_name')->textInput(['maxlength']); ?>
-<?= $form->field($model, 'last_name')->textInput(['maxlength']); ?>
-<?= $form->field($model, 'avatar')->imageOne(); ?>
+<?= $form->submit($model, $this) ?>
+<?= $form->text_line($model, 'first_name') ?>
+<?= $form->text_line($model, 'last_name') ?>
+<?= $form->field($model, 'avatar')->imageOne($model->getAvatarImage()) ?>
 <?= $form->field($model, 'preferred_language')->dropDownList(\Yii::$app->params['themes']['languages']); ?>
-<?= Html::a(Yii::t('app', 'Change password'), ['password-change', 'id' => $model['id']], ['class' => 'btn btn-info']); ?>
-<?= \backend\themes\inspinia\widgets\forms\Form::submit($model, $this); ?>
+<?= Html::a(Yii::t('user', 'Change password'), ['/user/password/change', 'id' => $model['id']], ['class' => 'btn btn-info']); ?>
+<?= $form->submit($model, $this) ?>
 <?php ActiveForm::end();

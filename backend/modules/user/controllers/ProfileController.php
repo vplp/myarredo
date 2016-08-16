@@ -3,16 +3,15 @@
 namespace backend\modules\user\controllers;
 
 use Yii;
-use yii\db\Exception;
-use yii\web\NotFoundHttpException;
 //
 use thread\app\base\controllers\BackendController;
 use thread\actions\Update;
-//
-use thread\modules\user\models\form\ChangePassword;
+use thread\actions\fileapi\{
+    DeleteAction, UploadAction
+};
 //
 use backend\modules\user\models\{
-    User, Profile
+    Profile
 };
 
 /**
@@ -27,6 +26,7 @@ class ProfileController extends BackendController
     protected $model = Profile::class;
     public $defaultAction = 'list';
     public $actionListLinkStatus = "list";
+    protected $user_id = null;
 
     /**
      *
@@ -34,6 +34,8 @@ class ProfileController extends BackendController
      */
     public function actions()
     {
+        $model = Profile::find()->byId(Yii::$app->getRequest()->get('id', 0))->one();
+
         return [
             'update' => [
                 'class' => Update::class,
@@ -41,52 +43,28 @@ class ProfileController extends BackendController
                 'redirect' => function () {
                     return $_POST['save_and_exit'] ? ['/user/user/list'] : ['update', 'id' => $this->action->getModel()->id];
                 }
-            ]
+            ],
+            'fileupload' => [
+                'class' => UploadAction::class,
+                'path' => $this->module->getAvatarUploadPath($model['user_id'])
+            ],
+            'filedelete' => [
+                'class' => DeleteAction::class,
+                'path' => $this->module->getAvatarUploadPath($model['user_id'])
+            ],
         ];
     }
 
-    /**
-     * @param $id
-     * @return string
-     * @throws NotFoundHttpException
-     */
-    public function actionPasswordChange($id)
+    public function beforeAction($action)
     {
-        $user = User::findIdentity($id);
-        if ($user === null) {
-            throw new NotFoundHttpException;
-        }
-
-        $this->label = Yii::t('app', 'Change password') . ' : ' . $user->username;
-
-        $model = new ChangePassword();
-        $model->setScenario('passwordChange');
-        $model->username = $user->username;
-        $model->email = $user->email;
-
-        if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
-            if ($user !== null) {
-                $user->setScenario('passwordChange');
-                $user->setPassword($model->password);
-                /** @var PDO $transaction */
-                $transaction = $user::getDb()->beginTransaction();
-                try {
-                    $save = $user->save();
-                    if ($save) {
-                        $model->addFlash(Yii::t('app', 'password changed'));
-                        $transaction->commit();
-
-                        return $_POST['save_and_exit'] ? $this->redirect(['update', 'id' => $user->profile->id]) : $this->redirect(['password-change', 'id' => $user->profile->id]);
-                    } else {
-                        $transaction->rollBack();
-                    }
-                } catch (Exception $e) {
-                    $transaction->rollBack();
-                }
+        $actionName = $this->action->id;
+        if (in_array($actionName, ['fileupload', 'filedelete'])) {
+            $model = Profile::find()->byId(Yii::$app->getRequest()->get('id', 0))->one();
+            if ($model === null) {
+                throw new NotFoundHttpException;
             }
+            $this->user_id = $model['user_id'];
         }
-        return $this->render('passwordchange', [
-            'model' => $model,
-        ]);
+        return parent::beforeAction($action);
     }
 }
