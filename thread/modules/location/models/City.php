@@ -84,7 +84,7 @@ class City extends ActiveRecord
             'location_country_id' => Yii::t('app', 'Country'),
             'created_at' => Yii::t('app', 'created_at'),
             'updated_at' => Yii::t('app', 'updated_at'),
-            'published' => Yii::t('app', 'published'),
+            'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'deleted'),
         ];
     }

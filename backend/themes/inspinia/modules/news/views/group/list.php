@@ -1,11 +1,13 @@
 <?php
-use thread\widgets\grid\ActionCheckboxColumn;
+
+use yii\helpers\Html;
+//
+use thread\widgets\grid\{
+    ActionCheckboxColumn
+};
 //
 use backend\themes\inspinia\widgets\GridView;
 
-/**
- * @var \backend\modules\page\models\search\Page $model
- */
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
@@ -13,7 +15,15 @@ echo GridView::widget([
         [
             'attribute' => 'title',
             'value' => 'lang.title',
-            'label' => Yii::t('app', 'Title')
+            'label' => Yii::t('app', 'Title'),
+        ],
+        [
+            'label' => 'Articles',
+            'format' => 'raw',
+            'value' => function ($model) {
+                return Html::a(Yii::t('app', 'Articles') . ' (' . count($model->articles) . ')',
+                    ['/news/article/list', 'Article[group_id]' => $model['id']]);
+            }
         ],
         [
             'class' => ActionCheckboxColumn::class,

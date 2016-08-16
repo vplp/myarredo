@@ -1,11 +1,16 @@
 <?php
-use thread\widgets\grid\ActionCheckboxColumn;
+
+use thread\widgets\grid\{
+    ActionCheckboxColumn
+};
 //
 use backend\themes\inspinia\widgets\GridView;
+use backend\modules\location\models\Country;
 
 /**
- * @var \backend\modules\page\models\search\Page $model
+ * @var \backend\modules\location\models\search\City $model
  */
+
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
@@ -13,7 +18,12 @@ echo GridView::widget([
         [
             'attribute' => 'title',
             'value' => 'lang.title',
-            'label' => Yii::t('app', 'Title')
+            'label' => Yii::t('app', 'Title'),
+        ],
+        [
+            'attribute' => 'location_country_id',
+            'value' => 'country.lang.title',
+            'filter' => Country::dropDownList()
         ],
         [
             'class' => ActionCheckboxColumn::class,
