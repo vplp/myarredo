@@ -68,7 +68,7 @@ class Params extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['published', 'deleted', 'value', 'alias'],
+            'backend' => ['published', 'deleted', 'value', 'alias', 'group_id'],
         ];
     }
 
@@ -94,6 +94,14 @@ class Params extends ActiveRecord
     public function getLang()
     {
         return $this->hasOne(ParamsLang::class, ['rid' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGroup()
+    {
+        return $this->hasOne(Group::class, ['id' => 'group_id']);
     }
 
 }

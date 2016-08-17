@@ -122,7 +122,7 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
      */
     public function text_password($model, $attribute, $options = [])
     {
-        return $this->field($model, $attribute, $options)->textInput(['maxlength' => true, 'type' => 'password']);
+        return $this->field($model, $attribute, $options)->passwordInput();
     }
 
     /**

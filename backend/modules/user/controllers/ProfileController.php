@@ -24,8 +24,8 @@ class ProfileController extends BackendController
     public $label = "Profile";
     public $title = "Profile";
     protected $model = Profile::class;
-    public $defaultAction = 'list';
-    public $actionListLinkStatus = "list";
+    public $defaultAction = 'update';
+    public $actionListLinkStatus = ['/user/user/list'];
     protected $user_id = null;
 
     /**
@@ -57,6 +57,7 @@ class ProfileController extends BackendController
 
     public function beforeAction($action)
     {
+
         $actionName = $this->action->id;
         if (in_array($actionName, ['fileupload', 'filedelete'])) {
             $model = Profile::find()->byId(Yii::$app->getRequest()->get('id', 0))->one();
@@ -65,6 +66,6 @@ class ProfileController extends BackendController
             }
             $this->user_id = $model['user_id'];
         }
-        return parent::beforeAction($action);
+        return true;
     }
 }

@@ -1,6 +1,14 @@
 Change Log: `yii2-widget-datepicker`
 ====================================
 
+## version 1.4.1
+
+**Date:** 17-Aug-2016
+
+- (enh #96): Update locale files for plugin.
+- (enh #98): Add Japanese translations.
+- (enh #102): Add Lithuanian translations.
+
 ## version 1.4.0
 
 **Date:** 28-Jun-2016

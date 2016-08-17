@@ -43,7 +43,7 @@ echo GridView::widget([
         [
             'format' => 'raw',
             'value' => function ($model) {
-                return Html::a(Yii::t('app', 'Change password'), ['password-change', 'id' => $model->id]);
+                return Html::a(Yii::t('app', 'Change password'), ['/user/password/change', 'id' => $model->id]);
             },
         ],
         [

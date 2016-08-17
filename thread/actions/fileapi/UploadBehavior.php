@@ -67,8 +67,7 @@ class UploadBehavior extends Behavior
                     throw new InvalidParamException('Path must be set for all attributes.');
                 }
                 if (!isset($config['tempPath']) || empty($config['tempPath'])) {
-//                    throw new InvalidParamException('Temporary path must be set for all attributes.');
-                    $config['tempPath'] = Yii::getAlias('@root') . '/temp';
+                    throw new InvalidParamException('Temporary path must be set for all attributes.');
                 }
                 if (!isset($config['url']) || empty($config['url'])) {
                     $config['url'] = $this->publish($config['path']);

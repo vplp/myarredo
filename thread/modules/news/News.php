@@ -35,4 +35,22 @@ class News extends aModule
     {
         return Yii::$app->getModule('news')->params['format']['date'];
     }
+
+    /**
+     * Image upload path
+     * @return string
+     */
+    public function getArticleUploadPath()
+    {
+        return $this->getBaseUploadPath() . '/article';
+    }
+
+    /**
+     * Image upload URL
+     * @return string
+     */
+    public function getArticleUploadUrl()
+    {
+        return $this->getBaseUploadUrl() . '/article';
+    }
 }

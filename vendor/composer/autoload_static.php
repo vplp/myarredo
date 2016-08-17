@@ -20,21 +20,22 @@ class ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97
         array (
             'yii\\swiftmailer\\' => 16,
             'yii\\mustache\\' => 13,
+            'yii\\imagine\\' => 12,
+            'yii\\httpclient\\' => 15,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
+            'yii\\elasticsearch\\' => 18,
             'yii\\debug\\' => 10,
             'yii\\composer\\' => 13,
             'yii\\codeception\\' => 16,
             'yii\\bootstrap\\' => 14,
+            'yii\\authclient\\' => 15,
+            'yii\\apidoc\\' => 11,
             'yii\\' => 4,
         ),
         'v' => 
         array (
             'voskobovich\\behaviors\\' => 22,
-        ),
-        'p' => 
-        array (
-            'phpDocumentor\\Reflection\\' => 25,
         ),
         'k' => 
         array (
@@ -55,6 +56,7 @@ class ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97
             'kartik\\form\\' => 12,
             'kartik\\file\\' => 12,
             'kartik\\field\\' => 13,
+            'kartik\\dialog\\' => 14,
             'kartik\\depdrop\\' => 15,
             'kartik\\datetime\\' => 16,
             'kartik\\daterange\\' => 17,
@@ -66,11 +68,9 @@ class ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97
         ),
         'c' => 
         array (
+            'cebe\\markdown\\latex\\' => 20,
             'cebe\\markdown\\' => 14,
-        ),
-        'W' => 
-        array (
-            'Webmozart\\Assert\\' => 17,
+            'cebe\\jssearch\\' => 14,
         ),
         'S' => 
         array (
@@ -119,6 +119,14 @@ class ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97
         array (
             0 => __DIR__ . '/..' . '/cedx/yii2-mustache/lib',
         ),
+        'yii\\imagine\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-imagine',
+        ),
+        'yii\\httpclient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-httpclient',
+        ),
         'yii\\gii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-gii',
@@ -126,6 +134,10 @@ class ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97
         'yii\\faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-faker',
+        ),
+        'yii\\elasticsearch\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-elasticsearch',
         ),
         'yii\\debug\\' => 
         array (
@@ -143,6 +155,14 @@ class ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-bootstrap',
         ),
+        'yii\\authclient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-authclient',
+        ),
+        'yii\\apidoc\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-apidoc',
+        ),
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
@@ -150,12 +170,6 @@ class ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97
         'voskobovich\\behaviors\\' => 
         array (
             0 => __DIR__ . '/..' . '/voskobovich/yii2-many-many-behavior/src',
-        ),
-        'phpDocumentor\\Reflection\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'kartik\\widgets\\' => 
         array (
@@ -225,6 +239,10 @@ class ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-field-range',
         ),
+        'kartik\\dialog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-dialog',
+        ),
         'kartik\\depdrop\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-depdrop',
@@ -257,13 +275,17 @@ class ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-affix',
         ),
+        'cebe\\markdown\\latex\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cebe/markdown-latex',
+        ),
         'cebe\\markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
         ),
-        'Webmozart\\Assert\\' => 
+        'cebe\\jssearch\\' => 
         array (
-            0 => __DIR__ . '/..' . '/webmozart/assert/src',
+            0 => __DIR__ . '/..' . '/cebe/js-search/lib',
         ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
@@ -340,11 +362,29 @@ class ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97
     );
 
     public static $prefixesPsr0 = array (
+        'p' => 
+        array (
+            'phpDocumentor' => 
+            array (
+                0 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+                1 => __DIR__ . '/..' . '/phpdocumentor/reflection/src',
+                2 => __DIR__ . '/..' . '/phpdocumentor/reflection/tests/unit',
+                3 => __DIR__ . '/..' . '/phpdocumentor/reflection/tests/mocks',
+            ),
+        ),
         'P' => 
         array (
+            'Psr\\Log\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/psr/log',
+            ),
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
+            ),
+            'PHPParser' => 
+            array (
+                0 => __DIR__ . '/..' . '/nikic/php-parser/lib',
             ),
         ),
         'M' => 
@@ -353,9 +393,25 @@ class ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97
             array (
                 0 => __DIR__ . '/..' . '/mustache/mustache/src',
             ),
+            'MikeVanRiel' => 
+            array (
+                0 => __DIR__ . '/..' . '/mikevanriel/text-to-latex/src',
+                1 => __DIR__ . '/..' . '/mikevanriel/text-to-latex/tests/unit',
+            ),
+        ),
+        'I' => 
+        array (
+            'Imagine' => 
+            array (
+                0 => __DIR__ . '/..' . '/imagine/imagine/lib',
+            ),
         ),
         'H' => 
         array (
+            'Highlight\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/scrivo/highlight.php',
+            ),
             'HTMLPurifier' => 
             array (
                 0 => __DIR__ . '/..' . '/ezyang/htmlpurifier/library',

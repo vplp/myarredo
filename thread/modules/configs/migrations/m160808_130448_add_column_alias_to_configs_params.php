@@ -3,6 +3,12 @@
 use yii\db\Migration;
 use thread\modules\configs\Configs as ConfigsModule;
 
+/**
+ * Class m160808_130448_add_column_alias_to_configs_params
+ *
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class m160808_130448_add_column_alias_to_configs_params extends Migration
 {
 

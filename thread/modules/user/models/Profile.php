@@ -105,10 +105,10 @@ class Profile extends ActiveRecord
         $module = Yii::$app->getModule('user');
         $path = $module->getAvatarUploadPath($this->user_id);
         $url = $module->getAvatarUploadUrl($this->user_id);
-        echo $path;
+
         $image = null;
-        if (!empty($this->image_link) && is_file($path . $this->image_link)) {
-            $image = $url . $this->image_link;
+        if (!empty($this->avatar) && is_file($path . '/' . $this->avatar)) {
+            $image = $url . '/' . $this->avatar;
         }
         return $image;
     }
@@ -120,5 +120,13 @@ class Profile extends ActiveRecord
     public static function findByUserId($user_id)
     {
         return self::find()->user_id($user_id)->one();
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
 }

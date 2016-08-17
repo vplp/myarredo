@@ -4,21 +4,18 @@ namespace backend\modules\user\controllers;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\filters\AccessControl;
-use yii\helpers\ArrayHelper;
 use yii\web\{
     BadRequestHttpException, NotFoundHttpException
 };
 //
 use thread\app\base\controllers\BackendController;
-use thread\modules\user\models\Profile;
-use thread\actions\Update;
 //
 use thread\modules\user\models\form\{
-    ChangePassword, CreateForm, PasswordResetRequestForm, ResetPasswordForm
+    ChangePassword, PasswordResetRequestForm
 };
 //
 use backend\modules\user\models\{
-    User, search\User as filterUserModel
+    User
 };
 
 
@@ -35,7 +32,7 @@ class PasswordController extends BackendController
     public $label = "User";
     public $title = "User";
     protected $model = User::class;
-    protected $filterModel = filterUserModel::class;
+    public $actionListLinkStatus = ['/user/user/list'];
 
     /**
      * @return array
@@ -62,6 +59,11 @@ class PasswordController extends BackendController
                 ],
             ],
         ];
+    }
+
+    public function beforeAction($action)
+    {
+        return true;
     }
 
     /**
@@ -121,6 +123,7 @@ class PasswordController extends BackendController
         }
         return $this->render('change', [
             'model' => $model,
+            'user' => $user
         ]);
     }
 

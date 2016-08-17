@@ -1,6 +1,7 @@
 <?php
 namespace backend\modules\news\models;
 
+use Yii;
 use yii\helpers\ArrayHelper;
 //
 use thread\modules\seo\behaviors\SeoBehavior;

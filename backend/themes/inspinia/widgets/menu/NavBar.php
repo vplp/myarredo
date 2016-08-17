@@ -158,6 +158,10 @@ class NavBar extends \yii\bootstrap\NavBar
                         'label' => Yii::t('app', 'Params'),
                         'url' => ['/configs/params/list']
                     ],
+                    [
+                        'label' => Yii::t('app', 'Groups'),
+                        'url' => ['/configs/group/list']
+                    ],
                 ],
             ],
         ];

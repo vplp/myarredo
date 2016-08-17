@@ -1,7 +1,6 @@
 <?php
 use thread\app\bootstrap\ActiveForm;
 use thread\modules\user\models\form\ChangePassword;
-use thread\widgets\HtmlForm;
 //
 use backend\modules\user\models\User;
 
@@ -17,16 +16,16 @@ if (!empty($model->getFlash())) {
     $model->password = '';
     $model->password_confirmation = '';
 } ?>
-
-<?php HtmlForm::passwordInput($model, 'password'); ?>
-<?php HtmlForm::passwordInput($model, 'password_confirmation'); ?>
-
+<?= $form->submit($model, $this) ?>
     <div class="row form-group">
-        <div class="col-sm-2">
-        </div>
-        <div class="col-sm-4 col-sm-offset-6" style="text-align: right;">
-            <?php HtmlForm::buttonPanel($model, $this); ?>
+        <div class="col-sm-12">
+            <h1><?= $user['profile']->getFullName() ?></h1>
         </div>
     </div>
+
+<?= $form->text_password($model, 'password') ?>
+<?= $form->text_password($model, 'password_confirmation') ?>
+
+<?= $form->submit($model, $this) ?>
 <?php
 ActiveForm::end();
