@@ -3,11 +3,12 @@
 use yii\helpers\Html;
 //
 use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+    ActionCheckboxColumn, GridViewFilter
 };
 //
 use backend\themes\inspinia\widgets\GridView;
 use backend\modules\user\models\Group;
+
 /**
  *
  * @package admin\modules\menu\view
@@ -24,7 +25,7 @@ echo GridView::widget([
         [
             'attribute' => 'group_id',
             'value' => 'group.lang.title',
-            'filter' => Group::dropDownList()
+            'filter' => GridViewFilter::dropDownList($filter, 'group_id', Group::dropDownList()),
         ],
         'username',
         [

@@ -1,12 +1,13 @@
 <?php
 use yii\helpers\{
-    Html, Url
+    Url
 };
 use yii\grid\GridView;
 //
 use thread\widgets\grid\{
     ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
 };
+
 /**
  * @var \backend\modules\menu\models\search\MenuItem $model
  */
@@ -24,8 +25,7 @@ echo GridView::widget(
                 'attribute' => 'link',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    //TODO: Здесь должен быть метод из модели данных
-                    return ($model->link_type == 'internal') ? $model->link : $model->link;
+                    return $model->getLink();
                 }
             ],
             'position',
@@ -35,15 +35,18 @@ echo GridView::widget(
                 'action' => 'published'
             ],
             [
-                'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class,
-                'updateLink' => function ($model) {
+                'class' => ActionEditColumn::class,
+                'link' => function ($model) {
                     return Url::toRoute([
                         'update',
                         'group_id' => $model['group_id'],
                         'id' => $model['id']
                     ]);
-                },
-                'deleteLink' => function ($model) {
+                }
+            ],
+            [
+                'class' => ActionToTrashColumn::class,
+                'link' => function ($model) {
                     return Url::toRoute([
                         'intrash',
                         'group_id' => $model['group_id'],

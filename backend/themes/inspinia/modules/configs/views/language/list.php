@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 //
 use thread\widgets\grid\{
@@ -7,28 +8,20 @@ use thread\widgets\grid\{
 //
 use backend\themes\inspinia\widgets\GridView;
 
-/**
- * @var \backend\modules\user\models\search\Group $model
- */
-
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
         [
-            'attribute' => 'title',
-            'value' => 'lang.title',
-            'label' => Yii::t('app', 'Title'),
-        ],
-        'role',
-        [
-            'label' => 'User',
+            'attribute' => 'img_flag',
             'format' => 'raw',
-            'value' => function ($model) {
-                return Html::a(Yii::t('app', 'Users') . ' (' . $model->getUsersCount() . ')',
-                    ['/user/user/list', 'User[group_id]' => $model['id']]);
-            }
+            'value' => function ($data) {
+                return Html::img($data->getFlagUploadUrl());
+            },
         ],
+        'alias',
+        'label',
+        'local',
         [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',

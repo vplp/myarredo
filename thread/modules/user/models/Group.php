@@ -121,4 +121,12 @@ class Group extends ActiveRecord
     {
         return $this->hasOne(GroupLang::class, ['rid' => 'id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasOne(User::class, ['group_id' => 'id']);
+    }
 }

@@ -6,7 +6,7 @@ use yii\grid\GridView;
 use backend\modules\user\models\Group;
 //
 use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn, GridViewFilter
 };
 
 /**
@@ -25,7 +25,7 @@ echo GridView::widget([
         [
             'attribute' => 'group_id',
             'value' => 'group.lang.title',
-            'filter' => Group::dropDownList()
+            'filter' => GridViewFilter::dropDownList($filter, 'group_id', Group::dropDownList()),
         ],
         'username',
         [

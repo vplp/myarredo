@@ -42,4 +42,12 @@ class Group extends \common\modules\user\models\Group implements BaseBackendMode
     {
         return ArrayHelper::map(self::findBase()->with(['lang'])->all(), 'id', 'lang.title');
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUsersCount()
+    {
+        return $this->getUsers()->count();
+    }
 }

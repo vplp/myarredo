@@ -12,18 +12,15 @@ echo GridView::widget([
     'filterModel' => $filter,
     'columns' => [
         [
-            'attribute' => 'title',
-            'value' => 'lang.title',
-            'label' => Yii::t('app', 'Title'),
-        ],
-        [
-            'label' => 'Articles',
+            'attribute' => 'img_flag',
             'format' => 'raw',
-            'value' => function ($model) {
-                return Html::a(Yii::t('app', 'Articles') . ' (' . $model->getArticlesCount() . ')',
-                    ['/news/article/list', 'Article[group_id]' => $model['id']]);
-            }
+            'value' => function ($data) {
+                return Html::img($data->getFlagUploadUrl());
+            },
         ],
+        'alias',
+        'label',
+        'local',
         [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',

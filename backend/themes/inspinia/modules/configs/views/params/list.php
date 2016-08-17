@@ -1,5 +1,5 @@
 <?php
-use yii\helpers\Html;
+use thread\widgets\grid\GridViewFilter;
 use backend\themes\inspinia\widgets\GridView;
 
 echo GridView::widget([
@@ -10,8 +10,7 @@ echo GridView::widget([
             'attribute' => 'group_id',
             'value' => 'group.lang.title',
             'label' => Yii::t('app', 'Group'),
-            'filter' => Html::activeDropDownList($filter, 'group_id', \backend\modules\configs\models\Group::dropDownList(),
-                ['class' => 'form-control', 'prompt' => '  ---  '])
+            'filter' => GridViewFilter::dropDownList($filter, 'group_id', \backend\modules\configs\models\Group::dropDownList())
         ],
         [
             'attribute' => 'title',

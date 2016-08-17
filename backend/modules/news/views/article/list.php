@@ -1,12 +1,11 @@
 <?php
 
-use yii\helpers\Html;
 use yii\grid\GridView;
 //
 use kartik\widgets\DatePicker;
 //
 use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn, GridViewFilter
 };
 
 /**
@@ -19,8 +18,8 @@ echo GridView::widget([
     'columns' => [
         [
             'attribute' => 'group_id',
-            'filter' => Html::activeDropDownList($filter, 'group_id', \backend\modules\news\models\Group::dropDownList(),
-                ['class' => 'form-control', 'prompt' => '  ---  '])
+            'value' => 'group.lang.title',
+            'filter' => GridViewFilter::dropDownList($filter, 'group_id', \backend\modules\news\models\Group::dropDownList()),
         ],
         [
             'attribute' => 'title',
@@ -29,18 +28,7 @@ echo GridView::widget([
         ],
         [
             'attribute' => 'published_time',
-            'filter' => DatePicker::widget([
-                'model' => $filter,
-                'attribute' => 'date_from',
-                'attribute2' => 'date_to',
-                'options' => ['placeholder' => 'Start date'],
-                'options2' => ['placeholder' => 'End date'],
-                'type' => DatePicker::TYPE_RANGE,
-                'pluginOptions' => [
-                    'format' => 'dd.mm.yyyy',
-                    'autoclose' => true,
-                ]
-            ]),
+            'filter' => GridViewFilter::datePickerRange($filter, 'date_from', 'date_to'),
             'value' => function ($model) {
                 return $model->getPublishedTime();
             },

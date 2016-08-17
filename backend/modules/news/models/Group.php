@@ -44,4 +44,12 @@ class Group extends CommonGroupModel implements BaseBackendModel
     {
         return (new search\Group())->trash($params);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getArticlesCount()
+    {
+        return $this->getArticles()->count();
+    }
 }

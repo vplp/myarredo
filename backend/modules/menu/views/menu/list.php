@@ -21,7 +21,7 @@ echo GridView::widget(
                 'value' => function ($model) {
                     return Html::a(
                         Yii::t('app', 'Items') . ': ' . ' (' . $model->getItemsCount() . ')',
-                        ['item/list', 'group_id' => $model['id']]
+                        ['/menu/item/list', 'group_id' => $model['id']]
                     );
                 }
             ],

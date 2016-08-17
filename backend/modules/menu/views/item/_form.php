@@ -1,9 +1,7 @@
 <?php
-//TODO: Доработать
 use yii\helpers\Html;
 //
 use thread\app\bootstrap\ActiveForm;
-use thread\widgets\HtmlForm;
 //
 use backend\modules\menu\models\search\MenuItem;
 
@@ -22,14 +20,14 @@ use backend\modules\menu\models\search\MenuItem;
 
 <?= $form->text_line_lang($modelLang, 'title') ?>
 <hr>
-<?php HtmlForm::dropDownList($model, 'link_type', MenuItem::linkTypeRange()) ?>
-<?php HtmlForm::dropDownList($model, 'link_target', MenuItem::linkTargetRange()) ?>
+<?= $form->field($model, 'link_type')->dropDownList(MenuItem::linkTypeRange()) ?>
+<?= $form->field($model, 'link_target')->dropDownList(MenuItem::linkTargetRange()) ?>
 
 <?= $form->text_line($model, 'link') ?>
 <?php // TODO:: Зависимые дропдауны для выбора модуля и его элементов
 // HtmlForm::dropDownList($model, 'internal_source_id', Page::dropDownList()) ?>
 <hr>
-<?php HtmlForm::dropDownList($model, 'type', MenuItem::typeRange()) ?>
+<?= $form->field($model, 'type')->dropDownList(MenuItem::typeRange()) ?>
 
 <?= $form->text_line($model, 'position')->value(0) ?>
 <?= $form->switcher($model, 'published') ?>

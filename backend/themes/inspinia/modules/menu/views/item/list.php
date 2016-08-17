@@ -20,8 +20,7 @@ echo GridView::widget(
                 'attribute' => 'link',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    //TODO: Здесь должен быть метод из модели данных
-                    return ($model->link_type == 'internal') ? $model->link : $model->link;
+                    return $model->getLink();
                 }
             ],
             'position',

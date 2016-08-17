@@ -162,8 +162,8 @@ class Article extends ActiveRecord
         $path = $module->getArticleUploadPath();
         $url = $module->getArticleUploadUrl();
         $image = null;
-        if (!empty($this->image_link) && is_file($path . $this->image_link)) {
-            $image = $url . $this->image_link;
+        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
+            $image = $url . '/' . $this->image_link;
         }
         return $image;
     }

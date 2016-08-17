@@ -4,8 +4,9 @@ use yii\grid\GridView;
 use backend\modules\location\models\Country;
 //
 use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn, GridViewFilter
 };
+
 /**
  * @var \backend\modules\location\models\search\City $model
  */
@@ -22,7 +23,7 @@ echo GridView::widget([
         [
             'attribute' => 'location_country_id',
             'value' => 'country.lang.title',
-            'filter' => Country::dropDownList()
+            'filter' => GridViewFilter::dropDownList($filter, 'location_country_id', Country::dropDownList())
         ],
         [
             'class' => ActionCheckboxColumn::class,

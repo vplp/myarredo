@@ -215,4 +215,17 @@ class MenuItem extends ActiveRecord
             '_self' => Yii::t('app', '_self'),
         ];
     }
+
+    /**
+     *
+     * @return string
+     */
+    public function getLink()
+    {
+        if ($this->link_type == 'internal' && isset($this->source)) {
+            return $this->source->getUrl();
+        } else {
+            return $this->link;
+        }
+    }
 }

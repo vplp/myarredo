@@ -21,7 +21,7 @@ echo GridView::widget([
             'label' => 'Articles',
             'format' => 'raw',
             'value' => function ($model) {
-                return Html::a(Yii::t('app', 'Articles') . ' (' . count($model->articles) . ')',
+                return Html::a(Yii::t('app', 'Articles') . ' (' . $model->getArticlesCount() . ')',
                     ['/news/article/list', 'Article[group_id]' => $model['id']]);
             }
         ],

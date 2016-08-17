@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Html;
 use yii\grid\GridView;
 //
 use thread\widgets\grid\{
@@ -20,6 +21,14 @@ echo GridView::widget([
             'label' => Yii::t('app', 'Title'),
         ],
         'role',
+        [
+            'label' => 'User',
+            'format' => 'raw',
+            'value' => function ($model) {
+                return Html::a(Yii::t('app', 'Users') . ' (' . $model->getUsersCount() . ')',
+                    ['/user/user/list', 'User[group_id]' => $model['id']]);
+            }
+        ],
         [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',

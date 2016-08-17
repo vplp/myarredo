@@ -1,7 +1,7 @@
 <?php
 
 use thread\widgets\grid\{
-    ActionCheckboxColumn
+    ActionCheckboxColumn, GridViewFilter
 };
 //
 use backend\themes\inspinia\widgets\GridView;
@@ -23,7 +23,7 @@ echo GridView::widget([
         [
             'attribute' => 'location_country_id',
             'value' => 'country.lang.title',
-            'filter' => Country::dropDownList()
+            'filter' => GridViewFilter::dropDownList($filter, 'location_country_id', Country::dropDownList())
         ],
         [
             'class' => ActionCheckboxColumn::class,
