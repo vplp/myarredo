@@ -4,3 +4,4 @@
 //TODO: UserGroup: Role in backend
 //TODO: SEO
 //TODO 2: Настроить тесты
+//TODO: Профиль пользователя и пароль - личный
