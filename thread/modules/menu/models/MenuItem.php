@@ -126,7 +126,7 @@ class MenuItem extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'id'),
+            'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
             'group_id' => Yii::t('app', 'Menu'),
             'parent_id' => Yii::t('app', 'Parent'),
@@ -137,8 +137,8 @@ class MenuItem extends ActiveRecord
             'internal_source' => Yii::t('app', 'Internal Source'),
             'internal_source_id' => Yii::t('app', 'Internal Source Id'),
             'position' => Yii::t('app', 'Position'),
-            'created_at' => Yii::t('app', 'Created at'),
-            'updated_at' => Yii::t('app', 'Updated at'),
+            'created_at' => Yii::t('app', 'Create time'),
+            'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];

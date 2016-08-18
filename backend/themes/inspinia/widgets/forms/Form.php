@@ -17,7 +17,7 @@ use kartik\widgets\{
 /**
  * @author Roman Gonchar <roman.gonchar92@gmail.com>
  */
-class Form extends \thread\app\base\forms\abstracts\ActiveField
+class Form extends \yii\bootstrap\ActiveField
 {
 
     /**

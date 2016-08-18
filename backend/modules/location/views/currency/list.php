@@ -4,6 +4,7 @@ use yii\grid\GridView;
 use thread\widgets\grid\{
     ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
 };
+
 /**
  * @var \backend\modules\location\models\search\Currency $model
  */

@@ -58,8 +58,6 @@ class MenuLang extends ActiveRecordLang
     public function attributeLabels()
     {
         return [
-            'rid' => Yii::t('app', 'rid'),
-            'lang' => Yii::t('app', 'Lang'),
             'title' => Yii::t('app', 'Title'),
         ];
     }

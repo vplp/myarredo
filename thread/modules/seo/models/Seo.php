@@ -139,6 +139,7 @@ class Seo extends ActiveRecord
 
         if ($seoModel === null) {
             $seoModel = new self();
+            //TODO Пересмотреть
             $seoModel->setScenario('backend');
             $seoModel->model_namespace = $namespace;
             $seoModel->model_id = $modelId;

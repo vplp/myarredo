@@ -67,10 +67,8 @@ class PageLang extends ActiveRecordLang
     public function attributeLabels()
     {
         return [
-            'rid' => Yii::t('app', 'rid'),
-            'lang' => Yii::t('app', 'lang'),
-            'title' => Yii::t('app', 'title'),
-            'content' => Yii::t('app', 'content'),
+            'title' => Yii::t('app', 'Title'),
+            'content' => Yii::t('app', 'Content'),
         ];
     }
 

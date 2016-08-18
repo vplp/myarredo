@@ -63,6 +63,16 @@ class ActionCRUD extends Action
     public $scenario = 'backend';
 
     /**
+     * @var null
+     */
+    public $afterRunCallback = null;
+
+    /**
+     * @var null
+     */
+    public $beforeRunCallback = null;
+
+    /**
      * Access checking
      *
      * @var bool
@@ -84,12 +94,6 @@ class ActionCRUD extends Action
     protected $modelLang = null;
 
     /**
-     *
-     * @var null
-     */
-    public $afterRunCallback = null;
-
-    /**
      * Find model by primary key
      * If model not found - return null
      *
@@ -101,7 +105,7 @@ class ActionCRUD extends Action
     {
         $modelClass = empty($className) ? $this->model : new $className;
         $keys = $modelClass::primaryKey();
-        
+
         $model = null;
 
         if (count($keys) > 1) {
@@ -126,7 +130,7 @@ class ActionCRUD extends Action
     protected function findModelLang($modelId)
     {
         $model = null;
-        
+
         if ($modelId) {
             $model = $this->modelLang->find()->andWhere(['rid' => $modelId])->one();
         }
@@ -169,12 +173,25 @@ class ActionCRUD extends Action
     /**
      * Action which is executed after action
      */
-    public function afterRun()
+    protected function afterRun()
     {
         if ($this->afterRunCallback instanceof Closure) {
             $f = $this->afterRunCallback;
             $f($this);
         }
         parent::afterRun();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function beforeRun()
+    {
+        if ($this->beforeRunCallback instanceof Closure) {
+            $f = $this->beforeRunCallback;
+            $f($this);
+        }
+
+        return parent::beforeRun();
     }
 }

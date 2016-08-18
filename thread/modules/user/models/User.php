@@ -99,8 +99,8 @@ class User extends ActiveRecord implements IdentityInterface
             'password_hash' => Yii::t('app', 'Password hash'),
             'password_reset_token' => Yii::t('app', 'Password reset token'),
             'email' => Yii::t('app', 'Email'),
-            'created_at' => Yii::t('app', 'Created at'),
-            'updated_at' => Yii::t('app', 'Updated at'),
+            'created_at' => Yii::t('app', 'Create time'),
+            'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];

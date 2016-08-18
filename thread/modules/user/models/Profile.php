@@ -84,8 +84,8 @@ class Profile extends ActiveRecord
             'last_name' => Yii::t('app', 'Last name'),
             'avatar' => Yii::t('app', 'Avatar'),
             'preferred_language' => Yii::t('app', 'Preferred language'),
-            'created_at' => Yii::t('app', 'Created_at'),
-            'updated_at' => Yii::t('app', 'Updated_at'),
+            'created_at' => Yii::t('app', 'Create time'),
+            'updated_at' => Yii::t('app', 'Update time'),
         ];
     }
 

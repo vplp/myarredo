@@ -13,7 +13,7 @@ echo GridView::widget([
         [
             'attribute' => 'group_id',
             'value' => 'group.lang.title',
-            'label' => Yii::t('app', 'Group'),
+            'label' => Yii::t('app', 'group'),
             'filter' => GridViewFilter::dropDownList($filter, 'group_id', \backend\modules\configs\models\Group::dropDownList())
         ],
         [

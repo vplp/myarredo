@@ -25,7 +25,7 @@ echo GridView::widget([
             'label' => 'User',
             'format' => 'raw',
             'value' => function ($model) {
-                return Html::a(Yii::t('app', 'Users') . ' (' . $model->getUsersCount() . ')',
+                return Html::a(Yii::t('user', 'Users') . ' (' . $model->getUsersCount() . ')',
                     ['/user/user/list', 'User[group_id]' => $model['id']]);
             }
         ],

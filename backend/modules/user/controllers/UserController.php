@@ -130,19 +130,4 @@ class UserController extends BackendController
             'model' => $model,
         ]);
     }
-
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        $this->layout = '@app/layouts/crud';
-        $this->label = Yii::t('app', 'View');
-        $model = User::findIdentity($id);
-        return $this->render('_view_user', [
-            'model' => $model,
-            'backLink' => Yii::$app->request->referrer
-        ]);
-    }
 }

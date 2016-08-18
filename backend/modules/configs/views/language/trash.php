@@ -8,7 +8,7 @@ use thread\widgets\grid\{
 
 echo GridView::widget([
     'dataProvider' => $model->trash(Yii::$app->request->queryParams),
-
+    'filterModel' => $filter,
     'columns' => [
         'alias',
         'label',

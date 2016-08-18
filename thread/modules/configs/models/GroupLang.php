@@ -56,8 +56,6 @@ class GroupLang extends ActiveRecordLang
     public function attributeLabels()
     {
         return [
-            'rid' => Yii::t('app', 'RID'),
-            'lang' => Yii::t('app', 'Lang'),
             'title' => Yii::t('app', 'Title'),
         ];
     }

@@ -15,7 +15,7 @@ use thread\app\bootstrap\ActiveForm;
 <?= $form->field($model, 'username')->label(); ?>
 <?= $form->field($model, 'password')->passwordInput() ?>
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Login'), ['class' => 'btn btn-primary block full-width m-b', 'name' => 'login-button']) ?>
+        <?= Html::submitButton(Yii::t('user', 'Login'), ['class' => 'btn btn-primary block full-width m-b', 'name' => 'login-button']) ?>
     </div>
-<?= Html::a('<small>' . Yii::t('app', 'Forgot password?') . '</small>', ['/user/password/request-reset']) ?>
+<?= Html::a('<small>' . Yii::t('user', 'Forgot password?') . '</small>', ['/user/password/request-reset']) ?>
 <?php ActiveForm::end(); ?>
