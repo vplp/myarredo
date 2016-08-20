@@ -20,7 +20,7 @@ echo GridView::widget([
             'label' => 'Articles',
             'format' => 'raw',
             'value' => function ($model) {
-                return Html::a(Yii::t('app', 'Params') . ' (' . $model->getParamsCount() . ')',
+                return Html::a(Yii::t('configs', 'Params') . ' (' . $model->getParamsCount() . ')',
                     ['/configs/params/list', 'Params[group_id]' => $model['id']]);
             }
         ],

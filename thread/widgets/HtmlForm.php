@@ -16,6 +16,8 @@ use kartik\switchinput\SwitchInput;
 use thread\app\base\models\ActiveRecord;
 use thread\widgets\editors\Editor;
 
+//TODO На удаление
+
 /**
  * Class HtmlForm
  *

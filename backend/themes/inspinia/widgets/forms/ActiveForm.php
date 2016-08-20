@@ -4,7 +4,7 @@ namespace backend\themes\inspinia\widgets\forms;
 /**
  * @author Roman Gonchar <roman.gonchar92@gmail.com>
  */
-class ActiveForm extends \thread\app\base\forms\abstracts\ActiveForm
+class ActiveForm extends \yii\bootstrap\ActiveForm
 {
     /**
      * Class using for fields

@@ -47,7 +47,7 @@ class Language extends CommonLanguageModel
     {
         if ($this->default == 1) {
             //для того чтобы дефолтный был один язык
-            \Yii::$app->db->createCommand()->update('fv_languages', ['default' => 0], 'alias <> \'' . $this->alias . '\'')->execute();
+            self::getDb()->createCommand()->update('fv_languages', ['default' => 0], 'alias <> \'' . $this->alias . '\'')->execute();
 
         }
         return parent::beforeSave($insert);

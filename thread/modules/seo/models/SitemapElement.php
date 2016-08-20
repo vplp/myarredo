@@ -62,15 +62,15 @@ class SitemapElement extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'id'),
-            'module_id' => Yii::t('app', 'module'),
-            'model_id' => Yii::t('app', 'model'),
-            'key' => Yii::t('app', 'key'),
-            'url' => Yii::t('app', 'link'),
+            'id' => Yii::t('app', 'ID'),
+            'module_id' => Yii::t('app', 'Module'),
+            'model_id' => Yii::t('app', 'Model'),
+            'key' => Yii::t('app', 'Key'),
+            'url' => Yii::t('app', 'Link'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
-            'published' => Yii::t('app', 'published'),
-            'deleted' => Yii::t('app', 'deleted'),
+            'published' => Yii::t('app', 'Published'),
+            'deleted' => Yii::t('app', 'Deleted'),
         ];
     }
 }

@@ -89,7 +89,7 @@ class PasswordController extends BackendController
             throw new NotFoundHttpException;
         }
 
-        $this->label = Yii::t('app', 'Password change') . ' : ' . $user['username'];
+        $this->label = Yii::t('user', 'Password change') . ' : ' . $user['username'];
 
         $model = new ChangePassword();
         $model->setScenario('adminPasswordChange');
@@ -101,7 +101,6 @@ class PasswordController extends BackendController
                 $user->setScenario('passwordChange');
                 $user->setPassword($model['password']);
 
-                /** @var PDO $transaction */
                 $transaction = $user::getDb()->beginTransaction();
                 try {
                     $save = $user->save();
@@ -139,10 +138,10 @@ class PasswordController extends BackendController
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+                Yii::$app->session->setFlash('success', Yii::t('user', 'Check your email for further instructions.'));
                 return $this->goHome();
             } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
+                Yii::$app->session->setFlash('error', Yii::t('user', 'Sorry, we are unable to reset password for email provided.'));
             }
         }
 
@@ -171,7 +170,7 @@ class PasswordController extends BackendController
         $model->setScenario('setPassword');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate() && $model->setPassword()) {
-            Yii::$app->session->setFlash('success', 'New password was saved.');
+            Yii::$app->session->setFlash('success', Yii::t('user', 'New password was saved.'));
             return $this->goHome();
         }
 

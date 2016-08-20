@@ -3,10 +3,12 @@
 namespace thread\actions;
 
 use Yii;
-use yii\base\Action;
-use yii\base\Exception;
-use yii\web\NotFoundHttpException;
-use yii\web\Response;
+use yii\base\{
+    Action, Exception
+};
+use yii\web\{
+    NotFoundHttpException, Response
+};
 
 /**
  * Class RecordView

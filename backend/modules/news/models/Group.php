@@ -24,7 +24,7 @@ class Group extends CommonGroupModel implements BaseBackendModel
      */
     public static function getDropdownList()
     {
-        return ArrayHelper::map(self::findBase()->all(), 'id', 'lang.title');
+        return ArrayHelper::map(self::findBase()->joinWith(['lang'])->all(), 'id', 'lang.title');
     }
 
     /**

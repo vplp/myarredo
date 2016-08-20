@@ -70,11 +70,9 @@ class SeoLang extends ActiveRecordLang
     public function attributeLabels()
     {
         return [
-            'rid' => Yii::t('app', 'rid'),
-            'lang' => Yii::t('app', 'lang'),
-            'title' => Yii::t('app', 'title'),
-            'description' => Yii::t('app', 'description'),
-            'keywords' => Yii::t('app', 'keywords'),
+            'title' => Yii::t('app', 'Title'),
+            'description' => Yii::t('app', 'Description'),
+            'keywords' => Yii::t('app', 'Keywords'),
         ];
     }
 

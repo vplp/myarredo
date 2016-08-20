@@ -3,8 +3,8 @@
 namespace thread\app\base\models;
 
 use Yii;
-use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord as dbActiveRecord;
 
 /**
@@ -20,18 +20,6 @@ abstract class ActiveRecord extends dbActiveRecord
 
     const STATUS_KEY_ON = '1';
     const STATUS_KEY_OFF = '0';
-
-    /** @var null Model name */
-    public static $moduleId = null;
-
-    /**
-     *
-     * @return null|\yii\base\Module
-     */
-    public static function getModule()
-    {
-        return Yii::$app->getModule(get_called_class()::$moduleId);
-    }
 
     /**
      * @var
@@ -99,13 +87,12 @@ abstract class ActiveRecord extends dbActiveRecord
         return (array_key_exists($scenario, $this->scenarios())) ? true : false;
     }
 
-
     /**
+     * Backend form dropdown list
      * @return array
      */
     public static function dropDownList()
     {
-        return ArrayHelper::map(self::findBase()->innerJoinWith('lang')->published()->asArray()->all(), 'id',
-            'lang.title');
+        return ArrayHelper::map(self::findBase()->joinWith(['lang'])->all(), 'id', 'lang.title');
     }
 }

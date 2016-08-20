@@ -62,9 +62,7 @@ class CountryLang extends \thread\app\base\models\ActiveRecordLang
     public function attributeLabels()
     {
         return [
-            'rid' => Yii::t('app', 'rid'),
-            'lang' => Yii::t('app', 'lang'),
-            'title' => Yii::t('app', 'title'),
+            'title' => Yii::t('app', 'Title'),
         ];
     }
 

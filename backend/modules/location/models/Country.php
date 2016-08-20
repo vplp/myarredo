@@ -1,6 +1,7 @@
 <?php
 
 namespace backend\modules\location\models;
+
 use thread\app\model\interfaces\BaseBackendModel;
 
 /**

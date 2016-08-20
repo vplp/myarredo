@@ -120,15 +120,15 @@ class Country extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'id'),
-            'alias' => Yii::t('app', 'alias'),
+            'id' => Yii::t('app', 'ID'),
+            'alias' => Yii::t('app', 'Alias'),
             'alpha2' => Yii::t('app', 'alpha2'),
             'alpha3' => Yii::t('app', 'alpha3'),
             'iso' => Yii::t('app', 'iso'),
-            'created_at' => Yii::t('app', 'created_at'),
-            'updated_at' => Yii::t('app', 'updated_at'),
+            'created_at' => Yii::t('app', 'Create time'),
+            'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
-            'deleted' => Yii::t('app', 'deleted'),
+            'deleted' => Yii::t('app', 'Deleted'),
         ];
     }
 

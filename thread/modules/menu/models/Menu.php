@@ -97,10 +97,10 @@ class Menu extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'id'),
+            'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
-            'created_at' => Yii::t('app', 'Created at'),
-            'updated_at' => Yii::t('app', 'Updated at'),
+            'created_at' => Yii::t('app', 'Create time'),
+            'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
             'readonly' => Yii::t('app', 'Readonly'),
