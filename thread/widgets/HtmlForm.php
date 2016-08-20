@@ -401,7 +401,7 @@ final class HtmlForm
         <?= Html::hiddenInput('save_and_exit'); ?>
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Add and Exit') : Yii::t('app', 'Save and Exit'), ['class' => 'btn btn-success action_save_and_exit']); ?>
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Add') : Yii::t('app', 'Save'), ['class' => 'btn btn-info']); ?>
-        <?= Html::a(Yii::t('app', 'Cancel'), $view->context->actionListLinkStatus, ['class' => 'btn btn-danger']); ?>
+        <?= Html::a(Yii::t('app', 'Cancel'), [$view->context->actionListLinkStatus], ['class' => 'btn btn-danger']); ?>
         <?php
         $view->registerJs("$('.action_save_and_exit').click(function(){
             $('input[name=\"save_and_exit\"]').val(1);
@@ -419,7 +419,7 @@ final class HtmlForm
         <?= Html::hiddenInput('save_and_exit'); ?>
         <?= Html::submitInput($model->isNewRecord ? Yii::t('app', 'action_add_and_exit') : Yii::t('app', 'action_save_and_exit'), ['class' => 'btn btn-info action_save_and_exit']); ?>
         <?= Html::submitInput($model->isNewRecord ? Yii::t('app', 'action_add') : Yii::t('app', 'action_save'), ['class' => 'btn btn-success']); ?>
-        <?= Html::a(Yii::t('app', 'action_cancel'), $view->context->actionListLinkStatus, ['class' => 'btn btn-primary']); ?>
+        <?= Html::a(Yii::t('app', 'action_cancel'), [$view->context->actionListLinkStatus], ['class' => 'btn btn-primary']); ?>
         <?php
         $view->registerJs("$('.action_save_and_exit').click(function(){
         $('input[name=\"save_and_exit\"]').val(1);
