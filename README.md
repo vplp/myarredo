@@ -1,8 +1,26 @@
-CMS CORE Project
-=============
+CMS CORE
+========
 
-1. Clone project
-2. Run `php init` command. Choose 0 - Development environment
-3. Set your db connection properties
-4. Implement migrations
-5. Enjoy ;-)
+Инсталяция.
+
+1. Создаем пустой реапозиторий
+    git init
+
+2. Создаем подключение к удаленному реапозиторию CMS CORE
+    git remote add core [ url ]
+
+3. Загружаем данные из реапозитария CMS CORE
+    git pull core master
+
+4. Инициализация системы
+    php init
+
+5. Созадниея подключений к БД. Редактируем файл
+    /common/config/db.php
+
+6. Загрузка миграций
+    php yii migrate
+
+Дополнительная документация
+    /thread/doc
+
