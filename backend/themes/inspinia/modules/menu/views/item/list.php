@@ -2,6 +2,8 @@
 use yii\helpers\Url;
 use thread\widgets\grid\ActionCheckboxColumn;
 use backend\themes\inspinia\widgets\GridView;
+//
+use backend\modules\menu\models\search\MenuItem;
 
 /**
  * @var \backend\modules\menu\models\search\MenuItem $model
@@ -17,11 +19,10 @@ echo GridView::widget(
                 'label' => Yii::t('app', 'Title'),
             ],
             [
-                'attribute' => 'link',
-                'format' => 'raw',
+                'attribute' => 'link_type',
                 'value' => function ($model) {
-                    return $model->getLink();
-                }
+                    return MenuItem::linkTypeRange()[$model['link_type']];
+                },
             ],
             'position',
             [

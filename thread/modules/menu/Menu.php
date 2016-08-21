@@ -19,6 +19,12 @@ class Menu extends aModule
     public $translationsBasePath = __DIR__ . '/messages';
     public $configPath = __DIR__ . '/config.php';
 
+    /**
+     * @var array
+     */
+    public $internal_sources = [];
+    public $internal_sources_list = [];
+
 
     /**
      * Db connection
@@ -30,6 +36,31 @@ class Menu extends aModule
     public static function getDb()
     {
         return Yii::$app->get('db-core');
+    }
+
+    /**
+     *
+     */
+    public function init()
+    {
+        $this->setInternalSourse();
+        parent::init();
+    }
+
+    /**
+     *
+     */
+    public function setInternalSourse()
+    {
+        if (!empty($this->internal_sources)) {
+            foreach ($this->internal_sources as $key => $data) {
+                foreach ($data as $data_key => $item) {
+                    $set_key = $key . "_" . $data_key;
+                    $this->internal_sources_list[$set_key] = $item;
+                    $this->internal_sources_list[$set_key]['key'] = $set_key;
+                }
+            }
+        }
     }
 
 }
