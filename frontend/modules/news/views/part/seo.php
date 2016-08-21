@@ -1,5 +1,5 @@
 <?php
-use frontend\themes\vents\assets\AppAsset;
+use frontend\themes\defaults\assets\AppAsset;
 use yii\helpers\Html;
 
 $bundle = AppAsset::register($this);
@@ -8,7 +8,6 @@ $bundle = AppAsset::register($this);
  * @copyright (c) 2016
  */
 ?>
-
 
 <script type="application/ld+json">
         {
@@ -21,8 +20,10 @@ $bundle = AppAsset::register($this);
         "headline": "<?= Html::encode($article['lang']['title']) ?>",
         "image": {
             "@type": "ImageObject",
-            "url": "<?php if (!empty($article->getArticleImage())){echo Yii::$app->request->hostInfo.$article->getArticleImage();}else{
-        echo Yii::$app->request->hostInfo.$bundle->baseUrl.'/img/logo.png';
+            "url": "<?php if (!empty($article->getArticleImage())) {
+        echo Yii::$app->request->hostInfo . $article->getArticleImage();
+    } else {
+        echo Yii::$app->request->hostInfo . $bundle->baseUrl . '/img/logo.png';
     } ?>",
             "height": "116",
             "width": "76"
@@ -40,7 +41,7 @@ $bundle = AppAsset::register($this);
                     "@type": "ImageObject",
                      "width": "358",
                     "height": "98",
-                    "url": "<?= Yii::$app->request->hostInfo.$bundle->baseUrl ?>/img/logo.png"
+                    "url": "<?= Yii::$app->request->hostInfo . $bundle->baseUrl ?>/img/logo.png"
                 }
             },
         "description": "<?= $article['lang']['description'] ?>"
