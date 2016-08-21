@@ -28,13 +28,13 @@ $this->beginPage()
         <!-- HEADER -->
         <header>
             <div class="wrap r h clear panel">
-                HEADER
+                <?= \frontend\modules\menu\widgets\menu\Menu::widget() ?>
             </div>
         </header>
         <!-- HEADER END-->
         <div class="container">
             <?= $content ?>
-            <?= Yii::$app->param->getById(1)?>
+            <?= Yii::$app->param->getById(1) ?>
         </div>
 
     </div>

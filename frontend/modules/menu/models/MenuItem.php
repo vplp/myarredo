@@ -51,8 +51,7 @@ final class MenuItem extends \backend\modules\menu\models\MenuItem
     }
 
     /**
-     *
-     * @return yii\db\ActiveQuery
+     * @return mixed
      */
     public static function find_base()
     {
