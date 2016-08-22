@@ -46,7 +46,6 @@ class ArticleController extends \frontend\components\BaseController
                 'modelClass' => Article::class,
                 'methodName' => 'findByAlias',
                 'view' => 'article',
-                'layout' => '/news'
             ],
         ];
     }

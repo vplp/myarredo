@@ -4,9 +4,10 @@ namespace thread\modules\menu\models;
 
 use Yii;
 use yii\db\ActiveQuery;
+use yii\helpers\ArrayHelper;
 //
 use thread\app\base\models\ActiveRecord;
-use thread\modules\page\models\Page;
+use thread\modules\menu\Menu as MenuModule;
 
 /**
  * Class MenuItem
@@ -47,9 +48,7 @@ class MenuItem extends ActiveRecord
     /**
      * @var array
      */
-    protected static $sources = [
-        'page' => Page::class,
-    ];
+    protected static $sources = [];
 
     /**
      *
@@ -66,6 +65,12 @@ class MenuItem extends ActiveRecord
     public static function tableName()
     {
         return '{{%menu_item}}';
+    }
+
+    public function init()
+    {
+        self::getInternalSourcesFromModule();
+        parent::init();
     }
 
     /**
@@ -86,7 +91,7 @@ class MenuItem extends ActiveRecord
             [['link_target'], 'in', 'range' => array_keys(static::linkTargetRange())],
             ['link_target', 'default', 'value' => array_keys(static::linkTargetRange())[0]],
             //
-            ['internal_source', 'default', 'value' => ['page']],
+            ['internal_source', 'default', 'value' => ['page_page']],
             //
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['link', 'internal_source'], 'string', 'max' => 255],
@@ -112,6 +117,7 @@ class MenuItem extends ActiveRecord
                 'published',
                 'deleted',
                 'position',
+                'internal_source',
                 'internal_source_id',
                 'link_target',
                 'link_type',
@@ -173,7 +179,37 @@ class MenuItem extends ActiveRecord
      */
     public function getSource()
     {
-        return $this->hasOne(self::$sources[$this->internal_source], ['id' => 'internal_source_id']);
+        if (!isset(self::$sources[$this->internal_source])) {
+            return null;
+        }
+        return $this->hasOne(self::$sources[$this->internal_source]['class'], ['id' => 'internal_source_id']);
+    }
+
+    /**
+     * @return array
+     */
+    public static function getInternalSourcesFromModule()
+    {
+        /** @var MenuModule $module */
+        $module = Yii::$app->getModule('menu');
+        $module->setInternalSourse();
+        self::$sources = $module->internal_sources_list;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getTypeSources()
+    {
+        return ArrayHelper::map(self::$sources, 'key', 'label');
+    }
+
+    /**
+     * @return array
+     */
+    public static function getSourcesList()
+    {
+        return self::$sources;
     }
 
     /**

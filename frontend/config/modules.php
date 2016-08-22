@@ -17,14 +17,14 @@ return [
     'user' => [
         'class' => \frontend\modules\user\User::class,
     ],
+    'menu' => [
+        'class' => \frontend\modules\menu\Menu::class,
+    ],
     'page' => [
         'class' => \frontend\modules\page\Page::class,
     ],
     'news' => [
         'class' => \frontend\modules\news\News::class,
-    ],
-    'forms' => [
-        'class' => \frontend\modules\forms\Forms::class,
     ],
     'seo' => [
         'class' => \frontend\modules\seo\Seo::class,

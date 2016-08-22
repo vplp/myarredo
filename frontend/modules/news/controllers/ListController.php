@@ -20,7 +20,6 @@ class ListController extends BaseController
 {
     public $label = "News";
     public $title = "News";
-    public $layout = "/news";
     public $defaultAction = 'index';
 
     /**
@@ -66,7 +65,6 @@ class ListController extends BaseController
                 'class' => ListQuery::class,
                 'query' => ($group) ? Article::find_base()->group_id($group) : Article::find_base(),
                 'recordOnPage' => $this->module->itemOnPage,
-                'layout' => '/news'
             ],
         ];
     }

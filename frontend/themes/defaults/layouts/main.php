@@ -1,7 +1,8 @@
 <?php
 
-//use Yii;
 use frontend\themes\defaults\assets\AppAsset;
+//
+use frontend\modules\menu\widgets\menu\Menu;
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
@@ -28,13 +29,12 @@ $this->beginPage()
         <!-- HEADER -->
         <header>
             <div class="wrap r h clear panel">
-                HEADER
+                <?= Menu::widget() ?>
             </div>
         </header>
         <!-- HEADER END-->
         <div class="container">
             <?= $content ?>
-            <?= Yii::$app->param->getById(1)?>
         </div>
 
     </div>
