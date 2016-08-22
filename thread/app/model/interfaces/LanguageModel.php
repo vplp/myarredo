@@ -13,7 +13,12 @@ namespace thread\app\model\interfaces;
 interface LanguageModel
 {
     /**
-     * @return mixed
+     * @return array
      */
     public function getLanguages():array;
+
+    /**
+     * @return array
+     */
+    public function getCurrent():array;
 }

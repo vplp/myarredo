@@ -18,7 +18,10 @@ return [
     'charset' => 'utf-8',
     'extensions' => require($vendor . '/yiisoft/extensions.php'),
     'params' => require __DIR__ . '/params.php',
+    'bootstrap' => [
+        'languages'
+    ],
     'components' => ArrayHelper::merge(
-            require(__DIR__ . '/components.php'), require(__DIR__ . '/db.php')
+        require(__DIR__ . '/components.php'), require(__DIR__ . '/db.php')
     ),
 ];

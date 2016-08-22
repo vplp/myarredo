@@ -3,9 +3,9 @@
 namespace thread\app\model;
 
 use yii\base\{
-    ErrorException, Component
+    ErrorException, Component, BootstrapInterface
 };
-//
+
 use thread\app\model\interfaces\{
     LanguageModel as iLanguageModel,
     Languages as iLanguages
@@ -17,9 +17,9 @@ use thread\app\model\interfaces\{
  *
  * @package thread\app\model
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
+ * @copyright (c) 2015, Thread
  */
-class Languages extends Component implements iLanguages
+class Languages extends Component implements iLanguages, BootstrapInterface
 {
     /**
      * @var null
@@ -57,7 +57,24 @@ class Languages extends Component implements iLanguages
 
         $this->items = $this->getAll();
 
+        foreach ($this->items as $item) {
+            if ($item['default']) {
+                $this->defaultLang = $item;
+                break;
+            }
+        }
+
         parent::init();
+    }
+
+    /**
+     * @param $app
+     */
+    public function bootstrap($app)
+    {
+        $this->init();
+
+        $app->language = $this->defaultLang['local'];
     }
 
     /**
