@@ -5,9 +5,9 @@ namespace thread\modules\configs\models;
 use Yii;
 //
 use thread\app\base\models\{
-    ActiveRecord, query\ActiveQuery
+    ActiveRecord
 };
-
+use thread\app\model\interfaces\LanguageModel;
 use thread\modules\configs\Configs as ConfigsModule;
 
 
@@ -29,7 +29,7 @@ use thread\modules\configs\Configs as ConfigsModule;
  * @author Alla Kuzmenko
  * @copyright (c) 2016, VipDesign
  */
-class Language extends ActiveRecord implements \thread\app\model\interfaces\LanguageModel
+class Language extends ActiveRecord implements LanguageModel
 {
     /**
      * @return string
@@ -103,7 +103,7 @@ class Language extends ActiveRecord implements \thread\app\model\interfaces\Lang
     /**
      * @return mixed
      */
-    public function getCurrent()
+    public function getCurrent():array
     {
         return self::findBase()->andWhere(['local' => \Yii::$app->language])->asArray()->one();
     }
