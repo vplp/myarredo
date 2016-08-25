@@ -1,0 +1,28 @@
+# Mod_Autoindex
+<IfModule mod_autoindex.c>
+  # Забороняємо перегляд вмісту папок
+	Options -Indexes
+</IfModule>
+
+# Mod_Rewrite
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+    # Redirect index to Root
+    RewriteCond %{THE_REQUEST} ^.*/index\.php 
+    RewriteRule ^(.*)index.php$ /$1 [R=301,L] 
+    # Redirect many / to one
+    RewriteCond %{THE_REQUEST} //
+    RewriteRule .* /$0 [R=301,L]
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks
+  # Вмикаємо mod_rewrite
+  RewriteEngine On
+
+  # Якщо це папка чи файл, відкриваємо її/його
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  # У іншому випадку перенаправляємо до index.php
+  RewriteRule . index.php
+</IfModule>
