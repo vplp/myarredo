@@ -21,9 +21,9 @@ echo GridView::widget([
             'label' => Yii::t('app', 'Title'),
         ],
         [
-            'attribute' => 'location_country_id',
+            'attribute' => 'country_id',
             'value' => 'country.lang.title',
-            'filter' => GridViewFilter::dropDownList($filter, 'location_country_id', Country::dropDownList())
+            'filter' => GridViewFilter::dropDownList($filter, 'country_id', Country::dropDownList())
         ],
         [
             'class' => ActionCheckboxColumn::class,

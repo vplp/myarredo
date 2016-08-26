@@ -1,0 +1,18 @@
+table name:
+
+1. Base table
+
+module_model
+    id
+
+2. Lang table
+
+module_model_lang
+    rid
+    lang
+
+3. Rel table
+
+module_rel_modelOne_modelTwo
+    modelOne_id
+    modelTwo_id

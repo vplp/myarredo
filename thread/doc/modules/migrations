@@ -34,5 +34,9 @@ php yii module/migrate/create
     ],
 ],
 
+2. Запуск всех миграций
+
+php yii migrate
+
 
 

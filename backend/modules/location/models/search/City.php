@@ -23,7 +23,7 @@ class City extends CityModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-            [['location_country_id'], 'integer'],
+            [['country_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -67,7 +67,7 @@ class City extends CityModel implements BaseBackendSearchModel
 
         $query->andFilterWhere(
             [
-                'location_country_id' => $this->location_country_id,
+                'country_id' => $this->country_id,
             ]
         );
 

@@ -1,0 +1,10 @@
+id
+group_id
+alias
+create_at
+update_at
+published
+deleted
+
+rid
+title

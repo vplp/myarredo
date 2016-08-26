@@ -67,7 +67,7 @@ class City extends ActiveRecord
         return [
             [['alias'], 'required'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['location_country_id', 'created_at', 'updated_at'], 'integer'],
+            [['country_id', 'created_at', 'updated_at'], 'integer'],
             [['alias'], 'string', 'max' => 255],
             [['alias'], 'unique'],
         ];
@@ -81,7 +81,7 @@ class City extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
-            'location_country_id' => Yii::t('app', 'Country'),
+            'country_id' => Yii::t('app', 'Country'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
@@ -100,7 +100,7 @@ class City extends ActiveRecord
             'deleted' => ['deleted'],
             'backend' => [
                 'alias',
-                'location_country_id',
+                'country_id',
                 'created_at',
                 'updated_at',
                 'published',
@@ -123,7 +123,7 @@ class City extends ActiveRecord
      */
     public function getCountry()
     {
-        return $this->hasOne(Country::class, ['id' => 'location_country_id']);
+        return $this->hasOne(Country::class, ['id' => 'country_id']);
     }
 
 }

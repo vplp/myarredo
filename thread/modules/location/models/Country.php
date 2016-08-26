@@ -140,4 +140,12 @@ class Country extends ActiveRecord
         return $this->hasOne(CountryLang::class, ['rid' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCurrencies()
+    {
+        return $this->hasMany(Currency::class, ['id' => 'currency_id'])->viaTable('%location_rel_country_currency', ['country_id' => 'id']);
+    }
+
 }
