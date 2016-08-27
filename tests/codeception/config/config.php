@@ -4,6 +4,7 @@
  */
 return [
     'language' => 'en-US',
+    'runtimePath' => '@runtime/tests',
     'controllerMap' => [
         'fixture' => [
             'class' => 'yii\faker\FixtureController',
@@ -14,7 +15,7 @@ return [
     ],
     'components' => [
         'db' => [
-            'dsn' => 'mysql:host=localhost;dbname=ventstest',
+            'dsn' => '',
         ],
         'mailer' => [
             'useFileTransport' => true,

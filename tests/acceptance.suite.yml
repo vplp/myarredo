@@ -8,7 +8,7 @@ class_name: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser:
-            url: http://vents.dev
+            url: http://core-cms
             browser: 'chrome'
         - \Helper\Acceptance
 
