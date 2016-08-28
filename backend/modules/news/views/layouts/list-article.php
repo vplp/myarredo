@@ -12,11 +12,10 @@ use yii\widgets\Breadcrumbs;
 <?php $this->beginContent('@app/layouts/main.php'); ?>
 
 <div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-lg-12">
+    <div class="col-lg-8">
         <h2>
             <?= Yii::t($this->context->module->name, $this->context->module->title) ?>.
-            <?= Yii::t($this->context->module->name, $this->context->title) ?>.
-            <?= Yii::t('app', 'Trash') ?>
+            <?= Yii::t($this->context->module->name, $this->context->title) ?>
         </h2>
         <?= Breadcrumbs::widget([
             'homeLink' => false,
@@ -26,18 +25,23 @@ use yii\widgets\Breadcrumbs;
                 ],
                 [
                     'label' => Yii::t($this->context->module->name, $this->context->title),
-                    'url' => ['/' . $this->context->module->name . '/' . $this->context->name . '/list'],
+                    'url' => ['/news/group/list'],
                 ],
-                Yii::t('app', 'Trash'),
+                Yii::t('app', 'List'),
             ],
         ]) ?>
     </div>
-</div>
-<div class="col-lg-2">
-    <h2 class="btn-group" role="group">
-        <?= Html::a('<i class="fa fa-list"></i> ' . 'Back to list', ['list', 'group_id' => $this->context->group->id], ['class' => 'btn btn-primary']) ?>
-    </h2>
-</div>
+    <div class="col-lg-2">
+        <h2 class="btn-group" role="group">
+            <?= Html::a('<i class="fa fa-plus"></i> ' . Yii::t('app', 'Article'), ['/news/article/list'], ['class' => 'btn btn-primary']) ?>
+        </h2>
+    </div>
+    <div class="col-lg-2">
+        <h2 class="btn-group" role="group">
+            <?= Html::a('<i class="fa fa-plus"></i> ' . Yii::t('app', 'Create'), ['create'], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('<i class="fa fa-trash"></i> ', ['trash'], ['class' => 'btn btn-default', 'title' => Yii::t('app', 'Trash')]) ?>
+        </h2>
+    </div>
 </div>
 
 <div class="wrapper wrapper-content animated fadeIn">

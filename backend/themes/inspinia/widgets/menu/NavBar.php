@@ -88,16 +88,6 @@ class NavBar extends \yii\bootstrap\NavBar
                 'label' => '<i class="fa fa-newspaper-o"></i><span class="nav-label">' . Yii::t('app',
                         'News') . '</span><span class="fa arrow"></span>',
                 'url' => ['/news/article/list'],
-                'items' => [
-                    [
-                        'label' => Yii::t('app', 'Article'),
-                        'url' => ['/news/article/list']
-                    ],
-                    [
-                        'label' => Yii::t('app', 'Groups'),
-                        'url' => ['/news/group/list']
-                    ],
-                ],
             ],
             //SEO
             [
@@ -118,17 +108,8 @@ class NavBar extends \yii\bootstrap\NavBar
             // USER
             [
                 'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('app',
-                        'User') . '</span> <span class="fa arrow"></span></a>',
-                'items' => [
-                    [
-                        'label' => Yii::t('app', 'User list'),
-                        'url' => ['/user/user/list'],
-                    ],
-                    [
-                        'label' => Yii::t('app', 'Groups'),
-                        'url' => ['/user/group/list'],
-                    ],
-                ],
+                        'Users') . '</span> <span class="fa arrow"></span></a>',
+                'url' => ['/user/user/list']
             ],
             // LOCATION
             [
@@ -157,10 +138,6 @@ class NavBar extends \yii\bootstrap\NavBar
                     [
                         'label' => Yii::t('app', 'Params'),
                         'url' => ['/configs/params/list']
-                    ],
-                    [
-                        'label' => Yii::t('app', 'Groups'),
-                        'url' => ['/configs/group/list']
                     ],
                 ],
             ],

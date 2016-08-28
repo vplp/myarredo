@@ -1,7 +1,13 @@
 <?php
 namespace backend\modules\configs\controllers;
 
+use Yii;
+use yii\helpers\ArrayHelper;
+//
 use thread\app\base\controllers\BackendController;
+use thread\actions\{
+    Create, ListModel, Update
+};
 use thread\actions\fileapi\{
     DeleteAction, UploadAction
 };
@@ -9,11 +15,7 @@ use thread\actions\fileapi\{
 use backend\modules\configs\models\{
     Language, search\Language as filterLanguageModel
 };
-use thread\actions\{
-    Create, ListModel, Update
-};
-use Yii;
-use yii\helpers\ArrayHelper;
+
 
 /**
  * @author Alla Kuzmenko
@@ -23,6 +25,7 @@ class LanguageController extends BackendController
     public $model = Language::class;
     public $filterModel = filterLanguageModel::class;
     public $title = 'Language';
+    public $name = 'language';
 
     public function actions()
     {

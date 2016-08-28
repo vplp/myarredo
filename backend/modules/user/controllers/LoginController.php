@@ -18,7 +18,7 @@ use thread\modules\user\models\form\SignInForm;
  */
 class LoginController extends BackendController
 {
-    public $label = 'Login';
+    public $name = 'login';
     public $title = "Login";
     public $layout = "@app/layouts/nologin";
     public $defaultAction = 'index';

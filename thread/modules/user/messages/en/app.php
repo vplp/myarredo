@@ -5,6 +5,7 @@
  * @copyright (c), Thread
  */
 return [
+    'user' => 'User',
     'Users' => 'Users',
     'Login' => 'Login',
     //Password

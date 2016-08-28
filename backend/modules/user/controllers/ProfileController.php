@@ -20,8 +20,7 @@ use backend\modules\user\models\{
  */
 class ProfileController extends BackendController
 {
-
-    public $label = "Profile";
+    public $name = 'profile';
     public $title = "Profile";
     protected $model = Profile::class;
     public $defaultAction = 'update';

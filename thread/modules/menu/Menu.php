@@ -15,7 +15,7 @@ use thread\app\base\module\abstracts\Module as aModule;
  */
 class Menu extends aModule
 {
-    public $name = 'Menu';
+    public $name = 'menu';
     public $translationsBasePath = __DIR__ . '/messages';
     public $configPath = __DIR__ . '/config.php';
 

@@ -20,4 +20,5 @@ class PageController extends BackendController
     public $modelLang = PageLang::class;
     public $filterModel = filterPageModel::class;
     public $title = 'Pages';
+    public $name = 'page';
 }

@@ -15,7 +15,7 @@ use thread\app\base\module\abstracts\Module as aModule;
  */
 class Seo extends aModule
 {
-    public $name = 'Seo';
+    public $name = 'seo';
     public $translationsBasePath = __DIR__ . '/messages';
     public $configPath = __DIR__ . '/config.php';
 

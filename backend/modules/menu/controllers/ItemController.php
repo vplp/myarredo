@@ -26,7 +26,8 @@ class ItemController extends BackendController
     public $filterModel = filterMenuItemModel::class;
     public $group = null;
     public $parent = null;
-    public $title = 'Menu items';
+    public $title = 'Items';
+    public $name = 'item';
 
     /**
      * Actions
@@ -49,7 +50,7 @@ class ItemController extends BackendController
             parent::actions(),
             [
                 'list' => [
-                    'layout' => 'crud',
+                    'layout' => 'list-item',
                 ],
                 'trash' => [
                     'layout' => 'list-item-trash',

@@ -20,4 +20,5 @@ class CountryController extends BackendController
     public $modelLang = CountryLang::class;
     public $filterModel = filterCountryModel::class;
     public $title = 'Country';
+    public $name = 'country';
 }

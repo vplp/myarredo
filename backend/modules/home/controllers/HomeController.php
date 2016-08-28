@@ -17,10 +17,8 @@ use thread\app\base\controllers\BackendController;
  */
 class HomeController extends BackendController
 {
-    /**
-     * @var string
-     */
     public $layout = "@app/layouts/start";
+    public $name = 'home';
 
     /**
      *

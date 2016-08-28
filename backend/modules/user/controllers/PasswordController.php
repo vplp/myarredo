@@ -28,8 +28,7 @@ use backend\modules\user\models\{
  */
 class PasswordController extends BackendController
 {
-
-    public $label = "User";
+    public $name = 'password';
     public $title = "User";
     protected $model = User::class;
     public $actionListLinkStatus = ['/user/user/list'];

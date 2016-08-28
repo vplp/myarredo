@@ -1,6 +1,8 @@
 <?php
 namespace backend\modules\configs\controllers;
 
+use yii\helpers\ArrayHelper;
+//
 use thread\app\base\controllers\BackendController;
 //
 use backend\modules\configs\models\{
@@ -20,4 +22,15 @@ class ParamsController extends BackendController
     public $modelLang = ParamsLang::class;
     public $filterModel = filterParamsModel::class;
     public $title = 'Params';
+    public $name = 'params';
+
+    public function actions()
+    {
+
+        return ArrayHelper::merge(parent::actions(), [
+            'list' => [
+                'layout' => 'list-params',
+            ],
+        ]);
+    }
 }

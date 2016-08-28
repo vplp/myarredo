@@ -26,6 +26,7 @@ class ArticleController extends BackendController
     public $modelLang = ArticleLang::class;
     public $filterModel = filterArticleModel::class;
     public $title = 'Article';
+    public $name = 'article';
 
     /**
      * @return array
@@ -35,6 +36,9 @@ class ArticleController extends BackendController
         return ArrayHelper::merge(
             parent::actions(),
             [
+                'list' => [
+                    'layout' => 'list-article',
+                ],
                 'fileupload' => [
                     'class' => UploadAction::class,
                     'path' => $this->module->getArticleUploadPath()

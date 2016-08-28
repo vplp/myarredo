@@ -2,7 +2,6 @@
 
 use backend\themes\inspinia\assets\AppAsset;
 
-
 /**
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread

@@ -20,4 +20,5 @@ class CurrencyController extends BackendController
     public $modelLang = CurrencyLang::class;
     public $filterModel = filterCurrencyModel::class;
     public $title = 'Currency';
+    public $name = 'currency';
 }

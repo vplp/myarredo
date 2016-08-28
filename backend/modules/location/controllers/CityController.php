@@ -20,4 +20,5 @@ class CityController extends BackendController
     public $modelLang = CityLang::class;
     public $filterModel = filterCityModel::class;
     public $title = 'City';
+    public $name = 'city';
 }

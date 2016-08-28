@@ -5,4 +5,5 @@
  * @copyright (c), Thread
  */
 return [
+    'page' => 'Page',
 ];

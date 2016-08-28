@@ -16,7 +16,7 @@ use thread\app\base\module\abstracts\Module as aModule;
 class Location extends aModule
 {
 
-    public $name = 'Location';
+    public $name = 'location';
     public $configPath = __DIR__ . '/config.php';
     public $translationsBasePath = __DIR__ . '/messages';
 

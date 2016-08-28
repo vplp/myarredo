@@ -16,8 +16,7 @@ use thread\app\base\controllers\BackendController;
  */
 class LogoutController extends BackendController
 {
-
-    public $label = "Logout";
+    public $name = 'logout';
     public $title = "Logout";
     public $defaultAction = 'index';
     public $enableCsrfValidation = false;

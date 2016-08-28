@@ -25,8 +25,7 @@ use backend\modules\user\models\{
  */
 class UserController extends BackendController
 {
-
-    public $label = "User";
+    public $name = 'user';
     public $title = "User";
     protected $model = User::class;
     protected $filterModel = filterUserModel::class;
@@ -63,6 +62,9 @@ class UserController extends BackendController
         return ArrayHelper::merge(
             $action,
             [
+                'list' => [
+                    'layout' => 'list-user',
+                ],
                 'update' => [
                     'class' => Update::class,
                     'redirect' => function () {
@@ -82,8 +84,7 @@ class UserController extends BackendController
      */
     public function actionCreate()
     {
-        $this->layout = '@app/layouts/crud';
-        $this->label = Yii::t('app', 'Create');
+        $this->layout = '@app/layouts/create';
 
         $model = new CreateForm();
         $model->setScenario('userCreate');

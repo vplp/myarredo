@@ -20,4 +20,5 @@ class MenuController extends BackendController
     public $modelLang = MenuLang::class;
     public $filterModel = filterMenuModel::class;
     public $title = 'Menu';
+    public $name = 'menu';
 }

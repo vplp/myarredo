@@ -7,7 +7,7 @@
  */
 return [
     //module name
-    'News' => 'News',
+    'news' => 'News',
     'Group' => 'Group',
     'Article' => 'Article',
     'number_article' => 'The number of articles'

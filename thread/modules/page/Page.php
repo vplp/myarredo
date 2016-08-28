@@ -16,7 +16,7 @@ use thread\app\base\module\abstracts\Module as aModule;
 class Page extends aModule
 {
 
-    public $name = 'Page';
+    public $name = 'page';
     public $translationsBasePath = __DIR__ . '/messages';
     public $configPath = __DIR__ . '/config.php';
 

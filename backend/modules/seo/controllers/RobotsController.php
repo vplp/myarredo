@@ -14,10 +14,8 @@ use thread\app\base\controllers\BackendController;
  */
 class RobotsController extends BackendController
 {
-    /**
-     * @var string
-     */
     public $title = 'Robots.txt';
+    public $name = 'robots';
 
     /**
      * @return array

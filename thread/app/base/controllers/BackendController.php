@@ -2,7 +2,9 @@
 namespace thread\app\base\controllers;
 
 use Yii;
-use yii\base\Model;
+use yii\base\{
+    Exception, Model
+};
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 use yii\web\{
@@ -33,10 +35,10 @@ abstract class BackendController extends Controller
     public $title = "Base";
 
     /**
-     * Мовне значення атрибута title
+     * Ключ контролера
      * @var string
      */
-    public $label = "";
+    public $name;
 
     /**
      * Базовий layout
@@ -66,6 +68,11 @@ abstract class BackendController extends Controller
      */
     public function init()
     {
+
+        if (empty($this->name)) {
+            throw new Exception(Yii::t('app', 'attribute name must be set in Controller'));
+        }
+
         /**
          * Set user interface language
          */
@@ -137,7 +144,7 @@ abstract class BackendController extends Controller
             'list' => [
                 'class' => ListModel::class,
                 'modelClass' => $this->model,
-                'layout' => '@app/layouts/crud',
+                'layout' => '@app/layouts/list',
                 'filterModel' => $this->filterModel,
             ],
             'trash' => [
@@ -150,6 +157,7 @@ abstract class BackendController extends Controller
             ],
             'create' => [
                 'class' => CreateWithLang::class,
+                'layout' => '@app/layouts/create',
                 'modelClass' => $this->model,
                 'modelClassLang' => $this->modelLang,
                 'redirect' => function () {
@@ -161,6 +169,7 @@ abstract class BackendController extends Controller
             ],
             'update' => [
                 'class' => UpdateWithLang::class,
+                'layout' => '@app/layouts/update',
                 'modelClass' => $this->model,
                 'modelClassLang' => $this->modelLang,
                 'redirect' => function () {

@@ -5,6 +5,6 @@
  * @copyright (c), Thread
  */
 return [
-    'Configs' => 'Configs',
+    'configs' => 'Configs',
     'Params' => 'Params',
 ];

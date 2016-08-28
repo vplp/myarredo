@@ -17,6 +17,8 @@ use thread\app\base\module\interfaces\Module as iModule;
 abstract class Module extends \yii\base\Module implements iModule
 {
 
+    public $title;
+
     /**
      * Назва модуля
      * @var string
@@ -60,7 +62,12 @@ abstract class Module extends \yii\base\Module implements iModule
         if (is_file($this->configPath)) {
             Yii::configure($this, require(Yii::getAlias($this->configPath)));
         }
+
         $this->registerTranslations();
+
+        if (empty($this->title)) {
+            $this->title = $this->name;
+        }
     }
 
     /**

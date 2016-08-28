@@ -2,6 +2,8 @@
 
 namespace backend\modules\user\controllers;
 
+use yii\helpers\ArrayHelper;
+//
 use thread\app\base\controllers\BackendController;
 //
 use backend\modules\user\models\{
@@ -17,9 +19,19 @@ use backend\modules\user\models\{
  */
 class GroupController extends BackendController
 {
-    public $label = 'Group';
-    public $title = "User groups";
+    public $title = "Groups";
+    public $name = 'group';
     protected $model = Group::class;
     protected $modelLang = GroupLang::class;
     protected $filterModel = filterGroupModel::class;
+
+    public function actions()
+    {
+
+        return ArrayHelper::merge(parent::actions(), [
+            'list' => [
+                'layout' => 'list-group',
+            ],
+        ]);
+    }
 }
