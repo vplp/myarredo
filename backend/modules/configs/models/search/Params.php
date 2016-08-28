@@ -31,6 +31,7 @@ class Params extends ParamsModel implements BaseBackendSearchModel
     {
         return [
             [['title'], 'string', 'max' => 255],
+            [['group_id'], 'integer'],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
@@ -70,7 +71,8 @@ class Params extends ParamsModel implements BaseBackendSearchModel
         }
 
         $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published]);
+            ->andFilterWhere(['like', 'published', $this->published])
+            ->andFilterWhere(['like', 'group_id', $this->group_id]);
         //
         $query->andFilterWhere(['like', ParamsLang::tableName() . '.title', $this->title]);
 
