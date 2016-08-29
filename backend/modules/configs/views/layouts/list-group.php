@@ -33,7 +33,7 @@ use yii\widgets\Breadcrumbs;
     </div>
     <div class="col-lg-2">
         <h2 class="btn-group" role="group">
-            <?= Html::a('<i class="fa fa-plus"></i> ' . Yii::t('app', 'Params'), ['/configs/params/list'], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(Yii::t('app', 'Params'), ['/configs/params/list'], ['class' => 'btn btn-warning']) ?>
         </h2>
     </div>
     <div class="col-lg-2">

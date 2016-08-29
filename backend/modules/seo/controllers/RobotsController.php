@@ -16,6 +16,7 @@ class RobotsController extends BackendController
 {
     public $title = 'Robots.txt';
     public $name = 'robots';
+    public $layout = "list-robots";
 
     /**
      * @return array
