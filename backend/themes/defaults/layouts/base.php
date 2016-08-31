@@ -10,7 +10,7 @@
 
 <!--    TODO: Заменить виджетом breadcrumbs    -->
 <div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-lg-10">
+    <div class="col-md-10">
         <h2><?= $this->context->getTitle() ?></h2>
 <!--        <ol class="breadcrumb">-->
 <!--            <li>-->
