@@ -9,7 +9,7 @@ use thread\modules\polls\Polls as PollsModule;
 use thread\app\base\models\ActiveRecordLang;
 
 /**
- * Class ArticleLang
+ * Class VoteLang
  *
  * @property integer $rid
  * @property string $lang

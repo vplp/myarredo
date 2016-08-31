@@ -41,10 +41,10 @@ class m160127_030655_create_fv_news_article_table extends Migration
             'alias' => $this->string(255)->unique()->notNull()->comment('Alias'),
             'image_link' => $this->string(255)->defaultValue(null)->comment('Image link'),
             'published_time' => $this->integer(10)->notNull()->defaultValue(0)->comment('Published time'),
-            'created_at' => $this->integer(10)->notNull()->defaultValue(0)->comment('Create time'),
-            'updated_at' => $this->integer(10)->notNull()->defaultValue(0)->comment('Update time'),
-            'published' => $this->boolean()->notNull()->defaultValue(0)->comment('Published'),
-            'deleted' => $this->boolean()->notNull()->defaultValue(0)->comment('Deleted'),
+            'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
+            'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
+            'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
+            'deleted' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Deleted'",
         ]);
         $this->createIndex('published', $this->tableNewsArticle, 'published');
         $this->createIndex('deleted', $this->tableNewsArticle, 'deleted');

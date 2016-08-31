@@ -61,7 +61,7 @@ class MenuItem extends MenuItemModel implements BaseBackendSearchModel
                 ],
                 'sort' => [
                     'defaultOrder' => [
-                        'id' => SORT_ASC
+                        'position' => SORT_ASC
                     ]
                 ]
             ]

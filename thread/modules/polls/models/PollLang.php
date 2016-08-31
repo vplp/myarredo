@@ -9,7 +9,7 @@ use thread\app\base\models\ActiveRecordLang;
 use thread\modules\polls\Polls as PollsModule;
 
 /**
- * Class GroupLang
+ * Class PollLang
  *
  * @property integer $rid
  * @property string $lang
@@ -19,7 +19,7 @@ use thread\modules\polls\Polls as PollsModule;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c) 2016, VipDesign
  */
-class GroupLang extends ActiveRecordLang
+class PollLang extends ActiveRecordLang
 {
     /**
      * @return string

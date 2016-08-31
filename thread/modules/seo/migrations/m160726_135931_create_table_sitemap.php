@@ -27,10 +27,10 @@ class m160726_135931_create_table_sitemap extends Migration
             'model_id' => $this->string(255)->notNull()->comment('Model ID'),
             'key' => $this->string(50)->notNull()->comment('Key'),
             'url' => $this->text()->notNull()->comment('Url'),
-            'created_at' => $this->integer(10)->notNull()->defaultValue(0)->comment('Create time'),
-            'updated_at' => $this->integer(10)->notNull()->defaultValue(0)->comment('Update time'),
-            'published' => $this->boolean()->notNull()->defaultValue(0)->comment('Published'),
-            'deleted' => $this->boolean()->notNull()->defaultValue(0)->comment('Deleted'),
+            'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
+            'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
+            'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
+            'deleted' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Deleted'",
             'readonly' => $this->boolean()->notNull()->defaultValue(0)->comment('Published'),
         ]);
         $this->createIndex('published', $this->tableName, 'published');

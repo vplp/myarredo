@@ -56,8 +56,15 @@ echo $model['internal_source'];
         <?= $form->field($model, 'link_target')->dropDownList(MenuItem::linkTargetRange()) ?>
     </div>
 
-<?= $form->text_line($model, 'position')->value(0) ?>
-<?= $form->switcher($model, 'published') ?>
+    <div class="row control-group">
+        <div class="col-md-3">
+            <?= $form->switcher($model, 'published') ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->text_line($model, 'position') ?>
+        </div>
+    </div>
+
 <?= $form->submit($model, $this) ?>
 <?php ActiveForm::end(); ?>
 

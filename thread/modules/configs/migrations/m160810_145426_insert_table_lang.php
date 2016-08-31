@@ -25,7 +25,7 @@ class m160810_145426_insert_table_lang extends Migration
      */
     public function up()
     {
-        $this->addColumn('fv_languages', 'default', $this->integer()->defaultValue(null)->comment('default'));
+        $this->addColumn('fv_languages', 'default', $this->boolean()->notNull()->defaultValue(0)->comment('default'));
     }
 
     /**

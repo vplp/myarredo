@@ -51,8 +51,8 @@ class m160607_122454_insert_user_group extends Migration
                     'id' => 1,
                     'alias' => 'admin',
                     'role' => 'admin',
-                    'published' => 1,
-                    'deleted' => 0,
+                    'published' => '1',
+                    'deleted' => '0',
                     'created_at' => time(),
                     'updated_at' => time()
                 ],
@@ -60,8 +60,8 @@ class m160607_122454_insert_user_group extends Migration
                     'id' => 2,
                     'alias' => 'user',
                     'role' => 'user',
-                    'published' => 1,
-                    'deleted' => 0,
+                    'published' => '1',
+                    'deleted' => '0',
                     'created_at' => time(),
                     'updated_at' => time()
                 ],

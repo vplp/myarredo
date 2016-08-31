@@ -13,10 +13,18 @@ use thread\app\bootstrap\ActiveForm;
 
 <?= $form->text_line($model, 'alias') ?>
 <?= $form->text_line_lang($modelLang, 'title') ?>
-<?= $form->text_line($model, 'code1') ?>
-<?= $form->text_line($model, 'code2') ?>
+    <div class="row control-group">
+        <div class="col-md-4">
+            <?= $form->text_line($model, 'code1') ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->text_line($model, 'code2') ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->text_line($model, 'currency_symbol') ?>
+        </div>
+    </div>
 <?= $form->text_line($model, 'course') ?>
-<?= $form->text_line($model, 'currency_symbol') ?>
 <?= $form->switcher($model, 'published') ?>
 
 <?= $form->submit($model, $this) ?>

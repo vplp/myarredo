@@ -19,5 +19,14 @@ use backend\modules\news\models\Group;
 <?= $form->text_line_lang($modelLang, 'description')->textarea([
     'style' => 'height:100px;'
 ]) ?>
-<?= $form->field($model, 'published_time')->datePicker($model->getPublishedTime()) ?>
-<?= $form->switcher($model, 'published') ?>
+
+<div class="row control-group">
+    <div class="col-md-3">
+        <?= $form->switcher($model, 'published') ?>
+    </div>
+    <div class="col-md-5">
+        <?= $form->field($model, 'published_time')->datePicker($model->getPublishedTime()) ?>
+    </div>
+</div>
+
+

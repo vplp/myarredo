@@ -38,7 +38,7 @@ class m160126_224818_create_fv_page_table extends Migration
             'image_link' => $this->string(255)->defaultValue(null)->comment('Image link'),
             'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
             'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
-            'published' => $this->boolean()->notNull()->defaultValue(0)->comment('Published'),
+            'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
             'deleted' => $this->boolean()->notNull()->defaultValue(0)->comment('Deleted')
         ]);
 

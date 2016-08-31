@@ -30,10 +30,10 @@ class m160808_100956_create_fv_configs_params extends Migration
         $this->createTable($this->tableConfigsParams, [
             'id' => $this->primaryKey()->unsigned()->comment('ID'),
             'value' => $this->string(1024)->notNull()->comment('Value'),
-            'created_at' => $this->integer(10)->notNull()->defaultValue(0)->comment('Create time'),
-            'updated_at' => $this->integer(10)->notNull()->defaultValue(0)->comment('Update time'),
-            'published' => $this->boolean()->notNull()->defaultValue(0)->comment('Published'),
-            'deleted' => $this->boolean()->notNull()->defaultValue(0)->comment('Deleted'),
+            'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
+            'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
+            'deleted' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Deleted'",
+            'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
         ]);
 
         $this->createIndex('published', $this->tableConfigsParams, 'published');

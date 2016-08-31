@@ -27,7 +27,7 @@ class m160705_094012_create_table_country extends Migration
             'iso' => $this->string(3)->defaultValue(null)->comment('iso'),
             'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
             'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
-            'published' => $this->boolean()->notNull()->defaultValue(0)->comment('Published'),
+            'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
             'deleted' => $this->boolean()->notNull()->defaultValue(0)->comment('Deleted')
         ]);
 

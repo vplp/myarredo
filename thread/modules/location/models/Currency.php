@@ -110,7 +110,7 @@ class Currency extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
             'course' => Yii::t('app', 'course'),
-            'currency_symbol' => Yii::t('app', '(Html code) to display a currency symbol'),
+            'currency_symbol' => Yii::t('app', '(Html code) to display symbol'),
         ];
     }
 

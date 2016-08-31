@@ -10,9 +10,19 @@ use thread\app\bootstrap\ActiveForm;
 
 <?php $form = ActiveForm::begin(); ?>
 <?= $form->submit($model, $this) ?>
-<?= $form->text_line($model, 'alpha2') ?>
-<?= $form->text_line($model, 'alpha3') ?>
-<?= $form->text_line($model, 'iso') ?>
+
+    <div class="row control-group">
+        <div class="col-md-4">
+            <?= $form->text_line($model, 'alpha2') ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->text_line($model, 'alpha3') ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->text_line($model, 'iso') ?>
+        </div>
+    </div>
+
 <?= $form->text_line_lang($modelLang, 'title') ?>
 <?= $form->switcher($model, 'published') ?>
 <?= $form->submit($model, $this) ?>

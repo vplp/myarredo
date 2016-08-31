@@ -28,7 +28,7 @@ class m160817_130448_add_column_group_id_to_configs_params extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn($this->tableConfigsParams, 'group_id', $this->integer(11)->defaultValue(0)->comment('Group'));
+        $this->addColumn($this->tableConfigsParams, 'group_id', $this->integer(11)->unsigned()->defaultValue(0)->comment('Group'));
     }
 
     /**

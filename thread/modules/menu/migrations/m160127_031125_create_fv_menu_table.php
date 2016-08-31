@@ -37,11 +37,11 @@ class m160127_031125_create_fv_menu_table extends Migration
         $this->createTable($this->tableMenu, [
             'id' => $this->primaryKey()->unsigned()->comment('ID'),
             'alias' => $this->string(255)->unique()->notNull()->comment('Alias'),
-            'created_at' => $this->integer(10)->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
-            'updated_at' => $this->integer(10)->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
-            'published' => $this->boolean()->notNull()->defaultValue(0)->comment('Published'),
-            'deleted' => $this->boolean()->notNull()->defaultValue(0)->comment('Deleted'),
-            'readonly' => $this->boolean()->notNull()->defaultValue(0)->comment('Read only')
+            'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
+            'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
+            'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
+            'deleted' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Deleted'",
+            'readonly' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Readonly'",
         ]);
 
         $this->createIndex('published', $this->tableMenu, 'published');

@@ -1,14 +1,14 @@
 <?php
-namespace backend\modules\configs;
+namespace backend\modules\polls;
 
 /**
- * Class Configs
+ * Class News
  *
- * @package backend\modules\configs
+ * @package backend\modules\polls
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class Configs extends \common\modules\configs\Configs
+class Polls extends \common\modules\polls\Polls
 {
     /**
      * Number of elements in GridView

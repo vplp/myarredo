@@ -141,6 +141,12 @@ class NavBar extends \yii\bootstrap\NavBar
                     ],
                 ],
             ],
+            // POLLS
+            [
+                'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('app',
+                        'Polls') . '</span> <span class="fa arrow"></span></a>',
+                'url' => ['/polls/poll/list']
+            ],
         ];
     }
 }

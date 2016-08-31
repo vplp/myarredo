@@ -8,7 +8,7 @@ use thread\app\base\models\ActiveRecord;
 use thread\modules\polls\Polls as PollsModule;
 
 /**
- * Class Article
+ * Class Vote
  *
  * @property integer id
  * @property integer group_id
@@ -48,7 +48,7 @@ class Vote extends ActiveRecord
     public function rules()
     {
         return [
-            [['group_id', 'create_time', 'update_time'], 'integer'],
+            [['group_id', 'create_time', 'update_time', 'number_of_votes', 'position'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
         ];
     }
@@ -61,7 +61,7 @@ class Vote extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['group_id', 'published', 'deleted'],
+            'backend' => ['group_id', 'published', 'deleted', 'number_of_votes', 'position'],
         ];
     }
 
@@ -73,6 +73,8 @@ class Vote extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'group_id' => Yii::t('app', 'Group'),
+            'number_of_votes' => Yii::t('app', 'Number of votes'),
+            'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),

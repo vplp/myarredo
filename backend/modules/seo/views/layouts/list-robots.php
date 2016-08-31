@@ -24,7 +24,6 @@ use yii\widgets\Breadcrumbs;
                 ],
                 [
                     'label' => Yii::t($this->context->module->name, $this->context->title),
-                    'url' => ['/seo/robots/update'],
                 ]
             ],
         ]) ?>

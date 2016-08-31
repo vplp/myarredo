@@ -41,4 +41,7 @@ return [
     /**
      *
      */
+    'polls' => [
+        'class' => \backend\modules\polls\Polls::class,
+    ],
 ];

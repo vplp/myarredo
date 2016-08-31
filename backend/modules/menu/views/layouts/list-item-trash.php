@@ -26,7 +26,6 @@ use yii\widgets\Breadcrumbs;
                 ],
                 [
                     'label' => Yii::t($this->context->module->name, $this->context->title),
-                    'url' => ['/' . $this->context->module->name . '/' . $this->context->name . '/list'],
                 ],
                 Yii::t('app', 'Trash'),
             ],
@@ -34,7 +33,7 @@ use yii\widgets\Breadcrumbs;
     </div>
     <div class="col-lg-2">
         <h2 class="btn-group" role="group">
-            <?= Html::a('<i class="fa fa-list"></i> ' . Yii::t('app', 'Back to list'), ['list', 'group_id' => $this->context->group->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(Yii::t('app', 'Back to list'), ['list', 'group_id' => $this->context->group->id], ['class' => 'btn btn-warning']) ?>
         </h2>
     </div>
 </div>

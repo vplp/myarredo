@@ -30,6 +30,14 @@ class Polls extends aModule
     }
 
     /**
+     * @return mixed
+     */
+    public static function getFormatDate()
+    {
+        return Yii::$app->getModule('polls')->params['format']['date'];
+    }
+
+    /**
      * @return string
      */
     public function getPageUploadPath()

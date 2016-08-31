@@ -48,8 +48,8 @@ class m160127_002445_create_fv_user extends Migration
             'auth_key' => $this->string(32)->notNull()->comment('Auth key'),
             'password_hash' => $this->string(255)->notNull()->comment('Password hash'),
             'password_reset_token' => $this->string(255)->defaultValue(null)->comment('Password reset token'),
-            'published' => $this->boolean()->notNull()->defaultValue(0)->comment('Published'),
-            'deleted' => $this->boolean()->notNull()->defaultValue(0)->comment('Deleted'),
+            'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
+            'deleted' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Deleted'",
             'created_at' => $this->integer(11)->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
             'updated_at' => $this->integer(11)->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
         ]);

@@ -2,8 +2,6 @@
 
 use yii\grid\GridView;
 //
-use kartik\widgets\DatePicker;
-//
 use thread\widgets\grid\{
     ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn, GridViewFilter
 };

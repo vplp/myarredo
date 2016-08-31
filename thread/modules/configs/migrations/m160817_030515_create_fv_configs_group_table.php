@@ -33,10 +33,10 @@ class m160817_030515_create_fv_configs_group_table extends Migration
         $this->createTable($this->tableConfigsGroup, [
             'id' => $this->primaryKey()->unsigned()->comment('ID'),
             'alias' => $this->string(255)->notNull()->unique()->comment('Alias'),
-            'created_at' => $this->integer(10)->notNull()->defaultValue(0)->comment('Create time'),
-            'updated_at' => $this->integer(10)->notNull()->defaultValue(0)->comment('Update time'),
-            'published' => $this->boolean()->notNull()->defaultValue(0)->comment('Published'),
-            'deleted' => $this->boolean()->notNull()->defaultValue(0)->comment('Deleted'),
+            'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
+            'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
+            'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
+            'deleted' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Deleted'",
         ]);
 
         $this->createIndex('published', $this->tableConfigsGroup, 'published');

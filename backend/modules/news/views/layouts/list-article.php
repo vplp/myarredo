@@ -25,7 +25,6 @@ use yii\widgets\Breadcrumbs;
                 ],
                 [
                     'label' => Yii::t($this->context->module->name, $this->context->title),
-                    'url' => ['/news/article/list'],
                 ],
                 Yii::t('app', 'List'),
             ],

@@ -39,7 +39,7 @@ class m160126_232541_create_fv_page_lang_table extends Migration
     public function safeUp()
     {
         $this->createTable($this->tablePageLang, [
-            'rid' => $this->integer()->unsigned()->notNull()->comment('Related model ID'),
+            'rid' => $this->integer(11)->unsigned()->notNull()->comment('Related model ID'),
             'lang' => $this->string(5)->notNull()->comment('Language'),
             'title' => $this->string(255)->notNull()->comment('Title'),
             'content' => $this->text()->defaultValue(null)->comment('Content')

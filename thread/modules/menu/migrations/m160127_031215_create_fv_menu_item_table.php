@@ -51,10 +51,10 @@ class m160127_031215_create_fv_menu_item_table extends Migration
             'internal_source' => "enum('page') NOT NULL DEFAULT 'page' COMMENT 'Internal source'",
             'internal_source_id' => $this->integer(11)->unsigned()->notNull()->defaultValue(0)->comment('Internal Source ID'),
             'position' => $this->integer(11)->unsigned()->notNull()->defaultValue(0)->comment('Position'),
-            'created_at' => $this->integer(10)->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
-            'updated_at' => $this->integer(10)->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
-            'published' => $this->boolean()->notNull()->defaultValue(0)->comment('Published'),
-            'deleted' => $this->boolean()->notNull()->defaultValue(0)->comment('Deleted'),
+            'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
+            'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
+            'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
+            'deleted' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Deleted'",
         ]);
 
         $this->createIndex('group_id', $this->tableMenuItem, 'group_id');

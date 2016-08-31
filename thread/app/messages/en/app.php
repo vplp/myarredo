@@ -12,7 +12,7 @@ return [
     'Alias' => 'Alias',
     'Create time' => 'Create time',
     'Update time' => 'Update time',
-    'Published' => 'Published',
+    'Published' => 'On',
     'Deleted' => 'Deleted',
     'Default' => 'Default',
     'Label' => 'Label',

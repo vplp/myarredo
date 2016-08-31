@@ -35,10 +35,10 @@ class m160810_130204_create_table_languages extends Migration
             'alias' => $this->string(50)->notNull()->comment('Value'),
             'local' => $this->string(50)->notNull()->comment('local'),
             'label' => $this->string(50)->notNull()->comment('label'),
-            'created_at' => $this->integer(10)->notNull()->defaultValue(0)->comment('Create time'),
-            'updated_at' => $this->integer(10)->notNull()->defaultValue(0)->comment('Update time'),
-            'published' => $this->boolean()->notNull()->defaultValue(0)->comment('Published'),
-            'deleted' => $this->boolean()->notNull()->defaultValue(0)->comment('Deleted'),
+            'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
+            'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
+            'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
+            'deleted' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Deleted'",
         ]);
 
         $this->createIndex('published', $this->tableLanguages, 'published');

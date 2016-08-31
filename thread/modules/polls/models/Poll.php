@@ -8,7 +8,7 @@ use thread\app\base\models\ActiveRecord;
 use thread\modules\polls\Polls as PollsModule;
 
 /**
- * Class Group
+ * Class Poll
  *
  * @property integer $id
  * @property integer published_time
@@ -48,7 +48,7 @@ class Poll extends ActiveRecord
     public function rules()
     {
         return [
-            [['created_at', 'updated_at'], 'integer'],
+            [['created_at', 'updated_at', 'number_of_votes'], 'integer'],
             [
                 ['start_time'],
                 'date',
@@ -73,7 +73,7 @@ class Poll extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['published', 'deleted', 'start_time', 'finish_time'],
+            'backend' => ['published', 'deleted', 'start_time', 'finish_time', 'number_of_votes'],
         ];
     }
 
@@ -84,6 +84,7 @@ class Poll extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'number_of_votes' => Yii::t('app', 'Number of votes'),
             'start_time' => Yii::t('app', 'Start time'),
             'finish_time' => Yii::t('app', 'Finish time'),
             'created_at' => Yii::t('app', 'Create time'),

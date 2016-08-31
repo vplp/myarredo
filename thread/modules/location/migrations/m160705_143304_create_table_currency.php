@@ -31,7 +31,7 @@ class m160705_143304_create_table_currency extends Migration
                 'currency_symbol' => $this->string(255)->notNull()->defaultValue('')->comment('currency_symbol'),
                 'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
                 'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
-                'published' => $this->boolean()->notNull()->defaultValue(0)->comment('Published'),
+                'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
                 'deleted' => $this->boolean()->notNull()->defaultValue(0)->comment('Deleted')
             ]
         );

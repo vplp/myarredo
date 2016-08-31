@@ -27,7 +27,7 @@ class m160704_103826_create_seo_table extends Migration
             'in_site_map' => $this->boolean()->notNull()->defaultValue(1)->comment('Добавить в siteMap'),
             'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
             'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
-            'published' => $this->boolean()->notNull()->defaultValue(0)->comment('Published'),
+            'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
             'deleted' => $this->boolean()->notNull()->defaultValue(0)->comment('Deleted')
         ]);
 
