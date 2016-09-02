@@ -12,7 +12,7 @@ use thread\app\bootstrap\ActiveForm;
 <?= $form->submit($model, $this) ?>
 <?= $form->text_line_lang($modelLang, 'title') ?>
 <?= $form->text_line($model, 'alias') ?>
-<?= $model->isNewRecord ? $form->text_line($model, 'role') : '' ?>
+<?= $form->field($model, 'role')->dropDownList(\backend\modules\sys\modules\user\models\AuthRole::dropDownList()); ?>
 <?= $form->switcher($model, 'published') ?>
 <?= $form->submit($model, $this) ?>
 <?php ActiveForm::end();

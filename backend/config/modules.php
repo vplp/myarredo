@@ -14,6 +14,9 @@ return [
     /**
      * CORE
      */
+    'sys' => [
+        'class' => \backend\modules\sys\Sys::class,
+    ],
     'home' => [
         'class' => \backend\modules\home\Home::class,
     ],
