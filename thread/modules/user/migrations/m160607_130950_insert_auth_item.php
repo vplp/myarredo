@@ -48,6 +48,15 @@ class m160607_130950_insert_auth_item extends Migration
             ],
             [
                 [
+                    'name' => 'dev',
+                    'type' => 1,
+                    'description' => 'developer',
+                    'rule_name' => null,
+                    'data' => null,
+                    'created_at' => time(),
+                    'updated_at' => time(),
+                ],
+                [
                     'name' => 'admin',
                     'type' => 1,
                     'description' => 'admin',
@@ -81,7 +90,7 @@ class m160607_130950_insert_auth_item extends Migration
 
         /** Empty table */
         $this->truncateTable($this->tableAuthItem);
-        
+
         /** Recreate deleted FKs */
         $this->addForeignKey(
             'fk-auth_assignment-item_name-auth_item-name',
