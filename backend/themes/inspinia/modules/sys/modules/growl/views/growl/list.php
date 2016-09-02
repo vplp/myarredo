@@ -1,10 +1,10 @@
 <?php
 
-use yii\grid\GridView;
-//
 use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn, GridViewFilter
+    GridViewFilter
 };
+//
+use backend\themes\inspinia\widgets\GridView;
 
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
@@ -14,15 +14,12 @@ echo GridView::widget([
         'user_id',
         [
             'attribute' => 'type',
-            'filter' => GridViewFilter::dropDownList($filter, 'type', $filter::getTypeRange() ),
+            'filter' => GridViewFilter::dropDownList($filter, 'type', $filter::getTypeRange()),
         ],
         'message',
         'is_read',
         [
-            'class' => ActionEditColumn::class,
-        ],
-        [
-            'class' => ActionToTrashColumn::class,
+            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class,
         ],
     ]
 ]);

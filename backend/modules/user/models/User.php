@@ -2,6 +2,7 @@
 
 namespace backend\modules\user\models;
 
+use yii\helpers\ArrayHelper;
 use yii\data\ActiveDataProvider;
 //
 use thread\app\model\interfaces\BaseBackendModel;
@@ -15,6 +16,15 @@ use thread\app\model\interfaces\BaseBackendModel;
  */
 class User extends \thread\modules\user\models\User implements BaseBackendModel
 {
+    /**
+     * Backend form dropdown list
+     * @return array
+     */
+    public static function dropDownList()
+    {
+        return ArrayHelper::map(self::findBase()->enabled()->all(), 'id', 'email');
+    }
+
     /**
      * @param array $params
      * @return ActiveDataProvider

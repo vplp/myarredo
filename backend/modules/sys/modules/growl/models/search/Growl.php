@@ -30,7 +30,11 @@ class Growl extends GrowlModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-            [['alias', 'title'], 'string', 'max' => 255],
+            [['user_id'], 'integer'],
+            ['message', 'string', 'max' => 255],
+            ['model', 'string', 'max' => 50],
+            [['priority'], 'in', 'range' => static::getPriorityRange()],
+            [['type'], 'in', 'range' => array_keys(static::getTypeRange())],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
@@ -60,7 +64,7 @@ class Growl extends GrowlModel implements BaseBackendSearchModel
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'name' => SORT_ASC
+                    'id' => SORT_ASC
                 ]
             ]
         ]);
@@ -69,7 +73,11 @@ class Growl extends GrowlModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'id', $this->name]);
+        $query->andFilterWhere(['like', 'id', $this->id])
+            ->andFilterWhere(['like', 'user_id', $this->user_id])
+            ->andFilterWhere(['like', 'message', $this->message])
+            ->andFilterWhere(['like', 'model', $this->model])
+            ->andFilterWhere(['like', 'type', $this->type]);
 
         return $dataProvider;
     }

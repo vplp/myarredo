@@ -30,7 +30,7 @@ class Growl extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%growl}}';
+        return '{{%system_growl}}';
     }
 
     /**
@@ -43,7 +43,7 @@ class Growl extends ActiveRecord
             [['created_at', 'updated_at', 'user_id'], 'integer'],
             [['published', 'deleted', 'is_read'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['priority'], 'in', 'range' => static::getPriorityRange()],
-            [['type'], 'in', 'range' => array_keys(static::getPriorityRange())],
+            [['type'], 'in', 'range' => array_keys(static::getTypeRange())],
             ['message', 'string', 'max' => 255],
             ['url', 'string', 'max' => 512],
             ['model', 'string', 'max' => 50],
