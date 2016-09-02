@@ -1,7 +1,7 @@
 <?php
 
 use thread\widgets\grid\{
-    GridViewFilter
+    ActionCheckboxColumn, GridViewFilter
 };
 //
 use backend\themes\inspinia\widgets\GridView;
@@ -17,7 +17,16 @@ echo GridView::widget([
             'filter' => GridViewFilter::dropDownList($filter, 'type', $filter::getTypeRange()),
         ],
         'message',
-        'is_read',
+        [
+            'class' => ActionCheckboxColumn::class,
+            'attribute' => 'is_read',
+            'action' => 'is_read'
+        ],
+        [
+            'class' => ActionCheckboxColumn::class,
+            'attribute' => 'published',
+            'action' => 'published'
+        ],
         [
             'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class,
         ],

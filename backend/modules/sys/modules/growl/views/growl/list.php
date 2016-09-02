@@ -14,10 +14,19 @@ echo GridView::widget([
         'user_id',
         [
             'attribute' => 'type',
-            'filter' => GridViewFilter::dropDownList($filter, 'type', $filter::getTypeRange() ),
+            'filter' => GridViewFilter::dropDownList($filter, 'type', $filter::getTypeRange()),
         ],
         'message',
-        'is_read',
+        [
+            'class' => ActionCheckboxColumn::class,
+            'attribute' => 'is_read',
+            'action' => 'is_read'
+        ],
+        [
+            'class' => ActionCheckboxColumn::class,
+            'attribute' => 'published',
+            'action' => 'published'
+        ],
         [
             'class' => ActionEditColumn::class,
         ],
