@@ -66,8 +66,13 @@ class Correspondence extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'sender_id' => Yii::t('app', 'Sender'),
+            'recipient_id' => Yii::t('app', 'Recipient'),
+            'subject' => Yii::t('app', 'Subject'),
+            'message' => Yii::t('app', 'Message'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
+            'is_read' => Yii::t('app', 'Is read'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
