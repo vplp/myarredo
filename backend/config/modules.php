@@ -47,4 +47,7 @@ return [
     'polls' => [
         'class' => \backend\modules\polls\Polls::class,
     ],
+    'correspondence' => [
+        'class' => \backend\modules\correspondence\Correspondence::class,
+    ],
 ];
