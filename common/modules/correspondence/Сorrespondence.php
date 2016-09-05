@@ -8,7 +8,7 @@ namespace common\modules\correspondence;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class Сorrespondence extends \thread\modules\correspondence\Сorrespondence
+class Сorrespondence extends \thread\modules\correspondence\Correspondence
 {
 
 }

@@ -36,6 +36,7 @@ return ArrayHelper::merge(
                     '@thread/modules/configs/migrations',
                     '@thread/modules/polls/migrations',
                     '@thread/modules/sys/modules/growl/migrations',
+                    '@thread/modules/correspondence/migrations',
                 ],
             ],
         ],

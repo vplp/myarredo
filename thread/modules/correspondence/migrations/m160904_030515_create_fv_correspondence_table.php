@@ -1,7 +1,7 @@
 <?php
 
 use yii\db\Migration;
-use thread\modules\correspondence\Сorrespondence;
+use thread\modules\correspondence\Correspondence;
 
 /**
  * Class m160904_030515_create_fv_correspondence_table
@@ -14,14 +14,14 @@ class m160904_030515_create_fv_correspondence_table extends Migration
     /**
      * @var string
      */
-    public $tableСorrespondence = '{{%correspondence}}';
+    public $tableCorrespondence = '{{%correspondence}}';
 
     /**
      *
      */
     public function init()
     {
-        $this->db = Сorrespondence::getDb();
+        $this->db = Correspondence::getDb();
         parent::init();
     }
 
@@ -30,17 +30,24 @@ class m160904_030515_create_fv_correspondence_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable($this->tableNewsGroup, [
+        $this->createTable($this->tableCorrespondence, [
             'id' => $this->primaryKey()->unsigned()->comment('ID'),
-            'alias' => $this->string(255)->notNull()->unique()->comment('Alias'),
+            'sender_id' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Sender'),
+            'recipient_id' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Recipient'),
+            'subject' => $this->string(512)->notNull()->unique()->comment('Subject'),
+            'message' => $this->text()->notNull()->unique()->comment('Message'),
             'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
             'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
+            'is_read' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Is read'",
             'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
             'deleted' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Deleted'",
         ]);
 
-        $this->createIndex('published', $this->tableNewsGroup, 'published');
-        $this->createIndex('deleted', $this->tableNewsGroup, 'deleted');
+        $this->createIndex('sender_id', $this->tableCorrespondence, 'sender_id');
+        $this->createIndex('recipient_id', $this->tableCorrespondence, 'recipient_id');
+        $this->createIndex('is_read', $this->tableCorrespondence, 'is_read');
+        $this->createIndex('published', $this->tableCorrespondence, 'published');
+        $this->createIndex('deleted', $this->tableCorrespondence, 'deleted');
     }
 
     /**
@@ -48,8 +55,11 @@ class m160904_030515_create_fv_correspondence_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropIndex('deleted', $this->tableNewsGroup);
-        $this->dropIndex('published', $this->tableNewsGroup);
-        $this->dropTable($this->tableNewsGroup);
+        $this->dropIndex('sender_id', $this->tableCorrespondence);
+        $this->dropIndex('recipient_id', $this->tableCorrespondence);
+        $this->dropIndex('is_read', $this->tableCorrespondence);
+        $this->dropIndex('deleted', $this->tableCorrespondence);
+        $this->dropIndex('published', $this->tableCorrespondence);
+        $this->dropTable($this->tableCorrespondence);
     }
 }
