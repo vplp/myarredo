@@ -2,13 +2,13 @@
 namespace common\modules\correspondence;
 
 /**
- * Class Сorrespondence
+ * Class Correspondence
  *
  * @package common\modules\correspondence
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class Сorrespondence extends \thread\modules\correspondence\Correspondence
+class Correspondence extends \thread\modules\correspondence\Correspondence
 {
 
 }

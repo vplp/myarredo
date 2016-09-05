@@ -32,10 +32,10 @@ class m160904_030515_create_fv_correspondence_table extends Migration
     {
         $this->createTable($this->tableCorrespondence, [
             'id' => $this->primaryKey()->unsigned()->comment('ID'),
-            'sender_id' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Sender'),
-            'recipient_id' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Recipient'),
-            'subject' => $this->string(512)->notNull()->unique()->comment('Subject'),
-            'message' => $this->text()->notNull()->unique()->comment('Message'),
+            'sender_id' => $this->integer()->unsigned()->notNull()->comment('Sender'),
+            'recipient_id' => $this->integer()->unsigned()->notNull()->comment('Recipient'),
+            'subject' => $this->string(512)->notNull()->comment('Subject'),
+            'message' => $this->text()->notNull()->comment('Message'),
             'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
             'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
             'is_read' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Is read'",

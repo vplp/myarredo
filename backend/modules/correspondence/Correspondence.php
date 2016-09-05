@@ -7,7 +7,7 @@ namespace backend\modules\correspondence;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class Correspondence extends \common\modules\correspondence\Сorrespondence
+class Correspondence extends \common\modules\correspondence\Correspondence
 {
     /**
      * Number of elements in GridView
