@@ -1,11 +1,11 @@
 <?php
 
-namespace thread\modules\sys\growl\components;
+namespace thread\modules\sys\modules\growl\components;
 
 use Yii;
 use yii\base\Component;
 //
-use thread\modules\sys\growl\Growl as GrowlModule;
+use thread\modules\sys\modules\growl\Growl as GrowlModule;
 use thread\modules\sys\modules\growl\models\Growl as GrowlModel;
 
 /**

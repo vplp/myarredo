@@ -104,7 +104,6 @@ class NavBar extends \yii\bootstrap\NavBar
                     ],
                 ],
             ],
-
             // USER
             [
                 'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('app',
@@ -146,6 +145,29 @@ class NavBar extends \yii\bootstrap\NavBar
                 'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('app',
                         'Polls') . '</span> <span class="fa arrow"></span></a>',
                 'url' => ['/polls/poll/list']
+            ],
+            // SYSTEM
+            [
+                'label' => '<i class="fa fa-map-marker"></i><span class="nav-label">' . Yii::t('app',
+                        'System') . '</span><span class="fa arrow"></span>',
+                'items' => [
+                    [
+                        'label' => Yii::t('app', 'Growl'),
+                        'url' => ['/sys/growl/growl/list']
+                    ],
+                    [
+                        'label' => Yii::t('app', 'Role of User'),
+                        'url' => ['/sys/user/role/list']
+                    ],
+                    [
+                        'label' => Yii::t('app', 'Log'),
+                        'url' => ['/sys/logbook/logbook/list']
+                    ],
+                    [
+                        'label' => Yii::t('app', 'Mail'),
+                        'url' => ['/sys/mail/message/list']
+                    ],
+                ],
             ],
         ];
     }
