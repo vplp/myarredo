@@ -28,6 +28,6 @@ class City extends \common\modules\location\models\City implements BaseBackendMo
      */
     public function trash($params)
     {
-        return (new search\Currency())->trash($params);
+        return (new search\City())->trash($params);
     }
 }

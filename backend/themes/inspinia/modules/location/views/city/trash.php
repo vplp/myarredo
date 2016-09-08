@@ -5,6 +5,7 @@ use thread\widgets\grid\{
 };
 //
 use backend\themes\inspinia\widgets\GridView;
+
 /**
  *
  * @package admin\modules\page\view
@@ -21,7 +22,6 @@ echo GridView::widget([
             'value' => 'lang.title',
             'label' => Yii::t('app', 'Title')
         ],
-        'course',
         [
             'class' => ActionDeleteColumn::class,
         ],

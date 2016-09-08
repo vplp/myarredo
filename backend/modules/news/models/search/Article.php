@@ -79,7 +79,7 @@ class Article extends ArticleModel implements BaseBackendSearchModel
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'id' => SORT_ASC
+                    'published_time' => SORT_DESC
                 ]
             ]
         ]);

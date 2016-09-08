@@ -29,6 +29,11 @@ echo GridView::widget([
         ],
         'username',
         [
+            'value' => function($model){
+                return $model->profile->getFullName();
+            }
+        ],
+        [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',
             'action' => 'published'
@@ -50,7 +55,10 @@ echo GridView::widget([
             'class' => ActionEditColumn::class,
         ],
         [
-            'class' => ActionToTrashColumn::class
+            'class' => ActionToTrashColumn::class,
+            'link' => function ($model) {
+                return ($model['id'] == 1) ? '' : ['intrash', 'id' => $model['id']];
+            }
         ],
     ]
 ]);

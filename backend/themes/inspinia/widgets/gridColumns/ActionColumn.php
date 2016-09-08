@@ -47,9 +47,9 @@ class ActionColumn extends Column
      */
     protected function renderDataCellContent($model, $key, $index)
     {
-        return Html::a('<i class="fa fa-pencil"></i> ', $this->getUpdateLink($model), ['class' => 'btn btn-success btn-xs']) .
-        ' ' .
-        Html::a('<i class="fa fa-trash"></i> ', $this->getDeleteLink($model), ['class' => 'btn btn-danger btn-xs']);
+        return Html::a('<i class="fa fa-pencil"></i> ', $this->getUpdateLink($model), ['class' => 'btn btn-success btn-s']) .
+        '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' .
+        Html::a('<i class="fa fa-trash"></i> ', $this->getDeleteLink($model), ['class' => 'btn btn-danger btn-s']);
     }
 
     /**

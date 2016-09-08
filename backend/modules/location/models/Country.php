@@ -28,6 +28,6 @@ class Country extends \common\modules\location\models\Country implements BaseBac
      */
     public function trash($params)
     {
-        return (new search\Currency())->trash($params);
+        return (new search\Country())->trash($params);
     }
 }

@@ -30,24 +30,24 @@ class UserController extends BackendController
     protected $model = User::class;
     protected $filterModel = filterUserModel::class;
 
-    public function behaviors()
-    {
-        return [
-            'AccessControl' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'actions' => ['create', 'update', 'list', 'validation'],
-                        'roles' => ['admin']
-                    ],
-                    [
-                        'allow' => false,
-                    ],
-                ],
-            ],
-        ];
-    }
+//    public function behaviors()
+//    {
+//        return [
+//            'AccessControl' => [
+//                'class' => AccessControl::class,
+//                'rules' => [
+//                    [
+//                        'allow' => true,
+//                        'actions' => ['create', 'update', 'list', 'validation'],
+//                        'roles' => ['admin']
+//                    ],
+//                    [
+//                        'allow' => false,
+//                    ],
+//                ],
+//            ],
+//        ];
+//    }
 
     /**
      *

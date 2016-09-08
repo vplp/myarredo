@@ -15,9 +15,6 @@ if (isset($model['link_type'])) {
 if (empty($model['internal_source'])):
     $model['internal_source'] = array_keys(MenuItem::getSourcesList())[0];
 endif;
-
-echo $model['internal_source'];
-
 ?>
 <?php $form = ActiveForm::begin(); ?>
 <?= $form->submit($model, $this) ?>
