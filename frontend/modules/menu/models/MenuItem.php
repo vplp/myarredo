@@ -75,7 +75,7 @@ final class MenuItem extends \backend\modules\menu\models\MenuItem
      */
     public function getUrl($scheme = false)
     {
-        return Url::toRoute($this['link'], $scheme);
+        return (self::LINK_TYPE_EXTERNAL == $this['link_type']) ? $this['link'] : Url::toRoute($this['link'], $scheme);
     }
 
     /**

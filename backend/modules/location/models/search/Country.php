@@ -54,7 +54,7 @@ class Country extends CountryModel implements BaseBackendSearchModel
                 ],
                 'sort' => [
                     'defaultOrder' => [
-                        'id' => SORT_ASC
+                        'title' => SORT_ASC
                     ]
                 ]
             ]

@@ -39,6 +39,9 @@ use thread\modules\menu\Menu as MenuModule;
 class MenuItem extends ActiveRecord
 {
 
+    const LINK_TYPE_EXTERNAL = 'external';
+    const LINK_TYPE_INTERNAL = 'internal';
+
     /**
      * Переопределяем active query
      * @var
@@ -80,7 +83,7 @@ class MenuItem extends ActiveRecord
     {
         return [
             [['group_id, type'], 'required'],
-            [['created_at', 'updated_at', 'group', 'position', 'group_id', 'parent_id'], 'integer'],
+            [['created_at', 'updated_at', 'group', 'position', 'group_id', 'parent_id', 'internal_source_id'], 'integer'],
             //
             [['type'], 'in', 'range' => array_keys(static::typeRange())],
             ['type', 'default', 'value' => array_keys(static::typeRange())[0]],
@@ -97,7 +100,7 @@ class MenuItem extends ActiveRecord
             [['link', 'internal_source'], 'string', 'max' => 255],
             //default
             [['type'], 'default', 'value' => 'normal'],
-            [['position', 'parent_id'], 'default', 'value' => '0']
+            [['position', 'parent_id', 'internal_source_id'], 'default', 'value' => '0']
         ];
     }
 

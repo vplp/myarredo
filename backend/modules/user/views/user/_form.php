@@ -13,7 +13,7 @@ use backend\modules\user\models\{
 <?= $form->submit($model, $this) ?>
 <?= $form->text_line($model, 'username') ?>
 <?= $form->text_line($model, 'email') ?>
-<?= $form->field($model, 'group_id')->dropDownList(Group::dropDownList()); ?>
+<?php if ($model['id'] != 1): echo $form->field($model, 'group_id')->dropDownList(Group::dropDownList()); endif; ?>
 <?= $form->switcher($model, 'published') ?>
 <?= $form->submit($model, $this) ?>
 <?php ActiveForm::end();

@@ -29,6 +29,11 @@ echo GridView::widget([
         ],
         'username',
         [
+            'value' => function ($model) {
+                return $model->profile->getFullName();
+            }
+        ],
+        [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',
             'action' => 'published'
@@ -47,7 +52,10 @@ echo GridView::widget([
             },
         ],
         [
-            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class
+            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class,
+            'deleteLink' => function ($model) {
+                return ($model['id'] == 1) ? '' : ['intrash', 'id' => $model['id']];
+            }
         ],
     ]
 ]);
