@@ -39,6 +39,9 @@ use thread\modules\menu\Menu as MenuModule;
 class MenuItem extends ActiveRecord
 {
 
+    const LINK_TYPE_EXTERNAL = 'external';
+    const LINK_TYPE_INTERNAL = 'internal';
+
     /**
      * Переопределяем active query
      * @var
