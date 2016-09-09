@@ -256,15 +256,18 @@ class MenuItem extends ActiveRecord
     }
 
     /**
-     *
+     * @return string
+     */
+    public function getTarget()
+    {
+        return (self::LINK_TYPE_EXTERNAL == $this['link_type']) ? $this['link_target'] : '_self';
+    }
+
+    /**
      * @return string
      */
     public function getLink()
     {
-        if ($this->link_type == 'internal' && isset($this->source)) {
-            return $this->source->getUrl();
-        } else {
-            return $this->link;
-        }
+        return (self::LINK_TYPE_EXTERNAL == $this['link_type']) ? $this['link'] : ((self::LINK_TYPE_INTERNAL == $this['link_type'] && isset($this->source)) ? $this->source->getUrl() : '');
     }
 }

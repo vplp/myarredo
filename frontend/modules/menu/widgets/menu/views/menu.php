@@ -3,6 +3,10 @@ use yii\bootstrap\NavBar;
 use yii\bootstrap\Nav;
 
 /**
+ * @var $item frontend\modules\menu\models\MenuItem
+ */
+
+/**
  *
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
@@ -11,7 +15,10 @@ $itm = [];
 foreach ($items as $item):
     $itm[] = [
         'label' => $item['lang']['title'],
-        'url' => $item->getLink()
+        'url' => $item->getLink(),
+        'linkOptions' => [
+            'target' => $item->getTarget()
+        ]
     ];
 endforeach;
 

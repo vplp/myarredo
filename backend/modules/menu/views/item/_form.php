@@ -5,8 +5,6 @@ use thread\app\bootstrap\ActiveForm;
 //
 use backend\modules\menu\models\MenuItem;
 
-use yii\web\View;
-
 $type = array_keys(MenuItem::linkTypeRange())[0];
 if (isset($model['link_type'])) {
     $type = $model['link_type'];
@@ -40,7 +38,7 @@ endif;
                 'class' => $key . ' internal_sources',
                 'style' => 'display:' . (($model['internal_source'] == $key) ? 'block' : 'none')
             ]);
-            echo $form->field($model, 'internal_source_id')->dropDownList(call_user_func([$data['class'], $data['method']]))->label($data['label']);
+            echo $form->field($model, 'internal_source_id')->dropDownList(call_user_func([$data['class'], $data['method']]), ['prompt' => ''])->label($data['label']);
             echo Html::endTag('div');
         endforeach;
         echo $form->field($model, 'internal_source_id', ['inputOptions' => ['class' => 'internal_source_id_hidden']])->hiddenInput();
