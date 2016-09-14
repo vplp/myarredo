@@ -33,11 +33,9 @@ final class Request extends \yii\web\Request
      */
     public function init()
     {
-
         if (!((new $this->InjectionLanguageClass) instanceof iInjectionLanguage)) {
             throw new ErrorException($this->InjectionLanguageClass . ' must be implemented ' . iInjectionLanguage::class);
         }
-
         call_user_func([$this->InjectionLanguageClass, 'setBases'], $this->bases);
         parent::init();
     }

@@ -23,6 +23,9 @@ return [
 //        'viewPath' => '@common/mail',
         'useFileTransport' => true,
     ],
+    'request' => [
+        'class' => \thread\app\web\Request::class,
+    ],
     'urlManager' => [
         'class' => \thread\app\web\UrlManager::class,
         'enablePrettyUrl' => true,

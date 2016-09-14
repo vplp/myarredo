@@ -114,7 +114,7 @@ abstract class Module extends \yii\base\Module implements iModule
      */
     public function getBaseUploadUrl()
     {
-        //TODO Путь !!! при рязработке учитывать
+        //TODO Путь !!! при разработке учитывать
         return '/core-cms/web/uploads/' . $this->name . '/';
     }
 }

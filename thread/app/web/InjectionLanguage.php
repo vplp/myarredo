@@ -9,6 +9,17 @@ use thread\app\web\interfaces\InjectionLanguage as iInjectionLanguage;
 /**
  * class MultiLanguage
  *
+ * 'urlManager' => [
+ *       'bases' => [
+ *          [
+ *              'folder' => 'new_folder',
+ *              'alias' => 'new_folder',
+ *          ],
+ *       ]
+ *  ],
+ *
+ *
+ *
  * @package thread\components
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
@@ -23,7 +34,6 @@ class InjectionLanguage implements iInjectionLanguage
     /**
      * @var array
      */
-    /* TODO: Решить вопрос как устанавливать новые директории если таковое имеется */
     public static $bases = [
         [
             'folder' => 'backend',
