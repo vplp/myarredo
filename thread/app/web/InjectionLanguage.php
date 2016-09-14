@@ -2,6 +2,7 @@
 namespace thread\app\web;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\StringHelper;
 use thread\app\web\interfaces\InjectionLanguage as iInjectionLanguage;
 
@@ -155,6 +156,15 @@ class InjectionLanguage implements iInjectionLanguage
     public static function getBaseUrl()
     {
         return self::$baseFolder;
+    }
+
+    /**
+     * Добавляем новые деректории
+     * @param array $bases
+     */
+    public static function setBases(array $bases)
+    {
+        self::$bases = ArrayHelper::merge($bases, self::$bases);
     }
 
 }
