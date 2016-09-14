@@ -24,6 +24,11 @@ final class Request extends \yii\web\Request
     public $InjectionLanguageClass = InjectionLanguage::class;
 
     /**
+     * @var array
+     */
+    public $bases = [];
+
+    /**
      * @throws ErrorException
      */
     public function init()
@@ -33,6 +38,7 @@ final class Request extends \yii\web\Request
             throw new ErrorException($this->InjectionLanguageClass . ' must be implemented ' . iInjectionLanguage::class);
         }
 
+        call_user_func([$this->InjectionLanguageClass, 'setBases'], $this->bases);
         parent::init();
     }
 

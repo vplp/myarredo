@@ -19,6 +19,12 @@ final class UrlManager extends \yii\web\UrlManager
      */
     public $InjectionLanguageClass = InjectionLanguage::class;
 
+
+    /**
+     * @var array
+     */
+    public $bases = [];
+
     /**
      * @throws ErrorException
      */
@@ -28,7 +34,7 @@ final class UrlManager extends \yii\web\UrlManager
         if (!((new $this->InjectionLanguageClass) instanceof iInjectionLanguage)) {
             throw new ErrorException($this->InjectionLanguageClass . ' must be implemented ' . iInjectionLanguage::class);
         }
-
+        call_user_func([$this->InjectionLanguageClass, 'setBases'], $this->bases);
         parent::init();
     }
 
