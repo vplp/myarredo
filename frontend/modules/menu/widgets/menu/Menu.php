@@ -4,7 +4,7 @@ namespace frontend\modules\menu\widgets\menu;
 use thread\app\base\widgets\Widget;
 //
 use frontend\modules\menu\models\{
-    Menu, MenuItem
+    Menu as ModelMenu, MenuItem
 };
 
 /**
@@ -37,7 +37,7 @@ class Menu extends Widget
      */
     public function init()
     {
-        $menu = Menu::findByAlias($this->alias);
+        $menu = ModelMenu::findByAlias($this->alias);
         if ($menu != null) {
             $this->items = MenuItem::findAllByGroup($menu['id']);
         }

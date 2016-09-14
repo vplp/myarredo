@@ -68,22 +68,4 @@ final class MenuItem extends \backend\modules\menu\models\MenuItem
         return self::find_base()->group_id($group)->parent_id($parent)->all();
     }
 
-    /**
-     *
-     * @param boolean $scheme
-     * @return string
-     */
-    public function getUrl($scheme = false)
-    {
-        return (self::LINK_TYPE_EXTERNAL == $this['link_type']) ? $this['link'] : Url::toRoute($this['link'], $scheme);
-    }
-
-    /**
-     * @return string
-     */
-    public function getLink()
-    {
-        return (isset($this->source)) ? $this->source->getUrl() : $this->getUrl();
-    }
-
 }

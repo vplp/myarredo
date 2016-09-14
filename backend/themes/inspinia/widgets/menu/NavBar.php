@@ -89,6 +89,12 @@ class NavBar extends \yii\bootstrap\NavBar
                         'News') . '</span><span class="fa arrow"></span>',
                 'url' => ['/news/article/list'],
             ],
+            // CORRESPONDENCE
+            [
+                'label' => '<i class="fa fa-newspaper-o"></i><span class="nav-label">' . Yii::t('app',
+                        'Correspondence') . '</span><span class="fa arrow"></span>',
+                'url' => ['/correspondence/correspondence/list'],
+            ],
             //SEO
             [
                 'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('app',
@@ -163,10 +169,10 @@ class NavBar extends \yii\bootstrap\NavBar
                         'label' => Yii::t('app', 'Log'),
                         'url' => ['/sys/logbook/logbook/list']
                     ],
-                    [
-                        'label' => Yii::t('app', 'Mail'),
-                        'url' => ['/sys/mail/message/list']
-                    ],
+//                    [
+//                        'label' => Yii::t('app', 'Mail'),
+//                        'url' => ['/sys/mail/message/list']
+//                    ],
                 ],
             ],
         ];
