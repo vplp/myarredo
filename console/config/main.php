@@ -22,6 +22,9 @@ return ArrayHelper::merge(
                     ],
                 ],
             ],
+            'request' => [
+                'class' => \yii\console\Request::class,
+            ],
         ],
         'controllerMap' => [
             'migrate' => [
