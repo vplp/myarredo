@@ -9,7 +9,6 @@ use thread\app\base\models\ActiveRecord;
 /**
  * @author Roman Gonchar <roman.gonchar92@gmail.com>
  */
-
 class ActionColumn extends Column
 {
 
@@ -47,9 +46,9 @@ class ActionColumn extends Column
      */
     protected function renderDataCellContent($model, $key, $index)
     {
-        return Html::a('<i class="fa fa-pencil"></i> ', $this->getUpdateLink($model), ['class' => 'btn btn-success btn-s']) .
-        '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' .
-        Html::a('<i class="fa fa-trash"></i> ', $this->getDeleteLink($model), ['class' => 'btn btn-danger btn-s']);
+        return '<table style="display: inline-block;"><tr><td>' . Html::a('<i class="fa fa-pencil"></i> ', $this->getUpdateLink($model), ['class' => 'btn btn-success btn-s']) .
+        '</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>' .
+        Html::a('<i class="fa fa-trash"></i> ', $this->getDeleteLink($model), ['class' => 'btn btn-danger btn-s']) . '</td></tr></table>';
     }
 
     /**
