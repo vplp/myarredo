@@ -6,7 +6,7 @@ use yii\bootstrap\Nav;
  * @var \thread\app\model\Language $models
  */
 echo Nav::widget([
-    'options' => ['class' => 'navbar-nav'],
+    'options' => ['class' => 'nav navbar-top-links navbar-right'],
     'items' => [
         [
             'label' => $current,
