@@ -2,7 +2,7 @@
 use yii\helpers\ArrayHelper;
 
 $main = require(dirname(__DIR__, 2) . '/common/config/main.php');
-unset($main['bootstrap']['languages']);
+unset($main['bootstrap']['languages'], $main['components']['request']);
 
 return ArrayHelper::merge(
     $main,
