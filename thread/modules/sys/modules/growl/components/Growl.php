@@ -42,7 +42,7 @@ class Growl extends Component
      * @param string $url
      * @return mixed|null
      */
-    public function sendByUserGroupId($group_id, $message, $type = 'notice', $url = '')
+    public function sendToUsersByGroupId($group_id, $message, $type = 'notice', $url = '')
     {
         $users = User::getUserIdByGroupId($group_id);
 
@@ -56,7 +56,7 @@ class Growl extends Component
      * @param string $url
      * @return mixed|null
      */
-    public function sendByUserRole($role, $message, $type = 'notice', $url = '')
+    public function sendToUsersByRole($role, $message, $type = 'notice', $url = '')
     {
         $users = User::getUserIdByRole($role);
 

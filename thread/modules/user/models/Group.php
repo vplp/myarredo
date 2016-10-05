@@ -34,6 +34,11 @@ class Group extends ActiveRecord
     const USER = '2';
 
     /**
+     * @var
+     */
+    public static $commonQuery = query\GroupQuery::class;
+
+    /**
      * @return string
      */
     public static function getDb()

@@ -116,7 +116,7 @@ class Growl extends ActiveRecord
     {
         foreach ($ids as $id) {
             $data[] = [
-                $id, $message, $url, $type, '1', time(), time(), '1', '0'
+                $id, $message, 'growl', $url, $type, self::STATUS_KEY_OFF, time(), time(), self::STATUS_KEY_ON, self::STATUS_KEY_OFF
             ];
         }
 

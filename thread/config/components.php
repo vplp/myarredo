@@ -8,6 +8,9 @@ return [
     'param' => [
         'class' => \thread\modules\configs\components\ConfigsParams::class,
     ],
+    'growl' => [
+        'class' => \thread\modules\sys\modules\growl\components\Growl::class,
+    ],
     'languages' => [
         'class' => \thread\app\model\Languages::class,
         'languageModel' => \thread\app\model\Language::class,
