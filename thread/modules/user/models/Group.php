@@ -129,4 +129,13 @@ class Group extends ActiveRecord
     {
         return $this->hasOne(User::class, ['group_id' => 'id']);
     }
+
+    /**
+     * @param $role
+     * @return mixed
+     */
+    public static function getIdsByRole($role)
+    {
+        return self::find()->select('id')->role($role)->column();
+    }
 }

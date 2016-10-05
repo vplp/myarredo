@@ -33,7 +33,6 @@ class Growl extends GrowlModel implements BaseBackendSearchModel
             [['user_id'], 'integer'],
             ['message', 'string', 'max' => 255],
             ['model', 'string', 'max' => 50],
-            [['priority'], 'in', 'range' => static::getPriorityRange()],
             [['type'], 'in', 'range' => array_keys(static::getTypeRange())],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];

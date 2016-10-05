@@ -304,4 +304,24 @@ class User extends ActiveRecord implements IdentityInterface
         $this->setRole();
         return parent::afterSave($insert, $changedAttributes);
     }
+
+    /**
+     * @param int $group_id
+     * @return mixed
+     */
+    public static function getUserIdByGroupId(int $group_id)
+    {
+        return self::find()->select('id')->group_id($group_id)->column()->all();
+    }
+
+    /**
+     * @param int $group_id
+     * @return mixed
+     */
+    public static function getUserIdByRole($role)
+    {
+        $groups = Group::getIdsByRole($role);
+
+        return (!empty($groups)) ? self::find()->select('id')->group_ids($groups)->column()->all() : [];
+    }
 }

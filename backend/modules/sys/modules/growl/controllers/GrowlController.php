@@ -5,7 +5,7 @@ use yii\helpers\ArrayHelper;
 //
 use thread\app\base\controllers\BackendController;
 use thread\actions\{
-    Create, Update
+    Create, Update, AttributeSwitch
 };
 //
 use backend\modules\sys\modules\growl\models\{
@@ -34,6 +34,12 @@ class GrowlController extends BackendController
             ],
             'update' => [
                 'class' => Update::class,
+            ],
+            'is_read' => [
+                'class' => AttributeSwitch::class,
+                'modelClass' => $this->model,
+                'attribute' => 'is_read',
+                'redirect' => $this->defaultAction,
             ],
         ]);
     }

@@ -46,4 +46,17 @@ class UserQuery extends ActiveQuery
         $this->andWhere($modelClass::tableName() . '.password_reset_token = :token', [':token' => $token]);
         return $this;
     }
+
+    /**
+     * @param array $group_ids
+     * @return $this
+     */
+    public function group_ids(array $group_ids)
+    {
+        /** @var ActiveRecord $modelClass */
+        $modelClass = $this->modelClass;
+        $this->andWhere(['in', $modelClass::tableName() . '.group_id', $group_ids]);
+        return $this;
+    }
+
 }

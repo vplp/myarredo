@@ -7,7 +7,6 @@ use backend\modules\user\models\User;
 <?= $form->submit($model, $this) ?>
 <?= $form->text_line_lang($model, 'model') ?>
 <?= $form->text_line($model, 'user_id')->dropDownList(User::dropDownList()) ?>
-<?= $form->text_line($model, 'priority') ?>
 <?= $form->field($model, 'type')->dropDownList($model::getTypeRange()) ?>
 <?= $form->text_line($model, 'url') ?>
 <?= $form->text_line($model, 'message') ?>

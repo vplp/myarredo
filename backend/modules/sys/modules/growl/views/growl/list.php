@@ -10,12 +10,17 @@ echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
-        'model',
-        'user_id',
         [
             'attribute' => 'type',
             'filter' => GridViewFilter::dropDownList($filter, 'type', $filter::getTypeRange()),
+            'format' => 'raw',
+            'value' => function ($model) {
+                return Html::tag('span', $model['type'], [
+                    'class' => 'label label-' . $model['type']
+                ]);
+            }
         ],
+        'model',
         'message',
         [
             'class' => ActionCheckboxColumn::class,

@@ -1,5 +1,5 @@
 <?php
-use thread\widgets\grid\ActionCheckboxColumn;
+use thread\widgets\grid\ActionStatusColumn;
 //
 use backend\themes\inspinia\widgets\GridView;
 
@@ -16,7 +16,7 @@ echo GridView::widget([
             'label' => Yii::t('app', 'Title')
         ],
         [
-            'class' => ActionCheckboxColumn::class,
+            'class' => ActionStatusColumn::class,
             'attribute' => 'published',
             'action' => 'published'
         ],

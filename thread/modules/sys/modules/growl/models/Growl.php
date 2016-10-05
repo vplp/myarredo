@@ -47,7 +47,6 @@ class Growl extends ActiveRecord
             [['user_id', 'message', 'type', 'priority', 'model'], 'required'],
             [['created_at', 'updated_at', 'user_id'], 'integer'],
             [['published', 'deleted', 'is_read'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['priority'], 'in', 'range' => static::getPriorityRange()],
             [['type'], 'in', 'range' => array_keys(static::getTypeRange())],
             ['message', 'string', 'max' => 255],
             ['url', 'string', 'max' => 512],
@@ -64,8 +63,9 @@ class Growl extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['type', 'priority', 'message', 'is_read', 'published', 'deleted', 'model', 'user_id', 'url'],
-            'send' => ['type', 'priority', 'message', 'is_read', 'published', 'deleted', 'model', 'user_id', 'url'],
+            'is_read' => ['is_read '],
+            'backend' => ['type', 'message', 'is_read', 'published', 'deleted', 'model', 'user_id', 'url'],
+            'send' => ['type', 'message', 'is_read', 'published', 'deleted', 'model', 'user_id', 'url'],
         ];
     }
 
@@ -80,7 +80,6 @@ class Growl extends ActiveRecord
             'message' => 'message',
             'url' => 'url',
             'type' => 'type',
-            'priority' => 'priority',
             'is_read' => 'is_read',
             'user_id' => 'user_id',
             'model' => 'model',
@@ -99,15 +98,30 @@ class Growl extends ActiveRecord
         return [
             'notice' => Yii::t('app', 'notice'),
             'warning' => Yii::t('app', 'warning'),
-            'error' => Yii::t('app', 'error'),
+//            'error' => Yii::t('app', 'error'),
+            'danger' => Yii::t('app', 'danger'),
+            'success' => Yii::t('app', 'success'),
+            'primary' => Yii::t('app', 'primary'),
         ];
     }
 
     /**
-     * @return array
+     * @param array $ids
+     * @param $message
+     * @param string $type
+     * @param string $url
+     * @return mixed
      */
-    public static function getPriorityRange()
+    public static function sendByUserIds(array $ids, $message, $type = 'notice', $url = '')
     {
-        return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        foreach ($ids as $id) {
+            $data[] = [
+                $id, $message, $url, $type, '1', time(), time(), '1', '0'
+            ];
+        }
+
+        return self::getDb()->createCommand()->batchInsert(self::tableName(),
+            ['user_id', 'message', 'model', 'url', 'type', 'is_read', 'created_at', 'updated_at', 'published', 'deleted'],
+            $data)->execute();
     }
 }

@@ -7,7 +7,7 @@ $(document).ready(function () {
 });
 
 // Save and Exit POST value
-$('.action_save_and_exit').click(function(){
+$('.action_save_and_exit').click(function () {
     $('input[name=\"save_and_exit\"]').val(1);
 });
 
@@ -17,9 +17,36 @@ $('.ajax-switcher').on('ifChanged', function () {
         'url': $(this).data('url'),
         'cache': false,
         'data': {
-            id : $(this).data('id'),
+            id: $(this).data('id'),
         },
-        success: function (data) {},
+        success: function (data) {
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+});
+
+// Ajax status switcher
+$('.ajax-status-switcher').on('click', function () {
+
+    var obj = this;
+
+    jQuery.ajax({
+        'url': $(obj).data('url'),
+        'cache': false,
+        'data': {
+            id: $(obj).data('id'),
+        },
+        success: function (data) {
+            var switches = $(obj).parent().find('.ajax-status-switcher');
+            //console.log($(obj).parent(), switches);
+            switches.each(function () {
+                var style = $(this).css('display');
+                //console.log(style);
+                $(this).css('display', style == 'inline' ? 'none' : 'inline');
+            });
+        },
         error: function (err) {
             console.log(err);
         }
