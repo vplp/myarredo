@@ -24,4 +24,6 @@ abstract class Widget extends \yii\base\Widget
      * @var string
      */
     public $translationsBasePath = '@thread/app/messages';
+
+    //TODO:: add translation code
 }

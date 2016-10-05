@@ -18,7 +18,7 @@ class ProfileQuery extends ActiveQuery
      * @param int $user_id
      * @return $this
      */
-    public function user_id($user_id)
+    public function user_id(int $user_id)
     {
         /** @var ActiveRecord $modelClass */
         $modelClass = $this->modelClass;

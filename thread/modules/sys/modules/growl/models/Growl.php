@@ -26,6 +26,11 @@ class Growl extends ActiveRecord
     }
 
     /**
+     * @var
+     */
+    public static $commonQuery = query\ActiveQuery::class;
+
+    /**
      * @return string
      */
     public static function tableName()

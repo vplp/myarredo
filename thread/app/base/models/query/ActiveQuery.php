@@ -13,6 +13,16 @@ use thread\app\base\models\ActiveRecord;
  */
 class ActiveQuery extends \yii\db\ActiveQuery
 {
+    /**
+     * @param $user_id
+     * @return $this
+     */
+    public function user_id(int $user_id)
+    {
+        $modelClass = $this->modelClass;
+        $this->andWhere($modelClass::tableName() . '.user_id = :user_id', [':user_id' => $user_id]);
+        return $this;
+    }
 
     /**
      * @param string $alias
@@ -100,7 +110,7 @@ class ActiveQuery extends \yii\db\ActiveQuery
      * @param $group_id
      * @return $this
      */
-    public function group_id($group_id)
+    public function group_id(int $group_id)
     {
         /** @var ActiveRecord $modelClass */
         $modelClass = $this->modelClass;
