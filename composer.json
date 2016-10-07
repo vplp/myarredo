@@ -27,6 +27,7 @@
     "yiisoft/yii2-elasticsearch": "*",
     "yiisoft/yii2-authclient": "*",
     "yiisoft/yii2-imagine": "^2.0",
+    "yii2tech/crontab": "*",
     "codeception/codeception": "*",
     "kartik-v/yii2-widgets": "*",
     "kartik-v/yii2-date-range": "*",

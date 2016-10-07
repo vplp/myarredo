@@ -4,7 +4,6 @@
  */
 namespace yii\test\mustache;
 
-// Module dependencies.
 use yii\base\InvalidCallException;
 use yii\mustache\{Loader, ViewRenderer};
 
@@ -38,7 +37,7 @@ class LoaderTest extends \PHPUnit_Framework_TestCase {
    * Tests the `findViewFile` method.
    */
   public function testFindViewFile() {
-    $expected = str_replace('/', DIRECTORY_SEPARATOR, \Yii::$app->viewPath.'/view.php');
+    $expected = str_replace('/', DIRECTORY_SEPARATOR, \Yii::$app->getViewPath() . '/view.php');
     $this->assertEquals($expected, $this->model->findViewFile('//view'));
 
     $this->expectException(InvalidCallException::class);

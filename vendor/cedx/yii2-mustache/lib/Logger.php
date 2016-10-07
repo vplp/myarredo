@@ -4,7 +4,6 @@
  */
 namespace yii\mustache;
 
-// Module dependencies.
 use yii\base\InvalidParamException;
 use yii\log\Logger as YiiLogger;
 
@@ -31,7 +30,7 @@ class Logger extends \Mustache_Logger_AbstractLogger {
    * Logs a message.
    * @param int $level The logging level.
    * @param string $message The message to be logged.
-   * @param mixed[] $context The log context.
+   * @param array $context The log context.
    * @throws InvalidParamException The specified logging level is unknown.
    */
   public function log($level, $message, array $context = []) {
