@@ -12,11 +12,14 @@ return [
         'class' => \kartik\grid\Module::class,
     ],
     /**
-     * CORE
+     * SYSTEM
      */
     'sys' => [
         'class' => \backend\modules\sys\Sys::class,
     ],
+    /**
+     * CORE
+     */
     'home' => [
         'class' => \backend\modules\home\Home::class,
     ],

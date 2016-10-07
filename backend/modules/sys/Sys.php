@@ -3,7 +3,7 @@
 namespace backend\modules\sys;
 
 use backend\modules\sys\modules\{
-    growl\Growl, user\User
+    growl\Growl, user\User, crontab\Crontab
 };
 
 /**
@@ -30,6 +30,9 @@ class Sys extends \common\modules\sys\Sys
             ],
             'growl' => [
                 'class' => Growl::class,
+            ],
+            'crontab' => [
+                'class' => Crontab::class,
             ]
         ];
     }

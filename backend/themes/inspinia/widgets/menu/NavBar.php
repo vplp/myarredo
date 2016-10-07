@@ -162,6 +162,10 @@ class NavBar extends \yii\bootstrap\NavBar
                         'url' => ['/sys/growl/growl/list']
                     ],
                     [
+                        'label' => Yii::t('app', 'Cron'),
+                        'url' => ['/sys/crontab/job/list']
+                    ],
+                    [
                         'label' => Yii::t('app', 'Role of User'),
                         'url' => ['/sys/user/role/list']
                     ],
