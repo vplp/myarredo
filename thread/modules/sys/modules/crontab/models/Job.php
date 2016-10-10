@@ -2,6 +2,7 @@
 
 namespace thread\modules\sys\modules\crontab\models;
 
+use thread\modules\sys\modules\crontab\Crontab;
 use Yii;
 //
 use thread\app\base\models\ActiveRecord;
@@ -124,5 +125,24 @@ class Job extends ActiveRecord
     public static function weekDayRange()
     {
         return ['*', 0, 1, 2, 3, 4, 5, 6];
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function findJobToWork()
+    {
+        return self::find()->enabled()->all();
+    }
+
+    /**
+     * @param bool $insert
+     * @param array $changedAttributes
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+
+        CrontabModule::setJobs();
     }
 }
