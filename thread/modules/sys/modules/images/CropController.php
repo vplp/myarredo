@@ -3,7 +3,6 @@
 namespace frontend\modules\catalog\controllers;
 
 use Yii;
-use frontend\modules\catalog\models\Article;
 
 /**
  * Class CropController
