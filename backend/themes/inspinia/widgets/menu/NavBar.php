@@ -1,7 +1,9 @@
 <?php
+
 namespace backend\themes\inspinia\widgets\menu;
 
 use Yii;
+//
 use yii\helpers\{
     ArrayHelper, Html
 };
@@ -12,7 +14,6 @@ use yii\helpers\{
  */
 class NavBar extends \yii\bootstrap\NavBar
 {
-
     public $options = [
         'class' => 'navbar-default navbar-static-side',
         'role' => 'navigation'
@@ -82,6 +83,21 @@ class NavBar extends \yii\bootstrap\NavBar
                         'url' => ['/page/page/list']
                     ],
                 ]
+            ],
+            // CATALOG
+            [
+                'label' => '<i class="fa fa-newspaper-o"></i><span class="nav-label">' . Yii::t('app',
+                        'Catalog') . '</span><span class="fa arrow"></span>',
+                'items' => [
+                    [
+                        'label' => Yii::t('app', 'Group'),
+                        'url' => ['/catalog/group/list']
+                    ],
+                    [
+                        'label' => Yii::t('app', 'Product'),
+                        'url' => ['/catalog/product/list']
+                    ]
+                ],
             ],
             // NEWS
             [
