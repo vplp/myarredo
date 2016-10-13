@@ -2,8 +2,6 @@
 
 use thread\widgets\grid\ActionStatusColumn;
 //
-use backend\themes\inspinia\widgets\GridView;
-//
 use backend\themes\inspinia\widgets\TreeGrid;
 
 /**
@@ -11,34 +9,13 @@ use backend\themes\inspinia\widgets\TreeGrid;
  * @copyright (c) 2016, VipDesign
  */
 
-/*
+
 echo TreeGrid::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
 
     'keyColumnName' => 'id',
     'parentColumnName' => 'parent_id',
     'options' => ['class' => 'table table-striped table-bordered'],
-    'columns' => [
-        [
-            'attribute' => 'title',
-            'value' => 'lang.title',
-            'label' => Yii::t('app', 'Title'),
-        ],
-        [
-            'class' => ActionStatusColumn::class,
-            'attribute' => 'published',
-            'action' => 'published'
-        ],
-        [
-            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class
-        ],
-    ]
-]);
-*/
-
-echo GridView::widget([
-    'dataProvider' => $model->search(Yii::$app->request->queryParams),
-    'filterModel' => $filter,
     'columns' => [
         [
             'attribute' => 'title',

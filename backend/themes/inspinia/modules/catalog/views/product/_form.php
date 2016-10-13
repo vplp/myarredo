@@ -2,6 +2,8 @@
 
 use thread\app\bootstrap\ActiveForm;
 //
+use backend\themes\inspinia\widgets\forms\ActiveForm as ActiveForm1;
+//
 use backend\themes\inspinia\widgets\Tabs;
 
 /**
@@ -9,6 +11,8 @@ use backend\themes\inspinia\widgets\Tabs;
  * @var \backend\modules\catalog\models\Group $model
  */
 ?>
+
+<?php $form1= ActiveForm1::begin(); ?>
 
 <?php $form = ActiveForm::begin(); ?>
 <?= $form->submit($model, $this) ?>
@@ -19,6 +23,7 @@ use backend\themes\inspinia\widgets\Tabs;
             'label' => Yii::t('app', 'Settings'),
             'content' => $this->render('parts/_settings', [
                 'form' => $form,
+                'form1' => $form1,
                 'model' => $model,
                 'modelLang' => $modelLang,
             ])

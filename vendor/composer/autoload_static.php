@@ -38,6 +38,10 @@ class ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97
         array (
             'voskobovich\\behaviors\\' => 22,
         ),
+        'l' => 
+        array (
+            'leandrogehlen\\treegrid\\' => 23,
+        ),
         'k' => 
         array (
             'kartik\\widgets\\' => 15,
@@ -177,6 +181,10 @@ class ComposerStaticInit4140d2f6a21ad9d4a7b1696f00828a97
         'voskobovich\\behaviors\\' => 
         array (
             0 => __DIR__ . '/..' . '/voskobovich/yii2-many-many-behavior/src',
+        ),
+        'leandrogehlen\\treegrid\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/leandrogehlen/yii2-treegrid',
         ),
         'kartik\\widgets\\' => 
         array (

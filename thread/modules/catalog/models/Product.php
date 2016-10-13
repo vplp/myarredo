@@ -122,4 +122,43 @@ class Product extends ActiveRecord
     {
         return $this->hasOne(ProductLang::class, ['rid' => 'id']);
     }
+
+    /**
+     * @return null|string
+     */
+    public function getImageLink()
+    {
+        $module = Yii::$app->getModule('catalog');
+        $path = $module->getProductUploadPath();
+        $url = $module->getProductUploadUrl();
+        $image = null;
+        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
+            $image = $url . '/' . $this->image_link;
+        }
+        return $image;
+    }
+
+    /**
+     * @return array
+     */
+    public function getGalleryImage()
+    {
+        $module = Yii::$app->getModule('catalog');
+        $path = $module->getProductUploadPath();
+        $url = $module->getProductUploadUrl();
+        $images = [];
+
+        if (!empty($this->gallery_image)) {
+            $this->gallery_image = $this->gallery_image[0] == ',' ? substr($this->gallery_image, 1) : $this->gallery_image;
+            $images = explode(',', $this->gallery_image);
+        }
+
+        $imagesSources = [];
+        foreach ($images as $image) {
+            if (file_exists($path . '/' . $image)) {
+                $imagesSources[] = $url . '/' . $image;
+            }
+        }
+        return $imagesSources;
+    }
 }

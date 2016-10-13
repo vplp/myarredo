@@ -15,7 +15,7 @@ use thread\app\base\module\abstracts\Module as aModule;
  */
 class Catalog extends aModule {
 
-    public $name = 'Catalog';
+    public $name = 'catalog';
     public $configPath = __DIR__ . '/config.php';
     public $translationsBasePath = __DIR__ . '/messages';
 
@@ -30,4 +30,48 @@ class Catalog extends aModule {
         return Yii::$app->get('db-core');
     }
 
+    /**
+     * Image upload path
+     * @return string
+     */
+    public function getGroupUploadPath()
+    {
+        return $this->getBaseUploadPath() . '/group';
+    }
+
+    /**
+     * Group image upload URL
+     * @return string
+     */
+    public function getGroupUploadUrl()
+    {
+        return $this->getBaseUploadUrl() . '/group';
+    }
+
+    /**
+     * Group image upload path
+     * @return string
+     */
+    public function getProductUploadPath()
+    {
+        return $this->getBaseUploadPath() . '/product';
+    }
+
+    /**
+     * Product image upload URL
+     * @return string
+     */
+    public function getProductUploadUrl()
+    {
+        return $this->getBaseUploadUrl() . '/product';
+    }
+
+    /**
+     * Product image upload URL
+     * @return string
+     */
+    public function getBaseUploadUrl()
+    {
+        return '/uploads/' . $this->name;
+    }
 }

@@ -121,4 +121,19 @@ class Group extends ActiveRecord
     {
         return $this->hasOne(GroupLang::class, ['rid' => 'id']);
     }
+
+    /**
+     * @return null|string
+     */
+    public function getImageLink()
+    {
+        $module = Yii::$app->getModule('catalog');
+        $path = $module->getGroupUploadPath();
+        $url = $module->getGroupUploadUrl();
+        $image = null;
+        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
+            $image = $url . '/' . $this->image_link;
+        }
+        return $image;
+    }
 }

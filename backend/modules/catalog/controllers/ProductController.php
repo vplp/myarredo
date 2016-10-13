@@ -2,6 +2,12 @@
 
 namespace backend\modules\catalog\controllers;
 
+use yii\helpers\ArrayHelper;
+//
+use thread\actions\fileapi\{
+    DeleteAction, UploadAction
+};
+//
 use thread\app\base\controllers\BackendController;
 //
 use backend\modules\catalog\models\{
@@ -22,4 +28,24 @@ class ProductController extends BackendController
     public $filterModel = filterProductModel::class;
     public $title = 'Product';
     public $name = 'product';
+
+    /**
+     * @return array
+     */
+    public function actions()
+    {
+        return ArrayHelper::merge(
+            parent::actions(),
+            [
+                'fileupload' => [
+                    'class' => UploadAction::class,
+                    'path' => $this->module->getProductUploadPath()
+                ],
+                'filedelete' => [
+                    'class' => DeleteAction::class,
+                    'path' => $this->module->getProductUploadPath()
+                ],
+            ]
+        );
+    }
 }

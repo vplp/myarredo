@@ -2,6 +2,12 @@
 
 namespace backend\modules\catalog\controllers;
 
+use yii\helpers\ArrayHelper;
+//
+use thread\actions\fileapi\{
+    DeleteAction, UploadAction
+};
+//
 use thread\app\base\controllers\BackendController;
 //
 use backend\modules\catalog\models\{
@@ -22,4 +28,24 @@ class GroupController extends BackendController
     public $filterModel = filterGroupModel::class;
     public $title = 'Groups';
     public $name = 'group';
+
+    /**
+     * @return array
+     */
+    public function actions()
+    {
+        return ArrayHelper::merge(
+            parent::actions(),
+            [
+                'fileupload' => [
+                    'class' => UploadAction::class,
+                    'path' => $this->module->getGroupUploadPath()
+                ],
+                'filedelete' => [
+                    'class' => DeleteAction::class,
+                    'path' => $this->module->getGroupUploadPath()
+                ],
+            ]
+        );
+    }
 }

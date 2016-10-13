@@ -20,6 +20,7 @@ echo GridView::widget([
             'value' => 'lang.title',
             'label' => Yii::t('app', 'Title'),
         ],
+        'position',
         [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',

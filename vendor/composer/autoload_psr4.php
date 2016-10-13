@@ -22,6 +22,7 @@ return array(
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'yii2tech\\crontab\\' => array($vendorDir . '/yii2tech/crontab'),
     'voskobovich\\behaviors\\' => array($vendorDir . '/voskobovich/yii2-many-many-behavior/src'),
+    'leandrogehlen\\treegrid\\' => array($vendorDir . '/leandrogehlen/yii2-treegrid'),
     'kartik\\widgets\\' => array($vendorDir . '/kartik-v/yii2-widgets'),
     'kartik\\typeahead\\' => array($vendorDir . '/kartik-v/yii2-widget-typeahead'),
     'kartik\\touchspin\\' => array($vendorDir . '/kartik-v/yii2-widget-touchspin'),
