@@ -129,8 +129,8 @@ class Product extends ActiveRecord
     public function getImageLink()
     {
         $module = Yii::$app->getModule('catalog');
-        $path = $module->getProductUploadPath();
-        $url = $module->getProductUploadUrl();
+        $path = $module->getBaseProductUploadPath();
+        $url = $module->getBaseProductUploadUrl();
         $image = null;
         if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
             $image = $url . '/' . $this->image_link;
@@ -144,8 +144,8 @@ class Product extends ActiveRecord
     public function getGalleryImage()
     {
         $module = Yii::$app->getModule('catalog');
-        $path = $module->getProductUploadPath();
-        $url = $module->getProductUploadUrl();
+        $path = $module->getBaseProductUploadPath();
+        $url = $module->getBaseProductUploadUrl();
         $images = [];
 
         if (!empty($this->gallery_image)) {

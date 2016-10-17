@@ -39,11 +39,11 @@ class ProductController extends BackendController
             [
                 'fileupload' => [
                     'class' => UploadAction::class,
-                    'path' => $this->module->getProductUploadPath()
+                    'path' => $this->module->getBaseProductUploadPath()
                 ],
                 'filedelete' => [
                     'class' => DeleteAction::class,
-                    'path' => $this->module->getProductUploadPath()
+                    'path' => $this->module->getBaseProductUploadPath()
                 ],
             ]
         );

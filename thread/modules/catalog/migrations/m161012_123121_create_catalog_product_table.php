@@ -39,11 +39,11 @@ class m161012_123121_create_catalog_product_table extends Migration
                 'alias' => $this->string(255)->notNull()->unique()->comment('Alias'),
                 'image_link' => $this->string(255)->defaultValue(null)->comment('Image link'),
                 'gallery_image' => $this->string(1024)->defaultValue(null)->comment('Gallery image'),
-                'position' => $this->integer(10)->notNull()->defaultValue(0)->comment('Position'),
-                'created_at' => $this->integer(10)->notNull()->defaultValue(0)->comment('Create time'),
-                'updated_at' => $this->integer(10)->notNull()->defaultValue(0)->comment('Update time'),
-                'published' => $this->boolean()->notNull()->defaultValue(0)->comment('Published'),
-                'deleted' => $this->boolean()->notNull()->defaultValue(0)->comment('Deleted'),
+                'position' => $this->integer(11)->unsigned()->notNull()->defaultValue(0)->comment('Position'),
+                'created_at' => $this->integer(11)->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
+                'updated_at' => $this->integer(11)->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
+                'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
+                'deleted' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Deleted'",
             ]
         );
         $this->createIndex('published', $this->tableProduct, 'published');

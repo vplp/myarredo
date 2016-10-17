@@ -128,8 +128,8 @@ class Group extends ActiveRecord
     public function getImageLink()
     {
         $module = Yii::$app->getModule('catalog');
-        $path = $module->getGroupUploadPath();
-        $url = $module->getGroupUploadUrl();
+        $path = $module->getBaseGroupUploadPath();
+        $url = $module->getBaseGroupUploadUrl();
         $image = null;
         if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
             $image = $url . '/' . $this->image_link;

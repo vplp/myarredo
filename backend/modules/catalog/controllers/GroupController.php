@@ -39,11 +39,11 @@ class GroupController extends BackendController
             [
                 'fileupload' => [
                     'class' => UploadAction::class,
-                    'path' => $this->module->getGroupUploadPath()
+                    'path' => $this->module->getBaseGroupUploadPath()
                 ],
                 'filedelete' => [
                     'class' => DeleteAction::class,
-                    'path' => $this->module->getGroupUploadPath()
+                    'path' => $this->module->getBaseGroupUploadPath()
                 ],
             ]
         );

@@ -34,7 +34,7 @@ class Catalog extends aModule {
      * Image upload path
      * @return string
      */
-    public function getGroupUploadPath()
+    public function getBaseGroupUploadPath()
     {
         return $this->getBaseUploadPath() . '/group';
     }
@@ -43,7 +43,7 @@ class Catalog extends aModule {
      * Group image upload URL
      * @return string
      */
-    public function getGroupUploadUrl()
+    public function getBaseGroupUploadUrl()
     {
         return $this->getBaseUploadUrl() . '/group';
     }
@@ -52,7 +52,7 @@ class Catalog extends aModule {
      * Group image upload path
      * @return string
      */
-    public function getProductUploadPath()
+    public function getBaseProductUploadPath()
     {
         return $this->getBaseUploadPath() . '/product';
     }
@@ -61,7 +61,7 @@ class Catalog extends aModule {
      * Product image upload URL
      * @return string
      */
-    public function getProductUploadUrl()
+    public function getBaseProductUploadUrl()
     {
         return $this->getBaseUploadUrl() . '/product';
     }
