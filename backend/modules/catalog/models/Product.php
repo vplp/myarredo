@@ -2,8 +2,6 @@
 
 namespace backend\modules\catalog\models;
 
-use Yii;
-//
 use thread\app\model\interfaces\BaseBackendModel;
 //
 use common\modules\catalog\models\Product as CommonProductModel;
@@ -33,14 +31,5 @@ class Product extends CommonProductModel implements BaseBackendModel
     public function trash($params)
     {
         return (new search\Product())->trash($params);
-    }
-
-    /**
-     * Получаем search модели для характеристик
-     */
-    public static function getSearchModelsCategory()
-    {
-        $model = new search\Group();
-        return $model->search(Yii::$app->request->queryParams);
     }
 }

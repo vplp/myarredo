@@ -6,6 +6,31 @@ $(document).ready(function () {
     });
 });
 
+$(document)
+    // Ajax checkbox Many-to-many
+    .on('ifChanged', '.ajax-many-to-many', function () {
+        jQuery.ajax({
+            'url': $(this).data('url'),
+            'cache': false,
+            'data': {
+                id: $(this).data('id'),
+                namespace: $(this).data('namespace'),
+                primaryKeyFirstTable: $(this).data('primaryKeyFirstTable'),
+                valueFirstTable: $(this).data('valueFirstTable'),
+                primaryKeySecondTable: $(this).data('primaryKeySecondTable'),
+                valueSecondTable: $(this).data('valueSecondTable'),
+                additionalFields: $(this).data('additionalFields'),
+                checked: $(this).prop('checked')
+
+            },
+            success: function (data) {
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    });
+
 // Save and Exit POST value
 $('.action_save_and_exit').click(function () {
     $('input[name=\"save_and_exit\"]').val(1);

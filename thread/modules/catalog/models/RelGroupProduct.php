@@ -44,8 +44,8 @@ class RelGroupProduct extends ActiveRecord
     {
         return [
             [['deleted', 'published'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            ['product_id', 'exist', 'targetClass' => ProductCard::class, 'targetAttribute' => 'id'],
-            ['group_id', 'exist', 'targetClass' => Category::class, 'targetAttribute' => 'id'],
+            ['product_id', 'exist', 'targetClass' => Product::class, 'targetAttribute' => 'id'],
+            ['group_id', 'exist', 'targetClass' => Group::class, 'targetAttribute' => 'id'],
             [['position', 'created_at', 'updated_at'], 'integer'],
         ];
     }
@@ -56,7 +56,7 @@ class RelGroupProduct extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            //'id' => Yii::t('app', 'id'),
+            'id' => Yii::t('app', 'id'),
             'group_id' => Yii::t('app', 'group_id'),
             'product_id' => Yii::t('app', 'product_id'),
             'position' => Yii::t('app', 'Position'),

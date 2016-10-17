@@ -51,8 +51,11 @@ class m161013_132911_create_catalog_rel_group_product_table extends Migration
             'position' => $this->integer(11)->unsigned()->notNull()->defaultValue(0)->comment('Position'),
             'created_at' => $this->integer(11)->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
             'updated_at' => $this->integer(11)->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
+            'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
+            'deleted' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Deleted'",
         ]);
-
+        $this->createIndex('published', $this->tableRel, 'published');
+        $this->createIndex('deleted', $this->tableRel, 'deleted');
         $this->createIndex('group_id', $this->tableRel, 'group_id');
         $this->createIndex('product_id', $this->tableRel, 'product_id');
         $this->createIndex('group_id_product_id', $this->tableRel, ['group_id', 'product_id'], true);
@@ -88,6 +91,8 @@ class m161013_132911_create_catalog_rel_group_product_table extends Migration
         $this->dropIndex('group_id_product_id', $this->tableRel);
         $this->dropIndex('group_id', $this->tableRel);
         $this->dropIndex('product_id', $this->tableRel);
+        $this->dropIndex('deleted', $this->tableRel);
+        $this->dropIndex('published', $this->tableRel);
         $this->dropTable($this->tableRel);
     }
 }

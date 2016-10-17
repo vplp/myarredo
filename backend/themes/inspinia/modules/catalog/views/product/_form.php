@@ -5,6 +5,8 @@ use thread\app\bootstrap\ActiveForm;
 use backend\themes\inspinia\widgets\forms\ActiveForm as ActiveForm1;
 //
 use backend\themes\inspinia\widgets\Tabs;
+//
+use yii\helpers\Url;
 
 /**
  * @var \backend\modules\catalog\models\GroupLang $modelLang
@@ -30,12 +32,17 @@ use backend\themes\inspinia\widgets\Tabs;
         ],
         [
             'label' => Yii::t('app', 'Group'),
+            'url' => Url::to(['group', 'id' => $model->id]),
+            'visible' => ( ! $model->isNewRecord) ? true : false
+        ],
+        /*[
+            'label' => Yii::t('app', 'Group'),
             'content' => $this->render('parts/_group', [
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang,
             ])
-        ],
+        ],*/
         [
             'label' => Yii::t('app', 'Description'),
             'content' => $this->render('parts/_description', [

@@ -13,7 +13,7 @@ use yii\web\{
 use thread\app\bootstrap\ActiveForm;
 //
 use thread\actions\{
-    AttributeSwitch, CreateWithLang, ListModel, UpdateWithLang, Delete
+    AttributeSwitch, CreateWithLang, ListModel, UpdateWithLang, Delete, AjaxManyToMany
 };
 use thread\app\base\models\ActiveRecord;
 use thread\modules\user\models\User;
@@ -201,6 +201,12 @@ abstract class BackendController extends Controller
                 'class' => Delete::class,
                 'modelClass' => $this->model,
             ],
+            'ajax-many-to-many' => [
+                'class' => AjaxManyToMany::class,
+                'modelClass' => $this->filterModel,
+                'attribute' => 'published',
+                'redirect' => $this->defaultAction,
+            ]
         ];
     }
 

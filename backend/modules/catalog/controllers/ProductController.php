@@ -48,4 +48,20 @@ class ProductController extends BackendController
             ]
         );
     }
+
+    /**
+     * @param $id
+     * @return string
+     */
+    public function actionGroup($id)
+    {
+        $model = Product::findOne(['id' => $id]);
+
+        if ($model === null) {
+            die();
+        }
+        $this->layout = 'product-group';
+
+        return $this->render('parts/_group', ['model' => $model]);
+    }
 }

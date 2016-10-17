@@ -1,16 +1,18 @@
 <?php
 
-use backend\modules\catalog\models\Product;
-use thread\modules\catalog\models\RelGroupProduct;
+use backend\modules\catalog\models\Group;
+//
+use backend\modules\catalog\models\RelGroupProduct;
+//
 use backend\themes\inspinia\widgets\TreeGrid;
 
 ?>
 
-<h1><?= Yii::t('app', 'Category') ?></h1>
+<h1><?= Yii::t('app', 'Group') ?></h1>
 
 <div id="w1" class="ibox float-e-margins">
     <div class="ibox-title">
-        <h5> <?= Yii::t('app', 'Product cards') ?></h5>
+        <h5> <?= Yii::t('app', 'Product') ?></h5>
         <div class="ibox-tools">
         </div>
     </div>
@@ -18,8 +20,7 @@ use backend\themes\inspinia\widgets\TreeGrid;
         <div class="row"></div>
         <div class="table-responsive">
             <?= TreeGrid::widget([
-                'dataProvider' => Product::getSearchModelsCategory(),
-
+                'dataProvider' => (new Group())->search(Yii::$app->request->queryParams),
                 'keyColumnName' => 'id',
                 'parentColumnName' => 'parent_id',
                 'options' => ['class' => 'table table-striped'],
@@ -28,6 +29,8 @@ use backend\themes\inspinia\widgets\TreeGrid;
                         'attribute' => 'title',
                         'value' => 'lang.title',
                     ],
+                    'id',
+                    'parent_id',
                     [
                         'attribute' => 'Добавить',
                         'class' => \thread\widgets\grid\AjaxManyToManyCheckboxColumn::class,

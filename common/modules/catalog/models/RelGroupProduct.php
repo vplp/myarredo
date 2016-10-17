@@ -11,5 +11,26 @@ namespace common\modules\catalog\models;
  */
 class RelGroupProduct extends \thread\modules\catalog\models\RelGroupProduct
 {
+    /**
+     * @param $productCardId
+     * @param $categoryId
+     * @return mixed
+     */
+    public static function finModelByRelation($groupId, $productId)
+    {
+        return self::findBase()
+            ->andWhere(['product_id' => $productId, 'group_id' => $groupId])
+            ->one();
+    }
 
+
+    /**
+     * @return bool
+     */
+
+    public function beforeSave($insert)
+    {
+        $this->published = 1;
+        return parent::beforeSave($insert);
+    }
 }
