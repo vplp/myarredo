@@ -53,7 +53,8 @@ class Language extends ActiveRecord implements LanguageModel
     public function rules()
     {
         return [
-            [['alias', 'local', 'label'], 'string', 'max' => 50],
+            [['alias', 'label'], 'string', 'max' => 50],
+            [['local'], 'string', 'max' => 5],
             [['img_flag'], 'string', 'max' => 225],
             [['alias', 'local', 'label'], 'required'],
             [['created_at', 'updated_at'], 'integer'],
