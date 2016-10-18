@@ -26,15 +26,25 @@ class Group extends CommonGroupModel implements BaseBackendModel
         return ArrayHelper::map(self::findBase()->joinWith(['lang'])->all(), 'id', 'lang.title');
     }
 
-    public static function getDropdownListHierarchy() {
+    /**
+     * Backend form dropdown list hierarchy
+     * @return array
+     */
+    public static function getDropdownListHierarchy()
+    {
         $options = [];
 
-        $parents = self::findBase()->joinWith(['lang'])->where("parent_id=0")->all();
-        foreach($parents as $id => $p) {
-            $options[$p->id] = $p->lang->title;
-            $children = self::findBase()->joinWith(['lang'])->where("parent_id=:parent_id", [":parent_id"=>$p->id])->all();
-            foreach($children as $child) {
-                $options[$child->id] = ' - ' . $child->lang->title;
+        $parents = self::findBase()->innerJoinWith(['lang'])->where("parent_id=0")->all();
+
+        if ($parents != null) {
+            foreach ($parents as $p) {
+                $options[$p->id] = $p->lang->title;
+                $children = self::findBase()->innerJoinWith(['lang'])->where("parent_id=:parent_id", [":parent_id" => $p->id])->all();
+                if ($children != null) {
+                    foreach ($children as $child) {
+                        $options[$child->id] = ' - ' . $child->lang->title;
+                    }
+                }
             }
         }
         return $options;
