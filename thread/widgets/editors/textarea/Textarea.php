@@ -61,8 +61,9 @@ final class Textarea extends InputWidget {
      * @inheritdoc
      */
     public function run() {
-        if ($this->_textarea !== null)
+        if ($this->_textarea !== null){
             echo $this->_textarea;
+        }
     }
 
 }
