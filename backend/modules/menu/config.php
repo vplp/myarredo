@@ -24,14 +24,14 @@ return [
         'page' => [
             'page' => [
                 'label' => 'Page',
-                'class' => \thread\modules\page\models\Page::class,
+                'class' => \backend\modules\page\models\Page::class,
                 'method' => 'dropDownList',
             ]
         ],
         'news' => [
             'group' => [
                 'label' => 'News Group',
-                'class' => \thread\modules\news\models\Group::class,
+                'class' => \backend\modules\news\models\Group::class,
                 'method' => 'dropDownList',
             ]
         ],

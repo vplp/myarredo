@@ -2,6 +2,8 @@
 
 namespace backend\modules\location\models;
 
+use yii\helpers\ArrayHelper;
+//
 use thread\app\model\interfaces\BaseBackendModel;
 
 /**
@@ -13,6 +15,16 @@ use thread\app\model\interfaces\BaseBackendModel;
  */
 class Country extends \common\modules\location\models\Country implements BaseBackendModel
 {
+
+    /**
+     * Backend form dropdown list
+     * @return array
+     */
+    public static function dropDownList()
+    {
+        return ArrayHelper::map(self::findBase()->joinWith(['lang'])->undeleted()->all(), 'id', 'lang.title');
+    }
+
     /**
      * @param $params
      * @return \yii\data\ActiveDataProvider

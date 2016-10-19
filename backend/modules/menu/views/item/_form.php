@@ -31,7 +31,7 @@ endif;
 <?= $form->field($model, 'link_type')->dropDownList(MenuItem::linkTypeRange()) ?>
 
     <div class="menuitem-link_type_internal" style="display:<?= ($type == 'internal') ? 'block' : 'none' ?>">
-        <?= $form->field($model, 'internal_source')->dropDownList(MenuItem::getTypeSources()) ?>
+        <?= $form->field($model, 'internal_source')->dropDownList(MenuItem::getTypeSources(), ['prompt' => '']) ?>
 
         <?php foreach (MenuItem::getSourcesList() as $key => $data):
             echo Html::beginTag('div', [
@@ -41,7 +41,7 @@ endif;
             echo $form->field($model, 'internal_source_id')->dropDownList(call_user_func([$data['class'], $data['method']]), ['prompt' => ''])->label($data['label']);
             echo Html::endTag('div');
         endforeach;
-        echo $form->field($model, 'internal_source_id', ['inputOptions' => ['class' => 'internal_source_id_hidden']])->hiddenInput();
+        echo $form->field($model, 'internal_source_id', ['inputOptions' => ['class' => 'internal_source_id_hidden']])->hiddenInput()->label(false);
         ?>
 
     </div>

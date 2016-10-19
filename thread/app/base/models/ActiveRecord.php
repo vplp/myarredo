@@ -86,13 +86,4 @@ abstract class ActiveRecord extends dbActiveRecord
     {
         return (array_key_exists($scenario, $this->scenarios())) ? true : false;
     }
-
-    /**
-     * Backend form dropdown list
-     * @return array
-     */
-    public static function dropDownList()
-    {
-        return ArrayHelper::map(self::findBase()->joinWith(['lang'])->all(), 'id', 'lang.title');
-    }
 }

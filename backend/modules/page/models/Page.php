@@ -37,6 +37,15 @@ class Page extends CommonPageModel implements BaseBackendModel
     }
 
     /**
+     * Backend form dropdown list
+     * @return array
+     */
+    public static function dropDownList()
+    {
+        return ArrayHelper::map(self::findBase()->joinWith(['lang'])->undeleted()->all(), 'id', 'lang.title');
+    }
+
+    /**
      * @param $params
      * @return \yii\data\ActiveDataProvider
      */

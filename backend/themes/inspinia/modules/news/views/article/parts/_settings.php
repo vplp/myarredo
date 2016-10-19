@@ -1,5 +1,4 @@
 <?php
-use yii\helpers\ArrayHelper;
 use backend\modules\news\models\Group;
 
 /**
@@ -10,10 +9,7 @@ use backend\modules\news\models\Group;
  */
 ?>
 <?= $form->field($model, 'group_id')->hiddenInput(['value' => 1])->label(false) ?>
-<?= $form->field($model, 'group_id')->dropDownList(ArrayHelper::merge(
-    [0 => '---' . Yii::t('app', 'Choose group') . '---'],
-    Group::getDropdownList()
-)) ?>
+<?= $form->field($model, 'group_id')->dropDownList(Group::dropDownList(), ['prompt' => '---' . Yii::t('app', 'Choose group') . '---']) ?>
 <?= $form->text_line_lang($modelLang, 'title') ?>
 <?= $form->text_line($model, 'alias') ?>
 <?= $form->text_line_lang($modelLang, 'description')->textarea([

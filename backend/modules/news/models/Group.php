@@ -22,9 +22,9 @@ class Group extends CommonGroupModel implements BaseBackendModel
      * Backend form dropdown list
      * @return array
      */
-    public static function getDropdownList()
+    public static function dropDownList()
     {
-        return ArrayHelper::map(self::findBase()->joinWith(['lang'])->all(), 'id', 'lang.title');
+        return ArrayHelper::map(self::findBase()->joinWith(['lang'])->undeleted()->all(), 'id', 'lang.title');
     }
 
     /**

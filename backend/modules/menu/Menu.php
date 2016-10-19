@@ -11,4 +11,10 @@ namespace backend\modules\menu;
 class Menu extends \common\modules\menu\Menu
 {
     public $itemOnPage = 20;
+
+    /**
+     * Шлях до файлу конфігурації
+     * @var string
+     */
+    public $configPath = __DIR__ . '/config.php';
 }
