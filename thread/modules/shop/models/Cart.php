@@ -78,7 +78,7 @@ class Cart extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['items_summ', 'items_total_summ', 'discount_percent', 'discount_money', 'discount_full','total_summ','user_id', 'items_count', 'items_total_count',  'created_at', 'updated_at', 'published', 'deleted'],
+            'backend' => ['items_summ', 'items_total_summ', 'discount_percent', 'discount_money', 'discount_full','total_summ','user_id', 'items_count', 'items_total_count',  'published', 'deleted'],
         ];
     }
 

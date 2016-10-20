@@ -29,6 +29,7 @@ class m161020_083419_create_table_shop_customer extends Migration
             'user_id' => $this->integer(11)->unsigned()->notNull()->defaultValue(0)->comment('User ID'),
             'email' => $this->string(255)->notNull()->comment('Email'),
             'phone' => $this->string(50)->notNull()->comment('Phone'),
+            'full_name' => $this->string(255)->notNull()->comment('full_name'),
             'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
             'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
             'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
