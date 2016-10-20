@@ -41,6 +41,7 @@ return ArrayHelper::merge(
                     '@thread/modules/sys/modules/growl/migrations',
                     '@thread/modules/sys/modules/crontab/migrations',
                     '@thread/modules/correspondence/migrations',
+                    '@thread/modules/shop/migrations',
                 ],
             ],
         ],

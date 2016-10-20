@@ -8,7 +8,7 @@ return [
     /**
      * Example
      */
-//    'page' => [
-//        'class' => \thread\modules\page\Page::class,
-//    ],
+   'shop' => [
+        'class' => \thread\modules\shop\Shop::class,
+    ],
 ];
