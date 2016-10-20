@@ -179,6 +179,22 @@ class NavBar extends \yii\bootstrap\NavBar
 //                    ],
                 ],
             ],
+            // SHOP
+            [
+                'label' => '<i class="fa fa-map-marker"></i><span class="nav-label">' . Yii::t('app',
+                        'SHOP') . '</span><span class="fa arrow"></span>',
+                'items' => [
+                    [
+                        'label' => Yii::t('app', 'Delivery Methods'),
+                        'url' => ['/shop/delivery-methods/list']
+                    ],
+                    [
+                        'label' => Yii::t('app', 'Payment Methods'),
+                        'url' => ['/shop/payment-methods/list']
+                    ],
+
+                ],
+            ],
         ];
     }
 }

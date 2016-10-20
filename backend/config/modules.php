@@ -53,4 +53,7 @@ return [
     'correspondence' => [
         'class' => \backend\modules\correspondence\Correspondence::class,
     ],
+    'shop' => [
+        'class' => \backend\modules\shop\Shop::class,
+    ],
 ];

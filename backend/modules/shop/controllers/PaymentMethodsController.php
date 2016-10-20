@@ -1,0 +1,24 @@
+<?php
+namespace backend\modules\shop\controllers;
+
+use thread\app\base\controllers\BackendController;
+//
+use backend\modules\shop\models\{
+    PaymentMethods, PaymentMethodsLang, search\PaymentMethods as filterPaymentMethodsModel
+};
+
+/**
+ * Class PaymentMethodsController
+ *
+ * @package backend\modules\location\controllers
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
+class PaymentMethodsController extends BackendController
+{
+    public $model = PaymentMethods::class;
+    public $modelLang = PaymentMethodsLang::class;
+    //public $filterModel = filterPaymentMethodsModel::class;
+    public $title = 'PaymentMethods';
+    public $name = 'PaymentMethods';
+}

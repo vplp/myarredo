@@ -2,6 +2,7 @@
 
 namespace thread\modules\shop\models;
 
+use thread\modules\shop\Shop;
 use Yii;
 
 use thread\app\base\models\ActiveRecord;
@@ -62,6 +63,7 @@ class DeliveryMethods extends ActiveRecord
     public function rules()
     {
         return [
+            [['alias'], 'required'],
             [['created_at', 'updated_at', 'position'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];

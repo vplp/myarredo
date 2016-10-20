@@ -3,6 +3,7 @@
 namespace thread\modules\shop\models;
 
 use thread\app\base\models\ActiveRecordLang;
+use thread\modules\shop\Shop;
 use Yii;
 
 /**
