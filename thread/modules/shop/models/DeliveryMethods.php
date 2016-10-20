@@ -3,8 +3,11 @@
 namespace thread\modules\shop\models;
 
 use Yii;
+
+use thread\app\base\models\ActiveRecord;
+use yii\behaviors\AttributeBehavior;
 use yii\helpers\ArrayHelper;
-use thread\behaviors\TransliterateBehavior;
+use yii\helpers\Inflector;
 
 /**
  * Class DeliveryMethods
@@ -13,36 +16,41 @@ use thread\behaviors\TransliterateBehavior;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c) 2015, Thread
  */
-class DeliveryMethods extends \thread\models\ActiveRecord {
+class DeliveryMethods extends ActiveRecord
+{
 
     /**
-     *
      * @return string
      */
-    public static function getDb() {
-        return \thread\modules\shop\Shop::getDb();
+    public static function getDb()
+    {
+        return Shop::getDb();
     }
 
     /**
      *
      * @return string
      */
-    public static function tableName() {
+    public static function tableName()
+    {
         return '{{%shop_delivery_methods}}';
     }
 
     /**
-     *
      * @return array
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return ArrayHelper::merge(parent::behaviors(), [
-            'transliterate' => [
-                'class' => TransliterateBehavior::class,
+            [
+                'class' => AttributeBehavior::className(),
                 'attributes' => [
-                    \yii\db\ActiveRecord::EVENT_BEFORE_INSERT => ['alias' => 'alias'],
-                    \yii\db\ActiveRecord::EVENT_BEFORE_UPDATE => ['alias' => 'alias']
-                ]
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias);
+                },
             ],
         ]);
     }
@@ -51,9 +59,10 @@ class DeliveryMethods extends \thread\models\ActiveRecord {
      *
      * @return array
      */
-    public function rules() {
+    public function rules()
+    {
         return [
-            [['create_time', 'update_time', 'position'], 'integer'],
+            [['created_at', 'updated_at', 'position'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
@@ -62,7 +71,8 @@ class DeliveryMethods extends \thread\models\ActiveRecord {
      *
      * @return array
      */
-    public function scenarios() {
+    public function scenarios()
+    {
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
@@ -74,13 +84,14 @@ class DeliveryMethods extends \thread\models\ActiveRecord {
      *
      * @return array
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
             'id' => Yii::t('app', 'id'),
             'alias' => Yii::t('app', 'alias'),
             'position' => Yii::t('app', 'position'),
-            'create_time' => Yii::t('app', 'create_time'),
-            'update_time' => Yii::t('app', 'update_time'),
+            'created_at' => Yii::t('app', 'created_at'),
+            'updated_at' => Yii::t('app', 'updated_at'),
             'published' => Yii::t('app', 'published'),
             'deleted' => Yii::t('app', 'deleted'),
         ];
@@ -90,33 +101,10 @@ class DeliveryMethods extends \thread\models\ActiveRecord {
      *
      * @return ActiveQuery
      */
-    public function getLang() {
+    public function getLang()
+    {
         return $this->hasOne(DeliveryMethodsLang::class, ['rid' => 'id']);
     }
-
-    /**
-     *
-     * @return ActiveQuery
-     */
-    public static function find_base() {
-        return self::find()->with(['lang'])->undeleted();
-    }
-
-    /**
-     *
-     * @param array $params
-     * @return ActiveDataProvider
-     */
-    public function search($params) {
-        return (new search\DeliveryMethods)->search($params);
-    }
-
-    /**
-     *
-     * @return array|null
-     */
-    public static function all() {
-        return self::find_base()->all();
-    }
+    
 
 }

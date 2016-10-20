@@ -32,7 +32,7 @@ class m161020_083618_create_table_shop_order extends Migration
             'customer_id' => $this->integer(11)->unsigned()->notNull()->comment('Customer ID'),
             'manager_id' => $this->integer(11)->unsigned()->notNull()->defaultValue(0)->comment('Manager ID'),
             'delivery_method_id' => $this->integer(11)->unsigned()->notNull()->comment('delivery_method ID'),
-            'delivery_price' => $this->integer(11)->unsigned()->notNull()->comment('Price delivery'),
+            'delivery_price' => $this->float(15,3)->unsigned()->notNull()->comment('Price delivery'),
             'payment_method_id' => $this->integer(11)->unsigned()->notNull()->comment('payment_method ID'),
             'order_status' => "enum('new','confirmed','on_performance','prepared','on_delivery','refusal','executed') NOT NULL DEFAULT 'new' COMMENT 'Status of Order'",
             'payd_status' => "enum('billed', 'not_paid', 'paid_up') NOT NULL DEFAULT 'not_paid' COMMENT 'Status payment'",
