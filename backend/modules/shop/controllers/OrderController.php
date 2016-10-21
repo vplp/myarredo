@@ -28,22 +28,24 @@ class OrderController extends BackendController
     {
         return ArrayHelper::merge(
             parent::actions(),
-            ['update' => [
-                'class' => Update::class,
-                'modelClass' => $this->model,
-                'scenario' => 'published',
-                'redirect' => function () {
-                    return ($_POST['save_and_exit']) ? $this->actionListLinkStatus : [
-                        'update',
-                        'id' => $this->action->getModel()->id
-                    ];
-                }
-            ],
+            [
+                'update' => [
+                    'class' => Update::class,
+                    'modelClass' => $this->model,
+                    'scenario' => 'published',
+                    'redirect' => function () {
+                        return ($_POST['save_and_exit']) ? $this->actionListLinkStatus : [
+                            'update',
+                            'id' => $this->action->getModel()->id
+                        ];
+                    }
+                ],
                 'list' => [
                     'class' => ListModel::class,
                     'modelClass' => $this->model,
                     'layout' => '@app/layouts/base',
-                ],]
+                ],
+            ]
         );
     }
 

@@ -88,4 +88,14 @@ class OrderItem extends OrderItemModel implements BaseBackendSearchModel
         $query = OrderItemModel::find()->deleted();
         return $this->baseSearch($query, $params);
     }
+
+    /**
+     * Получаем search модели (Позиций в заказе)
+     */
+    public function getSearchModelsOrderItems($orderId)
+    {
+        $query = OrderItemModel::find()->undeleted()->andWhere(['order_id' => $orderId]);
+        return $this->baseSearch($query, Yii::$app->request->queryParams);
+
+    }
 }

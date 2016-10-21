@@ -8,7 +8,7 @@ use thread\widgets\grid\{
 
 /**
  *
- * @package admin\modules\page\view
+ * @package admin\modules\order\view
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
@@ -17,11 +17,22 @@ echo GridView::widget([
     'dataProvider' => $model->trash(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
-        [
-            'attribute' => 'title',
-            'value' => 'lang.title',
-            'label' => Yii::t('app', 'Title')
-        ],
+        'manager_id',
+        'customer.full_name',
+        'deliveryMethod.lang.title',
+        'paymentMethod.lang.title',
+        'delivery_price',
+        'order_status',
+        'payd_status',
+        'items_count',
+        'items_total_count',
+        'items_summ',
+        'items_total_summ',
+        'discount_percent',
+        'discount_money',
+        'discount_full',
+        'total_summ',
+        'comment',
         [
             'class' => ActionDeleteColumn::class,
         ],

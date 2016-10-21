@@ -25,7 +25,6 @@ use thread\modules\shop\Shop;
  * @property integer $updated_at
  * @property integer $published
  * @property integer $deleted
-
  *
  * @package thread\modules\shop\models
  * @author FilamentV <vortex.filament@gmail.com>
@@ -59,8 +58,12 @@ class OrderItem extends ActiveRecord
         return [
             [['order_id', 'product_id'], 'required'],
             [['order_id', 'product_id', 'count', 'created_at', 'updated_at'], 'integer'],
-            [['price', 'summ', 'total_summ','discount_percent', 'discount_money', 'discount_full'], 'double'],
-            [['price', 'summ', 'total_summ','discount_percent', 'discount_money', 'discount_full'], 'default', 'value' => 0.0],
+            [['price', 'summ', 'total_summ', 'discount_percent', 'discount_money', 'discount_full'], 'double'],
+            [
+                ['price', 'summ', 'total_summ', 'discount_percent', 'discount_money', 'discount_full'],
+                'default',
+                'value' => 0.0
+            ],
             [['extra_param'], 'string'],
             [['count'], 'default', 'value' => 1],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
@@ -75,7 +78,19 @@ class OrderItem extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['order_id', 'product_id', 'summ', 'total_summ', 'discount_percent', 'discount_money', 'discount_full','extra_param', 'count',  'published', 'deleted'],
+            'backend' => [
+                'order_id',
+                'product_id',
+                'summ',
+                'total_summ',
+                'discount_percent',
+                'discount_money',
+                'discount_full',
+                'extra_param',
+                'count',
+                'published',
+                'deleted'
+            ],
         ];
     }
 

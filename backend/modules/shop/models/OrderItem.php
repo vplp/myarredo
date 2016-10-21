@@ -31,5 +31,14 @@ class OrderItem extends CommonOrderItemModel implements BaseBackendModel
     {
         return (new search\OrderItem())->trash($params);
     }
+
+    /**
+     * Получаем search модели (Похожие товары) || (Запчасти) И (ПРИНАДЛЕЖНОСТИ)
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function items($orderlId)
+    {
+        return (new search\OrderItem())->getSearchModelsOrderItems($orderlId);
+    }
     
 }

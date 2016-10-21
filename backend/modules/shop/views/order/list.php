@@ -35,12 +35,6 @@ echo GridView::widget([
         'total_summ',
         'comment',
         [
-            'format' => 'raw',
-            'value' => function($model) {
-                return Html::a('Позиции', Url::toRoute(['/shop/order-item/list', 'order_id' => $model->id]));
-            }
-        ],
-        [
             'class' => ActionEditColumn::class,
         ],
         [

@@ -6,6 +6,8 @@ namespace backend\modules\shop\models;
 use common\modules\shop\models\DeliveryMethods as CommonDeliveryMethodsModel;
 
 use thread\app\model\interfaces\BaseBackendModel;
+use yii\helpers\ArrayHelper;
+
 /**
  * Class DeliveryMethods
  *
@@ -31,5 +33,13 @@ class DeliveryMethods extends CommonDeliveryMethodsModel implements BaseBackendM
     public function trash($params)
     {
         return (new search\DeliveryMethods())->trash($params);
+    }
+    /**
+     * Backend form dropdown list
+     * @return array
+     */
+    public static function dropDownList()
+    {
+        return ArrayHelper::map(self::findBase()->joinWith(['lang'])->undeleted()->all(), 'id', 'lang.title');
     }
 }

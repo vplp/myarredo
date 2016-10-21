@@ -6,6 +6,8 @@ namespace backend\modules\shop\models;
 use common\modules\shop\models\PaymentMethods as CommonPaymentMethodsModel;
 
 use thread\app\model\interfaces\BaseBackendModel;
+use yii\helpers\ArrayHelper;
+
 /**
  * Class DeliveryMethods
  *
@@ -31,5 +33,14 @@ class PaymentMethods extends CommonPaymentMethodsModel implements BaseBackendMod
     public function trash($params)
     {
         return (new search\PaymentMethods())->trash($params);
+    }
+    
+    /**
+     * Backend form dropdown list
+     * @return array
+     */
+    public static function dropDownList()
+    {
+        return ArrayHelper::map(self::findBase()->joinWith(['lang'])->undeleted()->all(), 'id', 'lang.title');
     }
 }
