@@ -3,10 +3,10 @@
 
 namespace backend\modules\shop\models;
 
+use yii\helpers\ArrayHelper;
+use thread\app\model\interfaces\BaseBackendModel;
 use common\modules\shop\models\DeliveryMethods as CommonDeliveryMethodsModel;
 
-use thread\app\model\interfaces\BaseBackendModel;
-use yii\helpers\ArrayHelper;
 
 /**
  * Class DeliveryMethods

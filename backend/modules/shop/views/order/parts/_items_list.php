@@ -1,6 +1,5 @@
 <?php
 
-use backend\modules\shop\models\OrderItem;
 use yii\grid\GridView;
 
 /**
@@ -11,7 +10,7 @@ use yii\grid\GridView;
  *
  */
 echo GridView::widget([
-    'dataProvider' => (new OrderItem())->items($model->id),
+    'dataProvider' => $model->items[0]->search(Yii::$app->getRequest()->queryParams),
     'columns' => [
         'product_id',
         'count',

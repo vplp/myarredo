@@ -6,8 +6,9 @@ use thread\app\base\controllers\BackendController;
 use backend\modules\shop\models\{
     Order, search\Order as filterOrderModel
 };
-use thread\actions\ListModel;
-use thread\actions\Update;
+use thread\actions\{
+    ListModel, Update
+};
 use yii\helpers\ArrayHelper;
 
 /**

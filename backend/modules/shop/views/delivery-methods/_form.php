@@ -1,13 +1,7 @@
 <?php
 use thread\app\bootstrap\ActiveForm;
 //
-use \backend\modules\location\models\Country;
 
-/**
- * @var $model \backend\modules\location\models\City
- * @var $modelLang \backend\modules\location\models\CityLang
- * @var $form \backend\themes\inspinia\widgets\forms\ActiveForm
- */
 ?>
 
 <?php $form = ActiveForm::begin(); ?>

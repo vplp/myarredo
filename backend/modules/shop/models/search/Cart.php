@@ -9,8 +9,9 @@ use yii\base\Model;
 use thread\app\base\models\query\ActiveQuery;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
-use backend\modules\shop\Shop as ShopModule;
-use backend\modules\shop\models\Cart as CartModel;
+use backend\modules\{
+    shop\Shop as ShopModule, shop\models\Cart as CartModel
+};
 
 /**
  * Class Cart

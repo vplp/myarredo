@@ -1,9 +1,11 @@
 <?php
 use thread\app\bootstrap\ActiveForm;
 //
-use \backend\modules\shop\models\DeliveryMethods;
-use \backend\modules\shop\models\PaymentMethods;
 use thread\widgets\HtmlForm;
+
+use backend\modules\{
+    shop\models\DeliveryMethods, shop\models\PaymentMethods
+};
 
 /**
  * @var $model \backend\modules\shop\models\Order

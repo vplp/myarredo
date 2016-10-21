@@ -3,7 +3,7 @@
 use yii\grid\GridView;
 //
 use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn, GridViewFilter
+    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
 };
 /**
  *

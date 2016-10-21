@@ -148,7 +148,7 @@ class Order extends ActiveRecord
      */
     public function getItems()
     {
-        return $this->hasOne(OrderItem::class, ['order_id' => 'id']);
+        return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
     }
 
     /**

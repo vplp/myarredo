@@ -18,7 +18,7 @@ class DeliveryMethodsController extends BackendController
 {
     public $model = DeliveryMethods::class;
     public $modelLang = DeliveryMethodsLang::class;
-    //public $filterModel = filterDeliveryMethodsModel::class;
+    public $filterModel = filterDeliveryMethodsModel::class;
     public $title = 'DeliveryMethods';
     public $name = 'DeliveryMethods';
 }

@@ -2,9 +2,9 @@
 
 namespace backend\modules\shop\models;
 
+use thread\app\model\interfaces\BaseBackendModel;
 use common\modules\shop\models\Cart as CommonCartModel;
 
-use thread\app\model\interfaces\BaseBackendModel;
 
 /**
  * Class Cart

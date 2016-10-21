@@ -18,7 +18,7 @@ class PaymentMethodsController extends BackendController
 {
     public $model = PaymentMethods::class;
     public $modelLang = PaymentMethodsLang::class;
-    //public $filterModel = filterPaymentMethodsModel::class;
+    public $filterModel = filterPaymentMethodsModel::class;
     public $title = 'PaymentMethods';
     public $name = 'PaymentMethods';
 }

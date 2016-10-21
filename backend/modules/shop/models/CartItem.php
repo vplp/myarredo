@@ -1,9 +1,9 @@
 <?php
 
 namespace backend\modules\shop\models;
-use common\modules\shop\models\CartItem as CommonCartItemModel;
 
 use thread\app\model\interfaces\BaseBackendModel;
+use common\modules\shop\models\CartItem as CommonCartItemModel;
 
 
 /**

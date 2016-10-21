@@ -3,10 +3,8 @@
 use yii\grid\GridView;
 //
 use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn, GridViewFilter
+    ActionEditColumn, ActionToTrashColumn
 };
-use yii\helpers\Html;
-use yii\helpers\Url;
 
 /**
  *

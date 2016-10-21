@@ -3,10 +3,11 @@
 
 namespace backend\modules\shop\models;
 
-use common\modules\shop\models\PaymentMethods as CommonPaymentMethodsModel;
-
-use thread\app\model\interfaces\BaseBackendModel;
 use yii\helpers\ArrayHelper;
+use common\modules\shop\models\PaymentMethods as CommonPaymentMethodsModel;
+use thread\app\model\interfaces\BaseBackendModel;
+
+
 
 /**
  * Class DeliveryMethods

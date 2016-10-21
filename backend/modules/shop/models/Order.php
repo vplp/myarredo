@@ -2,9 +2,8 @@
 
 namespace backend\modules\shop\models;
 
-use common\modules\shop\models\Order as CommonOrderModel;
-
 use thread\app\model\interfaces\BaseBackendModel;
+use common\modules\shop\models\Order as CommonOrderModel;
 
 /**
  * Class Order
@@ -32,4 +31,13 @@ class Order extends CommonOrderModel implements BaseBackendModel
     {
         return (new search\Order())->trash($params);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getItems()
+    {
+        return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
+    }
+
 }

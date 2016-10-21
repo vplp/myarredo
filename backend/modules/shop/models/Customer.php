@@ -2,9 +2,9 @@
 
 namespace backend\modules\shop\models;
 
+use thread\app\model\interfaces\BaseBackendModel;
 use common\modules\shop\models\Customer as CommonCustomerModel;
 
-use thread\app\model\interfaces\BaseBackendModel;
 
 /**
  * Class Customer

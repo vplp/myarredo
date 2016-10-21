@@ -9,8 +9,9 @@ use yii\base\Model;
 use thread\app\base\models\query\ActiveQuery;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
-use backend\modules\shop\Shop as ShopModule;
-use backend\modules\shop\models\OrderItem as OrderItemModel;
+use backend\modules\{
+    shop\Shop as ShopModule, shop\models\OrderItem as OrderItemModel
+};
 
 /**
  * Class OrderItem
@@ -88,14 +89,5 @@ class OrderItem extends OrderItemModel implements BaseBackendSearchModel
         $query = OrderItemModel::find()->deleted();
         return $this->baseSearch($query, $params);
     }
-
-    /**
-     * Получаем search модели (Позиций в заказе)
-     */
-    public function getSearchModelsOrderItems($orderId)
-    {
-        $query = OrderItemModel::find()->undeleted()->andWhere(['order_id' => $orderId]);
-        return $this->baseSearch($query, Yii::$app->request->queryParams);
-
-    }
+    
 }
