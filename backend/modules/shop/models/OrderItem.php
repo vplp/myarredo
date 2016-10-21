@@ -20,7 +20,7 @@ class OrderItem extends CommonOrderItemModel implements BaseBackendModel
  */
     public function search($params)
     {
-        return (new search\Order())->search($params);
+        return (new search\OrderItem())->search($params);
     }
 
     /**
@@ -29,7 +29,7 @@ class OrderItem extends CommonOrderItemModel implements BaseBackendModel
      */
     public function trash($params)
     {
-        return (new search\Order())->trash($params);
+        return (new search\OrderItem())->trash($params);
     }
     
 }

@@ -192,6 +192,10 @@ class NavBar extends \yii\bootstrap\NavBar
                         'label' => Yii::t('app', 'Payment Methods'),
                         'url' => ['/shop/payment-methods/list']
                     ],
+                    [
+                        'label' => Yii::t('app', 'Orders'),
+                        'url' => ['/shop/order/list']
+                    ],
 
                 ],
             ],
