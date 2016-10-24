@@ -59,9 +59,6 @@ class WidgetController extends BaseController
         if (Yii::$app->request->isAjax) {
             return $this->render('index', [
             ]);
-        } else {
-            return $this->render('index', [
-            ]);
         }
     }
 
