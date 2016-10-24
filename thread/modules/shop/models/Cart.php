@@ -89,10 +89,10 @@ class Cart extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'user_id'),
+            'user_id' => Yii::t('app', 'User id'),
             'php_session_id' => Yii::t('app', 'php_session_id'),
-            'items_count' => Yii::t('app', 'count of items'),
-            'items_total_count' => Yii::t('app', 'summ of item_count'),
+            'items_count' => Yii::t('app', 'Count of items'),
+            'items_total_count' => Yii::t('app', 'Summ of item_count'),
             'items_summ' => Yii::t('app', 'Summ of items without discount for item'),
             'items_total_summ' => Yii::t('app', 'Total Summ of items with discount for item'),
             'discount_percent' => Yii::t('app', 'Percent discount for order'),

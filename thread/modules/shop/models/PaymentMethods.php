@@ -89,9 +89,9 @@ class PaymentMethods extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'id'),
-            'alias' => Yii::t('app', 'alias'),
-            'position' => Yii::t('app', 'position'),
+            'id' => Yii::t('app', 'Id'),
+            'alias' => Yii::t('app', 'Alias'),
+            'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'created_at'),
             'updated_at' => Yii::t('app', 'updated_at'),
             'published' => Yii::t('app', 'published'),

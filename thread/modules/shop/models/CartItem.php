@@ -86,9 +86,9 @@ class CartItem extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'cart_id' => Yii::t('app', 'cart id'),
-            'product_id' => Yii::t('app', 'product id'),
-            'count' => Yii::t('app', 'count of item'),
+            'cart_id' => Yii::t('app', 'Cart id'),
+            'product_id' => Yii::t('app', 'Product id'),
+            'count' => Yii::t('app', 'Count of item'),
             'summ' => Yii::t('app', 'Summ without discount for item'),
             'total_summ' => Yii::t('app', 'Total Summ with discount for item'),
             'discount_percent' => Yii::t('app', 'Percent discount for order'),

@@ -101,9 +101,9 @@ class OrderItem extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'order_id' => Yii::t('app', 'cart id'),
-            'product_id' => Yii::t('app', 'product id'),
-            'count' => Yii::t('app', 'count of item'),
+            'order_id' => Yii::t('app', 'Order id'),
+            'product_id' => Yii::t('app', 'Product id'),
+            'count' => Yii::t('app', 'Count of item'),
             'summ' => Yii::t('app', 'Summ without discount for item'),
             'total_summ' => Yii::t('app', 'Total Summ with discount for item'),
             'discount_percent' => Yii::t('app', 'Percent discount for order'),

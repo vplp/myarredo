@@ -89,13 +89,13 @@ class DeliveryMethods extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'id'),
-            'alias' => Yii::t('app', 'alias'),
-            'position' => Yii::t('app', 'position'),
-            'created_at' => Yii::t('app', 'created_at'),
-            'updated_at' => Yii::t('app', 'updated_at'),
-            'published' => Yii::t('app', 'published'),
-            'deleted' => Yii::t('app', 'deleted'),
+            'id' => Yii::t('app', 'Id'),
+            'alias' => Yii::t('app', 'Alias'),
+            'position' => Yii::t('app', 'Position'),
+            'created_at' => Yii::t('app', 'Create time'),
+            'updated_at' => Yii::t('app', 'Update time'),
+            'published' => Yii::t('app', 'Published'),
+            'deleted' => Yii::t('app', 'Deleted'),
         ];
     }
 
