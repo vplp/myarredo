@@ -33,5 +33,7 @@ return [
 
     // Module [[Shop]]
     'shop/widget' => 'shop/widget/index',
+    'shop/cart/index' => 'shop/cart/index',
+    'shop/cart/sendorder' => 'shop/cart/sendorder',
 
 ];

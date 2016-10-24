@@ -34,5 +34,8 @@ use yii\helpers\Url;
         <span class=""><?= Yii::t('app', 'Summ for pay') ?>:</span>
         <span class="total-price"><?= $cart['items_total_summ'] ?></span>
     </div>
+    <div class="">
+        <?= Html::a(Yii::t('app', 'Checkout', Url::toRoute(['/shop/cart/index']))) ?>
+    </div>
 </div>
 

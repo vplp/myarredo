@@ -13,8 +13,10 @@ use frontend\modules\shop\models\Cart as CartModel;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c) 2014, Thread
  *
- * <?= Cart::widget(); ?>
- *
+ * <?= Cart::widget(['view' =>'short']); ?>
+ * view/full_popup - popup window with cart(with items)
+ * view/full - window cart with items
+ * view/short - window cart without items
  */
 class Cart extends Widget
 {
@@ -36,7 +38,8 @@ class Cart extends Widget
 
     public function run()
     {
-        if (($this->view == 'full' && empty($this->items)) || empty($this->cart)) {
+        
+        if (($this->view == 'full' && empty($this->items)) || empty($this->cart) || $this->view == null) {
             return false;
         }
         return $this->render($this->view, [

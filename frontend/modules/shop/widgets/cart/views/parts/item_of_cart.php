@@ -4,24 +4,23 @@
  * @copyright (c) 2015, Thread
  */
 ?>
-<div class="product">
-    <div class="">
-        <span class=""><?= 'CartItem - '.$item['id'] ?></span>
-    </div>
-    <div class="">
+<tr class="product">
+    <td class="">
+        <span class=""><?= 'CartItem - ' . $item['id'] ?></span>
+    </td>
+    <td class="">
         <span class=""><?= $item['count'] ?></span>
-    </div>
-    <div class="">
+    </td>
+    <td class="">
         <span class=""><?= $item['price'] ?></span>
-    </div>
-    <div class="">
+    </td>
+    <td class="">
         <span class=""><?= $item['discount_full'] ?></span>
-    </div>
-    <div class="">
+    </td>
+    <td class="">
         <span class=""><?= $item['total_summ'] ?></span>
-    </div>
-    <div class="">
+    </td>
+    <td class="">
         <span class=""><?= $item['extra_param'] ?></span>
-    </div>
-</div>
-<br>
+    </td>
+</tr>

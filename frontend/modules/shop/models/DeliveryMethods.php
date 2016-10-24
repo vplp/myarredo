@@ -33,6 +33,6 @@ class DeliveryMethods extends CommonDeliveryMethodsModel
      */
     public static function dropDownList()
     {
-        return ArrayHelper::map(self::findBase()->all(), 'id', 'lang.title');
+        return ArrayHelper::map(self::findBase()->all(), 'alias', 'lang.title');
     }
 }
