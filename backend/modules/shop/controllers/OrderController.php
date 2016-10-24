@@ -44,7 +44,7 @@ class OrderController extends BackendController
                 'list' => [
                     'class' => ListModel::class,
                     'modelClass' => $this->model,
-                    'layout' => '@app/layouts/base',
+                    'layout' => '@app/layouts/rud-trash',
                 ],
             ]
         );
