@@ -20,34 +20,7 @@ class WidgetController extends BaseController
 
     public $title = "Cart";
     public $defaultAction = 'index';
-    private $cart_short = null;
-
-    /**
-     *
-     * @return array
-     */
-    public function behaviors()
-    {
-        return [
-            'AccessControl' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'actions' => ['index'],
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                    [
-                        'allow' => false,
-                    ],
-                ],
-            ],
-        ];
-    }
+   
 
 
     /**

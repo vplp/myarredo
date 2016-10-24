@@ -1,11 +1,12 @@
 <?php
 
-use yii\helpers\Html;
-use yii\helpers\Url;
+use yii\helpers\{
+    Html, Url
+};
 
 /**
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @author Alla Kuzmenko
+ * @copyright (c) 2016, Thread
  */
 
 ?>
@@ -13,14 +14,13 @@ use yii\helpers\Url;
 <div class="">
     <a href="<?= Url::toRoute(['/shop/cart/index']) ?>">
         <div class="">
-            <span class="" "><?= Yii::t('app', 'Cart') ?></span>
-            <div class="empty_bascket" style="display: <?= (int)$cart['items_total_count'] ? 'none' : 'block'; ?>">
-                <span class=""><?= Yii::t('app', 'Добавьте товары') ?></span>
+            <?= Yii::t('app', 'Cart') ?>
+            <div class="empty_bascket" style="display: <?= $cart['items_total_count'] ? 'none' : 'block'; ?>">
+                <span class=""><?= Yii::t('app', 'Add tovar') ?></span>
             </div>
-            <div class="full_bascket" style="display: <?= (int)$cart['items_total_count'] ? 'block' : 'none'; ?>">
-                <span class=""><span class=""><?= $cart['items_total_count'] ?></span> <?= Yii::t('app',
-                        'items for summ price') ?>:</span>
-                <span class=""><span class=""><?= $cart['items_total_summ'] ?></span></span>
+            <div class="full_bascket" style="display: <?= $cart['items_total_count'] ? 'block' : 'none'; ?>">
+                <?= $cart['items_total_count'] ?><?= Yii::t('app', 'items for summ price') ?>:
+                <?= $cart['items_total_summ'] ?>
             </div>
         </div>
     </a>
