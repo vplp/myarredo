@@ -31,9 +31,9 @@ class Shop extends aModule
     /**
      * @return mixed
      */
-    public static function getFormatDate()
+    public function getFormatDate()
     {
-        return Yii::$app->getModule('shop')->params['format']['date'];
+        return $this->params['format']['date'];
     }
 
 }

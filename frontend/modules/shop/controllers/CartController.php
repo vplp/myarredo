@@ -102,7 +102,7 @@ class CartController extends \frontend\components\BaseController
         $order = new Order();
         $order->scenario = 'frontend';
         //$model->user_id = $params['user_id'];
-       
+
 
         $transaction = $model::getDb()->beginTransaction();
         try {

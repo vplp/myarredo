@@ -30,6 +30,7 @@ class News extends aModule
 
     /**
      * @return mixed
+     * TODO::херня, переделать
      */
     public static function getFormatDate()
     {
