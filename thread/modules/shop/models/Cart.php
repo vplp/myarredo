@@ -111,7 +111,7 @@ class Cart extends ActiveRecord
      */
     public function getItems()
     {
-        return $this->hasOne(CartItem::class, ['cart_id' => 'id']);
+        return $this->hasMany(CartItem::class, ['cart_id' => 'id']);
     }
 
     
