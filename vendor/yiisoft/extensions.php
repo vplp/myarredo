@@ -219,15 +219,6 @@ return array (
       '@yii/faker' => $vendorDir . '/yiisoft/yii2-faker',
     ),
   ),
-  'kartik-v/yii2-grid' => 
-  array (
-    'name' => 'kartik-v/yii2-grid',
-    'version' => '3.1.2.0',
-    'alias' => 
-    array (
-      '@kartik/grid' => $vendorDir . '/kartik-v/yii2-grid',
-    ),
-  ),
   'yiisoft/yii2-apidoc' => 
   array (
     'name' => 'yiisoft/yii2-apidoc',
@@ -325,6 +316,15 @@ return array (
     'alias' => 
     array (
       '@yii2tech/crontab' => $vendorDir . '/yii2tech/crontab',
+    ),
+  ),
+  'kartik-v/yii2-grid' => 
+  array (
+    'name' => 'kartik-v/yii2-grid',
+    'version' => '3.1.3.0',
+    'alias' => 
+    array (
+      '@kartik/grid' => $vendorDir . '/kartik-v/yii2-grid',
     ),
   ),
 );
