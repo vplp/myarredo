@@ -2,12 +2,11 @@
 
 namespace frontend\modules\shop\controllers;
 
-use frontend\modules\shop\models\Order;
 use Yii;
 use yii\helpers\Url;
-use frontend\modules\shop\models\Cart;
-use frontend\modules\shop\models\CartCustomerForm;
-use frontend\modules\shop\models\Customer;
+use frontend\modules\shop\models\{
+    Order, Cart, CartCustomerForm, Customer
+};
 
 /**
  * Class CartController
@@ -22,7 +21,6 @@ class CartController extends \frontend\components\BaseController
     public $title = "Cart";
     public $layout = "@app/layouts/main";
     public $defaultAction = 'index';
-    private $cart_short = null;
 
     /**
      *
