@@ -21,7 +21,6 @@ use thread\modules\shop\Shop;
  * @property float $discount_money
  * @property float $discount_full
  * @property float $total_summ
-
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $published
@@ -61,9 +60,16 @@ class Cart extends ActiveRecord
         return [
             [['phpsessid'], 'required'],
             [['phpsessid'], 'string', 'max' => 30],
-            [['user_id', 'items_count', 'items_total_count',  'created_at', 'updated_at'], 'integer'],
-            [['items_summ', 'items_total_summ', 'discount_percent', 'discount_money', 'discount_full','total_summ'], 'double'],
-            [['items_summ', 'items_total_summ', 'discount_percent', 'discount_money', 'discount_full','total_summ'], 'default', 'value' => 0.0],
+            [['user_id', 'items_count', 'items_total_count', 'created_at', 'updated_at'], 'integer'],
+            [
+                ['items_summ', 'items_total_summ', 'discount_percent', 'discount_money', 'discount_full', 'total_summ'],
+                'double'
+            ],
+            [
+                ['items_summ', 'items_total_summ', 'discount_percent', 'discount_money', 'discount_full', 'total_summ'],
+                'default',
+                'value' => 0.0
+            ],
             [['items_total_count', 'items_count'], 'default', 'value' => 0],
             [['user_id'], 'default', 'value' => 0],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
@@ -78,7 +84,33 @@ class Cart extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['items_summ', 'items_total_summ', 'discount_percent', 'discount_money', 'discount_full','total_summ','user_id', 'items_count', 'items_total_count',  'published', 'deleted'],
+            'backend' => [
+                'items_summ',
+                'items_total_summ',
+                'discount_percent',
+                'discount_money',
+                'discount_full',
+                'total_summ',
+                'user_id',
+                'items_count',
+                'items_total_count',
+                'published',
+                'deleted'
+            ],
+            'frontend' => [
+                'items_summ',
+                'items_total_summ',
+                'discount_percent',
+                'discount_money',
+                'discount_full',
+                'total_summ',
+                'user_id',
+                'items_count',
+                'items_total_count',
+                'published',
+                'deleted'
+            ],
+
         ];
     }
 
@@ -114,5 +146,14 @@ class Cart extends ActiveRecord
         return $this->hasMany(CartItem::class, ['cart_id' => 'id']);
     }
 
-    
+    /**
+     *
+     * @return string
+     */
+    public static function getSessionID()
+    {
+        return isset($_COOKIE['PHPSESSID']) ? $_COOKIE['PHPSESSID'] : '';
+    }
+
+
 }

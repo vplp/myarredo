@@ -31,4 +31,7 @@ return [
     'sitemap/filling' => 'seo/sitemap/filling',
     'sitemap/mapcreate' => 'seo/sitemap/mapcreate',
 
+    // Module [[Shop]]
+    'shop/widget' => 'shop/widget/index',
+
 ];

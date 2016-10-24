@@ -10,7 +10,7 @@ use thread\app\model\interfaces\BaseBackendModel;
 
 
 /**
- * Class DeliveryMethods
+ * Class PaymentMethods
  *
  * @package backend\modules\shop\models
  * @author FilamentV <vortex.filament@gmail.com>
