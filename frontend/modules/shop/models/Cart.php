@@ -20,10 +20,7 @@ class Cart extends CommonCartModel
      */
     public static $commonQuery = CartQuery::class;
     
-    /**
-     *
-     * @return  yii\db\ActiveQuery
-     */
+    
     public static function findBySessionID()
     {
         return self::find()->php_session_id(self::getSessionID())->enabled()->one();

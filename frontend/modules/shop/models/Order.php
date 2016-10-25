@@ -94,6 +94,11 @@ class Order extends CommonOrderModel
          
     }
 
+    public static function findByIdCustomerId($id, $customer_id)
+    {
+        return self::findBase()->byId($id)->customer($customer_id)->one();
+    }
+
 
 
 }

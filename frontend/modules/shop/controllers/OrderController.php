@@ -61,7 +61,8 @@ class OrderController extends BaseController
      */
     public function actionView($id)
     {
-        $order = Order::findById($id);
+        $customer_id = 3;
+        $order = Order::findByIdCustomerId($id, $customer_id);
         //TODO::когда заработает регистрация добавить связь юзера с покупателем, и добавить метод getCustomerId, и проверять его ли это заказ
         //раскоментировать условие
        /* if (empty($order) || Yii::$app->getUser()->isGuest) {

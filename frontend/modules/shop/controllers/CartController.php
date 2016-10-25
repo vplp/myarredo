@@ -27,9 +27,7 @@ class CartController extends \frontend\components\BaseController
      * @return string
      */
     public function actionIndex()
-    {
-
-        $cart = Cart::findBySessionID();
+    {   $cart = Cart::findBySessionID();
         $customerform = new CartCustomerForm;
         $customerform->setScenario('frontend');
         if ($customerform->load(Yii::$app->getRequest()->post(),
@@ -37,12 +35,14 @@ class CartController extends \frontend\components\BaseController
         ) {
             ////Додаємо новий заказ до БД
             $order_id = Order::addNewOrder($cart, $customerform);
-           
+
             if ($order_id) {
                 $cart = null;
                 //$cart->delete(); -  не удаляем корзину для статистики
+
                 Yii::$app->getSession()->setFlash('SEND_ORDER',
-                    'Ваш заказ № ' . $order_id . ' отправлен:. <br/>Наш менеджер свяжется с вами в ближайшее время.<br/>');
+                    Yii::t('shop', 'Your order № {order_id} has been sent!', ['order_id' => $order_id])
+                    . ' < br />' . Yii::t('shop', 'Our manager will contact you soon') .'!'. '<br/>');
                 Yii::$app->getSession()->setFlash('SEND_ORDER_ID', $order_id);
                 return $this->redirect(Url::toRoute(['/shop/cart/send-order']));
             }
