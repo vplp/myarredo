@@ -18,10 +18,10 @@ class CartQuery extends ActiveQuery
      * @param $php_session_id
      * @return $this
      */
-    public function php_session_id(string $php_session_id)
+    public function php_session_id(string $php_session_id = '')
     {
         $modelClass = $this->modelClass;
-        $this->andWhere($modelClass::tableName() . '.php_session_id = :php_session_id', [':token' => $php_session_id]);
+        $this->andWhere($modelClass::tableName() . '.php_session_id = :php_session_id', [':php_session_id' => $php_session_id]);
         return $this;
     }
 
