@@ -65,7 +65,7 @@ class CartController extends \frontend\components\BaseController
     {
         $cart = null;
         if (Yii::$app->getSession()->getFlash('SEND_ORDER_ID') !== null) {
-            $cart = Order::find()->byId(Yii::$app->getSession()->getFlash('SEND_ORDER_ID'));
+            $cart = Order::findById(Yii::$app->getSession()->getFlash('SEND_ORDER_ID'));
         }
 
         return $this->render('empty', ['cart' => $cart]);
