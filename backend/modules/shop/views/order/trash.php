@@ -9,7 +9,7 @@ use thread\widgets\grid\{
 /**
  *
  * @package admin\modules\order\view
- * @author FilamentV <vortex.filament@gmail.com>
+ * @author Alla Kuzmenko
  * @copyright (c), Thread
  */
 

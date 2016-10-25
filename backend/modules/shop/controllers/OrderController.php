@@ -1,15 +1,17 @@
 <?php
 namespace backend\modules\shop\controllers;
 
+use yii\helpers\ArrayHelper;
 use thread\app\base\controllers\BackendController;
 //
-use backend\modules\shop\models\{
-    Order, search\Order as filterOrderModel
-};
 use thread\actions\{
     ListModel, Update
 };
-use yii\helpers\ArrayHelper;
+
+use backend\modules\shop\models\{
+    Order, search\Order as filterOrderModel
+};
+
 
 /**
  * Class OrderController

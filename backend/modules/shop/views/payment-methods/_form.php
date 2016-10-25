@@ -1,4 +1,5 @@
 <?php
+
 use thread\app\bootstrap\ActiveForm;
 
 ?>

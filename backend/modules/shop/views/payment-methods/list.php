@@ -8,7 +8,7 @@ use thread\widgets\grid\{
 /**
  *
  * @package backend\modules\shop\view
- * @author FilamentV <vortex.filament@gmail.com>
+ * @author Alla Kuzmenko
  * @copyright (c) 2015, Thread
  *
  */

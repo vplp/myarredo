@@ -2,13 +2,16 @@
 
 namespace thread\modules\shop\models;
 
-use thread\modules\shop\Shop;
 use Yii;
-
-use thread\app\base\models\ActiveRecord;
 use yii\behaviors\AttributeBehavior;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Inflector;
+
+use yii\helpers\{
+    ArrayHelper, Inflector
+};
+
+use thread\modules\shop\Shop;
+use thread\app\base\models\ActiveRecord;
+
 
 /**
  * Class DeliveryMethods
@@ -107,6 +110,6 @@ class DeliveryMethods extends ActiveRecord
     {
         return $this->hasOne(DeliveryMethodsLang::class, ['rid' => 'id']);
     }
-    
+
 
 }

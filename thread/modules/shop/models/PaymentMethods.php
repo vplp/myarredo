@@ -2,13 +2,15 @@
 
 namespace thread\modules\shop\models;
 
-use thread\modules\shop\Shop;
 use Yii;
+use yii\behaviors\AttributeBehavior;
+use yii\helpers\{
+    ArrayHelper, Inflector
+};
 
 use thread\app\base\models\ActiveRecord;
-use yii\behaviors\AttributeBehavior;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Inflector;
+use thread\modules\shop\Shop;
+
 
 /**
  * Class PaymentMethods

@@ -1,7 +1,6 @@
 <?php
 use thread\app\bootstrap\ActiveForm;
 //
-
 ?>
 
 <?php $form = ActiveForm::begin(); ?>

@@ -59,13 +59,7 @@ class OrderItem extends ActiveRecord
             [['order_id', 'product_id'], 'required'],
             [['order_id', 'product_id', 'count', 'created_at', 'updated_at'], 'integer'],
             [['price', 'summ', 'total_summ', 'discount_percent', 'discount_money', 'discount_full'], 'double'],
-            [
-                ['price', 'summ', 'total_summ', 'discount_percent', 'discount_money', 'discount_full'],
-                'default',
-                'value' => 0.0
-            ],
             [['extra_param'], 'string'],
-            [['count'], 'default', 'value' => 1],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }

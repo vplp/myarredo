@@ -2,17 +2,14 @@
 
 namespace frontend\modules\shop\controllers;
 
-use frontend\components\BaseController;
 use Yii;
-use yii\filters\AccessControl;
-use frontend\modules\shop\models\Cart;
-
+use frontend\components\BaseController;
 
 /**
  * Class CartController
  *
  * @package frontend\modules\shop\controllers
- * @author FilamentV <vortex.filament@gmail.com>
+ * @author Alla Kuzmenko
  * @copyright (c) 2014, Thread
  */
 class WidgetController extends BaseController
@@ -20,7 +17,6 @@ class WidgetController extends BaseController
 
     public $title = "Cart";
     public $defaultAction = 'index';
-   
 
 
     /**
@@ -30,9 +26,6 @@ class WidgetController extends BaseController
     public function actionIndex()
     {
         if (Yii::$app->request->isAjax) {
-            return $this->render('index', [
-            ]);
-        } else {
             return $this->render('index', [
             ]);
         }

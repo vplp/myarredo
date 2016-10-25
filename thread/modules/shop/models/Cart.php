@@ -65,13 +65,7 @@ class Cart extends ActiveRecord
                 ['items_summ', 'items_total_summ', 'discount_percent', 'discount_money', 'discount_full', 'total_summ'],
                 'double'
             ],
-            [
-                ['items_summ', 'items_total_summ', 'discount_percent', 'discount_money', 'discount_full', 'total_summ'],
-                'default',
-                'value' => 0.0
-            ],
             [['items_total_count', 'items_count'], 'default', 'value' => 0],
-            [['user_id'], 'default', 'value' => 0],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
