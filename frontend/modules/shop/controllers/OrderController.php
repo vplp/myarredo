@@ -45,8 +45,8 @@ class OrderController extends BaseController
     public function actionList()
     {
         //TODO::когда заработает регистрация добавить связь юзера с покупателем, и добавить метод getCustomerId
-        //$orders = Order::findByCustomerId($customer_id);
-        $orders = Order::findByCustomerId(3);
+        $customer_id = 3;
+        $orders = Order::findByCustomerId($customer_id);
         return $this->render('list', [
             'orders' => $orders,
         ]);

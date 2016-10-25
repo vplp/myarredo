@@ -27,8 +27,7 @@ class Cart extends Widget
 
     public function init()
     {
-       // $this->cart = CartModel::findBySessionID();
-        $this->cart = CartModel::findBase()->andWhere('php_session_id = \'09g3gtgr2o42f666aipqaqafb6\'')->one();
+        $this->cart = CartModel::findBySessionID();
         if ($this->view == 'full') {
             $this->items = $this->cart->items;
         }

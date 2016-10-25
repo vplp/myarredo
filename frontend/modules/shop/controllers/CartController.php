@@ -29,8 +29,7 @@ class CartController extends \frontend\components\BaseController
     public function actionIndex()
     {
 
-        //$cart = Cart::findBySessionID();
-        $cart = Cart::findBase()->andWhere('php_session_id = \'09g3gtgr2o42f666aipqaqafb6\'')->one();
+        $cart = Cart::findBySessionID();
         $customerform = new CartCustomerForm;
         $customerform->setScenario('frontend');
         if ($customerform->load(Yii::$app->getRequest()->post(),

@@ -2,8 +2,10 @@
 
 namespace frontend\modules\shop\models;
 
-use common\modules\shop\models\Order as CommonOrderModel;
 use yii\helpers\Url;
+use common\modules\shop\models\Order as CommonOrderModel;
+use frontend\modules\shop\models\query\OrderQuery;
+
 
 /**
  * Class Order
@@ -14,6 +16,11 @@ use yii\helpers\Url;
  */
 class Order extends CommonOrderModel
 {
+    /**
+     * @var
+     */
+    public static $commonQuery = OrderQuery::class;
+    
     /**
      *
      * @return array
@@ -69,13 +76,13 @@ class Order extends CommonOrderModel
     
     public static function findByCustomerId($customer_id)
     {        
-        return self::findBase()->andWhere(['customer_id'=>$customer_id])->all();
+        return self::findBase()->customer($customer_id)->all();
     }
 
     
     public static function findByLink($token)
     {
-        return self::findBase()->andWhere(['token'=>$token])->one();
+        return self::findBase()->token($token)->one();
     }
 
     /**
