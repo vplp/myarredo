@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
 ]); ?>
 
 <?= $form->field($model, 'full_name')->input('text',
-    ['placeholder' => Yii::t('app', 'full_name')])->label(false) ?>
+    ['placeholder' => Yii::t('app', 'full_name'), 'value' => ''])->label(false) ?>
 <?= $form->field($model, 'email')->input('text',
     ['placeholder' => Yii::t('app', 'email')])->label(false) ?>
 <?= $form->field($model, 'phone')->input('text',
@@ -37,13 +37,6 @@ use yii\widgets\ActiveForm;
     'placeholder' => Yii::t('app', 'comment')
 ])->label(false) ?>
 
-<div class="b-agr clearfix">
-    <div class="agreement">
-        <input id="check20" class="chck" type="checkbox" name="check" value="check1">
-        <label class="check-agreement" for="check20"><?= Yii::t('app', 'I agree'); ?></label>
-    </div>
-</div>
-
-<button class="send" type="submit"><?= Yii::t('app', 'send'); ?></button>
+<button type="submit"><?= Yii::t('app', 'checkout'); ?></button>
 <?php ActiveForm::end(); ?>
 

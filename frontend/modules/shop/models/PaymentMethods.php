@@ -34,4 +34,22 @@ class PaymentMethods extends CommonPaymentMethodsModel
     {
         return ArrayHelper::map(self::findBase()->all(), 'alias', 'lang.title');
     }
+
+    /**
+     *
+     * @return yii\db\ActiveQuery
+     */
+    public static function findByAlias($alias)
+    {
+        return self::findBase()->alias($alias)->one();
+    }
+
+    /**
+     *
+     * @return array with id
+     */
+    public static function findIdByAlias($alias)
+    {
+        return self::find()->alias($alias)->select('id')->enabled()->asarray()->one();
+    }
 }

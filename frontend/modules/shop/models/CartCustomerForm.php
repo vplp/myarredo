@@ -31,6 +31,7 @@ Class CartCustomerForm extends \yii\base\Model
             [['phone'], 'string', 'max' => 15],
             [['email'], 'email'],
             [['delivery'], 'default', 'value' => array_keys(DeliveryMethods::dropDownList())[0]],
+
         ];
     }
 
@@ -41,7 +42,7 @@ Class CartCustomerForm extends \yii\base\Model
     public function scenarios()
     {
         return [
-            'frontend' => ['full_name', 'email', 'phone', 'comment', 'delivery', 'pay'],
+            'frontend' => ['full_name', 'email', 'phone', 'comment', 'delivery', 'pay', 'agreement'],
         ];
     }
 

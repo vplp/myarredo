@@ -26,6 +26,25 @@ class DeliveryMethods extends CommonDeliveryMethodsModel
         return self::find()->innerJoinWith(['lang'])->enabled();
     }
 
+    /**
+     *
+     * @return yii\db\ActiveQuery
+     */
+    public static function findByAlias($alias)
+    {
+        return self::findBase()->alias($alias)->one();
+    }
+
+    /**
+     *
+     * @return yii\db\ActiveQuery
+     */
+    public static function findIdByAlias($alias)
+    {
+        return self::find()->alias($alias)->select('id')->enabled()->asarray()->one();
+    }
+
+
 
     /**
      * Backend form dropdown list

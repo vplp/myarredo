@@ -15,6 +15,33 @@ class Order extends CommonOrderModel
 {
     /**
      *
+     * @return array
+     */
+    public function scenarios()
+    {
+        return [
+            'addneworder' => [
+                'delivery_method_id',
+                'payment_method_id',
+                'delivery_price',
+                'order_status',
+                'payd_status',
+                'comment',
+                'items_summ',
+                'items_total_summ',
+                'discount_percent',
+                'discount_money',
+                'discount_full',
+                'total_summ',
+                'customer_id',
+                'items_count',
+                'items_total_count',
+                'published',
+                'deleted'],
+        ];
+    }
+    /**
+     *
      * @return yii\db\ActiveQuery
      */
     public static function find()
@@ -40,5 +67,6 @@ class Order extends CommonOrderModel
     {
         return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
     }
+    
 
 }

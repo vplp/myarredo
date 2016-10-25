@@ -5,7 +5,7 @@ namespace frontend\modules\shop\controllers;
 use Yii;
 use yii\helpers\Url;
 use frontend\modules\shop\models\{
-    Order, Cart, CartCustomerForm, Customer
+    Cart, CartCustomerForm, search\Order
 };
 
 /**
@@ -28,34 +28,31 @@ class CartController extends \frontend\components\BaseController
      */
     public function actionIndex()
     {
-        $cart = Cart::findBySessionID();
+
+        //$cart = Cart::findBySessionID();
+        $cart = Cart::findBase()->andWhere('php_session_id = \'09g3gtgr2o42f666aipqaqafb6\'')->one();
         $customerform = new CartCustomerForm;
         $customerform->setScenario('frontend');
-        if ($customerform->load(Yii::$app->getRequest()->post(), 'CartCustomerForm') && $customerform->validate()) {
-
-
-            ////Додаємо нового відвідувача до БД
-            $customer_id = Customer::addNewCustomer($customerform);
-            if (empty($customer_id)) {
-                //ошибка
-            }
-            $this->moveCartToOrderList();
-
-            //$this->sendCardOrder($cart, $customerform);
-            //'Ваш заказ № ' . $cart['id'] . ' отправлен:. <br/>Наш менеджер свяжется с вами в ближайшее время.<br/>'
-
-            //$cart->delete();
+        if ($customerform->load(Yii::$app->getRequest()->post(),
+                'CartCustomerForm') && $customerform->validate() && (!empty($cart->items))
+        ) {
+            ////Додаємо новий заказ до БД
+            $order_id = Order::addNewOrder($cart, $customerform);
             $cart = null;
-//
+            if ($order_id) {
+                //$cart->delete(); -  не удаляем корзину для статистики
 
+                Yii::$app->getSession()->setFlash('SEND_ORDER',
+                    'Ваш заказ № ' . $order_id . ' отправлен:. <br/>Наш менеджер свяжется с вами в ближайшее время.<br/>');
+                Yii::$app->getSession()->setFlash('SEND_ORDER_ID', $order_id);
+                return $this->redirect(Url::toRoute(['/shop/cart/send-order']));
+            }
 
-            return $this->redirect(Url::toRoute(['/shop/cart/sendorder']));
         }
 
-        $view = ($cart === null) ? 'empty' : 'index';
+        $view = ($cart->items === null) ? 'empty' : 'index';
 
         return $this->render($view, [
-            'cart' => $cart,
             'customerform' => $customerform,
         ]);
     }
@@ -69,56 +66,10 @@ class CartController extends \frontend\components\BaseController
     {
         $cart = null;
         if (Yii::$app->getSession()->getFlash('SEND_ORDER_ID') !== null) {
-            $cart = Cart::find()->byId(Yii::$app->getSession()->getFlash('SEND_ORDER_ID'));
+            $cart = Order::find()->byId(Yii::$app->getSession()->getFlash('SEND_ORDER_ID'));
         }
 
         return $this->render('empty', ['cart' => $cart]);
-    }
-
-    /**
-     * Send Order to Manager Mail
-     */
-    public function sendCardOrder($cart, $customerform)
-    {
-        Yii::$app->mailer->compose('/mail/letter-order', [
-            'cart' => $cart,
-            'customerform' => $customerform,
-        ])
-            ->setFrom(Yii::$app->params['mail']['from'])
-            ->setTo(Yii::$app->params['mail']['to'])
-            ->setSubject('Заказ №' . $cart['id'])
-            ->send();
-
-        //
-    }
-
-    /**
-     * Add Order
-     */
-    public function moveCartToOrderList($cart, $customerform)
-    {
-        $order = new Order();
-        $order->scenario = 'frontend';
-        //$model->user_id = $params['user_id'];
-
-
-        $transaction = $model::getDb()->beginTransaction();
-        try {
-            if ($model->save()) {
-                $transaction->commit();
-                return $model->id;
-            } else {
-                $transaction->rollBack();
-            }
-
-        } catch (Exception $e) {
-            Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
-            $transaction->rollBack();
-        }
-
-
-
-
     }
 
 
