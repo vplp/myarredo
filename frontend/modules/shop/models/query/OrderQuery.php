@@ -12,9 +12,7 @@ use thread\app\base\models\query\ActiveQuery;
  * @copyright (c), Thread
  */
 class OrderQuery extends ActiveQuery
-{
- 
-
+{ 
     /**
      * @param $token
      * @return $this
@@ -36,7 +34,5 @@ class OrderQuery extends ActiveQuery
         $this->andWhere($modelClass::tableName() . '.customer_id = :customer_id', [':customer_id' => $customer]);
         return $this;
     }   
-
-   
 
 }

@@ -14,7 +14,6 @@ use thread\app\base\models\query\ActiveQuery;
 class CartQuery extends ActiveQuery
 {
 
-
     /**
      * @param $php_session_id
      * @return $this

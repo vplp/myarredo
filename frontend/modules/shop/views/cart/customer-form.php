@@ -12,7 +12,7 @@ use frontend\modules\shop\models\{
 
 
 ?>
-<div class="block-title"><?= Yii::t('app', 'Ваши данные') ?></div>
+<div class="block-title"><?= Yii::t('app', 'Info about customer') ?></div>
 <?php $form = ActiveForm::begin([
     'method' => 'post',
     'action' => Url::toRoute('/shop/cart/index'),

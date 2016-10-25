@@ -23,19 +23,19 @@ use yii\helpers\{
                 <?= Html::a($order->id, Url::to(['/shop/order/view', 'id' =>$order->id])) ?>
             </td>
             <td>
-                <?= $order->items_total_count ?>
+                <?= $order['items_total_count'] ?>
             </td>
             <td>
-                <?= $order->total_summ ?>
+                <?= $order['total_summ'] ?>
             </td>
             <td>
-                <?= $order->delivery_price ?>
+                <?= $order['delivery_price'] ?>
             </td>
             <td>
-                <?= $order->order_status ?>
+                <?= $order['order_status'] ?>
             </td>
             <td>
-                <?= $order->payd_status ?>
+                <?= $order['payd_status'] ?>
             </td>
         </tr>
     <?php endforeach; ?>
