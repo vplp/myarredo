@@ -35,6 +35,8 @@ return [
     'shop/widget' => 'shop/widget/index',
     'shop/cart/index' => 'shop/cart/index',
     'shop/cart/send-order' => 'shop/cart/send-order',
-    
+    'shop/order/list' => 'shop/order/list',
+    'shop/order/view/<id:[\d\-]+>' => 'shop/order/view',
+    'shop/order/link/<token:[\w\-]+>' => 'shop/order/link',
 
 ];

@@ -3,6 +3,7 @@
 namespace frontend\modules\shop\models;
 
 use common\modules\shop\models\Order as CommonOrderModel;
+use yii\helpers\Url;
 
 /**
  * Class Order
@@ -36,27 +37,18 @@ class Order extends CommonOrderModel
                 'customer_id',
                 'items_count',
                 'items_total_count',
+                'token',
                 'published',
                 'deleted'],
         ];
     }
-    /**
-     *
-     * @return yii\db\ActiveQuery
-     */
-    public static function find()
-    {
-        return self::find()->enabled();
-    }
+  
 
 
-    /**
-     *
-     * @return yii\db\ActiveQuery
-     */
+   
     public static function findBase()
     {
-        return self::find()->innerJoinWith(['items'/*, 'cartGoods.item', 'cartGoods.item.lang'*/]);
+        return self::find()->innerJoinWith(['items'/*, 'cartGoods.item', 'cartGoods.item.lang'*/])->enabled();
     }
 
 
@@ -67,6 +59,34 @@ class Order extends CommonOrderModel
     {
         return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
     }
+
+   
+    public static function findById($id)
+    {
+        return self::findBase()->byId($id)->one();
+    }
+
     
+    public static function findByCustomerId($customer_id)
+    {        
+        return self::findBase()->andWhere(['customer_id'=>$customer_id])->all();
+    }
+
+    
+    public static function findByLink($token)
+    {
+        return self::findBase()->andWhere(['token'=>$token])->one();
+    }
+
+    /**
+     * Generates new token
+     */
+    public function getTokenLink()
+    {
+        return Url::toRoute(['/shop/order/link','token' => $this->token], true);
+         
+    }
+
+
 
 }

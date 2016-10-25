@@ -6,7 +6,7 @@ use Yii;
 use frontend\components\BaseController;
 
 /**
- * Class CartController
+ * Class WidgetController
  *
  * @package frontend\modules\shop\controllers
  * @author Alla Kuzmenko

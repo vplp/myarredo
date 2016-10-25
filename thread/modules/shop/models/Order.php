@@ -66,18 +66,9 @@ class Order extends ActiveRecord
         return [
             [['customer_id', 'delivery_method_id', 'payment_method_id'], 'required'],
             [['comment'], 'string', 'max' => 512],
+            [['token'], 'string', 'max' => 255],
             [['customer_id', 'items_count', 'items_total_count', 'created_at', 'updated_at'], 'integer'],
-            [
-                ['items_summ', 'items_total_summ', 'discount_percent', 'discount_money', 'discount_full', 'total_summ'],
-                'double'
-            ],
-            [
-                ['items_summ', 'items_total_summ', 'discount_percent', 'discount_money', 'discount_full', 'total_summ'],
-                'default',
-                'value' => 0.0
-            ],
-            [['items_total_count', 'items_count'], 'default', 'value' => 0],
-            [['delivery_method_id', 'payment_method_id'], 'default', 'value' => 0],
+            [['items_summ', 'items_total_summ', 'discount_percent', 'discount_money', 'discount_full', 'total_summ'], 'double'],
             [['order_status'], 'in', 'range' => array_keys(self::progressRange())],
             [['payd_status'], 'in', 'range' => array_keys(self::paydStatusRange())],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
@@ -108,6 +99,7 @@ class Order extends ActiveRecord
                 'customer_id',
                 'items_count',
                 'items_total_count',
+                'token',
                 'published',
                 'deleted'
             ],
@@ -136,6 +128,7 @@ class Order extends ActiveRecord
             'delivery_method_id' => Yii::t('app', 'Delivery method id'),
             'payment_method_id' => Yii::t('app', 'Payment method id'),
             'delivery_price' => Yii::t('app', 'Delivery price'),
+            'token' => Yii::t('app', 'Token'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
@@ -203,6 +196,15 @@ class Order extends ActiveRecord
             'refusal' => Yii::t('app', 'p_refusal'),
             'executed' => Yii::t('app', 'p_executed')
         ];
+    }
+
+    /**
+     * Generates new token
+     */
+    public function generateToken()
+    {
+        $this->token = Yii::$app->getSecurity()->generateRandomString() . '_' . time();
+        return $this;
     }
 
 }

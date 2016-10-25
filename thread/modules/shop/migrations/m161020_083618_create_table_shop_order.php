@@ -45,6 +45,7 @@ class m161020_083618_create_table_shop_order extends Migration
             'discount_full' => "decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'Summ discount for order'",
             'total_summ' => "decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT 'Summ of items with discount for order and items'",
             'comment' =>  $this->string(512)->notNull()->defaultValue('')->comment('Comment'),
+            'token' =>  $this->string(255)->notNull()->defaultValue('')->comment('Token'),
             'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
             'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
             'published' => "enum('0','1') NOT NULL DEFAULT '1' COMMENT 'Published'",

@@ -34,7 +34,7 @@ class Order extends FrontendOrderModel
         //переносим все атрибуты из заполненой формы в заказ
         $order->setAttributes($customerform->getAttributes());
         $order->customer_id = $customer_id;
-
+        $order->generateToken();
         $order->delivery_method_id = DeliveryMethods::findIdByAlias($customerform->delivery)['id'];
         if (empty($order->delivery_method_id)) {
             //ошибка
@@ -43,7 +43,6 @@ class Order extends FrontendOrderModel
         if (empty($order->payment_method_id)) {
             //ошибка
         }
-
         $transaction = $order::getDb()->beginTransaction();
         try {
             if ($order->validate() && $order->save()) {
@@ -58,6 +57,7 @@ class Order extends FrontendOrderModel
                     }
                 }
                 $transaction->commit();
+                //TODO::сделать отпарвку письма (в письме должна быть ссылка $order->getTokenLink())
                 return $order->id;
             } else {
                 $transaction->rollBack();

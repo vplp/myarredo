@@ -19,7 +19,11 @@ use frontend\modules\shop\models\{
     'options' => ['class' => 'form-recall form-recall1'],
     'id' => 'contacts-form'
 ]); ?>
+<?php
 
+//TODO:: когда заработает регистрация добавить сюда заполнение пользовательских данных 
+
+?>
 <?= $form->field($model, 'full_name')->input('text',
     ['placeholder' => Yii::t('app', 'full_name'), 'value' => ''])->label(false) ?>
 <?= $form->field($model, 'email')->input('text',
