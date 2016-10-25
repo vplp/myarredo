@@ -59,7 +59,7 @@ class CartController extends \frontend\components\BaseController
 
     /**
      *
-     * @return type
+     * @return string
      */
     public function actionSendOrder()
     {
