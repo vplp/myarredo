@@ -5,7 +5,7 @@ namespace frontend\modules\shop\controllers;
 use Yii;
 use yii\helpers\Url;
 use frontend\modules\shop\models\{
-    Cart, CartCustomerForm, search\Order
+    Cart as CartModel, search\Cart, CartCustomerForm, search\Order, Order as OrderModel
 };
 
 /**
@@ -27,7 +27,7 @@ class CartController extends \frontend\components\BaseController
      * @return string
      */
     public function actionIndex()
-    {   $cart = Cart::findBySessionID();
+    {   $cart = CartModel::findBySessionID();
         $customerform = new CartCustomerForm;
         $customerform->setScenario('frontend');
         if ($customerform->load(Yii::$app->getRequest()->post(),
@@ -63,10 +63,42 @@ class CartController extends \frontend\components\BaseController
     {
         $cart = null;
         if (Yii::$app->getSession()->getFlash('SEND_ORDER_ID') !== null) {
-            $cart = Order::findById(Yii::$app->getSession()->getFlash('SEND_ORDER_ID'));
+            $cart = OrderModel::findById(Yii::$app->getSession()->getFlash('SEND_ORDER_ID'));
         }
 
         return $this->render('empty', ['cart' => $cart]);
+    }
+
+
+    /**
+     *
+     */
+    public function actionAddToCart()
+    {
+        $cart = CartModel::findBySessionID();
+        
+        if ($cart === null) {
+            $cart = Cart::addNewCart();
+        }
+
+        $id = Yii::$app->getRequest()->post('id');
+        $extra_param = Yii::$app->getRequest()->post('extra_param');
+
+        if (Cart::addNewCartItem($id, $cart, $extra_param)) {
+            $cart->recalculate();
+            $cart->scenario = 'recalculate';
+            $cart->save();
+        }
+
+        if (Yii::$app->getRequest()->isAjax == true) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            return [
+                'status' => 'complete',
+                'error' => '',
+            ];
+        }
+        return $this->renderContent('echo echo echo');
     }
 
 
