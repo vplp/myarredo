@@ -1,12 +1,15 @@
 <?php
 /**
- * @author FilamentV <vortex.filament@gmail.com>
+ * @author Alla Kuzmenko
  * @copyright (c) 2015, Thread
  */
-use frontend\modules\shop\models\DeliveryMethods;
-use frontend\modules\shop\models\PaymentMethods;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+
+use frontend\modules\shop\models\{
+    DeliveryMethods, PaymentMethods
+};
+
 
 ?>
 <div class="block-title"><?= Yii::t('app', 'Ваши данные') ?></div>
