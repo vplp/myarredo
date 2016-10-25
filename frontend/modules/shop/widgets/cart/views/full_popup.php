@@ -1,11 +1,12 @@
 <?php
 
-use yii\helpers\Html;
-use yii\helpers\Url;
+use yii\helpers\{
+    Html, Url
+};
 
 /**
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
+ * @author Alla Kuzmenko
+ * @copyright (c) 2016, Thread
  */
 ?>
 

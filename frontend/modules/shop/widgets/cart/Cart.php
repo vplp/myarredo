@@ -10,8 +10,8 @@ use frontend\modules\shop\models\Cart as CartModel;
  * Class Cart
  *
  * @package frontend\modules\shop\models\Cart
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2014, Thread
+ * @author Alla Kuzmenko
+ * @copyright (c) 2016, Thread
  *
  * <?= Cart::widget(['view' =>'short']); ?>
  * view/full_popup - popup window with cart(with items)
@@ -27,12 +27,10 @@ class Cart extends Widget
 
     public function init()
     {
-
         $this->cart = CartModel::findBySessionID();
         if ($this->view == 'full') {
-             $this->items = $this->cart->items;
+            $this->items = $this->cart->items;
         }
-       
 
     }
 
