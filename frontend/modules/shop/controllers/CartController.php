@@ -37,18 +37,16 @@ class CartController extends \frontend\components\BaseController
         ) {
             ////Додаємо новий заказ до БД
             $order_id = Order::addNewOrder($cart, $customerform);
-            $cart = null;
+           
             if ($order_id) {
+                $cart = null;
                 //$cart->delete(); -  не удаляем корзину для статистики
-
                 Yii::$app->getSession()->setFlash('SEND_ORDER',
                     'Ваш заказ № ' . $order_id . ' отправлен:. <br/>Наш менеджер свяжется с вами в ближайшее время.<br/>');
                 Yii::$app->getSession()->setFlash('SEND_ORDER_ID', $order_id);
                 return $this->redirect(Url::toRoute(['/shop/cart/send-order']));
             }
-
         }
-
         $view = ($cart->items === null) ? 'empty' : 'index';
 
         return $this->render($view, [
