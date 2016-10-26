@@ -1,6 +1,8 @@
 <?php
 namespace thread\app\base\widgets;
 
+use Yii;
+
 /**
  * Class Widget
  *
