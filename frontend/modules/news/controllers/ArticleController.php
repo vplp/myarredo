@@ -2,7 +2,10 @@
 
 namespace frontend\modules\news\controllers;
 
+use yii\filters\VerbFilter;
+//
 use thread\actions\RecordView;
+//
 use frontend\modules\news\models\Article;
 
 /**
@@ -26,7 +29,7 @@ class ArticleController extends \frontend\components\BaseController
     {
         return [
             'verbs' => [
-                'class' => \yii\filters\VerbFilter::class,
+                'class' => VerbFilter::class,
                 'actions' => [
                     'index' => ['get'],
                 ],

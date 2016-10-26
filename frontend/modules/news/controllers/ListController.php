@@ -3,11 +3,15 @@
 namespace frontend\modules\news\controllers;
 
 use Yii;
-use frontend\components\BaseController;
-use thread\actions\ListQuery;
-use frontend\modules\news\models\Article;
-use frontend\modules\news\models\Group;
 use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
+//
+use thread\actions\ListQuery;
+//
+use frontend\components\BaseController;
+use frontend\modules\news\models\{
+    Article, Group
+};
 
 /**
  * Class ListController
@@ -29,7 +33,7 @@ class ListController extends BaseController
     {
         return [
             'verbs' => [
-                'class' => \yii\filters\VerbFilter::class,
+                'class' => VerbFilter::class,
                 'actions' => [
                     'index' => ['get'],
                 ],
@@ -44,7 +48,7 @@ class ListController extends BaseController
     public function actions()
     {
 
-        $g = function() {
+        $g = function () {
             $r = 0;
             if (Yii::$app->request->get('alias')) {
                 $item = Group::findByAlias(Yii::$app->request->get('alias'));
@@ -68,12 +72,14 @@ class ListController extends BaseController
             ],
         ];
     }
+
     /**
      *
      * @param string $action
      * @return boollean
      */
-    public function beforeAction($action) {
+    public function beforeAction($action)
+    {
 
         $item = (isset($_GET['alias']))
             ? Group::findByAlias($_GET['alias'])

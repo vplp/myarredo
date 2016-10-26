@@ -3,6 +3,7 @@
 namespace frontend\modules\page\models;
 
 use yii\helpers\Url;
+use thread\app\model\interfaces\BaseFrontModel;
 
 /**
  * Class Page
@@ -11,7 +12,7 @@ use yii\helpers\Url;
  * @author Andrii Bondarchuk
  * @copyright (c) 2016
  */
-class Page extends \common\modules\page\models\Page
+class Page extends \common\modules\page\models\Page implements BaseFrontModel
 {
     /**
      *
@@ -50,12 +51,28 @@ class Page extends \common\modules\page\models\Page
     }
 
     /**
-     *
-     * @return yii\db\ActiveQuery
+     * @return mixed
+     */
+    public static function find()
+    {
+        return parent::find()->enabled();
+    }
+
+    /**
+     * @return mixed
      */
     public static function find_base()
     {
-        return parent::find()->enabled();
+        return parent::find();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findById($id)
+    {
+        return self::find_base()->byID($id)->one();
     }
 
     /**

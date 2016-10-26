@@ -23,6 +23,12 @@ interface BaseFrontModel
     public static function findById($id);
 
     /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findByAlias($id);
+
+    /**
      * @param bool|false $scheme
      * @return mixed
      */

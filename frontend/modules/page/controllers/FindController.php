@@ -6,6 +6,7 @@ use frontend\components\BaseController;
 use frontend\modules\news\models\Article;
 use frontend\modules\page\models\Page;
 
+//TODO Переделать поиск
 /**
  * Class PageController
  *
