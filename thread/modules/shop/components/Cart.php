@@ -4,10 +4,12 @@ namespace thread\modules\shop\components;
 
 use Yii;
 use yii\base\Component;
+use yii\base\ErrorException;
 use thread\modules\shop\interfaces\Product as iProduct;
 use thread\modules\shop\models\{
     Cart as CartModel, CartItem
 };
+
 
 /**
  * Class Cart
