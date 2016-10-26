@@ -6,6 +6,8 @@ use Yii;
 
 use thread\app\base\models\ActiveRecord;
 use thread\modules\shop\Shop;
+use thread\modules\shop\models\query\OrderQuery;
+
 
 /**
  * Class Order
@@ -41,6 +43,11 @@ use thread\modules\shop\Shop;
  */
 class Order extends ActiveRecord
 {
+    /**
+     * @var
+     */
+    public static $commonQuery = OrderQuery::class;
+    
     /**
      * @return string
      */

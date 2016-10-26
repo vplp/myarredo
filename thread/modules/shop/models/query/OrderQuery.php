@@ -1,13 +1,13 @@
 <?php
 
-namespace frontend\modules\shop\models\query;
+namespace thread\modules\shop\models\query;
 
 use thread\app\base\models\query\ActiveQuery;
 
 /**
  * Class OrderQuery
  *
- * @package frontend\modules\shop\models\query
+ * @package thread\modules\shop\models\query
  * @author Alla Kuzmenko
  * @copyright (c), Thread
  */

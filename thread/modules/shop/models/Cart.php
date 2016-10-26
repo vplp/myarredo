@@ -3,9 +3,9 @@
 namespace thread\modules\shop\models;
 
 use Yii;
-
 use thread\app\base\models\ActiveRecord;
 use thread\modules\shop\Shop;
+use thread\modules\shop\models\query\CartQuery;
 
 /**
  * Class Cart
@@ -36,6 +36,11 @@ use thread\modules\shop\Shop;
 class Cart extends ActiveRecord
 {
     /**
+     * @var
+     */
+    public static $commonQuery = CartQuery::class;
+
+    /**
      * @return string
      */
     public static function getDb()
@@ -50,7 +55,6 @@ class Cart extends ActiveRecord
     {
         return '{{%shop_cart}}';
     }
-
 
     /**
      * @return array
@@ -91,7 +95,7 @@ class Cart extends ActiveRecord
                 'published',
                 'deleted'
             ],
-            'frontend' => [
+            'addcart' => [
                 'items_summ',
                 'items_total_summ',
                 'discount_percent',
@@ -147,6 +151,34 @@ class Cart extends ActiveRecord
     public static function getSessionID()
     {
         return isset($_COOKIE['PHPSESSID']) ? $_COOKIE['PHPSESSID'] : '';
+    }
+
+
+    public static function findBySessionID()
+    {
+        return self::find()->php_session_id(self::getSessionID())->enabled()->one();
+    }
+
+    /**
+     *
+     * @return $this
+     */
+    public function recalculate()
+    {
+
+        $this->items_summ = 0;
+        $this->items_total_summ = 0;
+        $this->total_summ = 0;
+        $this->items_count = count($this->items);
+
+        foreach ($this->items as $item) {
+            $this->items_total_count += $item->count;
+            $this->items_summ += $item->summ;
+            $this->items_total_summ += $item->total_summ;
+        }
+        $this->total_summ = $this->items_total_summ - $this->discount_full;
+
+        return $this;
     }
 
 

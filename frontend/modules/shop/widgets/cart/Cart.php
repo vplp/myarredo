@@ -2,9 +2,9 @@
 
 namespace frontend\modules\shop\widgets\cart;
 
+use Yii;
 use thread\app\base\widgets\Widget;
 
-use frontend\modules\shop\models\Cart as CartModel;
 
 /**
  * Class Cart
@@ -20,31 +20,23 @@ use frontend\modules\shop\models\Cart as CartModel;
  */
 class Cart extends Widget
 {
-
     public $view = 'short';
-    private $cart = null;
-    private $items = null;
 
-    public function init()
-    {
-        $this->cart = CartModel::findBySessionID();
-        //$this->cart = CartModel::findBase()->andWhere('php_session_id = \'09g3gtgr2o42f666aipqaqafb6\'')->one();
-        if ($this->view == 'full') {
-            $this->items = $this->cart->items;
-        }
-
-    }
-
+    /**
+     * @return string
+     */
     public function run()
     {
-        
-        if (($this->view == 'full' && empty($this->items)) || empty($this->cart) || $this->view == null) {
-            return false;
+        if (Yii::$app->shop_cart->items) {
+            return $this->render($this->view, [
+                'cart' => Yii::$app->shop_cart->cart,
+                'items' => Yii::$app->shop_cart->items,
+            ]);
+        } else {
+            //если в корзине нет товаров
+            return $this->render($this->view . '_empty');
         }
-        return $this->render($this->view, [
-            'cart' => $this->cart,
-            'items' => $this->items,
-        ]);
+
 
     }
 

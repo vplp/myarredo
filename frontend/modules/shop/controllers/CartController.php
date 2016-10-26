@@ -5,7 +5,7 @@ namespace frontend\modules\shop\controllers;
 use Yii;
 use yii\helpers\Url;
 use frontend\modules\shop\models\{
-    Cart as CartModel, search\Cart, CartCustomerForm, search\Order, Order as OrderModel
+   CartCustomerForm, search\Order
 };
 
 /**
@@ -27,27 +27,27 @@ class CartController extends \frontend\components\BaseController
      * @return string
      */
     public function actionIndex()
-    {   $cart = CartModel::findBySessionID();
+    {
+        //Yii::$app->shop_cart->cart; - компонент корзина
         $customerform = new CartCustomerForm;
         $customerform->setScenario('frontend');
         if ($customerform->load(Yii::$app->getRequest()->post(),
-                'CartCustomerForm') && $customerform->validate() && (!empty($cart->items))
+                'CartCustomerForm') && $customerform->validate() && (!empty(Yii::$app->shop_cart->items))
         ) {
             ////Додаємо новий заказ до БД
-            $order_id = Order::addNewOrder($cart, $customerform);
+            $order_id = Order::addNewOrder(Yii::$app->shop_cart->cart, $customerform);
 
             if ($order_id) {
-                $cart = null;
                 //$cart->delete(); -  не удаляем корзину для статистики
 
                 Yii::$app->getSession()->setFlash('SEND_ORDER',
                     Yii::t('shop', 'Your order № {order_id} has been sent!', ['order_id' => $order_id])
-                    . ' < br />' . Yii::t('shop', 'Our manager will contact you soon') .'!'. '<br/>');
+                    . ' < br />' . Yii::t('shop', 'Our manager will contact you soon') . '!' . '<br/>');
                 Yii::$app->getSession()->setFlash('SEND_ORDER_ID', $order_id);
                 return $this->redirect(Url::toRoute(['/shop/cart/send-order']));
             }
         }
-        $view = ($cart->items === null) ? 'empty' : 'index';
+        $view = (Yii::$app->shop_cart->items === null) ? 'empty' : 'index';
 
         return $this->render($view, [
             'customerform' => $customerform,
@@ -61,44 +61,30 @@ class CartController extends \frontend\components\BaseController
      */
     public function actionSendOrder()
     {
-        $cart = null;
-        if (Yii::$app->getSession()->getFlash('SEND_ORDER_ID') !== null) {
-            $cart = OrderModel::findById(Yii::$app->getSession()->getFlash('SEND_ORDER_ID'));
-        }
-
-        return $this->render('empty', ['cart' => $cart]);
+        /*  $order = null;
+          if (Yii::$app->getSession()->getFlash('SEND_ORDER_ID') !== null) {
+              $cart = OrderModel::findById(Yii::$app->getSession()->getFlash('SEND_ORDER_ID'));
+          }
+          return $this->render('empty', ['order' => $order]);*/
+        return $this->render('empty');
     }
 
 
     /**
-     *
+     *добавление товара в корзину
      */
     public function actionAddToCart()
     {
-        $cart = CartModel::findBySessionID();
-        
-        if ($cart === null) {
-            $cart = Cart::addNewCart();
-        }
-
-        $id = Yii::$app->getRequest()->post('id');
+        $product_id = Yii::$app->getRequest()->post('id');
+        $count = Yii::$app->getRequest()->post('count');
         $extra_param = Yii::$app->getRequest()->post('extra_param');
 
-        if (Cart::addNewCartItem($id, $cart, $extra_param)) {
-            $cart->recalculate();
-            $cart->scenario = 'recalculate';
-            $cart->save();
+        if (Yii::$app->shop_cart->addItem($product_id, $count, $extra_param)) {
+            return $this->renderContent('ok!');
+        } else {
+            return $this->renderContent('not ok!');
         }
 
-        if (Yii::$app->getRequest()->isAjax == true) {
-            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
-
-            return [
-                'status' => 'complete',
-                'error' => '',
-            ];
-        }
-        return $this->renderContent('echo echo echo');
     }
 
 

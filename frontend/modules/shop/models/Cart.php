@@ -3,7 +3,7 @@
 namespace frontend\modules\shop\models;
 
 use common\modules\shop\models\Cart as CommonCartModel;
-use frontend\modules\shop\models\query\CartQuery;
+
 
 
 /**
@@ -15,17 +15,8 @@ use frontend\modules\shop\models\query\CartQuery;
  */
 class Cart extends CommonCartModel
 {
-    /**
-     * @var
-     */
-    public static $commonQuery = CartQuery::class;
-    
-    
-    public static function findBySessionID()
-    {
-        return self::find()->php_session_id(self::getSessionID())->enabled()->one();
-    }
-
+   
+     
     /**
      * @return mixed
      */
@@ -33,6 +24,7 @@ class Cart extends CommonCartModel
     {
         return $this->hasMany(CartItem::class, ['cart_id' => 'id']);
     }
+
 
 
 }

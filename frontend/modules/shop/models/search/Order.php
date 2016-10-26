@@ -18,8 +18,8 @@ class Order extends FrontendOrderModel
 {
 
     /**
-     * @param Model $cart
-     * @param Model $customerform the model being validated
+     * @param Cart $cart
+     * @param CartCustomerForm $customerform the model being validated
      * @return integer
      */
     public static function addNewOrder(Cart $cart, CartCustomerForm $customerform)
@@ -72,7 +72,7 @@ class Order extends FrontendOrderModel
     }
 
     /**
-     * @param Model $customerform the model being validated
+     * @param CartCustomerForm $customerform the model being validated
      * @return integer
      */
     public static function addNewCustomer(CartCustomerForm $customerform)

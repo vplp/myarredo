@@ -6,6 +6,8 @@ use Yii;
 
 use thread\app\base\models\ActiveRecord;
 use thread\modules\shop\Shop;
+use thread\modules\shop\models\query\CartItemQuery;
+
 
 /**
  * Class CartItem
@@ -25,7 +27,6 @@ use thread\modules\shop\Shop;
  * @property integer $updated_at
  * @property integer $published
  * @property integer $deleted
-
  *
  * @package thread\modules\shop\models
  * @author FilamentV <vortex.filament@gmail.com>
@@ -34,6 +35,11 @@ use thread\modules\shop\Shop;
  */
 class CartItem extends ActiveRecord
 {
+    /**
+     * @var
+     */
+    public static $commonQuery = CartItemQuery::class;
+
     /**
      * @return string
      */
@@ -59,8 +65,12 @@ class CartItem extends ActiveRecord
         return [
             [['cart_id', 'product_id'], 'required'],
             [['cart_id', 'product_id', 'count', 'created_at', 'updated_at'], 'integer'],
-            [['price', 'summ', 'total_summ','discount_percent', 'discount_money', 'discount_full'], 'double'],
-            [['price', 'summ', 'total_summ','discount_percent', 'discount_money', 'discount_full'], 'default', 'value' => 0.0],
+            [['price', 'summ', 'total_summ', 'discount_percent', 'discount_money', 'discount_full'], 'double'],
+            [
+                ['price', 'summ', 'total_summ', 'discount_percent', 'discount_money', 'discount_full'],
+                'default',
+                'value' => 0.0
+            ],
             [['extra_param'], 'string'],
             [['count'], 'default', 'value' => 1],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
@@ -75,7 +85,29 @@ class CartItem extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['cart_id', 'product_id', 'summ', 'total_summ', 'discount_percent', 'discount_money', 'discount_full','extra_param', 'count',  'published', 'deleted'],
+            'backend' => [
+                'cart_id',
+                'product_id',
+                'summ',
+                'total_summ',
+                'discount_percent',
+                'discount_money',
+                'discount_full',
+                'extra_param',
+                'count',
+                'published',
+                'deleted'
+            ],
+            'addcartitem' => [
+                'cart_id',
+                'product_id',
+                'summ',
+                'total_summ',
+                'discount_percent',
+                'discount_money',
+                'discount_full',
+                'extra_param',
+                'count'],
         ];
     }
 
@@ -100,6 +132,34 @@ class CartItem extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
+    }
+
+    public static function findByProductID($cart_id, $product_id)
+    {
+        return self::find()->cart_id($cart_id)->product_id($product_id)->enabled()->one();
+    }
+
+    /**
+     *
+     * @return $this
+     */
+    public function recalculate()
+    {
+        //summ
+        $this->summ = $this->count * $this->price;
+        //total summ, discount_full- full discount of money
+        $this->total_summ = $this->summ - $this->discount_full;
+        return $this;
+    }
+
+    /**
+     *
+     * @param type $cart_id
+     * @return array|null
+     */
+    public static function findAllByCartID($cart_id)
+    {
+        return self::find()->cart_id($cart_id)->addOrderBy('created_at DESC')->all();
     }
 
 

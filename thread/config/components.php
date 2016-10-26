@@ -81,4 +81,10 @@ return [
             ]
         ]
     ],
+    'shop_cart' => [
+        'class' => \thread\modules\shop\components\Cart::class,
+        //TODO::записать путь к модель с продуктом!
+        'productClass' => ''//\thread\modules\catalog\model\Product::class
+        
+    ],
 ];

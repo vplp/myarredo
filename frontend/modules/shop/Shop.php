@@ -2,6 +2,7 @@
 
 namespace frontend\modules\shop;
 
+
 /**
  * Class Shop
  *
@@ -11,10 +12,13 @@ namespace frontend\modules\shop;
  */
 class Shop extends \common\modules\shop\Shop
 {
+    
+
     public $translationsFileMap = [
         'shop' => [
             'class' => \yii\i18n\PhpMessageSource::class,
-            'basePath' => '@frontend/modules/shop/messages',
+            'basePath' => '@fro
+            ntend/modules/shop/messages',
             'fileMap' => [
                 'name' => ['app.php', 'cart.php'],
             ],

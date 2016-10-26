@@ -15,10 +15,8 @@ use yii\helpers\{
     <a href="<?= Url::toRoute(['/shop/cart/index']) ?>">
         <div class="">
             <?= Yii::t('app', 'Cart') ?>
-            <div class="empty_bascket" style="display: <?= $cart['items_total_count'] ? 'none' : 'block'; ?>">
-                <span class=""><?= Yii::t('app', 'Add tovar') ?></span>
-            </div>
-            <div class="full_bascket" style="display: <?= $cart['items_total_count'] ? 'block' : 'none'; ?>">
+           
+            <div class="full_bascket">
                 <?= $cart['items_total_count'] ?><?= Yii::t('app', 'items for summ price') ?>:
                 <?= $cart['items_total_summ'] ?>
             </div>

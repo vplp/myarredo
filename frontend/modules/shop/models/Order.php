@@ -4,7 +4,6 @@ namespace frontend\modules\shop\models;
 
 use yii\helpers\Url;
 use common\modules\shop\models\Order as CommonOrderModel;
-use frontend\modules\shop\models\query\OrderQuery;
 
 
 /**
@@ -16,10 +15,7 @@ use frontend\modules\shop\models\query\OrderQuery;
  */
 class Order extends CommonOrderModel
 {
-    /**
-     * @var
-     */
-    public static $commonQuery = OrderQuery::class;
+    
     
     /**
      *

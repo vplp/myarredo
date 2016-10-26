@@ -5,6 +5,7 @@ namespace frontend\modules\shop\models;
 use common\modules\shop\models\CartItem as CommonCartItemModel;
 
 
+
 /**
  * Class CartItem
  * @package frontend\modules\shop\models
@@ -14,6 +15,5 @@ use common\modules\shop\models\CartItem as CommonCartItemModel;
  */
 class CartItem extends CommonCartItemModel
 {
-
-
+   
 }
