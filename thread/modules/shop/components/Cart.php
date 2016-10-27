@@ -47,7 +47,7 @@ class Cart extends Component
      */
     public function findProductInItems($product_id)
     {
-        if (empty($this->items) === []){
+        if (empty($this->items) === []) {
             return false;
         }
         foreach ($this->items as $key => $item) {
@@ -107,8 +107,56 @@ class Cart extends Component
 
         $this->recalculate($cartItemKey);
 
-        return $this->saveCart($cartItemKey = false);
+        return $this->saveCart($cartItemKey);
 
+
+    }
+
+    /**
+     * @param int $product_id
+     * @param int $count
+     * @return bool
+     * @throws ErrorException
+     */
+    public function deleteItem(int $product_id, int $count = 0):bool
+    {
+        $cartItemKey = $this->findProductInItems($product_id);
+        if ($cartItemKey !== false) {
+            if ($this->items[$cartItemKey]->count > $count && $count != 0) {
+                $this->items[$cartItemKey]->count -= $count;
+                $this->recalculate($cartItemKey);
+            } elseif ($this->items[$cartItemKey]->count = $count || $count == 0) {
+                $this->deleteFromCart($cartItemKey);
+                $this->recalculate();
+                //удаляем индекс товара который удалили
+                $cartItemKey = false;
+            }
+            return $this->saveCart($cartItemKey);
+
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    public function clearCart():bool
+    {
+        $r = true;
+        $transaction = CartModel::getDb()->beginTransaction();
+        try {
+            if ($this->cart !== null) {
+                $r = ($this->cart->delete()) ? $transaction->commit() : $transaction->rollBack();
+            }
+
+        } catch (Exception $e) {
+            //TODO: Logger add
+            $r = false;
+            $transaction->rollBack();
+        }
+
+        return $r;
 
     }
 
@@ -131,7 +179,8 @@ class Cart extends Component
     }
 
     /**
-     * @return Cart
+     * @param bool $cartItemKey
+     * @return bool
      */
     protected function saveCart($cartItemKey = false)
     {
@@ -151,5 +200,28 @@ class Cart extends Component
 
         return $r;
     }
+
+    /**
+     * @param bool $cartItemKey
+     * @return bool
+     */
+    protected function deleteFromCart($cartItemKey)
+    {
+        $r = true;
+        $transaction = CartModel::getDb()->beginTransaction();
+        try {
+            if ($cartItemKey !== false) {
+                $r = ($this->items[$cartItemKey]->delete()) ? $transaction->commit() : $transaction->rollBack();
+            }
+
+        } catch (Exception $e) {
+            //TODO: Logger add
+            $r = false;
+            $transaction->rollBack();
+        }
+
+        return $r;
+    }
+
 
 }
