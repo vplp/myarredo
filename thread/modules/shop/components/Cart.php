@@ -128,7 +128,7 @@ class Cart extends Component
             if ($this->items[$cartItemKey]->count > $count && $count != 0) {
                 $this->items[$cartItemKey]->count -= $count;
                 $this->recalculate($cartItemKey);
-            } elseif ($this->items[$cartItemKey]->count = $count || $count == 0) {
+            } elseif ($this->items[$cartItemKey]->count == $count || $count == 0) {
                 $this->deleteFromCart($cartItemKey);
                 $this->recalculate();
                 //удаляем индекс товара который удалили
