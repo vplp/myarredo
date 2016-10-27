@@ -3,12 +3,15 @@
 namespace thread\modules\shop\components;
 
 use Yii;
-use yii\base\Component;
-use yii\base\ErrorException;
+use yii\base\{
+    Component, ErrorException
+};
+use yii\log\Logger;
 use thread\modules\shop\interfaces\Product as iProduct;
 use thread\modules\shop\models\{
     Cart as CartModel, CartItem
 };
+
 
 
 /**
@@ -151,7 +154,7 @@ class Cart extends Component
             }
 
         } catch (Exception $e) {
-            //TODO: Logger add
+            Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
             $r = false;
             $transaction->rollBack();
         }
@@ -193,7 +196,7 @@ class Cart extends Component
 
             $r = ($this->cart->save()) ? $transaction->commit() : $transaction->rollBack();
         } catch (Exception $e) {
-            //TODO: Logger add
+            Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
             $r = false;
             $transaction->rollBack();
         }
@@ -215,7 +218,7 @@ class Cart extends Component
             }
 
         } catch (Exception $e) {
-            //TODO: Logger add
+            Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
             $r = false;
             $transaction->rollBack();
         }

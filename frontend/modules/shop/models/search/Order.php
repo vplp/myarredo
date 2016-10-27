@@ -3,9 +3,12 @@
 namespace frontend\modules\shop\models\search;
 
 use Yii;
+use yii\base\Exception;
+use yii\log\Logger;
 use frontend\modules\shop\models\{
     Cart, CartCustomerForm, DeliveryMethods, OrderItem, PaymentMethods, Order as FrontendOrderModel, Customer
 };
+
 
 
 /**
