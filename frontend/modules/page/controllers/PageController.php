@@ -2,9 +2,12 @@
 
 namespace frontend\modules\page\controllers;
 
-use frontend\components\BaseController;
 use Yii;
-use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
+//
+use thread\actions\RecordView;
+//
+use frontend\components\BaseController;
 use frontend\modules\page\models\Page;
 
 /**
@@ -19,9 +22,6 @@ class PageController extends BaseController
     public $title = "Page";
     public $layout = "/page";
     public $defaultAction = 'index';
-    public $model;
-    
-    
 
     /**
      * @return array
@@ -30,12 +30,26 @@ class PageController extends BaseController
     {
         return [
             'verbs' => [
-                'class' => \yii\filters\VerbFilter::class,
+                'class' => VerbFilter::class,
                 'actions' => [
                     'index' => ['get'],
                     'contacts' => ['get'],
                     'view' => ['get'],
                 ],
+            ]
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function actions()
+    {
+        return [
+            'view' => [
+                'class' => RecordView::class,
+                'modelClass' => Page::class,
+                'methodName' => 'findByAlias'
             ]
         ];
     }
@@ -48,39 +62,6 @@ class PageController extends BaseController
     {
         $this->layout = "/start";
         return $this->run('view', ['alias' => 'start']);
-    }
-
-    /**
-     *
-     * @param string $alias
-     * @return string
-     * @throws NotFoundHttpException
-     */
-    public function actionView($alias)
-    {
-        $model = Page::findByAlias($alias);
-
-        if ($model === null) {
-            throw new NotFoundHttpException;
-        }
-
-        //layouts
-        if ($model->alias == 'contacts') {
-            $this->layout = 'contacts';
-            $view = 'index';
-        } else if ($model->alias == 'about') {
-            $this->layout = 'about';
-            $view = 'index';
-        } else {
-            $this->layout = 'privacy-policy';
-            $view = 'default';
-        }
-
-        $this->model = $model;
-
-        return $this->render($view, [
-            'model' => $model,
-        ]);
     }
 
 }

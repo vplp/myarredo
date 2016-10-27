@@ -4,6 +4,8 @@ namespace frontend\modules\news\models;
 
 use Yii;
 use yii\helpers\Url;
+//
+use thread\app\model\interfaces\BaseFrontModel;
 
 /**
  * Class Group
@@ -12,14 +14,14 @@ use yii\helpers\Url;
  * @author Andrii Bondarchuk
  * @copyright (c) 2016
  */
-
-class Group extends \backend\modules\news\models\Group
+class Group extends \backend\modules\news\models\Group implements BaseFrontModel
 {
     /**
      *
      * @return array
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return [];
     }
 
@@ -27,7 +29,8 @@ class Group extends \backend\modules\news\models\Group
      *
      * @return array
      */
-    public function scenarios() {
+    public function scenarios()
+    {
         return [];
     }
 
@@ -35,7 +38,8 @@ class Group extends \backend\modules\news\models\Group
      *
      * @return array
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [];
     }
 
@@ -43,24 +47,52 @@ class Group extends \backend\modules\news\models\Group
      *
      * @return array
      */
-    public function rules() {
+    public function rules()
+    {
         return [];
     }
 
     /**
-     *
-     * @return yii\db\ActiveQuery
+     * @return mixed
      */
-    public static function find_base() {
-        return self::find()->innerJoinWith(["lang"])->enabled();
+    public static function find()
+    {
+        return parent::find()->enabled();
     }
 
     /**
-     *
+     * @return mixed
+     */
+    public static function find_base()
+    {
+        return self::find()->innerJoinWith(["lang"]);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findById($id)
+    {
+        return self::find_base()->byID($id)->one();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findByAlias($id)
+    {
+        return self::find_base()->alias($alias)->one();
+    }
+
+    /**
+     * @param bool|false $scheme
      * @return string
      */
-    public function getUrl() {
-        return Url::toRoute(['/news/list/index', 'alias' => $this->alias]);
+    public function getUrl($scheme = false)
+    {
+        return Url::toRoute(['/news/list/index', 'alias' => $this->alias], $scheme);
     }
 
     /**

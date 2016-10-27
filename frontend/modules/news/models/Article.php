@@ -2,8 +2,10 @@
 
 namespace frontend\modules\news\models;
 
-use yii\helpers\Url;
 use Yii;
+use yii\helpers\Url;
+//
+use thread\app\model\interfaces\BaseFrontModel;
 
 /**
  * Class Article
@@ -12,46 +14,59 @@ use Yii;
  * @author Andrii Bondarchuk
  * @copyright (c) 2016
  */
-class Article extends \backend\modules\news\models\Article {
+class Article extends \backend\modules\news\models\Article implements BaseFrontModel
+{
 
     /**
-     * 
+     *
      * @return array
      */
-    public function behaviors() {
-        return [];
-    }
-
-    /**
-     * 
-     * @return array
-     */
-    public function scenarios() {
-        return [];
-    }
-
-    /**
-     * 
-     * @return array
-     */
-    public function attributeLabels() {
-        return [];
-    }
-
-    /**
-     * 
-     * @return array
-     */
-    public function rules() {
+    public function behaviors()
+    {
         return [];
     }
 
     /**
      *
-     * @return yii\db\ActiveQuery
+     * @return array
      */
-    public static function find_base() {
-        return self::find()->innerJoinWith(["lang"])->enabled()->orderBy(['published_time' => SORT_DESC]);
+    public function scenarios()
+    {
+        return [];
+    }
+
+    /**
+     *
+     * @return array
+     */
+    public function attributeLabels()
+    {
+        return [];
+    }
+
+    /**
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [];
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function find()
+    {
+        return parent::find()->enabled();
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function find_base()
+    {
+        return self::find()->innerJoinWith(["lang"])->orderBy(['published_time' => SORT_DESC]);
     }
 
     /**
@@ -59,7 +74,8 @@ class Article extends \backend\modules\news\models\Article {
      * @param integer $id
      * @return ActiveRecord|null
      */
-    public static function findById($id) {
+    public static function findById($id)
+    {
         return self::find_base()->byID($id)->one();
     }
 
@@ -68,8 +84,9 @@ class Article extends \backend\modules\news\models\Article {
      * @param integer $group_id
      * @return ActiveRecord|null
      */
-    public static function findByGroupId($group = '') {
-        return self::find_base()->/*group_id($group)->*/all();
+    public static function findByGroupId($group = '')
+    {
+        return self::find_base()->group_id($group)->all();
     }
 
     /**
@@ -77,7 +94,8 @@ class Article extends \backend\modules\news\models\Article {
      * @param string $alias
      * @return ActiveRecord|null
      */
-    public static function findByAlias($alias) {
+    public static function findByAlias($alias)
+    {
         return self::find_base()->alias($alias)->one();
     }
 
@@ -85,8 +103,9 @@ class Article extends \backend\modules\news\models\Article {
      *
      * @return string
      */
-    public function getUrl() {
-        return Url::toRoute(['/news/article/index', 'alias' => $this->alias]);
+    public function getUrl($scheme = false)
+    {
+        return Url::toRoute(['/news/article/index', 'alias' => $this->alias], $scheme);
     }
 
 }
