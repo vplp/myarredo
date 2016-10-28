@@ -28,7 +28,7 @@ class ProfileController extends BaseController
     protected $model = Profile::class;
     public $title = "Profile";
     public $defaultAction = 'index';
-    public $layout = "@app/layouts/column1";
+    public $layout = "@app/layouts/nologin";
 
     /**
      * @return array

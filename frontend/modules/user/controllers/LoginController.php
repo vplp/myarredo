@@ -17,11 +17,10 @@ use yii\helpers\Url;
  */
 class LoginController extends BaseController
 {
-
-    protected $model = SignInForm::class;
     public $title = "Login";
     public $defaultAction = 'index';
     public $layout = "@app/layouts/nologin";
+    protected $model = SignInForm::class;
 
     /**
      * @return array
