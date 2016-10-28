@@ -3,9 +3,12 @@
 namespace frontend\modules\seo\controllers;
 
 use Yii;
-use frontend\modules\seo\models\SitemapElement;
-use frontend\modules\seo\models\SitemapXMLSimple;
-use frontend\modules\seo\models\SitemapXMLElement;
+use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
+//
+use frontend\modules\seo\models\{
+    SitemapElement, SitemapXMLSimple, SitemapXMLElement
+};
 
 /**
  * Class SitemapController
@@ -19,7 +22,7 @@ class SitemapController extends \frontend\components\BaseController
 
     public $title = "Sitemap";
     public $defaultAction = 'index';
-    
+
     /**
      * @inheritdoc
      */
@@ -27,7 +30,7 @@ class SitemapController extends \frontend\components\BaseController
     {
         return [
             'verbs' => [
-                'class' => \yii\filters\VerbFilter::className(),
+                'class' => VerbFilter::className(),
                 'actions' => [
                     'mapcreate' => ['get'],
                     'filling' => ['get'],
@@ -43,7 +46,7 @@ class SitemapController extends \frontend\components\BaseController
     public function actionMapcreate($secretKey)
     {
         if ($secretKey !== $this->module->secretKey) {
-            throw new \yii\web\NotFoundHttpException;
+            throw new NotFoundHttpException;
         }
 
         $filepath = Yii::getAlias('@webroot') . '/sitemap.xml';
@@ -64,7 +67,7 @@ class SitemapController extends \frontend\components\BaseController
                     $r[] = (new SitemapXMLElement([
                         'loc' => $i->url,
                         'lastmod' => $i->updated_at,
-                            ]))->render();
+                    ]))->render();
                 }
                 fwrite($handle, implode('', $r));
             }
@@ -81,7 +84,7 @@ class SitemapController extends \frontend\components\BaseController
     public function actionFilling($secretKey)
     {
         if ($secretKey !== $this->module->secretKey) {
-            throw new \yii\web\NotFoundHttpException;
+            throw new NotFoundHttpException;
         }
 
         set_time_limit(0);
@@ -130,7 +133,7 @@ class SitemapController extends \frontend\components\BaseController
 
     /**
      * Очищення даних визначеного модуля та моделі
-     * 
+     *
      * @param string $module_id
      * @param string $model_id
      */

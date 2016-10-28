@@ -19,8 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'id' => 'register-form',
                 'action' => Url::toRoute('/user/register'),
             ]); ?>
-            <?= $form->field($model, 'username')->label(); ?>
-            <?= $form->field($model, 'email')->label(); ?>
+            <?= $form->field($model, 'username')->label() ?>
+            <?= $form->field($model, 'email')->label() ?>
             <?= $form->field($model, 'password')->passwordInput() ?>
             <?= $form->field($model, 'password_confirmation')->passwordInput() ?>
             <div class="form-group">
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="row form-group">
         <div class="col-md-5">
-            <?= Html::a(Yii::t('app', 'Login'), Url::toRoute('/user/login')); ?>
+            <?= Html::a(Yii::t('app', 'Login'), '/user/login') ?>
         </div>
     </div>
 </div>

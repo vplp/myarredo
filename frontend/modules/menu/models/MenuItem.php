@@ -2,7 +2,9 @@
 
 namespace frontend\modules\menu\models;
 
-use yii\helpers\Url;
+use thread\app\model\interfaces\BaseFrontModel;
+//
+use common\modules\menu\models\MenuItem as cMeniItem;
 
 /**
  * Class Item
@@ -11,7 +13,7 @@ use yii\helpers\Url;
  * @author Andrii Bondarchuk
  * @copyright (c) 2016
  */
-final class MenuItem extends \backend\modules\menu\models\MenuItem
+final class MenuItem extends cMeniItem implements BaseFrontModel
 {
 
     /**
@@ -50,12 +52,17 @@ final class MenuItem extends \backend\modules\menu\models\MenuItem
         return [];
     }
 
+    public static function find()
+    {
+        return parent::find()->enabled();
+    }
+
     /**
      * @return mixed
      */
     public static function find_base()
     {
-        return self::find()->innerJoinWith(["lang"])->enabled()->orderBy(['position' => SORT_ASC]);
+        return self::find()->innerJoinWith(["lang"])->orderBy(['position' => SORT_ASC]);
     }
 
     /**
@@ -66,6 +73,33 @@ final class MenuItem extends \backend\modules\menu\models\MenuItem
     public static function findAllByGroup($group = '', $parent = 0)
     {
         return self::find_base()->group_id($group)->parent_id($parent)->all();
+    }
+
+    /**
+     *
+     * @param string $alias
+     * @return ActiveRecord|null
+     */
+    public static function findByAlias($alias)
+    {
+        return self::find_base()->alias($alias)->one();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findById($id)
+    {
+        return self::find_base()->byID($id)->one();
+    }
+
+    /**
+     * @param bool|false $scheme
+     */
+    public function getUrl($scheme = false)
+    {
+        // TODO: Implement getUrl() method.
     }
 
 }
