@@ -9,7 +9,7 @@ use thread\actions\{
 };
 
 use backend\modules\shop\models\{
-    Order, search\Order as filterOrderModel
+    Order, search\OrderItem as filterOrderItemModel
 };
 
 
@@ -23,7 +23,7 @@ use backend\modules\shop\models\{
 class OrderController extends BackendController
 {
     public $model = Order::class;
-    public $filterModel = filterOrderModel::class;
+    public $filterModel = filterOrderItemModel::class;
     public $title = 'Order';
     public $name = 'Order';
 
@@ -35,7 +35,7 @@ class OrderController extends BackendController
                 'update' => [
                     'class' => Update::class,
                     'modelClass' => $this->model,
-                    'scenario' => 'published',
+                    'scenario' => 'backend',
                     'redirect' => function () {
                         return ($_POST['save_and_exit']) ? $this->actionListLinkStatus : [
                             'update',

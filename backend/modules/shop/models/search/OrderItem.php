@@ -29,6 +29,7 @@ class OrderItem extends OrderItemModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
+            ['order_id', 'integer'],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
@@ -62,10 +63,19 @@ class OrderItem extends OrderItemModel implements BaseBackendSearchModel
                 ]
             ]
         ]);
+      
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
+        
+        $query->andFilterWhere(
+            [
+                'order_id' => $this->order_id,
+            ]
+        );
+
+
 
         return $dataProvider;
     }

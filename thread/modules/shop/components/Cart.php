@@ -7,11 +7,10 @@ use yii\base\{
     Component, ErrorException
 };
 use yii\log\Logger;
-use thread\modules\shop\interfaces\Product as iProduct;
+use thread\modules\shop\interfaces\Product as iProductThreadModel;
 use thread\modules\shop\models\{
     Cart as CartModel, CartItem
 };
-
 
 
 /**
@@ -19,11 +18,13 @@ use thread\modules\shop\models\{
  *
  * @package thread\modules\shop\components
  * @author Alla Kuzmenko
- * @copyright (c), Thread
+ * @copyright (c), Thread 
+ *
  */
 class Cart extends Component
 {
-    public $productClass = null;
+    public $threadProductClass = null;
+    public $frontendProductClass = null;
     public $cart = null;
     public $items = [];
     public $discountCartClass = DiscountCart::class;
@@ -36,10 +37,10 @@ class Cart extends Component
     {
         parent::init();
 
-        $product = new $this->productClass;
-        if (!($product instanceof iProduct)) {
-            throw new ErrorException($this->productClass . ' must be implemented ' . iProduct::class);
-        }
+        $product = new $this->threadProductClass;
+        if (!($product instanceof iProductThreadModel)) {
+            throw new ErrorException($this->threadProductClass . ' must be implemented ' . iProductThreadModel::class);
+        }      
         $this->cart = CartModel::findBySessionID();
         $this->items = $this->cart ? $this->cart->items : [];
     }
@@ -50,12 +51,16 @@ class Cart extends Component
      */
     public function findProductInItems($product_id)
     {
-        if (empty($this->items) === []) {
+
+        if ($this->items === []) {
             return false;
         }
         foreach ($this->items as $key => $item) {
-            return ($item['product_id'] == $product_id) ? $key : false;
+            if ($item['product_id'] == $product_id) {
+                return $key;
+            }
         }
+        return false;
     }
 
     /**
@@ -64,9 +69,8 @@ class Cart extends Component
     public function newCart()
     {
         $this->cart = new CartModel([
-            'phpsessid' => CartModel::getSessionID(),
-            'user_id' => Yii::$app->getUser()->getId(),
-            'scenario' => 'addcart',
+            'php_session_id' => CartModel::getSessionID(),
+            'user_id' => Yii::$app->getUser()->getId() ?? 0
         ]);
 
         return $this->saveCart();
@@ -81,18 +85,17 @@ class Cart extends Component
      */
     public function addItem(int $product_id, int $count = 1, array $extra_param):bool
     {
-        if (empty($this->cart) && $this->newCart()) {
+        if (empty($this->cart) && !$this->newCart()) {
             throw new ErrorException('Cart can not create!');
         }
-        $product = call_user_func([$this->productClass, 'findByID'], $product_id);
-//        $product = new $this->productClass;
-//        $product = $product::findByID($product_id);
+        $product = call_user_func([$this->threadProductClass, 'findByID'], $product_id);
 
-        if (empty($this->product)) {
+        if (empty($product)) {
             throw new ErrorException('Can not find this product!');
         }
 
         $cartItemKey = $this->findProductInItems($product->id);
+
         //если товар уже в корзине увеличуем его количество
         if ($cartItemKey !== false) {
             $this->items[$cartItemKey]->count += $count;
@@ -103,15 +106,11 @@ class Cart extends Component
                 'product_id' => $product->id,
                 'price' => $product->getPrice(),
                 'count' => $count,
-                'extra_param' => $extra_param,
-                'scenario' => 'addcartitem',
+                'extra_param' => implode(', ', $extra_param)
             ]);
         }
-
         $this->recalculate($cartItemKey);
-
         return $this->saveCart($cartItemKey);
-
 
     }
 
@@ -130,8 +129,9 @@ class Cart extends Component
                 $this->recalculate($cartItemKey);
             } elseif ($this->items[$cartItemKey]->count == $count || $count == 0) {
                 $this->deleteFromCart($cartItemKey);
-                $this->recalculate();
+                unset($this->items[$cartItemKey]);
                 //удаляем индекс товара который удалили
+                $this->recalculate();
                 $cartItemKey = false;
             }
             return $this->saveCart($cartItemKey);
@@ -150,7 +150,13 @@ class Cart extends Component
         $transaction = CartModel::getDb()->beginTransaction();
         try {
             if ($this->cart !== null) {
-                $r = ($this->cart->delete()) ? $transaction->commit() : $transaction->rollBack();
+                if ($this->cart->delete()) {
+                    $transaction->commit();
+                    $r = true;
+                } else {
+                    $transaction->rollBack();
+                    $r = false;
+                }
             }
 
         } catch (Exception $e) {
@@ -164,24 +170,43 @@ class Cart extends Component
     }
 
     /**
+     * Ставим published = 0 , так как не удаляем корзины для статистики
+     * @return bool
+     */
+    public function unpublishedCart():bool
+    {
+        if ($this->cart !== null) {
+            $this->cart->published = 0;
+            return $this->saveCart();
+        }
+
+    }
+
+    /**
      * @param bool $cartItemKey
      */
     public function recalculate($cartItemKey = false)
     {
+
         if ($cartItemKey !== false) {
             //посчитаем скидку на товар
             (new $this->discountCartItemClass)->calculate($this->items[$cartItemKey]);
             //пересчитаем сумму
             $this->items[$cartItemKey]->recalculate();
+            //пересчистав итем нужно его сохранить, чтобы правильно пересчитать корзину
+            $this->saveCart($cartItemKey);
+
         }
 
         //посчитаем скидку на весь заказ
+        $this->cart = CartModel::findBySessionID();
         $this->cart = (new $this->discountCartClass)->calculate($this->cart);
         //пересчитаем сумму
         $this->cart->recalculate();
     }
 
     /**
+     * сохраняем в БД корзину
      * @param bool $cartItemKey
      * @return bool
      */
@@ -191,10 +216,17 @@ class Cart extends Component
         $transaction = CartModel::getDb()->beginTransaction();
         try {
             if ($cartItemKey !== false) {
+                $this->items[$cartItemKey]->setScenario('addcartitem');
                 $this->items[$cartItemKey]->save();
             }
-
-            $r = ($this->cart->save()) ? $transaction->commit() : $transaction->rollBack();
+            $this->cart->setScenario('addcart');
+            if ($this->cart->save()) {
+                $transaction->commit();
+                $r = true;
+            } else {
+                $transaction->rollBack();
+                $r = false;
+            }
         } catch (Exception $e) {
             Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
             $r = false;
@@ -205,6 +237,7 @@ class Cart extends Component
     }
 
     /**
+     * удаляем из БД
      * @param bool $cartItemKey
      * @return bool
      */
@@ -214,7 +247,13 @@ class Cart extends Component
         $transaction = CartModel::getDb()->beginTransaction();
         try {
             if ($cartItemKey !== false) {
-                $r = ($this->items[$cartItemKey]->delete()) ? $transaction->commit() : $transaction->rollBack();
+                if ($this->items[$cartItemKey]->delete()) {
+                    $transaction->commit();
+                    $r = true;
+                } else {
+                    $transaction->rollBack();
+                    $r = false;
+                }
             }
 
         } catch (Exception $e) {

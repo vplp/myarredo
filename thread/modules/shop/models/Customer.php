@@ -78,7 +78,7 @@ class Customer extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'user_id'),
             'email' => Yii::t('app', 'Email'),
-            'full_name' => Yii::t('app', 'Full name'),
+            'full_name' => Yii::t('app', 'First name'),
             'phone' => Yii::t('app', 'Phone'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),

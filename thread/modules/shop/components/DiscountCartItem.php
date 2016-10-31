@@ -16,7 +16,7 @@ use thread\modules\shop\models\CartItem;
 
 /**
  * Class DiscountCartItem
- *
+ * Скидки на позицию в чеке, например на позицию в которой больше 5 шт - 20 %
  * @package thread\modules\shop\components
  * @author Alla Kuzmenko
  * @copyright (c), Thread
@@ -31,7 +31,8 @@ class DiscountCartItem extends Component implements iDiscountCartItem
     {
         //на все позиции от 5 шт - 30%
         if ($cartItem->count >= 5){
-            $cartItem->discount_percent = 0.3;
+           // $cartItem->discount_percent = 0.3;
+            $cartItem->discount_percent = 0;
             $cartItem->discount_money = 0;
             $cartItem->discount_full = $cartItem->price * $cartItem->discount_percent + $cartItem->discount_money;            
         }

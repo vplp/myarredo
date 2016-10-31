@@ -10,7 +10,8 @@ use yii\grid\GridView;
  *
  */
 echo GridView::widget([
-    'dataProvider' => $model->items[0]->search(Yii::$app->getRequest()->queryParams),
+    'dataProvider' => $model->items[0]->search(['OrderItem' => ['order_id' => $model->id]]),
+    'filterModel' => $filter,
     'columns' => [
         'product_id',
         'count',

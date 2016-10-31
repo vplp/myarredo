@@ -27,10 +27,24 @@ class Cart extends Widget
      */
     public function run()
     {
-        if (Yii::$app->shop_cart->items) {
+        if (!empty(Yii::$app->shop_cart->items)) {
+            $products_id = [];
+            foreach (Yii::$app->shop_cart->items as $item) {
+                $products_id[] = $item->product_id;
+            }
+            $products = call_user_func([Yii::$app->shop_cart->frontendProductClass, 'findByIDs'], $products_id);
+            $products_id = [];
+            //заполним массив с продуктами так, чтобы айдишники стали ключами
+            foreach ($products as $product) {
+                $products_id[$product->id] = $product;
+            }
+            unset($products);
+
+
             return $this->render($this->view, [
                 'cart' => Yii::$app->shop_cart->cart,
                 'items' => Yii::$app->shop_cart->items,
+                'products' => $products_id,
             ]);
         } else {
             //если в корзине нет товаров

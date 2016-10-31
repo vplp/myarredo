@@ -27,7 +27,7 @@ class m161020_105154_create_table_shop_delivery_methods extends Migration
     {
         $this->createTable($this->tableDeliveryMethods, [
             'id' => $this->primaryKey()->unsigned()->comment('ID'),
-            'alias' => $this->string(255)->notNull()->unique()->comment('Alias'),
+            //'alias' => $this->string(255)->notNull()->unique()->comment('Alias'),
             'position' => $this->integer(11)->unsigned()->notNull()->defaultValue(0)->comment('Position'),
             'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
             'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),

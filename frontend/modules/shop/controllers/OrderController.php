@@ -46,9 +46,9 @@ class OrderController extends BaseController
     {
         //TODO::когда заработает регистрация добавить связь юзера с покупателем, и добавить метод getCustomerId
         //раскоментировать условие
-       /* if ((Yii::$app->getUser()->isGuest)) {
-            return $this->redirect(Url::toRoute('/home/home/index'));
-        }*/
+        /* if ((Yii::$app->getUser()->isGuest)) {
+             return $this->redirect(Url::toRoute('/home/home/index'));
+         }*/
         $customer_id = 3;
         $orders = Order::findByCustomerId($customer_id);
         return $this->render('list', [
@@ -65,9 +65,9 @@ class OrderController extends BaseController
         $order = Order::findByIdCustomerId($id, $customer_id);
         //TODO::когда заработает регистрация добавить связь юзера с покупателем, и добавить метод getCustomerId, и проверять его ли это заказ
         //раскоментировать условие
-       /* if (empty($order) || Yii::$app->getUser()->isGuest) {
-            return $this->redirect(Url::toRoute('/home/home/index'));
-        }*/
+        /* if (empty($order) || Yii::$app->getUser()->isGuest) {
+             return $this->redirect(Url::toRoute('/home/home/index'));
+         }*/
 
         return $this->render('view', [
             'order' => $order,

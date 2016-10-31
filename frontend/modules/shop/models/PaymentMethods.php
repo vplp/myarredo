@@ -16,9 +16,9 @@ use common\modules\shop\models\PaymentMethods as CommonPaymentMethodsModel;
  */
 class PaymentMethods extends CommonPaymentMethodsModel
 {
+
     /**
-     *
-     * @return yii\db\ActiveQuery
+     * @return mixed
      */
     public static function findBase()
     {
@@ -27,17 +27,8 @@ class PaymentMethods extends CommonPaymentMethodsModel
 
 
     /**
-     * Backend form dropdown list
-     * @return array
-     */
-    public static function dropDownList()
-    {
-        return ArrayHelper::map(self::findBase()->all(), 'alias', 'lang.title');
-    }
-
-    /**
-     *
-     * @return yii\db\ActiveQuery
+     * @param $alias
+     * @return mixed
      */
     public static function findByAlias($alias)
     {
@@ -45,8 +36,8 @@ class PaymentMethods extends CommonPaymentMethodsModel
     }
 
     /**
-     *
-     * @return array with id
+     * @param $alias
+     * @return mixed
      */
     public static function findIdByAlias($alias)
     {

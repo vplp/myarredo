@@ -47,7 +47,7 @@ class Order extends ActiveRecord
      * @var
      */
     public static $commonQuery = OrderQuery::class;
-    
+
     /**
      * @return string
      */
@@ -75,7 +75,10 @@ class Order extends ActiveRecord
             [['comment'], 'string', 'max' => 512],
             [['token'], 'string', 'max' => 255],
             [['customer_id', 'items_count', 'items_total_count', 'created_at', 'updated_at'], 'integer'],
-            [['items_summ', 'items_total_summ', 'discount_percent', 'discount_money', 'discount_full', 'total_summ'], 'double'],
+            [
+                ['items_summ', 'items_total_summ', 'discount_percent', 'discount_money', 'discount_full', 'total_summ'],
+                'double'
+            ],
             [['order_status'], 'in', 'range' => array_keys(self::progressRange())],
             [['payd_status'], 'in', 'range' => array_keys(self::paydStatusRange())],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
@@ -182,9 +185,9 @@ class Order extends ActiveRecord
     public static function paydStatusRange()
     {
         return [
-            'billed' => Yii::t('app', 'ps_billed'),
-            'not_paid' => Yii::t('app', 'ps_not_paid'),
-            'paid_up' => Yii::t('app', 'ps_paid_up')
+            'billed' => Yii::t('app', 'billed'),
+            'not_paid' => Yii::t('app', 'not_paid'),
+            'paid_up' => Yii::t('app', 'paid_up')
         ];
     }
 
@@ -195,13 +198,13 @@ class Order extends ActiveRecord
     public static function progressRange()
     {
         return [
-            'new' => Yii::t('app', 'p_new'),
-            'confirmed' => Yii::t('app', 'p_confirmed'),
-            'on_performance' => Yii::t('app', 'p_on_performance'),
-            'prepared' => Yii::t('app', 'p_prepared'),
-            'on_delivery' => Yii::t('app', 'p_on_delivery'),
-            'refusal' => Yii::t('app', 'p_refusal'),
-            'executed' => Yii::t('app', 'p_executed')
+            'new' => Yii::t('app', 'new'),
+            'confirmed' => Yii::t('app', 'confirmed'),
+            'on_performance' => Yii::t('app', 'on_performance'),
+            'prepared' => Yii::t('app', 'prepared'),
+            'on_delivery' => Yii::t('app', 'on_delivery'),
+            'refusal' => Yii::t('app', 'refusal'),
+            'executed' => Yii::t('app', 'executed')
         ];
     }
 
@@ -213,5 +216,16 @@ class Order extends ActiveRecord
         $this->token = Yii::$app->getSecurity()->generateRandomString() . '_' . time();
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getCreatedTime()
+    {
+        $format = 'd.m.Y';
+        return $this->created_at == 0 ? date($format) : date($format, $this->created_at);
+    }
+
+
 
 }

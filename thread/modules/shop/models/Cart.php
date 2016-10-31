@@ -169,6 +169,7 @@ class Cart extends ActiveRecord
         $this->items_summ = 0;
         $this->items_total_summ = 0;
         $this->total_summ = 0;
+        $this->items_total_count = 0;
         $this->items_count = count($this->items);
 
         foreach ($this->items as $item) {
@@ -178,7 +179,6 @@ class Cart extends ActiveRecord
         }
         $this->total_summ = $this->items_total_summ - $this->discount_full;
 
-        return $this;
     }
 
 

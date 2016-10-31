@@ -18,26 +18,27 @@ class DeliveryMethods extends CommonDeliveryMethodsModel
 {
 
     /**
-     *
-     * @return yii\db\ActiveQuery
+     * @return mixed
      */
     public static function findBase()
     {
         return self::find()->innerJoinWith(['lang'])->enabled();
     }
 
+
     /**
-     *
-     * @return yii\db\ActiveQuery
+     * @param $alias
+     * @return mixed
      */
     public static function findByAlias($alias)
     {
         return self::findBase()->alias($alias)->one();
     }
 
+
     /**
-     *
-     * @return yii\db\ActiveQuery
+     * @param $alias
+     * @return mixed
      */
     public static function findIdByAlias($alias)
     {
@@ -45,13 +46,4 @@ class DeliveryMethods extends CommonDeliveryMethodsModel
     }
 
 
-
-    /**
-     * Backend form dropdown list
-     * @return array
-     */
-    public static function dropDownList()
-    {
-        return ArrayHelper::map(self::findBase()->all(), 'alias', 'lang.title');
-    }
 }

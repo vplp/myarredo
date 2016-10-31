@@ -14,10 +14,16 @@ use thread\widgets\grid\{
  *
  */
 echo GridView::widget([
-    'dataProvider' => $model->search(Yii::$app->getRequest()->queryParams),
+    'dataProvider' => $model->search(Yii::$app->getRequest()->queryParams),    
     'columns' => [
         'manager_id',
         'customer.full_name',
+        [
+            'attribute' => 'created_at',
+            'value' => function ($model) {
+                return $model->getCreatedTime();
+            },
+        ],
         'deliveryMethod.lang.title',
         'paymentMethod.lang.title',
         'delivery_price',

@@ -58,7 +58,7 @@ class Order extends OrderModel implements BaseBackendSearchModel
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'id' => SORT_ASC
+                    'created_at' => SORT_DESC
                 ]
             ]
         ]);

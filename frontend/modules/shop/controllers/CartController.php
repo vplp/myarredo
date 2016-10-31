@@ -55,17 +55,13 @@ class CartController extends \frontend\components\BaseController
     }
 
 
+
     /**
      *
      * @return string
      */
     public function actionSendOrder()
     {
-        /*  $order = null;
-          if (Yii::$app->getSession()->getFlash('SEND_ORDER_ID') !== null) {
-              $cart = OrderModel::findById(Yii::$app->getSession()->getFlash('SEND_ORDER_ID'));
-          }
-          return $this->render('empty', ['order' => $order]);*/
         return $this->render('empty');
     }
 
@@ -76,15 +72,29 @@ class CartController extends \frontend\components\BaseController
     public function actionAddToCart()
     {
         $product_id = Yii::$app->getRequest()->post('id');
-        $count = Yii::$app->getRequest()->post('count');
-        $extra_param = Yii::$app->getRequest()->post('extra_param');
+        $count = Yii::$app->getRequest()->post('count') ?? 1;
+        $extra_param = Yii::$app->getRequest()->post('extra_param') ?? [];
 
         if (Yii::$app->shop_cart->addItem($product_id, $count, $extra_param)) {
-            return $this->renderContent('ok!');
+            return true;
         } else {
-            return $this->renderContent('not ok!');
+            return false;
         }
 
+    }
+
+
+    /**
+     *удаление товара из попапа корзину
+     */
+    public function actionDeleteFromCart()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+            $product_id = Yii::$app->getRequest()->post('product_id');
+            $count = Yii::$app->getRequest()->post('count') ?? 0;
+            return Yii::$app->shop_cart->deleteItem($product_id, $count);
+        }
     }
 
 

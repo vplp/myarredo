@@ -38,14 +38,8 @@ class Order extends FrontendOrderModel
         $order->setAttributes($customerform->getAttributes());
         $order->customer_id = $customer_id;
         $order->generateToken();
-        $order->delivery_method_id = DeliveryMethods::findIdByAlias($customerform->delivery)['id'];
-        if (empty($order->delivery_method_id)) {
-            //ошибка
-        }
-        $order->payment_method_id = PaymentMethods::findIdByAlias($customerform->pay)['id'];
-        if (empty($order->payment_method_id)) {
-            //ошибка
-        }
+        $order->delivery_method_id = $customerform->delivery;
+        $order->payment_method_id = $customerform->pay;
         $transaction = $order::getDb()->beginTransaction();
         try {
             if ($order->validate() && $order->save()) {
@@ -61,7 +55,7 @@ class Order extends FrontendOrderModel
                 }
                 $transaction->commit();
                 //TODO::сделать отпарвку письма (в письме должна быть ссылка $order->getTokenLink())
-                return $order->id;
+                return ['id' => $order->id, 'link' => $order->getTokenLink()];
             } else {
                 $transaction->rollBack();
                 //ошибка
@@ -86,10 +80,7 @@ class Order extends FrontendOrderModel
             $customer = new Customer();
             $customer->scenario = 'addnewcustorem';
             $customer->user_id = Yii::$app->getUser()->id ?? 0;
-            $customer->email = $customerform['email'];
-            $customer->phone = $customerform['phone'];
-            $customer->full_name = $customerform['full_name'];
-
+            $customer->setAttributes($customerform->getAttributes());
             $transaction = $customer::getDb()->beginTransaction();
             try {
                 if ($customer->save()) {

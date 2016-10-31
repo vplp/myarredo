@@ -39,25 +39,7 @@ class PaymentMethods extends ActiveRecord
         return '{{%shop_payment_methods}}';
     }
 
-    /**
-     * @return array
-     */
-    public function behaviors()
-    {
-        return ArrayHelper::merge(parent::behaviors(), [
-            [
-                'class' => AttributeBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
-                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
-                ],
-                'value' => function ($event) {
-                    return Inflector::slug($this->alias);
-                },
-            ],
-        ]);
-    }
-
+   
     /**
      *
      * @return array
@@ -65,7 +47,6 @@ class PaymentMethods extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias'], 'required'],
             [['created_at', 'updated_at', 'position'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -80,7 +61,7 @@ class PaymentMethods extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['position', 'alias', 'published', 'deleted'],
+            'backend' => ['position', 'published', 'deleted'],
         ];
     }
 
@@ -92,7 +73,6 @@ class PaymentMethods extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'Id'),
-            'alias' => Yii::t('app', 'Alias'),
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'created_at'),
             'updated_at' => Yii::t('app', 'updated_at'),

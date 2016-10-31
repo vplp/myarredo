@@ -41,32 +41,12 @@ class DeliveryMethods extends ActiveRecord
     }
 
     /**
-     * @return array
-     */
-    public function behaviors()
-    {
-        return ArrayHelper::merge(parent::behaviors(), [
-            [
-                'class' => AttributeBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
-                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
-                ],
-                'value' => function ($event) {
-                    return Inflector::slug($this->alias);
-                },
-            ],
-        ]);
-    }
-
-    /**
      *
      * @return array
      */
     public function rules()
     {
         return [
-            [['alias'], 'required'],
             [['created_at', 'updated_at', 'position'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -81,7 +61,7 @@ class DeliveryMethods extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['position', 'alias', 'published', 'deleted'],
+            'backend' => ['position',  'published', 'deleted'],
         ];
     }
 
@@ -93,7 +73,6 @@ class DeliveryMethods extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'Id'),
-            'alias' => Yii::t('app', 'Alias'),
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
@@ -110,6 +89,7 @@ class DeliveryMethods extends ActiveRecord
     {
         return $this->hasOne(DeliveryMethodsLang::class, ['rid' => 'id']);
     }
+
 
 
 }

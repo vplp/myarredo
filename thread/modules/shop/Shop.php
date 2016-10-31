@@ -30,12 +30,4 @@ class Shop extends aModule
         return Yii::$app->get('db-core');
     }
 
-    /**
-     * @return mixed
-     */
-    public function getFormatDate()
-    {
-        return $this->params['format']['date'];
-    }
-
 }

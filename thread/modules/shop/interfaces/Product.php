@@ -13,16 +13,21 @@ namespace thread\modules\shop\interfaces;
 interface Product
 {
     /**
-     * @param integer $id
+     * @param $id
      * @return Product
      */
-    public static function findByID(integer $id);
+    public static function findByID($id);
     
     /**
      * 
      * @return float
      */
     public function getPrice();
-   
+
+    /**
+     * @param $ids
+     * @return array
+     */
+    public static function findByIDs($ids):array;
 
 }

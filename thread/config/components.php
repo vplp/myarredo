@@ -81,10 +81,11 @@ return [
             ]
         ]
     ],
-    'shop_cart' => [
+   /* 'shop_cart' => [
         'class' => \thread\modules\shop\components\Cart::class,
-        //TODO::записать путь к модель с продуктом!
-        'productClass' => ''//\thread\modules\catalog\model\Product::class
-        
-    ],
+        //записать путь к модель с продуктом!
+        'threadProductClass' => \thread\modules\catalog\models\Product::class,
+       'frontendProductClass' => \frontend\modules\catalog\models\Product::class
+
+    ],*/
 ];

@@ -15,6 +15,7 @@ use common\modules\shop\models\Customer as CommonCustomerModel;
  */
 class Customer extends CommonCustomerModel implements BaseBackendModel
 {
+ 
     /**
      * @param $params
      * @return \yii\data\ActiveDataProvider
