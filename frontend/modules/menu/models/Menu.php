@@ -2,6 +2,10 @@
 
 namespace frontend\modules\menu\models;
 
+use thread\app\model\interfaces\BaseFrontModel;
+//
+use common\modules\menu\models\Menu as cMenu;
+
 /**
  * Class Menu
  *
@@ -9,46 +13,59 @@ namespace frontend\modules\menu\models;
  * @author Andrii Bondarchuk
  * @copyright (c) 2016
  */
-final class Menu extends \backend\modules\menu\models\Menu {
+final class Menu extends cMenu implements BaseFrontModel
+{
 
     /**
-     * 
+     *
      * @return array
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return [];
     }
 
     /**
-     * 
+     *
      * @return array
      */
-    public function scenarios() {
+    public function scenarios()
+    {
         return [];
     }
 
     /**
-     * 
+     *
      * @return array
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [];
     }
 
     /**
-     * 
+     *
      * @return array
      */
-    public function rules() {
+    public function rules()
+    {
         return [];
     }
 
     /**
-     * 
-     * @return yii\db\ActiveQuery
+     * @return mixed
      */
-    public static function find_base() {
-        return self::find()->innerJoinWith(["lang"])->enabled();
+    public static function find()
+    {
+        return parent::find()->enabled();
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function find_base()
+    {
+        return self::find()->innerJoinWith(["lang"]);
     }
 
     /**
@@ -56,8 +73,26 @@ final class Menu extends \backend\modules\menu\models\Menu {
      * @param string $alias
      * @return ActiveRecord|null
      */
-    public static function findByAlias($alias) {
+    public static function findByAlias($alias)
+    {
         return self::find_base()->alias($alias)->one();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findById($id)
+    {
+        return self::find_base()->byID($id)->one();
+    }
+
+    /**
+     * @param bool|false $scheme
+     */
+    public function getUrl($scheme = false)
+    {
+        // TODO: Implement getUrl() method.
     }
 
 }

@@ -2,18 +2,21 @@
 
 namespace frontend\modules\user\controllers;
 
-use frontend\components\BaseController;
-use frontend\modules\user\models\form\PasswordResetRequestForm;
-use frontend\modules\user\models\form\ResetPasswordForm;
 use Yii;
+use yii\web\BadRequestHttpException;
 use yii\base\InvalidParamException;
 use yii\db\Exception;
 use yii\db\mssql\PDO;
 use yii\filters\AccessControl;
-use frontend\modules\user\models\Profile;
-use frontend\modules\user\models\User;
-use frontend\modules\user\models\form\ChangePassword;
-use yii\web\BadRequestHttpException;
+//
+use frontend\components\BaseController;
+use frontend\modules\user\models\form\{
+    PasswordResetRequestForm, ResetPasswordForm, ChangePassword
+};
+use frontend\modules\user\models\{
+    Profile, User
+};
+
 
 /**
  * Class ProfileController
@@ -28,7 +31,7 @@ class ProfileController extends BaseController
     protected $model = Profile::class;
     public $title = "Profile";
     public $defaultAction = 'index';
-    public $layout = "@app/layouts/column1";
+    public $layout = "@app/layouts/nologin";
 
     /**
      * @return array

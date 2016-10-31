@@ -2,11 +2,12 @@
 
 namespace frontend\modules\user\controllers;
 
-use frontend\components\BaseController;
 use Yii;
 use yii\filters\AccessControl;
-use frontend\modules\user\models\form\SignInForm;
 use yii\helpers\Url;
+//
+use frontend\components\BaseController;
+use frontend\modules\user\models\form\SignInForm;
 
 /**
  * Class LoginController
@@ -17,11 +18,10 @@ use yii\helpers\Url;
  */
 class LoginController extends BaseController
 {
-
-    protected $model = SignInForm::class;
     public $title = "Login";
     public $defaultAction = 'index';
     public $layout = "@app/layouts/nologin";
+    protected $model = SignInForm::class;
 
     /**
      * @return array

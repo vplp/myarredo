@@ -10,7 +10,7 @@ $this->beginContent('@app/layouts/main.php');
     <!-- CENTER COLUMN -->
     <section class="column-center r h">
 
-        <?= $content; ?>
+        <?= $content ?>
 
     </section>
     <!-- CENTER COLUMN END-->

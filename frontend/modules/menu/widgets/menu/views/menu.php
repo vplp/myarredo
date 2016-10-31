@@ -1,6 +1,7 @@
 <?php
-use yii\bootstrap\NavBar;
-use yii\bootstrap\Nav;
+use yii\bootstrap\{
+    NavBar, Nav
+};
 
 /**
  * @var $item frontend\modules\menu\models\MenuItem

@@ -1,8 +1,13 @@
 <?php
 namespace frontend\modules\user\models\form;
 
-use Yii;
-
+/**
+ * Class ResetPasswordForm
+ *
+ * @package frontend\modules\user\models\form
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class ResetPasswordForm extends \common\modules\user\models\form\ResetPasswordForm
 {
 

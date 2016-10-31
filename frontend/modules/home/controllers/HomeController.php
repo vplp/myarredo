@@ -3,6 +3,7 @@
 namespace frontend\modules\home\controllers;
 
 use Yii;
+use yii\web\ErrorAction;
 
 /**
  * Class HomeController
@@ -20,10 +21,11 @@ class HomeController extends \frontend\components\BaseController
      *
      * @return array
      */
-    public function actions() {
+    public function actions()
+    {
         return [
             'error' => [
-                'class' => \yii\web\ErrorAction::class,
+                'class' => ErrorAction::class,
                 'view' => 'error',
             ],
         ];
@@ -33,12 +35,8 @@ class HomeController extends \frontend\components\BaseController
      *
      * @return string
      */
-    public function actionIndex() {
-
-//        if (!empty($_GET)) {
-//            $this->redirect(['/'], 301);
-//        }
-
+    public function actionIndex()
+    {
         return $this->render('index');
     }
 
@@ -47,10 +45,11 @@ class HomeController extends \frontend\components\BaseController
      * @param type $action
      * @return boollean
      */
-    public function beforeAction($action) {
+    public function beforeAction($action)
+    {
 
         if ($action->id == 'error') {
-            $this->layout = (Yii::$app->getUser()->id !== NULL) ? '/error' : '/error';
+            $this->layout = '/error';
         }
 
         return parent::beforeAction($action);

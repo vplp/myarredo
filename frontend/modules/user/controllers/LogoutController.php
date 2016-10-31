@@ -2,10 +2,11 @@
 
 namespace frontend\modules\user\controllers;
 
-use frontend\components\BaseController;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
+//
+use frontend\components\BaseController;
 
 /**
  * Class UserController
