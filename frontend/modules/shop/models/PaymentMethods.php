@@ -3,7 +3,6 @@
 
 namespace frontend\modules\shop\models;
 
-use yii\helpers\ArrayHelper;
 use common\modules\shop\models\PaymentMethods as CommonPaymentMethodsModel;
 
 
