@@ -7,6 +7,7 @@ use yii\base\{
     Component, ErrorException
 };
 use yii\log\Logger;
+//
 use thread\modules\shop\interfaces\Product as iProductThreadModel;
 use thread\modules\shop\models\{
     Cart as CartModel, CartItem
@@ -81,7 +82,7 @@ class Cart extends Component
      * @param int $count
      * @param array $extra_param
      * @return bool
-     * @throws ErrorException
+     * @throws \ErrorException
      */
     public function addItem(int $product_id, int $count = 1, array $extra_param):bool
     {

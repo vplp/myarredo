@@ -2,14 +2,11 @@
 
 namespace thread\modules\shop\components;
 
-
 use Yii;
 use yii\base\Component;
+//
 use thread\modules\shop\models\Cart as ModelCart;
 use thread\modules\shop\interfaces\DiscountCart as iDiscountCart;
-
-//
-
 
 /**
  * Class DiscountCart

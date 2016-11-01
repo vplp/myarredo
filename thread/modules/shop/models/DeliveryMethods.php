@@ -3,12 +3,7 @@
 namespace thread\modules\shop\models;
 
 use Yii;
-use yii\behaviors\AttributeBehavior;
-
-use yii\helpers\{
-    ArrayHelper, Inflector
-};
-
+//
 use thread\modules\shop\Shop;
 use thread\app\base\models\ActiveRecord;
 
@@ -61,7 +56,7 @@ class DeliveryMethods extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['position',  'published', 'deleted'],
+            'backend' => ['position', 'published', 'deleted'],
         ];
     }
 
@@ -89,7 +84,6 @@ class DeliveryMethods extends ActiveRecord
     {
         return $this->hasOne(DeliveryMethodsLang::class, ['rid' => 'id']);
     }
-
 
 
 }
