@@ -3,7 +3,7 @@
 namespace thread\modules\shop\models;
 
 use Yii;
-
+//
 use thread\app\base\models\ActiveRecord;
 use thread\modules\shop\Shop;
 

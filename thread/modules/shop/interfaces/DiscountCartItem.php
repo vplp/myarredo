@@ -4,7 +4,6 @@ namespace thread\modules\shop\interfaces;
 
 use thread\modules\shop\models\CartItem;
 
-
 /**
  * interface DiscountCartItem
  *
@@ -19,8 +18,5 @@ interface DiscountCartItem
      * @return mixed
      */
     public function calculate(CartItem $cartItem);
-
-
-
 
 }

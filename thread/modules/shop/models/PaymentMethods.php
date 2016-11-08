@@ -3,11 +3,7 @@
 namespace thread\modules\shop\models;
 
 use Yii;
-use yii\behaviors\AttributeBehavior;
-use yii\helpers\{
-    ArrayHelper, Inflector
-};
-
+//
 use thread\app\base\models\ActiveRecord;
 use thread\modules\shop\Shop;
 
@@ -39,7 +35,7 @@ class PaymentMethods extends ActiveRecord
         return '{{%shop_payment_methods}}';
     }
 
-   
+
     /**
      *
      * @return array

@@ -2,7 +2,6 @@
 
 namespace thread\modules\shop\interfaces;
 
-
 /**
  * interface Product
  *
