@@ -66,11 +66,11 @@ class AuthRole extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' => Yii::t('app', 'Name'),
-            'description' => 'description',
-            'data' => 'data',
-            'rule_name' => 'rule_name',
-            'type' => 'type',
+            'name' => Yii::t('sys', 'Name'),
+            'description' => Yii::t('app', 'Description'),
+            'data' => Yii::t('sys', 'Data'),
+            'rule_name' => Yii::t('sys', 'Rule name'),
+            'type' => Yii::t('app', 'Type'),
             'created_at' => Yii::t('app', 'Created at'),
             'updated_at' => Yii::t('app', 'Updated at'),
         ];

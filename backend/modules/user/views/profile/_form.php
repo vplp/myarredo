@@ -13,6 +13,6 @@ use thread\app\bootstrap\ActiveForm;
 <?= $form->text_line($model, 'last_name') ?>
 <?= $form->field($model, 'preferred_language')->dropDownList(\Yii::$app->params['themes']['languages']); ?>
 <?= $form->field($model, 'avatar')->imageOne($model->getAvatarImage()) ?>
-<?= Html::a(Yii::t('user', 'Change password'), ['/user/password/change', 'id' => $model['id']], ['class' => 'btn btn-info']); ?>
+<?= Html::a(Yii::t('users', 'Change password'), ['/user/password/change', 'id' => $model['id']], ['class' => 'btn btn-info']); ?>
 <?= $form->submit($model, $this) ?>
 <?php ActiveForm::end();

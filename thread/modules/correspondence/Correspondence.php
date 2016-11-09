@@ -7,7 +7,7 @@ use Yii;
 use thread\app\base\module\abstracts\Module as aModule;
 
 /**
- * Class Сorrespondence
+ * Class Correspondence
  *
  * @package thread\modules\correspondence
  * @author FilamentV <vortex.filament@gmail.com>
@@ -71,4 +71,14 @@ class Correspondence extends aModule
     {
         return Yii::$app->getUser()->identityClass;
     }
+
+    public $translationsFileMap = [
+        'correspondence' => [
+            'class' => \yii\i18n\PhpMessageSource::class,
+            'basePath' => '@thread/modules/correspondence/messages',
+            'fileMap' => [
+                'correspondence' => ['app.php'],
+            ],
+        ]
+    ];
 }

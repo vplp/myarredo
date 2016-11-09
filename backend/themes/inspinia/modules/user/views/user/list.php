@@ -42,13 +42,13 @@ echo GridView::widget([
             'format' => 'raw',
             'value' => function ($model) {
                 /** @var $model User */
-                return Html::a(Yii::t('user', 'Edit profile'), ['/user/profile/update', 'id' => $model->profile->id]);
+                return Html::a(Yii::t('users', 'Edit profile'), ['/user/profile/update', 'id' => $model->profile->id]);
             },
         ],
         [
             'format' => 'raw',
             'value' => function ($model) {
-                return Html::a(Yii::t('user', 'Change password'), ['/user/password/change', 'id' => $model->id]);
+                return Html::a(Yii::t('users', 'Change password'), ['/user/password/change', 'id' => $model->id]);
             },
         ],
         [

@@ -51,6 +51,11 @@ return [
     'Choose group' => 'Выберите группу',
     'Start time' => 'Начало',
     'Finish time' => 'Конец',
+    'Settings' => 'Настройки',
+    'Remember me' => 'Запомнить меня',
+    
+    'KEY_ON' => 'Вкл',
+    'KEY_OFF' => 'Выкл',
 
     //name item menu
     'Structure' => 'Структура',
@@ -62,6 +67,8 @@ return [
     'Article' => 'Новость',
     'Correspondence' => 'Мои обращения',
     'Users' => 'Пользователи',
+    'Profile' => 'Профайл',
+    'User' => 'Пользователи',
     'Location' => 'Локализация',
     'Region' => 'Регион',
     'Country' => 'Страна',
@@ -80,5 +87,6 @@ return [
     'Orders' => 'Заказы',
     'Payment Methods' => 'Методы оплаты',
     'Delivery Methods' => 'Методы доставки',
+
 
 ];

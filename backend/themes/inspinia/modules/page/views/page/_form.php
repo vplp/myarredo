@@ -30,7 +30,7 @@ use backend\modules\page\models\{
             ])
         ],
         [
-            'label' => Yii::t('app', 'Page'),
+            'label' => Yii::t('page', 'Page'),
             'content' => $this->render('parts/_page', [
                 'form' => $form,
                 'model' => $model,

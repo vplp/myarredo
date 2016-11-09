@@ -29,15 +29,5 @@ class Shop extends aModule
     {
         return Yii::$app->get('db-core');
     }
-
-    public $translationsFileMap = [
-        'shop' => [
-            'class' => \yii\i18n\PhpMessageSource::class,
-            'basePath' => '@thread/modules/shop/messages',
-            'fileMap' => [
-                'shop' => ['app.php'],
-            ],
-        ]
-    ];
-
+    
 }

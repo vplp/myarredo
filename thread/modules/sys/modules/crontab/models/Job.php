@@ -74,12 +74,12 @@ class Job extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'command',
-            'minute',
-            'hour',
-            'day',
-            'month',
-            'weekDay',
+            'command' => Yii::t('sys', 'Command'),
+            'minute' => Yii::t('sys', 'Minute'),
+            'hour' => Yii::t('sys', 'Hour'),
+            'day' => Yii::t('sys', 'Day'),
+            'month' => Yii::t('sys', 'Month'),
+            'weekDay' => Yii::t('sys', 'WeekDay'),
             'created_at' => Yii::t('app', 'Created at'),
             'updated_at' => Yii::t('app', 'Updated at'),
             'published' => Yii::t('app', 'Published'),

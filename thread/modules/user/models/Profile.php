@@ -80,10 +80,10 @@ class Profile extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'first_name' => Yii::t('app', 'First name'),
-            'last_name' => Yii::t('app', 'Last name'),
-            'avatar' => Yii::t('app', 'Avatar'),
-            'preferred_language' => Yii::t('app', 'Preferred language'),
+            'first_name' => Yii::t('users', 'First name'),
+            'last_name' => Yii::t('users', 'Last name'),
+            'avatar' => Yii::t('users', 'Avatar'),
+            'preferred_language' => Yii::t('users', 'Preferred language'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
         ];

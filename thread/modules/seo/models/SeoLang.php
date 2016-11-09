@@ -72,7 +72,7 @@ class SeoLang extends ActiveRecordLang
         return [
             'title' => Yii::t('app', 'Title'),
             'description' => Yii::t('app', 'Description'),
-            'keywords' => Yii::t('app', 'Keywords'),
+            'keywords' => Yii::t('seo', 'Keywords'),
         ];
     }
 
