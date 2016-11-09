@@ -123,22 +123,23 @@ class Order extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'customer_id' => Yii::t('app', 'Customer id'),
-            'comment' => Yii::t('app', 'Comment'),
-            'items_count' => Yii::t('app', 'Count of items'),
-            'items_total_count' => Yii::t('app', 'Summ of item_count'),
-            'items_summ' => Yii::t('app', 'Summ of items without discount for item'),
-            'items_total_summ' => Yii::t('app', 'Total Summ of items with discount for item'),
-            'discount_percent' => Yii::t('app', 'Percent discount for order'),
-            'discount_money' => Yii::t('app', 'Discount of money for order'),
-            'discount_full' => Yii::t('app', 'Summ discount for order'),
-            'total_summ' => Yii::t('app', 'Finish Summ'),
-            'order_status' => Yii::t('app', 'Order status'),
-            'payd_status' => Yii::t('app', 'Payd status'),
-            'delivery_method_id' => Yii::t('app', 'Delivery method id'),
-            'payment_method_id' => Yii::t('app', 'Payment method id'),
-            'delivery_price' => Yii::t('app', 'Delivery price'),
-            'token' => Yii::t('app', 'Token'),
+            'customer_id' => Yii::t('shop', 'Customer id'),
+            'manager_id' => Yii::t('shop', 'Manager id'),
+            'comment' => Yii::t('shop', 'Comment'),
+            'items_count' => Yii::t('shop', 'Count of items'),
+            'items_total_count' => Yii::t('shop', 'Summ of item_count'),
+            'items_summ' => Yii::t('shop', 'Summ of items without discount for item'),
+            'items_total_summ' => Yii::t('shop', 'Total Summ of items with discount for item'),
+            'discount_percent' => Yii::t('shop', 'Percent discount for order'),
+            'discount_money' => Yii::t('shop', 'Discount of money for order'),
+            'discount_full' => Yii::t('shop', 'Summ discount for order'),
+            'total_summ' => Yii::t('shop', 'Finish Summ'),
+            'order_status' => Yii::t('shop', 'Order status'),
+            'payd_status' => Yii::t('shop', 'Payd status'),
+            'delivery_method_id' => Yii::t('shop', 'Delivery method id'),
+            'payment_method_id' => Yii::t('shop', 'Payment method id'),
+            'delivery_price' => Yii::t('shop', 'Delivery price'),
+            'token' => Yii::t('shop', 'Token'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
@@ -185,9 +186,9 @@ class Order extends ActiveRecord
     public static function paydStatusRange()
     {
         return [
-            'billed' => Yii::t('app', 'billed'),
-            'not_paid' => Yii::t('app', 'not_paid'),
-            'paid_up' => Yii::t('app', 'paid_up')
+            'billed' => Yii::t('shop', 'Billed'),
+            'not_paid' => Yii::t('shop', 'Not paid'),
+            'paid_up' => Yii::t('shop', 'Paid up')
         ];
     }
 
@@ -198,13 +199,13 @@ class Order extends ActiveRecord
     public static function progressRange()
     {
         return [
-            'new' => Yii::t('app', 'new'),
-            'confirmed' => Yii::t('app', 'confirmed'),
-            'on_performance' => Yii::t('app', 'on_performance'),
-            'prepared' => Yii::t('app', 'prepared'),
-            'on_delivery' => Yii::t('app', 'on_delivery'),
-            'refusal' => Yii::t('app', 'refusal'),
-            'executed' => Yii::t('app', 'executed')
+            'new' => Yii::t('shop', 'New'),
+            'confirmed' => Yii::t('shop', 'Confirmed'),
+            'on_performance' => Yii::t('shop', 'On performance'),
+            'prepared' => Yii::t('shop', 'Prepared'),
+            'on_delivery' => Yii::t('shop', 'On delivery'),
+            'refusal' => Yii::t('shop', 'Refusal'),
+            'executed' => Yii::t('shop', 'Executed')
         ];
     }
 
@@ -225,7 +226,6 @@ class Order extends ActiveRecord
         $format = 'd.m.Y';
         return $this->created_at == 0 ? date($format) : date($format, $this->created_at);
     }
-
 
 
 }

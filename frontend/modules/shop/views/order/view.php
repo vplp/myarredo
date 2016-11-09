@@ -11,11 +11,12 @@ use yii\helpers\{
 <table border="2">
     <tr>
         <th><?=Yii::t('app', 'id') ?></th>
-        <th><?= Yii::t('app', 'count') ?></th>
-        <th><?= Yii::t('app', 'price') ?></th>
-        <th><?= Yii::t('app', 'delivery_price') ?></th>
-        <th><?= Yii::t('app', 'order_status') ?></th>
-        <th><?= Yii::t('app', 'payd_status') ?></th>
+        <th><?= Yii::t('shop', 'Count of items') ?></th>
+        <th><?= Yii::t('shop', 'Finish Summ') ?></th>
+        <th><?= Yii::t('shop', 'Delivery price') ?></th>
+        <th><?= Yii::t('shop', 'Order status') ?></th>
+        <th><?= Yii::t('shop', 'Payd status') ?></th>
+        <th><?= Yii::t('shop', 'Comment') ?></th>
     </tr>
         <tr>
             <td>
@@ -31,10 +32,10 @@ use yii\helpers\{
                 <?= $order['delivery_price'] ?>
             </td>
             <td>
-                <?= $order['order_status'] ?>
+                <?= $order->getOrderStatus();?>
             </td>
             <td>
-                <?= $order['payd_status'] ?>
+                <?= $order->getPaydStatus(); ?>
             </td>
             <td>
                 <?= $order['comment'] ?>

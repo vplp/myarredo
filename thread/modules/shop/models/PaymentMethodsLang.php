@@ -47,7 +47,12 @@ class PaymentMethodsLang extends ActiveRecordLang
             ['rid', 'exist', 'targetClass' => PaymentMethods::class, 'targetAttribute' => 'id'],
             ['lang', 'string', 'min' => 5, 'max' => 5],
             ['title', 'string', 'max' => 255],
-            [['rid', 'lang'], 'unique', 'targetAttribute' => ['rid', 'lang'], 'message' => 'The combination of rid and lang has already been taken.']
+            [
+                ['rid', 'lang'],
+                'unique',
+                'targetAttribute' => ['rid', 'lang'],
+                'message' => 'The combination of rid and lang has already been taken.'
+            ]
         ];
     }
 

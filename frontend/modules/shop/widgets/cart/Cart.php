@@ -32,7 +32,7 @@ class Cart extends Widget
             foreach (Yii::$app->shop_cart->items as $item) {
                 $products_id[] = $item->product_id;
             }
-            $products = call_user_func([Yii::$app->shop_cart->frontendProductClass, 'findByIDs'], $products_id);
+            $products = call_user_func([Yii::$app->shop_cart->productClass, 'findByIDs'], $products_id);
             $products_id = [];
             //заполним массив с продуктами так, чтобы айдишники стали ключами
             foreach ($products as $product) {

@@ -19,13 +19,12 @@ use thread\modules\shop\models\{
  *
  * @package thread\modules\shop\components
  * @author Alla Kuzmenko
- * @copyright (c), Thread 
+ * @copyright (c), Thread
  *
  */
 class Cart extends Component
 {
-    public $threadProductClass = null;
-    public $frontendProductClass = null;
+    public $productClass = null;
     public $cart = null;
     public $items = [];
     public $discountCartClass = DiscountCart::class;
@@ -38,10 +37,10 @@ class Cart extends Component
     {
         parent::init();
 
-        $product = new $this->threadProductClass;
+        $product = new $this->productClass;
         if (!($product instanceof iProductThreadModel)) {
-            throw new ErrorException($this->threadProductClass . ' must be implemented ' . iProductThreadModel::class);
-        }      
+            throw new ErrorException($this->productClass . ' must be implemented ' . iProductThreadModel::class);
+        }
         $this->cart = CartModel::findBySessionID();
         $this->items = $this->cart ? $this->cart->items : [];
     }
@@ -89,7 +88,7 @@ class Cart extends Component
         if (empty($this->cart) && !$this->newCart()) {
             throw new ErrorException('Cart can not create!');
         }
-        $product = call_user_func([$this->threadProductClass, 'findByID'], $product_id);
+        $product = call_user_func([$this->productClass, 'findByID'], $product_id);
 
         if (empty($product)) {
             throw new ErrorException('Can not find this product!');

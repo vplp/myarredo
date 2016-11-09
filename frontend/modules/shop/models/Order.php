@@ -95,6 +95,18 @@ class Order extends CommonOrderModel
         return self::findBase()->byId($id)->customer($customer_id)->one();
     }
 
+    public function getOrderStatus()
+    {
+        return self::progressRange()[$this->order_status];
+        
+    }
+
+    public function getPaydStatus()
+    {
+        return self::paydStatusRange()[$this->payd_status];
+        
+    }
+
 
 
 }

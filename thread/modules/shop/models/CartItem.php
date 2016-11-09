@@ -107,7 +107,8 @@ class CartItem extends ActiveRecord
                 'discount_money',
                 'discount_full',
                 'extra_param',
-                'count'],
+                'count'
+            ],
         ];
     }
 
@@ -118,15 +119,15 @@ class CartItem extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'cart_id' => Yii::t('app', 'Cart id'),
-            'product_id' => Yii::t('app', 'Product id'),
-            'count' => Yii::t('app', 'Count of item'),
-            'summ' => Yii::t('app', 'Summ without discount for item'),
-            'total_summ' => Yii::t('app', 'Total Summ with discount for item'),
-            'discount_percent' => Yii::t('app', 'Percent discount for order'),
-            'discount_money' => Yii::t('app', 'Discount of money for order'),
-            'discount_full' => Yii::t('app', 'Summ discount for order'),
-            'extra_param' => Yii::t('app', 'Extra param'),
+            'cart_id' => Yii::t('shop', 'Cart id'),
+            'product_id' => Yii::t('shop', 'Product id'),
+            'count' => Yii::t('shop', 'Count of item'),
+            'summ' => Yii::t('shop', 'Summ without discount for item'),
+            'total_summ' => Yii::t('shop', 'Total Summ with discount for item'),
+            'discount_percent' => Yii::t('shop', 'Percent discount for order'),
+            'discount_money' => Yii::t('shop', 'Discount of money for order'),
+            'discount_full' => Yii::t('shop', 'Summ discount for order'),
+            'extra_param' => Yii::t('shop', 'Extra param'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
@@ -161,7 +162,6 @@ class CartItem extends ActiveRecord
     {
         return self::find()->cart_id($cart_id)->addOrderBy('created_at DESC')->all();
     }
-    
 
 
 }

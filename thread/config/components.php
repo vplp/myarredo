@@ -84,8 +84,7 @@ return [
    /* 'shop_cart' => [
         'class' => \thread\modules\shop\components\Cart::class,
         //записать путь к модель с продуктом!
-        'threadProductClass' => \thread\modules\catalog\models\Product::class,
-       'frontendProductClass' => \frontend\modules\catalog\models\Product::class
+        'productClass' => \frontend\modules\catalog\models\Product::class
 
     ],*/
 ];

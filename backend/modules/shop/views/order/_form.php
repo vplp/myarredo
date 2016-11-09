@@ -14,7 +14,7 @@ use backend\modules\{
 ?>
     <div>
         <?php HtmlForm::showTextInput($model, 'manager_id') ?>
-        <p><?= Yii::t('app', 'Customer') . ': ' . $model['customer']['full_name'] ?? '' ?></p>
+        <p><?= Yii::t('shop', 'Customer') . ': ' . $model['customer']['full_name'] ?? '' ?></p>
         <?php HtmlForm::showTextInput($model, 'items_count') ?>
         <?php HtmlForm::showTextInput($model, 'items_total_count') ?>
         <?php HtmlForm::showTextInput($model, 'items_summ') ?>
