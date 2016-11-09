@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\components\geolocation;
+namespace frontend\modules\location\components\geolocation;
 
 use Yii;
 //
@@ -10,7 +10,7 @@ use frontend\modules\configs\models\Language;
 
 /**
  * Class Geolocation
- * @package frontend\components\geolocation
+ * @package frontend\modules\location\components\geolocation
  *
  * @author Andrii Bondarchuk
  * @copyright (c) 2016

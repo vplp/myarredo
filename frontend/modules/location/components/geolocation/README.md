@@ -7,7 +7,7 @@ Configuration
 ```php
 
 'geolocation' => [
-    'class' => \frontend\components\geolocation\Geolocation::class,
+    'class' => \frontend\modules\location\components\geolocation\Geolocation::class,
     'config' => [
         'provider' => 'geoplugin',
         'return_formats' =>  'php'
