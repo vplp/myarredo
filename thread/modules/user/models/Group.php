@@ -111,7 +111,7 @@ class Group extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
-            'role' => Yii::t('users', 'Role'),
+            'role' => Yii::t('user', 'Role'),
             'created_at' => Yii::t('app', 'Created at'),
             'updated_at' => Yii::t('app', 'Updated at'),
             'published' => Yii::t('app', 'Published'),

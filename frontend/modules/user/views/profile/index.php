@@ -35,6 +35,6 @@ use yii\helpers\Html;
         <?= Html::a(Yii::t('app', 'Edit'), ['/user/profile/update']) ?>
     </div>
     <div class="col-sm-8">
-        <?= Html::a(Yii::t('users', 'Change password'), ['/user/profile/password-change']) ?>
+        <?= Html::a(Yii::t('user', 'Change password'), ['/user/profile/password-change']) ?>
     </div>
 </div>

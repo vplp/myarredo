@@ -21,5 +21,6 @@ return [
     'Password confirmation' => 'Подтверждение пароля',
     'Password' => 'Пароль',
     'User exists' => 'Пользователь существует',
-    'Role' => 'Роль'
+    'Role' => 'Роль',
+    'User Password' =>'Пароль пользователя'
 ];

@@ -15,6 +15,4 @@ return [
     'Model namespace' => 'namespace Модели',
     'Model id' => 'ID Модели',
     'Keywords' => 'Ключевые слова',
-
-
 ];

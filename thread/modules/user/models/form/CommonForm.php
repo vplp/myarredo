@@ -100,10 +100,10 @@ class CommonForm extends Model
         return [
             'group_id' => Yii::t('app', 'Group'),
             'published' => Yii::t('app', 'Published'),
-            'username' => Yii::t('users', 'Username'),
-            'password_old' => Yii::t('users', 'Password old'),
-            'password' => Yii::t('users', 'Password'),
-            'password_confirmation' => Yii::t('users', 'Password confirmation'),
+            'username' => Yii::t('user', 'Username'),
+            'password_old' => Yii::t('user', 'Password old'),
+            'password' => Yii::t('user', 'Password'),
+            'password_confirmation' => Yii::t('user', 'Password confirmation'),
             'email' => Yii::t('app', 'Email'),
             'rememberMe' => Yii::t('app', 'Remember me'),
         ];
@@ -133,8 +133,8 @@ class CommonForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUserByEmail();
             if ($user !== null) {
-                $this->addError('username', Yii::t('users', 'User exists'));
-                $this->addError('email', Yii::t('users', 'User exists'));
+                $this->addError('username', Yii::t('user', 'User exists'));
+                $this->addError('email', Yii::t('user', 'User exists'));
             }
         }
     }
