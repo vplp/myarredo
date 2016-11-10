@@ -78,6 +78,20 @@ return [
                 'fileMap' => [
                     'app' => 'app.php',
                 ]
+            ],
+            'users' => [
+                'class' => \yii\i18n\PhpMessageSource::class,
+                'basePath' => '@thread/modules/users/messages',
+                'fileMap' => [
+                    'users' => 'app.php',
+                ]
+            ],
+            'seo' => [
+                'class' => \yii\i18n\PhpMessageSource::class,
+                'basePath' => '@thread/modules/seo/messages',
+                'fileMap' => [
+                    'seo' => 'app.php',
+                ]
             ]
         ]
     ],
