@@ -26,7 +26,7 @@ use backend\modules\news\models\{
             ])
         ],
         [
-            'label' => Yii::t('app', 'Page'),
+            'label' => Yii::t('app', 'Content'),
             'content' => $this->render('parts/_page', [
                 'form' => $form,
                 'model' => $model,

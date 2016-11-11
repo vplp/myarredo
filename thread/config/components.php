@@ -87,6 +87,7 @@ return [
                     'navbar' => 'navbar.php',
                 ]
             ]
+            
         ]
     ],
     /* 'shop_cart' => [
