@@ -102,11 +102,11 @@ class Seo extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'model_id' => Yii::t('app', 'model_id'),
-            'model_namespace' => Yii::t('app', 'model_namespace'),
-            'in_search' => Yii::t('app', 'Display in the search engine'),
-            'in_robots' => Yii::t('app', 'Write to robots'),
-            'in_site_map' => Yii::t('app', 'Write to siteMap'),
+            'model_id' => Yii::t('seo', 'Model id'),
+            'model_namespace' => Yii::t('seo', 'Model namespace'),
+            'in_search' => Yii::t('seo', 'Display in the search engine'),
+            'in_robots' => Yii::t('seo', 'Write to robots'),
+            'in_site_map' => Yii::t('seo', 'Write to siteMap'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),

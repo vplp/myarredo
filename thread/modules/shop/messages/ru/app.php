@@ -7,38 +7,60 @@
  */
 return [
     //module name
-    'Shop' => 'Магазин',
+    'shop' => 'Магазин',
     'Order' => 'Заказы',
     'OrderItem' => 'Позиции в заказе',
-    'PaymentMethods' => 'Методы оплаты',
-    'DeliveryMethods' => 'Методы доставки',
-    //attribute
-    'manager_id' => 'Менеджер',
-    'user_id' => 'Покупатель',
-    'progress' => 'Прогресс',
-    'payd_status' => 'Оплата',
-    'count' => 'Количество',
-    'summ' => 'Итог',
-    'discount' => 'Скидка',
+    'Payment Methods' => 'Методы оплаты',
+    'Delivery Methods' => 'Методы доставки',
+
+    //Customer attribute
+    'Full name' => 'ФИО',
+
+    //Order  attribute
+    'php_session_id' => 'Сессия',
+    'Manager id' => 'Менеджер',
+    'User id' => 'Покупатель',
+    'Customer id' => 'Покупатель',
+    'Count of items' => 'Количество товаров',
+    'Summ of item_count' => 'Количество позиций',
+    'Summ of items without discount for item' => 'Сумма без скидки',
+    'Total Summ of items with discount for item' => 'Итого без скидки на заказ',
+    'Percent discount for order' => 'Процентная скидка на заказ',
+    'Discount of money for order' => 'Денежная скидка на заказ',
+    'Summ discount for order' => 'Скидка на заказ',
+    'Finish Summ' => 'Итого',
+    'Customer' => 'Покупатель',
+    'Comment' => 'Комментарий',
+    'Order status' => 'Статус заказа',
+    'Payd status' => 'Статус оплаты',
+    'Delivery method id' => 'Способ доставки',
+    'Payment method id' => 'Способ оплаты',
+    'Delivery price' => 'Цена доставки',
+
     //payd status range
-    'billed' => 'счет',
-    'not_paid' => 'не оплачен',
-    'paid_up' => 'оплачен',
+    'Billed' => 'счет',
+    'Not paid' => 'не оплачен',
+    'Paid up' => 'оплачен',
+
     //progress range
-    'new' => 'новый',
-    'confirmed' => 'подтвержденный',
-    'on_performance' => 'на выполнении',
-    'prepared' => 'подготовлен',
-    'on_delivery' => 'на доставке',
-    'refusal' => 'отклонен',
-    'executed' => 'выполенен',
-    //CartCustomerForm attribute
-    'name' => 'Ф.И.О.',
-    'email' => 'Email',
-    'phone' => 'Телефон',
-    'comment' => 'Адрес доставки',
-    'delivery' => 'Способ доставки',
-    'city' => 'Город',
-    'department' => 'Отделение',
-    'department_info' => 'Отделение доставки',
+    'New' => 'новый',
+    'Confirmed' => 'подтвержденный',
+    'On performance' => 'на выполнении',
+    'Prepared' => 'подготовлен',
+    'On delivery' => 'на доставке',
+    'Refusal' => 'отклонен',
+    'Executed' => 'выполенен',
+
+    //OrderItem  attribute
+
+    'Order id' => 'Заказ',
+    'Product id' => 'Продукт',
+    'Count of item' => 'Количество',
+    'Summ without discount for item' => 'Сумма без скидки',
+    'Total Summ with discount for item' => 'Сумма',
+    'Extra param' => 'Параметры',
+    'Percent discount for item' => 'Процентная скидка на товар',
+    'Discount of money for item' => 'Денежная скидка на товар',
+    'Summ discount for item' => 'Скидка на товар',
+
 ];

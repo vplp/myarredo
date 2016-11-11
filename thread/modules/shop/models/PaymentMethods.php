@@ -70,10 +70,10 @@ class PaymentMethods extends ActiveRecord
         return [
             'id' => Yii::t('app', 'Id'),
             'position' => Yii::t('app', 'Position'),
-            'created_at' => Yii::t('app', 'created_at'),
-            'updated_at' => Yii::t('app', 'updated_at'),
-            'published' => Yii::t('app', 'published'),
-            'deleted' => Yii::t('app', 'deleted'),
+            'created_at' => Yii::t('app', 'Create time'),
+            'updated_at' => Yii::t('app', 'Update time'),
+            'published' => Yii::t('app', 'Published'),
+            'deleted' => Yii::t('app', 'Deleted'),
         ];
     }
 

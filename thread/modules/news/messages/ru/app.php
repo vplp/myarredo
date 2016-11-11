@@ -8,7 +8,7 @@
 return [
     //module name
     'News' => 'Новости',
-    'Group' => 'Группы',
+    'news' => 'Новости',
     'Article' => 'Статьи',
     'number_article' => 'Количество статей'
 ];

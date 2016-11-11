@@ -27,7 +27,7 @@ class I18N extends \yii\i18n\I18N
         /**
          * register translation if is module
          */
-        if (isset($this->modulesApp[$category]) && !isset($this->translations[$category])) {
+        if (in_array($category, $this->modulesApp) && !isset($this->translations[$category])) {
             $this->registerModules($category);
         }
         /**
@@ -44,6 +44,14 @@ class I18N extends \yii\i18n\I18N
     public function init()
     {
         parent::init();
+        $this->initModulesApp();
+    }
+
+    /**
+     *
+     */
+    public function initModulesApp()
+    {
         $this->modulesApp = array_keys(Yii::$app->getModules());
     }
 

@@ -11,6 +11,8 @@ return [
     'Write to siteMap' => 'Записывать в siteMap',
     'SEO title' => 'SEO заголовок',
     'SEO description' => 'SEO описание',
-    'SEO keywords' => 'SEO ключевые слова'
-
+    'SEO keywords' => 'SEO ключевые слова',
+    'Model namespace' => 'namespace Модели',
+    'Model id' => 'ID Модели',
+    'Keywords' => 'Ключевые слова',
 ];

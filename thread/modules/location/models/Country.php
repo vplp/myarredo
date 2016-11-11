@@ -122,9 +122,9 @@ class Country extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
-            'alpha2' => Yii::t('app', 'alpha2'),
-            'alpha3' => Yii::t('app', 'alpha3'),
-            'iso' => Yii::t('app', 'iso'),
+            'alpha2' => Yii::t('location', 'alpha2'),
+            'alpha3' => Yii::t('location', 'alpha3'),
+            'iso' => Yii::t('location', 'iso'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),

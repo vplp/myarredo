@@ -44,4 +44,5 @@ class Page extends aModule
     {
         return $this->getBaseUploadUrl();
     }
+
 }

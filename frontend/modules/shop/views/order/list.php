@@ -32,10 +32,10 @@ use yii\helpers\{
                 <?= $order['delivery_price'] ?>
             </td>
             <td>
-                <?= $order['order_status'] ?>
+                <?= $order->getOrderStatus(); ?>
             </td>
             <td>
-                <?= $order['payd_status'] ?>
+                <?= $order->getPaydStatus(); ?>
             </td>
         </tr>
     <?php endforeach; ?>

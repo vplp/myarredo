@@ -30,15 +30,8 @@ return [
         ],
     ],
     'i18n' => [
-        'translations' => [
-            'app' => [
-                'class' => \yii\i18n\PhpMessageSource::class,
-                'basePath' => '@frontend/messages',
-                'fileMap' => [
-                    'app' => 'app.php',
-                ]
-            ],
-        ]
+        'class' => \thread\app\base\i18n\I18N::class,
     ],
+
 
 ];

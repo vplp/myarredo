@@ -68,16 +68,16 @@ class NavBar extends \yii\bootstrap\NavBar
         return [
             // STRUCTURE
             [
-                'label' => '<i class="fa fa-sitemap"></i><span class="nav-label">' . Yii::t('app',
+                'label' => '<i class="fa fa-sitemap"></i><span class="nav-label">' . Yii::t('navbar',
                         'Structure') . '</span><span class="fa arrow"></span>',
                 'items' => [
                     [
-                        'label' => '<i class="fa fa-tasks"></i><span class="nav-label">' . Yii::t('app',
+                        'label' => '<i class="fa fa-tasks"></i><span class="nav-label">' . Yii::t('navbar',
                                 'Menu') . '</span>',
                         'url' => ['/menu/menu/list'],
                     ],
                     [
-                        'label' => '<i class="fa fa-file-text"></i> <span class="nav-label">' . Yii::t('app',
+                        'label' => '<i class="fa fa-file-text"></i> <span class="nav-label">' . Yii::t('navbar',
                                 'Pages') . '</span>',
                         'url' => ['/page/page/list']
                     ],
@@ -85,114 +85,115 @@ class NavBar extends \yii\bootstrap\NavBar
             ],
             // NEWS
             [
-                'label' => '<i class="fa fa-newspaper-o"></i><span class="nav-label">' . Yii::t('app',
+                'label' => '<i class="fa fa-newspaper-o"></i><span class="nav-label">' . Yii::t('navbar',
                         'News') . '</span><span class="fa arrow"></span>',
                 'url' => ['/news/article/list'],
             ],
             // CORRESPONDENCE
             [
-                'label' => '<i class="fa fa-newspaper-o"></i><span class="nav-label">' . Yii::t('app',
+                'label' => '<i class="fa fa-newspaper-o"></i><span class="nav-label">' . Yii::t('navbar',
                         'Correspondence') . '</span><span class="fa arrow"></span>',
                 'url' => ['/correspondence/correspondence/list'],
             ],
             //SEO
             [
-                'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('app',
+                'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('navbar',
                         'Seo') . '</span> <span class="fa arrow"></span></a>',
                 'items' => [
                     [
-                        'label' => Yii::t('app', 'Seo'),
+                        'label' => Yii::t('navbar', 'Seo'),
                         'url' => ['/seo/seo/list']
                     ],
                     [
-                        'label' => Yii::t('app', 'Robots.txt'),
+                        'label' => Yii::t('navbar', 'Robots.txt'),
                         'url' => ['/seo/robots/update']
                     ],
                 ],
             ],
             // USER
             [
-                'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('app',
+                'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('navbar',
                         'Users') . '</span> <span class="fa arrow"></span></a>',
                 'url' => ['/user/user/list']
             ],
             // LOCATION
             [
-                'label' => '<i class="fa fa-map-marker"></i><span class="nav-label">' . Yii::t('app',
+                'label' => '<i class="fa fa-map-marker"></i><span class="nav-label">' . Yii::t('navbar',
                         'Location') . '</span><span class="fa arrow"></span>',
                 'items' => [
                     [
-                        'label' => Yii::t('app', 'Country'),
+                        'label' => Yii::t('navbar', 'Country'),
                         'url' => ['/location/country/list']
                     ],
                     [
-                        'label' => Yii::t('app', 'City'),
+                        'label' => Yii::t('navbar', 'City'),
                         'url' => ['/location/city/list']
                     ],
                     [
-                        'label' => Yii::t('app', 'Currency'),
+                        'label' => Yii::t('navbar', 'Currency'),
                         'url' => ['/location/currency/list']
                     ],
                 ],
             ],
             // CONFIGS
             [
-                'label' => '<i class="fa fa-map-marker"></i><span class="nav-label">' . Yii::t('app',
+                'label' => '<i class="fa fa-map-marker"></i><span class="nav-label">' . Yii::t('navbar',
                         'Configs') . '</span><span class="fa arrow"></span>',
                 'items' => [
                     [
-                        'label' => Yii::t('app', 'Params'),
+                        'label' => Yii::t('navbar', 'Params'),
                         'url' => ['/configs/params/list']
                     ],
                 ],
             ],
             // POLLS
             [
-                'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('app',
+                'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('navbar',
                         'Polls') . '</span> <span class="fa arrow"></span></a>',
                 'url' => ['/polls/poll/list']
             ],
             // SYSTEM
             [
-                'label' => '<i class="fa fa-map-marker"></i><span class="nav-label">' . Yii::t('app',
+                'label' => '<i class="fa fa-map-marker"></i><span class="nav-label">' . Yii::t('navbar',
                         'System') . '</span><span class="fa arrow"></span>',
                 'items' => [
                     [
-                        'label' => Yii::t('app', 'Growl'),
+                        'label' => Yii::t('navbar', 'Growl'),
                         'url' => ['/sys/growl/growl/list']
                     ],
                     [
-                        'label' => Yii::t('app', 'Cron'),
+                        'label' => Yii::t('navbar', 'Cron'),
                         'url' => ['/sys/crontab/job/list']
                     ],
                     [
-                        'label' => Yii::t('app', 'Role of User'),
+                        'label' => Yii::t('navbar', 'Role of User'),
                         'url' => ['/sys/user/role/list']
                     ],
                     [
-                        'label' => Yii::t('app', 'Log'),
+                        'label' => Yii::t('navbar', 'Log'),
                         'url' => ['/sys/logbook/logbook/list']
                     ],
 //                    [
-//                        'label' => Yii::t('app', 'Mail'),
+//                        'label' => Yii::t('navbar', 'Mail'),
 //                        'url' => ['/sys/mail/message/list']
 //                    ],
                 ],
             ],
             // SHOP
             [
-                'label' => '<i class="fa fa-map-marker"></i><span class="nav-label">' . Yii::t('app', 'Shop') . '</span><span class="fa arrow"></span>',
+                'label' => '<i class="fa fa-map-marker"></i><span class="nav-label">' . Yii::t('navbar',
+                        'Shop') . '</span><span class="fa arrow"></span>',
                 'items' => [
                     [
-                        'label' => Yii::t('app', 'Delivery Methods'),
+                        'label' => Yii::t('navbar', 'Delivery Methods'),
                         'url' => ['/shop/delivery-methods/list']
                     ],
                     [
-                        'label' => Yii::t('app', 'Payment Methods'),
+                        'label' => Yii::t('navbar', 'Payment Methods'),
                         'url' => ['/shop/payment-methods/list']
                     ],
                     [
-                        'label' => Yii::t('app', 'Orders'),
+                        'label' => Yii::t('navbar', 'Orders'),
                         'url' => ['/shop/order/list']
                     ],
 

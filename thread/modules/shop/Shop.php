@@ -29,5 +29,5 @@ class Shop extends aModule
     {
         return Yii::$app->get('db-core');
     }
-
+    
 }

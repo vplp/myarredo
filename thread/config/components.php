@@ -78,14 +78,21 @@ return [
                 'fileMap' => [
                     'app' => 'app.php',
                 ]
+            ],
+            //translate for backend menu
+            'navbar' => [
+                'class' => \yii\i18n\PhpMessageSource::class,
+                'basePath' => '@thread/app/messages',
+                'fileMap' => [
+                    'navbar' => 'navbar.php',
+                ]
             ]
         ]
     ],
-   /* 'shop_cart' => [
-        'class' => \thread\modules\shop\components\Cart::class,
-        //записать путь к модель с продуктом!
-        'threadProductClass' => \thread\modules\catalog\models\Product::class,
-       'frontendProductClass' => \frontend\modules\catalog\models\Product::class
-
-    ],*/
+    /* 'shop_cart' => [
+         'class' => \thread\modules\shop\components\Cart::class,
+         //записать путь к модель с продуктом!
+         'productClass' => \frontend\modules\catalog\models\Product::class
+ 
+     ],*/
 ];
