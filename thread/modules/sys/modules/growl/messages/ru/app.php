@@ -11,7 +11,6 @@ return [
     'Message' => 'Сообщение',
     'User id' => 'ID Пользователя',
     'Url' => 'Url',
-    'See All Alerts'=>'Смотреть все оповещения',
     //type
     'notice' => 'уведомление',
     'warning' => 'предупреждение',

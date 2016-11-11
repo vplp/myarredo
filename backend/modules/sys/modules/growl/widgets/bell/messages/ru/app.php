@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'See All Alerts' => 'See All Alerts'
+    'See All Alerts' => 'Смотреть все оповещения'
 ];

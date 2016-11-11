@@ -11,5 +11,6 @@ namespace backend\modules\sys\modules\growl;
  */
 class Growl extends \common\modules\sys\modules\growl\Growl
 {
+    
 
 }
