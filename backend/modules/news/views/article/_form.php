@@ -18,7 +18,7 @@ use backend\modules\news\models\{
 <?= Tabs::widget([
     'items' => [
         [
-            'label' => Yii::t('app', 'Settings'),
+            'label' => Yii::t('app', 'General'),
             'content' => $this->render('parts/_settings', [
                 'form' => $form,
                 'model' => $model,
@@ -34,7 +34,7 @@ use backend\modules\news\models\{
             ])
         ],
         [
-            'label' => Yii::t('app', 'Image'),
+            'label' => Yii::t('news', 'Image'),
             'content' => $this->render('parts/_image', [
                 'form' => $form,
                 'model' => $model,
@@ -42,7 +42,7 @@ use backend\modules\news\models\{
             ])
         ],
         [
-            'label' => Yii::t('app', 'Seo'),
+            'label' => Yii::t('seo', 'Seo'),
             'content' => SeoWidget::widget(['nameSpaceModel' => Article::COMMON_NAMESPACE])
         ]
     ]

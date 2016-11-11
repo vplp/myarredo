@@ -58,6 +58,7 @@ return [
     'Finish time' => 'Конец',
     'Settings' => 'Настройки',
     'Remember me' => 'Запомнить меня',
+    'Not selected' => 'Не выбрано',
     
     'KEY_ON' => 'Вкл',
     'KEY_OFF' => 'Выкл',

@@ -96,12 +96,12 @@ class Growl extends ActiveRecord
     public static function getTypeRange()
     {
         return [
-            'notice' => Yii::t('app', 'notice'),
-            'warning' => Yii::t('app', 'warning'),
-//            'error' => Yii::t('app', 'error'),
-            'danger' => Yii::t('app', 'danger'),
-            'success' => Yii::t('app', 'success'),
-            'primary' => Yii::t('app', 'primary'),
+            'notice' => Yii::t('growl', 'notice'),
+            'warning' => Yii::t('growl', 'warning'),
+//            'error' => Yii::t('growl', 'error'),
+            'danger' => Yii::t('growl', 'danger'),
+            'success' => Yii::t('growl', 'success'),
+            'primary' => Yii::t('growl', 'primary'),
         ];
     }
 
