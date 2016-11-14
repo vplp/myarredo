@@ -6,9 +6,9 @@
  */
 return [
     // Module Growl
-    'Growl' => 'Сообщения',
-    'growl' => 'Сообщения',
-    'Message' => 'Сообщение',
+    'Growl' => 'Оповещения',
+    'growl' => 'Оповещения',
+    'Message' => 'Оповещение',
     'User id' => 'ID Пользователя',
     'Url' => 'Url',
     //type
