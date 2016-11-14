@@ -31,22 +31,4 @@ class Configs extends aModule
     {
         return Sys::getDb();
     }
-
-    /**
-     * Image upload path
-     * @return string
-     */
-    public function getFlagUploadPath()
-    {
-        return $this->getBaseUploadPath() . '/language';
-    }
-
-    /**
-     * Image upload URL
-     * @return string
-     */
-    public function getFlagUploadUrl()
-    {
-        return $this->getBaseUploadUrl() . '/language';
-    }
 }

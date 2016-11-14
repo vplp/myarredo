@@ -1,10 +1,10 @@
 <?php
 
-namespace frontend\modules\configs\models;
+namespace frontend\modules\sys\models;
 
 use Yii;
 //
-use common\modules\configs\models\Language as CommonLanguageModel;
+use common\modules\sys\models\Language as CommonLanguageModel;
 
 class Language extends CommonLanguageModel
 {

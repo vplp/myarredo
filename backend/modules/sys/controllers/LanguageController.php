@@ -48,11 +48,11 @@ class LanguageController extends BackendController
             ],
             'fileupload' => [
                 'class' => UploadAction::class,
-                'path' => Yii::$app->getModule('configs')->getFlagUploadUrl()
+                'path' => Yii::$app->getModule('sys')->getFlagUploadUrl()
             ],
             'filedelete' => [
                 'class' => DeleteAction::class,
-                'path' => Yii::$app->getModule('configs')->getFlagUploadUrl()
+                'path' => Yii::$app->getModule('sys')->getFlagUploadUrl()
             ],
         ]);
     }
