@@ -25,6 +25,8 @@ class Bell extends Widget
     protected $messages = [];
     protected $growlLink;
 
+    public $translationsBasePath = __DIR__.'/messages';
+
     /**
      *
      */
