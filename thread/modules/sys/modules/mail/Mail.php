@@ -5,6 +5,7 @@ namespace thread\modules\sys\modules\mail;
 use Yii;
 //
 use thread\app\base\module\abstracts\Module as aModule;
+use thread\modules\sys\Sys;
 
 /**
  * Class Mail
@@ -25,6 +26,6 @@ class Mail extends aModule
      */
     public static function getDb()
     {
-        return Yii::$app->get('db-core');
+        return Sys::getDb();
     }
 }

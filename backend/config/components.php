@@ -33,7 +33,6 @@ return [
     ],
     'view' => [
         'theme' => [
-//            'basePath' => '@app/themes/inspinia',
             'baseUrl' => '@web/themes/defaults',
             'pathMap' => [
                 '@app/layouts' => [

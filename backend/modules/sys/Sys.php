@@ -3,7 +3,7 @@
 namespace backend\modules\sys;
 
 use backend\modules\sys\modules\{
-    growl\Growl, user\User, crontab\Crontab
+    growl\Growl, user\User, crontab\Crontab, configs\Configs
 };
 
 /**
@@ -25,6 +25,9 @@ class Sys extends \common\modules\sys\Sys
         parent::init();
 
         $this->modules = [
+            'configs' => [
+                'class' => Configs::class,
+            ],
             'user' => [
                 'class' => User::class,
             ],

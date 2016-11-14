@@ -5,6 +5,7 @@ namespace thread\modules\sys\modules\user;
 use Yii;
 //
 use thread\app\base\module\abstracts\Module as aModule;
+use thread\modules\sys\Sys;
 
 /**
  * Class User
@@ -25,6 +26,6 @@ class User extends aModule
      */
     public static function getDb()
     {
-        return Yii::$app->get('db-core');
+        return Sys::getDb();
     }
 }

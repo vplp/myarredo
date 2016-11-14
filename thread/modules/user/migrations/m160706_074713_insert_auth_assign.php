@@ -2,6 +2,12 @@
 
 use yii\db\Migration;
 
+/**
+ * Class m160706_074713_insert_auth_assign
+ *
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class m160706_074713_insert_auth_assign extends Migration
 {
     /**

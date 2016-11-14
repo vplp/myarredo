@@ -6,7 +6,7 @@
  */
 return [
     'param' => [
-        'class' => \thread\modules\configs\components\ConfigsParams::class,
+        'class' => \thread\modules\sys\modules\configs\components\ConfigsParams::class,
     ],
     'growl' => [
         'class' => \thread\modules\sys\modules\growl\components\Growl::class,
@@ -79,21 +79,6 @@ return [
                     'app' => 'app.php',
                 ]
             ],
-            //translate for backend menu
-            'navbar' => [
-                'class' => \yii\i18n\PhpMessageSource::class,
-                'basePath' => '@thread/app/messages',
-                'fileMap' => [
-                    'navbar' => 'navbar.php',
-                ]
-            ]
-            
         ]
     ],
-    /* 'shop_cart' => [
-         'class' => \thread\modules\shop\components\Cart::class,
-         //записать путь к модель с продуктом!
-         'productClass' => \frontend\modules\catalog\models\Product::class
- 
-     ],*/
 ];

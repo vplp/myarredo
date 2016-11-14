@@ -23,9 +23,6 @@ return [
     'home' => [
         'class' => \backend\modules\home\Home::class,
     ],
-    'configs' => [
-        'class' => \backend\modules\configs\Configs::class,
-    ],
     'user' => [
         'class' => \backend\modules\user\User::class,
     ],

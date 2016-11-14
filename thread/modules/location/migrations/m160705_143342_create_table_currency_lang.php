@@ -3,7 +3,10 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation for table `table_currency_lang`.
+ * Class m160705_143342_create_table_currency_lang
+ *
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class m160705_143342_create_table_currency_lang extends Migration
 {

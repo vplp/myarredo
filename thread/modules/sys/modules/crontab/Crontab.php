@@ -8,8 +8,8 @@ use yii\log\Logger;
 use yii2tech\crontab\CronTab as Cron;
 //
 use thread\app\base\module\abstracts\Module as aModule;
-//
 use thread\modules\sys\modules\crontab\models\Job;
+use thread\modules\sys\Sys;
 
 /**
  * Class Crontab
@@ -30,7 +30,7 @@ class Crontab extends aModule
      */
     public static function getDb()
     {
-        return Yii::$app->get('db-core');
+        return Sys::getDb();
     }
 
     /**

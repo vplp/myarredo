@@ -2,6 +2,12 @@
 
 use yii\db\Migration;
 
+/**
+ * Class m160705_112041_init_tale_city_lang
+ *
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class m160705_112041_init_tale_city_lang extends Migration
 {
     public $table = '{{%location_city}}';

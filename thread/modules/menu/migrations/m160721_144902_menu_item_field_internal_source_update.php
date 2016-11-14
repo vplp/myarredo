@@ -2,6 +2,12 @@
 
 use yii\db\Migration;
 
+/**
+ * Class m160721_144902_menu_item_field_internal_source_update
+ *
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class m160721_144902_menu_item_field_internal_source_update extends Migration
 {
     /**

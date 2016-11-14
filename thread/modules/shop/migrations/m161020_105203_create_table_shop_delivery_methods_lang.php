@@ -3,6 +3,12 @@
 use thread\modules\shop\Shop;
 use yii\db\Migration;
 
+/**
+ * Class m161020_105203_create_table_shop_delivery_methods_lang
+ *
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class m161020_105203_create_table_shop_delivery_methods_lang extends Migration
 {
     /**

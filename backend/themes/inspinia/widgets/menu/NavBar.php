@@ -5,6 +5,7 @@ use Yii;
 use yii\helpers\{
     ArrayHelper, Html
 };
+use yii\i18n\PhpMessageSource;
 
 /**
  * Class NavBar
@@ -13,17 +14,45 @@ use yii\helpers\{
 class NavBar extends \yii\bootstrap\NavBar
 {
 
+    public $name = 'navbar';
+    public $translationsBasePath = __DIR__ . '/messages';
+
+    /**
+     * Registers translations
+     */
+    public function registerTranslations()
+    {
+
+        Yii::$app->i18n->translations[$this->name] = [
+            'class' => PhpMessageSource::class,
+            'basePath' => $this->translationsBasePath,
+            'fileMap' => [
+                $this->name => 'navbar.php',
+            ],
+        ];
+
+    }
+
+    /**
+     * @var array
+     */
     public $options = [
         'class' => 'navbar-default navbar-static-side',
         'role' => 'navigation'
     ];
-
+    /**
+     * @var bool
+     */
     public $renderInnerContainer = true;
-
+    /**
+     * @var array
+     */
     public $innerContainerOptions = [
         'class' => 'sidebar-collapse'
     ];
-
+    /**
+     * @var array
+     */
     public $containerOptions = [
         'tag' => 'ul',
         'id' => 'side-menu'
@@ -40,6 +69,7 @@ class NavBar extends \yii\bootstrap\NavBar
      */
     public function init()
     {
+        $this->registerTranslations();
         $this->clientOptions = false;
         $options = $this->options;
         $tag = ArrayHelper::remove($options, 'tag', 'nav');
@@ -90,11 +120,11 @@ class NavBar extends \yii\bootstrap\NavBar
                 'url' => ['/news/article/list'],
             ],
             // CORRESPONDENCE
-            [
-                'label' => '<i class="fa fa-newspaper-o"></i><span class="nav-label">' . Yii::t('navbar',
-                        'Correspondence') . '</span><span class="fa arrow"></span>',
-                'url' => ['/correspondence/correspondence/list'],
-            ],
+//            [
+//                'label' => '<i class="fa fa-newspaper-o"></i><span class="nav-label">' . Yii::t('navbar',
+//                        'Correspondence') . '</span><span class="fa arrow"></span>',
+//                'url' => ['/correspondence/correspondence/list'],
+//            ],
             //SEO
             [
                 'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('navbar',
@@ -135,17 +165,6 @@ class NavBar extends \yii\bootstrap\NavBar
                     ],
                 ],
             ],
-            // CONFIGS
-            [
-                'label' => '<i class="fa fa-map-marker"></i><span class="nav-label">' . Yii::t('navbar',
-                        'Configs') . '</span><span class="fa arrow"></span>',
-                'items' => [
-                    [
-                        'label' => Yii::t('navbar', 'Params'),
-                        'url' => ['/configs/params/list']
-                    ],
-                ],
-            ],
             // POLLS
             [
                 'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('navbar',
@@ -158,6 +177,10 @@ class NavBar extends \yii\bootstrap\NavBar
                         'System') . '</span><span class="fa arrow"></span>',
                 'items' => [
                     [
+                        'label' => Yii::t('navbar', 'Configs'),
+                        'url' => ['/sys/configs/params/list']
+                    ],
+                    [
                         'label' => Yii::t('navbar', 'Growl'),
                         'url' => ['/sys/growl/growl/list']
                     ],
@@ -169,10 +192,10 @@ class NavBar extends \yii\bootstrap\NavBar
                         'label' => Yii::t('navbar', 'Role of User'),
                         'url' => ['/sys/user/role/list']
                     ],
-                    [
-                        'label' => Yii::t('navbar', 'Log'),
-                        'url' => ['/sys/logbook/logbook/list']
-                    ],
+//                    [
+//                        'label' => Yii::t('navbar', 'Log'),
+//                        'url' => ['/sys/logbook/logbook/list']
+//                    ],
 //                    [
 //                        'label' => Yii::t('navbar', 'Mail'),
 //                        'url' => ['/sys/mail/message/list']

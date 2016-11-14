@@ -3,7 +3,10 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation for table `table_country_lang`.
+ * Class m160705_094016_create_table_country_lang
+ *
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class m160705_094016_create_table_country_lang extends Migration
 {

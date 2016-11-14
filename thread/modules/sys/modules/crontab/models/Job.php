@@ -2,7 +2,6 @@
 
 namespace thread\modules\sys\modules\crontab\models;
 
-use thread\modules\sys\modules\crontab\Crontab;
 use Yii;
 //
 use thread\app\base\models\ActiveRecord;

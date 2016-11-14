@@ -2,6 +2,12 @@
 
 use yii\db\Migration;
 
+/**
+ * Class m160705_104846_insert_default_users
+ *
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class m160705_104846_insert_default_users extends Migration
 {
     /**

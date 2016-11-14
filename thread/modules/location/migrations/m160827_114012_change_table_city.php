@@ -3,7 +3,10 @@
 use yii\db\Migration;
 
 /**
- * m160827_114012_change_table_city
+ * Class m160827_114012_change_table_city
+ *
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class m160827_114012_change_table_city extends Migration
 {

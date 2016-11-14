@@ -2,6 +2,12 @@
 
 use yii\db\Migration;
 
+/**
+ * Class m160705_110927_init_tale_country_lang
+ *
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
+ */
 class m160705_110927_init_tale_country_lang extends Migration
 {
 

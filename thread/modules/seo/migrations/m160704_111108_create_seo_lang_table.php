@@ -3,7 +3,10 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation for table `seo_lang_table`.
+ * Class m160704_111108_create_seo_lang_table
+ *
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class m160704_111108_create_seo_lang_table extends Migration
 {
