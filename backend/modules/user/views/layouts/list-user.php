@@ -32,7 +32,7 @@ use yii\widgets\Breadcrumbs;
     </div>
     <div class="col-md-2">
         <h2 class="btn-group" role="group">
-            <?= Html::a(Yii::t('app', 'Group'), ['/user/group/list'], ['class' => 'btn btn-warning']) ?>
+            <?= Html::a(Yii::t('app', 'Groups'), ['/user/group/list'], ['class' => 'btn btn-warning']) ?>
         </h2>
     </div>
     <div class="col-md-3">

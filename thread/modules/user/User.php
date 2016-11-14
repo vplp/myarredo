@@ -22,6 +22,7 @@ use thread\app\base\module\abstracts\Module as aModule;
 class User extends aModule
 {
     public $name = 'user';
+    public $translationsBasePath = __DIR__ . '/messages';
     public $configPath = __DIR__ . '/config.php';
 
     public $itemOnPage = 20;
