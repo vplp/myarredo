@@ -20,7 +20,7 @@ echo GridView::widget([
             'label' => 'Articles',
             'format' => 'raw',
             'value' => function ($model) {
-                return Html::a(Yii::t('app', 'Articles') . ' (' . $model->getArticlesCount() . ')',
+                return Html::a(Yii::t('news', 'Articles') . ' (' . $model->getArticlesCount() . ')',
                     ['/news/article/list', 'Article[group_id]' => $model['id']]);
             }
         ],

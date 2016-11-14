@@ -9,7 +9,8 @@ return [
     //module name
     'News' => 'Новости',
     'news' => 'Новости',
-    'Article' => 'Статьи',
+    'Article' => 'Статья',
+    'Articles' => 'Статьи',
     'number_article' => 'Количество статей',
     'Image' => 'Изображение',
     'Page' => '',

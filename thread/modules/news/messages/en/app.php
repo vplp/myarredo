@@ -10,5 +10,6 @@ return [
     'news' => 'News',
     'Group' => 'Group',
     'Article' => 'Article',
+    'Articles' => 'Articles',
     'number_article' => 'The number of articles'
 ];

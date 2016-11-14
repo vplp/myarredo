@@ -15,7 +15,7 @@ use yii\widgets\Breadcrumbs;
     <div class="col-md-7">
         <h2>
             <?= Yii::t($this->context->module->name, $this->context->module->title) ?>.
-            <?= Yii::t($this->context->module->name, $this->context->title) ?>
+            <?= Yii::t('app', 'Groups') ?>
         </h2>
         <?= Breadcrumbs::widget([
             'homeLink' => false,
@@ -24,7 +24,7 @@ use yii\widgets\Breadcrumbs;
                     'label' => Yii::t($this->context->module->name, $this->context->module->title),
                 ],
                 [
-                    'label' => Yii::t($this->context->module->name, $this->context->title),
+                    'label' => Yii::t('app', 'Groups'),
                 ],
                 Yii::t('app', 'List'),
             ],
@@ -32,7 +32,7 @@ use yii\widgets\Breadcrumbs;
     </div>
     <div class="col-md-2">
         <h2 class="btn-group" role="group">
-            <?= Html::a(Yii::t('app', 'Article'), ['/news/article/list'], ['class' => 'btn btn-warning']) ?>
+            <?= Html::a(Yii::t('news', 'Articles'), ['/news/article/list'], ['class' => 'btn btn-warning']) ?>
         </h2>
     </div>
     <div class="col-md-3">
