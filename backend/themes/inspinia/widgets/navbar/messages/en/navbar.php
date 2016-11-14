@@ -28,7 +28,7 @@ return [
     'Language' => 'Язык',
     'Polls' => 'Опросы',
     'System' => 'Система',
-    'Growl' => 'Сообщения',
+    'Growl' => 'Оповещения',
     'Cron' => 'Cron',
     'Role of User' => 'Роли пользователей',
     'Log' => 'Log',
