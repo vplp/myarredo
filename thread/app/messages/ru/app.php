@@ -7,7 +7,7 @@
 return [
     //general attributes
     'ID' => 'ID',
-    'Alias' => 'Alias',
+    'Alias' => 'Символическая ссылка для URL',
     'Published time' => 'Время публикации',
     'Create time' => 'Время создания',
     'Published' => 'Опубликовано',
@@ -18,12 +18,12 @@ return [
     'Title' => 'Название',
     'Value' => 'Значение',
     'Readonly' => 'Только для чтения',
-    'Position' => 'Сортировка',
+    'Position' => 'Позиция',
     'Parent' => 'Родитель',
     'Type' => 'Тип',
     'Link' => 'Ссылка',
     'Description' => 'Описание',
-    'Content' => 'Контент',
+    'Content' => 'Наполнение',
     'Image link' => 'Картинка',
     'Email' => 'Email',
     'Phone' => 'Телефон',
@@ -33,26 +33,32 @@ return [
     'Group' => 'Группа',
     'Groups' => 'Группы',
     'List' => 'Список',
-    //
+    'General' => 'Базовые',
+
+
+    //Buttons
+    'Add' => 'Добавить',
     'Create' => 'Создать',
+    'Save' => 'Сохранить',
+    'Save and Exit' => 'Сохранить и Выйти',
+    'Add and Exit' => 'Добавить и Выйти',
+    'Cancel' => 'Отмена',
+    'Trash' => 'Корзина',
+    'Back to list' => 'Назад к списку',
+    'Back' => 'Назад',
     'Update' => 'Изменить',
     'Edit' => 'Изменить',
     'Delete' => 'Удалить',
     'Restore' => 'Восстановить',
-    'Trash' => 'Корзина',
     'Actions' => 'Действия',
-    'Back to list' =>'Назад к списку',
-    //
-    'Save and Exit' => 'Сохранить и выйти',
-    'Save' => 'Сохранить',
-    'Add and Exit' => 'Добавить и выйти',
-    'Add' => 'Добавить',
-    'Cancel' => 'Отмена',
+
+
     'Choose group' => 'Выберите группу',
     'Start time' => 'Начало',
     'Finish time' => 'Конец',
     'Settings' => 'Настройки',
     'Remember me' => 'Запомнить меня',
+    'Not selected' => 'Не выбрано',
     
     'KEY_ON' => 'Вкл',
     'KEY_OFF' => 'Выкл',

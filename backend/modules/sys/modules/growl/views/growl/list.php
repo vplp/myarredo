@@ -1,6 +1,8 @@
 <?php
 
 use yii\grid\GridView;
+use yii\helpers\Html;
+
 //
 use thread\widgets\grid\{
     ActionEditColumn, ActionToTrashColumn, GridViewFilter
@@ -15,7 +17,7 @@ echo GridView::widget([
             'filter' => GridViewFilter::dropDownList($filter, 'type', $filter::getTypeRange()),
             'format' => 'raw',
             'value' => function ($model) {
-                return Html::tag('span', $model['type'], [
+                return Html::tag('span', Yii::t('growl', $model['type']), [
                     'class' => 'label label-' . $model['type']
                 ]);
             }

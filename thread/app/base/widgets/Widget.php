@@ -2,6 +2,7 @@
 namespace thread\app\base\widgets;
 
 use Yii;
+use yii\i18n\PhpMessageSource;
 
 /**
  * Class Widget
@@ -50,7 +51,7 @@ abstract class Widget extends \yii\base\Widget
     {
 
         Yii::$app->i18n->translations[$this->name] = [
-            'class' => PhpMessageSource::class,
+            'class' =>\yii\i18n\PhpMessageSource::class,
             'basePath' => $this->translationsBasePath,
             'fileMap' => [
                 $this->name => 'app.php',

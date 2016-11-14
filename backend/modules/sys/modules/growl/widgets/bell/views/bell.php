@@ -16,7 +16,7 @@
     <li>
         <div class="text-center link-block">
             <a href="<?= $growlLink ?>">
-                <strong><?= Yii::t('app', 'See All Alerts') ?></strong>
+                <strong><?= Yii::t('widget', 'See All Alerts') ?></strong>
                 <i class="fa fa-angle-right"></i>
             </a>
         </div>
