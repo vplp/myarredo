@@ -29,7 +29,7 @@ $this->beginPage()
 <?php $this->beginBody() ?>
 
 <div id="wrapper">
-    <?= backend\themes\inspinia\widgets\menu\NavBar::widget(['bundle' => $bundle]); ?>
+    <?= backend\themes\inspinia\widgets\navbar\NavBar::widget(['bundle' => $bundle]); ?>
     <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top gray-bg" role="navigation" style="margin-bottom: 0">

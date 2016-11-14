@@ -1,15 +1,20 @@
 <?php
-namespace backend\themes\inspinia\widgets\menu;
+namespace backend\themes\inspinia\widgets\navbar;
 
 use Yii;
 use yii\helpers\{
     ArrayHelper, Html
 };
 use yii\i18n\PhpMessageSource;
+//
+use backend\themes\inspinia\widgets\menu\Menu;
 
 /**
  * Class NavBar
- * @package backend\themes\inspinia\widgets\menu
+ *
+ * @package backend\themes\inspinia\widgets\navbar
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class NavBar extends \yii\bootstrap\NavBar
 {
