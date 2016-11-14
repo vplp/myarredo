@@ -15,9 +15,8 @@ echo GridView::widget([
             'filter' => GridViewFilter::dropDownList($filter, 'type', $filter::getTypeRange()),
             'format' => 'raw',
             'value' => function ($model) {
-                echo Yii::t('growl', $model['type']);
                 return Html::tag('span', Yii::t('growl', $model['type']), [
-                    'class' => 'label label-' .$model['type']
+                    'class' => 'label label-' . $model['type']
                 ]);
             }
         ],
