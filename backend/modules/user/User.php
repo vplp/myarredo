@@ -12,4 +12,10 @@ namespace backend\modules\user;
 class User extends \common\modules\user\User
 {
     public $username_attribute = 'username';
+
+    /**
+     * Шлях до каталогу з повідомленнями
+     * @var string
+     */
+    public $translationsBasePath = __DIR__.'/messages';
 }

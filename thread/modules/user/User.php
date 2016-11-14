@@ -34,6 +34,8 @@ class User extends aModule
 
     public $passwordResetTokenExpire = 3600;
 
+  
+
     /**
      * @return string
      */
@@ -67,4 +69,5 @@ class User extends aModule
     {
         return $this->getBaseUploadUrl() . $user_id . '/profile';
     }
+
 }

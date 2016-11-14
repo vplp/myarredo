@@ -6,7 +6,7 @@
  */
 return [
     // Module Cron
-    'crontab' => 'crontab',
+    'crontab' => 'Задачи по расписанию',
     'Job' => 'Задачи',
     'Command' => 'Команда',
     'Minute' => 'Минута',

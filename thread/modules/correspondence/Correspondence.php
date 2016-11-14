@@ -72,13 +72,5 @@ class Correspondence extends aModule
         return Yii::$app->getUser()->identityClass;
     }
 
-    public $translationsFileMap = [
-        'correspondence' => [
-            'class' => \yii\i18n\PhpMessageSource::class,
-            'basePath' => '@thread/modules/correspondence/messages',
-            'fileMap' => [
-                'correspondence' => ['app.php'],
-            ],
-        ]
-    ];
+   
 }
