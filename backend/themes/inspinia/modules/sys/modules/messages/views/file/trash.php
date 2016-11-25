@@ -1,16 +1,8 @@
 <?php
 
-use thread\widgets\grid\{
-    ActionDeleteColumn, ActionRestoreColumn
-};
-//
 use backend\themes\inspinia\widgets\GridView;
 
 /**
- *
- * @package admin\modules\page\view
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
  *
  */
 echo GridView::widget([
@@ -19,10 +11,10 @@ echo GridView::widget([
     'columns' => [
         'lang.title',
         [
-            'class' => ActionDeleteColumn::class,
+            'class' => \thread\widgets\grid\ActionDeleteColumn::class,
         ],
         [
-            'class' => ActionRestoreColumn::class
+            'class' => \thread\widgets\grid\ActionRestoreColumn::class
         ],
     ]
 ]);

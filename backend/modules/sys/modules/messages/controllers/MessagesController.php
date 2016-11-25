@@ -22,6 +22,7 @@ class MessagesController extends BackendController
     public $modelLang = MessagesLang::class;
     public $filterModel = filterMessagesModel::class;
     public $title = 'Messages';
+    public $name = 'messages';
 
     public function actions()
     {

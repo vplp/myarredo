@@ -1,10 +1,6 @@
 <?php
 
-use yii\grid\GridView;
-//
-use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn
-};
+use backend\themes\inspinia\widgets\GridView;
 
 /**
  * @var \backend\modules\news\models\search\Article $model
@@ -12,6 +8,7 @@ use thread\widgets\grid\{
 
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
+    'tableOptions' => ['class' => 'table table-striped table-bordered'],
     'filterModel' => $filter,
     'columns' => [
 //        'arraykey',
@@ -20,10 +17,7 @@ echo GridView::widget([
             'value' => 'lang.title',
         ],
         [
-            'class' => ActionEditColumn::class,
-        ],
-        [
-            'class' => ActionToTrashColumn::class,
+            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class
         ],
     ]
 ]);

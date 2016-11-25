@@ -38,7 +38,7 @@ class Sys extends \common\modules\sys\Sys
                 'class' => Crontab::class,
             ],
             'messages' => [
-                'class' => Crontab::class,
+                'class' => Messages::class,
             ]
         ];
     }

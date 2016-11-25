@@ -29,6 +29,7 @@ class FileController extends BackendController
     public $modelLang = MessagesFileLang::class;
     public $filterModel = filterMessagesFileModel::class;
     public $title = 'Messages';
+    public $name = 'fileofmessages';
 
     public function actions()
     {

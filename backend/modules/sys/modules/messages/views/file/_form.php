@@ -17,6 +17,6 @@ ActiveForm::end();
 <?php
 if ($model->isNewRecord !== true) {
     echo $this->render('../iframe', [
-        'link' => ['/messages/messages/list', 'group_id' => $model['id']],
+        'link' => ['/sys/messages/messages/list', 'group_id' => $model['id']],
     ]);
 }

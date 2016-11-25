@@ -1,6 +1,6 @@
 <?php
 
-use backend\themes\defaults\assets\AppAsset;
+use backend\themes\inspinia\assets\AppAsset;
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>

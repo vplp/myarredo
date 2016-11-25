@@ -1,10 +1,6 @@
 <?php
 
-use yii\grid\GridView;
-//
-use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn
-};
+use backend\themes\inspinia\widgets\GridView;
 
 /**
  *
@@ -12,14 +8,12 @@ use thread\widgets\grid\{
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
+    'tableOptions' => ['class' => 'table table-striped table-bordered'],
     'columns' => [
         'lang.title',
         'messagefilepath',
         [
-            'class' => ActionEditColumn::class,
-        ],
-        [
-            'class' => ActionToTrashColumn::class,
+            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class
         ],
     ]
 ]);

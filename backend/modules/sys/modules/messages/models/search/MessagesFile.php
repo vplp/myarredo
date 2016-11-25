@@ -49,7 +49,7 @@ class MessagesFile extends MessagesFileModel
     public function baseSearch($query, $params)
     {
         /** @var MessagesModule $module */
-        $module = Yii::$app->getModule('messages');
+        $module = Yii::$app->getModule('sys/messages');
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [

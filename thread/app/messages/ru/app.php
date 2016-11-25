@@ -27,6 +27,7 @@ return [
     'Image link' => 'Картинка',
     'Email' => 'Email',
     'Phone' => 'Телефон',
+    'File' => 'Файл',
     //
     'Module' => 'Модуль',
     'Model' => 'Модель',
@@ -59,7 +60,7 @@ return [
     'Settings' => 'Настройки',
     'Remember me' => 'Запомнить меня',
     'Not selected' => 'Не выбрано',
-    
+
     'KEY_ON' => 'Вкл',
     'KEY_OFF' => 'Выкл',
 
@@ -67,8 +68,6 @@ return [
     'Structure' => 'Структура',
     'Menu' => 'Меню',
     'Pages' => 'Страницы',
-    'About Us' => 'О Нас',
-    'Brands' => 'Бренды',
     'News' => 'Новости',
     'Article' => 'Новость',
     'Correspondence' => 'Мои обращения',
@@ -93,6 +92,4 @@ return [
     'Orders' => 'Заказы',
     'Payment Methods' => 'Методы оплаты',
     'Delivery Methods' => 'Методы доставки',
-
-
 ];

@@ -31,7 +31,7 @@ class FileList extends Component
      */
     public function init()
     {
-        $this->module = Yii::$app->getModule('messages');
+        $this->module = Yii::$app->getModule('sys/messages');
         $this->lang = $this->module->defaultLang;
         $rootPath = Yii::getAlias('@root');
         $this->rootPath = $rootPath;
