@@ -1,7 +1,7 @@
 <?php
 
 use yii\db\Migration;
-use thread\modules\messages\Messages;
+use thread\modules\sys\modules\messages\Messages;
 
 /**
  * Class m161123_041125_create_fv_system_messages_table
