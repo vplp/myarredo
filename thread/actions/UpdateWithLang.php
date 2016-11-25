@@ -106,7 +106,7 @@ class UpdateWithLang extends ActionCRUD
         $this->modelLang->setScenario($this->scenario);
 
         if ($this->model->load(Yii::$app->getRequest()->post())) {
-            var_dump(Yii::$app->language);
+//            var_dump(Yii::$app->language);
             $model = $this->model;
             $transaction = $model::getDb()->beginTransaction();
             try {
