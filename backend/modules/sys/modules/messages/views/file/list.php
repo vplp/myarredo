@@ -19,11 +19,11 @@ echo GridView::widget([
             'value' => 'lang.title',
         ],
         'messagefilepath',
-        [
-            'class' => ActionEditColumn::class,
-        ],
-        [
-            'class' => ActionToTrashColumn::class,
-        ],
+//        [
+//            'class' => ActionEditColumn::class,
+//        ],
+//        [
+//            'class' => ActionToTrashColumn::class,
+//        ],
     ]
 ]);

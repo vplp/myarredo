@@ -3,7 +3,7 @@ namespace backend\modules\sys\modules\messages\controllers;
 
 use Yii;
 use yii\helpers\{
-    ArrayHelper, Url
+    ArrayHelper, Url, FileHelper
 };
 //
 use thread\app\base\controllers\BackendController;
@@ -84,6 +84,7 @@ class FileController extends BackendController
                             $toFile .= "'{$infoItem['arraykey']}'=>'" . str_replace('\'', '\\\'', $infoItem['lang']['title']) . "'," . PHP_EOL;
                         }
                         $toFile .= '];' . PHP_EOL;
+                        FileHelper::createDirectory(dirname($rootPath . $targetfile));
                         file_put_contents($rootPath . $targetfile, $toFile);
                     }
                 }

@@ -17,7 +17,8 @@ echo GridView::widget([
         ],
         'messagefilepath',
         [
-            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class
+            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class,
+            'deleteLink' => false,
         ],
     ]
 ]);
