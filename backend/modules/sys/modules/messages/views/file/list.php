@@ -13,7 +13,11 @@ echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
-        'lang.title',
+        [
+            'label' => Yii::t('app', 'Title'),
+            'attribute' => 'title',
+            'value' => 'lang.title',
+        ],
         'messagefilepath',
         [
             'class' => ActionEditColumn::class,

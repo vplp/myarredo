@@ -93,7 +93,7 @@ class MessagesFile extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
-            'messagefilepath' => Yii::t('app', 'messagefilepath'),
+            'messagefilepath' => Yii::t('messages', 'messagefilepath'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
         ];

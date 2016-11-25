@@ -12,7 +12,7 @@ ActiveForm::end();
 
 ?>
     <div class="form-group field-messageslang-title required">
-        <label class="control-label"><?= Yii::t('app', 'Messages') ?></label>
+        <label class="control-label"><?= Yii::t('messages', 'Messages') ?></label>
     </div>
 <?php
 if ($model->isNewRecord !== true) {

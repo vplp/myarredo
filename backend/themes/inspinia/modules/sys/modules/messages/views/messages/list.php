@@ -11,8 +11,8 @@ echo GridView::widget([
     'tableOptions' => ['class' => 'table table-striped table-bordered'],
     'filterModel' => $filter,
     'columns' => [
-//        'arraykey',
         [
+            'label' => Yii::t('app', 'Title'),
             'attribute' => 'title',
             'value' => 'lang.title',
         ],

@@ -92,8 +92,8 @@ class Messages extends ActiveRecord
             'group_id' => Yii::t('app', 'File'),
             'arraykey' => Yii::t('messages', 'Array key'),
             'on_default_lang' => Yii::t('messages', 'On default lang'),
-            'created_at' => Yii::t('app', 'Create time'),
-            'updated_at' => Yii::t('app', 'Update time')
+            'created_at' => Yii::t('app', 'Created at'),
+            'updated_at' => Yii::t('app', 'Updated at')
         ];
     }
 

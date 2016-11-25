@@ -10,7 +10,10 @@ use yii\helpers\{
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-6">
-        <h2><?= $this->context->title ?></h2>
+        <h2>
+            <?= Yii::t($this->context->module->name, $this->context->module->title) ?>.
+            <?= Yii::t($this->context->module->name, $this->context->title) ?>.
+        </h2>
     </div>
     <div class="col-lg-2" style="text-align: right;">
         <h2>

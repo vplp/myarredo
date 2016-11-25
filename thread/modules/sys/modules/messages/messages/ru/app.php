@@ -6,4 +6,8 @@
  */
 return [
     //module name
+    'On default lang' => 'НА языке по-молчанию',
+    'messagefilepath' => 'Путь к базоваому файлу',
+    'Messages' => 'Надписи интерфейса',
+    'messages' => 'Надписи интерфейса',
 ];
