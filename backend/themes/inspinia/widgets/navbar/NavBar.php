@@ -197,6 +197,10 @@ class NavBar extends \yii\bootstrap\NavBar
                         'label' => Yii::t('navbar', 'Role of User'),
                         'url' => ['/sys/user/role/list']
                     ],
+                    [
+                        'label' => Yii::t('navbar', 'Messages'),
+                        'url' => ['/sys/messages/file/list']
+                    ],
 //                    [
 //                        'label' => Yii::t('navbar', 'Log'),
 //                        'url' => ['/sys/logbook/logbook/list']

@@ -10,8 +10,6 @@ return [
     'Structure' => 'Структура',
     'Menu' => 'Меню',
     'Pages' => 'Страницы',
-    'About Us' => 'О Нас',
-    'Brands' => 'Бренды',
     'News' => 'Новости',
     'Article' => 'Новость',
     'Correspondence' => 'Мои обращения',
@@ -36,5 +34,5 @@ return [
     'Orders' => 'Заказы',
     'Payment Methods' => 'Методы оплаты',
     'Delivery Methods' => 'Методы доставки',
-
+    'Messages' => 'Надписи интерфейса',
 ];
