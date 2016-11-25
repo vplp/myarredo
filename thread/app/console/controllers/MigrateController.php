@@ -1,6 +1,7 @@
 <?php
 namespace thread\app\console\controllers;
 
+use Yii;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -11,7 +12,78 @@ use yii\helpers\ArrayHelper;
  */
 class MigrateController extends \yii\console\controllers\MigrateController
 {
+    /**
+     *
+     * [
+     *      '@thread/modules/user/migrations',
+     * ]
+     *
+     * @var array
+     */
     public $migrationPaths = [];
+
+    /**
+     *
+     *[
+     *      '@thread/modules',
+     * ]
+     *
+     * @var array
+     */
+    public $migrationPathsOfModules = [];
+
+
+    public function __construct($id, $module, $config = [])
+    {
+        parent::__construct($id, $module, $config);
+
+        $this->initPathsOfModules();
+    }
+
+    /**
+     *
+     */
+    public function initPathsOfModules()
+    {
+        if (!empty($this->migrationPathsOfModules)) {
+            foreach ($this->migrationPathsOfModules as $module) {
+                $list = $this->getDirsIntoModule(Yii::getAlias($module));
+                if (!empty($list)) {
+                    foreach ($list as $item) {
+                        if (is_dir($item . DIRECTORY_SEPARATOR . 'migrations')) {
+                            $this->migrationPaths[] = $item . DIRECTORY_SEPARATOR . 'migrations';
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * @param $baseDir
+     * @return array
+     * @throws InvalidParamException
+     */
+    public function getDirsIntoModule($baseDir)
+    {
+        $list = [];
+        $handle = opendir($baseDir);
+        if ($handle === false) {
+            throw new InvalidParamException("Unable to open directory: $dir");
+        }
+        while (($file = readdir($handle)) !== false) {
+            if ($file === '.' || $file === '..') {
+                continue;
+            }
+            $path = $baseDir . DIRECTORY_SEPARATOR . $file;
+            if (is_dir($path)) {
+                $list[] = $path;
+            }
+        }
+        closedir($handle);
+
+        return $list;
+    }
 
     /**
      * Returns the migrations that are not applied.
