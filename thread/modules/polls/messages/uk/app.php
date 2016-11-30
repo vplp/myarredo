@@ -5,4 +5,6 @@
  * @copyright (c), Thread
  */
 return [
+    'polls' =>'Опитування',
+    'Poll' =>'Опитування'
 ];

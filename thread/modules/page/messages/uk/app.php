@@ -5,4 +5,7 @@
  * @copyright (c), Thread
  */
 return [
+    'Pages' => 'Сторінки',
+    'page' => 'Сторінки',
+    'Page' => 'Сторінки',
 ];

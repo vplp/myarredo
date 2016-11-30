@@ -6,4 +6,8 @@
  */
 return [
     //module name
+    'On default lang' => 'Мовою за-замовчеванням',
+    'messagefilepath' => 'Шлях до базового файлу',
+    'Messages' => 'Написи інтерфейсу',
+    'messages' => 'Написи інтерфейсу',
 ];

@@ -5,6 +5,6 @@
  * @copyright (c), Thread
  */
 return [
-    'sys' => 'System',
-    'Language' => 'Language',
+    'sys' => 'Система',
+    'Language' => 'Мови',
 ];

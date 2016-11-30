@@ -2,5 +2,6 @@
 
 
 return [
-
+    'correspondence' => 'Кореспонденція',
+    'Correspondence' => 'Кореспонденція',
 ];
