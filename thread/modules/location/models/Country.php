@@ -148,4 +148,20 @@ class Country extends ActiveRecord
         return $this->hasMany(Currency::class, ['id' => 'currency_id'])->viaTable('%location_rel_country_currency', ['country_id' => 'id']);
     }
 
+    /**
+     * @return ActiveQuery
+     */
+    public function getCities()
+    {
+        return $this->hasMany(City::class, ['country_id' => 'id']);
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getCitiesCount()
+    {
+        return $this->getCities()->count();
+    }
+
 }

@@ -1,8 +1,9 @@
 <?php
 use yii\helpers\Url;
-use thread\widgets\grid\ActionCheckboxColumn;
-use backend\themes\inspinia\widgets\GridView;
 //
+use thread\widgets\grid\ActionStatusColumn;
+//
+use backend\themes\inspinia\widgets\GridView;
 use backend\modules\menu\models\search\MenuItem;
 
 /**
@@ -26,7 +27,7 @@ echo GridView::widget(
             ],
             'position',
             [
-                'class' => ActionCheckboxColumn::class,
+                'class' => ActionStatusColumn::class,
                 'attribute' => 'published',
                 'action' => 'published'
             ],

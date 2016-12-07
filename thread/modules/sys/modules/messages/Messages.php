@@ -5,6 +5,7 @@ namespace thread\modules\sys\modules\messages;
 use Yii;
 //
 use thread\app\base\module\abstracts\Module as aModule;
+use thread\modules\sys\Sys;
 
 /**
  * Class Messages
@@ -43,6 +44,6 @@ class Messages extends aModule
      */
     public static function getDb()
     {
-        return Yii::$app->get('db');
+        return Sys::getDb();
     }
 }

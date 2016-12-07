@@ -61,6 +61,8 @@ class City extends CityModel implements BaseBackendSearchModel
             ]
         );
 
+        $query->andWhere(['country_id' => Yii::$app->getRequest()->get('country_id') ?? '']);
+
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
