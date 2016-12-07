@@ -65,21 +65,13 @@ class Page extends PageModel implements BaseBackendSearchModel
                 ]
             ]
         ]);
-
-        $dataProvider->setSort([
-            'attributes' => [
-                'title' => [
-                    'asc' => ['title' => SORT_ASC],
-                    'desc' => ['title' => SORT_DESC],
-                    'default' => SORT_ASC
-                ],
-                'published' => [
-                    'asc' => ['published' => SORT_ASC],
-                    'desc' => ['published' => SORT_DESC],
-                    'default' => SORT_ASC
-                ],
-            ],
-        ]);
+        /**
+         * Sort by no module attributes
+         */
+        $dataProvider->sort->attributes['title'] = [
+            'asc' => ['title' => SORT_ASC],
+            'desc' => ['title' => SORT_DESC],
+        ];
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
