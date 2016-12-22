@@ -2,10 +2,10 @@
 namespace thread\modules\sys\modules\messages\helpers;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\base\{
     Component
 };
-use yii\helpers\ArrayHelper;
 //
 use thread\modules\sys\modules\messages\models\{
     MessagesFile, Messages, MessagesLang
