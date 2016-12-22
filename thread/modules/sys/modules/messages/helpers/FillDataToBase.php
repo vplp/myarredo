@@ -98,7 +98,7 @@ class FillDataToBase extends Component
      */
     public function addDataCellToBase($key, $value)
     {
-        if (Messages::findByArrayKey($key) === null) {
+        if (Messages::findByArrayKey($key, $this->group_id) === null) {
             $md = new Messages([
                 'group_id' => $this->group_id,
                 'alias' => Messages::getKey($key),

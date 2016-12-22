@@ -67,7 +67,7 @@ class Messages extends ActiveRecord
             [['alias'], 'string', 'max' => 255],
             [['on_default_lang'], 'string'],
             [['required'], 'string'],
-            ['alias', 'unique', 'targetAttribute' => ['alias', 'arraykey']]
+            ['alias', 'unique', 'targetAttribute' => ['alias', 'group_id']]
         ];
     }
 
@@ -125,10 +125,11 @@ class Messages extends ActiveRecord
 
     /**
      * @param string $arraykey
+     * @param int $groupId
      * @return mixed
      */
-    public static function findByArrayKey(string $arraykey)
+    public static function findByArrayKey(string $arraykey, int $groupId)
     {
-        return self::find()->alias(self::getKey($arraykey))->one();
+        return self::find()->alias(self::getKey($arraykey))->andWhere(['group_id' => $groupId])->one();
     }
 }
