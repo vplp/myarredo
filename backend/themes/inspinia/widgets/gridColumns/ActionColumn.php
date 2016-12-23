@@ -46,8 +46,8 @@ class ActionColumn extends Column
      */
     protected function renderDataCellContent($model, $key, $index)
     {
-        $updateLink = ($this->updateLink !== false) ? Html::a('<i class="fa fa-pencil"></i> ', $this->getUpdateLink($model), ['class' => 'btn btn-success btn-s']) : '';
-        $deleteLink = ($this->deleteLink !== false) ? Html::a('<i class="fa fa-trash"></i> ', $this->getDeleteLink($model), ['class' => 'btn btn-danger btn-s']) : '';
+        $updateLink = ($this->getUpdateLink($model) !== false) ? Html::a('<i class="fa fa-pencil"></i> ', $this->getUpdateLink($model), ['class' => 'btn btn-success btn-s']) : '';
+        $deleteLink = ($this->getDeleteLink($model) !== false) ? Html::a('<i class="fa fa-trash"></i> ', $this->getDeleteLink($model), ['class' => 'btn btn-danger btn-s']) : '';
 
         return '<table style="display: inline-block;"><tr><td>' . $updateLink .
         '</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>' . $deleteLink . '</td></tr></table>';
