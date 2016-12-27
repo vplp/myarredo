@@ -29,7 +29,7 @@ echo GridView::widget([
         ],
         'username',
         [
-            'value' => function($model){
+            'value' => function ($model) {
                 return $model->profile->getFullName();
             }
         ],
@@ -57,7 +57,7 @@ echo GridView::widget([
         [
             'class' => ActionToTrashColumn::class,
             'link' => function ($model) {
-                return ($model['id'] == 1) ? '' : ['intrash', 'id' => $model['id']];
+                return ($model['id'] == 1 || Yii::$app->getUser()->id == $model['id']) ? '' : ['intrash', 'id' => $model['id']];
             }
         ],
     ]

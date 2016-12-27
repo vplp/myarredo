@@ -6,7 +6,7 @@
  */
 return [
     'user' => [
-        'enableAutoLogin' => false,
+        'enableAutoLogin' => true,
     ],
     'i18n' => [
         'class' => \thread\app\base\i18n\I18N::class,
