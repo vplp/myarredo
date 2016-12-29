@@ -7,6 +7,7 @@
 return [
     'location' => 'Location',
     'Country' => 'Country',
+    'City' => 'City',
     'Currency' => 'Currency',
     'Language' => 'Language',
     'location_country_id' => 'Country'

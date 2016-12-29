@@ -5,5 +5,7 @@
  * @copyright (c), Thread
  */
 return [
-    'growl' => 'Growl',
+    'user' => 'User',
+    'Role' => 'Role',
+    'Name' => 'Name',
 ];

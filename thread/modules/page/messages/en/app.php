@@ -6,4 +6,6 @@
  */
 return [
     'page' => 'Page',
+    'Page' => 'Page',
+    'Pages' => 'Pages'
 ];

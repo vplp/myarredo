@@ -7,4 +7,5 @@
 return [
     'configs' => 'Configs',
     'Params' => 'Params',
+    'Groups' => 'Groups',
 ];

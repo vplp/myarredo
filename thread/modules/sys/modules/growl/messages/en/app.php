@@ -6,4 +6,12 @@
  */
 return [
     'growl' => 'Growl',
+    'Growl' => 'Growl',
+    'Message' => 'Message',
+    //
+    'notice' => 'notice',
+    'warning' => 'warning',
+    'danger' => 'danger',
+    'success' => 'success',
+    'primary' => 'primary',
 ];

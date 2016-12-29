@@ -77,7 +77,8 @@ return [
                 'basePath' => '@thread/app/messages',
                 'fileMap' => [
                     'app' => 'app.php',
-                ]
+                ],
+                'on missingTranslation' => [\thread\app\base\i18n\TranslationEventHandler::class, 'handleMissingTranslation']
             ],
         ]
     ],

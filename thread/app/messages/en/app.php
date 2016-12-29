@@ -66,6 +66,7 @@ return [
 
     //name item menu
     'Structure' => 'Structure',
+    'Seo' => 'Seo',
     'Menu' => 'Menu',
     'Pages' => 'Pages',
     'News' => 'News',

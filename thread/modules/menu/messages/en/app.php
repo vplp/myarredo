@@ -6,4 +6,9 @@
  */
 return [
     'menu' => 'Menu',
+    'Menu' => 'Menu',
+    'Items' => 'Items',
+    'header' => 'header',
+    'Link type' => 'Link type',
+    'Link target' => 'Link target'
 ];

@@ -6,6 +6,7 @@ use Yii;
 use yii\i18n\PhpMessageSource;
 //
 use thread\app\base\module\interfaces\Module as iModule;
+use thread\app\base\i18n\TranslationEventHandler;
 
 /**
  * Class Module
@@ -82,6 +83,7 @@ abstract class Module extends \yii\base\Module implements iModule
             'fileMap' => [
                 $this->name => 'app.php',
             ],
+            'on missingTranslation' => [TranslationEventHandler::class, 'handleMissingTranslation']
         ];
 
         if (!empty($this->translationsFileMap)) {

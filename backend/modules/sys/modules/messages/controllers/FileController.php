@@ -62,9 +62,10 @@ class FileController extends BackendController
 
         $rootPath = Yii::getAlias('@root');
         $saveAppLanguage = Yii::$app->language;
+        //
         $langs = Yii::$app->languages->getAll();
 //        var_dump($langs);
-
+        //
         $list = MessagesFile::find()->all();
 
         foreach ($list as $file) {
@@ -81,7 +82,10 @@ class FileController extends BackendController
                         $toFile = '<?php return[' . PHP_EOL;
 
                         foreach ($info as $infoItem) {
-                            $toFile .= "'{$infoItem['arraykey']}'=>'" . str_replace('\'', '\\\'', $infoItem['lang']['title']) . "'," . PHP_EOL;
+                            $arrkey = str_replace('\'', '\\\'', $infoItem['arraykey']);
+                            $arrvalue = str_replace('\'', '\\\'', $infoItem['lang']['title']);
+                            //
+                            $toFile .= "'{$arrkey}'=>''{$arrvalue}''," . PHP_EOL;
                         }
                         $toFile .= '];' . PHP_EOL;
                         FileHelper::createDirectory(dirname($rootPath . $targetfile));

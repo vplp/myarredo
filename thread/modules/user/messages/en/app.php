@@ -6,8 +6,13 @@
  */
 return [
     'user' => 'User',
+    'User' => 'User',
+    'User Password' => 'User Password',
+    'Username' => 'Login',
     'Users' => 'Users',
     'Login' => 'Login',
+    'Password' => 'Password',
+    'Password confirmation' => 'Password confirmation',
     //Password
     'Change password' => 'Change password',
     'Password change' => 'Password change',

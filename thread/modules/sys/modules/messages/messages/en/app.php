@@ -5,5 +5,7 @@
  * @copyright (c) 2015, Thread
  */
 return [
-    //module name
+    'messages' => 'Messages',
+    'Messages' => 'Messages',
+    'messagefilepath' => 'messagefilepath',
 ];
