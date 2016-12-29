@@ -15,6 +15,8 @@ class TranslationEventHandler
 {
     public static function handleMissingTranslation(MissingTranslationEvent $event)
     {
-        $event->translatedMessage = "@MISSING: {$event->category} \"{$event->message}\" FOR LANGUAGE {$event->language} @";
+//        var_dump($event->sender);
+
+        $event->translatedMessage = "@MISSING: KEY: {$event->category} MESS: \"{$event->message}\" FOR LAN {$event->language} @";
     }
 }
