@@ -54,7 +54,7 @@ echo GridView::widget([
         [
             'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class,
             'deleteLink' => function ($model) {
-                return ($model['id'] == 1) ? '' : ['intrash', 'id' => $model['id']];
+                return ($model['id'] == 1) ? false : ['intrash', 'id' => $model['id']];
             }
         ],
     ]
