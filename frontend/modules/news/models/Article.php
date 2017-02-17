@@ -96,7 +96,7 @@ class Article extends \backend\modules\news\models\Article implements BaseFrontM
      */
     public static function findByAlias($alias)
     {
-        return self::find_base()->alias($alias)->one();
+        return self::find_base()->byAlias($alias)->one();
     }
 
     /**

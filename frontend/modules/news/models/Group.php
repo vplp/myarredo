@@ -81,9 +81,9 @@ class Group extends \backend\modules\news\models\Group implements BaseFrontModel
      * @param $id
      * @return mixed
      */
-    public static function findByAlias($id)
+    public static function findByAlias($alias)
     {
-        return self::find_base()->alias($alias)->one();
+        return self::find_base()->byAlias($alias)->one();
     }
 
     /**
@@ -101,6 +101,6 @@ class Group extends \backend\modules\news\models\Group implements BaseFrontModel
      */
     public static function getList()
     {
-        return self::findBase()->all();
+        return self::find_base()->all();
     }
 }

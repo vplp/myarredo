@@ -72,7 +72,7 @@ class Group extends \common\modules\catalog\models\Group
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->alias($alias)->one();
+        return self::findBase()->byAlias($alias)->one();
     }
 
     /**

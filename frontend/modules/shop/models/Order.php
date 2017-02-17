@@ -15,8 +15,7 @@ use common\modules\shop\models\Order as CommonOrderModel;
  */
 class Order extends CommonOrderModel
 {
-    
-    
+
     /**
      *
      * @return array
@@ -45,15 +44,11 @@ class Order extends CommonOrderModel
                 'deleted'],
         ];
     }
-  
-
-
    
     public static function findBase()
     {
         return self::find()->innerJoinWith(['items'/*, 'cartGoods.item', 'cartGoods.item.lang'*/])->enabled();
     }
-
 
     /**
      * @return mixed
@@ -63,19 +58,16 @@ class Order extends CommonOrderModel
         return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
     }
 
-   
     public static function findById($id)
     {
         return self::findBase()->byId($id)->one();
     }
 
-    
     public static function findByCustomerId($customer_id)
     {        
         return self::findBase()->customer($customer_id)->all();
     }
 
-    
     public static function findByLink($token)
     {
         return self::findBase()->token($token)->one();
@@ -106,7 +98,5 @@ class Order extends CommonOrderModel
         return self::paydStatusRange()[$this->payd_status];
         
     }
-
-
 
 }

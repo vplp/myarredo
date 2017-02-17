@@ -83,7 +83,7 @@ class Page extends \common\modules\page\models\Page implements BaseFrontModel
      */
     public static function findByAlias($alias)
     {
-        return self::find_base()->alias($alias)->one();
+        return self::find_base()->byAlias($alias)->one();
     }
 
     /**

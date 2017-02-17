@@ -24,14 +24,13 @@ class PaymentMethods extends CommonPaymentMethodsModel
         return self::find()->innerJoinWith(['lang'])->enabled();
     }
 
-
     /**
      * @param $alias
      * @return mixed
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->alias($alias)->one();
+        return self::findBase()->byAlias($alias)->one();
     }
 
     /**

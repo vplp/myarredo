@@ -31,7 +31,7 @@ class DeliveryMethods extends CommonDeliveryMethodsModel
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->alias($alias)->one();
+        return self::findBase()->byAlias($alias)->one();
     }
 
 
@@ -41,7 +41,7 @@ class DeliveryMethods extends CommonDeliveryMethodsModel
      */
     public static function findIdByAlias($alias)
     {
-        return self::find()->alias($alias)->select('id')->enabled()->asarray()->one();
+        return self::find()->byAlias($alias)->select('id')->enabled()->asArray()->one();
     }
 
 

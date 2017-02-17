@@ -94,7 +94,7 @@ class Product extends \common\modules\catalog\models\Product
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->alias($alias)->one();
+        return self::findBase()->byAlias($alias)->one();
     }
 
     /**

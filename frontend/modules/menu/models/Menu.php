@@ -75,7 +75,7 @@ final class Menu extends cMenu implements BaseFrontModel
      */
     public static function findByAlias($alias)
     {
-        return self::find_base()->alias($alias)->one();
+        return self::find_base()->byAlias($alias)->one();
     }
 
     /**
