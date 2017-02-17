@@ -28,7 +28,7 @@ class ActiveQuery extends \yii\db\ActiveQuery
      * @param string $alias
      * @return $this
      */
-    public function alias($alias)
+    public function byAlias($alias)
     {
         $modelClass = $this->modelClass;
         $this->andWhere($modelClass::tableName() . '.alias = :alias', [':alias' => $alias]);

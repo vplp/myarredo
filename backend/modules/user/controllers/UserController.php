@@ -15,7 +15,6 @@ use backend\modules\user\models\{
     User, search\User as filterUserModel
 };
 
-
 /**
  * Class UserController
  *
