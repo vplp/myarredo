@@ -29,14 +29,19 @@ return [
     'Phone' => 'Phone',
     'File' => 'File',
     //
+    'Start date' => 'Start date',
+    'End date' => 'End date',
+    'Start time' => 'Start time',
+    'Finish time' => 'Finish time',
+    //common messages
+    'Actions' => 'Actions',
     'Module' => 'Module',
     'Model' => 'Model',
     'Group' => 'Group',
     'Groups' => 'Groups',
     'List' => 'List',
     'General' => 'General',
-
-
+    'Settings' => 'Settings',
     //Buttons
     'Add' => 'Add',
     'Create' => 'Create',
@@ -51,46 +56,4 @@ return [
     'Edit' => 'Edit',
     'Delete' => 'Delete',
     'Restore' => 'Restore',
-    'Actions' => 'Actions',
-
-
-    'Choose group' => 'Choose group',
-    'Start time' => 'Start time',
-    'Finish time' => 'Finish time',
-    'Settings' => 'Settings',
-    'Remember me' => 'Remember m',
-    'Not selected' => 'Not selected',
-
-    'KEY_ON' => 'ON',
-    'KEY_OFF' => 'OFF',
-
-    //name item menu
-    'Structure' => 'Structure',
-    'Seo' => 'Seo',
-    'Menu' => 'Menu',
-    'Pages' => 'Pages',
-    'News' => 'News',
-    'Article' => 'Article',
-    'Correspondence' => 'Correspondence',
-    'Users' => 'Users',
-    'Profile' => 'Profile',
-    'User' => 'User',
-    'Location' => 'Location',
-    'Region' => 'Region',
-    'Country' => 'Country',
-    'City' => 'City',
-    'Currency' => 'Currency',
-    'Configs' => 'Configs',
-    'Params' => 'Params',
-    'Language' => 'Language',
-    'Polls' => 'Polls',
-    'System' => 'System',
-    'Growl' => 'Growl',
-    'Cron' => 'Cron',
-    'Role of User' => 'Role of User',
-    'Log' => 'Log',
-    'Shop' => 'Shop',
-    'Orders' => 'Orders',
-    'Payment Methods' => 'Payment Methods',
-    'Delivery Methods' => 'Delivery Methods',
 ];

@@ -116,6 +116,8 @@ class Article extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'date_from' => Yii::t('news', 'Date from'),
+            'date_to' => Yii::t('news', 'Date to'),
         ];
     }
 

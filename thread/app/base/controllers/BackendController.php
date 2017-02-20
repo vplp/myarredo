@@ -308,6 +308,6 @@ abstract class BackendController extends Controller
      */
     public function getTitle()
     {
-        return Yii::t('app', $this->title);
+        return Yii::t($this->module->id, $this->title);
     }
 }

@@ -6,4 +6,5 @@
  */
 return [
     'polls' => 'Polls',
+    'Poll' => 'Poll',
 ];

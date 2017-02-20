@@ -7,12 +7,16 @@
 return [
     'user' => 'User',
     'User' => 'User',
+    'Users' => 'Users',
+    'Groups' => 'Groups',
     'User Password' => 'User Password',
     'Username' => 'Login',
-    'Users' => 'Users',
     'Login' => 'Login',
     'Password' => 'Password',
     'Password confirmation' => 'Password confirmation',
+    'Role' => 'Role',
+    'Profile' => 'Profile',
+    'Logout' => 'Logout',
     //Password
     'Change password' => 'Change password',
     'Password change' => 'Password change',
@@ -25,5 +29,9 @@ return [
     'Please choose your new password:' => 'Please choose your new password:',
     //User
     'Edit profile' => 'Edit profile',
-    'Change password' => 'Change password',
+    //Profile
+    'First name' => 'First name',
+    'Last name' => 'Last name',
+    'Preferred language' => 'Preferred language',
+    'Avatar' => 'Avatar',
 ];

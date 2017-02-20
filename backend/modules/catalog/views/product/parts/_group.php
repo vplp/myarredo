@@ -1,5 +1,4 @@
 <?php
-
 use backend\modules\catalog\models\Group;
 //
 use backend\modules\catalog\models\RelGroupProduct;

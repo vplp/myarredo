@@ -5,4 +5,7 @@
  * @copyright (c), Thread
  */
 return [
+    'user' => 'Користувачі',
+    'Role' => 'Ролі',
+    'Name' => 'Імя',
 ];

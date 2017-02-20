@@ -123,11 +123,11 @@ class Order extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'customer_id' => Yii::t('shop', 'Customer id'),
-            'manager_id' => Yii::t('shop', 'Manager id'),
+            'customer_id' => Yii::t('shop', 'Customer'),
+            'manager_id' => Yii::t('shop', 'Manager'),
             'comment' => Yii::t('shop', 'Comment'),
             'items_count' => Yii::t('shop', 'Count of items'),
-            'items_total_count' => Yii::t('shop', 'Summ of item_count'),
+            'items_total_count' => Yii::t('shop', 'Summ of items count'),
             'items_summ' => Yii::t('shop', 'Summ of items without discount for item'),
             'items_total_summ' => Yii::t('shop', 'Total Summ of items with discount for item'),
             'discount_percent' => Yii::t('shop', 'Percent discount for order'),

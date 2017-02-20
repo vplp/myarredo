@@ -5,12 +5,16 @@
  * @copyright (c), Thread
  */
 return [
-    'Items' => 'Пункти меню',
     'menu' => 'Меню',
     'Menu' => 'Меню',
-    //attributs
+    'Items' => 'Пункти меню',
+    //
+    'header' => 'Заголовок',
     'Link type' => 'Тип посилання',
-    'Link target' => 'Ціль',
+    'Link target' => 'Куди відкривати посилання',
+    'External' => 'Зовнішня',
+    'Internal' => 'Внутрішня',
     'Internal source' => 'Внутрішнє джерело',
-    'Internal source id' => 'Внутрішнє джерело',
+    '_blank' => 'Blank',
+    '_self' => 'Self',
 ];

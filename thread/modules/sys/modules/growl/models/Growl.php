@@ -81,7 +81,7 @@ class Growl extends ActiveRecord
             'url' => Yii::t('growl', 'Url'),
             'type' => Yii::t('app', 'Type'),
             'is_read' => Yii::t('app', 'Readonly'),
-            'user_id' => Yii::t('growl', 'User id'),
+            'user_id' => Yii::t('growl', 'To user'),
             'model' => Yii::t('app', 'Model'),
             'created_at' => Yii::t('app', 'Created at'),
             'updated_at' => Yii::t('app', 'Updated at'),

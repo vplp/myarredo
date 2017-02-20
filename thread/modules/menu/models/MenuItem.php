@@ -223,9 +223,9 @@ class MenuItem extends ActiveRecord
     public static function typeRange()
     {
         return [
-            'normal' => Yii::t('app', 'Default'),
-            'divider' => Yii::t('app', 'Divider'),
-            'header' => Yii::t('app', 'Header'),
+            'normal' => Yii::t('menu', 'Default'),
+            'divider' => Yii::t('menu', 'Divider'),
+            'header' => Yii::t('menu', 'Header'),
         ];
     }
 
@@ -237,8 +237,8 @@ class MenuItem extends ActiveRecord
     public static function linkTypeRange()
     {
         return [
-            'external' => Yii::t('app', 'External'),
-            'internal' => Yii::t('app', 'Internal'),
+            'external' => Yii::t('menu', 'External'),
+            'internal' => Yii::t('menu', 'Internal'),
         ];
     }
 
@@ -250,8 +250,8 @@ class MenuItem extends ActiveRecord
     public static function linkTargetRange()
     {
         return [
-            '_blank' => Yii::t('app', '_blank'),
-            '_self' => Yii::t('app', '_self'),
+            '_blank' => Yii::t('menu', '_blank'),
+            '_self' => Yii::t('menu', '_self'),
         ];
     }
 

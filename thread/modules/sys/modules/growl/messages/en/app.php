@@ -14,4 +14,7 @@ return [
     'danger' => 'danger',
     'success' => 'success',
     'primary' => 'primary',
+    //
+    'Url' => 'Url',
+    'To user' => 'To user',
 ];

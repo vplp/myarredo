@@ -38,7 +38,7 @@ use backend\modules\page\models\{
             ])
         ],
         [
-            'label' => Yii::t('app', 'Seo'),
+            'label' => Yii::t('seo', 'Seo'),
             'content' => SeoWidget::widget(['nameSpaceModel' => Page::COMMON_NAMESPACE])
         ],
     ],

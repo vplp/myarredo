@@ -6,11 +6,14 @@
  */
 return [
     //module name
-    'News' => 'Новости',
     'news' => 'Новости',
+    'Group' => 'Группа',
+    'Groups' => 'Группы',
     'Article' => 'Статья',
     'Articles' => 'Статьи',
+    //
     'number_article' => 'Количество статей',
     'Image' => 'Изображение',
-    'Page' => '',
+    'Date from' => 'Дата от',
+    'Date to' => 'Дата по',
 ];

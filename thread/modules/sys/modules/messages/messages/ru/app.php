@@ -5,9 +5,11 @@
  * @copyright (c) 2015, Thread
  */
 return [
-    //module name
-    'On default lang' => 'НА языке по-молчанию',
-    'messagefilepath' => 'Путь к базоваому файлу',
     'Messages' => 'Надписи интерфейса',
     'messages' => 'Надписи интерфейса',
+    'messagefilepath' => 'Путь к базоваому файлу',
+    //
+    'Fill' => 'Загрузить в базу',
+    'Update files' => 'Обновить файлы',
+    'On default lang' => 'На языке по-умолчанию',
 ];

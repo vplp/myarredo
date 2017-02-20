@@ -18,6 +18,6 @@ class SeoController extends BackendController
 {
     public $model = Seo::class;
     public $modelLang = SeoLang::class;
-    public $title = 'SEO';
+    public $title = 'Seo';
     public $name = 'seo';
 }

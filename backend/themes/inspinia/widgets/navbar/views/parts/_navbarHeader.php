@@ -21,7 +21,7 @@ $user = Yii::$app->getUser()->getIdentity();
         <?= \yii\bootstrap\Dropdown::widget([
             'items' => [
                 [
-                    'label' => Yii::t('app', 'Profile'),
+                    'label' => Yii::t('user', 'Profile'),
                     'url' => \yii\helpers\Url::toRoute([
                         '/user/profile/update',
                         'id' => Yii::$app->getUser()->getIdentity()->getId()
@@ -29,7 +29,7 @@ $user = Yii::$app->getUser()->getIdentity();
                 ],
                 '<li role="presentation" class="divider"></li>',
                 [
-                    'label' => Yii::t('app', 'Logout'),
+                    'label' => Yii::t('user', 'Logout'),
                     'url' => \yii\helpers\Url::toRoute('/user/logout')
                 ]
             ]

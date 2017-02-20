@@ -10,5 +10,8 @@ return [
     'Keywords' => 'Keywords',
     'Display in the search engine' => 'Display in the search engine',
     'Write to robots' => 'Disallow into robots.txt',
-    'Write to siteMap' => 'Add to Sitemap.xml'
+    'Write to siteMap' => 'Add to Sitemap.xml',
+    //
+    'Model namespace' => 'Model namespace',
+    'Robots.txt' => 'Robots.txt'
 ];

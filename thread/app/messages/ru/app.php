@@ -29,14 +29,19 @@ return [
     'Phone' => 'Телефон',
     'File' => 'Файл',
     //
+    'Start date' => 'Дата начала',
+    'End date' => 'Конечная дата',
+    'Start time' => 'Время начала',
+    'Finish time' => 'Время окончания',
+    //common messages
+    'Actions' => 'Действия',
     'Module' => 'Модуль',
     'Model' => 'Модель',
     'Group' => 'Группа',
     'Groups' => 'Группы',
     'List' => 'Список',
-    'General' => 'Базовые',
-
-
+    'General' => 'Основные',
+    'Settings' => 'Базовые',
     //Buttons
     'Add' => 'Добавить',
     'Create' => 'Создать',
@@ -51,45 +56,4 @@ return [
     'Edit' => 'Изменить',
     'Delete' => 'Удалить',
     'Restore' => 'Восстановить',
-    'Actions' => 'Действия',
-
-
-    'Choose group' => 'Выберите группу',
-    'Start time' => 'Начало',
-    'Finish time' => 'Конец',
-    'Settings' => 'Настройки',
-    'Remember me' => 'Запомнить меня',
-    'Not selected' => 'Не выбрано',
-
-    'KEY_ON' => 'Вкл',
-    'KEY_OFF' => 'Выкл',
-
-    //name item menu
-    'Structure' => 'Структура',
-    'Menu' => 'Меню',
-    'Pages' => 'Страницы',
-    'News' => 'Новости',
-    'Article' => 'Новость',
-    'Correspondence' => 'Мои обращения',
-    'Users' => 'Пользователи',
-    'Profile' => 'Профайл',
-    'User' => 'Пользователи',
-    'Location' => 'Локализация',
-    'Region' => 'Регион',
-    'Country' => 'Страна',
-    'City' => 'Город',
-    'Currency' => 'Валюта',
-    'Configs' => 'Конфигурация',
-    'Params' => 'Параметры',
-    'Language' => 'Язык',
-    'Polls' => 'Опросы',
-    'System' => 'Система',
-    'Growl' => 'Сообщения',
-    'Cron' => 'Cron',
-    'Role of User' => 'Роли пользователей',
-    'Log' => 'Log',
-    'Shop' => 'Магазин',
-    'Orders' => 'Заказы',
-    'Payment Methods' => 'Методы оплаты',
-    'Delivery Methods' => 'Методы доставки',
 ];

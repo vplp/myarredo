@@ -17,12 +17,12 @@ use yii\helpers\{
     </div>
     <div class="col-lg-1" style="text-align: right;">
         <h2>
-            <?= Html::a('<i class="fa fa-plus"></i> 1 ' . Yii::t('app', 'Fill'), ['fill'], ['class' => 'btn btn-warning']) ?>
+            <?= Html::a('<i class="fa fa-plus"></i> 1 ' . Yii::t('messages', 'Fill'), ['fill'], ['class' => 'btn btn-warning']) ?>
         </h2>
     </div>
     <div class="col-lg-2" style="text-align: right;">
         <h2>
-            <?= Html::a('<i class="fa fa-plus"></i> 2 ' . Yii::t('app', 'Update files'), ['updatefiles'], ['class' => 'btn btn-warning']) ?>
+            <?= Html::a('<i class="fa fa-plus"></i> 2 ' . Yii::t('messages', 'Update files'), ['updatefiles'], ['class' => 'btn btn-warning']) ?>
         </h2>
     </div>
 </div>

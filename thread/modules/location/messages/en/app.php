@@ -10,5 +10,14 @@ return [
     'City' => 'City',
     'Currency' => 'Currency',
     'Language' => 'Language',
-    'location_country_id' => 'Country'
+    'location_country_id' => 'Country',
+    //Country
+    'alpha2' => 'alpha2',
+    'alpha3' => 'alpha3',
+    'iso' => 'iso',
+    //Currency
+    'Course' => 'Course',
+    'code1' => 'code1',
+    'code2' => 'code2',
+    '(Html code) to display symbol' => '(Html code) to display symbol',
 ];
