@@ -94,7 +94,7 @@ class MenuItem extends ActiveRecord
             [['link_target'], 'in', 'range' => array_keys(static::linkTargetRange())],
             ['link_target', 'default', 'value' => array_keys(static::linkTargetRange())[0]],
             //
-            ['internal_source', 'default', 'value' => ['page_page']],
+            ['internal_source', 'default', 'value' => 'page_page'],
             //
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['link', 'internal_source'], 'string', 'max' => 255],
