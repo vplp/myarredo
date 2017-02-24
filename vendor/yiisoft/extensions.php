@@ -30,15 +30,6 @@ return array (
       '@kartik/touchspin' => $vendorDir . '/kartik-v/yii2-widget-touchspin',
     ),
   ),
-  'kartik-v/yii2-widget-timepicker' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-timepicker',
-    'version' => '1.0.1.0',
-    'alias' => 
-    array (
-      '@kartik/time' => $vendorDir . '/kartik-v/yii2-widget-timepicker',
-    ),
-  ),
   'kartik-v/yii2-widget-switchinput' => 
   array (
     'name' => 'kartik-v/yii2-widget-switchinput',
@@ -120,15 +111,6 @@ return array (
       '@kartik/depdrop' => $vendorDir . '/kartik-v/yii2-widget-depdrop',
     ),
   ),
-  'kartik-v/yii2-widget-datetimepicker' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-datetimepicker',
-    'version' => '1.4.2.0',
-    'alias' => 
-    array (
-      '@kartik/datetime' => $vendorDir . '/kartik-v/yii2-widget-datetimepicker',
-    ),
-  ),
   'kartik-v/yii2-widget-colorinput' => 
   array (
     'name' => 'kartik-v/yii2-widget-colorinput',
@@ -192,15 +174,6 @@ return array (
       '@yii/codeception' => $vendorDir . '/yiisoft/yii2-codeception',
     ),
   ),
-  'yiisoft/yii2-debug' => 
-  array (
-    'name' => 'yiisoft/yii2-debug',
-    'version' => '2.0.6.0',
-    'alias' => 
-    array (
-      '@yii/debug' => $vendorDir . '/yiisoft/yii2-debug',
-    ),
-  ),
   'yiisoft/yii2-gii' => 
   array (
     'name' => 'yiisoft/yii2-gii',
@@ -219,15 +192,6 @@ return array (
       '@yii/faker' => $vendorDir . '/yiisoft/yii2-faker',
     ),
   ),
-  'yiisoft/yii2-apidoc' => 
-  array (
-    'name' => 'yiisoft/yii2-apidoc',
-    'version' => '2.0.5.0',
-    'alias' => 
-    array (
-      '@yii/apidoc' => $vendorDir . '/yiisoft/yii2-apidoc',
-    ),
-  ),
   'yiisoft/yii2-elasticsearch' => 
   array (
     'name' => 'yiisoft/yii2-elasticsearch',
@@ -244,24 +208,6 @@ return array (
     'alias' => 
     array (
       '@yii/swiftmailer' => $vendorDir . '/yiisoft/yii2-swiftmailer',
-    ),
-  ),
-  'yiisoft/yii2-authclient' => 
-  array (
-    'name' => 'yiisoft/yii2-authclient',
-    'version' => '2.1.1.0',
-    'alias' => 
-    array (
-      '@yii/authclient' => $vendorDir . '/yiisoft/yii2-authclient',
-    ),
-  ),
-  'kartik-v/yii2-krajee-base' => 
-  array (
-    'name' => 'kartik-v/yii2-krajee-base',
-    'version' => '1.8.7.0',
-    'alias' => 
-    array (
-      '@kartik/base' => $vendorDir . '/kartik-v/yii2-krajee-base',
     ),
   ),
   'kartik-v/yii2-field-range' => 
@@ -318,13 +264,67 @@ return array (
       '@yii/imagine' => $vendorDir . '/yiisoft/yii2-imagine',
     ),
   ),
+  'yiisoft/yii2-apidoc' => 
+  array (
+    'name' => 'yiisoft/yii2-apidoc',
+    'version' => '2.1.0.0',
+    'alias' => 
+    array (
+      '@yii/apidoc' => $vendorDir . '/yiisoft/yii2-apidoc',
+    ),
+  ),
   'yiisoft/yii2-httpclient' => 
   array (
     'name' => 'yiisoft/yii2-httpclient',
-    'version' => '2.0.2.0',
+    'version' => '2.0.3.0',
     'alias' => 
     array (
       '@yii/httpclient' => $vendorDir . '/yiisoft/yii2-httpclient',
+    ),
+  ),
+  'yiisoft/yii2-authclient' => 
+  array (
+    'name' => 'yiisoft/yii2-authclient',
+    'version' => '2.1.2.0',
+    'alias' => 
+    array (
+      '@yii/authclient' => $vendorDir . '/yiisoft/yii2-authclient',
+    ),
+  ),
+  'yiisoft/yii2-debug' => 
+  array (
+    'name' => 'yiisoft/yii2-debug',
+    'version' => '2.0.9.0',
+    'alias' => 
+    array (
+      '@yii/debug' => $vendorDir . '/yiisoft/yii2-debug',
+    ),
+  ),
+  'kartik-v/yii2-krajee-base' => 
+  array (
+    'name' => 'kartik-v/yii2-krajee-base',
+    'version' => '1.8.8.0',
+    'alias' => 
+    array (
+      '@kartik/base' => $vendorDir . '/kartik-v/yii2-krajee-base',
+    ),
+  ),
+  'kartik-v/yii2-widget-datetimepicker' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-datetimepicker',
+    'version' => '1.4.3.0',
+    'alias' => 
+    array (
+      '@kartik/datetime' => $vendorDir . '/kartik-v/yii2-widget-datetimepicker',
+    ),
+  ),
+  'kartik-v/yii2-widget-timepicker' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-timepicker',
+    'version' => '1.0.3.0',
+    'alias' => 
+    array (
+      '@kartik/time' => $vendorDir . '/kartik-v/yii2-widget-timepicker',
     ),
   ),
 );

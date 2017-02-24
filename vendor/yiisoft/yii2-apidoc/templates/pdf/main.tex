@@ -8,6 +8,37 @@
 
 % declare some unicode characters
 \DeclareUnicodeCharacter{2713}{yes} % ✓
+\DeclareUnicodeCharacter{20AC}{EUR} % €
+
+%
+% Title and author info
+%
+
+\newcommand{\plainTitle}{The definitive Guide to Yii 2.0}
+\newcommand{\formattedTitle}{The Definitive Guide\\\vspace{.5cm}to\\\vspace{.5cm}Yii 2.0}
+\newcommand{\plainAuthors}{
+    Qiang Xue,
+    Alexander Makarov,
+    Carsten Brandt,
+    Klimov Paul,
+    and
+    many contributors from the Yii community
+}
+\newcommand{\formattedAuthors}{
+    Qiang Xue,\\
+    Alexander Makarov,\\
+    Carsten Brandt,\\
+    Klimov Paul,\\
+    and\\
+    many contributors from the Yii community
+}
+\newcommand{\formattedTranslators}{}
+
+%
+% ---
+%
+
+\usepackage{color}
 
 % list spacing http://stackoverflow.com/questions/3275622/latex-remove-spaces-between-items-in-list
 \usepackage{enumitem}
@@ -18,9 +49,34 @@
 % make links clickable
 \usepackage{hyperref}
 
+\definecolor{linkcol}{rgb}{0,0,0.4}
+\definecolor{citecol}{rgb}{0.5,0,0}
+
+
+% Change this to change the informations included in the pdf file
+% See hyperref documentation for information on those parameters
+\hypersetup
+{
+bookmarksopen=true,
+pdftitle="\plainTitle",
+pdfauthor="\plainAuthors",
+%pdfsubject="Creation of atlases and atlas based segmentation", %subject of the document
+%pdftoolbar=false, % toolbar hidden
+pdfmenubar=true, %menubar shown
+pdfhighlight=/O, %effect of clicking on a link
+colorlinks=true, %couleurs sur les liens hypertextes
+pdfpagemode=None, %aucun mode de page
+pdfpagelayout=SinglePage, %ouverture en simple page
+pdffitwindow=true, %pages ouvertes entierement dans toute la fenetre
+linkcolor=linkcol, %couleur des liens hypertextes internes
+citecolor=citecol, %couleur des liens pour les citations
+urlcolor=linkcol %couleur des liens pour les url
+}
+\title{\plainTitle}
+\author{\plainAuthors}
+
 % code listings
 \usepackage{listings}
-\usepackage{color}
 
 \definecolor{codebg}{rgb}{0.9,0.9,0.9}
 \definecolor{mygreen}{rgb}{0,0.6,0}
@@ -77,6 +133,18 @@
 	morestring=[b]",
 }
 
+\lstdefinelanguage{less}{
+	morekeywords={},
+	sensitive=false,
+	morestring=[b]",
+}
+
+\lstdefinelanguage{scss}{
+	morekeywords={},
+	sensitive=false,
+	morestring=[b]",
+}
+
 \lstdefinelanguage{javascript}{
 	morekeywords={},
 	sensitive=false,
@@ -115,16 +183,6 @@
   \ifodd\value{page}\hspace*{\dimexpr\evensidemargin-\oddsidemargin}\else\hspace*{-\dimexpr\evensidemargin-\oddsidemargin}\fi%
 }
 
-\title{The definitive Guide to Yii 2.0}
-\author{
-    Qiang Xue,
-    Alexander Makarov,
-    Carsten Brandt,
-    Klimov Paul,
-    and
-    many contributors from the Yii community
-}
-
 % uncomment for debugging layout issues
 %\usepackage{showframe}
 
@@ -132,46 +190,7 @@
 
     \frontmatter
 
-    \begin{titlepage}
-        % ensure centering the title page by ignoring odd and even margin
-        \setlength{\oddsidemargin}{-1in}
-        \setlength{\evensidemargin}{-1in}
-        \setlength{\textwidth}{\paperwidth}
-
-        \vspace*{\fill}
-
-        % typesetting the title line
-        \noindent
-        \parbox{\textwidth}{\centering \bfseries \Huge
-            The Definitive Guide
-        }\vspace{.5cm}
-        \parbox{\textwidth}{\centering \bfseries \Huge
-            to
-        }\vspace{.5cm}
-        \parbox{\textwidth}{\centering \bfseries \Huge
-            Yii 2.0
-        }
-
-        \vfill
-
-        % typesetting authors
-        \noindent
-        \parbox{\textwidth}{\centering \Large
-            Qiang Xue,\\
-            Alexander Makarov,\\
-            Carsten Brandt,\\
-            Klimov Paul,\\
-            and\\
-            the Yii community
-        }
-
-        \vspace*{\fill}
-
-        \noindent
-        \parbox{\textwidth}{\centering
-            Copyright 2014 Yii Software LLC.
-        }
-    \end{titlepage}
+    \include{title}
 
     %Take a blank Page
     \pagebreak \thispagestyle{empty} \cleardoublepage

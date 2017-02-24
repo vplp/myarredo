@@ -42,7 +42,7 @@ class BaseDoc extends Object
     /**
      * Checks if doc has tag of a given name
      * @param string $name tag name
-     * @return boolean if doc has tag of a given name
+     * @return bool if doc has tag of a given name
      */
     public function hasTag($name)
     {
@@ -103,9 +103,9 @@ class BaseDoc extends Object
 
         $docblock = $reflector->getDocBlock();
         if ($docblock !== null) {
-            $this->shortDescription = ucfirst($docblock->getShortDescription());
+            $this->shortDescription = static::mbUcFirst($docblock->getShortDescription());
             if (empty($this->shortDescription) && !($this instanceof PropertyDoc) && $context !== null && $docblock->getTagsByName('inheritdoc') === null) {
-                $context->errors[] = [
+                $context->warnings[] = [
                     'line' => $this->startLine,
                     'file' => $this->sourceFile,
                     'message' => "No short description for " . substr(StringHelper::basename(get_class($this)), 0, -3) . " '{$this->name}'",
@@ -127,7 +127,7 @@ class BaseDoc extends Object
                 }
             }
         } elseif ($context !== null) {
-            $context->errors[] = [
+            $context->warnings[] = [
                 'line' => $this->startLine,
                 'file' => $this->sourceFile,
                 'message' => "No docblock for element '{$this->name}'",
@@ -156,17 +156,27 @@ class BaseDoc extends Object
      */
     public static function extractFirstSentence($text)
     {
-        if (mb_strlen($text) > 4 && ($pos = mb_strpos($text, '.', 4, 'utf-8')) !== false) {
+        if (mb_strlen($text, 'utf-8') > 4 && ($pos = mb_strpos($text, '.', 4, 'utf-8')) !== false) {
             $sentence = mb_substr($text, 0, $pos + 1, 'utf-8');
-            if (mb_strlen($text) >= $pos + 3) {
-                $abbrev = mb_substr($text, $pos - 1, 4);
+            if (mb_strlen($text, 'utf-8') >= $pos + 3) {
+                $abbrev = mb_substr($text, $pos - 1, 4, 'utf-8');
                 if ($abbrev === 'e.g.' || $abbrev === 'i.e.') { // do not break sentence after abbreviation
-                    $sentence .= static::extractFirstSentence(mb_substr($text, $pos + 1));
+                    $sentence .= static::extractFirstSentence(mb_substr($text, $pos + 1, mb_strlen($text, 'utf-8'), 'utf-8'));
                 }
             }
             return $sentence;
         } else {
             return $text;
         }
+    }
+
+    /**
+     * Multibyte version of ucfirst()
+     * @since 2.0.6
+     */
+    protected static function mbUcFirst($string)
+    {
+        $firstChar = mb_strtoupper(mb_substr($string, 0, 1, 'utf-8'), 'utf-8');
+        return $firstChar . mb_substr($string, 1, mb_strlen($string, 'utf-8'), 'utf-8');
     }
 }

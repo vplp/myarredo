@@ -33,7 +33,15 @@ class Context extends Component
      * @var TraitDoc[]
      */
     public $traits = [];
+    /**
+     * @var array
+     */
     public $errors = [];
+    /**
+     * @var array
+     * @since 2.0.6
+     */
+    public $warnings = [];
 
 
     /**
@@ -201,7 +209,7 @@ class Context extends Component
     {
         // inherit for properties
         foreach ($class->properties as $p) {
-            if ($p->hasTag('inheritdoc')) {
+            if ($p->hasTag('inheritdoc') && ($inheritTag = $p->getFirstTag('inheritdoc')) !== null) {
                 $inheritedProperty = $this->inheritPropertyRecursive($p, $class);
                 if (!$inheritedProperty) {
                     $this->errors[] = [
@@ -213,7 +221,7 @@ class Context extends Component
                 }
 
                 // set all properties that are empty.
-                foreach (['shortDescription', 'description', 'type', 'types'] as $property) {
+                foreach (['shortDescription', 'type', 'types'] as $property) {
                     if (empty($p->$property) || is_string($p->$property) && trim($p->$property) === '') {
                         $p->$property = $inheritedProperty->$property;
                     }
@@ -221,7 +229,7 @@ class Context extends Component
                 // descriptions will be concatenated.
                 $p->description = trim($p->description) . "\n\n"
                     . trim($inheritedProperty->description) . "\n\n"
-                    . $p->getFirstTag('inheritdoc')->getContent();
+                    . $inheritTag->getContent();
 
                 $p->removeTag('inheritdoc');
             }
@@ -229,7 +237,7 @@ class Context extends Component
 
         // inherit for methods
         foreach ($class->methods as $m) {
-            if ($m->hasTag('inheritdoc')) {
+            if ($m->hasTag('inheritdoc') && ($inheritTag = $m->getFirstTag('inheritdoc')) !== null) {
                 $inheritedMethod = $this->inheritMethodRecursive($m, $class);
                 if (!$inheritedMethod) {
                     $this->errors[] = [
@@ -248,7 +256,7 @@ class Context extends Component
                 // descriptions will be concatenated.
                 $m->description = trim($m->description) . "\n\n"
                     . trim($inheritedMethod->description) . "\n\n"
-                    . $m->getFirstTag('inheritdoc')->getContent();
+                    . $inheritTag->getContent();
 
                 foreach ($m->params as $i => $param) {
                     if (!isset($inheritedMethod->params[$i])) {
@@ -428,8 +436,8 @@ class Context extends Component
     /**
      * Check whether a method has `$number` non-optional parameters.
      * @param MethodDoc $method
-     * @param integer $number number of not optional parameters
-     * @return boolean
+     * @param int $number number of not optional parameters
+     * @return bool
      */
     private function hasNonOptionalParams($method, $number = 0)
     {
@@ -459,7 +467,7 @@ class Context extends Component
     /**
      * @param ClassDoc $classA
      * @param ClassDoc|string $classB
-     * @return boolean
+     * @return bool
      */
     protected function isSubclassOf($classA, $classB)
     {

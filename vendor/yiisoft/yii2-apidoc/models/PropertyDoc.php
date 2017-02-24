@@ -13,8 +13,8 @@ use yii\apidoc\helpers\PrettyPrinter;
 /**
  * Represents API documentation information for a `property`.
  *
- * @property boolean $isReadOnly If property is read only. This property is read-only.
- * @property boolean $isWriteOnly If property is write only. This property is read-only.
+ * @property bool $isReadOnly If property is read only. This property is read-only.
+ * @property bool $isWriteOnly If property is write only. This property is read-only.
  *
  * @author Carsten Brandt <mail@cebe.cc>
  * @since 2.0
@@ -34,7 +34,7 @@ class PropertyDoc extends BaseDoc
 
 
     /**
-     * @return boolean if property is read only
+     * @return bool if property is read only
      */
     public function getIsReadOnly()
     {
@@ -42,7 +42,7 @@ class PropertyDoc extends BaseDoc
     }
 
     /**
-     * @return boolean if property is write only
+     * @return bool if property is write only
      */
     public function getIsWriteOnly()
     {
@@ -78,12 +78,12 @@ class PropertyDoc extends BaseDoc
             if ($tag instanceof VarTag) {
                 $this->type = $tag->getType();
                 $this->types = $tag->getTypes();
-                $this->description = ucfirst($tag->getDescription());
+                $this->description = static::mbUcFirst($tag->getDescription());
                 $this->shortDescription = BaseDoc::extractFirstSentence($this->description);
             }
         }
         if (empty($this->shortDescription) && $context !== null && !$hasInheritdoc) {
-            $context->errors[] = [
+            $context->warnings[] = [
                 'line' => $this->startLine,
                 'file' => $this->sourceFile,
                 'message' => "No short description for element '{$this->name}'",

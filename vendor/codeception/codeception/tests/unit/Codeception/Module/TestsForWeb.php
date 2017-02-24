@@ -189,6 +189,13 @@ abstract class TestsForWeb extends \Codeception\TestCase\Test
         $this->assertEquals('val', $form['text']);
     }
 
+    public function testClickByLinkTitle()
+    {
+        $this->module->amOnPage('/');
+        $this->module->click("Link Title");
+        $this->module->seeInCurrentUrl('/info');
+    }
+
     public function testClickOnContext()
     {
         $this->module->amOnPage('/');
@@ -204,6 +211,15 @@ abstract class TestsForWeb extends \Codeception\TestCase\Test
     {
         $this->module->amOnPage('/form/checkbox');
         $this->module->checkOption('#checkin');
+        $this->module->click('Submit');
+        $form = data::get('form');
+        $this->assertEquals('agree', $form['terms']);
+    }
+
+    public function testCheckboxByName()
+    {
+        $this->module->amOnPage('/form/checkbox');
+        $this->module->checkOption('terms');
         $this->module->click('Submit');
         $form = data::get('form');
         $this->assertEquals('agree', $form['terms']);
@@ -675,6 +691,23 @@ abstract class TestsForWeb extends \Codeception\TestCase\Test
         $this->module->amOnPage('/form/select');
         $result = $this->module->grabValueFrom('#age');
         $this->assertEquals('oldfag', $result);
+    }
+
+    /**
+     * @see https://github.com/Codeception/Codeception/issues/3866
+     */
+    public function testGrabValueFromWithFillField()
+    {
+        $this->module->amOnPage('/form/bug3866');
+        $this->module->fillField('empty', 'new value');
+        $result = $this->module->grabValueFrom('#empty');
+        $this->assertEquals('new value', $result);
+        $this->module->fillField('empty_textarea', 'new value');
+        $result = $this->module->grabValueFrom('#empty_textarea');
+        $this->assertEquals('new value', $result);
+        $this->module->fillField('//textarea[@name="textarea[name][]"]', 'new value');
+        $result = $this->module->grabValueFrom('#textarea_with_square_bracket');
+        $this->assertEquals('new value', $result);
     }
 
     public function testGrabAttributeFrom()
@@ -1575,5 +1608,19 @@ abstract class TestsForWeb extends \Codeception\TestCase\Test
         $this->module->amOnPage('/form/anchor');
         $this->module->click('Hash Form');
         $this->module->seeCurrentUrlEquals('/form/anchor');
+    }
+
+    public function testClickingRelativeLinkHonoursBaseHref()
+    {
+        $this->module->amOnPage('/basehref');
+        $this->module->click('Relative Link');
+        $this->module->seeCurrentUrlEquals('/form/example7');
+    }
+
+    public function testSubmittingRelativeFormHonoursBaseHref()
+    {
+        $this->module->amOnPage('/basehref');
+        $this->module->click('Relative Form');
+        $this->module->seeCurrentUrlEquals('/form/example5');
     }
 }

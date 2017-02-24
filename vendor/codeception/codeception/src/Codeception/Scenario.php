@@ -3,8 +3,6 @@ namespace Codeception;
 
 use Codeception\Event\StepEvent;
 use Codeception\Exception\ConditionalAssertionFailed;
-use Codeception\Lib\Notification;
-use Codeception\Step;
 use Codeception\Test\Metadata;
 
 class Scenario
@@ -49,6 +47,11 @@ class Scenario
     public function getFeature()
     {
         return $this->metadata->getFeature();
+    }
+
+    public function getGroups()
+    {
+        return $this->metadata->getGroups();
     }
 
     public function current($key)

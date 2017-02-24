@@ -214,7 +214,7 @@ class ApiMarkdown extends GithubMarkdown
      *
      * @param string $content
      * @param TypeDoc $context
-     * @param boolean $paragraph
+     * @param bool $paragraph
      * @return string
      */
     public static function process($content, $context = null, $paragraph = false)
@@ -233,5 +233,14 @@ class ApiMarkdown extends GithubMarkdown
         } else {
             return Markdown::process($content, 'api');
         }
+    }
+
+    /**
+     * Add bootstrap classes to tables.
+     * @inheritdoc
+     */
+    public function renderTable($block)
+    {
+        return str_replace('<table>', '<table class="table table-bordered table-striped">', parent::renderTable($block));
     }
 }

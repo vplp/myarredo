@@ -8,7 +8,6 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Yaml\Yaml;
 
 /**
  * Executes tests.
@@ -83,6 +82,7 @@ use Symfony\Component\Yaml\Yaml;
  */
 class Run extends Command
 {
+    use Shared\Config;
     /**
      * @var Codecept
      */
@@ -157,6 +157,13 @@ class Run extends Command
                 'Generate CodeCoverage text report in file',
                 'coverage.txt'
             ),
+            new InputOption(
+                'coverage-crap4j',
+                '',
+                InputOption::VALUE_OPTIONAL,
+                'Generate CodeCoverage report in Crap4J XML format',
+                'crap4j.xml'
+            ),
             new InputOption('no-exit', '', InputOption::VALUE_NONE, 'Don\'t finish with exit code'),
             new InputOption(
                 'group',
@@ -209,7 +216,7 @@ class Run extends Command
         $this->output = $output;
 
         // load config
-        $config = Configuration::config($this->options['config']);
+        $config = $this->getGlobalConfig($this->options['config']);
 
         // update config from options
         if (count($this->options['override'])) {
@@ -231,7 +238,7 @@ class Run extends Command
         $userOptions = array_intersect_key($this->options, array_flip($this->passedOptionKeys($input)));
         $userOptions = array_merge(
             $userOptions,
-            $this->booleanOptions($input, ['xml', 'html', 'json', 'tap', 'coverage', 'coverage-xml', 'coverage-html'])
+            $this->booleanOptions($input, ['xml', 'html', 'json', 'tap', 'coverage', 'coverage-xml', 'coverage-html', 'coverage-crap4j'])
         );
         $userOptions['verbosity'] = $this->output->getVerbosity();
         $userOptions['interactive'] = !$input->hasParameterOption(['--no-interaction', '-n']);
@@ -249,7 +256,7 @@ class Run extends Command
         if ($this->options['report']) {
             $userOptions['silent'] = true;
         }
-        if ($this->options['coverage-xml'] or $this->options['coverage-html'] or $this->options['coverage-text']) {
+        if ($this->options['coverage-xml'] or $this->options['coverage-html'] or $this->options['coverage-text'] or $this->options['coverage-crap4j']) {
             $this->options['coverage'] = true;
         }
         if (!$userOptions['ansi'] && $input->getOption('colors')) {
@@ -398,9 +405,15 @@ class Run extends Command
         $tokens = explode(' ', $request);
         foreach ($tokens as $token) {
             $token = preg_replace('~=.*~', '', $token); // strip = from options
+            
+            if (empty($token)) {
+                continue;
+            }
+            
             if ($token == '--') {
                 break; // there should be no options after ' -- ', only arguments
             }
+
             if (substr($token, 0, 2) === '--') {
                 $options[] = substr($token, 2);
             } elseif ($token[0] === '-') {
@@ -425,22 +438,6 @@ class Run extends Command
             }
         }
         return $values;
-    }
-
-    private function overrideConfig($configOptions)
-    {
-        $updatedConfig = [];
-        foreach ($configOptions as $option) {
-            $keys = explode(':', $option);
-            if (count($keys) < 2) {
-                throw new \InvalidArgumentException('--config-option should have config passed as "key:value"');
-            }
-            $value = array_pop($keys);
-            $key = implode(":\n  ", $keys);
-            $config = Yaml::parse("$key:$value");
-            $updatedConfig = array_merge_recursive($updatedConfig, $config);
-        }
-        return Configuration::append($updatedConfig);
     }
 
     private function ensureCurlIsAvailable()

@@ -136,7 +136,12 @@ class Markdown extends \cebe\markdown\Parser
 	protected function renderCode($block)
 	{
 		$language = isset($block['language']) ? "\\lstset{language={$block['language']}}" : '\lstset{language={}}';
-		return "$language\\begin{lstlisting}\n{$block['content']}\n\\end{lstlisting}\n";
+
+		$content = $block['content'];
+		// replace No-Break Space characters in code block, which do not render in LaTeX
+		$content = preg_replace("/[\x{00a0}\x{202f}]/u", ' ', $content);
+
+		return "$language\\begin{lstlisting}\n{$content}\n\\end{lstlisting}\n";
 	}
 
 	/**
@@ -228,9 +233,9 @@ class Markdown extends \cebe\markdown\Parser
 	{
 		if (strpos($text, '>') !== false) {
 			// convert a name markers to \labels
-			if (preg_match('~^<a name="(.*?)">.*?</a>~i', $text, $matches)) {
+			if (preg_match('~^<((a|span)) (name|id)="(.*?)">.*?</\1>~i', $text, $matches)) {
 				return [
-					['label', 'name' => str_replace('#', '::', $this->labelPrefix . $matches[1])],
+					['label', 'name' => str_replace('#', '::', $this->labelPrefix . $matches[4])],
 					strlen($matches[0])
 				];
 			}
@@ -268,10 +273,13 @@ class Markdown extends \cebe\markdown\Parser
 	 */
 	protected function renderInlineCode($block)
 	{
-		if (strpos($block[1], '|') !== false) {
-			return '\\lstinline`' . str_replace("\n", ' ', $block[1]) . '`'; // TODO make this more robust against code containing backticks
+		// replace No-Break Space characters in code block, which do not render in LaTeX
+		$content = preg_replace("/[\x{00a0}\x{202f}]/u", ' ', $block[1]);
+
+		if (strpos($content, '|') !== false) {
+			return '\\lstinline`' . str_replace("\n", ' ', $content) . '`'; // TODO make this more robust against code containing backticks
 		} else {
-			return '\\lstinline|' . str_replace("\n", ' ', $block[1]) . '|';
+			return '\\lstinline|' . str_replace("\n", ' ', $content) . '|';
 		}
 	}
 
@@ -289,6 +297,27 @@ class Markdown extends \cebe\markdown\Parser
 	protected function renderEmph($block)
 	{
 		return '\textit{' . $this->renderAbsy($block[1]) . '}';
+	}
+
+	/**
+	 * Parses escaped special characters.
+	 * This allow a backslash to be interpreted as LaTeX
+	 * @marker \
+	 */
+	protected function parseEscape($text)
+	{
+		if (isset($text[1]) && in_array($text[1], $this->escapeCharacters)) {
+			if ($text[1] === '\\') {
+				return [['backslash'], 2];
+			}
+			return [['text', $text[1]], 2];
+		}
+		return [['text', $text[0]], 1];
+	}
+
+	protected function renderBackslash()
+	{
+		return '\\';
 	}
 
 	private $_escaper;
@@ -319,6 +348,13 @@ class Markdown extends \cebe\markdown\Parser
 	 */
 	protected function renderText($text)
 	{
-		return str_replace("  \n", "\\\\\n", $this->escapeLatex($text[1]));
+		$output = str_replace("  \n", "\\\\\n", $this->escapeLatex($text[1]));
+		// support No-Break Space in LaTeX
+		$output = preg_replace("/\x{00a0}/u", '~', $output);
+		// support Narrow No-Break Space spaces in LaTeX
+		// http://unicode-table.com/en/202F/
+		// http://tex.stackexchange.com/questions/76132/how-to-typeset-a-small-non-breaking-space
+		$output = preg_replace("/\x{202f}/u", '\nobreak\hspace{.16667em plus .08333em}', $output);
+		return $output;
 	}
 }

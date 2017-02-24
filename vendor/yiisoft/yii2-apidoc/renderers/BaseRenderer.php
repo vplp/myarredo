@@ -89,7 +89,7 @@ abstract class BaseRenderer extends Component
                     $type = $context;
                 } elseif (($t = $this->apiContext->getType(ltrim($type, '\\'))) !== null) {
                     $type = $t;
-                } elseif ($type[0] !== '\\' && ($t = $this->apiContext->getType($this->resolveNamespace($context) . '\\' . ltrim($type, '\\'))) !== null) {
+                } elseif (!empty($type) && $type[0] !== '\\' && ($t = $this->apiContext->getType($this->resolveNamespace($context) . '\\' . ltrim($type, '\\'))) !== null) {
                     $type = $t;
                 } else {
                     ltrim($type, '\\');
@@ -106,7 +106,9 @@ abstract class BaseRenderer extends Component
                     'array',
                     'string',
                     'boolean',
+                    'bool',
                     'integer',
+                    'int',
                     'float',
                     'object',
                     'resource',
@@ -117,18 +119,27 @@ abstract class BaseRenderer extends Component
                 $phpTypeAliases = [
                     'true' => 'boolean',
                     'false' => 'boolean',
+                    'bool' => 'boolean',
+                    'int' => 'integer',
+                ];
+                $phpTypeDisplayAliases = [
+                    'bool' => 'boolean',
+                    'int' => 'integer',
                 ];
                 // check if it is PHP internal class
                 if (((class_exists($type, false) || interface_exists($type, false) || trait_exists($type, false)) &&
                     ($reflection = new \ReflectionClass($type)) && $reflection->isInternal())) {
                     $links[] = $this->generateLink($linkText, 'http://www.php.net/class.' . strtolower(ltrim($type, '\\')), $options) . $postfix;
                 } elseif (in_array($type, $phpTypes)) {
+                    if (isset($phpTypeDisplayAliases[$type])) {
+                        $linkText = $phpTypeDisplayAliases[$type];
+                    }
                     if (isset($phpTypeAliases[$type])) {
                         $type = $phpTypeAliases[$type];
                     }
                     $links[] = $this->generateLink($linkText, 'http://www.php.net/language.types.' . strtolower(ltrim($type, '\\')), $options) . $postfix;
                 } else {
-                    $links[] = $type;
+                    $links[] = $type . $postfix;
                 }
             } elseif ($type instanceof BaseDoc) {
                 $linkText = $type->name;
@@ -220,6 +231,11 @@ abstract class BaseRenderer extends Component
      */
     public function generateGuideUrl($file)
     {
+        //skip parsing external url
+        if ( (strpos($file, 'https://') !== false) || (strpos($file, 'http://') !== false) ) {
+            return $file;
+        }
+
         $hash = '';
         if (($pos = strpos($file, '#')) !== false) {
             $hash = substr($file, $pos);

@@ -15,6 +15,8 @@ use cebe\markdown\inline\UrlLinkTrait;
 /**
  * Markdown parser for github flavored markdown.
  *
+ * - uses the [tabularx](http://www.ctan.org/pkg/tabularx) environment for tables.
+ *
  * @author Carsten Brandt <mail@cebe.cc>
  */
 class GithubMarkdown extends Markdown
@@ -58,6 +60,35 @@ class GithubMarkdown extends Markdown
 
 
 	/**
+	 * Consume lines for a paragraph
+	 *
+	 * Allow headlines, lists and code to break paragraphs
+	 */
+	protected function consumeParagraph($lines, $current)
+	{
+		// consume until newline
+		$content = [];
+		for ($i = $current, $count = count($lines); $i < $count; $i++) {
+			$line = $lines[$i];
+			if (!empty($line) && ltrim($line) !== '' &&
+				!($line[0] === "\t" || $line[0] === " " && strncmp($line, '    ', 4) === 0) &&
+				!$this->identifyHeadline($line, $lines, $i) &&
+				!$this->identifyUl($line, $lines, $i) &&
+				!$this->identifyOl($line, $lines, $i))
+			{
+				$content[] = $line;
+			} else {
+				break;
+			}
+		}
+		$block = [
+			'paragraph',
+			'content' => $this->parseInline(implode("\n", $content)),
+		];
+		return [$block, --$i];
+	}
+
+	/**
 	 * @inheritdoc
 	 */
 	protected function renderCode($block)
@@ -97,13 +128,14 @@ class GithubMarkdown extends Markdown
 	}
 
 	private $_tableCellHead = false;
+	private $_tds = 0;
 
 	protected function renderTable($block)
 	{
 		$align = [];
 		foreach($block['cols'] as $col) {
 			if (empty($col)) {
-				$align[] = 'l';
+				$align[] = 'X';
 			} else {
 				$align[] = $col[0];
 			}
@@ -112,12 +144,23 @@ class GithubMarkdown extends Markdown
 
 		$content = '';
 		$first = true;
+		$numThs = 0;
 		foreach($block['rows'] as $row) {
 			$this->_tableCellHead = $first;
-			$content .= $this->renderAbsy($this->parseInline($row)) . "\\\\ \\hline\n"; // TODO move this to the consume step
+			$this->_tds = 0;
+			$content .= $this->renderAbsy($this->parseInline($row)); // TODO move this to the consume step
+			if ($first) {
+				$numThs = $this->_tds;
+			} else {
+				while ($this->_tds < $numThs) {
+					$content .= ' & ';
+					$this->_tds++;
+				}
+			}
+			$content .= "\\\\ \\hline\n";
 			$first = false;
 		}
-		return "\n\\noindent\\begin{tabular}{|$align|}\\hline\n$content\\end{tabular}\n";
+		return "\n\\noindent\\begin{tabularx}{\\textwidth}{|$align|}\\hline\n$content\\end{tabularx}\n\n";
 	}
 
 	/**
@@ -126,6 +169,7 @@ class GithubMarkdown extends Markdown
 	protected function parseTd($markdown)
 	{
 		if (isset($this->context[1]) && $this->context[1] === 'table') {
+			$this->_tds++;
 			return [['tableSep'], 1];
 		}
 		return [['text', $markdown[0]], 1];
