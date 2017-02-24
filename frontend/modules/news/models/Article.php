@@ -64,7 +64,7 @@ class Article extends \backend\modules\news\models\Article implements BaseFrontM
     /**
      * @return mixed
      */
-    public static function find_base()
+    public static function findBase()
     {
         return self::find()->innerJoinWith(["lang"])->orderBy(['published_time' => SORT_DESC]);
     }
@@ -76,7 +76,7 @@ class Article extends \backend\modules\news\models\Article implements BaseFrontM
      */
     public static function findById($id)
     {
-        return self::find_base()->byID($id)->one();
+        return self::findBase()->byID($id)->one();
     }
 
     /**
@@ -86,7 +86,7 @@ class Article extends \backend\modules\news\models\Article implements BaseFrontM
      */
     public static function findByGroupId($group = '')
     {
-        return self::find_base()->group_id($group)->all();
+        return self::findBase()->group_id($group)->all();
     }
 
     /**
@@ -96,7 +96,7 @@ class Article extends \backend\modules\news\models\Article implements BaseFrontM
      */
     public static function findByAlias($alias)
     {
-        return self::find_base()->byAlias($alias)->one();
+        return self::findBase()->byAlias($alias)->one();
     }
 
     /**

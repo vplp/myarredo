@@ -63,7 +63,7 @@ final class Menu extends cMenu implements BaseFrontModel
     /**
      * @return mixed
      */
-    public static function find_base()
+    public static function findBase()
     {
         return self::find()->innerJoinWith(["lang"]);
     }
@@ -75,7 +75,7 @@ final class Menu extends cMenu implements BaseFrontModel
      */
     public static function findByAlias($alias)
     {
-        return self::find_base()->byAlias($alias)->one();
+        return self::findBase()->byAlias($alias)->one();
     }
 
     /**
@@ -84,7 +84,7 @@ final class Menu extends cMenu implements BaseFrontModel
      */
     public static function findById($id)
     {
-        return self::find_base()->byID($id)->one();
+        return self::findBase()->byID($id)->one();
     }
 
     /**

@@ -14,7 +14,7 @@ interface BaseFrontModel
     /**
      * @return mixed
      */
-    public static function find_base();
+    public static function findBase();
 
     /**
      * @param $id

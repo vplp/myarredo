@@ -19,7 +19,7 @@ class Bell extends GrowlModel
     /**
      * @return mixed
      */
-    public static function find_base()
+    public static function findBase()
     {
         return self::find()->user_id(Yii::$app->getUser()->id)->isnt_read();
     }
@@ -29,7 +29,7 @@ class Bell extends GrowlModel
      */
     public static function getUnreadMessagesCount()
     {
-        return self::find_base()->count();
+        return self::findBase()->count();
     }
 
     /**
@@ -38,7 +38,7 @@ class Bell extends GrowlModel
      */
     public static function getUnreadMessages(int $limit)
     {
-        return self::find_base()->limit($limit)->all();
+        return self::findBase()->limit($limit)->all();
     }
 
     /**

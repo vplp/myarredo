@@ -29,7 +29,7 @@ return [
             'page' => [
                 'page' => [
                     'class' => \frontend\modules\page\models\Page::class,
-                    'method' => 'find_base',
+                    'method' => 'findBase',
                 ],
             ],
         ]

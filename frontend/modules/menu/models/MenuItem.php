@@ -60,7 +60,7 @@ final class MenuItem extends cMeniItem implements BaseFrontModel
     /**
      * @return mixed
      */
-    public static function find_base()
+    public static function findBase()
     {
         return self::find()->innerJoinWith(["lang"])->orderBy(['position' => SORT_ASC]);
     }
@@ -72,7 +72,7 @@ final class MenuItem extends cMeniItem implements BaseFrontModel
      */
     public static function findAllByGroup($group = '', $parent = 0)
     {
-        return self::find_base()->group_id($group)->parent_id($parent)->all();
+        return self::findBase()->group_id($group)->parent_id($parent)->all();
     }
 
     /**
@@ -82,7 +82,7 @@ final class MenuItem extends cMeniItem implements BaseFrontModel
      */
     public static function findByAlias($alias)
     {
-        return self::find_base()->byAlias($alias)->one();
+        return self::findBase()->byAlias($alias)->one();
     }
 
     /**
@@ -91,7 +91,7 @@ final class MenuItem extends cMeniItem implements BaseFrontModel
      */
     public static function findById($id)
     {
-        return self::find_base()->byID($id)->one();
+        return self::findBase()->byID($id)->one();
     }
 
     /**

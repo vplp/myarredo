@@ -63,7 +63,7 @@ class Group extends \backend\modules\news\models\Group implements BaseFrontModel
     /**
      * @return mixed
      */
-    public static function find_base()
+    public static function findBase()
     {
         return self::find()->innerJoinWith(["lang"]);
     }
@@ -74,7 +74,7 @@ class Group extends \backend\modules\news\models\Group implements BaseFrontModel
      */
     public static function findById($id)
     {
-        return self::find_base()->byID($id)->one();
+        return self::findBase()->byID($id)->one();
     }
 
     /**
@@ -83,7 +83,7 @@ class Group extends \backend\modules\news\models\Group implements BaseFrontModel
      */
     public static function findByAlias($alias)
     {
-        return self::find_base()->byAlias($alias)->one();
+        return self::findBase()->byAlias($alias)->one();
     }
 
     /**
@@ -101,6 +101,6 @@ class Group extends \backend\modules\news\models\Group implements BaseFrontModel
      */
     public static function getList()
     {
-        return self::find_base()->all();
+        return self::findBase()->all();
     }
 }
