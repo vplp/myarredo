@@ -16,18 +16,6 @@ use common\modules\sys\models\Language as CommonLanguageModel;
 class Language extends CommonLanguageModel
 {
     /**
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-            [['img_flag'], 'string', 'max' => 225],
-            [['alias', 'local', 'label'], 'required'],
-            [['published', 'default'], 'in', 'range' => array_keys(self::statusKeyRange())],
-        ];
-    }
-
-    /**
      * @param $params
      * @return \yii\data\ActiveDataProvider
      */
@@ -52,10 +40,10 @@ class Language extends CommonLanguageModel
      */
     public function beforeSave($insert)
     {
-        if ($this->default == 1) {
-            //для того чтобы дефолтный был один язык
-            self::getDb()->createCommand()->update('fv_languages', ['default' => 0], 'alias <> \'' . $this->alias . '\'')->execute();
-
+        if ($this->by_default == 1) {
+            self::getDb()->createCommand()->update(self::tableName(), ['by_default' => self::STATUS_KEY_OFF])->execute();
+            $this->deleted = self::STATUS_KEY_OFF;
+            $this->published = self::STATUS_KEY_ON;
         }
         return parent::beforeSave($insert);
     }

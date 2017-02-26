@@ -34,7 +34,7 @@ class Languages extends Component implements iLanguages, BootstrapInterface
      */
 
     protected $defaultLang = [
-        'default' => true,
+        'by_default' => true,
         'alias' => 'en',
         'local' => 'en-EN',
         'label' => 'EN',
@@ -58,7 +58,7 @@ class Languages extends Component implements iLanguages, BootstrapInterface
         $this->items = $this->getAll();
 
         foreach ($this->items as $item) {
-            if ($item['default']) {
+            if ($item['by_default']) {
                 $this->defaultLang = $item;
                 break;
             }

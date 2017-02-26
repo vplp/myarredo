@@ -54,7 +54,7 @@ class LangSwitch extends Widget
         $url = substr($request->getUrl(), strlen($baseUrl));
 
         foreach ($this->items as $lang) {
-            if (!$lang['default']) {
+            if (!$lang['by_default']) {
                 $items[] = ['label' => $lang['label'], 'url' => $baseUrl . '/' . $lang['alias'] . $url];
             } else {
                 $items[] = ['label' => $lang['label'], 'url' => $baseUrl . $url];

@@ -28,7 +28,10 @@ echo GridView::widget([
             'action' => 'published'
         ],
         [
-            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class
+            'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class,
+            'deleteLink' => function ($model) {
+                return ($model['by_default'] != $model::STATUS_KEY_ON) ? ['update', 'id' => $model['id']] : false;
+            }
         ],
     ]
 ]);

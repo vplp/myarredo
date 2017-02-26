@@ -2,7 +2,13 @@
 use yii\helpers\ArrayHelper;
 
 $main = require(dirname(__DIR__, 2) . '/common/config/main.php');
-unset($main['bootstrap']['languages'], $main['components']['request']);
+foreach ($main['bootstrap'] as $itemkey => $item) {
+    if ($item == 'languages') {
+        unset($main['bootstrap'][$itemkey]);
+        break;
+    }
+}
+unset($itemkey, $item, $main['components']['request']);
 
 return ArrayHelper::merge(
     $main,

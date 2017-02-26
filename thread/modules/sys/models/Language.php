@@ -58,7 +58,7 @@ class Language extends ActiveRecord implements LanguageModel
             [['img_flag'], 'string', 'max' => 225],
             [['alias', 'local', 'label'], 'required'],
             [['created_at', 'updated_at'], 'integer'],
-            [['published', 'deleted', 'default'], 'in', 'range' => array_keys(static::statusKeyRange())],
+            [['published', 'deleted', 'by_default'], 'in', 'range' => array_keys(static::statusKeyRange())],
         ];
     }
 
@@ -70,7 +70,7 @@ class Language extends ActiveRecord implements LanguageModel
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['published', 'deleted', 'alias', 'local', 'label', 'img_flag', 'default'],
+            'backend' => ['published', 'deleted', 'alias', 'local', 'label', 'img_flag', 'by_default'],
         ];
     }
 
@@ -88,8 +88,8 @@ class Language extends ActiveRecord implements LanguageModel
             'alias' => Yii::t('app', 'Alias'),
             'local' => Yii::t('app', 'Local'),
             'label' => Yii::t('app', 'Label'),
-            'img_flag' => Yii::t('app', 'Img_flag'),
-            'default' => Yii::t('app', 'Default'),
+            'img_flag' => Yii::t('app', 'Image link'),
+            'by_default' => Yii::t('app', 'Default'),
         ];
     }
 
@@ -112,10 +112,10 @@ class Language extends ActiveRecord implements LanguageModel
     /**
      * @return null|string
      */
-    public function getImage()
+    public function getFlagUploadUrl()
     {
-        /** @var Configs $Module */
-        $Module = Yii::$app->getModule('configs');
+        /** @var sys $Module */
+        $Module = Yii::$app->getModule('sys');
         $path = $Module->getFlagUploadUrl();
         $url = $Module->getFlagUploadUrl();
         $image = null;

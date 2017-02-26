@@ -30,7 +30,7 @@ echo GridView::widget([
             'class' => ActionEditColumn::class,
         ],
         [
-            'class' => ActionToTrashColumn::class
+            'class' => ActionToTrashColumn::class,
         ],
     ]
 ]);

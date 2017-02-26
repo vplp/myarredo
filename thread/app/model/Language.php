@@ -17,19 +17,19 @@ class Language implements interfaces\LanguageModel
      */
     public $items = [
         'en-EN' => [
-            'default' => true,
+            'by_default' => true,
             'alias' => 'en',
             'local' => 'en-EN',
             'label' => 'English',
         ],
         'uk-UA' => [
-            'default' => false,
+            'by_default' => false,
             'alias' => 'ua',
             'local' => 'uk-UA',
             'label' => 'Українська',
         ],
         'ru-RU' => [
-            'default' => false,
+            'by_default' => false,
             'alias' => 'ru',
             'local' => 'ru-RU',
             'label' => 'Русский',
