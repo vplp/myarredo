@@ -11,6 +11,12 @@ echo GridView::widget([
     'filterModel' => $filter,
     'columns' => [
         [
+            'attribute' => 'created_at',
+            'value' => function ($model) {
+                return date('d.m.Y H:i', $model['created_at']);
+            }
+        ],
+        [
             'attribute' => 'type',
             'value' => function ($model) {
                 return $model::getTypeRange()[$model['type']];
