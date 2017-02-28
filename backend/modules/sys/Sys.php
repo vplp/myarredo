@@ -3,7 +3,7 @@
 namespace backend\modules\sys;
 
 use backend\modules\sys\modules\{
-    growl\Growl, user\User, crontab\Crontab, configs\Configs, messages\Messages
+    growl\Growl, user\User, crontab\Crontab, configs\Configs, messages\Messages, logbook\Logbook
 };
 
 /**
@@ -39,6 +39,9 @@ class Sys extends \common\modules\sys\Sys
             ],
             'messages' => [
                 'class' => Messages::class,
+            ],
+            'logbook' => [
+                'class' => Logbook::class,
             ]
         ];
     }

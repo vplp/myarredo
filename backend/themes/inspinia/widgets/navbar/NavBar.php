@@ -201,10 +201,10 @@ class NavBar extends \yii\bootstrap\NavBar
                         'label' => Yii::t('navbar', 'Messages'),
                         'url' => ['/sys/messages/file/list']
                     ],
-//                    [
-//                        'label' => Yii::t('navbar', 'Log'),
-//                        'url' => ['/sys/logbook/logbook/list']
-//                    ],
+                    [
+                        'label' => Yii::t('navbar', 'Log'),
+                        'url' => ['/sys/logbook/logbook/list']
+                    ],
 //                    [
 //                        'label' => Yii::t('navbar', 'Mail'),
 //                        'url' => ['/sys/mail/message/list']

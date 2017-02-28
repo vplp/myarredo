@@ -6,6 +6,7 @@ use Yii;
 //
 use thread\app\base\models\ActiveRecord;
 use thread\modules\sys\modules\logbook\Logbook as LogbookModule;
+use thread\modules\user\models\User;
 
 /**
  * Class Logbook
@@ -39,14 +40,11 @@ class Logbook extends ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'message', 'type', 'priority', 'model'], 'required'],
+            [['user_id', 'message', 'type', 'category'], 'required'],
             [['created_at', 'updated_at', 'user_id'], 'integer'],
             [['published', 'deleted', 'is_read'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['priority'], 'in', 'range' => static::getPriorityRange()],
             [['type'], 'in', 'range' => array_keys(static::getTypeRange())],
-            ['message', 'string', 'max' => 255],
-            ['url', 'string', 'max' => 512],
-            ['model', 'string', 'max' => 50],
+            [['message', 'category'], 'string', 'max' => 512],
         ];
     }
 
@@ -59,8 +57,8 @@ class Logbook extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['type', 'priority', 'message', 'is_read', 'published', 'deleted', 'model', 'user_id', 'url'],
-            'send' => ['type', 'priority', 'message', 'is_read', 'published', 'deleted', 'model', 'user_id', 'url'],
+            'backend' => ['type', 'message', 'is_read', 'published', 'deleted', 'category', 'user_id'],
+            'send' => ['type', 'message', 'is_read', 'published', 'deleted', 'category', 'user_id'],
         ];
     }
 
@@ -72,13 +70,11 @@ class Logbook extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'message' => 'message',
-            'url' => 'url',
-            'type' => 'type',
-            'priority' => 'priority',
-            'is_read' => 'is_read',
-            'user_id' => 'user_id',
-            'model' => 'model',
+            'message' => Yii::t('app', 'Message'),
+            'type' => Yii::t('app', 'Type'),
+            'is_read' => Yii::t('app', 'Is read'),
+            'user_id' => Yii::t('app', 'User'),
+            'category' => Yii::t('app', 'Category'),
             'created_at' => Yii::t('app', 'Created at'),
             'updated_at' => Yii::t('app', 'Updated at'),
             'published' => Yii::t('app', 'Published'),
@@ -99,10 +95,10 @@ class Logbook extends ActiveRecord
     }
 
     /**
-     * @return array
+     * @return mixed
      */
-    public static function getPriorityRange()
+    public function getUser()
     {
-        return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 }
