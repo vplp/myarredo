@@ -3,12 +3,15 @@ namespace backend\modules\news\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 //
 use thread\modules\seo\behaviors\SeoBehavior;
 use thread\app\model\interfaces\BaseBackendModel;
 //
 use common\modules\news\models\Article as CommonArticleModel;
 use common\modules\seo\models\Seo;
+//
+use backend\modules\sys\modules\logbook\behaviors\LogbookBehavior;
 
 /**
  * Class Article
@@ -51,6 +54,13 @@ class Article extends CommonArticleModel implements BaseBackendModel
                     'class' => SeoBehavior::class,
                     'modelNamespace' => self::COMMON_NAMESPACE
                 ],
+                'LogbookBehavior' => [
+                    'class' => LogbookBehavior::class,
+                    'category' => 'Новости',
+                    'updateMessage' => function () {
+                        return "<a href='/core-cms/web/backend/news/article/update?id=" . $this->owner->id . "'>Обновлена новость " . $this->owner->lang->title . "</a>";
+                    }
+                ]
             ]
         );
     }

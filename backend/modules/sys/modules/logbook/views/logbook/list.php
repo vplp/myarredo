@@ -27,7 +27,10 @@ echo GridView::widget([
             'value' => 'user.username',
         ],
         'category',
-        'message',
+        [
+            'attribute' => 'message',
+            'format' => 'raw',
+        ],
         [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'is_read',
