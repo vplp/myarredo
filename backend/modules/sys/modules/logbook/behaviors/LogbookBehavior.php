@@ -14,14 +14,21 @@ use common\modules\sys\modules\logbook\models\Logbook;
  * @copyright (c), Thread
  *
  *
- * public function behaviors()
- * {
- * return [
- * [
- * 'class' => LogbookBehavior::className(),
- * 'category' => 'My category IDs',
- * ];
- * }
+public function behaviors()
+{
+    return ArrayHelper::merge(
+        parent::behaviors(),
+        [
+            'LogbookBehavior' => [
+                'class' => LogbookBehavior::class,
+                'category' => 'Новости',
+                'updateMessage' => function () {
+                    return "<a href='/core-cms/web/backend/news/article/update?id=" . $this->owner->id . "'>Обновлена новость " . $this->owner->lang->title . "</a>";
+                }
+            ]
+        ]
+    );
+}
  */
 class LogbookBehavior extends Behavior
 {
