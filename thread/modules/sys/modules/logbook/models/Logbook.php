@@ -56,6 +56,7 @@ class Logbook extends ActiveRecord
     {
         return [
             'published' => ['published'],
+            'is_read' => ['is_read'],
             'deleted' => ['deleted'],
             'backend' => ['type', 'message', 'is_read', 'published', 'deleted', 'category', 'user_id'],
             'send' => ['type', 'message', 'is_read', 'published', 'deleted', 'category', 'user_id'],

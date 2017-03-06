@@ -36,6 +36,12 @@ class LogbookController extends BackendController
             'update' => [
                 'class' => Update::class,
             ],
+            'is_read' => [
+                'class' => AttributeSwitch::class,
+                'modelClass' => $this->model,
+                'attribute' => 'is_read',
+                'redirect' => $this->defaultAction,
+            ],
         ]);
     }
 }
