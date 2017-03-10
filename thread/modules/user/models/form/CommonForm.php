@@ -35,10 +35,10 @@ class CommonForm extends Model
      * Private attributes.
      * @see \thread\modules\user\User
      */
-    private $_username_attribute;
-    private $_password_min_length;
-    private $_auto_login_after_register;
-    private $_time_remember_user_sign_in;
+    protected $_username_attribute;
+    protected $_password_min_length;
+    protected $_auto_login_after_register;
+    protected $_time_remember_user_sign_in;
 
     public function init()
     {
@@ -62,34 +62,17 @@ class CommonForm extends Model
      */
     public function rules()
     {
-        $rules = [
-            [['group_id'], 'required', 'on' => ['userCreate']],
-            [['username', 'password'], 'required', 'on' => ['signIn', 'register', 'userCreate']],
-            [['password_confirmation'], 'required', 'on' => ['register', 'passwordChange', 'userCreate']],
-            [['password', 'password_old'], 'required', 'on' => ['passwordChange']],
-            [['password', 'password_confirmation'], 'string', 'min' => $this->_password_min_length],
-            [['rememberMe'], 'boolean', 'on' => ['sigIn']],
-            [['email'], 'validateEmailOnCreate', 'on' => ['userCreate']],
-            [['password'], 'validatePassword', 'on' => ['sigIn']],
-            [['password_old'], 'validateOLDPassword', 'on' => ['passwordChange']],
+        return [
             [['captcha'], 'captcha'],
+            [['password', 'password_confirmation'], 'string', 'min' => $this->_password_min_length],
+            [['email'], 'email'],
             [
                 ['password_confirmation'],
                 'compare',
                 'compareAttribute' => 'password',
-                'on' => ['register', 'passwordChange', 'adminPasswordChange']
+                'on' => ['adminPasswordChange']
             ],
-            [['password', 'password_confirmation'], 'required', 'on' => ['adminPasswordChange']],
-            [['email'], 'email'],
         ];
-
-        if ($this->_username_attribute === 'email') {
-            $rules[] = [['email'], 'required', 'on' => ['userCreate']];
-        } elseif ($this->_username_attribute === 'username') {
-            $rules[] = ['username', 'required', 'on' => ['userCreate']];
-        }
-//        var_dump($rules); die;
-        return $rules;
     }
 
     /**
@@ -115,11 +98,6 @@ class CommonForm extends Model
     public function scenarios()
     {
         return [
-            'signIn' => ['username', 'password', 'rememberMe'],
-            'register' => ['username', 'email', 'password', 'password_confirmation'],
-            'userCreate' => ['username', 'email', 'password', 'password_confirmation', 'group_id', 'published'],
-            'remind' => ['email'],
-            'passwordChange' => ['password', 'password_confirmation', 'password_old'],
             'adminPasswordChange' => ['password', 'password_confirmation'],
             'setPassword' => ['password']
         ];
@@ -135,35 +113,6 @@ class CommonForm extends Model
             if ($user !== null) {
                 $this->addError('username', Yii::t('user', 'User exists'));
                 $this->addError('email', Yii::t('user', 'User exists'));
-            }
-        }
-    }
-
-    /**
-     * Validate password_old on password change scenario
-     */
-    public function validateOLDPassword()
-    {
-        if (!$this->hasErrors()) {
-            $user = $this->getUser();
-            if (!$user || !$user->validatePassword($this->password_old)) {
-                $this->addError('password_old', Yii::t('app', 'Incorrect password.'));
-            }
-        }
-    }
-
-    /**
-     * Validate password on signIn scenario
-     */
-    public function validatePassword()
-    {
-        if (!$this->hasErrors()) {
-            $user = $this->getUser();
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError('password', Yii::t('app', 'Incorrect username or password.'));
-                return false;
-            } else {
-                return true;
             }
         }
     }
@@ -194,8 +143,8 @@ class CommonForm extends Model
     public function getUserByEmail()
     {
         if ($this->_user === null) {
-            $email = ($this->_username_attribute === 'email') ? $this->username : $this->email;
-            $this->_user = UserModel::findByEmail($email);
+//            $email = ($this->_username_attribute === 'email') ? $this->email : $this->username;
+            $this->_user = UserModel::findByEmail($this->email);
         }
         return $this->_user;
     }

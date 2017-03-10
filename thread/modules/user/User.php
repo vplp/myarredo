@@ -70,4 +70,13 @@ class User extends aModule
         return $this->getBaseUploadUrl() . $user_id . '/profile';
     }
 
+    /**
+     * Image upload URL
+     * @return string
+     */
+    public function getBaseUploadUrl()
+    {
+        return '/uploads/' . $this->name . '/';
+    }
+
 }

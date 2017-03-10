@@ -3,11 +3,9 @@
 namespace frontend\modules\user\controllers;
 
 use Yii;
-use yii\web\BadRequestHttpException;
-use yii\base\InvalidParamException;
-use yii\db\Exception;
-use yii\db\mssql\PDO;
-use yii\filters\AccessControl;
+use yii\{
+    web\BadRequestHttpException, base\InvalidParamException, db\Exception, db\mssql\PDO, filters\AccessControl
+};
 //
 use frontend\components\BaseController;
 use frontend\modules\user\models\form\{
@@ -15,6 +13,10 @@ use frontend\modules\user\models\form\{
 };
 use frontend\modules\user\models\{
     Profile, User
+};
+
+use thread\actions\fileapi\{
+    DeleteAction, UploadAction
 };
 
 
@@ -38,13 +40,14 @@ class ProfileController extends BaseController
      */
     public function behaviors()
     {
+
         return [
             'AccessControl' => [
                 'class' => AccessControl::class,
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'update', 'password-change'],
+                        'actions' => ['index', 'update', 'password-change', 'fileupload', 'filedelete'],
                         'roles' => ['@'],
                     ],
                     [
@@ -56,6 +59,24 @@ class ProfileController extends BaseController
                         'allow' => false,
                     ],
                 ],
+            ],
+        ];
+    }
+
+
+    /**
+     * @return array
+     */
+    public function actions()
+    {
+        return [
+            'fileupload' => [
+                'class' => UploadAction::class,
+                'path' => $this->module->getAvatarUploadPath(Yii::$app->getUser()->getId())
+            ],
+            'filedelete' => [
+                'class' => DeleteAction::class,
+                'path' => $this->module->getAvatarUploadPath(Yii::$app->getUser()->getId())
             ],
         ];
     }
@@ -92,7 +113,7 @@ class ProfileController extends BaseController
                 $save = $profile->save();
                 if ($save) {
                     $transaction->commit();
-                    return $this->redirect('index');
+                    return $this->redirect(['index']);
                 } else {
                     $transaction->rollBack();
                 }
@@ -110,6 +131,7 @@ class ProfileController extends BaseController
      */
     public function actionPasswordChange()
     {
+
         $model = new ChangePassword();
         $model->setScenario('passwordChange');
         $model->username = Yii::$app->getUser()->getIdentity()->username;
@@ -149,7 +171,7 @@ class ProfileController extends BaseController
     {
         $model = new PasswordResetRequestForm();
         $model->setScenario('remind');
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+        if ($model->load(Yii::$app->request->post())  && $model->validate() && $model->generateResetToken()) {
             if ($model->sendEmail()) {
                 Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
                 return $this->goHome();

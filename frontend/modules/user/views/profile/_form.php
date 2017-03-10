@@ -14,7 +14,7 @@ $form = ActiveForm::begin([
 <?= $form->field($model, 'first_name') ?>
 <?= $form->field($model, 'last_name') ?>
 <?= $form->field($model, 'preferred_language') ?>
-<?php \thread\widgets\HtmlForm::imageOne($model, 'avatar', ['image_url' => '']) ?>
+<?php \thread\widgets\HtmlForm::imageOne($model, 'avatar', ['image_url' => $model->getAvatarImage()]) ?>
 
     <div class="row form-group">
         <div class="col-sm-4 col-sm-offset-6">

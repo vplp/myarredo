@@ -21,34 +21,55 @@ class PasswordResetRequestForm extends CommonForm
      * @return boolean whether the email was send
      */
 
-    //TODO: Смешано два метода
 
+    /**
+     * Создаем токкен для сброса пароля
+     * @return bool
+     */
+    public function generateResetToken()
+    {
+        $success = false;
+        $user = $this->getUserByEmail();
+        if ($user) {
+            $user->setScenario('resetPassword');
+            $user->generatePasswordResetToken();
+
+            if (!User::isPasswordResetTokenValid($user->password_reset_token)) {
+                $user->generatePasswordResetToken();
+            }
+
+            $success = $user->save();
+        }
+        return $success;
+    }
+
+
+    /**
+     * @return bool
+     */
     public function sendEmail()
     {
-        /* @var $user User */
-        $user = User::findByEmail($this->email);
-
-        $user->setScenario('resetPassword');
-        if (!$user) {
-            return false;
-        }
-        if (!User::isPasswordResetTokenValid($user->password_reset_token)) {
-            $user->generatePasswordResetToken();
-        }
-        if (!$user->save()) {
-            return false;
-        }
-
         /** @see runtime/fronend/debug/mail directory */
         return Yii::$app
             ->mailer
             ->compose(
                 ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
-                ['user' => $user]
+                ['user' => $this->getUserByEmail()]
             )
             ->setFrom(['support@email.ua'])
             ->setTo($this->email)
             ->setSubject('Password reset for ' . \Yii::$app->name)
             ->send();
+    }
+
+
+    /**
+     * @return array
+     */
+    public function scenarios()
+    {
+        return [
+            'remind' => ['email'],
+        ];
     }
 }

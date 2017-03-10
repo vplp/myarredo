@@ -4,6 +4,7 @@ namespace thread\modules\user\models\form;
 use Yii;
 //
 use thread\modules\user\models\Group;
+use yii\helpers\ArrayHelper;
 
 /**
  * Class SignInForm
@@ -39,4 +40,50 @@ class SignInForm extends CommonForm
         }
         return false;
     }
+
+    /**
+     * @return array
+     */
+    public function scenarios()
+    {
+        return ['signIn' => ['username', 'password', 'rememberMe']];
+    }
+
+    /**
+     * @return array
+     */
+    public function rules()
+    {
+        $rules = [
+            [['password'], 'required'],
+            [['rememberMe'], 'boolean'],
+            [['password'], 'validatePassword']
+        ];
+
+        if ($this->_username_attribute === 'email') {
+            $rules[] = [['email'], 'required'];
+        } elseif ($this->_username_attribute === 'username') {
+            $rules[] = [['username'], 'required'];
+        }
+
+        return ArrayHelper::merge($rules, parent::rules());
+    }
+
+    /**
+     * Validate password on signIn scenario
+     */
+    public function validatePassword()
+    {
+        if (!$this->hasErrors()) {
+            $user = $this->getUser();
+            if (!$user || !$user->validatePassword($this->password)) {
+                $this->addError('password', Yii::t('app', 'Incorrect username or password.'));
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+
 }

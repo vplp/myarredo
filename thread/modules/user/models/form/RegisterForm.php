@@ -7,6 +7,7 @@ use thread\app\base\models\ActiveRecord;
 use thread\modules\user\models\{
     Group, Profile, User
 };
+use yii\helpers\ArrayHelper;
 
 /**
  * Class RegisterForm
@@ -17,6 +18,33 @@ use thread\modules\user\models\{
  */
 class RegisterForm extends CommonForm
 {
+
+    /**
+     * @return array
+     */
+    public function rules()
+    {
+        $rules =  [[['password', 'password_confirmation'], 'required']];
+
+        if ($this->_username_attribute === 'email') {
+            $rules[] = [['email'], 'required'];
+        } elseif ($this->_username_attribute === 'username') {
+            $rules[] = [['username'], 'required'];
+        }
+
+        return ArrayHelper::merge($rules, parent::rules());
+    }
+
+    /**
+     * @return array
+     */
+    public function scenarios()
+    {
+        return [
+            'register' => ['username', 'email', 'password', 'password_confirmation'],
+        ];
+    }
+
     /**
      * Add new user to base
      */

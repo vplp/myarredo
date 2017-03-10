@@ -23,6 +23,58 @@ foreach ($items as $item):
     ];
 endforeach;
 
+// user
+
+if (Yii::$app->getUser()->isGuest) {
+    $itm[] =
+        [
+            'label' => 'User Actions',
+            'url' => '#',
+            'items' => [
+                [
+                    'label' => 'Login',
+                    'url' => Yii::$app->getModule('user')->getUrlLogin()
+                ],
+                [
+                    'label' => 'Registration',
+                    'url' => Yii::$app->getModule('user')->getUrlRegistration()
+                ],
+                [
+                    'label' => 'Reset password',
+                    'url' => Yii::$app->getModule('user')->getUrlRequestResetPassword()
+                ],
+                [
+                    'label' => 'Log out',
+                    'url' => Yii::$app->getModule('user')->getUrlLogOut()
+                ],
+            ]
+        ];
+} else {
+    $itm[] =
+        [
+            'label' => 'User Actions',
+            'url' => '#',
+            'items' => [
+                [
+                    'label' => 'Password change',
+                    'url' => Yii::$app->getModule('user')->getUrlPasswordChange()
+                ],
+                [
+                    'label' => 'Profile',
+                    'url' => Yii::$app->getModule('user')->getUrlProfile()
+                ],
+                [
+                    'label' => 'Update profile',
+                    'url' => Yii::$app->getModule('user')->getUrlUpdateProfile()
+                ],
+                [
+                    'label' => 'Logout',
+                    'url' => Yii::$app->getModule('user')->getUrlLogOut()
+                ],
+            ]
+        ];
+}
+
 NavBar::begin([
     'brandLabel' => 'Core CMS', // название организации
     'brandUrl' => Yii::$app->homeUrl, // ссылка на главную страницу сайта

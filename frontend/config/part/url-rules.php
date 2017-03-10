@@ -11,8 +11,10 @@ return [
     'logout' => 'user/logout',
     'change-password' => 'user/profile/password-change',
     'profile' => 'user/profile/index',
+    'update' => 'user/profile/update',
     'request-password-reset' => 'user/profile/request-password-reset',
     'reset-password' => 'user/profile/reset-password',
+    'user/profile/fileupload' => 'user/profile/fileupload',
 
     // Module [[News]]
     'news/<alias:[\w\-]+>' => 'news/list/index',
