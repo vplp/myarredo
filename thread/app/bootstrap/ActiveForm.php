@@ -22,7 +22,7 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
     public $fieldClass = ActiveField::class;
     //
     public $enableClientValidation = true;
-    public $enableAjaxValidation = true;
+    public $enableAjaxValidation = false;
     public $validateOnSubmit = true;
     public $enableClientScript = true;
     public $validationUrl = 'validation';
@@ -36,7 +36,7 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
 
         $this->validationUrl = Url::toRoute($this->validationUrl) . '?id=' . ((isset($_GET['id'])) ? $_GET['id'] : 0);
         $view = $this->getView();
-        $view->registerJs($this->setSubmit());
+//        $view->registerJs($this->setSubmit());
     }
 
     public function setSubmit()

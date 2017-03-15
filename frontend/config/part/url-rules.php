@@ -6,9 +6,9 @@ return [
     '' => 'home/home/index',
 
     // Module [[Users]]
-    'register' => 'user/register',
-    'login' => 'user/login',
-    'logout' => 'user/logout',
+    'register' => 'user/register/index',
+    'login' => 'user/login/index',
+    'logout' => 'user/login/index',
     'change-password' => 'user/profile/password-change',
     'profile' => 'user/profile/index',
     'update' => 'user/profile/update',
