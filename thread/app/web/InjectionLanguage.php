@@ -142,7 +142,7 @@ class InjectionLanguage implements iInjectionLanguage
             $lang = Yii::$app->languages;
 //
             $exists = (isset($domains[0])) ? $lang->isExistsByAlias($domains[0]) : false;
-            $isDefault = (Yii::$app->language === $lang->getDefault()['local']) ? true : false;
+            $isDefault = (Yii::$app->language === $lang->getDefault()['local'] && self::$show_default === self::KEY_OFF) ? true : false;
 
             if ($exists && $isDefault && self::$show_default == self::KEY_OFF) {
                 array_shift($domains);
