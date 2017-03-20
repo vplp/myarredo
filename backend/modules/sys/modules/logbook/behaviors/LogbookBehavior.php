@@ -6,7 +6,7 @@ use yii\base\{
     Behavior, Exception
 };
 use yii\db\ActiveRecord;
-use common\modules\sys\modules\logbook\models\Logbook;
+use thread\modules\sys\modules\logbook\models\Logbook;
 
 /**
  *
@@ -14,21 +14,21 @@ use common\modules\sys\modules\logbook\models\Logbook;
  * @copyright (c), Thread
  *
  *
-public function behaviors()
-{
-    return ArrayHelper::merge(
-        parent::behaviors(),
-        [
-            'LogbookBehavior' => [
-                'class' => LogbookBehavior::class,
-                'category' => 'Новости',
-                'updateMessage' => function () {
-                    return "<a href='/core-cms/web/backend/news/article/update?id=" . $this->owner->id . "'>Обновлена новость " . $this->owner->lang->title . "</a>";
-                }
-            ]
-        ]
-    );
-}
+ * public function behaviors()
+ * {
+ * return ArrayHelper::merge(
+ * parent::behaviors(),
+ * [
+ * 'LogbookBehavior' => [
+ * 'class' => LogbookBehavior::class,
+ * 'category' => 'Новости',
+ * 'updateMessage' => function () {
+ * return "<a href='/core-cms/web/backend/news/article/update?id=" . $this->owner->id . "'>Обновлена новость " . $this->owner->lang->title . "</a>";
+ * }
+ * ]
+ * ]
+ * );
+ * }
  */
 class LogbookBehavior extends Behavior
 {
@@ -95,13 +95,18 @@ class LogbookBehavior extends Behavior
      */
     public function afterUpdateLog($event)
     {
-        $model = new Logbook();
-        $model->scenario = 'backend';
-        $model->message = $this->getUpdateMessage();
-        $model->type = "notice";
-        $model->user_id = \Yii::$app->getUser()->id;
-        $model->category = $this->category;
-        $model->save();
+        try {
+            $model = new Logbook();
+            $model->scenario = 'backend';
+            $model->message = $this->getUpdateMessage();
+            $model->type = "notice";
+            $model->user_id = \Yii::$app->getUser()->id;
+            $model->category = $this->category;
+//            var_dump($model);
+            $model->save(false);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     /**

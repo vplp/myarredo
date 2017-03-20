@@ -6,6 +6,8 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord as dbActiveRecord;
+//
+use backend\modules\sys\modules\logbook\behaviors\LogbookBehavior;
 
 /**
  * class ActiveRecord
@@ -39,6 +41,10 @@ abstract class ActiveRecord extends dbActiveRecord
                     dbActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ],
             ],
+//            'LogbookBehavior' => [
+//                'class' => LogbookBehavior::class,
+//                'category' => self::className(),
+//            ]
         ];
     }
 

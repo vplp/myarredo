@@ -17,7 +17,8 @@ use thread\modules\user\models\form\{
 use backend\modules\user\models\{
     User
 };
-
+//
+use common\modules\user\models\form\ResetPasswordForm;
 
 /**
  * Class PasswordController

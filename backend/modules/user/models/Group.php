@@ -50,4 +50,29 @@ class Group extends \common\modules\user\models\Group implements BaseBackendMode
     {
         return $this->getUsers()->count();
     }
+
+    /**
+     * updateUsersRoleInGroup
+     */
+    public function updateUsersRoleInGroup()
+    {
+        if ($this->getUsersCount() > 0) {
+            $oldGroupRole = $this->getOldAttribute('role');
+            if ($oldGroupRole !== $this->role) {
+                $list = $this->getUsers();
+                foreach ($list as $user) {
+                    $user->save(false);
+                }
+            }
+        }
+    }
+
+    /**
+     * @param bool $insert
+     * @param array $changedAttributes
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+    }
 }

@@ -3,6 +3,7 @@
 namespace backend\modules\user\controllers;
 
 use Yii;
+use yii\web\NotFoundHttpException;
 //
 use thread\app\base\controllers\BackendController;
 use thread\actions\Update;
