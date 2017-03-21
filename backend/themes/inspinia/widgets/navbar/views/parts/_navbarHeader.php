@@ -23,7 +23,7 @@ $user = Yii::$app->getUser()->getIdentity();
                 [
                     'label' => Yii::t('user', 'Profile'),
                     'url' => \yii\helpers\Url::toRoute([
-                        '/user/profile/update',
+                        '/user/ownprofile/update',
                         'id' => Yii::$app->getUser()->getIdentity()->getId()
                     ])
                 ],

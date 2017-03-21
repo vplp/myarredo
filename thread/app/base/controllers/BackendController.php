@@ -109,34 +109,34 @@ abstract class BackendController extends Controller
                     ],
                 ],
             ],
-            'LogbookControllerBehavior' => [
-                'class' => LogbookControllerBehavior::class,
-                'action' => [
-                    [
-                        'action' => 'create',
-                        'message' => function () {
-                            $model = $this->action->getModel();
-                            $action = $this->action;
-                            return 'insert ' . ((get_class($action) == CreateWithLang::class) ? $model['lang']['title'] : $model['title']);
-                        },
-                    ],
-                    [
-                        'action' => 'update',
-                        'message' => function () {
-                            $model = $this->action->getModel();
-                            $action = $this->action;
-                            return 'update ' . ((get_class($action) == UpdateWithLang::class) ? $model['lang']['title'] : $model['title']);
-                        },
-                    ],
-                    [
-                        'action' => 'published',
-                        'message' => function () {
-                            $model = $this->action->getModel();
-                            return 'published ' . $model['id'];
-                        },
-                    ]
-                ]
-            ]
+//            'LogbookControllerBehavior' => [
+//                'class' => LogbookControllerBehavior::class,
+//                'action' => [
+//                    [
+//                        'action' => 'create',
+//                        'message' => function () {
+//                            $model = $this->action->getModel();
+//                            $action = $this->action;
+//                            return 'insert ' . ((get_class($action) == CreateWithLang::class) ? $model['lang']['title'] : $model['title']);
+//                        },
+//                    ],
+//                    [
+//                        'action' => 'update',
+//                        'message' => function () {
+//                            $model = $this->action->getModel();
+//                            $action = $this->action;
+//                            return 'update ' . ((get_class($action) == UpdateWithLang::class) ? $model['lang']['title'] : $model['title']);
+//                        },
+//                    ],
+//                    [
+//                        'action' => 'published',
+//                        'message' => function () {
+//                            $model = $this->action->getModel();
+//                            return 'published ' . $model['id'];
+//                        },
+//                    ]
+//                ]
+//            ]
         ];
     }
 

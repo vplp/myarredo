@@ -4,6 +4,7 @@ namespace backend\modules\user\controllers;
 
 use Yii;
 use yii\web\NotFoundHttpException;
+use yii\filters\AccessControl;
 //
 use thread\app\base\controllers\BackendController;
 use thread\actions\Update;
@@ -27,6 +28,33 @@ class ProfileController extends BackendController
     public $defaultAction = 'update';
     public $actionListLinkStatus = ['/user/user/list'];
     protected $user_id = null;
+
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['request-reset', 'reset'],
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['validation', 'change'],
+                        'roles' => ['admin']
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
 
     /**
      *
@@ -55,6 +83,11 @@ class ProfileController extends BackendController
         ];
     }
 
+    /**
+     * @param $action
+     * @return bool
+     * @throws NotFoundHttpException
+     */
     public function beforeAction($action)
     {
 
