@@ -6,10 +6,6 @@ use yii\helpers\{
     ArrayHelper, Html
 };
 
-/**
- * Class Tabs
- * @package backend\themes\inspinia\widgets
- */
 class Tabs extends \yii\bootstrap\Tabs
 {
     /**
@@ -25,13 +21,39 @@ class Tabs extends \yii\bootstrap\Tabs
     {
         $this->registerPlugin('tab');
 
-        echo Html::beginTag('div', ['class' => 'tabs-container', 'style' => ['margin-bottom' => '15px']]);
-        echo Html::beginTag('div', ['class' => 'tabs-' . $this->position]);
+        echo Html::beginTag('div', ['class' => 'tabs-container', 'style' => ['margin-bottom' => '15px']])
+            . Html::beginTag('div', ['class' => 'tabs-' . $this->position]);
 
         echo $this->renderItems();
 
-        echo Html::endTag('div');
-        echo Html::endTag('div');
+        echo Html::endTag('div')
+            . Html::endTag('div');
+
+        $this->registerJS();
+    }
+
+    /**
+     * registerJS save Tabs state
+     */
+    protected function registerJS()
+    {
+
+        $script = <<< JS
+    $(function() {
+        //save the latest tab (http://stackoverflow.com/a/18845441)
+        $('a[data-toggle="tab"]').on('click', function (e) {
+            localStorage.setItem('lastTab', $(e.target).attr('href'));
+        });
+
+        //go to the latest tab, if it exists:
+        var lastTab = localStorage.getItem('lastTab');
+
+        if (lastTab) {
+            $('a[href="'+lastTab+'"]').click();
+        }
+    });
+JS;
+        \Yii::$app->getView()->registerJs($script, \yii\web\View::POS_END);
     }
 
     /**
@@ -87,7 +109,7 @@ class Tabs extends \yii\bootstrap\Tabs
 
             $headers[] = Html::tag('li', $header, $headerOptions);
         }
-//        var_dump($panes);
+
         return Html::tag('ul', implode("\n", $headers), $this->options)
         . ($this->renderTabContent ? "\n" . Html::tag('div', implode("\n", $panes), ['class' => 'tab-content']) : '');
     }
