@@ -1,6 +1,6 @@
 <?php
 
-use yii\grid\GridView;
+use backend\widgets\GridView\GridView;
 //
 use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
@@ -13,7 +13,6 @@ echo GridView::widget([
         [
             'attribute' => 'title',
             'value' => 'lang.title',
-            'label' => Yii::t('app', 'Title'),
         ],
         [
             'class' => ActionDeleteColumn::class,

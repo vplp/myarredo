@@ -2,10 +2,10 @@
 use yii\helpers\{
     Url
 };
-use yii\grid\GridView;
+use backend\widgets\GridView\GridView;
 //
 use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+    ActionStatusColumn
 };
 //
 use backend\modules\menu\models\search\MenuItem;
@@ -31,23 +31,20 @@ echo GridView::widget(
             ],
             'position',
             [
-                'class' => ActionCheckboxColumn::class,
+                'class' => ActionStatusColumn::class,
                 'attribute' => 'published',
                 'action' => 'published'
             ],
             [
-                'class' => ActionEditColumn::class,
-                'link' => function ($model) {
+                'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
+                'updateLink' => function ($model) {
                     return Url::toRoute([
                         'update',
                         'group_id' => $model['group_id'],
                         'id' => $model['id']
                     ]);
-                }
-            ],
-            [
-                'class' => ActionToTrashColumn::class,
-                'link' => function ($model) {
+                },
+                'deleteLink' => function ($model) {
                     return Url::toRoute([
                         'intrash',
                         'group_id' => $model['group_id'],

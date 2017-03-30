@@ -1,5 +1,5 @@
 <?php
-use yii\grid\GridView;
+use thread\widgets\grid\kartik\GridView;
 //
 use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn

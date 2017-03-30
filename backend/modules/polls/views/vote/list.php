@@ -1,12 +1,7 @@
 <?php
-use yii\helpers\{
-    Url
-};
-use yii\grid\GridView;
-//
-use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
-};
+use yii\helpers\Url;
+use thread\widgets\grid\ActionCheckboxColumn;
+use backend\widgets\GridView\GridView;
 
 echo GridView::widget(
     [
@@ -26,18 +21,15 @@ echo GridView::widget(
                 'action' => 'published'
             ],
             [
-                'class' => ActionEditColumn::class,
-                'link' => function ($model) {
+                'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
+                'updateLink' => function ($model) {
                     return Url::toRoute([
                         'update',
                         'group_id' => $model['group_id'],
                         'id' => $model['id']
                     ]);
-                }
-            ],
-            [
-                'class' => ActionToTrashColumn::class,
-                'link' => function ($model) {
+                },
+                'deleteLink' => function ($model) {
                     return Url::toRoute([
                         'intrash',
                         'group_id' => $model['group_id'],

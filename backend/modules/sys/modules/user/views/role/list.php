@@ -1,10 +1,6 @@
 <?php
 
-use yii\grid\GridView;
-//
-use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn
-};
+use backend\widgets\GridView\GridView;
 
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
@@ -13,14 +9,11 @@ echo GridView::widget([
         'name',
         'description',
         [
-            'class' => ActionEditColumn::class,
-            'link' => function ($model) {
+            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
+            'updateLink' => function ($model) {
                 return ['update', 'id' => $model->name];
-            }
-        ],
-        [
-            'class' => ActionToTrashColumn::class,
-            'link' => function ($model) {
+            },
+            'deleteLink' => function ($model) {
                 return ['update', 'id' => $model->name];
             }
         ],

@@ -9,9 +9,8 @@ use yii\base\{
 use yii\db\ActiveRecord;
 use yii\helpers\FileHelper;
 use yii\validators\Validator;
-use yii\imagine\Image;
 use Imagine\Image\{
-    Box, Point
+    Point
 };
 
 
@@ -63,16 +62,24 @@ class UploadBehavior extends Behavior
             throw new InvalidParamException('Invalid or empty attributes array.');
         } else {
             foreach ($this->attributes as $attribute => $config) {
-                if (!isset($config['path']) || empty($config['path'])) {
+                if (isset($config['path']) && !empty($config['path'])) {
+                    $this->attributes[$attribute]['path'] = $config['path'];
+                } elseif (isset($config['getBaseUploadPathOwner']) && !empty($config['getBaseUploadPathOwner'])) {
+                    $this->attributes[$attribute]['getBaseUploadPathOwner'] = $config['getBaseUploadPathOwner'];
+                } else {
                     throw new InvalidParamException('Path must be set for all attributes.');
                 }
+                //
                 if (!isset($config['tempPath']) || empty($config['tempPath'])) {
-                    throw new InvalidParamException('Temporary path must be set for all attributes.');
+                    $config['tempPath'] = Yii::getAlias('@temp');
                 }
-                if (!isset($config['url']) || empty($config['url'])) {
+                //
+                if (isset($config['getBaseUploadUrlOwner']) && !empty($config['getBaseUploadUrlOwner'])) {
+                    $config['url'] = $this->owner->{$config['getBaseUploadUrlOwner']}() . DIRECTORY_SEPARATOR;
+                } elseif (!isset($config['url']) || empty($config['url'])) {
                     $config['url'] = $this->publish($config['path']);
                 }
-                $this->attributes[$attribute]['path'] = FileHelper::normalizePath(Yii::getAlias($config['path'])) . DIRECTORY_SEPARATOR;
+
                 $this->attributes[$attribute]['tempPath'] = FileHelper::normalizePath(Yii::getAlias($config['tempPath'])) . DIRECTORY_SEPARATOR;
                 $this->attributes[$attribute]['url'] = rtrim($config['url'], '/') . '/';
 
@@ -188,7 +195,6 @@ class UploadBehavior extends Behavior
     public function oldFile($attribute, $filename)
     {
         return $this->path($attribute) . $filename;
-        //$this->owner->getOldAttribute($attribute);
     }
 
     /**
@@ -198,7 +204,12 @@ class UploadBehavior extends Behavior
      */
     public function path($attribute)
     {
-        return $this->attributes[$attribute]['path'];
+
+        if (isset($this->attributes[$attribute]['path']) && !empty($this->attributes[$attribute]['path'])) {
+            return FileHelper::normalizePath($this->attributes[$attribute]['path']) . DIRECTORY_SEPARATOR;
+        } elseif (isset($this->attributes[$attribute]['getBaseUploadPathOwner']) && !empty($this->attributes[$attribute]['getBaseUploadPathOwner'])) {
+            return FileHelper::normalizePath($this->owner->{$this->attributes[$attribute]['getBaseUploadPathOwner']}()) . DIRECTORY_SEPARATOR;
+        }
     }
 
     /**
@@ -327,25 +338,6 @@ class UploadBehavior extends Behavior
                 foreach ($files as $file) {
                     if ($file !== '') {
                         $this->saveFile($attribute, $file);
-
-                        // Create Resize
-                        if ($this->issetResize($config)) {
-                            $image = $this->processImage($this->attributes[$attribute]['url'] . $file, $config);
-                            $image->save($this->attributes[$attribute]['path'] . $file, ['quality' => 100]);
-                        }
-
-                        // Create Thumb
-                        if ($this->issetThumbnails($config)) {
-                            $this->attributes[$attribute]['thumbnails'] = $config['thumbnails'];
-                            $thumbnails = $this->attributes[$attribute]['thumbnails'];
-
-                            foreach ($thumbnails as $name => $options) {
-                                $this->ensureAttribute($name, $options);
-                                $tmbFileName = $name . $file;
-                                $image = $this->processImage($this->attributes[$attribute]['url'] . $file, $options);
-                                $image->save($this->attributes[$attribute]['path'] . $tmbFileName, ['quality' => 100]);
-                            }
-                        }
                     }
                 }
 
@@ -353,38 +345,11 @@ class UploadBehavior extends Behavior
                 $old_files = array_diff($old_files, $files);
                 foreach ($old_files as $o_file) {
                     $this->deleteFile($this->oldFile($attribute, $o_file));
-
-                    if ($this->issetThumbnails($config)) {
-                        $this->attributes[$attribute]['thumbnails'] = $config['thumbnails'];
-                        $thumbnails = $this->attributes[$attribute]['thumbnails'];
-
-                        foreach ($thumbnails as $name => $options) {
-                            $this->deleteFile($this->oldFile($attribute, $name . $o_file));
-                        }
-                    }
                 }
             }
         }
 
         $this->fileExsistInAttributes();
-    }
-
-    /**
-     * @param array $config name of attribute
-     * @return bool isset thumbnails or not
-     */
-    private function issetThumbnails($config)
-    {
-        return isset($config['thumbnails']) && is_array($config['thumbnails']);
-    }
-
-    /**
-     * @param array $config name of attribute
-     * @return bool isset width, height or not
-     */
-    private function issetResize($config)
-    {
-        return isset($config['width']) || isset($config['height']);
     }
 
     /**
@@ -398,39 +363,5 @@ class UploadBehavior extends Behavior
             $options = [];
         }
     }
-
-    /**
-     * @param string $original path to original image
-     * @param array $options with width and height
-     * @return \Imagine\Image\ImageInterface
-     */
-    private function processImage($original, $options)
-    {
-        list($imageWidth, $imageHeight) = getimagesize($original);
-        $image = Image::getImagine()->open($original);
-
-        if (isset($options['width']) && !isset($options['height'])) {
-            $width = $options['width'];
-            $height = $options['width'] * $imageHeight / $imageWidth;
-            $image->resize(new Box($width, $height));
-        } elseif (!isset($options['width']) && isset($options['height'])) {
-            $width = $options['height'] * $imageWidth / $imageHeight;
-            $height = $options['height'];
-            $image->resize(new Box($width, $height));
-        } elseif (isset($options['width']) && isset($options['height'])) {
-            $width = $options['width'];
-            $height = $options['height'];
-            if ($width / $height > $imageWidth / $imageHeight) {
-                $resizeHeight = $width * $imageHeight / $imageWidth;
-                $image->resize(new Box($width, $resizeHeight))
-                    ->crop(new Point(0, ($resizeHeight - $height) / 2), new Box($width, $height));
-            } else {
-                $resizeWidth = $height * $imageWidth / $imageHeight;
-                $image->resize(new Box($resizeWidth, $height))
-                    ->crop(new Point(($resizeWidth - $width) / 2, 0), new Box($width, $height));
-            }
-        }
-
-        return $image;
-    }
 }
+

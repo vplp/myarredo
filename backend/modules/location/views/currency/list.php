@@ -1,8 +1,8 @@
 <?php
-use yii\grid\GridView;
+use backend\widgets\GridView\GridView;
 //
 use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+    ActionCheckboxColumn
 };
 
 /**
@@ -13,23 +13,19 @@ echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
-        'alias',
         [
             'attribute' => 'title',
             'value' => 'lang.title',
-            'label' => Yii::t('app', 'Title'),
         ],
         'course',
+        'code2',
         [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',
             'action' => 'published'
         ],
         [
-            'class' => ActionEditColumn::class,
-        ],
-        [
-            'class' => ActionToTrashColumn::class
+            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class
         ],
     ]
 ]);

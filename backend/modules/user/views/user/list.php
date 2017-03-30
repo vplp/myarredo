@@ -1,12 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use backend\widgets\GridView\GridView;
 //
 use backend\modules\user\models\Group;
 //
 use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn, GridViewFilter
+    ActionCheckboxColumn, GridViewFilter
 };
 
 /**
@@ -25,7 +25,7 @@ echo GridView::widget([
         [
             'attribute' => 'group_id',
             'value' => 'group.lang.title',
-            'filter' => GridViewFilter::dropDownList($filter, 'group_id', Group::dropDownList()),
+            'filter' => GridViewFilter::selectOne($filter, 'group_id', Group::dropDownList()),
         ],
         'username',
         [
@@ -52,12 +52,9 @@ echo GridView::widget([
             },
         ],
         [
-            'class' => ActionEditColumn::class,
-        ],
-        [
-            'class' => ActionToTrashColumn::class,
-            'link' => function ($model) {
-                return ($model['id'] == 1 || Yii::$app->getUser()->id == $model['id']) ? '' : ['intrash', 'id' => $model['id']];
+            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
+            'deleteLink' => function ($model) {
+                return ($model['id'] == 1) ? false : ['intrash', 'id' => $model['id']];
             }
         ],
     ]

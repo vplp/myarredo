@@ -7,7 +7,7 @@ use yii\helpers\{
 };
 //
 use kartik\widgets\{
-    DatePicker, FileInput
+    DatePicker, FileInput, ColorInput, Select2
 };
 //
 use thread\widgets\editors\Editor;
@@ -121,43 +121,89 @@ class ActiveField extends \yii\bootstrap\ActiveField
         if (!empty($preview)) {
             $imagePreview = Html::img($preview, [
                 'class' => 'file-preview-image',
-                'style' => ['max-height' => '150px']
+                'style' => ['max-height' => '200px', 'max-width' => '200px']
             ]);
         }
         $inputName = Html::getInputName($this->model, $this->attribute);
         $this->parts['{input}'] = Html::activeHiddenInput($this->model, $this->attribute);
         $this->parts['{input}'] .= FileInput::widget([
+            'language' => Yii::$app->params['themes']['language'],
             'name' => $name,
             'options' => [
                 'class' => 'file-loading',
                 'accept' => 'image/*'
             ],
             'pluginOptions' => [
-                'uploadUrl' => Url::toRoute(['fileupload', 'input_file_name' => $name, 'id' => $this->model->id]),
+                'uploadUrl' => Url::toRoute(['fileupload', 'input_file_name' => $name, 'model_id' => $this->model->id]),
                 'uploadExtraData' => [
                     '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
                 ],
-                'uploadAsync' => false,
-                'showUpload' => false,
-                'showRemove' => false,
+                'browseClass' => 'btn btn-success',
+                'uploadClass' => 'btn btn-info',
+                'removeClass' => 'btn btn-danger',
+                'uploadAsync' => true,
+                'showUpload' => true,
+                'showRemove' => true,
                 'overwriteInitial' => true,
                 'initialPreview' => $imagePreview,
+                'browseOnZoneClick' => true,
+                'maxFileSize' => 2048
             ],
             'pluginEvents' => [
                 'filebatchselected' => 'function(event, files) {
-                        }',
+                }',
                 'filebatchuploadsuccess' => 'function(event, data, previewId, index){
-                                var response = data.response;
-                                $("input[name=\'' . $inputName . '\']").val(response.name);
-                        }',
+                    var response = data.response;
+                    $("input[name=\'' . $inputName . '\']").val(response.name);
+                }',
                 'fileuploaded' => 'function(event, data, previewId, index){
-                                var response = data.response;
-                                $("input[name=\'' . $inputName . '\']").val(response.name);
-                        }',
+                    var response = data.response;
+                    $("input[name=\'' . $inputName . '\']").val(response.name);
+                }',
                 'fileclear' => 'function(event){
-                            $("input[name=\'' . $inputName . '\']").val("");
-                        }',
+                    $("input[name=\'' . $inputName . '\']").val("");
+                }',
             ]
+        ]);
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function colorPicker()
+    {
+        /* @var $class \yii\base\Widget */
+        $config['model'] = $this->model;
+        $config['attribute'] = $this->attribute;
+        $config['view'] = $this->form->getView();
+        $this->parts['{input}'] = ColorInput::widget([
+            'model' => $this->model,
+            'attribute' => $this->attribute,
+            'options' => [
+                'placeholder' => Yii::t('app', 'Choose your color'),
+            ],
+        ]);
+        return $this;
+    }
+
+    /**
+     * @param array $data
+     * @return $this
+     */
+    public function selectOne(array $data)
+    {
+        /* @var $class \yii\base\Widget */
+        $config['model'] = $this->model;
+        $config['attribute'] = $this->attribute;
+        $config['view'] = $this->form->getView();
+        $this->parts['{input}'] = Select2::widget([
+            'model' => $this->model,
+            'attribute' => $this->attribute,
+            'data' => $data,
+            'options' => [
+                'placeholder' => Yii::t('app', 'Choose'),
+            ],
         ]);
         return $this;
     }

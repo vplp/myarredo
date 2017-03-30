@@ -1,16 +1,19 @@
 <?php
 
+use yii\helpers\Html;
+//
+use backend\widgets\LangSwitch\LangSwitch;
 use backend\themes\inspinia\assets\AppAsset;
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2014, Thread
+ * @copyright (c), Thread
  */
 $bundle = AppAsset::register($this);
 
 $this->beginPage()
 ?>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <base href="<?= Yii::$app->getUrlManager()->getBaseUrl() ?>">
@@ -20,19 +23,25 @@ $this->beginPage()
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->head(); ?>
 </head>
-<style>
-    body {
-        background-color: #fff !important;
-    }
-</style>
 <body class="html">
 <?php $this->beginBody() ?>
 
 <div id="wrapper">
-    <div class="gray-bg" style="margin-left: 0;">
-        <?= $content ?>
+    <div id="page-wrapper" class="white-bg" style="margin-left: 0; padding: 0 0 0 0;">
+        <div class="row border-bottom" style="height: 0; overflow: hidden;">
+            <nav class="navbar navbar-static-top gray-bg" role="navigation" style="margin-bottom: 0">
+                <?= LangSwitch::widget() ?>
+            </nav>
+        </div>
+        <?= $content; ?>
     </div>
 </div>
+
+<style>
+    .ibox-content {
+        padding: 0 0 0 0;
+    }
+</style>
 
 <?php $this->endBody() ?>
 </body>

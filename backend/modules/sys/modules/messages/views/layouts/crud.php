@@ -8,7 +8,7 @@ use yii\helpers\{
 
 <?php $this->beginContent('@app/layouts/main.php'); ?>
 
-<div class="row wrapper border-bottom white-bg page-heading">
+<div class="row border-bottom white-bg page-heading">
     <div class="col-lg-9">
         <h2>
             <?= Yii::t($this->context->module->name, $this->context->module->title) ?>.
@@ -27,7 +27,7 @@ use yii\helpers\{
     </div>
 </div>
 
-<div class="wrapper wrapper-content animated fadeIn">
+<div class="animated fadeIn">
     <?= $content; ?>
 </div>
 

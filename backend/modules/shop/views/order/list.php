@@ -1,10 +1,6 @@
 <?php
 
-use yii\grid\GridView;
-//
-use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn
-};
+use backend\widgets\GridView\GridView;
 
 /**
  *
@@ -39,10 +35,7 @@ echo GridView::widget([
         'total_summ',
         'comment',
         [
-            'class' => ActionEditColumn::class,
-        ],
-        [
-            'class' => ActionToTrashColumn::class
+            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
         ],
     ],
 ]);

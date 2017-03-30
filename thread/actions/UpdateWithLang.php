@@ -30,6 +30,12 @@ use thread\app\base\models\ActiveRecord;
  */
 class UpdateWithLang extends ActionCRUD
 {
+
+    /**
+     * @var Closure|null
+     */
+    public $afterSaveCallback = null;
+
     /**
      * Init action
      *
@@ -46,7 +52,7 @@ class UpdateWithLang extends ActionCRUD
         }
         $this->model = new $this->modelClass;
         $this->modelLang = new $this->modelClassLang;
-        /** @var ActiveRecord $this->model */
+        /** @var ActiveRecord $this ->model */
         if ($this->model === null) {
             throw new Exception($this->modelClass . 'must be exists.');
         }
@@ -118,11 +124,25 @@ class UpdateWithLang extends ActionCRUD
                     $save = $this->modelLang->save();
                 }
                 $save ? $transaction->commit() : $transaction->rollBack();
+                if ($save) {
+                    $this->afterSaveModel();
+                }
             } catch (Exception $e) {
                 Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
                 $transaction->rollBack();
             }
         }
         return $save;
+    }
+
+    /**
+     * Run Callback function if model saved correctly
+     */
+    protected function afterSaveModel()
+    {
+        if ($this->afterSaveCallback instanceof Closure) {
+            $f = $this->afterSaveCallback;
+            $f($this);
+        }
     }
 }

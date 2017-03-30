@@ -1,5 +1,5 @@
 <?php $this->beginContent('@app/layouts/main.php'); ?>
-<div class="wrapper wrapper-content animated fadeIn">
+<div class="animated fadeIn">
     <?= $content; ?>
 </div>
 

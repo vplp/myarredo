@@ -1,10 +1,6 @@
 <?php
 
-use yii\grid\GridView;
-//
-use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn
-};
+use backend\widgets\GridView\GridView;
 
 /**
  * @var \backend\modules\news\models\search\Article $model
@@ -15,15 +11,11 @@ echo GridView::widget([
     'filterModel' => $filter,
     'columns' => [
         [
-            'label' => Yii::t('app', 'Title'),
             'attribute' => 'title',
             'value' => 'lang.title',
         ],
         [
-            'class' => ActionEditColumn::class,
-        ],
-        [
-            'class' => ActionToTrashColumn::class,
+            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class
         ],
     ]
 ]);

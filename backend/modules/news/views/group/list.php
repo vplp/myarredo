@@ -1,10 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use backend\widgets\GridView\GridView;
 //
 use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+    ActionStatusColumn
 };
 
 echo GridView::widget([
@@ -14,10 +14,9 @@ echo GridView::widget([
         [
             'attribute' => 'title',
             'value' => 'lang.title',
-            'label' => Yii::t('app', 'Title'),
         ],
         [
-            'label' => 'Articles',
+            'label' => Yii::t('news', 'Articles'),
             'format' => 'raw',
             'value' => function ($model) {
                 return Html::a(Yii::t('news', 'Articles') . ' (' . $model->getArticlesCount() . ')',
@@ -25,15 +24,12 @@ echo GridView::widget([
             }
         ],
         [
-            'class' => ActionCheckboxColumn::class,
+            'class' => ActionStatusColumn::class,
             'attribute' => 'published',
             'action' => 'published'
         ],
         [
-            'class' => ActionEditColumn::class,
-        ],
-        [
-            'class' => ActionToTrashColumn::class
+            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class
         ],
     ]
 ]);

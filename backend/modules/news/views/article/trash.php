@@ -1,5 +1,5 @@
 <?php
-use yii\grid\GridView;
+use backend\widgets\GridView\GridView;
 //
 use kartik\widgets\DatePicker;
 //

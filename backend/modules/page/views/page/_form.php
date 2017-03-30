@@ -2,8 +2,9 @@
 
 use thread\modules\seo\widgets\seo\SeoWidget;
 use thread\app\bootstrap\{
-    ActiveForm, Tabs
+    ActiveForm
 };
+use backend\themes\inspinia\widgets\Tabs;
 //
 use backend\modules\page\models\{
     Page, PageLang

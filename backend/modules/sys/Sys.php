@@ -3,7 +3,8 @@
 namespace backend\modules\sys;
 
 use backend\modules\sys\modules\{
-    growl\Growl, user\User, crontab\Crontab, configs\Configs, messages\Messages, logbook\Logbook
+    growl\Growl, user\User, crontab\Crontab, configs\Configs, messages\Messages,
+    logbook\Logbook
 };
 
 /**

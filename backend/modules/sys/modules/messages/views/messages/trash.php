@@ -4,7 +4,7 @@ use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
 };
 //
-use backend\themes\inspinia\widgets\GridView;
+use backend\widgets\GridView\GridView;
 
 /**
  *

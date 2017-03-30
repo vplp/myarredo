@@ -1,6 +1,10 @@
 <?php
 
-use backend\themes\inspinia\widgets\GridView;
+use thread\widgets\grid\{
+    ActionDeleteColumn, ActionRestoreColumn
+};
+//
+use backend\widgets\GridView\GridView;
 
 /**
  *
@@ -11,10 +15,10 @@ echo GridView::widget([
     'columns' => [
         'lang.title',
         [
-            'class' => \thread\widgets\grid\ActionDeleteColumn::class,
+            'class' => ActionDeleteColumn::class,
         ],
         [
-            'class' => \thread\widgets\grid\ActionRestoreColumn::class
+            'class' => ActionRestoreColumn::class
         ],
     ]
 ]);

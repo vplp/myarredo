@@ -1,10 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use backend\widgets\GridView\GridView;
 //
 use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+    ActionCheckboxColumn
 };
 
 echo GridView::widget([
@@ -14,13 +14,12 @@ echo GridView::widget([
         [
             'attribute' => 'title',
             'value' => 'lang.title',
-            'label' => Yii::t('app', 'Title'),
         ],
         [
             'label' => 'Articles',
             'format' => 'raw',
             'value' => function ($model) {
-                return Html::a(Yii::t('configs', 'Params') . ' (' . $model->getParamsCount() . ')',
+                return Html::a(Yii::t('app', 'Params') . ' (' . $model->getParamsCount() . ')',
                     ['/configs/params/list', 'Params[group_id]' => $model['id']]);
             }
         ],
@@ -30,10 +29,7 @@ echo GridView::widget([
             'action' => 'published'
         ],
         [
-            'class' => ActionEditColumn::class,
-        ],
-        [
-            'class' => ActionToTrashColumn::class
+            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class
         ],
     ]
 ]);

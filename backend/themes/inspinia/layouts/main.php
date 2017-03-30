@@ -4,8 +4,6 @@ use yii\helpers\Html;
 //
 use backend\widgets\LangSwitch\LangSwitch;
 use backend\themes\inspinia\assets\AppAsset;
-use backend\modules\sys\modules\growl\widgets\bell\Bell;
-use backend\modules\correspondence\widgets\bell\Bell as MBell;
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
@@ -38,12 +36,6 @@ $this->beginPage()
                             class="fa fa-bars"></i> </a>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
-                    <li class="dropdown">
-                        <?= MBell::widget() ?>
-                    </li>
-                    <li class="dropdown">
-                        <?= Bell::widget() ?>
-                    </li>
                     <li>
                         <?= Html::a('<i class="fa fa-sign-out"></i>', ['/user/logout']) ?>
                     </li>

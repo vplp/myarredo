@@ -14,7 +14,7 @@ use \backend\modules\location\models\Country;
 <?= $form->submit($model, $this) ?>
 <?= $form->text_line($model, 'alias') ?>
 <?= $form->text_line_lang($modelLang, 'title') ?>
-<?= $form->field($model, 'country_id')->dropDownList(Country::dropDownList()) ?>
+<?= $form->field($model, 'country_id')->selectOne(Country::dropDownList()) ?>
 <?= $form->switcher($model, 'published') ?>
 <?= $form->submit($model, $this) ?>
 <?php ActiveForm::end();

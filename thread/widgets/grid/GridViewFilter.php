@@ -3,7 +3,9 @@ namespace thread\widgets\grid;
 
 use Yii;
 use yii\helpers\Html;
-use kartik\widgets\DatePicker;
+use kartik\widgets\{
+    DatePicker, Select2
+};
 //
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 
@@ -26,6 +28,24 @@ class GridViewFilter
     {
         return Html::activeDropDownList($model, $attribute, $list,
             ['class' => 'form-control', 'prompt' => '  ---  ']);
+    }
+
+    /**
+     * @param BaseBackendSearchModel $model
+     * @param $attribute
+     * @param array $list
+     * @return mixed
+     */
+    public static function selectOne(BaseBackendSearchModel $model, $attribute, array $list)
+    {
+        return Select2::widget([
+            'model' => $model,
+            'attribute' => $attribute,
+            'data' => $list,
+            'options' => [
+                'placeholder' => Yii::t('app', 'Choose'),
+            ],
+        ]);
     }
 
     /**

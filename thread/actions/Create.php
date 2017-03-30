@@ -30,6 +30,11 @@ use yii\log\Logger;
 class Create extends ActionCRUD
 {
     /**
+     * @var Closure|null
+     */
+    public $afterSaveCallback = null;
+
+    /**
      * Init action
      *
      * @inheritdoc
@@ -61,7 +66,7 @@ class Create extends ActionCRUD
     {
         if (Yii::$app->getRequest()->isAjax) {
             return $this->controller->renderPartial($this->view, [
-                        'model' => $this->model,
+                'model' => $this->model,
             ]);
         } else {
             if ($this->saveModel()) {
@@ -92,11 +97,25 @@ class Create extends ActionCRUD
                 $save = $this->model->save();
 
                 ($save) ? $transaction->commit() : $transaction->rollBack();
+                if ($save) {
+                    $this->afterSaveModel();
+                }
             } catch (Exception $e) {
                 Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
                 $transaction->rollBack();
             }
         }
         return $save;
+    }
+
+    /**
+     * Run Callback function if model saved correctly
+     */
+    protected function afterSaveModel()
+    {
+        if ($this->afterSaveCallback instanceof Closure) {
+            $f = $this->afterSaveCallback;
+            $f($this);
+        }
     }
 }

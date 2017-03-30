@@ -22,7 +22,7 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
     public $fieldClass = ActiveField::class;
     //
     public $enableClientValidation = true;
-    public $enableAjaxValidation = false;
+    public $enableAjaxValidation = true;
     public $validateOnSubmit = true;
     public $enableClientScript = true;
     public $validationUrl = 'validation';
@@ -36,7 +36,7 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
 
         $this->validationUrl = Url::toRoute($this->validationUrl) . '?id=' . ((isset($_GET['id'])) ? $_GET['id'] : 0);
         $view = $this->getView();
-//        $view->registerJs($this->setSubmit());
+        $view->registerJs($this->setSubmit());
     }
 
     public function setSubmit()
@@ -140,16 +140,17 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
      * @param $model
      * @param $attribute
      * @param array $options
+     * @param string $thema
      * @return mixed
      */
-    public function text_editor_lang($model, $attribute, $options = [])
+    public function text_editor_lang($model, $attribute, $options = [], $thema = 'full')
     {
 
         $template = [
             'template' => '<div class="input-group" style="text-align: left;">{label}<span class="input-group-addon" style="display: inline;">' . Yii::$app->language . '</span></div>{input}{error}{hint}'
         ];
 
-        return $this->field($model, $attribute, ArrayHelper::merge($template, $options))->editor();
+        return $this->field($model, $attribute, ArrayHelper::merge($template, $options))->editor($thema);
     }
 
     /**

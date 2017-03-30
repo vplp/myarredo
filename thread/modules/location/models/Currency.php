@@ -70,7 +70,7 @@ class Currency extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias'], 'required'],
+            [['alias', 'code1', 'code2'], 'required'],
             [['created_at', 'updated_at'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['code1', 'code2'], 'string', 'max' => 4],

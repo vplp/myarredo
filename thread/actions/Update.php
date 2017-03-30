@@ -29,12 +29,11 @@ use thread\app\base\models\ActiveRecord;
  */
 class Update extends ActionCRUD
 {
+
     /**
-     * After save closure
-     *
-     * @var \Closure
+     * @var Closure|null
      */
-    public $afterSave = '';
+    public $afterSaveCallback = null;
 
     /**
      * Init action
@@ -47,7 +46,7 @@ class Update extends ActionCRUD
         if ($this->modelClass === null) {
             throw new Exception(__CLASS__ . '::$modelClass must be set.');
         }
-        /** @var ActiveRecord $this->model */
+        /** @var ActiveRecord $this ->model */
         $this->model = new $this->modelClass;
         if ($this->model === null) {
             throw new Exception($this->modelClass . 'must be exists.');
@@ -109,9 +108,12 @@ class Update extends ActionCRUD
             $model = $this->model;
             $transaction = $model::getDb()->beginTransaction();
             try {
-                /** @var ActiveRecord $this->model */
+                /** @var ActiveRecord $this ->model */
                 $save = $this->model->save();
                 $save ? $transaction->commit() : $transaction->rollBack();
+                if ($save) {
+                    $this->afterSaveModel();
+                }
             } catch (Exception $e) {
                 Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
                 $transaction->rollBack();
@@ -121,15 +123,13 @@ class Update extends ActionCRUD
     }
 
     /**
-     * After save method
-     * @return bool
+     * Run Callback function if model saved correctly
      */
-    public function afterSaveModel()
+    protected function afterSaveModel()
     {
-        $save = $this->afterSave;
-        if ($save instanceof \Closure) {
-            return $save();
+        if ($this->afterSaveCallback instanceof Closure) {
+            $f = $this->afterSaveCallback;
+            $f($this);
         }
-        return false;
     }
 }

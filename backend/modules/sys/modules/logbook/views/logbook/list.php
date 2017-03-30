@@ -1,9 +1,9 @@
 <?php
 
-use yii\grid\GridView;
+use backend\widgets\GridView\GridView;
 //
 use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn
+    ActionCheckboxColumn
 };
 
 echo GridView::widget([
@@ -37,10 +37,7 @@ echo GridView::widget([
             'action' => 'is_read'
         ],
         [
-            'class' => ActionEditColumn::class,
-        ],
-        [
-            'class' => ActionToTrashColumn::class
+            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
         ],
     ]
 ]);

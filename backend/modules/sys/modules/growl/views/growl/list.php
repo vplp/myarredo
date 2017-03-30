@@ -1,11 +1,11 @@
 <?php
 
-use yii\grid\GridView;
+use backend\widgets\GridView\GridView;
 use yii\helpers\Html;
 
 //
 use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn, GridViewFilter
+    ActionStatusColumn, GridViewFilter
 };
 
 echo GridView::widget([
@@ -25,20 +25,16 @@ echo GridView::widget([
         'model',
         'message',
         [
-            'class' => ActionCheckboxColumn::class,
+            'class' => ActionStatusColumn::class,
+            'statusLabel' => [
+                0 => 'Unread',
+                1 => 'Read',
+            ],
             'attribute' => 'is_read',
             'action' => 'is_read'
         ],
         [
-            'class' => ActionCheckboxColumn::class,
-            'attribute' => 'published',
-            'action' => 'published'
-        ],
-        [
-            'class' => ActionEditColumn::class,
-        ],
-        [
-            'class' => ActionToTrashColumn::class,
+            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
         ],
     ]
 ]);

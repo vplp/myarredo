@@ -30,6 +30,11 @@ use thread\app\base\models\ActiveRecord;
 class CreateWithLang extends ActionCRUD
 {
     /**
+     * @var Closure|null
+     */
+    public $afterSaveCallback = null;
+
+    /**
      * Init action
      *
      * @inheritdoc
@@ -110,11 +115,25 @@ class CreateWithLang extends ActionCRUD
                     $save = $this->modelLang->save();
                 }
                 $save ? $transaction->commit() : $transaction->rollBack();
+                if ($save) {
+                    $this->afterSaveModel();
+                }
             } catch (Exception $e) {
                 Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
                 $transaction->rollBack();
             }
         }
         return $save;
+    }
+
+    /**
+     * Run Callback function if model saved correctly
+     */
+    protected function afterSaveModel()
+    {
+        if ($this->afterSaveCallback instanceof Closure) {
+            $f = $this->afterSaveCallback;
+            $f($this);
+        }
     }
 }

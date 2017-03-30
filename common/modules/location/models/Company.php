@@ -2,13 +2,12 @@
 namespace common\modules\location\models;
 
 /**
- * Class Country
+ * Class Company
  *
- * @package thread\modules\location\models
+ * @package common\modules\location\models
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-
 class Company extends \thread\modules\location\models\Company
 {
 

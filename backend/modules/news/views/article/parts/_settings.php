@@ -12,15 +12,14 @@ use backend\modules\news\models\Group;
 <?= $form->field($model, 'group_id')->dropDownList(Group::dropDownList(), ['prompt' => '---' . Yii::t('app', 'Choose group') . '---']) ?>
 <?= $form->text_line_lang($modelLang, 'title') ?>
 <?= $form->text_line($model, 'alias') ?>
-<?= $form->text_line_lang($modelLang, 'description')->textarea(['style' => 'height:100px;']) ?>
-
+<?= $form->text_line_lang($modelLang, 'description')->textarea([
+    'style' => 'height:100px;'
+]) ?>
 <div class="row control-group">
     <div class="col-md-3">
         <?= $form->switcher($model, 'published') ?>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-6">
         <?= $form->field($model, 'published_time')->datePicker($model->getPublishedTime()) ?>
     </div>
 </div>
-
-

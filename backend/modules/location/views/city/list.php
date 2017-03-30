@@ -1,11 +1,12 @@
 <?php
 
-use yii\grid\GridView;
-use backend\modules\location\models\Country;
+use backend\widgets\GridView\GridView;
 //
 use thread\widgets\grid\{
-    ActionEditColumn, ActionToTrashColumn, ActionCheckboxColumn, GridViewFilter
+    ActionCheckboxColumn, GridViewFilter
 };
+//
+use backend\modules\location\models\Country;
 
 /**
  * @var \backend\modules\location\models\search\City $model
@@ -18,12 +19,11 @@ echo GridView::widget([
         [
             'attribute' => 'title',
             'value' => 'lang.title',
-            'label' => Yii::t('app', 'Title'),
         ],
         [
             'attribute' => 'country_id',
             'value' => 'country.lang.title',
-            'filter' => GridViewFilter::dropDownList($filter, 'country_id', Country::dropDownList())
+            'filter' => GridViewFilter::selectOne($filter, 'country_id', Country::dropDownList())
         ],
         [
             'class' => ActionCheckboxColumn::class,
@@ -31,10 +31,7 @@ echo GridView::widget([
             'action' => 'published'
         ],
         [
-            'class' => ActionEditColumn::class,
-        ],
-        [
-            'class' => ActionToTrashColumn::class
+            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class
         ],
     ]
 ]);
