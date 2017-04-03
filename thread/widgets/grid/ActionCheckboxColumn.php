@@ -1,6 +1,7 @@
 <?php
 namespace thread\widgets\grid;
 
+use Closure;
 use yii\base\InvalidConfigException;
 use yii\grid\DataColumn;
 use yii\helpers\{
@@ -28,7 +29,7 @@ class ActionCheckboxColumn extends DataColumn
 
     /**
      * Url to send AJAX request
-     * @var string
+     * @var string|Closure
      */
     public $action;
 
@@ -42,9 +43,6 @@ class ActionCheckboxColumn extends DataColumn
             throw new InvalidConfigException(\Yii::t('app',
                     'You should set "action" attribute to "') . $this->attribute . '"');
         }
-//        if (empty($this->filter)) {
-//            $this->filter = \Yii::$app->formatter->booleanFormat;
-//        }
     }
 
     /**
@@ -67,13 +65,28 @@ class ActionCheckboxColumn extends DataColumn
      */
     protected function renderDataCellContent($model, $key, $index)
     {
-        $dataAttributes = [
-            'class' => 'ajax-switcher i-checks',
-            'data' => [
-                'id' => $model->id,
-                'url' => Url::toRoute([$this->action]),
-            ],
-        ];
+        $action = '';
+        if ($this->action instanceof Closure) {
+            $action = $this->action;
+            $action = $action($model);
+        } else {
+            $action = $this->action;
+        }
+
+        if ($action === false) {
+            $dataAttributes = [
+                'class' => 'ajax-switcher i-checks',
+                'disabled' => true,
+            ];
+        } else {
+            $dataAttributes = [
+                'class' => 'ajax-switcher i-checks',
+                'data' => [
+                    'id' => $model->id,
+                    'url' => Url::toRoute([$action]),
+                ],
+            ];
+        }
 
         /** @var \yii\db\ActiveRecord $model */
         return Html::checkbox(null, (int)$model->{$this->attribute}, $dataAttributes);
