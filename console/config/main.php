@@ -10,6 +10,8 @@ foreach ($main['bootstrap'] as $itemkey => $item) {
 }
 unset($itemkey, $item, $main['components']['request']);
 
+$rootDir = dirname(__DIR__, 2);
+
 return ArrayHelper::merge(
     $main,
     [
@@ -43,6 +45,16 @@ return ArrayHelper::merge(
                     '@thread/modules/sys/modules',
                 ],
                 'migrationPaths' => [
+                ],
+            ],
+            'clean' => [
+                'class' => 'console\controllers\CleanController',
+                'assetPaths' => [
+                    "$rootDir/web/assets",
+                ],
+                'runtimePaths' => [
+                    "$rootDir/runtime",
+                    "$rootDir/temp",
                 ],
             ],
         ],
