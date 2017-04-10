@@ -5,6 +5,7 @@ namespace thread\modules\menu\models;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 //
 use thread\app\base\models\ActiveRecord;
 use thread\modules\menu\Menu as MenuModule;
@@ -41,6 +42,7 @@ class MenuItem extends ActiveRecord
 
     const LINK_TYPE_EXTERNAL = 'external';
     const LINK_TYPE_INTERNAL = 'internal';
+    const LINK_TYPE_PERMANENT = 'permanent';
 
     /**
      * Переопределяем active query
@@ -52,6 +54,11 @@ class MenuItem extends ActiveRecord
      * @var array
      */
     protected static $sources = [];
+
+    /**
+     * @var array
+     */
+    protected static $permanent_link = [];
 
     /**
      *
@@ -72,8 +79,8 @@ class MenuItem extends ActiveRecord
 
     public function init()
     {
-        self::getInternalSourcesFromModule();
         parent::init();
+        self::getInternalSourcesFromModule();
     }
 
     /**
@@ -202,6 +209,17 @@ class MenuItem extends ActiveRecord
     /**
      * @return array
      */
+    public static function getPermanentLink()
+    {
+        /** @var MenuModule $module */
+        $module = Yii::$app->getModule('menu');
+        return $module->permanent_link;
+    }
+
+
+    /**
+     * @return array
+     */
     public static function getTypeSources()
     {
         return ArrayHelper::map(self::$sources, 'key', 'label');
@@ -239,6 +257,7 @@ class MenuItem extends ActiveRecord
         return [
             'external' => Yii::t('menu', 'External'),
             'internal' => Yii::t('menu', 'Internal'),
+            'permanent' => Yii::t('menu', 'Permanent'),
         ];
     }
 
@@ -268,6 +287,18 @@ class MenuItem extends ActiveRecord
      */
     public function getLink()
     {
-        return (self::LINK_TYPE_EXTERNAL == $this['link_type']) ? $this['link'] : ((self::LINK_TYPE_INTERNAL == $this['link_type'] && isset($this->source)) ? $this->source->getUrl() : '');
+        $link = '';
+        switch ($this['link_type']) {
+            case self::LINK_TYPE_EXTERNAL:
+                $link = $this['link'];
+                break;
+            case self::LINK_TYPE_INTERNAL:
+                $link = (isset($this->source)) ? $this->source->getUrl() : '';
+                break;
+            case self::LINK_TYPE_PERMANENT:
+                $link = Url::toRoute($this['link']);
+                break;
+        }
+        return $link;
     }
 }

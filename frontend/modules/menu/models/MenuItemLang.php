@@ -3,11 +3,11 @@
 namespace frontend\modules\menu\models;
 
 /**
- * Class ItemLang
+ * Class MenuItemLang
  *
  * @package frontend\modules\menu\models
- * @author Andrii Bondarchuk
- * @copyright (c) 2016
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class MenuItemLang extends \backend\modules\menu\models\MenuItemLang {
 

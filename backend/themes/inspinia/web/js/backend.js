@@ -52,3 +52,33 @@ $('.ajax-status-switcher').on('click', function () {
         }
     });
 });
+
+var sorted_table_cache = {};
+
+// Sortable rows
+$('.sorted_table').sortable({
+    containerSelector: 'table',
+    itemPath: '> tbody',
+    itemSelector: 'tr',
+    placeholder: '<td class="sortplace"/>',
+    delay: 500,
+    onDrop: function ($item, container, _super) {
+        var tableid = $item.closest('table').attr('id');
+        console.log(tableid);
+        var rows_data = [];
+
+        $item.closest('table').find('tbody tr').each(function (i, row) {
+            var row = $(row).attr('data-key');
+            if (row != undefined) {
+                console.log(row);
+                rows_data.push(row);
+            }
+        });
+
+        //вставить проверку одинаковый ли массив, если нет, то отослать сохранение в БД
+        sorted_table_cache[tableid] = rows_data;
+        console.log(sorted_table_cache);
+
+        _super($item, container);
+    }
+});

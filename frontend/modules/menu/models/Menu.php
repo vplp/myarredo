@@ -3,17 +3,15 @@
 namespace frontend\modules\menu\models;
 
 use thread\app\model\interfaces\BaseFrontModel;
-//
-use common\modules\menu\models\Menu as cMenu;
 
 /**
  * Class Menu
  *
  * @package frontend\modules\menu\models
- * @author Andrii Bondarchuk
- * @copyright (c) 2016
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
-final class Menu extends cMenu implements BaseFrontModel
+final class Menu extends \common\modules\menu\models\Menu implements BaseFrontModel
 {
 
     /**
@@ -57,7 +55,7 @@ final class Menu extends cMenu implements BaseFrontModel
      */
     public static function find()
     {
-        return parent::find()->enabled();
+        return parent::find()->enabled()->innerJoinWith(["lang"]);
     }
 
     /**
@@ -65,17 +63,7 @@ final class Menu extends cMenu implements BaseFrontModel
      */
     public static function findBase()
     {
-        return self::find()->innerJoinWith(["lang"]);
-    }
-
-    /**
-     *
-     * @param string $alias
-     * @return ActiveRecord|null
-     */
-    public static function findByAlias($alias)
-    {
-        return self::findBase()->byAlias($alias)->one();
+        return self::find();
     }
 
     /**
@@ -84,7 +72,34 @@ final class Menu extends cMenu implements BaseFrontModel
      */
     public static function findById($id)
     {
-        return self::findBase()->byID($id)->one();
+        return self::findBase()->byID($id);
+    }
+
+    /**
+     * @param $alias
+     * @return mixed
+     */
+    public static function findByAlias($alias)
+    {
+        return self::findBase()->byAlias($alias);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function getById($id)
+    {
+        return self::findById($id)->one();
+    }
+
+    /**
+     * @param $alias
+     * @return mixed
+     */
+    public static function getByAlias($alias)
+    {
+        return self::findByAlias($alias)->one();
     }
 
     /**

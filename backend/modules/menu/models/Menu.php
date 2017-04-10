@@ -30,13 +30,4 @@ class Menu extends \common\modules\menu\models\Menu implements BaseBackendModel
     {
         return (new search\Menu())->trash($params);
     }
-
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public static function findById($id)
-    {
-        return self::find()->byID($id)->one();
-    }
 }

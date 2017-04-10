@@ -19,21 +19,4 @@ return [
             'migrationPath' => __DIR__ . '/migrations',
         ],
     ],
-
-    'internal_sources' => [
-        'page' => [
-            'page' => [
-                'label' => 'Page',
-                'class' => \thread\modules\page\models\Page::class,
-                'method' => 'dropDownList',
-            ]
-        ],
-        'news' => [
-            'group' => [
-                'label' => 'News Group',
-                'class' => \thread\modules\news\models\Group::class,
-                'method' => 'dropDownList',
-            ]
-        ],
-    ],
 ];

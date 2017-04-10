@@ -24,6 +24,7 @@ class Menu extends aModule
      */
     public $internal_sources = [];
     public $internal_sources_list = [];
+    public $permanent_link = [];
 
 
     /**
@@ -43,8 +44,8 @@ class Menu extends aModule
      */
     public function init()
     {
-        $this->setInternalSourse();
         parent::init();
+        $this->setInternalSourse();
     }
 
     /**

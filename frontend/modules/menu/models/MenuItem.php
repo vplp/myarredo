@@ -3,8 +3,6 @@
 namespace frontend\modules\menu\models;
 
 use thread\app\model\interfaces\BaseFrontModel;
-//
-use common\modules\menu\models\MenuItem as cMeniItem;
 
 /**
  * Class Item
@@ -13,7 +11,7 @@ use common\modules\menu\models\MenuItem as cMeniItem;
  * @author Andrii Bondarchuk
  * @copyright (c) 2016
  */
-final class MenuItem extends cMeniItem implements BaseFrontModel
+final class MenuItem extends \common\modules\menu\models\MenuItem implements BaseFrontModel
 {
 
     /**
@@ -70,7 +68,7 @@ final class MenuItem extends cMeniItem implements BaseFrontModel
      * @param string $group
      * @return array|null
      */
-    public static function findAllByGroup($group = '', $parent = 0)
+    public static function getAllByGroup($group = '', $parent = 0)
     {
         return self::findBase()->group_id($group)->parent_id($parent)->all();
     }

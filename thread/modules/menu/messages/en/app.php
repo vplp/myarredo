@@ -17,4 +17,5 @@ return [
     'Internal source' => 'Internal source',
     '_blank' => 'Blank',
     '_self' => 'Self',
+    'Permanent' => 'Permanent'
 ];

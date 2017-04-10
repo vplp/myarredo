@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\modules\menu\controllers;
 
 use Yii;
@@ -82,9 +83,6 @@ class ItemController extends BackendController
                 'outtrash' => [
                     'redirect' => $link
                 ],
-//                'delete' => [
-//                    'redirect' => $link
-//                ],
             ]
         );
     }
@@ -108,11 +106,11 @@ class ItemController extends BackendController
         }
 
         if ($groupId !== null) {
-            $this->group = Menu::findById($groupId);
+            $this->group = Menu::getById($groupId);
         }
 
         if ($parentId !== null) {
-            $this->parent = MenuItem::findById($parentId);
+            $this->parent = MenuItem::getById($parentId);
         }
 
         return parent::beforeAction($action);
