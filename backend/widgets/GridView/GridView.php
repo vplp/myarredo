@@ -4,7 +4,7 @@ namespace backend\widgets\GridView;
 
 use Yii;
 use yii\helpers\{
-    Html, Url
+    Html, Url, ArrayHelper
 };
 
 /**

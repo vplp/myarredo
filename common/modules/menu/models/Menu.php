@@ -1,4 +1,5 @@
 <?php
+
 namespace common\modules\menu\models;
 
 /**
@@ -10,5 +11,11 @@ namespace common\modules\menu\models;
  */
 class Menu extends \thread\modules\menu\models\Menu
 {
-
+    /**
+     * @param $id
+     */
+    public static function getById($id)
+    {
+        return self::find()->byID($id)->one();
+    }
 }
