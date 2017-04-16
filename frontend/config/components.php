@@ -21,6 +21,7 @@ return [
         'cookieValidationKey' => 'thread',
     ],
     'view' => [
+        'class' => \thread\app\web\View::class,
         'theme' => [
             'basePath' => '@app/themes/defaults',
             'baseUrl' => '@web/themes/defaults',
@@ -32,6 +33,5 @@ return [
     'i18n' => [
         'class' => \thread\app\base\i18n\I18N::class,
     ],
-
 
 ];
