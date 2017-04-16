@@ -1,5 +1,5 @@
 <?php
-use backend\themes\inspinia\widgets\GridView;
+use backend\themes\defaults\widgets\GridView;
 
 /**
  * @var \backend\modules\page\models\search\Page $model
@@ -27,7 +27,7 @@ echo GridView::widget(
                 'action' => 'published'
             ],
             [
-                'class' => \backend\themes\inspinia\widgets\gridColumns\ActionColumn::class,
+                'class' => \backend\themes\defaults\widgets\gridColumns\ActionColumn::class,
             ],
         ]
     ]

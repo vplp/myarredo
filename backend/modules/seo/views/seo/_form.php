@@ -1,5 +1,5 @@
 <?php
-use backend\themes\inspinia\widgets\forms\ActiveForm;
+use backend\themes\defaults\widgets\forms\ActiveForm;
 
 /**
  * @var \backend\modules\seo\models\Seo $model
@@ -10,7 +10,7 @@ use backend\themes\inspinia\widgets\forms\ActiveForm;
 
 <?php $form = ActiveForm::begin(); ?>
 
-<?= \backend\themes\inspinia\widgets\forms\Form::submit($model, $this); ?>
+<?= \backend\themes\defaults\widgets\forms\Form::submit($model, $this); ?>
 
 <?= $form->field($model, 'model_id')->textInput(['maxlength' => true]); ?>
 <?= $form->field($model, 'model_namespace')->textInput(['maxlength' => true]); ?>
@@ -21,6 +21,6 @@ use backend\themes\inspinia\widgets\forms\ActiveForm;
 <?= $form->field($modelLang, 'description')->textInput(['maxlength' => true]); ?>
 <?= $form->field($modelLang, 'keywords')->textInput(['maxlength' => true]); ?>
 
-<?= \backend\themes\inspinia\widgets\forms\Form::submit($model, $this); ?>
+<?= \backend\themes\defaults\widgets\forms\Form::submit($model, $this); ?>
 
 <?php ActiveForm::end();

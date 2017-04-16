@@ -1,11 +1,11 @@
 <?php
-use backend\themes\inspinia\widgets\forms\ActiveForm;
+use backend\themes\defaults\widgets\forms\ActiveForm;
 
 /**
  *
  */
 $form = ActiveForm::begin();
-echo \backend\themes\inspinia\widgets\forms\Form::submit($model, $this, 'left');
+echo \backend\themes\defaults\widgets\forms\Form::submit($model, $this, 'left');
 echo $form->field($modelLang, 'title')->textInput(['maxlength' => true]);
 echo $form->field($model, 'messagefilepath')->textInput();
 ActiveForm::end();

@@ -4,7 +4,7 @@ use thread\modules\seo\widgets\seo\SeoWidget;
 use thread\app\bootstrap\{
     ActiveForm
 };
-use backend\themes\inspinia\widgets\Tabs;
+use backend\themes\defaults\widgets\Tabs;
 //
 use backend\modules\page\models\{
     Page, PageLang

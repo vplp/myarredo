@@ -1,5 +1,5 @@
 <?php
-use backend\themes\inspinia\widgets\forms\ActiveForm;
+use backend\themes\defaults\widgets\forms\ActiveForm;
 use yii\bootstrap\Html;
 
 /**

@@ -2,7 +2,7 @@
 
 use thread\widgets\grid\ActionDeleteColumn;
 use thread\widgets\grid\ActionRestoreColumn;
-use backend\themes\inspinia\widgets\GridView;
+use backend\themes\defaults\widgets\GridView;
 
 /**
  *

@@ -7,7 +7,7 @@ use thread\app\bootstrap\ActiveForm;
  * @var \backend\modules\user\models\User $model
  */
 ?>
-<?= \backend\themes\inspinia\widgets\Alert::widget() ?>
+<?= \backend\themes\defaults\widgets\Alert::widget() ?>
 <?php $form = ActiveForm::begin([
     'id' => 'login-form',
     'class' => 'm-t'

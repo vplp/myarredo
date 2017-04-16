@@ -3,7 +3,7 @@ use backend\modules\catalog\models\Group;
 //
 use backend\modules\catalog\models\RelGroupProduct;
 //
-use backend\themes\inspinia\widgets\TreeGrid;
+use backend\themes\defaults\widgets\TreeGrid;
 
 /**
  * @var \backend\modules\catalog\models\ProductLang $modelLang

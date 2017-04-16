@@ -4,7 +4,7 @@ use thread\app\bootstrap\{
     ActiveForm
 };
 //
-use backend\themes\inspinia\widgets\Tabs;
+use backend\themes\defaults\widgets\Tabs;
 //
 use backend\modules\news\models\{
     Article, ArticleLang

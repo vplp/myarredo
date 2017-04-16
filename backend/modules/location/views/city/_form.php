@@ -6,7 +6,7 @@ use \backend\modules\location\models\Country;
 /**
  * @var $model \backend\modules\location\models\City
  * @var $modelLang \backend\modules\location\models\CityLang
- * @var $form \backend\themes\inspinia\widgets\forms\ActiveForm
+ * @var $form \backend\themes\defaults\widgets\forms\ActiveForm
  */
 ?>
 
