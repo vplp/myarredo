@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\modules\menu\controllers;
 
 use Yii;
@@ -11,6 +12,22 @@ use thread\app\base\controllers\BackendController;
 use backend\modules\menu\models\{
     MenuItem, MenuItemLang, Menu, search\MenuItem as filterMenuItemModel
 };
+//
+use thread\actions\UpdatePosition;
+
+//                    echo sprintf(
+//                            'update %s set %s = ELT( FIELD( %s, %s ), %s ) where %s IN (%s) AND %s = %s',
+//                            $info['m2mTable'],
+//                            $field,
+//                            $info['m2mForeignField'],
+//                            implode(',',$id),
+//                            implode(',',$value),
+//                            $info['m2mForeignField'],
+//                            implode(',',$id),
+//                            $info['m2mThisField'],
+//                            $this->owner->{$this->owner->tableSchema->primaryKey}
+//                        );
+
 
 /**
  * Class ItemController
@@ -82,9 +99,10 @@ class ItemController extends BackendController
                 'outtrash' => [
                     'redirect' => $link
                 ],
-//                'delete' => [
-//                    'redirect' => $link
-//                ],
+                'sort_save' => [
+                    'class' => UpdatePosition::class,
+                    'modelClass' => $this->model,
+                ],
             ]
         );
     }
@@ -108,11 +126,11 @@ class ItemController extends BackendController
         }
 
         if ($groupId !== null) {
-            $this->group = Menu::findById($groupId);
+            $this->group = Menu::getById($groupId);
         }
 
         if ($parentId !== null) {
-            $this->parent = MenuItem::findById($parentId);
+            $this->parent = MenuItem::getById($parentId);
         }
 
         return parent::beforeAction($action);

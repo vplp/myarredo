@@ -17,6 +17,7 @@ echo GridView::widget(
     [
         'dataProvider' => $model->search(Yii::$app->request->queryParams),
         'filterModel' => $filter,
+        'useSortable' => true,
         'columns' => [
             [
                 'attribute' => 'title',

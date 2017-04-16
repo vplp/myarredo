@@ -1,9 +1,10 @@
 <?php
+
 namespace backend\widgets\GridView;
 
 use Yii;
 use yii\helpers\{
-    Html, Url
+    Html, Url, ArrayHelper
 };
 
 /**
@@ -19,9 +20,22 @@ class GridView extends \yii\grid\GridView
     public $options = ['class' => 'ibox float-e-margins'];
     public $layout = "{title}\n<div class='ibox-content'><div class='row'>{toolbar}</div><div class='table-responsive'>{items}</div></div>\n{pager}";
 
+    public $useSortable = false;
     public $title = '';
 
     public $toolbar = false;
+
+    public function init()
+    {
+        parent::init();
+
+        if ($this->useSortable == true) {
+            $this->tableOptions = ArrayHelper::merge($this->tableOptions, [
+                'class' => 'table table-striped sorted_table',
+                'id' => 't' . $this->id
+            ]);
+        }
+    }
 
     /**
      * Returns the options for the grid view JS widget.

@@ -17,4 +17,5 @@ return [
     'Internal source' => 'Внутренний источник',
     '_blank' => 'Blank',
     '_self' => 'Self',
+    'Permanent' => 'Постоянная'
 ];

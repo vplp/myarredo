@@ -26,7 +26,6 @@ endif;
 ) ?>
 
 <?= $form->text_line_lang($modelLang, 'title') ?>
-<?php //$form->field($model, 'type')->dropDownList(MenuItem::typeRange()) ?>
     <hr>
 <?= $form->field($model, 'link_type')->dropDownList(MenuItem::linkTypeRange()) ?>
 
@@ -47,8 +46,20 @@ endif;
     </div>
 
     <div class="menuitem-link_type_external" style="display:<?= ($type == 'external') ? 'block' : 'none' ?>">
-        <?= $form->text_line($model, 'link') ?>
+        <?= $form->text_line($model, 'external_link', [
+            'inputOptions' => [
+                'id' => 'link_type_external'
+            ]
+        ]) ?>
         <?= $form->field($model, 'link_target')->dropDownList(MenuItem::linkTargetRange()) ?>
+    </div>
+
+    <div class="menuitem-link_type_permanent" style="display:<?= ($type == 'permanent') ? 'block' : 'none' ?>">
+        <?= $form->field($model, 'permanent_link', [
+            'inputOptions' => [
+                'id' => 'link_type_permanent'
+            ]
+        ])->dropDownList(MenuItem::getPermanentLink()) ?>
     </div>
 
     <div class="row control-group">
@@ -68,12 +79,18 @@ $this->registerJs("
     $('#menuitem-link_type').on('change', function(){
         var val = this.value;
 
-        if(this.value == 'internal'){
+        if(this.value == 'permanent'){
+            $('.menuitem-link_type_permanent').show();
+            $('.menuitem-link_type_external').hide();
+            $('.menuitem-link_type_internal').hide();
+        }else if(this.value == 'internal'){
             $('.menuitem-link_type_internal').show();
             $('.menuitem-link_type_external').hide();
+            $('.menuitem-link_type_permanent').hide();
         }else{
             $('.menuitem-link_type_internal').hide();
             $('.menuitem-link_type_external').show();
+            $('.menuitem-link_type_permanent').hide(); 
         }
         console.log(val);
     });
@@ -88,4 +105,12 @@ $this->registerJs("
         var val = this.value;
         $('.internal_source_id_hidden').val(val);
     });
+    
+//    $('#link_type_external').keypress(function(){
+//        $('#model_link').val($('#link_type_external').val());
+//    })
+//    
+//    $('#link_type_permanent').keypress(function(){
+//        $('#model_link').val($('#link_type_permanent').val());
+//    })
 ");

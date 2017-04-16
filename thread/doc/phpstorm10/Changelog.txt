@@ -1,0 +1,2 @@
+04.04.2017 - Додано два нових доповнення Yii2 Support - https://plugins.jetbrains.com/plugin/9388-yii2-support і
+Yii2 Inspections https://plugins.jetbrains.com/plugin/9400-yii2-inspections

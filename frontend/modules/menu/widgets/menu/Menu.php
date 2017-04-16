@@ -1,4 +1,5 @@
 <?php
+
 namespace frontend\modules\menu\widgets\menu;
 
 use thread\app\base\widgets\Widget;
@@ -8,7 +9,9 @@ use frontend\modules\menu\models\{
 };
 
 /**
+ * Class Menu
  *
+ * @package frontend\modules\menu\widgets\menu
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
@@ -17,7 +20,7 @@ class Menu extends Widget
     /**
      * @var string
      */
-    public $view = 'menu';
+    public $view = 'index';
 
     /**
      * @var string
@@ -37,9 +40,9 @@ class Menu extends Widget
      */
     public function init()
     {
-        $menu = ModelMenu::findByAlias($this->alias);
+        $menu = ModelMenu::getByAlias($this->alias);
         if ($menu != null) {
-            $this->items = MenuItem::findAllByGroup($menu['id']);
+            $this->items = MenuItem::getAllByGroup($menu['id'], 0);
         }
     }
 
@@ -49,7 +52,9 @@ class Menu extends Widget
     public function run()
     {
         if ($this->items !== null) {
-            return $this->render($this->view, ['items' => $this->items]);
+            return $this->render($this->view, [
+                'items' => $this->items,
+            ]);
         }
     }
 }

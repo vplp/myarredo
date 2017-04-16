@@ -148,7 +148,7 @@ class m160720_144902_insert_default_menu extends Migration
                     'id' => 3,
                     'group_id' => 1,
                     'type' => 'normal',
-                    'link' => 'news',
+                    'link' => 'faq',
                     'position' => 1,
                     'created_at' => time(),
                     'updated_at' => time(),
@@ -281,7 +281,7 @@ class m160720_144902_insert_default_menu extends Migration
                 [
                     'rid' => 3,
                     'lang' => 'en-EN',
-                    'title' => 'News',
+                    'title' => 'Faq',
                 ],
                 [
                     'rid' => 4,

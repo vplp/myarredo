@@ -2,6 +2,7 @@
 
 namespace backend\modules\menu\models;
 
+use yii\helpers\ArrayHelper;
 use thread\app\model\interfaces\BaseBackendModel;
 
 /**
@@ -13,6 +14,77 @@ use thread\app\model\interfaces\BaseBackendModel;
  */
 class MenuItem extends \common\modules\menu\models\MenuItem implements BaseBackendModel
 {
+    /**
+     * @var
+     */
+    private $_external_link, $_permanent_link;
+
+    /**
+     * @param $external_link
+     */
+    public function setExternal_link($external_link)
+    {
+        $this->_external_link = $external_link;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExternal_link()
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param $permanent_link
+     */
+    public function setPermanent_link($permanent_link)
+    {
+        $this->_permanent_link = $permanent_link;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPermanent_link()
+    {
+        return $this->link;
+    }
+
+    /**
+     * @return array
+     */
+    public function rules()
+    {
+        return ArrayHelper::merge(parent::rules(), [
+            [['permanent_link', 'external_link'], 'string', 'max' => 255],
+        ]);
+    }
+
+    /**
+     * @return array
+     */
+    public function scenarios()
+    {
+        return ArrayHelper::merge(parent::scenarios(), [
+            'backend' => [
+                'permanent_link',
+                'external_link',
+            ],
+        ]);
+    }
+
+    /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        $this->link = ($this->link_type == 'permanent') ? $this->_permanent_link : $this->_external_link;
+
+        return parent::beforeSave($insert);
+    }
+
     /**
      * @param $params
      * @return \yii\data\ActiveDataProvider
@@ -29,14 +101,5 @@ class MenuItem extends \common\modules\menu\models\MenuItem implements BaseBacke
     public function trash($params)
     {
         return (new search\MenuItem())->trash($params);
-    }
-
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public static function findById($id)
-    {
-        return self::find()->byID($id)->one();
     }
 }

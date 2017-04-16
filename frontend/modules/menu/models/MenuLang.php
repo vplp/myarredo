@@ -4,10 +4,10 @@ namespace frontend\modules\menu\models;
 
 /**
  * Class MenuLang
- * 
+ *
  * @package frontend\modules\menu\models
- * @author Andrii Bondarchuk
- * @copyright (c) 2016
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class MenuLang extends \backend\modules\menu\models\MenuLang {
 

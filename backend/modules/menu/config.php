@@ -28,9 +28,9 @@ return [
                 'method' => 'dropDownList',
             ]
         ],
-        'news' => [
+        'faq' => [
             'group' => [
-                'label' => 'News Group',
+                'label' => 'Faq Group',
                 'class' => \backend\modules\news\models\Group::class,
                 'method' => 'dropDownList',
             ]
