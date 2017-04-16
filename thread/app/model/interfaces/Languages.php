@@ -20,22 +20,27 @@ interface Languages
     /**
      * @return string
      */
-    public function getDefault():array;
+    public function getDefault(): array;
 
     /**
      * @param string|string $lang
      * @return string|string
      */
-    public function getLangByAlias(string $lang):array;
+    public function getLangByAlias(string $lang): array;
 
     /**
      * @param string|string $lang
      * @return string|string
      */
-    public function getLangByLocal(string $lang):array;
+    public function getLangByLocal(string $lang): array;
 
     /**
      * @return mixed
      */
-    public function getAll():array;
+    public function getAll(): array;
+
+    /**
+     * @return array
+     */
+    public function getCurrent(): array;
 }

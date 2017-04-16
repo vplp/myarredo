@@ -1,5 +1,5 @@
 <?php
-namespace backend\themes\inspinia\widgets\menu;
+namespace backend\themes\defaults\widgets\menu;
 
 use Yii;
 use yii\helpers\{
@@ -8,7 +8,7 @@ use yii\helpers\{
 
 /**
  * Class Menu
- * @package backend\themes\inspinia\widgets\menu
+ * @package backend\themes\defaults\widgets\menu
  */
 class Menu extends \yii\widgets\Menu
 {

@@ -1,5 +1,5 @@
 <?php
-namespace backend\themes\inspinia\widgets;
+namespace backend\themes\defaults\widgets;
 
 use yii\base\InvalidConfigException;
 use yii\helpers\{

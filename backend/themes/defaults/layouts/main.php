@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 //
 use backend\widgets\LangSwitch\LangSwitch;
-use backend\themes\inspinia\assets\AppAsset;
+use backend\themes\defaults\assets\AppAsset;
 
 /**
  * @author FilamentV <vortex.filament@gmail.com>
@@ -27,20 +27,20 @@ $this->beginPage()
 <?php $this->beginBody() ?>
 
 <div id="wrapper">
-    <?= backend\themes\inspinia\widgets\menu\NavBar::widget(['bundle' => $bundle]); ?>
+    <?= backend\themes\defaults\widgets\navbar\NavBar::widget(['bundle' => $bundle]); ?>
     <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top gray-bg" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
-                            class="fa fa-bars"></i> </a>
+                                class="fa fa-bars"></i> </a>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
-                    <?= LangSwitch::widget() ?>
                     <li>
                         <?= Html::a('<i class="fa fa-sign-out"></i>', ['/user/logout']) ?>
                     </li>
                 </ul>
+                <?= LangSwitch::widget() ?>
             </nav>
         </div>
         <?= $content; ?>

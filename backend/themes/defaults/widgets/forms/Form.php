@@ -1,5 +1,6 @@
 <?php
-namespace backend\themes\inspinia\widgets\forms;
+
+namespace backend\themes\defaults\widgets\forms;
 
 use Yii;
 use yii\helpers\{

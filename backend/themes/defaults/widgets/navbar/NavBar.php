@@ -1,5 +1,5 @@
 <?php
-namespace backend\themes\inspinia\widgets\navbar;
+namespace backend\themes\defaults\widgets\navbar;
 
 use Yii;
 use yii\helpers\{
@@ -7,12 +7,12 @@ use yii\helpers\{
 };
 use yii\i18n\PhpMessageSource;
 //
-use backend\themes\inspinia\widgets\menu\Menu;
+use backend\themes\defaults\widgets\menu\Menu;
 
 /**
  * Class NavBar
  *
- * @package backend\themes\inspinia\widgets\navbar
+ * @package backend\themes\defaults\widgets\navbar
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */

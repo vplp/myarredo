@@ -1,5 +1,5 @@
 <?php
-namespace backend\themes\inspinia\widgets\gridColumns;
+namespace backend\themes\defaults\widgets\gridColumns;
 
 use yii\helpers\{
     ArrayHelper, Html, Json
@@ -7,7 +7,7 @@ use yii\helpers\{
 
 /**
  * Class CheckboxColumn
- * @package backend\themes\inspinia\widgets\gridColumns
+ * @package backend\themes\defaults\widgets\gridColumns
  */
 class CheckboxColumn extends \yii\grid\CheckboxColumn
 {

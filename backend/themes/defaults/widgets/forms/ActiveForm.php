@@ -1,5 +1,5 @@
 <?php
-namespace backend\themes\inspinia\widgets\forms;
+namespace backend\themes\defaults\widgets\forms;
 
 /**
  * @author Roman Gonchar <roman.gonchar92@gmail.com>

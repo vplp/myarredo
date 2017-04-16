@@ -80,7 +80,7 @@ class Languages extends Component implements iLanguages, BootstrapInterface
     /**
      * @return mixed
      */
-    public function getAll():array
+    public function getAll(): array
     {
         return $this->lang->getLanguages();
     }
@@ -104,7 +104,7 @@ class Languages extends Component implements iLanguages, BootstrapInterface
     /**
      * @return string
      */
-    public function getDefault():array
+    public function getDefault(): array
     {
         return $this->defaultLang;
     }
@@ -113,7 +113,7 @@ class Languages extends Component implements iLanguages, BootstrapInterface
      * @param string $lang
      * @return mixed
      */
-    public function getLangByAlias(string $lang):array
+    public function getLangByAlias(string $lang): array
     {
         $r = null;
         foreach ($this->items as $item) {
@@ -129,7 +129,7 @@ class Languages extends Component implements iLanguages, BootstrapInterface
      * @param string $lang
      * @return mixed
      */
-    public function getLangByLocal(string $lang):array
+    public function getLangByLocal(string $lang): array
     {
         $r = null;
         foreach ($this->items as $item) {
@@ -139,5 +139,20 @@ class Languages extends Component implements iLanguages, BootstrapInterface
             }
         }
         return $r;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCurrent(): array
+    {
+        $curr_lang = [];
+        foreach ($this->items as $item) {
+            if ($item['local'] == Yii::$app->language) {
+                $curr_lang = $item;
+                break;
+            }
+        }
+        return $curr_lang;
     }
 }

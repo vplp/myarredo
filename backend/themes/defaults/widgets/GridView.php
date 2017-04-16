@@ -1,5 +1,5 @@
 <?php
-namespace backend\themes\inspinia\widgets;
+namespace backend\themes\defaults\widgets;
 
 use Yii;
 use yii\helpers\{

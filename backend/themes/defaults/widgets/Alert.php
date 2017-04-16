@@ -1,5 +1,5 @@
 <?php
-namespace backend\themes\inspinia\widgets;
+namespace backend\themes\defaults\widgets;
 
 /**
  * Alert widget renders a message from session flash. All flash messages are displayed

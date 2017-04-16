@@ -1,5 +1,5 @@
 <?php
-namespace backend\themes\inspinia\widgets\gridColumns;
+namespace backend\themes\defaults\widgets\gridColumns;
 
 use yii\grid\Column;
 use yii\helpers\Html;
