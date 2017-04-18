@@ -1,7 +1,6 @@
 <?php
 /**
  * @var \backend\modules\user\models\search\User $user
- * @var \backend\themes\inspinia\assets\AppAsset $bundle
  */
 
 //TODO : отрефакторить код
