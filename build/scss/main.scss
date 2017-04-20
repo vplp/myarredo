@@ -78,6 +78,10 @@ header {
     background: #FFFFFF;
     border-bottom: none;
     border-radius: 0;
+    .large-container {
+      display: flex;
+      align-items: center;
+    }
   }
   .navbar-right {
     margin-right: 0;
@@ -146,11 +150,77 @@ header {
     font-family: 'HelveticaNeueCyr-Roman', 'Roboto', sans-serif;
     position: relative;
     &:after {
-      position: absolute;
       content: "\e114";
+      font-family: 'Glyphicons Halflings';
+      color: #F34445;
+      font-size: 13px;
+      margin-left: 3px;
+      position: relative;
+      top: 1px;
     }
   }
-
+  .country:after {
+    content: "|";
+    margin: 0 2px;
+  }
+  .my-notebook {
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center;
+    color: rgb(68, 68, 68);
+    font-size: 15px;
+    text-transform: uppercase;
+    border-right: 1px solid #BDBCB3;
+    .red-but {
+      width: 53px;
+      background: #EC4445;
+      color: #FEF6F6;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .inscription {
+      padding: 0 15px;
+      font-weight: bold;
+    }
+  }
+  .logo {
+    width: 240px;
+    & > img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+  .navbar-collapse.collapse {
+    height: 100% !important;
+    display: flex !important;
+    align-items: center;
+  }
+  #main-menu {
+    font-size: 16px;
+    font-family: 'HelveticaNeueCyr-Roman', 'Roboto', sans-serif;
+    a {
+      color: #444;
+      text-decoration: underline;
+      margin: 0 5px;
+      &:hover {
+        background: transparent;
+      }
+    }
+    .navbar-nav {
+      margin:  0 25px;
+    }
+  }
+  .city-select-cont {
+    background: #E3E0D5;
+    min-height: 100px;
+  }
+}
+.icon-bar {
+  background: red;
 }
 /*--Конец header--*/
 
