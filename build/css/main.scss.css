@@ -1,16 +1,98 @@
+@charset "UTF-8";
+/*--Общие стили--*/
+* html, body {
+  margin: 0;
+  padding: 0; }
+
 body {
-  background: green; }
+  background: #e3e0d5;
+  font-family: 'Roboto', sans-serif; }
 
-.spritetest {
-  height: 100px;
-  width: 100px;
-  background: url(../imgcss/ico-21.png);
-  border: 1px solid white; }
+header,
+footer,
+main,
+nav {
+  display: block; }
 
-.spritetest1 {
-  height: 100px;
-  width: 100px;
-  background: url(../imgcss/ico-1.png);
-  border: 1px solid white; }
+.flex {
+  display: flex; }
 
-/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5jc3MiLCJzb3VyY2VzIjpbIm1haW4uc2NzcyJdLCJzb3VyY2VzQ29udGVudCI6WyIvL0BpbXBvcnQgJ21peGlucy9fcmVzZXQnO1xuLy9cbi8vQGluY2x1ZGUgZ2xvYmFsLXJlc2V0KCk7XG4vL1xuLy8vKnBhcmFtZXRyZXMsIGZ1bmN0aW9ucywgdmFyaWFibGVzKi9cbi8vXG4vL0BpbXBvcnQgJ21peGlucy9fZm9udF9mYWNlX21peGluJztcbi8vQGltcG9ydCAnbWl4aW5zL19nZW5lcmFsX21peGlucyc7XG4vL0BpbXBvcnQgJ21peGlucy9fZmxleF9ib3hfbWl4aW5zJztcbi8vQGltcG9ydCAnbWl4aW5zL19tZWRpYV9taXhpbnMnO1xuLy9AaW1wb3J0ICdtaXhpbnMvX2ZsZXhfZ3JpZCc7XG4vL1xuLy8vKmJhc2Ugc2V0dGluZ3MqL1xuLy9AaW1wb3J0ICdfcGFyYW1ldGVycyc7XG4vL0BpbXBvcnQgJ19iYXNlJztcbi8vXG4vLy8qYnV0dG9ucywgZm9ybXMgZWxlbWVudHMgZXRjLiovXG4vL0BpbXBvcnQgJ3BhcnRpYWxzL19lbGVtZW50cyc7XG4vL1xuLy8vKmJhc2UgcGFydHMgb2YgcGFnZSovXG4vL0BpbXBvcnQgJ3BhcnRpYWxzL190b3BfbmF2YmFyJztcbi8vQGltcG9ydCAncGFydGlhbHMvX21haW5fbmF2X2Jsb2NrJztcbi8vQGltcG9ydCAncGFydGlhbHMvX2Zvb3Rlcic7XG4vL1xuLy8vKm1vZHVsZXMqL1xuLy9AaW1wb3J0ICdtb2R1bGVzL19zZWFyY2hfZm9ybSc7XG4vL0BpbXBvcnQgJ21vZHVsZXMvX21haW5fc2xpZGVyJztcbi8vQGltcG9ydCAnbW9kdWxlcy9fcHJvZ3JhbW1lX3RvcGljX3N0YXJ0Jztcbi8vQGltcG9ydCAnbW9kdWxlcy9fbmV3c19saXN0Jztcbi8vQGltcG9ydCAnbW9kdWxlcy9fZ3J1bnRzX2xpc3Rfc3RhcnQnO1xuLy9AaW1wb3J0ICdtb2R1bGVzL19icmVhZGNydW1icyc7XG4vL0BpbXBvcnQgJ21vZHVsZXMvX2ZpbHRlcnNfcGFuZWwnO1xuLy9AaW1wb3J0ICdtb2R1bGVzL19vdGhlcl9yZWxldmFudCc7XG4vL0BpbXBvcnQgJ21vZHVsZXMvX2FydGljbGUnO1xuXG5ib2R5IHtcbiAgYmFja2dyb3VuZDogZ3JlZW47XG59XG5cbi5zcHJpdGV0ZXN0IHtcbiAgaGVpZ2h0OiAxMDBweDtcbiAgd2lkdGg6IDEwMHB4O1xuICBiYWNrZ3JvdW5kOiB1cmwoLi4vaW1nY3NzL2ljby0yMS5wbmcpO1xuICBib3JkZXI6IDFweCBzb2xpZCB3aGl0ZTtcbn1cblxuLnNwcml0ZXRlc3QxIHtcbiAgaGVpZ2h0OiAxMDBweDtcbiAgd2lkdGg6IDEwMHB4O1xuICBiYWNrZ3JvdW5kOiB1cmwoLi4vaW1nY3NzL2ljby0xLnBuZyk7XG4gIGJvcmRlcjogMXB4IHNvbGlkIHdoaXRlO1xufSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFtQ0EsQUFBQSxJQUFJLENBQUM7RUFDSCxVQUFVLEVBQUUsS0FBSyxHQUNsQjs7QUFFRCxBQUFBLFdBQVcsQ0FBQztFQUNWLE1BQU0sRUFBRSxLQUFLO0VBQ2IsS0FBSyxFQUFFLEtBQUs7RUFDWixVQUFVLEVBQUUseUJBQXlCO0VBQ3JDLE1BQU0sRUFBRSxlQUFlLEdBQ3hCOztBQUVELEFBQUEsWUFBWSxDQUFDO0VBQ1gsTUFBTSxFQUFFLEtBQUs7RUFDYixLQUFLLEVBQUUsS0FBSztFQUNaLFVBQVUsRUFBRSx3QkFBd0I7RUFDcEMsTUFBTSxFQUFFLGVBQWUsR0FDeEIifQ== */
+.center-align {
+  align-items: center; }
+
+.navbar {
+  margin-bottom: 0; }
+
+@media (min-width: 1200px) {
+  .large-container {
+    width: 100%;
+    max-width: 1400px; } }
+
+/*--Конец Общие стили--*/
+/*--header--*/
+header {
+  background: #F6F3E8; }
+  header .navbar-nav a {
+    height: 100%;
+    line-height: normal; }
+  header .navbar {
+    min-height: 0;
+    height: 68px;
+    background: #FFFFFF;
+    border-bottom: none;
+    border-radius: 0; }
+  header .navbar-right {
+    margin-right: 0; }
+    header .navbar-right li {
+      height: 100%; }
+  header .top-navbar {
+    background-color: #f6f3e8;
+    border-bottom: 1px solid #bdbcb3;
+    height: 48px; }
+    header .top-navbar > container {
+      height: 100%; }
+    header .top-navbar .navbar-nav {
+      height: 100%; }
+      header .top-navbar .navbar-nav li {
+        display: flex;
+        align-items: center; }
+  header .logo {
+    float: left; }
+  header .navbar-collapse {
+    padding-right: 0;
+    padding-left: 0; }
+  header .large-container {
+    height: 100%; }
+  header .tel-num {
+    font-size: 21px;
+    color: #41403e;
+    font-family: 'HelveticaNeueCyr-Roman', 'Roboto', sans-serif;
+    padding-right: 30px;
+    border-right: 1px solid #BDBCB3; }
+  header .glyphicon-earphone {
+    top: 5px; }
+  header .callback-trigger {
+    color: #41403e;
+    font-size: 15px;
+    font-family: 'HelveticaNeueCyr-Roman', 'Roboto', sans-serif;
+    display: flex !important;
+    height: auto !important;
+    padding: 0 30px;
+    border-right: 1px solid #BDBCB3; }
+    header .callback-trigger > span {
+      border-bottom: 1px dashed #444444;
+      transition: all 0.2s ease; }
+    header .callback-trigger:hover > span {
+      border-bottom: 1px dashed transparent; }
+  header #select-city {
+    color: #41403e;
+    font-size: 15px;
+    font-family: 'HelveticaNeueCyr-Roman', 'Roboto', sans-serif;
+    position: relative; }
+    header #select-city:after {
+      position: absolute;
+      content: "\e114"; }
+
+/*--Конец header--*/
+
+/*# sourceMappingURL=main.scss.css.map */

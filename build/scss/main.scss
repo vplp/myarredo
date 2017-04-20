@@ -33,20 +33,124 @@
 //@import 'modules/_other_relevant';
 //@import 'modules/_article';
 
+/*--Общие стили--*/
+* html, body {
+  margin: 0;
+  padding: 0;
+}
 body {
-  background: green;
+  background: #e3e0d5;
+  font-family: 'Roboto', sans-serif;
 }
+header,
+footer,
+main,
+nav{
+  display: block;
+}
+.flex {
+  display: flex;
+}
+.center-align {
+  align-items: center;
+}
+.navbar {
+  margin-bottom: 0;
+}
+@media (min-width: 1200px){
+  .large-container {
+    width: 100%;
+    max-width: 1400px;
+  }
+}
+/*--Конец Общие стили--*/
 
-.spritetest {
-  height: 100px;
-  width: 100px;
-  background: url(../imgcss/ico-21.png);
-  border: 1px solid white;
-}
+/*--header--*/
+header {
+  background: #F6F3E8;
+  .navbar-nav a {
+    height: 100%;
+    line-height: normal;
+  }
+  .navbar {
+    min-height: 0;
+    height: 68px;
+    background: #FFFFFF;
+    border-bottom: none;
+    border-radius: 0;
+  }
+  .navbar-right {
+    margin-right: 0;
+    li {
+      height: 100%;
+    }
+  }
+  .top-navbar {
+    background-color: #f6f3e8;
+    border-bottom: 1px solid #bdbcb3;
+    height: 48px;
+    &>container {
+      height: 100%;
+    }
+    .navbar-nav {
+      height: 100%;
+      li {
+        display: flex;
+        align-items: center;
+      }
 
-.spritetest1 {
-  height: 100px;
-  width: 100px;
-  background: url(../imgcss/ico-1.png);
-  border: 1px solid white;
+    }
+  }
+  .logo {
+    float: left;
+  }
+  .navbar-collapse {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .large-container {
+    height: 100%;
+  }
+  .tel-num {
+    font-size: 21px;
+    color: rgb(65, 64, 62);
+    font-family: 'HelveticaNeueCyr-Roman', 'Roboto', sans-serif;
+    padding-right: 30px;
+    border-right: 1px solid #BDBCB3;
+  }
+  .glyphicon-earphone {
+    top: 5px;
+  }
+  .callback-trigger {
+    color: rgb(65, 64, 62);
+    font-size: 15px;
+    font-family: 'HelveticaNeueCyr-Roman', 'Roboto', sans-serif;
+    display: flex !important;
+    height: auto !important;
+    padding: 0 30px;
+    border-right: 1px solid #BDBCB3;
+    & > span {
+      border-bottom: 1px dashed #444444;
+      transition: all 0.2s ease;
+    }
+    &:hover {
+      &>span {
+        border-bottom: 1px dashed transparent;
+      }
+
+    }
+  }
+  #select-city {
+    color: rgb(65, 64, 62);
+    font-size: 15px;
+    font-family: 'HelveticaNeueCyr-Roman', 'Roboto', sans-serif;
+    position: relative;
+    &:after {
+      position: absolute;
+      content: "\e114";
+    }
+  }
+
 }
+/*--Конец header--*/
+

@@ -26,20 +26,6 @@ var uglify = require('gulp-uglify'), //Архівація JS файлів
 //var gulpif = require('gulp-if'),
 var sprite = require('gulp-sprite-generator');
 
-//Вихідна обобка файлів JPG, PNG
-var imagemin = require('gulp-imagemin'), //Обробка зображень
-    imagePngquant = require('imagemin-pngquant'), //Обробка зображень формату PNG
-    imageminJpegtran = require('imagemin-jpegtran'), //Обробка зображень формату JPG
-    imageSvgo = require('imagemin-svgo'), //Обробка зображень формату SVG
-    imageResize = require('gulp-image-resize'); //
-
-// [ ТЕСТУВАННЯ ]
-//Перевірка коду
-var jshint = require('gulp-jshint'), //Перевірка JS
-    stylish = require('jshint-stylish'), //Stylish
-//cssLint = require('gulp-csslint'); //Перевірка CSS
-    scssLint = require('gulp-scss-lint'); //Перевірка SCSS
-//gem install scss-lint  !!ОБОВЯЗКОВО
 
 
 //Джерела
@@ -50,25 +36,18 @@ var dev_patches = {
     'scss': ['./build/scss/**/*.scss'],
     'css': ['./build/css/main.scss.css'],
     'css-base': './build/css/',
-    'images-jpg': ['./build/img/**/*.jpg', './build/img/*.jpg'],
-    'images-svg': ['./build/img/**/*.svg'],
-    'images-png': ['./build/img/**/*.png'],
-    'images': ['./build/img/**/*'],
-    'images-css': ['./build/imgcss']
 };
 //Точки слідування
 var build_patches = {
     'images': './public/img/',
     'js': './public/js/',
     'css': './public/css/',
-    'font': './public/font/'
 };
-//Джерела точок слідування
+
 var build_patches_copy_list = {
     'images': './public/img/**/*',
     'js': './public/js/**/*',
     'css': './public/css/**/*',
-    'font': './public/font/**/*'
 };
 
 //build yii patches
@@ -81,25 +60,13 @@ var yii_patches = {
     'font': yii_base_path + '/font/'
 };
 
-// [ ЗАВДАННЯ ТЕСТОВІ ]
-//------------------------------------------------------------------------
-
-// [ ПРОГРАМА ]
-// [ НАЛАШТУВАННЯ SERVER ]
-// Rerun the task when a file changes 
 gulp.task('watch', function () {
     gulp.watch(dev_patches['js'], ['scripts']);
     gulp.watch(dev_patches['images'], ['images']);
     gulp.watch(dev_patches['css'], ['minify-css']);
     gulp.watch(dev_patches['scss'], ['scss']);
-    gulp.watch(dev_patches['less'], ['less']);
-    gulp.watch(dev_patches['font'], ['font']);
 });
 
-// The default task (called when you run `gulp` from cli) 
-gulp.task('default', ['watch', 'scss', 'less', 'scripts', 'images', 'minify-css']);
-//'webserver', 'livereload', 'base64'
-//------------------------------------------------------------------------
 
 //Копіювання файлів у тему
 gulp.task('yii:build', function () {
@@ -114,109 +81,17 @@ gulp.task('font', function () {
         .pipe(gulp.dest(build_patches['font']));
 });
 
-//------------------------------------------------------------------------
-
-// generate sprite.png and _sprite.scss
-//gulp.task('sprites', function () {
-//    return gulp.src('./build/imgsprite/*.png')
-//        .pipe(sprite({
-//            name: 'sprite',
-//            style: '_sprite.scss',
-//            cssPath: './img',
-//            //processor: 'scss'
-//        }))
-//        .pipe(gulpif('*.png', gulp.dest('./build/img/'), gulp.dest('./build/css/')))
-//});
-//
-gulp.task('sprites', function () {
-    var spriteOutput;
-
-    spriteOutput = gulp.src("./build/css/*.css")
-        .pipe(sprite({
-            //baseUrl: "./build",
-            spriteSheetName: "sprite.png",
-            spriteSheetPath: "../img"
-        }));
-
-    spriteOutput.css.pipe(gulp.dest("./build/css1"));
-    spriteOutput.img.pipe(gulp.dest("./build/img"));
-});
-
-// [ ЗАВДАННЯ ]
-//------------------------------------------------------------------------
-
-// [ НАЛАШТУВАННЯ SERVER ]
-//gulp.task('webserver', function () {
-//    connect.server({
-//        port: 8088,
-//        livereload: true
-//    });
-//});
-//
-//gulp.task('livereload', function () {
-//    gulp.src(['./**/*'])
-//            .pipe(connect.reload());
-//});
-//------------------------------------------------------------------------
-
-// [ ОБРОБКА COMPASS ]
-gulp.task('compass', function () {
-    gulp.src(dev_patches['scss'])
-    // .pipe(plumber({
-    //   errorHandler: function (error) {
-    //     console.log(error.message);
-    //     this.emit('end');
-    // }}))
-        .pipe(compass({
-            css: dev_patches['css-base'],
-            sass: 'scss',
-            image: 'images'
-        }))
-        .on('error', console.log)
-        .pipe(gulp.dest(dev_patches['css-base']))
-        .pipe(minifyCss())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(build_patches['css']));
-});
-
-//------------------------------------------------------------------------
-
-// [ ОБРОБКА LESS ]
-gulp.task('less', function () {
-    return gulp.src(dev_patches['less'])
-        .pipe(sourcemaps.init())
-        .pipe(less())
-        .pipe(sourcemaps.write())
-        .pipe(rename({suffix: '.less'}))
-        .pipe(gulp.dest(dev_patches['css-base']));
-});
-
-//------------------------------------------------------------------------
-
-// [ ОБРОБКА SASS ]
-//['lintSCSS']
 gulp.task('scss', function () {
     return gulp.src(dev_patches['scss'])
         .pipe(sourcemaps.init())
         .pipe(scss())
-        .pipe(sourcemaps.write())
         .pipe(rename({suffix: '.scss'}))
-        .pipe(gulp.dest(dev_patches['css-base']));
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest(dev_patches['css-base']))
+        .pipe(gulp.dest(build_patches['css']));
 });
 
-// [ ПЕРЕВІРКА КОДУ SCSS ]
-gulp.task('lintSCSS', function () {
-    return gulp.src(dev_patches['scss'])
-        .pipe(cached('lintingCSS'))
-        .on('error', console.log)
-        .pipe(scssLint({
-            // 'maxBuffer': 307200
-        }));
-});
-//------------------------------------------------------------------------
 
-// [ ОБРОБКА CSS ]
-//Мінімізація CSS файлів
 gulp.task('minify-css', function () {
     return gulp.src(dev_patches['css'])
         .pipe(cssBase64())
@@ -229,20 +104,7 @@ gulp.task('minify-css', function () {
         .pipe(connect.reload());
 });
 
-// [ ПЕРЕВІРКА КОДУ CSS ]
-gulp.task('lintCSS', function () {
-    return gulp.src(dev_patches['css'])
-        .pipe(cached('lintingCSS'))
-        .pipe(cssLint())
-        .on('error', console.log)
-        // .pipe(jshint.reporter('default'));
-        .pipe(cssLint.reporter('jshint-stylish'));
-});
 
-//------------------------------------------------------------------------
-
-// [ ОБРОБКА JS ]
-// [ COMMON JS TASK ]
 gulp.task('scripts', ['minify-js', 'lintJS'], function () {
     return gulp.src(dev_patches['js'])
         .pipe(remember('lintingJS'))
@@ -251,7 +113,7 @@ gulp.task('scripts', ['minify-js', 'lintJS'], function () {
         .pipe(gulp.dest(build_patches['js']));
 });
 
-// [ МІНІФІКАЦІЯ JS ]
+
 gulp.task('minify-js', function () {
     return gulp.src(build_patches['scripts'] + 'core.js')
         .pipe(rename(build_patches['scripts'] + 'core.min.js'))
@@ -260,59 +122,7 @@ gulp.task('minify-js', function () {
         .pipe(gulp.dest('.'));
 });
 
-// [ ПЕРЕВІРКА КОДУ JS ]
-gulp.task('lintJS', function () {
-    return gulp.src(dev_patches['js'])
-        .pipe(cached('lintingJS'))
-        .pipe(jshint())
-        // .pipe(jshint.reporter('default'));
-        .pipe(jshint.reporter('jshint-stylish'));
-});
-//------------------------------------------------------------------------
 
-// [ ОБРОБКА ЗОБРАЖЕНЬ ]
-gulp.task('images', ['image-jpg', 'image-png', 'image-svg']);
 
-// [ ОБРОБКА JPG ]
-gulp.task('image-jpg', function () {
-    return gulp.src(dev_patches['images-jpg'])
-    // .pipe(imageminJpegtran({progressive: true})())
-    // .on('error', console.log)
-        .pipe(gulp.dest(build_patches['images']));
-});
 
-// [ ОБРОБКА PNG ]
-gulp.task('image-png', function () {
-    return gulp.src(dev_patches['images-png'])
-        .pipe(imagemin({
-            use: [imagePngquant()]
-        }))
-        .on('error', console.log)
-        .pipe(gulp.dest(build_patches['images']));
-});
 
-// [ ОБРОБКА SVG ]
-gulp.task('image-svg', function () {
-    return gulp.src(dev_patches['images-svg'])
-        .pipe(imagemin({
-            svgoPlugins: [{removeViewBox: false}],
-        }))
-        .on('error', console.log)
-        .pipe(gulp.dest(build_patches['images']));
-});
-//------------------------------------------------------------------------
-
-// [ ПЕРЕВІРКА КОДУ ]
-
-// [ ПЕРЕВІРКА КОДУ HTML ]
-gulp.task('lintHTML', function () {
-    return gulp.src('./src/*.html')
-        .pipe(cache('lintingHTML'))
-        // if flag is not defined default value is 'auto'
-        .pipe(jshint.extract('auto|always|never'))
-        .pipe(jshint())
-        // .pipe(jshint.reporter('default'));
-        .pipe(jshint.reporter('jshint-stylish'));
-});
-
-//------------------------------------------------------------------------
