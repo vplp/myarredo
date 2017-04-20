@@ -217,7 +217,28 @@ header {
   .city-select-cont {
     background: #E3E0D5;
     min-height: 100px;
+    .top-panel {
+      border-bottom: 1px solid #BDBCB3;
+      padding: 10px 0;
+    }
+    .top-panel-in {
+      height: 48px;
+      display: flex;
+      justify-content: space-between;
+      a {
+        color: #41403e;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+      }
+    }
+    .set-country {
+      text-transform: uppercase;
+      border-right: 1px solid #BDBCB3;
+
+    }
   }
+
 }
 .icon-bar {
   background: red;
