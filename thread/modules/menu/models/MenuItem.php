@@ -119,7 +119,7 @@ class MenuItem extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'order' => ['position'],
+            'position' => ['position'],
             'backend' => [
                 'link',
                 'group_id',

@@ -52,6 +52,8 @@ class AppAsset extends AssetBundle
         // Sparkline
         'js/plugins/sparkline/jquery.sparkline.min.js',
         'js/plugins/sparkline/sparkline-custom.js',
+        //Sortable
+        'js/sortable/jquery-sortable-1491772244567.js',
         //Backend
         'js/backend.js',
     ];

@@ -21,20 +21,37 @@ class GridView extends \yii\grid\GridView
     public $layout = "{title}\n<div class='ibox-content'><div class='row'>{toolbar}</div><div class='table-responsive'>{items}</div></div>\n{pager}";
 
     public $useSortable = false;
+    public $sortableUrl = 'sortable';
     public $title = '';
 
     public $toolbar = false;
 
     public function init()
     {
-        parent::init();
 
         if ($this->useSortable == true) {
             $this->tableOptions = ArrayHelper::merge($this->tableOptions, [
                 'class' => 'table table-striped sorted_table',
-                'id' => 't' . $this->id
+                'id' => 't' . $this->id,
+                'data' => [
+                    'sortableUrl' => Url::toRoute($this->sortableUrl),
+                    'csrf' => Yii::$app->getRequest()->csrfToken,
+                ]
             ]);
+
+            $this->columns = ArrayHelper::merge([[
+                'headerOptions' => [
+                    'class' => 'glyphicon glyphicon-indent-right'
+                ],
+                'format' => 'raw',
+                'value' => function () {
+                    return '<span class="glyphicon glyphicon-sort" aria-hidden="true" style="cursor: move;"></span>';
+                }
+            ]], $this->columns);
+
         }
+
+        parent::init();
     }
 
     /**

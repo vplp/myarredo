@@ -39,8 +39,10 @@ return [
     'Users' => 'Users',
     'User' => 'User',
     'Params' => 'Params',
-    'KEY_ON' => 'On',
-    'KEY_OFF' => 'Off',
+    'Use' => 'Use',
+    'Info' => 'Info',
+    'Shop' => 'Shop',
+    'Question' => 'Question',
     //
     'Start date' => 'Start date',
     'End date' => 'End date',
@@ -57,6 +59,7 @@ return [
     'Settings' => 'Settings',
     'Image' => 'Image',
     'Choose' => 'Choose',
+    'Save the entry for editing' => 'Save the entry for editing',
     //Buttons
     'Add' => 'Add',
     'Create' => 'Create',
