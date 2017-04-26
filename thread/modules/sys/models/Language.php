@@ -9,7 +9,7 @@ use thread\app\base\models\{
 };
 use thread\app\model\interfaces\LanguageModel;
 use thread\modules\sys\Sys as SysModule;
-
+use yii\helpers\ArrayHelper;
 
 /**
  * Class Language
@@ -96,7 +96,7 @@ class Language extends ActiveRecord implements LanguageModel
     /**
      * @return mixed
      */
-    public function getLanguages():array
+    public function getLanguages(): array
     {
         return self::findBase()->asArray()->all();
     }
@@ -104,7 +104,7 @@ class Language extends ActiveRecord implements LanguageModel
     /**
      * @return mixed
      */
-    public function getCurrent():array
+    public function getCurrent(): array
     {
         return self::findBase()->andWhere(['local' => \Yii::$app->language])->asArray()->one();
     }
@@ -122,7 +122,12 @@ class Language extends ActiveRecord implements LanguageModel
         if (isset($this->img_flag) && file_exists($path . '/' . $this->img_flag)) {
             $image = $url . '/' . $this->img_flag;
         }
+
         return $image;
     }
 
+    public function getLanguageArray($key = 'id', $value = 'local'): array
+    {
+        return ArrayHelper::map($this->getLanguages(), $key, $value);
+    }
 }

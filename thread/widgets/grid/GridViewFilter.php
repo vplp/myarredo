@@ -45,6 +45,9 @@ class GridViewFilter
             'options' => [
                 'placeholder' => Yii::t('app', 'Choose'),
             ],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
         ]);
     }
 

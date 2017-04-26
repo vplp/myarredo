@@ -53,4 +53,7 @@ return [
     'shop' => [
         'class' => \backend\modules\shop\Shop::class,
     ],
+    'translation' => [
+        'class' => \backend\modules\sys\modules\translation\Translation::class
+    ]
 ];

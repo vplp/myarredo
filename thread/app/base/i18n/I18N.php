@@ -11,7 +11,7 @@ use Yii;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class I18N extends \yii\i18n\I18N
+class I18N extends \thread\modules\sys\modules\translation\components\I18N
 {
     protected $modulesApp = [];
 
@@ -33,7 +33,7 @@ class I18N extends \yii\i18n\I18N
         /**
          * Set language themes if exists
          */
-        $language = (\Yii::$app->params['themes']['language'])??$language;
+        $language = (\Yii::$app->params['themes']['language']) ?? $language;
 
         return parent::translate($category, $message, $params, $language);
     }

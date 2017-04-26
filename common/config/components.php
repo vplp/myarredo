@@ -30,5 +30,5 @@ return [
         'renderers' => [
             'mustache' => \yii\mustache\ViewRenderer::class
         ]
-    ]
+    ],
 ];

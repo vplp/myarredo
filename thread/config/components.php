@@ -71,15 +71,9 @@ return [
         ],
     ],
     'i18n' => [
-        'translations' => [
-            'app' => [
-                'class' => \yii\i18n\PhpMessageSource::class,
-                'basePath' => '@thread/app/messages',
-                'fileMap' => [
-                    'app' => 'app.php',
-                ],
-                'on missingTranslation' => [\thread\app\base\i18n\TranslationEventHandler::class, 'handleMissingTranslation']
-            ],
-        ]
+        'class' => \thread\modules\sys\modules\translation\components\I18N::class,
+        'languageModel' => \thread\modules\sys\models\Language::class,
+        'enableCaching' => true,
+        'cachingDuration' => 3600
     ],
 ];
