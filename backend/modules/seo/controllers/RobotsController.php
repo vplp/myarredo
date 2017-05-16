@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\modules\seo\controllers;
 
 use Yii;
@@ -15,8 +16,8 @@ use thread\app\base\controllers\BackendController;
 class RobotsController extends BackendController
 {
     public $title = 'Robots.txt';
-    public $name = 'robots';
-    public $layout = "list-robots";
+    public $name = 'Robots.txt';
+    public $defaultAction = 'update';
 
     /**
      * @return array
@@ -26,8 +27,9 @@ class RobotsController extends BackendController
         return [];
     }
 
+
     /**
-     * Rewrite robots.txt
+     * Перезаписуем robots.txt
      * @return string
      */
     public function actionUpdate()
@@ -43,6 +45,7 @@ class RobotsController extends BackendController
             fopen($robotsTextPath, 'w+');
         }
         $robotsTxt = file_get_contents($robotsTextPath);
+
 
         return $this->render('_form', ['robotsTxt' => $robotsTxt]);
     }

@@ -1,11 +1,11 @@
 <?php
+
 namespace frontend\modules\seo;
 
-
 /**
- * Class Sitemap
+ * Class Seo
  *
- * @package app\modules\sitemap
+ * @package frontend\modules\seo
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */

@@ -1,6 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+//SEO register
+Yii::$app->metatag->registerModel($model);
 
 $this->title = $model['lang']['title'];
 ?>
