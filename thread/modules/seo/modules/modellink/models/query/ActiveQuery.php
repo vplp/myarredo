@@ -40,7 +40,7 @@ class ActiveQuery extends \thread\app\base\models\query\ActiveQuery
     public function currency_language()
     {
         $modelClass = $this->modelClass;
-        $this->andWhere($modelClass::tableName() . '.lang = :model_id', [':model_id' => \Yii::$app->language]);
+        $this->andWhere($modelClass::tableName() . '.lang = :currency_language', [':currency_language' => \Yii::$app->language]);
         return $this;
     }
 

@@ -43,6 +43,7 @@ return ArrayHelper::merge(
                     '@backend/modules',
                     '@frontend/modules',
                     '@thread/modules/sys/modules',
+                    '@thread/modules/seo/modules',
                 ],
                 'migrationPaths' => [
                 ],
