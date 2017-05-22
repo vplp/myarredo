@@ -34,7 +34,7 @@ class m160726_135931_create_table_sitemap extends Migration
             'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
             'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
             'deleted' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Deleted'",
-            'readonly' => $this->boolean()->notNull()->defaultValue(0)->comment('Published'),
+            'readonly' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'readonly'"
         ]);
         $this->createIndex('published', $this->tableName, 'published');
         $this->createIndex('deleted', $this->tableName, 'deleted');

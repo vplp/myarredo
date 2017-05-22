@@ -172,18 +172,22 @@ class NavBar extends \yii\bootstrap\NavBar
 //            ],
             //SEO
             [
-                'label' => '<i class="fa fa-users"></i><span class="nav-label">' . Yii::t('navbar',
-                        'Seo') . '</span> <span class="fa arrow"></span></a>',
+                'label' => '<i class="fa fa-sitemap"></i><span class="nav-label">' . Yii::t('seo',
+                        'Seo') . '</span><span class="fa arrow"></span>',
                 'items' => [
                     [
-                        'label' => Yii::t('navbar', 'Seo'),
-                        'url' => ['/seo/seo/list']
+                        'label' => '<i class="fa fa-tasks"></i><span class="nav-label">Robots.txt</span>',
+                        'url' => ['/seo/robots/update'],
                     ],
                     [
-                        'label' => Yii::t('navbar', 'Robots.txt'),
-                        'url' => ['/seo/robots/update']
+                        'label' => '<i class="fa fa-tasks"></i><span class="nav-label">Direct Link</span>',
+                        'url' => ['/seo/directlink/directlink/list'],
                     ],
-                ],
+                    [
+                        'label' => '<i class="fa fa-tasks"></i><span class="nav-label">Base Info</span>',
+                        'url' => ['/seo/info/info/list'],
+                    ],
+                ]
             ],
             // USER
             [

@@ -10,8 +10,8 @@ use thread\app\base\module\abstracts\Module as aModule;
  * Class Seo
  *
  * @package thread\modules\seo
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
- * @copyright (c) 2016, VipDesign
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class Seo extends aModule
 {
@@ -39,5 +39,5 @@ class Seo extends aModule
     {
         return Yii::$app->get('db-core');
     }
-   
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace thread\actions;
 
 use Yii;
@@ -7,6 +8,7 @@ use yii\web\NotFoundHttpException;
 use yii\log\Logger;
 //
 use thread\app\base\models\ActiveRecord;
+use thread\modules\seo\modules\modellink\components\Crud;
 
 /**
  * Class UpdateWithLang
@@ -112,7 +114,6 @@ class UpdateWithLang extends ActionCRUD
         $this->modelLang->setScenario($this->scenario);
 
         if ($this->model->load(Yii::$app->getRequest()->post())) {
-//            var_dump(Yii::$app->language);
             $model = $this->model;
             $transaction = $model::getDb()->beginTransaction();
             try {
@@ -120,11 +121,12 @@ class UpdateWithLang extends ActionCRUD
                 if ($save && $this->modelLang->load(Yii::$app->getRequest()->post())) {
                     $this->modelLang->rid = $this->model->id;
                     $this->modelLang->lang = Yii::$app->language;
-//                    var_dump($this->modelLang); die;
+                    //
                     $save = $this->modelLang->save();
                 }
                 $save ? $transaction->commit() : $transaction->rollBack();
                 if ($save) {
+                    $this->saveSeoModel();
                     $this->afterSaveModel();
                 }
             } catch (Exception $e) {
@@ -144,5 +146,16 @@ class UpdateWithLang extends ActionCRUD
             $f = $this->afterSaveCallback;
             $f($this);
         }
+    }
+
+    /**
+     *
+     */
+    public function saveSeoModel()
+    {
+        $model = $this->model;
+        //
+        $seoCrud = new Crud();
+        $seoCrud->findModel(Crud::getModelKey($model), $model->id)->getPostModel()->saveModel();
     }
 }
