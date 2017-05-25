@@ -1,0 +1,81 @@
+@media screen and (min-width: 992px) {
+  header #main-menu {
+    height: auto !important;
+  }
+}
+@media screen and (max-width: 992px) {
+  .navbar-toggle {
+    display: block;
+  }
+  header .navbar-collapse {
+    display: block !important;
+  }
+  header .navbar .large-container {
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    &:after,
+    &:before {
+      display: none;
+    }
+  }
+  header .my-notebook .inscription {
+    display: none;
+  }
+  header #main-menu {
+    height: 0;
+    &.in {
+      height: auto;
+    }
+    .nav {
+      height: auto;
+      margin: 0;
+      li {
+        height: auto;
+        position: relative;
+        &:after {
+          content: "\e080";
+          top: 50%;
+          transform: translateY(-50%);
+          display: block;
+          font-family: 'Glyphicons Halflings';
+          position: absolute;
+          right: 15px;
+        }
+      }
+      a {
+        padding: 15px;
+      }
+    }
+  }
+  .navbar-nav>li {
+    float: none;
+  }
+  .navbar-toggle {
+    margin: 0;
+    background: #A3A19A;
+    padding: 7px;
+    margin-right: 7px;
+    .icon-bar {
+      background: #FFFFFF;
+    }
+  }
+
+  header .navbar-collapse {
+    position: absolute;
+    width: 95%;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    .nav {
+      width: 100%;
+      background: #e3e0d5;
+      padding: 20px;
+      li {
+        background: #C4C0B7;
+        margin-bottom: 20px;
+        border-radius: 8px;
+      }
+    }
+  }
+}
