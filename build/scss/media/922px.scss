@@ -78,4 +78,65 @@
       }
     }
   }
+  .italian-furn .one-cat {
+    .img-cont {
+      height: 100px;
+    }
+  }
+  .sale .left-side, .sale .right-side {
+    flex-wrap: nowrap;
+    .img-cont {
+      height: 240px;
+    }
+    .name {
+      font-size: 16px;
+    }
+    .old-price {
+      font-size: 16px;
+    }
+    .new-price {
+      font-size: 17px;
+    }
+  }
+  .causes {
+    .big {
+      font-size: 70px;
+      display: inline-block;
+    }
+    .sofa {
+      padding-left: 60px;
+      background-size: 20%;
+    }
+    .italy {
+      padding-left: 55px;
+    }
+    .like {
+      padding-left: 55px;
+    }
+    .descr {
+      text-align: center;
+    }
+  }
+  .reviews {
+    height: auto;
+    .quote {
+      padding: 30px;
+    }
+  }
+  footer {
+    .navbar-nav {
+      margin-bottom: 20px;
+    }
+    .navbar-nav > li {
+      display: inline-block;
+      margin-right: 20px;
+      &:before {
+        display: none;
+      }
+    }
+    .copy {
+      margin-top: 30px;
+    }
+  }
+
 }

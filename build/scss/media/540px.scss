@@ -1,0 +1,116 @@
+@media screen and (max-width: 540px) {
+
+  body header .top-navbar .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+  }
+  body header .tel-num {
+    font-size: 16px;
+    padding: 0;
+    border-right: none;
+    .glyphicon {
+      display: none;
+    }
+  }
+  body .navbar-nav > li.geo {
+    position: absolute;
+    left: calc( 100% + 20px );
+    border-left: 1px solid #bdbcb3;
+    height: 100%;
+  }
+  .home-slidee-wrap {
+    display: none;
+  }
+  .arr-cont {
+    display: none;
+  }
+  header {
+    .callback-trigger {
+      padding: 0 !important;
+      border-right: none;
+    }
+    .nav>li>a:focus, .nav>li>a:hover {
+      background: none;
+    }
+  }
+  .italian-furn h2,
+  .novelties h2,
+  .sale h2 {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 0;
+  }
+  .italian-furn .one-cat .img-cont {
+    height: 85px;
+  }
+  .italian-furn .one-cat {
+    height: 150px;
+  }
+  .italian-furn .one-cat .img-cont img {
+    max-width: 90%;
+  }
+  .novelties .item-in {
+    flex-direction: column;
+  }
+  .novelties .item-in .right {
+    padding: 0;
+  }
+  .novelties .item-in .left {
+    padding: 0 5px;
+  }
+  .novelties .item-in .left,
+  .novelties .item-in .right {
+    width: 100%;
+  }
+  .sale .left-side, .sale .right-side {
+    width: 100%;
+  }
+  .container {
+    width: 300px;
+  }
+  .sale {
+    margin-bottom: 20px;
+  }
+  .sale .left-side {
+    padding-right: 0;
+  }
+  .sale .right-side {
+    padding: 0;
+  }
+  .home-page .more {
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  body .causes .big {
+    font-size: 50px;
+  }
+  .popular-fabr h2 {
+    font-size: 18px;
+  }
+  .manager-request .quest {
+    font-size: 35px;
+  }
+  .manager-request .sm-title {
+    font-size: 17px;
+  }
+  body .reviews .quote {
+    padding: 10px;
+  }
+  footer .tel {
+    font-size: 26px;
+    margin: 10px 0;
+  }
+  body footer .stud {
+    font-size: 18px;
+  }
+  body footer .partner-cities ul {
+    column-count: 2;
+    padding-left: 15px;
+  }
+  footer .partner-cities .row > div {
+    padding-left: 15px;
+  }
+}

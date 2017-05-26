@@ -18,4 +18,23 @@ $(document).ready(function(){
     /*--Слайдер новинки--*/
     $('#sale-slider').carousel({});
     /*--конец Слайдер новинки--*/
+
+    /*--Слайдер новинки--*/
+    $('#reviews-slider').carousel({});
+    /*--конец Слайдер новинки--*/
+
+
+
+
+
+});
+$(window).load(function(){
+    ymaps.ready(function(){
+        var map = new ymaps.Map("map", {
+            center: [55.73367, 37.587874],
+            zoom: 11,
+            scroll: false
+        });
+        map.behaviors.disable('scrollZoom');
+    });
 });
