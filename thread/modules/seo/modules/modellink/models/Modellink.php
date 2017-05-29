@@ -5,6 +5,7 @@ namespace thread\modules\seo\modules\modellink\models;
 use Yii;
 //
 use thread\app\base\models\ActiveRecord;
+use thread\modules\seo\helpers\CommonFunc;
 use thread\modules\seo\modules\modellink\Modellink as ParentModule;
 
 /**
@@ -97,12 +98,7 @@ class Modellink extends ActiveRecord
      */
     public static function statusMetaRobotsRange()
     {
-        return [
-            1 => 'index, follow',
-            2 => 'index, nofollow',
-            3 => 'noindex, follow',
-            4 => 'noindex, nofollow'
-        ];
+        return CommonFunc::statusMetaRobotsRange();
     }
 
     /**
@@ -111,7 +107,7 @@ class Modellink extends ActiveRecord
      */
     public static function getModelKey(ActiveRecord $model)
     {
-        return sha1($model::tableName());
+        return CommonFunc::getModelKey($model);
     }
 
     /**

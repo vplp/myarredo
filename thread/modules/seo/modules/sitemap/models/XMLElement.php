@@ -1,16 +1,17 @@
 <?php
-namespace thread\modules\seo\models;
 
-use thread\app\base\models\ActiveRecord;
+namespace thread\modules\seo\modules\sitemap\models;
+
+use yii\base\Model;
 
 /**
- * Class SitemapXMLElement
+ * Class XMLElement
  *
- * @package app\modules\sitemap\models;
+ * @package thread\modules\seo\modules\sitemap\models
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class SitemapXMLElement extends ActiveRecord
+class XMLElement extends Model
 {
 
     public $loc;
@@ -27,7 +28,6 @@ class SitemapXMLElement extends ActiveRecord
         return [
             [['loc'], 'required'],
             [['loc'], 'string', 'max' => 512],
-//            [['loc'], 'url'],
             [['lastmod'], 'integer'],
             [['priority'], 'in', 'range' => range(0, 1, 0.1)],
             [['changefreq'], 'in', 'range' => self::changefreqRange()],
@@ -53,7 +53,7 @@ class SitemapXMLElement extends ActiveRecord
      */
     public static function timeStampToLastmod($timestamp)
     {
-        return date(self::$timeformat, (int) $timestamp);
+        return date(self::$timeformat, (int)$timestamp);
     }
 
     /**

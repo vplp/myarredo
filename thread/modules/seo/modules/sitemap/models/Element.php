@@ -1,21 +1,20 @@
 <?php
 
-namespace thread\modules\seo\modules\directlink\models;
+namespace thread\modules\seo\modules\sitemap\models;
 
 use Yii;
 //
 use thread\app\base\models\ActiveRecord;
-use thread\modules\seo\helpers\CommonFunc;
-use thread\modules\seo\modules\directlink\Directlink as ParentModule;
+use thread\modules\seo\modules\sitemap\Sitemap as ParentModule;
 
 /**
- * Class Directlink
+ * Class Element
  *
- * @package thread\modules\seo\modules\directlink\models
+ * @package thread\modules\seo\modules\sitemap\models
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class Directlink extends ActiveRecord
+class Element extends ActiveRecord
 {
 
     /**
@@ -36,7 +35,7 @@ class Directlink extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%seo_direct_link}}';
+        return '{{%seo_sitemap_element}}';
     }
 
     /**
@@ -48,8 +47,7 @@ class Directlink extends ActiveRecord
             [['url'], 'required'],
             [['created_at', 'updated_at'], 'integer'],
             [['published', 'deleted', 'add_to_sitemap', 'dissallow_in_robotstxt'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['meta_robots'], 'in', 'range' => array_keys(static::statusMetaRobotsRange())],
-            [['url', 'title', 'description', 'keywords', 'image_url'], 'string', 'max' => 255],
+            [['url'], 'string', 'max' => 255],
             [['url'], 'unique']
         ];
     }
@@ -64,7 +62,7 @@ class Directlink extends ActiveRecord
             'deleted' => ['deleted'],
             'add_to_sitemap' => ['add_to_sitemap'],
             'dissallow_in_robotstxt' => ['dissallow_in_robotstxt'],
-            'backend' => ['url', 'published', 'deleted', 'add_to_sitemap', 'dissallow_in_robotstxt', 'meta_robots', 'title', 'description', 'keywords', 'image_url'],
+            'backend' => ['url', 'published', 'deleted', 'add_to_sitemap', 'dissallow_in_robotstxt'],
         ];
     }
 
@@ -79,22 +77,10 @@ class Directlink extends ActiveRecord
             'add_to_sitemap' => Yii::t('seo', 'Add to sitemap'),
             'dissallow_in_robotstxt' => Yii::t('seo', 'Dissallow in robots.txt'),
             'meta_robots' => Yii::t('seo', 'Robots'),
-            'title' => Yii::t('app', 'Title'),
-            'description' => Yii::t('app', 'Description'),
-            'keywords' => Yii::t('seo', 'Keywords'),
-            'image_url' => Yii::t('seo', 'Image url'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
-    }
-
-    /**
-     * @return array
-     */
-    public static function statusMetaRobotsRange()
-    {
-        return CommonFunc::statusMetaRobotsRange();
     }
 }

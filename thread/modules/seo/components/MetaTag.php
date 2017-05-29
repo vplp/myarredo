@@ -13,7 +13,9 @@ use thread\modules\seo\modules\{
 use thread\app\base\models\ActiveRecord;
 
 /**
+ * Class MetaTag
  *
+ * @package thread\modules\seo\components
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */

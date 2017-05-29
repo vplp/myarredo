@@ -1,26 +1,26 @@
 <?php
 
-namespace thread\modules\seo\models;
+namespace thread\modules\seo\modules\sitemap\models;
 
-use thread\app\base\models\ActiveRecord;
+use yii\base\Model;
 
 /**
- * Class SitemapXMLSimple
+ * Class XMLSimple
  *
- * @package app\modules\sitemap\models;
+ * @package thread\modules\seo\modules\sitemap\models
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class SitemapXMLSimple extends ActiveRecord
+class XMLSimple extends Model
 {
 
     public $collection = [];
 
     /**
-     * @param SitemapXMLElement $item
-     * @return boolean
+     * @param XMLElement $item
+     * @return array|bool
      */
-    public function addItem(SitemapXMLElement $item)
+    public function addItem(XMLElement $item)
     {
         if ($item->validate()) {
             $this->collection[] = $item;
@@ -41,14 +41,16 @@ class SitemapXMLSimple extends ActiveRecord
     /**
      * @return string
      */
-    public static function beginTag() {
+    public static function beginTag()
+    {
         return '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
     }
 
     /**
      * @return string
      */
-    public static function endTag() {
+    public static function endTag()
+    {
         return '</urlset> ';
     }
 
