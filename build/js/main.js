@@ -25,16 +25,27 @@ $(document).ready(function(){
 
 
 
-
-
-});
-$(window).load(function(){
-    ymaps.ready(function(){
-        var map = new ymaps.Map("map", {
-            center: [55.73367, 37.587874],
-            zoom: 11,
-            scroll: false
-        });
-        map.behaviors.disable('scrollZoom');
+    // Instantiate the Bootstrap carousel
+    $('.multi-item-carousel').carousel({
+        interval: false
     });
+
+// for every slide in carousel, copy the next slide's item in the slide.
+// Do the same for the next, next item.
+    $('.multi-item-carousel .item').each(function(){
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+            console.log(next);
+        }
+
+        next.children(':first-child').clone().appendTo($(this));
+        next.next().children(':first-child').clone().appendTo($(this));
+        if (next.next().length>0) {
+            next.next().next().children(':first-child').clone().appendTo($(this));
+        } else {
+            $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+        }
+    });
+
 });
