@@ -12,4 +12,11 @@ namespace backend\modules\user;
 class User extends \common\modules\user\User
 {
     public $username_attribute = 'username';
+
+    public $menuItems = [
+        'name' => 'Users',
+        'icon' => 'fa-users',
+        'url' => ['/user/user/list'],
+        'position' => 8,
+    ];
 }

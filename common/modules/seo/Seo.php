@@ -1,4 +1,5 @@
 <?php
+
 namespace common\modules\seo;
 
 /**
@@ -10,5 +11,4 @@ namespace common\modules\seo;
  */
 class Seo extends \thread\modules\seo\Seo
 {
-
 }

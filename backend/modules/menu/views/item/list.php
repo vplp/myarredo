@@ -30,7 +30,6 @@ echo GridView::widget(
                     return MenuItem::linkTypeRange()[$model['link_type']];
                 },
             ],
-            'position',
             [
                 'class' => ActionStatusColumn::class,
                 'attribute' => 'published',

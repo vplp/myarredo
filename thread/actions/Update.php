@@ -1,4 +1,5 @@
 <?php
+
 namespace thread\actions;
 
 use Yii;
@@ -7,6 +8,7 @@ use yii\web\NotFoundHttpException;
 use yii\log\Logger;
 //
 use thread\app\base\models\ActiveRecord;
+use thread\modules\seo\modules\modellink\components\Crud;
 
 /**
  * Class Update
@@ -112,6 +114,7 @@ class Update extends ActionCRUD
                 $save = $this->model->save();
                 $save ? $transaction->commit() : $transaction->rollBack();
                 if ($save) {
+                    $this->saveSeoModel();
                     $this->afterSaveModel();
                 }
             } catch (Exception $e) {
@@ -131,5 +134,16 @@ class Update extends ActionCRUD
             $f = $this->afterSaveCallback;
             $f($this);
         }
+    }
+
+    /**
+     *
+     */
+    public function saveSeoModel()
+    {
+        $model = $this->model;
+        //
+        $seoCrud = new Crud();
+        $seoCrud->findModel(Crud::getModelKey($model), $model->id)->getPostModel()->saveModel();
     }
 }

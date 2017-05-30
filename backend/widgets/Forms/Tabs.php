@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\widgets\Forms;
 
 use yii\base\InvalidConfigException;
@@ -8,7 +9,10 @@ use yii\helpers\{
 
 /**
  * Class Tabs
- * @package backend\themes\inspinia\widgets
+ *
+ * @package backend\widgets\Forms
+ * @author FilamentV <vortex.filament@gmail.com>
+ * @copyright (c), Thread
  */
 class Tabs extends \yii\bootstrap\Tabs
 {
@@ -115,6 +119,6 @@ JS;
         }
 
         return Html::tag('ul', implode("\n", $headers), $this->options)
-        . ($this->renderTabContent ? "\n" . Html::tag('div', implode("\n", $panes), ['class' => 'tab-content']) : '');
+            . ($this->renderTabContent ? "\n" . Html::tag('div', implode("\n", $panes), ['class' => 'tab-content']) : '');
     }
 }

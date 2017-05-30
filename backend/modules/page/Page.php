@@ -11,4 +11,11 @@ namespace backend\modules\page;
 class Page extends \common\modules\page\Page
 {
     public $itemOnPage = 20;
+
+    public $menuItems = [
+        'name' => 'Pages',
+        'icon' => 'fa-file-text',
+        'url' => ['/page/page/list'],
+        'position' => 2,
+    ];
 }

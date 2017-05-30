@@ -11,7 +11,11 @@ return [
     'Display in the search engine' => 'Display in the search engine',
     'Write to robots' => 'Disallow into robots.txt',
     'Write to siteMap' => 'Add to Sitemap.xml',
+    'Image url' => 'Image url',
     //
     'Model namespace' => 'Model namespace',
-    'Robots.txt' => 'Robots.txt'
+    'Robots.txt' => 'Robots.txt',
+    'Add to sitemap' => 'Add to sitemap',
+    'Dissallow in robots.txt' => 'Dissallow in robots.txt',
+    'Robots' => 'Robots'
 ];

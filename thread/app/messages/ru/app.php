@@ -39,6 +39,10 @@ return [
     'Params' => 'Параметры',
     'KEY_ON' => 'On',
     'KEY_OFF' => 'Off',
+    'Use' => 'Использовать',
+    'Info' => 'Info',
+    'Shop' => 'Магазин',
+    'Question' => 'Вопрос',
     //
     'Start date' => 'Дата начала',
     'End date' => 'Конечная дата',
@@ -55,6 +59,7 @@ return [
     'Settings' => 'Базовые',
     'Image' => 'Картинка',
     'Choose' => 'Выбрать',
+    'Save the entry for editing' => 'Сохраните запись для редактирования',
     //Buttons
     'Add' => 'Добавить',
     'Create' => 'Создать',

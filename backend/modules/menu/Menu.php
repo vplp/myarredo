@@ -17,4 +17,11 @@ class Menu extends \common\modules\menu\Menu
      * @var string
      */
     public $configPath = __DIR__ . '/config.php';
+
+    public $menuItems = [
+        'name' => 'Menu',
+        'icon' => 'fa-tasks',
+        'url' => ['/menu/menu/list'],
+        'position' => 1,
+    ];
 }

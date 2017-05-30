@@ -39,6 +39,10 @@ return [
     'Params' => 'Параметри',
     'KEY_ON' => 'On',
     'KEY_OFF' => 'Off',
+    'Use' => 'Використати',
+    'Info' => 'Info',
+    'Shop' => 'Магазин',
+    'Question' => 'Питання',
     //
     'Start date' => 'Дата початку',
     'End date' => 'Дата закінчення',
@@ -55,6 +59,7 @@ return [
     'Settings' => 'Налаштування',
     'Image' => 'Зображення',
     'Choose' => 'Вибрати',
+    'Save the entry for editing' => 'Збережіть запис для редагування',
     //Buttons
     'Add' => 'Додати',
     'Create' => 'Створити',

@@ -38,6 +38,9 @@ return [
     'authManager' => [
         'class' => \yii\rbac\DbManager::class,
     ],
+    'metatag' => [
+        'class' => \thread\modules\seo\components\MetaTag::class
+    ],
     'assetManager' => [
         'class' => \yii\web\AssetManager::class,
         'appendTimestamp' => true,

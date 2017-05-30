@@ -63,8 +63,10 @@ $('.sorted_table').sortable({
     placeholder: '<td class="sortplace"/>',
     delay: 500,
     onDrop: function ($item, container, _super) {
+        var sort_url = $item.closest('table').attr('data-sortableurl');
+        var csrf = $item.closest('table').attr('data-csrf');
         var tableid = $item.closest('table').attr('id');
-        console.log(tableid);
+        console.log(sort_url);
         var rows_data = [];
 
         $item.closest('table').find('tbody tr').each(function (i, row) {
@@ -78,6 +80,8 @@ $('.sorted_table').sortable({
         //вставить проверку одинаковый ли массив, если нет, то отослать сохранение в БД
         sorted_table_cache[tableid] = rows_data;
         console.log(sorted_table_cache);
+
+        $.post(sort_url, {rows_data: rows_data, _csrf: csrf});
 
         _super($item, container);
     }

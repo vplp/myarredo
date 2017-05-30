@@ -26,12 +26,15 @@ return [
     'find/<condition:[\w\-]+>' => 'page/find/index',
 
     // Module [[Forms]]
-    'forms/feedbackform/captcha'=>'forms/feedbackform/captcha',
+    'forms/feedbackform/captcha' => 'forms/feedbackform/captcha',
     'forms/feedbackform/add' => 'forms/feedbackform/add',
 
     // Module [[SEO]]
-    'sitemap/filling' => 'seo/sitemap/filling',
-    'sitemap/mapcreate' => 'seo/sitemap/mapcreate',
+    'page/sitemap' => 'seo/sitemaphtml/index',
+    //
+    'sitemap/pathcache' => 'seo/pathcache/pathcache/index',
+    'sitemap/fill' => 'seo/sitemap/fill/index',
+    'sitemap/create' => 'seo/sitemap/create/index',
 
     // Module [[Shop]]
     'shop/widget' => 'shop/widget/index',

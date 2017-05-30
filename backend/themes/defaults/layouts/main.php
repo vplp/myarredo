@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 //
 use backend\widgets\LangSwitch\LangSwitch;
+use backend\themes\defaults\widgets\navbar\NavBar;
 use backend\themes\defaults\assets\AppAsset;
 
 /**
@@ -27,20 +28,25 @@ $this->beginPage()
 <?php $this->beginBody() ?>
 
 <div id="wrapper">
-    <?= backend\themes\defaults\widgets\navbar\NavBar::widget(['bundle' => $bundle]); ?>
+
+    <?= NavBar::widget(['bundle' => $bundle]); ?>
+
     <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top gray-bg" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
-                                class="fa fa-bars"></i> </a>
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#">
+                        <i class="fa fa-bars"></i>
+                    </a>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
                         <?= Html::a('<i class="fa fa-sign-out"></i>', ['/user/logout']) ?>
                     </li>
                 </ul>
+
                 <?= LangSwitch::widget() ?>
+
             </nav>
         </div>
         <?= $content; ?>

@@ -1,0 +1,41 @@
+Создание меню с модулей:
+
+в модуль добавить переменную со структурой
+
+```php
+ public $menuItems = [
+    'name' => 'Menu',
+    'icon' => 'fa-tasks',
+    'url' => ['/menu/menu/list'],
+    'position' => 1,
+];
+```
+
+или если нужно вложенность то так
+
+```php
+public $menuItems = [
+    'name' => 'Location',
+    'icon' => 'fa-map-marker',
+    'position' => 7,
+    'items' => [
+        [
+            'name' => 'Country',
+            'icon' => 'fa-tasks',
+            'url' => ['/location/country/list'],
+        ],
+        [
+            'name' => 'City',
+            'icon' => 'fa-tasks',
+            'url' => ['/location/city/list'],
+        ],
+        [
+            'name' => 'Currency',
+            'icon' => 'fa-tasks',
+            'url' => ['/location/currency/list'],
+        ]
+    ]
+];
+```
+
+Значения для 'icon', 'position', 'url' можно не проставлять

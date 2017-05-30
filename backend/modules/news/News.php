@@ -15,4 +15,11 @@ class News extends \common\modules\news\News
      * @var int
      */
     public $itemOnPage = 20;
+
+    public $menuItems = [
+        'name' => 'News',
+        'icon' => 'fa-file-text',
+        'url' => ['/news/article/list'],
+        'position' => 2,
+    ];
 }

@@ -18,6 +18,39 @@ class Sys extends \common\modules\sys\Sys
 {
     public $itemOnPage = 20;
 
+    public $menuItems = [
+        'name' => 'System',
+        'icon' => 'fa-map-marker',
+        'position' => 9,
+        'items' => [
+            [
+                'name' => 'Configs',
+                'icon' => 'fa-tasks',
+                'url' => ['/sys/configs/params/list'],
+            ],
+            [
+                'name' => 'Growl',
+                'icon' => 'fa-tasks',
+                'url' => ['/sys/growl/growl/list'],
+            ],
+            [
+                'name' => 'Role of User',
+                'icon' => 'fa-tasks',
+                'url' => ['/sys/user/role/list'],
+            ],
+            [
+                'name' => 'Messages',
+                'icon' => 'fa-tasks',
+                'url' => ['/sys/messages/file/list'],
+            ],
+            [
+                'name' => 'Log',
+                'icon' => 'fa-tasks',
+                'url' => ['/sys/logbook/logbook/list'],
+            ]
+        ]
+    ];
+
     /**
      *
      */

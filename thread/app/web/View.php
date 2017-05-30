@@ -2,6 +2,7 @@
 
 namespace thread\app\web;
 
+use Yii;
 use yii\helpers\Html;
 use yii\web\View as yiiWebView;
 
@@ -27,6 +28,16 @@ class View extends yiiWebView
     {
         $key = $key ?: md5($js);
         $this->jsLdJson[$position][$key] = $js;
+    }
+
+    /**
+     *
+     */
+    public function beginPage()
+    {
+        //render seo meta tags
+        Yii::$app->metatag->render()->render_graph();
+        parent::beginPage();
     }
 
     /**

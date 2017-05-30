@@ -15,4 +15,11 @@ class Polls extends \common\modules\polls\Polls
      * @var int
      */
     public $itemOnPage = 20;
+
+    public $menuItems = [
+        'name' => 'Polls',
+        'icon' => 'fa-users',
+        'url' => ['/polls/polls/list'],
+        'position' => 6,
+    ];
 }

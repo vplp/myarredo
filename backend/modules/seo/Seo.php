@@ -2,7 +2,9 @@
 
 namespace backend\modules\seo;
 
-use common\modules\seo\Seo as CommonSeoModule;
+use backend\modules\seo\modules\{
+    directlink\Directlink, info\Info
+};
 
 /**
  * Class Seo
@@ -11,7 +13,25 @@ use common\modules\seo\Seo as CommonSeoModule;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class Seo extends CommonSeoModule
+class Seo extends \common\modules\seo\Seo
 {
     public $itemOnPage = 20;
+
+    /**
+     *
+     */
+    public function init()
+    {
+
+        $this->modules = [
+            'info' => [
+                'class' => Info::class,
+            ],
+            'directlink' => [
+                'class' => Directlink::class
+            ]
+        ];
+
+        parent::init();
+    }
 }

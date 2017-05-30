@@ -5,7 +5,6 @@ use yii\helpers\ArrayHelper;
 //
 use common\modules\page\models\Page as CommonPageModel;
 //
-use thread\modules\seo\behaviors\SeoBehavior;
 use thread\app\model\interfaces\BaseBackendModel;
 
 /**
@@ -17,24 +16,6 @@ use thread\app\model\interfaces\BaseBackendModel;
  */
 class Page extends CommonPageModel implements BaseBackendModel
 {
-
-    /**
-     * Behaviors
-     *
-     * @return array
-     */
-    public function behaviors()
-    {
-        return ArrayHelper::merge(
-            parent::behaviors(),
-            [
-                'SeoBehavior' => [
-                    'class' => SeoBehavior::class,
-                    'modelNamespace' => self::COMMON_NAMESPACE
-                ]
-            ]
-        );
-    }
 
     /**
      * Backend form dropdown list
