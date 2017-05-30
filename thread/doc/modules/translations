@@ -1,0 +1,40 @@
+Модуль перекладів.
+
+Для використання потрібно примінити міграції (m170418_172006_create_translation_source_table.php,
+m170418_172028_create_translation_message_table.php). По замовчуванні вони знаходяться
+за шляхом /thread/modules/sys/migrations.
+
+Підключення самого компоненту виконується в файлі components.php в thread або common. Обовязковим є передача в
+налаштуваннях масиву мов або передатча неймспейсу мовної моделі.
+
+'i18n' => [
+    'class' => \thread\modules\sys\modules\translation\components\I18N::class,
+    'languages' => ['ru-RU', 'de-DE', 'it-IT']
+     ...
+],
+
+або
+
+'i18n' => [
+    'class' => \thread\modules\sys\modules\translation\components\I18N::class,
+    'languageModel' => \thread\modules\sys\models\Language::class,
+     ...
+],
+
+також можна вімкнути кешування просто передавши в налаштуваннях 'enableCachingʼ та 'cachingDuration'. По замовчуванні вони мають значення
+'enableCaching' => true, 'cachingDuration' => 3600.
+
+'i18n' => [
+    'class' => \thread\modules\sys\modules\translation\components\I18N::class,
+    'languageModel' => \thread\modules\sys\models\Language::class,
+    'enableCaching' => true,
+    'cachingDuration' => 3600
+],
+
+Для адміністративної частини  необхідно виконувати підключення через \thread\app\base\i18n\I18N для того щоб відокремити мову інтерфейсу та мову контенту
+
+'i18n' => [
+    'class' => \thread\app\base\i18n\I18N::class,
+],
+
+Класс наслідує компонент перекладів проте змінює вибірку мови для перекладу з Yii::$app->language на params.
