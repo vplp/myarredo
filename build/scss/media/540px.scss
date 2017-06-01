@@ -113,4 +113,29 @@
   footer .partner-cities .row > div {
     padding-left: 15px;
   }
+  body .factory-stripe .let-list {
+    width: 100%;
+  }
+  body .factory-stripe {
+    margin-top: 20px;
+  }
+  body .title-mark {
+    padding: 5px 10px;
+    h1 {
+      font-size: 18px;
+    }
+    span {
+      font-size: 14px;
+    }
+    .view-but {
+      position: static;
+      transform: translate(0);
+      padding: 8px 0;
+      justify-content: center;
+    }
+  }
+  body .letter-nav {
+    display: none;
+  }
+
 }

@@ -4,10 +4,11 @@
     <title>myarredo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="libs/formstyler/jquery.formstyler.css">
     <link rel="stylesheet" href="./public/css/fonts.css">
     <link rel="stylesheet" href="./public/libs/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="./public/libs/bootstrap-select/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="./public/libs/slick-1.6/slick.css">
+    <link rel="stylesheet" href="./public/libs/nouislider/nouislider.min.css">
     <link rel='stylesheet' href='./public/css/main.scss.css' type='text/css' media='all' />
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
 </head>
@@ -302,9 +303,9 @@
             </div>
             <div class="cat-content">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-lg-3">
                         <div class="filters">
-                            <div class="one-filter">
+                            <div class="one-filter open">
                                 <a href="#" class="reset">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                     СБРОСИТЬ ФИЛЬТРЫ
@@ -381,17 +382,175 @@
                                     </a>
                                 </div>
                             </div>
+
+                            <div class="one-filter open">
+                                <a href="javascript:void(0);" class="filt-but">
+                                    Предмет
+                                </a>
+                                <div class="list-item">
+                                    <a href="#" class="one-item-check">
+                                        <label>
+                                            <input type="checkbox">
+                                            <div class="my-checkbox"></div>
+                                            Аксессуары (11579)
+                                        </label>
+                                    </a>
+                                    <a href="#" class="one-item-check">
+                                        <label>
+                                            <input type="checkbox">
+                                            <div class="my-checkbox"></div>
+                                            Банкетка (11579)
+                                        </label>
+                                    </a>
+                                    <a href="#" class="one-item-check">
+                                        <label>
+                                            <input type="checkbox">
+                                            <div class="my-checkbox"></div>
+                                            Бар (11579)
+                                        </label>
+                                    </a>
+                                    <a href="#" class="one-item-check">
+                                        <label>
+                                            <input type="checkbox">
+                                            <div class="my-checkbox"></div>
+                                            Буфет (11579)
+                                        </label>
+                                    </a>
+                                    <a href="#" class="one-item-check">
+                                        <label>
+                                            <input type="checkbox">
+                                            <div class="my-checkbox"></div>
+                                            Комод (11579)
+                                        </label>
+                                    </a>
+                                    <a href="#" class="one-item-check">
+                                        <label>
+                                            <input type="checkbox">
+                                            <div class="my-checkbox"></div>
+                                            Книжный шкаф (11579)
+                                        </label>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="one-filter open">
+                                <a href="javascript:void(0);" class="filt-but">
+                                    Стиль
+                                </a>
+                                <div class="list-item">
+                                    <a href="#" class="one-item-check">
+                                        <label>
+                                            <input type="checkbox">
+                                            <div class="my-checkbox"></div>
+                                            Гламур (11579)
+                                        </label>
+                                    </a>
+                                    <a href="#" class="one-item-check">
+                                        <label>
+                                            <input type="checkbox">
+                                            <div class="my-checkbox"></div>
+                                            Арт-деко (11579)
+                                        </label>
+                                    </a>
+                                    <a href="#" class="one-item-check">
+                                        <label>
+                                            <input type="checkbox">
+                                            <div class="my-checkbox"></div>
+                                            Современный (11579)
+                                        </label>
+                                    </a>
+                                    <a href="#" class="one-item-check">
+                                        <label>
+                                            <input type="checkbox">
+                                            <div class="my-checkbox"></div>
+                                            Классический (11579)
+                                        </label>
+                                    </a>
+                                    <a href="#" class="one-item-check">
+                                        <label>
+                                            <input type="checkbox">
+                                            <div class="my-checkbox"></div>
+                                            Современный (11579)
+                                        </label>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="one-filter open">
+                                <a href="javascript:void(0);" class="filt-but">
+                                    Фабрики
+                                </a>
+                                <div class="list-item">
+                                    <a href="#" class="one-item-check">
+                                        <label>
+                                            <input type="checkbox">
+                                            <div class="my-checkbox"></div>
+                                            A.R.ARREDAMENTI SRL (302)
+                                        </label>
+                                    </a>
+                                    <a href="#" class="one-item-check">
+                                        <label>
+                                            <input type="checkbox">
+                                            <div class="my-checkbox"></div>
+                                            ALBERTA SALOTTI (135)
+                                        </label>
+                                    </a>
+                                    <a href="#" class="one-item-check">
+                                        <label>
+                                            <input type="checkbox">
+                                            <div class="my-checkbox"></div>
+                                            ALF (65)
+                                        </label>
+                                    </a>
+                                    <a href="#" class="one-item-check">
+                                        <label>
+                                            <input type="checkbox">
+                                            <div class="my-checkbox"></div>
+                                            ALTA MODA (286)
+                                        </label>
+                                    </a>
+                                    <a href="#" class="one-item-check">
+                                        <label>
+                                            <input type="checkbox">
+                                            <div class="my-checkbox"></div>
+                                            ALCHYMIA (134)
+                                        </label>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="one-filter">
+                                <div class="price-slider-cont">
+                                    <a href="javascript:void(0);" class="filt-but">
+                                        Цена
+                                    </a>
+                                    <div id="price-slider"></div>
+                                    <div class="flex s-between" style="padding: 10px 0;">
+                                        <div class="cur">
+                                            <input type="text" id="min-price" value="100">
+                                        </div>
+                                        <span class="indent"> - </span>
+                                        <div class="cur">
+                                            <input type="text" id="max-price" value="10000">
+                                        </div>
+                                    </div>
+                                    <a href="#" class="submit">
+                                        OK
+                                    </a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-9 col-lg-9">
                         <div class="cont-area">
                             <div class="top-bar flex">
                                 <div class="location-buts flex">
-                                    <a href="javascript:void(0);" class="tiles4 flex">
+                                    <a href="javascript:void(0);" data-style="small" class="tiles4 flex active">
                                         <i></i><i></i><i></i><i></i>
                                         <i></i><i></i><i></i><i></i>
                                     </a>
-                                    <a href="javascript:void(0);" class="tiles2 flex">
+                                    <a href="javascript:void(0);" data-style="large" class="tiles2 flex">
                                         <i></i><i></i>
                                     </a>
                                 </div>
@@ -430,81 +589,329 @@
                                 <div class="wrap">
                                     <h3>РЕКОМЕНДУЕМЫЕ ТОВАРЫ</h3>
                                 </div>
-                                <div class="carousel slide multi-item3-carousel" id="rec-prod-slider">
-                                    <div class="carousel-inner">
-                                        <div class="item active">
-                                            <div class="col-xs-4">
-                                                <a href="#1" class="tile">
-                                                    <div class="img-cont">
-                                                        <img src="public/img/pictures/rec1.jpg" alt="">
-                                                    </div>
-                                                    <div class="add-item-text">
-                                                        Стул  STILE LEGNO 5086.017
-                                                    </div>
-                                                </a>
+                                <div class="slide multi-item3-carousel" id="rec-prod-slider">
+                                    <div class="item active">
+                                        <a href="#1" class="tile">
+                                            <div class="img-cont">
+                                                <img src="public/img/pictures/rec1.jpg" alt="">
                                             </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-xs-4">
-                                                <a href="#1" class="tile">
-                                                    <div class="img-cont">
-                                                        <img src="public/img/pictures/rec2.png" alt="">
-                                                    </div>
-                                                    <div class="add-item-text">
-                                                        Стул  STILE LEGNO 5086.017
-                                                    </div>
-                                                </a>
+                                            <div class="add-item-text">
+                                                Стул  STILE LEGNO 5086.017
                                             </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-xs-4">
-                                                <a href="#1" class="tile">
-                                                    <div class="img-cont">
-                                                        <img src="public/img/pictures/rec3.png" alt="">
-                                                    </div>
-                                                    <div class="add-item-text">
-                                                        Стул  STILE LEGNO 5086.017
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-xs-4">
-                                                <a href="#1" class="tile">
-                                                    <div class="img-cont">
-                                                        <img src="public/img/pictures/rec2.png" alt="">
-                                                    </div>
-                                                    <div class="add-item-text">
-                                                        Стул  STILE LEGNO 5086.017
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="col-xs-3">
-                                                <a href="#1" class="tile">
-                                                    <div class="img-cont">
-                                                        <img src="public/img/pictures/rec1.jpg" alt="">
-                                                    </div>
-                                                    <div class="add-item-text">
-                                                        Стул  STILE LEGNO 5086.017
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-
+                                        </a>
                                     </div>
-
-                                    <div class="slider-controls">
-                                        <a class="left" href="#rec-prod-slider" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-                                        <a class="right" href="#rec-prod-slider" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                    <div class="item">
+                                        <a href="#1" class="tile">
+                                            <div class="img-cont">
+                                                <img src="public/img/pictures/rec2.png" alt="">
+                                            </div>
+                                            <div class="add-item-text">
+                                                Стул  STILE LEGNO 5086.017
+                                            </div>
+                                        </a>
                                     </div>
-
+                                    <div class="item">
+                                        <a href="#1" class="tile">
+                                            <div class="img-cont">
+                                                <img src="public/img/pictures/rec3.png" alt="">
+                                            </div>
+                                            <div class="add-item-text">
+                                                Стул  STILE LEGNO 5086.017
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <a href="#1" class="tile">
+                                            <div class="img-cont">
+                                                <img src="public/img/pictures/rec2.png" alt="">
+                                            </div>
+                                            <div class="add-item-text">
+                                                Стул  STILE LEGNO 5086.017
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="item">
+                                        <a href="#1" class="tile">
+                                            <div class="img-cont">
+                                                <img src="public/img/pictures/rec1.jpg" alt="">
+                                            </div>
+                                            <div class="add-item-text">
+                                                Стул  STILE LEGNO 5086.017
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="cat-prod-wrap">
+                                <div class="cat-prod">
+                                    <a href="#" class="one-prod-tile">
+                                        <object>
+                                            <a href="javascript:void(0);" class="request-price">
+                                                Запросить цену
+                                            </a>
+                                        </object>
+                                        <div class="img-cont">
+                                            <img src="public/img/pictures/prod-cat1.jpeg" alt="">
+                                            <div class="brand">
+                                                ANGELO CAPPELLINI
+                                            </div>
+                                        </div>
+                                        <div class="item-infoblock">
+                                            Спальный гарнитур BEDROOMS
+                                        </div>
+                                    </a>
+                                    <a href="#" class="one-prod-tile">
+                                        <object>
+                                            <a href="javascript:void(0);" class="request-price">
+                                                Запросить цену
+                                            </a>
+                                        </object>
+                                        <div class="img-cont">
+                                            <img src="public/img/pictures/prod-cat2.jpg" alt="">
+                                            <div class="brand">
+                                                SAVIO FIRMINO
+                                            </div>
+                                        </div>
+                                        <div class="item-infoblock">
+                                            Спальный гарнитур BEDROOMS
+                                        </div>
+                                    </a>
+                                    <a href="#" class="one-prod-tile">
+                                        <object>
+                                            <a href="javascript:void(0);" class="request-price">
+                                                Запросить цену
+                                            </a>
+                                        </object>
+                                        <div class="img-cont">
+                                            <img src="public/img/pictures/prod-cat3.jpg" alt="">
+                                            <div class="brand">
+                                                SAVIO FIRMINO
+                                            </div>
+                                        </div>
+                                        <div class="item-infoblock">
+                                            Спальный гарнитур BEDROOMS
+                                        </div>
+                                    </a>
+                                    <a href="#" class="one-prod-tile">
+                                        <object>
+                                            <a href="javascript:void(0);" class="request-price">
+                                                Запросить цену
+                                            </a>
+                                        </object>
+                                        <div class="img-cont">
+                                            <img src="public/img/pictures/prod-cat3.jpg" alt="">
+                                            <div class="brand">
+                                                SAVIO FIRMINO
+                                            </div>
+                                        </div>
+                                        <div class="item-infoblock">
+                                            Спальный гарнитур BEDROOMS
+                                        </div>
+                                    </a>
+                                    <a href="#" class="one-prod-tile">
+                                        <object>
+                                            <a href="javascript:void(0);" class="request-price">
+                                                Запросить цену
+                                            </a>
+                                        </object>
+                                        <div class="img-cont">
+                                            <img src="public/img/pictures/prod-cat3.jpg" alt="">
+                                            <div class="brand">
+                                                SAVIO FIRMINO
+                                            </div>
+                                        </div>
+                                        <div class="item-infoblock">
+                                            Спальный гарнитур BEDROOMS
+                                        </div>
+                                    </a>
+                                    <a href="#" class="one-prod-tile">
+                                        <object>
+                                            <a href="javascript:void(0);" class="request-price">
+                                                Запросить цену
+                                            </a>
+                                        </object>
+                                        <div class="img-cont">
+                                            <img src="public/img/pictures/prod-cat3.jpg" alt="">
+                                            <div class="brand">
+                                                SAVIO FIRMINO
+                                            </div>
+                                        </div>
+                                        <div class="item-infoblock">
+                                            Спальный гарнитур BEDROOMS
+                                        </div>
+                                    </a>
+                                    <a href="#" class="one-prod-tile">
+                                        <object>
+                                            <a href="javascript:void(0);" class="request-price">
+                                                Запросить цену
+                                            </a>
+                                        </object>
+                                        <div class="img-cont">
+                                            <img src="public/img/pictures/prod-cat3.jpg" alt="">
+                                            <div class="brand">
+                                                SAVIO FIRMINO
+                                            </div>
+                                        </div>
+                                        <div class="item-infoblock">
+                                            Спальный гарнитур BEDROOMS
+                                        </div>
+                                    </a>
+                                    <a href="#" class="one-prod-tile">
+                                        <object>
+                                            <a href="javascript:void(0);" class="request-price">
+                                                Запросить цену
+                                            </a>
+                                        </object>
+                                        <div class="img-cont">
+                                            <img src="public/img/pictures/prod-cat4.jpg" alt="">
+                                            <div class="brand">
+                                                SAVIO FIRMINO
+                                            </div>
+                                        </div>
+                                        <div class="item-infoblock">
+                                            Спальный гарнитур BEDROOMS
+                                        </div>
+                                    </a>
+                                    <a href="#" class="one-prod-tile">
+                                        <object>
+                                            <a href="javascript:void(0);" class="request-price">
+                                                Запросить цену
+                                            </a>
+                                        </object>
+                                        <div class="img-cont">
+                                            <img src="public/img/pictures/prod-cat1.jpeg" alt="">
+                                            <div class="brand">
+                                                ANGELO CAPPELLINI
+                                            </div>
+                                        </div>
+                                        <div class="item-infoblock">
+                                            Спальный гарнитур BEDROOMS
+                                        </div>
+                                    </a>
+                                    <a href="#" class="one-prod-tile">
+                                        <object>
+                                            <a href="javascript:void(0);" class="request-price">
+                                                Запросить цену
+                                            </a>
+                                        </object>
+                                        <div class="img-cont">
+                                            <img src="public/img/pictures/prod-cat1.jpeg" alt="">
+                                            <div class="brand">
+                                                ANGELO CAPPELLINI
+                                            </div>
+                                        </div>
+                                        <div class="item-infoblock">
+                                            Спальный гарнитур BEDROOMS
+                                        </div>
+                                    </a>
+                                    <a href="#" class="one-prod-tile">
+                                        <object>
+                                            <a href="javascript:void(0);" class="request-price">
+                                                Запросить цену
+                                            </a>
+                                        </object>
+                                        <div class="img-cont">
+                                            <img src="public/img/pictures/prod-cat1.jpeg" alt="">
+                                            <div class="brand">
+                                                ANGELO CAPPELLINI
+                                            </div>
+                                        </div>
+                                        <div class="item-infoblock">
+                                            Спальный гарнитур BEDROOMS
+                                        </div>
+                                    </a>
+                                    <a href="#" class="one-prod-tile">
+                                        <object>
+                                            <a href="javascript:void(0);" class="request-price">
+                                                Запросить цену
+                                            </a>
+                                        </object>
+                                        <div class="img-cont">
+                                            <img src="public/img/pictures/prod-cat1.jpeg" alt="">
+                                            <div class="brand">
+                                                ANGELO CAPPELLINI
+                                            </div>
+                                        </div>
+                                        <div class="item-infoblock">
+                                            Спальный гарнитур BEDROOMS
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="pagi-wrap">
+                                    <ul class="pagination">
+                                        <li class="prev"><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i>Назад</a></li>
+                                        <li><a href="#">1</a></li>
+                                        <li class="active"><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>
+                                        <li class="next"><a href="#">Далее<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="comp-advanteges">
+                        <p>
+                            Ищете вариант приобретения <strong>итальянской мебели</strong>, который избавит от рутинного похода по
+                            магазинам в поисках подходящего интерьерного решения? Салоны партнеры myARREDO в Москве
+                            представят все необходимое для создания уютных эксклюзивных интерьеров.
+                        </p>
+                        <p>
+                            Не хватит никаких по площади выставочных и торговых помещений, чтобы представить взору
+                            покупателя максимально полный ассортимент и каталог <strong>итальянской мебели</strong> доступной
+                            сегодня к покупке. Шикарные гарнитуры и отдельные предметы <strong>итальянской мебели</strong>, поражающие
+                            воображение своим изысканным дизайном и практичностью при эксплуатации, представлены в огромном разнообразии
+                            цветовых и стилистических решений. Ознакомиться с ассортиментом элитной мебели из Италии можно
+                            при помощи каталога. Ассортимент наших партнеров представляет широкий выбор продукции от
+                            всемирно известных мастеров производства <strong>итальянской мебели</strong>. Среди наших предложений Вы найдете
+                            то, что поможет создать именно Ваш интерьер мечты. Мы предлагаем эксклюзивную итальянскую мебель
+                            как премиум класса, достойную самых искушенных клиентов, так и варианты среднего ценового сегмента,
+                            критерии качества и красоты которой ничуть не уступают более дорогим экземплярам. Итальянская мебель
+                            это то, что поможет создать идеальный интерьер с минимальными затратами!
+                        </p>
+                        <p>
+                            Итальянская мебель в Москве - лучший вариант для оформления изысканного интерьера!
+                        </p>
+                        <p>
+                            Каталог <strong>итальянской мебели</strong> от салонов партнеров myARREDO в Москве состоит более чем из
+                            60 000 моделей и 250 самых последних коллекций мебели и аксессуаров, производимых фабриками Италии.
+                        </p>
+                        <p>
+                            Итальянскую мебель вы сможете выбрать для любой комнаты и различного
+                            функционального назначения. Вашему вниманию наш каталог итальянской мебели представляет:
+                        </p>
+                        <ul>
+                            <li>итальянская спальня</li>
+                            <li>итальянская гардеробная</li>
+                            <li>итальянская мягкая мебель</li>
+                            <li>итальянская ванная</li>
+                            <li>итальянский кабинет</li>
+                            <li>итальянская гостиная</li>
+                            <li>итальянская столовая</li>
+                            <li>итальянская кухня</li>
+                            <li>итальянская прихожая.</li>
+                        </ul>
+                        <h2>
+                            Каталог итальянской мебели <strong>myARREDO</strong> - комфортный способ найти мебель на любой вкус.
+                        </h2>
+                        <p>
+                            Приобретение мебели с компанией партнером myARREDO в Москве станет идеальным
+                            воплощением Ваших творческих идей в планировании интерьера. Если Вас привлекает
+                            итальянская современная мебель или классическая мебель из Италии,
+                            отредактируйте параметры фильтра в соответствии с предпочтениями,
+                            указав функциональное назначение, стиль, фабрику и материал изделия.
+                        </p>
+
+
+
+                    </div>
+                </div>
+
             </div>
 
 
@@ -651,9 +1058,11 @@
     </div>
 </footer>
 <script src="./public/libs/bootstrap/js/bootstrap.min.js"></script>
-<script src="libs/formstyler/jquery.formstyler.js"></script>
 <script src="https://use.fontawesome.com/35f65baac5.js"></script>
 <script src="./public/libs/bootstrap-select/js/bootstrap-select.min.js"></script>
+<script src="./public/libs/slick-1.6/slick.min.js"></script>
+<script src="./public/libs/nouislider/nouislider.min.js"></script>
+<script src="./public/libs/wNumb.js"></script>
 <!--
 <script async src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 -->

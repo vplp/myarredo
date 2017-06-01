@@ -138,5 +138,34 @@
       margin-top: 30px;
     }
   }
+  .factory-stripe {
+    flex-wrap: wrap;
+    .letter-wrap {
+      width: 100%;
+      .letter {
+        width: 50px;
+        height: 50px;
+        font-size: 40px;
+      }
+    }
+    .let-list {
+      width: 33.33%;
+      a {
+        font-size: 13px;
+      }
+    }
+  }
+  .title-mark {
+    padding: 5px 80px;
+    .view-but {
+      right: 15px;
+    }
+    h1 {
+      font-size: 22px;
+    }
+    span {
+      font-size: 17px;
+    }
+  }
 
 }
