@@ -137,5 +137,55 @@
   body .letter-nav {
     display: none;
   }
+  body .factory-tile {
+    width: 100%;
+  }
+  .factory-det {
+    h1 {
+      font-size: 23px;
+      margin: 22px 0 18px 0;
+    }
+    .fact-assort {
+      flex-direction: column;
+      .title {
+        margin-bottom: 5px;
+      }
+      .all-list {
+        width: 100%;
+        padding-left: 0 !important;
+        border: none;
+        margin-bottom: 20px;
+      }
+    }
+  }
+  body .menu-style a {
+    margin-right: 20px;
+    font-size: 15px;
+    height: 30px;
+  }
+  body .catalog-wrap .one-prod-tile {
+    width: 100%;
+  }
+
+  .about-page {
+    h1 {
+      font-size: 28px;
+      margin: 18px 0;
+    }
+    p {
+      margin: 15px 0;
+    }
+    strong {
+      font-size: 18px;
+    }
+    ul {
+      li {
+        font-size: 14px;
+        &:before {
+          top: 7px;
+        }
+      }
+    }
+  }
 
 }

@@ -147,4 +147,8 @@ $(document).ready(function(){
     })();
     /*--конец Открыть\закрыть категорию в каталоге--*/
 
+    $('.factory-page .view-all').click(function(){
+       $(this).parent('.all-list').find('.post-list').slideToggle();
+    });
+
 });

@@ -167,5 +167,18 @@
       font-size: 17px;
     }
   }
-
+  .factory-tile {
+    width: 48%;
+  }
+  .catalog-wrap {
+    .one-prod-tile {
+      width: 48%;
+      .img-cont {
+        height: 240px;
+      }
+    }
+  }
+  .factory-det .fact-assort .all-list {
+    padding-left: 40px;
+  }
 }
