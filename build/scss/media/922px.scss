@@ -181,4 +181,24 @@
   .factory-det .fact-assort .all-list {
     padding-left: 40px;
   }
+  .seller-cont {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    h4,.title,.location {
+      width: 100%;
+      text-align: center;
+    }
+    &> a {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  .sale-page {
+    padding-bottom: 0;
+    .infotable {
+      margin-bottom: 20px;
+    }
+  }
+
 }

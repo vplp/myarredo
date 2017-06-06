@@ -78,5 +78,14 @@
       }
     }
   }
-
+  .sign-in-page {
+    .col-md-4 {
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-bottom: 20px;
+    }
+    .input-group {
+      padding-left: 0;
+    }
+  }
 }

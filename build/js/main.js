@@ -1,4 +1,79 @@
+/*--Инициализация карты--*/
+function mapInit(){
+    if($('#map').length){
+        ymaps.ready(function(){
+            $('#map').empty();
+            var map = new ymaps.Map("map", {
+                center: [55.73367, 37.587874],
+                zoom: 11,
+                scroll: false
+            });
+            map.behaviors.disable('scrollZoom');
+        });
+    }
+};
+/*--конец инициализации карты--*/
+$(window).load(function(){
+    console.log('ssrr');
+    mapInit();
+});
 $(document).ready(function(){
+    var state = {
+        _device: "",
+        _mobInit: function(){
+            mobInit();
+        },
+        _descInit: function() {
+            descInit();
+        }
+    };
+
+    (function( $ ) {
+        $.fn.getDevice = function(braikPoint) {
+            Object.defineProperty(state, "device", {
+
+                get: function() {
+                    return this._device;
+                },
+
+                set: function(value) {
+                    this._device = value;
+                    if(value == "desctop"){
+                        state._descInit();
+
+                    } else if (value == "mobile"){
+                        state._mobInit();
+                    }
+                }
+            });
+
+            $(this).on("resize load", function(){
+                if($(this).width() < braikPoint && state.device != "mobile"){
+                    state.device = "mobile";
+                } else if ($(this).width() > braikPoint && state.device != "desctop") {
+                    state.device = "desctop";
+                }
+            });
+        };
+    })(jQuery);
+
+    $(window).getDevice(768);
+
+    console.log(state.device);
+
+
+    function mobInit(){
+        console.log('mobile');
+        mapInit();
+    }
+
+    function descInit() {
+        console.log("desctp");
+        mapInit();
+    }
+    /*--Конец определения девайса--*/
+
+
    /*--Открыть/закрыть города--*/
     (function(){
         $('#select-city,#close-top').click(function(){

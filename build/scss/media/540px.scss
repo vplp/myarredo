@@ -187,5 +187,74 @@
       }
     }
   }
+  body .concact-page {
+    h1 {
+      font-size: 21px;
+      margin: 17px 0;
+    }
+    .one-cont {
+      &>a {
+        font-size: 17px;
+      }
+      .adres {
+        font-size: 14px;
+      }
+    }
+    .warning {
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+    .map-cont {
+      .view-all {
+        font-size: 11px;
+      }
+      #map {
+        height: 400px;
+      }
+    }
+  }
 
+  body .sale-page {
+    h1 {
+      font-size: 17px;
+    }
+    .zoom {
+      display: none;
+    }
+    .img-wrap {
+      padding: 10px 10px 10px 10px;
+    }
+    .prod-style {
+      font-size: 13px;
+      height: 40px;
+    }
+    .prod-price {
+      flex-direction: column;
+      margin-bottom: 0;
+      .price {
+        margin-bottom: 10px;
+      }
+    }
+    .prod-shortstory {
+      font-size: 14px;
+    }
+    .infotable {
+      font-size: 15px;
+      margin-bottom: 0;
+    }
+    h4,.title,.location {
+      text-align: left;
+    }
+    .seller-cont > a {
+      text-align: left;
+    }
+  }
+
+  body .sign-in-page {
+    h3 {
+      font-size: 17px;
+      margin: 0 0 18px 0;
+      padding-top: 10px;
+    }
+  }
 }
