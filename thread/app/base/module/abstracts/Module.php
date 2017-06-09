@@ -83,7 +83,6 @@ abstract class Module extends \yii\base\Module implements iModule
             'fileMap' => [
                 $this->name => 'app.php',
             ],
-            'on missingTranslation' => [TranslationEventHandler::class, 'handleMissingTranslation']
         ];
 
         if (!empty($this->translationsFileMap)) {
