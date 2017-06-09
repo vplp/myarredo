@@ -16,7 +16,7 @@ CMS CORE
     php init
     
     4.1 Выполняем 
-    сomposer шnstall
+    сomposer install
 
 5. Создание подключений к БД. Редактируем файл
     /common/config/db.php
