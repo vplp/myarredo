@@ -1,4 +1,5 @@
 <?php
+
 namespace thread\app\console\controllers;
 
 use Yii;
@@ -98,7 +99,7 @@ class MigrateController extends \yii\console\controllers\MigrateController
 
         $migrations = [];
 
-        $handle = opendir($this->migrationPath);
+        $handle = opendir(\Yii::getAlias($this->migrationPath));
         while (($file = readdir($handle)) !== false) {
             if ($file === '.' || $file === '..') {
                 continue;
