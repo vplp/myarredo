@@ -32,6 +32,7 @@ class ActionDeleteColumn extends Column
         if (!empty($this->link)) {
             if ($this->link instanceof \Closure) {
                 $f = $this->link;
+
                 return $f($model);
             } else {
                 $r = ['delete'];
@@ -51,6 +52,13 @@ class ActionDeleteColumn extends Column
      */
     protected function renderDataCellContent($model, $key, $index)
     {
-        return Html::a(Yii::t('app', 'Delete'), $this->getLink($model));
+        return Html::a(
+            Yii::t('app', 'Delete'),
+            $this->getLink($model),
+            [
+                'class' => 'ActionDeleteColumn',
+                'data-message' => Yii::t('app', 'Do you confirm the deletion?')
+            ]
+        );
     }
 }

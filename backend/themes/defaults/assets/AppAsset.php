@@ -56,6 +56,7 @@ class AppAsset extends AssetBundle
         'js/sortable/jquery-sortable-1491772244567.js',
         //Backend
         'js/backend.js',
+        'js/script.js',
     ];
     /**
      * @var array
