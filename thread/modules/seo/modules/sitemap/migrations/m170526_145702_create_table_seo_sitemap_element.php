@@ -22,6 +22,8 @@ class m170526_145702_create_table_seo_sitemap_element extends Migration
      */
     public function safeUp()
     {
+        $this->dropTable($this->table);
+
         $this->createTable($this->table, [
             'id' => $this->primaryKey()->unsigned()->comment('ID'),
             'model_key' => $this->string(40)->notNull()->comment('model_key'),
