@@ -113,10 +113,13 @@ class MigrateController extends \yii\console\controllers\MigrateController
         return $migrations;
     }
 
-
+    /**
+     * @param string $class
+     * @return mixed
+     */
     protected function createMigration($class)
     {
-        
+
         foreach ($this->migrationPaths as $path) {
             $file = \Yii::getAlias($path) . DIRECTORY_SEPARATOR . $class . '.php';
             if (is_file($file)) {
@@ -127,34 +130,6 @@ class MigrateController extends \yii\console\controllers\MigrateController
 
         return new $class(['db' => $this->db]);
     }
-
-    /**
-     * Creates a new migration instance.
-     * @param string $class the migration class name
-     * @return \yii\db\MigrationInterface the migration instance
-     */
-//    protected function createMigration($class)
-//    {
-////        if (!is_string($class)) {
-//            var_dump($class);
-//            return '';
-////        }
-//
-//
-//        $file = $this->migrationPath . DIRECTORY_SEPARATOR . $class . '.php';
-//        if (!is_file($file)) {
-//
-//            foreach ($this->migrationPaths as $path) {
-//                $file = \Yii::getAlias($path) . DIRECTORY_SEPARATOR . $class . '.php';
-//                if (is_file($file)) {
-//                    break;
-//                }
-//            }
-//        }
-//        require_once($file);
-//
-//        return new $class();
-//    }
 
     /**
      * @param null $path
