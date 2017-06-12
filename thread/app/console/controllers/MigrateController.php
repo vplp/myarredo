@@ -116,10 +116,10 @@ class MigrateController extends \yii\console\controllers\MigrateController
      */
     protected function createMigration($class)
     {
-        if (!is_string($class)) {
+//        if (!is_string($class)) {
             var_dump($class);
             return '';
-        }
+//        }
 
 
         $file = $this->migrationPath . DIRECTORY_SEPARATOR . $class . '.php';
