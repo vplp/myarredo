@@ -1,5 +1,4 @@
 <?php
-
 namespace thread\app\console\controllers;
 
 use Yii;
@@ -98,6 +97,20 @@ class MigrateController extends \yii\console\controllers\MigrateController
         }
 
         $migrations = [];
+
+        $handle = opendir($this->migrationPath);
+        while (($file = readdir($handle)) !== false) {
+            if ($file === '.' || $file === '..') {
+                continue;
+            }
+            $path = $this->migrationPath . DIRECTORY_SEPARATOR . $file;
+            if (preg_match('/^(m(\d{6}_\d{6})_.*?)\.php$/', $file,
+                    $matches) && !isset($applied[$matches[2]]) && is_file($path)
+            ) {
+                $migrations[] = $matches[1];
+            }
+        }
+        closedir($handle);
 
         foreach ($this->migrationPaths as $path) {
             $migrations = ArrayHelper::merge($migrations, $this->getMigrationsByPath(\Yii::getAlias($path), $applied));
