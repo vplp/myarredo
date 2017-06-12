@@ -3,16 +3,13 @@
 namespace frontend\modules\catalog\controllers;
 
 use Yii;
+use yii\helpers\ArrayHelper;
+use yii\web\NotFoundHttpException;
 //
 use frontend\components\BaseController;
-//
-use yii\helpers\ArrayHelper;
-//
-use frontend\modules\catalog\models\Product;
-//
-use frontend\modules\catalog\models\Group;
-//
-use yii\web\NotFoundHttpException;
+use frontend\modules\catalog\models\{
+    Product, Group
+};
 
 /**
  * Class GroupController

@@ -3,6 +3,7 @@
 namespace frontend\modules\catalog\controllers;
 
 use thread\actions\RecordView;
+//
 use frontend\modules\catalog\models\Product;
 
 /**
