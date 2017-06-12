@@ -116,9 +116,9 @@ class MigrateController extends \yii\console\controllers\MigrateController
      */
     protected function createMigration($class)
     {
-        if (!is_string($class)){
+        if (!is_string($class)) {
             var_dump($class);
-            exit();
+            return '';
         }
 
 
