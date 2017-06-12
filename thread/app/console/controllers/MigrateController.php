@@ -33,7 +33,12 @@ class MigrateController extends \yii\console\controllers\MigrateController
      */
     public $migrationPathsOfModules = [];
 
-
+    /**
+     * MigrateController constructor.
+     * @param string $id
+     * @param \yii\base\Module $module
+     * @param array $config
+     */
     public function __construct($id, $module, $config = [])
     {
         parent::__construct($id, $module, $config);
@@ -63,14 +68,13 @@ class MigrateController extends \yii\console\controllers\MigrateController
     /**
      * @param $baseDir
      * @return array
-     * @throws InvalidParamException
      */
     public function getDirsIntoModule($baseDir)
     {
         $list = [];
         $handle = opendir($baseDir);
         if ($handle === false) {
-            throw new InvalidParamException("Unable to open directory: $dir");
+            throw new InvalidParamException("Unable to open directory: $baseDir");
         }
         while (($file = readdir($handle)) !== false) {
             if ($file === '.' || $file === '..') {
@@ -107,6 +111,21 @@ class MigrateController extends \yii\console\controllers\MigrateController
         sort($migrations);
 
         return $migrations;
+    }
+
+
+    protected function createMigration($class)
+    {
+        
+        foreach ($this->migrationPaths as $path) {
+            $file = \Yii::getAlias($path) . DIRECTORY_SEPARATOR . $class . '.php';
+            if (is_file($file)) {
+                break;
+            }
+        }
+        require_once($file);
+
+        return new $class(['db' => $this->db]);
     }
 
     /**
