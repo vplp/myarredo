@@ -38,12 +38,13 @@ return ArrayHelper::merge(
             'migrate' => [
                 'class' => \thread\app\console\controllers\MigrateController::class,
                 'migrationPathsOfModules' => [
+                    '@console/modules',
                     '@thread/modules',
                     '@common/modules',
                     '@backend/modules',
                     '@frontend/modules',
                     '@thread/modules/sys/modules',
-//                    '@thread/modules/seo/modules',
+                    '@thread/modules/seo/modules',
                 ],
                 'migrationPaths' => [
                 ],
