@@ -38,7 +38,7 @@ return ArrayHelper::merge(
             'migrate' => [
                 'class' => \thread\app\console\controllers\MigrateController::class,
                 'migrationPathsOfModules' => [
-                    '@console/modules',
+                    '@console',
                     '@thread/modules',
                     '@common/modules',
                     '@backend/modules',
