@@ -1,29 +1,48 @@
 <?php
 
-namespace frontend\modules\seo\modules\sitemap\controllers;
+namespace thread\modules\seo\modules\sitemap\console;
 
 use Yii;
-//
-use yii\filters\VerbFilter;
-use yii\web\NotFoundHttpException;
 //
 use thread\modules\seo\modules\sitemap\models\{
     XMLElement, XMLSimple
 };
 //
-use frontend\modules\seo\modules\sitemap\models\Element;
+use thread\modules\seo\modules\sitemap\models\Element;
 
 /**
- * Class FillController
+ * Class CreateController
  *
- * @package frontend\modules\seo\modules\pathcache\controllers
+ * @package frontend\modules\seo\modules\sitemap\controllers
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class CreateController extends \frontend\components\BaseController
+class CreateController extends \yii\console\Controller
 {
-    public $title = "Map";
     public $defaultAction = 'index';
+
+    public $filepath = '@root/web/sitemap.xml';
+
+    /**
+     * @param string $actionID
+     * @return array
+     */
+    public function options($actionID)
+    {
+        return [
+            'filepath',
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function optionAliases()
+    {
+        return [
+            'path' => 'filepath',
+        ];
+    }
 
     /**
      * @var array
@@ -33,33 +52,14 @@ class CreateController extends \frontend\components\BaseController
     ];
 
     /**
-     * @inheritdoc
+     *
      */
-    public function behaviors()
+    public function actionIndex()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'index' => ['get'],
-                ],
-            ],
-        ];
-    }
 
-    /**
-     * @param $secretKey
-     * @throws NotFoundHttpException
-     */
-    public function actionIndex($secretKey)
-    {
-        if ($secretKey !== $this->module->secretKey) {
-            throw new NotFoundHttpException;
-        }
+        $this->stdout("Start Create\n");
 
-        echo "Start Create<br>";
-
-        $filepath = Yii::getAlias('@webroot') . '/sitemap.xml';
+        $filepath = Yii::getAlias($this->filepath);
         if ($handle = fopen($filepath, 'w+')) {
 
             set_time_limit(0);
@@ -84,8 +84,8 @@ class CreateController extends \frontend\components\BaseController
 
             fwrite($handle, XMLSimple::endTag());
         } else {
-            echo 'error open file';
+            $this->stdout("error open file\n");
         }
-        echo "End Create<br>";
+        $this->stdout("End Create\n");
     }
 }

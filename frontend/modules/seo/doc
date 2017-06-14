@@ -1,8 +1,0 @@
-//Поиск моделей
-/sitemap/pathcache?secretKey=thread
-//Поиск и создание данных по созданным записям
-/sitemap/fill?secretKey=thread
-//Создание карты
-/sitemap/create?secretKey=thread
-
-Запуск по крону

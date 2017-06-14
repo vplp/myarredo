@@ -83,4 +83,12 @@ class Element extends ActiveRecord
             'deleted' => Yii::t('app', 'Deleted'),
         ];
     }
+
+    /**
+     * @return mixed
+     */
+    public static function findAddToSitemap()
+    {
+        return self::find()->add_to_sitemap();
+    }
 }

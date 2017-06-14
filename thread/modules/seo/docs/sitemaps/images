@@ -7,6 +7,7 @@ https://support.google.com/webmasters/answer/178636?hl=ru
     <loc>http://example.com/primer.html</loc>
     <image:image>
       <image:loc>http://example.com/kartinka.jpg</image:loc>
+      <image:caption>test</image:caption>
     </image:image>
     <image:image>
       <image:loc>http://example.com/photo.jpg</image:loc>

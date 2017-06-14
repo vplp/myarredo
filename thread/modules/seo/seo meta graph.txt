@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Properly scales to small devices. Allows zooming -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='shortcut icon' href='favicon.ico' type='image/ico' />
+    <link rel="stylesheet" href="main.css" />
+
+    <title>Thoughtly</title>
+    <meta name='description' content='Thoughtly leverages machine learning and natural language processing to build tools that enable the automated screening, visualization and summarization of text'/>
+    <meta name='keywords' content='thoughtly, machine learning, automation, visualization'/>
+
+    <!-- Schema.org markup for Google+ -->
+  <meta itemprop="name" content="Thoughlty">
+  <meta itemprop="description" content="Thoughtly leverages machine learning and natural language processing to build tools that enable the automated screening, visualization and summarization of text.">
+  <meta itemprop="image" content="https://thoughtly.co/images/facebook-share.png">
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@thoughtly_me">
+  <meta name="twitter:title" content="Thoughly">
+  <meta name="twitter:description" content="Thoughtly builds artifical intelligence tools that automate content understanding for capital markets and media.">
+  <meta name="twitter:creator" content="@ChaseTheTruth">
+  <!-- Twitter summary card with large image must be at least 280x150px -->
+  <meta name="twitter:image:src" content="https://thoughtly.co/images/facebook-share.png">
+
+    <!-- Facebook Open Graph Meta Tags -->
+    <meta property="og:title" content="Thoughtly" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://thoughtly.co/index.html" />
+    <meta property="og:image" content="https://thoughtly.co/images/facebook-share.png" />
+    <meta property="og:description" content="Thoughtly builds natural language processing tools, software, and products that reimagine how we read, classify, visualize, and understand written text." />
+  </head>
+<body>

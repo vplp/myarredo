@@ -5,11 +5,16 @@
  * @copyright (c), Thread
  */
 return [
-    'params' => [
-        'format' => [
-            'date' => 'd.m.Y',
-            'time' => 'i:H',
-            'date-time' => 'd.m.Y H:i',
+    //Migration
+    'controllerMap' => [
+        'map-pathcache' => [
+            'class' => \thread\modules\seo\modules\pathcache\console\PathcacheController::class
+        ],
+        'map-fill' => [
+            'class' => \thread\modules\seo\modules\sitemap\console\FillController::class
+        ],
+        'map-create' => [
+            'class' => \thread\modules\seo\modules\sitemap\console\CreateController::class
         ]
     ],
 ];

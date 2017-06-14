@@ -1,29 +1,82 @@
 <?php
 
-namespace frontend\modules\seo\modules\sitemap\controllers;
+namespace thread\modules\seo\modules\sitemap\console;
 
 use Yii;
-use yii\web\NotFoundHttpException;
 //
-use yii\filters\VerbFilter;
-//
-use frontend\modules\seo\modules\{
+use thread\modules\seo\modules\{
     sitemap\models\Element,
-    pathcache\models\Pathcache,
-    modellink\models\Modellink
+    modellink\models\Modellink,
+    pathcache\models\Pathcache
 };
 
 /**
  * Class FillController
  *
- * @package frontend\modules\seo\modules\pathcache\controllers
+ * @package thread\modules\seo\modules\sitemap\console
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class FillController extends \frontend\components\BaseController
+class FillController extends \yii\console\Controller
 {
-    public $title = "Map";
     public $defaultAction = 'index';
+
+    public $hostInfo = 'base-url';
+    public $rules = '@frontend/config/part/url-rules.php';
+
+    /**
+     * @param string $actionID
+     * @return array
+     */
+    public function options($actionID)
+    {
+        return [
+            'hostInfo',
+            'rules'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function optionAliases()
+    {
+        return [
+            'host' => 'hostInfo',
+            'r' => 'rules'
+        ];
+    }
+
+    /**
+     * @param \yii\base\Action $action
+     * @return bool
+     */
+    public function beforeAction($action)
+    {
+        $this->setParams();
+        $urlManager = Yii::$app->urlManager;
+        $r = Yii::getAlias($this->rules);
+        if (is_readable($r)) {
+            $urlManager->addRules(require $r);
+        }
+        $urlManager->setHostInfo($this->hostInfo);
+
+        return parent::beforeAction($action);
+    }
+
+    /**
+     *
+     */
+    protected function setParams()
+    {
+        $seo = Yii::$app->getModule('seo');
+        if (isset($seo->params['map']['hostInfo'])) {
+            $this->hostInfo = $seo->params['map']['hostInfo'];
+        };
+        if (isset($seo->params['map']['rules'])) {
+            $this->rules = $seo->params['map']['rules'];
+        };
+    }
 
     /**
      * @var array
@@ -33,32 +86,11 @@ class FillController extends \frontend\components\BaseController
     ];
 
     /**
-     * @inheritdoc
+     *
      */
-    public function behaviors()
+    public function actionIndex()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'index' => ['get'],
-                ],
-            ],
-        ];
-    }
-
-    /**
-     * @param $secretKey
-     * @throws NotFoundHttpException
-     */
-    public function actionIndex($secretKey)
-    {
-
-        if ($secretKey !== $this->module->secretKey) {
-            throw new NotFoundHttpException;
-        }
-
-        echo "Start Filling<br>";
+        $this->stdout("Start Filling\n");
         $this->getClassFromCache();
         foreach ($this->seoModelList as $model) {
             if (method_exists(new $model['classname'], 'getLang')) {
@@ -70,23 +102,13 @@ class FillController extends \frontend\components\BaseController
 
         $this->updateRel();
 
-        echo "End Filling<br>";
+        $this->stdout("End Filling\n");
     }
-
-    /**
-     *
-     */
-//    public function actionRel()
-//    {
-//        echo "Start Update Rel<br>";
-//        $this->updateRel();
-//        echo "End Update Rel<br>";
-//    }
 
     /**
      * @return $this
      */
-    public function updateRel()
+    protected function updateRel()
     {
         $connection = Element::getDb();
 
@@ -101,9 +123,9 @@ class FillController extends \frontend\components\BaseController
     /**
      *
      */
-    public function getClassFromCache()
+    protected function getClassFromCache()
     {
-        $this->seoModelList = Pathcache::getAll();
+        $this->seoModelList = Pathcache::getAllasArrayEnabled();
     }
 
     /**
@@ -111,7 +133,7 @@ class FillController extends \frontend\components\BaseController
      * @param string $model_key
      * @return $this
      */
-    public function addElementsToSiteMapModelWithLang(string $model, string $model_key)
+    protected function addElementsToSiteMapModelWithLang(string $model, string $model_key)
     {
         set_time_limit(0);
 
@@ -152,7 +174,7 @@ class FillController extends \frontend\components\BaseController
      * @param string $model_key
      * @return $this
      */
-    public function addElementsToSiteMapModelWithoutLang(string $model, string $model_key)
+    protected function addElementsToSiteMapModelWithoutLang(string $model, string $model_key)
     {
         set_time_limit(0);
         $items = call_user_func([$model, 'findSeo']);
@@ -180,7 +202,7 @@ class FillController extends \frontend\components\BaseController
      * @param $model_key
      * @return $this
      */
-    public function clean($model_key)
+    protected function clean($model_key)
     {
         set_time_limit(0);
 

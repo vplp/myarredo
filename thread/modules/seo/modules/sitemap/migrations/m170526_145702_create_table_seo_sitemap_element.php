@@ -22,6 +22,7 @@ class m170526_145702_create_table_seo_sitemap_element extends Migration
      */
     public function safeUp()
     {
+
         $this->dropTable($this->table);
 
         $this->createTable($this->table, [

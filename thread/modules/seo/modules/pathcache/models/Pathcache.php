@@ -89,4 +89,30 @@ class Pathcache extends ActiveRecord
     {
         return CommonFunc::getModelKey($model);
     }
+
+    /**
+     * @param string $classname
+     * @return mixed
+     */
+    public static function findByClassName(string $classname)
+    {
+        return self::find()->_classname($classname);
+    }
+
+    /**
+     * @param string $classname
+     * @return mixed
+     */
+    public static function getByClassName(string $classname)
+    {
+        return self::find()->_classname($classname)->one();
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getAllasArrayEnabled()
+    {
+        return self::find()->enabled()->asArray()->all();
+    }
 }

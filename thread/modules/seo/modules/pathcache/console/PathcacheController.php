@@ -1,35 +1,32 @@
 <?php
 
-namespace frontend\modules\seo\modules\pathcache\controllers;
+namespace thread\modules\seo\modules\pathcache\console;
 
 use Yii;
-use yii\filters\VerbFilter;
 use yii\base\{
     InvalidParamException, Exception
 };
 use yii\log\Logger;
-use yii\web\NotFoundHttpException;
 //
 use thread\modules\seo\interfaces\SeoFrontModel;
 //
-use frontend\modules\seo\modules\pathcache\models\Pathcache;
+use thread\modules\seo\modules\pathcache\models\Pathcache;
 
 /**
  * Class PathcacheController
  *
- * @package frontend\modules\seo\modules\pathcache\controllers
+ * @package thread\modules\seo\modules\pathcache\console
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class PathcacheController extends \frontend\components\BaseController
+class PathcacheController extends \yii\console\Controller
 {
-    public $title = "Pathcache";
     public $defaultAction = 'index';
 
     /**
      * @var array
      */
-    protected $pathsOfModules = [
+    public $pathsOfModules = [
         '@frontend/modules'
     ];
     /**
@@ -46,33 +43,13 @@ class PathcacheController extends \frontend\components\BaseController
     ];
 
     /**
-     * @inheritdoc
+     *
      */
-    public function behaviors()
+    public function actionIndex()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'index' => ['get'],
-                ],
-            ],
-        ];
-    }
-
-    /**
-     * @param $secretKey
-     * @throws NotFoundHttpException
-     */
-    public function actionIndex($secretKey)
-    {
-
-        if ($secretKey !== $this->module->secretKey) {
-            throw new NotFoundHttpException;
-        }
 
         $this->initPathsOfModules();
-        echo "Add models to cache<br>";
+        $this->stdout("Add models to cache\n");
 
         foreach ($this->modelslist as $path) {
 
@@ -87,13 +64,13 @@ class PathcacheController extends \frontend\components\BaseController
                 }
             }
         }
-        echo "Complete<br>";
+        $this->stdout("Complete\n");
     }
 
     /**
      * @param SeoFrontModel $seoModelClass
      */
-    public function addModelsToMapBase(SeoFrontModel $seoModelClass)
+    protected function addModelsToMapBase(SeoFrontModel $seoModelClass)
     {
         $classname = get_class($seoModelClass);
         $find = Pathcache::getByClassName($classname);
