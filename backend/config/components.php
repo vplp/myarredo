@@ -17,10 +17,6 @@ return [
     'errorHandler' => [
         'errorAction' => 'home/home/error',
     ],
-    'cacheFrontend' => [
-        'class' => 'yii\caching\FileCache',
-        'cachePath' => Yii::getAlias('@runtime') . '/frontend/th'
-    ],
     'request' => [
         'class' => \thread\app\web\Request::class,
         'enableCsrfValidation' => true,

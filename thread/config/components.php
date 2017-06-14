@@ -79,4 +79,9 @@ return [
         'enableCaching' => true,
         'cachingDuration' => 3600
     ],
+    // Cache key for backend
+    'cacheFrontend' => [
+        'class' => 'yii\caching\FileCache',
+        'cachePath' => Yii::getAlias('@runtime') . '/frontend/th'
+    ],
 ];
