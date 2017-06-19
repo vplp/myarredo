@@ -9,7 +9,7 @@
 
 tinymce.PluginManager.add('filemanager', function(editor) {
 
-	tinymce.activeEditor.settings.file_browser_callback = filemanager;
+    editor.settings.file_browser_callback = filemanager;
 	
 	function filemanager (id, value, type, win) {
 		// DEFAULT AS FILE
