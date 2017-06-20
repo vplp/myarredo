@@ -70,7 +70,7 @@ class RegisterController extends BaseController
             }
             if ($status === true) {
                 Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
-                return $this->redirect(Url::toRoute('/user/login'));
+                return $this->redirect(Url::toRoute('/user/login/index'));
             }
         }
         return $this->render('index', [

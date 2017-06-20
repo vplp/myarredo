@@ -1,4 +1,5 @@
 <?php
+
 namespace thread\modules\user\models\form;
 
 use Yii;
@@ -46,7 +47,7 @@ class SignInForm extends CommonForm
      */
     public function scenarios()
     {
-        return ['signIn' => ['username', 'password', 'rememberMe']];
+        return ['signIn' => ['username', 'email', 'password', 'rememberMe']];
     }
 
     /**
@@ -68,6 +69,18 @@ class SignInForm extends CommonForm
 
         return ArrayHelper::merge($rules, parent::rules());
     }
+
+    /**
+     * @return bool
+     */
+//    public function beforeValidate()
+//    {
+//        if ($this->_username_attribute === 'email') {
+//            $this->email = $this->username;
+//        }
+//
+//        return parent::beforeValidate();
+//    }
 
     /**
      * Validate password on signIn scenario

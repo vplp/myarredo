@@ -4,7 +4,11 @@ namespace frontend\modules\user\controllers;
 
 use Yii;
 use yii\{
-    web\BadRequestHttpException, base\InvalidParamException, db\Exception, db\mssql\PDO, filters\AccessControl
+    web\BadRequestHttpException, base\InvalidParamException, db\Exception, db\mssql\PDO, filters\AccessControl, web\IdentityInterface
+};
+//
+use thread\actions\fileapi\{
+    DeleteAction, UploadAction
 };
 //
 use frontend\components\BaseController;
@@ -14,11 +18,6 @@ use frontend\modules\user\models\form\{
 use frontend\modules\user\models\{
     Profile, User
 };
-
-use thread\actions\fileapi\{
-    DeleteAction, UploadAction
-};
-
 
 /**
  * Class ProfileController
@@ -131,11 +130,15 @@ class ProfileController extends BaseController
      */
     public function actionPasswordChange()
     {
+        /**
+         * @var $userIdentity User
+         */
+        $userIdentity = Yii::$app->getUser()->getIdentity();
 
         $model = new ChangePassword();
         $model->setScenario('passwordChange');
-        $model->username = Yii::$app->getUser()->getIdentity()->username;
-        $model->email = Yii::$app->getUser()->getIdentity()->email;
+        $model->username = $userIdentity->username;
+        $model->email = $userIdentity->email;
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
             $user = User::findIdentity(Yii::$app->getUser()->id);
@@ -171,7 +174,7 @@ class ProfileController extends BaseController
     {
         $model = new PasswordResetRequestForm();
         $model->setScenario('remind');
-        if ($model->load(Yii::$app->request->post())  && $model->validate() && $model->generateResetToken()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->generateResetToken()) {
             if ($model->sendEmail()) {
                 Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
                 return $this->goHome();

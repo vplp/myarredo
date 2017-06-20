@@ -2,7 +2,6 @@
 
 use thread\app\bootstrap\ActiveForm;
 use yii\helpers\Html;
-use yii\helpers\Url;
 
 /**
  * @var \frontend\modules\user\models\form\SignInForm $model
@@ -30,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="row form-group">
         <div class="col-md-5">
-            <?= Html::a(Yii::t('app', 'Registration'), ['/user/register']) ?>
+            <?= Html::a(Yii::t('app', 'Registration'), ['/user/register/index']) ?>
         </div>
     </div>
 </div>

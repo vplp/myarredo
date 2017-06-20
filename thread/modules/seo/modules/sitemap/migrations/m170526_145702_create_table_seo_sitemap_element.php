@@ -22,8 +22,8 @@ class m170526_145702_create_table_seo_sitemap_element extends Migration
      */
     public function safeUp()
     {
-
-        $this->dropTable($this->table);
+        $q = 'DROP TABLE IF EXISTS ' . \thread\modules\seo\modules\sitemap\models\Element::tableName();
+        $this->execute($q);
 
         $this->createTable($this->table, [
             'id' => $this->primaryKey()->unsigned()->comment('ID'),

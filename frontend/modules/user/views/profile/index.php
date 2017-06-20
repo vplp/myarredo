@@ -7,6 +7,11 @@ use yii\helpers\Html;
  */
 ?>
 <div class="row form-group">
+    <div class="col-sm-12">
+        <?= Html::tag('h1', 'Profile') ?>
+    </div>
+</div>
+<div class="row form-group">
     <div class="col-sm-4">
         <?= Html::activeLabel($model, 'first_name') ?>
     </div>
@@ -24,17 +29,13 @@ use yii\helpers\Html;
 </div>
 <div class="row form-group">
     <div class="col-sm-4">
-        <?= Html::activeLabel($model, 'preferred_language') ?>
+        <?= Html::a(Yii::t('app', 'Edit'), ['/user/profile/update'], [
+            'class' => 'btn btn-info'
+        ]) ?>
     </div>
     <div class="col-sm-8">
-        <?= $model['preferred_language'] ?>
-    </div>
-</div>
-<div class="row form-group">
-    <div class="col-sm-4">
-        <?= Html::a(Yii::t('app', 'Edit'), ['/user/profile/update']) ?>
-    </div>
-    <div class="col-sm-8">
-        <?= Html::a(Yii::t('user', 'Change password'), ['/user/profile/password-change']) ?>
+        <?= Html::a(Yii::t('user', 'Change password'), ['/user/profile/password-change'], [
+            'class' => 'btn btn-success'
+        ]) ?>
     </div>
 </div>

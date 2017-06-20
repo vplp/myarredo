@@ -28,9 +28,10 @@ $this->beginPage()
 
     <div class="wrapper clear r">
         <!-- HEADER -->
-        <header>
-            <div class="wrap r h clear panel">
+        <header class="clearfix">
+            <div class="wrap r h clear panel container">
                 <?= Menu::widget() ?>
+                <?= \frontend\modules\user\widgets\topBarInfo\topBarInfo::widget() ?>
             </div>
         </header>
         <!-- HEADER END-->
@@ -41,8 +42,8 @@ $this->beginPage()
     </div>
 
     <!-- FOOTER -->
-    <footer>
-        <div class="wrap h clear">
+    <footer class="clearfix">
+        <div class="wrap h clear container">
             <div class="copy">
                 Все права защищены.<br/>
             </div>

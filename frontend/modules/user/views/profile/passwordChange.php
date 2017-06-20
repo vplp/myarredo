@@ -1,8 +1,9 @@
 <?php
 
 use yii\bootstrap\ActiveForm;
-use yii\helpers\Html;
-use yii\helpers\Url;
+use yii\helpers\{
+    Html, Url
+};
 
 /**
  * @var \frontend\modules\user\models\form\ChangePassword $model
@@ -13,7 +14,11 @@ use yii\helpers\Url;
     'action' => Url::toRoute(['/user/profile/password-change']),
 ]); ?>
 
-    <h1>Смена пароля</h1>
+    <div class="row form-group">
+        <div class="col-sm-12">
+            <?= Html::tag('h1', 'Password Change') ?>
+        </div>
+    </div>
 
 <?php if (!empty($model->getFlash())) : ?>
 
@@ -35,8 +40,10 @@ use yii\helpers\Url;
 <?= $form->field($model, 'password_confirmation')->passwordInput() ?>
 
     <div class="row form-group">
-        <div class="col-sm-4 col-sm-offset-6">
+        <div class="col-sm-4">
             <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        </div>
+        <div class="col-sm-8">
             <?= Html::a(Yii::t('app', 'Cancel'), ['/user/profile/index'], ['class' => 'btn btn-primary']) ?>
         </div>
     </div>

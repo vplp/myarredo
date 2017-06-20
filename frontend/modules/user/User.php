@@ -1,6 +1,7 @@
 <?php
 
 namespace frontend\modules\user;
+
 use yii\helpers\Url;
 
 /**
@@ -12,12 +13,14 @@ use yii\helpers\Url;
  */
 class User extends \common\modules\user\User
 {
+    public $username_attribute = 'email';
+
     /**
      * @return string
      */
     public function getUrlLogin()
     {
-        return Url::to(['/user/login']);
+        return Url::to(['/user/login/index']);
     }
 
     /**
@@ -25,7 +28,7 @@ class User extends \common\modules\user\User
      */
     public function getUrlLogOut()
     {
-        return Url::to(['/user/logout']);
+        return Url::to(['/user/logout/index']);
     }
 
     /**
@@ -41,7 +44,7 @@ class User extends \common\modules\user\User
      */
     public function getUrlRegistration()
     {
-        return Url::to(['/user/register']);
+        return Url::to(['/user/register/index']);
     }
 
     /**

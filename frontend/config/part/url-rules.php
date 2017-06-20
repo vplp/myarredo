@@ -6,15 +6,16 @@ return [
     '' => 'home/home/index',
 
     // Module [[Users]]
-    'register' => 'user/register/index',
-    'login' => 'user/login/index',
-    'logout' => 'user/login/index',
-    'change-password' => 'user/profile/password-change',
-    'profile' => 'user/profile/index',
-    'update' => 'user/profile/update',
-    'request-password-reset' => 'user/profile/request-password-reset',
-    'reset-password' => 'user/profile/reset-password',
+    'user/register' => 'user/register/index',
+    'user/login' => 'user/login/index',
+    'user/logout' => 'user/logout/index',
+    'user/password/change' => 'user/profile/password-change',
+    'user/profile' => 'user/profile/index',
+    'user/profile/update' => 'user/profile/update',
+    'user/password/request' => 'user/profile/request-password-reset',
+    'user/password/reset' => 'user/profile/reset-password',
     'user/profile/fileupload' => 'user/profile/fileupload',
+    'user/login/validation' => 'user/login/validation',
 
     // Module [[News]]
     'news/<alias:[\w\-]+>' => 'news/list/index',

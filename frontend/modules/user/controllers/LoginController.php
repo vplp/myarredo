@@ -5,6 +5,8 @@ namespace frontend\modules\user\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 //
 use frontend\components\BaseController;
 use frontend\modules\user\models\form\SignInForm;
@@ -34,7 +36,7 @@ class LoginController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['index', 'validation'],
                         'roles' => ['?'],
                     ],
                     [
@@ -69,5 +71,22 @@ class LoginController extends BaseController
                 'model' => $model,
             ]);
         }
+    }
+
+    /**
+     * Перевірка валідації моделі(-ей)
+     * Має бути встановдений у моделі scenario 'backend'
+     * @return mixed
+     */
+    public function actionValidation()
+    {
+        /** @var Model $model */
+        $model = new $this->model;
+        $model->setScenario('signIn');
+        $model->load(Yii::$app->getRequest()->post());
+
+        Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+        return ActiveForm::validate($model);
     }
 }
