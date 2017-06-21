@@ -4,9 +4,10 @@
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\modules\user\models\form\ResetPasswordForm */
 
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-
+use yii\widgets\ActiveForm;
+use yii\helpers\{
+    Html, Url
+};
 $this->title = 'Reset password';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -17,7 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
+            <?php $form = ActiveForm::begin([
+                'id' => 'reset-password-form',
+                'action' => Url::toRoute('/user/password/reset'),
+            ]); ?>
 
             <?= $form->field($model, 'password')->passwordInput(['autofocus' => true]) ?>
 

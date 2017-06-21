@@ -1,7 +1,9 @@
 <?php
 
-use thread\app\bootstrap\ActiveForm;
-use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use yii\helpers\{
+    Html, Url
+};
 
 /**
  * @var \frontend\modules\user\models\form\SignInForm $model
@@ -16,7 +18,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row form-group">
         <div class="col-md-5">
 
-            <?php $form = ActiveForm::begin() ?>
+            <?php $form = ActiveForm::begin([
+                'action' => Url::toRoute(['/user/login/index']),
+            ]) ?>
             <?= $form->field($model, $model->getUsernameAttribute())->label() ?>
             <?= $form->field($model, 'password')->passwordInput() ?>
             <?= $form->field($model, 'rememberMe')->checkbox() ?>

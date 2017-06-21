@@ -1,6 +1,6 @@
 <?php
 
-use yii\bootstrap\ActiveForm;
+use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
@@ -11,7 +11,7 @@ use yii\helpers\{
 ?>
 
 <?php $form = ActiveForm::begin([
-    'action' => Url::toRoute(['/user/profile/password-change']),
+    'action' => Url::toRoute(['/user/password/change']),
 ]); ?>
 
     <div class="row form-group">

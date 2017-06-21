@@ -1,8 +1,8 @@
 <?php
-
-use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use yii\helpers\{
+    Html, Url
+};
 
 /**
  * @var \frontend\modules\user\models\form\CreateForm $model
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin([
                 'id' => 'register-form',
-                'action' => Url::toRoute('/user/register'),
+                'action' => Url::toRoute('/user/register/index'),
             ]); ?>
             <?= $form->field($model, 'username')->label() ?>
             <?= $form->field($model, 'email')->label() ?>
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="row form-group">
         <div class="col-md-5">
-            <?= Html::a(Yii::t('app', 'Login'), '/user/login') ?>
+            <?= Html::a(Yii::t('app', 'Login'), ['/user/login/index']) ?>
         </div>
     </div>
 </div>

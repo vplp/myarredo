@@ -4,7 +4,7 @@ namespace frontend\modules\user\controllers;
 
 use Yii;
 use yii\{
-    web\BadRequestHttpException, base\InvalidParamException, db\Exception, db\mssql\PDO, filters\AccessControl, web\IdentityInterface
+    db\Exception, filters\AccessControl
 };
 //
 use thread\actions\fileapi\{
@@ -12,11 +12,8 @@ use thread\actions\fileapi\{
 };
 //
 use frontend\components\BaseController;
-use frontend\modules\user\models\form\{
-    PasswordResetRequestForm, ResetPasswordForm, ChangePassword
-};
 use frontend\modules\user\models\{
-    Profile, User
+    Profile
 };
 
 /**
@@ -46,12 +43,11 @@ class ProfileController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'update', 'password-change', 'fileupload', 'filedelete'],
+                        'actions' => ['index', 'update', 'fileupload', 'filedelete'],
                         'roles' => ['@'],
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['request-password-reset', 'reset-password'],
                         'roles' => ['?']
                     ],
                     [
@@ -106,7 +102,6 @@ class ProfileController extends BaseController
         $profile = $model::findByUserId(Yii::$app->getUser()->id);
         $profile->setScenario('ownEdit');
         if ($profile->load(Yii::$app->getRequest()->post())) {
-            /** @var PDO $transaction */
             $transaction = $profile::getDb()->beginTransaction();
             try {
                 $save = $profile->save();
@@ -122,92 +117,6 @@ class ProfileController extends BaseController
         }
         return $this->render('_form', [
             'model' => $profile,
-        ]);
-    }
-
-    /**
-     * @return string
-     */
-    public function actionPasswordChange()
-    {
-        /**
-         * @var $userIdentity User
-         */
-        $userIdentity = Yii::$app->getUser()->getIdentity();
-
-        $model = new ChangePassword();
-        $model->setScenario('passwordChange');
-        $model->username = $userIdentity->username;
-        $model->email = $userIdentity->email;
-
-        if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
-            $user = User::findIdentity(Yii::$app->getUser()->id);
-            if ($user !== null) {
-                $user->setScenario('passwordChange');
-                $user->setPassword($model->password);
-                /** @var PDO $transaction */
-                $transaction = $user::getDb()->beginTransaction();
-                try {
-                    $save = $user->save();
-                    if ($save) {
-                        $transaction->commit();
-                        $model->addFlash(Yii::t('app', 'Password changed'));
-                    } else {
-                        $transaction->rollBack();
-                    }
-                } catch (Exception $e) {
-                    $transaction->rollBack();
-                }
-            }
-        }
-        return $this->render('passwordChange', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Requests password reset.
-     *
-     * @return mixed
-     */
-    public function actionRequestPasswordReset()
-    {
-        $model = new PasswordResetRequestForm();
-        $model->setScenario('remind');
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->generateResetToken()) {
-            if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-                return $this->goHome();
-            } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
-            }
-        }
-        return $this->render('requestPasswordResetToken', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Resets password.
-     *
-     * @param string $token
-     * @return mixed
-     * @throws BadRequestHttpException
-     */
-    public function actionResetPassword($token)
-    {
-        try {
-            $model = new ResetPasswordForm($token);
-        } catch (InvalidParamException $e) {
-            throw new BadRequestHttpException($e->getMessage());
-        }
-        $model->setScenario('setPassword');
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->setPassword()) {
-            Yii::$app->session->setFlash('success', 'New password was saved.');
-            return $this->goHome();
-        }
-        return $this->render('resetPassword', [
-            'model' => $model,
         ]);
     }
 }

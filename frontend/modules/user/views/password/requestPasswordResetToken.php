@@ -4,8 +4,10 @@
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\modules\user\models\form\PasswordResetRequestForm */
 
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use yii\widgets\ActiveForm;
+use yii\helpers\{
+    Html, Url
+};
 
 $this->title = 'Request password reset';
 $this->params['breadcrumbs'][] = $this->title;
@@ -17,7 +19,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
+            <?php $form = ActiveForm::begin([
+                'id' => 'request-password-reset-form',
+                'action' => Url::toRoute(['/user/password/request-reset']),
+            ]); ?>
 
             <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
 

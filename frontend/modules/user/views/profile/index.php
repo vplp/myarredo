@@ -34,7 +34,7 @@ use yii\helpers\Html;
         ]) ?>
     </div>
     <div class="col-sm-8">
-        <?= Html::a(Yii::t('user', 'Change password'), ['/user/profile/password-change'], [
+        <?= Html::a(Yii::t('user', 'Change password'), ['/user/password/change'], [
             'class' => 'btn btn-success'
         ]) ?>
     </div>
