@@ -1,11 +1,11 @@
 <?php
+
 namespace backend\modules\news\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 //
-use thread\modules\seo\behaviors\SeoBehavior;
 use thread\app\model\interfaces\BaseBackendModel;
 //
 use common\modules\news\models\Article as CommonArticleModel;
@@ -50,10 +50,6 @@ class Article extends CommonArticleModel implements BaseBackendModel
         return ArrayHelper::merge(
             parent::behaviors(),
             [
-                'SeoBehavior' => [
-                    'class' => SeoBehavior::class,
-                    'modelNamespace' => self::COMMON_NAMESPACE
-                ],
                 'LogbookBehavior' => [
                     'class' => LogbookBehavior::class,
                     'category' => 'Новости',
@@ -63,14 +59,5 @@ class Article extends CommonArticleModel implements BaseBackendModel
                 ]
             ]
         );
-    }
-
-    //TODO Что с этим делать
-    /**
-     * @return $this
-     */
-    public function getSeo()
-    {
-        return $this->hasOne(Seo::class, ['model_id' => 'id'])->andWhere(['model_namespace' => self::COMMON_NAMESPACE]);
     }
 }
