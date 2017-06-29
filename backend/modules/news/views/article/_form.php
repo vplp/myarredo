@@ -43,10 +43,6 @@ use backend\modules\news\models\{
                 'modelLang' => $modelLang
             ])
         ],
-        [
-            'label' => Yii::t('seo', 'Seo'),
-            'content' => SeoWidget::widget(['nameSpaceModel' => Article::COMMON_NAMESPACE])
-        ]
     ]
 ]) ?>
 <?= $form->submit($model, $this) ?>
