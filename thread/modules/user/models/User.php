@@ -315,8 +315,8 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @param int $group_id
-     * @return mixed
+     * @param $role
+     * @return array
      */
     public static function getUserIdByRole($role)
     {
