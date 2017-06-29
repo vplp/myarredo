@@ -9,7 +9,6 @@ use yii\helpers\Url;
 use thread\app\model\interfaces\BaseBackendModel;
 //
 use common\modules\news\models\Article as CommonArticleModel;
-use common\modules\seo\models\Seo;
 //
 use backend\modules\sys\modules\logbook\behaviors\LogbookBehavior;
 
