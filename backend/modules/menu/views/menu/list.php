@@ -12,6 +12,10 @@ echo GridView::widget(
         'filterModel' => $filter,
         'columns' => [
             [
+                'class' => \thread\widgets\grid\kartik\EditableColumn::class,
+                'attribute' => 'alias',
+            ],
+            [
                 'attribute' => 'title',
                 'value' => 'lang.title',
             ],

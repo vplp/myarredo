@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\modules\news\controllers;
 
 use Yii;
@@ -7,6 +8,7 @@ use yii\helpers\ArrayHelper;
 use thread\actions\fileapi\{
     DeleteAction, UploadAction
 };
+use thread\actions\EditableAttributeSave;
 use thread\app\base\controllers\BackendController;
 //
 use backend\modules\news\models\{
@@ -46,6 +48,11 @@ class ArticleController extends BackendController
                 'filedelete' => [
                     'class' => DeleteAction::class,
                     'path' => $this->module->getArticleUploadPath()
+                ],
+                'attribute-save' => [
+                    'class' => EditableAttributeSave::class,
+                    'modelClass' => $this->model,
+                    'attribute' => 'group_id'
                 ],
             ]
         );

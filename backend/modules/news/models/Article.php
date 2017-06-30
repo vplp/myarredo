@@ -59,4 +59,14 @@ class Article extends CommonArticleModel implements BaseBackendModel
             ]
         );
     }
+
+    /**
+     * @return array
+     */
+    public function scenarios()
+    {
+        return ArrayHelper::merge(parent::scenarios(), [
+            'group_id' => ['group_id'],
+        ]);
+    }
 }

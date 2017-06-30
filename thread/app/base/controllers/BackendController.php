@@ -14,7 +14,7 @@ use yii\web\{
 use thread\app\bootstrap\ActiveForm;
 //
 use thread\actions\{
-    AttributeSwitch, CreateWithLang, ListModel, UpdateWithLang, Delete, Sortable
+    AttributeSwitch, CreateWithLang, ListModel, UpdateWithLang, Delete, Sortable, DeleteAll
 };
 use thread\app\base\models\ActiveRecord;
 use thread\modules\user\models\User;
@@ -229,6 +229,10 @@ abstract class BackendController extends Controller
             ],
             'delete' => [
                 'class' => Delete::class,
+                'modelClass' => $this->model,
+            ],
+            'deleteall' => [
+                'class' => DeleteAll::class,
                 'modelClass' => $this->model,
             ],
             'sortable' => [
