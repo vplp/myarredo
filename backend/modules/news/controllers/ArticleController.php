@@ -52,7 +52,10 @@ class ArticleController extends BackendController
                 'attribute-save' => [
                     'class' => EditableAttributeSave::class,
                     'modelClass' => $this->model,
-                    'attribute' => 'group_id'
+                    'attribute' => 'group_id',
+                    'returnValue' => function ($model) {
+                        return $model['group']['lang']['title'];
+                    }
                 ],
             ]
         );

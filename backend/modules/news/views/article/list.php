@@ -20,7 +20,9 @@ echo GridView::widget([
             'class' => \thread\widgets\grid\kartik\EditableDropDownColumn::class,
             'attribute' => 'group_id',
             'data' => Group::dropDownList(),
-            'value' => 'group.lang.title',
+            'displayValue' => function ($model) {
+                return $model['group']['lang']['title'];
+            },
             'filter' => GridViewFilter::selectOne($filter, 'group_id', Group::dropDownList()),
         ],
         [

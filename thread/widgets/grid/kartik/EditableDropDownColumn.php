@@ -37,6 +37,10 @@ class EditableDropDownColumn extends DataColumn
      * @var array
      */
     public $data = [];
+    /**
+     * @var null
+     */
+    public $displayValue = null;
 
     /**
      * @throws InvalidConfigException
@@ -77,6 +81,18 @@ class EditableDropDownColumn extends DataColumn
     }
 
     /**
+     * @return bool|mixed
+     */
+    public function getDisplayValue($model)
+    {
+        if ($this->displayValue instanceof \Closure) {
+            $m = $this->displayValue;
+            return $m($model);
+        }
+        return $model[$this->returnValue]??null;
+    }
+
+    /**
      * @param mixed $model
      * @param mixed $key
      * @param int $index
@@ -95,6 +111,7 @@ class EditableDropDownColumn extends DataColumn
             'value' => $model[$attribute],
             'inputType' => Editable::INPUT_DROPDOWN_LIST,
             'data' => $this->data??[],
+            'displayValue' => $this->getDisplayValue($model),
             'asPopover' => false,
             'header' => $model->getAttributeLabel($attribute),
             'size' => 'xs',

@@ -39,6 +39,10 @@ class EditableAttributeSave extends ActionCRUD
      * @var string
      */
     public $attribute;
+    /**
+     * @var string
+     */
+    public $returnValue = '';
 
     /**
      * Init action
@@ -81,7 +85,19 @@ class EditableAttributeSave extends ActionCRUD
 
         }
 
-        return ['output' => $value, 'message' => ''];
+        return ['output' => $this->getReturnValue()??$value, 'message' => ''];
+    }
+
+    /**
+     * @return bool|mixed
+     */
+    public function getReturnValue()
+    {
+        if ($this->returnValue instanceof \Closure) {
+            $m = $this->returnValue;
+            return $m($this->model);
+        }
+        return $this->model[$this->returnValue]??false;
     }
 
     /**
@@ -106,6 +122,7 @@ class EditableAttributeSave extends ActionCRUD
                 Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
                 $transaction->rollBack();
             }
+            $this->model = $model;
         }
         return $save;
     }
