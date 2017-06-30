@@ -1,4 +1,5 @@
 <?php
+
 namespace thread\modules\user\models;
 
 use Yii;
@@ -102,6 +103,9 @@ class Profile extends ActiveRecord
      */
     public function getAvatarImage()
     {
+        /**
+         * @var $module \thread\modules\user\User
+         */
         $module = Yii::$app->getModule('user');
         $path = $module->getAvatarUploadPath($this->user_id);
         $url = $module->getAvatarUploadUrl($this->user_id);

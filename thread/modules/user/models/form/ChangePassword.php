@@ -1,6 +1,7 @@
 <?php
 
 namespace thread\modules\user\models\form;
+
 use Yii;
 use yii\helpers\ArrayHelper;
 

@@ -7,10 +7,6 @@ use yii\{
     web\BadRequestHttpException, base\InvalidParamException, db\Exception, filters\AccessControl
 };
 //
-use thread\actions\fileapi\{
-    DeleteAction, UploadAction
-};
-//
 use frontend\components\BaseController;
 use frontend\modules\user\models\form\{
     PasswordResetRequestForm, ResetPasswordForm, ChangePassword
@@ -58,24 +54,6 @@ class PasswordController extends BaseController
                         'allow' => false,
                     ],
                 ],
-            ],
-        ];
-    }
-
-
-    /**
-     * @return array
-     */
-    public function actions()
-    {
-        return [
-            'fileupload' => [
-                'class' => UploadAction::class,
-                'path' => $this->module->getAvatarUploadPath(Yii::$app->getUser()->getId())
-            ],
-            'filedelete' => [
-                'class' => DeleteAction::class,
-                'path' => $this->module->getAvatarUploadPath(Yii::$app->getUser()->getId())
             ],
         ];
     }
