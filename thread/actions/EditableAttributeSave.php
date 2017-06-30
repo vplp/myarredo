@@ -85,19 +85,20 @@ class EditableAttributeSave extends ActionCRUD
 
         }
 
-        return ['output' => $this->getReturnValue()??$value, 'message' => ''];
+        return ['output' => $this->getReturnValue($value), 'message' => ''];
     }
 
     /**
-     * @return bool|mixed
+     * @param $value
+     * @return mixed
      */
-    public function getReturnValue()
+    public function getReturnValue($value)
     {
         if ($this->returnValue instanceof \Closure) {
             $m = $this->returnValue;
             return $m($this->model);
         }
-        return $this->model[$this->returnValue]??false;
+        return $this->model[$this->returnValue]??$value;
     }
 
     /**

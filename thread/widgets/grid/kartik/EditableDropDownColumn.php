@@ -89,7 +89,7 @@ class EditableDropDownColumn extends DataColumn
             $m = $this->displayValue;
             return $m($model);
         }
-        return $model[$this->returnValue]??null;
+        return $model[$this->displayValue]??null;
     }
 
     /**
