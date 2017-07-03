@@ -20,16 +20,16 @@ use thread\app\base\models\ActiveRecord;
  * {
  *     return [
  *          ...
- *          'published' => [
- *              'class' => EditableAttributeSave::class,
- *              'modelClass' => Model::class,
- *              'attribute' => 'published'
+ *          'attribute-save' => [
+ *              'class' => EditableAttributeSaveLang::class,
+ *              'modelClass' => $this->modelLang,
+ *              'attribute' => 'title',
  *          ],
  *          ...
  *    ];
  * }
  */
-class EditableAttributeSave extends ActionCRUD
+class EditableAttributeSaveLang extends ActionCRUD
 {
 
     /**
@@ -111,7 +111,7 @@ class EditableAttributeSave extends ActionCRUD
     {
         $save = false;
         /** @var ActiveRecord $model */
-        if ($model = $this->findModel($attributeId)) {
+        if ($model = $this->findModelLang($attributeId)) {
             $model->setScenario($this->attribute);
             $model->{$this->attribute} = $value;
             $transaction = $model::getDb()->beginTransaction();
@@ -125,5 +125,29 @@ class EditableAttributeSave extends ActionCRUD
             $this->model = $model;
         }
         return $save;
+    }
+
+    /**
+     * Find language model by primary key
+     * If model not found - return null
+     *
+     * @param integer $modelId
+     * @return Model
+     */
+    protected function findModelLang($modelId)
+    {
+        $model = null;
+
+        if ($modelId) {
+            $model = $this->model->find()->andWhere(['rid' => $modelId])->one();
+        }
+
+        if ($model === null) {
+            $model = new $this->modelClass;
+            $model->rid = $modelId;
+            $model->lang = Yii::$app->language;
+        }
+
+        return $model;
     }
 }
