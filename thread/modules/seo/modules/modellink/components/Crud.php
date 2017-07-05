@@ -92,4 +92,15 @@ class Crud extends Component
     {
         return Modellink::getModelKey($model);
     }
+
+    /**
+     * @param ActiveRecord $model
+     * @return mixed
+     */
+    public function getByModel(ActiveRecord $model)
+    {
+        $this->model = Modellink::findModel(self::getModelKey($model), $model->id)->one();
+
+        return $this;
+    }
 }
