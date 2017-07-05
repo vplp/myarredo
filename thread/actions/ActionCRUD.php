@@ -12,7 +12,6 @@ use yii\base\{
  *
  * @package thred\base
  * @author FilamentV <vortex.filament@gmail.com>
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
  * @copyright (c) 2016, VipDesign
  */
 class ActionCRUD extends Action

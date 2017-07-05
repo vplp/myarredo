@@ -14,6 +14,8 @@ use thread\app\model\interfaces\BaseBackendModel;
  */
 class MenuItem extends \common\modules\menu\models\MenuItem implements BaseBackendModel
 {
+    public $title;
+
     /**
      * @var
      */
@@ -81,6 +83,9 @@ class MenuItem extends \common\modules\menu\models\MenuItem implements BaseBacke
     public function beforeSave($insert)
     {
         $this->link = ($this->link_type == 'permanent') ? $this->_permanent_link : $this->_external_link;
+        if ($this->link === null) {
+            $this->link = '';
+        }
 
         return parent::beforeSave($insert);
     }

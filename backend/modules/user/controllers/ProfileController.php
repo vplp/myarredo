@@ -13,7 +13,7 @@ use thread\actions\fileapi\{
 };
 //
 use backend\modules\user\models\{
-    Profile
+    Profile, User
 };
 
 /**
@@ -63,6 +63,7 @@ class ProfileController extends BackendController
     public function actions()
     {
         $model = Profile::find()->byId(Yii::$app->getRequest()->get('id', 0))->one();
+        $user = $model->user;
 
         return [
             'update' => [
@@ -74,11 +75,11 @@ class ProfileController extends BackendController
             ],
             'fileupload' => [
                 'class' => UploadAction::class,
-                'path' => $this->module->getAvatarUploadPath($model['user_id'])
+                'path' => $this->module->getAvatarUploadPath($user)
             ],
             'filedelete' => [
                 'class' => DeleteAction::class,
-                'path' => $this->module->getAvatarUploadPath($model['user_id'])
+                'path' => $this->module->getAvatarUploadPath($user)
             ],
         ];
     }

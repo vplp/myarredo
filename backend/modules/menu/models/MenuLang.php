@@ -2,6 +2,8 @@
 
 namespace backend\modules\menu\models;
 
+use yii\helpers\ArrayHelper;
+
 /**
  * Class MenuLang
  *
@@ -11,5 +13,13 @@ namespace backend\modules\menu\models;
  */
 class MenuLang extends \common\modules\menu\models\MenuLang
 {
-
+    /**
+     * @return array
+     */
+    public function scenarios()
+    {
+        return ArrayHelper::merge(parent::scenarios(), [
+            'title' => ['title'],
+        ]);
+    }
 }

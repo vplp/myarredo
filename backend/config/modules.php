@@ -55,5 +55,8 @@ return [
     ],
     'translation' => [
         'class' => \backend\modules\sys\modules\translation\Translation::class
-    ]
+    ],
+    'feedback' => [
+        'class' => \backend\modules\feedback\Feedback::class
+    ],
 ];

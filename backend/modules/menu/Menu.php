@@ -1,6 +1,7 @@
 <?php
 
 namespace backend\modules\menu;
+
 /**
  * Class Menu
  *
@@ -20,8 +21,8 @@ class Menu extends \common\modules\menu\Menu
 
     public $menuItems = [
         'name' => 'Menu',
-        'icon' => 'fa-tasks',
+        'icon' => 'fa fa-sitemap',
         'url' => ['/menu/menu/list'],
-        'position' => 1,
+        'position' => 2,
     ];
 }

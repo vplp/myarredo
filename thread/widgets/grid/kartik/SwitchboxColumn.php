@@ -1,9 +1,12 @@
 <?php
+
 namespace thread\widgets\grid\kartik;
 
 use yii\grid\CheckboxColumn;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
+use yii\helpers\{
+    ArrayHelper, Url
+};
+use yii\base\InvalidConfigException;
 //
 use kartik\switchinput\SwitchInput;
 //

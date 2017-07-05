@@ -13,7 +13,6 @@ use thread\app\base\models\ActiveRecord;
  *
  * @package thread\actions
  * @author FilamentV <vortex.filament@gmail.com>
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
  * @copyright (c) 2016, VipDesign
  * @usage
  * public function actions()
@@ -61,10 +60,10 @@ class AttributeSave extends ActionCRUD
         if ($this->model === null) {
             throw new Exception($this->modelClass . 'must be exists.');
         }
-        if (!$this->model->is_attribute($this->attribute)) {
+        if (!$this->model->isAttribute($this->attribute)) {
             throw new Exception($this->modelClass . '::' . $this->attribute . " attribute doesn't exist");
         }
-        if (!$this->model->is_scenario($this->attribute)) {
+        if (!$this->model->isScenario($this->attribute)) {
             throw new Exception($this->modelClass . '::' . $this->attribute . " scenario doesn't exist");
         }
     }

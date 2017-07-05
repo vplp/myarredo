@@ -20,10 +20,10 @@ use thread\app\base\models\ActiveRecord;
  * {
  *     return [
  *          ...
- *          'attribute-save' => [
- *              'class' => EditableAttributeSaveLang::class,
- *              'modelClass' => $this->modelLang,
- *              'attribute' => 'title',
+ *          'published' => [
+ *              'class' => EditableAttributeSave::class,
+ *              'modelClass' => Model::class,
+ *              'attribute' => 'published'
  *          ],
  *          ...
  *    ];

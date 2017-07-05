@@ -8,9 +8,9 @@ use yii\base\Model;
 //
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
-use backend\modules\menu\Menu as MenuModule;
+use backend\modules\menu\Menu as ParentModule;
 use backend\modules\menu\models\{
-    Menu as MenuModel, MenuLang
+    Menu as ParentModel, MenuLang
 };
 
 /**
@@ -20,7 +20,7 @@ use backend\modules\menu\models\{
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class Menu extends MenuModel implements BaseBackendSearchModel
+class Menu extends ParentModel implements BaseBackendSearchModel
 {
     public $title;
 
@@ -53,7 +53,7 @@ class Menu extends MenuModel implements BaseBackendSearchModel
      */
     public function baseSearch($query, $params)
     {
-        /** @var MenuModule $module */
+        /** @var ParentModule $module */
         $module = Yii::$app->getModule('menu');
         $dataProvider = new ActiveDataProvider(
             [
@@ -89,7 +89,7 @@ class Menu extends MenuModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = MenuModel::find()->joinWith(['lang'])->undeleted();
+        $query = ParentModel::find()->joinWith(['lang'])->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -101,7 +101,7 @@ class Menu extends MenuModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = MenuModel::find()->joinWith(['lang'])->deleted();
+        $query = ParentModel::find()->joinWith(['lang'])->deleted();
         return $this->baseSearch($query, $params);
     }
 }

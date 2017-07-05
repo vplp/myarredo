@@ -1,4 +1,5 @@
 <?php
+
 namespace thread\actions;
 
 use Yii;
@@ -7,13 +8,13 @@ use yii\web\Response;
 use yii\log\Logger;
 //
 use thread\app\base\models\ActiveRecord;
+use thread\modules\seo\modules\modellink\components\Crud;
 
 /**
  * Class Delete
  *
  * @package thread\actions
  * @author FilamentV <vortex.filament@gmail.com>
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
  * @copyright (c) 2016, VipDesign
  * @usage
  * public function actions() {
@@ -53,7 +54,7 @@ class Delete extends ActionCRUD
             throw new Exception($this->modelClass . '::$modelClass must be set.');
         }
     }
-    
+
     /**
      * Run action
      *
@@ -68,6 +69,7 @@ class Delete extends ActionCRUD
         if ($model = $this->findModel($id)) {
             $transaction = $model::getDb()->beginTransaction();
             try {
+                $this->seoModelDelete($model);
                 $delete = $model->delete();
                 ($delete) ? $transaction->commit() : $transaction->rollBack();
             } catch (Exception $e) {
@@ -83,4 +85,14 @@ class Delete extends ActionCRUD
         }
         return $delete;
     }
+
+    /**
+     * @param ActiveRecord $model
+     */
+    public function seoModelDelete(ActiveRecord $model)
+    {
+        $seoCrud = new Crud();
+        $seoCrud->getByModel($model)->delete();
+    }
+
 }

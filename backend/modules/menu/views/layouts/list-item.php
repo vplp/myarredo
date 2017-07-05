@@ -15,7 +15,7 @@ use yii\widgets\Breadcrumbs;
     <div class="col-md-7">
         <h2>
             <?= Yii::t($this->context->module->name, $this->context->module->title) ?>.
-            <?= Yii::t($this->context->module->name, $this->context->group->lang->title) ?>.
+            <?= $this->context->group->lang->title ?>.
             <?= Yii::t($this->context->module->name, $this->context->title) ?>
         </h2>
         <?= Breadcrumbs::widget([
@@ -25,7 +25,7 @@ use yii\widgets\Breadcrumbs;
                     'label' => Yii::t($this->context->module->name, $this->context->module->title),
                 ],
                 [
-                    'label' => Yii::t($this->context->module->name, $this->context->group->lang->title),
+                    'label' => $this->context->group->lang->title,
                 ],
                 [
                     'label' => Yii::t($this->context->module->name, $this->context->title),

@@ -15,7 +15,6 @@ use thread\modules\seo\modules\modellink\components\Crud;
  *
  * @package thread\actions
  * @author FilamentV <vortex.filament@gmail.com>
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
  * @copyright (c) 2016, VipDesign
  * @usage
  * public function actions() {
@@ -34,7 +33,7 @@ class UpdateWithLang extends ActionCRUD
 {
 
     /**
-     * @var Closure|null
+     * @var \Closure|null
      */
     public $afterSaveCallback = null;
 
@@ -142,7 +141,7 @@ class UpdateWithLang extends ActionCRUD
      */
     protected function afterSaveModel()
     {
-        if ($this->afterSaveCallback instanceof Closure) {
+        if ($this->afterSaveCallback instanceof \Closure) {
             $f = $this->afterSaveCallback;
             $f($this);
         }
@@ -156,6 +155,6 @@ class UpdateWithLang extends ActionCRUD
         $model = $this->model;
         //
         $seoCrud = new Crud();
-        $seoCrud->findModel(Crud::getModelKey($model), $model->id)->getPostModel()->saveModel();
+        $seoCrud->getByModel($model)->delete()->getPostModel()->saveModel();
     }
 }

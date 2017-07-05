@@ -13,9 +13,11 @@ echo GridView::widget([
     'filterModel' => $filter,
     'columns' => [
         [
+            'class' => \thread\widgets\grid\kartik\EditableColumn::class,
             'attribute' => 'title',
-            'value' => 'lang.title',
-            'label' => Yii::t('app', 'Title')
+            'displayValue' => function ($model) {
+                return $model['lang']['title'];
+            }
         ],
         [
             'class' => ActionStatusColumn::class,

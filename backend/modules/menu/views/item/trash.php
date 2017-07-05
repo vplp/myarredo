@@ -11,6 +11,8 @@ use thread\widgets\grid\{
  * @package admin\modules\page\view
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
+ *
+ * @var $model \backend\modules\menu\models\Menu
  */
 
 echo GridView::widget([
@@ -20,7 +22,6 @@ echo GridView::widget([
         [
             'attribute' => 'title',
             'value' => 'lang.title',
-            'label' => Yii::t('app', 'Title')
         ],
         [
             'class' => ActionDeleteColumn::class,

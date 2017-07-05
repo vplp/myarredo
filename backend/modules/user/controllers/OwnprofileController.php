@@ -52,6 +52,7 @@ class OwnprofileController extends BackendController
     public function actions()
     {
         $model = Profile::findByUserId(Yii::$app->getUser()->id);
+        $user = $model->user;
 
         return [
             'update' => [
@@ -63,11 +64,11 @@ class OwnprofileController extends BackendController
             ],
             'fileupload' => [
                 'class' => UploadAction::class,
-                'path' => $this->module->getAvatarUploadPath($model['user_id'])
+                'path' => $this->module->getAvatarUploadPath($user)
             ],
             'filedelete' => [
                 'class' => DeleteAction::class,
-                'path' => $this->module->getAvatarUploadPath($model['user_id'])
+                'path' => $this->module->getAvatarUploadPath($user)
             ],
         ];
     }

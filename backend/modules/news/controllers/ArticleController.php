@@ -9,6 +9,7 @@ use thread\actions\fileapi\{
     DeleteAction, UploadAction
 };
 use thread\actions\EditableAttributeSave;
+use thread\actions\EditableAttributeSaveLang;
 use thread\app\base\controllers\BackendController;
 //
 use backend\modules\news\models\{
@@ -50,13 +51,18 @@ class ArticleController extends BackendController
                     'path' => $this->module->getArticleUploadPath()
                 ],
                 'attribute-save' => [
+                    'class' => EditableAttributeSaveLang::class,
+                    'modelClass' => $this->modelLang,
+                    'attribute' => 'title',
+                ],
+                'attribute-save-group' => [
                     'class' => EditableAttributeSave::class,
                     'modelClass' => $this->model,
                     'attribute' => 'group_id',
                     'returnValue' => function ($model) {
-                        return $model['group']['lang']['title'];
+                        return $model['group']['lang']['title']??'---';
                     }
-                ],
+                ]
             ]
         );
     }

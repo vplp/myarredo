@@ -2,6 +2,8 @@
 
 namespace backend\modules\page\models;
 
+use yii\helpers\ArrayHelper;
+
 /**
  * Class PageLang
  *
@@ -11,5 +13,13 @@ namespace backend\modules\page\models;
  */
 class PageLang extends \common\modules\page\models\PageLang
 {
-    
+    /**
+     * @return array
+     */
+    public function scenarios()
+    {
+        return ArrayHelper::merge(parent::scenarios(), [
+            'title' => ['title'],
+        ]);
+    }
 }

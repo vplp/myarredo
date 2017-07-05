@@ -15,6 +15,7 @@ use yii\widgets\Breadcrumbs;
     <div class="col-md-10">
         <h2>
             <?= Yii::t($this->context->module->name, $this->context->module->title) ?>.
+            <?= $this->context->group->lang->title ?>.
             <?= Yii::t($this->context->module->name, $this->context->title) ?>.
             <?= Yii::t('app', 'Trash') ?>
         </h2>
@@ -23,6 +24,9 @@ use yii\widgets\Breadcrumbs;
             'links' => [
                 [
                     'label' => Yii::t($this->context->module->name, $this->context->module->title),
+                ],
+                [
+                    'label' => $this->context->group->lang->title,
                 ],
                 [
                     'label' => Yii::t($this->context->module->name, $this->context->title),

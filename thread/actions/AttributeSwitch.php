@@ -1,4 +1,5 @@
 <?php
+
 namespace thread\actions;
 
 use Yii;
@@ -10,22 +11,22 @@ use thread\app\base\models\ActiveRecord;
 
 /**
  * Class AttributeSwith
- * 
+ *
  * @package thread\actions
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  *
-  public function actions() {
-  return [
+ * public function actions() {
+ * return [
  * ...
-  'published' => [
-  'class' => AttributeKeySwith::class,
-  'modelClass' => Model::class,
-  'attribute' => 'published'
-  ],
+ * 'published' => [
+ * 'class' => AttributeKeySwith::class,
+ * 'modelClass' => Model::class,
+ * 'attribute' => 'published'
+ * ],
  * ...
-  ];
-  }
+ * ];
+ * }
  *
  */
 class AttributeSwitch extends ActionCRUD
@@ -48,21 +49,28 @@ class AttributeSwitch extends ActionCRUD
      */
     protected $model = null;
 
+    /**
+     * Init action
+     *
+     * @throws Exception
+     */
     public function init()
     {
         if ($this->modelClass === null) {
             throw new Exception(__CLASS__ . '::$modelClass must be set.');
         }
+
+        /** @var ActiveRecord $this ->model */
         $this->model = new $this->modelClass;
 
         if ($this->model === null) {
             throw new Exception($this->modelClass . 'must be exists.');
         }
         if (!$this->model->isAttribute($this->attribute)) {
-            throw new Exception($this->modelClass . '::' . $this->attribute . ' attribute doesn\'t exist');
+            throw new Exception($this->modelClass . '::' . $this->attribute . " attribute doesn't exist");
         }
         if (!$this->model->isScenario($this->attribute)) {
-            throw new Exception($this->modelClass . '::' . $this->attribute . ' scenario doesn\'t exist');
+            throw new Exception($this->modelClass . '::' . $this->attribute . " scenario doesn't exist");
         }
     }
 

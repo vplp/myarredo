@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use thread\app\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $form backend\themes\defaults\widgets\forms\ActiveForm */
 /* @var $model \frontend\modules\user\models\form\ResetPasswordForm */
 
 ?>

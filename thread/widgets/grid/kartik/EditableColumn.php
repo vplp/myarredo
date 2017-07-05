@@ -32,6 +32,10 @@ class EditableColumn extends DataColumn
      * @var string
      */
     public $link = ['attribute-save'];
+    /**
+     * @var null
+     */
+    public $displayValue = null;
 
     /**
      * @throws InvalidConfigException
@@ -72,6 +76,18 @@ class EditableColumn extends DataColumn
     }
 
     /**
+     * @return bool|mixed
+     */
+    public function getDisplayValue($model)
+    {
+        if ($this->displayValue instanceof \Closure) {
+            $m = $this->displayValue;
+            return $m($model);
+        }
+        return $model[$this->displayValue]??$model[$this->attribute];
+    }
+
+    /**
      * @param mixed $model
      * @param mixed $key
      * @param int $index
@@ -87,7 +103,8 @@ class EditableColumn extends DataColumn
         return Editable::widget([
             'name' => $attribute . '[' . $model['id'] . ']',
             'id' => $attribute . uniqid(),
-            'value' => $model[$attribute],
+            'value' => $this->getDisplayValue($model),
+            'displayValue' => $this->getDisplayValue($model),
             'asPopover' => false,
             'header' => $model->getAttributeLabel($attribute),
             'size' => 'xs',

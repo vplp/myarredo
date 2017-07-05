@@ -31,10 +31,18 @@ echo GridView::widget([
         [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',
-            'action' => 'published'
+            'action' => function ($model) {
+                return (in_array($model['id'], [1])) ? false : 'published';
+            },
         ],
         [
-            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class
+            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
+            'updateLink' => function ($model) {
+                return (in_array($model['id'], [1, 2])) ? false : ['intrash', 'id' => $model['id']];
+            },
+            'deleteLink' => function ($model) {
+                return (in_array($model['id'], [1, 2])) ? false : ['intrash', 'id' => $model['id']];
+            }
         ],
     ]
 ]);

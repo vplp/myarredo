@@ -6,6 +6,9 @@ use thread\widgets\grid\{
     ActionStatusColumn
 };
 
+/**
+ * @var $model \backend\modules\menu\models\Menu
+ */
 echo GridView::widget(
     [
         'dataProvider' => $model->search(Yii::$app->request->queryParams),
@@ -13,11 +16,10 @@ echo GridView::widget(
         'columns' => [
             [
                 'class' => \thread\widgets\grid\kartik\EditableColumn::class,
-                'attribute' => 'alias',
-            ],
-            [
                 'attribute' => 'title',
-                'value' => 'lang.title',
+                'displayValue' => function ($model) {
+                    return $model['lang']['title'];
+                }
             ],
             [
                 'format' => 'raw',

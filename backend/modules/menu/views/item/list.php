@@ -11,7 +11,7 @@ use thread\widgets\grid\{
 use backend\modules\menu\models\search\MenuItem;
 
 /**
- * @var \backend\modules\menu\models\search\MenuItem $model
+ * @var $model \backend\modules\menu\models\search\MenuItem
  */
 echo GridView::widget(
     [
@@ -20,9 +20,11 @@ echo GridView::widget(
         'useSortable' => true,
         'columns' => [
             [
+                'class' => \thread\widgets\grid\kartik\EditableColumn::class,
                 'attribute' => 'title',
-                'value' => 'lang.title',
-                'label' => Yii::t('app', 'Title'),
+                'displayValue' => function ($model) {
+                    return $model['lang']['title'];
+                }
             ],
             [
                 'attribute' => 'link_type',
@@ -30,6 +32,7 @@ echo GridView::widget(
                     return MenuItem::linkTypeRange()[$model['link_type']];
                 },
             ],
+            'position',
             [
                 'class' => ActionStatusColumn::class,
                 'attribute' => 'published',

@@ -2,7 +2,6 @@
 
 namespace backend\modules\menu\models;
 
-use yii\helpers\ArrayHelper;
 use thread\app\model\interfaces\BaseBackendModel;
 
 /**
@@ -14,6 +13,8 @@ use thread\app\model\interfaces\BaseBackendModel;
  */
 class Menu extends \common\modules\menu\models\Menu implements BaseBackendModel
 {
+    public $title;
+
     /**
      * @param $params
      * @return \yii\data\ActiveDataProvider
@@ -30,15 +31,5 @@ class Menu extends \common\modules\menu\models\Menu implements BaseBackendModel
     public function trash($params)
     {
         return (new search\Menu())->trash($params);
-    }
-
-    /**
-     * @return array
-     */
-    public function scenarios()
-    {
-        return ArrayHelper::merge(parent::scenarios(), [
-            'alias' => ['alias'],
-        ]);
     }
 }

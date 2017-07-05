@@ -8,26 +8,26 @@ use thread\widgets\grid\{
 //
 use backend\modules\news\models\Group;
 
-/**
- * @var \backend\modules\news\models\search\Article $model
- */
-
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
         [
+            'class' => \thread\widgets\grid\kartik\EditableColumn::class,
+            'attribute' => 'title',
+            'displayValue' => function ($model) {
+                return $model['lang']['title'];
+            },
+        ],
+        [
             'class' => \thread\widgets\grid\kartik\EditableDropDownColumn::class,
             'attribute' => 'group_id',
-            'data' => Group::dropDownList(),
+            'link' => ['attribute-save-group'],
+            'data' => ['0' => '---'] + Group::dropDownList(),
             'displayValue' => function ($model) {
                 return $model['group']['lang']['title'];
             },
-            'filter' => GridViewFilter::selectOne($filter, 'group_id', Group::dropDownList()),
-        ],
-        [
-            'attribute' => 'title',
-            'value' => 'lang.title',
+            'filter' => GridViewFilter::selectOne($filter, 'group_id', ['0' => '---'] + Group::dropDownList()),
         ],
         [
             'attribute' => 'published_time',

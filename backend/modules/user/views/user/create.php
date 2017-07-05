@@ -22,7 +22,7 @@ $model->password_confirmation = '';
 <?= $f->submit($model, $this) ?>
 <?= $f->text_line($model, 'username') ?>
 <?= $f->text_line($model, 'email') ?>
-<?= $f->field($model, 'group_id')->dropDownList(Group::dropDownList()); ?>
+<?= $f->field($model, 'group_id')->selectOne(Group::dropDownList()); ?>
 <hr>
 <?= $f->text_password($model, 'password') ?>
 <?= $f->text_password($model, 'password_confirmation') ?>

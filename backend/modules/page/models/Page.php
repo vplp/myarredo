@@ -1,9 +1,8 @@
 <?php
+
 namespace backend\modules\page\models;
 
 use yii\helpers\ArrayHelper;
-//
-use common\modules\page\models\Page as CommonPageModel;
 //
 use thread\app\model\interfaces\BaseBackendModel;
 
@@ -14,8 +13,9 @@ use thread\app\model\interfaces\BaseBackendModel;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class Page extends CommonPageModel implements BaseBackendModel
+class Page extends \common\modules\page\models\Page implements BaseBackendModel
 {
+    public $title;
 
     /**
      * Backend form dropdown list

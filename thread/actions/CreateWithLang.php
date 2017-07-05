@@ -1,4 +1,5 @@
 <?php
+
 namespace thread\actions;
 
 use Yii;
@@ -12,7 +13,6 @@ use thread\app\base\models\ActiveRecord;
  *
  * @package thread\actions
  * @author FilamentV <vortex.filament@gmail.com>
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
  * @copyright (c) 2016, VipDesign
  * @usage
  * public function actions() {
@@ -30,7 +30,7 @@ use thread\app\base\models\ActiveRecord;
 class CreateWithLang extends ActionCRUD
 {
     /**
-     * @var Closure|null
+     * @var \Closure|null
      */
     public $afterSaveCallback = null;
 
@@ -127,11 +127,11 @@ class CreateWithLang extends ActionCRUD
     }
 
     /**
-     * Run Callback function if model saved correctly
+     *
      */
     protected function afterSaveModel()
     {
-        if ($this->afterSaveCallback instanceof Closure) {
+        if ($this->afterSaveCallback instanceof \Closure) {
             $f = $this->afterSaveCallback;
             $f($this);
         }

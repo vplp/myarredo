@@ -1,6 +1,10 @@
 <?php
+
 namespace backend\modules\page\controllers;
 
+use yii\helpers\ArrayHelper;
+//
+use thread\actions\EditableAttributeSaveLang;
 use thread\app\base\controllers\BackendController;
 //
 use backend\modules\page\models\{
@@ -21,4 +25,21 @@ class PageController extends BackendController
     public $filterModel = filterPageModel::class;
     public $title = 'Pages';
     public $name = 'page';
+
+    /**
+     * @return array
+     */
+    public function actions()
+    {
+        return ArrayHelper::merge(
+            parent::actions(),
+            [
+                'attribute-save' => [
+                    'class' => EditableAttributeSaveLang::class,
+                    'modelClass' => $this->modelLang,
+                    'attribute' => 'title',
+                ]
+            ]
+        );
+    }
 }

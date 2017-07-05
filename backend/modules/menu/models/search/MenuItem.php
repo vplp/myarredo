@@ -8,9 +8,9 @@ use yii\base\Model;
 //
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
-use backend\modules\menu\Menu as MenuModule;
+use backend\modules\menu\Menu as ParentModule;
 use backend\modules\menu\models\{
-    MenuItem as MenuItemModel, MenuItemLang
+    MenuItem as ParentModel, MenuItemLang
 };
 
 /**
@@ -20,7 +20,7 @@ use backend\modules\menu\models\{
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class MenuItem extends MenuItemModel implements BaseBackendSearchModel
+class MenuItem extends ParentModel implements BaseBackendSearchModel
 {
     public $title;
 
@@ -51,7 +51,7 @@ class MenuItem extends MenuItemModel implements BaseBackendSearchModel
      */
     public function baseSearch($query, $params)
     {
-        /** @var MenuModule $module */
+        /** @var ParentModule $module */
         $module = Yii::$app->getModule('menu');
         $dataProvider = new ActiveDataProvider(
             [
@@ -88,7 +88,7 @@ class MenuItem extends MenuItemModel implements BaseBackendSearchModel
     public function search($params)
     {
         $parent_id = Yii::$app->request->get('parent_id', 0);
-        $query = MenuItemModel::find()->joinWith(['lang'])->parent_id($parent_id)->undeleted();
+        $query = ParentModel::find()->joinWith(['lang'])->parent_id($parent_id)->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -100,7 +100,7 @@ class MenuItem extends MenuItemModel implements BaseBackendSearchModel
     public function trash($params)
     {
         $parent_id = Yii::$app->request->get('parent_id', 0);
-        $query = MenuItemModel::find()->joinWith(['lang'])->parent_id($parent_id)->deleted();
+        $query = ParentModel::find()->joinWith(['lang'])->parent_id($parent_id)->deleted();
         return $this->baseSearch($query, $params);
     }
 }

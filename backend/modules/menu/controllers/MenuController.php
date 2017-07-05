@@ -4,8 +4,8 @@ namespace backend\modules\menu\controllers;
 
 use yii\helpers\ArrayHelper;
 //
+use thread\actions\EditableAttributeSaveLang;
 use thread\app\base\controllers\BackendController;
-use thread\actions\EditableAttributeSave;
 //
 use backend\modules\menu\models\{
     Menu, MenuLang, search\Menu as filterMenuModel
@@ -26,14 +26,17 @@ class MenuController extends BackendController
     public $title = 'Menu';
     public $name = 'menu';
 
+    /**
+     * @return array
+     */
     public function actions()
     {
         return ArrayHelper::merge(parent::actions(), [
             'attribute-save' => [
-                'class' => EditableAttributeSave::class,
-                'modelClass' => $this->model,
-                'attribute' => 'alias'
-            ],
+                'class' => EditableAttributeSaveLang::class,
+                'modelClass' => $this->modelLang,
+                'attribute' => 'title',
+            ]
         ]);
     }
 }

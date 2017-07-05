@@ -22,6 +22,10 @@ return [
     'news' => 'news/list/index',
     'news/article/<alias:[\w\-]+>' => 'news/article/index',
 
+    // Module [[Feedback]]
+    'page/contact' => 'feedback/feedback/index',
+    'page/contact/send' => 'feedback/form/send',
+
     // Module [[Page]]
     '<alias:[\w\-]+>' => 'page/page/view',
     'find/<condition:[\w\-]+>' => 'page/find/index',
@@ -45,5 +49,4 @@ return [
     'shop/order/view/<id:[\d\-]+>' => 'shop/order/view',
     'shop/order/link/<token:[\w\-]+>' => 'shop/order/link',
     'shop/cart/add-to-cart' => 'shop/cart/add-to-cart',
-
 ];

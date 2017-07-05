@@ -15,7 +15,6 @@ use yii\web\{
  *
  * @package thread\actions
  * @author FilamentV <vortex.filament@gmail.com>
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
  * @copyright (c) 2016, VipDesign
  * @usage
  * public function actions() {
@@ -115,6 +114,9 @@ class RecordView extends Action
             ]);
         } else {
             $this->controller->layout = $this->layout;
+            //SEO
+            Yii::$app->metatag->registerModel($model);
+            //SEO
             return $this->controller->render($this->view, [
                 'model' => $model,
             ]);

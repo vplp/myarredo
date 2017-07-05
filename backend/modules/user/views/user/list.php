@@ -11,11 +11,7 @@ use thread\widgets\grid\{
 
 /**
  *
- * @package admin\modules\menu\view
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
- *
- * @var User $model
+ * @var $model \backend\modules\user\models\User
  */
 
 echo GridView::widget([
@@ -36,12 +32,13 @@ echo GridView::widget([
         [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',
-            'action' => 'published'
+            'action' => function ($model) {
+                return (in_array($model['id'], [1])) ? false : 'published';
+            },
         ],
         [
             'format' => 'raw',
             'value' => function ($model) {
-                /** @var $model User */
                 return Html::a(Yii::t('user', 'Edit profile'), ['/user/profile/update', 'id' => $model->profile->id]);
             },
         ],
@@ -54,7 +51,7 @@ echo GridView::widget([
         [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
             'deleteLink' => function ($model) {
-                return ($model['id'] == 1) ? false : ['intrash', 'id' => $model['id']];
+                return (in_array($model['id'], [1])) ? false : ['intrash', 'id' => $model['id']];
             }
         ],
     ]

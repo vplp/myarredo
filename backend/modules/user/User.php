@@ -14,9 +14,9 @@ class User extends \common\modules\user\User
     public $username_attribute = 'username';
 
     public $menuItems = [
-        'name' => 'Users',
-        'icon' => 'fa-users',
+        'name' => 'User',
+        'icon' => 'fa fa-sitemap',
         'url' => ['/user/user/list'],
-        'position' => 8,
+        'position' => 5,
     ];
 }

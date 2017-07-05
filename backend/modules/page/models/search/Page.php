@@ -9,9 +9,9 @@ use yii\base\Model;
 use thread\app\base\models\query\ActiveQuery;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
-use backend\modules\page\Page as PageModule;
+use backend\modules\page\Page as ParentModule;
 use backend\modules\page\models\{
-    PageLang, Page as PageModel
+    PageLang, Page as ParentModel
 };
 
 /**
@@ -21,7 +21,7 @@ use backend\modules\page\models\{
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class Page extends PageModel implements BaseBackendSearchModel
+class Page extends ParentModel implements BaseBackendSearchModel
 {
     public $title;
 
@@ -52,7 +52,7 @@ class Page extends PageModel implements BaseBackendSearchModel
      */
     public function baseSearch($query, $params)
     {
-        /** @var PageModule $module */
+        /** @var ParentModule $module */
         $module = Yii::$app->getModule('page');
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -91,7 +91,7 @@ class Page extends PageModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = PageModel::find()->joinWith(['lang'])->undeleted();
+        $query = ParentModel::find()->joinWith(['lang'])->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -101,7 +101,7 @@ class Page extends PageModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = PageModel::find()->joinWith(['lang'])->deleted();
+        $query = ParentModel::find()->joinWith(['lang'])->deleted();
         return $this->baseSearch($query, $params);
     }
 }

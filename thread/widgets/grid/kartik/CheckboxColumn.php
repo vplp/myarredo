@@ -2,6 +2,7 @@
 
 namespace thread\widgets\grid\kartik;
 
+use Closure;
 use yii\helpers\{
     Html, Url
 };
