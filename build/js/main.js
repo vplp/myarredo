@@ -73,7 +73,6 @@ $(document).ready(function(){
     }
     /*--Конец определения девайса--*/
 
-
    /*--Открыть/закрыть города--*/
     (function(){
         $('#select-city,#close-top').click(function(){

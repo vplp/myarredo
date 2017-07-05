@@ -2260,3 +2260,24 @@ footer {
     border-bottom-left-radius: 4px;
   }
 }
+.sign-up-page {
+  padding-bottom: 30px;
+  h2 {
+    font-size: 24px;
+    padding: 0 15px;
+  }
+  .select-form-group {
+    label {
+      display: block;
+    }
+  }
+  .a-warning {
+    margin: 15px 0;
+  }
+  .col-xs-12 {
+    margin-bottom: 30px;
+  }
+  .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 100%;
+  }
+}
