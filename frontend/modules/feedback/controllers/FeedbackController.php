@@ -23,7 +23,7 @@ class FeedbackController extends BaseController
     public $label = "Feedback";
     public $title = "Feedback";
     public $defaultAction = 'index';
-    public $layout = "@app/layouts/page_no_sidebar";
+    public $layout = "@app/layouts/base";
 
     public $breadcrumbs = [];
 

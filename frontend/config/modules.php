@@ -37,4 +37,7 @@ return [
     'shop' => [
         'class' => \frontend\modules\shop\Shop::class,
     ],
+    'feedback' => [
+        'class' => \frontend\modules\feedback\Feedback::class,
+    ]
 ];

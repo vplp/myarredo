@@ -20,7 +20,19 @@ class Feedback extends \common\modules\feedback\Feedback
     public $menuItems = [
         'name' => 'Feedback',
         'icon' => 'fa-file-text',
-        'url' => ['/feedback/feedback/list'],
-        'position' => 2,
+        'position' => 4,
+        'items' =>
+            [
+                [
+                    'name' => 'Feedback',
+                    'position' => 1,
+                    'url' => ['/feedback/group/list'],
+                ],
+                [
+                    'name' => 'Question',
+                    'position' => 2,
+                    'url' => ['/feedback/question/list'],
+                ]
+            ]
     ];
 }

@@ -66,9 +66,9 @@ class Question extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'group_id' => Yii::t('app', 'Group'),
-            'user_name' => Yii::t('faq', 'User'),
-            'email' => Yii::t('faq', 'Email'),
-            'question' => Yii::t('faq', 'Message'),
+            'user_name' => Yii::t('feedback', 'User'),
+            'email' => Yii::t('feedback', 'Email'),
+            'question' => Yii::t('feedback', 'Message'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
