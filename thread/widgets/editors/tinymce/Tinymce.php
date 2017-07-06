@@ -4,7 +4,7 @@ namespace thread\widgets\editors\tinymce;
 
 use Yii;
 use yii\helpers\{
-    Html, Json, ArrayHelper
+    Html, Json, ArrayHelper, Url
 };
 use yii\widgets\InputWidget;
 //
@@ -119,6 +119,7 @@ class Tinymce extends InputWidget
     {
         $view = $this->getView();
         Asset::register($view);
+        //REGISTER TINYMCE
         $assetslang = AssetLang::register($view);
         if (is_file($assetslang->basePath . '/langs/' . $this->language . '.js')) {
             $this->language_url = $assetslang->baseUrl . '/langs/' . $this->language . '.js';
@@ -127,15 +128,20 @@ class Tinymce extends InputWidget
         }
         $this->settings['language_url'] = $this->language_url;
         $this->settings['content_css'] = $this->content_css;
-
         /**/
+        //REGISTER TINYMCE filemanager
+        $backendWebBase = Yii::getAlias('@backend-web');
+        if (!is_dir($backendWebBase . '/js/filemanager')) {
+            \yii\helpers\FileHelper::copyDirectory(__DIR__ . '/assets/filemanager', $backendWebBase . '/js/filemanager');
+        }
 
-        $assetsT = assets\AssetTinymce::register($view);
-        \yii\helpers\FileHelper::copyDirectory(__DIR__ . '/assets/plugins', $assetsT->basePath . '/plugins');
+        $this->settings['external_filemanager_path'] = Url::base(true) . '/js/filemanager/';
+        $this->settings['external_plugins'] = [
+            'filemanager' => Url::base(true) . '/js/filemanager/plugin.min.js',
+        ];
+        $this->settings['filemanager_title'] = 'File Manager';
 
-        $this->settings['external_filemanager_path'] = $assetslang->baseUrl . '/filemanager/';
-        $this->settings['external_plugins'] = ['filemanager' => $assetslang->baseUrl . '/filemanager/plugin.min.js'];
-        $this->settings['filemanager_title'] = 'Файл менеджер';
+        Yii::$app->getSession()->set('TINYMCE_filemanager_ALLOW', true);
         /**/
 
         $settings = Json::encode($this->settings);
