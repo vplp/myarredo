@@ -34,6 +34,7 @@ return [
         'setWritable' => [
             'runtime',
             'web/assets',
+            'web/backend',
             'web/backend/assets',
             'web/uploads',
             'web/robots.txt',
@@ -49,6 +50,7 @@ return [
         'setWritable' => [
             'runtime',
             'web/assets',
+            'web/backend',
             'web/backend/assets',
             'web/uploads',
             'web/robots.txt',
