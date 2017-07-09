@@ -14,7 +14,6 @@ function mapInit(){
 };
 /*--конец инициализации карты--*/
 $(window).load(function(){
-    console.log('ssrr');
     mapInit();
 });
 $(document).ready(function(){
@@ -65,11 +64,15 @@ $(document).ready(function(){
     function mobInit(){
         console.log('mobile');
         mapInit();
+
+        $('.filters .one-filter').removeClass('open');
     }
 
     function descInit() {
         console.log("desctp");
         mapInit();
+
+        $('.filters .one-filter').addClass('open');
     }
     /*--Конец определения девайса--*/
 
@@ -146,7 +149,23 @@ $(document).ready(function(){
         slidesToScroll: 1,
         dots: true,
         prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
-        nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>'
+        nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>',
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                }
+            },
+            {
+                breakpoint: 540,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
     });
 
     /*--Изменение вида в каталоге--*/
@@ -224,5 +243,33 @@ $(document).ready(function(){
     $('.factory-page .view-all').click(function(){
        $(this).parent('.all-list').find('.post-list').slideToggle();
     });
+
+
+
+    $('#comp-slider, .std-slider').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        dots: false,
+        prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
+        nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>',responsive: [
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 540,
+                arrows: false,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
+
+
 
 });

@@ -4,6 +4,9 @@
   }
 }
 @media screen and (max-width: 992px) {
+  .best-price-form {
+    margin-bottom: 15px;
+  }
   .navbar-toggle {
     display: block;
   }
@@ -200,5 +203,10 @@
       margin-bottom: 20px;
     }
   }
-
+  .receive-price .order-cont {
+    flex-wrap: wrap;
+    .one-ord {
+      width: 50%;
+    }
+  }
 }
