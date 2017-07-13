@@ -1,0 +1,18 @@
+
+     * !!!!
+     * sudo apt-get install jpegoptim optipng
+     * !!!!
+     * http://www.maknesium.de/optimize-your-pngjpeg-images-with-no-quality-in-minutes
+     * 
+     */
+    protected function optimise_image($img) {
+        try {
+            system('jpegoptim --strip-all ' . $img);
+        } catch (Exception $ex) {
+            
+        }
+
+        // optimise jpg
+find . -iname "*.jpg" | xargs jpegoptim --strip-all
+        // optimise png
+find . -iname "*.png" | xargs optipng

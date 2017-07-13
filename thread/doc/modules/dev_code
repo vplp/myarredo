@@ -1,0 +1,4 @@
+Использование подключения модуля в коде
+
+Пример:
+    use thread\modules\news\News as NewsModule;

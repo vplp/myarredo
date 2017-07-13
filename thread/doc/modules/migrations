@@ -1,0 +1,42 @@
+--- Создание миграций для модуля
+1. в config.php доабвляем
+
+return [
+    'controllerMap' => [
+        'migrate' => [
+            'class' => \yii\console\controllers\MigrateController::class,
+            'migrationPath' => __DIR__ . '/migrations',
+        ],
+    ],
+];
+
+2. /console/modules.php
+
+'module' => [
+    'class' => \thread\modules\module\Module::class,
+],
+
+3. создать миграцию
+
+php yii module/migrate/create
+
+
+--- Подключение миграций модуля к консоли
+
+1. /console/main.php
+
+'controllerMap' => [
+    'migrate' => [
+        'class' => \thread\app\console\controllers\MigrateController::class,
+        'migrationPaths' => [
+            '@thread/modules/module/migrations',
+        ],
+    ],
+],
+
+2. Запуск всех миграций
+
+php yii migrate
+
+
+

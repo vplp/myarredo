@@ -1,0 +1,18 @@
+Подключение перманентных (постоянных) ссылок в модуле.
+
+//common/config/modules.php
+
+return [
+
+.....
+
+    'menu' => [
+        'permanent_link' => [
+            //MVC RULE => //TITLE
+            'seo/sitemaphtml/index' => 'page/sitemap'
+        ]
+    ]
+
+.....
+
+];

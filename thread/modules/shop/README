@@ -1,0 +1,9 @@
+Добавить в components
+ 'shop_cart' => [
+        'class' => \thread\modules\shop\components\Cart::class,
+        //записать путь к модель с продуктом!
+        'productClass' => \frontend\modules\catalog\models\Product::class
+    ],
+
+  /library/all.js - скрипт для фронтовых задач по корзине
+

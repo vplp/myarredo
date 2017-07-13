@@ -1,0 +1,4 @@
+<IfModule mod_autoindex.c>
+  # Забороняємо перегляд вмісту папок
+  Options -Indexes
+</IfModule>

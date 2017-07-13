@@ -1,0 +1,34 @@
+AddDefaultCharset UTF-8
+
+# mod_autoindex
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>
+
+# mod_rewrite
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks
+  RewriteEngine On
+
+  RewriteRule ^backend(.*)$ backend/$1 [L]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  RewriteRule . index.php [L]
+</IfModule>
+
+# headers_module is protect framed
+<IfModule headers_module>
+       Header set X-Content-Type-Options nosniff
+       Header set X-Frame-Options SAMEORIGIN
+</IfModule>
+
+<FilesMatch "composer\.$">
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|inc|bak)$">
+	Order Allow,Deny
+	Deny from all
+</FilesMatch>

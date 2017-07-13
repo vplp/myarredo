@@ -1,0 +1,15 @@
+assets
+interfaces
+components
+extentions
+widgets
+    name_of_widget
+models
+    behaviors
+    events
+    search
+    query
+controllers
+    events
+views
+tests
