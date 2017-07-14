@@ -77,28 +77,47 @@ class NavBar extends \yii\bootstrap\NavBar
     {
         $this->registerTranslations();
 
+        // list modules
         $modules = require(Yii::getAlias('@backend') . DIRECTORY_SEPARATOR . 'config' . '/modules.php');
 
         foreach ($modules as $moduleName => $moduleValue) {
             $moduleClass = Yii::$app->getModule($moduleName);
 
-            // get item menu
+            // get item 1st level menu
             if (isset($moduleClass->menuItems)) {
                 $this->menuItems[$moduleName] = $this->getItem($moduleClass->menuItems);
             }
 
-            // get items menu
+            // get items 2nd level menu
             if (isset($moduleClass->menuItems) && key_exists('items', $moduleClass->menuItems)) {
                 $items = [];
                 foreach ($moduleClass->menuItems['items'] as $item) {
                     $items[] = $this->getItem($item);
                 }
-                // set items menu and sort them
+                // set items menu 2nd level and sort them
                 $this->menuItems[$moduleName]['items'] = $this->sortItems($items);
             }
         }
 
-        // sort items menu
+        // other items menu
+        if (!empty($this->otherItems())) {
+            foreach ($this->otherItems() as $moduleName => $Item) {
+                // get item 1st level menu
+                $this->menuItems[$moduleName] = $this->getItem($Item);
+
+                // get items 2nd level menu
+                if (key_exists('items', $Item)) {
+                    $items = [];
+                    foreach ($Item['items'] as $item) {
+                        $items[] = $this->getItem($item);
+                    }
+                    // set items 2nd level menu and sort them
+                    $this->menuItems[$moduleName]['items'] = $this->sortItems($items);
+                }
+            }
+        }
+
+        // sort items 1st level menu
         $this->menuItems = $this->sortItems($this->menuItems);
     }
 
@@ -136,6 +155,29 @@ class NavBar extends \yii\bootstrap\NavBar
             return $item1['position'] <=> $item2['position'];
         });
         return $items;
+    }
+
+    /**
+     * Other items menu
+     *
+     * @return array
+     */
+    private function otherItems()
+    {
+        return [
+            'Test' => [
+                'name' => 'Test',
+                'icon' => 'fa-map-marker',
+                'position' => 9,
+                'items' => [
+                    [
+                        'name' => 'Test',
+                        'icon' => 'fa-tasks',
+                        'url' => ['/sys/configs/params/list'],
+                    ],
+                ]
+            ]
+        ];
     }
 
     /**
