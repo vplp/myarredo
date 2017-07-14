@@ -8,7 +8,7 @@ use thread\app\base\module\abstracts\Module as aModule;
 /**
  * Class Catalog
  *
- * @package thread\modules\catalog
+ * @package common\modules\catalog
  */
 class Catalog extends aModule {
 
@@ -24,16 +24,16 @@ class Catalog extends aModule {
      */
     public static function getDb()
     {
-        return Yii::$app->get('db-core');
+        return Yii::$app->get('db-myarredo');
     }
 
     /**
-     * GoodsServices Image upload path
+     * Product Image upload path
      * @return string
      */
-    public function getGoodsServicesUploadPath()
+    public function getProductUploadPath()
     {
-        $dir = $this->getBaseUploadPath() . '/goods_services';
+        $dir = $this->getBaseUploadPath() . '/product';
 
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
@@ -43,12 +43,36 @@ class Catalog extends aModule {
     }
 
     /**
-     * GoodsServices Image upload URL
+     * Product Image upload URL
      * @return string
      */
-    public function getGoodsServicesUploadUrl()
+    public function getProductUploadUrl()
     {
-        return $this->getBaseUploadUrl() . '/goods_services';
+        return $this->getBaseUploadUrl() . '/product';
+    }
+
+    /**
+     * Category Image upload path
+     * @return string
+     */
+    public function getCategoryUploadPath()
+    {
+        $dir = $this->getBaseUploadPath() . '/category';
+
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+
+        return $dir;
+    }
+
+    /**
+     * Category Image upload URL
+     * @return string
+     */
+    public function getCategoryUploadUrl()
+    {
+        return $this->getBaseUploadUrl() . '/category';
     }
 
     /**

@@ -1,0 +1,81 @@
+<?php
+
+namespace common\modules\catalog\models;
+
+use thread\app\base\models\ActiveRecord;
+use common\modules\catalog\Catalog;
+
+/**
+ * Class TypesRelCategory
+ *
+ * @property string $type_id
+ * @property string $group_id
+ * @property string $order
+ *
+ * @package common\modules\catalog\models
+ */
+class TypesRelCategory extends ActiveRecord
+{
+    /**
+     * @return string
+     */
+    public static function getDb()
+    {
+        return Catalog::getDb();
+    }
+
+    /**
+     * @return string
+     */
+    public static function tableName()
+    {
+        return '{{%type_many_group}}';
+    }
+
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return parent::behaviors();
+    }
+
+    /**
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            ['type_id', 'exist', 'targetClass' => Types::class, 'targetAttribute' => 'UID'],
+            ['group_id', 'exist', 'targetClass' => Category::class, 'targetAttribute' => 'UID'],
+            [['order'], 'integer'],
+            [['order'], 'default', 'value' => '0']
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function scenarios()
+    {
+        return [
+            'backend' => [
+                'type_id',
+                'group_id',
+                'order'
+            ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function attributeLabels()
+    {
+        return [
+            'type_id',
+            'group_id',
+            'order'
+        ];
+    }
+}

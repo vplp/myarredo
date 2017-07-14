@@ -35,7 +35,8 @@
     "kartik-v/yii2-field-range": "*",
     "kartik-v/yii2-grid": "*",
     "tinymce/tinymce": ">=4.6",
-    "voskobovich/yii2-many-many-behavior": "^3.0"
+    "voskobovich/yii2-many-many-behavior": "^3.0",
+    "leandrogehlen/yii2-treegrid": "*"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",

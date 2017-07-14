@@ -41,9 +41,6 @@ return [
     'location' => [
         'class' => \backend\modules\location\Location::class,
     ],
-    /**
-     *
-     */
     'polls' => [
         'class' => \backend\modules\polls\Polls::class,
     ],
@@ -58,5 +55,8 @@ return [
     ],
     'feedback' => [
         'class' => \backend\modules\feedback\Feedback::class
+    ],
+    'catalog' => [
+        'class' => \backend\modules\catalog\Catalog::class
     ],
 ];
