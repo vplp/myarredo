@@ -5,20 +5,10 @@
  * @copyright (c), Thread
  */
 return [
-//    'session' => [
-//        'class' => \yii\web\DbSession::class,
-//        Set the following if you want to use DB component other than
-//        'db' => 'coredb',
-//            To override default session table, set the following
-//        'sessionTable' => 'fv_session',
-    /*
-      CREATE TABLE fv_session (
-      id CHAR(40) NOT NULL PRIMARY KEY,
-      expire INTEGER,
-      data BLOB
-      )
-     */
-//    ],
+    'languages' => [
+        'class' => \thread\app\model\Languages::class,
+        'languageModel' => \thread\modules\sys\models\Language::class,
+    ],
     'user' => [
         'class' => \yii\web\User::class,
         'identityClass' => \thread\modules\user\models\User::class,
@@ -30,5 +20,11 @@ return [
         'renderers' => [
             'mustache' => \yii\mustache\ViewRenderer::class
         ]
+    ],
+    'i18n' => [
+        'class' => \thread\modules\sys\modules\translation\components\I18N::class,
+        'languageModel' => \thread\modules\sys\models\Language::class,
+        'enableCaching' => false,
+        'cachingDuration' => 3600
     ],
 ];

@@ -24,6 +24,11 @@ class Sys extends \common\modules\sys\Sys
         'position' => 9,
         'items' => [
             [
+                'name' => 'Translation',
+                'icon' => 'fa-tasks',
+                'url' => ['/sys/translation/translation/list'],
+            ],
+            [
                 'name' => 'Configs',
                 'icon' => 'fa-tasks',
                 'url' => ['/sys/configs/params/list'],

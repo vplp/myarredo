@@ -22,7 +22,7 @@ class Catalog extends \common\modules\catalog\Catalog
         'items' =>
             [
                 [
-                    'name' => 'Group',
+                    'name' => 'Category',
                     'position' => 1,
                     'url' => ['/catalog/category/list'],
                 ],
