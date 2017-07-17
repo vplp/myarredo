@@ -50,6 +50,16 @@ class TypesLang extends ActiveRecordLang
     /**
      * @return array
      */
+    public function scenarios()
+    {
+        return [
+            'backend' => ['title', 'plural_name'],
+        ];
+    }
+
+    /**
+     * @return array
+     */
     public function attributeLabels()
     {
         return [

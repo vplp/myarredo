@@ -44,7 +44,7 @@ use yii\widgets\Breadcrumbs;
     </div>
 </div>
 
-<div class="animated fadeIn">
+<div class="wrapper wrapper-content animated fadeIn">
     <?= $content; ?>
 </div>
 

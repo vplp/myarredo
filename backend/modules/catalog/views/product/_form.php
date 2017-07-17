@@ -20,8 +20,16 @@ use backend\themes\defaults\widgets\Tabs;
             ])
         ],
         [
-            'label' => Yii::t('app', 'Category'),
-            'content' => $this->render('parts/_category', [
+            'label' => Yii::t('app', 'Types'),
+            'content' => $this->render('parts/_types', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
+        [
+            'label' => Yii::t('news', 'Image'),
+            'content' => $this->render('parts/_image', [
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang

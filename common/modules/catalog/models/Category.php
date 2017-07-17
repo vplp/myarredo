@@ -125,6 +125,7 @@ class Category extends ActiveRecord
      */
     public function getCategoryImage()
     {
+        /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
         $path = $module->getCategoryUploadPath();
         $url = $module->getCategoryUploadUrl();

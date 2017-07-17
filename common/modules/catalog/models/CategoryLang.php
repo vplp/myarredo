@@ -51,6 +51,16 @@ class CategoryLang extends ActiveRecordLang
     /**
      * @return array
      */
+    public function scenarios()
+    {
+        return [
+            'backend' => ['title', 'description', 'composition_title'],
+        ];
+    }
+
+    /**
+     * @return array
+     */
     public function attributeLabels()
     {
         return [

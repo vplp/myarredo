@@ -38,7 +38,7 @@ $module = (Yii::$app->controller->module->module->id == "app-backend") ?
         ]) ?>
     </div>
 
-    <div class="animated fadeIn">
+    <div class="wrapper wrapper-content animated fadeIn">
         <?= $content; ?>
     </div>
 

@@ -1,6 +1,13 @@
 <?php
+
+namespace backend\modules\catalog\models;
+
 /**
+ * Class ProductLang
  *
- * @author Andrii Bondarchuk <zndron@gmail.com>
+ * @package backend\modules\catalog\models
  */
- 
+class ProductLang extends \common\modules\catalog\models\ProductLang
+{
+
+}

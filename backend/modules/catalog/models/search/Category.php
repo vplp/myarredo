@@ -8,7 +8,6 @@ use yii\base\Model;
 use thread\app\base\models\query\ActiveQuery;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
-use backend\modules\catalog\Catalog as CatalogModule;
 use backend\modules\catalog\models\{
     Category as CategoryModel, CategoryLang
 };
