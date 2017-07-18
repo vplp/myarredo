@@ -5,15 +5,15 @@ use yii\db\Migration;
 use common\modules\catalog\Catalog;
 
 /**
- * Class m170717_130158_update_catalog_product_lang_table
+ * Class m170718_160158_update_catalog_factory_lang_table
  */
-class m170717_130158_update_catalog_product_lang_table extends Migration
+class m170718_160158_update_catalog_factory_lang_table extends Migration
 {
     /**
      * table lang name
      * @var string
      */
-    public $tableLang = '{{%catalog_item_lang}}';
+    public $tableLang = '{{%factory_lang}}';
 
     /**
      * @inheritdoc
@@ -29,10 +29,15 @@ class m170717_130158_update_catalog_product_lang_table extends Migration
      */
     public function safeUp()
     {
+        $this->dropColumn($this->tableLang, 'full_title');
+
         $this->renameColumn($this->tableLang, 'language_code', 'lang');
-        $this->renameColumn($this->tableLang, 'text', 'content');
 
         $this->alterColumn($this->tableLang, 'lang', $this->string(5)->notNull()->comment('Language'));
+
+        $this->renameColumn($this->tableLang, 'text', 'content');
+
+        $this->renameTable('factory_lang', 'catalog_factory_lang');
     }
 
     /**
@@ -40,7 +45,12 @@ class m170717_130158_update_catalog_product_lang_table extends Migration
      */
     public function safeDown()
     {
+        $this->renameTable('catalog_factory_lang', 'factory_lang');
+
         $this->renameColumn($this->tableLang, 'content', 'text');
+
+        $this->addColumn($this->tableLang, 'full_title', $this->string(255)->defaultValue(null)->after('title'));
+
         $this->renameColumn($this->tableLang, 'lang', 'language_code');
     }
 }

@@ -8,18 +8,15 @@ use thread\app\base\models\ActiveRecordLang;
 use common\modules\catalog\Catalog;
 
 /**
- * Class ProductLang
+ * Class SamplesLang
  *
  * @property integer $rid
  * @property string $lang
  * @property string $title
- * @property string $description
- * @property string $content
- * @property string $comment
  *
  * @package common\modules\catalog\models
  */
-class ProductLang extends ActiveRecordLang
+class SamplesLang extends ActiveRecordLang
 {
     /**
      * @return string
@@ -34,7 +31,7 @@ class ProductLang extends ActiveRecordLang
      */
     public static function tableName()
     {
-        return '{{%catalog_item_lang}}';
+        return '{{%catalog_samples_lang}}';
     }
 
     /**
@@ -44,9 +41,8 @@ class ProductLang extends ActiveRecordLang
     {
         return ArrayHelper::merge(parent::rules(), [
             [['title'], 'required'],
-            ['rid', 'exist', 'targetClass' => Product::class, 'targetAttribute' => 'id'],
+            ['rid', 'exist', 'targetClass' => Samples::class, 'targetAttribute' => 'id'],
             [['title'], 'string', 'max' => 255],
-            [['description', 'content', 'comment'], 'string'],
         ]);
     }
 
@@ -56,7 +52,7 @@ class ProductLang extends ActiveRecordLang
     public function scenarios()
     {
         return [
-            'backend' => ['title', 'description', 'content', 'comment'],
+            'backend' => ['title'],
         ];
     }
 
@@ -67,9 +63,6 @@ class ProductLang extends ActiveRecordLang
     {
         return [
             'title' => Yii::t('app', 'Title'),
-            'description' => Yii::t('app', 'Description'),
-            'content' => Yii::t('app', 'Content'),
-            'comment' => Yii::t('app', 'Comment'),
         ];
     }
 }

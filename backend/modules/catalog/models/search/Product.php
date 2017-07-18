@@ -1,11 +1,11 @@
 <?php
+
 namespace backend\modules\catalog\models\search;
 
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
-use thread\app\base\models\query\ActiveQuery;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use backend\modules\catalog\Catalog;
@@ -43,8 +43,8 @@ class Product extends ProductModel implements BaseBackendSearchModel
     }
 
     /**
-     * @param ActiveQuery $query
-     * @param array $params
+     * @param $query
+     * @param $params
      * @return ActiveDataProvider
      */
     public function baseSearch($query, $params)

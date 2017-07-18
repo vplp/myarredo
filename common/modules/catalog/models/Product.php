@@ -81,19 +81,42 @@ class Product extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias'], 'required'],
-            [['created_at', 'updated_at', 'position'], 'integer'],
+            [['alias', 'article', 'factory_id', 'catalog_type_id'], 'required'],
             [
                 [
+                    'catalog_type_id',
+                    'user_id',
+                    'factory_id',
+                    'collections_id',
+                    'gallery_id',
+                    'created_at',
+                    'updated_at',
+                    'position'
+                ],
+                'integer'
+            ],
+            [['price', 'volume', 'factory_price', 'price_from', 'retail_price'], 'double'],
+            [['price', 'volume', 'factory_price', 'price_from', 'retail_price'], 'default', 'value' => 0.00],
+            [
+                [
+                    'picpath',
+                    'is_composition',
+                    'popular',
+                    'novelty',
+                    'bestseller',
+                    'onmain',
                     'published',
-                    'deleted'
+                    'deleted',
+                    'removed',
+                    'moderation'
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
             ],
-            [['alias'], 'string', 'max' => 255],
-            [['alias'], 'unique'],
-            [['position'], 'default', 'value' => '0']
+            [['country_code', 'user', 'alias', 'alias_old', 'default_title'], 'string', 'max' => 255],
+            [['article'], 'string', 'max' => 100],
+            [['alias', 'article'], 'unique'],
+            [['collections_id', 'position'], 'default', 'value' => '0']
         ];
     }
 
@@ -105,12 +128,42 @@ class Product extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
+            'popular' => ['popular'],
+            'novelty' => ['novelty'],
+            'bestseller' => ['bestseller'],
+            'onmain' => ['onmain'],
+            'removed' => ['removed'],
             'position' => ['position'],
             'backend' => [
-                'alias',
+                'catalog_type_id',
+                'user_id',
+                'factory_id',
+                'collections_id',
+                'gallery_id',
+                'created_at',
+                'updated_at',
                 'position',
+                'price',
+                'volume',
+                'factory_price',
+                'price_from',
+                'retail_price',
+                'picpath',
+                'is_composition',
+                'popular',
+                'novelty',
+                'bestseller',
+                'onmain',
                 'published',
-                'deleted'
+                'deleted',
+                'removed',
+                'moderation',
+                'country_code',
+                'user',
+                'alias',
+                'alias_old',
+                'default_title',
+                'article'
             ],
         ];
     }
@@ -123,7 +176,28 @@ class Product extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
-
+            'country_code' => 'Показывать для страны',
+            'article' => 'Артикул',
+            'price' => 'Цена',
+            'volume' => 'Объем',
+            'factory_price' => 'Цена фибрики',
+            'price_from' => 'Цена от',
+            'removed' => 'Снят с производства',
+            //'catalogGroups' => 'Категории',
+            'factory_id' => 'Фабрика',
+            'collections_id' => 'Коллекция',
+            'catalog_type_id' => 'Тип предмета',
+            //'samples' => 'Отделка',
+            //'compositionManyItems1' => 'Товары',
+            //'factoryFilesPrice' => 'Прайсы цен',
+            //'factoryFilesCatalog' => 'Прайсы каталогов',
+            'popular' => 'Популярное',
+            'user' => 'Кто изменил',
+            'picpath' => 'picpath',
+            'novelty' => 'Новинка',
+            'moderation' => 'На проверке',
+            'bestseller' => 'Бестселлер',
+            'onmain' => 'На главную',
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
@@ -133,11 +207,31 @@ class Product extends ActiveRecord
     }
 
     /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        if ($this->id) {
+            $alias = explode($this->id . '_', $this->alias);
+            if (empty($alias) || count($alias) == 1) {
+                $this->alias = $this->id . '_' . $this->alias;
+            }
+        }
+
+        $this->user_id = Yii::$app->getUser()->id;
+        $userIdentity = Yii::$app->getUser()->getIdentity();
+        $this->user = $userIdentity->first_name . ' ' . $userIdentity->last_name;
+
+        return parent::beforeSave($insert);
+    }
+
+    /**
      * @return mixed
      */
     public static function findBase()
     {
-        return self::find()->joinWith(['lang'])->orderBy('position');
+        return self::find()->joinWith(['lang'])->orderBy('updated_at DESC');
     }
 
     /**
@@ -161,5 +255,10 @@ class Product extends ActiveRecord
             $image = $url . '/' . $this->image_link;
         }
         return $image;
+    }
+
+    public function getCatalogGroups()
+    {
+        return null;
     }
 }

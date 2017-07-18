@@ -39,4 +39,8 @@ return [
     'Category' => 'Категории',
     'Types' => 'Типы предметов',
     'Product' => 'Товары',
+    'Compositions' => 'Композиции',
+    'Samples' => 'Отделка',
+    'Characteristics' => 'Характеристики',
+    'Factory' => 'Фабрики'
 ];

@@ -1,14 +1,12 @@
 <?php
+
 namespace backend\modules\catalog\models\search;
 
-use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
-use thread\app\base\models\query\ActiveQuery;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
-use backend\modules\catalog\Catalog as CatalogModule;
 use backend\modules\catalog\models\{
     Types as TypesModel, TypesLang
 };

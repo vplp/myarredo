@@ -34,10 +34,28 @@ class ProductController extends BackendController
                 'attribute' => 'popular',
                 'redirect' => $this->defaultAction,
             ],
-            'popular_by' => [
+            'novelty' => [
                 'class' => AttributeSwitch::class,
                 'modelClass' => $this->model,
-                'attribute' => 'popular_by',
+                'attribute' => 'novelty',
+                'redirect' => $this->defaultAction,
+            ],
+            'bestseller' => [
+                'class' => AttributeSwitch::class,
+                'modelClass' => $this->model,
+                'attribute' => 'bestseller',
+                'redirect' => $this->defaultAction,
+            ],
+            'onmain' => [
+                'class' => AttributeSwitch::class,
+                'modelClass' => $this->model,
+                'attribute' => 'onmain',
+                'redirect' => $this->defaultAction,
+            ],
+            'removed' => [
+                'class' => AttributeSwitch::class,
+                'modelClass' => $this->model,
+                'attribute' => 'removed',
                 'redirect' => $this->defaultAction,
             ],
         ]);

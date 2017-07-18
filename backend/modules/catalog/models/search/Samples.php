@@ -2,21 +2,23 @@
 
 namespace backend\modules\catalog\models\search;
 
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
+use backend\modules\catalog\Catalog;
 use backend\modules\catalog\models\{
-    Category as CategoryModel, CategoryLang
+    Samples as SamplesModel, SamplesLang
 };
 
 /**
- * Class Category
+ * Class Samples
  *
  * @package backend\modules\catalog\models\search
  */
-class Category extends CategoryModel implements BaseBackendSearchModel
+class Samples extends SamplesModel implements BaseBackendSearchModel
 {
     public $title;
 
@@ -26,13 +28,12 @@ class Category extends CategoryModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-            [['alias', 'title'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()
@@ -47,40 +48,43 @@ class Category extends CategoryModel implements BaseBackendSearchModel
      */
     public function baseSearch($query, $params)
     {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => false
+            'pagination' => [
+                'pageSize' => $module->itemOnPage
+            ],
         ]);
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published]);
+        $query->andFilterWhere(['like', 'published', $this->published]);
         //
-        $query->andFilterWhere(['like', CategoryLang::tableName() . '.title', $this->title]);
+        $query->andFilterWhere(['like', SamplesLang::tableName() . '.title', $this->title]);
 
         return $dataProvider;
     }
 
     /**
-     * @param array $params
+     * @param $params
      * @return ActiveDataProvider
      */
     public function search($params)
     {
-        $query = CategoryModel::findBase()->undeleted();
+        $query = SamplesModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
     /**
-     * @param array $params
+     * @param $params
      * @return ActiveDataProvider
      */
     public function trash($params)
     {
-        $query = CategoryModel::findBase()->deleted();
+        $query = SamplesModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }

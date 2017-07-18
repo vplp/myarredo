@@ -35,7 +35,27 @@ class Catalog extends \common\modules\catalog\Catalog
                     'name' => 'Product',
                     'position' => 3,
                     'url' => ['/catalog/product/list'],
-                ]
+                ],
+                [
+                    'name' => 'Compositions',
+                    'position' => 3,
+                    'url' => ['/catalog/compositions/list'],
+                ],
+                [
+                    'name' => 'Samples',
+                    'position' => 3,
+                    'url' => ['/catalog/samples/list'],
+                ],
+                [
+                    'name' => 'Characteristics',
+                    'position' => 3,
+                    'url' => ['/catalog/characteristics/list'],
+                ],
+                [
+                    'name' => 'Factory',
+                    'position' => 3,
+                    'url' => ['/catalog/factory/list'],
+                ],
             ]
     ];
 }

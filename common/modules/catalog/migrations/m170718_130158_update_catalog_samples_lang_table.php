@@ -5,15 +5,15 @@ use yii\db\Migration;
 use common\modules\catalog\Catalog;
 
 /**
- * Class m170717_130158_update_catalog_product_lang_table
+ * Class m170718_130158_update_catalog_samples_lang_table
  */
-class m170717_130158_update_catalog_product_lang_table extends Migration
+class m170718_130158_update_catalog_samples_lang_table extends Migration
 {
     /**
      * table lang name
      * @var string
      */
-    public $tableLang = '{{%catalog_item_lang}}';
+    public $tableLang = '{{%samples_lang}}';
 
     /**
      * @inheritdoc
@@ -30,9 +30,10 @@ class m170717_130158_update_catalog_product_lang_table extends Migration
     public function safeUp()
     {
         $this->renameColumn($this->tableLang, 'language_code', 'lang');
-        $this->renameColumn($this->tableLang, 'text', 'content');
 
         $this->alterColumn($this->tableLang, 'lang', $this->string(5)->notNull()->comment('Language'));
+
+        $this->renameTable('samples_lang', 'catalog_samples_lang');
     }
 
     /**
@@ -40,7 +41,8 @@ class m170717_130158_update_catalog_product_lang_table extends Migration
      */
     public function safeDown()
     {
-        $this->renameColumn($this->tableLang, 'content', 'text');
+        $this->renameTable('catalog_samples_lang', 'samples_lang');
+
         $this->renameColumn($this->tableLang, 'lang', 'language_code');
     }
 }

@@ -2,21 +2,23 @@
 
 namespace backend\modules\catalog\models\search;
 
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
+use backend\modules\catalog\Catalog;
 use backend\modules\catalog\models\{
-    Category as CategoryModel, CategoryLang
+    Factory as FactoryModel, FactoryLang
 };
 
 /**
- * Class Category
+ * Class Factory
  *
  * @package backend\modules\catalog\models\search
  */
-class Category extends CategoryModel implements BaseBackendSearchModel
+class Factory extends FactoryModel implements BaseBackendSearchModel
 {
     public $title;
 
@@ -47,9 +49,13 @@ class Category extends CategoryModel implements BaseBackendSearchModel
      */
     public function baseSearch($query, $params)
     {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => false
+            'pagination' => [
+                'pageSize' => $module->itemOnPage
+            ],
         ]);
 
         if (!($this->load($params) && $this->validate())) {
@@ -59,7 +65,7 @@ class Category extends CategoryModel implements BaseBackendSearchModel
         $query->andFilterWhere(['like', 'alias', $this->alias])
             ->andFilterWhere(['like', 'published', $this->published]);
         //
-        $query->andFilterWhere(['like', CategoryLang::tableName() . '.title', $this->title]);
+        $query->andFilterWhere(['like', FactoryLang::tableName() . '.title', $this->title]);
 
         return $dataProvider;
     }
@@ -70,7 +76,7 @@ class Category extends CategoryModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = CategoryModel::findBase()->undeleted();
+        $query = FactoryModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -80,7 +86,7 @@ class Category extends CategoryModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = CategoryModel::findBase()->deleted();
+        $query = FactoryModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }

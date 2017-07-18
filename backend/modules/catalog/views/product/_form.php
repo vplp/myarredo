@@ -20,16 +20,56 @@ use backend\themes\defaults\widgets\Tabs;
             ])
         ],
         [
-            'label' => Yii::t('app', 'Types'),
-            'content' => $this->render('parts/_types', [
+            'label' => 'Текст',
+            'content' => $this->render('parts/_page', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang,
+            ])
+        ],
+        [
+            'label' => Yii::t('app', 'Image'),
+            'content' => $this->render('parts/_image', [
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang
             ])
         ],
         [
-            'label' => Yii::t('news', 'Image'),
-            'content' => $this->render('parts/_image', [
+            'label' => 'Характеристики',
+            'content' => $this->render('parts/_specification', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
+        [
+            'label' => 'Отделка',
+            'content' => $this->render('parts/_samples', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
+        [
+            'label' => 'Прайсы и каталоги',
+            'content' => $this->render('parts/_files', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
+        [
+            'label' => 'Популярный у партнеров',
+            'content' => $this->render('parts/_popular', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
+        [
+            'label' => 'Альтернатива',
+            'content' => $this->render('parts/_alternative', [
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang

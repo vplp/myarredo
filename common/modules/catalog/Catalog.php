@@ -76,6 +76,30 @@ class Catalog extends aModule {
     }
 
     /**
+     * Samples Image upload path
+     * @return string
+     */
+    public function getSamplesUploadPath()
+    {
+        $dir = $this->getBaseUploadPath() . '/samples';
+
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+
+        return $dir;
+    }
+
+    /**
+     * Samples Image upload URL
+     * @return string
+     */
+    public function getSamplesUploadUrl()
+    {
+        return $this->getBaseUploadUrl() . '/samples';
+    }
+
+    /**
      * Base upload URL
      * @return string
      */
