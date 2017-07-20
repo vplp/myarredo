@@ -1,9 +1,10 @@
 <?php
 
-use backend\widgets\GridView\GridView;
 use thread\widgets\grid\{
     ActionStatusColumn
 };
+//
+use backend\widgets\GridView\GridView;
 
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),

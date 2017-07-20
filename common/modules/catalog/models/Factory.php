@@ -15,10 +15,9 @@ use common\modules\catalog\Catalog;
  * @property integer $id
  * @property string $country_code
  * @property string $alias
- * @property string $default_title
  * @property string $first_letter
- * @property integer $url
- * @property integer $email
+ * @property string $url
+ * @property string $email
  * @property integer $popular
  * @property integer $popular_by
  * @property integer $popular_ua
@@ -27,8 +26,8 @@ use common\modules\catalog\Catalog;
  * @property integer $published
  * @property integer $deleted
  * @property integer $novelty
- * @property integer $novelty_url
- * @property integer $image_link
+ * @property string $novelty_url
+ * @property string $image_link
  * @property integer $position
  * @property integer $partner_id
  * @property integer $alternative
@@ -71,10 +70,11 @@ class Factory extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias'], 'required'],
-            [['created_at', 'updated_at', 'position'], 'integer'],
-            [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['alias'], 'string', 'max' => 255],
+            [['alias', 'first_letter'], 'required'],
+            [['created_at', 'updated_at', 'position', 'partner_id'], 'integer'],
+            [['published', 'deleted', 'position', 'popular_ua', 'popular_by', 'novelty', 'alternative'], 'in', 'range' => array_keys(static::statusKeyRange())],
+            [['alias', 'country_code', 'url', 'email', 'novelty_url', 'image_link'], 'string', 'max' => 255],
+            [['first_letter'], 'string', 'max' => 2],
             [['alias'], 'unique'],
             [['position'], 'default', 'value' => '0']
         ];
@@ -89,7 +89,15 @@ class Factory extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'position' => ['position'],
-            'backend' => ['alias', 'position', 'published', 'deleted'],
+            'popular' => ['popular'],
+            'popular_by' => ['popular_by'],
+            'popular_ua' => ['popular_ua'],
+            'backend' => [
+                'alias', 'country_code', 'url', 'email', 'novelty_url', 'image_link',
+                'first_letter',
+                'published', 'deleted', 'position', 'popular_ua', 'popular_by', 'novelty', 'alternative',
+                'position', 'partner_id'
+            ],
         ];
     }
 
@@ -101,6 +109,17 @@ class Factory extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
+            'country_code' => 'Показывать для страны',
+            'url' => 'url',
+            'email' => 'E-Mail',
+            'novelty_url' => 'Новинки url',
+            'image_link' => 'Изображение',
+            'novelty' => 'Новинки',
+            'popular' => 'Популярный Ru',
+            'popular_by' => 'Популярный By',
+            'popular_ua' => 'Популярный Ua',
+            'partner_id' => 'Партнер',
+            'alternative' => 'Связь альтернативы',
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),

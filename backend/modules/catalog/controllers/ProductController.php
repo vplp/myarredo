@@ -3,8 +3,10 @@
 namespace backend\modules\catalog\controllers;
 
 use yii\helpers\ArrayHelper;
+//
 use thread\app\base\controllers\BackendController;
 use thread\actions\AttributeSwitch;
+//
 use backend\modules\catalog\models\{
     Product, ProductLang, search\Product as filterProduct
 };
