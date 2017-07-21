@@ -23,6 +23,15 @@ class Specification extends CommonSpecificationModel implements BaseBackendModel
     }
 
     /**
+     * @param $parentId
+     * @return mixed
+     */
+    public static function dropDownListParents($parentId)
+    {
+        return ArrayHelper::map(self::findBase()->andWhere(['parent_id' => $parentId])->undeleted()->all(), 'id', 'lang.title');
+    }
+
+    /**
      * @param $params
      * @return \yii\data\ActiveDataProvider
      */

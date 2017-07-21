@@ -117,4 +117,20 @@ class Specification extends ActiveRecord
     {
         return $this->hasOne(SpecificationLang::class, ['rid' => 'id']);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getChildren()
+    {
+        return $this->hasMany(self::class, ['parent_id' => 'id']);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParent()
+    {
+        return $this->hasOne(self::class, ['id' => 'parent_id']);
+    }
 }

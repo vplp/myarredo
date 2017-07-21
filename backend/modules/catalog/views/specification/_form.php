@@ -15,10 +15,11 @@ use backend\modules\catalog\models\Specification;
 <?= $form
     ->field($model, 'parent_id')
     ->dropDownList(
-        Specification::dropDownList(), ['prompt' => '---' . Yii::t('app', 'Choose factory') . '---']
+        Specification::dropDownListParents(0), ['prompt' => '---' . Yii::t('app', 'Choose factory') . '---']
     ) ?>
 <?= $form->text_line_lang($modelLang, 'title') ?>
 <?= $form->text_line($model, 'alias') ?>
+<?= $form->text_line($model, 'position') ?>
 <?= $form->switcher($model, 'published') ?>
 <?= $form->switcher($model, 'type') ?>
 <?= $form->submit($model, $this) ?>
