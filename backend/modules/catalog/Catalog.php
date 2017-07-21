@@ -47,9 +47,9 @@ class Catalog extends \common\modules\catalog\Catalog
                     'url' => ['/catalog/samples/list'],
                 ],
                 [
-                    'name' => 'Characteristics',
+                    'name' => 'Specification',
                     'position' => 3,
-                    'url' => ['/catalog/characteristics/list'],
+                    'url' => ['/catalog/specification/list'],
                 ],
                 [
                     'name' => 'Factory',

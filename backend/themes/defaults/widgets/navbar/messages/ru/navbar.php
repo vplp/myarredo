@@ -41,6 +41,6 @@ return [
     'Product' => 'Товары',
     'Compositions' => 'Композиции',
     'Samples' => 'Отделка',
-    'Characteristics' => 'Характеристики',
+    'Specification' => 'Характеристики',
     'Factory' => 'Фабрики'
 ];
