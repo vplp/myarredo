@@ -37,6 +37,7 @@ return ArrayHelper::merge(
         'controllerMap' => [
             'migrate' => [
                 'class' => \thread\app\console\controllers\MigrateController::class,
+                'templateFile' => '@console/migrationsTemplate/migration.php',
                 'migrationPathsOfModules' => [
                     '@console',
                     '@thread/modules',
