@@ -29,7 +29,7 @@ class TypesRelCategory extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%type_many_group}}';
+        return '{{%catalog_type_rel_catalog_group}}';
     }
 
     /**

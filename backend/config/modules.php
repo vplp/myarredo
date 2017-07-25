@@ -32,30 +32,30 @@ return [
     'page' => [
         'class' => \backend\modules\page\Page::class,
     ],
-    'news' => [
-        'class' => \backend\modules\news\News::class,
-    ],
+//    'news' => [
+//        'class' => \backend\modules\news\News::class,
+//    ],
     'seo' => [
         'class' => \backend\modules\seo\Seo::class,
     ],
     'location' => [
         'class' => \backend\modules\location\Location::class,
     ],
-    'polls' => [
-        'class' => \backend\modules\polls\Polls::class,
-    ],
-    'correspondence' => [
-        'class' => \backend\modules\correspondence\Correspondence::class,
-    ],
-    'shop' => [
-        'class' => \backend\modules\shop\Shop::class,
-    ],
+//    'polls' => [
+//        'class' => \backend\modules\polls\Polls::class,
+//    ],
+//    'correspondence' => [
+//        'class' => \backend\modules\correspondence\Correspondence::class,
+//    ],
+//    'shop' => [
+//        'class' => \backend\modules\shop\Shop::class,
+//    ],
     'translation' => [
         'class' => \backend\modules\sys\modules\translation\Translation::class
     ],
-    'feedback' => [
-        'class' => \backend\modules\feedback\Feedback::class
-    ],
+//    'feedback' => [
+//        'class' => \backend\modules\feedback\Feedback::class
+//    ],
     'catalog' => [
         'class' => \backend\modules\catalog\Catalog::class
     ],

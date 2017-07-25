@@ -164,20 +164,7 @@ class NavBar extends \yii\bootstrap\NavBar
      */
     private function otherItems()
     {
-        return [
-            'Test' => [
-                'name' => 'Test',
-                'icon' => 'fa-map-marker',
-                'position' => 9,
-                'items' => [
-                    [
-                        'name' => 'Test',
-                        'icon' => 'fa-tasks',
-                        'url' => ['/sys/configs/params/list'],
-                    ],
-                ]
-            ]
-        ];
+        return [];
     }
 
     /**

@@ -28,7 +28,7 @@ use backend\themes\defaults\widgets\Tabs;
             ])
         ],
         [
-            'label' => Yii::t('news', 'Image'),
+            'label' => Yii::t('app', 'Image'),
             'content' => $this->render('parts/_image', [
                 'form' => $form,
                 'model' => $model,
