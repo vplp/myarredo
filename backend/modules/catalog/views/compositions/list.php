@@ -7,8 +7,9 @@ echo GridView::widget([
     'filterModel' => $filter,
     'columns' => [
         [
-            'attribute' => Yii::t('app', 'Title'),
+            'attribute' => 'title',
             'value' => 'lang.title',
+            'label' => Yii::t('app', 'Title'),
         ],
         [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class

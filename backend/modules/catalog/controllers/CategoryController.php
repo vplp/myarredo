@@ -3,8 +3,13 @@
 namespace backend\modules\catalog\controllers;
 
 use yii\helpers\ArrayHelper;
+//
+use thread\actions\fileapi\{
+    DeleteAction, UploadAction
+};
 use thread\app\base\controllers\BackendController;
 use thread\actions\AttributeSwitch;
+//
 use backend\modules\catalog\models\{
     Category, CategoryLang, search\Category as filterCategory
 };
@@ -39,6 +44,14 @@ class CategoryController extends BackendController
                 'modelClass' => $this->model,
                 'attribute' => 'popular_by',
                 'redirect' => $this->defaultAction,
+            ],
+            'fileupload' => [
+                'class' => UploadAction::class,
+                'path' => $this->module->getCategoryUploadPath()
+            ],
+            'filedelete' => [
+                'class' => DeleteAction::class,
+                'path' => $this->module->getCategoryUploadPath()
             ],
         ]);
     }

@@ -10,15 +10,15 @@ use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use backend\modules\catalog\Catalog;
 use backend\modules\catalog\models\{
-    Samples as SamplesModel, SamplesLang
+    Composition as CompositionModel, CompositionLang
 };
 
 /**
- * Class Samples
+ * Class Composition
  *
  * @package backend\modules\catalog\models\search
  */
-class Samples extends SamplesModel implements BaseBackendSearchModel
+class Composition extends CompositionModel implements BaseBackendSearchModel
 {
     public $title;
 
@@ -28,13 +28,13 @@ class Samples extends SamplesModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-            [['factory_id'], 'integer'],
-            [['title'], 'string', 'max' => 255],
+            [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
 
     /**
+     *
      * @return array
      */
     public function scenarios()
@@ -62,35 +62,31 @@ class Samples extends SamplesModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'factory_id' => $this->factory_id
-        ]);
-
-        $query->andFilterWhere(['like', 'published', $this->published]);
-
-        $query->andFilterWhere(['like', SamplesLang::tableName() . '.title', $this->title]);
+        $query->andFilterWhere(['like', 'alias', $this->alias])
+            ->andFilterWhere(['like', 'published', $this->published]);
+        //
+        $query->andFilterWhere(['like', CompositionLang::tableName() . '.title', $this->title]);
 
         return $dataProvider;
     }
 
     /**
-     * @param $params
+     * @param array $params
      * @return ActiveDataProvider
      */
     public function search($params)
     {
-        $query = SamplesModel::findBase()->undeleted();
+        $query = CompositionModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
     /**
-     * @param $params
+     * @param array $params
      * @return ActiveDataProvider
      */
     public function trash($params)
     {
-        $query = SamplesModel::findBase()->deleted();
+        $query = CompositionModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }

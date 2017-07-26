@@ -143,4 +143,19 @@ class Factory extends ActiveRecord
     {
         return $this->hasOne(FactoryLang::class, ['rid' => 'id']);
     }
+
+    /**
+     * @return null|string
+     */
+    public function getFactoryImage()
+    {
+        $module = Yii::$app->getModule('catalog');
+        $path = $module->getFactoryUploadPath();
+        $url = $module->getFactoryUploadUrl();
+        $image = null;
+        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
+            $image = $url . '/' . $this->image_link;
+        }
+        return $image;
+    }
 }

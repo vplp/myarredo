@@ -4,6 +4,9 @@ namespace backend\modules\catalog\controllers;
 
 use yii\helpers\ArrayHelper;
 //
+use thread\actions\fileapi\{
+    DeleteAction, UploadAction
+};
 use thread\app\base\controllers\BackendController;
 use thread\actions\AttributeSwitch;
 //
@@ -47,6 +50,14 @@ class FactoryController extends BackendController
                 'modelClass' => $this->model,
                 'attribute' => 'popular_ua',
                 'redirect' => $this->defaultAction,
+            ],
+            'fileupload' => [
+                'class' => UploadAction::class,
+                'path' => $this->module->getFactoryUploadPath()
+            ],
+            'filedelete' => [
+                'class' => DeleteAction::class,
+                'path' => $this->module->getFactoryUploadPath()
             ],
         ]);
     }

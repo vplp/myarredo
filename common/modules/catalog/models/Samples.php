@@ -14,7 +14,6 @@ use common\modules\catalog\Catalog;
  *
  * @property integer $id
  * @property integer $factory_id
- * @property string $default_title
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $published
@@ -63,7 +62,7 @@ class Samples extends ActiveRecord
             [['factory_id'], 'required'],
             [['created_at', 'updated_at'], 'integer'],
             [['published', 'deleted', 'moderation'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['default_title', 'image_link'], 'string', 'max' => 255],
+            [['image_link'], 'string', 'max' => 255],
         ];
     }
 
@@ -75,7 +74,7 @@ class Samples extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['factory_id', 'default_title', 'enabled', 'deleted', 'image_link', 'moderation'],
+            'backend' => ['factory_id', 'enabled', 'deleted', 'image_link', 'moderation'],
         ];
     }
 
@@ -87,7 +86,6 @@ class Samples extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'factory_id' => 'Фабрика',
-            'default_title' => 'Default Title',
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
@@ -111,6 +109,14 @@ class Samples extends ActiveRecord
     public function getLang()
     {
         return $this->hasOne(SamplesLang::class, ['rid' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactory()
+    {
+        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
     }
 
     /**

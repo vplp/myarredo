@@ -4,7 +4,7 @@ namespace backend\modules\catalog\controllers;
 
 use thread\app\base\controllers\BackendController;
 use backend\modules\catalog\models\{
-    Product, ProductLang, search\Product as filterProduct
+    Composition, CompositionLang, search\Composition as filterComposition
 };
 
 /**
@@ -14,9 +14,9 @@ use backend\modules\catalog\models\{
  */
 class CompositionsController extends BackendController
 {
-    public $model = Product::class;
-    public $modelLang = ProductLang::class;
-    public $filterModel = filterProduct::class;
+    public $model = Composition::class;
+    public $modelLang = CompositionLang::class;
+    public $filterModel = filterComposition::class;
     public $title = 'Compositions';
     public $name = 'compositions';
 }
