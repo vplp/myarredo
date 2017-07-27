@@ -13,7 +13,7 @@ class Catalog extends \common\modules\catalog\Catalog
      * Number of elements in GridView
      * @var int
      */
-    public $itemOnPage = 20;
+    public $itemOnPage = 50;
 
     public $menuItems = [
         'name' => 'Catalog',

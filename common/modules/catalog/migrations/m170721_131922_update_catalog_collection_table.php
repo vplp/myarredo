@@ -33,6 +33,8 @@ class m170721_131922_update_catalog_collection_table extends Migration
         $this->renameColumn($this->table, 'created', 'created_at');
         $this->renameColumn($this->table, 'updated', 'updated_at');
 
+        $this->dropColumn($this->table, 'default_title');
+
         $this->renameTable('collection', 'catalog_collection');
     }
 
@@ -42,6 +44,8 @@ class m170721_131922_update_catalog_collection_table extends Migration
     public function safeDown()
     {
         $this->renameTable('catalog_collection', 'collection');
+
+        $this->addColumn($this->table, 'default_title', $this->string(255)->defaultValue(null)->after('factory_id'));
 
         $this->renameColumn($this->table, 'published', 'enabled');
         $this->renameColumn($this->table, 'created_at', 'created');

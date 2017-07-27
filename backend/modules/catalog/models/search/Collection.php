@@ -8,17 +8,16 @@ use yii\base\Model;
 //
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
-use backend\modules\catalog\Catalog;
 use backend\modules\catalog\models\{
-    Product as ProductModel, ProductLang
+    Collection as CollectionModel, CollectionLang
 };
 
 /**
- * Class Product
+ * Class Collection
  *
  * @package backend\modules\catalog\models\search
  */
-class Product extends ProductModel implements BaseBackendSearchModel
+class Collection extends CollectionModel implements BaseBackendSearchModel
 {
     public $title;
 
@@ -28,13 +27,13 @@ class Product extends ProductModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-            [['alias', 'title'], 'string', 'max' => 255],
+            [['factory_id'], 'integer'],
+            [['title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()
@@ -62,31 +61,35 @@ class Product extends ProductModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published]);
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'factory_id' => $this->factory_id
+        ]);
 
-        $query->andFilterWhere(['like', ProductLang::tableName() . '.title', $this->title]);
+        $query->andFilterWhere(['like', 'published', $this->published]);
+
+        $query->andFilterWhere(['like', CollectionLang::tableName() . '.title', $this->title]);
 
         return $dataProvider;
     }
 
     /**
-     * @param array $params
+     * @param $params
      * @return ActiveDataProvider
      */
     public function search($params)
     {
-        $query = ProductModel::findBase()->undeleted();
+        $query = CollectionModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
     /**
-     * @param array $params
+     * @param $params
      * @return ActiveDataProvider
      */
     public function trash($params)
     {
-        $query = ProductModel::findBase()->deleted();
+        $query = CollectionModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }

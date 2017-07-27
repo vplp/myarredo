@@ -33,6 +33,7 @@ use common\modules\catalog\Catalog;
  * @property integer $alternative
  *
  * @property FactoryLang $lang
+ * @property Collection $collection
  *
  * @package common\modules\catalog\models
  */
@@ -142,6 +143,14 @@ class Factory extends ActiveRecord
     public function getLang()
     {
         return $this->hasOne(FactoryLang::class, ['rid' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCollection()
+    {
+        return $this->hasMany(Collection::class, ['factory_id' => 'id']);
     }
 
     /**

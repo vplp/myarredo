@@ -57,7 +57,7 @@ class Specification extends SpecificationModel implements BaseBackendSearchModel
 
         $query->andFilterWhere(['like', 'alias', $this->alias])
             ->andFilterWhere(['like', 'published', $this->published]);
-        //
+
         $query->andFilterWhere(['like', SpecificationLang::tableName() . '.title', $this->title]);
 
         return $dataProvider;
