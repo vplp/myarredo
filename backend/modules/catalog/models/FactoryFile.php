@@ -4,14 +4,14 @@ namespace backend\modules\catalog\models;
 
 use yii\helpers\ArrayHelper;
 use thread\app\model\interfaces\BaseBackendModel;
-use common\modules\catalog\models\Collection as CommonCollectionModel;
+use common\modules\catalog\models\FactoryFile as CommonFactoryFileModel;
 
 /**
- * Class Collection
+ * Class FactoryFile
  *
  * @package backend\modules\catalog\models
  */
-class Collection extends CommonCollectionModel implements BaseBackendModel
+class FactoryFile extends CommonFactoryFileModel implements BaseBackendModel
 {
     /**
      * @param $params
@@ -19,7 +19,7 @@ class Collection extends CommonCollectionModel implements BaseBackendModel
      */
     public function search($params)
     {
-        return (new search\Collection())->search($params);
+        return (new search\FactoryFile())->search($params);
     }
 
     /**
@@ -28,6 +28,6 @@ class Collection extends CommonCollectionModel implements BaseBackendModel
      */
     public function trash($params)
     {
-        return (new search\Collection())->trash($params);
+        return (new search\FactoryFile())->trash($params);
     }
 }

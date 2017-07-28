@@ -10,8 +10,6 @@ use backend\modules\catalog\models\Collection;
  * @var \backend\modules\catalog\models\Factory $model
  */
 
-
-
 echo GridView::widget([
     'dataProvider' => (new Collection())->search(['Collection' => ['factory_id' => $model->id]]),
     'columns' => [

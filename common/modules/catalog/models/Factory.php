@@ -34,6 +34,7 @@ use common\modules\catalog\Catalog;
  *
  * @property FactoryLang $lang
  * @property Collection $collection
+ * @property FactoryFile $file
  *
  * @package common\modules\catalog\models
  */
@@ -151,6 +152,14 @@ class Factory extends ActiveRecord
     public function getCollection()
     {
         return $this->hasMany(Collection::class, ['factory_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFile()
+    {
+        return $this->hasMany(FactoryFile::class, ['factory_id' => 'id']);
     }
 
     /**
