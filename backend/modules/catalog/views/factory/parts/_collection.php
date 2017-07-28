@@ -1,12 +1,16 @@
 <?php
 
 use yii\grid\GridView;
-use yii\helpers\Url;
+use yii\helpers\{
+    Url, Html
+};
 use backend\modules\catalog\models\Collection;
 
 /**
  * @var \backend\modules\catalog\models\Factory $model
  */
+
+
 
 echo GridView::widget([
     'dataProvider' => (new Collection())->search(['Collection' => ['factory_id' => $model->id]]),
@@ -35,3 +39,9 @@ echo GridView::widget([
         ],
     ]
 ]);
+
+echo Html::a(
+    Yii::t('app', 'Add'),
+    ['/catalog/collection/create', 'factory_id' => $model['id']],
+    ['class' => 'btn btn-info']
+);

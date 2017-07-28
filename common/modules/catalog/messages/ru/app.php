@@ -9,5 +9,6 @@ return [
     'Compositions' => 'Композиции',
     'Samples' => 'Отделка',
     'Specification' => 'Характеристики',
-    'Factory' => 'Фабрики'
+    'Factory' => 'Фабрики',
+    'Collection' => 'Коллекции',
 ];

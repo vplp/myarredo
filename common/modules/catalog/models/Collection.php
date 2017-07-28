@@ -68,14 +68,13 @@ class Collection extends ActiveRecord
 
 
     /**
-     * @param bool $insert
      * @return bool
      */
-    public function beforeSave($insert)
+    public function beforeValidate()
     {
         $this->first_letter = mb_strtoupper(mb_substr(trim((Yii::$app->request->post('CollectionLang'))['title']), 0, 1, 'UTF-8'), 'UTF-8');
 
-        return parent::beforeSave($insert);
+        return parent::beforeValidate();
     }
 
     /**

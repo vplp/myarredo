@@ -23,6 +23,14 @@ class Factory extends CommonFactoryModel implements BaseBackendModel
     }
 
     /**
+     * @param $id
+     */
+    public static function getById($id)
+    {
+        return self::findBase()->byID($id)->one();
+    }
+
+    /**
      * @param $params
      * @return \yii\data\ActiveDataProvider
      */
