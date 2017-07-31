@@ -72,14 +72,26 @@ class Factory extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias', 'first_letter'], 'required'],
+            [['alias'], 'required'],
             [['created_at', 'updated_at', 'position', 'partner_id'], 'integer'],
             [['published', 'deleted', 'position', 'popular_ua', 'popular_by', 'novelty', 'alternative'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['alias', 'country_code', 'url', 'email', 'novelty_url', 'image_link'], 'string', 'max' => 255],
             [['first_letter'], 'string', 'max' => 2],
             [['alias'], 'unique'],
-            [['position'], 'default', 'value' => '0']
+            [['position', 'partner_id'], 'default', 'value' => '0'],
+            [['country_code'], 'default', 'value' => '//']
         ];
+    }
+
+    /**
+     * @return bool
+     */
+    public function beforeValidate()
+    {
+        $title = (Yii::$app->request->post('FactoryLang'))['title'];
+        $this->first_letter = mb_strtoupper(mb_substr(trim($title), 0, 1, 'UTF-8'), 'UTF-8');
+
+        return parent::beforeValidate();
     }
 
     /**

@@ -37,14 +37,14 @@ use backend\themes\defaults\widgets\Tabs;
         ],
         [
             'label' => 'Коллекции',
-            'content' => $this->render('parts/_collection', [
+            'content' => $this->render('parts/_collections', [
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang
             ])
         ],
         [
-            'label' => 'Каталоги',
+            'label' => Yii::t('app', 'Catalogs'),
             'content' => $this->render('parts/_catalogs', [
                 'form' => $form,
                 'model' => $model,
@@ -52,8 +52,8 @@ use backend\themes\defaults\widgets\Tabs;
             ])
         ],
         [
-            'label' => 'Прайсы',
-            'content' => $this->render('parts/_price', [
+            'label' => Yii::t('app', 'Prices'),
+            'content' => $this->render('parts/_prices', [
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang

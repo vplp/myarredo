@@ -22,6 +22,7 @@ echo GridView::widget([
             'value' => 'title',
             'label' => Yii::t('app', 'Title'),
         ],
+        'updated_at:datetime',
         [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
             'updateLink' => function ($model) {
@@ -46,6 +47,6 @@ echo GridView::widget([
 
 echo Html::a(
     Yii::t('app', 'Add'),
-    ['/catalog/factory-file/create', 'factory_id' => $model['id']],
+    ['/catalog/factory-file/create', 'factory_id' => $model['id'], 'file_type' => 2],
     ['class' => 'btn btn-info']
 );

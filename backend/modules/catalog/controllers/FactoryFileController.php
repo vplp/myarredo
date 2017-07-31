@@ -11,6 +11,9 @@ use thread\app\base\controllers\BackendController;
 use thread\actions\{
     Update, Create
 };
+//use thread\actions\fileapi\{
+//    DeleteAction, UploadAction
+//};
 use backend\modules\catalog\models\{
     FactoryFile, Factory, search\FactoryFile as filterFactoryFile
 };
@@ -25,8 +28,8 @@ class FactoryFileController extends BackendController
     public $model = FactoryFile::class;
     public $modelLang = false;
     public $filterModel = filterFactoryFile::class;
-    public $title = 'Factory file';
-    public $name = 'Factory file';
+    public $title = 'Factory';
+    public $name = 'factory';
 
     public $factory = null;
     public $file_type = null;
@@ -63,6 +66,7 @@ class FactoryFileController extends BackendController
                         : [
                             'update',
                             'factory_id' => $this->factory->id,
+                            'file_type' => $this->file_type,
                             'id' => $this->action->getModel()->id,
                         ];
                 }
@@ -78,6 +82,7 @@ class FactoryFileController extends BackendController
                         : [
                             'update',
                             'factory_id' => $this->factory->id,
+                            'file_type' => $this->file_type,
                             'id' => $this->action->getModel()->id,
                         ];
                 }
@@ -91,6 +96,22 @@ class FactoryFileController extends BackendController
             'outtrash' => [
                 'redirect' => $link
             ],
+//            'fileupload-catalogs' => [
+//                'class' => UploadAction::class,
+//                'path' => $this->module->getFactoryFileCatalogsUploadPath()
+//            ],
+//            'filedelete-catalogs' => [
+//                'class' => DeleteAction::class,
+//                'path' => $this->module->getFactoryFileCatalogsUploadPath()
+//            ],
+//            'fileupload-prices' => [
+//                'class' => UploadAction::class,
+//                'path' => $this->module->getFactoryFilePricesUploadPath()
+//            ],
+//            'filedelete-prices' => [
+//                'class' => DeleteAction::class,
+//                'path' => $this->module->getFactoryFilePricesUploadPath()
+//            ],
         ]);
     }
 

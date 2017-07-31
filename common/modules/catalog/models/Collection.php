@@ -66,13 +66,13 @@ class Collection extends ActiveRecord
         ];
     }
 
-
     /**
      * @return bool
      */
     public function beforeValidate()
     {
-        $this->first_letter = mb_strtoupper(mb_substr(trim((Yii::$app->request->post('CollectionLang'))['title']), 0, 1, 'UTF-8'), 'UTF-8');
+        $title = (Yii::$app->request->post('CollectionLang'))['title'];
+        $this->first_letter = mb_strtoupper(mb_substr(trim($title), 0, 1, 'UTF-8'), 'UTF-8');
 
         return parent::beforeValidate();
     }

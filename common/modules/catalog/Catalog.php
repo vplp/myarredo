@@ -124,6 +124,54 @@ class Catalog extends aModule {
     }
 
     /**
+     * FactoryFileCatalogs Image upload path
+     * @return string
+     */
+    public function getFactoryFileCatalogsUploadPath()
+    {
+        $dir = $this->getBaseUploadPath() . '/factoryFileCatalog';
+
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+
+        return $dir;
+    }
+
+    /**
+     * FactoryFileCatalogs Image upload URL
+     * @return string
+     */
+    public function getFactoryFileCatalogsUploadUrl()
+    {
+        return $this->getBaseUploadUrl() . '/factoryFileCatalog';
+    }
+
+    /**
+     * FactoryFilePrices Image upload path
+     * @return string
+     */
+    public function getFactoryFilePricesUploadPath()
+    {
+        $dir = $this->getBaseUploadPath() . '/factoryFilePrice';
+
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+
+        return $dir;
+    }
+
+    /**
+     * FactoryFilePrices Image upload URL
+     * @return string
+     */
+    public function getFactoryFilePricesUploadUrl()
+    {
+        return $this->getBaseUploadUrl() . '/factoryFilePrice';
+    }
+
+    /**
      * Base upload URL
      * @return string
      */

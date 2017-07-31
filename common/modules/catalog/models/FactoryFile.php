@@ -74,6 +74,17 @@ class FactoryFile extends ActiveRecord
     }
 
     /**
+     * @return bool
+     */
+    public function beforeValidate()
+    {
+        if ($this->title == '')
+            $this->title = $this->file_link;
+
+        return parent::beforeValidate();
+    }
+
+    /**
      * @return array
      */
     public function scenarios()
@@ -105,7 +116,7 @@ class FactoryFile extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'factory_id' => Yii::t('app', 'Factory'),
             'discount',
-            'title',
+            'title' => Yii::t('app', 'Title'),
             'file_link',
             'file_type',
             'file_size',
@@ -115,5 +126,35 @@ class FactoryFile extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getFactoryFileCatalogsImage()
+    {
+        $module = Yii::$app->getModule('catalog');
+        $path = $module->getFactoryFileCatalogsUploadPath();
+        $url = $module->getFactoryFileCatalogsUploadUrl();
+        $image = null;
+        if (!empty($this->file_link) && is_file($path . '/' . $this->file_link)) {
+            $image = $url . '/' . $this->file_link;
+        }
+        return $image;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getFactoryFilePricesImage()
+    {
+        $module = Yii::$app->getModule('catalog');
+        $path = $module->getFactoryFilePricesUploadPath();
+        $url = $module->getFactoryFilePricesUploadUrl();
+        $image = null;
+        if (!empty($this->file_link) && is_file($path . '/' . $this->file_link)) {
+            $image = $url . '/' . $this->file_link;
+        }
+        return $image;
     }
 }

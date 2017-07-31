@@ -18,6 +18,7 @@ echo GridView::widget([
             'value' => 'lang.title',
             'label' => Yii::t('app', 'Title'),
         ],
+        'updated_at:datetime',
         [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
             'updateLink' => function ($model) {
