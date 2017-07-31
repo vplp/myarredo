@@ -1,6 +1,7 @@
 <?php
 
 use backend\modules\catalog\models\Factory;
+
 /**
  * @var \backend\modules\catalog\models\Product $model
  * @var \backend\modules\catalog\models\ProductLang $modelLang

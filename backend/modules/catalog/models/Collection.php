@@ -14,6 +14,15 @@ use common\modules\catalog\models\Collection as CommonCollectionModel;
 class Collection extends CommonCollectionModel implements BaseBackendModel
 {
     /**
+     * Backend form drop down list
+     * @return array
+     */
+    public static function dropDownList()
+    {
+        return ArrayHelper::map(self::findBase()->undeleted()->all(), 'id', 'lang.title');
+    }
+
+    /**
      * @param $params
      * @return \yii\data\ActiveDataProvider
      */

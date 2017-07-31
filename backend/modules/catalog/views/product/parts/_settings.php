@@ -1,5 +1,9 @@
 <?php
 
+use backend\modules\catalog\models\{
+    Factory, Collection, Types
+};
+
 /**
  * @var \backend\modules\catalog\models\Product $model
  * @var \backend\modules\catalog\models\ProductLang $modelLang
@@ -13,13 +17,25 @@
 
 <?= $form->text_line_lang($modelLang, 'title') ?>
 
-<?= $form->text_line($model, 'factory_id') ?>
+<?= $form
+    ->field($model, 'factory_id')
+    ->dropDownList(
+        Factory::dropDownList(), ['prompt' => '---' . Yii::t('app', 'Choose factory') . '---']
+    ) ?>
 
-<?= $form->text_line($model, 'collections_id') ?>
+<?= $form
+    ->field($model, 'collections_id')
+    ->dropDownList(
+        Collection::dropDownList(), ['prompt' => '---' . Yii::t('app', 'Choose collection') . '---']
+    ) ?>
 
-<?= $form->text_line($model, 'catalog_type_id') ?>
+<?= $form
+    ->field($model, 'catalog_type_id')
+    ->dropDownList(
+        Types::dropDownList(), ['prompt' => '---' . Yii::t('app', 'Choose catalog type') . '---']
+    ) ?>
 
-<?= $form->text_line($model, 'catalogGroups') ?>
+<?= $form->text_line($model, 'catalogCategory') ?>
 
 <div class="row control-group">
     <div class="col-md-6">

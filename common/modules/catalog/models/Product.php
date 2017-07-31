@@ -3,8 +3,9 @@
 namespace common\modules\catalog\models;
 
 use Yii;
+use yii\behaviors\AttributeBehavior;
 use yii\helpers\{
-    ArrayHelper
+    ArrayHelper, Inflector
 };
 use thread\app\base\models\ActiveRecord;
 use common\modules\catalog\Catalog;
@@ -71,7 +72,16 @@ class Product extends ActiveRecord
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias);
+                },
+            ],
         ]);
     }
 
@@ -115,7 +125,7 @@ class Product extends ActiveRecord
             ],
             [['country_code', 'user', 'alias', 'alias_old', 'default_title'], 'string', 'max' => 255],
             [['article'], 'string', 'max' => 100],
-            [['alias', 'article'], 'unique'],
+            [['alias'], 'unique'],
             [['collections_id', 'position'], 'default', 'value' => '0']
         ];
     }
@@ -183,14 +193,9 @@ class Product extends ActiveRecord
             'factory_price' => 'Цена фибрики',
             'price_from' => 'Цена от',
             'removed' => 'Снят с производства',
-            //'catalogGroups' => 'Категории',
             'factory_id' => 'Фабрика',
             'collections_id' => 'Коллекция',
             'catalog_type_id' => 'Тип предмета',
-            //'samples' => 'Отделка',
-            //'compositionManyItems1' => 'Товары',
-            //'factoryFilesPrice' => 'Прайсы цен',
-            //'factoryFilesCatalog' => 'Прайсы каталогов',
             'popular' => 'Популярное',
             'user' => 'Кто изменил',
             'picpath' => 'picpath',
@@ -221,7 +226,7 @@ class Product extends ActiveRecord
 
         $this->user_id = Yii::$app->getUser()->id;
         $userIdentity = Yii::$app->getUser()->getIdentity();
-        $this->user = $userIdentity->first_name . ' ' . $userIdentity->last_name;
+        $this->user = $userIdentity->profile->first_name . ' ' . $userIdentity->profile->last_name;
 
         return parent::beforeSave($insert);
     }
@@ -260,7 +265,12 @@ class Product extends ActiveRecord
         return $image;
     }
 
-    public function getCatalogGroups()
+    public function getCatalogCategory()
+    {
+        return null;
+    }
+
+    public function getSpecificationRelProduct()
     {
         return null;
     }

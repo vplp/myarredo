@@ -162,7 +162,7 @@ class Tinymce extends InputWidget
             'menubar' => true,
             'statusbar' => false,
             //importcss
-            'plugins' => ['contextmenu advlist autolink link image lists hr table responsivefilemanager media'],
+            'plugins' => ['contextmenu advlist autolink link image lists hr table media'],
             'toolbar' => 'bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | fontsizeselect | bullist numlist | link unlink image media | hr table blockquote | pagebreak | removeformat '
         ];
     }
@@ -180,7 +180,7 @@ class Tinymce extends InputWidget
             'menubar' => false,
             'statusbar' => false,
             //importcss
-            'plugins' => ['contextmenu responsivefilemanager'],
+            'plugins' => ['contextmenu'],
             'toolbar' => 'bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist | hr table | removeformat '
         ];
     }
@@ -197,7 +197,7 @@ class Tinymce extends InputWidget
             'height' => '600px',
             'menubar' => true,
             'statusbar' => true,
-            'plugins' => ['contextmenu advlist autolink link image lists hr table pagebreak code responsivefilemanager media'],
+            'plugins' => ['contextmenu advlist autolink link image lists hr table pagebreak code media'],
             'toolbar' => 'bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | fontsizeselect | bullist numlist | link unlink image media | hr table blockquote | pagebreak code | removeformat '
         ];
     }
