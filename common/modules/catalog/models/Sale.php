@@ -108,13 +108,24 @@ class Sale extends ActiveRecord
                 'in',
                 'range' => array_keys(static::statusKeyRange())
             ],
-            [['currency'], 'in', 'range' => ['EUR','RUB']],
+            [['currency'], 'in', 'range' => array_keys(static::currencyRange())],
             [['country_code', 'alias', 'factory_name'], 'string', 'max' => 255],
             [['article'], 'string', 'max' => 100],
             [['alias'], 'unique'],
             [['position'], 'default', 'value' => '0'],
             [['currency'], 'default', 'value' => 'EUR'],
             [['country_code'], 'default', 'value' => '//']
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function currencyRange()
+    {
+        return [
+            'EUR' => 'EUR',
+            'RUB' => 'RUB'
         ];
     }
 
@@ -169,6 +180,7 @@ class Sale extends ActiveRecord
             'article' => 'Артикул',
             'price' => 'Цена',
             'price_new' => 'Новая цена',
+            'currency' => 'Валюта',
             'volume' => 'Объем',
             'on_main' => 'На главную',
             'position' => Yii::t('app', 'Position'),

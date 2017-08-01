@@ -35,7 +35,7 @@ use backend\modules\catalog\models\{
         Types::dropDownList(), ['prompt' => '---' . Yii::t('app', 'Choose catalog type') . '---']
     ) ?>
 
-<?= $form->text_line($model, 'catalogGroups') ?>
+<?= $form->text_line($model, 'catalogCategory') ?>
 
 <div class="row control-group">
     <div class="col-md-6">

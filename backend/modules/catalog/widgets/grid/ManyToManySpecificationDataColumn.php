@@ -8,9 +8,11 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 /**
- * Class CheckboxActionColumn
+ * Class ManyToManySpecificationDataColumn
+ *
+ * @package backend\modules\catalog\widgets\grid
  */
-class AjaxManyToManySpecificationRelProductColumn extends DataColumn
+class ManyToManySpecificationDataColumn extends DataColumn
 {
     public $contentOptions = [
         'class' => 'text-center',

@@ -20,7 +20,7 @@ use backend\themes\defaults\widgets\Tabs;
             ])
         ],
         [
-            'label' => 'Текст',
+            'label' => Yii::t('page', 'Page'),
             'content' => $this->render('parts/_page', [
                 'form' => $form,
                 'model' => $model,

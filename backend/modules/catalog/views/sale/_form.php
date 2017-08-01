@@ -20,6 +20,22 @@ use backend\themes\defaults\widgets\Tabs;
             ])
         ],
         [
+            'label' => 'Характеристики',
+            'content' => $this->render('parts/_specification', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
+        [
+            'label' => Yii::t('page', 'Page'),
+            'content' => $this->render('parts/_page', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang,
+            ])
+        ],
+        [
             'label' => Yii::t('app', 'Image'),
             'content' => $this->render('parts/_image', [
                 'form' => $form,

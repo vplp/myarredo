@@ -28,16 +28,28 @@ use backend\modules\catalog\models\{
 
 <?= $form->text_line($model, 'factory_name') ?>
 
-<?= $form->text_editor_lang($modelLang, 'description') ?>
-<?= $form->text_editor_lang($modelLang, 'content') ?>
+<div class="row control-group">
+    <div class="col-md-3">
+        <?= $form->text_line($model, 'price') ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->text_line($model, 'price_new') ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->field($model, 'currency')->dropDownList($model::currencyRange()); ?>
+    </div>
+</div>
 
+<?= $form->text_line($model, 'country_code') ?>
 
 <div class="row control-group">
     <div class="col-md-3">
         <?= $form->switcher($model, 'published') ?>
     </div>
     <div class="col-md-3">
+        <?= $form->switcher($model, 'on_main') ?>
+    </div>
+    <div class="col-md-3">
         <?= $form->text_line($model, 'position') ?>
     </div>
 </div>
-
