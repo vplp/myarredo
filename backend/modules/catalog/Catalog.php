@@ -57,6 +57,11 @@ class Catalog extends \common\modules\catalog\Catalog
                     'position' => 7,
                     'url' => ['/catalog/factory/list'],
                 ],
+                [
+                    'name' => 'Sale',
+                    'position' => 7,
+                    'url' => ['/catalog/sale/list'],
+                ],
             ]
     ];
 }

@@ -5,9 +5,9 @@ use yii\db\Migration;
 use common\modules\catalog\Catalog;
 
 /**
- * Class m170721_121922_update_catalog_catalog_many_group_table
+ * Class m170721_121922_update_catalog_item_many_group_table
  */
-class m170721_121922_update_catalog_catalog_many_group_table extends Migration
+class m170721_121922_update_catalog_item_many_group_table extends Migration
 {
     /**
      * table name

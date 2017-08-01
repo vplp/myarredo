@@ -32,17 +32,17 @@ use common\modules\catalog\Catalog;
  * @property float $price_from
  * @property float $retail_price
  * @property string $default_title
- * @property int $popular
- * @property int $novelty
- * @property int $bestseller
- * @property int $onmain
- * @property int $created_at
- * @property int $updated_at
- * @property int $published
- * @property int $deleted
- * @property int $removed
- * @property int $moderation
- * @property int $position
+ * @property integer $popular
+ * @property integer $novelty
+ * @property integer $bestseller
+ * @property integer $onmain
+ * @property integer $created_at
+ * @property integer $updated_at
+ * @property integer $published
+ * @property integer $deleted
+ * @property integer $removed
+ * @property integer $moderation
+ * @property integer $position
  *
  * @property ProductLang $lang
  *
@@ -126,7 +126,8 @@ class Product extends ActiveRecord
             [['country_code', 'user', 'alias', 'alias_old', 'default_title'], 'string', 'max' => 255],
             [['article'], 'string', 'max' => 100],
             [['alias'], 'unique'],
-            [['collections_id', 'position'], 'default', 'value' => '0']
+            [['collections_id', 'position'], 'default', 'value' => '0'],
+            [['country_code'], 'default', 'value' => '//']
         ];
     }
 
