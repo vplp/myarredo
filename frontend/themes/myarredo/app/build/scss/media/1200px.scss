@@ -1,0 +1,91 @@
+@media screen and (max-width: 1200px) {
+  header #main-menu a {
+    font-size: 14px;
+    padding: 15px 5px;
+  }
+  header .logo {
+    width: 220px;
+    min-width: 220px;
+  }
+  .rec-products {
+    .img-cont {
+      height: 200px;
+    }
+    .add-item-text {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      padding: 0 8px;
+    }
+  }
+  .cat-prod .one-prod-tile {
+    width: 48%;
+    .img-cont {
+      height: 180px;
+    }
+    .img-cont {
+      height: 230px;
+    }
+  }
+
+  .filters {
+    .list-item {
+      .one-item {
+        padding: 5px 0 5px 15px;
+        font-size: 13px;
+      }
+    }
+    .one-filter {
+      padding: 15px;
+      .reset {
+        margin-bottom: 15px;
+      }
+    }
+  }
+  .factory-stripe .letter-wrap .letter {
+    width: 100px;
+    height: 100px;
+    font-size: 65px;
+    margin-right: 40px;
+  }
+  .factory-tile {
+    &>.flex {
+      flex-direction: column;
+    }
+    h3 {
+      margin: 15px 0 10px 0;
+      display: flex;
+      align-items: center;
+    }
+    .assortment {
+      padding: 0;
+    }
+    .logo-img {
+      display: flex;
+      align-items: center;
+      width: 70%;
+    }
+  }
+  .catalog-wrap .one-prod-tile {
+    width: 24%;
+    .img-cont {
+      height: 175px;
+    }
+    &.last {
+      font-size: 14px;
+      div {
+        font-size: 20px;
+      }
+    }
+  }
+  .sign-in-page {
+    .col-md-4 {
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-bottom: 20px;
+    }
+    .input-group {
+      padding-left: 0;
+    }
+  }
+}

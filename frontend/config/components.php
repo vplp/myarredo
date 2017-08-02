@@ -23,10 +23,10 @@ return [
     'view' => [
         'class' => \thread\app\web\View::class,
         'theme' => [
-            'basePath' => '@app/themes/defaults',
-            'baseUrl' => '@web/themes/defaults',
+            'basePath' => '@app/themes/myarredo',
+            'baseUrl' => '@web/themes/myarredo',
             'pathMap' => [
-                '@app/layouts' => '@app/themes/defaults/layouts',
+                '@app/layouts' => '@app/themes/myarredo/layouts',
             ],
         ],
     ],
