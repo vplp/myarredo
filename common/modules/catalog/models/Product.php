@@ -204,6 +204,8 @@ class Product extends ActiveRecord
             'deleted' => Yii::t('app', 'Deleted'),
             'category' => Yii::t('app', 'Category'),
             'samples' => Yii::t('app', 'Samples'),
+            'factoryCatalogsFiles' => Yii::t('app', 'Factory catalogs files'),
+            'factoryPricesFiles' => Yii::t('app', 'Factory prices files'),
         ];
     }
 
@@ -289,8 +291,23 @@ class Product extends ActiveRecord
         return $this->hasOne(Factory::class, ['id' => 'factory_id']);
     }
 
-    public function getSpecificationRelProduct()
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactoryCatalogsFiles()
     {
-        return null;
+        return $this
+            ->hasMany(FactoryFile::class, ['id' => 'factory_file_id'])
+            ->viaTable(ProductRelFactoryCatalogsFiles::tableName(), ['catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactoryPricesFiles()
+    {
+        return $this
+            ->hasMany(FactoryFile::class, ['id' => 'factory_file_id'])
+            ->viaTable(ProductRelFactoryPricesFiles::tableName(), ['catalog_item_id' => 'id']);
     }
 }
