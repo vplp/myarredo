@@ -45,6 +45,8 @@ use common\modules\catalog\Catalog;
  * @property integer $position
  *
  * @property ProductLang $lang
+ * @property ProductRelCategory[] $category
+ * @property Factory $factory
  *
  * @package common\modules\catalog\models
  */
@@ -209,6 +211,7 @@ class Product extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'category' => Yii::t('app', 'Category'),
         ];
     }
 
@@ -266,9 +269,22 @@ class Product extends ActiveRecord
         return $image;
     }
 
-    public function getCatalogCategory()
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
     {
-        return null;
+        return $this
+            ->hasMany(Category::class, ['id' => 'group_id'])
+            ->viaTable(ProductRelCategory::tableName(), ['catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactory()
+    {
+        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
     }
 
     public function getSpecificationRelProduct()

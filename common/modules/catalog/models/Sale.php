@@ -36,6 +36,8 @@ use common\modules\catalog\Catalog;
  * @property integer $on_main
  *
  * @property SaleLang $lang
+ * @property SaleRelCategory[] $category
+ * @property Factory $factory
  *
  * @package common\modules\catalog\models
  */
@@ -172,7 +174,7 @@ class Sale extends ActiveRecord
             'user_id' => 'User',
             'user_city_id' => 'User city id',
             'catalog_type_id' => 'Предмет',
-            'factory_id' => 'Фабрика',
+            'factory_id' => Yii::t('app', 'Factory'),
             'factory_name' => 'Фабрика (если нету в списке)',
             'gallery_id' => 'Gallery',
             'picpath' => 'picpath',
@@ -188,6 +190,7 @@ class Sale extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'category' => Yii::t('app', 'Category'),
         ];
     }
 
@@ -218,5 +221,23 @@ class Sale extends ActiveRecord
     public function getLang()
     {
         return $this->hasOne(SaleLang::class, ['rid' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this
+            ->hasMany(Category::class, ['id' => 'group_id'])
+            ->viaTable(SaleRelCategory::tableName(), ['sale_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactory()
+    {
+        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
     }
 }

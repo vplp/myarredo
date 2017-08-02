@@ -1,5 +1,7 @@
 <?php
 
+use kartik\widgets\Select2;
+//
 use backend\modules\catalog\models\Factory;
 
 /**
@@ -13,9 +15,10 @@ use backend\modules\catalog\models\Factory;
 
 <?= $form
     ->field($model, 'factory_id')
-    ->dropDownList(
-        Factory::dropDownList(), ['prompt' => '---' . Yii::t('app', 'Choose factory') . '---']
-    ) ?>
+    ->widget(Select2::classname(), [
+        'data' => Factory::dropDownList(),
+        'options' => ['placeholder' => Yii::t('app', 'Choose factory')],
+    ])  ?>
 
 <div class="row control-group">
     <div class="col-md-3">

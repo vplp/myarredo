@@ -27,6 +27,7 @@ echo GridView::widget(
                 'value' => 'key',
                 'filter' => GridViewFilter::selectOne($filter, 'key', Source::listFromTo('key', 'key')),
             ],
+            'message.translation',
             [
                 'class' => ActionCheckboxColumn::class,
                 'attribute' => 'published',

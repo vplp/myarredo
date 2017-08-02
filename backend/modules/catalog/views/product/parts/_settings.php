@@ -1,7 +1,9 @@
 <?php
 
+use kartik\widgets\Select2;
+//
 use backend\modules\catalog\models\{
-    Factory, Collection, Types
+    Category, Factory, Collection, Types
 };
 
 /**
@@ -19,23 +21,34 @@ use backend\modules\catalog\models\{
 
 <?= $form
     ->field($model, 'factory_id')
-    ->dropDownList(
-        Factory::dropDownList(), ['prompt' => '---' . Yii::t('app', 'Choose factory') . '---']
-    ) ?>
+    ->widget(Select2::classname(), [
+        'data' => Factory::dropDownList(),
+        'options' => ['placeholder' => Yii::t('app', 'Choose factory')],
+    ]) ?>
 
 <?= $form
     ->field($model, 'collections_id')
-    ->dropDownList(
-        Collection::dropDownList(), ['prompt' => '---' . Yii::t('app', 'Choose collection') . '---']
-    ) ?>
+    ->widget(Select2::classname(), [
+        'data' => Collection::dropDownList(),
+        'options' => ['placeholder' => Yii::t('app', 'Choose collection')],
+    ]) ?>
 
 <?= $form
     ->field($model, 'catalog_type_id')
-    ->dropDownList(
-        Types::dropDownList(), ['prompt' => '---' . Yii::t('app', 'Choose catalog type') . '---']
-    ) ?>
+    ->widget(Select2::classname(), [
+        'data' => Types::dropDownList(),
+        'options' => ['placeholder' => Yii::t('app', 'Choose catalog type')],
+    ]) ?>
 
-<?= $form->text_line($model, 'catalogCategory') ?>
+<?= $form
+    ->field($model, 'category')
+    ->widget(Select2::classname(), [
+        'data' => Category::dropDownList(),
+        'options' => [
+            'placeholder' => Yii::t('app', 'Choose category'),
+            'multiple' => true
+        ],
+    ]) ?>
 
 <div class="row control-group">
     <div class="col-md-6">
@@ -57,9 +70,6 @@ use backend\modules\catalog\models\{
     </div>
     <div class="col-md-3">
         <?= $form->text_line($model, 'position') ?>
-    </div>
-    <div class="col-md-3">
-
     </div>
 </div>
 

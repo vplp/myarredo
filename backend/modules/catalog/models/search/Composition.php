@@ -10,7 +10,7 @@ use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use backend\modules\catalog\Catalog;
 use backend\modules\catalog\models\{
-    Composition as CompositionModel, CompositionLang
+    ProductRelCategory, Composition as CompositionModel, CompositionLang
 };
 
 /**
@@ -21,6 +21,7 @@ use backend\modules\catalog\models\{
 class Composition extends CompositionModel implements BaseBackendSearchModel
 {
     public $title;
+    public $category;
 
     /**
      * @return array
@@ -28,6 +29,7 @@ class Composition extends CompositionModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
+            [['category', 'factory_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -62,10 +64,17 @@ class Composition extends CompositionModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'factory_id' => $this->factory_id
+        ]);
+        //
         $query->andFilterWhere(['like', 'alias', $this->alias])
             ->andFilterWhere(['like', 'published', $this->published]);
         //
         $query->andFilterWhere(['like', CompositionLang::tableName() . '.title', $this->title]);
+        //
+        $query->innerJoinWith(["category"])->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $this->category]);
 
         return $dataProvider;
     }

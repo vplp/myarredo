@@ -12,7 +12,7 @@ use backend\modules\catalog\models\Specification;
 <?= $form
     ->field($model, 'parent_id')
     ->dropDownList(
-        Specification::dropDownListParents(0), ['prompt' => '---' . Yii::t('app', 'Choose factory') . '---']
+        [0 => '--' . Yii::t('app', 'Parent') . '--'] + Specification::dropDownListParents(0)
     ) ?>
 <?= $form->text_line_lang($modelLang, 'title') ?>
 <?= $form->field($model, 'alias')->input('text', ['disabled' => ($model->readonly == '1') ? true : false]) ?>
@@ -27,4 +27,3 @@ use backend\modules\catalog\models\Specification;
         <?= $form->switcher($model, 'type') ?>
     </div>
 </div>
-

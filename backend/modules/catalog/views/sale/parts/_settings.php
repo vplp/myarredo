@@ -1,7 +1,9 @@
 <?php
 
+use kartik\widgets\Select2;
+//
 use backend\modules\catalog\models\{
-    Factory, Collection, Types
+    Category, Factory, Types
 };
 
 /**
@@ -16,15 +18,27 @@ use backend\modules\catalog\models\{
 
 <?= $form
     ->field($model, 'catalog_type_id')
-    ->dropDownList(
-        Types::dropDownList(), ['prompt' => '---' . Yii::t('app', 'Choose catalog type') . '---']
-    ) ?>
+    ->widget(Select2::classname(), [
+        'data' => Types::dropDownList(),
+        'options' => ['placeholder' => Yii::t('app', 'Choose catalog type')],
+    ]) ?>
 
 <?= $form
     ->field($model, 'factory_id')
-    ->dropDownList(
-        Factory::dropDownList(), ['prompt' => '---' . Yii::t('app', 'Choose factory') . '---']
-    ) ?>
+    ->widget(Select2::classname(), [
+        'data' => Factory::dropDownList(),
+        'options' => ['placeholder' => Yii::t('app', 'Choose factory')],
+    ]) ?>
+
+<?= $form
+    ->field($model, 'category')
+    ->widget(Select2::classname(), [
+        'data' => Category::dropDownList(),
+        'options' => [
+            'placeholder' => Yii::t('app', 'Choose category'),
+            'multiple' => true
+        ],
+    ]) ?>
 
 <?= $form->text_line($model, 'factory_name') ?>
 

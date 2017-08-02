@@ -9,7 +9,7 @@ use yii\base\Model;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use backend\modules\catalog\models\{
-    Sale as SaleModel, SaleLang
+    SaleRelCategory, Sale as SaleModel, SaleLang
 };
 
 /**
@@ -20,6 +20,7 @@ use backend\modules\catalog\models\{
 class Sale extends SaleModel implements BaseBackendSearchModel
 {
     public $title;
+    public $category;
 
     /**
      * @return array
@@ -27,6 +28,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
+            [['category', 'factory_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -60,10 +62,17 @@ class Sale extends SaleModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'factory_id' => $this->factory_id
+        ]);
+        //
         $query->andFilterWhere(['like', 'alias', $this->alias])
             ->andFilterWhere(['like', 'published', $this->published]);
-
+        //
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);
+        //
+        $query->innerJoinWith(["category"])->andFilterWhere([SaleRelCategory::tableName() . '.group_id' => $this->category]);
 
         return $dataProvider;
     }
