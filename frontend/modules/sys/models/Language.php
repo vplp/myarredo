@@ -2,8 +2,6 @@
 
 namespace frontend\modules\sys\models;
 
-use Yii;
-//
 use common\modules\sys\models\Language as CommonLanguageModel;
 
 class Language extends CommonLanguageModel
@@ -14,7 +12,6 @@ class Language extends CommonLanguageModel
      */
     public function getLanguages():array
     {
-        return self::findBase()->enabled()->all();
+        return self::findBase()->enabled()->asArray()->all();
     }
-
 }

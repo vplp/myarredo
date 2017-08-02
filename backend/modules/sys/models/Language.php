@@ -2,19 +2,24 @@
 
 namespace backend\modules\sys\models;
 
-use Yii;
-//
 use common\modules\sys\models\Language as CommonLanguageModel;
 
 /**
  * Class Language
  *
  * @package backend\modules\sys\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Language extends CommonLanguageModel
 {
+    /**
+     * @return mixed
+     * выводим только те языки, которые опубликованы
+     */
+    public function getLanguages():array
+    {
+        return self::findBase()->enabled()->asArray()->all();
+    }
+
     /**
      * @param $params
      * @return \yii\data\ActiveDataProvider

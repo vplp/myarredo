@@ -5,6 +5,10 @@
  * @copyright (c) 2016, Thread
  */
 return [
+    'languages' => [
+        'class' => \thread\app\model\Languages::class,
+        'languageModel' => \frontend\modules\sys\models\Language::class,
+    ],
     'user' => [
         'enableAutoLogin' => false,
     ],

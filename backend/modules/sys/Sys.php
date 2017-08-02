@@ -52,7 +52,7 @@ class Sys extends \common\modules\sys\Sys
                 'name' => 'Log',
                 'icon' => 'fa-tasks',
                 'url' => ['/sys/logbook/logbook/list'],
-            ]
+            ],
         ]
     ];
 
