@@ -24,6 +24,7 @@ use common\modules\catalog\Catalog;
  * @property integer $deleted
  *
  * @property CategoryLang $lang
+ * @property TypesRelCategory[] $types
  *
  * @package common\modules\catalog\models
  */
@@ -118,6 +119,16 @@ class Category extends ActiveRecord
     public function getLang()
     {
         return $this->hasOne(CategoryLang::class, ['rid' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTypes()
+    {
+        return $this
+            ->hasMany(Types::class, ['id' => 'type_id'])
+            ->viaTable(TypesRelCategory::tableName(), ['group_id' => 'id']);
     }
 
     /**

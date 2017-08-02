@@ -40,10 +40,15 @@ use backend\modules\catalog\models\{
         'options' => ['placeholder' => Yii::t('app', 'Choose catalog type')],
     ]) ?>
 
+<p>Категории напрямую зависит от выбранного типа предмета.<br>
+    Если по выбраному типу предмета отсутсвует необходимая категория, зайдите в редактирование
+    необходимой категории и добавте зависимость с предметом.
+</p>
+
 <?= $form
     ->field($model, 'category')
     ->widget(Select2::classname(), [
-        'data' => Category::dropDownList(),
+        'data' => Category::dropDownList(['type_id' => $model['catalog_type_id']]),
         'options' => [
             'placeholder' => Yii::t('app', 'Choose category'),
             'multiple' => true
@@ -51,10 +56,10 @@ use backend\modules\catalog\models\{
     ]) ?>
 
 <div class="row control-group">
-    <div class="col-md-6">
+    <div class="col-md-3">
         <?= $form->text_line($model, 'factory_price') ?>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-3">
         <?= $form->text_line($model, 'price_from') ?>
     </div>
 </div>

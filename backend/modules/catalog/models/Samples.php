@@ -15,11 +15,23 @@ class Samples extends CommonSamplesModel implements BaseBackendModel
 {
     /**
      * Backend form drop down list
+     *
+     * @param array $option
      * @return array
      */
-    public static function dropDownList()
+    public static function dropDownList($option = [])
     {
-        return ArrayHelper::map(self::findBase()->undeleted()->all(), 'id', 'lang.title');
+        $query = self::findBase();
+
+        if (isset($option['factory_id'])) {
+            $query->andFilterWhere([
+                'factory_id' => $option['factory_id']
+            ]);
+        }
+
+        $data = $query->undeleted()->all();
+
+        return ArrayHelper::map($data, 'id', 'lang.title');
     }
 
     /**

@@ -17,11 +17,22 @@ class Category extends CommonCategoryModel implements BaseBackendModel
 
     /**
      * Backend form drop down list
+     *
+     * @param array $option
      * @return array
      */
-    public static function dropDownList()
+    public static function dropDownList($option = [])
     {
-        return ArrayHelper::map(self::findBase()->undeleted()->all(), 'id', 'lang.title');
+        $query = self::findBase();
+
+        if (isset($option['type_id'])) {
+            $query->innerJoinWith(["types"])
+                ->andFilterWhere([Types::tableName() . '.id' => $option['type_id']]);
+        }
+
+        $data = $query->undeleted()->all();
+
+        return ArrayHelper::map($data, 'id', 'lang.title');
     }
 
     /**

@@ -45,6 +45,7 @@ use common\modules\catalog\Catalog;
  *
  * @property ProductLang $lang
  * @property ProductRelCategory[] $category
+ * @property ProductRelSamples[] $samples
  * @property Factory $factory
  *
  * @package common\modules\catalog\models
@@ -202,6 +203,7 @@ class Product extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
             'category' => Yii::t('app', 'Category'),
+            'samples' => Yii::t('app', 'Samples'),
         ];
     }
 
@@ -267,6 +269,16 @@ class Product extends ActiveRecord
         return $this
             ->hasMany(Category::class, ['id' => 'group_id'])
             ->viaTable(ProductRelCategory::tableName(), ['catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSamples()
+    {
+        return $this
+            ->hasMany(Samples::class, ['id' => 'samples_id'])
+            ->viaTable(ProductRelSamples::tableName(), ['catalog_item_id' => 'id']);
     }
 
     /**
