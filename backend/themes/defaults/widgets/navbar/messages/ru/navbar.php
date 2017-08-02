@@ -35,6 +35,7 @@ return [
     'Payment Methods' => 'Методы оплаты',
     'Delivery Methods' => 'Методы доставки',
     'Messages' => 'Надписи интерфейса',
+    'Translation' => 'Переводы',
     'Catalog' => 'Каталог',
     'Category' => 'Категории',
     'Types' => 'Типы предметов',

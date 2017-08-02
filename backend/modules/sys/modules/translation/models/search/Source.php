@@ -45,7 +45,7 @@ class Source extends SourceModel implements BaseBackendSearchModel
     public function baseSearch($query, $params)
     {
         /** @var Translation $module */
-        $module = Yii::$app->getModule('translation');
+        $module = Yii::$app->getModule('sys/translation');
         $dataProvider = new ActiveDataProvider(
             [
                 'query' => $query,
