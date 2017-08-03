@@ -2,7 +2,9 @@
 
 namespace backend\modules\catalog\controllers;
 
+use Yii;
 use yii\helpers\ArrayHelper;
+use yii\web\Response;
 //
 use thread\actions\fileapi\{
     DeleteAction, UploadAction
@@ -12,7 +14,7 @@ use thread\app\base\controllers\BackendController;
 use thread\actions\AttributeSwitch;
 //
 use backend\modules\catalog\models\{
-    Product, ProductLang, search\Product as filterProduct
+    Collection, Category, Product, ProductLang, search\Product as filterProduct
 };
 
 /**
@@ -73,5 +75,35 @@ class ProductController extends BackendController
                 'path' => $this->module->getCategoryUploadPath()
             ],
         ]);
+    }
+
+    /**
+     * @return array
+     */
+    public function actionAjaxGetCollection()
+    {
+        $response = [];
+        Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+        if (Yii::$app->request->isAjax && $factory_id = Yii::$app->request->post('factory_id')) {
+            $response['collection'] = Collection::dropDownList(['factory_id' => $factory_id]);
+        }
+
+        return $response;
+    }
+
+    /**
+     * @return array
+     */
+    public function actionAjaxGetCategory()
+    {
+        $response = [];
+        Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+        if (Yii::$app->request->isAjax && $type_id = Yii::$app->request->post('type_id')) {
+            $response['category'] = Category::dropDownList(['type_id' => $type_id]);
+        }
+
+        return $response;
     }
 }

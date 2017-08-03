@@ -5,6 +5,7 @@ use kartik\widgets\Select2;
 use backend\modules\catalog\models\{
     Category, Factory, Collection, Types
 };
+use yii\web\JsExpression;
 
 /**
  * @var \backend\modules\catalog\models\Product $model
@@ -26,6 +27,28 @@ use backend\modules\catalog\models\{
         'options' => ['placeholder' => Yii::t('app', 'Choose factory')],
     ]) ?>
 
+<?php
+$url = \yii\helpers\Url::toRoute('/catalog/product/ajax-get-collection');
+$script = <<<JS
+$('#product-factory_id').on('change', function () {
+    $.post('$url',
+        {
+            _csrf: $('#token').val(),
+            factory_id: $(this).find('option:selected').val()
+        }
+    ).done(function (data) {
+        var collection = '';
+        $.each(data.collection, function( key, value ) {
+           collection += '<option value="'+ key +'">' + value + '</option>';
+        });
+        $('#product-collections_id').html(collection);
+    });
+});
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);
+?>
+
 <p>
     Коллекция напрямую зависит от выбранной фабрики.<br>
     Если по выбраной фабрики отсутсвует необходимая Коллекция, зайдите в редактирование
@@ -45,6 +68,28 @@ use backend\modules\catalog\models\{
         'data' => Types::dropDownList(),
         'options' => ['placeholder' => Yii::t('app', 'Choose catalog type')],
     ]) ?>
+
+<?php
+$url = \yii\helpers\Url::toRoute('/catalog/product/ajax-get-category');
+$script = <<<JS
+$('#product-catalog_type_id').on('change', function () {
+    $.post('$url',
+        {
+            _csrf: $('#token').val(),
+            type_id: $(this).find('option:selected').val()
+        }
+    ).done(function (data) {
+        var category = '';
+        $.each(data.category, function( key, value ) {
+           category += '<option value="'+ key +'">' + value + '</option>';
+        });
+        $('#product-category_ids').html(category);
+    });
+});
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);
+?>
 
 <p>
     Категории напрямую зависит от выбранного типа предмета.<br>

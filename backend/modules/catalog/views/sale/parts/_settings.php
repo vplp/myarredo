@@ -30,6 +30,28 @@ use backend\modules\catalog\models\{
         'options' => ['placeholder' => Yii::t('app', 'Choose catalog type')],
     ]) ?>
 
+<?php
+$url = \yii\helpers\Url::toRoute('/catalog/product/ajax-get-category');
+$script = <<<JS
+$('#sale-catalog_type_id').on('change', function () {
+    $.post('$url',
+        {
+            _csrf: $('#token').val(),
+            type_id: $(this).find('option:selected').val()
+        }
+    ).done(function (data) {
+        var category = '';
+        $.each(data.category, function( key, value ) {
+           category += '<option value="'+ key +'">' + value + '</option>';
+        });
+        $('#sale-category_ids').html(category);
+    });
+});
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);
+?>
+
 <p>
     Категории напрямую зависит от выбранного типа предмета.<br>
     Если по выбраному типу предмета отсутсвует необходимая категория, зайдите в редактирование

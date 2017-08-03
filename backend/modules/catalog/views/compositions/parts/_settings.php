@@ -24,6 +24,28 @@ use backend\modules\catalog\models\{
         'options' => ['placeholder' => Yii::t('app', 'Choose factory')],
     ]) ?>
 
+<?php
+$url = \yii\helpers\Url::toRoute('/catalog/product/ajax-get-collection');
+$script = <<<JS
+$('#composition-factory_id').on('change', function () {
+    $.post('$url',
+        {
+            _csrf: $('#token').val(),
+            factory_id: $(this).find('option:selected').val()
+        }
+    ).done(function (data) {
+        var collection = '';
+        $.each(data.collection, function( key, value ) {
+           collection += '<option value="'+ key +'">' + value + '</option>';
+        });
+        $('#composition-collections_id').html(collection);
+    });
+});
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);
+?>
+
 <p>
     Коллекция напрямую зависит от выбранной фабрики.<br>
     Если по выбраной фабрики отсутсвует необходимая Коллекция, зайдите в редактирование

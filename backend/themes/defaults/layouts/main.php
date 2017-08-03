@@ -23,6 +23,7 @@ $this->beginPage()
     <link rel="icon" type="image/png" href="favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->head(); ?>
+    <input type="hidden" id="token" value="<?= Yii::$app->request->getCsrfToken() ?>">
 </head>
 <body class="html">
 <?php $this->beginBody() ?>
