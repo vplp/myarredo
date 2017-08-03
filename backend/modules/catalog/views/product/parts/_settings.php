@@ -40,13 +40,14 @@ use backend\modules\catalog\models\{
         'options' => ['placeholder' => Yii::t('app', 'Choose catalog type')],
     ]) ?>
 
-<p>Категории напрямую зависит от выбранного типа предмета.<br>
+<p>
+    Категории напрямую зависит от выбранного типа предмета.<br>
     Если по выбраному типу предмета отсутсвует необходимая категория, зайдите в редактирование
     необходимой категории и добавте зависимость с предметом.
 </p>
 
 <?= $form
-    ->field($model, 'category')
+    ->field($model, 'category_ids')
     ->widget(Select2::classname(), [
         'data' => Category::dropDownList(['type_id' => $model['catalog_type_id']]),
         'options' => [

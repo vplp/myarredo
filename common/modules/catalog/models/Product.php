@@ -6,7 +6,11 @@ use Yii;
 use yii\helpers\{
     ArrayHelper
 };
+//
+use voskobovich\behaviors\ManyToManyBehavior;
+//
 use thread\app\base\models\ActiveRecord;
+//
 use common\modules\catalog\Catalog;
 
 /**
@@ -74,7 +78,15 @@ class Product extends ActiveRecord
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'category_ids' => 'category',
+                    'samples_ids' => 'samples',
+                    'factory_catalogs_files_ids' => 'factoryCatalogsFiles',
+                    'factory_prices_files_ids' => 'factoryPricesFiles',
+                ],
+            ],
         ]);
     }
 
@@ -119,8 +131,19 @@ class Product extends ActiveRecord
             [['country_code', 'user', 'alias', 'alias_old', 'default_title'], 'string', 'max' => 255],
             [['article'], 'string', 'max' => 100],
             [['alias'], 'unique'],
-            [['collections_id', 'position'], 'default', 'value' => '0'],
-            [['country_code'], 'default', 'value' => '//']
+            [['catalog_type_id', 'collections_id', 'position'], 'default', 'value' => '0'],
+            [['country_code'], 'default', 'value' => '//'],
+            [['article', 'alias_old'], 'default', 'value' => ''],
+            [
+                [
+                    'category_ids',
+                    'samples_ids',
+                    'factory_catalogs_files_ids',
+                    'factory_prices_files_ids'
+                ],
+                'each',
+                'rule' => ['integer']
+            ],
         ];
     }
 
@@ -167,7 +190,11 @@ class Product extends ActiveRecord
                 'alias',
                 'alias_old',
                 'default_title',
-                'article'
+                'article',
+                'category_ids',
+                'samples_ids',
+                'factory_catalogs_files_ids',
+                'factory_prices_files_ids'
             ],
         ];
     }
@@ -202,10 +229,10 @@ class Product extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
-            'category' => Yii::t('app', 'Category'),
-            'samples' => Yii::t('app', 'Samples'),
-            'factoryCatalogsFiles' => Yii::t('app', 'Factory catalogs files'),
-            'factoryPricesFiles' => Yii::t('app', 'Factory prices files'),
+            'category_ids' => Yii::t('app', 'Category'),
+            'samples_ids' => Yii::t('app', 'Samples'),
+            'factory_catalogs_files_ids' => Yii::t('app', 'Factory catalogs files'),
+            'factory_prices_files_ids' => Yii::t('app', 'Factory prices files'),
         ];
     }
 

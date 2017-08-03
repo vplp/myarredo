@@ -1,5 +1,8 @@
 <?php
 
+use yii\helpers\{
+    Html
+};
 use thread\app\bootstrap\{
     ActiveForm
 };
@@ -9,6 +12,9 @@ use backend\themes\defaults\widgets\Tabs;
 
 <?php $form = ActiveForm::begin(); ?>
 <?= $form->submit($model, $this) ?>
+
+<?= Html::activeHiddenInput($model, 'is_composition', ['value' => 1]) ?>
+
 <?= Tabs::widget([
     'items' => [
         [

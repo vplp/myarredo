@@ -31,7 +31,7 @@ use backend\modules\catalog\models\{
     ]) ?>
 
 <?= $form
-    ->field($model, 'category')
+    ->field($model, 'category_ids')
     ->widget(Select2::classname(), [
         'data' => Category::dropDownList(),
         'options' => [

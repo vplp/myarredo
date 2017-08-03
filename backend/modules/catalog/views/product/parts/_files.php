@@ -17,7 +17,7 @@ use backend\modules\catalog\models\FactoryFile;
 <?php if ($model->factory_id): ?>
 
     <?= $form
-        ->field($model, 'factoryCatalogsFiles')
+        ->field($model, 'factory_catalogs_files_ids')
         ->widget(Select2::classname(), [
             'data' => FactoryFile::dropDownList([
                 'factory_id' => $model['factory_id'],
@@ -30,7 +30,7 @@ use backend\modules\catalog\models\FactoryFile;
         ]) ?>
 
     <?= $form
-        ->field($model, 'factoryPricesFiles')
+        ->field($model, 'factory_prices_files_ids')
         ->widget(Select2::classname(), [
             'data' => FactoryFile::dropDownList([
                 'factory_id' => $model['factory_id'],

@@ -6,15 +6,15 @@ use thread\app\base\models\ActiveRecord;
 use common\modules\catalog\Catalog;
 
 /**
- * Class SpecificationRelSale
+ * Class ProductRelSpecification
  *
  * @property string $specification_id
- * @property string $sale_catalog_item_id
+ * @property string $catalog_item_id
  * @property string $val
  *
  * @package common\modules\catalog\models
  */
-class SpecificationRelSale extends ActiveRecord
+class ProductRelSpecification extends ActiveRecord
 {
     /**
      * @return string
@@ -29,7 +29,7 @@ class SpecificationRelSale extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%catalog_specification_sale_value}}';
+        return '{{%catalog_specification_value}}';
     }
 
     /**
@@ -47,7 +47,7 @@ class SpecificationRelSale extends ActiveRecord
     {
         return [
             ['specification_id', 'exist', 'targetClass' => Specification::class, 'targetAttribute' => 'id'],
-            ['sale_catalog_item_id', 'exist', 'targetClass' => Sale::class, 'targetAttribute' => 'id'],
+            ['catalog_item_id', 'exist', 'targetClass' => Product::class, 'targetAttribute' => 'id'],
             [['val'], 'integer'],
             [['val'], 'default', 'value' => '0']
         ];
@@ -61,7 +61,7 @@ class SpecificationRelSale extends ActiveRecord
         return [
             'backend' => [
                 'specification_id',
-                'sale_catalog_item_id',
+                'catalog_item_id',
                 'val'
             ],
         ];
@@ -74,7 +74,7 @@ class SpecificationRelSale extends ActiveRecord
     {
         return [
             'specification_id',
-            'sale_catalog_item_id',
+            'catalog_item_id',
             'val'
         ];
     }

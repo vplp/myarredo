@@ -22,9 +22,11 @@ echo GridView::widget([
         [
             'attribute' => 'category',
             'value' => function ($model) {
+                $result = [];
                 foreach ($model->category as $category) {
-                    return $category->lang->title;
+                    $result[] = $category->lang->title;
                 }
+                return implode(', ', $result);
             },
             'label' => Yii::t('app', 'Category'),
             'filter' => GridViewFilter::selectOne($filter, 'category', Category::dropDownList()),

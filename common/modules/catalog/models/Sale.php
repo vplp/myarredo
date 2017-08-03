@@ -6,7 +6,11 @@ use Yii;
 use yii\helpers\{
     ArrayHelper
 };
+//
+use voskobovich\behaviors\ManyToManyBehavior;
+//
 use thread\app\base\models\ActiveRecord;
+//
 use common\modules\catalog\Catalog;
 
 /**
@@ -64,7 +68,12 @@ class Sale extends ActiveRecord
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'category_ids' => 'category',
+                ],
+            ],
         ]);
     }
 
@@ -74,7 +83,7 @@ class Sale extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias', 'article'], 'required'],
+            [['alias'], 'required'],
             [
                 [
                     'user_id',
@@ -106,7 +115,15 @@ class Sale extends ActiveRecord
             [['alias'], 'unique'],
             [['position'], 'default', 'value' => '0'],
             [['currency'], 'default', 'value' => 'EUR'],
-            [['country_code'], 'default', 'value' => '//']
+            [['country_code'], 'default', 'value' => '//'],
+            [['article'], 'default', 'value' => ''],
+            [
+                [
+                    'category_ids',
+                ],
+                'each',
+                'rule' => ['integer']
+            ],
         ];
     }
 
@@ -148,7 +165,8 @@ class Sale extends ActiveRecord
                 'published',
                 'deleted',
                 'position',
-                'on_main'
+                'on_main',
+                'category_ids',
             ]
         ];
     }
@@ -180,7 +198,7 @@ class Sale extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
-            'category' => Yii::t('app', 'Category'),
+            'category_ids' => Yii::t('app', 'Category'),
         ];
     }
 

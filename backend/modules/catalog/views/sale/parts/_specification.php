@@ -1,7 +1,7 @@
 <?php
 
 use backend\modules\catalog\models\{
-    SpecificationRelSale, Specification
+    SaleRelSpecification, Specification
 };
 use backend\modules\catalog\widgets\grid\ManyToManySpecificationDataColumn;
 //
@@ -34,7 +34,7 @@ use backend\themes\defaults\widgets\TreeGrid;
                 'attributeRow' => 'val',
                 'primaryKeySecondTable' => 'sale_catalog_item_id',
                 'valueSecondTable' => Yii::$app->getRequest()->get('id'),
-                'namespace' => SpecificationRelSale::className(),
+                'namespace' => SaleRelSpecification::className(),
             ],
         ]
     ]); ?>

@@ -17,7 +17,7 @@ use backend\modules\catalog\models\Samples;
 <?php if ($model->factory_id): ?>
 
     <?= $form
-        ->field($model, 'samples')
+        ->field($model, 'samples_ids')
         ->widget(Select2::classname(), [
             'data' => Samples::dropDownList(['factory_id' => $model['factory_id']]),
             'options' => [
