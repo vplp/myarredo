@@ -8,7 +8,7 @@ use yii\base\Model;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use backend\modules\catalog\models\{
-    Types as TypesModel, TypesLang
+    Types as TypesModel, TypesLang, TypesRelCategory
 };
 
 /**
@@ -19,6 +19,7 @@ use backend\modules\catalog\models\{
 class Types extends TypesModel implements BaseBackendSearchModel
 {
     public $title;
+    public $category;
 
     /**
      * @return array
@@ -26,6 +27,7 @@ class Types extends TypesModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
+            [['category'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -57,8 +59,10 @@ class Types extends TypesModel implements BaseBackendSearchModel
 
         $query->andFilterWhere(['like', 'alias', $this->alias])
             ->andFilterWhere(['like', 'published', $this->published]);
-
+        //
         $query->andFilterWhere(['like', TypesLang::tableName() . '.title', $this->title]);
+        //
+        $query->innerJoinWith(["category"])->andFilterWhere([TypesRelCategory::tableName() . '.group_id' => $this->category]);
 
         return $dataProvider;
     }

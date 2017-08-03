@@ -26,10 +26,16 @@ use backend\modules\catalog\models\{
         'options' => ['placeholder' => Yii::t('app', 'Choose factory')],
     ]) ?>
 
+<p>
+    Коллекция напрямую зависит от выбранной фабрики.<br>
+    Если по выбраной фабрики отсутсвует необходимая Коллекция, зайдите в редактирование
+    фабрики и добавте зависимость с фабрикой.
+</p>
+
 <?= $form
     ->field($model, 'collections_id')
     ->widget(Select2::classname(), [
-        'data' => Collection::dropDownList(),
+        'data' => Collection::dropDownList(['factory_id' => $model->isNewRecord ? 0 : $model['factory_id']]),
         'options' => ['placeholder' => Yii::t('app', 'Choose collection')],
     ]) ?>
 
@@ -43,13 +49,13 @@ use backend\modules\catalog\models\{
 <p>
     Категории напрямую зависит от выбранного типа предмета.<br>
     Если по выбраному типу предмета отсутсвует необходимая категория, зайдите в редактирование
-    необходимой категории и добавте зависимость с предметом.
+    категории и добавте зависимость с предметом.
 </p>
 
 <?= $form
     ->field($model, 'category_ids')
     ->widget(Select2::classname(), [
-        'data' => Category::dropDownList(['type_id' => $model['catalog_type_id']]),
+        'data' => Category::dropDownList(['type_id' => $model->isNewRecord ? 0 : $model['catalog_type_id']]),
         'options' => [
             'placeholder' => Yii::t('app', 'Choose category'),
             'multiple' => true

@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\{
     ArrayHelper
 };
+use voskobovich\behaviors\ManyToManyBehavior;
 use thread\app\base\models\ActiveRecord;
 use common\modules\catalog\Catalog;
 
@@ -52,7 +53,12 @@ class Category extends ActiveRecord
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'types_ids' => 'types',
+                ],
+            ],
         ]);
     }
 
@@ -67,7 +73,8 @@ class Category extends ActiveRecord
             [['published', 'deleted', 'popular', 'popular_by'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['alias', 'image_link'], 'string', 'max' => 255],
             [['alias'], 'unique'],
-            [['position'], 'default', 'value' => '0']
+            [['position'], 'default', 'value' => '0'],
+            [['types_ids'], 'each', 'rule' => ['integer']],
         ];
     }
 
@@ -82,7 +89,7 @@ class Category extends ActiveRecord
             'popular_by' => ['popular_by'],
             'deleted' => ['deleted'],
             'position' => ['position'],
-            'backend' => ['alias', 'image_link', 'popular', 'popular_by', 'position', 'published', 'deleted'],
+            'backend' => ['alias', 'image_link', 'popular', 'popular_by', 'position', 'published', 'deleted', 'types_ids'],
         ];
     }
 
@@ -102,6 +109,7 @@ class Category extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'types_ids' => Yii::t('app', 'Types'),
         ];
     }
 

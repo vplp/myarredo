@@ -24,10 +24,16 @@ use backend\modules\catalog\models\{
         'options' => ['placeholder' => Yii::t('app', 'Choose factory')],
     ]) ?>
 
+<p>
+    Коллекция напрямую зависит от выбранной фабрики.<br>
+    Если по выбраной фабрики отсутсвует необходимая Коллекция, зайдите в редактирование
+    фабрики и добавте зависимость с фабрикой.
+</p>
+
 <?= $form
     ->field($model, 'collections_id')
     ->widget(Select2::classname(), [
-        'data' => Collection::dropDownList(),
+        'data' => Collection::dropDownList(['factory_id' => $model->isNewRecord ? 0 : $model['factory_id']]),
         'options' => ['placeholder' => Yii::t('app', 'Choose collection')],
     ]) ?>
 

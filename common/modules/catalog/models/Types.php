@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\{
     ArrayHelper
 };
+use voskobovich\behaviors\ManyToManyBehavior;
 use thread\app\base\models\ActiveRecord;
 use common\modules\catalog\Catalog;
 
@@ -48,7 +49,12 @@ class Types extends ActiveRecord
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'category_ids' => 'category',
+                ],
+            ],
         ]);
     }
 
@@ -63,7 +69,8 @@ class Types extends ActiveRecord
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['alias'], 'string', 'max' => 255],
             [['alias'], 'unique'],
-            [['position'], 'default', 'value' => '0']
+            [['position'], 'default', 'value' => '0'],
+            [['category_ids'], 'each', 'rule' => ['integer']],
         ];
     }
 
@@ -76,7 +83,7 @@ class Types extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'position' => ['position'],
-            'backend' => ['alias', 'position', 'published', 'deleted'],
+            'backend' => ['alias', 'position', 'published', 'deleted', 'category_ids'],
         ];
     }
 
@@ -93,6 +100,7 @@ class Types extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'category_ids' => Yii::t('app', 'Category'),
         ];
     }
 
@@ -110,5 +118,15 @@ class Types extends ActiveRecord
     public function getLang()
     {
         return $this->hasOne(TypesLang::class, ['rid' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this
+            ->hasMany(Category::class, ['id' => 'group_id'])
+            ->viaTable(TypesRelCategory::tableName(), ['type_id' => 'id']);
     }
 }

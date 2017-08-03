@@ -17,13 +17,6 @@ use backend\modules\catalog\models\{
 <?= $form->text_line($model, 'alias') ?>
 
 <?= $form
-    ->field($model, 'catalog_type_id')
-    ->widget(Select2::classname(), [
-        'data' => Types::dropDownList(),
-        'options' => ['placeholder' => Yii::t('app', 'Choose catalog type')],
-    ]) ?>
-
-<?= $form
     ->field($model, 'factory_id')
     ->widget(Select2::classname(), [
         'data' => Factory::dropDownList(),
@@ -31,9 +24,22 @@ use backend\modules\catalog\models\{
     ]) ?>
 
 <?= $form
+    ->field($model, 'catalog_type_id')
+    ->widget(Select2::classname(), [
+        'data' => Types::dropDownList(),
+        'options' => ['placeholder' => Yii::t('app', 'Choose catalog type')],
+    ]) ?>
+
+<p>
+    Категории напрямую зависит от выбранного типа предмета.<br>
+    Если по выбраному типу предмета отсутсвует необходимая категория, зайдите в редактирование
+    категории и добавте зависимость с предметом.
+</p>
+
+<?= $form
     ->field($model, 'category_ids')
     ->widget(Select2::classname(), [
-        'data' => Category::dropDownList(),
+        'data' => Category::dropDownList(['type_id' => $model->isNewRecord ? 0 : $model['catalog_type_id']]),
         'options' => [
             'placeholder' => Yii::t('app', 'Choose category'),
             'multiple' => true

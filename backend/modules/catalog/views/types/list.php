@@ -1,8 +1,12 @@
 <?php
 
 use backend\widgets\GridView\GridView;
+use backend\modules\catalog\models\{
+    Category
+};
+//
 use thread\widgets\grid\{
-    ActionStatusColumn
+    ActionStatusColumn, GridViewFilter
 };
 
 echo GridView::widget([
@@ -14,7 +18,18 @@ echo GridView::widget([
             'value' => 'lang.title',
             'label' => Yii::t('app', 'Title'),
         ],
-        'position',
+        [
+            'attribute' => 'category',
+            'value' => function ($model) {
+                $result = [];
+                foreach ($model->category as $category) {
+                    $result[] = $category->lang->title;
+                }
+                return implode(', ', $result);
+            },
+            'label' => Yii::t('app', 'Category'),
+            'filter' => GridViewFilter::selectOne($filter, 'category', Category::dropDownList()),
+        ],
         [
             'class' => ActionStatusColumn::class,
             'attribute' => 'published',

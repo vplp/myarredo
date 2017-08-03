@@ -19,14 +19,6 @@ use backend\themes\defaults\widgets\Tabs;
                 'modelLang' => $modelLang
             ])
         ],
-        [
-            'label' => Yii::t('app', 'Category'),
-            'content' => $this->render('parts/_category', [
-                'form' => $form,
-                'model' => $model,
-                'modelLang' => $modelLang
-            ])
-        ],
     ]
 ]) ?>
 <?= $form->submit($model, $this) ?>
