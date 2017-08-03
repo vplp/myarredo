@@ -36,4 +36,3 @@ use backend\modules\catalog\models\{
         <?= $form->text_line($model, 'position') ?>
     </div>
 </div>
-
