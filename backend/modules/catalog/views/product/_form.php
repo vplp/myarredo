@@ -13,7 +13,7 @@ use backend\themes\defaults\widgets\Tabs;
 <?php $form = ActiveForm::begin(); ?>
 <?= $form->submit($model, $this) ?>
 
-<?= Html::activeHiddenInput($model, 'is_composition', ['value' => 1]) ?>
+<?= Html::activeHiddenInput($model, 'is_composition', ['value' => 0]) ?>
 
 <?= Tabs::widget([
     'items' => [

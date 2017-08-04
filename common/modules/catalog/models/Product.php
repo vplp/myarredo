@@ -194,7 +194,7 @@ class Product extends ActiveRecord
                 'category_ids',
                 'samples_ids',
                 'factory_catalogs_files_ids',
-                'factory_prices_files_ids'
+                'factory_prices_files_ids',
             ],
         ];
     }
@@ -233,6 +233,7 @@ class Product extends ActiveRecord
             'samples_ids' => Yii::t('app', 'Samples'),
             'factory_catalogs_files_ids' => Yii::t('app', 'Factory catalogs files'),
             'factory_prices_files_ids' => Yii::t('app', 'Factory prices files'),
+            'specification_value_ids',
         ];
     }
 
@@ -254,6 +255,32 @@ class Product extends ActiveRecord
         $this->user = $userIdentity->profile->first_name . ' ' . $userIdentity->profile->last_name;
 
         return parent::beforeSave($insert);
+    }
+
+    /**
+     * @param bool $insert
+     * @param array $changedAttributes
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        // delete relation ProductRelSpecification
+        ProductRelSpecification::deleteAll(['catalog_item_id' => $this->id]);
+
+        // save relation ProductRelSpecification
+        if (Yii::$app->request->getBodyParam('SpecificationValue')) {
+            foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
+                if ($val) {
+                    $model = new ProductRelSpecification();
+                    $model->setScenario('backend');
+                    $model->catalog_item_id = $this->id;
+                    $model->specification_id = $specification_id;
+                    $model->val = $val;
+                    $model->save();
+                }
+            }
+        }
+
+        parent::afterSave($insert, $changedAttributes);
     }
 
     /**
@@ -336,5 +363,24 @@ class Product extends ActiveRecord
         return $this
             ->hasMany(FactoryFile::class, ['id' => 'factory_file_id'])
             ->viaTable(ProductRelFactoryPricesFiles::tableName(), ['catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSpecification()
+    {
+        return $this
+            ->hasMany(Specification::class, ['id' => 'specification_id'])
+            ->viaTable(ProductRelSpecification::tableName(), ['catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSpecificationValue()
+    {
+        return $this
+            ->hasMany(ProductRelSpecification::class, ['catalog_item_id' => 'id']);
     }
 }

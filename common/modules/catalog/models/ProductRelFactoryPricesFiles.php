@@ -36,7 +36,7 @@ class ProductRelFactoryPricesFiles extends ActiveRecord
      */
     public function behaviors()
     {
-        return parent::behaviors();
+        return [];
     }
 
     /**

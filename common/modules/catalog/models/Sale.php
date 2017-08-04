@@ -214,6 +214,32 @@ class Sale extends ActiveRecord
     }
 
     /**
+     * @param bool $insert
+     * @param array $changedAttributes
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        // delete relation SaleRelSpecification
+        SaleRelSpecification::deleteAll(['sale_catalog_item_id' => $this->id]);
+
+        // save relation SaleRelSpecification
+        if (Yii::$app->request->getBodyParam('SpecificationValue')) {
+            foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
+                if ($val) {
+                    $model = new SaleRelSpecification();
+                    $model->setScenario('backend');
+                    $model->sale_catalog_item_id = $this->id;
+                    $model->specification_id = $specification_id;
+                    $model->val = $val;
+                    $model->save();
+                }
+            }
+        }
+
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    /**
      * @return mixed
      */
     public static function findBase()
@@ -247,5 +273,24 @@ class Sale extends ActiveRecord
     public function getFactory()
     {
         return $this->hasOne(Factory::class, ['id' => 'factory_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSpecification()
+    {
+        return $this
+            ->hasMany(Specification::class, ['id' => 'specification_id'])
+            ->viaTable(SaleRelSpecification::tableName(), ['sale_catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSpecificationValue()
+    {
+        return $this
+            ->hasMany(SaleRelSpecification::class, ['sale_catalog_item_id' => 'id']);
     }
 }

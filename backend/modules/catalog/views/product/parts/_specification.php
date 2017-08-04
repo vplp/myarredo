@@ -3,13 +3,14 @@
 use backend\modules\catalog\models\{
     ProductRelSpecification, Specification
 };
-use backend\modules\catalog\widgets\grid\ManyToManySpecificationDataColumn;
+use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;
 //
 use backend\themes\defaults\widgets\TreeGrid;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model backend\modules\catalog\models\Product */
+
 ?>
 
 <?= $form->text_line($model, 'volume') ?>
@@ -29,7 +30,7 @@ use backend\themes\defaults\widgets\TreeGrid;
             ],
             [
                 'attribute' => 'val',
-                'class' => ManyToManySpecificationDataColumn::class,
+                'class' => ManyToManySpecificationValueDataColumn::class,
                 'primaryKeyFirstTable' => 'specification_id',
                 'attributeRow' => 'val',
                 'primaryKeySecondTable' => 'catalog_item_id',

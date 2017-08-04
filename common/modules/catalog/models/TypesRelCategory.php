@@ -37,7 +37,7 @@ class TypesRelCategory extends ActiveRecord
      */
     public function behaviors()
     {
-        return parent::behaviors();
+        return [];
     }
 
     /**

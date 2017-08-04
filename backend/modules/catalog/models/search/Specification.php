@@ -19,6 +19,7 @@ use backend\modules\catalog\models\{
 class Specification extends SpecificationModel implements BaseBackendSearchModel
 {
     public $title;
+    //public $parent_id;
 
     /**
      * @return array
@@ -26,6 +27,7 @@ class Specification extends SpecificationModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
+            [['id', 'parent_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -54,6 +56,11 @@ class Specification extends SpecificationModel implements BaseBackendSearchModel
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
+
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'parent_id' => $this->parent_id
+        ]);
 
         $query->andFilterWhere(['like', 'alias', $this->alias])
             ->andFilterWhere(['like', 'published', $this->published]);

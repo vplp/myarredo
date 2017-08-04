@@ -2,17 +2,16 @@
 
 namespace backend\modules\catalog\widgets\grid;
 
-use yii\base\InvalidConfigException;
+use backend\modules\catalog\models\Specification;
 use yii\grid\DataColumn;
 use yii\helpers\Html;
-use yii\helpers\Url;
 
 /**
- * Class ManyToManySpecificationDataColumn
+ * Class ManyToManySpecificationValueDataColumn
  *
  * @package backend\modules\catalog\widgets\grid
  */
-class ManyToManySpecificationDataColumn extends DataColumn
+class ManyToManySpecificationValueDataColumn extends DataColumn
 {
     public $contentOptions = [
         'class' => 'text-center',
@@ -26,7 +25,7 @@ class ManyToManySpecificationDataColumn extends DataColumn
      * Url to send AJAX request
      * @var string
      */
-    public $action = 'ajax-many-to-many';
+    //public $action = 'ajax-many-to-many';
 
     public $model = null;
 
@@ -59,9 +58,7 @@ class ManyToManySpecificationDataColumn extends DataColumn
     public function init()
     {
         parent::init();
-        if (!$this->action) {
-            throw new InvalidConfigException(\Yii::t('app', 'You should set "action" attribute to "') . $this->attribute . '"');
-        }
+
         if (empty($this->filter)) {
             $this->filter = \Yii::$app->formatter->booleanFormat;
         }
@@ -79,36 +76,24 @@ class ManyToManySpecificationDataColumn extends DataColumn
         $namespace = $this->namespace;
 
         $relationModel = $namespace::findBase()
-            ->andWhere([$this->primaryKeyFirstTable => $model->id, $this->primaryKeySecondTable => $this->valueSecondTable])
+            ->andWhere([
+                $this->primaryKeyFirstTable => $model->id,
+                $this->primaryKeySecondTable => $this->valueSecondTable
+            ])
             ->one();
 
         $dataAttributes = [
-            'class' => 'ajax-many-to-many i-checks',
-            'data' => [
-                'id' => (isset($model->id)) ? $model->id : null,
-                'url' => Url::toRoute([$this->action]),
-                'namespace' => $this->namespace,
-                'primary-key-first-table' => $this->primaryKeyFirstTable,
-                'value-first-table' => $this->valueFirstTable,
-                'primary-key-second-table' => $this->primaryKeySecondTable,
-                'value-second-table' => $this->valueSecondTable,
-                'additional-fields' => $this->additionalField
-            ],
-//            'disabled' => (isset($model->id)) ? false : true
+            'class' => 'form-control i-checks',
         ];
 
-        /** @var \yii\db\ActiveRecord $model */
+        /* @var $model Specification */
 
         if ($model->parent_id == 0) {
             return null;
         } else if ($model->type == 1) {
-            return Html::input('text', null,(isset($relationModel)) ? $relationModel->{$this->attributeRow} : '', $dataAttributes);
+            return Html::input('text', 'SpecificationValue['.$model->id.']', (isset($relationModel)) ? $relationModel->{$this->attributeRow} : '', $dataAttributes);
+        } else {
+            return Html::checkbox('SpecificationValue['.$model->id.']', (isset($relationModel)) ? $relationModel->{$this->attributeRow} : '', $dataAttributes);
         }
-
-        if ($relationModel && $this->attributeRow !== null) {
-            return Html::checkbox(null, (isset($relationModel)) ? $relationModel->{$this->attributeRow} : '', $dataAttributes);
-        }
-
-        return Html::checkbox(null, (isset($relationModel)) ? true : '', $dataAttributes);
     }
 }

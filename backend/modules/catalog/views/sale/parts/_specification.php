@@ -3,7 +3,7 @@
 use backend\modules\catalog\models\{
     SaleRelSpecification, Specification
 };
-use backend\modules\catalog\widgets\grid\ManyToManySpecificationDataColumn;
+use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;
 //
 use backend\themes\defaults\widgets\TreeGrid;
 
@@ -29,7 +29,7 @@ use backend\themes\defaults\widgets\TreeGrid;
             ],
             [
                 'attribute' => 'val',
-                'class' => ManyToManySpecificationDataColumn::class,
+                'class' => ManyToManySpecificationValueDataColumn::class,
                 'primaryKeyFirstTable' => 'specification_id',
                 'attributeRow' => 'val',
                 'primaryKeySecondTable' => 'sale_catalog_item_id',
