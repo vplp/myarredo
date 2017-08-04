@@ -46,13 +46,24 @@ class CompositionsController extends BackendController
                 $response['category'] = Category::dropDownList(['type_id' => $selectedArray['typeF']]);
             }
 
-            $model = Product::getByIds($selected_val_tovars);
+            $model1 = Product::findBase()->byID($selected_val_tovars)->all();
 
-            $model = ArrayHelper::map($model, 'id', function ($item) {
+            $query = Product::findBase();
+
+            if ($selectedArray['factoryF']) {
+                $query->andFilterWhere([Product::tableName() . '.factory_id' => $selectedArray['factoryF']]);
+            }
+            if ($selectedArray['typeF']) {
+                $query->andFilterWhere([Product::tableName() . '.catalog_type_id' => $selectedArray['typeF']]);
+            }
+
+            $model2 = $query->all();
+
+            $model = array_merge($model1, $model2);
+
+            $response['tovars'] = ArrayHelper::map($model, 'id', function ($item) {
                 return  '[' . $item['article'] . '] ' . $item['lang']['title'];
-            });
-
-            $response['tovars'] = $model;
+            });;
         }
 
         return $response;

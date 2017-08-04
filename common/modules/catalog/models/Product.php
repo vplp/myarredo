@@ -322,15 +322,6 @@ class Product extends ActiveRecord
     }
 
     /**
-     * @param $id
-     * @return mixed
-     */
-    public static function getByIds($id)
-    {
-        return self::findById($id)->all();
-    }
-
-    /**
      * @return \yii\db\ActiveQuery
      */
     public function getLang()

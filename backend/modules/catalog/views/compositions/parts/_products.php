@@ -88,7 +88,7 @@ $('.selectFilter').on('change', function (e) {
 
     for (var i = 0, n = elem_tovars.length; i < n; i++) { 
         if (elem_tovars[i].value) {
-            selected_val_tovars.push(parseInt(elem_tovars[i].value));
+            selected_val_tovars.push(elem_tovars[i].value);
         }
     }
                     
@@ -136,9 +136,9 @@ $('.selectFilter').on('change', function (e) {
            
             // tovars
             if (typeof (data.tovars) !== 'undefined') {
-                   var tovars = '';
-                $.each(data.tovars, function(key, value) {
-                    var selected = selected_val_tovars.indexOf(key) ? 'selected' : '';
+                var tovars = '';               
+                $.each(data.tovars, function(key, value) {               
+                    var selected = (selected_val_tovars.includes(key)) ? 'selected' : '';
                     tovars += '<option ' + selected + ' value="'+ key +'">' + value + '</option>';
                 });
                 $("#composition-product_ids").html(tovars);

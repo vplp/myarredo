@@ -29,7 +29,7 @@ class Product extends ProductModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-            [['category', 'factory_id'], 'integer'],
+            [['id', 'category', 'factory_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
