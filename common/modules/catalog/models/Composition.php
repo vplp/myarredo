@@ -3,16 +3,39 @@
 namespace common\modules\catalog\models;
 
 use Yii;
+use yii\helpers\{
+    ArrayHelper
+};
+//
+use voskobovich\behaviors\ManyToManyBehavior;
 
 /**
  * Class Composition
  *
  * @property CompositionLang $lang
  *
+ *  @property ProductRelComposition[] $product
+ *
  * @package common\modules\catalog\models
  */
 class Composition extends Product
 {
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'product_ids' => 'product',
+                    'category_ids' => 'category',
+                ],
+            ],
+        ]);
+    }
+
     /**
      * @return array
      */
@@ -57,7 +80,7 @@ class Composition extends Product
             [['catalog_type_id', 'collections_id', 'position'], 'default', 'value' => '0'],
             [['country_code'], 'default', 'value' => '//'],
             [['article', 'alias_old'], 'default', 'value' => ''],
-            [['category_ids'], 'each', 'rule' => ['integer']],
+            [['category_ids', 'product_ids'], 'each', 'rule' => ['integer']],
         ];
     }
 
@@ -105,9 +128,20 @@ class Composition extends Product
                 'alias_old',
                 'default_title',
                 'article',
-                'category_ids'
+                'category_ids',
+                'product_ids'
             ],
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public function attributeLabels()
+    {
+        return ArrayHelper::merge(parent::attributeLabels(), [
+            'product_ids' => Yii::t('app', 'Product'),
+        ]);
     }
 
     /**
@@ -127,6 +161,16 @@ class Composition extends Product
     public function getLang()
     {
         return $this->hasOne(CompositionLang::class, ['rid' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProduct()
+    {
+        return $this
+            ->hasMany(Product::class, ['id' => 'catalog_item_id'])
+            ->viaTable(ProductRelComposition::tableName(), ['composition_id' => 'id']);
     }
 
     /**

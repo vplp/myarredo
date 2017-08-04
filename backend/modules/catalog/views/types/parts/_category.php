@@ -17,7 +17,7 @@ use backend\modules\catalog\models\{
     ->widget(Select2::classname(), [
         'data' => Category::dropDownList(),
         'options' => [
-            'placeholder' => Yii::t('app', 'Choose category'),
+            'placeholder' => Yii::t('app', 'Select option'),
             'multiple' => true
         ],
     ]) ?>

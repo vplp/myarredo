@@ -24,7 +24,7 @@ use backend\modules\catalog\models\FactoryFile;
                 'file_type' => '1'
             ]),
             'options' => [
-                'placeholder' => Yii::t('app', 'Choose file'),
+                'placeholder' => Yii::t('app', 'Select option'),
                 'multiple' => true
             ],
         ]) ?>
@@ -37,7 +37,7 @@ use backend\modules\catalog\models\FactoryFile;
                 'file_type' => '2'
             ]),
             'options' => [
-                'placeholder' => Yii::t('app', 'Choose file'),
+                'placeholder' => Yii::t('app', 'Select option'),
                 'multiple' => true
             ],
         ]) ?>

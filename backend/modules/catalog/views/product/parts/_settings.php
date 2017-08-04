@@ -5,13 +5,13 @@ use kartik\widgets\Select2;
 use backend\modules\catalog\models\{
     Category, Factory, Collection, Types
 };
-use yii\web\JsExpression;
 
 /**
  * @var \backend\modules\catalog\models\Product $model
  * @var \backend\modules\catalog\models\ProductLang $modelLang
  * @var \backend\themes\defaults\widgets\forms\ActiveForm $form
  */
+
 ?>
 
 <?= $form->text_line($model, 'alias') ?>
@@ -24,7 +24,7 @@ use yii\web\JsExpression;
     ->field($model, 'factory_id')
     ->widget(Select2::classname(), [
         'data' => Factory::dropDownList(),
-        'options' => ['placeholder' => Yii::t('app', 'Choose factory')],
+        'options' => ['placeholder' => Yii::t('app', 'Select option')],
     ]) ?>
 
 <?php
@@ -59,14 +59,14 @@ $this->registerJs($script, yii\web\View::POS_READY);
     ->field($model, 'collections_id')
     ->widget(Select2::classname(), [
         'data' => Collection::dropDownList(['factory_id' => $model->isNewRecord ? 0 : $model['factory_id']]),
-        'options' => ['placeholder' => Yii::t('app', 'Choose collection')],
+        'options' => ['placeholder' => Yii::t('app', 'Select option')],
     ]) ?>
 
 <?= $form
     ->field($model, 'catalog_type_id')
     ->widget(Select2::classname(), [
         'data' => Types::dropDownList(),
-        'options' => ['placeholder' => Yii::t('app', 'Choose catalog type')],
+        'options' => ['placeholder' => Yii::t('app', 'Select option')],
     ]) ?>
 
 <?php
@@ -102,7 +102,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
     ->widget(Select2::classname(), [
         'data' => Category::dropDownList(['type_id' => $model->isNewRecord ? 0 : $model['catalog_type_id']]),
         'options' => [
-            'placeholder' => Yii::t('app', 'Choose category'),
+            'placeholder' => Yii::t('app', 'Select option'),
             'multiple' => true
         ],
     ]) ?>

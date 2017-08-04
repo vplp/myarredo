@@ -17,7 +17,7 @@ use backend\modules\catalog\models\Factory;
     ->field($model, 'factory_id')
     ->widget(Select2::classname(), [
         'data' => Factory::dropDownList(),
-        'options' => ['placeholder' => Yii::t('app', 'Choose factory')],
+        'options' => ['placeholder' => Yii::t('app', 'Select option')],
     ])  ?>
 
 <div class="row control-group">

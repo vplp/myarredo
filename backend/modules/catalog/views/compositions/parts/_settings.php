@@ -21,7 +21,7 @@ use backend\modules\catalog\models\{
     ->field($model, 'factory_id')
     ->widget(Select2::classname(), [
         'data' => Factory::dropDownList(),
-        'options' => ['placeholder' => Yii::t('app', 'Choose factory')],
+        'options' => ['placeholder' => Yii::t('app', 'Select option')],
     ]) ?>
 
 <?php
@@ -56,7 +56,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
     ->field($model, 'collections_id')
     ->widget(Select2::classname(), [
         'data' => Collection::dropDownList(['factory_id' => $model->isNewRecord ? 0 : $model['factory_id']]),
-        'options' => ['placeholder' => Yii::t('app', 'Choose collection')],
+        'options' => ['placeholder' => Yii::t('app', 'Select option')],
     ]) ?>
 
 <?= $form
@@ -64,7 +64,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
     ->widget(Select2::classname(), [
         'data' => Category::dropDownList(),
         'options' => [
-            'placeholder' => Yii::t('app', 'Choose category'),
+            'placeholder' => Yii::t('app', 'Select option'),
             'multiple' => true
         ],
     ]) ?>

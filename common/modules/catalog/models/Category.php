@@ -140,6 +140,16 @@ class Category extends ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProduct()
+    {
+        return $this
+            ->hasMany(Product::class, ['id' => 'catalog_item_id'])
+            ->viaTable(ProductRelCategory::tableName(), ['group_id' => 'id']);
+    }
+
+    /**
      * @return null|string
      */
     public function getCategoryImage()

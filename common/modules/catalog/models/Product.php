@@ -295,6 +295,42 @@ class Product extends ActiveRecord
     }
 
     /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findById($id)
+    {
+        return self::findBase()->byID($id);
+    }
+
+    /**
+     * @param $alias
+     * @return mixed
+     */
+    public static function findByAlias($alias)
+    {
+        return self::findBase()->byAlias($alias);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function getById($id)
+    {
+        return self::findById($id)->one();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function getByIds($id)
+    {
+        return self::findById($id)->all();
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getLang()

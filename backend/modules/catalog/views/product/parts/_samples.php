@@ -21,7 +21,7 @@ use backend\modules\catalog\models\Samples;
         ->widget(Select2::classname(), [
             'data' => Samples::dropDownList(['factory_id' => $model['factory_id']]),
             'options' => [
-                'placeholder' => Yii::t('app', 'Choose samples'),
+                'placeholder' => Yii::t('app', 'Select option'),
                 'multiple' => true
             ],
         ]) ?>
