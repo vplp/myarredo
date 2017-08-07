@@ -39,5 +39,8 @@ return [
     ],
     'feedback' => [
         'class' => \frontend\modules\feedback\Feedback::class,
+    ],
+    'catalog' => [
+        'class' => \frontend\modules\catalog\Catalog::class,
     ]
 ];

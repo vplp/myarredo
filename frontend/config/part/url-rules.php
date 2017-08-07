@@ -17,6 +17,11 @@ return [
     'user/profile/fileupload' => 'user/profile/fileupload',
     'user/login/validation' => 'user/login/validation',
 
+    // Module [[Catalog]]
+    'catalog' => 'catalog/category/index',
+    'catalog/<alias:[\w\-]+>' => 'catalog/category/index',
+    'product/<alias:[\w\-]+>' => 'catalog/product/index',
+
     // Module [[News]]
     'news/<alias:[\w\-]+>' => 'news/list/index',
     'news' => 'news/list/index',
