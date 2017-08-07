@@ -8,7 +8,7 @@ use yii\helpers\Html;
     <div class="page category-page">
         <div class="container large-container">
             <div class="row">
-                <h1>Итальянские спальни</h1>
+                <?= Html::tag('h1', (!empty($group)) ? $group['lang']['title'] : 'Каталог Итальянской Мебел'); ?>
                 <ul class="bread-crumbs">
                     <li>
                         <a href="#">Главная</a>

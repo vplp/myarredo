@@ -22,7 +22,7 @@ use yii\helpers\Html;
         </div>
     </div>
     <div class="item-infoblock">
-        Спальный гарнитур BEDROOMS
+        <?= $model->getProductTitle() ?>
     </div>
 
 <?= Html::endTag('a'); ?>

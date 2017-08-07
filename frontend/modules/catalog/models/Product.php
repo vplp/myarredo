@@ -79,4 +79,36 @@ class Product extends \common\modules\catalog\models\Product
     {
         return Url::toRoute(['/catalog/product/index', 'alias' => $this->alias]);
     }
+
+    /**
+     * Search
+     *
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function search($params)
+    {
+        return (new search\Product())->search($params);
+    }
+
+    /**
+     * @return string
+     */
+    public function getProductTitle()
+    {
+        $title = (($this->catalog_type_id > 0 && !empty($this->types)) ? $this->types->lang->title . ' ' : '');
+        $title .= (($this->collections_id > 0 && !empty($this->collection)) ? $this->collection->lang->title . ' ' : '');
+        $title .= ((!$this->is_composition && !empty($this->article)) ? $this->article . ' ' : '');
+        $title = (($this->is_composition) ? $this->getСompositionTitle() : '') . $title;
+
+        return $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getСompositionTitle()
+    {
+        return ($this->category[0]->lang->composition_title !== null) ? $this->category[0]->lang->composition_title . ' ' : 'КОМПОЗИЦИЯ ';
+    }
 }

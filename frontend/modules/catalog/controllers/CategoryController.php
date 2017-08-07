@@ -3,10 +3,9 @@
 namespace frontend\modules\catalog\controllers;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-//
-use thread\actions\ListQuery;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
@@ -40,33 +39,32 @@ class CategoryController extends BaseController
     }
 
     /**
-     * @return array
+     * @return string
      * @throws NotFoundHttpException
      */
-    public function actions()
+    public function actionIndex()
     {
-        $g = function () {
-            $r = 0;
-            if (Yii::$app->request->get('alias')) {
-                $item = Category::findByAlias(Yii::$app->request->get('alias'));
+        $model = new Product();
 
-                if ($item === null)
-                    throw new NotFoundHttpException;
+        $params = $group = [];
 
-                $r = $item['id'];
+        if (Yii::$app->request->get('alias')) {
+            $group = Category::findByAlias(Yii::$app->request->get('alias'));
 
-            }
-            return $r;
-        };
+            if ($group === null)
+                throw new NotFoundHttpException;
 
-        $group = $g();
+            $this->label = $group['lang']['title'];
 
-        return [
-            'index' => [
-                'class' => ListQuery::class,
-                'query' => ($group) ? Product::findBase()->group_id($group) : Product::findBase(),
-                'recordOnPage' => $this->module->itemOnPage,
-            ],
-        ];
+            $params['category'] = $group['id'];
+        }
+
+        $models = $model->search(ArrayHelper::merge($params, Yii::$app->request->queryParams));
+
+        return $this->render('list', [
+            'group' => $group,
+            'models' => $models->getModels(),
+            'pages' => $models->getPagination(),
+        ]);
     }
 }

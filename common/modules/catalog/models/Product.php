@@ -375,6 +375,22 @@ class Product extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getTypes()
+    {
+        return $this->hasOne(Types::class, ['id' => 'catalog_type_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCollection()
+    {
+        return $this->hasOne(Collection::class, ['id' => 'collections_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getFactoryCatalogsFiles()
     {
         return $this

@@ -79,4 +79,15 @@ class Category extends \common\modules\catalog\models\Category
     {
         return Url::toRoute(['/catalog/category/index', 'alias' => $this->alias]);
     }
+
+    /**
+     * Search
+     *
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function search($params)
+    {
+        return (new search\Category())->search($params);
+    }
 }
