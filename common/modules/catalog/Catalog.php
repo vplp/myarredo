@@ -28,7 +28,7 @@ class Catalog extends aModule {
     }
 
     /**
-     * Product Image upload path
+     * Product upload path
      * @return string
      */
     public function getProductUploadPath()
@@ -43,7 +43,7 @@ class Catalog extends aModule {
     }
 
     /**
-     * Product Image upload URL
+     * Product upload URL
      * @return string
      */
     public function getProductUploadUrl()
@@ -52,7 +52,7 @@ class Catalog extends aModule {
     }
 
     /**
-     * Category Image upload path
+     * Category upload path
      * @return string
      */
     public function getCategoryUploadPath()
@@ -67,7 +67,7 @@ class Catalog extends aModule {
     }
 
     /**
-     * Category Image upload URL
+     * Category upload URL
      * @return string
      */
     public function getCategoryUploadUrl()
@@ -76,7 +76,7 @@ class Catalog extends aModule {
     }
 
     /**
-     * Samples Image upload path
+     * Samples upload path
      * @return string
      */
     public function getSamplesUploadPath()
@@ -91,7 +91,7 @@ class Catalog extends aModule {
     }
 
     /**
-     * Samples Image upload URL
+     * Samples upload URL
      * @return string
      */
     public function getSamplesUploadUrl()
@@ -100,7 +100,7 @@ class Catalog extends aModule {
     }
 
     /**
-     * Factory Image upload path
+     * Factory upload path
      * @return string
      */
     public function getFactoryUploadPath()
@@ -115,7 +115,7 @@ class Catalog extends aModule {
     }
 
     /**
-     * Factory Image upload URL
+     * Factory upload URL
      * @return string
      */
     public function getFactoryUploadUrl()
@@ -124,12 +124,12 @@ class Catalog extends aModule {
     }
 
     /**
-     * FactoryFileCatalogs Image upload path
+     * FactoryFile upload path
      * @return string
      */
-    public function getFactoryFileCatalogsUploadPath()
+    public function getFactoryFileUploadPath()
     {
-        $dir = $this->getBaseUploadPath() . '/factoryFileCatalog';
+        $dir = $this->getBaseUploadPath() . '/factory/files';
 
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
@@ -139,36 +139,12 @@ class Catalog extends aModule {
     }
 
     /**
-     * FactoryFileCatalogs Image upload URL
+     * FactoryFile upload URL
      * @return string
      */
-    public function getFactoryFileCatalogsUploadUrl()
+    public function getFactoryFileUploadUrl()
     {
-        return $this->getBaseUploadUrl() . '/factoryFileCatalog';
-    }
-
-    /**
-     * FactoryFilePrices Image upload path
-     * @return string
-     */
-    public function getFactoryFilePricesUploadPath()
-    {
-        $dir = $this->getBaseUploadPath() . '/factoryFilePrice';
-
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
-
-        return $dir;
-    }
-
-    /**
-     * FactoryFilePrices Image upload URL
-     * @return string
-     */
-    public function getFactoryFilePricesUploadUrl()
-    {
-        return $this->getBaseUploadUrl() . '/factoryFilePrice';
+        return $this->getBaseUploadUrl() . '/factory/files';
     }
 
     /**

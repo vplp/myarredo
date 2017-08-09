@@ -11,9 +11,9 @@ use thread\app\base\controllers\BackendController;
 use thread\actions\{
     Update, Create
 };
-//use thread\actions\fileapi\{
-//    DeleteAction, UploadAction
-//};
+use common\actions\upload\{
+    DeleteAction, UploadAction
+};
 use backend\modules\catalog\models\{
     FactoryFile, Factory, search\FactoryFile as filterFactoryFile
 };
@@ -96,22 +96,16 @@ class FactoryFileController extends BackendController
             'outtrash' => [
                 'redirect' => $link
             ],
-//            'fileupload-catalogs' => [
-//                'class' => UploadAction::class,
-//                'path' => $this->module->getFactoryFileCatalogsUploadPath()
-//            ],
-//            'filedelete-catalogs' => [
-//                'class' => DeleteAction::class,
-//                'path' => $this->module->getFactoryFileCatalogsUploadPath()
-//            ],
-//            'fileupload-prices' => [
-//                'class' => UploadAction::class,
-//                'path' => $this->module->getFactoryFilePricesUploadPath()
-//            ],
-//            'filedelete-prices' => [
-//                'class' => DeleteAction::class,
-//                'path' => $this->module->getFactoryFilePricesUploadPath()
-//            ],
+            'fileupload' => [
+                'class' => UploadAction::class,
+                'path' => $this->module->getFactoryFileUploadPath(),
+                'uploadOnlyImage' => false,
+                'unique' => false
+            ],
+            'filedelete' => [
+                'class' => DeleteAction::class,
+                'path' => $this->module->getFactoryFileUploadPath()
+            ],
         ]);
     }
 

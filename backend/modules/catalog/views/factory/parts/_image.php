@@ -1,1 +1,1 @@
-<?= $form->field($model, 'image_link')->imageOne($model->getFactoryImage()) ?>
+<?= $form->field($model, 'image_link')->imageOne($model->getImageLink()) ?>

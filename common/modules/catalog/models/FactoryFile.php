@@ -8,6 +8,7 @@ use yii\helpers\{
 };
 use thread\app\base\models\ActiveRecord;
 use common\modules\catalog\Catalog;
+use common\actions\upload\UploadBehavior;
 
 /**
  * Class FactoryFile
@@ -51,7 +52,16 @@ class FactoryFile extends ActiveRecord
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-
+            'uploadBehavior' => [
+                'class' => UploadBehavior::class,
+                'attributes' => [
+                    'file_link' => [
+                        'path' => Yii::$app->getModule('catalog')->getFactoryFileUploadPath(),
+                        'tempPath' => Yii::getAlias('@temp'),
+                        'url' => Yii::$app->getModule('catalog')->getFactoryFileUploadPath(),
+                    ]
+                ]
+            ],
         ]);
     }
 
@@ -61,7 +71,7 @@ class FactoryFile extends ActiveRecord
     public function rules()
     {
         return [
-            [['factory_id', 'title'], 'required'],
+            [['factory_id'], 'required'],
             [['factory_id', 'file_size', 'position', 'created_at', 'updated_at'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['file_type'], 'in', 'range' => [1, 2]],
@@ -78,8 +88,7 @@ class FactoryFile extends ActiveRecord
      */
     public function beforeValidate()
     {
-        if ($this->title == '')
-            $this->title = $this->file_link;
+        $this->title = $this->file_link;
 
         return parent::beforeValidate();
     }
@@ -131,26 +140,11 @@ class FactoryFile extends ActiveRecord
     /**
      * @return null|string
      */
-    public function getFactoryFileCatalogsImage()
+    public function getFileLink()
     {
         $module = Yii::$app->getModule('catalog');
-        $path = $module->getFactoryFileCatalogsUploadPath();
-        $url = $module->getFactoryFileCatalogsUploadUrl();
-        $image = null;
-        if (!empty($this->file_link) && is_file($path . '/' . $this->file_link)) {
-            $image = $url . '/' . $this->file_link;
-        }
-        return $image;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getFactoryFilePricesImage()
-    {
-        $module = Yii::$app->getModule('catalog');
-        $path = $module->getFactoryFilePricesUploadPath();
-        $url = $module->getFactoryFilePricesUploadUrl();
+        $path = $module->getFactoryFileUploadPath();
+        $url = $module->getFactoryFileUploadUrl();
         $image = null;
         if (!empty($this->file_link) && is_file($path . '/' . $this->file_link)) {
             $image = $url . '/' . $this->file_link;

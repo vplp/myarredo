@@ -8,6 +8,7 @@ use yii\helpers\{
 };
 use thread\app\base\models\ActiveRecord;
 use common\modules\catalog\Catalog;
+use common\actions\upload\UploadBehavior;
 
 /**
  * Class Factory
@@ -62,7 +63,16 @@ class Factory extends ActiveRecord
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-
+            'uploadBehavior' => [
+                'class' => UploadBehavior::class,
+                'attributes' => [
+                    'image_link' => [
+                        'path' => Yii::$app->getModule('catalog')->getFactoryUploadPath(),
+                        'tempPath' => Yii::getAlias('@temp'),
+                        'url' => Yii::$app->getModule('catalog')->getFactoryUploadPath(),
+                    ]
+                ]
+            ],
         ]);
     }
 
@@ -177,7 +187,7 @@ class Factory extends ActiveRecord
     /**
      * @return null|string
      */
-    public function getFactoryImage()
+    public function getImageLink()
     {
         $module = Yii::$app->getModule('catalog');
         $path = $module->getFactoryUploadPath();

@@ -3,7 +3,7 @@
 /**
  * @var \backend\modules\catalog\models\Factory $model
  * @var \backend\modules\catalog\models\FactoryLang $modelLang
- * @var \backend\themes\defaults\widgets\forms\ActiveForm $form
+ * @var \backend\app\bootstrap\ActiveForm $form
  */
 ?>
 

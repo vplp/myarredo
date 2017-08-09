@@ -5,6 +5,7 @@ use yii\helpers\{
     Url, Html
 };
 use backend\modules\catalog\models\FactoryFile;
+use thread\widgets\grid\ActionStatusColumn;
 
 /**
  * @var \backend\modules\catalog\models\Factory $model
@@ -23,6 +24,11 @@ echo GridView::widget([
             'label' => Yii::t('app', 'Title'),
         ],
         'updated_at:datetime',
+        [
+            'class' => ActionStatusColumn::class,
+            'attribute' => 'published',
+            'action' => '/catalog/factory-file/published'
+        ],
         [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
             'updateLink' => function ($model) {

@@ -9,7 +9,7 @@ use backend\modules\catalog\models\{
 /**
  * @var \backend\modules\catalog\models\Category $model
  * @var \backend\modules\catalog\models\CategoryLang $modelLang
- * @var \backend\themes\defaults\widgets\forms\ActiveForm $form
+ * @var \backend\app\bootstrap\ActiveForm $form
  */
 
 ?>

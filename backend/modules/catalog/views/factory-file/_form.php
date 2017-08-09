@@ -3,10 +3,12 @@
 use yii\helpers\{
     Html, Url
 };
-use thread\app\bootstrap\{
-    ActiveForm
-};
+use backend\app\bootstrap\ActiveForm;
 
+/**
+ * @var $form \backend\app\bootstrap\ActiveForm
+ * @var $model \backend\modules\catalog\models\FactoryFile
+ */
 
 $this->context->actionListLinkStatus = Url::to(
     [
@@ -21,10 +23,18 @@ $this->context->actionListLinkStatus = Url::to(
 
 <?php if ($this->context->file_type == 1): ?>
     <?= Html::tag('h2', Yii::t('app', 'Catalogs')); ?>
-    <?php //$form->field($model, 'file_link')->imageOne($model->getFactoryFileCatalogsImage()) ?>
+    <?= $form->field($model, 'file_link')->fileInputWidget(
+        $model->getFileLink(),
+        ['accept' => '.doc,.docx,.xlsx,application/pdf', 'maxFileSize' => 0],
+        ['pdf', 'doc', 'docx', 'xlsx']
+    ) ?>
 <?php else: ?>
     <?= Html::tag('h2', Yii::t('app', 'Prices')); ?>
-    <?php //$form->field($model, 'file_link')->imageOne($model->getFactoryFilePricesImage()) ?>
+    <?= $form->field($model, 'file_link')->fileInputWidget(
+        $model->getFileLink(),
+        ['accept' => '.doc,.docx,.xlsx,application/pdf', 'maxFileSize' => 0],
+        ['pdf', 'doc', 'docx', 'xlsx']
+    ) ?>
     <?= $form->text_line($model, 'discount') ?>
 <?php endif; ?>
 
