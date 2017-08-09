@@ -3,9 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
-use thread\app\bootstrap\{
-    ActiveForm
-};
+use backend\app\bootstrap\ActiveForm;
 
 $this->context->actionListLinkStatus = Url::to(
     [

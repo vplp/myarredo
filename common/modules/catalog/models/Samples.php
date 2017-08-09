@@ -8,6 +8,7 @@ use yii\helpers\{
 };
 use thread\app\base\models\ActiveRecord;
 use common\modules\catalog\Catalog;
+use common\actions\upload\UploadBehavior;
 
 /**
  * Class Samples
@@ -49,7 +50,16 @@ class Samples extends ActiveRecord
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-
+            'uploadBehavior' => [
+                'class' => UploadBehavior::class,
+                'attributes' => [
+                    'image_link' => [
+                        'path' => Yii::$app->getModule('catalog')->getSamplesUploadPath(),
+                        'tempPath' => Yii::getAlias('@temp'),
+                        'url' => Yii::$app->getModule('catalog')->getSamplesUploadPath(),
+                    ]
+                ]
+            ],
         ]);
     }
 
@@ -122,7 +132,7 @@ class Samples extends ActiveRecord
     /**
      * @return null|string
      */
-    public function getSamplesImage()
+    public function getImageLink()
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');

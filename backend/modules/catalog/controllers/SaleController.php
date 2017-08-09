@@ -4,7 +4,7 @@ namespace backend\modules\catalog\controllers;
 
 use yii\helpers\ArrayHelper;
 //
-use thread\actions\fileapi\{
+use common\actions\upload\{
     DeleteAction, UploadAction
 };
 //

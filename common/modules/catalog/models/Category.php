@@ -9,6 +9,7 @@ use yii\helpers\{
 use voskobovich\behaviors\ManyToManyBehavior;
 use thread\app\base\models\ActiveRecord;
 use common\modules\catalog\Catalog;
+use common\actions\upload\UploadBehavior;
 
 /**
  * Class Category
@@ -58,6 +59,16 @@ class Category extends ActiveRecord
                 'relations' => [
                     'types_ids' => 'types',
                 ],
+            ],
+            'uploadBehavior' => [
+                'class' => UploadBehavior::class,
+                'attributes' => [
+                    'image_link' => [
+                        'path' => Yii::$app->getModule('catalog')->getCategoryUploadPath(),
+                        'tempPath' => Yii::getAlias('@temp'),
+                        'url' => Yii::$app->getModule('catalog')->getCategoryUploadPath(),
+                    ]
+                ]
             ],
         ]);
     }
@@ -152,7 +163,7 @@ class Category extends ActiveRecord
     /**
      * @return null|string
      */
-    public function getCategoryImage()
+    public function getImageLink()
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');

@@ -1,14 +1,16 @@
 <?php
 
-use backend\modules\catalog\models\TypesRelCategory;
-//
-use backend\themes\defaults\widgets\TreeGrid;
-
 use kartik\widgets\Select2;
 //
 use backend\modules\catalog\models\{
     Category
 };
+
+/**
+ * @var \backend\modules\catalog\models\Types $model
+ * @var \backend\modules\catalog\models\TypesLang $modelLang
+ * @var \backend\app\bootstrap\ActiveForm $form
+ */
 
 ?>
 
