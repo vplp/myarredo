@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\modules\user\controllers;
 
 use Yii;
@@ -37,7 +38,7 @@ class UserController extends BackendController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['create', 'update', 'list', 'validation', 'trash'],
+                        'actions' => ['published', 'create', 'update', 'list', 'validation', 'trash'],
                         'roles' => ['admin'],
                         'matchCallback' => function ($rule, $action) {
                             return (Yii::$app->getUser()->id === 1) ? true : false;
