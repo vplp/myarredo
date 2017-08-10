@@ -41,6 +41,7 @@ use common\modules\catalog\Catalog;
  * @property SaleLang $lang
  * @property SaleRelCategory[] $category
  * @property Factory $factory
+ * @property Types $types
  *
  * @package common\modules\catalog\models
  */
@@ -278,6 +279,14 @@ class Sale extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getTypes()
+    {
+        return $this->hasOne(Types::class, ['id' => 'catalog_type_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getSpecification()
     {
         return $this
@@ -292,5 +301,15 @@ class Sale extends ActiveRecord
     {
         return $this
             ->hasMany(SaleRelSpecification::class, ['sale_catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getImageLink()
+    {
+        $image = null;
+
+        return $image;
     }
 }

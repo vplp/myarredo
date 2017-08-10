@@ -7,20 +7,22 @@ use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 //
+use thread\actions\RecordView;
+//
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Product, Category
+    Factory
 };
 
 /**
- * Class CategoryController
+ * Class FactoryController
  *
  * @package frontend\modules\catalog\controllers
  */
-class CategoryController extends BaseController
+class FactoryController extends BaseController
 {
-    public $label = "Category";
-    public $title = "Category";
+    public $label = "Factory";
+    public $title = "Factory";
     public $defaultAction = 'list';
 
     /**
@@ -33,6 +35,7 @@ class CategoryController extends BaseController
                 'class' => VerbFilter::class,
                 'actions' => [
                     'list' => ['get'],
+                    'view' => ['get'],
                 ],
             ],
         ];
@@ -44,27 +47,29 @@ class CategoryController extends BaseController
      */
     public function actionList()
     {
-        $model = new Product();
+        $model = new Factory();
 
-        $params = $group = [];
-
-        if (Yii::$app->request->get('alias')) {
-            $group = Category::findByAlias(Yii::$app->request->get('alias'));
-
-            if ($group === null)
-                throw new NotFoundHttpException;
-
-            $this->label = $group['lang']['title'];
-
-            $params['category'] = $group['id'];
-        }
+        $params = [];
 
         $models = $model->search(ArrayHelper::merge($params, Yii::$app->request->queryParams));
 
         return $this->render('list', [
-            'group' => $group,
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),
         ]);
+    }
+
+    /**
+     * @return array
+     */
+    public function actions()
+    {
+        return [
+            'view' => [
+                'class' => RecordView::class,
+                'modelClass' => Factory::class,
+                'methodName' => 'findByAlias',
+            ],
+        ];
     }
 }

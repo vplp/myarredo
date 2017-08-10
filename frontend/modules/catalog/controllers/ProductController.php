@@ -17,7 +17,7 @@ use frontend\components\BaseController;
 class ProductController extends BaseController
 {
     public $title = "Product";
-    public $defaultAction = 'index';
+    public $defaultAction = 'view';
 
     /**
      * @return array
@@ -28,7 +28,7 @@ class ProductController extends BaseController
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'index' => ['get'],
+                    'view' => ['get'],
                 ],
             ],
         ];
@@ -40,7 +40,7 @@ class ProductController extends BaseController
     public function actions()
     {
         return [
-            'index' => [
+            'view' => [
                 'class' => RecordView::class,
                 'modelClass' => Product::class,
                 'methodName' => 'findByAlias',

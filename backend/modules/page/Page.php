@@ -13,7 +13,7 @@ class Page extends \common\modules\page\Page
     public $itemOnPage = 20;
 
     public $menuItems = [
-        'name' => 'Page',
+        'name' => 'Pages',
         'icon' => 'fa fa-sitemap',
         'url' => ['/page/page/list'],
         'position' => 1,

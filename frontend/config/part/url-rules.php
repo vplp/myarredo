@@ -18,9 +18,13 @@ return [
     'user/login/validation' => 'user/login/validation',
 
     // Module [[Catalog]]
-    'catalog' => 'catalog/category/index',
-    'catalog/<alias:[\w\-]+>' => 'catalog/category/index',
-    'product/<alias:[\w\-]+>' => 'catalog/product/index',
+    'catalog' => 'catalog/category/list',
+    'factories' => 'catalog/factory/list',
+    'sale' => 'catalog/sale/list',
+    'catalog/<alias:[\w\-]+>' => 'catalog/category/list',
+    'factory/<alias:[\w\-]+>' => 'catalog/factory/view',
+    'product/<alias:[\w\-]+>' => 'catalog/product/view',
+    'sale-product/<alias:[\w\-]+>' => 'catalog/sale/view',
 
     // Module [[News]]
     'news/<alias:[\w\-]+>' => 'news/list/index',

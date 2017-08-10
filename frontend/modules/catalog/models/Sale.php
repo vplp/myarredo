@@ -5,11 +5,11 @@ namespace frontend\modules\catalog\models;
 use yii\helpers\Url;
 
 /**
- * Class Product
+ * Class Sale
  *
  * @package frontend\modules\catalog\models
  */
-class Product extends \common\modules\catalog\models\Product
+class Sale extends \common\modules\catalog\models\Sale
 {
     /**
      * @return array
@@ -77,7 +77,7 @@ class Product extends \common\modules\catalog\models\Product
      */
     public function getUrl()
     {
-        return Url::toRoute(['/catalog/product/view', 'alias' => $this->alias]);
+        return Url::toRoute(['/catalog/sale/view', 'alias' => $this->alias]);
     }
 
     /**
@@ -88,18 +88,16 @@ class Product extends \common\modules\catalog\models\Product
      */
     public function search($params)
     {
-        return (new search\Product())->search($params);
+        return (new search\Sale())->search($params);
     }
 
     /**
      * @return string
      */
-    public function getProductTitle()
+    public function getTitle()
     {
         $title = (($this->catalog_type_id > 0 && !empty($this->types)) ? $this->types->lang->title . ' ' : '');
-        $title .= (($this->collections_id > 0 && !empty($this->collection)) ? $this->collection->lang->title . ' ' : '');
-        $title .= ((!$this->is_composition && !empty($this->article)) ? $this->article . ' ' : '');
-        $title = (($this->is_composition) ? $this->getСompositionTitle() : '') . $title;
+        $title .= $this->getFactoryTitle();
 
         return $title;
     }
@@ -107,8 +105,11 @@ class Product extends \common\modules\catalog\models\Product
     /**
      * @return string
      */
-    public function getCompositionTitle()
+    public function getFactoryTitle()
     {
-        return ($this->category[0]->lang->composition_title !== null) ? $this->category[0]->lang->composition_title . ' ' : 'КОМПОЗИЦИЯ ';
+        $title = !empty($this->factory->lang) ? $this->factory->lang->title : '';
+        $title .= ' ' . !empty($this->factory_name) ? $this->factory_name : '';
+
+        return $title;
     }
 }

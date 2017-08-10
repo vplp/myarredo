@@ -283,15 +283,15 @@ $this->beginPage()
                     <ul class="nav navbar-nav">
                         <li class="active"><?= Html::a(
                                 'Каталог мебели',
-                                Url::toRoute(['/catalog/category/index'])
+                                Url::toRoute(['/catalog/category/list'])
                             ); ?></li>
                         <li><?= Html::a(
                                 'Фабрики',
-                                Url::toRoute(['/catalog/factory/index'])
+                                Url::toRoute(['/catalog/factory/list'])
                             ); ?></li>
                         <li><?= Html::a(
                             'Распродажа',
-                            Url::toRoute(['/catalog/sale/index'])
+                            Url::toRoute(['/catalog/sale/list'])
                             ); ?></li>
                         <li><?= Html::a(
                                 'О проекте',

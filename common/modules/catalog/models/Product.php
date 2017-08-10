@@ -51,6 +51,7 @@ use common\modules\catalog\Catalog;
  * @property ProductRelCategory[] $category
  * @property ProductRelSamples[] $samples
  * @property Factory $factory
+ * @property Types $types
  *
  * @package common\modules\catalog\models
  */
