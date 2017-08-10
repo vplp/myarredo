@@ -12,7 +12,7 @@ use yii\helpers\Html;
 
     <div class="flex">
         <div class="logo-img">
-            <img src="public/img/pictures/comp-logo1.jpg" alt="Логотип компании">
+            <?= Html::img($model->getImageLink()); ?>
         </div>
         <h3><?= $model['lang']['title']; ?></h3>
     </div>

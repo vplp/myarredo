@@ -333,15 +333,10 @@ class Product extends ActiveRecord
     /**
      * @return null|string
      */
-    public function getProductImage()
+    public function getImageLink()
     {
-        $module = Yii::$app->getModule('catalog');
-        $path = $module->getProductUploadPath();
-        $url = $module->getProductUploadUrl();
         $image = null;
-        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
-            $image = $url . '/' . $this->image_link;
-        }
+
         return $image;
     }
 

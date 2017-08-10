@@ -94,7 +94,7 @@ class Product extends \common\modules\catalog\models\Product
     /**
      * @return string
      */
-    public function getProductTitle()
+    public function getTitle()
     {
         $title = (($this->catalog_type_id > 0 && !empty($this->types)) ? $this->types->lang->title . ' ' : '');
         $title .= (($this->collections_id > 0 && !empty($this->collection)) ? $this->collection->lang->title . ' ' : '');

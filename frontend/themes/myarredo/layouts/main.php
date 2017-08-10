@@ -17,9 +17,7 @@ $this->beginPage()
         <base href="<?= Yii::$app->getUrlManager()->getBaseUrl() ?>">
         <meta charset="<?= Yii::$app->charset ?>"/>
         <title><?= $this->title ?></title>
-        <link rel="shortcut icon" type="image/png" href="shortfavicon.png"/>
-        <link rel="icon" type="image/png" href="favicon.png">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <?php $this->head(); ?>
         <!--[if lt IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>

@@ -16,13 +16,13 @@ use yii\helpers\Html;
         </div>
     </object>
     <div class="img-cont">
-        <img src="public/img/pictures/prod-cat1.jpeg" alt="">
+        <?= Html::img($model->getImageLink()); ?>
         <div class="brand">
             <?= $model['factory']['lang']['title'] ?>
         </div>
     </div>
     <div class="item-infoblock">
-        <?= $model->getProductTitle() ?>
+        <?= $model->getTitle() ?>
     </div>
 
 <?= Html::endTag('a'); ?>

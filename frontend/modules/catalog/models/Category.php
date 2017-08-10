@@ -77,7 +77,29 @@ class Category extends \common\modules\catalog\models\Category
      */
     public function getUrl()
     {
-        return Url::toRoute(['/catalog/category/index', 'alias' => $this->alias]);
+        return Url::toRoute(['/catalog/category/list', 'alias' => $this->alias]);
+    }
+
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProduct()
+    {
+        return $this
+            ->hasMany(Product::class, ['id' => 'catalog_item_id'])
+            ->viaTable(ProductRelCategory::tableName(), ['group_id' => 'id'])
+            ->enabled()
+            ->andWhere(['is_composition' => '0'])
+            ->innerJoinWith('lang');
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getProductCount()
+    {
+        return $this->getProduct()->count();
     }
 
     /**
@@ -89,5 +111,21 @@ class Category extends \common\modules\catalog\models\Category
     public function search($params)
     {
         return (new search\Category())->search($params);
+    }
+
+    /**
+     * @param $params
+     * @return mixed
+     */
+    public static function getAllWithFilter($params = [])
+    {
+        return self::findBase()
+//            ->innerJoinWith([
+//                'product' => [
+//
+//                ]
+//            ])
+//            ->groupBy(self::tableName() . '.id')
+            ->all();
     }
 }

@@ -5,11 +5,11 @@ namespace frontend\modules\catalog\models;
 use yii\helpers\Url;
 
 /**
- * Class Factory
+ * Class Specification
  *
  * @package frontend\modules\catalog\models
  */
-class Factory extends \common\modules\catalog\models\Factory
+class Specification extends \common\modules\catalog\models\Specification
 {
     /**
      * @return array
@@ -52,32 +52,12 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
-     * Get by alias
-     *
-     * @param string $alias
-     * @return ActiveRecord|null
-     */
-    public static function findByAlias($alias)
-    {
-        return self::findBase()->byAlias($alias)->one();
-    }
-
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public static function findById($id)
-    {
-        return self::findBase()->byId($id)->one();
-    }
-
-    /**
      *
      * @return string
      */
     public function getUrl()
     {
-        return Url::toRoute(['/catalog/factory/view', 'alias' => $this->alias]);
+        return Url::toRoute(['/catalog/specification/view', 'alias' => $this->alias]);
     }
 
     /**
@@ -96,6 +76,6 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public function search($params)
     {
-        return (new search\Factory())->search($params);
+        return (new search\Specification())->search($params);
     }
 }
