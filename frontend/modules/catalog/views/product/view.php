@@ -1,27 +1,26 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\Breadcrumbs;
 
+$this->params['breadcrumbs'][] = [
+    'label' => 'Каталог итальянской мебели',
+    'url' => ['/catalog/category/list']
+];
+$this->params['breadcrumbs'][] = [
+    'label' => $model['category'][0]['lang']['title'],
+    'url' => ['/catalog/category/list']
+];
 ?>
 
 <main>
     <div class="prod-card-page page">
         <div class="container large-container">
             <div class="row">
-                <ul class="bread-crumbs">
-                    <li>
-                        <a href="#">Главная</a>
-                    </li>
-                    <li>
-                        <a href="#">Каталог Итальянской Мебел</a>
-                    </li>
-                    <li>
-                        <a href="#">Столовые комнаты в Москве</a>
-                    </li>
-                    <li>
-                        Буфет
-                    </li>
-                </ul>
+                <?= Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    'options' => ['class' => 'bread-crumbs']
+                ]) ?>
                 <div class="product-title">
                     <h1 class="prod-model"><?= $model['lang']['title']; ?></h1>
                 </div>

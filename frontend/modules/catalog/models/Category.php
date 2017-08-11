@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\models;
 
+use Yii;
 use yii\helpers\Url;
 
 /**
@@ -48,7 +49,7 @@ class Category extends \common\modules\catalog\models\Category
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled();
+        return parent::findBase()->enabled()->asArray();
     }
 
     /**
@@ -72,25 +73,16 @@ class Category extends \common\modules\catalog\models\Category
     }
 
     /**
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return Url::toRoute(['/catalog/category/list', 'alias' => $this->alias]);
-    }
-
-    /**
      * @return int|string
      */
-    public function getProductCount()
-    {
-        return $this->getProduct()
-            ->innerJoinWith('lang')
-            ->andWhere(['is_composition' => '0'])
-            ->enabled()
-            ->count();
-    }
+//    public function getProductCount()
+//    {
+//        return $this->getProduct()
+//            ->innerJoinWith('lang')
+//            ->andWhere(['is_composition' => '0'])
+//            ->enabled()
+//            ->count();
+//    }
 
     /**
      * Search
@@ -101,6 +93,32 @@ class Category extends \common\modules\catalog\models\Category
     public function search($params)
     {
         return (new search\Category())->search($params);
+    }
+
+    /**
+     * @param string $alias
+     * @return string
+     */
+    public static function getUrl(string $alias)
+    {
+        return Url::toRoute(['/catalog/category/list', 'alias' => $alias]);
+    }
+
+    /**
+     * @param string $image_link
+     * @return null|string
+     */
+    public static function getImage(string $image_link)
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+        $path = $module->getCategoryUploadPath();
+        $url = $module->getCategoryUploadUrl();
+        $image = null;
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = $url . '/' . $image_link;
+        }
+        return $image;
     }
 
     /**

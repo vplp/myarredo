@@ -19,7 +19,8 @@ return [
 
     // Module [[Catalog]]
 
-    'catalog/<alias:[\w\-]+>' => 'catalog/category/list',
+    //'catalog/<alias:[\w\-]+>' => 'catalog/category/list',
+    'catalog/<filter:[\;\-\/\w\d]+>' => 'catalog/category/list',
     'factory/<alias:[\w\-]+>' => 'catalog/factory/view',
     'product/<alias:[\w\-]+>' => 'catalog/product/view',
     'sale-product/<alias:[\w\-]+>' => 'catalog/sale/view',

@@ -48,29 +48,20 @@ class Specification extends \common\modules\catalog\models\Specification
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled();
-    }
-
-    /**
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return Url::toRoute(['/catalog/specification/view', 'alias' => $this->alias]);
+        return parent::findBase()->enabled()->asArray();
     }
 
     /**
      * @return int|string
      */
-    public function getProductCount()
-    {
-        return $this->getProduct()
-            ->innerJoinWith('lang')
-            ->andWhere(['is_composition' => '0'])
-            ->enabled()
-            ->count();
-    }
+//    public function getProductCount()
+//    {
+//        return $this->getProduct()
+//            ->innerJoinWith('lang')
+//            ->andWhere(['is_composition' => '0'])
+//            ->enabled()
+//            ->count();
+//    }
 
     /**
      * Search
@@ -84,13 +75,22 @@ class Specification extends \common\modules\catalog\models\Specification
     }
 
     /**
+     * @param $alias
+     * @return string
+     */
+    public static function getUrl($alias)
+    {
+        return Url::toRoute(['/catalog/specification/view', 'alias' => $alias]);
+    }
+
+    /**
      * @param $params
      * @return mixed
      */
     public static function getAllWithFilter($params = [])
     {
         return self::findBase()
-            ->andWhere(['parent_id' => 9])
+            ->andWhere([self::tableName() . '.parent_id' => 9])
             ->all();
     }
 }

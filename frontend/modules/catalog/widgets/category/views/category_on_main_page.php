@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+use frontend\modules\catalog\models\Category;
 
 /**
  * @var $model \frontend\modules\catalog\models\Category
@@ -26,8 +27,8 @@ use yii\helpers\{
 
                     <?php foreach ($models as $model): ?>
                         <div class="col-xs-6 col-sm-3 col-md-3 one-cat">
-                            <?= Html::beginTag('a', ['href' => $model->getUrl()]); ?>
-                            <div class="img-cont"><?= Html::img($model->getImageLink()); ?></div>
+                            <?= Html::beginTag('a', ['href' => Category::getUrl($model['alias'])]); ?>
+                            <div class="img-cont"><?= Html::img(Category::getImage($model['image_link'])); ?></div>
                             <div class="descr"><?= $model['lang']['title']; ?></div>
                             <?= Html::endTag('a'); ?>
                         </div>

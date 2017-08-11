@@ -48,7 +48,7 @@ class Product extends \common\modules\catalog\models\Product
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled();
+        return parent::findBase()->enabled()->asArray();
     }
 
     /**
@@ -59,7 +59,14 @@ class Product extends \common\modules\catalog\models\Product
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->byAlias($alias)->one();
+        return self::findBase()
+            ->byAlias($alias)
+            ->innerJoinWith([
+                'category' => function ($q) {
+                    $q->with(['lang']);
+                }]
+            )
+            ->one();
     }
 
     /**
@@ -69,15 +76,6 @@ class Product extends \common\modules\catalog\models\Product
     public static function findById($id)
     {
         return self::findBase()->byId($id)->one();
-    }
-
-    /**
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return Url::toRoute(['/catalog/product/view', 'alias' => $this->alias]);
     }
 
     /**
@@ -92,23 +90,39 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * @param string $alias
      * @return string
      */
-    public function getTitle()
+    public static function getUrl(string $alias)
     {
-        $title = (($this->catalog_type_id > 0 && !empty($this->types)) ? $this->types->lang->title . ' ' : '');
-        $title .= (($this->collections_id > 0 && !empty($this->collection)) ? $this->collection->lang->title . ' ' : '');
-        $title .= ((!$this->is_composition && !empty($this->article)) ? $this->article . ' ' : '');
-        $title = (($this->is_composition) ? $this->getСompositionTitle() : '') . $title;
-
-        return $title;
+        return Url::toRoute(['/catalog/product/view', 'alias' => $alias]);
     }
 
     /**
+     * @param array $model
+     * @param array $types
+     * @param array $collections
      * @return string
      */
-    public function getCompositionTitle()
+    public static function getTitle(array $model, array $types = [], array $collections = [])
     {
-        return ($this->category[0]->lang->composition_title !== null) ? $this->category[0]->lang->composition_title . ' ' : 'КОМПОЗИЦИЯ ';
+        // TODO: !!!
+
+//        $title = (($this->catalog_type_id > 0 && !empty($this->types)) ? $this->types->lang->title . ' ' : '');
+//        $title .= (($this->collections_id > 0 && !empty($this->collection)) ? $this->collection->lang->title . ' ' : '');
+//        $title .= ((!$this->is_composition && !empty($this->article)) ? $this->article . ' ' : '');
+//        $title = (($this->is_composition) ? $this->getСompositionTitle() : '') . $title;
+
+        $title = '';
+
+        if ($types)
+            $title .= $types['lang']['title'] . ' ';
+
+        if ($collections)
+            $title .= $collections['lang']['title'] . ' ';
+
+        $title .= $model['article'];
+
+        return $title;
     }
 }

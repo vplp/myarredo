@@ -25,33 +25,34 @@ class ProductFilter extends Widget
     /**
      * @var object
      */
-    private $category = [];
+    public $category = [];
 
     /**
      * @var object
      */
-    private $types = [];
+    public $types = [];
 
     /**
      * @var object
      */
-    private $style = [];
+    public $style = [];
 
     /**
      * @var object
      */
-    private $factory = [];
+    public $factory = [];
 
     /**
      * @inheritdoc
      */
     public function init()
     {
-        /* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->catalogFilter->params); echo '</pre>'; /* !!! */
-        $this->category = Category::getAllWithFilter();
-        $this->types = Types::getAllWithFilter();
-        $this->style = Specification::getAllWithFilter();
-        $this->factory = Factory::getAllWithFilter();
+        //* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->catalogFilter->params); echo '</pre>'; /* !!! */
+
+//        $this->category = Category::getAllWithFilter(Yii::$app->catalogFilter->params);
+//        $this->types = Types::getAllWithFilter(Yii::$app->catalogFilter->params);
+//        $this->style = Specification::getAllWithFilter(Yii::$app->catalogFilter->params);
+//        $this->factory = Factory::getAllWithFilter(Yii::$app->catalogFilter->params);
     }
 
     /**

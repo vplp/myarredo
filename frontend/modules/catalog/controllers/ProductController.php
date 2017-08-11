@@ -3,8 +3,7 @@
 namespace frontend\modules\catalog\controllers;
 
 use yii\filters\VerbFilter;
-//
-use thread\actions\RecordView;
+use yii\web\NotFoundHttpException;
 //
 use frontend\modules\catalog\models\Product;
 use frontend\components\BaseController;
@@ -35,16 +34,20 @@ class ProductController extends BaseController
     }
 
     /**
-     * @return array
+     * @param string $alias
+     * @return string
+     * @throws NotFoundHttpException
      */
-    public function actions()
+    public function actionView(string $alias)
     {
-        return [
-            'view' => [
-                'class' => RecordView::class,
-                'modelClass' => Product::class,
-                'methodName' => 'findByAlias',
-            ],
-        ];
+        $model = Product::findByAlias($alias);
+
+        if ($model === null) {
+            throw new NotFoundHttpException;
+        }
+
+        return $this->render('view', [
+            'model' => $model,
+        ]);
     }
 }

@@ -9,7 +9,7 @@ use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Product, Category
+    Product, Category, Factory, Types, Specification, Collection
 };
 
 /**
@@ -48,21 +48,32 @@ class CategoryController extends BaseController
 
         $params = $group = [];
 
-        if (Yii::$app->request->get('alias')) {
-            $group = Category::findByAlias(Yii::$app->request->get('alias'));
+//        if (Yii::$app->request->get('alias')) {
+//            $group = Category::findByAlias(Yii::$app->request->get('alias'));
+//
+//            if ($group === null)
+//                throw new NotFoundHttpException;
+//
+//            $this->label = $group['lang']['title'];
+//
+//            $params['category'] = $group['id'];
+//        }
 
-            if ($group === null)
-                throw new NotFoundHttpException;
-
-            $this->label = $group['lang']['title'];
-
-            $params['category'] = $group['id'];
-        }
+        $category = Category::getAllWithFilter(Yii::$app->catalogFilter->params);
+        $types = Types::getAllWithFilter(Yii::$app->catalogFilter->params);
+        $style = Specification::getAllWithFilter(Yii::$app->catalogFilter->params);
+        $factory = Factory::getAllWithFilter(Yii::$app->catalogFilter->params);
+        $collection = Collection::getAllWithFilter(Yii::$app->catalogFilter->params);
 
         $models = $model->search(ArrayHelper::merge($params, Yii::$app->request->queryParams));
 
         return $this->render('list', [
             'group' => $group,
+            'category' => $category,
+            'types' => $types,
+            'style' => $style,
+            'factory' => $factory,
+            'collection' => $collection,
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),
         ]);

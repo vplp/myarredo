@@ -4,7 +4,9 @@ use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
-
+use frontend\modules\catalog\models\{
+    Product, Category
+};
 ?>
 
 <div class="filters">
@@ -29,8 +31,8 @@ use yii\helpers\{
             <?php foreach ($category as $item): ?>
 
                 <?= Html::a(
-                    $item['lang']['title'] . ' ('. $item->getProductCount().')',
-                    $item->getUrl(),
+                    $item['lang']['title'] /*. ' ('. $item->getProductCount().')'*/,
+                    Yii::$app->catalogFilter->createUrl($item['alias']),
                     ['class' => 'one-item']
                 ); ?>
 
@@ -51,7 +53,7 @@ use yii\helpers\{
                     <label>
                         <input type="checkbox">
                         <div class="my-checkbox"></div>
-                        <?= $item['lang']['title'] . ' ('. $item->getProductCount().')'; ?>
+                        <?= $item['lang']['title'] ;//. ' ('. $item->getProductCount().')'; ?>
                     </label>
                 <?= Html::endTag('a'); ?>
 
@@ -72,7 +74,7 @@ use yii\helpers\{
                 <label>
                     <input type="checkbox">
                     <div class="my-checkbox"></div>
-                    <?= $item['lang']['title'] . ' ('. $item->getProductCount().')'; ?>
+                    <?= $item['lang']['title'] ;//. ' ('. $item->getProductCount().')'; ?>
                 </label>
                 <?= Html::endTag('a'); ?>
 
@@ -93,7 +95,7 @@ use yii\helpers\{
                 <label>
                     <input type="checkbox">
                     <div class="my-checkbox"></div>
-                    <?= $item['lang']['title'] . ' ('. $item->getProductCount().')'; ?>
+                    <?= $item['lang']['title'] ;//. ' ('. $item->getProductCount().')'; ?>
                 </label>
                 <?= Html::endTag('a'); ?>
 

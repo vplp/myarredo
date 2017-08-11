@@ -2,14 +2,12 @@
 
 namespace frontend\modules\catalog\models;
 
-use yii\helpers\Url;
-
 /**
- * Class Types
+ * Class Collection
  *
  * @package frontend\modules\catalog\models
  */
-class Types extends \common\modules\catalog\models\Types
+class Collection extends \common\modules\catalog\models\Collection
 {
     /**
      * @return array
@@ -52,18 +50,6 @@ class Types extends \common\modules\catalog\models\Types
     }
 
     /**
-     * @return int|string
-     */
-//    public function getProductCount()
-//    {
-//        return $this->getProduct()
-//            ->innerJoinWith('lang')
-//            ->andWhere(['is_composition' => '0'])
-//            ->enabled()
-//            ->count();
-//    }
-
-    /**
      * Search
      *
      * @param $params
@@ -71,16 +57,7 @@ class Types extends \common\modules\catalog\models\Types
      */
     public function search($params)
     {
-        return (new search\Types())->search($params);
-    }
-
-    /**
-     * @param $alias
-     * @return string
-     */
-    public static function getUrl($alias)
-    {
-        return Url::toRoute(['/catalog/types/view', 'alias' => $alias]);
+        return (new search\Collection())->search($params);
     }
 
     /**

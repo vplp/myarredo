@@ -27,7 +27,6 @@ abstract class BaseController extends \yii\web\Controller
      */
     public $defaultAction = 'index';
 
-
     /**
      * @param \yii\base\Action $action
      * @return bool
