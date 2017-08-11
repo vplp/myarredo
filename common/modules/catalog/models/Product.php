@@ -240,92 +240,6 @@ class Product extends ActiveRecord
     }
 
     /**
-     * @return bool
-     */
-    public function beforeValidate()
-    {
-        $this->alias = $this->types->alias
-            . '_' . $this->factory->alias
-            . (($this->article) ? '_' . self::slugify($this->article, '_') : '');
-
-        return parent::beforeValidate();
-    }
-
-    /**
-     * @param $text
-     * @param string $replacement
-     * @return mixed|string
-     */
-    public static function slugify($text, $replacement = '-')
-    {
-        // replace non letter or digits by -
-        $text = preg_replace('~[^\pL\d]+~u', $replacement, $text);
-
-        // transliterate
-        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-
-        // remove unwanted characters
-        $text = preg_replace('~[^-\w]+~', '', $text);
-
-        // trim
-        $text = trim($text, $replacement);
-
-        // remove duplicate -
-        $text = preg_replace('~-+~', $replacement, $text);
-
-        // lowercase
-        $text = strtolower($text);
-
-        if (empty($text)) {
-            return '';
-        }
-
-        return $text;
-    }
-    /**
-     * @param bool $insert
-     * @return bool
-     */
-    public function beforeSave($insert)
-    {
-        if ($this->id) {
-            $this->alias = $this->id . '_' . $this->alias;
-        }
-
-        $this->user_id = Yii::$app->getUser()->id;
-        $userIdentity = Yii::$app->getUser()->getIdentity();
-        $this->user = $userIdentity->profile->first_name . ' ' . $userIdentity->profile->last_name;
-
-        return parent::beforeSave($insert);
-    }
-
-    /**
-     * @param bool $insert
-     * @param array $changedAttributes
-     */
-    public function afterSave($insert, $changedAttributes)
-    {
-        // delete relation ProductRelSpecification
-        ProductRelSpecification::deleteAll(['catalog_item_id' => $this->id]);
-
-        // save relation ProductRelSpecification
-        if (Yii::$app->request->getBodyParam('SpecificationValue')) {
-            foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
-                if ($val) {
-                    $model = new ProductRelSpecification();
-                    $model->setScenario('backend');
-                    $model->catalog_item_id = $this->id;
-                    $model->specification_id = $specification_id;
-                    $model->val = $val;
-                    $model->save();
-                }
-            }
-        }
-
-        parent::afterSave($insert, $changedAttributes);
-    }
-
-    /**
      * @return mixed
      */
     public static function findBase()
@@ -340,28 +254,28 @@ class Product extends ActiveRecord
      * @param $id
      * @return mixed
      */
-    public static function findById($id)
-    {
-        return self::findBase()->byID($id);
-    }
-
-    /**
-     * @param $alias
-     * @return mixed
-     */
-    public static function findByAlias($alias)
-    {
-        return self::findBase()->byAlias($alias);
-    }
-
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public static function getById($id)
-    {
-        return self::findById($id)->one();
-    }
+//    public static function findById($id)
+//    {
+//        return self::findBase()->byID($id);
+//    }
+//
+//    /**
+//     * @param $alias
+//     * @return mixed
+//     */
+//    public static function findByAlias($alias)
+//    {
+//        return self::findBase()->byAlias($alias);
+//    }
+//
+//    /**
+//     * @param $id
+//     * @return mixed
+//     */
+//    public static function getById($id)
+//    {
+//        return self::findById($id)->one();
+//    }
 
     /**
      * @return \yii\db\ActiveQuery

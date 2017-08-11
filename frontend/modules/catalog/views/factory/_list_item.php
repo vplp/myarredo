@@ -1,18 +1,18 @@
 <?php
 
 use yii\helpers\Html;
-
+use frontend\modules\catalog\models\Factory;
 /**
  * @var \frontend\modules\catalog\models\Factory $model
  */
 
 ?>
 
-<?= Html::beginTag('a', ['href' => $model->getUrl(), 'class' => 'factory-tile']); ?>
+<?= Html::beginTag('a', ['href' => Factory::getUrl($model['alias']), 'class' => 'factory-tile']); ?>
 
     <div class="flex">
         <div class="logo-img">
-            <?= Html::img($model->getImageLink()); ?>
+            <?= Html::img(Factory::getImage($model['image_link'])); ?>
         </div>
         <h3><?= $model['lang']['title']; ?></h3>
     </div>

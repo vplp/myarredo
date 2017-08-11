@@ -11,6 +11,7 @@ $this->params['breadcrumbs'][] = [
     'label' => $model['category'][0]['lang']['title'],
     'url' => ['/catalog/category/list']
 ];
+
 ?>
 
 <main>

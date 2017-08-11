@@ -94,19 +94,6 @@ class Factory extends ActiveRecord
     }
 
     /**
-     * @return bool
-     */
-    public function beforeValidate()
-    {
-        $title = (Yii::$app->request->post('FactoryLang'))['title'];
-        $this->first_letter = mb_strtoupper(mb_substr(trim($title), 0, 1, 'UTF-8'), 'UTF-8');
-
-        $this->alias = (Yii::$app->request->post('FactoryLang'))['title'];
-
-        return parent::beforeValidate();
-    }
-
-    /**
      * @return array
      */
     public function scenarios()

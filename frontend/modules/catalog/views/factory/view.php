@@ -1,6 +1,16 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\Breadcrumbs;
+
+$this->params['breadcrumbs'][] = [
+    'label' => 'Итальянские фабрики мебели',
+    'url' => ['/catalog/factory/list']
+];
+$this->params['breadcrumbs'][] = [
+    'label' => $model['lang']['title'],
+    'url' => ['/catalog/factory/list']
+];
 
 ?>
 
@@ -92,20 +102,10 @@ use yii\helpers\Html;
         </div>
         <div class="container large-container">
             <div class="row">
-                <ul class="bread-crumbs">
-                    <li>
-                        <a href="#">Главная</a>
-                    </li>
-                    <li>
-                        <a href="#">Каталог Итальянской Мебел</a>
-                    </li>
-                    <li>
-                        <a href="#">Столовые комнаты в Москве</a>
-                    </li>
-                    <li>
-                        Буфет
-                    </li>
-                </ul>
+                <?= Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    'options' => ['class' => 'bread-crumbs']
+                ]) ?>
             </div>
             <div class="row factory-det">
                 <div class="col-sm-3 col-md-3">

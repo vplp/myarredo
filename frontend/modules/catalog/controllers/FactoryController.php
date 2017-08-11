@@ -7,8 +7,6 @@ use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 //
-use thread\actions\RecordView;
-//
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
     Factory
@@ -60,16 +58,20 @@ class FactoryController extends BaseController
     }
 
     /**
-     * @return array
+     * @param string $alias
+     * @return string
+     * @throws NotFoundHttpException
      */
-    public function actions()
+    public function actionView(string $alias)
     {
-        return [
-            'view' => [
-                'class' => RecordView::class,
-                'modelClass' => Factory::class,
-                'methodName' => 'findByAlias',
-            ],
-        ];
+        $model = Factory::findByAlias($alias);
+
+        if ($model === null) {
+            throw new NotFoundHttpException;
+        }
+
+        return $this->render('view', [
+            'model' => $model,
+        ]);
     }
 }
