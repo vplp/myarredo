@@ -34,4 +34,7 @@ return [
             ],
         ],
     ],
+    'catalogFilter' => [
+        'class' => \frontend\modules\catalog\components\CatalogFilter::class,
+    ]
 ];

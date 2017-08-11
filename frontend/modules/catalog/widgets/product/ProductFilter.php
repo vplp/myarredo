@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\widgets\product;
 
+use Yii;
 use yii\base\Widget;
 //
 use frontend\modules\catalog\models\{
@@ -46,6 +47,7 @@ class ProductFilter extends Widget
      */
     public function init()
     {
+        /* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->catalogFilter->params); echo '</pre>'; /* !!! */
         $this->category = Category::getAllWithFilter();
         $this->types = Types::getAllWithFilter();
         $this->style = Specification::getAllWithFilter();
