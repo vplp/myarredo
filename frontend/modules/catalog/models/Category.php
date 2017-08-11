@@ -80,26 +80,16 @@ class Category extends \common\modules\catalog\models\Category
         return Url::toRoute(['/catalog/category/list', 'alias' => $this->alias]);
     }
 
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProduct()
-    {
-        return $this
-            ->hasMany(Product::class, ['id' => 'catalog_item_id'])
-            ->viaTable(ProductRelCategory::tableName(), ['group_id' => 'id'])
-            ->enabled()
-            ->andWhere(['is_composition' => '0'])
-            ->innerJoinWith('lang');
-    }
-
     /**
      * @return int|string
      */
     public function getProductCount()
     {
-        return $this->getProduct()->count();
+        return $this->getProduct()
+            ->innerJoinWith('lang')
+            ->andWhere(['is_composition' => '0'])
+            ->enabled()
+            ->count();
     }
 
     /**

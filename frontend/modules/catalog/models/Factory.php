@@ -85,7 +85,11 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public function getProductCount()
     {
-        return 0;
+        return $this->getProduct()
+            ->innerJoinWith('lang')
+            ->andWhere(['is_composition' => '0'])
+            ->enabled()
+            ->count();
     }
 
     /**
@@ -97,5 +101,21 @@ class Factory extends \common\modules\catalog\models\Factory
     public function search($params)
     {
         return (new search\Factory())->search($params);
+    }
+
+    /**
+     * @param $params
+     * @return mixed
+     */
+    public static function getAllWithFilter($params = [])
+    {
+        return self::findBase()
+//            ->innerJoinWith([
+//                'product' => [
+//
+//                ]
+//            ])
+//            ->groupBy(self::tableName() . '.id')
+            ->all();
     }
 }

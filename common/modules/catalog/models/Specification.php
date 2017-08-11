@@ -133,4 +133,14 @@ class Specification extends ActiveRecord
     {
         return $this->hasOne(self::class, ['id' => 'parent_id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProduct()
+    {
+        return $this
+            ->hasMany(Product::class, ['id' => 'catalog_item_id'])
+            ->viaTable(ProductRelSpecification::tableName(), ['specification_id' => 'id']);
+    }
 }

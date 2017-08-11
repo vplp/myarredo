@@ -129,4 +129,12 @@ class Types extends ActiveRecord
             ->hasMany(Category::class, ['id' => 'group_id'])
             ->viaTable(TypesRelCategory::tableName(), ['type_id' => 'id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProduct()
+    {
+        return $this->hasMany(Product::class, ['catalog_type_id' => 'id']);
+    }
 }

@@ -47,9 +47,9 @@ class ProductFilter extends Widget
     public function init()
     {
         $this->category = Category::getAllWithFilter();
-        $this->types = Types::findBase()->all();
-        $this->style = Specification::findBase()->andWhere(['parent_id' => 9])->all();
-        $this->factory = Factory::findBase()->all();
+        $this->types = Types::getAllWithFilter();
+        $this->style = Specification::getAllWithFilter();
+        $this->factory = Factory::getAllWithFilter();
     }
 
     /**

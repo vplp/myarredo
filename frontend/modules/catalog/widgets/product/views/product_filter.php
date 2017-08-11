@@ -16,10 +16,11 @@ use yii\helpers\{
     ]) ?>
 
     <div class="one-filter open">
-        <a href="#" class="reset">
-            <i class="fa fa-times" aria-hidden="true"></i>
-            СБРОСИТЬ ФИЛЬТРЫ
-        </a>
+        <?= Html::a(
+            '<i class="fa fa-times" aria-hidden="true"></i>СБРОСИТЬ ФИЛЬТРЫ',
+            Url::toRoute(['/catalog/category/list']),
+            ['class' => 'reset']
+        ); ?>
         <a href="javascript:void(0);" class="filt-but">
             Категории
         </a>

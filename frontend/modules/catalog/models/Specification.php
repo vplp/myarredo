@@ -65,7 +65,11 @@ class Specification extends \common\modules\catalog\models\Specification
      */
     public function getProductCount()
     {
-        return 0;
+        return $this->getProduct()
+            ->innerJoinWith('lang')
+            ->andWhere(['is_composition' => '0'])
+            ->enabled()
+            ->count();
     }
 
     /**
@@ -77,5 +81,22 @@ class Specification extends \common\modules\catalog\models\Specification
     public function search($params)
     {
         return (new search\Specification())->search($params);
+    }
+
+    /**
+     * @param $params
+     * @return mixed
+     */
+    public static function getAllWithFilter($params = [])
+    {
+        return self::findBase()
+            ->andWhere(['parent_id' => 9])
+//            ->innerJoinWith([
+//                'product' => [
+//
+//                ]
+//            ])
+//            ->groupBy(self::tableName() . '.id')
+            ->all();
     }
 }

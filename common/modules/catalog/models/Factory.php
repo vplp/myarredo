@@ -171,6 +171,15 @@ class Factory extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getProduct()
+    {
+        return $this->hasMany(Product::class, ['factory_id' => 'id']);
+    }
+
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getCollection()
     {
         return $this->hasMany(Collection::class, ['factory_id' => 'id']);

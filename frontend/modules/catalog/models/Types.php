@@ -65,7 +65,11 @@ class Types extends \common\modules\catalog\models\Types
      */
     public function getProductCount()
     {
-        return 0;
+        return $this->getProduct()
+            ->innerJoinWith('lang')
+            ->andWhere(['is_composition' => '0'])
+            ->enabled()
+            ->count();
     }
 
     /**
@@ -77,5 +81,21 @@ class Types extends \common\modules\catalog\models\Types
     public function search($params)
     {
         return (new search\Types())->search($params);
+    }
+
+    /**
+     * @param $params
+     * @return mixed
+     */
+    public static function getAllWithFilter($params = [])
+    {
+        return self::findBase()
+//            ->innerJoinWith([
+//                'product' => [
+//
+//                ]
+//            ])
+//            ->groupBy(self::tableName() . '.id')
+            ->all();
     }
 }
