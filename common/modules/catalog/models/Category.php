@@ -129,7 +129,7 @@ class Category extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->joinWith(['lang'])->orderBy('position');
+        return self::find()->innerJoinWith(['lang'])->orderBy('position');
     }
 
     /**

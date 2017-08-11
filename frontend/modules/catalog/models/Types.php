@@ -90,12 +90,6 @@ class Types extends \common\modules\catalog\models\Types
     public static function getAllWithFilter($params = [])
     {
         return self::findBase()
-//            ->innerJoinWith([
-//                'product' => [
-//
-//                ]
-//            ])
-//            ->groupBy(self::tableName() . '.id')
             ->all();
     }
 }

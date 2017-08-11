@@ -91,12 +91,6 @@ class Specification extends \common\modules\catalog\models\Specification
     {
         return self::findBase()
             ->andWhere(['parent_id' => 9])
-//            ->innerJoinWith([
-//                'product' => [
-//
-//                ]
-//            ])
-//            ->groupBy(self::tableName() . '.id')
             ->all();
     }
 }

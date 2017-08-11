@@ -277,12 +277,77 @@ $this->beginPage()
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                <div class="collapse navbar-collapse" id="main-menu" >
+                <div class="collapse navbar-collapse" id="main-menu">
                     <ul class="nav navbar-nav">
-                        <li class="active"><?= Html::a(
+                        <li><?= Html::a(
                                 'Каталог мебели',
-                                Url::toRoute(['/catalog/category/list'])
-                            ); ?></li>
+                                '#'
+                            ); ?>
+                            <div class="dropdown-item">
+                                <div class="container large-container">
+                                    <ul class="drop-down-list">
+                                        <li>
+                                            <a href="#">Спальни (206)</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Кухни (117)</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Столовые (117)</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Детская мебель (112)</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Мягкая мебель (112)</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Гостинные (113)</a>
+                                        </li>
+                                    </ul>
+                                    <ul class="drop-down-list">
+                                        <li>
+                                            <a href="#">Спальни (206)</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Кухни (117)</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Столовые (117)</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Детская мебель (112)</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Мягкая мебель (112)</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Гостинные (113)</a>
+                                        </li>
+                                    </ul>
+                                    <ul class="drop-down-list">
+                                        <li>
+                                            <a href="#">Спальни (206)</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Кухни (117)</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Столовые (117)</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Детская мебель (112)</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Мягкая мебель (112)</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Гостинные (113)</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
                         <li><?= Html::a(
                                 'Фабрики',
                                 Url::toRoute(['/catalog/factory/list'])

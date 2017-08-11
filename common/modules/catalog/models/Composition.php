@@ -150,7 +150,7 @@ class Composition extends Product
     public static function findBase()
     {
         return self::find()
-            ->joinWith(['lang'])
+            ->innerJoinWith(['lang'])
             ->andWhere(['is_composition' => '1'])
             ->orderBy('updated_at DESC');
     }

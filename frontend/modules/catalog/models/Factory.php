@@ -110,12 +110,6 @@ class Factory extends \common\modules\catalog\models\Factory
     public static function getAllWithFilter($params = [])
     {
         return self::findBase()
-//            ->innerJoinWith([
-//                'product' => [
-//
-//                ]
-//            ])
-//            ->groupBy(self::tableName() . '.id')
             ->all();
     }
 }

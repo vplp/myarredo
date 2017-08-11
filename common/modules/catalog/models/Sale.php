@@ -246,7 +246,7 @@ class Sale extends ActiveRecord
     public static function findBase()
     {
         return self::find()
-            ->joinWith(['lang'])
+            ->innerJoinWith(['lang'])
             ->orderBy('id DESC');
     }
 

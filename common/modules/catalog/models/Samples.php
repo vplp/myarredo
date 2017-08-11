@@ -110,7 +110,7 @@ class Samples extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->joinWith(['lang'])->orderBy(SamplesLang::tableName() . '.title');
+        return self::find()->innerJoinWith(['lang'])->orderBy(SamplesLang::tableName() . '.title');
     }
 
     /**

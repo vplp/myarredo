@@ -107,7 +107,7 @@ class Specification extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->joinWith(['lang'])->orderBy(SpecificationLang::tableName() . '.title');
+        return self::find()->innerJoinWith(['lang'])->orderBy(SpecificationLang::tableName() . '.title');
     }
 
     /**

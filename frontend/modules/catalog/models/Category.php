@@ -110,12 +110,6 @@ class Category extends \common\modules\catalog\models\Category
     public static function getAllWithFilter($params = [])
     {
         return self::findBase()
-//            ->innerJoinWith([
-//                'product' => [
-//
-//                ]
-//            ])
-//            ->groupBy(self::tableName() . '.id')
             ->all();
     }
 }

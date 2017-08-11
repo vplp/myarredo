@@ -112,7 +112,7 @@ class Collection extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->joinWith(['lang'])->orderBy(CollectionLang::tableName() . '.title');
+        return self::find()->innerJoinWith(['lang'])->orderBy(CollectionLang::tableName() . '.title');
     }
 
     /**

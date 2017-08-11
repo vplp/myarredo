@@ -290,7 +290,7 @@ class Product extends ActiveRecord
     public static function findBase()
     {
         return self::find()
-            ->joinWith(['lang'])
+            ->innerJoinWith(['lang'])
             ->andWhere(['is_composition' => '0'])
             ->orderBy('updated_at DESC');
     }
