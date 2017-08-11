@@ -19,6 +19,7 @@ header {
     .large-container {
       display: flex;
       align-items: center;
+      position: relative;
     }
   }
   .navbar-right {
@@ -137,6 +138,9 @@ header {
     display: flex !important;
     align-items: center;
   }
+  .nav>li {
+    position: static;
+  }
   #main-menu {
     font-size: 15px;
     font-family: 'HelveticaNeueCyr-Roman', 'Roboto', sans-serif;
@@ -159,6 +163,11 @@ header {
       height: 100%;
       li {
         height: 100%;
+        &:hover {
+          .dropdown-item {
+            display: block;
+          }
+        }
       }
     }
   }
@@ -273,5 +282,36 @@ header {
     text-transform: uppercase;
     font-size: 16px;
   }
-
+  .dropdown-item {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    padding: 25px 20px 40px;
+    background-color: #37332f;
+    z-index: 999;
+    &>.container {
+      display: flex;
+    }
+    .drop-down-list {
+      list-style: none;
+      width: 32%;
+      border-left: 1px solid #fff;
+      li {
+        height: auto !important;
+        padding: 10px;
+        a {
+          text-transform: uppercase;
+          color: #fff !important;
+          font-size: 15px;
+        }
+      }
+      &:first-child {
+        border-left: none;
+      }
+    }
+  }
 }
