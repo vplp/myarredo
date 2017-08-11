@@ -52,6 +52,7 @@ use common\modules\catalog\Catalog;
  * @property ProductRelSamples[] $samples
  * @property Factory $factory
  * @property Types $types
+ * @property Collection $collection
  *
  * @package common\modules\catalog\models
  */
@@ -97,7 +98,7 @@ class Product extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias', 'article', 'factory_id', 'catalog_type_id'], 'required'],
+            [['factory_id', 'catalog_type_id'], 'required'],
             [
                 [
                     'catalog_type_id',
@@ -239,16 +240,56 @@ class Product extends ActiveRecord
     }
 
     /**
+     * @return bool
+     */
+    public function beforeValidate()
+    {
+        $this->alias = $this->types->alias
+            . '_' . $this->factory->alias
+            . (($this->article) ? '_' . self::slugify($this->article, '_') : '');
+
+        return parent::beforeValidate();
+    }
+
+    /**
+     * @param $text
+     * @param string $replacement
+     * @return mixed|string
+     */
+    public static function slugify($text, $replacement = '-')
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', $replacement, $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, $replacement);
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', $replacement, $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return '';
+        }
+
+        return $text;
+    }
+    /**
      * @param bool $insert
      * @return bool
      */
     public function beforeSave($insert)
     {
         if ($this->id) {
-            $alias = explode($this->id . '_', $this->alias);
-            if (empty($alias) || count($alias) == 1) {
-                $this->alias = $this->id . '_' . $this->alias;
-            }
+            $this->alias = $this->id . '_' . $this->alias;
         }
 
         $this->user_id = Yii::$app->getUser()->id;

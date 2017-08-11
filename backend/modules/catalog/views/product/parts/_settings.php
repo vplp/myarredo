@@ -1,5 +1,8 @@
 <?php
 
+use yii\helpers\{
+    Html, Url
+};
 use kartik\widgets\Select2;
 //
 use backend\modules\catalog\models\{
@@ -143,4 +146,17 @@ $this->registerJs($script, yii\web\View::POS_READY);
     <div class="col-md-3">
         <?= $form->switcher($model, 'onmain') ?>
     </div>
+</div>
+
+<div class="row control-group">
+    <div class="col-md-3">
+        <?= $form->field($model, 'created_at')->textInput(['disabled' => true, 'value' => date('d.m.Y H:i', $model->created_at)]) ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->field($model, 'updated_at')->textInput(['disabled' => true, 'value' => date('d.m.Y H:i', $model->updated_at)]) ?>
+    </div>
+</div>
+
+<div class="row control-group">
+    <?= Html::a('просмотр товара на сайте', '/product/'.$model->alias, ['target' => '_blank']); ?>
 </div>

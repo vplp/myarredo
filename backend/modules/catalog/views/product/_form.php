@@ -66,14 +66,6 @@ use backend\themes\defaults\widgets\Tabs;
             ])
         ],
         [
-            'label' => 'Популярный у партнеров',
-            'content' => $this->render('parts/_popular', [
-                'form' => $form,
-                'model' => $model,
-                'modelLang' => $modelLang
-            ])
-        ],
-        [
             'label' => 'Альтернатива',
             'content' => $this->render('parts/_alternative', [
                 'form' => $form,

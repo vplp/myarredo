@@ -17,6 +17,8 @@ use common\modules\catalog\Catalog;
  * @property string $content
  * @property string $comment
  *
+ * @property Product $parent
+ *
  * @package common\modules\catalog\models
  */
 class ProductLang extends ActiveRecordLang
@@ -43,10 +45,10 @@ class ProductLang extends ActiveRecordLang
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            [['title'], 'required'],
             ['rid', 'exist', 'targetClass' => Product::class, 'targetAttribute' => 'id'],
             [['title'], 'string', 'max' => 255],
             [['description', 'content', 'comment'], 'string'],
+            [['description', 'content', 'comment'], 'default', 'value' => ''],
         ]);
     }
 
@@ -71,5 +73,25 @@ class ProductLang extends ActiveRecordLang
             'content' => Yii::t('app', 'Content'),
             'comment' => Yii::t('app', 'Comment'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getParent()
+    {
+        return $this->hasOne(Product::class, ['id' => 'rid']);
+    }
+
+    /**
+     * @return bool
+     */
+    public function beforeValidate()
+    {
+        $this->title = $this->parent->types->lang->title
+            . ' ' . $this->parent->factory->lang->title
+            . (($this->parent->article) ? ' ' . $this->parent->article : '');
+
+        return parent::beforeValidate();
     }
 }
