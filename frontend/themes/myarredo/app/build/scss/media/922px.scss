@@ -209,4 +209,9 @@
       width: 50%;
     }
   }
+  header {
+    .dropdown-item {
+      display: none !important;
+    }
+  }
 }
