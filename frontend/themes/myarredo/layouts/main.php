@@ -6,6 +6,7 @@ use yii\helpers\{
 
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\menu\widgets\menu\Menu;
+use frontend\modules\catalog\widgets\menu\CatalogMenu;
 
 $bundle = AppAsset::register($this);
 
@@ -269,104 +270,9 @@ $this->beginPage()
                 <a href="/" class="logo">
                     <img src="<?= $bundle->baseUrl ?>/img/logo.png" alt="">
                 </a>
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse" id="main-menu">
-                    <ul class="nav navbar-nav">
-                        <li><?= Html::a(
-                                'Каталог мебели',
-                                '#'
-                            ); ?>
-                            <div class="dropdown-item">
-                                <div class="container large-container">
-                                    <ul class="drop-down-list">
-                                        <li>
-                                            <a href="#">Спальни (206)</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Кухни (117)</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Столовые (117)</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Детская мебель (112)</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Мягкая мебель (112)</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Гостинные (113)</a>
-                                        </li>
-                                    </ul>
-                                    <ul class="drop-down-list">
-                                        <li>
-                                            <a href="#">Спальни (206)</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Кухни (117)</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Столовые (117)</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Детская мебель (112)</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Мягкая мебель (112)</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Гостинные (113)</a>
-                                        </li>
-                                    </ul>
-                                    <ul class="drop-down-list">
-                                        <li>
-                                            <a href="#">Спальни (206)</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Кухни (117)</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Столовые (117)</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Детская мебель (112)</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Мягкая мебель (112)</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Гостинные (113)</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li><?= Html::a(
-                                'Фабрики',
-                                Url::toRoute(['/catalog/factory/list'])
-                            ); ?></li>
-                        <li><?= Html::a(
-                            'Распродажа',
-                            Url::toRoute(['/catalog/sale/list'])
-                            ); ?></li>
-                        <li><?= Html::a(
-                                'О проекте',
-                                Url::toRoute(['/page/page/view', 'alias' => 'about'])
-                            ); ?></li>
-                        <li><?= Html::a(
-                                'Контакты в москве',
-                                Url::toRoute(['/page/page/view', 'alias' => 'contacts'])
-                            ); ?></li>
-                    </ul>
 
-                </div>
+                <?= CatalogMenu::widget([]); ?>
+
             </div>
         </nav>
 

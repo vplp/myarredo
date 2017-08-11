@@ -3,7 +3,7 @@
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\catalog\widgets\category\CategoryOnMainPage;
 use frontend\modules\catalog\widgets\factory\FactoryOnMainPage;
-use frontend\modules\catalog\widgets\sale\SaleOnMainPage;
+//use frontend\modules\catalog\widgets\sale\SaleOnMainPage;
 
 $bundle = AppAsset::register($this);
 ?>
@@ -130,7 +130,7 @@ $bundle = AppAsset::register($this);
 
         <!-- конец Новинки -->
 
-        <?= SaleOnMainPage::widget(); ?>
+        <?php //SaleOnMainPage::widget(); ?>
 
         <!-- Причины выбрать нас -->
         <div class="causes">
