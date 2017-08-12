@@ -2415,6 +2415,13 @@ footer {
   th {
     height: 50px;
     background: #ECE9DE;
+    padding: 15px;
+    color: #41403e;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  table {
+    border: 1px solid #CAC6BF;
   }
   tr {
     &:nth-child(even){
@@ -2424,12 +2431,25 @@ footer {
     }
     &:nth-child(odd) {
       td {
-        background: #F6F3E8;
+        background: #ECE9DE;
       }
+    }
+    &:hover {
+      td {
+        background: #ECFFE7;
+      };
     }
   }
   td {
     height: 125px;
+    padding: 15px;
+    font-size: 16px;
+    &:first-child {
+      font-weight: bold;
+    }
+    &:last-child {
+      text-align: right;
+    }
   }
   .add-file {
     background: #D9534F;
@@ -2437,5 +2457,36 @@ footer {
     text-transform: uppercase;
     border: 1px solid #D43F3A;
     margin-bottom: 10px;
+  }
+  .cust-but {
+    padding: 10px 25px;
+    background: rgba(88,79,69,.6);
+    border: 2px solid transparent;
+    border-radius: 3px;
+    margin-right: 2px;
+    display: inline-block;
+    &:last-child {
+      margin-right: 0;
+    }
+    &:hover {
+      border: 2px solid #2ab000;
+      text-decoration: none;
+    }
+    .fa {
+      color: #FFFFFF;
+      font-size: 15px;
+    }
+  }
+}
+.my-notebook.dropdown.open {
+  .dropdown-menu {
+    display: block;
+    li {
+      display: block;
+      a {
+        display: block;
+        width: 100%;
+      }
+    }
   }
 }
