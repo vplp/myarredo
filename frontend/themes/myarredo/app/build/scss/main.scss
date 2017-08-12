@@ -26,6 +26,9 @@ nav{
 .s-around {
   justify-content: space-around;
 }
+.j-center {
+  justify-content: center;
+}
 .navbar {
   margin-bottom: 0;
 }
@@ -729,9 +732,6 @@ footer {
     .btn.big {
       width: 100%;
       margin-bottom: 15px;
-      &:last-child {
-        margin-bottom: 0;
-      }
     }
   }
 }
