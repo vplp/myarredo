@@ -2408,3 +2408,34 @@ footer {
     }
   }
 }
+.filecatalog-page {
+  h1 {
+    text-align: center;
+  }
+  th {
+    height: 50px;
+    background: #ECE9DE;
+  }
+  tr {
+    &:nth-child(even){
+      td {
+        background: #F6F3E8;
+      }
+    }
+    &:nth-child(odd) {
+      td {
+        background: #F6F3E8;
+      }
+    }
+  }
+  td {
+    height: 125px;
+  }
+  .add-file {
+    background: #D9534F;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    border: 1px solid #D43F3A;
+    margin-bottom: 10px;
+  }
+}
