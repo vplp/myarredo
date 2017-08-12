@@ -76,4 +76,15 @@
       display: block;
     }
   }
+  .add-to-notepad {
+    .icon {
+      position: static;
+      border: none;
+      transform: translateY(0);
+    }
+    h3 {
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
 }
