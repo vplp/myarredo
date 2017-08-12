@@ -2327,9 +2327,28 @@ footer {
   .basket-item-info {
     padding: 20px 20px 15px 20px;
     background: #FFFFFF;
-    width: 290px;
+    width: 32%;
     position: relative;
     margin-bottom: 15px;
+    &.read-more {
+      .item {
+        display: none;
+      }
+      .more {
+        display: block;
+      }
+    }
+    .more {
+      display: none;
+      p {
+        font-size: 13px;
+      }
+      h4 {
+        color: gray;
+        font-size: 13px;
+        text-transform: uppercase;
+      }
+    }
     .remove {
       position: absolute;
       right: 4px;
@@ -2376,6 +2395,16 @@ footer {
   .best-price-form {
     .btn-success {
       width: 100%;
+    }
+  }
+  textarea {
+    height: 100px;
+    resize: none;
+  }
+  .best-price-form {
+    h3 {
+      font-size: 20px;
+      margin-top: 0;
     }
   }
 }
