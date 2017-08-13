@@ -101,7 +101,7 @@ class Category extends \common\modules\catalog\models\Category
      */
     public static function getUrl(string $alias)
     {
-        return Url::toRoute(['/catalog/category/list', 'alias' => $alias]);
+        return Url::toRoute(['/catalog/category/list', 'category' => $alias]);
     }
 
     /**

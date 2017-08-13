@@ -15,12 +15,13 @@ use frontend\modules\catalog\Catalog;
 /**
  * Class Product
  *
+ * @property integer $category_id
+ *
  * @package frontend\modules\catalog\models\search
  */
 class Product extends ProductModel
 {
     public $title;
-    public $category;
 
     /**
      * @return array
@@ -28,7 +29,7 @@ class Product extends ProductModel
     public function rules()
     {
         return [
-            [['id', 'category', 'factory_id'], 'integer'],
+            [['id', 'category_id', 'factory_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -59,16 +60,26 @@ class Product extends ProductModel
             ],
         ]);
 
-        if (!($this->load($params, '') && $this->validate())) {
+        if (!($this->load($params, ''))) {
             return $dataProvider;
         }
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'factory_id' => $this->factory_id
         ]);
-        //
-        $query->innerJoinWith(["category"])->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $this->category]);
+
+        if (isset($params['category'])) {
+            $query->innerJoinWith(["category"])
+                ->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $params['category']['id']]);
+        }
+
+        if (isset($params['type'])) {
+            $query->andFilterWhere(['catalog_type_id' => $params['type']['id']]);
+        }
+
+        if (isset($params['factory'])) {
+            $query->andFilterWhere(['factory_id' => $params['factory']['id']]);
+        }
 
         return $dataProvider;
     }

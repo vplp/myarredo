@@ -48,16 +48,10 @@ class CategoryController extends BaseController
 
         $params = $group = [];
 
-//        if (Yii::$app->request->get('alias')) {
-//            $group = Category::findByAlias(Yii::$app->request->get('alias'));
-//
-//            if ($group === null)
-//                throw new NotFoundHttpException;
-//
-//            $this->label = $group['lang']['title'];
-//
-//            $params['category'] = $group['id'];
-//        }
+        if (isset(Yii::$app->catalogFilter->params['category'])) {
+            $group = Yii::$app->catalogFilter->params['category'];
+            //$params['category_id'] = Yii::$app->catalogFilter->params['category']['id'];
+        }
 
         $category = Category::getAllWithFilter(Yii::$app->catalogFilter->params);
         $types = Types::getAllWithFilter(Yii::$app->catalogFilter->params);
@@ -65,7 +59,7 @@ class CategoryController extends BaseController
         $factory = Factory::getAllWithFilter(Yii::$app->catalogFilter->params);
         $collection = Collection::getAllWithFilter(Yii::$app->catalogFilter->params);
 
-        $models = $model->search(ArrayHelper::merge($params, Yii::$app->request->queryParams));
+        $models = $model->search(ArrayHelper::merge($params, Yii::$app->catalogFilter->params));
 
         return $this->render('list', [
             'group' => $group,

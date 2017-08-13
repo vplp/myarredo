@@ -64,15 +64,6 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
-     * @param $id
-     * @return mixed
-     */
-    public static function findById($id)
-    {
-        return self::findBase()->byId($id)->one();
-    }
-
-    /**
      * @return int|string
      */
 //    public function getProductCount()

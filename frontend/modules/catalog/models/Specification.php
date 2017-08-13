@@ -52,6 +52,17 @@ class Specification extends \common\modules\catalog\models\Specification
     }
 
     /**
+     * Get by alias
+     *
+     * @param string $alias
+     * @return ActiveRecord|null
+     */
+    public static function findByAlias($alias)
+    {
+        return self::findBase()->byAlias($alias)->one();
+    }
+
+    /**
      * @return int|string
      */
 //    public function getProductCount()

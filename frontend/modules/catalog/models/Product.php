@@ -104,7 +104,7 @@ class Product extends \common\modules\catalog\models\Product
      * @param array $collections
      * @return string
      */
-    public static function getTitle(array $model, array $types = [], array $collections = [])
+    public static function getTitle(array $model,  $types = null,  $collections = null)
     {
         // TODO: !!!
 
