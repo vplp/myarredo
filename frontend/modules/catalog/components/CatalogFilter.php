@@ -67,24 +67,10 @@ class CatalogFilter extends Component
 
         $_structure = [];
 
-
-//        if ($key == 'category') {
-//            self::$_structure['category'][0] = $value;
-//        }
-////        elseif (isset(self::$_parameters['category'])) {
-////            $_filter[] = self::$_parameters['category']['alias'];
-////        } else {
-////            $_filter[] = 'c';
-////        }
-//* !!! */ echo  '<pre style="color:red;">'; print_r($labelEmptyKey); echo '</pre>'; /* !!! */
-//self::$_structure
-
-
         foreach ($labelEmptyKey as $Lk => $Lv) {
-
             if (isset(self::$_parameters[$Lk]) && ($value == self::$_parameters[$Lk]['alias'])) {
                 // если есть значение в $_parameters и $value == self::$_parameters[$Lk]['alias']
-                $_structure[$Lk][0] = '';
+                $_structure[$Lk] = '';
             } elseif ($Lk == $key) {
                 // если $Lk == $key
                 $_structure[$Lk][0] = $value;
@@ -95,12 +81,11 @@ class CatalogFilter extends Component
                 // значение по умолчанию
                 $_structure[$Lk]= '';
             }
-
         }
 
         /* Видалення пустих елементів з кінця масиву */
         {
-            $count = count($_structure) - 1;
+            $count = count($_structure)-1;
             for (; $count >= 0; $count--) {
                 if (end($_structure)) {
                     break;
@@ -109,8 +94,6 @@ class CatalogFilter extends Component
                 }
             }
         }
-
-        //* !!! */ echo  '<pre style="color:red;">'; print_r($_structure); echo '</pre>'; /* !!! */
 
         $filter = '';
 
@@ -127,7 +110,11 @@ class CatalogFilter extends Component
                 . (($res[$k]) ? $res[$k] : ((!empty($labelEmptyKey[$k])) ? $labelEmptyKey[$k] : ''));
         }
 
-        return Url::toRoute(['/catalog/category/list', 'filter' => $filter]);
+        if ($filter !== '') {
+            return Url::toRoute(['/catalog/category/list', 'filter' => $filter]);
+        } else {
+            return Url::toRoute(['/catalog/category/list']);
+        }
     }
 
     /**
@@ -180,7 +167,7 @@ class CatalogFilter extends Component
 
                 /* якщо значення співнадає із значенням масиву  */
                 if (!empty($elements[$k][0]) && in_array($elements[$k][0], self::getLabelEmptyKey()))
-                    $elements[$k] = [];
+                    $elements[$k] = array();
             }
         }
 
