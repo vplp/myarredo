@@ -72,7 +72,7 @@ class Factory extends FactoryModel
      */
     public function search($params)
     {
-        $query = FactoryModel::findBase()->undeleted();
+        $query = FactoryModel::findBase();
         return $this->baseSearch($query, $params);
     }
 }

@@ -95,17 +95,6 @@ class Types extends \common\modules\catalog\models\Types
     }
 
     /**
-     * Filter
-     *
-     * @param $params
-     * @return \yii\data\ActiveDataProvider
-     */
-    public function filter($params)
-    {
-        return (new filter\Types())->filter($params);
-    }
-
-    /**
      * @param $params
      * @return mixed
      */

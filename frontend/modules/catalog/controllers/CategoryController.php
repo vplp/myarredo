@@ -50,7 +50,6 @@ class CategoryController extends BaseController
 
         if (isset(Yii::$app->catalogFilter->params['category'])) {
             $group = Yii::$app->catalogFilter->params['category'];
-            //$params['category_id'] = Yii::$app->catalogFilter->params['category']['id'];
         }
 
         $category = Category::getAllWithFilter(Yii::$app->catalogFilter->params);
