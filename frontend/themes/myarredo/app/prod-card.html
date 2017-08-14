@@ -421,11 +421,11 @@
                             </div>
 
                             <button type="submit" class="btn btn-success big">Получить лучшую цену</button>
-                            <button type="submit" class="btn btn-default big">Отложить в блокнот</button>
                             <!--
                             <iframe src="https://www.google.com/recaptcha/api2/anchor?k=6LehPRkUAAAAAB1TVTLbwB1GYua9tI4aC1cHYSTU&co=aHR0cDovL3d3dy5teWFycmVkby5ydTo4MA..&hl=ru&v=r20170524165316&size=normal&cb=piye27zdt1ud" frameborder="0"></iframe>
                             -->
                         </form>
+                        <button class="btn btn-default big" data-toggle="modal" data-target=".add-to-notepad">Отложить в блокнот</button>
                     </div>
                 </div>
             </div>
@@ -895,6 +895,45 @@
         </div>
     </div>
 </footer>
+
+<!--Модалка Добавить в блокнот -->
+
+<div class="modal fade add-to-notepad" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="over-msg">
+                <div class="over-in">
+                    <button class="close" data-dismiss="modal">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                    <div class="title flex j-center c-align">
+                        <div class="icon">
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                        </div>
+                        <h3>ДОБАВЛЕНИЕ ПРЕДМЕТА В БЛОКНОТ</h3>
+                    </div>
+                    <div class="msg">
+                        предмет добавлен в блокнот
+                    </div>
+                    <div class="flex j-center">
+                        <div class="checkbox checkbox-primary">
+                            <input id="checkbox" type="checkbox" checked="">
+                            <label for="checkbox">
+                                Не показывать это сообщение снова
+                            </label>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success">
+                        Перейти в блокнот
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- конец модалка Добавить в блокнот -->
+
 <script src="./public/libs/bootstrap/js/bootstrap.min.js"></script>
 <script src="libs/formstyler/jquery.formstyler.js"></script>
 <script src="https://use.fontawesome.com/35f65baac5.js"></script>

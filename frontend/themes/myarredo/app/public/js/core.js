@@ -270,6 +270,26 @@ $(document).ready(function(){
         ]
     });
 
+    /*--Блокнот--*/
+    $(".basket-item-info").each(function(i,item){
+        if(i > 2){
+            $(item).hide();
+        }
+    });
+    $(".notebook-page .show-all").click(function(){
+        $(".basket-item-info").show();
+        $(this).remove();
+    });
 
+    $(".notebook-page .read-more").mouseenter(function(){
+       var item = $(this).closest('.basket-item-info');
+       item.addClass("read-more");
+    });
+
+    $(".basket-item-info").mouseleave(function () {
+        $(this).removeClass("read-more");
+    });
+
+    /*--конец Блокнот--*/
 
 });
