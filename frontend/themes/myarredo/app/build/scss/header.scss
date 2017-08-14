@@ -119,6 +119,13 @@ header {
       align-items: center;
       justify-content: center;
       font-size: 18px;
+      &.notebook-but {
+        width: auto;
+        padding: 0 13px;
+        .fa-bars {
+          margin-right: 6px;
+        }
+      }
     }
     .inscription {
       padding: 0 15px;
