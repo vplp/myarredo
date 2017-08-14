@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\modules\catalog\models\search;
+namespace frontend\modules\catalog\models\filter;
 
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -13,7 +13,7 @@ use frontend\modules\catalog\models\{
 /**
  * Class Types
  *
- * @package frontend\modules\catalog\models\search
+ * @package frontend\modules\catalog\models\filter
  */
 class Types extends TypesModel
 {
@@ -43,16 +43,11 @@ class Types extends TypesModel
      * @param $params
      * @return ActiveDataProvider
      */
-    public function baseSearch($query, $params)
+    public function baseFilter($query, $params)
     {
-        /** @var Catalog $module */
-        $module = Yii::$app->getModule('catalog');
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'pageSize' => $module->itemOnPage
-            ],
+            'pagination' => false
         ]);
 
         if (!($this->load($params) && $this->validate())) {
@@ -60,7 +55,7 @@ class Types extends TypesModel
         }
 
         $query->andFilterWhere(['like', 'alias', $this->alias]);
-        //
+
         $query->andFilterWhere(['like', TypesLang::tableName() . '.title', $this->title]);
 
         return $dataProvider;
@@ -70,9 +65,9 @@ class Types extends TypesModel
      * @param array $params
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function filter($params)
     {
         $query = TypesModel::findBase();
-        return $this->baseSearch($query, $params);
+        return $this->baseFilter($query, $params);
     }
 }

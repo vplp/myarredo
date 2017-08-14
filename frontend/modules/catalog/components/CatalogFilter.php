@@ -23,7 +23,9 @@ class CatalogFilter extends Component
 
     const AMPERSAND_2 = '-';
 
-    private static $params = [];
+    private static $_parameters = [];
+
+    private static $_structure = [];
 
     static $keys = [
         'category',
@@ -55,49 +57,75 @@ class CatalogFilter extends Component
     }
 
     /**
-     * Create Url
-     *
-     * @param string $key
+     * @param $key
+     * @param $value
      * @return string
      */
     public function createUrl($key, $value)
     {
+        $labelEmptyKey = self::getLabelEmptyKey();
+
+        $_structure = [];
+
+
+//        if ($key == 'category') {
+//            self::$_structure['category'][0] = $value;
+//        }
+////        elseif (isset(self::$_parameters['category'])) {
+////            $_filter[] = self::$_parameters['category']['alias'];
+////        } else {
+////            $_filter[] = 'c';
+////        }
+//* !!! */ echo  '<pre style="color:red;">'; print_r($labelEmptyKey); echo '</pre>'; /* !!! */
+//self::$_structure
+
+
+        foreach ($labelEmptyKey as $Lk => $Lv) {
+
+            if (isset(self::$_parameters[$Lk]) && ($value == self::$_parameters[$Lk]['alias'])) {
+                // если есть значение в $_parameters и $value == self::$_parameters[$Lk]['alias']
+                $_structure[$Lk][0] = '';
+            } elseif ($Lk == $key) {
+                // если $Lk == $key
+                $_structure[$Lk][0] = $value;
+            } elseif (isset(self::$_parameters[$Lk])) {
+                // если есть значение в $_parameters
+                $_structure[$Lk][0] = self::$_parameters[$Lk]['alias'];
+            } else {
+                // значение по умолчанию
+                $_structure[$Lk]= '';
+            }
+
+        }
+
+        /* Видалення пустих елементів з кінця масиву */
+        {
+            $count = count($_structure) - 1;
+            for (; $count >= 0; $count--) {
+                if (end($_structure)) {
+                    break;
+                } else {
+                    unset($_structure[key($_structure)]);
+                }
+            }
+        }
+
+        //* !!! */ echo  '<pre style="color:red;">'; print_r($_structure); echo '</pre>'; /* !!! */
+
         $filter = '';
-        $_filter = [];
 
-        if ($key == 'category') {
-            $_filter[] = $value;
-        } elseif (isset(self::$params['category'])) {
-            $_filter[] = self::$params['category']['alias'];
-        } else {
-            $_filter[] = 'c';
+        foreach ($_structure as $k => $v) {
+            $res[$k] = '';
+
+            if (is_array($v)) {
+                $res[$k] = implode(self::AMPERSAND_2, $v);
+            } else {
+                $res[$k] = $v;
+            }
+            $filter .=
+                (($filter) ? self::AMPERSAND_1 : '')
+                . (($res[$k]) ? $res[$k] : ((!empty($labelEmptyKey[$k])) ? $labelEmptyKey[$k] : ''));
         }
-
-        if ($key == 'type') {
-            $_filter[] = $value;
-        } elseif (isset(self::$params['type'])) {
-            $_filter[] = self::$params['type']['alias'];
-        } else {
-            $_filter[] = 't';
-        }
-
-        if ($key == 'style') {
-            $_filter[] = $value;
-        } elseif (isset(self::$params['style'])) {
-            $_filter[] = self::$params['style']['alias'];
-        } else {
-            $_filter[] = 's';
-        }
-
-        if ($key == 'factory') {
-            $_filter[] = $value;
-        } elseif (isset(self::$params['factory'])) {
-            $_filter[] = self::$params['factory']['alias'];
-        } else {
-            $_filter[] = 'f';
-        }
-
-        $filter = implode(self::AMPERSAND_1, $_filter);
 
         return Url::toRoute(['/catalog/category/list', 'filter' => $filter]);
     }
@@ -109,7 +137,7 @@ class CatalogFilter extends Component
      */
     public function getParams()
     {
-        return self::$params;
+        return self::$_parameters;
     }
 
     /**
@@ -142,7 +170,6 @@ class CatalogFilter extends Component
      */
     private function _parserUrl()
     {
-
         /* Розбиття на елементи */
         $elements = explode(self::AMPERSAND_1, Yii::$app->request->get('filter'));
 
@@ -153,55 +180,54 @@ class CatalogFilter extends Component
 
                 /* якщо значення співнадає із значенням масиву  */
                 if (!empty($elements[$k][0]) && in_array($elements[$k][0], self::getLabelEmptyKey()))
-                    $elements[$k] = array();
+                    $elements[$k] = [];
             }
         }
 
-        $structure = [];
         foreach (self::$keys as $key => $value) {
-            if (isset($elements[$key])) {
-                $structure[$value] = $elements[$key];
+            if (!empty($elements[$key]) && $value !== '') {
+                self::$_structure[$value] = $elements[$key];
             }
         }
 
-        if (!empty($structure['category'])) {
-            $model = Category::findByAlias($structure['category'][0]);
+        if (!empty(self::$_structure['category'])) {
+            $model = Category::findByAlias(self::$_structure['category'][0]);
 
             if ($model === null) {
                 throw new NotFoundHttpException;
             }
 
-            self::$params['category'] = $model;
+            self::$_parameters['category'] = $model;
         }
 
-        if (!empty($structure['type'])) {
-            $model = Types::findByAlias($structure['type'][0]);
+        if (!empty(self::$_structure['type'])) {
+            $model = Types::findByAlias(self::$_structure['type'][0]);
 
             if ($model === null) {
                 throw new NotFoundHttpException;
             }
 
-            self::$params['type'] = $model;
+            self::$_parameters['type'] = $model;
         }
 
-        if (!empty($structure['style'])) {
-            $model = Specification::findByAlias($structure['style'][0]);
+        if (!empty(self::$_structure['style'])) {
+            $model = Specification::findByAlias(self::$_structure['style'][0]);
 
             if ($model === null) {
                 throw new NotFoundHttpException;
             }
 
-            self::$params['style'] = $model;
+            self::$_parameters['style'] = $model;
         }
 
-        if (!empty($structure['factory'])) {
-            $model = Factory::findByAlias($structure['factory'][0]);
+        if (!empty(self::$_structure['factory'])) {
+            $model = Factory::findByAlias(self::$_structure['factory'][0]);
 
             if ($model === null) {
                 throw new NotFoundHttpException;
             }
 
-            self::$params['factory'] = $model;
+            self::$_parameters['factory'] = $model;
         }
     }
 }
