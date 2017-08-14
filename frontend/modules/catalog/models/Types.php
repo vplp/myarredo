@@ -95,12 +95,26 @@ class Types extends \common\modules\catalog\models\Types
     }
 
     /**
+     * Filter
+     *
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function filter($params)
+    {
+        return (new filter\Types())->filter($params);
+    }
+
+    /**
      * @param $params
      * @return mixed
      */
     public static function getAllWithFilter($params = [])
     {
+        //* !!! */ echo  '<pre style="color:red;">'; print_r($params); echo '</pre>'; /* !!! */
+
         return self::findBase()
+
             ->all();
     }
 }
