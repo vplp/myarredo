@@ -22,7 +22,7 @@ $bundle = AppAsset::register($this);
                     'options' => ['class' => 'bread-crumbs']
                 ]) ?>
                 <div class="product-title">
-                    <h1 class="prod-model"><?= $model['lang']['title']; ?></h1>
+                    <h1 class="prod-model"><?= $model->getFullTitle(); ?></h1>
                 </div>
                 <div class="col-md-5">
                     <div id="prod-slider" class="carousel slide carousel-fade" data-ride="carousel">
