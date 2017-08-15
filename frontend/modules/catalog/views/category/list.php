@@ -7,26 +7,15 @@ use frontend\modules\catalog\widgets\product\{
     ProductSorting, ProductFilter
 };
 
-$this->params['breadcrumbs'][] = [
-    'label' => 'Каталог итальянской мебели',
-    'url' => ['/catalog/category/list']
-];
-if (!empty($group)) {
-    $this->params['breadcrumbs'][] = [
-        'label' => $group['lang']['title'],
-        'url' => ['/catalog/category/list']
-    ];
-}
-
 ?>
 
 <main>
     <div class="page category-page">
         <div class="container large-container">
             <div class="row">
-                <?= Html::tag('h1', (!empty($group)) ? $group['lang']['title'] : 'Каталог итальянской мебели'); ?>
+                <?= Html::tag('h1', $this->context->title); ?>
                 <?= Breadcrumbs::widget([
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    'links' => $this->context->breadcrumbs,
                     'options' => ['class' => 'bread-crumbs']
                 ]) ?>
             </div>

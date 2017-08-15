@@ -72,7 +72,7 @@ class Collection extends CollectionModel
      */
     public function search($params)
     {
-        $query = CollectionModel::findBase()->undeleted();
+        $query = CollectionModel::findBase();
         return $this->baseSearch($query, $params);
     }
 }

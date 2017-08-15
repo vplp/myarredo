@@ -72,7 +72,7 @@ class Specification extends SpecificationModel
      */
     public function search($params)
     {
-        $query = SpecificationModel::findBase()->undeleted();
+        $query = SpecificationModel::findBase();
         return $this->baseSearch($query, $params);
     }
 }

@@ -17,7 +17,7 @@ use frontend\modules\catalog\models\Product;
         </div>
     </object>
     <div class="img-cont">
-        <?= Html::img('#'); ?>
+        <?= Html::img(Product::getImage()); ?>
         <div class="brand">
             <?= (isset($factory[$model['factory_id']])) ? $factory[$model['factory_id']]['lang']['title'] : null; ?>
         </div>

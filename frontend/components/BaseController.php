@@ -16,20 +16,23 @@ use yii\helpers\Url;
 abstract class BaseController extends \yii\web\Controller
 {
     /**
-     * Базовий layout
      * @var string
      */
     public $layout = "@app/layouts/main";
 
     /**
-     * Назва базового методу дії
      * @var string
      */
     public $defaultAction = 'index';
 
     /**
+     * @var array
+     */
+    public $breadcrumbs = [];
+
+    /**
      * @param \yii\base\Action $action
-     * @return bool
+     * @return bool|\yii\web\Response
      */
     public function beforeAction($action)
     {
@@ -38,7 +41,6 @@ abstract class BaseController extends \yii\web\Controller
         if ($searchCondition) {
             return $this->redirect(Url::to(['/page/find/index', 'condition' => $searchCondition]));
         }
-
 
         return parent::beforeAction($action);
     }

@@ -3,6 +3,9 @@
 namespace frontend\modules\catalog\models;
 
 use yii\helpers\Url;
+use frontend\modules\catalog\models\{
+    Product, Category, Factory, Specification, Collection
+};
 
 /**
  * Class Types
@@ -63,18 +66,6 @@ class Types extends \common\modules\catalog\models\Types
     }
 
     /**
-     * @return int|string
-     */
-//    public function getProductCount()
-//    {
-//        return $this->getProduct()
-//            ->innerJoinWith('lang')
-//            ->andWhere(['is_composition' => '0'])
-//            ->enabled()
-//            ->count();
-//    }
-
-    /**
      * Search
      *
      * @param $params
@@ -95,26 +86,18 @@ class Types extends \common\modules\catalog\models\Types
     }
 
     /**
-     * Filter
-     *
-     * @param $params
-     * @return \yii\data\ActiveDataProvider
-     */
-    public function filter($params)
-    {
-        return (new filter\Types())->filter($params);
-    }
-
-    /**
-     * @param $params
+     * @param array $params
      * @return mixed
      */
     public static function getAllWithFilter($params = [])
     {
-        //* !!! */ echo  '<pre style="color:red;">'; print_r($params); echo '</pre>'; /* !!! */
+        $query = self::findBase();
 
-        return self::findBase()
+        if (isset($params['category'])) {
+            $query->innerJoinWith(["category"])
+                ->andFilterWhere([TypesRelCategory::tableName() . '.group_id' => $params['category']['id']]);
+        }
 
-            ->all();
+        return $query->all();
     }
 }

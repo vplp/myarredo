@@ -78,4 +78,12 @@ class ProductRelSpecification extends ActiveRecord
             'val'
         ];
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSpecification()
+    {
+        return $this->hasOne(Specification::class, ['id' => 'specification_id']);
+    }
 }

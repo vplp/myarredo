@@ -72,7 +72,7 @@ class Sale extends SaleModel
      */
     public function search($params)
     {
-        $query = SaleModel::findBase()->undeleted();
+        $query = SaleModel::findBase();
         return $this->baseSearch($query, $params);
     }
 }

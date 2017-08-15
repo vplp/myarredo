@@ -2,15 +2,14 @@
 
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
+use frontend\modules\catalog\models\Factory;
+use frontend\themes\myarredo\assets\AppAsset;
 
-$this->params['breadcrumbs'][] = [
-    'label' => 'Каталог итальянской мебели',
-    'url' => ['/catalog/category/list']
-];
-$this->params['breadcrumbs'][] = [
-    'label' => $model['category'][0]['lang']['title'],
-    'url' => ['/catalog/category/list']
-];
+$bundle = AppAsset::register($this);
+
+/**
+ * @var \frontend\modules\catalog\models\Product $model
+ */
 
 ?>
 
@@ -19,11 +18,11 @@ $this->params['breadcrumbs'][] = [
         <div class="container large-container">
             <div class="row">
                 <?= Breadcrumbs::widget([
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    'links' => $this->context->breadcrumbs,
                     'options' => ['class' => 'bread-crumbs']
                 ]) ?>
                 <div class="product-title">
-                    <h1 class="prod-model"><?= $model['lang']['title']; ?></h1>
+                    <h1 class="prod-model"><?= $model->getFullTitle(); ?></h1>
                 </div>
                 <div class="col-md-5">
                     <div id="prod-slider" class="carousel slide carousel-fade" data-ride="carousel">
@@ -31,12 +30,12 @@ $this->params['breadcrumbs'][] = [
                         <div class="carousel-inner">
                             <div class="item active">
                                 <div class="img-cont">
-                                    <img src="public/img/pictures/prod_thumb1.png" alt="">
+                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/prod_thumb1.png" alt="">
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="img-cont">
-                                    <img src="public/img/pictures/prod_thumb2.png" alt="">
+                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/prod_thumb2.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -46,12 +45,12 @@ $this->params['breadcrumbs'][] = [
                             <ol class="carousel-indicators">
                                 <li data-target="#carousel" data-slide-to="0" class="active">
                                     <div class="img-min">
-                                        <img src="public/img/pictures/prod_thumb1.png" alt="">
+                                        <img src="<?= $bundle->baseUrl ?>/img/pictures/prod_thumb1.png" alt="">
                                     </div>
                                 </li>
                                 <li data-target="#carousel" data-slide-to="1">
                                     <div class="img-min">
-                                        <img src="public/img/pictures/prod_thumb2.png" alt="">
+                                        <img src="<?= $bundle->baseUrl ?>/img/pictures/prod_thumb2.png" alt="">
                                     </div>
                                 </li>
                             </ol>
@@ -64,63 +63,81 @@ $this->params['breadcrumbs'][] = [
                         <table class="info-table">
                             <tr class="price">
                                 <td>ЦЕНА ОТ:</td>
-                                <td>5 226 <span class="currency">€</span>*</td>
+                                <td><?= $model['price_from']; ?>&nbsp;<span class="currency">€</span>*</td>
                             </tr>
                             <tr class="availability">
-                                <td>Наличие:</td>
-                                <td>Под заказ:</td>
+                                <td>Наличие</td>
+                                <td>Под заказ</td>
                             </tr>
                             <tr>
-                                <td>Стиль:</td>
-                                <td>БАРОККО, РОКОКО</td>
+                                <td>Стиль</td>
+                                <td>
+                                    <?php
+                                    $array = [];
+                                    foreach ($model['specificationValue'] as $item): ?>
+                                        <?php if ($item['specification']['parent_id'] == 9): ?>
+                                            <?php $array[] = $item['specification']['lang']['title']; ?>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                    <?= implode('; ', $array); ?>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Фабрика</td>
                                 <td>
-                                    <a href="#">
-                                        STILE LEGNO
-                                    </a>
+                                    <?= Html::a(
+                                        $model['factory']['lang']['title'],
+                                        Factory::getUrl($model['factory']['alias'])
+                                    ); ?>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Коллекция</td>
-                                <td>
-                                    <a href="#">
-                                        Momenti Arte
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Артикул</td>
-                                <td>
-                                    0114
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Размеры:
-                                </td>
-                                <td class="size">
-                                    <span>l:170</span>
-                                    <span>DP:59</span>
-                                    <span>H:111</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Материал</td>
-                                <td>
-                                    Массив дерево
-                                </td>
-                            </tr>
+
+                            <?php if ($model['collections_id']): ?>
+                                <tr>
+                                    <td>Коллекция</td>
+                                    <td>
+                                        <?= Html::a(
+                                            $model['collection']['lang']['title'],
+                                            '#'
+                                        ); ?>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
+
+                            <?php if (!$model['is_composition']): ?>
+                                <tr>
+                                    <td>Артикул</td>
+                                    <td><?= $model['article']; ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Размеры</td>
+                                    <td class="size">
+                                        <?php foreach ($model['specificationValue'] as $item): ?>
+                                            <?php if ($item['specification']['parent_id'] == 4): ?>
+                                                <?= Html::beginTag('span'); ?>
+                                                <?= $item['specification']['alias']; ?>:<?= $item['val']; ?>
+                                                <?= Html::endTag('span'); ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Материал</td>
+                                    <td>
+                                        <?php
+                                        $array = [];
+                                        foreach ($model['specificationValue'] as $item): ?>
+                                            <?php if ($item['specification']['parent_id'] == 2): ?>
+                                                <?php $array[] = $item['specification']['lang']['title']; ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                        <?= implode('; ', $array); ?>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
+
                         </table>
-                        <div class="prod-descr">
-                            Оформленный в стиле барокко двухдверный буфет на изогнутых ножках представлен
-                            фабрикой Stile legno в коллекции Poesie Di Luce. Конструкция буфета
-                            изготовлена из массива натурального дерева и декорирована художественной
-                            резьбой ручной работы. Буфет выполнен в отделке цвета слоновой кости с декоративной
-                            бежевой росписью. Доступен заказ изделий в других вариантах отделки.
-                            Зеркало в стоимость не входит и рассчитывается дополнительно
-                        </div>
+                        <div class="prod-descr"><?= $model['lang']['description']; ?></div>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -154,97 +171,37 @@ $this->params['breadcrumbs'][] = [
             <div class="row composition">
                 <div class="col-md-12">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#panel1">ПРЕДМЕТЫ КОмпозиции</a></li>
-                        <li><a data-toggle="tab" href="#panel2">ВАРИАНТЫ ОТДЕЛКИ</a></li>
+                        <?php if ($model['is_composition']): ?>
+                            <li><a data-toggle="tab" href="#panel1">ПРЕДМЕТЫ КОмпозиции</a></li>
+                        <?php endif; ?>
+                        <?php if (!empty($model['samples'])): ?>
+                            <li><a data-toggle="tab" href="#panel2">ВАРИАНТЫ ОТДЕЛКИ</a></li>
+                        <?php endif; ?>
                     </ul>
 
                     <div class="tab-content">
-                        <div id="panel1" class="tab-pane fade in active">
-                            <div class="container large-container">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div id="comp-slider">
-                                            <div class="item">
-                                                <a href="#1" class="tile">
-                                                    <div class="img-cont">
-                                                        <img src="public/img/pictures/comp_1.png" alt="">
-                                                    </div>
-                                                    <div class="add-item-text">
-                                                        Стул  STILE LEGNO 5086.017
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="item">
-                                                <a href="#1" class="tile">
-                                                    <div class="img-cont">
-                                                        <img src="public/img/pictures/comp_2.png" alt="">
-                                                    </div>
-                                                    <div class="add-item-text">
-                                                        Стул  STILE LEGNO 5086.017
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="item">
-                                                <a href="#1" class="tile">
-                                                    <div class="img-cont">
-                                                        <img src="public/img/pictures/comp_3.png" alt="">
-                                                    </div>
-                                                    <div class="add-item-text">
-                                                        Стул  STILE LEGNO 5086.017
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="item">
-                                                <a href="#1" class="tile">
-                                                    <div class="img-cont">
-                                                        <img src="public/img/pictures/comp_4.png" alt="">
-                                                    </div>
-                                                    <div class="add-item-text">
-                                                        Стул  STILE LEGNO 5086.017
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="item">
-                                                <a href="#1" class="tile">
-                                                    <div class="img-cont">
-                                                        <img src="public/img/pictures/comp_1.png" alt="">
-                                                    </div>
-                                                    <div class="add-item-text">
-                                                        Стул  STILE LEGNO 5086.017
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
+                        <?php if ($model['is_composition']): ?>
+                            <div id="panel1" class="tab-pane fade">
+                                <?= $this->render(
+                                    'parts/_product_by_composition',
+                                    [
+                                        'models' => $model['compositionProduct']
+                                    ]
+                                ); ?>
                             </div>
-                        </div>
-                        <div id="panel2" class="tab-pane fade">
-                            <div class="container large-container">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <a href="#" class="img-cont">
-                                            <img src="public/img/pictures/thumb_comp.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="#" class="img-cont">
-                                            <img src="public/img/pictures/thumb_comp.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="#" class="img-cont">
-                                            <img src="public/img/pictures/thumb_comp.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="#" class="img-cont">
-                                            <img src="public/img/pictures/thumb_comp.jpg" alt="">
-                                        </a>
-                                    </div>
-                                </div>
+                        <?php endif; ?>
+
+                        <?php if (!empty($model['samples'])): ?>
+                            <div id="panel2" class="tab-pane fade">
+                                <?= $this->render(
+                                    'parts/_samples',
+                                    [
+                                        'samples' => $model['samples']
+                                    ]
+                                ); ?>
                             </div>
-                        </div>
+                        <?php endif; ?>
 
                     </div>
                 </div>
@@ -315,7 +272,7 @@ $this->params['breadcrumbs'][] = [
                     <div class="row">
                         <div class="col-md-5">
                             <div class="img-cont">
-                                <img src="public/img/pictures/prod_thumb1.png" alt="">
+                                <img src="<?= $bundle->baseUrl ?>/img/pictures/prod_thumb1.png" alt="">
                             </div>
                         </div>
                         <div class="col-md-7">
@@ -344,140 +301,33 @@ $this->params['breadcrumbs'][] = [
                 </div>
             </div>
 
+            <?php if ($model['collections_id']): ?>
 
-            <div class="rec-slider-wrap">
-                <div class="flex c-align rec-header">
-                    <h3>Другие изделия коллекции Momenti Arte</h3>
-                    <a href="#" class="show-more">Показать все</a>
-                </div>
-                <div class="container large-container">
-                    <div class="row">
-                        <div class="std-slider" id="rec-slider">
-                            <div class="item">
-                                <a href="#1" class="tile">
-                                    <div class="img-cont">
-                                        <img src="public/img/pictures/comp_1.png" alt="">
-                                    </div>
-                                    <div class="add-item-text">
-                                        Стул  STILE LEGNO 5086.017
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item">
-                                <a href="#1" class="tile">
-                                    <div class="img-cont">
-                                        <img src="public/img/pictures/comp_2.png" alt="">
-                                    </div>
-                                    <div class="add-item-text">
-                                        Стул  STILE LEGNO 5086.017
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item">
-                                <a href="#1" class="tile">
-                                    <div class="img-cont">
-                                        <img src="public/img/pictures/comp_3.png" alt="">
-                                    </div>
-                                    <div class="add-item-text">
-                                        Стул  STILE LEGNO 5086.017
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item">
-                                <a href="#1" class="tile">
-                                    <div class="img-cont">
-                                        <img src="public/img/pictures/comp_4.png" alt="">
-                                    </div>
-                                    <div class="add-item-text">
-                                        Стул  STILE LEGNO 5086.017
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item">
-                                <a href="#1" class="tile">
-                                    <div class="img-cont">
-                                        <img src="public/img/pictures/comp_1.png" alt="">
-                                    </div>
-                                    <div class="add-item-text">
-                                        Стул  STILE LEGNO 5086.017
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <?= $this->render(
+                    'parts/_product_by_collection',
+                    [
+                        'collection' => $model['collection'],
+                        'models' => $model->getProductByCollection($model['collections_id'], $model['catalog_type_id'])
+                    ]
+                ); ?>
 
+            <?php endif; ?>
 
-            <div class="rec-slider-wrap">
-                <div class="flex c-align rec-header">
-                    <h3>Другие Буфет STILE LEGNO</h3>
-                    <a href="#" class="show-more">Показать все</a>
-                </div>
-                <div class="container large-container">
-                    <div class="row">
-                        <div class="std-slider" id="rec2-slider">
-                            <div class="item">
-                                <a href="#1" class="tile">
-                                    <div class="img-cont">
-                                        <img src="public/img/pictures/comp_1.png" alt="">
-                                    </div>
-                                    <div class="add-item-text">
-                                        Стул  STILE LEGNO 5086.017
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item">
-                                <a href="#1" class="tile">
-                                    <div class="img-cont">
-                                        <img src="public/img/pictures/comp_2.png" alt="">
-                                    </div>
-                                    <div class="add-item-text">
-                                        Стул  STILE LEGNO 5086.017
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item">
-                                <a href="#1" class="tile">
-                                    <div class="img-cont">
-                                        <img src="public/img/pictures/comp_3.png" alt="">
-                                    </div>
-                                    <div class="add-item-text">
-                                        Стул  STILE LEGNO 5086.017
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item">
-                                <a href="#1" class="tile">
-                                    <div class="img-cont">
-                                        <img src="public/img/pictures/comp_4.png" alt="">
-                                    </div>
-                                    <div class="add-item-text">
-                                        Стул  STILE LEGNO 5086.017
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item">
-                                <a href="#1" class="tile">
-                                    <div class="img-cont">
-                                        <img src="public/img/pictures/comp_1.png" alt="">
-                                    </div>
-                                    <div class="add-item-text">
-                                        Стул  STILE LEGNO 5086.017
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php if ($model['collections_id']): ?>
 
+                <?= $this->render(
+                    'parts/_product_by_factory',
+                    [
+                        'factory' => $model['factory'],
+                        'types' => $model['types'],
+                        'models' => $model->getProductByFactory($model['factory_id'], $model['catalog_type_id'])
+                    ]
+                ); ?>
+
+            <?php endif; ?>
 
         </div>
-
-
     </div>
-
 </main>
 
 

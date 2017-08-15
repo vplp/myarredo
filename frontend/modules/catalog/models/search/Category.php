@@ -66,7 +66,7 @@ class Category extends CategoryModel
      */
     public function search($params)
     {
-        $query = CategoryModel::findBase()->undeleted();
+        $query = CategoryModel::findBase();
         return $this->baseSearch($query, $params);
     }
 }

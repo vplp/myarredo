@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\controllers;
 
+use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 //
@@ -44,6 +45,25 @@ class ProductController extends BaseController
 
         if ($model === null) {
             throw new NotFoundHttpException;
+        }
+
+        $this->breadcrumbs[] = [
+            'label' => 'Каталог итальянской мебели',
+            'url' => ['/catalog/category/list']
+        ];
+
+        if (isset($model['category'][0])) {
+            $this->breadcrumbs[] = [
+                'label' => $model['category'][0]['lang']['title'],
+                'url' => Yii::$app->catalogFilter->createUrl('category', $model['category'][0]['alias'], true)
+            ];
+        }
+
+        if (isset($model['types'])) {
+            $this->breadcrumbs[] = [
+                'label' => $model['types']['lang']['title'],
+                'url' => Yii::$app->catalogFilter->createUrl('type', $model['types']['alias'], true)
+            ];
         }
 
         return $this->render('view', [

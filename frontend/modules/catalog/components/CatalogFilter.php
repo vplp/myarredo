@@ -59,33 +59,45 @@ class CatalogFilter extends Component
     /**
      * @param $key
      * @param $value
+     * @param bool $is
      * @return string
      */
-    public function createUrl($key, $value)
+    public function createUrl($key, $value, $is = false)
     {
         $labelEmptyKey = self::getLabelEmptyKey();
 
         $_structure = [];
 
-        foreach ($labelEmptyKey as $Lk => $Lv) {
-            if (isset(self::$_parameters[$Lk]) && ($value == self::$_parameters[$Lk]['alias'])) {
-                // если есть значение в $_parameters и $value == self::$_parameters[$Lk]['alias']
-                $_structure[$Lk] = '';
-            } elseif ($Lk == $key) {
-                // если $Lk == $key
-                $_structure[$Lk][0] = $value;
-            } elseif (isset(self::$_parameters[$Lk])) {
-                // если есть значение в $_parameters
-                $_structure[$Lk][0] = self::$_parameters[$Lk]['alias'];
-            } else {
-                // значение по умолчанию
-                $_structure[$Lk]= '';
+        if ($is) {
+            foreach ($labelEmptyKey as $Lk => $Lv) {
+                if ($Lk == $key) {
+                    $_structure[$Lk][0] = $value;
+                } else {
+                    // значение по умолчанию
+                    $_structure[$Lk] = '';
+                }
+            }
+        } else {
+            foreach ($labelEmptyKey as $Lk => $Lv) {
+                if (isset(self::$_parameters[$Lk]) && ($value == self::$_parameters[$Lk]['alias'])) {
+                    // если есть значение в $_parameters и $value == self::$_parameters[$Lk]['alias']
+                    $_structure[$Lk] = '';
+                } elseif ($Lk == $key) {
+                    // если $Lk == $key
+                    $_structure[$Lk][0] = $value;
+                } elseif (isset(self::$_parameters[$Lk])) {
+                    // если есть значение в $_parameters
+                    $_structure[$Lk][0] = self::$_parameters[$Lk]['alias'];
+                } else {
+                    // значение по умолчанию
+                    $_structure[$Lk] = '';
+                }
             }
         }
 
         /* Видалення пустих елементів з кінця масиву */
         {
-            $count = count($_structure)-1;
+            $count = count($_structure) - 1;
             for (; $count >= 0; $count--) {
                 if (end($_structure)) {
                     break;
