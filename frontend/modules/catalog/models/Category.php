@@ -73,18 +73,6 @@ class Category extends \common\modules\catalog\models\Category
     }
 
     /**
-     * @return int|string
-     */
-//    public function getProductCount()
-//    {
-//        return $this->getProduct()
-//            ->innerJoinWith('lang')
-//            ->andWhere(['is_composition' => '0'])
-//            ->enabled()
-//            ->count();
-//    }
-
-    /**
      * Search
      *
      * @param $params
@@ -122,12 +110,18 @@ class Category extends \common\modules\catalog\models\Category
     }
 
     /**
-     * @param $params
+     * @param array $params
      * @return mixed
      */
     public static function getAllWithFilter($params = [])
     {
-        return self::findBase()
-            ->all();
+        $query = self::findBase();
+
+        if (isset($params['type'])) {
+            $query->innerJoinWith(["types"])
+                ->andFilterWhere([TypesRelCategory::tableName() . '.type_id' => $params['type']['id']]);
+        }
+
+        return $query->all();
     }
 }
