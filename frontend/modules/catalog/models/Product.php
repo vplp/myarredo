@@ -48,7 +48,11 @@ class Product extends \common\modules\catalog\models\Product
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled()->asArray();
+        return self::find()
+            ->innerJoinWith(['lang'])
+            ->orderBy('updated_at DESC')
+            ->enabled()
+            ->asArray();
     }
 
     /**
@@ -59,7 +63,10 @@ class Product extends \common\modules\catalog\models\Product
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()
+        return self::find()
+            ->innerJoinWith(['lang'])
+            ->orderBy('updated_at DESC')
+            ->enabled()
             ->byAlias($alias)
             ->innerJoinWith([
                 'category' => function ($q) {
@@ -67,15 +74,6 @@ class Product extends \common\modules\catalog\models\Product
                 }]
             )
             ->one();
-    }
-
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public static function findById($id)
-    {
-        return self::findBase()->byId($id)->one();
     }
 
     /**
@@ -87,6 +85,16 @@ class Product extends \common\modules\catalog\models\Product
     public function search($params)
     {
         return (new search\Product())->search($params);
+    }
+
+    /**
+     * @return null|string
+     */
+    public static function getImage()
+    {
+        $image =  'http://placehold.it/200x200';
+
+        return $image;
     }
 
     /**
@@ -124,5 +132,41 @@ class Product extends \common\modules\catalog\models\Product
         $title .= $model['article'];
 
         return $title;
+    }
+
+    /**
+     * @param $collections_id
+     * @param $catalog_type_id
+     * @return mixed
+     */
+    public static function getProductByCollection(int $collections_id, int $catalog_type_id)
+    {
+        return parent::findBase()
+            ->enabled()
+            ->andFilterWhere([
+                'collections_id' => $collections_id,
+                'catalog_type_id' => $catalog_type_id
+            ])
+            ->orderBy('RAND()')
+            ->limit(12)
+            ->all();
+    }
+
+    /**
+     * @param $factory_id
+     * @param $catalog_type_id
+     * @return mixed
+     */
+    public static function getProductByFactory($factory_id, $catalog_type_id)
+    {
+        return parent::findBase()
+            ->enabled()
+            ->andFilterWhere([
+                'factory_id' => $factory_id,
+                'catalog_type_id' => $catalog_type_id
+            ])
+            ->orderBy('RAND()')
+            ->limit(12)
+            ->all();
     }
 }

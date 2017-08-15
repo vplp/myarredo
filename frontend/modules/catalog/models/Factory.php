@@ -108,6 +108,8 @@ class Factory extends \common\modules\catalog\models\Factory
         $image = null;
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image = $url . '/' . $image_link;
+        } else {
+            $image = 'http://placehold.it/200x200';
         }
         return $image;
     }

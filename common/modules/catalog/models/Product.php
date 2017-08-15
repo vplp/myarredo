@@ -251,33 +251,6 @@ class Product extends ActiveRecord
     }
 
     /**
-     * @param $id
-     * @return mixed
-     */
-//    public static function findById($id)
-//    {
-//        return self::findBase()->byID($id);
-//    }
-//
-//    /**
-//     * @param $alias
-//     * @return mixed
-//     */
-//    public static function findByAlias($alias)
-//    {
-//        return self::findBase()->byAlias($alias);
-//    }
-//
-//    /**
-//     * @param $id
-//     * @return mixed
-//     */
-//    public static function getById($id)
-//    {
-//        return self::findById($id)->one();
-//    }
-
-    /**
      * @return \yii\db\ActiveQuery
      */
     public function getLang()
@@ -290,7 +263,7 @@ class Product extends ActiveRecord
      */
     public function getImageLink()
     {
-        $image = null;
+        $image =  'http://placehold.it/200x200';
 
         return $image;
     }
@@ -376,5 +349,15 @@ class Product extends ActiveRecord
     {
         return $this
             ->hasMany(ProductRelSpecification::class, ['catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCompositionProduct()
+    {
+        return $this
+            ->hasMany(Product::class, ['id' => 'catalog_item_id'])
+            ->viaTable(ProductRelComposition::tableName(), ['composition_id' => 'id']);
     }
 }

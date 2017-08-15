@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\controllers;
 
+use frontend\modules\catalog\widgets\menu\CatalogMenu;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
@@ -70,5 +71,47 @@ class CategoryController extends BaseController
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),
         ]);
+    }
+    public function beforeAction($action)
+    {
+        $params = Yii::$app->catalogFilter->params;
+
+        $this->title = 'Каталог итальянской мебели';
+
+        $this->breadcrumbs[] = [
+            'label' => 'Каталог итальянской мебели',
+            'url' => ['/catalog/category/list']
+        ];
+
+        if (!empty($params['category'])) {
+
+            $this->breadcrumbs[] = [
+                'label' => $params['category']['lang']['title'],
+                'url' => '#'
+            ];
+        }
+
+        if (!empty($params['type'])) {
+            $this->breadcrumbs[] = [
+                'label' => $params['type']['lang']['title'],
+                'url' => '#'
+            ];
+        }
+
+        if (!empty($params['style'])) {
+            $this->breadcrumbs[] = [
+                'label' => $params['style']['lang']['title'],
+                'url' => '#'
+            ];
+        }
+
+        if (!empty($params['factory'])) {
+            $this->breadcrumbs[] = [
+                'label' => $params['factory']['lang']['title'],
+                'url' => '#'
+            ];
+        }
+
+        return parent::beforeAction($action);
     }
 }
