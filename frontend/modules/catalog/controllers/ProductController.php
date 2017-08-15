@@ -55,14 +55,14 @@ class ProductController extends BaseController
         if (isset($model['category'][0])) {
             $this->breadcrumbs[] = [
                 'label' => $model['category'][0]['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl('category', $model['category'][0]['alias'])
+                'url' => Yii::$app->catalogFilter->createUrl('category', $model['category'][0]['alias'], true)
             ];
         }
 
         if (isset($model['types'])) {
             $this->breadcrumbs[] = [
                 'label' => $model['types']['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl('type', $model['types']['alias'])
+                'url' => Yii::$app->catalogFilter->createUrl('type', $model['types']['alias'], true)
             ];
         }
 
