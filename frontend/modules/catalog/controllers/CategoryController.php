@@ -59,7 +59,7 @@ class CategoryController extends BaseController
         $factory = Factory::getAllWithFilter(Yii::$app->catalogFilter->params);
         $collection = Collection::getAllWithFilter(Yii::$app->catalogFilter->params);
 
-        $models = $model->search(ArrayHelper::merge($params, Yii::$app->catalogFilter->params));
+        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, Yii::$app->catalogFilter->params));
 
         return $this->render('list', [
             'group' => $group,
@@ -87,28 +87,28 @@ class CategoryController extends BaseController
 
             $this->breadcrumbs[] = [
                 'label' => $params['category']['lang']['title'],
-                'url' => '#'
+                'url' => Yii::$app->catalogFilter->createUrl('category', $params['category']['alias'])
             ];
         }
 
         if (!empty($params['type'])) {
             $this->breadcrumbs[] = [
                 'label' => $params['type']['lang']['title'],
-                'url' => '#'
+                'url' => Yii::$app->catalogFilter->createUrl('type', $params['type']['alias'])
             ];
         }
 
         if (!empty($params['style'])) {
             $this->breadcrumbs[] = [
                 'label' => $params['style']['lang']['title'],
-                'url' => '#'
+                'url' => Yii::$app->catalogFilter->createUrl('type', $params['style']['alias'])
             ];
         }
 
         if (!empty($params['factory'])) {
             $this->breadcrumbs[] = [
                 'label' => $params['factory']['lang']['title'],
-                'url' => '#'
+                'url' => Yii::$app->catalogFilter->createUrl('type', $params['factory']['alias'])
             ];
         }
 

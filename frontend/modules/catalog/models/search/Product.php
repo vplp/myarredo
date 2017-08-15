@@ -81,6 +81,20 @@ class Product extends ProductModel
             $query->andFilterWhere(['factory_id' => $params['factory']['id']]);
         }
 
+        $order = [];
+
+        if (isset($params['sort']) && $params['sort'] == 'asc') {
+            $order[] = self::tableName() . '.factory_price ASC';
+        } else if (isset($params['sort']) && $params['sort'] == 'desc') {
+            $order[] = self::tableName() . '.factory_price DESC';
+        } if (isset($params['object']) && $params['object'] == 'composition') {
+            $order[] = self::tableName() . '.is_composition DESC';
+        }
+
+        $order[] = self::tableName() . '.updated_at DESC';
+
+        $query->orderBy(implode(',', $order));
+
         return $dataProvider;
     }
 

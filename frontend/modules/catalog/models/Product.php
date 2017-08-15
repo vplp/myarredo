@@ -129,7 +129,12 @@ class Product extends \common\modules\catalog\models\Product
         if ($collections)
             $title .= $collections['lang']['title'] . ' ';
 
-        $title .= $model['article'];
+        if (!$model['is_composition'])
+            $title .= $model['article'];
+
+        if ($model['is_composition'])
+            $title = 'КОМПОЗИЦИЯ ' . $title;
+
 
         return $title;
     }
