@@ -42,7 +42,7 @@ class Composition extends Product
     public function rules()
     {
         return [
-            [['alias', 'factory_id'], 'required'],
+            [['factory_id'], 'required'],
             [
                 [
                     'catalog_type_id',
@@ -176,7 +176,7 @@ class Composition extends Product
     /**
      * @return null|string
      */
-    public function getCompositionImage()
+    public function getImageLink()
     {
         $module = Yii::$app->getModule('catalog');
         $path = $module->getCompositionUploadPath();
