@@ -30,6 +30,38 @@ class Product extends CommonProductModel implements BaseBackendModel
     }
 
     /**
+     * @param $text
+     * @param string $replacement
+     * @return mixed|string
+     */
+    public static function slugify($text, $replacement = '-')
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', $replacement, $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, $replacement);
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', $replacement, $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return '';
+        }
+
+        return $text;
+    }
+
+    /**
      * @param bool $insert
      * @return bool
      */

@@ -4,7 +4,7 @@ namespace common\modules\catalog\models;
 
 use Yii;
 use yii\helpers\{
-    ArrayHelper, Inflector
+    ArrayHelper
 };
 use yii\behaviors\AttributeBehavior;
 //
@@ -13,6 +13,7 @@ use voskobovich\behaviors\ManyToManyBehavior;
 use thread\app\base\models\ActiveRecord;
 //
 use common\modules\catalog\Catalog;
+use common\helpers\Inflector;
 
 /**
  * Class Product
@@ -97,7 +98,7 @@ class Product extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
                 ],
                 'value' => function ($event) {
-                    return Inflector::slug(Inflector::transliterate($this->alias), '_');
+                    return Inflector::slug($this->alias, '_');
                 },
             ],
         ]);

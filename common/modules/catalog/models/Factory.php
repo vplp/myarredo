@@ -6,9 +6,12 @@ use Yii;
 use yii\helpers\{
     ArrayHelper
 };
+use yii\behaviors\AttributeBehavior;
+//
 use thread\app\base\models\ActiveRecord;
 use common\modules\catalog\Catalog;
 use common\actions\upload\UploadBehavior;
+use common\helpers\Inflector;
 
 /**
  * Class Factory
@@ -72,6 +75,16 @@ class Factory extends ActiveRecord
                         'url' => Yii::$app->getModule('catalog')->getFactoryUploadPath(),
                     ]
                 ]
+            ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias);
+                },
             ],
         ]);
     }
