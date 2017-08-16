@@ -26,6 +26,7 @@ return [
 //    'catalog/<category:[a-z_]+>--<type:[a-z_]+>--<style:[a-z_]+>--<factory:[a-z_]+>' => 'catalog/category/list',
 
     'catalog/<filter:[\;\-\/\w\d]+>' => 'catalog/category/list',
+    'factory/<letter:[\w\-]>' => 'catalog/factory/list',
     'factory/<alias:[\w\-]+>' => 'catalog/factory/view',
     'product/<alias:[\w\-]+>' => 'catalog/product/view',
     'sale-product/<alias:[\w\-]+>' => 'catalog/sale/view',

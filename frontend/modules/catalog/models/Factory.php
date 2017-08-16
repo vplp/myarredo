@@ -64,18 +64,6 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
-     * @return int|string
-     */
-//    public function getProductCount()
-//    {
-//        return $this->getProduct()
-//            ->innerJoinWith('lang')
-//            ->andWhere(['is_composition' => '0'])
-//            ->enabled()
-//            ->count();
-//    }
-
-    /**
      * Search
      *
      * @param $params
@@ -121,6 +109,16 @@ class Factory extends \common\modules\catalog\models\Factory
     public static function getAllWithFilter($params = [])
     {
         return self::findBase()
+            ->all();
+    }
+
+    public static function getListLetters()
+    {
+        return parent::findBase()
+            ->enabled()
+            ->select([self::tableName().'.first_letter'])
+            ->groupBy(self::tableName().'.first_letter')
+            ->orderBy(self::tableName().'.first_letter')
             ->all();
     }
 }
