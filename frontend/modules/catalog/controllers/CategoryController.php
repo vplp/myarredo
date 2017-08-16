@@ -101,14 +101,14 @@ class CategoryController extends BaseController
         if (!empty($params['style'])) {
             $this->breadcrumbs[] = [
                 'label' => $params['style']['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl('type', $params['style']['alias'], true)
+                'url' => Yii::$app->catalogFilter->createUrl('style', $params['style']['alias'], true)
             ];
         }
 
         if (!empty($params['factory'])) {
             $this->breadcrumbs[] = [
                 'label' => $params['factory']['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl('type', $params['factory']['alias'], true)
+                'url' => Yii::$app->catalogFilter->createUrl('factory', $params['factory']['alias'], true)
             ];
         }
 
