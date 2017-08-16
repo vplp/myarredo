@@ -21,43 +21,12 @@ class Product extends CommonProductModel implements BaseBackendModel
      */
     public function beforeValidate()
     {
-        $this->alias = $this->types->alias
-            . '_' . $this->factory->alias
-            . (($this->article) ? '_' . self::slugify($this->article, '_') : '');
+        $this->alias = $this->types->lang->title
+            . ' ' . $this->factory->lang->title
+            . ' ' . $this->collection->lang->title
+            . (($this->article) ? ' ' . $this->article : '');
 
         return parent::beforeValidate();
-    }
-
-    /**
-     * @param $text
-     * @param string $replacement
-     * @return mixed|string
-     */
-    public static function slugify($text, $replacement = '-')
-    {
-        // replace non letter or digits by -
-        $text = preg_replace('~[^\pL\d]+~u', $replacement, $text);
-
-        // transliterate
-        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-
-        // remove unwanted characters
-        $text = preg_replace('~[^-\w]+~', '', $text);
-
-        // trim
-        $text = trim($text, $replacement);
-
-        // remove duplicate -
-        $text = preg_replace('~-+~', $replacement, $text);
-
-        // lowercase
-        $text = strtolower($text);
-
-        if (empty($text)) {
-            return '';
-        }
-
-        return $text;
     }
 
     /**
@@ -67,12 +36,8 @@ class Product extends CommonProductModel implements BaseBackendModel
     public function beforeSave($insert)
     {
         if ($this->id) {
-            $this->alias = $this->id . '_' . $this->alias;
+            $this->alias = $this->id . ' ' . $this->alias;
         }
-
-        $this->user_id = Yii::$app->getUser()->id;
-        $userIdentity = Yii::$app->getUser()->getIdentity();
-        $this->user = $userIdentity->profile->first_name . ' ' . $userIdentity->profile->last_name;
 
         return parent::beforeSave($insert);
     }

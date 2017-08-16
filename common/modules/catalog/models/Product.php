@@ -4,8 +4,9 @@ namespace common\modules\catalog\models;
 
 use Yii;
 use yii\helpers\{
-    ArrayHelper
+    ArrayHelper, Inflector
 };
+use yii\behaviors\AttributeBehavior;
 //
 use voskobovich\behaviors\ManyToManyBehavior;
 //
@@ -88,6 +89,16 @@ class Product extends ActiveRecord
                     'factory_catalogs_files_ids' => 'factoryCatalogsFiles',
                     'factory_prices_files_ids' => 'factoryPricesFiles',
                 ],
+            ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug(Inflector::transliterate($this->alias), '_');
+                },
             ],
         ]);
     }
