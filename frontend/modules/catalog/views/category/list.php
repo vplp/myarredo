@@ -7,6 +7,11 @@ use frontend\modules\catalog\widgets\product\{
     ProductSorting, ProductFilter
 };
 
+/**
+ * @var \yii\data\Pagination $pages
+ * @var \frontend\modules\catalog\models\Product $model
+ */
+
 ?>
 
 <main>
@@ -42,7 +47,7 @@ use frontend\modules\catalog\widgets\product\{
                                 <div class="this-page">
                                     Страница
                                     <input type="text" value="1">
-                                    из <?= $pages->totalCount; ?>
+                                    из <?= $pages->getPageCount(); ?>
                                     <a href="#">
                                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                                     </a>

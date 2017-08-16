@@ -81,6 +81,10 @@ class Product extends ProductModel
             $query->andFilterWhere(['factory_id' => $params['factory']['id']]);
         }
 
+        if (isset($params['collection'])) {
+            $query->andFilterWhere(['collections_id' => $params['collection']['id']]);
+        }
+
         $order = [];
 
         if (isset($params['sort']) && $params['sort'] == 'asc') {

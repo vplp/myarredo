@@ -79,15 +79,21 @@ class CatalogFilter extends Component
             }
         } else {
             foreach ($labelEmptyKey as $Lk => $Lv) {
-                if (isset(self::$_parameters[$Lk]) && ($value == self::$_parameters[$Lk]['alias'])) {
+                if (isset(self::$_parameters[$Lk]) && isset(self::$_parameters[$Lk]['alias']) && ($value == self::$_parameters[$Lk]['alias'])) {
+                    // если есть значение в $_parameters и $value == self::$_parameters[$Lk]['alias']
+                    $_structure[$Lk] = '';
+                } elseif (isset(self::$_parameters[$Lk]) && isset(self::$_parameters[$Lk]['id']) && ($value == self::$_parameters[$Lk]['id'])) {
                     // если есть значение в $_parameters и $value == self::$_parameters[$Lk]['alias']
                     $_structure[$Lk] = '';
                 } elseif ($Lk == $key) {
                     // если $Lk == $key
                     $_structure[$Lk][0] = $value;
-                } elseif (isset(self::$_parameters[$Lk])) {
+                } elseif (isset(self::$_parameters[$Lk]['alias'])) {
                     // если есть значение в $_parameters
                     $_structure[$Lk][0] = self::$_parameters[$Lk]['alias'];
+                } elseif (isset(self::$_parameters[$Lk]['id'])) {
+                    // если есть значение в $_parameters
+                    $_structure[$Lk][0] = self::$_parameters[$Lk]['id'];
                 } else {
                     // значение по умолчанию
                     $_structure[$Lk] = '';
@@ -228,5 +234,16 @@ class CatalogFilter extends Component
 
             self::$_parameters['factory'] = $model;
         }
+
+        if (!empty(self::$_structure['collection'])) {
+            $model = Collection::findById(self::$_structure['collection'][0]);
+
+            if ($model === null) {
+                throw new NotFoundHttpException;
+            }
+
+            self::$_parameters['collection'] = $model;
+        }
+
     }
 }
