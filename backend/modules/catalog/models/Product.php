@@ -21,9 +21,10 @@ class Product extends CommonProductModel implements BaseBackendModel
      */
     public function beforeValidate()
     {
-        $this->alias = $this->types->alias
-            . '_' . $this->factory->alias
-            . (($this->article) ? '_' . self::slugify($this->article, '_') : '');
+        $this->alias = $this->types->lang->title
+            . ' ' . $this->factory->lang->title
+            . ' ' . $this->collection->lang->title
+            . (($this->article) ? ' ' . $this->article : '');
 
         return parent::beforeValidate();
     }
@@ -67,12 +68,8 @@ class Product extends CommonProductModel implements BaseBackendModel
     public function beforeSave($insert)
     {
         if ($this->id) {
-            $this->alias = $this->id . '_' . $this->alias;
+            $this->alias = $this->id . ' ' . $this->alias;
         }
-
-        $this->user_id = Yii::$app->getUser()->id;
-        $userIdentity = Yii::$app->getUser()->getIdentity();
-        $this->user = $userIdentity->profile->first_name . ' ' . $userIdentity->profile->last_name;
 
         return parent::beforeSave($insert);
     }
