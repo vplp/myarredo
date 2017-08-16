@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use frontend\modules\catalog\models\Factory;
+
 /**
  * @var \frontend\modules\catalog\models\Factory $model
  */

@@ -7,7 +7,7 @@ use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
 use frontend\modules\catalog\models\{
-    Factory as FactoryModel
+    Factory as FactoryModel, FactoryLang
 };
 
 /**
@@ -18,6 +18,7 @@ use frontend\modules\catalog\models\{
 class Factory extends FactoryModel
 {
     public $title;
+    public $letter;
 
     /**
      * @return array
@@ -25,6 +26,7 @@ class Factory extends FactoryModel
     public function rules()
     {
         return [
+            [['letter'], 'string', 'max' => 1],
             [['alias', 'title'], 'string', 'max' => 255],
         ];
     }
@@ -50,18 +52,19 @@ class Factory extends FactoryModel
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
+            'pagination' => (Yii::$app->request->get('view')) ? false : [
                 'pageSize' => $module->itemOnPage
             ],
         ]);
 
-        if (!($this->load($params) && $this->validate())) {
+        if (!($this->load($params, '') && $this->validate())) {
             return $dataProvider;
         }
 
         $query->andFilterWhere(['like', 'alias', $this->alias]);
         //
         $query->andFilterWhere(['like', FactoryLang::tableName() . '.title', $this->title]);
+        $query->andFilterWhere(['like', 'first_letter', $this->letter]);
 
         return $dataProvider;
     }

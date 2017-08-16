@@ -50,11 +50,27 @@ class FactoryController extends BaseController
         $params = [];
 
         $models = $model->search(ArrayHelper::merge($params, Yii::$app->request->queryParams));
+        $view = Yii::$app->request->get('view');
 
-        return $this->render('list', [
-            'models' => $models->getModels(),
-            'pages' => $models->getPagination(),
-        ]);
+        if ($view && $view !== 'three') {
+            throw new NotFoundHttpException;
+        }
+
+        if ($view == 'three') {
+            foreach ($models->getModels() as $obj) {
+                $_models[$obj['first_letter']][] = $obj;
+            }
+            return $this->render('list_three', [
+                'models' => $_models,
+                'pages' => $models->getPagination(),
+            ]);
+        } else {
+            return $this->render('list', [
+                'models' => $models->getModels(),
+                'pages' => $models->getPagination(),
+            ]);
+        }
+
     }
 
     /**
