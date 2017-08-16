@@ -1,16 +1,14 @@
 <?php
 
-use yii\helpers\Html;
+use yii\helpers\{
+    Url, Html
+};
 use yii\widgets\Breadcrumbs;
+use frontend\modules\catalog\models\Factory;
 
-$this->params['breadcrumbs'][] = [
-    'label' => 'Итальянские фабрики мебели',
-    'url' => ['/catalog/factory/list']
-];
-$this->params['breadcrumbs'][] = [
-    'label' => $model['lang']['title'],
-    'url' => ['/catalog/factory/list']
-];
+/**
+ * @var \frontend\modules\catalog\models\Factory $model
+ */
 
 ?>
 
@@ -19,91 +17,24 @@ $this->params['breadcrumbs'][] = [
         <div class="letter-nav">
             <div class="container large-container">
                 <ul class="letter-select">
-                    <li>
-                        <a href="#">a</a>
-                    </li>
-                    <li>
-                        <a href="#">b</a>
-                    </li>
-                    <li>
-                        <a href="#">c</a>
-                    </li>
-                    <li>
-                        <a href="#">d</a>
-                    </li>
-                    <li>
-                        <a href="#">e</a>
-                    </li>
-                    <li>
-                        <a href="#">f</a>
-                    </li>
-                    <li>
-                        <a href="#">g</a>
-                    </li>
-                    <li>
-                        <a href="#">h</a>
-                    </li>
-                    <li>
-                        <a href="#">i</a>
-                    </li>
-                    <li>
-                        <a href="#">j</a>
-                    </li>
-                    <li>
-                        <a href="#">k</a>
-                    </li>
-                    <li>
-                        <a href="#">l</a>
-                    </li>
-                    <li>
-                        <a href="#">m</a>
-                    </li>
-                    <li>
-                        <a href="#">n</a>
-                    </li>
-                    <li>
-                        <a href="#">o</a>
-                    </li>
-                    <li>
-                        <a href="#">p</a>
-                    </li>
-                    <li>
-                        <a href="#">r</a>
-                    </li>
-                    <li>
-                        <a href="#">s</a>
-                    </li>
-                    <li>
-                        <a href="#">t</a>
-                    </li>
-                    <li>
-                        <a href="#">u</a>
-                    </li>
-                    <li>
-                        <a href="#">v</a>
-                    </li>
-                    <li>
-                        <a href="#">w</a>
-                    </li>
-                    <li>
-                        <a href="#">x</a>
-                    </li>
-                    <li>
-                        <a href="#">y</a>
-                    </li>
-                    <li>
-                        <a href="#">z</a>
-                    </li>
+
+                    <?php foreach (Factory::getListLetters() as $letter): ?>
+                        <li>
+                            <?= Html::a(
+                                $letter['first_letter'],
+                                Url::toRoute(['/catalog/factory/list', 'letter' => strtolower($letter['first_letter'])])
+                            ); ?>
+                        </li>
+                    <?php endforeach; ?>
+
                 </ul>
-                <a href="#" class="all">
-                    Все
-                </a>
+                <?= Html::a('Все', Url::toRoute(['/catalog/factory/list']), ['class' => 'all']); ?>
             </div>
         </div>
         <div class="container large-container">
             <div class="row">
                 <?= Breadcrumbs::widget([
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    'links' => $this->context->breadcrumbs,
                     'options' => ['class' => 'bread-crumbs']
                 ]) ?>
             </div>
@@ -117,7 +48,7 @@ $this->params['breadcrumbs'][] = [
                     <div class="descr">
                         <h1 class="title-text"><?= $model['lang']['title']; ?></h1>
                         <div class="fact-link">
-                            <a href="#">WWW.ARARREDAMENTI.IT</a>
+                            <?= Html::a($model['url'], 'http://' . $model['url'], ['target' => '_blank']); ?>
                         </div>
                         <div class="fact-assort">
                             <div class="all-list">
@@ -267,37 +198,7 @@ $this->params['breadcrumbs'][] = [
                             </div>
                         </div>
                         <div class="text">
-                            <p>
-                                Итальянская мебельная компания AR Arredamenti имеет длинную и интересную историю.
-                                Она была основана в прошлом веке – в 1967 году – в качестве ремесленной мастерской
-                                талантливых краснодеревщиков, искренне преданных избранной профессии.
-                                В 1986 году произошло значительное расширение производства, переход на новый
-                                качественный уровень, начался рост во всех смыслах. Сотрудничество с лучшими
-                                дизайнерами, обновление коллекций, приверженность классическим
-                                традициям помогли заслужить отличную репутацию бренда, отвечающего и
-                                за качество, и за стиль своей продукции.
-                            </p>
-                            <p>
-                                В ассортименте, предлагаемом клиентам компании на сегодняшний день, представлена
-                                мебель для жилых помещений: кабинетов, столовых, гостиных, спален – наиболее значимых
-                                и важных зон каждого дома. Свойственная этим моделям изысканная роскошь,
-                                элегантный шик и неизменная красота, которую невозможно не заметить,
-                                выгодно отличает мебель от AR Arredamenti, ставит ее на порядок выше
-                                продукции большинства современных брендов.
-                            </p>
-                            <p>
-                                Для того чтобы добиться непревзойденного качества, компания AR Arredamenti
-                                не просто применила все имеющиеся знания и умения, опыт своих квалифицированных
-                                сотрудников и традиционные способы производства, которые передавались от одного
-                                поколения итальянских краснодеревщиков к другому, но и сделала ставку на
-                                современное оборудование, художественный талант и тонкое чутье моды
-                                дизайнеров и высочайший уровень используемых материалов. Результат
-                                не заставил себя ждать. Известность, множество благодарных клиентов
-                                в разных странах мира, рекомендации друзьям и близким –
-                                эта мебель неизменно востребована, ведь она производится
-                                одним из лидеров мебельной промышленности Европы, успешным брендом
-                                AR Arredamenti, чье имя равнозначно качеству и стилю.
-                            </p>
+                            <?= $model['lang']['content']; ?>
                         </div>
                     </div>
                 </div>
@@ -458,12 +359,13 @@ $this->params['breadcrumbs'][] = [
                         Спальный гарнитур BEDROOMS
                     </div>
                 </a>
-                <a href="#" class="one-prod-tile last">
-                    смотреть полный
-                    <div>
-                        Каталог
-                    </div>
-                </a>
+
+                <?= Html::a(
+                    'смотреть полный<div>Каталог</div>',
+                    Yii::$app->catalogFilter->createUrl('factory', $model['alias'], true),
+                    ['class' => 'one-prod-tile last']
+                ); ?>
+
             </div>
 
 

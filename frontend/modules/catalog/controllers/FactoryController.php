@@ -86,6 +86,16 @@ class FactoryController extends BaseController
             throw new NotFoundHttpException;
         }
 
+        $this->breadcrumbs[] = [
+            'label' => 'Итальянские фабрики мебели',
+            'url' => ['/catalog/factory/list']
+        ];
+
+        $this->breadcrumbs[] = [
+            'label' => $model['lang']['title'],
+            'url' => ['/catalog/factory/view', 'alias' => $model['alias']]
+        ];
+
         return $this->render('view', [
             'model' => $model,
         ]);
