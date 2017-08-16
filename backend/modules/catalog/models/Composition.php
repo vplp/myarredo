@@ -2,6 +2,7 @@
 
 namespace backend\modules\catalog\models;
 
+use Yii;
 use yii\helpers\ArrayHelper;
 use thread\app\model\interfaces\BaseBackendModel;
 use common\modules\catalog\models\Composition as CommonCompositionModel;
@@ -14,6 +15,29 @@ use common\modules\catalog\models\Composition as CommonCompositionModel;
 class Composition extends CommonCompositionModel implements BaseBackendModel
 {
     public $parent_id = 0;
+
+    /**
+     * @return bool
+     */
+    public function beforeValidate()
+    {
+        $this->alias = (Yii::$app->request->post('CompositionLang'))['title'];
+
+        return parent::beforeValidate();
+    }
+
+    /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        if ($this->id) {
+            $this->alias = $this->id . ' ' . $this->alias;
+        }
+
+        return parent::beforeSave($insert);
+    }
 
     /**
      * Backend form drop down list

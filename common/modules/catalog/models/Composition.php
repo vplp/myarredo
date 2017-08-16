@@ -4,9 +4,11 @@ namespace common\modules\catalog\models;
 
 use Yii;
 use yii\helpers\{
-    ArrayHelper
+    ArrayHelper, Inflector
 };
+use yii\behaviors\AttributeBehavior;
 //
+use thread\app\base\models\ActiveRecord;
 use voskobovich\behaviors\ManyToManyBehavior;
 
 /**
@@ -33,6 +35,16 @@ class Composition extends Product
                     'category_ids' => 'category',
                 ],
             ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug(Inflector::transliterate($this->alias), '_');
+                },
+            ],
         ]);
     }
 
@@ -42,7 +54,7 @@ class Composition extends Product
     public function rules()
     {
         return [
-            [['alias', 'factory_id'], 'required'],
+            [['factory_id'], 'required'],
             [
                 [
                     'catalog_type_id',
@@ -176,7 +188,7 @@ class Composition extends Product
     /**
      * @return null|string
      */
-    public function getCompositionImage()
+    public function getImageLink()
     {
         $module = Yii::$app->getModule('catalog');
         $path = $module->getCompositionUploadPath();
