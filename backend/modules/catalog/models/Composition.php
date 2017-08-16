@@ -33,7 +33,7 @@ class Composition extends CommonCompositionModel implements BaseBackendModel
     public function beforeSave($insert)
     {
         if ($this->id) {
-            $this->alias = $this->id . '_' . $this->alias;
+            $this->alias = $this->id . ' ' . $this->alias;
         }
 
         return parent::beforeSave($insert);

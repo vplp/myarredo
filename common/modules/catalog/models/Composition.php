@@ -4,9 +4,11 @@ namespace common\modules\catalog\models;
 
 use Yii;
 use yii\helpers\{
-    ArrayHelper
+    ArrayHelper, Inflector
 };
+use yii\behaviors\AttributeBehavior;
 //
+use thread\app\base\models\ActiveRecord;
 use voskobovich\behaviors\ManyToManyBehavior;
 
 /**
@@ -32,6 +34,16 @@ class Composition extends Product
                     'product_ids' => 'product',
                     'category_ids' => 'category',
                 ],
+            ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug(Inflector::transliterate($this->alias), '_');
+                },
             ],
         ]);
     }
