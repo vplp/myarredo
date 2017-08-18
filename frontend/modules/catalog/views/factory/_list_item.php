@@ -19,45 +19,15 @@ use frontend\modules\catalog\models\Factory;
     </div>
     <object>
         <ul class="assortment">
-            <li>
-                <a href="#">Кухни</a>
-            </li>
-            <li>
-                <a href="#">Столовые комнаты</a>
-            </li>
-            <li>
-                <a href="#">Стулья</a>
-            </li>
-            <li>
-                <a href="#">Прихожие</a>
-            </li>
-            <li>
-                <a href="#">Кабинеты</a>
-            </li>
-            <li>
-                <a href="#">Мягкая мебель</a>
-            </li>
-            <li>
-                <a href="#">Гостинные</a>
-            </li>
-            <li>
-                <a href="#">Аксессуары</a>
-            </li>
-            <li>
-                <a href="#">Спальни</a>
-            </li>
-            <li>
-                <a href="#">Мебель для ТВ</a>
-            </li>
-            <li>
-                <a href="#">Мебель для ресторанов</a>
-            </li>
-            <li>
-                <a href="#">Двери</a>
-            </li>
-            <li>
-                <a href="#">Светильники</a>
-            </li>
+            <?php foreach ($categories as $item): ?>
+                    <li>
+                        <?= Html::a(
+                            $item['title'],
+                            Yii::$app->catalogFilter->createUrl('factory', $model['alias'], true)
+                        ); ?>
+                    </li>
+            <?php endforeach; ?>
+
         </ul>
     </object>
 

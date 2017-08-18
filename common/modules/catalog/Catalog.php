@@ -24,7 +24,7 @@ class Catalog extends aModule {
      */
     public static function getDb()
     {
-        return Yii::$app->get('db-myarredo');
+        return Yii::$app->get('db_myarredo');
     }
 
     /**
