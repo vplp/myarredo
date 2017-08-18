@@ -53,7 +53,7 @@ use frontend\modules\catalog\models\Factory;
             <div class="factory-tiles flex">
 
                 <?php foreach ($models as $model): ?>
-                    <?= $this->render('_list_item', ['model' => $model]) ?>
+                    <?= $this->render('_list_item', ['model' => $model, 'categories' => $factory_categories[$model['id']]]) ?>
                 <?php endforeach; ?>
             </div>
 

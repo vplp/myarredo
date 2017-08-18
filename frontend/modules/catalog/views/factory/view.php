@@ -41,7 +41,7 @@ use frontend\modules\catalog\models\Factory;
             <div class="row factory-det">
                 <div class="col-sm-3 col-md-3">
                     <div class="fact-img">
-                        <img src="public/img/pictures/fact-det.png" alt="Логотип фабрики">
+                        <?= Html::img(Factory::getImage($model['image_link'])); ?>
                     </div>
                 </div>
                 <div class="col-sm-9 col-md-9">

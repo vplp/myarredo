@@ -65,9 +65,22 @@ class FactoryController extends BaseController
                 'pages' => $models->getPagination(),
             ]);
         } else {
+            // get category
+            $factory_ids = [];
+            foreach ($models->getModels() as $obj) {
+                $factory_ids[] = $obj['id'];
+            }
+
+            $categories = Factory::getCategory($factory_ids);
+            $factory_categories = [];
+            foreach ($categories as $item) {
+                $factory_categories[$item['fid']][] = $item;
+            }
+
             return $this->render('list', [
                 'models' => $models->getModels(),
                 'pages' => $models->getPagination(),
+                'factory_categories' => $factory_categories
             ]);
         }
 

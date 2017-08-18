@@ -121,4 +121,34 @@ class Factory extends \common\modules\catalog\models\Factory
             ->orderBy(self::tableName().'.first_letter')
             ->all();
     }
+
+    public static function getCategory($id)
+    {
+        $posts = Yii::$app->db_myarredo->createCommand("SELECT
+						`t`.`id` AS fid,
+						`tp`.`id` AS tid,
+						`tp`.`alias` AS alias,
+						`tpL`.`title` AS title
+					FROM
+						`catalog_factory` `t`
+							INNER JOIN
+						`catalog_factory_lang` `tL` ON (`tL`.`rid` = `t`.`id`)
+							AND (`tL`.`lang` = 'ru-RU')
+							INNER JOIN
+						`catalog_item` `cI` ON (`cI`.`factory_id` = `t`.`id`)
+							AND (`cI`.`published` = '1'
+							AND `cI`.`deleted` = '0')
+							INNER JOIN
+						`catalog_item_rel_catalog_group` `catalogGroups_tp` ON (`cI`.`id` = `catalogGroups_tp`.`catalog_item_id`)
+							INNER JOIN
+						`catalog_group` `tp` ON (`tp`.`id` = `catalogGroups_tp`.`group_id`)
+							INNER JOIN
+						`catalog_group_lang` `tpL` ON (`tpL`.`rid` = `tp`.`id`)
+							AND (`tpL`.`lang` = 'ru-RU')
+					WHERE
+						(t.id IN ('" . implode("','", $id) . "'))
+					GROUP BY `tp`.`id` , `t`.`id`")->queryAll();
+
+        return $posts;
+    }
 }

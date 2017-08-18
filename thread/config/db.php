@@ -24,7 +24,7 @@ return [
         'schemaCache' => 'cache',
         'enableSchemaCache' => !YII_ENV_DEV,
     ],
-    'db-myarredo' => [
+    'db_myarredo' => [
         'class' => \yii\db\Connection::class,
         'charset' => 'utf8',
         'tablePrefix' => '',
