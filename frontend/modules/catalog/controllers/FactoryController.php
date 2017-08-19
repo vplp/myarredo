@@ -56,7 +56,11 @@ class FactoryController extends BaseController
             throw new NotFoundHttpException;
         }
 
+
         if ($view == 'three') {
+            /**
+             * view three
+             */
             foreach ($models->getModels() as $obj) {
                 $_models[$obj['first_letter']][] = $obj;
             }
@@ -65,7 +69,9 @@ class FactoryController extends BaseController
                 'pages' => $models->getPagination(),
             ]);
         } else {
-            // get category
+            /**
+             * view list
+             */
             $factory_ids = [];
             foreach ($models->getModels() as $obj) {
                 $factory_ids[] = $obj['id'];
@@ -83,7 +89,6 @@ class FactoryController extends BaseController
                 'factory_categories' => $factory_categories
             ]);
         }
-
     }
 
     /**
