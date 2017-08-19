@@ -130,36 +130,135 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public static function getFactoryCategories(array $ids)
     {
-        $posts = Yii::$app->db_myarredo->createCommand(
-            "SELECT
+        $command = Yii::$app->db_myarredo->createCommand("SELECT
                 factory.id AS factory_id,
                 category.id AS category_id,
                 category.alias AS alias,
                 categoryLang.title AS title
             FROM
-                ".self::tableName()." factory
-            INNER JOIN ".FactoryLang::tableName()." factoryLang 
+                " . self::tableName() . " factory
+            INNER JOIN " . FactoryLang::tableName() . " factoryLang 
                 ON (factoryLang.rid = factory.id) AND (factoryLang.lang = :lang)
-            INNER JOIN ".Product::tableName()." product 
+            INNER JOIN " . Product::tableName() . " product 
                 ON (product.factory_id = factory.id) 
                 AND (product.published = :published AND product.deleted = :deleted)
-            INNER JOIN ".ProductRelCategory::tableName()." ProductRelCategory 
+            INNER JOIN " . ProductRelCategory::tableName() . " ProductRelCategory 
                 ON (product.id = ProductRelCategory.catalog_item_id)
-            INNER JOIN ".Category::tableName()." category 
+            INNER JOIN " . Category::tableName() . " category 
                 ON (category.id = ProductRelCategory.group_id)
-            INNER JOIN ".CategoryLang::tableName()." categoryLang 
+            INNER JOIN " . CategoryLang::tableName() . " categoryLang 
                 ON (categoryLang.rid = category.id) AND (categoryLang.lang = :lang)
             WHERE
                 (factory.id IN ('" . implode("','", $ids) . "'))
             GROUP BY 
                 category.id , factory.id")
             ->bindValues([
-                ':published' =>  '1',
-                ':deleted' =>  '0',
-                ':lang' =>  Yii::$app->language,
-            ])
-            ->queryAll();
+                ':published' => '1',
+                ':deleted' => '0',
+                ':lang' => Yii::$app->language,
+            ]);
 
-        return $posts;
+        return $command->queryAll();
+    }
+
+    /**
+     * Get Factory Types
+     *
+     * @param int $id
+     */
+    public static function getFactoryTypes(int $id)
+    {
+        $command = Yii::$app->db_myarredo->createCommand("SELECT
+                COUNT(types.id) as count, 
+                types.id, 
+                types.alias,
+                typesLang.title AS title
+            FROM
+                " . Types::tableName() . " types
+            INNER JOIN " . TypesLang::tableName() . " typesLang 
+                ON (typesLang.rid = types.id) AND (typesLang.lang = :lang)
+            INNER JOIN " . Product::tableName() . " product 
+                ON (product.catalog_type_id = types.id) 
+                AND (product.published = :published AND product.deleted = :deleted)
+            WHERE
+                product.factory_id = :id
+            GROUP BY 
+                types.id
+            ORDER BY typesLang.title")
+            ->bindValues([
+                ':published' => '1',
+                ':deleted' => '0',
+                ':id' => $id,
+                ':lang' => Yii::$app->language,
+            ]);
+
+        return $command->queryAll();
+    }
+
+    /**
+     * Get Factory Collection
+     *
+     * @param int $id
+     */
+    public static function getFactoryCollection(int $id)
+    {
+        $command = Yii::$app->db_myarredo->createCommand("SELECT
+                COUNT(collection.id) as count, 
+                collection.id,
+                collectionLang.title AS title
+            FROM
+                " . Collection::tableName() . " collection
+            INNER JOIN " . CollectionLang::tableName() . " collectionLang 
+                ON (collectionLang.rid = collection.id) AND (collectionLang.lang = :lang)
+            INNER JOIN " . Product::tableName() . " product 
+                ON (product.collections_id = collection.id) 
+                AND (product.published = :published AND product.deleted = :deleted)
+            WHERE
+                product.factory_id = :id
+            GROUP BY 
+                collection.id
+            ORDER BY collectionLang.title")
+            ->bindValues([
+                ':published' => '1',
+                ':deleted' => '0',
+                ':id' => $id,
+                ':lang' => Yii::$app->language,
+            ]);
+
+        return $command->queryAll();
+    }
+
+    /**
+     * Get Factory Category
+     *
+     * @param int $id
+     */
+    public static function getFactoryCategory(int $id)
+    {
+        $command = Yii::$app->db_myarredo->createCommand("SELECT 
+                category.id,
+                category.alias,
+                categoryLang.title AS title
+            FROM
+                " . Category::tableName() . " category
+            INNER JOIN " . CategoryLang::tableName() . " categoryLang 
+                ON (categoryLang.rid = category.id) AND (categoryLang.lang = :lang)
+            INNER JOIN " . Product::tableName() . " product 
+                ON (product.published = :published AND product.deleted = :deleted)
+            INNER JOIN " . ProductRelCategory::tableName() . " ProductRelCategory 
+                ON (product.id = ProductRelCategory.catalog_item_id) AND category.id = ProductRelCategory.group_id
+            WHERE
+                product.factory_id = :id 
+            GROUP BY 
+                category.id
+            ORDER BY categoryLang.title")
+            ->bindValues([
+                ':published' => '1',
+                ':deleted' => '0',
+                ':id' => $id,
+                ':lang' => Yii::$app->language,
+            ]);
+
+        return $command->queryAll();
     }
 }

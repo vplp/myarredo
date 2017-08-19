@@ -3,9 +3,6 @@
 namespace frontend\modules\catalog\models;
 
 use yii\helpers\Url;
-use frontend\modules\catalog\models\{
-    Product, Category, Factory, Specification, Collection
-};
 
 /**
  * Class Types
