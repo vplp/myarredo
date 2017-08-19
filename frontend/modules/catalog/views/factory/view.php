@@ -128,7 +128,7 @@ use frontend\modules\catalog\models\Factory;
 
                 <?php
                 $key = 1;
-                $FactoryCategory = Factory::getFactoryCategory($model['id']);
+                $FactoryCategory = Factory::getFactoryCategory([$model['id']]);
                 foreach ($FactoryCategory as $category): ?>
                     <?php
                     echo Html::a(

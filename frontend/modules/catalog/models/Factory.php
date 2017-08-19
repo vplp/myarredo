@@ -128,7 +128,7 @@ class Factory extends \common\modules\catalog\models\Factory
      * @param array $ids
      * @return mixed
      */
-    public static function getFactoryCategories(array $ids)
+    public static function getFactoryCategory(array $ids)
     {
         $command = Yii::$app->db_myarredo->createCommand("SELECT
                 factory.id AS factory_id,
@@ -151,7 +151,8 @@ class Factory extends \common\modules\catalog\models\Factory
             WHERE
                 (factory.id IN ('" . implode("','", $ids) . "'))
             GROUP BY 
-                category.id , factory.id")
+                category.id , factory.id
+            ORDER BY categoryLang.title")
             ->bindValues([
                 ':published' => '1',
                 ':deleted' => '0',
@@ -218,40 +219,6 @@ class Factory extends \common\modules\catalog\models\Factory
             GROUP BY 
                 collection.id
             ORDER BY collectionLang.title")
-            ->bindValues([
-                ':published' => '1',
-                ':deleted' => '0',
-                ':id' => $id,
-                ':lang' => Yii::$app->language,
-            ]);
-
-        return $command->queryAll();
-    }
-
-    /**
-     * Get Factory Category
-     *
-     * @param int $id
-     */
-    public static function getFactoryCategory(int $id)
-    {
-        $command = Yii::$app->db_myarredo->createCommand("SELECT 
-                category.id,
-                category.alias,
-                categoryLang.title AS title
-            FROM
-                " . Category::tableName() . " category
-            INNER JOIN " . CategoryLang::tableName() . " categoryLang 
-                ON (categoryLang.rid = category.id) AND (categoryLang.lang = :lang)
-            INNER JOIN " . Product::tableName() . " product 
-                ON (product.published = :published AND product.deleted = :deleted)
-            INNER JOIN " . ProductRelCategory::tableName() . " ProductRelCategory 
-                ON (product.id = ProductRelCategory.catalog_item_id) AND category.id = ProductRelCategory.group_id
-            WHERE
-                product.factory_id = :id 
-            GROUP BY 
-                category.id
-            ORDER BY categoryLang.title")
             ->bindValues([
                 ':published' => '1',
                 ':deleted' => '0',

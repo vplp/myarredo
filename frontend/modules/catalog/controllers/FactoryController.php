@@ -77,7 +77,7 @@ class FactoryController extends BaseController
                 $factory_ids[] = $obj['id'];
             }
 
-            $categories = Factory::getFactoryCategories($factory_ids);
+            $categories = Factory::getFactoryCategory($factory_ids);
             $factory_categories = [];
             foreach ($categories as $item) {
                 $factory_categories[$item['factory_id']][] = $item;
