@@ -37,14 +37,14 @@ use frontend\modules\catalog\models\Factory;
                     Итальянские фабрики мебели - производители из Италии
                 </h1>
                 <span>
-                    (282 фабрик представлено в нашем каталоге)
+                    (<?= Factory::findBase()->count(); ?> фабрик представлено в нашем каталоге)
                 </span>
                 <div class="view-but">
-                    <a href="<?= Url::toRoute(['/catalog/factory/list', 'view'=> 'three']); ?>" class="tiles4 flex active">
+                    <a href="<?= Url::toRoute(['/catalog/factory/list', 'view'=> 'three']); ?>" class="tiles4 flex">
                         <i></i><i></i><i></i><i></i>
                         <i></i><i></i><i></i><i></i>
                     </a>
-                    <a href="<?= Url::toRoute(['/catalog/factory/list']); ?>" class="tiles2 flex">
+                    <a href="<?= Url::toRoute(['/catalog/factory/list']); ?>" class="tiles2 flex active">
                         <i></i><i></i>
                     </a>
                 </div>

@@ -56,144 +56,61 @@ use frontend\modules\catalog\models\Factory;
                                     Все предметы мебели
                                 </a>
                                 <ul class="list">
-                                    <li>
-                                        <a href="#">
-                                            Банкетка (3)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Барная стойка (2)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Барный стол (23)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Барный стул (2)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Бра (23)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Буфет (23)
-                                        </a>
-                                    </li>
+
+                                    <?php
+                                    $key = 1;
+                                    $FactoryTypes = Factory::getFactoryTypes($model['id']);
+                                    foreach ($FactoryTypes as $types): ?>
+                                        <?php
+                                        echo Html::beginTag('li') .
+                                            Html::a(
+                                                $types['title'] . ' (' . $types['count'] . ')',
+                                                '#'
+                                            ) .
+                                            Html::endTag('li');
+                                        if ($key == 10) echo '</ul><ul class="list post-list">';
+                                        ++$key;
+                                        ?>
+                                    <?php endforeach; ?>
+
                                 </ul>
-                                <ul class="list post-list">
-                                    <li>
-                                        <a href="#">
-                                            Банкетка (3)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Барная стойка (2)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Барный стол (23)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Барный стул (2)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Бра (23)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Буфет (23)
-                                        </a>
-                                    </li>
-                                </ul>
-                                <a href="javascript:void(0);" class="view-all">
-                                    Весь список
-                                </a>
+
+                                <?php if (count($FactoryTypes) > 10): ?>
+                                    <a href="javascript:void(0);" class="view-all">
+                                        Весь список
+                                    </a>
+                                <?php endif; ?>
+
                             </div>
                             <div class="all-list">
                                 <a href="#" class="title">
                                     Все коллекции
                                 </a>
                                 <ul class="list">
-                                    <li>
-                                        <a href="#">
-                                            AMADEUS (3)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            CELEBRITY (2)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            DOLCE VITA (23)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            EXSELCIOR (2)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            GRAND RYAL (23)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            HARMONY (23)
-                                        </a>
-                                    </li>
+
+                                    <?php
+                                    $key = 1;
+                                    $FactoryCollection = Factory::getFactoryCollection($model['id']);
+                                    foreach ($FactoryCollection as $collection): ?>
+                                        <?php
+                                        echo Html::beginTag('li') .
+                                            Html::a(
+                                                $collection['title'] . ' (' . $collection['count'] . ')',
+                                                '#'
+                                            ) .
+                                            Html::endTag('li');
+                                        if ($key == 10) echo '</ul><ul class="list post-list">';
+                                        ++$key;
+                                        ?>
+                                    <?php endforeach; ?>
+
                                 </ul>
-                                <ul class="list post-list">
-                                    <li>
-                                        <a href="#">
-                                            AMADEUS (3)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            CELEBRITY (2)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            DOLCE VITA (23)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            EXSELCIOR (2)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            GRAND RYAL (23)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            HARMONY (23)
-                                        </a>
-                                    </li>
-                                </ul>
-                                <a href="javascript:void(0);" class="view-all">
-                                    Весь список
-                                </a>
+
+                                <?php if (count($FactoryCollection) > 10): ?>
+                                    <a href="javascript:void(0);" class="view-all">
+                                        Весь список
+                                    </a>
+                                <?php endif; ?>
 
                             </div>
                         </div>
@@ -208,42 +125,21 @@ use frontend\modules\catalog\models\Factory;
                 <a href="#">
                     Все
                 </a>
-                <a href="#">
-                    Аксессуары
-                </a>
-                <a href="#">
-                    Гостиные
-                </a>
-                <a href="#">
-                    Кабинеты
-                </a>
-                <a href="#">
-                    Кухни
-                </a>
-                <a href="#">
-                    Мебель для TV
-                </a>
-                <a href="#">
-                    Мебель для ресторанов
-                </a>
-                <a href="#">
-                    Мягкая мебель
-                </a>
-                <a href="#">
-                    Прихожие
-                </a>
-                <a href="#">
-                    Светильники
-                </a>
-                <a href="#">
-                    Спальни
-                </a>
-                <a href="#">
-                    Столовые комнаты
-                </a>
-                <a href="#">
-                    Стулья
-                </a>
+
+                <?php
+                $key = 1;
+                $FactoryCategory = Factory::getFactoryCategory($model['id']);
+                foreach ($FactoryCategory as $category): ?>
+                    <?php
+                    echo Html::a(
+                            $category['title'],
+                            '#'
+                        ) .
+                        Html::endTag('li');
+                    ?>
+                <?php endforeach; ?>
+
+
             </div>
 
             <div class="cat-prod catalog-wrap">
