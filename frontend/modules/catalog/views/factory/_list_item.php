@@ -15,17 +15,21 @@ use frontend\modules\catalog\models\Factory;
         <div class="logo-img">
             <?= Html::img(Factory::getImage($model['image_link'])); ?>
         </div>
-        <h3><?= $model['lang']['title']; ?></h3>
+        <?= Html::tag('h3', $model['lang']['title']); ?>
     </div>
     <object>
         <ul class="assortment">
             <?php foreach ($categories as $item): ?>
-                    <li>
-                        <?= Html::a(
-                            $item['title'],
-                            Yii::$app->catalogFilter->createUrl('factory', $model['alias'], true)
-                        ); ?>
-                    </li>
+
+                <?php
+                echo Html::beginTag('li') .
+                    Html::a(
+                        $item['title'],
+                        Yii::$app->catalogFilter->createUrl('factory', $model['alias'], true)
+                    ) .
+                    Html::endTag('li');
+                ?>
+
             <?php endforeach; ?>
 
         </ul>

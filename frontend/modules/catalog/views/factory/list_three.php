@@ -22,13 +22,13 @@ use frontend\modules\catalog\models\Factory;
                         <li>
                             <?= Html::a(
                                 $letter['first_letter'],
-                                Url::toRoute(['/catalog/factory/list', 'letter' => strtolower($letter['first_letter']), 'view'=> 'three'])
+                                Url::toRoute(['/catalog/factory/list', 'letter' => strtolower($letter['first_letter']), 'view' => 'three'])
                             ); ?>
                         </li>
                     <?php endforeach; ?>
 
                 </ul>
-                <?= Html::a('Все', Url::toRoute(['/catalog/factory/list', 'view'=> 'three']), ['class' => 'all']); ?>
+                <?= Html::a('Все', Url::toRoute(['/catalog/factory/list', 'view' => 'three']), ['class' => 'all']); ?>
             </div>
         </div>
         <div class="container large-container">
@@ -40,11 +40,11 @@ use frontend\modules\catalog\models\Factory;
                     (<?= Factory::findBase()->count(); ?> фабрик представлено в нашем каталоге)
                 </span>
                 <div class="view-but">
-                    <a href="<?= Url::toRoute(['/catalog/factory/list', 'view'=> 'three']); ?>" class="tiles4 flex">
+                    <a href="<?= Url::toRoute(['/catalog/factory/list', 'view' => 'three']); ?>" class="tiles4 flex active">
                         <i></i><i></i><i></i><i></i>
                         <i></i><i></i><i></i><i></i>
                     </a>
-                    <a href="<?= Url::toRoute(['/catalog/factory/list']); ?>" class="tiles2 flex active">
+                    <a href="<?= Url::toRoute(['/catalog/factory/list']); ?>" class="tiles2 flex">
                         <i></i><i></i>
                     </a>
                 </div>
@@ -65,17 +65,19 @@ use frontend\modules\catalog\models\Factory;
 
                         <?php
                         $key = 1;
-                        foreach ($letter_models as $model): ?>
-                            <li>
-                                <?= Html::a(
+                        foreach ($letter_models as $model) {
+
+                            echo Html::beginTag('li') .
+                                Html::a(
                                     $model['lang']['title'],
                                     Url::toRoute(['/catalog/factory/view', 'alias' => $model['alias']])
-                                ); ?>
-                            </li>
+                                ) .
+                                Html::endTag('li');
 
-                            <?php if ($key % 12 == 0): ?></ul><ul class="let-list"><?php endif; ?>
-                        <?php ++$key;
-                        endforeach; ?>
+                            if ($key % 12 == 0) echo '</ul><ul class="let-list">';
+
+                            ++$key;
+                        } ?>
 
                     </ul>
                 </div>
