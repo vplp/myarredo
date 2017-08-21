@@ -57,47 +57,34 @@ class CatalogFilter extends Component
     }
 
     /**
-     * @param $key
-     * @param $value
-     * @param bool $is
+     * @param array $parameters
      * @return string
      */
-    public function createUrl($key, $value, $is = false)
+    public function createUrl(array $parameters = [] /* $key, $value, $is = false */)
     {
         $labelEmptyKey = self::getLabelEmptyKey();
 
         $_structure = [];
 
-        if ($is) {
-            foreach ($labelEmptyKey as $Lk => $Lv) {
-                if ($Lk == $key) {
-                    $_structure[$Lk][0] = $value;
-                } else {
-                    // значение по умолчанию
-                    $_structure[$Lk] = '';
-                }
-            }
-        } else {
-            foreach ($labelEmptyKey as $Lk => $Lv) {
-                if (isset(self::$_parameters[$Lk]) && isset(self::$_parameters[$Lk]['alias']) && ($value == self::$_parameters[$Lk]['alias'])) {
-                    // если есть значение в $_parameters и $value == self::$_parameters[$Lk]['alias']
-                    $_structure[$Lk] = '';
-                } elseif (isset(self::$_parameters[$Lk]) && isset(self::$_parameters[$Lk]['id']) && ($value == self::$_parameters[$Lk]['id'])) {
-                    // если есть значение в $_parameters и $value == self::$_parameters[$Lk]['alias']
-                    $_structure[$Lk] = '';
-                } elseif ($Lk == $key) {
-                    // если $Lk == $key
-                    $_structure[$Lk][0] = $value;
-                } elseif (isset(self::$_parameters[$Lk]['alias'])) {
-                    // если есть значение в $_parameters
-                    $_structure[$Lk][0] = self::$_parameters[$Lk]['alias'];
-                } elseif (isset(self::$_parameters[$Lk]['id'])) {
-                    // если есть значение в $_parameters
-                    $_structure[$Lk][0] = self::$_parameters[$Lk]['id'];
-                } else {
-                    // значение по умолчанию
-                    $_structure[$Lk] = '';
-                }
+        foreach ($labelEmptyKey as $Lk => $Lv) {
+            if (isset(self::$_parameters[$Lk]) && isset(self::$_parameters[$Lk]['alias']) && isset($parameters[$Lk]) && ($parameters[$Lk] == self::$_parameters[$Lk]['alias'])) {
+                // если есть значение в $_parameters и $value == self::$_parameters[$Lk]['alias']
+                $_structure[$Lk] = '';
+            } elseif (isset(self::$_parameters[$Lk]) && isset(self::$_parameters[$Lk]['id']) && isset($parameters[$Lk]) && ($parameters[$Lk] == self::$_parameters[$Lk]['id'])) {
+                // если есть значение в $_parameters и $value == self::$_parameters[$Lk]['alias']
+                $_structure[$Lk] = '';
+            } elseif (isset($parameters[$Lk])) {
+                // если $Lk == $key
+                $_structure[$Lk][0] = $parameters[$Lk];
+            } elseif (isset(self::$_parameters[$Lk]['alias'])) {
+                // если есть значение в $_parameters
+                $_structure[$Lk][0] = self::$_parameters[$Lk]['alias'];
+            } elseif (isset(self::$_parameters[$Lk]['id'])) {
+                // если есть значение в $_parameters
+                $_structure[$Lk][0] = self::$_parameters[$Lk]['id'];
+            } else {
+                // значение по умолчанию
+                $_structure[$Lk] = '';
             }
         }
 

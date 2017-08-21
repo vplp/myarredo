@@ -60,12 +60,15 @@ use frontend\modules\catalog\models\Factory;
                                     <?php
                                     $key = 1;
                                     $FactoryTypes = Factory::getFactoryTypes($model['id']);
-                                    foreach ($FactoryTypes as $types): ?>
+                                    foreach ($FactoryTypes as $item): ?>
                                         <?php
                                         echo Html::beginTag('li') .
                                             Html::a(
-                                                $types['title'] . ' (' . $types['count'] . ')',
-                                                '#'
+                                                $item['title'] . ' (' . $item['count'] . ')',
+                                                Yii::$app->catalogFilter->createUrl([
+                                                    'factory' => $model['alias'],
+                                                    'type' => $item['alias']
+                                                ])
                                             ) .
                                             Html::endTag('li');
                                         if ($key == 10) echo '</ul><ul class="list post-list">';
@@ -91,12 +94,15 @@ use frontend\modules\catalog\models\Factory;
                                     <?php
                                     $key = 1;
                                     $FactoryCollection = Factory::getFactoryCollection($model['id']);
-                                    foreach ($FactoryCollection as $collection): ?>
+                                    foreach ($FactoryCollection as $item): ?>
                                         <?php
                                         echo Html::beginTag('li') .
                                             Html::a(
-                                                $collection['title'] . ' (' . $collection['count'] . ')',
-                                                '#'
+                                                $item['title'] . ' (' . $item['count'] . ')',
+                                                Yii::$app->catalogFilter->createUrl([
+                                                    'factory' => $model['alias'],
+                                                    'collection' => $item['id']
+                                                ])
                                             ) .
                                             Html::endTag('li');
                                         if ($key == 10) echo '</ul><ul class="list post-list">';
@@ -129,136 +135,56 @@ use frontend\modules\catalog\models\Factory;
                 <?php
                 $key = 1;
                 $FactoryCategory = Factory::getFactoryCategory([$model['id']]);
-                foreach ($FactoryCategory as $category): ?>
+                foreach ($FactoryCategory as $item): ?>
                     <?php
                     echo Html::a(
-                            $category['title'],
-                            '#'
+                            $item['title'],
+                            Yii::$app->catalogFilter->createUrl([
+                                'factory' => $model['alias'],
+                                'category' => $item['alias']
+                            ])
                         ) .
                         Html::endTag('li');
                     ?>
                 <?php endforeach; ?>
 
-
             </div>
 
             <div class="cat-prod catalog-wrap">
-                <a href="#" class="one-prod-tile">
-                    <object>
-                        <a href="javascript:void(0);" class="request-price">
-                            Запросить цену
-                        </a>
-                    </object>
-                    <div class="img-cont">
-                        <img src="public/img/pictures/prod-cat1.jpeg" alt="">
-                        <div class="brand">
-                            ANGELO CAPPELLINI
-                        </div>
-                    </div>
-                    <div class="item-infoblock">
-                        Спальный гарнитур BEDROOMS
-                    </div>
-                </a>
-                <a href="#" class="one-prod-tile">
-                    <object>
-                        <a href="javascript:void(0);" class="request-price">
-                            Запросить цену
-                        </a>
-                    </object>
-                    <div class="img-cont">
-                        <img src="public/img/pictures/prod-cat2.jpg" alt="">
-                        <div class="brand">
-                            SAVIO FIRMINO
-                        </div>
-                    </div>
-                    <div class="item-infoblock">
-                        Спальный гарнитур BEDROOMS
-                    </div>
-                </a>
-                <a href="#" class="one-prod-tile">
-                    <object>
-                        <a href="javascript:void(0);" class="request-price">
-                            Запросить цену
-                        </a>
-                    </object>
-                    <div class="img-cont">
-                        <img src="public/img/pictures/prod-cat3.jpg" alt="">
-                        <div class="brand">
-                            SAVIO FIRMINO
-                        </div>
-                    </div>
-                    <div class="item-infoblock">
-                        Спальный гарнитур BEDROOMS
-                    </div>
-                </a>
-                <a href="#" class="one-prod-tile">
-                    <object>
-                        <a href="javascript:void(0);" class="request-price">
-                            Запросить цену
-                        </a>
-                    </object>
-                    <div class="img-cont">
-                        <img src="public/img/pictures/prod-cat3.jpg" alt="">
-                        <div class="brand">
-                            SAVIO FIRMINO
-                        </div>
-                    </div>
-                    <div class="item-infoblock">
-                        Спальный гарнитур BEDROOMS
-                    </div>
-                </a>
-                <a href="#" class="one-prod-tile">
-                    <object>
-                        <a href="javascript:void(0);" class="request-price">
-                            Запросить цену
-                        </a>
-                    </object>
-                    <div class="img-cont">
-                        <img src="public/img/pictures/prod-cat3.jpg" alt="">
-                        <div class="brand">
-                            SAVIO FIRMINO
-                        </div>
-                    </div>
-                    <div class="item-infoblock">
-                        Спальный гарнитур BEDROOMS
-                    </div>
-                </a>
-                <a href="#" class="one-prod-tile">
-                    <object>
-                        <a href="javascript:void(0);" class="request-price">
-                            Запросить цену
-                        </a>
-                    </object>
-                    <div class="img-cont">
-                        <img src="public/img/pictures/prod-cat3.jpg" alt="">
-                        <div class="brand">
-                            SAVIO FIRMINO
-                        </div>
-                    </div>
-                    <div class="item-infoblock">
-                        Спальный гарнитур BEDROOMS
-                    </div>
-                </a>
-                <a href="#" class="one-prod-tile">
-                    <object>
-                        <a href="javascript:void(0);" class="request-price">
-                            Запросить цену
-                        </a>
-                    </object>
-                    <div class="img-cont">
-                        <img src="public/img/pictures/prod-cat3.jpg" alt="">
-                        <div class="brand">
-                            SAVIO FIRMINO
-                        </div>
-                    </div>
-                    <div class="item-infoblock">
-                        Спальный гарнитур BEDROOMS
-                    </div>
-                </a>
+
+                <?php
+
+                //* !!! */ echo  '<pre style="color:red;">'; print_r($product); echo '</pre>'; /* !!! */
+                ?>
+                <?php
+
+                $_types = $_factory = $_collection = [];
+
+                foreach ($types as $item) {
+                    $_types[$item['id']] = $item;
+                }
+
+                foreach ($factory as $item) {
+                    $_factory[$item['id']] = $item;
+                }
+
+                foreach ($collection as $item) {
+                    $_collection[$item['id']] = $item;
+                }
+
+                foreach ($product as $item): ?>
+                    <?= $this->render('/category/_list_item', [
+                        'model' => $item,
+                        'types' => $_types,
+                        'style' => $style,
+                        'factory' => $_factory,
+                        'collection' => $_collection,
+                    ]) ?>
+                <?php endforeach; ?>
 
                 <?= Html::a(
                     'смотреть полный<div>Каталог</div>',
-                    Yii::$app->catalogFilter->createUrl('factory', $model['alias'], true),
+                    Yii::$app->catalogFilter->createUrl(['factory' => $model['alias']]),
                     ['class' => 'one-prod-tile last']
                 ); ?>
 

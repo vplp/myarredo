@@ -25,7 +25,7 @@ use frontend\modules\catalog\models\Factory;
                 echo Html::beginTag('li') .
                     Html::a(
                         $item['title'],
-                        Yii::$app->catalogFilter->createUrl('factory', $model['alias'], true)
+                        Yii::$app->catalogFilter->createUrl(['factory' => $model['alias']])
                     ) .
                     Html::endTag('li');
                 ?>

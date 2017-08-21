@@ -14,7 +14,7 @@ use frontend\modules\catalog\models\Product;
     <div class="rec-slider-wrap">
         <div class="flex c-align rec-header">
             <?= Html::tag('h3', 'Другие ' . $types['lang']['title'] . ' ' . $factory['lang']['title']); ?></h3>
-            <?= Html::a('Показать все', Yii::$app->catalogFilter->createUrl('factory', $factory['alias']), ['class' => 'show-more']); ?>
+            <?= Html::a('Показать все', Yii::$app->catalogFilter->createUrl(['factory' => $factory['alias']]), ['class' => 'show-more']); ?>
         </div>
         <div class="container large-container">
             <div class="row">
