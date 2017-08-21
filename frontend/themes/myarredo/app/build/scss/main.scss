@@ -2514,12 +2514,6 @@ footer {
       right: 7px;
       font-family: FontAwesome;
     }
-    .dropdown-menu>li {
-      padding: 3px 20px;
-    }
-    .dropdown-menu>li>a {
-      padding: 0 0;
-    }
   }
   .large-picker {
     .btn {
@@ -2647,6 +2641,12 @@ footer {
     img {
       max-width: 100%;
       height: auto;
+    }
+  }
+  .drop-down-find {
+    input {
+      display: block;
+      margin: 3px 20px;
     }
   }
 }

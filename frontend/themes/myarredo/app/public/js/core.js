@@ -125,25 +125,6 @@ $(document).ready(function(){
         }
     });
 
-    /*
-
-    $('.multi-item3-carousel .item').each(function(){
-        var next = $(this).next();
-        if (!next.length) {
-            next = $(this).siblings(':first');
-            console.log(next);
-        }
-
-
-        next.next().children(':first-child').clone().appendTo($(this));
-        if (next.next().length>0) {
-            next.next().next().children(':first-child').clone().appendTo($(this));
-        } else {
-            $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-        }
-    });
-    */
-
     $('#rec-prod-slider').slick({
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -305,9 +286,9 @@ $(document).ready(function(){
         var dropDown = $(this).closest('.drop-down-find').find('li a');
             dropDown.each(function(i, item){
                 if($(item).text().indexOf(In) !== 0){
-                    $(item).hide();
+                    $(item).parent().hide();
                 } else {
-                    $(item).show();
+                    $(item).parent().show();
                 }
             });
     });
@@ -316,6 +297,15 @@ $(document).ready(function(){
         var text = $(this).text();
         parent.find(".dropdown-toggle").text(text);
     });
+    $(".arr-drop .dropdown-toggle").click(function(){
+       var parent = $(this).closest(".arr-drop");
+       parent.find(".find").val("");
+       parent.find(".drop-down-find li").show();
+    });
     /*--конец поиск по списку (кабинет фабрики)--*/
+
+    /*--Активация табов в карточке--*/
+    $(".prod-card-page .nav-tabs li a").eq(0).click();
+    /*--конец Активация табов в карточке--*/
 
 });
