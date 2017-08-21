@@ -276,7 +276,7 @@
         <div class="container large-container">
             <h1>Заказы</h1>
             <div class="form-filter-date-cont flex">
-                <div class="dropdown">
+                <div class="dropdown arr-drop">
                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Россия</button>
                     <ul class="dropdown-menu">
                         <li>
@@ -294,7 +294,7 @@
                     </ul>
                 </div>
 
-                <div class="dropdown">
+                <div class="dropdown arr-drop">
                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Выберите город</button>
                     <ul class="dropdown-menu">
                         <li>
@@ -312,7 +312,7 @@
                     </ul>
                 </div>
 
-                <div class="dropdown">
+                <div class="dropdown large-picker">
                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">21.08.2017 - 21.08.2017</button>
                     <ul class="dropdown-menu">
                         <li>
@@ -334,13 +334,13 @@
 
             <div class="manager-history">
                 <div class="manager-history-header">
-                    <ul class="orders-title-block">
-                        <li>
+                    <ul class="orders-title-block flex">
+                        <li class="order-id">
                             <span>
                                 №
                             </span>
                         </li>
-                        <li>
+                        <li class="application-date">
                             <span>
                                 Дата
                             </span>
@@ -358,28 +358,117 @@
                     </ul>
                 </div>
                 <div class="manager-history-list">
-                    <ul class="orders-title-block">
-                        <li>
+                    <div class="item">
+                        <ul class="orders-title-block flex">
+                            <li class="order-id">
                             <span>
                                 4047
                             </span>
-                        </li>
-                        <li>
+                            </li>
+                            <li class="application-date">
                             <span>
                                 24.07.2017 17:15
                             </span>
-                        </li>
-                        <li>
+                            </li>
+                            <li>
                             <span>
                                 Москва
                             </span>
-                        </li>
-                        <li>
+                            </li>
+                            <li>
                             <span>
                                 Архивная
                             </span>
-                        </li>
-                    </ul>
+                            </li>
+                        </ul>
+
+                        <div class="hidden-order-info flex">
+                            <div class="basket-item-info">
+                                <div class="img-cont">
+                                    <img src="public/img/pictures/new_1.jpg" alt="">
+                                </div>
+                                <table class="char" width="100%">
+                                    <tr>
+                                        <td>
+                                            Предмет
+                                        </td>
+                                        <td>
+                                            Напольная лампа
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            АРТИКУЛ
+                                        </td>
+                                        <td>
+                                            DAGONET
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Фабрика
+                                        </td>
+                                        <td>
+                                            VISIONNAIRE (IPE CAVALLI)
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <ul class="orders-title-block flex">
+                            <li class="order-id">
+                            <span>
+                                4047
+                            </span>
+                            </li>
+                            <li class="application-date">
+                            <span>
+                                24.07.2017 17:15
+                            </span>
+                            </li>
+                            <li>
+                            <span>
+                                Москва
+                            </span>
+                            </li>
+                            <li>
+                            <span>
+                                Архивная
+                            </span>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="item">
+                        <ul class="orders-title-block flex">
+                            <li class="order-id">
+                            <span>
+                                4047
+                            </span>
+                            </li>
+                            <li class="application-date">
+                            <span>
+                                24.07.2017 17:15
+                            </span>
+                            </li>
+                            <li>
+                            <span>
+                                Москва
+                            </span>
+                            </li>
+                            <li>
+                            <span>
+                                Архивная
+                            </span>
+                            </li>
+                        </ul>
+
+                    </div>
+                    
                 </div>
             </div>
         </div>
