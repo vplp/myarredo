@@ -62,7 +62,7 @@ class topBarInfo extends Widget
             return $this->render('sigin');
         } else {
             return $this->render('info', [
-                'yuser' => $this->model,
+                //'user' => $this->model,
                 'user' => $this->modelIndentity,
                 'profile' => $this->modelProfile,
             ]);

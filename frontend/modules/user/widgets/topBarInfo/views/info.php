@@ -3,9 +3,7 @@
 use yii\helpers\Html;
 
 /**
- *
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
+ * @var \frontend\modules\user\models\Profile $profile
  */
 
 echo Html::beginTag('ul', [

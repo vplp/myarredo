@@ -11,17 +11,14 @@ use frontend\modules\user\models\form\RegisterForm;
 
 
 /**
- * Class LoginController
+ * Class RegisterController
  *
  * @package frontend\modules\user\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class RegisterController extends BaseController
 {
-
     protected $model = RegisterForm::class;
-    public $title = "Login";
+    public $title = "Register";
     public $defaultAction = 'index';
     public $layout = "@app/layouts/nologin";
 
@@ -52,17 +49,18 @@ class RegisterController extends BaseController
     }
 
     /**
-     *
-     * @return string
+     * @return string|\yii\web\Response
      */
     public function actionIndex()
     {
         if (!\Yii::$app->getUser()->getIsGuest()) {
             return $this->redirect(Url::toRoute('/home/home/index'));
         }
+
         /** @var RegisterForm $model */
         $model = new $this->model;
         $model->setScenario('register');
+
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
             $status = $model->addUser();
             if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
@@ -73,6 +71,7 @@ class RegisterController extends BaseController
                 return $this->redirect(Url::toRoute('/user/login/index'));
             }
         }
+
         return $this->render('index', [
             'model' => $model,
         ]);
