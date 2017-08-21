@@ -2514,6 +2514,12 @@ footer {
       right: 7px;
       font-family: FontAwesome;
     }
+    .dropdown-menu>li {
+      padding: 3px 20px;
+    }
+    .dropdown-menu>li>a {
+      padding: 0 0;
+    }
   }
   .large-picker {
     .btn {
@@ -2562,6 +2568,7 @@ footer {
   .manager-history {
     padding: 10px;
     background: #FFFFFF;
+    margin-top: 15px;
     ul {
       margin: 0;
       list-style: none;
