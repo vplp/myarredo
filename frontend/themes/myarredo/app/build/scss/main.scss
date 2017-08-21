@@ -2546,7 +2546,6 @@ footer {
       background: #e8e6dd;
       border-left: 1px solid #CAC6BF;
       border-right: 1px solid #CAC6BF;
-      border-bottom: 1px solid #cac6bf;
       &:last-child {
         border-bottom: none;
       }
@@ -2607,7 +2606,11 @@ footer {
     width: 100%;
     background: #FFFFFF;
     padding: 12px 0;
-    flex-wrap: wrap;
+    display: none;
+    border-top: 1px solid #CAC6BF;
+    &>.flex {
+      flex-wrap: wrap;
+    }
   }
   .basket-item-info {
     background: #f7f5f0;
