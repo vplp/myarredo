@@ -9,7 +9,7 @@ use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Factory
+    Product, Category, Factory, Types, Specification, Collection
 };
 
 /**
@@ -104,6 +104,23 @@ class FactoryController extends BaseController
             throw new NotFoundHttpException;
         }
 
+        $category = Category::getAllWithFilter(Yii::$app->catalogFilter->params);
+        $types = Types::getAllWithFilter(Yii::$app->catalogFilter->params);
+        $style = Specification::getAllWithFilter(Yii::$app->catalogFilter->params);
+        $factory = Factory::getAllWithFilter(Yii::$app->catalogFilter->params);
+        $collection = Collection::getAllWithFilter(Yii::$app->catalogFilter->params);
+
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+        $module->itemOnPage = 7;
+
+        $modelProduct = new Product();
+        $product = $modelProduct->search([
+            'factory' => [
+                'id' => $model['id']
+            ]
+        ]);
+
         $this->breadcrumbs[] = [
             'label' => 'Итальянские фабрики мебели',
             'url' => ['/catalog/factory/list']
@@ -116,6 +133,12 @@ class FactoryController extends BaseController
 
         return $this->render('view', [
             'model' => $model,
+            'category' => $category,
+            'types' => $types,
+            'style' => $style,
+            'factory' => $factory,
+            'collection' => $collection,
+            'product' => $product->getModels(),
         ]);
     }
 }

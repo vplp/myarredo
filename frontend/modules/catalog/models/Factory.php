@@ -112,6 +112,9 @@ class Factory extends \common\modules\catalog\models\Factory
             ->all();
     }
 
+    /**
+     * @return mixed
+     */
     public static function getListLetters()
     {
         return parent::findBase()
