@@ -292,4 +292,11 @@ $(document).ready(function(){
 
     /*--конец Блокнот--*/
 
+    /*--открыть/закрыть заказ (кабинет фабрики)--*/
+    $(".manager-history-list .item").click(function(){
+       $(this).toggleClass("open");
+       $(this).find(".hidden-order-info").slideToggle();
+    });
+    /*--конец открыть/зыкрыть заказ (кабинет фабрики)--*/
+
 });
