@@ -299,4 +299,23 @@ $(document).ready(function(){
     });
     /*--конец открыть/зыкрыть заказ (кабинет фабрики)--*/
 
+    /*--поиск по списку (кабинет фабрики)--*/
+    $(".drop-down-find .find").on("input", function(){
+        var In = $(this).val();
+        var dropDown = $(this).closest('.drop-down-find').find('li a');
+            dropDown.each(function(i, item){
+                if($(item).text().indexOf(In) !== 0){
+                    $(item).hide();
+                } else {
+                    $(item).show();
+                }
+            });
+    });
+    $(".drop-down-find li a").click(function(){
+        var parent = $(this).closest(".arr-drop");
+        var text = $(this).text();
+        parent.find(".dropdown-toggle").text(text);
+    });
+    /*--конец поиск по списку (кабинет фабрики)--*/
+
 });
