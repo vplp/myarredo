@@ -65,7 +65,10 @@ use frontend\modules\catalog\models\Factory;
                                         echo Html::beginTag('li') .
                                             Html::a(
                                                 $item['title'] . ' (' . $item['count'] . ')',
-                                                '#'
+                                                Yii::$app->catalogFilter->createUrl([
+                                                    'factory' => $model['alias'],
+                                                    'type' => $item['alias']
+                                                ])
                                             ) .
                                             Html::endTag('li');
                                         if ($key == 10) echo '</ul><ul class="list post-list">';
@@ -96,7 +99,10 @@ use frontend\modules\catalog\models\Factory;
                                         echo Html::beginTag('li') .
                                             Html::a(
                                                 $item['title'] . ' (' . $item['count'] . ')',
-                                                '#'
+                                                Yii::$app->catalogFilter->createUrl([
+                                                    'factory' => $model['alias'],
+                                                    'collection' => $item['id']
+                                                ])
                                             ) .
                                             Html::endTag('li');
                                         if ($key == 10) echo '</ul><ul class="list post-list">';
@@ -129,11 +135,14 @@ use frontend\modules\catalog\models\Factory;
                 <?php
                 $key = 1;
                 $FactoryCategory = Factory::getFactoryCategory([$model['id']]);
-                foreach ($FactoryCategory as $category): ?>
+                foreach ($FactoryCategory as $item): ?>
                     <?php
                     echo Html::a(
-                            $category['title'],
-                            '#'
+                            $item['title'],
+                            Yii::$app->catalogFilter->createUrl([
+                                'factory' => $model['alias'],
+                                'category' => $item['alias']
+                            ])
                         ) .
                         Html::endTag('li');
                     ?>
@@ -163,9 +172,9 @@ use frontend\modules\catalog\models\Factory;
                     $_collection[$item['id']] = $item;
                 }
 
-                foreach ($product as $model): ?>
+                foreach ($product as $item): ?>
                     <?= $this->render('/category/_list_item', [
-                        'model' => $model,
+                        'model' => $item,
                         'types' => $_types,
                         'style' => $style,
                         'factory' => $_factory,
@@ -175,7 +184,7 @@ use frontend\modules\catalog\models\Factory;
 
                 <?= Html::a(
                     'смотреть полный<div>Каталог</div>',
-                    Yii::$app->catalogFilter->createUrl('factory', $model['alias'], true),
+                    Yii::$app->catalogFilter->createUrl(['factory' => $model['alias']]),
                     ['class' => 'one-prod-tile last']
                 ); ?>
 

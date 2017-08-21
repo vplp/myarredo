@@ -98,7 +98,7 @@ $bundle = AppAsset::register($this);
                                     <td>
                                         <?= Html::a(
                                             $model['collection']['lang']['title'],
-                                            Yii::$app->catalogFilter->createUrl('collection', $model['collection']['id'])
+                                            Yii::$app->catalogFilter->createUrl(['collection' => $model['collection']['id']])
                                         ); ?>
                                     </td>
                                 </tr>

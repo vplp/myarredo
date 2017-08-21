@@ -32,7 +32,7 @@ use frontend\modules\catalog\models\{
 
                 <?= Html::a(
                     $item['lang']['title'] /*. ' ('. $item->getProductCount().')'*/,
-                    Yii::$app->catalogFilter->createUrl('category', $item['alias']),
+                    Yii::$app->catalogFilter->createUrl(['category' => $item['alias']]),
                     ['class' => 'one-item']
                 ); ?>
 
@@ -49,7 +49,7 @@ use frontend\modules\catalog\models\{
 
             <?php foreach ($types as $item): ?>
 
-                <?= Html::beginTag('a', ['href' => Yii::$app->catalogFilter->createUrl('type', $item['alias']), 'class' => 'one-item-check']); ?>
+                <?= Html::beginTag('a', ['href' => Yii::$app->catalogFilter->createUrl(['type' => $item['alias']]), 'class' => 'one-item-check']); ?>
                     <label>
                         <input type="checkbox">
                         <div class="my-checkbox"></div>
@@ -70,7 +70,7 @@ use frontend\modules\catalog\models\{
 
             <?php foreach ($style as $item): ?>
 
-                <?= Html::beginTag('a', ['href' => Yii::$app->catalogFilter->createUrl('style', $item['alias']), 'class' => 'one-item-check']); ?>
+                <?= Html::beginTag('a', ['href' => Yii::$app->catalogFilter->createUrl(['style' => $item['alias']]), 'class' => 'one-item-check']); ?>
                 <label>
                     <input type="checkbox">
                     <div class="my-checkbox"></div>
@@ -91,7 +91,7 @@ use frontend\modules\catalog\models\{
 
             <?php foreach ($factory as $item): ?>
 
-                <?= Html::beginTag('a', ['href' => Yii::$app->catalogFilter->createUrl('factory', $item['alias']), 'class' => 'one-item-check']); ?>
+                <?= Html::beginTag('a', ['href' => Yii::$app->catalogFilter->createUrl(['factory' => $item['alias']]), 'class' => 'one-item-check']); ?>
                 <label>
                     <input type="checkbox">
                     <div class="my-checkbox"></div>
