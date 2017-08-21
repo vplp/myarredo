@@ -305,9 +305,9 @@ $(document).ready(function(){
         var dropDown = $(this).closest('.drop-down-find').find('li a');
             dropDown.each(function(i, item){
                 if($(item).text().indexOf(In) !== 0){
-                    $(item).hide();
+                    $(item).parent().hide();
                 } else {
-                    $(item).show();
+                    $(item).parent().show();
                 }
             });
     });
@@ -315,6 +315,11 @@ $(document).ready(function(){
         var parent = $(this).closest(".arr-drop");
         var text = $(this).text();
         parent.find(".dropdown-toggle").text(text);
+    });
+    $(".arr-drop .dropdown-toggle").click(function(){
+       var parent = $(this).closest(".arr-drop");
+       parent.find(".find").val("");
+       parent.find(".drop-down-find li").show();
     });
     /*--конец поиск по списку (кабинет фабрики)--*/
 
