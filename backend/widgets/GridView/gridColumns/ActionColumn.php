@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\widgets\GridView\gridColumns;
 
 use yii\grid\Column;
@@ -54,7 +55,7 @@ class ActionColumn extends Column
         $deleteLink = ($this->getDeleteLink($model) !== false) ? Html::a('<i class="fa fa-trash"></i> ', $this->getDeleteLink($model), ['class' => 'btn btn-danger btn-s']) : '';
 
         return '<table style="display: inline-block;"><tr><td>' . $updateLink .
-        '</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>' . $deleteLink . '</td></tr></table>';
+            '</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>' . $deleteLink . '</td></tr></table>';
     }
 
     /**
@@ -63,6 +64,9 @@ class ActionColumn extends Column
      */
     protected function getUpdateLink($model)
     {
+        if ($this->updateLink === false) {
+            return false;
+        }
         if (!empty($this->updateLink)) {
             if ($this->updateLink instanceof \Closure) {
                 $f = $this->updateLink;
@@ -85,6 +89,9 @@ class ActionColumn extends Column
      */
     protected function getDeleteLink($model)
     {
+        if ($this->deleteLink === false) {
+            return false;
+        }
         if (!empty($this->deleteLink)) {
             if ($this->deleteLink instanceof \Closure) {
                 $f = $this->deleteLink;

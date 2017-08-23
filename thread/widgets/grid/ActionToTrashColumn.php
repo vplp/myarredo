@@ -23,8 +23,8 @@ class ActionToTrashColumn extends Column
     public $link;
 
     /**
-     * @param ActiveRecord $model
-     * @return string
+     * @param $model
+     * @return array|mixed
      */
     protected function getLink($model)
     {

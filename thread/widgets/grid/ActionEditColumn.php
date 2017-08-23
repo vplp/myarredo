@@ -23,8 +23,8 @@ class ActionEditColumn extends Column
     public $link;
 
     /**
-     * @param ActiveRecord $model
-     * @return type
+     * @param $model
+     * @return array|mixed
      */
     protected function getLink($model)
     {
