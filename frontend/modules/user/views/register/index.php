@@ -22,7 +22,6 @@ $this->title = Yii::t('app', 'Registration');
 
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
 
-
                         <?php $form = ActiveForm::begin([
                             'id' => 'register-form',
                             'action' => Url::toRoute('/user/register/index'),
@@ -54,10 +53,7 @@ $this->title = Yii::t('app', 'Registration');
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label>Телефон обратной связи*</label>
-                            <input type="text" placeholder="+7 (___) ___-__-__" class="form-control">
-                        </div>
+                        <?= $form->field($model, 'phone')->label() ?>
 
                         <div class="form-group">
                             <label>Адресс сайта</label>
@@ -65,6 +61,7 @@ $this->title = Yii::t('app', 'Registration');
                         </div>
 
                         <?= $form->field($model, 'username')->label() ?>
+
                         <?= $form->field($model, 'email')->label() ?>
                         <?= $form->field($model, 'password')->passwordInput() ?>
                         <?= $form->field($model, 'password_confirmation')->passwordInput() ?>
