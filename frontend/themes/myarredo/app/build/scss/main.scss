@@ -1957,6 +1957,21 @@ footer {
       font-size: 15px;
     }
   }
+  .downloads {
+    a {
+      display: block;
+      transition: all 0.2s ease;
+      color: #CF0002;
+      font-size: 16px;
+      &:hover {
+        color: #1e1e1e;
+      }
+    }
+    .fa {
+      color: #888782;
+      font-size: 12px;
+    }
+  }
 }
 .menu-style {
   border-top: 1px solid #AFADA7;
