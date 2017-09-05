@@ -366,6 +366,25 @@
           font-size: 13px;
         }
       }
+      td,th {
+        padding: 15px 10px;
+      }
+    }
+  }
+
+  .factory-profile {
+    h1 {
+      font-size: 30px;
+      text-align: left;
+    }
+    .part-contact {
+      padding: 25px 20px;
+    }
+    textarea {
+      height: 90px;
+    }
+    .form-send {
+      margin-top: 0;
     }
   }
 }

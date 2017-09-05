@@ -2719,3 +2719,32 @@ footer {
     }
   }
 }
+.factory-profile {
+  h1 {
+    text-align: center;
+  }
+  .part-contact {
+    background: #F6F3E8;
+    border: 1px solid #BDBCB3;
+    padding: 45px 60px;
+    label {
+      color: #545350;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+  }
+  .form-send {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 30px;
+    text-transform: uppercase;
+  }
+  input,
+  textarea {
+    color: #666666
+  }
+  textarea {
+    resize: none;
+  }
+}
