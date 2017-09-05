@@ -2748,3 +2748,25 @@ footer {
     resize: none;
   }
 }
+.city-partner {
+  h1 {
+    text-align: center;
+    color: rgb(65, 64, 62);
+  }
+  .list-cities {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .form-group {
+    width: 33%;
+    margin: 0 0 5px 0;
+  }
+  .country {
+    font-size: 23px;
+    margin-bottom: 10px;
+    color: rgb(65, 64, 62);
+  }
+  .column-center {
+    margin: 25px 0;
+  }
+}

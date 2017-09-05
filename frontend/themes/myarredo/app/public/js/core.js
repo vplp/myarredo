@@ -308,4 +308,8 @@ $(document).ready(function(){
     $(".prod-card-page .nav-tabs li a").eq(0).click();
     /*--конец Активация табов в карточке--*/
 
+    $(".list-cities label").click(function(){
+       $(this).parent().find('input[type="checkbox"]').click();
+    });
+
 });
