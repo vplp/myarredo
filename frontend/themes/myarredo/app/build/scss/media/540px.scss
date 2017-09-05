@@ -348,4 +348,24 @@
       width: 100%;
     }
   }
+
+  .factory-collection {
+    h1 {
+      font-size: 30px;
+      text-align: left;
+    }
+    .add-fact-col {
+      width: 100%;
+    }
+    .collection-wrap {
+      margin: 10px 0;
+      padding: 5px;
+      table {
+        font-size: 13px;
+        a {
+          font-size: 13px;
+        }
+      }
+    }
+  }
 }
