@@ -2785,3 +2785,24 @@ footer {
     margin: 25px 0;
   }
 }
+.change-pass {
+  h1 {
+    text-align: center;
+  }
+  .part-contact {
+    background: #F6F3E8;
+    border: 1px solid #BDBCB3;
+    padding: 45px 60px;
+    margin: 25px 0;
+  }
+  .submit-btn {
+    background: #8A8278;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    transition: all 0.2s ease;
+    margin-top: 25px;
+    &:hover {
+      background: #A29B93;
+    }
+  }
+}
