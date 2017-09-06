@@ -432,4 +432,19 @@
       }
     }
   }
+
+  .my-contacts {
+    h1 {
+      font-size: 20px;
+    }
+    .part-contact {
+      padding: 20px 20px;
+    }
+    #map {
+      height: 300px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+  }
 }

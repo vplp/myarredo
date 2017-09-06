@@ -2866,5 +2866,20 @@ footer {
       padding: 0;
     }
   }
+}
 
+.my-contacts {
+  h1 {
+    text-transform: uppercase;
+    text-align: center;
+    color: rgb(65, 64, 62);
+  }
+  .part-contact {
+    background: #f6f3e8;
+    border: 1px solid #bdbcb3;
+    padding: 45px 60px;
+  }
+  #map {
+    height: 400px;
+  }
 }
