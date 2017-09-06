@@ -414,4 +414,22 @@
       padding: 20px 15px;
     }
   }
+
+  .create-sale {
+    margin-bottom: 10px;
+    h1 {
+      font-size: 21px;
+    }
+    .form-horizontal {
+      width: 100%;
+    }
+    textarea {
+      height: 80px;
+    }
+    .price-row {
+      .col-sm-1 {
+        width: 48% !important;
+      }
+    }
+  }
 }

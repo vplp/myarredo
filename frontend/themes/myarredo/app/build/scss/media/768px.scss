@@ -109,4 +109,20 @@
       font-size: 29px;
     }
   }
+
+  body .create-sale {
+    .form-horizontal {
+      width: 100%;
+    }
+    .price-row {
+      .col-sm-1 {
+        float: left;
+        width: 15%;
+      }
+    }
+    .col-form-label {
+      width: 100%;
+      float: left;
+    }
+  }
 }

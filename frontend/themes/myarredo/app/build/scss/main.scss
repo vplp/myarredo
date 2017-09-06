@@ -2806,3 +2806,65 @@ footer {
     }
   }
 }
+
+.create-sale {
+  h1 {
+    text-transform: uppercase;
+    font-size: 26px;
+    text-align: center;
+  }
+  .column-center {
+    margin: 25px 0;
+  }
+  .form-horizontal {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .alert-warning {
+    .fa {
+      margin-right: 7px;
+    }
+  }
+  .dropdown-toggle {
+    width: 100%;
+    text-align: left;
+    position: relative;
+    &:after {
+      content: "\f0d7";
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      font-family: 'FontAwesome';
+    }
+  }
+  .arr-drop.open {
+    .dropdown-toggle:after {
+      content: "\f0d8";
+    }
+  }
+  .dropdown-menu {
+    width: 100%;
+    li:first-child {
+      padding: 3px 20px;
+      input {
+        width: 100%;
+      }
+    }
+  }
+  textarea {
+    height: 100px;
+    resize: none;
+  }
+  .bootstrap-select {
+    width: 100% !important;
+    .dropdown-toggle:after {
+      display: none;
+    }
+    .dropdown-menu li:first-child {
+      padding: 0;
+    }
+  }
+
+}
