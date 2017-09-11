@@ -1957,6 +1957,21 @@ footer {
       font-size: 15px;
     }
   }
+  .downloads {
+    a {
+      display: block;
+      transition: all 0.2s ease;
+      color: #CF0002;
+      font-size: 16px;
+      &:hover {
+        color: #1e1e1e;
+      }
+    }
+    .fa {
+      color: #888782;
+      font-size: 12px;
+    }
+  }
 }
 .menu-style {
   border-top: 1px solid #AFADA7;
@@ -2648,5 +2663,223 @@ footer {
       display: block;
       margin: 3px 20px;
     }
+  }
+}
+.factory-collection {
+  h1 {
+    text-align: center;
+  }
+  .collection-wrap {
+    margin: 10px;
+    padding: 14px;
+    background: #FFFFFF;
+    table {
+      width: 100%;
+      border: 1px solid #cac6bf;
+      color: rgb(65, 64, 62);
+      font-size: 16px;
+      a {
+        color: rgb(65, 64, 62);
+        font-size: 16px;
+      }
+    }
+    thead {
+      tr {
+        background: #efede8;
+        border-bottom: 3px solid #cac6bf;
+      }
+    }
+    tbody {
+      tr {
+        background: #e8e6dd;
+        border-bottom: 3px solid #cac6bf;
+        transition: all 0.2s ease;
+        &:hover {
+          background: #ECFFE7;
+        }
+      }
+    }
+    th {
+      padding: 15px;
+      font-weight: bold;
+    }
+    td {
+      padding: 15px;
+      position: relative;
+      &:first-child {
+        font-weight: bold;
+      }
+      &:not(:last-child):after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 80%;
+        background-color: #cac6bf;
+        top: 10%;
+        right: 8px;
+      }
+    }
+  }
+  .add-fact-col {
+    border: 1px solid #2AB000;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: #90897E;
+    &:hover {
+      border: 1px solid #1B7300;
+      background: #7E7A71;
+    }
+    &:active {
+      border: 1px solid #000000;
+    }
+  }
+}
+.factory-profile {
+  h1 {
+    text-align: center;
+  }
+  .part-contact {
+    background: #F6F3E8;
+    border: 1px solid #BDBCB3;
+    padding: 45px 60px;
+    label {
+      color: #545350;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+  }
+  .form-send {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 30px;
+    text-transform: uppercase;
+  }
+  input,
+  textarea {
+    color: #666666
+  }
+  textarea {
+    resize: none;
+  }
+}
+.city-partner {
+  h1 {
+    text-align: center;
+    color: rgb(65, 64, 62);
+  }
+  .list-cities {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .form-group {
+    width: 33%;
+    margin: 0 0 5px 0;
+  }
+  .country {
+    font-size: 23px;
+    margin-bottom: 10px;
+    color: rgb(65, 64, 62);
+  }
+  .column-center {
+    margin: 25px 0;
+  }
+}
+.change-pass {
+  h1 {
+    text-align: center;
+  }
+  .part-contact {
+    background: #F6F3E8;
+    border: 1px solid #BDBCB3;
+    padding: 45px 60px;
+    margin: 25px 0;
+  }
+  .submit-btn {
+    background: #8A8278;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    transition: all 0.2s ease;
+    margin-top: 25px;
+    &:hover {
+      background: #A29B93;
+    }
+  }
+}
+
+.create-sale {
+  h1 {
+    text-transform: uppercase;
+    font-size: 26px;
+    text-align: center;
+  }
+  .column-center {
+    margin: 25px 0;
+  }
+  .form-horizontal {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .alert-warning {
+    .fa {
+      margin-right: 7px;
+    }
+  }
+  .dropdown-toggle {
+    width: 100%;
+    text-align: left;
+    position: relative;
+    &:after {
+      content: "\f0d7";
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      font-family: 'FontAwesome';
+    }
+  }
+  .arr-drop.open {
+    .dropdown-toggle:after {
+      content: "\f0d8";
+    }
+  }
+  .dropdown-menu {
+    width: 100%;
+    li:first-child {
+      padding: 3px 20px;
+      input {
+        width: 100%;
+      }
+    }
+  }
+  textarea {
+    height: 100px;
+    resize: none;
+  }
+  .bootstrap-select {
+    width: 100% !important;
+    .dropdown-toggle:after {
+      display: none;
+    }
+    .dropdown-menu li:first-child {
+      padding: 0;
+    }
+  }
+}
+
+.my-contacts {
+  h1 {
+    text-transform: uppercase;
+    text-align: center;
+    color: rgb(65, 64, 62);
+  }
+  .part-contact {
+    background: #f6f3e8;
+    border: 1px solid #bdbcb3;
+    padding: 45px 60px;
+  }
+  #map {
+    height: 400px;
   }
 }

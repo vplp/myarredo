@@ -348,4 +348,103 @@
       width: 100%;
     }
   }
+
+  .factory-collection {
+    h1 {
+      font-size: 30px;
+      text-align: left;
+    }
+    .add-fact-col {
+      width: 100%;
+    }
+    .collection-wrap {
+      margin: 10px 0;
+      padding: 5px;
+      table {
+        font-size: 13px;
+        a {
+          font-size: 13px;
+        }
+      }
+      td,th {
+        padding: 15px 10px;
+      }
+    }
+  }
+
+  .factory-profile {
+    h1 {
+      font-size: 30px;
+      text-align: left;
+    }
+    .part-contact {
+      padding: 25px 20px;
+    }
+    textarea {
+      height: 90px;
+    }
+    .form-send {
+      margin-top: 0;
+    }
+  }
+
+  .city-partner {
+    h1 {
+      font-size: 20px !important;
+      text-align: left;
+    }
+    h2 {
+
+    }
+    .form-group {
+      width: 100%;
+    }
+    .column-center {
+      margin: 10px 0;
+    }
+    .country {
+      font-size: 18px;
+    }
+  }
+  .change-pass {
+    h1 {
+      font-size: 25px;
+    }
+    .part-contact {
+      padding: 20px 15px;
+    }
+  }
+
+  .create-sale {
+    margin-bottom: 10px;
+    h1 {
+      font-size: 21px;
+    }
+    .form-horizontal {
+      width: 100%;
+    }
+    textarea {
+      height: 80px;
+    }
+    .price-row {
+      .col-sm-1 {
+        width: 48% !important;
+      }
+    }
+  }
+
+  .my-contacts {
+    h1 {
+      font-size: 20px;
+    }
+    .part-contact {
+      padding: 20px 20px;
+    }
+    #map {
+      height: 300px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+  }
 }

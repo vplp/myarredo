@@ -214,4 +214,33 @@
       display: none !important;
     }
   }
+
+  .change-pass {
+    .submit-btn {
+      margin-top: 35px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .create-sale {
+    .form-horizontal {
+      width: 750px;
+    }
+    .price-row {
+      .col-sm-1 {
+        width: 10%;
+      }
+    }
+    .buttons-cont {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      button {
+        margin: 0 10px;
+      }
+    }
+  }
 }

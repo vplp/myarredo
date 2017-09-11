@@ -4,12 +4,12 @@
     <title>myarredo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="./public/css/fonts.css">
-    <link rel="stylesheet" href="./public/libs/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./public/libs/bootstrap-select/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="./public/libs/slick-1.6/slick.css">
-    <link rel="stylesheet" href="./public/libs/nouislider/nouislider.min.css">
-    <link rel='stylesheet' href='./public/css/main.scss.css' type='text/css' media='all' />
+    <link rel="stylesheet" href="../public/css/fonts.css">
+    <link rel="stylesheet" href="../public/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/libs/bootstrap-select/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../public/libs/slick-1.6/slick.css">
+    <link rel="stylesheet" href="../public/libs/nouislider/nouislider.min.css">
+    <link rel='stylesheet' href='../public/css/main.scss.css' type='text/css' media='all' />
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -247,7 +247,7 @@
     <nav class="navbar">
         <div class="container large-container">
             <a href="javascript:void(0);" class="logo">
-                <img src="public/img/logo.png" alt="">
+                <img src="../public/img/logo.png" alt="">
             </a>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
@@ -272,256 +272,154 @@
 
 </header>
 <main>
-    <div class="page adding-product-page">
+    <div class="page city-partner">
         <div class="container large-container">
-            <h1>Заказы</h1>
-            <form class="form-filter-date-cont flex">
-                <div class="dropdown arr-drop">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Россия</button>
-                    <ul class="dropdown-menu drop-down-find">
-                        <li>
-                            <input type="text" class="find">
-                        </li>
-                        <li>
-                            <a href="#">Россия</a>
-                        </li>
-                        <li>
-                            <a href="#">Украина</a>
-                        </li>
-                        <li>
-                            <a href="#">Беларусь</a>
-                        </li>
-                    </ul>
-                </div>
+            <h1>Укажите города из которых Вы хотите получать заявки.</h1>
+            <div class="column-center">
+                <form action="#">
+                    <h2 class="country">Россия</h2>
+                    <div class="list-cities">
+                        <div class="form-group checkbox checkbox-primary">
+                            <input id="checkbox1" type="checkbox">
+                            <label>
+                                Архангельск
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Альметьевск
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Анапа
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Архангельск
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Астрахань
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Барнаул
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Белгород
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Благовещенск
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Брянск
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Владивосток
+                            </label>
+                        </div>
 
-                <div class="dropdown arr-drop">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Выберите город</button>
-                    <ul class="dropdown-menu drop-down-find">
-                        <li>
-                            <input type="text" class="find">
-                        </li>
-                        <li>
-                            <a href="#">Киев</a>
-                        </li>
-                        <li>
-                            <a href="#">Днепр</a>
-                        </li>
-                        <li>
-                            <a href="#">Харьков</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="dropdown large-picker">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">21.08.2017 - 21.08.2017</button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#">
-                                Oggi
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Leri
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Settimana
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                30 giorni
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Messe attuale
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Mese precedente
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"></a>
-                        </li>
-                    </ul>
-                </div>
-            </form>
-
-            <div class="manager-history">
-                <div class="manager-history-header">
-                    <ul class="orders-title-block flex">
-                        <li class="order-id">
-                            <span>
-                                №
-                            </span>
-                        </li>
-                        <li class="application-date">
-                            <span>
-                                Дата
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                Город
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                Статус
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="manager-history-list">
-                    <div class="item">
-                        <ul class="orders-title-block flex">
-                            <li class="order-id">
-                            <span>
-                                4047
-                            </span>
-                            </li>
-                            <li class="application-date">
-                            <span>
-                                24.07.2017 17:15
-                            </span>
-                            </li>
-                            <li>
-                            <span>
-                                Москва
-                            </span>
-                            </li>
-                            <li>
-                            <span>
-                                Архивная
-                            </span>
-                            </li>
-                        </ul>
-
-                        <div class="hidden-order-info flex">
-                            <div class="flex">
-                                <div class="basket-item-info">
-                                    <div class="img-cont">
-                                        <img src="public/img/pictures/new_1.jpg" alt="">
-                                    </div>
-                                    <table class="char" width="100%">
-                                        <tr>
-                                            <td>
-                                                Предмет
-                                            </td>
-                                            <td>
-                                                Напольная лампа
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                АРТИКУЛ
-                                            </td>
-                                            <td>
-                                                DAGONET
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Фабрика
-                                            </td>
-                                            <td>
-                                                VISIONNAIRE (IPE CAVALLI)
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="basket-item-info">
-                                    <div class="img-cont">
-                                        <img src="public/img/pictures/new_1.jpg" alt="">
-                                    </div>
-                                    <table class="char" width="100%">
-                                        <tr>
-                                            <td>
-                                                Предмет
-                                            </td>
-                                            <td>
-                                                Напольная лампа
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                АРТИКУЛ
-                                            </td>
-                                            <td>
-                                                DAGONET
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Фабрика
-                                            </td>
-                                            <td>
-                                                VISIONNAIRE (IPE CAVALLI)
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Волгоград
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Воронеж
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Геленджик
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Екатеринбург
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Иваново
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Ижевск
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Иркутск
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Казань
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Калининград
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Калуга
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Кемерово
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Киров
+                            </label>
+                        </div>
+                        <div class="form-group checkbox checkbox-primary">
+                            <input type="checkbox">
+                            <label>
+                                Иркутск
+                            </label>
                         </div>
                     </div>
-
-                    <div class="item">
-                        <ul class="orders-title-block flex">
-                            <li class="order-id">
-                            <span>
-                                4047
-                            </span>
-                            </li>
-                            <li class="application-date">
-                            <span>
-                                24.07.2017 17:15
-                            </span>
-                            </li>
-                            <li>
-                            <span>
-                                Москва
-                            </span>
-                            </li>
-                            <li>
-                            <span>
-                                Архивная
-                            </span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="item">
-                        <ul class="orders-title-block flex">
-                            <li class="order-id">
-                            <span>
-                                4047
-                            </span>
-                            </li>
-                            <li class="application-date">
-                            <span>
-                                24.07.2017 17:15
-                            </span>
-                            </li>
-                            <li>
-                            <span>
-                                Москва
-                            </span>
-                            </li>
-                            <li>
-                            <span>
-                                Архивная
-                            </span>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -538,7 +436,7 @@
                         <a href="#">О проекте</a>
                     </li>
                     <li>
-                        <a href="#">СТатьи</a>
+                        <a href="#">Статьи</a>
                     </li>
                     <li>
                         <a href="#">Фабрики</a>
@@ -664,13 +562,13 @@
         </div>
     </div>
 </footer>
-<script src="./public/libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="../public/libs/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://use.fontawesome.com/35f65baac5.js"></script>
-<script src="./public/libs/bootstrap-select/js/bootstrap-select.min.js"></script>
-<script src="./public/libs/slick-1.6/slick.min.js"></script>
-<script src="./public/libs/nouislider/nouislider.min.js"></script>
-<script src="./public/libs/wNumb.js"></script>
+<script src="../public/libs/bootstrap-select/js/bootstrap-select.min.js"></script>
+<script src="../public/libs/slick-1.6/slick.min.js"></script>
+<script src="../public/libs/nouislider/nouislider.min.js"></script>
+<script src="../public/libs/wNumb.js"></script>
 <script async src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-<script src="./public/js/core.js"></script>
+<script src="../public/js/core.js"></script>
 </body>
 </html>

@@ -87,4 +87,42 @@
       font-size: 14px;
     }
   }
+
+  .factory-profile {
+    .part-contact {
+      label {
+        margin-bottom: 5px;
+      }
+    }
+    .one-row {
+      margin-bottom: 25px;
+    }
+  }
+  .city-partner {
+    h1 {
+      font-size: 27px;
+    }
+  }
+
+  .change-pass {
+    h1 {
+      font-size: 29px;
+    }
+  }
+
+  body .create-sale {
+    .form-horizontal {
+      width: 100%;
+    }
+    .price-row {
+      .col-sm-1 {
+        float: left;
+        width: 15%;
+      }
+    }
+    .col-form-label {
+      width: 100%;
+      float: left;
+    }
+  }
 }
