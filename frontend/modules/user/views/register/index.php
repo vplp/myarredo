@@ -9,23 +9,23 @@ use yii\helpers\{
  * @var \frontend\modules\user\models\form\CreateForm $model
  */
 
-$this->title = Yii::t('app', 'Registration');
+$this->title = 'Регистрация партнера';
 
 ?>
 
 <main>
     <div class="page sign-up-page">
         <div class="container large-container">
-
+            <?php $form = ActiveForm::begin([
+                'id' => 'register-form',
+                'action' => Url::toRoute('/user/register/index'),
+            ]); ?>
                 <div class="row">
                     <?= Html::tag('h2', $this->title); ?>
 
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
 
-                        <?php $form = ActiveForm::begin([
-                            'id' => 'register-form',
-                            'action' => Url::toRoute('/user/register/index'),
-                        ]); ?>
+
 
                         <div class="form-group">
                             <label>Название компании</label>
@@ -85,10 +85,6 @@ $this->title = Yii::t('app', 'Registration');
 
                         <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-success']) ?>
 
-                        <?php ActiveForm::end(); ?>
-
-                        <?= Html::a(Yii::t('app', 'Login'), ['/user/login/index']) ?>
-
                     </div>
                     <div class="col-xs-12 col-sm-6 col-lg-offset-2 col-sm-6 col-md-6 col-lg-5">
                         <div class="text">
@@ -123,7 +119,7 @@ $this->title = Yii::t('app', 'Registration');
                         </div>
                     </div>
                 </div>
-
+            <?php ActiveForm::end(); ?>
         </div>
     </div>
 </main>
