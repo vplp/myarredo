@@ -23,9 +23,24 @@ class RegisterForm extends CommonForm
     public function rules()
     {
         $rules =  [
-            [['password', 'password_confirmation'], 'required'],
-            [['phone'], 'required'],
-            [['phone'], 'string', 'max' => 255]
+            //[['password', 'password_confirmation'], 'required'],
+            [['first_name', 'last_name', 'phone', 'name_company', 'address', 'country_id', 'city_id'], 'required'],
+            [
+                [
+                    'first_name',
+                    'last_name',
+                    'phone',
+                    'address',
+                    'name_company',
+                    'website',
+                    'exp_with_italian'
+                ],
+                'string',
+                'max' => 255
+            ],
+            [['delivery_to_other_cities'], 'in', 'range' => [0, 1]],
+            [['country_id', 'city_id'], 'integer'],
+            [['delivery_to_other_cities'], 'default', 'value' => '0'],
         ];
 
         if ($this->_username_attribute === 'email') {
@@ -48,7 +63,16 @@ class RegisterForm extends CommonForm
                 'email',
                 'password',
                 'password_confirmation',
-                'phone'
+                'first_name',
+                'last_name',
+                'phone',
+                'address',
+                'name_company',
+                'website',
+                'exp_with_italian',
+                'country_id',
+                'city_id',
+                'delivery_to_other_cities'
             ],
         ];
     }
@@ -60,12 +84,14 @@ class RegisterForm extends CommonForm
     {
         $model = new User([
             'scenario' => 'userCreate',
-            'username' => $this->username,
+            'username' => $this->email,
             'email' => $this->email,
             'published' => ActiveRecord::STATUS_KEY_ON,
             'group_id' => Group::USER,
         ]);
+
         $model->setPassword($this->password)->generateAuthKey();
+
         if ($model->validate()) {
             /** @var PDO $transaction */
             $transaction = self::getDb()->beginTransaction();
@@ -100,7 +126,16 @@ class RegisterForm extends CommonForm
         $model = new Profile([
             'scenario' => 'basicCreate',
             'user_id' => $userId,
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
             'phone' => $this->phone,
+            'address' => $this->address,
+            'name_company' => $this->name_company,
+            'website' => $this->website,
+            'exp_with_italian' => $this->exp_with_italian,
+            'country_id' => $this->country_id,
+            'city_id' => $this->city_id,
+            'delivery_to_other_cities' => $this->delivery_to_other_cities,
         ]);
         if ($model->validate()) {
             /** @var PDO $transaction */

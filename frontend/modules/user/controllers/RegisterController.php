@@ -64,7 +64,7 @@ class RegisterController extends BaseController
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
             $status = $model->addUser();
             if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
-                return $this->redirect(Url::toRoute('/home/home/index'));
+                return $this->redirect(Url::toRoute('/user/profile/index'));
             }
             if ($status === true) {
                 Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));

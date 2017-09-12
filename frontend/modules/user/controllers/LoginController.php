@@ -57,7 +57,7 @@ class LoginController extends BaseController
     public function actionIndex()
     {
         if (!\Yii::$app->getUser()->isGuest) {
-            return $this->redirect(Url::toRoute('/home/home/index'));
+            return $this->redirect(Url::toRoute('/user/profile/index'));
         }
 
         /** @var SignInForm $model */
@@ -65,7 +65,7 @@ class LoginController extends BaseController
         $model->setScenario('signIn');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
-            return $this->redirect(Url::toRoute(['/home/home/index']));
+            return $this->redirect(Url::toRoute(['/user/profile/index']));
         } else {
             return $this->render('index', [
                 'model' => $model,

@@ -20,7 +20,16 @@ use common\modules\user\models\User as UserModel;
  * @property boolean $rememberMe
  * @property string $password_confirmation
  *
+ * @property string $first_name
+ * @property string $last_name
  * @property string $phone
+ * @property string $address
+ * @property string $name_company
+ * @property string $website
+ * @property string $exp_with_italian
+ * @property boolean $delivery_to_other_cities
+ * @property int $country_id
+ * @property int $city_id
  *
  * @package thread\modules\user\models\form
  */
@@ -41,7 +50,16 @@ class CommonForm extends Model
     public $password_confirmation;
     private $_user = null;
 
+    public $first_name;
+    public $last_name;
     public $phone;
+    public $address;
+    public $name_company;
+    public $website;
+    public $exp_with_italian;
+    public $delivery_to_other_cities;
+    public $country_id;
+    public $city_id;
 
     /**
      * Private attributes.
@@ -55,7 +73,7 @@ class CommonForm extends Model
     public function init()
     {
         /** @var \frontend\modules\user\User $module */
-        $module =  Yii::$app->getModule('user');
+        $module = Yii::$app->getModule('user');
 
         $this->_username_attribute = $module->username_attribute;
         $this->_password_min_length = $module->password_min_length;
@@ -89,7 +107,21 @@ class CommonForm extends Model
                 'on' => ['adminPasswordChange']
             ],
             // new rules
-            [['phone'], 'string', 'max' => 255],
+            [
+                [
+                    'first_name',
+                    'last_name',
+                    'phone',
+                    'address',
+                    'name_company',
+                    'website',
+                    'exp_with_italian'
+                ],
+                'string',
+                'max' => 255
+            ],
+            [['delivery_to_other_cities'], 'in', 'range' => [0, 1]],
+            [['country_id', 'city_id'], 'integer'],
         ];
     }
 
@@ -108,7 +140,16 @@ class CommonForm extends Model
             'email' => Yii::t('app', 'Email'),
             'rememberMe' => Yii::t('app', 'Remember me'),
             // new attributeLabels
+            'first_name' => Yii::t('app', 'First name'),
+            'last_name' => Yii::t('app', 'Last name'),
             'phone' => Yii::t('app', 'Phone'),
+            'address' => 'Адресс',
+            'name_company' => 'Название компании',
+            'website' => 'Адресс сайта',
+            'exp_with_italian' => 'Опыт работы с итальянской мебелью, лет',
+            'country_id' => 'Ваша страна',
+            'city_id' => 'Ваш город',
+            'delivery_to_other_cities' => 'Готов к поставкам мебели в другие города',
         ];
     }
 
