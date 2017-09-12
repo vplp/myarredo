@@ -447,4 +447,46 @@
       margin-bottom: 10px;
     }
   }
+
+  .tomassy-page {
+    .top-topm-header {
+      flex-direction: column;
+      h3 {
+        display: none;
+      }
+    }
+    .tel {
+      text-align: center;
+    }
+    .nav {
+      height: auto;
+      flex-direction: column;
+    }
+    .fact-slider .img-cont span {
+      font-size: 19px !important;
+    }
+    .text-description {
+      padding: 0 !important;
+    }
+    .fact-slider .slick-dots li button {
+      display: none;
+    }
+    .cat-container .cat-prod a.one-prod-tile {
+      width: 100% !important;
+    }
+    .cat-container a.full-cat {
+      width: 100% !important;
+      padding: 25px;
+      margin-bottom: 0;
+    }
+    .copy-r {
+      flex-direction: column;
+      &>div {
+        margin-bottom: 5px;
+      }
+    }
+    .get-consl {
+      font-size: 15px;
+    }
+  }
 }

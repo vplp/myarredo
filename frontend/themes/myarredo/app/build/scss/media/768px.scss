@@ -125,4 +125,32 @@
       float: left;
     }
   }
+
+  .tomassy-page {
+    .text-col {
+      column-count: 1;
+    }
+    .top-topm-header h3 {
+      font-size: 13px;
+      width: 50%;
+    }
+    .text-description {
+      padding: 20px 40px;
+    }
+    .cat-container .cat-prod .one-prod-tile {
+      width: 49% !important;
+    }
+    .cat-container .full-cat {
+      width: 49% !important;
+    }
+    .fact-slider .img-cont span {
+      font-size: 28px;
+    }
+     .cat-container h3 {
+       padding: 6px 0;
+     }
+    .copy-r {
+      font-size: 10px;
+    }
+  }
 }
