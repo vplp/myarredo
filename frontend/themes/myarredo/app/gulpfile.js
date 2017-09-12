@@ -97,6 +97,15 @@ gulp.task('watch', function () {
     gulp.watch(dev_patches['font'], ['font']);
 });
 
+gulp.task('watch-lend', function () {
+    gulp.watch(dev_patches['js'], ['scripts']);
+    gulp.watch(dev_patches['images'], ['images']);
+    //gulp.watch(dev_patches['css'], ['minify-css']);
+    gulp.watch(dev_patches['scss'], ['scss']);
+    gulp.watch(dev_patches['less'], ['less']);
+    gulp.watch(dev_patches['font'], ['font']);
+});
+
 // The default task (called when you run `gulp` from cli) 
 gulp.task('default', ['watch', 'scss', 'less', 'scripts', 'images', 'minify-css']);
 //'webserver', 'livereload', 'base64'
@@ -190,7 +199,8 @@ gulp.task('scss', function () {
         .pipe(scss())
         .pipe(sourcemaps.write())
         .pipe(rename({suffix: '.scss'}))
-        .pipe(gulp.dest(dev_patches['css-base']));
+        .pipe(gulp.dest(dev_patches['css-base']))
+        .pipe(gulp.dest(build_patches['css']));
 });
 
 gulp.task('concat', function() {
