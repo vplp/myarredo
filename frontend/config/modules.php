@@ -42,5 +42,8 @@ return [
     ],
     'catalog' => [
         'class' => \frontend\modules\catalog\Catalog::class,
+    ],
+    'location' => [
+        'class' => \frontend\modules\location\Location::class,
     ]
 ];

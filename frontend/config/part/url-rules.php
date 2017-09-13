@@ -66,4 +66,6 @@ return [
     'shop/order/view/<id:[\d\-]+>' => 'shop/order/view',
     'shop/order/link/<token:[\w\-]+>' => 'shop/order/link',
     'shop/cart/add-to-cart' => 'shop/cart/add-to-cart',
+
+    'location/location/get-cities' => 'location/location/get-cities'
 ];
