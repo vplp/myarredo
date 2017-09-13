@@ -83,7 +83,7 @@ class City extends \common\modules\location\models\City
     {
         $query = self::findBase();
 
-        //$query->andFilterWhere(['country_id' => $country_id]);
+        $query->andFilterWhere(['country_id' => $country_id]);
 
         $data = $query->all();
 
