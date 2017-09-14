@@ -75,11 +75,11 @@ class ProfileController extends BackendController
             ],
             'fileupload' => [
                 'class' => UploadAction::class,
-                'path' => $this->module->getAvatarUploadPath($user)
+                'path' => $this->module->getAvatarUploadPath($user['id'])
             ],
             'filedelete' => [
                 'class' => DeleteAction::class,
-                'path' => $this->module->getAvatarUploadPath($user)
+                'path' => $this->module->getAvatarUploadPath($user['id'])
             ],
         ];
     }

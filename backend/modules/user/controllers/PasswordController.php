@@ -93,7 +93,7 @@ class PasswordController extends BackendController
         $this->label = Yii::t('user', 'Password change') . ' : ' . $user['username'];
 
         $model = new ChangePassword();
-        $model->setScenario('adminPasswordChange');
+        $model->setScenario('passwordChange');
         $model['username'] = $user['username'];
         $model['email'] = $user['email'];
 
