@@ -266,7 +266,7 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                         <div class="my-notebook dropdown">
                             <span class="red-but notebook-but dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bars" aria-hidden="true"></i>
-                                Меню <?= Yii::$app->getUser()->getIdentity()->group->role ?>
+                                Меню
                                 <object>
                                     <ul class="dropdown-menu">
                                         <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner'): ?>
