@@ -342,27 +342,27 @@ $bundle = AppAsset::register($this);
 
 <?php
 
-$script = <<<JS
-$(window).load(function () {
-    ymaps.ready(function () {
-        var map = new ymaps.Map("map", {
-            center: [55.73367, 37.587874],
-            zoom: 11,
-            scroll: false
-        });
-        map.behaviors.disable('scrollZoom');
-    });
-});
-JS;
+//$script = <<<JS
+// $(window).load(function () {
+//     ymaps.ready(function () {
+//         var map = new ymaps.Map("map", {
+//             center: [55.73367, 37.587874],
+//             zoom: 11,
+//             scroll: false
+//         });
+//         map.behaviors.disable('scrollZoom');
+//     });
+// });
+//JS;
 
-$this->registerJs($script, yii\web\View::POS_END);
-$this->registerJsFile(
-    'https://api-maps.yandex.ru/2.1/?lang=ru_RU',
-    [
-        'position' => yii\web\View::POS_END,
-        'async' => true,
-    ]
-);
+//$this->registerJs($script, yii\web\View::POS_END);
+//$this->registerJsFile(
+//    'https://api-maps.yandex.ru/2.1/?lang=ru_RU',
+//    [
+//        'position' => yii\web\View::POS_END,
+//        'async' => true,
+//    ]
+//);
 ?>
 
 <?= $content ?>

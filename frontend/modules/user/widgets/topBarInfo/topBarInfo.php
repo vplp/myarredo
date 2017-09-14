@@ -4,15 +4,11 @@ namespace frontend\modules\user\widgets\topBarInfo;
 
 use Yii;
 use thread\app\base\widgets\Widget;
-//
-use frontend\modules\user\models\Profile;
 
 /**
  * Class topBarInfo
  *
  * @package frontend\modules\user\widgets\topBarInfo
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class topBarInfo extends Widget
 {
@@ -42,27 +38,26 @@ class topBarInfo extends Widget
     protected $modelProfile = null;
 
     /**
-     *
+     * @inheritdoc
      */
     public function init()
     {
         $this->model = Yii::$app->getUser();
         if ($this->model !== null) {
             $this->modelIndentity = Yii::$app->getUser()->getIdentity();
-            $this->modelProfile = $this->modelIndentity->profile??null;
+            $this->modelProfile = $this->modelIndentity->profile ?? null;
         }
     }
 
     /**
-     *
+     * @return string
      */
     public function run()
     {
         if ($this->model->isGuest) {
-            return $this->render('sigin');
+            return $this->render('sign_in');
         } else {
             return $this->render('info', [
-                //'user' => $this->model,
                 'user' => $this->modelIndentity,
                 'profile' => $this->modelProfile,
             ]);

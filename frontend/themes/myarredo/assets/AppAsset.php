@@ -19,11 +19,11 @@ class AppAsset extends AssetBundle
     public $sourcePath = '@app/themes/myarredo/app/public';
 
     public $css = [
+        'css/main.scss.css',
         'libs/nouislider/nouislider.min.css',
         'libs/slick-1.6/slick.css',
         'libs/bootstrap-select/css/bootstrap-select.min.css',
         'css/fonts.css',
-        'css/main.scss.css',
     ];
 
     public $js = [
