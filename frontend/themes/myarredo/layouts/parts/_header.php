@@ -266,22 +266,42 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                         <div class="my-notebook dropdown">
                             <span class="red-but notebook-but dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bars" aria-hidden="true"></i>
-                                Меню
+                                Меню <?= Yii::$app->getUser()->getIdentity()->group->role ?>
                                 <object>
                                     <ul class="dropdown-menu">
-                                        <li>
-                                            <?= Html::a('Каталог', ['/user/catalog/index']); ?>
-                                        </li>
-                                        <li>
-                                            <?= Html::a('Прайс', ['/user/price/index']); ?>
-                                        </li>
-                                        <li>
-                                            <?= Html::a('Заказ', ['/user/order/index']); ?>
-                                        </li>
-                                        <li role="separator" class="divider"></li>
-                                        <li>
-                                            <?= Html::a('Профиль', ['/user/profile/index']); ?>
-                                        </li>
+                                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner'): ?>
+                                            <li>
+                                                <?= Html::a('Города', ['/user/profile/index']); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a('Распродажа', ['/user/profile/index']); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a('Заявки', ['/user/profile/index']); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a('Заявки', ['/user/profile/index']); ?>
+                                            </li>
+                                            <li role="separator" class="divider"></li>
+                                            <li>
+                                                <?= Html::a('Профиль', ['/user/profile/index']); ?>
+                                            </li>
+                                        <?php elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory'): ?>
+                                            <li>
+                                                <?= Html::a('Каталог', ['/user/profile/index']); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a('Коллекции', ['/user/profile/index']); ?>
+                                            </li>
+                                            <li role="separator" class="divider"></li>
+                                            <li>
+                                                <?= Html::a('Профиль', ['/user/profile/index']); ?>
+                                            </li>
+                                        <?php else: ?>
+                                            <li>
+                                                <?= Html::a('Профиль', ['/user/profile/index']); ?>
+                                            </li>
+                                        <?php endif; ?>
                                     </ul>
                                 </object>
                             </span>

@@ -1,4 +1,5 @@
 <?php
+
 namespace common\modules\user\models\form;
 
 use yii\db\mssql\PDO;
@@ -22,9 +23,27 @@ class RegisterForm extends CommonForm
      */
     public function rules()
     {
-        $rules =  [
-            //[['password', 'password_confirmation'], 'required'],
-            [['first_name', 'last_name', 'phone', 'name_company', 'address', 'country_id', 'city_id'], 'required'],
+        $rules = [
+            [
+                [
+                    'password', 'password_confirmation'
+                ],
+                'required'
+            ],
+            [
+                [
+                    'first_name', 'last_name', 'phone'
+                ],
+                'required',
+                'on' => 'register'
+            ],
+            [
+                [
+                    'first_name', 'last_name', 'phone', 'name_company', 'address', 'country_id', 'city_id'
+                ],
+                'required',
+                'on' => 'registerPartner'
+            ],
             [
                 [
                     'first_name',
@@ -40,6 +59,7 @@ class RegisterForm extends CommonForm
             ],
             [['delivery_to_other_cities'], 'in', 'range' => [0, 1]],
             [['country_id', 'city_id'], 'integer'],
+            [['country_id', 'city_id'], 'default', 'value' => 0],
             [['delivery_to_other_cities'], 'default', 'value' => '0'],
         ];
 
@@ -59,6 +79,17 @@ class RegisterForm extends CommonForm
     {
         return [
             'register' => [
+                'username',
+                'email',
+                'password',
+                'password_confirmation',
+                'first_name',
+                'last_name',
+                'phone',
+                'country_id',
+                'city_id',
+            ],
+            'registerPartner' => [
                 'username',
                 'email',
                 'password',
@@ -99,7 +130,7 @@ class RegisterForm extends CommonForm
                 $save = $model->save();
                 if ($save) {
                     $transaction->commit();
-                    return $this->addProfile($model->id);
+                    return $this->addUserProfile($model->id);
                 } else {
                     $transaction->rollBack();
                     return false;
@@ -121,7 +152,80 @@ class RegisterForm extends CommonForm
      * @return bool
      * @throws \Exception
      */
-    private function addProfile($userId)
+    private function addUserProfile($userId)
+    {
+        $model = new Profile([
+            'scenario' => 'basicCreate',
+            'user_id' => $userId,
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'phone' => $this->phone,
+            'address' => $this->address,
+            'country_id' => $this->country_id,
+            'city_id' => $this->city_id,
+        ]);
+        if ($model->validate()) {
+            /** @var PDO $transaction */
+            $transaction = self::getDb()->beginTransaction();
+            try {
+                $save = $model->save();
+                ($save) ? $transaction->commit() : $transaction->rollBack();
+                return $save;
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                throw new \Exception($e);
+            }
+        } else {
+            $this->addErrors($model->getErrors());
+            return false;
+        }
+    }
+
+    /**
+     * Add new partner to base
+     */
+    public function addPartner()
+    {
+        $model = new User([
+            'scenario' => 'userCreate',
+            'username' => $this->email,
+            'email' => $this->email,
+            'published' => ActiveRecord::STATUS_KEY_ON,
+            'group_id' => Group::PARTNER,
+        ]);
+
+        $model->setPassword($this->password)->generateAuthKey();
+
+        if ($model->validate()) {
+            /** @var PDO $transaction */
+            $transaction = self::getDb()->beginTransaction();
+            try {
+                $save = $model->save();
+                if ($save) {
+                    $transaction->commit();
+                    return $this->addPartnerProfile($model->id);
+                } else {
+                    $transaction->rollBack();
+                    return false;
+                }
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                throw new \Exception($e);
+            }
+        } else {
+            $this->addErrors($model->getErrors());
+            return false;
+        }
+    }
+
+    /**
+     * Create new empty profile for a new partner
+     *
+     * @param $userId
+     * @return bool
+     * @throws \Exception
+     */
+    private function addPartnerProfile($userId)
     {
         $model = new Profile([
             'scenario' => 'basicCreate',

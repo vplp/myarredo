@@ -30,13 +30,16 @@ $this->title = 'Редактировать профиль';
                     <div class="col-sm-4 col-md-4 col-lg-4 one-row">
                         <?= $form->field($model, 'first_name') ?>
                         <?= $form->field($model, 'last_name') ?>
+                    </div>
+
+                    <div class="col-sm-4 col-md-4 col-lg-4 one-row">
+                        <?= $form->field($model, 'name_company') ?>
+                        <?= $form->field($model, 'address') ?>
+                    </div>
+
+                    <div class="col-sm-4 col-md-4 col-lg-4 one-row">
                         <?= $form->field($model, 'phone') ?>
-                    </div>
-
-                    <div class="col-sm-4 col-md-4 col-lg-4 one-row">
-                    </div>
-
-                    <div class="col-sm-4 col-md-4 col-lg-4 one-row">
+                        <?= $form->field($model, 'website') ?>
                     </div>
 
                 </div>
