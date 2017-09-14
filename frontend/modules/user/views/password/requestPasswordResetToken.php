@@ -12,25 +12,32 @@ use yii\helpers\{
 $this->title = 'Request password reset';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-request-password-reset">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out your email. A link to reset password will be sent there.</p>
+<main>
+    <div class="page factory-profile">
+        <div class="container large-container">
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin([
-                'id' => 'request-password-reset-form',
-                'action' => Url::toRoute(['/user/password/request-reset']),
-            ]); ?>
+            <?= Html::tag('h1', $this->title); ?>
 
-            <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
+            <div class="part-contact">
 
-            <div class="form-group">
-                <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
+
+                <p>Please fill out your email. A link to reset password will be sent there.</p>
+
+
+                <?php $form = ActiveForm::begin([
+                    'id' => 'request-password-reset-form',
+                    'action' => Url::toRoute(['/user/password/request-reset']),
+                ]); ?>
+
+                <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
+
+                <div class="form-group">
+                    <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
+                </div>
+
+                <?php ActiveForm::end(); ?>
             </div>
-
-            <?php ActiveForm::end(); ?>
         </div>
     </div>
-</div>
+</main>
