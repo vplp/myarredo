@@ -16,8 +16,8 @@ class ChangePassword extends CommonForm
 {
 
     const FLASH_KEY = 'ChangePassword';
-    
-    /** @var bool  */
+
+    /** @var bool */
     public $isNewRecord = false;
 
     /**
@@ -41,9 +41,12 @@ class ChangePassword extends CommonForm
      */
     public function scenarios()
     {
-        return [
-            'passwordChange' => ['password', 'password_confirmation', 'password_old'],
-        ];
+        return ArrayHelper::merge(
+            [
+                'passwordChange' => ['password', 'password_confirmation', 'password_old'],
+            ],
+            parent::scenarios()
+        );
     }
 
     /**

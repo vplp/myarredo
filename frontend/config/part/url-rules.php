@@ -6,6 +6,7 @@ return [
     '' => 'home/home/index',
 
     // Module [[Users]]
+    'partner/registration' => 'user/partner/register',
     'user/register' => 'user/register/index',
     'user/login' => 'user/login/index',
     'user/logout' => 'user/logout/index',

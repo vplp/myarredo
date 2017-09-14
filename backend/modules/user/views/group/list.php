@@ -38,7 +38,7 @@ echo GridView::widget([
         [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
             'updateLink' => function ($model) {
-                return (in_array($model['id'], [1, 2])) ? false : ['intrash', 'id' => $model['id']];
+                return (in_array($model['id'], [1, 2])) ? false : ['update', 'id' => $model['id']];
             },
             'deleteLink' => function ($model) {
                 return (in_array($model['id'], [1, 2])) ? false : ['intrash', 'id' => $model['id']];

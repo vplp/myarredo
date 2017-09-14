@@ -20,23 +20,18 @@ use frontend\modules\user\models\{
  * Class ProfileController
  *
  * @package frontend\modules\user\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class ProfileController extends BaseController
 {
-
     protected $model = Profile::class;
     public $title = "Profile";
     public $defaultAction = 'index';
-    public $layout = "@app/layouts/nologin";
 
     /**
      * @return array
      */
     public function behaviors()
     {
-
         return [
             'AccessControl' => [
                 'class' => AccessControl::class,
@@ -57,7 +52,6 @@ class ProfileController extends BaseController
             ],
         ];
     }
-
 
     /**
      * @return array
@@ -86,7 +80,15 @@ class ProfileController extends BaseController
         $model->setScenario('frontend');
         $user = $model::findByUserId(Yii::$app->getUser()->id);
 
-        return $this->render('index', [
+        $view = 'index';
+
+        if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') {
+            $view = 'index_partner';
+        } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
+            $view = 'index_factory';
+        }
+
+        return $this->render($view, [
             'model' => $user,
         ]);
     }
@@ -99,8 +101,10 @@ class ProfileController extends BaseController
         /** @var Profile $model */
         $model = new $this->model;
         $model->setScenario('ownEdit');
+
         $profile = $model::findByUserId(Yii::$app->getUser()->id);
         $profile->setScenario('ownEdit');
+
         if ($profile->load(Yii::$app->getRequest()->post())) {
             $transaction = $profile::getDb()->beginTransaction();
             try {
@@ -115,7 +119,16 @@ class ProfileController extends BaseController
                 $transaction->rollBack();
             }
         }
-        return $this->render('_form', [
+
+        $view = '_form';
+
+        if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') {
+            $view = '_form_partner';
+        } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
+            $view = '_form_factory';
+        }
+
+        return $this->render($view, [
             'model' => $profile,
         ]);
     }

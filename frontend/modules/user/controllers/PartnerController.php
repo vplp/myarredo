@@ -9,17 +9,16 @@ use yii\helpers\Url;
 use frontend\components\BaseController;
 use frontend\modules\user\models\form\RegisterForm;
 
-
 /**
- * Class RegisterController
+ * Class PartnerController
  *
  * @package frontend\modules\user\controllers
  */
-class RegisterController extends BaseController
+class PartnerController extends BaseController
 {
     protected $model = RegisterForm::class;
-    public $title = "Register";
-    public $defaultAction = 'index';
+    public $title = "Partner";
+    public $defaultAction = 'register';
 
     /**
      * @return array
@@ -32,7 +31,7 @@ class RegisterController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['register'],
                         'roles' => ['?'],
                     ],
                     [
@@ -50,7 +49,7 @@ class RegisterController extends BaseController
     /**
      * @return string|\yii\web\Response
      */
-    public function actionIndex()
+    public function actionRegister()
     {
         if (!\Yii::$app->getUser()->getIsGuest()) {
             return $this->redirect(Url::toRoute('/home/home/index'));
@@ -58,10 +57,10 @@ class RegisterController extends BaseController
 
         /** @var RegisterForm $model */
         $model = new $this->model;
-        $model->setScenario('register');
+        $model->setScenario('registerPartner');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
-            $status = $model->addUser();
+            $status = $model->addPartner();
             if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
                 return $this->redirect(Url::toRoute('/user/profile/index'));
             }
@@ -71,7 +70,7 @@ class RegisterController extends BaseController
             }
         }
 
-        return $this->render('index', [
+        return $this->render('register', [
             'model' => $model,
         ]);
     }

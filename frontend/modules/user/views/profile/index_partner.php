@@ -18,8 +18,28 @@ $this->title = 'Профиль';
 
             <div class="part-contact">
                 <div class="form-group">
+                    <?= Html::activeLabel($model, 'name_company') ?>
+                    <?= $model['name_company'] ?>
+                </div>
+                <div class="form-group">
+                    <?= Html::activeLabel($model, 'address') ?>
+                    <?= $model['address'] ?>
+                </div>
+                <div class="form-group">
+                    <?= Html::activeLabel($model, 'country_id') ?>
+                    <?= $model['country_id'] ?>
+                </div>
+                <div class="form-group">
+                    <?= Html::activeLabel($model, 'city_id') ?>
+                    <?= $model['city_id'] ?>
+                </div>
+                <div class="form-group">
                     <?= Html::activeLabel($model, 'phone') ?>
                     <?= $model['phone'] ?>
+                </div>
+                <div class="form-group">
+                    <?= Html::activeLabel($model, 'website') ?>
+                    <?= $model['website'] ?>
                 </div>
                 <div class="form-group">
                     <?= Html::activeLabel($model, 'first_name') ?>
