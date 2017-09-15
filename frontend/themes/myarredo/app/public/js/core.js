@@ -312,4 +312,10 @@ $(document).ready(function(){
        $(this).parent().find('input[type="checkbox"]').click();
     });
 
+    $(".dropdown-menu a").click(function(){
+       var href = $(this).attr('href');
+       window.location.href = href;
+    });
+
+
 });
