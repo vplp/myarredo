@@ -7,8 +7,8 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
 
 ?>
 
-<?php if ((Yii::$app->getUser()->isGuest)): ?>
-    <header>
+<header>
+    <?php if ((Yii::$app->getUser()->isGuest)): ?>
         <div class="city-select-cont">
             <div class="container large-container">
                 <div class="row">
@@ -246,19 +246,7 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                 </ul>
             </div>
         </div>
-        <nav class="navbar">
-            <div class="container large-container">
-                <a href="/" class="logo">
-                    <img src="<?= $bundle->baseUrl ?>/img/logo.png" alt="">
-                </a>
-                <?= CatalogMenu::widget([]); ?>
-            </div>
-        </nav>
-
-    </header>
-<?php else: ?>
-    <header>
-
+    <?php else: ?>
         <div class="top-navbar">
             <div class="container large-container">
                 <ul class="nav navbar-nav navbar-right">
@@ -275,9 +263,6 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                                             </li>
                                             <li>
                                                 <?= Html::a('Распродажа', ['/user/profile/index']); ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a('Заявки', ['/user/profile/index']); ?>
                                             </li>
                                             <li>
                                                 <?= Html::a('Заявки', ['/user/profile/index']); ?>
@@ -310,14 +295,13 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                 </ul>
             </div>
         </div>
-        <nav class="navbar">
-            <div class="container large-container">
-                <a href="/" class="logo">
-                    <img src="<?= $bundle->baseUrl ?>/img/logo.png" alt="">
-                </a>
-                <?= CatalogMenu::widget([]); ?>
-            </div>
-        </nav>
-
-    </header>
-<?php endif; ?>
+    <?php endif; ?>
+    <nav class="navbar">
+        <div class="container large-container">
+            <a href="/" class="logo">
+                <img src="<?= $bundle->baseUrl ?>/img/logo.png" alt="">
+            </a>
+            <?= CatalogMenu::widget([]); ?>
+        </div>
+    </nav>
+</header>
