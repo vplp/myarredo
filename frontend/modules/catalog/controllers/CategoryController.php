@@ -47,7 +47,7 @@ class CategoryController extends BaseController
     {
         $model = new Product();
 
-        $params = $group = [];
+        $group = [];
 
         if (isset(Yii::$app->catalogFilter->params['category'])) {
             $group = Yii::$app->catalogFilter->params['category'];
@@ -72,6 +72,11 @@ class CategoryController extends BaseController
             'pages' => $models->getPagination(),
         ]);
     }
+
+    /**
+     * @param \yii\base\Action $action
+     * @return bool|\yii\web\Response
+     */
     public function beforeAction($action)
     {
         $params = Yii::$app->catalogFilter->params;
@@ -84,7 +89,6 @@ class CategoryController extends BaseController
         ];
 
         if (!empty($params['category'])) {
-
             $this->breadcrumbs[] = [
                 'label' => $params['category']['lang']['title'],
                 'url' => Yii::$app->catalogFilter->createUrl(['category' => $params['category']['alias']])

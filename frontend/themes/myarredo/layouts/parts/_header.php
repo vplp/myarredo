@@ -262,14 +262,23 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                                                 <?= Html::a('Города', ['/user/profile/index']); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Распродажа', ['/user/profile/index']); ?>
+                                                <?= Html::a('Заявки', ['/user/profile/index']); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Заявки', ['/user/profile/index']); ?>
+                                                <?= Html::a('Распродажа', ['/catalog/sale/partner-list']); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a('Размещение кода', ['/user/profile/index']); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a('Инструкция партнерам', ['/user/profile/index']); ?>
                                             </li>
                                             <li role="separator" class="divider"></li>
                                             <li>
                                                 <?= Html::a('Профиль', ['/user/profile/index']); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a(Yii::t('app', 'Sign Up'), ['/user/logout/index']); ?>
                                             </li>
                                         <?php elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory'): ?>
                                             <li>
@@ -282,9 +291,15 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                                             <li>
                                                 <?= Html::a('Профиль', ['/user/profile/index']); ?>
                                             </li>
+                                            <li>
+                                                <?= Html::a(Yii::t('app', 'Sign Up'), ['/user/logout/index']); ?>
+                                            </li>
                                         <?php else: ?>
                                             <li>
                                                 <?= Html::a('Профиль', ['/user/profile/index']); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a(Yii::t('app', 'Sign Up'), ['/user/logout/index']); ?>
                                             </li>
                                         <?php endif; ?>
                                     </ul>
