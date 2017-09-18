@@ -24,7 +24,7 @@ class Sale extends \common\modules\catalog\models\Sale
      */
     public function scenarios()
     {
-        return [];
+        return parent::scenarios();
     }
 
     /**
@@ -72,6 +72,17 @@ class Sale extends \common\modules\catalog\models\Sale
     }
 
     /**
+     * Search
+     *
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function search($params)
+    {
+        return (new search\Sale())->search($params);
+    }
+
+    /**
      *
      * @return string
      */
@@ -81,14 +92,13 @@ class Sale extends \common\modules\catalog\models\Sale
     }
 
     /**
-     * Search
-     *
-     * @param $params
-     * @return \yii\data\ActiveDataProvider
+     * @return null|string
      */
-    public function search($params)
+    public static function getImage()
     {
-        return (new search\Sale())->search($params);
+        $image =  'http://placehold.it/200x200';
+
+        return $image;
     }
 
     /**

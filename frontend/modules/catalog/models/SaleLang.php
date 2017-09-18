@@ -22,7 +22,7 @@ class SaleLang extends \common\modules\catalog\models\SaleLang
      */
     public function scenarios()
     {
-        return [];
+        return parent::scenarios();
     }
 
     /**

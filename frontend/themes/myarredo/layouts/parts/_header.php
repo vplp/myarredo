@@ -7,8 +7,8 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
 
 ?>
 
-<?php if ((Yii::$app->getUser()->isGuest)): ?>
-    <header>
+<header>
+    <?php if ((Yii::$app->getUser()->isGuest)): ?>
         <div class="city-select-cont">
             <div class="container large-container">
                 <div class="row">
@@ -246,19 +246,7 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                 </ul>
             </div>
         </div>
-        <nav class="navbar">
-            <div class="container large-container">
-                <a href="/" class="logo">
-                    <img src="<?= $bundle->baseUrl ?>/img/logo.png" alt="">
-                </a>
-                <?= CatalogMenu::widget([]); ?>
-            </div>
-        </nav>
-
-    </header>
-<?php else: ?>
-    <header>
-
+    <?php else: ?>
         <div class="top-navbar">
             <div class="container large-container">
                 <ul class="nav navbar-nav navbar-right">
@@ -274,17 +262,23 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                                                 <?= Html::a('Города', ['/user/profile/index']); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Распродажа', ['/user/profile/index']); ?>
-                                            </li>
-                                            <li>
                                                 <?= Html::a('Заявки', ['/user/profile/index']); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Заявки', ['/user/profile/index']); ?>
+                                                <?= Html::a('Распродажа', ['/catalog/sale/partner-list']); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a('Размещение кода', ['/user/profile/index']); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a('Инструкция партнерам', ['/user/profile/index']); ?>
                                             </li>
                                             <li role="separator" class="divider"></li>
                                             <li>
                                                 <?= Html::a('Профиль', ['/user/profile/index']); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a(Yii::t('app', 'Sign Up'), ['/user/logout/index']); ?>
                                             </li>
                                         <?php elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory'): ?>
                                             <li>
@@ -297,9 +291,15 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                                             <li>
                                                 <?= Html::a('Профиль', ['/user/profile/index']); ?>
                                             </li>
+                                            <li>
+                                                <?= Html::a(Yii::t('app', 'Sign Up'), ['/user/logout/index']); ?>
+                                            </li>
                                         <?php else: ?>
                                             <li>
                                                 <?= Html::a('Профиль', ['/user/profile/index']); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a(Yii::t('app', 'Sign Up'), ['/user/logout/index']); ?>
                                             </li>
                                         <?php endif; ?>
                                     </ul>
@@ -310,14 +310,13 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                 </ul>
             </div>
         </div>
-        <nav class="navbar">
-            <div class="container large-container">
-                <a href="/" class="logo">
-                    <img src="<?= $bundle->baseUrl ?>/img/logo.png" alt="">
-                </a>
-                <?= CatalogMenu::widget([]); ?>
-            </div>
-        </nav>
-
-    </header>
-<?php endif; ?>
+    <?php endif; ?>
+    <nav class="navbar">
+        <div class="container large-container">
+            <a href="/" class="logo">
+                <img src="<?= $bundle->baseUrl ?>/img/logo.png" alt="">
+            </a>
+            <?= CatalogMenu::widget([]); ?>
+        </div>
+    </nav>
+</header>

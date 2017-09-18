@@ -16,7 +16,7 @@ use yii\helpers\Html;
         </div>
     </object>
     <div class="img-cont">
-        <?= Html::img($model->getImageLink()); ?>
+        <?= Html::img($model::getImage()); ?>
         <div class="brand">
             <?= $model['factory']['lang']['title'] ?>
         </div>

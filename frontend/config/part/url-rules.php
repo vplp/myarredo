@@ -34,6 +34,9 @@ return [
     'catalog' => 'catalog/category/list',
     'factories' => 'catalog/factory/list',
     'sale' => 'catalog/sale/list',
+    'partner/sale' => 'catalog/sale/partner-list',
+    'partner/sale/create' => 'catalog/sale/create',
+    'partner/sale/update/<id:[\d\-]+>' => 'catalog/sale/create',
 
     // Module [[News]]
     'news/<alias:[\w\-]+>' => 'news/list/index',

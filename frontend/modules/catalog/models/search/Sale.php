@@ -7,7 +7,7 @@ use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
 use frontend\modules\catalog\models\{
-    Sale as SaleModel
+    Sale as SaleModel, SaleLang
 };
 
 /**
@@ -25,6 +25,7 @@ class Sale extends SaleModel
     public function rules()
     {
         return [
+            [['id', 'user_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
         ];
     }
@@ -55,10 +56,15 @@ class Sale extends SaleModel
             ],
         ]);
 
-        if (!($this->load($params) && $this->validate())) {
+        if (!($this->load($params, '') && $this->validate())) {
             return $dataProvider;
         }
 
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'user_id' => $this->user_id
+        ]);
+        //
         $query->andFilterWhere(['like', 'alias', $this->alias]);
         //
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);

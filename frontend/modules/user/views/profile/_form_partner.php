@@ -4,6 +4,10 @@ use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
+//
+use frontend\modules\location\models\{
+    Country, City
+};
 
 /**
  * @var \frontend\modules\user\models\Profile $model
@@ -30,16 +34,28 @@ $this->title = 'Редактировать профиль';
                     <div class="col-sm-4 col-md-4 col-lg-4 one-row">
                         <?= $form->field($model, 'first_name') ?>
                         <?= $form->field($model, 'last_name') ?>
+                        <?= $form->field($model, 'phone') ?>
                     </div>
 
                     <div class="col-sm-4 col-md-4 col-lg-4 one-row">
                         <?= $form->field($model, 'name_company') ?>
-                        <?= $form->field($model, 'address') ?>
+                        <?= $form->field($model, 'website') ?>
                     </div>
 
                     <div class="col-sm-4 col-md-4 col-lg-4 one-row">
-                        <?= $form->field($model, 'phone') ?>
-                        <?= $form->field($model, 'website') ?>
+                        <?= $form->field($model, 'country_id')
+                            ->dropDownList(
+                                [null => '--'] + Country::dropDownList(),
+                                ['class' => 'selectpicker']
+                            ); ?>
+
+                        <?= $form->field($model, 'city_id')
+                            ->dropDownList(
+                                [null => '--'] + City::dropDownList($model->country_id),
+                                ['class' => 'selectpicker']
+                            ); ?>
+
+                        <?= $form->field($model, 'address') ?>
                     </div>
 
                 </div>
@@ -60,3 +76,21 @@ $this->title = 'Редактировать профиль';
         </div>
     </div>
 </main>
+
+<?php
+
+$script = <<<JS
+    
+    $('select#profile-country_id').change(function(){
+        var country_id = parseInt($(this).val());
+        $.post('/location/location/get-cities', {_csrf: $('#token').val(),country_id:country_id}, function(data){
+            var select = $('select#profile-city_id');
+            select.html(data.options);
+            select.selectpicker("refresh");
+        });
+    });
+
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);
+?>

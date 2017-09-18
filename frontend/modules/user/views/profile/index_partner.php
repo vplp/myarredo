@@ -27,11 +27,11 @@ $this->title = 'Профиль';
                 </div>
                 <div class="form-group">
                     <?= Html::activeLabel($model, 'country_id') ?>
-                    <?= $model['country_id'] ?>
+                    <?= $model['country'] ?>
                 </div>
                 <div class="form-group">
                     <?= Html::activeLabel($model, 'city_id') ?>
-                    <?= $model['city_id'] ?>
+                    <?= $model['city'] ?>
                 </div>
                 <div class="form-group">
                     <?= Html::activeLabel($model, 'phone') ?>
