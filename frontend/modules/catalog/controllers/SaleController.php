@@ -94,6 +94,7 @@ class SaleController extends BaseController
                 'class' => CreateWithLang::class,
                 'modelClass' => $this->model,
                 'modelClassLang' => $this->modelLang,
+                'view' => 'partner/_form',
                 'redirect' => function () {
                     return ['update', 'id' => $this->action->getModel()->id];
                 }
@@ -102,6 +103,7 @@ class SaleController extends BaseController
                 'class' => UpdateWithLang::class,
                 'modelClass' => $this->model,
                 'modelClassLang' => $this->modelLang,
+                'view' => 'partner/_form',
                 'redirect' => function () {
                     return ['update', 'id' => $this->action->getModel()->id];
                 }
@@ -142,7 +144,7 @@ class SaleController extends BaseController
 
         $params = ['user_id' => Yii::$app->getUser()->id];
 
-        $models = $model->search(ArrayHelper::merge($params, Yii::$app->request->queryParams));
+        $models = $model->partnerSearch(ArrayHelper::merge($params, Yii::$app->request->queryParams));
 
         $this->title = 'Распродажа итальянской мебели';
 
@@ -151,7 +153,7 @@ class SaleController extends BaseController
             'url' => ['/catalog/sale/list']
         ];
 
-        return $this->render('partner_list', [
+        return $this->render('partner/list', [
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),
         ]);

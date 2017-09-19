@@ -1,6 +1,7 @@
 <?php
 
-use yii\widgets\ActiveForm;
+use backend\themes\defaults\widgets\forms\ActiveForm;
+//use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
@@ -42,7 +43,7 @@ $this->title = 'Добавить товар в распродажу';
                             Для загрузки изображений - сначала создайте товар
                         </div>
                     <?php else: ?>
-                        df
+                        <?= $form->field($model, 'picpath')->imageOne($model->getImage()) ?>
                     <?php endif; ?>
 
                     <?= $form->field($modelLang, 'title') ?>
