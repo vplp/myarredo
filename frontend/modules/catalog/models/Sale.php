@@ -11,37 +11,37 @@ use yii\helpers\Url;
  */
 class Sale extends \common\modules\catalog\models\Sale
 {
-    /**
-     * @return array
-     */
-    public function behaviors()
-    {
-        return [];
-    }
+//    /**
+//     * @return array
+//     */
+//    public function behaviors()
+//    {
+//        return [];
+//    }
 
-    /**
-     * @return array
-     */
-    public function scenarios()
-    {
-        return parent::scenarios();
-    }
-
-    /**
-     * @return array
-     */
-    public function attributeLabels()
-    {
-        return [];
-    }
-
-    /**
-     * @return array
-     */
-    public function rules()
-    {
-        return [];
-    }
+//    /**
+//     * @return array
+//     */
+//    public function scenarios()
+//    {
+//        return parent::scenarios();
+//    }
+//
+//    /**
+//     * @return array
+//     */
+//    public function attributeLabels()
+//    {
+//        return [];
+//    }
+//
+//    /**
+//     * @return array
+//     */
+//    public function rules()
+//    {
+//        return [];
+//    }
 
     /**
      * @return mixed

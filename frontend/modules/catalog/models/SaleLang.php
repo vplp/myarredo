@@ -17,27 +17,27 @@ class SaleLang extends \common\modules\catalog\models\SaleLang
         return [];
     }
 
-    /**
-     * @return array
-     */
-    public function scenarios()
-    {
-        return parent::scenarios();
-    }
-
-    /**
-     * @return array
-     */
-    public function attributeLabels()
-    {
-        return [];
-    }
-
-    /**
-     * @return array
-     */
-    public function rules()
-    {
-        return [];
-    }
+//    /**
+//     * @return array
+//     */
+//    public function scenarios()
+//    {
+//        return parent::scenarios();
+//    }
+//
+//    /**
+//     * @return array
+//     */
+//    public function attributeLabels()
+//    {
+//        return parent::attributeLabels();
+//    }
+//
+//    /**
+//     * @return array
+//     */
+//    public function rules()
+//    {
+//        return [];
+//    }
 }

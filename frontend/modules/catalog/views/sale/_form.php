@@ -1,105 +1,86 @@
-
 <?php
 
-/* !!! */ echo  '<pre style="color:red;">'; print_r($model); echo '</pre>'; /* !!! */
+use yii\widgets\ActiveForm;
+use yii\helpers\{
+    Html, Url
+};
+use kartik\widgets\Select2;
+//
+use backend\modules\catalog\models\{
+    Category, Factory, Types
+};
+
+/**
+ * @var \frontend\modules\catalog\models\Sale $model
+ * @var \frontend\modules\catalog\models\SaleLang $modelLang
+ */
+
+$this->title = 'Добавить товар в распродажу';
+
 ?>
+
 <main>
     <div class="page create-sale">
         <div class="container large-container">
-            <h1>Добавить товар в распродажу</h1>
+
+            <?= Html::tag('h1', $this->title); ?>
+
             <div class="column-center">
                 <div class="form-horizontal">
-                    <div class="alert alert-warning">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                        Для загрузки изображений - сначала создайте товар
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Название</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" >
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Категория</label>
-                        <div class="col-sm-9">
-                            <div class="dropdown arr-drop">
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Выберите вариант</button>
-                                <ul class="dropdown-menu drop-down-find">
-                                    <li>
-                                        <input type="text" class="find">
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">Спальни</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">Кухни</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">Столовые комнаты</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Предмет*</label>
-                        <div class="col-sm-9">
-                            <div class="dropdown arr-drop">
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Выберите предмет</button>
-                                <ul class="dropdown-menu drop-down-find">
-                                    <li>
-                                        <input type="text" class="find">
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">Аксессуары</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">Факсессуары для ванной</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">База под раковину</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <?php $form = ActiveForm::begin([
+                        //'action' => Url::toRoute(['/catalog/sale/' . Yii::$app->controller->action->id]),
+                        'fieldConfig' => [
+                            'template' => "{label}<div class=\"col-sm-9\">{input}</div>\n{hint}\n{error}",
+                            'labelOptions' => ['class' => 'col-sm-3 col-form-label'],
+                        ],
+                    ]); ?>
 
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Фабрика*</label>
-                        <div class="col-sm-9">
-                            <div class="dropdown arr-drop">
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Выберите фабрику</button>
-                                <ul class="dropdown-menu drop-down-find">
-                                    <li>
-                                        <input type="text" class="find">
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">Airnova</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">Alberta royal</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">ALF</a>
-                                    </li>
-                                </ul>
-                            </div>
+                    <?php if ($model->isNewRecord): ?>
+                        <div class="alert alert-warning">
+                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                            Для загрузки изображений - сначала создайте товар
                         </div>
-                    </div>
+                    <?php else: ?>
+                        df
+                    <?php endif; ?>
 
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Фабрика(если нет в списке, добавляются только фабрики Италии)</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" >
-                        </div>
-                    </div>
+                    <?= $form->field($modelLang, 'title') ?>
+                    <?= $form->field($model, 'alias') ?>
+
+                    <?= $form
+                        ->field($model, 'category_ids')
+                        ->widget(Select2::classname(), [
+                            'data' => Category::dropDownList(),
+                            'options' => [
+                                'placeholder' => Yii::t('app', 'Select option'),
+                                'multiple' => true
+                            ],
+                        ]) ?>
+
+                    <?= $form
+                        ->field($model, 'catalog_type_id')
+                        ->widget(Select2::classname(), [
+                            'data' => Types::dropDownList(),
+                            'options' => ['placeholder' => Yii::t('app', 'Select option')],
+                        ]) ?>
+
+                    <?= $form
+                        ->field($model, 'factory_id')
+                        ->widget(Select2::classname(), [
+                            'data' => Factory::dropDownList(),
+                            'options' => ['placeholder' => Yii::t('app', 'Select option')],
+                        ]) ?>
+
+                    <?= $form->field($model, 'factory_name') ?>
 
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Стиль</label>
                         <div class="col-sm-9">
                             <div class="dropdown arr-drop">
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Выберите вариант</button>
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                    Выберите вариант
+                                </button>
                                 <ul class="dropdown-menu drop-down-find">
                                     <li>
                                         <input type="text" class="find">
@@ -122,7 +103,9 @@
                         <label class="col-sm-3 col-form-label">Материал</label>
                         <div class="col-sm-9">
                             <div class="dropdown arr-drop">
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Выберите вариант</button>
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                    Выберите вариант
+                                </button>
                                 <ul class="dropdown-menu drop-down-find">
                                     <li>
                                         <input type="text" class="find">
@@ -141,80 +124,90 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Описание</label>
-                        <div class="col-sm-9">
-                            <textarea name="" id="" cols="20" rows="10" class="form-control"></textarea>
-                        </div>
-                    </div>
+                    <?= $form->field($modelLang, 'description')->textarea() ?>
 
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Длина</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Глубина</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Высота</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Диаметр</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Внутренняя длина</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Внутренняя глубина</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Обьем</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control">
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Цена</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" value="0.00">
-                        </div>
-                    </div>
+                    <?= $form
+                        ->field(
+                            $model,
+                            'price',
+                            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+                        ) ?>
 
                     <div class="form-group row price-row">
-                        <label class="col-sm-3 col-form-label">Новая цена*</label>
-                        <div class="col-sm-1" style="padding: 0 5px 0 15px;">
-                            <input type="text" class="form-control" >
-                        </div>
-                        <div class="col-sm-1" style="padding: 0 5px 0 5px;">
-                            <select class="selectpicker">
-                                <option>EUR</option>
-                                <option>RUB</option>
-                            </select>
-                        </div>
+                        <?= $form
+                            ->field(
+                                $model,
+                                'price_new',
+                                [
+                                    'template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}",
+                                    'options' => [
+                                        'class' => '',
+                                    ]
+                                ]
+                            ) ?>
+
+                        <?= $form
+                            ->field(
+                                $model,
+                                'currency',
+                                [
+                                    'template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}",
+                                    'options' => [
+                                        'class' => '',
+                                    ]
+                                ]
+                            )
+                            ->dropDownList($model::currencyRange())
+                            ->label(false) ?>
                     </div>
 
                     <div class="form-group row">
@@ -222,18 +215,29 @@
 
                         <div class="col-sm-9">
                             <div class="checkbox checkbox-primary">
-                                <input id="checkbox1" type="checkbox" checked="">
-                                <label for="checkbox1">
-                                    Активный
-                                </label>
+                                <?= $form
+                                    ->field(
+                                        $model,
+                                        'published',
+                                        [
+                                            'template' => '{input}{label}{error}{hint}',
+                                            'options' => [
+                                                'class' => '',
+                                            ]
+                                        ]
+                                    )
+                                    ->checkbox([], false)
+                                    ->label() ?>
                             </div>
                         </div>
                     </div>
 
                     <div class="buttons-cont">
-                        <button type="button" class="btn btn-primary btn-lg">Сохранить</button>
-                        <button type="button" class="btn btn-primary btn-lg">Отменить</button>
+                        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary btn-lg']) ?>
+                        <?= Html::a(Yii::t('app', 'Cancel'), ['/catalog/sale/partner-list'], ['class' => 'btn btn-primary btn-lg']) ?>
                     </div>
+
+                    <?php ActiveForm::end(); ?>
 
                 </div>
             </div>

@@ -60,6 +60,7 @@ class SaleController extends BaseController
                         'actions' => [
                             'list', 'view'
                         ],
+                        'roles' => ['?', '@'],
                     ],
                     [
                         'allow' => true,
@@ -93,23 +94,17 @@ class SaleController extends BaseController
                 'class' => CreateWithLang::class,
                 'modelClass' => $this->model,
                 'modelClassLang' => $this->modelLang,
-//                'redirect' => function () {
-//                    return ($_POST['save_and_exit']) ? $this->actionListLinkStatus : [
-//                        'update',
-//                        'id' => $this->action->getModel()->id
-//                    ];
-//                }
+                'redirect' => function () {
+                    return ['update', 'id' => $this->action->getModel()->id];
+                }
             ],
             'update' => [
                 'class' => UpdateWithLang::class,
                 'modelClass' => $this->model,
                 'modelClassLang' => $this->modelLang,
-//                'redirect' => function () {
-//                    return ($_POST['save_and_exit']) ? $this->actionListLinkStatus : [
-//                        'update',
-//                        'id' => $this->action->getModel()->id
-//                    ];
-//                }
+                'redirect' => function () {
+                    return ['update', 'id' => $this->action->getModel()->id];
+                }
             ],
         ];
     }

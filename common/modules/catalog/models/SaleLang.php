@@ -47,6 +47,7 @@ class SaleLang extends ActiveRecordLang
             [['title'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 511],
             [['content'], 'string'],
+            [['description', 'content'], 'default', 'value' => '']
         ]);
     }
 
@@ -57,6 +58,7 @@ class SaleLang extends ActiveRecordLang
     {
         return [
             'backend' => ['title', 'description', 'content'],
+            'frontend' => ['title', 'description'],
         ];
     }
 

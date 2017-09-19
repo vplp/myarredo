@@ -8,7 +8,9 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
 ?>
 
 <header>
+
     <?php if ((Yii::$app->getUser()->isGuest)): ?>
+
         <div class="city-select-cont">
             <div class="container large-container">
                 <div class="row">
@@ -246,7 +248,9 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                 </ul>
             </div>
         </div>
+
     <?php else: ?>
+
         <div class="top-navbar">
             <div class="container large-container">
                 <ul class="nav navbar-nav navbar-right">
@@ -257,7 +261,9 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                                 Меню
                                 <object>
                                     <ul class="dropdown-menu">
+
                                         <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner'): ?>
+
                                             <li>
                                                 <?= Html::a('Города', ['/user/profile/index']); ?>
                                             </li>
@@ -280,7 +286,9 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                                             <li>
                                                 <?= Html::a(Yii::t('app', 'Sign Up'), ['/user/logout/index']); ?>
                                             </li>
+
                                         <?php elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory'): ?>
+
                                             <li>
                                                 <?= Html::a('Каталог', ['/user/profile/index']); ?>
                                             </li>
@@ -294,13 +302,16 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                                             <li>
                                                 <?= Html::a(Yii::t('app', 'Sign Up'), ['/user/logout/index']); ?>
                                             </li>
+
                                         <?php else: ?>
+
                                             <li>
                                                 <?= Html::a('Профиль', ['/user/profile/index']); ?>
                                             </li>
                                             <li>
                                                 <?= Html::a(Yii::t('app', 'Sign Up'), ['/user/logout/index']); ?>
                                             </li>
+
                                         <?php endif; ?>
                                     </ul>
                                 </object>
@@ -310,7 +321,9 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                 </ul>
             </div>
         </div>
+
     <?php endif; ?>
+
     <nav class="navbar">
         <div class="container large-container">
             <a href="/" class="logo">
