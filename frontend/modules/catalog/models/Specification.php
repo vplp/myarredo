@@ -2,7 +2,9 @@
 
 namespace frontend\modules\catalog\models;
 
-use yii\helpers\Url;
+use yii\helpers\{
+    Url, ArrayHelper
+};
 
 /**
  * Class Specification
@@ -48,7 +50,49 @@ class Specification extends \common\modules\catalog\models\Specification
      */
     public static function findBase()
     {
+        return parent::findBase()->enabled();
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function findBaseArray()
+    {
         return parent::findBase()->enabled()->asArray();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChildren()
+    {
+        return parent::getChildren()
+            ->enabled()
+            ->innerJoinWith(['lang'])
+            ->orderBy(SpecificationLang::tableName() . '.title');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParent()
+    {
+        return parent::getParent()
+            ->enabled()
+            ->innerJoinWith(['lang'])
+            ->orderBy(SpecificationLang::tableName() . '.title');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChildrenDropDownList()
+    {
+        return ArrayHelper::map(
+            self::getChildren()->enabled()->all(),
+            'id',
+            'lang.title'
+        );
     }
 
     /**
@@ -100,7 +144,7 @@ class Specification extends \common\modules\catalog\models\Specification
      */
     public static function getAllWithFilter($params = [])
     {
-        return self::findBase()
+        return self::findBaseArray()
             ->andWhere([self::tableName() . '.parent_id' => 9])
             ->all();
     }

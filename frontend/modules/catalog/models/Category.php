@@ -3,7 +3,9 @@
 namespace frontend\modules\catalog\models;
 
 use Yii;
-use yii\helpers\Url;
+use yii\helpers\{
+    Url, ArrayHelper
+};
 
 /**
  * Class Category
@@ -50,6 +52,24 @@ class Category extends \common\modules\catalog\models\Category
     public static function findBase()
     {
         return parent::findBase()->enabled()->asArray();
+    }
+
+    /**
+     * @param array $option
+     * @return array
+     */
+    public static function dropDownList($option = [])
+    {
+        $query = self::findBase();
+
+        if (isset($option['type_id'])) {
+            $query->innerJoinWith(["types"])
+                ->andFilterWhere([Types::tableName() . '.id' => $option['type_id']]);
+        }
+
+        $data = $query->all();
+
+        return ArrayHelper::map($data, 'id', 'lang.title');
     }
 
     /**

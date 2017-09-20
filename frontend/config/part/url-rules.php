@@ -34,9 +34,14 @@ return [
     'catalog' => 'catalog/category/list',
     'factories' => 'catalog/factory/list',
     'sale' => 'catalog/sale/list',
-    'partner/sale' => 'catalog/sale/partner-list',
-    'partner/sale/create' => 'catalog/sale/create',
-    'partner/sale/update/<id:[\d\-]+>' => 'catalog/sale/create',
+
+    'partner/sale' => 'catalog/partner-sale/list',
+    'partner/sale/create' => 'catalog/partner-sale/create',
+    'partner/sale/update/<id:[\d\-]+>' => 'catalog/partner-sale/update',
+    'partner/mailing-by-cities' => 'catalog/partner-sale/mailing-by-cities',
+    'partner/orders' => 'catalog/partner-sale/orders',
+    'razmeshchenie_koda' => 'catalog/partner-sale/code',
+    'instruktsiya_partneram' => 'catalog/partner-sale/instructions',
 
     // Module [[News]]
     'news/<alias:[\w\-]+>' => 'news/list/index',

@@ -56,7 +56,7 @@ class Sale extends SaleModel
             ],
         ]);
 
-        if (!($this->load($params, '') && $this->validate())) {
+        if (!($this->load($params, ''))) {
             return $dataProvider;
         }
 
@@ -78,7 +78,27 @@ class Sale extends SaleModel
      */
     public function search($params)
     {
-        $query = SaleModel::findBase();
+        $query = SaleModel::findBase()->enabled();
+        return $this->baseSearch($query, $params);
+    }
+
+    /**
+     * @param array $params
+     * @return ActiveDataProvider
+     */
+    public function trash($params)
+    {
+        $query = SaleModel::findBase()->deleted();
+        return $this->baseSearch($query, $params);
+    }
+
+    /**
+     * @param array $params
+     * @return ActiveDataProvider
+     */
+    public function partnerSearch($params)
+    {
+        $query = SaleModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 }
