@@ -265,10 +265,10 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                                         <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner'): ?>
 
                                             <li>
-                                                <?= Html::a('Города', ['/user/profile/index']); ?>
+                                                <?= Html::a('Города', ['/catalog/partner-sale/mailing-by-cities']); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Заявки', ['/user/profile/index']); ?>
+                                                <?= Html::a('Заявки', ['/catalog/partner-sale/orders']); ?>
                                             </li>
                                             <li>
                                                 <?= Html::a('Распродажа', ['/catalog/partner-sale/list']); ?>

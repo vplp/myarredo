@@ -62,7 +62,9 @@ class PartnerSaleController extends BaseController
                             'update',
                             'list',
                             'code',
-                            'instructions'
+                            'instructions',
+                            'orders',
+                            'mailing-by-cities'
                         ],
                         'roles' => ['partner'],
                     ],
@@ -130,6 +132,24 @@ class PartnerSaleController extends BaseController
     {
         $this->title = 'Размещение кода';
         return $this->render('code', []);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionOrders()
+    {
+        $this->title = 'Размещение кода';
+        return $this->render('orders', []);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionMailingByCities()
+    {
+        $this->title = 'Размещение кода';
+        return $this->render('mailing_by_cities', []);
     }
 
     /**
