@@ -271,7 +271,7 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                                                 <?= Html::a('Заявки', ['/user/profile/index']); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Распродажа', ['/catalog/sale/partner-list']); ?>
+                                                <?= Html::a('Распродажа', ['/catalog/partner-sale/list']); ?>
                                             </li>
                                             <li>
                                                 <?= Html::a('Размещение кода', ['/user/profile/index']); ?>

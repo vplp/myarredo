@@ -104,7 +104,7 @@ class Sale extends \common\modules\catalog\models\Sale
      */
     public function getUrlUpdate()
     {
-        return Url::toRoute(['/catalog/sale/update', 'id' => $this->id]);
+        return Url::toRoute(['/catalog/partner-sale/update', 'id' => $this->id]);
     }
 
     /**

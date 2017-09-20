@@ -30,7 +30,6 @@ $this->title = 'Добавить товар в распродажу';
                 <div class="form-horizontal">
 
                     <?php $form = ActiveForm::begin([
-                        //'action' => Url::toRoute(['/catalog/sale/' . Yii::$app->controller->action->id]),
                         'fieldConfig' => [
                             'template' => "{label}<div class=\"col-sm-9\">{input}</div>\n{hint}\n{error}",
                             'labelOptions' => ['class' => 'col-sm-3 col-form-label'],
@@ -235,7 +234,7 @@ $this->title = 'Добавить товар в распродажу';
 
                     <div class="buttons-cont">
                         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary btn-lg']) ?>
-                        <?= Html::a(Yii::t('app', 'Cancel'), ['/catalog/sale/partner-list'], ['class' => 'btn btn-primary btn-lg']) ?>
+                        <?= Html::a(Yii::t('app', 'Cancel'), ['/catalog/partner-sale/list'], ['class' => 'btn btn-primary btn-lg']) ?>
                     </div>
 
                     <?php ActiveForm::end(); ?>
