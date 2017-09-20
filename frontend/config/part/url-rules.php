@@ -38,6 +38,8 @@ return [
     'partner/sale' => 'catalog/partner-sale/list',
     'partner/sale/create' => 'catalog/partner-sale/create',
     'partner/sale/update/<id:[\d\-]+>' => 'catalog/partner-sale/update',
+    'razmeshchenie_koda' => 'catalog/partner-sale/code',
+    'instruktsiya_partneram' => 'catalog/partner-sale/instructions',
 
     // Module [[News]]
     'news/<alias:[\w\-]+>' => 'news/list/index',

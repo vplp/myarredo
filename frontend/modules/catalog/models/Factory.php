@@ -3,7 +3,9 @@
 namespace frontend\modules\catalog\models;
 
 use Yii;
-use yii\helpers\Url;
+use yii\helpers\{
+    Url, ArrayHelper
+};
 
 /**
  * Class Factory
@@ -50,6 +52,14 @@ class Factory extends \common\modules\catalog\models\Factory
     public static function findBase()
     {
         return parent::findBase()->enabled()->asArray();
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function dropDownList()
+    {
+        return ArrayHelper::map(self::findBase()->all(), 'id', 'lang.title');
     }
 
     /**

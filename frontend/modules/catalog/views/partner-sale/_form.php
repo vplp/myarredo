@@ -7,16 +7,17 @@ use yii\helpers\{
 };
 use kartik\widgets\Select2;
 //
-use backend\modules\catalog\models\{
-    Category, Factory, Types
+use frontend\modules\catalog\models\{
+    Category, Factory, Types, Specification
 };
 
 /**
  * @var \frontend\modules\catalog\models\Sale $model
  * @var \frontend\modules\catalog\models\SaleLang $modelLang
+ * @var \frontend\modules\catalog\models\Specification $Specification
  */
 
-$this->title = 'Добавить товар в распродажу';
+$this->title = ($model->isNewRecord) ? 'Добавить товар в распродажу' : 'Редактировать товар распродажи';
 
 ?>
 
@@ -30,6 +31,9 @@ $this->title = 'Добавить товар в распродажу';
                 <div class="form-horizontal">
 
                     <?php $form = ActiveForm::begin([
+                        'action' => ($model->isNewRecord)
+                            ? Url::toRoute(['/catalog/partner-sale/create'])
+                            : Url::toRoute(['/catalog/partner-sale/update', 'id' => $model->id]),
                         'fieldConfig' => [
                             'template' => "{label}<div class=\"col-sm-9\">{input}</div>\n{hint}\n{error}",
                             'labelOptions' => ['class' => 'col-sm-3 col-form-label'],
@@ -42,7 +46,7 @@ $this->title = 'Добавить товар в распродажу';
                             Для загрузки изображений - сначала создайте товар
                         </div>
                     <?php else: ?>
-                        <?= $form->field($model, 'picpath')->imageOne($model->getImage()) ?>
+                        <?php //$form->field($model, 'picpath')->imageOne($model->getImage()) ?>
                     <?php endif; ?>
 
                     <?= $form->field($modelLang, 'title') ?>
@@ -74,106 +78,47 @@ $this->title = 'Добавить товар в распродажу';
 
                     <?= $form->field($model, 'factory_name') ?>
 
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Стиль</label>
-                        <div class="col-sm-9">
-                            <div class="dropdown arr-drop">
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                    Выберите вариант
-                                </button>
-                                <ul class="dropdown-menu drop-down-find">
-                                    <li>
-                                        <input type="text" class="find">
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">Арт деко, гламур</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">Барокко, Рококо</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">Классический</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Материал</label>
-                        <div class="col-sm-9">
-                            <div class="dropdown arr-drop">
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                    Выберите вариант
-                                </button>
-                                <ul class="dropdown-menu drop-down-find">
-                                    <li>
-                                        <input type="text" class="find">
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">Гранит</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">ДСП</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">Замша</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
                     <?= $form->field($modelLang, 'description')->textarea() ?>
 
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Длина</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
+                    <?php
+                    $specification_value = $model->getSpecificationValueBySpecification();
+                    foreach (Specification::findBase()->all() as $Specification): ?>
 
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Глубина</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
+                        <?php if ($Specification['type'] === '1' && !in_array($Specification['id'], [39, 47])): ?>
 
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Высота</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
+                            <div class="form-group row">
+                                <?= Html::label($Specification['lang']['title'], null, ['class' => 'col-sm-3 col-form-label']) ?>
+                                <div class="col-sm-2">
+                                    <?= Html::input(
+                                        'text',
+                                        'SpecificationValue[' . $Specification['id'] . ']',
+                                        !empty($specification_value[$Specification['id']]) ? $specification_value[$Specification['id']] : null,
+                                        ['class' => 'form-control']
+                                    ) ?>
+                                </div>
+                            </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Диаметр</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
+                        <?php elseif (in_array($Specification['id'], [2, 9])): ?>
+                            <div class="form-group row">
+                                <?= Html::label($Specification['lang']['title'], null, ['class' => 'col-sm-3 col-form-label']) ?>
+                                <div class="col-sm-9">
+                                    <?= Select2::widget([
+                                        'name' => 'SpecificationValue[' . $Specification['id'] . ']',
+                                        'value' => !empty($specification_value[$Specification['id']]) ? $specification_value[$Specification['id']] : null,
+                                        'data' => $Specification->getChildrenDropDownList(),
+                                        'options' => ['placeholder' => Yii::t('app', 'Select option')]
+                                    ]) ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
 
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Внутренняя длина</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
 
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Внутренняя глубина</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Обьем</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
+                    <?= $form->field(
+                        $model,
+                        'volume',
+                        ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+                    ) ?>
 
                     <?= $form
                         ->field(
@@ -212,7 +157,6 @@ $this->title = 'Добавить товар в распродажу';
 
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Статус</label>
-
                         <div class="col-sm-9">
                             <div class="checkbox checkbox-primary">
                                 <?= $form

@@ -274,10 +274,10 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
                                                 <?= Html::a('Распродажа', ['/catalog/partner-sale/list']); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Размещение кода', ['/user/profile/index']); ?>
+                                                <?= Html::a('Размещение кода', ['/catalog/partner-sale/code']); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Инструкция партнерам', ['/user/profile/index']); ?>
+                                                <?= Html::a('Инструкция партнерам', ['/catalog/partner-sale/instructions']); ?>
                                             </li>
                                             <li role="separator" class="divider"></li>
                                             <li>

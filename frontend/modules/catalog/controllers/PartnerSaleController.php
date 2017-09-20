@@ -4,11 +4,9 @@ namespace frontend\modules\catalog\controllers;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-//
-use thread\actions\RecordView;
+use yii\filters\{
+    VerbFilter, AccessControl
+};
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
@@ -16,7 +14,7 @@ use frontend\modules\catalog\models\{
 };
 //
 use thread\actions\{
-    AttributeSwitch, CreateWithLang, ListModel, UpdateWithLang, Delete, Sortable, DeleteAll
+    CreateWithLang, UpdateWithLang
 };
 
 /**
@@ -48,8 +46,10 @@ class PartnerSaleController extends BaseController
                 'class' => VerbFilter::class,
                 'actions' => [
                     'list' => ['get'],
-                    'create' => ['get'],
-                    'update' => ['get'],
+                    'create' => ['get', 'post'],
+                    'update' => ['get', 'post'],
+                    'code' => ['get'],
+                    'instructions' => ['get'],
                 ],
             ],
             'AccessControl' => [
@@ -60,7 +60,9 @@ class PartnerSaleController extends BaseController
                         'actions' => [
                             'create',
                             'update',
-                            'list'
+                            'list',
+                            'code',
+                            'instructions'
                         ],
                         'roles' => ['partner'],
                     ],
@@ -119,5 +121,23 @@ class PartnerSaleController extends BaseController
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),
         ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionCode()
+    {
+        $this->title = 'Размещение кода';
+        return $this->render('code', []);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionInstructions()
+    {
+        $this->title = 'Инструкция партнерам';
+        return $this->render('instructions', ['domain' => 'ru']);
     }
 }

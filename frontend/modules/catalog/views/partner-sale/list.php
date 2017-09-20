@@ -27,6 +27,7 @@ use yii\widgets\Breadcrumbs;
                     </div>
                     <div class="col-md-9 col-lg-9">
                         <div class="cont-area">
+
                             <?= Html::a('Создать товар распродажи', ['/partner/sale/create'], [
                                 'class' => 'btn btn-success'
                             ]) ?>
