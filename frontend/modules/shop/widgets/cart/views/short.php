@@ -8,14 +8,9 @@ use yii\helpers\{
  * @var \frontend\modules\shop\models\Cart $cart
  */
 
-$ids = [];
-foreach ($items as $item) {
-    $ids[] = $item['product_id'];
-}
-
 ?>
 
-<a href="<?= Url::toRoute(['/shop/cart/index']) ?>?mebel=<?= implode(';', $ids) ?>" class="my-notebook">
+<a href="<?= Url::toRoute(['/shop/cart/index']) ?>" class="my-notebook">
     <span class="red-but">
         <i class="glyphicon glyphicon-book"></i>
     </span>

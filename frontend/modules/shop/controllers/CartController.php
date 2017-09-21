@@ -29,7 +29,10 @@ class CartController extends BaseController
     public function actionIndex()
     {
         $this->title = 'Мой блокнот';
-        return $this->render('index');
+
+        $view = (empty(Yii::$app->shop_cart->items)) ? 'empty' : 'index';
+
+        return $this->render($view);
     }
 
     /**

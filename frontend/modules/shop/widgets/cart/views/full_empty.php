@@ -1,1 +1,1 @@
-<?= Yii::t('app', 'Cart is empty') . '!'; ?>
+Cart is empty
