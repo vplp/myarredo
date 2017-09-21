@@ -346,5 +346,3 @@ $bundle = AppAsset::register($this);
         </div>
     </div>
 </main>
-
-
