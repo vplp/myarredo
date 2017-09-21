@@ -8,7 +8,6 @@ use thread\app\base\models\ActiveRecord;
 use thread\modules\shop\Shop;
 use thread\modules\shop\models\query\OrderQuery;
 
-
 /**
  * Class Order
  *
@@ -29,6 +28,7 @@ use thread\modules\shop\models\query\OrderQuery;
  * @property float $discount_full
  * @property float $total_summ
  * @property string $comment
+ * @property string $token
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $published
@@ -37,19 +37,16 @@ use thread\modules\shop\models\query\OrderQuery;
  * @property OrderItem[] $items
  *
  * @package thread\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @author Alla Kuzmenko
- * @copyright (c) 2016, VipDesign
  */
 class Order extends ActiveRecord
 {
     /**
-     * @var
+     * @var string
      */
     public static $commonQuery = OrderQuery::class;
 
     /**
-     * @return string
+     * @return null|object
      */
     public static function getDb()
     {
@@ -64,7 +61,6 @@ class Order extends ActiveRecord
         return '{{%shop_order}}';
     }
 
-
     /**
      * @return array
      */
@@ -76,11 +72,18 @@ class Order extends ActiveRecord
             [['token'], 'string', 'max' => 255],
             [['customer_id', 'items_count', 'items_total_count', 'created_at', 'updated_at'], 'integer'],
             [
-                ['items_summ', 'items_total_summ', 'discount_percent', 'discount_money', 'discount_full', 'total_summ'],
+                [
+                    'items_summ',
+                    'items_total_summ',
+                    'discount_percent',
+                    'discount_money',
+                    'discount_full',
+                    'total_summ'
+                ],
                 'double'
             ],
-            [['order_status'], 'in', 'range' => array_keys(self::progressRange())],
-            [['payd_status'], 'in', 'range' => array_keys(self::paydStatusRange())],
+            [['order_status'], 'in', 'range' => array_keys(self::getOrderStatuses())],
+            [['payd_status'], 'in', 'range' => array_keys(self::getPaydStatuses())],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
@@ -136,8 +139,8 @@ class Order extends ActiveRecord
             'total_summ' => Yii::t('shop', 'Finish Summ'),
             'order_status' => Yii::t('shop', 'Order status'),
             'payd_status' => Yii::t('shop', 'Payd status'),
-            'delivery_method_id' => Yii::t('shop', 'Delivery method id'),
-            'payment_method_id' => Yii::t('shop', 'Payment method id'),
+            'delivery_method_id' => Yii::t('shop', 'Delivery method'),
+            'payment_method_id' => Yii::t('shop', 'Payment method'),
             'delivery_price' => Yii::t('shop', 'Delivery price'),
             'token' => Yii::t('shop', 'Token'),
             'created_at' => Yii::t('app', 'Create time'),
@@ -180,10 +183,9 @@ class Order extends ActiveRecord
     }
 
     /**
-     *
      * @return array
      */
-    public static function paydStatusRange()
+    public static function getPaydStatuses()
     {
         return [
             'billed' => Yii::t('shop', 'Billed'),
@@ -193,10 +195,9 @@ class Order extends ActiveRecord
     }
 
     /**
-     *
      * @return array
      */
-    public static function progressRange()
+    public static function getOrderStatuses()
     {
         return [
             'new' => Yii::t('shop', 'New'),
@@ -226,6 +227,4 @@ class Order extends ActiveRecord
         $format = 'd.m.Y';
         return $this->created_at == 0 ? date($format) : date($format, $this->created_at);
     }
-
-
 }

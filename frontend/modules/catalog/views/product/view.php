@@ -165,7 +165,8 @@ $bundle = AppAsset::register($this);
                                 </div>
 
                                 <button type="submit" class="btn btn-success big">Получить лучшую цену</button>
-                                <button type="submit" class="btn btn-default big">Отложить в блокнот</button>
+
+                                <a href="javascript:void(0);" class="add-to-bask btn btn-default big" data-id="<?= $model['id'] ?>">Отложить в блокнот</a>
                                 <!--
                                 <iframe src="https://www.google.com/recaptcha/api2/anchor?k=6LehPRkUAAAAAB1TVTLbwB1GYua9tI4aC1cHYSTU&co=aHR0cDovL3d3dy5teWFycmVkby5ydTo4MA..&hl=ru&v=r20170524165316&size=normal&cb=piye27zdt1ud" frameborder="0"></iframe>
                                 -->
@@ -280,6 +281,7 @@ $bundle = AppAsset::register($this);
             </div>
 
             <?php if (!$model['removed']): ?>
+
                 <div class="recommendation">
                     <div class="container large-container">
                         <h3 class="offer_title">Выберите любой понравившийся товар и получите на него лучшую цену!</h3>
@@ -316,6 +318,7 @@ $bundle = AppAsset::register($this);
                         </div>
                     </div>
                 </div>
+
             <?php endif; ?>
 
             <?php if ($model['collections_id']): ?>

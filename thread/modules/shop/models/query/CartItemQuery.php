@@ -8,14 +8,11 @@ use thread\app\base\models\query\ActiveQuery;
  * Class CartItemQuery
  *
  * @package thread\modules\shop\models\query
- * @author Alla Kuzmenko
- * @copyright (c), Thread
  */
 class CartItemQuery extends ActiveQuery
 {
-
     /**
-     * @param $cart_id
+     * @param int $cart_id
      * @return $this
      */
     public function cart_id(int $cart_id)
@@ -26,7 +23,7 @@ class CartItemQuery extends ActiveQuery
     }
 
     /**
-     * @param $product_id
+     * @param int $product_id
      * @return $this
      */
     public function product_id(int $product_id)
@@ -35,5 +32,4 @@ class CartItemQuery extends ActiveQuery
         $this->andWhere($modelClass::tableName() . '.product_id = :product_id', [':product_id' => $product_id]);
         return $this;
     }
-
 }

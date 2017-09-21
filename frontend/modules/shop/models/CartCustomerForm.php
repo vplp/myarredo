@@ -3,21 +3,23 @@
 namespace frontend\modules\shop\models;
 
 use Yii;
+use yii\base\Model;
 
 /**
  * Class CartCustomerForm
  *
  * @package frontend\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
  */
-Class CartCustomerForm extends \yii\base\Model
+Class CartCustomerForm extends Model
 {
-
-    public $full_name, $email, $phone, $comment, $delivery, $pay;
+    public $full_name;
+    public $email;
+    public $phone;
+    public $comment;
+    public $delivery;
+    public $pay;
 
     /**
-     *
      * @return array
      */
     public function rules()
@@ -31,23 +33,21 @@ Class CartCustomerForm extends \yii\base\Model
             [['phone'], 'string', 'max' => 15],
             [['email'], 'email'],
             [['delivery'], 'default', 'value' => array_keys(DeliveryMethods::dropDownList())[0]],
-
+            [['comment'], 'default', 'value' => ''],
         ];
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()
     {
         return [
-            'frontend' => ['full_name', 'email', 'phone', 'comment', 'delivery', 'pay', 'agreement'],
+            'frontend' => ['full_name', 'email', 'phone', 'comment', 'delivery', 'pay'],
         ];
     }
 
     /**
-     *
      * @return array
      */
     public function attributeLabels()
@@ -57,10 +57,8 @@ Class CartCustomerForm extends \yii\base\Model
             'email' => Yii::t('app', 'Email'),
             'phone' => Yii::t('app', 'Phone'),
             'comment' => Yii::t('app', 'Comment'),
-            'delivery' => Yii::t('app', 'Delivery'),
-            'pay' => Yii::t('app', 'Pay')
+            'delivery' => Yii::t('app', 'Delivery method'),
+            'pay' => Yii::t('app', 'Payment method')
         ];
     }
-
-
 }

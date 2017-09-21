@@ -11,8 +11,6 @@ use thread\modules\shop\components\Cart;
  * Class Shop
  *
  * @package thread\modules\shop
- * @author Alla Kuzmenko
- * @copyright (c), Thread
  */
 class Shop extends aModule
 {
@@ -23,11 +21,9 @@ class Shop extends aModule
 
     /**
      * @return null|object
-     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
         return Yii::$app->get('db-core');
     }
-    
 }

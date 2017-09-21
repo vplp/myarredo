@@ -1,21 +1,16 @@
 <?php
 
-
 namespace frontend\modules\shop\models;
 
-use common\modules\shop\models\PaymentMethods as CommonPaymentMethodsModel;
-
+use yii\helpers\ArrayHelper;
 
 /**
  * Class PaymentMethods
  *
  * @package frontend\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
  */
-class PaymentMethods extends CommonPaymentMethodsModel
+class PaymentMethods extends \common\modules\shop\models\PaymentMethods
 {
-
     /**
      * @return mixed
      */
@@ -39,6 +34,24 @@ class PaymentMethods extends CommonPaymentMethodsModel
      */
     public static function findIdByAlias($alias)
     {
-        return self::find()->alias($alias)->select('id')->enabled()->asarray()->one();
+        return self::find()->byAlias($alias)->select('id')->enabled()->asarray()->one();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findByID($id)
+    {
+        return self::findBase()->andWhere(['id' => $id])->one();
+    }
+
+    /**
+     * Backend form dropdown list
+     * @return array
+     */
+    public static function dropDownList()
+    {
+        return ArrayHelper::map(self::findBase()->all(), 'id', 'lang.title');
     }
 }

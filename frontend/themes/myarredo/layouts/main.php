@@ -139,6 +139,8 @@ $this->beginPage()
         </div>
     </footer>
 
+    <div id="popup"></div>
+
     <?php $this->endBody() ?>
     </body>
     </html>

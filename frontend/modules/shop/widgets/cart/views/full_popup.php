@@ -4,39 +4,37 @@ use yii\helpers\{
     Html, Url
 };
 
-/**
- * @author Alla Kuzmenko
- * @copyright (c) 2016, Thread
- */
 ?>
 
-<div class="">
-    <?= Yii::t('app', 'Cart') ?>
-</div>
-<div class="">
-    <table border="2">
-        <tr>
-            <th><?= Yii::t('app', 'id') ?></th>
-            <th><?= Yii::t('app', 'count') ?></th>
-            <th><?= Yii::t('app', 'price') ?></th>
-            <th><?= Yii::t('app', 'discount_full') ?></th>
-            <th><?= Yii::t('app', 'total_summ') ?></th>
-            <th><?= Yii::t('app', 'extra_param') ?></th>
-        </tr>
-        <?php
-        foreach ($items as $item) {
-            echo $this->render('parts/item_of_cart', ['item' => $item]);
-        }
-        ?>
-    </table>
-</div>
-<div class="">
-    <div class="">
-        <span class=""><?= Yii::t('app', 'Summ for pay') ?>:</span>
-        <span class="total-price"><?= $cart['items_total_summ'] ?></span>
-    </div>
-    <div class="">
-        <?= Html::a(Yii::t('app', 'Checkout', Url::toRoute(['/shop/cart/index']))) ?>
-    </div>
-</div>
+<div class="std-modal" id="add-basket">
+    <div class="sticker">Мой блокнот</div>
+    <div class="modal-body">
+        <div class="table-cont">
+            <table class="bask-table">
+                <tr>
+                    <th>Фото</th>
+                    <th>Наименование товара и цена</th>
+                    <th>Количество</th>
+                    <th>Сумма</th>
+                    <th>Удалить</th>
+                </tr>
 
+                <?php foreach ($items as $item): ?>
+                    <?= $this->render('parts/item_of_cart_popup', ['item' => $item, 'product' => $products[$item['product_id']] ?? []]); ?>
+                <?php endforeach; ?>
+
+            </table>
+        </div>
+
+        <div class="sum flex s-between c-align">
+            <div>Сумма к оплате:</div>
+            <div class="sum-price"><?= $cart['items_total_summ'] ?>&nbsp;<span>грн</span></div>
+        </div>
+
+        <div class="bot-buttons flex s-between">
+            <?= Html::a('Продолжить покупки', 'javascript:void(0);', ['class' => '', 'onclick' => '']) ?>
+            <?= Html::a('Далее', ['/shop/cart/index'], ['class' => '']) ?>
+        </div>
+
+    </div>
+</div>

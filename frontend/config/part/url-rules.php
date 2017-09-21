@@ -69,12 +69,16 @@ return [
 
     // Module [[Shop]]
     'shop/widget' => 'shop/widget/index',
-    'shop/cart/index' => 'shop/cart/index',
+    'orders/notepad' => 'shop/cart/index',
+    'shop/cart/checkout' => 'shop/cart/checkout',
     'shop/cart/send-order' => 'shop/cart/send-order',
     'shop/order/list' => 'shop/order/list',
     'shop/order/view/<id:[\d\-]+>' => 'shop/order/view',
     'shop/order/link/<token:[\w\-]+>' => 'shop/order/link',
     'shop/cart/add-to-cart' => 'shop/cart/add-to-cart',
+    'shop/cart/delete-from-cart' => 'shop/cart/delete-from-cart',
+    'shop/cart/delete-from-cart-popup' => 'shop/cart/delete-from-cart-popup',
 
+    // Module [[Location]]
     'location/location/get-cities' => 'location/location/get-cities'
 ];

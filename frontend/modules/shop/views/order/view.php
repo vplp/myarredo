@@ -4,41 +4,38 @@ use yii\helpers\{
 };
 
 ?>
-<br>
-<br>
-<br>
-<br>
-<table border="2">
-    <tr>
-        <th><?=Yii::t('app', 'id') ?></th>
-        <th><?= Yii::t('shop', 'Count of items') ?></th>
-        <th><?= Yii::t('shop', 'Finish Summ') ?></th>
-        <th><?= Yii::t('shop', 'Delivery price') ?></th>
-        <th><?= Yii::t('shop', 'Order status') ?></th>
-        <th><?= Yii::t('shop', 'Payd status') ?></th>
-        <th><?= Yii::t('shop', 'Comment') ?></th>
-    </tr>
+
+<div class="basket_items_w">
+    <table class="basket_items">
+        <thead>
         <tr>
-            <td>
-                <?= Html::a($order->id, Url::to(['/shop/order/view', 'id' =>$order->id])) ?>
-            </td>
-            <td>
-                <?= $order['items_total_count'] ?>
-            </td>
-            <td>
-                <?= $order['total_summ'] ?>
-            </td>
-            <td>
-                <?= $order['delivery_price'] ?>
-            </td>
-            <td>
-                <?= $order->getOrderStatus();?>
-            </td>
-            <td>
-                <?= $order->getPaydStatus(); ?>
-            </td>
-            <td>
-                <?= $order['comment'] ?>
-            </td>
+            <th>Наименование товара</th>
+            <th>Количество</th>
+            <th>Сумма</th>
         </tr>
-</table>
+        </thead>
+        <tbody>
+        <?php foreach ($order->items as $item): ?>
+            <tr>
+                <td class="item">
+                    <?= Html::a($item->product['Name'], $item->product->getUrl(), ['class' => 'item_t']) ?>
+                </td>
+                <td class="count"><?= $item['count'] ?></td>
+                <td class="quantity">
+                    <div class="sum_basket"><?= $item['total_summ'] ?><span>грн</span></div>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<div class="basket_total cf">
+    <div class="basket_total_l">
+        <div class="basket_total_l_cnt">
+            <div class="basket_total_t">Общая сумма к оплате:</div>
+        </div>
+    </div>
+    <div class="basket_total_r">
+        <div class="basket_total_price"><?= $order['total_summ'] ?><span>грн</span></div>
+    </div>
+</div>

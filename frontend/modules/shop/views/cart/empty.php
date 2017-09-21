@@ -1,19 +1,31 @@
 <?php
 
-/**
- * @author Alla Kuzmenko
- * @copyright (c) 2016, Thread
- */
-?>
-<div>
-    <?php
-    echo Yii::$app->getSession()->getFlash('SEND_ORDER');
+use yii\helpers\{
+    Html, Url
+};
+use yii\widgets\Breadcrumbs;
 
-    if (Yii::$app->getSession()->getFlash('SEND_ORDER') !== null):
-        echo '<br>' . Yii::$app->getSession()->getFlash('SEND_ORDER') . '<br>';
-    endif;    
-    ?>
-    Вы еще не добавили в заказ товаров.
-    <br>
-    <br>
+$this->context->breadcrumbs[] = [
+    'label' => $this->context->label
+];
+
+?>
+
+<div class="basket-page page">
+    <div class="cont">
+        <div class="bread-crumbs">
+            <?= Breadcrumbs::widget([
+                'homeLink' => [
+                    'label' => Yii::t('yii', 'Home'),
+                    'url' => \yii\helpers\Url::toRoute(['/home/home/index'])
+                ],
+                'links' => $this->context->breadcrumbs
+            ]) ?>
+        </div>
+
+        <?= Html::tag('h2', $this->context->label) ?>
+
+        Вы еще не добавили в заказ товаров.
+
+    </div>
 </div>

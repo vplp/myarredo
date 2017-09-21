@@ -27,9 +27,6 @@ use thread\modules\shop\Shop;
  * @property integer $deleted
  *
  * @package thread\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @author Alla Kuzmenko
- * @copyright (c) 2016, VipDesign
  */
 class OrderItem extends ActiveRecord
 {
@@ -48,7 +45,6 @@ class OrderItem extends ActiveRecord
     {
         return '{{%shop_order_item}}';
     }
-
 
     /**
      * @return array
@@ -110,6 +106,4 @@ class OrderItem extends ActiveRecord
             'deleted' => Yii::t('app', 'Deleted'),
         ];
     }
-
-
 }

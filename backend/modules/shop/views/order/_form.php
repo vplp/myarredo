@@ -12,31 +12,23 @@ use backend\modules\{
  * @var $form \thread\app\bootstrap\ActiveForm
  */
 ?>
-    <div>
-        <?php HtmlForm::showTextInput($model, 'manager_id') ?>
-        <p><?= Yii::t('shop', 'Customer') . ': ' . $model['customer']['full_name'] ?? '' ?></p>
-        <?php HtmlForm::showTextInput($model, 'items_count') ?>
-        <?php HtmlForm::showTextInput($model, 'items_total_count') ?>
-        <?php HtmlForm::showTextInput($model, 'items_summ') ?>
-        <?php HtmlForm::showTextInput($model, 'items_total_summ') ?>
-        <?php HtmlForm::showTextInput($model, 'discount_percent') ?>
-        <?php HtmlForm::showTextInput($model, 'discount_money') ?>
-        <?php HtmlForm::showTextInput($model, 'discount_full') ?>
-        <?php HtmlForm::showTextInput($model, 'total_summ') ?>
-    </div>
+
+<p><?= Yii::t('app', 'User') . ': ' . $model['customer']['full_name'] ?? '' ?></p>
+<p><?= Yii::t('app', 'Phone') . ': ' . $model['customer']['phone'] ?? '' ?></p>
+<?php HtmlForm::showTextInput($model, 'items_total_count') ?>
+<?php HtmlForm::showTextInput($model, 'discount_full') ?>
+<?php HtmlForm::showTextInput($model, 'total_summ') ?>
 
 <?php $form = ActiveForm::begin(); ?>
 <?= $form->submit($model, $this) ?>
-<?= $form->text_line($model, 'manager_id') ?>
-<?= $form->field($model, 'order_status')->dropDownList($model::progressRange()) ?>
+<?= $form->field($model, 'order_status')->dropDownList($model::getOrderStatuses()) ?>
 <?= $form->field($model, 'payment_method_id')->dropDownList(PaymentMethods::dropDownList()) ?>
-<?= $form->field($model, 'payd_status')->dropDownList($model::paydStatusRange()) ?>
+<?= $form->field($model, 'payd_status')->dropDownList($model::getPaydStatuses()) ?>
 <?= $form->field($model, 'delivery_method_id')->dropDownList(DeliveryMethods::dropDownList()) ?>
 <?= $form->text_line($model, 'delivery_price') ?>
-<?= $form->text_line($model, 'comment')->textarea(['style' => 'height:100px;']) ?>
-
+<?= $form->text_line($model, 'comment')->textarea(['style' => 'height:100px;', 'value' => ' ']) ?>
+<?= $form->submit($model, $this) ?>
 <?= $this->render('parts/_items_list', ['model' => $model]) ?>
 
 
-<?= $form->submit($model, $this) ?>
 <?php ActiveForm::end();

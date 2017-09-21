@@ -8,7 +8,6 @@ use thread\app\base\models\ActiveRecord;
 use thread\modules\shop\Shop;
 use thread\modules\shop\models\query\CartItemQuery;
 
-
 /**
  * Class CartItem
  *
@@ -29,14 +28,11 @@ use thread\modules\shop\models\query\CartItemQuery;
  * @property integer $deleted
  *
  * @package thread\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @author Alla Kuzmenko
- * @copyright (c) 2016, VipDesign
  */
 class CartItem extends ActiveRecord
 {
     /**
-     * @var
+     * @var string
      */
     public static $commonQuery = CartItemQuery::class;
 
@@ -55,7 +51,6 @@ class CartItem extends ActiveRecord
     {
         return '{{%shop_cart_item}}';
     }
-
 
     /**
      * @return array
@@ -98,7 +93,7 @@ class CartItem extends ActiveRecord
                 'published',
                 'deleted'
             ],
-            'addcartitem' => [
+            'addCartItem' => [
                 'cart_id',
                 'product_id',
                 'summ',
@@ -119,8 +114,8 @@ class CartItem extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'cart_id' => Yii::t('shop', 'Cart id'),
-            'product_id' => Yii::t('shop', 'Product id'),
+            'cart_id' => Yii::t('shop', 'Cart'),
+            'product_id' => Yii::t('shop', 'Product'),
             'count' => Yii::t('shop', 'Count of item'),
             'summ' => Yii::t('shop', 'Summ without discount for item'),
             'total_summ' => Yii::t('shop', 'Total Summ with discount for item'),
@@ -135,33 +130,33 @@ class CartItem extends ActiveRecord
         ];
     }
 
+    /**
+     * @param $cart_id
+     * @param $product_id
+     * @return mixed
+     */
     public static function findByProductID($cart_id, $product_id)
     {
         return self::find()->cart_id($cart_id)->product_id($product_id)->enabled()->one();
     }
 
     /**
-     *
      * @return $this
      */
     public function recalculate()
     {
-        //summ
         $this->summ = $this->count * $this->price;
-        //total summ, discount_full- full discount of money
         $this->total_summ = $this->summ - $this->discount_full;
+
         return $this;
     }
 
     /**
-     *
-     * @param type $cart_id
-     * @return array|null
+     * @param $cart_id
+     * @return mixed
      */
     public static function findAllByCartID($cart_id)
     {
         return self::find()->cart_id($cart_id)->addOrderBy('created_at DESC')->all();
     }
-
-
 }

@@ -7,19 +7,15 @@ use Yii;
 use thread\modules\shop\Shop;
 use thread\app\base\models\ActiveRecord;
 
-
 /**
  * Class DeliveryMethods
  *
  * @package thread\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
  */
 class DeliveryMethods extends ActiveRecord
 {
-
     /**
-     * @return string
+     * @return null|object
      */
     public static function getDb()
     {
@@ -27,7 +23,6 @@ class DeliveryMethods extends ActiveRecord
     }
 
     /**
-     *
      * @return string
      */
     public static function tableName()
@@ -36,7 +31,6 @@ class DeliveryMethods extends ActiveRecord
     }
 
     /**
-     *
      * @return array
      */
     public function rules()
@@ -48,7 +42,6 @@ class DeliveryMethods extends ActiveRecord
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()
@@ -61,7 +54,6 @@ class DeliveryMethods extends ActiveRecord
     }
 
     /**
-     *
      * @return array
      */
     public function attributeLabels()
@@ -77,13 +69,10 @@ class DeliveryMethods extends ActiveRecord
     }
 
     /**
-     *
-     * @return ActiveQuery
+     * @return \yii\db\ActiveQuery
      */
     public function getLang()
     {
         return $this->hasOne(DeliveryMethodsLang::class, ['rid' => 'id']);
     }
-
-
 }

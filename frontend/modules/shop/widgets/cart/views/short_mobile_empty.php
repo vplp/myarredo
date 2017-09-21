@@ -2,12 +2,11 @@
 
 use yii\helpers\Url;
 
-/**
- * @author Alla Kuzmenko
- * @copyright (c) 2016, Thread
- */
-
 ?>
-<a href="<?= Url::toRoute(['/shop/cart/index']) ?>" >   
-<span>0</span>
+
+<a href="<?= Url::toRoute(['/shop/cart/index']) ?>" class="my-notebook">
+    <span class="red-but">
+        <i class="glyphicon glyphicon-book"></i>
+    </span>
+    <span class="inscription">Мой блокнот</span>
 </a>

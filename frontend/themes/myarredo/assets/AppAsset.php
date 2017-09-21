@@ -32,8 +32,8 @@ class AppAsset extends AssetBundle
         'libs/slick-1.6/slick.min.js',
         'libs/nouislider/nouislider.min.js',
         'libs/wNumb.js',
+        'libs/shop.js',
         'js/core.js',
-
     ];
 
     public $depends = [
