@@ -3,23 +3,20 @@
 namespace thread\modules\shop\interfaces;
 
 /**
- * interface Product
+ * Interface Product
  *
  * @package thread\modules\shop\interfaces
- * @author Alla Kuzmenko
- * @copyright (c), Thread
  */
 interface Product
 {
     /**
      * @param $id
-     * @return Product
+     * @return mixed
      */
     public static function findByID($id);
-    
+
     /**
-     * 
-     * @return float
+     * @return mixed
      */
     public function getPrice();
 
@@ -27,6 +24,5 @@ interface Product
      * @param $ids
      * @return array
      */
-    public static function findByIDs($ids):array;
-
+    public static function findByIDs($ids): array;
 }

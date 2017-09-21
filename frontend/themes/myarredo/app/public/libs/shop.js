@@ -1,46 +1,4 @@
 /**
- * Кнопка купить в корзине
- */
-// $('.card-buy-special').on('click', function () {
-//     var product_id = $(this).data('id');
-//
-//     $.post('/shop/cart/add-to-cart',
-//         {
-//             _csrf: $('#token').val(),
-//             id: product_id,
-//             count: 1
-//         }
-//     ).done(function (data) {
-//         if (data == true) {
-//             document.location.reload(true);
-//         }
-//     });
-// });
-
-/**
- * Кнопка купить
- */
-// $('.card-buy-quantity').on('click', function () {
-//     var product_id = $(this).data('id');
-//     var quantity = $(this).data('quantity');
-//
-//     if (Array.isArray(product_id) && Array.isArray(quantity)) {
-//         for (var i = 0; i < product_id.length; i++) {
-//             add_to_popup(product_id[i], quantity[i]);
-//         }
-//     }
-//
-//     $('#overlay').fadeIn(
-//         400,
-//         function () {
-//             $('#basket-popup')
-//                 .css('visibility', 'visible')
-//                 .animate({opacity: 1}, 200);
-//         }
-//     );
-// });
-
-/**
  * Кнопка купить
  */
 $('.add-to-bask').on('click', function () {
@@ -185,8 +143,8 @@ function refresh_full_cart() {
     ).done(function (data) {
         if (data.success) {
             $('#short_cart').html(data.views.short);
-            $('.basket_tabs_cnt_cart').html(data.view);
-            $('input[data-styler]').styler();
+            $('.basket-items').html(data.view);
+            //$('input[data-styler]').styler();
             $(window).resize();
         }
     });

@@ -4,57 +4,108 @@ namespace frontend\modules\shop\controllers;
 
 use Yii;
 use yii\helpers\Url;
+use yii\web\Response;
+use frontend\components\BaseController;
 use frontend\modules\shop\models\{
-   CartCustomerForm, search\Order
+    CartCustomerForm,
+    Order,
+    search\Order  as SearchOrder
 };
 
 /**
  * Class CartController
  *
  * @package frontend\modules\shop\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2014, Thread
  */
-class CartController extends \frontend\components\BaseController
+class CartController extends BaseController
 {
-
+    public $label = "Cart";
     public $title = "Cart";
     public $layout = "@app/layouts/main";
-    public $defaultAction = 'index';
 
     /**
-     *
      * @return string
      */
     public function actionIndex()
     {
-        //Yii::$app->shop_cart->cart; - компонент корзина
-        $customerform = new CartCustomerForm;
-        $customerform->setScenario('frontend');
-        if ($customerform->load(Yii::$app->getRequest()->post(),
-                'CartCustomerForm') && $customerform->validate() && (!empty(Yii::$app->shop_cart->items))
+        $this->title = 'Мой блокнот';
+
+        $view = (empty(Yii::$app->shop_cart->items)) ? 'empty' : 'index';
+
+        return $this->render($view);
+    }
+
+    /**
+     * @return string|Response
+     */
+    public function actionCheckout()
+    {
+        $customerForm = new CartCustomerForm;
+        $customerForm->setScenario('frontend');
+
+        if (
+            $customerForm->load(Yii::$app->getRequest()->post(),'CartCustomerForm') &&
+            $customerForm->validate() &&
+            !empty(Yii::$app->shop_cart->items)
         ) {
-            ////Додаємо новий заказ до БД
-            $order_id = Order::addNewOrder(Yii::$app->shop_cart->cart, $customerform);
+            // Додаємо новий заказ до БД
+            $new_order = SearchOrder::addNewOrder(Yii::$app->shop_cart->cart, $customerForm);
 
-            if ($order_id) {
-                //$cart->delete(); -  не удаляем корзину для статистики
+            if ($new_order) {
 
-                Yii::$app->getSession()->setFlash('SEND_ORDER',
-                    Yii::t('shop', 'Your order № {order_id} has been sent!', ['order_id' => $order_id])
-                    . ' < br />' . Yii::t('shop', 'Our manager will contact you soon') . '!' . '<br/>');
-                Yii::$app->getSession()->setFlash('SEND_ORDER_ID', $order_id);
+                $order = Order::findById($new_order['id']);
+
+                // user letter
+                Yii::$app
+                    ->mailer
+                    ->compose(
+                        'new_order',
+                        [
+                            'model' => $new_order,
+                            'customerForm' => $customerForm,
+                            'order' => $order,
+                        ]
+                    )
+                    ->setTo($customerForm['email'])
+                    ->setSubject(Yii::t('app', 'Your order № {order_id}', ['order_id' => $new_order['id']]))
+                    ->send();
+
+                // admin letter
+                Yii::$app
+                    ->mailer
+                    ->compose(
+                        'new_order',
+                        [
+                            'model' => $new_order,
+                            'customerForm' => $customerForm,
+                            'order' => $order,
+                        ]
+                    )
+                    ->setTo(Yii::$app->params['adminEmail'])
+                    ->setSubject(Yii::t('app', 'New order № {order_id}', ['order_id' => $new_order['id']]))
+                    ->send();
+
+                // clear cart
+                Yii::$app->shop_cart->deleteCart();
+
+                // message
+                Yii::$app->getSession()->setFlash(
+                    'message',
+                    Yii::t('app', 'Your order № {order_id}', ['order_id' => $new_order['id']])
+                );
+
                 return $this->redirect(Url::toRoute(['/shop/cart/send-order']));
             }
         }
-        $view = (Yii::$app->shop_cart->items === null) ? 'empty' : 'index';
+
+        $view = (Yii::$app->shop_cart->items === null) ? 'empty' : 'checkout';
+
+        $this->label = 'Оформление заказа';
 
         return $this->render($view, [
-            'customerform' => $customerform,
+            'model' => $customerForm,
         ]);
     }
-
-
 
     /**
      *
@@ -65,9 +116,8 @@ class CartController extends \frontend\components\BaseController
         return $this->render('empty');
     }
 
-
     /**
-     *добавление товара в корзину
+     * добавление товара в корзину
      */
     public function actionAddToCart()
     {
@@ -80,12 +130,10 @@ class CartController extends \frontend\components\BaseController
         } else {
             return false;
         }
-
     }
 
-
     /**
-     *удаление товара из попапа корзину
+     * удаление товара из попапа корзину
      */
     public function actionDeleteFromCart()
     {
@@ -96,6 +144,4 @@ class CartController extends \frontend\components\BaseController
             return Yii::$app->shop_cart->deleteItem($product_id, $count);
         }
     }
-
-
 }

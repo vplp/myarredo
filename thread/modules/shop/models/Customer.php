@@ -18,9 +18,6 @@ use thread\modules\shop\Shop;
  * @property Order[] $orders
  *
  * @package thread\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @author Alla Kuzmenko
- * @copyright (c) 2016, VipDesign
  */
 class Customer extends ActiveRecord
 {
@@ -39,7 +36,6 @@ class Customer extends ActiveRecord
     {
         return '{{%shop_customer}}';
     }
-
 
     /**
      * @return array
@@ -89,12 +85,10 @@ class Customer extends ActiveRecord
     }
 
     /**
-     * @return mixed
+     * @return \yii\db\ActiveQuery
      */
     public function getOrders()
     {
         return $this->hasMany(Order::class, ['customer_id' => 'id']);
     }
-
-
 }

@@ -3,14 +3,14 @@
 use yii\helpers\Url;
 
 /**
- * @author Alla Kuzmenko
- * @copyright (c) 2016, Thread
+ * @var \frontend\modules\shop\models\Cart $cart
  */
 
 ?>
 
-<a href="<?= Url::toRoute(['/shop/cart/index']) ?>">
-    <?= Yii::t('app', 'Корзина') ?>
-    <?= $cart['items_total_count'] ?>
-    <?= $cart['items_total_summ'] ?>   
+<a href="<?= Url::toRoute(['/shop/cart/index']) ?>" class="my-notebook">
+    <span class="red-but">
+        <i class="glyphicon glyphicon-book"></i>
+    </span>
+    <span class="inscription">Мой блокнот: <?= $cart['items_total_count'] ?></span>
 </a>

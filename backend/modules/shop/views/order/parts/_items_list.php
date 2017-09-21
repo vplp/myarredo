@@ -11,15 +11,23 @@ use yii\grid\GridView;
  */
 echo GridView::widget([
     'dataProvider' => $model->items[0]->search(['OrderItem' => ['order_id' => $model->id]]),
-    'filterModel' => $filter,
+    //'filterModel' => $filter,
     'columns' => [
-        'product_id',
+        [
+            'attribute' => 'product_id',
+            'value' => function ($model) {
+                //тянем модель продукта которая указана в компоненте shop_cart
+                $product = call_user_func([Yii::$app->shop_cart->threadProductClass, 'findByID'], $model->product_id);
+                return $product['id'] . ' ' . $product['Name'];
+            }
+        ],
         'count',
-        'summ',
+        'price',
+        // 'summ',
+        // 'discount_full',
         'total_summ',
-        'discount_percent',
-        'discount_money',
-        'discount_full',
-        'extra_param',
+        //'discount_percent',
+        // 'discount_money',
+        //'extra_param',
     ],
 ]);

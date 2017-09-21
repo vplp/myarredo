@@ -30,19 +30,16 @@ use thread\modules\shop\models\query\CartQuery;
  * @property CartItem[] $items
  *
  * @package thread\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @author Alla Kuzmenko
- * @copyright (c) 2016, VipDesign
  */
 class Cart extends ActiveRecord
 {
     /**
-     * @var
+     * @var string
      */
     public static $commonQuery = CartQuery::class;
 
     /**
-     * @return string
+     * @return null|object
      */
     public static function getDb()
     {
@@ -63,8 +60,8 @@ class Cart extends ActiveRecord
     public function rules()
     {
         return [
-            [['phpsessid'], 'required'],
-            [['phpsessid'], 'string', 'max' => 30],
+            [['php_session_id'], 'required'],
+            [['php_session_id'], 'string', 'max' => 30],
             [['user_id', 'items_count', 'items_total_count', 'created_at', 'updated_at'], 'integer'],
             [
                 ['items_summ', 'items_total_summ', 'discount_percent', 'discount_money', 'discount_full', 'total_summ'],
@@ -96,7 +93,7 @@ class Cart extends ActiveRecord
                 'published',
                 'deleted'
             ],
-            'addcart' => [
+            'addCart' => [
                 'items_summ',
                 'items_total_summ',
                 'discount_percent',
@@ -138,7 +135,7 @@ class Cart extends ActiveRecord
     }
 
     /**
-     * @return mixed
+     * @return \yii\db\ActiveQuery
      */
     public function getItems()
     {
@@ -146,15 +143,24 @@ class Cart extends ActiveRecord
     }
 
     /**
-     *
-     * @return string
+     * @return mixed|string
      */
     public static function getSessionID()
     {
-        return isset($_COOKIE['PHPSESSID']) ? $_COOKIE['PHPSESSID'] : '';
+        if (isset(Yii::$app->request->cookies['LASTPHPSESSID'])) {
+            return Yii::$app->request->cookies['LASTPHPSESSID'];
+        }
+        if (Yii::$app->session->getId()) {
+            return Yii::$app->session->getId();
+        } else {
+            Yii::$app->session->open();
+            return Yii::$app->session->getId();
+        }
     }
 
-
+    /**
+     * @return mixed
+     */
     public static function findBySessionID()
     {
         return self::find()->php_session_id(self::getSessionID())->enabled()->one();
@@ -162,11 +168,9 @@ class Cart extends ActiveRecord
 
     /**
      *
-     * @return $this
      */
     public function recalculate()
     {
-
         $this->items_summ = 0;
         $this->items_total_summ = 0;
         $this->total_summ = 0;

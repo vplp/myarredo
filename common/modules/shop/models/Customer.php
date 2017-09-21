@@ -2,14 +2,20 @@
 
 namespace common\modules\shop\models;
 
+use common\modules\user\models\Profile;
+
 /**
  * Class Customer
- * @package thread\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @author Alla Kuzmenko
- * @copyright (c) 2016, VipDesign
+ *
+ * @package common\modules\shop\models
  */
 class Customer extends \thread\modules\shop\models\Customer
 {
-   
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProfile()
+    {
+        return $this->hasOne(Profile::className(), ['user_id' => 'user_id']);
+    }
 }

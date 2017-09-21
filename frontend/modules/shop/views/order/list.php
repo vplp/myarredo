@@ -1,43 +1,42 @@
 <?php
+
+use frontend\themes\defaults\assets\AppAsset;
+//
 use yii\helpers\{
     Html, Url
 };
 
-?>
-<br>
-<br>
-<br>
-<br>
-<table border="2">
-    <tr>
-        <th><?=Yii::t('app', 'id') ?></th>
-        <th><?= Yii::t('app', 'count') ?></th>
-        <th><?= Yii::t('app', 'price') ?></th>
-        <th><?= Yii::t('app', 'delivery_price') ?></th>
-        <th><?= Yii::t('app', 'order_status') ?></th>
-        <th><?= Yii::t('app', 'payd_status') ?></th>
-    </tr>
-    <?php foreach ($orders as $order) : ?>
-        <tr>
-            <td>
-                <?= Html::a($order->id, Url::to(['/shop/order/view', 'id' =>$order->id])) ?>
-            </td>
-            <td>
-                <?= $order['items_total_count'] ?>
-            </td>
-            <td>
-                <?= $order['total_summ'] ?>
-            </td>
-            <td>
-                <?= $order['delivery_price'] ?>
-            </td>
-            <td>
-                <?= $order->getOrderStatus(); ?>
-            </td>
-            <td>
-                <?= $order->getPaydStatus(); ?>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-</table>
+$bundle = AppAsset::register($this);
 
+/**
+ * @author Andrii Bondarchuk
+ * @copyright (c) 2016, VipDesign
+ */
+
+?>
+
+<div class="table-orders">
+    <?php if (!empty($orders)): ?>
+        <table>
+            <tr class="name-colums">
+                <td>№ заказа</td>
+                <td>дата</td>
+                <td>сумма</td>
+                <td>статус</td>
+                <td colspan="1"><span>посмотреть</td>
+            </tr>
+            <?php foreach ($orders as $order): ?>
+                <tr>
+                    <td class="number-order"><?= Html::a($order->id, Url::to(['/shop/order/view', 'id' =>$order->id])) ?></td>
+                    <td class="data-order"><?= $order->getCreatedTime()?></td>
+                    <td class="sum-order"><span><?= $order['total_summ'] ?></span>грн</td>
+
+                    <td class="status-order"><?= $order['order_status'] ?></td>
+                    <td class="picture-order">
+                        <?= Html::a(Html::img($bundle->baseUrl . '/images/icons/view.png'), Url::to(['/shop/order/view', 'id' =>$order->id])) ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    <?php endif; ?>
+</div>

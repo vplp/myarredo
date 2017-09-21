@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
- */
 return [
     'languages' => [
         'class' => \thread\app\model\Languages::class,
@@ -26,5 +22,10 @@ return [
         'languageModel' => \thread\modules\sys\models\Language::class,
         'enableCaching' => false,
         'cachingDuration' => 3600
+    ],
+    'shop_cart' => [
+        'class' => \thread\modules\shop\components\Cart::class,
+        'threadProductClass' => \common\modules\catalog\models\Product::class,
+        'frontendProductClass' => \frontend\modules\catalog\models\Product::class
     ],
 ];
