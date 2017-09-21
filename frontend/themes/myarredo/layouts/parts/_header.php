@@ -253,6 +253,22 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
 
         <div class="top-navbar">
             <div class="container large-container">
+
+                <?php //if (Yii::$app->getUser()->getIdentity()->group->role == 'user'): ?>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" class="my-notebook">
+							<span class="red-but">
+								<i class="glyphicon glyphicon-book"></i>
+							</span>
+                                <span class="inscription">
+								Мой блокнот
+							</span>
+                            </a>
+                        </li>
+                    </ul>
+                <?php //endif; ?>
+
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <div class="my-notebook dropdown">
