@@ -139,7 +139,7 @@ $this->beginPage()
         </div>
     </footer>
 
-    <div id="popup"></div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 
     <?php $this->endBody() ?>
     </body>

@@ -172,10 +172,24 @@ foreach (Yii::$app->shop_cart->items as $item) {
                                 <button type="submit" class="btn btn-success big">Получить лучшую цену</button>
 
                                 <?php if (!in_array($model['id'], $products_id)): ?>
-                                    <a href="javascript:void(0);" class="add-to-bask btn btn-default big"
-                                       data-id="<?= $model['id'] ?>">Отложить в блокнот</a>
+                                    <?= Html::a(
+                                        'Отложить в блокнот',
+                                        'javascript:void(0);',
+                                        [
+                                            'class' => 'add-to-notepad btn btn-default big',
+                                            'data-id' => $model['id'],
+                                            'data-toggle' => 'modal',
+                                            'data-target' => '#myModal'
+                                        ]
+                                    ) ?>
                                 <?php else: ?>
-                                    <a href="javascript:void(0);" class="btn btn-default big">В блокноте</a>
+                                    <?= Html::a(
+                                        'В блокноте',
+                                        'javascript:void(0);',
+                                        [
+                                            'class' => 'btn btn-default big',
+                                        ]
+                                    ) ?>
                                 <?php endif; ?>
 
                             </form>

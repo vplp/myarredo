@@ -6,35 +6,22 @@ use yii\helpers\{
 
 ?>
 
-<div class="std-modal" id="add-basket">
-    <div class="sticker">Мой блокнот</div>
-    <div class="modal-body">
-        <div class="table-cont">
-            <table class="bask-table">
-                <tr>
-                    <th>Фото</th>
-                    <th>Наименование товара и цена</th>
-                    <th>Количество</th>
-                    <th>Сумма</th>
-                    <th>Удалить</th>
-                </tr>
-
-                <?php foreach ($items as $item): ?>
-                    <?= $this->render('parts/item_of_cart_popup', ['item' => $item, 'product' => $products[$item['product_id']] ?? []]); ?>
-                <?php endforeach; ?>
-
-            </table>
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Добавление предмета в блокнот</h4>
         </div>
-
-        <div class="sum flex s-between c-align">
-            <div>Сумма к оплате:</div>
-            <div class="sum-price"><?= $cart['items_total_summ'] ?>&nbsp;<span>грн</span></div>
+        <p>Предмет добавлен в блокнот</p>
+        <!--<div class="modal-body">
+            <?php foreach ($items as $item): ?>
+                <?= $this->render('parts/item_of_cart_popup', ['item' => $item, 'product' => $products[$item['product_id']] ?? []]); ?>
+            <?php endforeach; ?>
+        </div>-->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
+            <?= Html::a('Перейти в блокнот', ['/shop/cart/index'], ['class' => 'btn btn-primary']) ?>
         </div>
-
-        <div class="bot-buttons flex s-between">
-            <?= Html::a('Продолжить покупки', 'javascript:void(0);', ['class' => '', 'onclick' => '']) ?>
-            <?= Html::a('Далее', ['/shop/cart/index'], ['class' => '']) ?>
-        </div>
-
     </div>
 </div>
