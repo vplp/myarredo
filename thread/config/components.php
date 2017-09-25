@@ -23,8 +23,11 @@ return [
     ],
     'mailer' => [
         'class' => \yii\swiftmailer\Mailer::class,
-//        'viewPath' => '@common/mail',
-        'useFileTransport' => true,
+        'useFileTransport' => false,
+        'enableSwiftMailerLogging' => false,
+        'transport' => [
+            'class' => 'Swift_SmtpTransport',
+        ],
     ],
     'request' => [
         'class' => \thread\app\web\Request::class,

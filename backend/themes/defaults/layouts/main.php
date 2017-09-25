@@ -6,6 +6,8 @@ use backend\widgets\LangSwitch\LangSwitch;
 use backend\themes\defaults\widgets\navbar\NavBar;
 use backend\themes\defaults\assets\AppAsset;
 
+$navMiniStatus = isset($_COOKIE['navbar-minimalize']) ? intval($_COOKIE['navbar-minimalize']) : 0;
+
 /**
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
@@ -25,7 +27,7 @@ $this->beginPage()
     <?php $this->head(); ?>
     <input type="hidden" id="token" value="<?= Yii::$app->request->getCsrfToken() ?>">
 </head>
-<body class="html">
+<body class="html <?= $navMiniStatus == 1 ? 'mini-navbar' : '' ?>">
 <?php $this->beginBody() ?>
 
 <div id="wrapper">

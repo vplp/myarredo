@@ -3,9 +3,6 @@
  */
 /** Delete button confirm message for gridview */
 $('.ActionDeleteColumn').click(function () {
-    if (confirm($(this).attr('data-message'))) {
-        return true;
-    } else {
-        return false;
-    }
+    return confirm($(this).attr('data-message'));
 });
+
