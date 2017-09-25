@@ -69,6 +69,7 @@ return [
 
     // Module [[Shop]]
     'shop/widget' => 'shop/widget/index',
+    'shop/widget/checkout' => 'shop/widget/checkout',
     'orders/notepad' => 'shop/cart/index',
     'shop/cart/checkout' => 'shop/cart/checkout',
     'shop/cart/send-order' => 'shop/cart/send-order',

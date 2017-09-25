@@ -2,7 +2,6 @@
 
 namespace frontend\modules\catalog\controllers;
 
-use frontend\modules\catalog\widgets\menu\CatalogMenu;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;

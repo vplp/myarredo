@@ -1,12 +1,34 @@
-
-
 /**
  * Кнопка запросить цену
  */
 $('.request-price').on('click', function () {
-    var product_id = $(this).data('id');
-   // добавить в блокнот и удалить предыдущие товары
-    $('#myModal').modal({show:true});
+    var product_id = $(this).data('id'),
+        count = 1;
+
+    $.post('/shop/cart/add-to-cart',
+        {
+            _csrf: $('#token').val(),
+            id: product_id,
+            count: count
+        }
+    ).done(function (data) {
+        if (data == true) {
+            $.post(
+                '/shop/widget/checkout',
+                {
+                    _csrf: $('#token').val(),
+                    view: 'full'
+                }
+            ).done(function (data) {
+                if (data.success) {
+                    // $('#short_cart').html(data.views.short);
+                    // $('.basket-items').html(data.view);
+                    $('#myModal').html(data.view);
+                    $('#myModal').modal();
+                }
+            });
+        }
+    });
 
     return false;
 });

@@ -6,6 +6,11 @@ use Yii;
 use yii\web\Response;
 use frontend\components\BaseController;
 use frontend\modules\shop\widgets\cart\Cart;
+use frontend\modules\shop\models\{
+    CartCustomerForm,
+    Order,
+    search\Order  as SearchOrder
+};
 
 /**
  * Class WidgetController
@@ -30,7 +35,6 @@ class WidgetController extends BaseController
              * всегда нужно перезагружать маленькие корзинки
              */
             $views['short'] = Cart::widget(['view' => 'short']);
-            $views['short_mobile'] = Cart::widget(['view' => 'short_mobile']);
 
             /**
              * рефрешим либо попап либо полную корзину
@@ -42,6 +46,26 @@ class WidgetController extends BaseController
                 'success' => '1',
                 'view' => $view,
                 'views' => $views,
+            ];
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function actionCheckout()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            $customerForm = new CartCustomerForm;
+            $customerForm->setScenario('frontend');
+
+            return [
+                'success' => '1',
+                'view' => $this->renderPartial('checkout_popup', [
+                    'model' => $customerForm,
+                ])
             ];
         }
     }
