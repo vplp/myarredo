@@ -26,7 +26,7 @@ $this->beginPage()
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->head(); ?>
 </head>
-<body class="html">
+<body class="html <?= $navMiniStatus == 1 ? 'mini-navbar' : '' ?>">
 <?php $this->beginBody() ?>
 
 <div id="wrapper">
