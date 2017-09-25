@@ -104,11 +104,13 @@ $(document).ready(function () {
     //});
 
     // Minimalize menu
+    // Minimalize menu
     $('.navbar-minimalize').click(function (e) {
         e.preventDefault();
         $("body").toggleClass("mini-navbar");
         SmoothlyMenu();
-
+        var $val = (getCookie('navbar-minimalize') && getCookie('navbar-minimalize') == '1') ? '0' : '1';
+        setCookie('navbar-minimalize', $val, 365);
     });
 
     // Tooltips demo

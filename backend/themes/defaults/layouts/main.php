@@ -6,6 +6,8 @@ use backend\widgets\LangSwitch\LangSwitch;
 use backend\themes\defaults\widgets\navbar\NavBar;
 use backend\themes\defaults\assets\AppAsset;
 
+$navMiniStatus = isset($_COOKIE['navbar-minimalize']) ? intval($_COOKIE['navbar-minimalize']) : 0;
+
 /**
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
