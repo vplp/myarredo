@@ -35,6 +35,6 @@ $user = Yii::$app->getUser()->getIdentity();
         ]) ?>
     </div>
     <div class="logo-element">
-        VENTS
+        VIP
     </div>
 </li>
