@@ -9,7 +9,8 @@ use backend\modules\sys\modules\{
     crontab\Crontab,
     configs\Configs,
     messages\Messages,
-    logbook\Logbook
+    logbook\Logbook,
+    translation\Translation
 };
 
 /**
