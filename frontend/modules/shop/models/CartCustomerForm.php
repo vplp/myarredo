@@ -25,14 +25,14 @@ Class CartCustomerForm extends Model
     public function rules()
     {
         return [
-            [['full_name', 'email', 'phone', 'delivery', 'pay'], 'required'],
+            [['full_name', 'email', 'phone'], 'required'],
             [['delivery'], 'in', 'range' => array_keys(DeliveryMethods::dropDownList())],
             [['pay'], 'in', 'range' => array_keys(PaymentMethods::dropDownList())],
             [['comment'], 'string', 'max' => 2048],
             [['full_name'], 'string', 'max' => 255],
             [['phone'], 'string', 'max' => 15],
             [['email'], 'email'],
-            [['delivery'], 'default', 'value' => array_keys(DeliveryMethods::dropDownList())[0]],
+            [['delivery', 'pay'], 'default', 'value' => 0],
             [['comment'], 'default', 'value' => ''],
         ];
     }

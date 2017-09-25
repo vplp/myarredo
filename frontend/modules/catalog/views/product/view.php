@@ -151,25 +151,9 @@ foreach (Yii::$app->shop_cart->items as $item) {
 
                     <?php if (!$model['removed']): ?>
                         <div class="best-price-form">
-                            <h3>
-                                Заполните форму - получите лучшую цену на этот товар
-                            </h3>
-                            <form role="form">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" id="email" placeholder="Введите email">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="name" placeholder="Имя">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="phone" placeholder="+7 (___) ___-__-__">
-                                </div>
-                                <div class="form-group">
-                                <textarea name="comm" class="form-control" id="" cols="30" rows="10"
-                                          placeholder="Комментарии"></textarea>
-                                </div>
+                            <h3>Заполните форму - получите лучшую цену на этот товар</h3>
 
-                                <button type="submit" class="btn btn-success big">Получить лучшую цену</button>
+                            <?= \frontend\modules\shop\widgets\request\RequestPrice::widget(['view' => 'request_price_form']) ?>
 
                                 <?php if (!in_array($model['id'], $products_id)): ?>
                                     <?= Html::a(
@@ -192,7 +176,6 @@ foreach (Yii::$app->shop_cart->items as $item) {
                                     ) ?>
                                 <?php endif; ?>
 
-                            </form>
                         </div>
                     <?php else: ?>
                         Данный товар

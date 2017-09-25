@@ -53,19 +53,14 @@ class WidgetController extends BaseController
     /**
      * @return array
      */
-    public function actionCheckout()
+    public function actionRequestPrice()
     {
         if (Yii::$app->request->isAjax) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
-            $customerForm = new CartCustomerForm;
-            $customerForm->setScenario('frontend');
-
             return [
                 'success' => '1',
-                'view' => $this->renderPartial('checkout_popup', [
-                    'model' => $customerForm,
-                ])
+                'view' => $this->renderPartial('request_price_popup')
             ];
         }
     }

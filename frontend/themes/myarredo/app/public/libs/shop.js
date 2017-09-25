@@ -14,15 +14,13 @@ $('.request-price').on('click', function () {
     ).done(function (data) {
         if (data == true) {
             $.post(
-                '/shop/widget/checkout',
+                '/shop/widget/request-price',
                 {
                     _csrf: $('#token').val(),
                     view: 'full'
                 }
             ).done(function (data) {
                 if (data.success) {
-                    // $('#short_cart').html(data.views.short);
-                    // $('.basket-items').html(data.view);
                     $('#myModal').html(data.view);
                     $('#myModal').modal();
                 }

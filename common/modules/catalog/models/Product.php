@@ -259,7 +259,6 @@ class Product extends ActiveRecord implements iProduct
     {
         return self::find()
             ->innerJoinWith(['lang'])
-            ->andWhere(['is_composition' => '0'])
             ->orderBy('updated_at DESC');
     }
 
