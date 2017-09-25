@@ -3,8 +3,7 @@
 namespace backend\modules\sys;
 
 use backend\modules\sys\modules\{
-    growl\Growl, user\User, crontab\Crontab, configs\Configs, messages\Messages,
-    logbook\Logbook
+    growl\Growl, mailcarrier\MailCarrier, user\User, crontab\Crontab, configs\Configs, messages\Messages, logbook\Logbook
 };
 
 /**
@@ -32,6 +31,11 @@ class Sys extends \common\modules\sys\Sys
                 'name' => 'Growl',
                 'icon' => 'fa-tasks',
                 'url' => ['/sys/growl/growl/list'],
+            ],
+            [
+                'name' => 'MailBox',
+                'icon' => 'fa-tasks',
+                'url' => ['/sys/mail-carrier/mail-carrier/list'],
             ],
             [
                 'name' => 'Role of User',
@@ -76,7 +80,10 @@ class Sys extends \common\modules\sys\Sys
             ],
             'logbook' => [
                 'class' => Logbook::class,
-            ]
+            ],
+            'mail-carrier' => [
+                'class' => MailCarrier::class,
+            ],
         ];
     }
 }

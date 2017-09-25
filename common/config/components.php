@@ -31,4 +31,18 @@ return [
             'mustache' => \yii\mustache\ViewRenderer::class
         ]
     ],
+    //MAIL
+    'mail-carrier' => [
+        'class' => \thread\modules\sys\modules\mailcarrier\components\MailCarrier::class,
+        'pathToLayout' => '@frontend/mail/layouts',
+        'pathToViews' => '@frontend/mail/views',
+    ],
+    'mailer' => [
+        'class' => \yii\swiftmailer\Mailer::class,
+        'useFileTransport' => false,
+        'enableSwiftMailerLogging' => true,
+        'transport' => [
+            'class' => 'Swift_SmtpTransport',
+        ],
+    ],
 ];
