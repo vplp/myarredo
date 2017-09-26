@@ -31,7 +31,7 @@ class Product extends ProductModel
         return [
             [['id', 'category_id', 'factory_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
-            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [['published', 'removed'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
 
@@ -58,6 +58,10 @@ class Product extends ProductModel
             'pagination' => [
                 'pageSize' => $module->itemOnPage
             ],
+        ]);
+
+        $query->andWhere([
+            'removed' => '0'
         ]);
 
         if (!($this->load($params, ''))) {

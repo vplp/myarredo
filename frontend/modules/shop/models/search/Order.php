@@ -6,12 +6,12 @@ use Yii;
 use yii\base\Exception;
 use yii\log\Logger;
 use frontend\modules\shop\models\{
-    Cart, 
-    CartCustomerForm, 
-    DeliveryMethods, 
-    OrderItem, 
-    PaymentMethods, 
-    Order as FrontendOrderModel, 
+    Cart,
+    CartCustomerForm,
+    DeliveryMethods,
+    OrderItem,
+    PaymentMethods,
+    Order as FrontendOrderModel,
     Customer
 };
 

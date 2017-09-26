@@ -2,7 +2,7 @@
 
 namespace common\modules\shop\models;
 
-use common\modules\catalog\models\GoodsServices;
+use common\modules\catalog\models\Product;
 
 /**
  * Class OrderItem
@@ -16,6 +16,6 @@ class OrderItem extends \thread\modules\shop\models\OrderItem
      */
     public function getProduct()
     {
-        return $this->hasOne(GoodsServices::class, ['id' => 'product_id']);
+        return $this->hasOne(Product::class, ['id' => 'product_id']);
     }
 }

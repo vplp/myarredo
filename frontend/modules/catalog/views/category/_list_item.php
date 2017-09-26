@@ -11,11 +11,14 @@ use frontend\modules\catalog\models\Product;
 
 <?= Html::beginTag('a', ['href' => Product::getUrl($model['alias']), 'class' => 'one-prod-tile']); ?>
 
+<?php if (!$model['removed']): ?>
     <object>
         <div class="request-price" data-id=<?= $model['id'] ?> data-toggle="modal" data-target="#myModal">
             Запросить цену
         </div>
     </object>
+<?php endif; ?>
+
     <div class="img-cont">
         <?= Html::img(Product::getImage()); ?>
         <div class="brand">

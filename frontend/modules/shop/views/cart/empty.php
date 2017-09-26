@@ -17,7 +17,7 @@ use yii\helpers\{
                         <?= Html::a('Добавить товар', Url::toRoute(['/catalog/category/list']), ['class' => 'btn btn-default add-product']) ?>
                     </div>
                     <div class="col-md-12">
-                        Вы еще не добавили в заказ товаров.
+                        <p>Вы еще не добавили в блокнот товаров.</p>
                     </div>
                 </div>
             </form>

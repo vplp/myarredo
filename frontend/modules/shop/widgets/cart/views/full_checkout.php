@@ -4,10 +4,6 @@ use yii\helpers\{
     Html, Url
 };
 
-/**
- * @author Alla Kuzmenko
- * @copyright (c) 2016, Thread
- */
 ?>
 
 <div class="fix-table-header">

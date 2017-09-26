@@ -30,7 +30,13 @@ $this->title = 'Редактировать профиль';
                     <div class="col-sm-4 col-md-4 col-lg-4 one-row">
                         <?= $form->field($model, 'first_name') ?>
                         <?= $form->field($model, 'last_name') ?>
-                        <?= $form->field($model, 'phone') ?>
+                        <?= $form->field($model, 'phone')
+                            ->widget(\yii\widgets\MaskedInput::className(), [
+                                'mask' => '79999999999',
+                                'clientOptions' => [
+                                    'clearIncomplete' => true
+                                ]
+                            ]) ?>
                     </div>
 
                     <div class="col-sm-4 col-md-4 col-lg-4 one-row">
