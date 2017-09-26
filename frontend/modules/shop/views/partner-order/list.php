@@ -14,6 +14,7 @@ $bundle = AppAsset::register($this);
     <div class="page adding-product-page">
         <div class="container large-container">
             <h1>Заявки</h1>
+            <!--
             <form class="form-filter-date-cont flex">
                 <div class="dropdown arr-drop">
                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Россия</button>
@@ -94,29 +95,21 @@ $bundle = AppAsset::register($this);
                     </ul>
                 </div>
             </form>
-
+            -->
             <div class="manager-history">
                 <div class="manager-history-header">
                     <ul class="orders-title-block flex">
                         <li class="order-id">
-                            <span>
-                                №
-                            </span>
+                            <span>№</span>
                         </li>
                         <li class="application-date">
-                            <span>
-                                Дата
-                            </span>
+                            <span>Дата</span>
                         </li>
                         <li>
-                            <span>
-                                Город
-                            </span>
+                            <span>Город</span>
                         </li>
                         <li>
-                            <span>
-                                Статус
-                            </span>
+                            <span>Статус</span>
                         </li>
                     </ul>
                 </div>
@@ -133,9 +126,7 @@ $bundle = AppAsset::register($this);
                                         </span>
                                     </li>
                                     <li class="application-date">
-                                        <span>
-                                            <?= $order->getCreatedTime() ?>
-                                        </span>
+                                        <span><?= $order->getCreatedTime() ?></span>
                                     </li>
                                     <li><span>Москва</span></li>
                                     <li><span><?= $order['order_status'] ?></span></li>

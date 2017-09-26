@@ -126,12 +126,9 @@ class CartController extends BaseController
         $extra_param = Yii::$app->getRequest()->post('extra_param') ?? [];
 
         if (Yii::$app->getRequest()->post('flag') == 'request-price') {
-            // clear cart
-            //Yii::$app->shop_cart->deleteCart();
             foreach (Yii::$app->shop_cart->items as $item) {
                 Yii::$app->shop_cart->deleteItem($item['product_id']);
             }
-
         }
 
         if (Yii::$app->shop_cart->addItem($product_id, $count, $extra_param)) {
