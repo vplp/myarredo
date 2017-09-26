@@ -56,19 +56,19 @@ class RequestPrice extends Widget
                     ->send();
 
                 // admin letter
-                Yii::$app
-                    ->mailer
-                    ->compose(
-                        'new_order',
-                        [
-                            'model' => $new_order,
-                            'customerForm' => $model,
-                            'order' => $order,
-                        ]
-                    )
-                    ->setTo(Yii::$app->params['adminEmail'])
-                    ->setSubject(Yii::t('app', 'New order № {order_id}', ['order_id' => $new_order['id']]))
-                    ->send();
+//                Yii::$app
+//                    ->mailer
+//                    ->compose(
+//                        'new_order',
+//                        [
+//                            'model' => $new_order,
+//                            'customerForm' => $model,
+//                            'order' => $order,
+//                        ]
+//                    )
+//                    ->setTo(Yii::$app->params['adminEmail'])
+//                    ->setSubject(Yii::t('app', 'New order № {order_id}', ['order_id' => $new_order['id']]))
+//                    ->send();
 
                 // clear cart
                 Yii::$app->shop_cart->deleteCart();
