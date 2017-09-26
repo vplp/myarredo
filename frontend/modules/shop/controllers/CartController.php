@@ -9,7 +9,7 @@ use frontend\components\BaseController;
 use frontend\modules\shop\models\{
     CartCustomerForm,
     Order,
-    search\Order  as SearchOrder
+    search\Order as SearchOrder
 };
 
 /**
@@ -124,6 +124,15 @@ class CartController extends BaseController
         $product_id = Yii::$app->getRequest()->post('id');
         $count = Yii::$app->getRequest()->post('count') ?? 1;
         $extra_param = Yii::$app->getRequest()->post('extra_param') ?? [];
+
+        if (Yii::$app->getRequest()->post('flag') == 'request-price') {
+            // clear cart
+            //Yii::$app->shop_cart->deleteCart();
+            foreach (Yii::$app->shop_cart->items as $item) {
+                Yii::$app->shop_cart->deleteItem($item['product_id']);
+            }
+
+        }
 
         if (Yii::$app->shop_cart->addItem($product_id, $count, $extra_param)) {
             return true;

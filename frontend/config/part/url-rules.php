@@ -6,8 +6,8 @@ return [
     '' => 'home/home/index',
 
     // Module [[Users]]
-    'partner/registration' => 'user/partner/register',
-    'user/register' => 'user/register/index',
+    'partner/registration' => 'user/register/partner',
+    'user/register' => 'user/register/user',
     'user/login' => 'user/login/index',
     'user/logout' => 'user/logout/index',
     'user/profile' => 'user/profile/index',
@@ -19,13 +19,6 @@ return [
     'user/login/validation' => 'user/login/validation',
 
     // Module [[Catalog]]
-
-    //'catalog/<alias:[\w\-]+>' => 'catalog/category/list',
-//    'catalog/<category:[a-z_]+>' => 'catalog/category/list',
-//    'catalog/<category:[a-z_]+>--<type:[a-z_]+>' => 'catalog/category/list',
-//    'catalog/<category:[a-z_]+>--<type:[a-z_]+>--<style:[a-z_]+>' => 'catalog/category/list',
-//    'catalog/<category:[a-z_]+>--<type:[a-z_]+>--<style:[a-z_]+>--<factory:[a-z_]+>' => 'catalog/category/list',
-
     'catalog/<filter:[\;\-\/\w\d]+>' => 'catalog/category/list',
     'factory/<letter:[\w\-]>' => 'catalog/factory/list',
     'factory/<alias:[\w\-]+>' => 'catalog/factory/view',
@@ -39,7 +32,7 @@ return [
     'partner/sale/create' => 'catalog/partner-sale/create',
     'partner/sale/update/<id:[\d\-]+>' => 'catalog/partner-sale/update',
     'partner/mailing-by-cities' => 'catalog/partner-sale/mailing-by-cities',
-    'partner/orders' => 'catalog/partner-sale/orders',
+
     'razmeshchenie_koda' => 'catalog/partner-sale/code',
     'instruktsiya_partneram' => 'catalog/partner-sale/instructions',
 
@@ -80,6 +73,8 @@ return [
     'shop/cart/add-to-cart' => 'shop/cart/add-to-cart',
     'shop/cart/delete-from-cart' => 'shop/cart/delete-from-cart',
     'shop/cart/delete-from-cart-popup' => 'shop/cart/delete-from-cart-popup',
+    'partner/orders' => 'shop/partner-order/list',
+    'partner/orders/view/<id:[\d\-]+>' => 'shop/partner-order/view',
 
     // Module [[Location]]
     'location/location/get-cities' => 'location/location/get-cities'

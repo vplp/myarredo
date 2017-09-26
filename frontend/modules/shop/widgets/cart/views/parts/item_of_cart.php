@@ -29,9 +29,7 @@ use frontend\modules\catalog\models\Product;
                     <td><?= $product['factory']['lang']['title'] ?></td>
                 </tr>
             </table>
-            <button type="button" class="btn btn-default read-more">
-                Подробнее
-            </button>
+            <button type="button" class="btn btn-default read-more">Подробнее</button>
         </div>
         <div class="more">
             <h4>
@@ -40,40 +38,8 @@ use frontend\modules\catalog\models\Product;
             <p>
                 <?= $product['lang']['description'] ?>
             </p>
-            <div class="form-group">
-                <h4>Комментарии</h4>
-                <textarea class="form-control"></textarea>
-            </div>
         </div>
     </div>
 
-    <!--
-    <tr>
-        <td class="img-cont"><?= Html::img($product->getImageLink()) ?></td>
-        <td class="prod-name">
-            <?= $product['lang']['title']; ?>
-            <div class="price">
-                <div class="mobile td-name">Цена: </div>
-                <div class="value"><?= $item['price'] ?>&nbsp;<span>грн</span></div>
-            </div>
-        </td>
-        <td class="quantity">
-            <div class="mobile td-name">Количество: </div>
-            <input type="number"
-                   min="1"
-                   value="<?= $item['count'] ?>"
-                   onchange="change_count_cart_item(<?= $product['id'] ?> , this.value, <?= $item['count'] ?>)"
-            >
-        </td>
-        <td class="sum-price">
-            <div class="mobile td-name">Сумма: </div>
-            <div class="value"><?= $item['total_summ'] ?>&nbsp;<span>грн</span>
-            </div>
-        </td>
-        <td class="delete-cont">
-            <a href="javascript:void(0);" class="delete" onclick="delete_from_cart(<?= $item['product_id'] ?>, <?= $item['count'] ?>)"></a>
-        </td>
-    </tr>
-    -->
 <?php endif; ?>
 

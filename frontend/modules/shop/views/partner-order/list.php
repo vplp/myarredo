@@ -129,7 +129,7 @@ $bundle = AppAsset::register($this);
                                 <ul class="orders-title-block flex">
                                     <li class="order-id">
                                         <span>
-                                            <?= Html::a($order->id, Url::to(['/shop/order/view', 'id' => $order->id])) ?>
+                                            <?= Html::a($order->id, Url::to(['/shop/partner-order/view', 'id' => $order->id])) ?>
                                         </span>
                                     </li>
                                     <li class="application-date">

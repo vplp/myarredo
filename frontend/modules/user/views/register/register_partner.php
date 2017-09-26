@@ -23,7 +23,7 @@ $model->delivery_to_other_cities = 1;
             <div class="container large-container">
                 <?php $form = ActiveForm::begin([
                     'id' => 'register-form',
-                    'action' => Url::toRoute('/user/partner/register'),
+                    'action' => Url::toRoute('/user/register/partner'),
                 ]); ?>
                 <div class="row">
                     <?= Html::tag('h2', $this->title); ?>
