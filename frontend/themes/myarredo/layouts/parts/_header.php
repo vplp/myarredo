@@ -312,6 +312,9 @@ use frontend\modules\shop\widgets\cart\Cart;
                                                 <?= Html::a('Профиль', ['/user/profile/index']); ?>
                                             </li>
                                             <li>
+                                                <?= Html::a('Заказы', ['/shop/order/list']); ?>
+                                            </li>
+                                            <li>
                                                 <?= Html::a(Yii::t('app', 'Sign Up'), ['/user/logout/index']); ?>
                                             </li>
 

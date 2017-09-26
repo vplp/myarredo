@@ -2,6 +2,8 @@
 
 namespace frontend\modules\shop\models;
 
+use frontend\modules\catalog\models\Product;
+
 /**
  * Class OrderItem
  *
@@ -26,5 +28,13 @@ class OrderItem extends \common\modules\shop\models\OrderItem
                 'extra_param',
                 'count'],
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProduct()
+    {
+        return $this->hasOne(Product::class, ['id' => 'product_id']);
     }
 }

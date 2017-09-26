@@ -9,10 +9,12 @@ $('.request-price').on('click', function () {
         {
             _csrf: $('#token').val(),
             id: product_id,
-            count: count
+            count: count,
+            flag: 'request-price'
         }
     ).done(function (data) {
         if (data == true) {
+            refresh_full_cart();
             $.post(
                 '/shop/widget/request-price',
                 {

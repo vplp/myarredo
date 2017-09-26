@@ -3,8 +3,8 @@
 namespace frontend\modules\shop\controllers;
 
 use Yii;
-use yii\filters\VerbFilter;
 use yii\helpers\Url;
+use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
 //
@@ -61,7 +61,7 @@ class OrderController extends BaseController
     public function actionList()
     {
         $orders = Order::findByUserId(Yii::$app->getUser()->id);
-        $this->layout = "@app/layouts/profile";
+
         return $this->render('list', [
             'orders' => $orders,
         ]);
@@ -79,7 +79,7 @@ class OrderController extends BaseController
         if (empty($order) || Yii::$app->getUser()->isGuest) {
             throw new ForbiddenHttpException('Access denied');
         }
-        $this->layout = "@app/layouts/profile";
+
         return $this->render('view', [
             'order' => $order,
         ]);

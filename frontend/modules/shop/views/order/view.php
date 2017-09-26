@@ -1,41 +1,48 @@
 <?php
+
 use yii\helpers\{
     Html, Url
 };
+use frontend\modules\catalog\models\Product;
+
+/* @var $this yii\web\View */
+/* @var $product \frontend\modules\catalog\models\Product */
+/* @var $item \frontend\modules\shop\models\CartItem */
 
 ?>
 
-<div class="basket_items_w">
-    <table class="basket_items">
-        <thead>
-        <tr>
-            <th>Наименование товара</th>
-            <th>Количество</th>
-            <th>Сумма</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($order->items as $item): ?>
-            <tr>
-                <td class="item">
-                    <?= Html::a($item->product['Name'], $item->product->getUrl(), ['class' => 'item_t']) ?>
-                </td>
-                <td class="count"><?= $item['count'] ?></td>
-                <td class="quantity">
-                    <div class="sum_basket"><?= $item['total_summ'] ?><span>грн</span></div>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
-<div class="basket_total cf">
-    <div class="basket_total_l">
-        <div class="basket_total_l_cnt">
-            <div class="basket_total_t">Общая сумма к оплате:</div>
+<main>
+    <div class="page notebook-page">
+        <div class="container large-container">
+            <div class="row">
+                <div class="col-md-12">
+                    <?= Html::tag('h2', $this->context->title) ?>
+                </div>
+                <div class="col-md-12">
+
+                    <div class="flex basket-items">
+                        <?php foreach ($order->items as $item): ?>
+                            <div class="basket-item-info">
+                                <div class="item">
+                                    <div class="img-cont">
+                                        <?= Html::a(Html::img($item->product->getImage()), Product::getUrl($item->product['alias'])) ?>
+                                    </div>
+                                    <table width="100%">
+                                        <tr>
+                                            <td>Предмет</td>
+                                            <td><?= $item->product['lang']['title'] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Фабрика</td>
+                                            <td><?= $item->product['factory']['lang']['title'] ?></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="basket_total_r">
-        <div class="basket_total_price"><?= $order['total_summ'] ?><span>грн</span></div>
-    </div>
-</div>
+</main>
