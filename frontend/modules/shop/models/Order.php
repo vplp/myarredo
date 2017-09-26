@@ -56,6 +56,14 @@ class Order extends \common\modules\shop\models\Order
     }
 
     /**
+     * @return mixed
+     */
+    public static function findBaseAll()
+    {
+        return self::findBase()->all();
+    }
+
+    /**
      * @param $id
      * @return mixed
      */

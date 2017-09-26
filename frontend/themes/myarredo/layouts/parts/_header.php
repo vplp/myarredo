@@ -271,7 +271,7 @@ use frontend\modules\shop\widgets\cart\Cart;
                                                 <?= Html::a('Города', ['/catalog/partner-sale/mailing-by-cities']); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Заявки', ['/catalog/partner-sale/orders']); ?>
+                                                <?= Html::a('Заявки', ['/shop/partner-order/list']); ?>
                                             </li>
                                             <li>
                                                 <?= Html::a('Распродажа', ['/catalog/partner-sale/list']); ?>

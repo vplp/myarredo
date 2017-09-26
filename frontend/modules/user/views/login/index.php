@@ -42,7 +42,7 @@ $this->title = Yii::t('app', 'Login');
                     <h3>
                         Регистрация нового партнера
                     </h3>
-                    <?= Html::a('Зарегистрироваться', ['/user/partner/register'], ['class' => 'btn btn-default']) ?>
+                    <?= Html::a('Зарегистрироваться', ['/user/register/partner'], ['class' => 'btn btn-default']) ?>
                 </div>
                 <div class="col-xs-12 col-sm-4 col-md-4">
                     <h3>
