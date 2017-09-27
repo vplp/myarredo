@@ -312,4 +312,8 @@ $(document).ready(function(){
        $(this).parent().find('input[type="checkbox"]').click();
     });
 
+    $(".categoty-page .one-item-check").click(function(){
+       location.href = $(this).attr("href");
+    });
+
 });
