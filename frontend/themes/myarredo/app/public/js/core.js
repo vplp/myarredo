@@ -316,4 +316,9 @@ $(document).ready(function(){
        location.href = $(this).attr("href");
     });
 
+    $(".dropdown-menu a").click(function(){
+       var href = $(this).attr('href');
+       window.location.href = href;
+    });
+
 });
