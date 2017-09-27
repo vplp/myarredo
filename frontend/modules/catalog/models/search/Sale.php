@@ -7,7 +7,7 @@ use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
 use frontend\modules\catalog\models\{
-    Sale as SaleModel
+    Sale as SaleModel, SaleLang
 };
 
 /**
@@ -25,6 +25,7 @@ class Sale extends SaleModel
     public function rules()
     {
         return [
+            [['id', 'user_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
         ];
     }
@@ -55,10 +56,15 @@ class Sale extends SaleModel
             ],
         ]);
 
-        if (!($this->load($params) && $this->validate())) {
+        if (!($this->load($params, ''))) {
             return $dataProvider;
         }
 
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'user_id' => $this->user_id
+        ]);
+        //
         $query->andFilterWhere(['like', 'alias', $this->alias]);
         //
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);
@@ -72,7 +78,27 @@ class Sale extends SaleModel
      */
     public function search($params)
     {
-        $query = SaleModel::findBase();
+        $query = SaleModel::findBase()->enabled();
+        return $this->baseSearch($query, $params);
+    }
+
+    /**
+     * @param array $params
+     * @return ActiveDataProvider
+     */
+    public function trash($params)
+    {
+        $query = SaleModel::findBase()->deleted();
+        return $this->baseSearch($query, $params);
+    }
+
+    /**
+     * @param array $params
+     * @return ActiveDataProvider
+     */
+    public function partnerSearch($params)
+    {
+        $query = SaleModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 }

@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2016, Thread
- */
 return [
     'languages' => [
         'class' => \thread\app\model\Languages::class,
@@ -36,5 +32,21 @@ return [
     ],
     'catalogFilter' => [
         'class' => \frontend\modules\catalog\components\CatalogFilter::class,
-    ]
+    ],
+    'mailer' => [
+        'class' => \yii\swiftmailer\Mailer::class,
+        'transport' => [
+            'class' => 'Swift_SmtpTransport',
+            'host' => 'mail.itsfera.com.ua',
+            'username' => 'test@vipdesign.com.ua',
+            'password' => 'iesh1eeXuiqu',
+            'port' => '465',
+            'encryption' => 'ssl',
+        ],
+        'useFileTransport' => false,
+        'messageConfig' => [
+            'charset' => 'UTF-8',
+            'from' => ['test@vipdesign.com.ua' => 'myarredo'],
+        ],
+    ],
 ];

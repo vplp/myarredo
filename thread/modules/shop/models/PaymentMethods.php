@@ -7,19 +7,15 @@ use Yii;
 use thread\app\base\models\ActiveRecord;
 use thread\modules\shop\Shop;
 
-
 /**
  * Class PaymentMethods
  *
  * @package thread\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
  */
 class PaymentMethods extends ActiveRecord
 {
-
     /**
-     * @return string
+     * @return null|object
      */
     public static function getDb()
     {
@@ -27,7 +23,6 @@ class PaymentMethods extends ActiveRecord
     }
 
     /**
-     *
      * @return string
      */
     public static function tableName()
@@ -35,9 +30,7 @@ class PaymentMethods extends ActiveRecord
         return '{{%shop_payment_methods}}';
     }
 
-
     /**
-     *
      * @return array
      */
     public function rules()
@@ -49,7 +42,6 @@ class PaymentMethods extends ActiveRecord
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()
@@ -62,7 +54,6 @@ class PaymentMethods extends ActiveRecord
     }
 
     /**
-     *
      * @return array
      */
     public function attributeLabels()
@@ -78,13 +69,10 @@ class PaymentMethods extends ActiveRecord
     }
 
     /**
-     *
-     * @return ActiveQuery
+     * @return \yii\db\ActiveQuery
      */
     public function getLang()
     {
         return $this->hasOne(PaymentMethodsLang::class, ['rid' => 'id']);
     }
-
-
 }

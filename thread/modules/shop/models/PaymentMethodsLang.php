@@ -7,17 +7,13 @@ use Yii;
 use thread\app\base\models\ActiveRecordLang;
 use thread\modules\shop\Shop;
 
-
 /**
  * Class PaymentMethodsLang
  *
  * @package thread\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
  */
 class PaymentMethodsLang extends ActiveRecordLang
 {
-
     /**
      * @return string
      */
@@ -27,7 +23,6 @@ class PaymentMethodsLang extends ActiveRecordLang
     }
 
     /**
-     *
      * @return string
      */
     public static function tableName()
@@ -36,7 +31,6 @@ class PaymentMethodsLang extends ActiveRecordLang
     }
 
     /**
-     *
      * @return array
      */
     public function rules()
@@ -57,7 +51,6 @@ class PaymentMethodsLang extends ActiveRecordLang
     }
 
     /**
-     *
      * @return array
      */
     public function attributeLabels()
@@ -68,5 +61,4 @@ class PaymentMethodsLang extends ActiveRecordLang
             'title' => Yii::t('app', 'Title'),
         ];
     }
-
 }

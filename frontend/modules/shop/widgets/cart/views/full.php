@@ -1,34 +1,61 @@
 <?php
-/**
- * @author Alla Kuzmenko
- * @copyright (c) 2016, Thread
- */
+
+use yii\helpers\{
+    Html, Url
+};
+
 ?>
 
-<div class="">
-    <?= Yii::t('app', 'Cart') ?>
+<div class="flex s-between basket-items">
+    <?php foreach ($items as $item): ?>
+        <?= $this->render('parts/item_of_cart', ['item' => $item, 'product' => $products[$item['product_id']] ?? []]); ?>
+    <?php endforeach; ?>
 </div>
-<div class="">
-    <table border="2">
-        <tr>
-            <th><?= Yii::t('app', 'id') ?></th>
-            <th><?= Yii::t('app', 'count') ?></th>
-            <th><?= Yii::t('app', 'price') ?></th>
-            <th><?= Yii::t('app', 'discount_full') ?></th>
-            <th><?= Yii::t('app', 'total_summ') ?></th>
-            <th><?= Yii::t('app', 'extra_param') ?></th>
-        </tr>
-        <?php
-        foreach ($items as $item) {
-            echo $this->render('parts/item_of_cart', ['item' => $item]);
-        }
-        ?>
-    </table>
-</div>
-<div class="">
-    <div class="">
-        <span class=""><?= Yii::t('app', 'Summ for pay') ?>:</span>
-        <span class="total-price"><?= $cart['items_total_summ'] ?></span>
+
+<?php if (count($items) > 3): ?>
+    <button type="button" class="btn btn-default show-all">Показать все</button>
+<?php endif; ?>
+
+<!--
+<div class="basket-cont">
+    <div class="basket-cont-in">
+        <div class="fix-table-header">
+            <div>Фото</div>
+            <div>Наименование товара и цена</div>
+            <div>Количество</div>
+            <div>Сумма</div>
+            <div>Удалить</div>
+        </div>
+        <div class="basket-table">
+            <table width="100%">
+
+                <?php /*foreach ($items as $item): ?>
+                    <?= $this->render('parts/item_of_cart', ['item' => $item, 'product' => $products[$item['product_id']] ?? []]); ?>
+                <?php endforeach;*/ ?>
+
+            </table>
+        </div>
+        <div class="result flex s-between c-align">
+            <div>
+                Сума к оплате:
+            </div>
+            <div>
+                5751,00 <span>грн</span>
+            </div>
+        </div>
+        <div class="control-buttons flex s-between">
+            <div class="flex">
+                <a href="#quick-order" data-fancybox class="std-but std-but-empty">
+                    Быстрый заказ
+                </a>
+                <a href="javascript:void(0);" class="std-but std-but-empty">
+                    Добавить в резерв
+                </a>
+            </div>
+
+            <?= Html::a('Оформить заказ', ['/shop/cart/checkout'], ['class' => 'std-but']) ?>
+        </div>
     </div>
 </div>
 
+-->

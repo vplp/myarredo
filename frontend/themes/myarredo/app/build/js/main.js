@@ -51,7 +51,6 @@ $(document).ready(function(){
 
     function descInit() {
         console.log("desctp");
-
         $('.filters .one-filter').addClass('open');
     }
     /*--Конец определения девайса--*/

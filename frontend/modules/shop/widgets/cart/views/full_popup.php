@@ -4,39 +4,24 @@ use yii\helpers\{
     Html, Url
 };
 
-/**
- * @author Alla Kuzmenko
- * @copyright (c) 2016, Thread
- */
 ?>
 
-<div class="">
-    <?= Yii::t('app', 'Cart') ?>
-</div>
-<div class="">
-    <table border="2">
-        <tr>
-            <th><?= Yii::t('app', 'id') ?></th>
-            <th><?= Yii::t('app', 'count') ?></th>
-            <th><?= Yii::t('app', 'price') ?></th>
-            <th><?= Yii::t('app', 'discount_full') ?></th>
-            <th><?= Yii::t('app', 'total_summ') ?></th>
-            <th><?= Yii::t('app', 'extra_param') ?></th>
-        </tr>
-        <?php
-        foreach ($items as $item) {
-            echo $this->render('parts/item_of_cart', ['item' => $item]);
-        }
-        ?>
-    </table>
-</div>
-<div class="">
-    <div class="">
-        <span class=""><?= Yii::t('app', 'Summ for pay') ?>:</span>
-        <span class="total-price"><?= $cart['items_total_summ'] ?></span>
-    </div>
-    <div class="">
-        <?= Html::a(Yii::t('app', 'Checkout', Url::toRoute(['/shop/cart/index']))) ?>
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Добавление предмета в блокнот</h4>
+        </div>
+        <p>Предмет добавлен в блокнот</p>
+        <!--<div class="modal-body">
+            <?php foreach ($items as $item): ?>
+                <?= $this->render('parts/item_of_cart_popup', ['item' => $item, 'product' => $products[$item['product_id']] ?? []]); ?>
+            <?php endforeach; ?>
+        </div>-->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
+            <?= Html::a('Перейти в блокнот', ['/shop/cart/index'], ['class' => 'btn btn-primary']) ?>
+        </div>
     </div>
 </div>
-

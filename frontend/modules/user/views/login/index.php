@@ -13,33 +13,46 @@ $this->title = Yii::t('app', 'Login');
 
 ?>
 <main>
-    <div class="page sign-up-page">
+    <div class="page sign-in-page">
         <div class="container large-container">
 
-            <div class="row">
-                <?= Html::tag('h2', $this->title); ?>
+            <?php $form = ActiveForm::begin([
+                'action' => Url::toRoute(['/user/login/index']),
+            ]) ?>
 
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+            <div class="row flex">
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <h3>
+                        Вход для зарегистрированных партнеров
+                    </h3>
+                    <div class="input-group">
 
-                <?php $form = ActiveForm::begin([
-                    'action' => Url::toRoute(['/user/login/index']),
-                ]) ?>
-                <?= $form->field($model, $model->getUsernameAttribute())->label() ?>
-                <?= $form->field($model, 'password')->passwordInput() ?>
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
-                <div class="form-group">
-                    <?= Html::submitButton(Yii::t('app', 'Login'), ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                        <?= $form->field($model, $model->getUsernameAttribute())->label() ?>
+                        <?= $form->field($model, 'password')->passwordInput() ?>
+                        <?= $form->field($model, 'rememberMe')->checkbox() ?>
+
+                        <div class="flex s-between c-align">
+                            <?= Html::submitButton('Войти', ['class' => 'btn btn-default', 'name' => 'login-button']) ?>
+                            <?= Html::a('Забыли пароль?', ['/user/password/request-reset'], ['class' => 'forgot-pass']) ?>
+                        </div>
+
+                    </div>
                 </div>
-                <?php ActiveForm::end(); ?>
-
-
-                <?= Html::a(Yii::t('app', 'Registration'), ['/user/register/index']) ?>
-
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <h3>
+                        Регистрация нового партнера
+                    </h3>
+                    <?= Html::a('Зарегистрироваться', ['/user/register/partner'], ['class' => 'btn btn-default']) ?>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-lg-offset-2 col-sm-6 col-md-6 col-lg-5">
-
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <h3>
+                        Вход для клиента
+                    </h3>
+                    <?= Html::a('Войти', ['/user/login/index'], ['class' => 'btn btn-default']) ?>
                 </div>
             </div>
+
+            <?php ActiveForm::end(); ?>
 
         </div>
     </div>

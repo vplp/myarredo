@@ -18,9 +18,10 @@ use frontend\modules\user\models\form\RegisterForm;
 class RegisterController extends BaseController
 {
     protected $model = RegisterForm::class;
+
     public $title = "Register";
-    public $defaultAction = 'index';
-    public $layout = "@app/layouts/nologin";
+
+    public $defaultAction = 'user';
 
     /**
      * @return array
@@ -33,7 +34,7 @@ class RegisterController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['user', 'partner'],
                         'roles' => ['?'],
                     ],
                     [
@@ -51,7 +52,7 @@ class RegisterController extends BaseController
     /**
      * @return string|\yii\web\Response
      */
-    public function actionIndex()
+    public function actionUser()
     {
         if (!\Yii::$app->getUser()->getIsGuest()) {
             return $this->redirect(Url::toRoute('/home/home/index'));
@@ -64,7 +65,7 @@ class RegisterController extends BaseController
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
             $status = $model->addUser();
             if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
-                return $this->redirect(Url::toRoute('/home/home/index'));
+                return $this->redirect(Url::toRoute('/user/profile/index'));
             }
             if ($status === true) {
                 Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
@@ -72,7 +73,36 @@ class RegisterController extends BaseController
             }
         }
 
-        return $this->render('index', [
+        return $this->render('register_user', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * @return string|\yii\web\Response
+     */
+    public function actionPartner()
+    {
+        if (!\Yii::$app->getUser()->getIsGuest()) {
+            return $this->redirect(Url::toRoute('/home/home/index'));
+        }
+
+        /** @var RegisterForm $model */
+        $model = new $this->model;
+        $model->setScenario('registerPartner');
+
+        if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
+            $status = $model->addPartner();
+            if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
+                return $this->redirect(Url::toRoute('/user/profile/index'));
+            }
+            if ($status === true) {
+                Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
+                return $this->redirect(Url::toRoute('/user/login/index'));
+            }
+        }
+
+        return $this->render('register_partner', [
             'model' => $model,
         ]);
     }

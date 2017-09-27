@@ -1,19 +1,26 @@
 <?php
 
-/**
- * @author Alla Kuzmenko
- * @copyright (c) 2016, Thread
- */
-?>
-<div>
-    <?php
-    echo Yii::$app->getSession()->getFlash('SEND_ORDER');
+use yii\helpers\{
+    Html, Url
+};
 
-    if (Yii::$app->getSession()->getFlash('SEND_ORDER') !== null):
-        echo '<br>' . Yii::$app->getSession()->getFlash('SEND_ORDER') . '<br>';
-    endif;    
-    ?>
-    Вы еще не добавили в заказ товаров.
-    <br>
-    <br>
-</div>
+?>
+
+<main>
+    <div class="page notebook-page">
+        <div class="container large-container">
+            <form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <?= Html::tag('h2', $this->context->title) ?>
+
+                        <?= Html::a('Добавить товар', Url::toRoute(['/catalog/category/list']), ['class' => 'btn btn-default add-product']) ?>
+                    </div>
+                    <div class="col-md-12">
+                        <p>Вы еще не добавили в блокнот товаров.</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

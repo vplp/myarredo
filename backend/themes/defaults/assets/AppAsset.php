@@ -45,6 +45,8 @@ class AppAsset extends AssetBundle
         'js/plugins/flot/jquery.flot.pie.min.js',
         'js/plugins/flot/jquery.flot.symbol.min.js',
         'js/plugins/flot/jquery.flot.time.min.js',
+        //
+        'js/core.js',
         // Custom and plugin javascript
         'js/inspinia.js',
         'js/plugins/pace/pace.min.js',

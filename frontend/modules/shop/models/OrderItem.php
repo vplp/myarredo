@@ -2,25 +2,22 @@
 
 namespace frontend\modules\shop\models;
 
-use common\modules\shop\models\OrderItem as CommonOrderItemModel;
+use frontend\modules\catalog\models\Product;
 
 /**
  * Class OrderItem
+ *
  * @package frontend\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @author Alla Kuzmenko
- * @copyright (c) 2016, VipDesign
  */
-class OrderItem extends CommonOrderItemModel 
+class OrderItem extends \common\modules\shop\models\OrderItem
 {
     /**
-     *
      * @return array
      */
     public function scenarios()
     {
         return [
-            'addneworderitem' => [
+            'addNewOrderItem' => [
                 'order_id',
                 'product_id',
                 'summ',
@@ -32,5 +29,12 @@ class OrderItem extends CommonOrderItemModel
                 'count'],
         ];
     }
-    
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProduct()
+    {
+        return $this->hasOne(Product::class, ['id' => 'product_id']);
+    }
 }

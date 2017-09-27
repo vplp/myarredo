@@ -1,21 +1,16 @@
 <?php
 
-
 namespace frontend\modules\shop\models;
 
-use common\modules\shop\models\DeliveryMethods as CommonDeliveryMethodsModel;
-
+use yii\helpers\ArrayHelper;
 
 /**
  * Class DeliveryMethods
  *
  * @package frontend\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
  */
-class DeliveryMethods extends CommonDeliveryMethodsModel
+class DeliveryMethods extends \common\modules\shop\models\DeliveryMethods
 {
-
     /**
      * @return mixed
      */
@@ -23,7 +18,6 @@ class DeliveryMethods extends CommonDeliveryMethodsModel
     {
         return self::find()->innerJoinWith(['lang'])->enabled();
     }
-
 
     /**
      * @param $alias
@@ -34,7 +28,6 @@ class DeliveryMethods extends CommonDeliveryMethodsModel
         return self::findBase()->byAlias($alias)->one();
     }
 
-
     /**
      * @param $alias
      * @return mixed
@@ -44,5 +37,21 @@ class DeliveryMethods extends CommonDeliveryMethodsModel
         return self::find()->byAlias($alias)->select('id')->enabled()->asArray()->one();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findByID($id)
+    {
+        return self::findBase()->andWhere(['id' => $id])->one();
+    }
 
+    /**
+     * Backend form dropdown list
+     * @return array
+     */
+    public static function dropDownList()
+    {
+        return ArrayHelper::map(self::findBase()->all(), 'id', 'lang.title');
+    }
 }

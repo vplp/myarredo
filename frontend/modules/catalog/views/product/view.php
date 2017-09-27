@@ -7,6 +7,11 @@ use frontend\themes\myarredo\assets\AppAsset;
 
 $bundle = AppAsset::register($this);
 
+$products_id = [];
+foreach (Yii::$app->shop_cart->items as $item) {
+    $products_id[] = $item->product_id;
+}
+
 /**
  * @var \frontend\modules\catalog\models\Product $model
  */
@@ -61,13 +66,15 @@ $bundle = AppAsset::register($this);
                 <div class="col-md-4">
                     <div class="prod-info-table">
                         <table class="info-table">
-                            <tr class="price">
-                                <td>ЦЕНА ОТ:</td>
-                                <td><?= $model['price_from']; ?>&nbsp;<span class="currency">€</span>*</td>
-                            </tr>
+                            <?php if (!$model['removed']): ?>
+                                <tr class="price">
+                                    <td>ЦЕНА ОТ:</td>
+                                    <td><?= $model['price_from']; ?>&nbsp;<span class="currency">€</span>*</td>
+                                </tr>
+                            <?php endif; ?>
                             <tr class="availability">
                                 <td>Наличие</td>
-                                <td>Под заказ</td>
+                                <td><?= ($model['removed']) ? 'Снят с протзводства' : 'Под заказ' ?></td>
                             </tr>
                             <tr>
                                 <td>Стиль</td>
@@ -141,33 +148,45 @@ $bundle = AppAsset::register($this);
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="best-price-form">
-                        <h3>
-                            Заполните форму - получите лучшую цену на этот товар
-                        </h3>
-                        <form role="form">
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="email" placeholder="Введите email">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="name" placeholder="Имя">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="phone" placeholder="+7 (___) ___-__-__">
-                            </div>
-                            <div class="form-group">
-                                <textarea name="comm" class="form-control" id="" cols="30" rows="10" placeholder="Комментарии"></textarea>
-                            </div>
 
-                            <button type="submit" class="btn btn-success big">Получить лучшую цену</button>
-                            <button type="submit" class="btn btn-default big">Отложить в блокнот</button>
-                            <!--
-                            <iframe src="https://www.google.com/recaptcha/api2/anchor?k=6LehPRkUAAAAAB1TVTLbwB1GYua9tI4aC1cHYSTU&co=aHR0cDovL3d3dy5teWFycmVkby5ydTo4MA..&hl=ru&v=r20170524165316&size=normal&cb=piye27zdt1ud" frameborder="0"></iframe>
-                            -->
-                        </form>
-                    </div>
+                    <?php if (!$model['removed']): ?>
+                        <div class="best-price-form">
+                            <h3>Заполните форму - получите лучшую цену на этот товар</h3>
+
+                            <?= \frontend\modules\shop\widgets\request\RequestPrice::widget(['view' => 'request_price_form']) ?>
+
+                                <?php if (!in_array($model['id'], $products_id)): ?>
+                                    <?= Html::a(
+                                        'Отложить в блокнот',
+                                        'javascript:void(0);',
+                                        [
+                                            'class' => 'add-to-notepad btn btn-default big',
+                                            'data-id' => $model['id'],
+                                            'data-toggle' => 'modal',
+                                            'data-target' => '#myModal'
+                                        ]
+                                    ) ?>
+                                <?php else: ?>
+                                    <?= Html::a(
+                                        'В блокноте',
+                                        'javascript:void(0);',
+                                        [
+                                            'class' => 'btn btn-default big',
+                                        ]
+                                    ) ?>
+                                <?php endif; ?>
+
+                        </div>
+                    <?php else: ?>
+                        Данный товар
+                        снят с протзводства.
+                        Но мы можем предложить
+                        альтернативную модель.
+                    <?php endif; ?>
+
                 </div>
             </div>
+
             <div class="row composition">
                 <div class="col-md-12">
                     <ul class="nav nav-tabs">
@@ -266,40 +285,46 @@ $bundle = AppAsset::register($this);
                 </div>
             </div>
 
-            <div class="recommendation">
-                <div class="container large-container">
-                    <h3 class="offer_title">Выберите любой понравившийся товар и получите на него лучшую цену!</h3>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="img-cont">
-                                <img src="<?= $bundle->baseUrl ?>/img/pictures/prod_thumb1.png" alt="">
+            <?php if (!$model['removed']): ?>
+
+                <div class="recommendation">
+                    <div class="container large-container">
+                        <h3 class="offer_title">Выберите любой понравившийся товар и получите на него лучшую цену!</h3>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="img-cont">
+                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/prod_thumb1.png" alt="">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="feedback-flex flex s-around">
-                                <div class="metr">Меня заинтересовал товар</div>
-                                <form role="form" class="flex-form">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="product" value="Буфет Momenti Arte 0114" readonly>
-                                    </div>
-                                    <h4>Мои контактные данные:*</h4>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Имя">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="E-mail">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="+7 (___) ___-__-__">
-                                    </div>
-                                    <button type="submit" class="btn btn-success">Жду лучшую цену</button>
-                                </form>
+                            <div class="col-md-7">
+                                <div class="feedback-flex flex s-around">
+                                    <div class="metr">Меня заинтересовал товар</div>
+                                    <form role="form" class="flex-form">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="product"
+                                                   value="Буфет Momenti Arte 0114" readonly>
+                                        </div>
+                                        <h4>Мои контактные данные:*</h4>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Имя">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="E-mail">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="+7 (___) ___-__-__">
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Жду лучшую цену</button>
+                                    </form>
+                                </div>
+                                <div class="aft-text">Портал MyArredo гарантирует конфиденциальность личной информации
+                                </div>
                             </div>
-                            <div class="aft-text">Портал MyArredo гарантирует конфиденциальность личной информации</div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+            <?php endif; ?>
 
             <?php if ($model['collections_id']): ?>
 
@@ -329,5 +354,3 @@ $bundle = AppAsset::register($this);
         </div>
     </div>
 </main>
-
-

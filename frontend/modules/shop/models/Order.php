@@ -3,27 +3,21 @@
 namespace frontend\modules\shop\models;
 
 use yii\helpers\Url;
-use common\modules\shop\models\Order as CommonOrderModel;
-
 
 /**
  * Class Order
+ *
  * @package frontend\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @author Alla Kuzmenko
- * @copyright (c) 2016, VipDesign
  */
-class Order extends CommonOrderModel
+class Order extends \common\modules\shop\models\Order
 {
-
     /**
-     *
      * @return array
      */
     public function scenarios()
     {
         return [
-            'addneworder' => [
+            'addNewOrder' => [
                 'delivery_method_id',
                 'payment_method_id',
                 'delivery_price',
@@ -44,10 +38,13 @@ class Order extends CommonOrderModel
                 'deleted'],
         ];
     }
-   
+
+    /**
+     * @return mixed
+     */
     public static function findBase()
     {
-        return self::find()->innerJoinWith(['items'/*, 'cartGoods.item', 'cartGoods.item.lang'*/])->enabled();
+        return parent::findBase()->innerJoinWith(['items'])->enabled();
     }
 
     /**
@@ -58,45 +55,82 @@ class Order extends CommonOrderModel
         return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
     }
 
+    /**
+     * @return mixed
+     */
+    public static function findBaseAll()
+    {
+        return self::findBase()->all();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
     public static function findById($id)
     {
         return self::findBase()->byId($id)->one();
     }
 
+    /**
+     * @param $customer_id
+     * @return mixed
+     */
     public static function findByCustomerId($customer_id)
-    {        
+    {
         return self::findBase()->customer($customer_id)->all();
     }
 
+    /**
+     * @param $user_id
+     * @return mixed
+     */
+    public static function findByUserId($user_id)
+    {
+        return self::findBase()
+            ->innerJoinWith(['customer'])
+            ->andWhere([Customer::tableName().'.user_id' => $user_id])
+            ->all();
+    }
+
+    /**
+     * @param $token
+     * @return mixed
+     */
     public static function findByLink($token)
     {
         return self::findBase()->token($token)->one();
     }
 
     /**
-     * Generates new token
+     * @return string
      */
     public function getTokenLink()
     {
-        return Url::toRoute(['/shop/order/link','token' => $this->token], true);
-         
+        return Url::toRoute(['/shop/order/link', 'token' => $this->token], true);
     }
 
+    /**
+     * @param $id
+     * @param $customer_id
+     * @return mixed
+     */
     public static function findByIdCustomerId($id, $customer_id)
     {
         return self::findBase()->byId($id)->customer($customer_id)->one();
     }
 
-    public function getOrderStatus()
+    /**
+     * @param $id
+     * @param $user_id
+     * @return mixed
+     */
+    public static function findByIdUserId($id, $user_id)
     {
-        return self::progressRange()[$this->order_status];
-        
+        return self::findBase()
+            ->byId($id)
+            ->innerJoinWith(['customer'])
+            ->andWhere([Customer::tableName().'.user_id' => $user_id])
+            ->one();
     }
-
-    public function getPaydStatus()
-    {
-        return self::paydStatusRange()[$this->payd_status];
-        
-    }
-
 }

@@ -5,11 +5,9 @@ namespace thread\modules\shop\interfaces;
 use thread\modules\shop\models\Cart;
 
 /**
- * interface DiscountCart
+ * Interface DiscountCart
  *
- * @package frontend\modules\shop\interfaces
- * @author Alla Kuzmenko
- * @copyright (c), Thread
+ * @package thread\modules\shop\interfaces
  */
 interface DiscountCart
 {
@@ -17,7 +15,5 @@ interface DiscountCart
      * @param Cart $cart
      * @return mixed
      */
-    public function  calculate(Cart $cart);
-
-
+    public function calculate(Cart $cart);
 }

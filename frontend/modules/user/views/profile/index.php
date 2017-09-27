@@ -6,59 +6,42 @@ use yii\helpers\Html;
  * @var \frontend\modules\user\models\Profile $model
  */
 
-$this->title = 'Profile';
+$this->title = 'Профиль';
 
 ?>
 
 <main>
-    <div class="page sign-up-page">
+    <div class="page factory-profile">
         <div class="container large-container">
 
-            <div class="row">
-                <?= Html::tag('h2', $this->title); ?>
+            <?= Html::tag('h1', $this->title); ?>
 
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
-
-                    <div class="row form-group">
-                        <div class="col-sm-12">
-                            <?= Html::tag('h1', 'Profile') ?>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-sm-4">
-                            <?= Html::activeLabel($model, 'first_name') ?>
-                        </div>
-                        <div class="col-sm-8">
-                            <?= $model['first_name'] ?>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-sm-4">
-                            <?= Html::activeLabel($model, 'last_name') ?>
-                        </div>
-                        <div class="col-sm-8">
-                            <?= $model['last_name'] ?>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-sm-4">
-                            <?= Html::a(Yii::t('app', 'Edit'), ['/user/profile/update'], [
-                                'class' => 'btn btn-info'
-                            ]) ?>
-                        </div>
-                        <div class="col-sm-8">
-                            <?= Html::a(Yii::t('user', 'Change password'), ['/user/password/change'], [
-                                'class' => 'btn btn-success'
-                            ]) ?>
-                        </div>
-                    </div>
-
+            <div class="part-contact">
+                <div class="form-group">
+                    <?= Html::activeLabel($model, 'phone') ?>
+                    <?= $model['phone'] ?>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-lg-offset-2 col-sm-6 col-md-6 col-lg-5">
-
+                <div class="form-group">
+                    <?= Html::activeLabel($model, 'first_name') ?>
+                    <?= $model['first_name'] ?>
+                </div>
+                <div class="form-group">
+                    <?= Html::activeLabel($model, 'last_name') ?>
+                    <?= $model['last_name'] ?>
+                </div>
+                <div class="form-group">
+                    <?= Html::activeLabel($model, 'email') ?>
+                    <?= $model['user']['email'] ?>
+                </div>
+                <div class="form-group">
+                    <?= Html::a(Yii::t('app', 'Edit'), ['/user/profile/update'], [
+                        'class' => 'btn btn-info'
+                    ]) ?>
+                    <?= Html::a(Yii::t('user', 'Change password'), ['/user/password/change'], [
+                        'class' => 'btn btn-success'
+                    ]) ?>
                 </div>
             </div>
-
         </div>
     </div>
 </main>

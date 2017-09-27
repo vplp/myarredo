@@ -6,7 +6,8 @@ return [
     '' => 'home/home/index',
 
     // Module [[Users]]
-    'user/register' => 'user/register/index',
+    'partner/registration' => 'user/register/partner',
+    'user/register' => 'user/register/user',
     'user/login' => 'user/login/index',
     'user/logout' => 'user/logout/index',
     'user/profile' => 'user/profile/index',
@@ -18,13 +19,6 @@ return [
     'user/login/validation' => 'user/login/validation',
 
     // Module [[Catalog]]
-
-    //'catalog/<alias:[\w\-]+>' => 'catalog/category/list',
-//    'catalog/<category:[a-z_]+>' => 'catalog/category/list',
-//    'catalog/<category:[a-z_]+>--<type:[a-z_]+>' => 'catalog/category/list',
-//    'catalog/<category:[a-z_]+>--<type:[a-z_]+>--<style:[a-z_]+>' => 'catalog/category/list',
-//    'catalog/<category:[a-z_]+>--<type:[a-z_]+>--<style:[a-z_]+>--<factory:[a-z_]+>' => 'catalog/category/list',
-
     'catalog/<filter:[\;\-\/\w\d]+>' => 'catalog/category/list',
     'factory/<letter:[\w\-]>' => 'catalog/factory/list',
     'factory/<alias:[\w\-]+>' => 'catalog/factory/view',
@@ -33,6 +27,14 @@ return [
     'catalog' => 'catalog/category/list',
     'factories' => 'catalog/factory/list',
     'sale' => 'catalog/sale/list',
+
+    'partner/sale' => 'catalog/partner-sale/list',
+    'partner/sale/create' => 'catalog/partner-sale/create',
+    'partner/sale/update/<id:[\d\-]+>' => 'catalog/partner-sale/update',
+    'partner/mailing-by-cities' => 'catalog/partner-sale/mailing-by-cities',
+
+    'razmeshchenie_koda' => 'catalog/partner-sale/code',
+    'instruktsiya_partneram' => 'catalog/partner-sale/instructions',
 
     // Module [[News]]
     'news/<alias:[\w\-]+>' => 'news/list/index',
@@ -60,10 +62,20 @@ return [
 
     // Module [[Shop]]
     'shop/widget' => 'shop/widget/index',
-    'shop/cart/index' => 'shop/cart/index',
+    'shop/widget/request-price' => 'shop/widget/request-price',
+
+    'orders/notepad' => 'shop/cart/index',
+    'shop/cart/checkout' => 'shop/cart/checkout',
     'shop/cart/send-order' => 'shop/cart/send-order',
     'shop/order/list' => 'shop/order/list',
     'shop/order/view/<id:[\d\-]+>' => 'shop/order/view',
     'shop/order/link/<token:[\w\-]+>' => 'shop/order/link',
     'shop/cart/add-to-cart' => 'shop/cart/add-to-cart',
+    'shop/cart/delete-from-cart' => 'shop/cart/delete-from-cart',
+    'shop/cart/delete-from-cart-popup' => 'shop/cart/delete-from-cart-popup',
+    'partner/orders' => 'shop/partner-order/list',
+    'partner/orders/view/<id:[\d\-]+>' => 'shop/partner-order/view',
+
+    // Module [[Location]]
+    'location/location/get-cities' => 'location/location/get-cities'
 ];

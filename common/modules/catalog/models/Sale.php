@@ -304,6 +304,37 @@ class Sale extends ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSpecificationValueBySpecification()
+    {
+        $specification = Specification::findBase()->all();
+
+        $style = $material = [];
+        foreach ($specification as $obj) {
+            if ($obj->parent_id === '9')
+                $style[] = $obj->id;
+
+            if ($obj->parent_id === '2')
+                $material[] = $obj->id;
+        }
+
+        foreach ($this->specificationValue as $v) {
+            $mas[$v['specification_id']] = $v['val'];
+
+            if (in_array($v['specification_id'], $style))
+                $mas['style'] = $v['spec_id'];
+
+            if (in_array($v['specification_id'], $material))
+                $mas['material'] = $v['spec_id'];
+        }
+
+        return (!empty($mas)) ? $mas : array();
+
+        return $this->specificationValue;
+    }
+
+    /**
      * @return null|string
      */
     public function getImageLink()

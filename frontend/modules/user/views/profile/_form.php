@@ -9,46 +9,57 @@ use yii\helpers\{
  * @var \frontend\modules\user\models\Profile $model
  */
 
-$this->title = 'Profile update';
+$this->title = 'Редактировать профиль';
 
 ?>
 
 <main>
-    <div class="page sign-up-page">
+    <div class="page factory-profile">
         <div class="container large-container">
 
-            <div class="row">
-                <?= Html::tag('h2', $this->title); ?>
+            <?= Html::tag('h1', $this->title); ?>
 
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+            <div class="part-contact">
 
-                    <?php $form = ActiveForm::begin([
-                        'action' => Url::toRoute(['/user/profile/update']),
-                    ]); ?>
+                <?php $form = ActiveForm::begin([
+                    'action' => Url::toRoute(['/user/profile/update']),
+                ]); ?>
 
+                <div class="row">
 
-                    <?= $form->field($model, 'first_name') ?>
-                    <?= $form->field($model, 'last_name') ?>
-
-                    <?php \thread\widgets\HtmlForm::imageOne($model, 'avatar', ['image_url' => $model->getAvatarImage()]) ?>
-
-                    <div class="row form-group">
-                        <div class="col-sm-4">
-                            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
-                        </div>
-                        <div class="col-sm-8">
-                            <?= Html::a(Yii::t('app', 'Cancel'), ['/user/profile/index'], ['class' => 'btn btn-primary']) ?>
-                        </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 one-row">
+                        <?= $form->field($model, 'first_name') ?>
+                        <?= $form->field($model, 'last_name') ?>
+                        <?= $form->field($model, 'phone')
+                            ->widget(\yii\widgets\MaskedInput::className(), [
+                                'mask' => '79999999999',
+                                'clientOptions' => [
+                                    'clearIncomplete' => true
+                                ]
+                            ]) ?>
                     </div>
 
-                    <?php ActiveForm::end(); ?>
+                    <div class="col-sm-4 col-md-4 col-lg-4 one-row">
+                    </div>
+
+                    <div class="col-sm-4 col-md-4 col-lg-4 one-row">
+                    </div>
 
                 </div>
-                <div class="col-xs-12 col-sm-6 col-lg-offset-2 col-sm-6 col-md-6 col-lg-5">
 
+                <?php //\thread\widgets\HtmlForm::imageOne($model, 'avatar', ['image_url' => $model->getAvatarImage()]) ?>
+
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+
+                        <?= Html::a(Yii::t('app', 'Cancel'), ['/user/profile/index'], ['class' => 'btn btn-primary']) ?>
+                    </div>
                 </div>
+
+                <?php ActiveForm::end(); ?>
+
             </div>
-
         </div>
     </div>
 </main>

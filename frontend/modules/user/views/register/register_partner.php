@@ -4,90 +4,77 @@ use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
+//
+use frontend\modules\location\models\{
+    Country, City
+};
 
 /**
- * @var \frontend\modules\user\models\form\CreateForm $model
+ * @var \frontend\modules\user\models\form\RegisterForm $model
  */
 
-$this->title = Yii::t('app', 'Registration');
+$this->title = 'Регистрация партнера';
+$model->delivery_to_other_cities = 1;
 
 ?>
 
-<main>
-    <div class="page sign-up-page">
-        <div class="container large-container">
-
+    <main>
+        <div class="page sign-up-page">
+            <div class="container large-container">
+                <?php $form = ActiveForm::begin([
+                    'id' => 'register-form',
+                    'action' => Url::toRoute('/user/register/partner'),
+                ]); ?>
                 <div class="row">
                     <?= Html::tag('h2', $this->title); ?>
 
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
 
-                        <?php $form = ActiveForm::begin([
-                            'id' => 'register-form',
-                            'action' => Url::toRoute('/user/register/index'),
-                        ]); ?>
+                        <?= $form->field($model, 'name_company') ?>
 
-                        <div class="form-group">
-                            <label>Название компании</label>
-                            <input type="type" class="form-control">
-                        </div>
+                        <?= $form->field($model, 'address') ?>
 
-                        <div class="form-group">
-                            <label>Адресс*</label>
-                            <input type="type" class="form-control" >
-                        </div>
+                        <?= $form->field($model, 'country_id')
+                            ->dropDownList(
+                                [null => '--'] + Country::dropDownList(),
+                                ['class' => 'selectpicker']
+                            ); ?>
 
-                        <div class="form-group select-form-group">
-                            <label>Ваша страна*</label>
-                            <select class="selectpicker">
-                                <option>Украина</option>
-                                <option>Мавритания</option>
-                            </select>
-                        </div>
+                        <?= $form->field($model, 'city_id')
+                            ->dropDownList(
+                                [null => '--'] + City::dropDownList(),
+                                ['class' => 'selectpicker']
+                            ); ?>
 
-                        <div class="form-group select-form-group">
-                            <label>Ваш город*</label>
-                            <select class="selectpicker">
-                                <option>Киев</option>
-                                <option>Чикаго</option>
-                            </select>
-                        </div>
+                        <?= $form->field($model, 'phone')
+                            ->widget(\yii\widgets\MaskedInput::className(), [
+                                'mask' => '79999999999',
+                                'clientOptions' => [
+                                    'clearIncomplete' => true
+                                ]
+                            ]) ?>
 
-                        <?= $form->field($model, 'phone')->label() ?>
+                        <?= $form->field($model, 'website') ?>
 
-                        <div class="form-group">
-                            <label>Адресс сайта</label>
-                            <input type="text" class="form-control" >
-                        </div>
+                        <?= $form->field($model, 'first_name') ?>
 
-                        <?= $form->field($model, 'username')->label() ?>
+                        <?= $form->field($model, 'last_name') ?>
 
-                        <?= $form->field($model, 'email')->label() ?>
+                        <?= $form->field($model, 'email') ?>
+
                         <?= $form->field($model, 'password')->passwordInput() ?>
+
                         <?= $form->field($model, 'password_confirmation')->passwordInput() ?>
 
-                        <div class="form-group">
-                            <label>Опыт работы с итальянской мебелью, лет</label>
-                            <input type="text" class="form-control">
-                        </div>
+                        <?= $form->field($model, 'exp_with_italian') ?>
 
-
-                        <div class="checkbox checkbox-primary">
-                            <input id="checkbox1" type="checkbox" checked="">
-                            <label for="checkbox1">
-                                Готов к поставкам мебели в другие города
-                            </label>
-                        </div>
+                        <?= $form->field($model, 'delivery_to_other_cities')->checkbox() ?>
 
                         <div class="a-warning">
                             * поля обязательны для заполнения
                         </div>
 
                         <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-success']) ?>
-
-                        <?php ActiveForm::end(); ?>
-
-                        <?= Html::a(Yii::t('app', 'Login'), ['/user/login/index']) ?>
 
                     </div>
                     <div class="col-xs-12 col-sm-6 col-lg-offset-2 col-sm-6 col-md-6 col-lg-5">
@@ -123,7 +110,25 @@ $this->title = Yii::t('app', 'Registration');
                         </div>
                     </div>
                 </div>
-
+                <?php ActiveForm::end(); ?>
+            </div>
         </div>
-    </div>
-</main>
+    </main>
+
+<?php
+
+$script = <<<JS
+    
+    $('select#registerform-country_id').change(function(){
+        var country_id = parseInt($(this).val());
+        $.post('/location/location/get-cities', {_csrf: $('#token').val(),country_id:country_id}, function(data){
+            var select = $('select#registerform-city_id');
+            select.html(data.options);
+            select.selectpicker("refresh");
+        });
+    });
+
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);
+?>

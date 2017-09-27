@@ -3,25 +3,23 @@
 namespace frontend\modules\shop\controllers;
 
 use Yii;
-use yii\filters\VerbFilter;
 use yii\helpers\Url;
+use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
+//
 use frontend\components\BaseController;
 use frontend\modules\shop\models\Order;
-
 
 /**
  * Class OrderController
  *
  * @package frontend\modules\shop\controllers
- * @author Alla Kuzmenko
- * @copyright (c) 2014, Thread
  */
 class OrderController extends BaseController
 {
-
-    public $title = "Order";
+    public $title = "Заказы";
     public $defaultAction = 'list';
-    public $layout = "@app/layouts/main";
 
     /**
      * @return array
@@ -29,6 +27,24 @@ class OrderController extends BaseController
     public function behaviors()
     {
         return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['list', 'view'],
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['link'],
+                        'roles' => ['@']
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -44,30 +60,25 @@ class OrderController extends BaseController
      */
     public function actionList()
     {
-        //TODO::когда заработает регистрация добавить связь юзера с покупателем, и добавить метод getCustomerId
-        //раскоментировать условие
-        /* if ((Yii::$app->getUser()->isGuest)) {
-             return $this->redirect(Url::toRoute('/home/home/index'));
-         }*/
-        $customer_id = 3;
-        $orders = Order::findByCustomerId($customer_id);
+        $orders = Order::findByUserId(Yii::$app->getUser()->id);
+
         return $this->render('list', [
             'orders' => $orders,
         ]);
     }
 
     /**
+     * @param $id
      * @return string
+     * @throws ForbiddenHttpException
      */
     public function actionView($id)
     {
-        $customer_id = 3;
-        $order = Order::findByIdCustomerId($id, $customer_id);
-        //TODO::когда заработает регистрация добавить связь юзера с покупателем, и добавить метод getCustomerId, и проверять его ли это заказ
-        //раскоментировать условие
-        /* if (empty($order) || Yii::$app->getUser()->isGuest) {
-             return $this->redirect(Url::toRoute('/home/home/index'));
-         }*/
+        $order = Order::findByIdUserId($id, Yii::$app->getUser()->id);
+
+        if (empty($order) || Yii::$app->getUser()->isGuest) {
+            throw new ForbiddenHttpException('Access denied');
+        }
 
         return $this->render('view', [
             'order' => $order,
@@ -75,7 +86,8 @@ class OrderController extends BaseController
     }
 
     /**
-     * @return string
+     * @param $token
+     * @return string|\yii\web\Response
      */
     public function actionLink($token)
     {
@@ -89,6 +101,4 @@ class OrderController extends BaseController
             'order' => $order,
         ]);
     }
-
-
 }

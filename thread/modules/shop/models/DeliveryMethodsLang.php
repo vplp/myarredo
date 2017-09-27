@@ -10,14 +10,12 @@ use thread\modules\shop\Shop;
  * Class DeliveryMethodsLang
  *
  * @package thread\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
  */
 class DeliveryMethodsLang extends ActiveRecordLang
 {
 
     /**
-     * @return string
+     * @return null|object
      */
     public static function getDb()
     {
@@ -25,7 +23,6 @@ class DeliveryMethodsLang extends ActiveRecordLang
     }
 
     /**
-     *
      * @return string
      */
     public static function tableName()
@@ -34,7 +31,6 @@ class DeliveryMethodsLang extends ActiveRecordLang
     }
 
     /**
-     *
      * @return array
      */
     public function rules()
@@ -55,7 +51,6 @@ class DeliveryMethodsLang extends ActiveRecordLang
     }
 
     /**
-     *
      * @return array
      */
     public function attributeLabels()
@@ -66,5 +61,4 @@ class DeliveryMethodsLang extends ActiveRecordLang
             'title' => Yii::t('app', 'Title'),
         ];
     }
-
 }

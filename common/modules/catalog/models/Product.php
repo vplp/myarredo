@@ -11,6 +11,7 @@ use yii\behaviors\AttributeBehavior;
 use voskobovich\behaviors\ManyToManyBehavior;
 //
 use thread\app\base\models\ActiveRecord;
+use thread\modules\shop\interfaces\Product as iProduct;
 //
 use common\modules\catalog\Catalog;
 use common\helpers\Inflector;
@@ -58,7 +59,7 @@ use common\helpers\Inflector;
  *
  * @package common\modules\catalog\models
  */
-class Product extends ActiveRecord
+class Product extends ActiveRecord implements iProduct
 {
     /**
      * @return string
@@ -258,7 +259,6 @@ class Product extends ActiveRecord
     {
         return self::find()
             ->innerJoinWith(['lang'])
-            ->andWhere(['is_composition' => '0'])
             ->orderBy('updated_at DESC');
     }
 
@@ -371,5 +371,43 @@ class Product extends ActiveRecord
         return $this
             ->hasMany(Product::class, ['id' => 'catalog_item_id'])
             ->viaTable(ProductRelComposition::tableName(), ['composition_id' => 'id']);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findByID($id)
+    {
+        return self::findBase()->byID($id)->one();
+    }
+
+    /**
+     * @param $ids
+     * @return array
+     */
+    public static function findByIDs($ids): array
+    {
+        return self::findBase()->andWhere(['IN', 'id', array_unique($ids)])->all();
+    }
+
+    /**
+     * Price
+     *
+     * @return mixed|null
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Discount
+     *
+     * @return int
+     */
+    public function getDiscount()
+    {
+        return 0;
     }
 }

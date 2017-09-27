@@ -11,45 +11,38 @@ use yii\helpers\Url;
  */
 class Sale extends \common\modules\catalog\models\Sale
 {
-    /**
-     * @return array
-     */
-    public function behaviors()
-    {
-        return [];
-    }
+//    /**
+//     * @return array
+//     */
+//    public function behaviors()
+//    {
+//        return [];
+//    }
 
-    /**
-     * @return array
-     */
-    public function scenarios()
-    {
-        return [];
-    }
+//    /**
+//     * @return array
+//     */
+//    public function scenarios()
+//    {
+//        return parent::scenarios();
+//    }
+//
+//    /**
+//     * @return array
+//     */
+//    public function attributeLabels()
+//    {
+//        return [];
+//    }
+//
+//    /**
+//     * @return array
+//     */
+//    public function rules()
+//    {
+//        return [];
+//    }
 
-    /**
-     * @return array
-     */
-    public function attributeLabels()
-    {
-        return [];
-    }
-
-    /**
-     * @return array
-     */
-    public function rules()
-    {
-        return [];
-    }
-
-    /**
-     * @return mixed
-     */
-    public static function findBase()
-    {
-        return parent::findBase()->enabled();
-    }
 
     /**
      * Get by alias
@@ -59,7 +52,7 @@ class Sale extends \common\modules\catalog\models\Sale
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->byAlias($alias)->one();
+        return self::findBase()->byAlias($alias)->enabled()->one();
     }
 
     /**
@@ -68,11 +61,37 @@ class Sale extends \common\modules\catalog\models\Sale
      */
     public static function findById($id)
     {
-        return self::findBase()->byId($id)->one();
+        return self::findBase()->byId($id)->enabled()->one();
     }
 
     /**
-     *
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function search($params)
+    {
+        return (new search\Sale())->search($params);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function trash($params)
+    {
+        return (new search\Sale())->trash($params);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function partnerSearch($params)
+    {
+        return (new search\Sale())->partnerSearch($params);
+    }
+
+    /**
      * @return string
      */
     public function getUrl()
@@ -81,14 +100,21 @@ class Sale extends \common\modules\catalog\models\Sale
     }
 
     /**
-     * Search
-     *
-     * @param $params
-     * @return \yii\data\ActiveDataProvider
+     * @return string
      */
-    public function search($params)
+    public function getUrlUpdate()
     {
-        return (new search\Sale())->search($params);
+        return Url::toRoute(['/catalog/partner-sale/update', 'id' => $this->id]);
+    }
+
+    /**
+     * @return null|string
+     */
+    public static function getImage()
+    {
+        $image =  'http://placehold.it/200x200';
+
+        return $image;
     }
 
     /**

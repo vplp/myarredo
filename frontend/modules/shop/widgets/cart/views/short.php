@@ -5,27 +5,14 @@ use yii\helpers\{
 };
 
 /**
- * @author Alla Kuzmenko
- * @copyright (c) 2016, Thread
+ * @var \frontend\modules\shop\models\Cart $cart
  */
 
 ?>
 
-<div class="">
-    <a href="<?= Url::toRoute(['/shop/cart/index']) ?>">
-        <div class="">
-            <?= Yii::t('app', 'Cart') ?>
-           
-            <div class="full_bascket">
-                <?= $cart['items_total_count'] ?><?= Yii::t('app', 'items for summ price') ?>:
-                <?= $cart['items_total_summ'] ?>
-            </div>
-        </div>
-    </a>
-</div>
-
-<!--для адаптивки
--->
-<div class="product-in-basket">
-    <?= Html::a(Yii::t('app', 'In cart') . ' ' . $cart['items_total_count'] . ' ' . Yii::t('app', 'items')); ?>
-</div>
+<a href="<?= Url::toRoute(['/shop/cart/index']) ?>" class="my-notebook">
+    <span class="red-but">
+        <i class="glyphicon glyphicon-book"></i>
+    </span>
+    <span class="inscription">Мой блокнот: <?= $cart['items_total_count'] ?></span>
+</a>

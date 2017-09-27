@@ -8,13 +8,11 @@ use thread\app\base\models\query\ActiveQuery;
  * Class OrderQuery
  *
  * @package thread\modules\shop\models\query
- * @author Alla Kuzmenko
- * @copyright (c), Thread
  */
 class OrderQuery extends ActiveQuery
-{ 
+{
     /**
-     * @param $token
+     * @param string $token
      * @return $this
      */
     public function token(string $token)
@@ -25,7 +23,7 @@ class OrderQuery extends ActiveQuery
     }
 
     /**
-     * @param $customer
+     * @param int $customer
      * @return $this
      */
     public function customer(int $customer)
@@ -33,6 +31,5 @@ class OrderQuery extends ActiveQuery
         $modelClass = $this->modelClass;
         $this->andWhere($modelClass::tableName() . '.customer_id = :customer_id', [':customer_id' => $customer]);
         return $this;
-    }   
-
+    }
 }

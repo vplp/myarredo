@@ -2,38 +2,47 @@
 
 use backend\widgets\GridView\GridView;
 
-/**
- *
- * @package backend\modules\shop\view
- * @author Alla Kuzmenko
- * @copyright (c) 2015, Thread
- *
- */
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->getRequest()->queryParams),    
     'columns' => [
-        'manager_id',
-        'customer.full_name',
+        'id',
         [
             'attribute' => 'created_at',
             'value' => function ($model) {
                 return $model->getCreatedTime();
             },
         ],
-        'deliveryMethod.lang.title',
-        'paymentMethod.lang.title',
-        'delivery_price',
-        'order_status',
-        'payd_status',
-        'items_count',
-        'items_total_count',
-        'items_summ',
-        'items_total_summ',
-        'discount_percent',
-        'discount_money',
-        'discount_full',
+        [
+            'attribute' => 'customer',
+            'value' => function ($model) {
+                return $model->customer->full_name;
+            }
+        ],
+        [
+            'attribute' => 'deliveryMethod',
+            'value' => function ($model) {
+                return $model->deliveryMethod->lang->title;
+            }
+        ],
+        [
+            'attribute' => 'paymentMethod',
+            'value' => function ($model) {
+                return $model->paymentMethod->lang->title;
+            }
+        ],
+        [
+            'attribute' => 'order_status',
+            'value' => function ($model) {
+                return ($model->order_status == '') ? 'Новый' : $model->order_status;
+            }
+        ],
+        [
+            'attribute' => 'payd_status',
+            'value' => function ($model) {
+                return Yii::t('app', $model->payd_status);
+            }
+        ],
         'total_summ',
-        'comment',
         [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
         ],
