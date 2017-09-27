@@ -7,7 +7,7 @@ use yii\helpers\{
 use frontend\modules\catalog\models\{
     Product, Category
 };
-/* !!! */ echo  '<pre style="color:red;">'; print_r($filter); echo '</pre>'; /* !!! */
+
 ?>
 
 <div class="filters">
