@@ -65,6 +65,7 @@ class ProductFilter extends Widget
             'types' => $this->types,
             'style' => $this->style,
             'factory' => $this->factory,
+            'filter' => Yii::$app->catalogFilter->params
         ]);
     }
 }
