@@ -14,5 +14,5 @@ use yii\helpers\{
     <span class="red-but">
         <i class="glyphicon glyphicon-book"></i>
     </span>
-    <span class="inscription">Мой блокнот: <?= $cart['items_total_count'] ?></span>
+    <span class="inscription">Мой блокнот: <?= $cart['items_count'] ?></span>
 </a>

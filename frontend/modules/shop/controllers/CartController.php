@@ -4,7 +4,13 @@ namespace frontend\modules\shop\controllers;
 
 use Yii;
 use yii\web\Response;
+use yii\helpers\Url;
 use frontend\components\BaseController;
+use frontend\modules\shop\models\{
+    CartCustomerForm,
+    Order,
+    search\Order as SearchOrder
+};
 
 /**
  * Class CartController
@@ -24,6 +30,49 @@ class CartController extends BaseController
     public function actionIndex()
     {
         $this->title = 'Мой блокнот';
+
+        $model = new CartCustomerForm;
+        $model->setScenario('frontend');
+
+        if (
+            $model->load(Yii::$app->getRequest()->post(), 'CartCustomerForm') &&
+            $model->validate() &&
+            !empty(Yii::$app->shop_cart->items)
+        ) {
+            // create new order
+            $new_order = SearchOrder::addNewOrder(Yii::$app->shop_cart->cart, $model);
+
+            if ($new_order) {
+
+                $order = Order::findById($new_order['id']);
+
+                // send user letter
+                Yii::$app
+                    ->mailer
+                    ->compose(
+                        '/../mail/new_order_user_letter',
+                        [
+                            'model' => $new_order,
+                            'customerForm' => $model,
+                            'order' => $order,
+                        ]
+                    )
+                    ->setTo($model['email'])
+                    ->setSubject(Yii::t('app', 'Your order № {order_id}', ['order_id' => $new_order['id']]))
+                    ->send();
+
+                // clear cart
+                Yii::$app->shop_cart->deleteCart();
+
+                // message
+                Yii::$app->getSession()->setFlash(
+                    'success',
+                    Yii::t('app', 'Your order № {order_id}', ['order_id' => $new_order['id']])
+                );
+
+                return Yii::$app->controller->redirect(Url::toRoute('/shop/cart/index'));
+            }
+        }
 
         $view = (empty(Yii::$app->shop_cart->items)) ? 'empty' : 'index';
 
@@ -61,7 +110,7 @@ class CartController extends BaseController
      */
     public function actionDeleteFromCart()
     {
-        if (Yii::$app->request->isAjax) {
+        if (Yii::$app->request->isAjax && Yii::$app->getRequest()->post('product_id')) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
             $product_id = Yii::$app->getRequest()->post('product_id');
             $count = Yii::$app->getRequest()->post('count') ?? 0;
