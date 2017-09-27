@@ -1,21 +1,4 @@
-/*--Инициализация карты--*/
-function mapInit(){
-    if($('#map').length){
-        ymaps.ready(function(){
-            $('#map').empty();
-            var map = new ymaps.Map("map", {
-                center: [55.73367, 37.587874],
-                zoom: 11,
-                scroll: false
-            });
-            map.behaviors.disable('scrollZoom');
-        });
-    }
-};
-/*--конец инициализации карты--*/
-$(window).load(function(){
-    mapInit();
-});
+
 $(document).ready(function(){
     var state = {
         _device: "",
@@ -63,14 +46,11 @@ $(document).ready(function(){
 
     function mobInit(){
         console.log('mobile');
-        mapInit();
-
         $('.filters .one-filter').removeClass('open');
     }
 
     function descInit() {
         console.log("desctp");
-        mapInit();
 
         $('.filters .one-filter').addClass('open');
     }
