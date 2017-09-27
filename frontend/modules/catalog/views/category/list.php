@@ -171,6 +171,8 @@ use frontend\modules\catalog\widgets\product\{
 
                 <div class="row">
                     <div class="comp-advanteges">
+
+                        <!--
                         <p>
                             Ищете вариант приобретения <strong>итальянской мебели</strong>, который избавит от рутинного
                             похода по
@@ -233,7 +235,7 @@ use frontend\modules\catalog\widgets\product\{
                             отредактируйте параметры фильтра в соответствии с предпочтениями,
                             указав функциональное назначение, стиль, фабрику и материал изделия.
                         </p>
-
+                        -->
 
                     </div>
                 </div>

@@ -63,10 +63,7 @@ return [
     // Module [[Shop]]
     'shop/widget' => 'shop/widget/index',
     'shop/widget/request-price' => 'shop/widget/request-price',
-
     'orders/notepad' => 'shop/cart/index',
-    'shop/cart/checkout' => 'shop/cart/checkout',
-    'shop/cart/send-order' => 'shop/cart/send-order',
     'shop/order/list' => 'shop/order/list',
     'shop/order/view/<id:[\d\-]+>' => 'shop/order/view',
     'shop/order/link/<token:[\w\-]+>' => 'shop/order/link',

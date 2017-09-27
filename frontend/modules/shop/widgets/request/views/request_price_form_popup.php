@@ -10,7 +10,6 @@ use yii\widgets\ActiveForm;
 <?php $form = ActiveForm::begin([
     'method' => 'post',
     'action' => Url::toRoute('/shop/cart/index'),
-    'options' => [],
     'id' => 'checkout-form',
 ]); ?>
 

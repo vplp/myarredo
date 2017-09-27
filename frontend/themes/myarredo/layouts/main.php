@@ -2,6 +2,7 @@
 
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\menu\widgets\menu\Menu;
+use frontend\themes\myarredo\widgets\Alert;
 
 $bundle = AppAsset::register($this);
 
@@ -22,6 +23,8 @@ $this->beginPage()
     </head>
     <body>
     <?php $this->beginBody() ?>
+
+    <?= Alert::widget() ?>
 
     <?= $this->render('parts/_header', ['bundle' => $bundle]) ?>
 

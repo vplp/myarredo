@@ -153,7 +153,7 @@ foreach (Yii::$app->shop_cart->items as $item) {
                         <div class="best-price-form">
                             <h3>Заполните форму - получите лучшую цену на этот товар</h3>
 
-                            <?= \frontend\modules\shop\widgets\request\RequestPrice::widget(['view' => 'request_price_form']) ?>
+                            <?= \frontend\modules\shop\widgets\request\RequestPrice::widget(['product_id' => $model['id']]) ?>
 
                                 <?php if (!in_array($model['id'], $products_id)): ?>
                                     <?= Html::a(

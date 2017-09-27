@@ -103,7 +103,7 @@ class Product extends \common\modules\catalog\models\Product
      */
     public static function getUrl(string $alias)
     {
-        return Url::toRoute(['/catalog/product/view', 'alias' => $alias]);
+        return Url::toRoute(['/catalog/product/view', 'alias' => $alias], true);
     }
 
     /**

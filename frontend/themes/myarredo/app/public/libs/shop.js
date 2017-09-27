@@ -14,7 +14,9 @@ $('.request-price').on('click', function () {
         }
     ).done(function (data) {
         if (data == true) {
+
             refresh_full_cart();
+
             $.post(
                 '/shop/widget/request-price',
                 {
@@ -34,7 +36,15 @@ $('.request-price').on('click', function () {
 });
 
 /**
- * Кнопка отложить в блокнот
+ * отложить в блокнот на странице товара
+ */
+$('.add-to-notepad-product').on('click', function () {
+    var product_id = $(this).data('id');
+    add_to_cart(product_id, 1);
+});
+
+/**
+ * кнопка отложить в блокнот
  */
 $('.add-to-notepad').on('click', function () {
     var product_id = $(this).data('id');
