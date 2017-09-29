@@ -8,8 +8,6 @@ use thread\app\model\interfaces\BaseBackendModel;
  * Class City
  *
  * @package backend\modules\location\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class City extends \common\modules\location\models\City implements BaseBackendModel
 {

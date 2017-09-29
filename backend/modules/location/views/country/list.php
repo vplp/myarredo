@@ -28,6 +28,7 @@ echo GridView::widget([
                 );
             }
         ],
+        'position',
         [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',

@@ -11,15 +11,11 @@ use thread\modules\location\Location as LocationModule;
  * Class CountryLang
  *
  * @package thread\modules\location\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class CityLang extends ActiveRecordLang
 {
-
     /**
-     *
-     * @return string
+     * @return null|object
      */
     public static function getDb()
     {
@@ -27,7 +23,6 @@ class CityLang extends ActiveRecordLang
     }
 
     /**
-     *
      * @return string
      */
     public static function tableName()
@@ -49,7 +44,6 @@ class CityLang extends ActiveRecordLang
         ];
     }
 
-
     /**
      * @return array
      */
@@ -69,5 +63,4 @@ class CityLang extends ActiveRecordLang
             'backend' => ['title'],
         ];
     }
-
 }

@@ -15,6 +15,8 @@ use backend\modules\location\models\{
 
 class Country extends CountryModel implements BaseBackendSearchModel
 {
+    public $title;
+
     /**
      * @return array
      */
@@ -51,11 +53,6 @@ class Country extends CountryModel implements BaseBackendSearchModel
                 'query' => $query,
                 'pagination' => [
                     'pageSize' => $module->itemOnPage
-                ],
-                'sort' => [
-                    'defaultOrder' => [
-                        'title' => SORT_ASC
-                    ]
                 ]
             ]
         );

@@ -26,6 +26,7 @@ echo GridView::widget([
             'value' => 'country.lang.title',
             'filter' => GridViewFilter::selectOne($filter, 'country_id', Country::dropDownList())
         ],
+        'position',
         [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',

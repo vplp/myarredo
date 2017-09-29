@@ -15,15 +15,11 @@ use thread\modules\location\Location as LocationModule;
  * Class Country
  *
  * @package thread\modules\location\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Country extends ActiveRecord
 {
-
     /**
-     *
-     * @return string
+     * @return null|object
      */
     public static function getDb()
     {
@@ -41,7 +37,6 @@ class Country extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
      * @return array
      */
     public function behaviors()
@@ -64,7 +59,6 @@ class Country extends ActiveRecord
     }
 
     /**
-     *
      * @return array
      */
     public function rules()
@@ -74,13 +68,9 @@ class Country extends ActiveRecord
             [
                 [
                     'created_at',
-                    'on_main',
-                    'view_for_sanatorium',
                     'position',
                     'updated_at',
                     'iso',
-                    'visa',
-                    'visa_supply'
                 ],
                 'integer'
             ],
@@ -94,7 +84,6 @@ class Country extends ActiveRecord
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()
@@ -109,12 +98,12 @@ class Country extends ActiveRecord
                 'iso',
                 'published',
                 'deleted',
+                'position',
             ],
         ];
     }
 
     /**
-     *
      * @return array
      */
     public function attributeLabels()
@@ -129,6 +118,7 @@ class Country extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'position' => Yii::t('app', 'Position'),
         ];
     }
 
@@ -141,15 +131,16 @@ class Country extends ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return $this
      */
     public function getCurrencies()
     {
-        return $this->hasMany(Currency::class, ['id' => 'currency_id'])->viaTable('%location_rel_country_currency', ['country_id' => 'id']);
+        return $this->hasMany(Currency::class, ['id' => 'currency_id'])
+            ->viaTable('%location_rel_country_currency', ['country_id' => 'id']);
     }
 
     /**
-     * @return ActiveQuery
+     * @return \yii\db\ActiveQuery
      */
     public function getCities()
     {
@@ -163,5 +154,4 @@ class Country extends ActiveRecord
     {
         return $this->getCities()->count();
     }
-
 }

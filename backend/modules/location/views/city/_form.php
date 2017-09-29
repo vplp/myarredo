@@ -15,10 +15,30 @@ use backend\modules\location\models\Country;
 <?php $form = ActiveForm::begin(); ?>
 
 <?= $form->submit($model, $this) ?>
-<?= $form->text_line($model, 'alias') ?>
+    <div class="row control-group">
+        <div class="col-md-3">
+            <?= $form->text_line($model, 'alias') ?>
+        </div>
+    </div>
 <?= $form->text_line_lang($modelLang, 'title') ?>
+<?= $form->text_line_lang($modelLang, 'title_where') ?>
 <?= $form->field($model, 'country_id')->selectOne(Country::dropDownList()) ?>
-<?= $form->switcher($model, 'published') ?>
+    <div class="row control-group">
+        <div class="col-md-3">
+            <?= $form->text_line($model, 'lat') ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->text_line($model, 'lng') ?>
+        </div>
+    </div>
+    <div class="row control-group">
+        <div class="col-md-3">
+            <?= $form->switcher($model, 'published') ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->text_line($model, 'position') ?>
+        </div>
+    </div>
 <?= $form->submit($model, $this) ?>
 
 <?php ActiveForm::end();
