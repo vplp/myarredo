@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+use yii\widgets\ActiveForm;
 use frontend\modules\catalog\models\Product;
 
 /* @var $this yii\web\View */
@@ -18,7 +19,7 @@ use frontend\modules\catalog\models\Product;
                 <div class="col-md-12">
                     <?= Html::tag('h2', $this->context->title) ?>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-8">
 
                     <div class="flex basket-items">
                         <?php foreach ($order->items as $item): ?>
@@ -41,6 +42,26 @@ use frontend\modules\catalog\models\Product;
                             </div>
                         <?php endforeach; ?>
                     </div>
+
+                </div>
+                <div class="col-md-4">
+
+                    <div class="best-price-form">
+                        <?php $form = ActiveForm::begin([
+                            'method' => 'post',
+                            'action' => $order->getPartnerOrderUrl(),
+                            'id' => 'checkout-form',
+                        ]); ?>
+
+                        <?= $form->field($order, 'comment')->textarea(['disabled' => true]) ?>
+                        <p>Ваш ответ</p>
+                        <p>РЕЗУЛЬТАТ</p>
+
+                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success big']) ?>
+
+                        <?php ActiveForm::end(); ?>
+                    </div>
+
                 </div>
             </div>
         </div>

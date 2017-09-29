@@ -1,19 +1,19 @@
 <?php
 
-use frontend\themes\defaults\assets\AppAsset;
-//
 use yii\helpers\{
     Html, Url
 };
 
-$bundle = AppAsset::register($this);
+/**
+ * @var \frontend\modules\shop\models\Order $order
+ */
 
 ?>
 
 <main>
     <div class="page adding-product-page">
         <div class="container large-container">
-            <h1>Заявки</h1>
+            <?= Html::tag('h1', $this->context->title); ?>
             <!--
             <form class="form-filter-date-cont flex">
                 <div class="dropdown arr-drop">
@@ -122,7 +122,7 @@ $bundle = AppAsset::register($this);
                                 <ul class="orders-title-block flex">
                                     <li class="order-id">
                                         <span>
-                                            <?= Html::a($order->id, Url::to(['/shop/partner-order/view', 'id' => $order->id])) ?>
+                                            <?= Html::a($order->id, $order->getPartnerOrderUrl()) ?>
                                         </span>
                                     </li>
                                     <li class="application-date">

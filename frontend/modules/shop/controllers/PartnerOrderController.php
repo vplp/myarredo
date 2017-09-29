@@ -63,6 +63,8 @@ class PartnerOrderController extends BaseController
     {
         $orders = Order::findBaseAll();
 
+        $this->title = 'Заявки';
+
         return $this->render('list', [
             'orders' => $orders,
         ]);
@@ -80,6 +82,8 @@ class PartnerOrderController extends BaseController
         if (empty($order) || Yii::$app->getUser()->isGuest) {
             throw new ForbiddenHttpException('Access denied');
         }
+
+        $this->title = 'Заявка №'. $order->id;
 
         return $this->render('view', [
             'order' => $order,

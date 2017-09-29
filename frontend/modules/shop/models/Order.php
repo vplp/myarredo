@@ -133,4 +133,20 @@ class Order extends \common\modules\shop\models\Order
             ->andWhere([Customer::tableName().'.user_id' => $user_id])
             ->one();
     }
+
+    /**
+     * @return string
+     */
+    public function getOrderUrl()
+    {
+        return Url::toRoute(['/shop/order/view', 'id' => $this->id]);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPartnerOrderUrl()
+    {
+        return Url::toRoute(['/shop/partner-order/view', 'id' => $this->id]);
+    }
 }

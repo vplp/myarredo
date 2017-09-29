@@ -20,14 +20,14 @@ use frontend\modules\shop\models\{
 class CartController extends BaseController
 {
     public $title = "Cart";
-    public $layout = "@app/layouts/main";
+    public $defaultAction = 'notepad';
 
     /**
-     * My notepad
+     * Notepad
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionNotepad()
     {
         $this->title = 'Мой блокнот';
 
@@ -70,13 +70,11 @@ class CartController extends BaseController
                     Yii::t('app', 'Your order № {order_id}', ['order_id' => $new_order['id']])
                 );
 
-                return Yii::$app->controller->redirect(Url::toRoute('/shop/cart/index'));
+                return Yii::$app->controller->redirect(Url::toRoute('/shop/cart/notepad'));
             }
         }
 
-        $view = (empty(Yii::$app->shop_cart->items)) ? 'empty' : 'index';
-
-        return $this->render($view);
+        return $this->render('notepad');
     }
 
     /**

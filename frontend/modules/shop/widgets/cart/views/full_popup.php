@@ -21,7 +21,7 @@ use yii\helpers\{
         </div>-->
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
-            <?= Html::a('Перейти в блокнот', ['/shop/cart/index'], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Перейти в блокнот', ['/shop/cart/notepad'], ['class' => 'btn btn-primary']) ?>
         </div>
     </div>
 </div>
