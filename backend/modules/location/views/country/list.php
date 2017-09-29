@@ -17,6 +17,7 @@ echo GridView::widget([
         [
             'attribute' => 'title',
             'value' => 'lang.title',
+            'label' => Yii::t('app', 'Title'),
         ],
         [
             'format' => 'raw',

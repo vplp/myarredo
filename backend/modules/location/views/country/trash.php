@@ -7,10 +7,7 @@ use thread\widgets\grid\{
 };
 
 /**
- *
- * @package admin\modules\page\view
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
+ * @var \backend\modules\location\models\search\Country $model
  */
 
 echo GridView::widget([
@@ -20,6 +17,7 @@ echo GridView::widget([
         [
             'attribute' => 'title',
             'value' => 'lang.title',
+            'label' => Yii::t('app', 'Title'),
         ],
         [
             'class' => ActionDeleteColumn::class,

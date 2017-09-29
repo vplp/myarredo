@@ -7,10 +7,7 @@ use thread\widgets\grid\{
 };
 
 /**
- *
- * @package admin\modules\page\view
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
+ * @var \backend\modules\location\models\search\City $model
  */
 
 echo GridView::widget([

@@ -19,6 +19,7 @@ echo GridView::widget([
         [
             'attribute' => 'title',
             'value' => 'lang.title',
+            'label' => Yii::t('app', 'Title'),
         ],
         [
             'attribute' => 'country_id',

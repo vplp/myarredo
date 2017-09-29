@@ -1,4 +1,5 @@
 <?php
+
 use thread\app\bootstrap\ActiveForm;
 
 /**
@@ -6,9 +7,11 @@ use thread\app\bootstrap\ActiveForm;
  * @var \backend\modules\location\models\CurrencyLang $modelLang
  * @var ActiveForm $form
  */
+
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
+
 <?= $form->submit($model, $this) ?>
 
 <?= $form->text_line($model, 'alias') ?>
