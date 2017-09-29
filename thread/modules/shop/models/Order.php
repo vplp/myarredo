@@ -83,7 +83,7 @@ class Order extends ActiveRecord
                 'double'
             ],
             [['order_status'], 'in', 'range' => array_keys(self::getOrderStatuses())],
-            [['payd_status'], 'in', 'range' => array_keys(self::getPaydStatuses())],
+            [['payd_status'], 'in', 'range' => array_keys(self::getPaidStatuses())],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
@@ -128,7 +128,7 @@ class Order extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'customer_id' => Yii::t('shop', 'Customer'),
             'manager_id' => Yii::t('shop', 'Manager'),
-            'comment' => Yii::t('shop', 'Comment'),
+            'comment' => Yii::t('app', 'Comment'),
             'items_count' => Yii::t('shop', 'Count of items'),
             'items_total_count' => Yii::t('shop', 'Summ of items count'),
             'items_summ' => Yii::t('shop', 'Summ of items without discount for item'),
@@ -185,7 +185,7 @@ class Order extends ActiveRecord
     /**
      * @return array
      */
-    public static function getPaydStatuses()
+    public static function getPaidStatuses()
     {
         return [
             'billed' => Yii::t('shop', 'Billed'),

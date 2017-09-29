@@ -23,7 +23,7 @@ use backend\modules\{
 <?= $form->submit($model, $this) ?>
 <?= $form->field($model, 'order_status')->dropDownList($model::getOrderStatuses()) ?>
 <?= $form->field($model, 'payment_method_id')->dropDownList(PaymentMethods::dropDownList()) ?>
-<?= $form->field($model, 'payd_status')->dropDownList($model::getPaydStatuses()) ?>
+<?= $form->field($model, 'payd_status')->dropDownList($model::getPaidStatuses()) ?>
 <?= $form->field($model, 'delivery_method_id')->dropDownList(DeliveryMethods::dropDownList()) ?>
 <?= $form->text_line($model, 'delivery_price') ?>
 <?= $form->text_line($model, 'comment')->textarea(['style' => 'height:100px;', 'value' => ' ']) ?>

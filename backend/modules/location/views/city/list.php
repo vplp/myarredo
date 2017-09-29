@@ -19,12 +19,14 @@ echo GridView::widget([
         [
             'attribute' => 'title',
             'value' => 'lang.title',
+            'label' => Yii::t('app', 'Title'),
         ],
         [
             'attribute' => 'country_id',
             'value' => 'country.lang.title',
             'filter' => GridViewFilter::selectOne($filter, 'country_id', Country::dropDownList())
         ],
+        'position',
         [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',

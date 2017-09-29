@@ -17,6 +17,7 @@ echo GridView::widget([
         [
             'attribute' => 'title',
             'value' => 'lang.title',
+            'label' => Yii::t('app', 'Title'),
         ],
         [
             'format' => 'raw',
@@ -27,6 +28,7 @@ echo GridView::widget([
                 );
             }
         ],
+        'position',
         [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',

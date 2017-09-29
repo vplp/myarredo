@@ -13,6 +13,11 @@ use backend\modules\location\models\{
     City as CityModel, CityLang
 };
 
+/**
+ * Class City
+ *
+ * @package backend\modules\location\models\search
+ */
 class City extends CityModel implements BaseBackendSearchModel
 {
     public $title;

@@ -17,8 +17,6 @@ use backend\modules\location\models\{
  * Class Currency
  *
  * @package backend\modules\location\models\search
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Currency extends CurrencyModel implements BaseBackendSearchModel
 {
@@ -46,8 +44,8 @@ class Currency extends CurrencyModel implements BaseBackendSearchModel
     }
 
     /**
-     * @param ActiveQuery $query
-     * @param array $params
+     * @param $query
+     * @param $params
      * @return ActiveDataProvider
      */
     public function baseSearch($query, $params)

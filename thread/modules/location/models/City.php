@@ -14,8 +14,6 @@ use thread\modules\location\Location as LocationModule;
  * Class City
  *
  * @package thread\modules\location\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class City extends ActiveRecord
 {
@@ -67,14 +65,15 @@ class City extends ActiveRecord
         return [
             [['alias'], 'required'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['country_id', 'created_at', 'updated_at'], 'integer'],
+            [['country_id', 'created_at', 'updated_at', 'position'], 'integer'],
             [['alias'], 'string', 'max' => 255],
             [['alias'], 'unique'],
+            [['position'], 'default', 'value' => 0],
         ];
     }
 
     /**
-     * @inheritdoc
+     * @return array
      */
     public function attributeLabels()
     {
@@ -86,11 +85,11 @@ class City extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'position' => Yii::t('app', 'Position'),
         ];
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()
@@ -105,7 +104,7 @@ class City extends ActiveRecord
                 'updated_at',
                 'published',
                 'deleted',
-                'search_title'
+                'position'
             ],
         ];
     }
@@ -125,5 +124,4 @@ class City extends ActiveRecord
     {
         return $this->hasOne(Country::class, ['id' => 'country_id']);
     }
-
 }

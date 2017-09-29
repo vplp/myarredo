@@ -10,8 +10,6 @@ use thread\app\model\interfaces\BaseBackendModel;
  * Class Country
  *
  * @package backend\modules\location\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Country extends \common\modules\location\models\Country implements BaseBackendModel
 {

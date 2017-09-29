@@ -2,8 +2,6 @@
 
 namespace common\modules\shop\models;
 
-use yii\helpers\ArrayHelper;
-
 /**
  * Class Order
  *
@@ -11,40 +9,6 @@ use yii\helpers\ArrayHelper;
  */
 class Order extends \thread\modules\shop\models\Order
 {
-    /**
-     * @return mixed
-     */
-    public function rules()
-    {
-        return ArrayHelper::merge(parent::rules(), [
-
-        ]);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function scenarios()
-    {
-        return ArrayHelper::merge(parent::scenarios(), [
-            'backend' => [
-
-            ],
-        ]);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function attributeLabels()
-    {
-        return ArrayHelper::merge(parent::attributeLabels(),
-            [
-
-            ]
-        );
-    }
-
     /**
      * @return mixed
      */

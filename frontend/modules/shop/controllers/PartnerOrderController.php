@@ -10,7 +10,7 @@ use yii\web\ForbiddenHttpException;
 //
 use frontend\components\BaseController;
 use frontend\modules\shop\models\{
-    Order, search\Order as filterOrderModel
+    Order, OrderAnswer, search\Order as filterOrderModel
 };
 
 /**
@@ -63,6 +63,12 @@ class PartnerOrderController extends BaseController
     {
         $orders = Order::findBaseAll();
 
+        $this->title = 'Заявки';
+
+        $this->breadcrumbs[] = [
+            'label' => $this->title,
+        ];
+
         return $this->render('list', [
             'orders' => $orders,
         ]);
@@ -75,14 +81,52 @@ class PartnerOrderController extends BaseController
      */
     public function actionView($id)
     {
-        $order = Order::findById($id);
+        $model = Order::findById($id);
 
-        if (empty($order) || Yii::$app->getUser()->isGuest) {
+        if (empty($model) || Yii::$app->getUser()->isGuest) {
             throw new ForbiddenHttpException('Access denied');
         }
 
+        $modelAnswer = OrderAnswer::findByOrderIdUserId($model->id, Yii::$app->getUser()->getId());
+
+        if (empty($modelAnswer)) {
+            $modelAnswer = new OrderAnswer();
+        }
+
+        $modelAnswer->setScenario('frontend');
+
+        $modelAnswer->order_id = $model->id;
+        $modelAnswer->user_id = Yii::$app->getUser()->getId();
+
+
+        if ($modelAnswer->load(Yii::$app->getRequest()->post()) && $modelAnswer->validate()) {
+            $transaction = $modelAnswer::getDb()->beginTransaction();
+            try {
+                $save = $modelAnswer->save();
+                if ($save) {
+                    $transaction->commit();
+                } else {
+                    $transaction->rollBack();
+                }
+            } catch (Exception $e) {
+                $transaction->rollBack();
+            }
+        }
+
+        $this->title = 'Заявка №'. $model->id;
+
+        $this->breadcrumbs[] = [
+            'label' => 'Заявки',
+            'url' => ['/shop/partner-order/list']
+        ];
+
+        $this->breadcrumbs[] = [
+            'label' => $this->title,
+        ];
+
         return $this->render('view', [
-            'order' => $order,
+            'model' => $model,
+            'modelAnswer' => $modelAnswer,
         ]);
     }
 }

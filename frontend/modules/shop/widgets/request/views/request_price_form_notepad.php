@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 
 <?php $form = ActiveForm::begin([
     'method' => 'post',
-    'action' => Url::toRoute('/shop/cart/index'),
+    'action' => Url::toRoute('/shop/cart/notepad'),
     'id' => 'checkout-form',
 ]); ?>
 
