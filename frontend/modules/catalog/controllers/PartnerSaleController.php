@@ -24,8 +24,6 @@ use thread\actions\{
  */
 class PartnerSaleController extends BaseController
 {
-    public $label = "PartnerSale";
-
     public $title = "PartnerSale";
 
     public $defaultAction = 'list';
@@ -111,11 +109,10 @@ class PartnerSaleController extends BaseController
 
         $models = $model->partnerSearch(ArrayHelper::merge($params, Yii::$app->request->queryParams));
 
-        $this->title = 'Распродажа итальянской мебели';
+        $this->title = 'Моя распродажа';
 
         $this->breadcrumbs[] = [
-            'label' => 'Распродажа итальянской мебели',
-            'url' => ['/catalog/sale/list']
+            'label' => 'Моя распродажа',
         ];
 
         return $this->render('list', [
