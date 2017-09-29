@@ -84,9 +84,9 @@ class OrderAnswer extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'order_id' => Yii::t('shop', 'Order id'),
-            'user_id' => Yii::t('shop', 'User id'),
-            'answer' => Yii::t('shop', 'Answer'),
+            'order_id' => Yii::t('app', 'Order id'),
+            'user_id' => Yii::t('app', 'User id'),
+            'answer' => Yii::t('app', 'Answer'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
