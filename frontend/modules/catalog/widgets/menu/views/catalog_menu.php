@@ -9,6 +9,8 @@ use frontend\modules\catalog\models\Category;
  * @var $model \frontend\modules\catalog\models\Category
  */
 
+$session = Yii::$app->session;
+
 ?>
 
 <div class="navbar-header">
@@ -53,7 +55,7 @@ use frontend\modules\catalog\models\Category;
                 Url::toRoute(['/page/page/view', 'alias' => 'about'])
             ); ?></li>
         <li><?= Html::a(
-                'Контакты в москве',
+                'Контакты в ' . $session['city']['lang']['title_where'],
                 Url::toRoute(['/page/page/view', 'alias' => 'contacts'])
             ); ?></li>
     </ul>

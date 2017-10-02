@@ -89,4 +89,13 @@ class City extends \common\modules\location\models\City
 
         return ArrayHelper::map($data, 'id', 'lang.title');
     }
+
+    public function getSubDomainUrl()
+    {
+        $url = (!in_array($this->id, array(4, 2, 1)))
+            ? 'http://' . $this->alias . '.myarredo2017.dev'
+            : 'http://' . 'www.myarredo2017.dev';
+
+        return $url;
+    }
 }

@@ -5,8 +5,10 @@ use frontend\modules\menu\widgets\menu\Menu;
 use frontend\themes\myarredo\widgets\Alert;
 
 $bundle = AppAsset::register($this);
+$session = Yii::$app->session;
 
 $this->beginPage()
+
 ?>
     <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">
@@ -39,7 +41,7 @@ $this->beginPage()
 
                 </div>
                 <div class="col-md-4 center">
-                    <div class="cons">Получить консультацию в Москве</div>
+                    <div class="cons">Получить консультацию в <?= $session['city']['lang']['title_where'] ?></div>
                     <div class="tel"><i class="fa fa-phone" aria-hidden="true"></i>+7 (499) 705-89-98</div>
                     <div class="stud">
                         Студия "СТАРЫЙ РИМ"</br>
@@ -55,13 +57,14 @@ $this->beginPage()
                         </a>
                     </div>
                 </div>
+
                 <div class="col-md-4 center">
 
                     <?= \frontend\modules\user\widgets\topBarInfo\topBarInfo::widget() ?>
 
                     <div class="copy">
                         <div class="copy-slogan">
-                            2015 - 2017 (с) MyArredo, лучшая мебель из италии для вашего дома
+                            2015 - <?= date('Y'); ?> (с) MyArredo, лучшая мебель из италии для вашего дома
                         </div>
                         <div class="fund">Программирование сайта - <a href="http://www.vipdesign.com.ua/">VipDesign</a></div>
                     </div>
