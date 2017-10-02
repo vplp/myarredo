@@ -9,6 +9,8 @@ use frontend\modules\catalog\models\Category;
  * @var $model \frontend\modules\catalog\models\Category
  */
 
+$session = Yii::$app->session;
+
 ?>
 
 <div class="italian-furn">
@@ -16,7 +18,7 @@ use frontend\modules\catalog\models\Category;
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="header">
-                    <h2>ИТАЛЬЯНСКАЯ МЕБЕЛЬ В МОСКВЕ</h2>
+                    <h2>ИТАЛЬЯНСКАЯ МЕБЕЛЬ В <?= $session['city']['lang']['title_where'] ?></h2>
                     <?= Html::a(
                         'Смотреть все категории',
                         Url::toRoute(['/catalog/category/list']),
