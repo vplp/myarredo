@@ -17,7 +17,7 @@ echo GridView::widget([
             'attribute' => 'group_id',
             'value' => 'group.lang.title'
         ],
-        'username',
+        'email',
         [
             'class' => ActionRestoreColumn::class,
         ],

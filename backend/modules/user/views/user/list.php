@@ -23,7 +23,7 @@ echo GridView::widget([
             'value' => 'group.lang.title',
             'filter' => GridViewFilter::selectOne($filter, 'group_id', Group::dropDownList()),
         ],
-        'username',
+        'email',
         [
             'value' => function ($model) {
                 return $model->profile->getFullName();
