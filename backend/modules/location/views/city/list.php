@@ -24,6 +24,7 @@ echo GridView::widget([
         [
             'attribute' => 'country_id',
             'value' => 'country.lang.title',
+            'label' => Yii::t('app', 'Country'),
             'filter' => GridViewFilter::selectOne($filter, 'country_id', Country::dropDownList())
         ],
         'position',

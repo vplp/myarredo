@@ -1,7 +1,7 @@
 <?php
+
 use backend\widgets\GridView\GridView;
 //
-use yii\helpers\Html;
 use thread\widgets\grid\{
     ActionCheckboxColumn
 };
@@ -18,15 +18,6 @@ echo GridView::widget([
             'attribute' => 'title',
             'value' => 'lang.title',
             'label' => Yii::t('app', 'Title'),
-        ],
-        [
-            'format' => 'raw',
-            'value' => function ($model) {
-                return Html::a(
-                    Yii::t('location', 'City') . ': ' . ' (' . $model->getCitiesCount() . ')',
-                    ['/location/city/list', 'country_id' => $model['id']]
-                );
-            }
         ],
         'position',
         [

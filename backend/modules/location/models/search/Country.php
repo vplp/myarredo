@@ -79,7 +79,7 @@ class Country extends CountryModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = CountryModel::find()->joinWith(['lang'])->undeleted();
+        $query = CountryModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -89,7 +89,7 @@ class Country extends CountryModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = CountryModel::find()->joinWith(['lang'])->deleted();
+        $query = CountryModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }

@@ -8,6 +8,17 @@ use yii\helpers\ArrayHelper;
 /**
  * Class City
  *
+ * @property integer $id
+ * @property string $alias
+ * @property integer $country_id
+ * @property float $lat
+ * @property float $lng
+ * @property integer $created_at
+ * @property integer $updated_at
+ * @property boolean $published
+ * @property boolean $deleted
+ * @property integer $position
+ *
  * @package common\modules\location\models
  */
 class City extends \thread\modules\location\models\City
@@ -49,5 +60,15 @@ class City extends \thread\modules\location\models\City
         ];
 
         return ArrayHelper::merge($attributeLabels, parent::attributeLabels());
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function findBase()
+    {
+        return self::find()
+            ->innerJoinWith(['lang'])
+            ->orderBy(self::tableName(). '.position');
     }
 }
