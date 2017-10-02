@@ -54,6 +54,14 @@ class Country extends \common\modules\location\models\Country
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCities()
+    {
+        return $this->hasMany(City::class, ['country_id' => 'id']);
+    }
+
+    /**
      * Get by alias
      *
      * @param string $alias
@@ -76,17 +84,11 @@ class Country extends \common\modules\location\models\Country
     /**
      * Drop down list
      *
-     * @param array $option
      * @return mixed
      */
-    public static function dropDownList($option = [])
+    public static function dropDownList()
     {
         $query = self::findBase();
-
-//        if (isset($option['type_id'])) {
-//            $query->innerJoinWith(["types"])
-//                ->andFilterWhere([Types::tableName() . '.id' => $option['type_id']]);
-//        }
 
         $data = $query->all();
 

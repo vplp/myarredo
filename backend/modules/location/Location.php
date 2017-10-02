@@ -17,12 +17,12 @@ class Location extends \common\modules\location\Location
         'position' => 7,
         'items' => [
             [
-                'name' => 'Country',
+                'name' => 'Countries',
                 'icon' => 'fa-tasks',
                 'url' => ['/location/country/list'],
             ],
             [
-                'name' => 'City',
+                'name' => 'Cities',
                 'icon' => 'fa-tasks',
                 'url' => ['/location/city/list'],
             ],

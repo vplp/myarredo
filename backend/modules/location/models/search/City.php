@@ -57,26 +57,18 @@ class City extends CityModel implements BaseBackendSearchModel
                 'query' => $query,
                 'pagination' => [
                     'pageSize' => $module->itemOnPage
-                ],
-                'sort' => [
-                    'defaultOrder' => [
-                        'id' => SORT_ASC
-                    ]
                 ]
             ]
         );
-
-        $query->andWhere(['country_id' => Yii::$app->getRequest()->get('country_id') ?? '']);
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
 
-        $query->andFilterWhere(
-            [
-                'country_id' => $this->country_id,
-            ]
-        );
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'country_id' => $this->country_id,
+        ]);
 
         $query->andFilterWhere(['like', 'alias', $this->alias])
             ->andFilterWhere(['like', 'published', $this->published]);
@@ -94,7 +86,7 @@ class City extends CityModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = CityModel::find()->joinWith(['lang'])->undeleted();
+        $query = CityModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -104,7 +96,7 @@ class City extends CityModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = CityModel::find()->with(['lang'])->deleted();
+        $query = CityModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }

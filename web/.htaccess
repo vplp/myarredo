@@ -2,26 +2,34 @@ AddDefaultCharset UTF-8
 
 # mod_autoindex
 <IfModule mod_autoindex.c>
-  Options -Indexes
+    Options -Indexes
 </IfModule>
 
 # mod_rewrite
 <IfModule mod_rewrite.c>
-  Options +FollowSymlinks
-  RewriteEngine On
+    Options +FollowSymlinks
+    RewriteEngine On
 
-  RewriteRule ^backend(.*)$ backend/$1 [L]
+    RewriteRule ^backend(.*)$ backend/$1 [L]
 
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
+    # Переадресацыя на www
+    RewriteCond %{HTTP_HOST} ^myarredo2017.dev [NC]
+    RewriteRule ^(.*)$ http://www.myarredo2017.dev/$1 [R=permanent,L]
 
-  RewriteRule . index.php [L]
+    # Поддоменн без www
+    RewriteCond %{HTTP_HOST} ^www\.([A-Za-z0-9_-]*)\.myarredo2017\.dev
+    RewriteRule ^(.*)$ http://%1.myarredo2017.dev/$1 [R=permanent,L]
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    RewriteRule . index.php [L]
 </IfModule>
 
 # headers_module is protect framed
 <IfModule headers_module>
-       Header set X-Content-Type-Options nosniff
-       Header set X-Frame-Options SAMEORIGIN
+    Header set X-Content-Type-Options nosniff
+    Header set X-Frame-Options SAMEORIGIN
 </IfModule>
 
 <FilesMatch "composer\.$">

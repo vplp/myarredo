@@ -20,7 +20,7 @@ class Country extends \common\modules\location\models\Country implements BaseBac
      */
     public static function dropDownList()
     {
-        return ArrayHelper::map(self::findBase()->joinWith(['lang'])->undeleted()->all(), 'id', 'lang.title');
+        return ArrayHelper::map(self::findBase()->undeleted()->all(), 'id', 'lang.title');
     }
 
     /**
