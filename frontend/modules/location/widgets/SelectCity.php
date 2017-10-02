@@ -49,7 +49,7 @@ class SelectCity extends Widget
             $_SERVER["HTTP_HOST"]
         );
 
-        if ($cityAlias !== null) {
+        if ($cityAlias) {
             $this->city = City::findByAlias($cityAlias);
         } else {
             $this->city = City::findByAlias('msk');
