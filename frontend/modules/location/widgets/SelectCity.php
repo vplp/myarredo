@@ -37,11 +37,13 @@ class SelectCity extends Widget
     {
         $session = Yii::$app->session;
 
+        $exp_host = explode('.', $_SERVER['HTTP_HOST']);
+
         // get city name
         $cityAlias = str_replace(
             array(
-                "www.myarredo2017.dev",
-                ".myarredo2017.dev",
+                'www.' . $exp_host[1] . '.' . $exp_host[2],
+                '.' . $exp_host[1] . '.' . $exp_host[2],
             ),
             "",
             $_SERVER["HTTP_HOST"]
