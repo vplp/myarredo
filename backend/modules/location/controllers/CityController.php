@@ -24,12 +24,11 @@ class CityController extends BackendController
     public $name = 'city';
 
 
-    public function actionImport()
+    public function actionImportCities()
     {
         $rows = (new \yii\db\Query())
             ->from('city')
             ->all();
-
 
         City::deleteAll();
 
