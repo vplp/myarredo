@@ -16,6 +16,8 @@ use yii\helpers\ArrayHelper;
  * @property boolean $delivery_to_other_cities
  * @property int $country_id
  * @property int $city_id
+ * @property float $latitude
+ * @property float $longitude
  *
  * @package common\modules\user\models
  */
@@ -40,6 +42,7 @@ class Profile extends \thread\modules\user\models\Profile
             ],
             [['delivery_to_other_cities'], 'in', 'range' => [0, 1]],
             [['country_id', 'city_id'], 'integer'],
+            [['latitude', 'longitude'], 'double'],
         ]);
     }
 
@@ -59,7 +62,9 @@ class Profile extends \thread\modules\user\models\Profile
                 'exp_with_italian',
                 'country_id',
                 'city_id',
-                'delivery_to_other_cities'
+                'delivery_to_other_cities',
+                'latitude',
+                'longitude'
             ],
             'basicCreate' => [
                 'phone',
@@ -69,7 +74,9 @@ class Profile extends \thread\modules\user\models\Profile
                 'exp_with_italian',
                 'country_id',
                 'city_id',
-                'delivery_to_other_cities'
+                'delivery_to_other_cities',
+                'latitude',
+                'longitude'
             ],
         ]);
     }
@@ -88,6 +95,8 @@ class Profile extends \thread\modules\user\models\Profile
             'country_id' => 'Ваша страна',
             'city_id' => 'Ваш город',
             'delivery_to_other_cities' => 'Готов к поставкам мебели в другие города',
+            'latitude' => Yii::t('app', 'Latitude'),
+            'longitude' => Yii::t('app', 'Longitude'),
         ]);
     }
 }
