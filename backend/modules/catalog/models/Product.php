@@ -65,6 +65,9 @@ class Product extends CommonProductModel implements BaseBackendModel
             }
         }
 
+        //Update Product Count In to Group
+        Category::updateEnabledProductCounts();
+
         parent::afterSave($insert, $changedAttributes);
     }
 
@@ -93,5 +96,13 @@ class Product extends CommonProductModel implements BaseBackendModel
     public function trash($params)
     {
         return (new search\Product())->trash($params);
+    }
+
+    public function afterDelete()
+    {
+        //Update Product Count In to Group
+        Category::updateEnabledProductCounts();
+
+        parent::afterDelete();
     }
 }

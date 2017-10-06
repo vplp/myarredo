@@ -69,9 +69,9 @@ class Product extends \common\modules\catalog\models\Product
             ->enabled()
             ->byAlias($alias)
             ->innerJoinWith([
-                'category' => function ($q) {
-                    $q->with(['lang']);
-                }]
+                    'category' => function ($q) {
+                        $q->with(['lang']);
+                    }]
             )
             ->one();
     }
@@ -92,7 +92,7 @@ class Product extends \common\modules\catalog\models\Product
      */
     public static function getImage()
     {
-        $image =  'http://placehold.it/200x200';
+        $image = 'http://placehold.it/200x200';
 
         return $image;
     }
@@ -112,7 +112,7 @@ class Product extends \common\modules\catalog\models\Product
      * @param array $collections
      * @return string
      */
-    public static function getTitle(array $model,  $types = null,  $collections = null)
+    public static function getTitle(array $model, $types = null, $collections = null)
     {
         // TODO: !!!
 
@@ -147,13 +147,14 @@ class Product extends \common\modules\catalog\models\Product
         $title .= ((!$this->is_composition && !empty($this->article)) ? $this->article . ' ' : '');
 
         if ($this->is_composition && $this->category[0]->lang->composition_title !== null) {
-            $title = $this->category[0]->lang->composition_title . ' '. $title;
+            $title = $this->category[0]->lang->composition_title . ' ' . $title;
         } elseif ($this->is_composition) {
             $title = 'КОМПОЗИЦИЯ ' . $title;
         }
 
         return $title;
     }
+
     /**
      * @param $collections_id
      * @param $catalog_type_id
@@ -161,6 +162,7 @@ class Product extends \common\modules\catalog\models\Product
      */
     public static function getProductByCollection(int $collections_id, int $catalog_type_id)
     {
+        //TODO Переделать
         return parent::findBase()
             ->enabled()
             ->andFilterWhere([

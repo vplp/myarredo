@@ -80,11 +80,11 @@ class Category extends ActiveRecord
     {
         return [
             [['alias'], 'required'],
-            [['created_at', 'updated_at', 'position'], 'integer'],
+            [['created_at', 'updated_at', 'position', 'product_count'], 'integer'],
             [['published', 'deleted', 'popular', 'popular_by'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['alias', 'image_link'], 'string', 'max' => 255],
             [['alias'], 'unique'],
-            [['position'], 'default', 'value' => '0'],
+            [['position', 'product_count'], 'default', 'value' => '0'],
             [['types_ids'], 'each', 'rule' => ['integer']],
         ];
     }
@@ -100,7 +100,8 @@ class Category extends ActiveRecord
             'popular_by' => ['popular_by'],
             'deleted' => ['deleted'],
             'position' => ['position'],
-            'backend' => ['alias', 'image_link', 'popular', 'popular_by', 'position', 'published', 'deleted', 'types_ids'],
+            'product_count' => ['product_count'],
+            'backend' => ['product_count', 'alias', 'image_link', 'popular', 'popular_by', 'position', 'published', 'deleted', 'types_ids'],
         ];
     }
 
@@ -116,6 +117,7 @@ class Category extends ActiveRecord
             'position' => Yii::t('app', 'Position'),
             'popular' => 'Популярный Ru',
             'popular_by' => 'Популярный By',
+            'product_count' => 'product_count',
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
@@ -176,5 +178,17 @@ class Category extends ActiveRecord
             $image = 'http://placehold.it/200x200';
         }
         return $image;
+    }
+
+    /**
+     *
+     */
+    public static function updateEnabledProductCounts()
+    {
+        $groups = self::find()->all();
+        foreach ($groups as $group) {
+            $group['product_count'] = $group->getProduct()->enabled()->count()??0;
+            $group->save(false);
+        }
     }
 }

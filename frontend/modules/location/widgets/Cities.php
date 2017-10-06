@@ -40,12 +40,13 @@ class Cities extends Widget
      */
     public function run()
     {
-
-        return $this->render(
-            $this->view,
-            [
-                'country' => $this->country
-            ]
-        );
+        if (isset($this->country['cities'])) {
+            return $this->render(
+                $this->view,
+                [
+                    'country' => $this->country
+                ]
+            );
+        }
     }
 }
