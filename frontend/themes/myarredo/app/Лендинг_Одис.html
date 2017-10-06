@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>myarredo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./public/css/fonts.css">
+    <link rel="stylesheet" href="./public/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./public/libs/bootstrap-select/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="./public/libs/slick-1.6/slick.css">
+    <link rel='stylesheet' href='./public/css/main.scss.css' type='text/css' media='all' />
+    <link rel="stylesheet" href="./public/css/header.scss.css">
+    <link rel="stylesheet" href="./public/css/odis.scss.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<!--[if lt IE 9]>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+<![endif]-->
+<header>
+    <div class="city-select-cont">
+        <div class="container large-container">
+            <div class="row">
+                <div class="top-panel">
+                    <div class="top-panel-in">
+                        <a href="javascript:void(0);" class="set-country">Россия</a>
+                        <a href="javascript:void(0);" id="close-top">
+                            <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="title-city">Ваш город</div>
+                    <div class="tab-country-content">
+                        <ul class="links-cont">
+                            <li class="active">
+                                <a href="#">Москва</a>
+                            </li>
+                            <li>
+                                <a href="#">Санкт-Петербург</a>
+                            </li>
+                            <li>
+                                <a href="#">Альметьевск</a>
+                            </li>
+                            <li>
+                                <a href="#">Анапа</a>
+                            </li>
+                            <li>
+                                <a href="#">Архангельск</a>
+                            </li>
+                            <li>
+                                <a href="#">Барнаул</a>
+                            </li>
+                            <li>
+                                <a href="#">Белгород</a>
+                            </li>
+                            <li>
+                                <a href="#">Благовещенск</a>
+                            </li>
+                            <li>
+                                <a href="#">Брянск</a>
+                            </li>
+                            <li>
+                                <a href="#">Владивосток</a>
+                            </li>
+                            <li>
+                                <a href="#">Владикавказ</a>
+                            </li>
+                            <li>
+                                <a href="#">Владимир</a>
+                            </li>
+                            <li>
+                                <a href="#">Волгоград</a>
+                            </li>
+                            <li>
+                                <a href="#">Воронеж</a>
+                            </li>
+                            <li>
+                                <a href="#">Екатеринбург</a>
+                            </li>
+                            <li>
+                                <a href="#">Иваново</a>
+                            </li>
+                            <li>
+                                <a href="#">Ижевск</a>
+                            </li>
+                            <li>
+                                <a href="#">Иркутск</a>
+                            </li>
+                            <li>
+                                <a href="#">Казань</a>
+                            </li>
+                            <li>
+                                <a href="#">Калининград</a>
+                            </li>
+                            <li>
+                                <a href="#">Калуга</a>
+                            </li>
+                            <li>
+                                <a href="#">Кемерово</a>
+                            </li>
+                            <li>
+                                <a href="#">Киров</a>
+                            </li>
+                            <li>
+                                <a href="#">Кострома</a>
+                            </li>
+                            <li>
+                                <a href="#">Краснодар</a>
+                            </li>
+                            <li>
+                                <a href="#">Курск</a>
+                            </li>
+                            <li>
+                                <a href="#">Магнитогорск</a>
+                            </li>
+                            <li>
+                                <a href="#">Махачкала</a>
+                            </li>
+                            <li>
+                                <a href="#">Мурманск</a>
+                            </li>
+                            <li>
+                                <a href="#">Набережные челны</a>
+                            </li>
+                            <li>
+                                <a href="#">Нальчик</a>
+                            </li>
+                            <li>
+                                <a href="#">Нижничй Новгород</a>
+                            </li>
+                            <li>
+                                <a href="#">Новокузнецк</a>
+                            </li>
+                            <li>
+                                <a href="#">Новороссийск</a>
+                            </li>
+                            <li>
+                                <a href="#">Новосибирск</a>
+                            </li>
+                            <li>
+                                <a href="#">Оренбург</a>
+                            </li>
+                            <li>
+                                <a href="#">Пенза</a>
+                            </li>
+                            <li>
+                                <a href="#">Перьм</a>
+                            </li>
+                            <li>
+                                <a href="#">Рязань</a>
+                            </li>
+                            <li>
+                                <a href="#">Ростов-на-Дону</a>
+                            </li>
+                            <li>
+                                <a href="#">Самара</a>
+                            </li>
+                            <li>
+                                <a href="#">Саратов</a>
+                            </li>
+                            <li>
+                                <a href="#">Смоленск</a>
+                            </li>
+                            <li>
+                                <a href="#">Сочи</a>
+                            </li>
+                            <li>
+                                <a href="#">Ставрополь</a>
+                            </li>
+                            <li>
+                                <a href="#">Таганрог</a>
+                            </li>
+                            <li>
+                                <a href="#">Тамбов</a>
+                            </li>
+                            <li>
+                                <a href="#">Тверь</a>
+                            </li>
+                            <li>
+                                <a href="#">Тольятти</a>
+                            </li>
+                            <li>
+                                <a href="#">Томск</a>
+                            </li>
+                            <li>
+                                <a href="#">Тула</a>
+                            </li>
+                            <li>
+                                <a href="#">Тюмень</a>
+                            </li>
+                            <li>
+                                <a href="#">Ульяновск</a>
+                            </li>
+                            <li>
+                                <a href="#">Уфа</a>
+                            </li>
+                            <li>
+                                <a href="#">Хабаровск</a>
+                            </li>
+                            <li>
+                                <a href="#">Чебоксары</a>
+                            </li>
+                            <li>
+                                <a href="#">Челябинск</a>
+                            </li>
+                            <li>
+                                <a href="#">Южно-Сахалинск</a>
+                            </li>
+                            <li>
+                                <a href="#">Ярославль</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="top-navbar">
+        <div class="container large-container">
+            <ul class="nav navbar-nav top-panel flex">
+                <li class="tel-num">
+						<span>
+							<i class="glyphicon glyphicon-earphone"></i> +7 (844) 297-45-97
+						</span>
+                </li>
+                <li>
+                    <a class="callback-trigger" href="javascript:void(0);">
+							<span>
+								Обратный звонок
+							</span>
+                    </a>
+                </li>
+                <li class="geo">
+                    <a href="javascript: void(0);" id="select-city">
+                        <i class="glyphicon glyphicon-map-marker"></i>
+                        <span class="country">
+								Россия
+							</span>
+                        <span class="city">
+								Москва
+							</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" class="my-notebook">
+							<span class="red-but">
+								<i class="glyphicon glyphicon-book"></i>
+							</span>
+                        <span class="inscription">
+								Мой блокнот
+							</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <nav class="navbar">
+        <div class="container large-container">
+            <a href="javascript:void(0);" class="logo">
+                <img src="public/img/logo.png" alt="">
+            </a>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="main-menu" >
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Каталог мебели</a></li>
+                    <li><a href="#">Фабрики</a></li>
+                    <li><a href="#">Распродажа</a></li>
+                    <li><a href="#">О проекте</a></li>
+                    <li><a href="#">Контакты в москве</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+</header>
+<main class="odis-page">
+    <div class="banner">
+        <div class="container large-container">
+            <div class="col-2">
+                <div class="ban-img">
+                    <img src="./public/img/odis/banner.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="banner-text">
+                    <h2>Новые коллекции 2017!</h2>
+                    <p>
+                        Уникальная возможность
+                        приобрести лучшие новинки
+                        Милана 2017 в салоне Одис!
+                    </p>
+                    <p>
+                        Лучшие цены и сервис
+                        гарантарованы!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slider-wrap">
+        <div class="container large-container">
+            <div class="slider-title">
+                <h4>Распродажа</h4>
+                <a href="#" class="all-actions">
+                    Все акционные товары
+                </a>
+            </div>
+
+            <div class="slider-body sale-slider">
+
+                <div class="one-slide">
+                    <div class="img-cont">
+                        <img src="./public/img/odis/thumb1.jpg" alt="">
+                    </div>
+                    <div class="bottom">
+                        <div class="prod-title">
+                            ПУФ TONIN CASA
+                        </div>
+                        <div class="price">
+                        <span class="old-price">
+                            14 320 EUR
+                        </span>
+                            <span class="new-price">
+                            14 320 <span class="currency">EUR</span>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="one-slide">
+                    <div class="img-cont">
+                        <img src="./public/img/odis/thumb2.jpg" alt="">
+                    </div>
+                    <div class="bottom">
+                        <div class="prod-title">
+                            ПУФ TONIN CASA
+                        </div>
+                        <div class="price">
+                        <span class="old-price">
+                            14 320 EUR
+                        </span>
+                            <span class="new-price">
+                            14 320 <span class="currency">EUR</span>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="one-slide">
+                    <div class="img-cont">
+                        <img src="./public/img/odis/thumb3.jpg" alt="">
+                    </div>
+                    <div class="bottom">
+                        <div class="prod-title">
+                            ПУФ TONIN CASA
+                        </div>
+                        <div class="price">
+                        <span class="old-price">
+                            14 320 EUR
+                        </span>
+                            <span class="new-price">
+                            14 320 <span class="currency">EUR</span>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="one-slide">
+                    <div class="img-cont">
+                        <img src="./public/img/odis/thumb4.jpg" alt="">
+                    </div>
+                    <div class="bottom">
+                        <div class="prod-title">
+                            ПУФ TONIN CASA
+                        </div>
+                        <div class="price">
+                        <span class="old-price">
+                            14 320 EUR
+                        </span>
+                            <span class="new-price">
+                            14 320 <span class="currency">EUR</span>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="one-slide">
+                    <div class="img-cont">
+                        <img src="./public/img/odis/thumb2.jpg" alt="">
+                    </div>
+                    <div class="bottom">
+                        <div class="prod-title">
+                            ПУФ TONIN CASA
+                        </div>
+                        <div class="price">
+                        <span class="old-price">
+                            14 320 EUR
+                        </span>
+                            <span class="new-price">
+                            14 320 <span class="currency">EUR</span>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="slider-wrap">
+        <div class="container large-container">
+            <div class="slider-title">
+                <h4>Итальянская мебель</h4>
+                <a href="#" class="all-actions">
+                    Каталог
+                </a>
+            </div>
+            <div class="cat-tiles">
+                <a href="#" class="one-tile">
+                    <img src="./public/img/odis/thumb5.jpg" alt="">
+                    <span class="sticker">
+                        Кухни
+                    </span>
+                </a>
+                <a href="#" class="one-tile">
+                    <img src="./public/img/odis/thumb6.jpg" alt="">
+                    <span class="sticker">
+                        Гостинные и столовые
+                    </span>
+                </a>
+                <a href="#" class="one-tile">
+                    <img src="./public/img/odis/thumb7.jpg" alt="">
+                    <span class="sticker">
+                        спальни и гардеробные
+                    </span>
+                </a>
+                <a href="#" class="one-tile">
+                    <img src="./public/img/odis/thumb8.jpg" alt="">
+                    <span class="sticker">
+                        ягкая мебель
+                    </span>
+                </a>
+                <a href="#" class="one-tile">
+                    <img src="./public/img/odis/thumb9.jpg" alt="">
+                    <span class="sticker">
+                        Детская мебель
+                    </span>
+                </a>
+                <a href="#" class="one-tile">
+                    <img src="./public/img/odis/thumb10.jpg" alt="">
+                    <span class="sticker">
+                        Столы и стулья
+                    </span>
+                </a>
+                <a href="#" class="one-tile">
+                    <img src="./public/img/odis/thumb11.jpg" alt="">
+                    <span class="sticker">
+                        свет
+                    </span>
+                </a>
+                <a href="#" class="one-tile">
+                    <img src="./public/img/odis/thumb12.jpg" alt="">
+                    <span class="sticker">
+                        Аксессуары
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="slider-wrap">
+        <div class="container large-container">
+            <div class="slider-title">
+                <h4>Акции</h4>
+                <a href="#" class="all-actions">
+                    Все акции
+                </a>
+            </div>
+            <div class="shares-slider">
+                <div class="one-share-slide">
+                    <a href="#" class="one-share flex">
+                        <div class="img-cont">
+                            <img src="./public/img/odis/thumb13.jpg" alt="">
+                        </div>
+                        <div class="descr">
+                            <h3>ОДИС - С НАМИ ВКУСНО!!!</h3>
+                            <div class="text">
+                                Что может быть лучше вкусной еды и домашнего уюта, обставь интерьер со вкусом
+                                по «вкусным» ценам от Одис! Распродажа экспозиции, объявляем «ВКУСНЫЕ
+                                ЦЕНЫ» на КУХНИ!!! Классика, прованс, модерн!
+                            </div>
+                            <div class="btn-r">
+                                Подробнее
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="one-share flex">
+                        <div class="img-cont">
+                            <img src="./public/img/odis/thumb14.jpg" alt="">
+                        </div>
+                        <div class="descr">
+                            <h3>УСПЕЙ КУПИТЬ СО СКИДКАМИ</h3>
+                            <div class="text">
+                                Что может быть лучше вкусной еды и домашнего уюта, обставь интерьер со вкусом
+                                по «вкусным» ценам от Одис! Распродажа экспозиции, объявляем «ВКУСНЫЕ
+                                ЦЕНЫ» на КУХНИ!!! Классика, прованс, модерн!
+                            </div>
+                            <div class="btn-r">
+                                Подробнее
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="one-share-slide">
+                    <a href="#" class="one-share flex">
+                        <div class="img-cont">
+                            <img src="./public/img/odis/thumb13.jpg" alt="">
+                        </div>
+                        <div class="descr">
+                            <h3>ОДИС - С НАМИ ВКУСНО!!!</h3>
+                            <div class="text">
+                                Что может быть лучше вкусной еды и домашнего уюта, обставь интерьер со вкусом
+                                по «вкусным» ценам от Одис! Распродажа экспозиции, объявляем «ВКУСНЫЕ
+                                ЦЕНЫ» на КУХНИ!!! Классика, прованс, модерн!
+                            </div>
+                            <div class="btn-r">
+                                Подробнее
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="one-share flex">
+                        <div class="img-cont">
+                            <img src="./public/img/odis/thumb14.jpg" alt="">
+                        </div>
+                        <div class="descr">
+                            <h3>УСПЕЙ КУПИТЬ СО СКИДКАМИ</h3>
+                            <div class="text">
+                                Что может быть лучше вкусной еды и домашнего уюта, обставь интерьер со вкусом
+                                по «вкусным» ценам от Одис! Распродажа экспозиции, объявляем «ВКУСНЫЕ
+                                ЦЕНЫ» на КУХНИ!!! Классика, прованс, модерн!
+                            </div>
+                            <div class="btn-r">
+                                Подробнее
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slider-wrap factories" style="margin: 50px 0 65px 0;">
+        <div class="container large-container">
+            <div class="slider-title">
+                <h4>Мы любим работать с фабриками</h4>
+            </div>
+            <div class="logo-slider">
+                <a href="#" class="one-logo">
+                    <img src="./public/img/odis/logo1.png" alt="">
+                </a>
+                <a href="#" class="one-logo">
+                    <img src="./public/img/odis/logo2.png" alt="">
+                </a>
+                <a href="#" class="one-logo">
+                    <img src="./public/img/odis/logo3.png" alt="">
+                </a>
+                <a href="#" class="one-logo">
+                    <img src="./public/img/odis/logo4.png" alt="">
+                </a>
+                <a href="#" class="one-logo">
+                    <img src="./public/img/odis/logo5.png" alt="">
+                </a>
+                <a href="#" class="one-logo">
+                    <img src="./public/img/odis/logo6.png" alt="">
+                </a>
+                <a href="#" class="one-logo">
+                    <img src="./public/img/odis/logo1.png" alt="">
+                </a>
+                <a href="#" class="one-logo">
+                    <img src="./public/img/odis/logo2.png" alt="">
+                </a>
+                <a href="#" class="one-logo">
+                    <img src="./public/img/odis/logo3.png" alt="">
+                </a>
+                <a href="#" class="one-logo">
+                    <img src="./public/img/odis/logo4.png" alt="">
+                </a>
+                <a href="#" class="one-logo">
+                    <img src="./public/img/odis/logo5.png" alt="">
+                </a>
+                <a href="#" class="one-logo">
+                    <img src="./public/img/odis/logo6.png" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="gray-cont">
+        <div class="container large-container">
+            <div class="logo-stick">
+                <img width="166" src="./public/img/odis/logo.png" alt="logo">
+            </div>
+            <div class="text">
+                <p>
+                    Одис – это мебель из Италии, который может себе позволить каждый!
+                    Мы горды тем, что принадлежим к числу «первопроходцев», которые впервые познакомили российских
+                    потребителей с итальянской мебелью и привезли ее в Россию.Первыми мы стали и в нашем родном Волгограде,
+                    и вот уже 25 лет исполняется нашему салону в этом году!
+                </p>
+                <p>
+                    За это время выросли как мы, так и наш салон, став одним из самых крупных и динамично развивающихся.
+                    На сегодняшний день у нас представлен весь спектр мебели, встраиваемой техники, аксессуаров, не только
+                    высокого уровня, но и эконом-класса.
+                </p>
+                <p>
+                    Мы по-прежнему стойко держим свои позиции дилера многих европейских фабрик и вместе с тем не стоим
+                    на месте. Сегодня, когда финансовая ситуация в России изменилась, мы c гордостью заявляем, что в нашем
+                    салоне  Вы можете приобрести итальянскую мебель по цене конкурентоспособной мебели российских
+                    производителей, но выгодно отличающуюся по качеству, дизайну и красоте, в широком ее ассортименте,
+                    куда входят гостиные, спальни, мягкая мебель, кухни и т.д.!
+                </p>
+                <p>
+                    В этом Вы можете убедиться, посетив наш салон по адресу ул. Козловская 34Б и зайдя на наш
+                    сайт <a href="www.odislux.com">www.odislux.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="slider-wrap cont-sect">
+        <div class="container large-container">
+            <div class="slider-title">
+                <h4>
+                    Контакты
+                </h4>
+            </div>
+            <div class="cont-container flex s-between">
+                <div class="one-tile">
+                    <div class="img-cont">
+                        <img src="./public/img/odis/ico1.png" alt="">
+                    </div>
+                    <div class="descr">
+                        г. Волгоград,</br>
+                        ул. Козловская, 34б
+                    </div>
+                </div>
+                <div class="one-tile">
+                    <div class="img-cont">
+                        <img src="./public/img/odis/ico2.png" alt="">
+                    </div>
+                    <div class="descr">
+                        8(8442)97-45-97</br>
+                        97-47-74
+                    </div>
+                </div>
+                <div class="one-tile">
+                    <div class="img-cont">
+                        <img src="./public/img/odis/ico3.png" alt="">
+                    </div>
+                    <a href="mailto:odisvolgograd1@yandex.ru" class="descr mail">
+                        odisvolgograd1@yandex.ru
+                    </a>
+                </div>
+                <div class="one-tile">
+                    <div class="img-cont">
+                        <img src="./public/img/odis/ico4.png" alt="">
+                    </div>
+                    <div class="descr">
+                        Режим работы:</br>
+                        с 9:00-19:00; сб 10:00-19:00,</br>
+                        вс: с 10:00-18:00</br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="map-cont">
+        <div class="container large-container">
+            <div id="map">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var styleMap = [
+            {
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#f5f5f5"
+                    }
+                ]
+            },
+            {
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#616161"
+                    }
+                ]
+            },
+            {
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                    {
+                        "color": "#f5f5f5"
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative.land_parcel",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#bdbdbd"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#eeeeee"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#757575"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.park",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#e5e5e5"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.park",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#9e9e9e"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    }
+                ]
+            },
+            {
+                "featureType": "road.arterial",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#757575"
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#dadada"
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#616161"
+                    }
+                ]
+            },
+            {
+                "featureType": "road.local",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#9e9e9e"
+                    }
+                ]
+            },
+            {
+                "featureType": "transit.line",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#e5e5e5"
+                    }
+                ]
+            },
+            {
+                "featureType": "transit.station",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#eeeeee"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#c9c9c9"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#9e9e9e"
+                    }
+                ]
+            }
+        ];
+        function initMap() {
+            var styledMapType = new google.maps.StyledMapType(styleMap);
+
+            // Create a map object and specify the DOM element for display.
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 48.693023, lng: 44.487041},
+                zoom: 15,
+                mapTypeControlOptions: {
+                    mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+                        'styled_map']
+                }
+            });
+
+            //Associate the styled map with the MapTypeId and set it to display.
+            map.mapTypes.set('styled_map', styledMapType);
+            map.setMapTypeId('styled_map');
+
+            var marker = new google.maps.Marker({
+                position: {lat: 48.693023, lng: 44.487041},
+                map: map,
+                title: 'Hello World!',
+                icon: "./public/img/odis/marker.png"
+            });
+        }
+    </script>
+</main>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI-EyYe0E1ZPA9IpCTUbP2137VDAcHJGY&callback=initMap"></script>
+<script src="./public/libs/slick-1.6/slick.min.js"></script>
+<script src="https://use.fontawesome.com/35f65baac5.js"></script>
+
+<script> //Только для этой страницы
+    $(document).ready(function(){
+        $(".slider-body").slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 540,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    }
+                }
+                ]
+        });
+
+        $(".shares-slider").slick({
+            slidesToShow: 1,
+            slidesToScroll: 1
+        });
+
+        $(".logo-slider").slick({
+            slidesToShow: 6,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 540,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    }
+                }
+            ]
+        });
+    });
+</script>
+</body>
+</html>
