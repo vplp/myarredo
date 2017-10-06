@@ -95,7 +95,8 @@ class Product extends ProductModel
             $order[] = self::tableName() . '.factory_price ASC';
         } else if (isset($params['sort']) && $params['sort'] == 'desc') {
             $order[] = self::tableName() . '.factory_price DESC';
-        } if (isset($params['object']) && $params['object'] == 'composition') {
+        }
+        if (isset($params['object']) && $params['object'] == 'composition') {
             $order[] = self::tableName() . '.is_composition DESC';
         }
 
@@ -104,6 +105,40 @@ class Product extends ProductModel
         $query->orderBy(implode(',', $order));
 
         return $dataProvider;
+    }
+
+    public function getSubQuery($params)
+    {
+        $query = ProductModel::findBase();
+
+        $query->andWhere([
+            'removed' => '0'
+        ]);
+
+        $query->andFilterWhere([
+            'id' => $this->id,
+        ]);
+
+        if (isset($params['category'])) {
+            $query->innerJoinWith(["category"])
+                ->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $params['category']['id']]);
+        }
+
+        if (isset($params['type'])) {
+            $query->andFilterWhere(['catalog_type_id' => $params['type']['id']]);
+        }
+
+        if (isset($params['factory'])) {
+            $query->andFilterWhere(['factory_id' => $params['factory']['id']]);
+        }
+
+        if (isset($params['collection'])) {
+            $query->andFilterWhere(['collections_id' => $params['collection']['id']]);
+        }
+
+        $query->select(ProductModel::tableName() . '.id');
+        //
+        return $query;
     }
 
     /**

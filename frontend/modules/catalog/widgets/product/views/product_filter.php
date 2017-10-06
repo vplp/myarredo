@@ -10,131 +10,130 @@ use frontend\modules\catalog\models\{
 
 ?>
 
-<div class="filters">
+    <div class="filters">
 
-    <?php $form = ActiveForm::begin([
-        'method' => 'get',
-        'id' => 'catalog_filter',
-        'action' => Url::toRoute(['/catalog/category/list'])
-    ]) ?>
+        <?php $form = ActiveForm::begin([
+            'method' => 'get',
+            'id' => 'catalog_filter',
+            'action' => Url::toRoute(['/catalog/category/list'])
+        ]) ?>
 
-    <div class="one-filter open">
-        <?= Html::a(
-            '<i class="fa fa-times" aria-hidden="true"></i>СБРОСИТЬ ФИЛЬТРЫ',
-            Url::toRoute(['/catalog/category/list']),
-            ['class' => 'reset']
-        ); ?>
-        <a href="javascript:void(0);" class="filt-but">
-            Категории
-        </a>
-        <div class="list-item">
-
-            <?php foreach ($category as $item): ?>
-
-                <?php $options = (isset($filter['category']) && $filter['category']['id'] == $item['id'])
-                    ? ['class' => 'one-item current']
-                    : ['class' => 'one-item'] ?>
-
-                <?= Html::a(
-                    $item['lang']['title'] /*. ' ('. $item->getProductCount().')'*/,
-                    Yii::$app->catalogFilter->createUrl(['category' => $item['alias']]),
-                    $options
-                ); ?>
-
-            <?php endforeach; ?>
-
-        </div>
-    </div>
-
-    <div class="one-filter open">
-        <a href="javascript:void(0);" class="filt-but">
-            Предмет
-        </a>
-        <div class="list-item">
-
-            <?php foreach ($types as $item): ?>
-
-                <?php $options = (isset($filter['category']) && $filter['category']['id'] == $item['id'])
-                    ? ['class' => 'one-item-check current']
-                    : ['class' => 'one-item-check'] ?>
-
-                <div>
-                    <?= Html::beginTag('a', ['href' => Yii::$app->catalogFilter->createUrl(['type' => $item['alias']]), $options]); ?>
-                    <input type="checkbox">
-                    <div class="my-checkbox"></div>
-                    <?= $item['lang']['title'];//. ' ('. $item->getProductCount().')';    ?>
-                    <?= Html::endTag('a'); ?>
-                </div>
-            <?php endforeach; ?>
-
-        </div>
-    </div>
-
-    <div class="one-filter open">
-        <a href="javascript:void(0);" class="filt-but">
-            Стиль
-        </a>
-        <div class="list-item">
-
-            <?php foreach ($style as $item): ?>
-                <div>
-                    <?= Html::beginTag('a', ['href' => Yii::$app->catalogFilter->createUrl(['style' => $item['alias']]), 'class' => 'one-item-check']); ?>
-                    <input type="checkbox">
-                    <div class="my-checkbox"></div>
-                    <?= $item['lang']['title'];//. ' ('. $item->getProductCount().')';    ?>
-                    <?= Html::endTag('a'); ?>
-                </div>
-            <?php endforeach; ?>
-
-        </div>
-    </div>
-
-    <div class="one-filter open">
-        <a href="javascript:void(0);" class="filt-but">
-            Фабрики
-        </a>
-        <div class="list-item">
-
-            <?php foreach ($factory as $item): ?>
-                <div>
-                    <?= Html::beginTag('a', ['href' => Yii::$app->catalogFilter->createUrl(['factory' => $item['alias']]), 'class' => 'one-item-check']); ?>
-                    <input type="checkbox">
-                    <div class="my-checkbox"></div>
-                    <?= $item['lang']['title'];//. ' ('. $item->getProductCount().')';    ?>
-                    <?= Html::endTag('a'); ?>
-                </div>
-            <?php endforeach; ?>
-
-        </div>
-    </div>
-
-    <div class="one-filter">
-        <div class="price-slider-cont">
+        <div class="one-filter open">
+            <?= Html::a(
+                '<i class="fa fa-times" aria-hidden="true"></i>СБРОСИТЬ ФИЛЬТРЫ',
+                Url::toRoute(['/catalog/category/list']),
+                ['class' => 'reset']
+            ) ?>
             <a href="javascript:void(0);" class="filt-but">
-                Цена
+                Категории
             </a>
-            <div id="price-slider"></div>
-            <div class="flex s-between" style="padding: 10px 0;">
-                <div class="cur">
-                    <input type="text" id="min-price" value="100">
-                </div>
-                <span class="indent"> - </span>
-                <div class="cur">
-                    <input type="text" id="max-price" value="10000">
-                </div>
+            <div class="list-item">
+
+                <?php foreach ($category as $item):
+                    $options = (isset($filter['category']) && $filter['category']['id'] == $item['id'])
+                        ? ['class' => 'one-item current']
+                        : ['class' => 'one-item'];
+
+                    echo Html::a(
+                        $item['lang']['title'] . ' (' . ($category_counts[$item['id']]['count']??0) . ')',
+                        Yii::$app->catalogFilter->createUrl(['category' => $item['alias']]),
+                        $options
+                    );
+
+                endforeach; ?>
+
             </div>
-            <a href="#" class="submit">
-                OK
-            </a>
         </div>
+
+        <div class="one-filter open">
+            <a href="javascript:void(0);" class="filt-but">
+                Предмет
+            </a>
+            <div class="list-item">
+
+                <?php foreach ($types as $item): ?>
+
+                    <?php $options = (isset($filter['category']) && $filter['category']['id'] == $item['id'])
+                        ? ['class' => 'one-item-check current']
+                        : ['class' => 'one-item-check'] ?>
+
+                    <div>
+                        <?= Html::beginTag('a', ['href' => Yii::$app->catalogFilter->createUrl(['type' => $item['alias']]), $options]); ?>
+                        <input type="checkbox">
+                        <div class="my-checkbox"></div>
+                        <?= $item['lang']['title'];//. ' ('. $item->getProductCount().')';                         ?>
+                        <?= Html::endTag('a'); ?>
+                    </div>
+                <?php endforeach; ?>
+
+            </div>
+        </div>
+
+        <div class="one-filter open">
+            <a href="javascript:void(0);" class="filt-but">
+                Стиль
+            </a>
+            <div class="list-item">
+
+                <?php foreach ($style as $item): ?>
+                    <div>
+                        <?= Html::beginTag('a', ['href' => Yii::$app->catalogFilter->createUrl(['style' => $item['alias']]), 'class' => 'one-item-check']); ?>
+                        <input type="checkbox">
+                        <div class="my-checkbox"></div>
+                        <?= $item['lang']['title'];//. ' ('. $item->getProductCount().')';                         ?>
+                        <?= Html::endTag('a'); ?>
+                    </div>
+                <?php endforeach; ?>
+
+            </div>
+        </div>
+
+        <div class="one-filter open">
+            <a href="javascript:void(0);" class="filt-but">
+                Фабрики
+            </a>
+            <div class="list-item">
+
+                <?php foreach ($factory as $item): ?>
+                    <div>
+                        <?= Html::beginTag('a', ['href' => Yii::$app->catalogFilter->createUrl(['factory' => $item['alias']]), 'class' => 'one-item-check']); ?>
+                        <input type="checkbox">
+                        <div class="my-checkbox"></div>
+                        <?= $item['lang']['title'];//. ' ('. $item->getProductCount().')';                         ?>
+                        <?= Html::endTag('a'); ?>
+                    </div>
+                <?php endforeach; ?>
+
+            </div>
+        </div>
+
+        <div class="one-filter">
+            <div class="price-slider-cont">
+                <a href="javascript:void(0);" class="filt-but">
+                    Цена
+                </a>
+                <div id="price-slider"></div>
+                <div class="flex s-between" style="padding: 10px 0;">
+                    <div class="cur">
+                        <input type="text" id="min-price" value="100">
+                    </div>
+                    <span class="indent"> - </span>
+                    <div class="cur">
+                        <input type="text" id="max-price" value="10000">
+                    </div>
+                </div>
+                <a href="#" class="submit">
+                    OK
+                </a>
+            </div>
+        </div>
+
+        <?= Html::hiddenInput('sort', Yii::$app->request->get('sort') ?? null) ?>
+        <?= Html::hiddenInput('object', Yii::$app->request->get('object') ?? null) ?>
+
+        <?php ActiveForm::end() ?>
+
     </div>
-
-    <?= Html::hiddenInput('sort', Yii::$app->request->get('sort') ?? null) ?>
-    <?= Html::hiddenInput('object', Yii::$app->request->get('object') ?? null) ?>
-
-    <?php ActiveForm::end() ?>
-
-</div>
 
 <?php
 $script = <<<JS
@@ -155,4 +154,3 @@ $('.category-filter input[type=checkbox]').on( "click", function () {
 JS;
 
 $this->registerJs($script, yii\web\View::POS_READY);
-?>
