@@ -49,6 +49,8 @@ use common\helpers\Inflector;
  * @property integer $removed
  * @property integer $moderation
  * @property integer $position
+ * @property string $image_link
+ * @property string $gallery_image
  *
  * @property ProductLang $lang
  * @property ProductRelCategory[] $category
@@ -143,7 +145,8 @@ class Product extends ActiveRecord implements iProduct
                 'in',
                 'range' => array_keys(static::statusKeyRange())
             ],
-            [['country_code', 'user', 'alias', 'alias_old', 'default_title'], 'string', 'max' => 255],
+            [['country_code', 'user', 'alias', 'alias_old', 'default_title', 'image_link'], 'string', 'max' => 255],
+            [['gallery_image'], 'string', 'max' => 1024],
             [['article'], 'string', 'max' => 100],
             [['alias'], 'unique'],
             [['catalog_type_id', 'collections_id', 'position'], 'default', 'value' => '0'],
@@ -182,6 +185,8 @@ class Product extends ActiveRecord implements iProduct
                 'factory_id',
                 'collections_id',
                 'gallery_id',
+                'image_link',
+                'gallery_image',
                 'created_at',
                 'updated_at',
                 'position',
@@ -235,6 +240,8 @@ class Product extends ActiveRecord implements iProduct
             'popular' => 'Популярное',
             'user' => 'Кто изменил',
             'picpath' => 'picpath',
+            'image_link' => Yii::t('app', 'Image link'),
+            'gallery_image' => Yii::t('app', 'Gallery image'),
             'novelty' => 'Новинка',
             'moderation' => 'На проверке',
             'bestseller' => 'Бестселлер',
