@@ -3,6 +3,12 @@
 use backend\app\bootstrap\ActiveForm;
 use backend\themes\defaults\widgets\Tabs;
 
+/**
+ * @var \backend\modules\catalog\models\Factory $model
+ * @var \backend\modules\catalog\models\FactoryLang $modelLang
+ * @var \backend\app\bootstrap\ActiveForm $form
+ */
+
 ?>
 
 <?php $form = ActiveForm::begin(); ?>

@@ -201,14 +201,16 @@ class Factory extends ActiveRecord
     public function getImageLink()
     {
         $module = Yii::$app->getModule('catalog');
+
         $path = $module->getFactoryUploadPath();
         $url = $module->getFactoryUploadUrl();
+
         $image = null;
+
         if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
             $image = $url . '/' . $this->image_link;
-        } else {
-            $image = 'http://placehold.it/200x200';
         }
+
         return $image;
     }
 }

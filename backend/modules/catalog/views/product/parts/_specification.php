@@ -7,9 +7,11 @@ use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;
 //
 use backend\themes\defaults\widgets\TreeGrid;
 
-/* @var $this yii\web\View */
-/* @var $form yii\widgets\ActiveForm */
-/* @var $model backend\modules\catalog\models\Product */
+/**
+ * @var \backend\modules\catalog\models\Product $model
+ * @var \backend\modules\catalog\models\ProductLang $modelLang
+ * @var \backend\app\bootstrap\ActiveForm $form
+ */
 
 ?>
 

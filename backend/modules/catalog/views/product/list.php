@@ -10,6 +10,10 @@ use thread\widgets\grid\{
     ActionStatusColumn, GridViewFilter
 };
 
+/**
+ * @var \backend\modules\catalog\models\Product $model
+ */
+
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,

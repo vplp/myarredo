@@ -6,7 +6,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\Response;
 //
-use thread\actions\fileapi\{
+use common\actions\upload\{
     DeleteAction, UploadAction
 };
 //
@@ -68,11 +68,12 @@ class ProductController extends BackendController
             ],
             'fileupload' => [
                 'class' => UploadAction::class,
-                'path' => $this->module->getCategoryUploadPath()
+                'useHashPath' => true,
+                'path' => $this->module->getProductUploadPath()
             ],
             'filedelete' => [
                 'class' => DeleteAction::class,
-                'path' => $this->module->getCategoryUploadPath()
+                'path' => $this->module->getProductUploadPath()
             ],
         ]);
     }

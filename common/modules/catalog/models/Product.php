@@ -282,10 +282,53 @@ class Product extends ActiveRecord implements iProduct
      */
     public function getImageLink()
     {
-        $image =  'http://placehold.it/200x200';
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getProductUploadPath();
+        $url = $module->getProductUploadUrl();
+
+        $image = null;
+
+        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
+            $image = $url . '/' . $this->image_link;
+        }
 
         return $image;
     }
+
+    /**
+     * @return array
+     */
+    public function getGalleryImage()
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getProductUploadPath();
+        $url = $module->getProductUploadUrl();
+
+        $images = [];
+
+        if (!empty($this->gallery_image)) {
+            $this->gallery_image = $this->gallery_image[0] == ','
+                ? substr($this->gallery_image,1)
+                : $this->gallery_image;
+
+            $images = explode(',', $this->gallery_image);
+        }
+
+        $imagesSources = [];
+
+        foreach ($images as $image) {
+            if (file_exists($path . '/' . $image)) {
+                $imagesSources[] = $url . '/' . $image;
+            }
+        }
+
+        return $imagesSources;
+    }
+
 
     /**
      * @return \yii\db\ActiveQuery

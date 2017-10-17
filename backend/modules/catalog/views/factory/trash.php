@@ -5,6 +5,12 @@ use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
 };
 
+/**
+ * @var \backend\modules\catalog\models\Factory $model
+ * @var \backend\modules\catalog\models\FactoryLang $modelLang
+ * @var \backend\app\bootstrap\ActiveForm $form
+ */
+
 echo GridView::widget([
     'dataProvider' => $model->trash(Yii::$app->request->queryParams),
     'filterModel' => $filter,

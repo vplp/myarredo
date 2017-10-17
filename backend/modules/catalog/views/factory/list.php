@@ -6,6 +6,12 @@ use thread\widgets\grid\{
 //
 use backend\widgets\GridView\GridView;
 
+/**
+ * @var \backend\modules\catalog\models\Factory $model
+ * @var \backend\modules\catalog\models\FactoryLang $modelLang
+ * @var \backend\app\bootstrap\ActiveForm $form
+ */
+
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
