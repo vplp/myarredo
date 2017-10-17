@@ -20,19 +20,22 @@ class DeleteAction extends Action
     public $path;
 
     /**
-     *
      * @var string
      */
     public $paramName = 'key';
 
     /**
-     *
      * @var array
      */
     public $thumb = [];
 
     /**
-     *
+     * @var boolean
+     */
+    public $useHashPath = false;
+
+    /**
+     * @inheritdoc
      */
     public function init()
     {
@@ -40,6 +43,7 @@ class DeleteAction extends Action
         if ($this->path === null) {
             $this->path = Yii::getAlias('@temp');
         }
+
         $this->path = FileHelper::normalizePath($this->path) . DIRECTORY_SEPARATOR;
     }
 
@@ -51,12 +55,21 @@ class DeleteAction extends Action
         $result = ['success' => 0];
 
         if (($file = Yii::$app->getRequest()->post($this->paramName))) {
+
             $filename = FileHelper::normalizePath($this->path . '/' . $file);
+
+            if ($this->useHashPath) {
+                $hash = preg_replace("%^(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})%ius", "$1/$2/$3/$4/$5/$6/$7", md5($file));
+                $hashFile = $hash . '/' . $file;
+                $filename = FileHelper::normalizePath($this->path . '/' . $hashFile);
+            }
+
             if (is_file($filename) && unlink($filename)) {
                 $result['success'] = 1;
             } else {
-                $result['error'] = 'can not delete file';
+                $result['error'] = 'Can not delete file';
             }
+
             //delete thumb
             if (!empty($this->thumb)) {
                 foreach ($this->thumb as $thumb) {
@@ -66,8 +79,9 @@ class DeleteAction extends Action
                     }
                 }
             }
+
         } else {
-            $result['error'] = 'file don\'t exist';
+            $result['error'] = 'File don\'t exist';
         }
 
         if (\Yii::$app->getRequest()->isAjax) {

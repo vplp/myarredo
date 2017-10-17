@@ -73,6 +73,7 @@ class ProductController extends BackendController
             ],
             'filedelete' => [
                 'class' => DeleteAction::class,
+                'useHashPath' => true,
                 'path' => $this->module->getProductUploadPath()
             ],
         ]);
