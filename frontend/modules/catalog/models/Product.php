@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\models;
 
+use Yii;
 use yii\helpers\Url;
 
 /**
@@ -90,9 +91,19 @@ class Product extends \common\modules\catalog\models\Product
     /**
      * @return null|string
      */
-    public static function getImage()
+    public static function getImage(string $image_link = '')
     {
-        $image = 'http://placehold.it/200x200';
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getProductUploadPath();
+        $url = $module->getProductUploadUrl();
+
+        $image = null;
+
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = $url . '/' . $image_link;
+        }
 
         return $image;
     }

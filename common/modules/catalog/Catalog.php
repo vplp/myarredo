@@ -100,6 +100,30 @@ class Catalog extends aModule {
     }
 
     /**
+     * Samples upload path
+     * @return string
+     */
+    public function getSaleUploadPath()
+    {
+        $dir = $this->getBaseUploadPath() . '/sale';
+
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+
+        return $dir;
+    }
+
+    /**
+     * Samples upload URL
+     * @return string
+     */
+    public function getSaleUploadUrl()
+    {
+        return $this->getBaseUploadUrl() . '/sale';
+    }
+
+    /**
      * Factory upload path
      * @return string
      */

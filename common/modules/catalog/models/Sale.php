@@ -37,6 +37,8 @@ use common\modules\catalog\Catalog;
  * @property integer $deleted
  * @property integer $position
  * @property integer $on_main
+ * @property string $image_link
+ * @property string $gallery_image
  *
  * @property SaleLang $lang
  * @property SaleRelCategory[] $category
@@ -111,7 +113,8 @@ class Sale extends ActiveRecord
                 'range' => array_keys(static::statusKeyRange())
             ],
             [['currency'], 'in', 'range' => array_keys(static::currencyRange())],
-            [['country_code', 'alias', 'factory_name'], 'string', 'max' => 255],
+            [['country_code', 'alias', 'factory_name', 'image_link'], 'string', 'max' => 255],
+            [['gallery_image'], 'string', 'max' => 1024],
             [['article'], 'string', 'max' => 100],
             [['alias'], 'unique'],
             [['position'], 'default', 'value' => '0'],
@@ -156,6 +159,8 @@ class Sale extends ActiveRecord
                 'catalog_type_id',
                 'factory_id',
                 'gallery_id',
+                'image_link',
+                'gallery_image',
                 'picpath',
                 'alias',
                 'article',
@@ -186,6 +191,8 @@ class Sale extends ActiveRecord
             'factory_id' => Yii::t('app', 'Factory'),
             'factory_name' => 'Фабрика (если нету в списке)',
             'gallery_id' => 'Gallery',
+            'image_link' => Yii::t('app', 'Image link'),
+            'gallery_image' => Yii::t('app', 'Gallery image'),
             'picpath' => 'picpath',
             'alias' => Yii::t('app', 'Alias'),
             'article' => 'Артикул',
@@ -339,7 +346,17 @@ class Sale extends ActiveRecord
      */
     public function getImageLink()
     {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getSaleUploadPath();
+        $url = $module->getSaleUploadUrl();
+
         $image = null;
+
+        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
+            $image = $url . '/' . $this->image_link;
+        }
 
         return $image;
     }

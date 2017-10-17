@@ -56,6 +56,11 @@ class UploadAction extends Action
     private $_validator = 'image';
 
     /**
+     * @var boolean
+     */
+    public $useHashPath = false;
+
+    /**
      * @throws InvalidCallException
      */
     public function init()
@@ -64,10 +69,13 @@ class UploadAction extends Action
         if ($this->path === null) {
             $this->path = Yii::getAlias('@temp');
         }
+
         $this->path = FileHelper::normalizePath(Yii::getAlias($this->path)) . DIRECTORY_SEPARATOR;
+
         if (!FileHelper::createDirectory($this->path)) {
             throw new InvalidCallException("Directory specified in 'path' attribute doesn't exist or cannot be created.");
         }
+
         //set validator model type
         if ($this->uploadOnlyImage !== true) {
             $this->_validator = 'file';
@@ -82,32 +90,54 @@ class UploadAction extends Action
     public function run()
     {
         if (Yii::$app->request->isPost) {
+
             if (!empty($this->getParamName) && Yii::$app->getRequest()->get($this->getParamName)) {
                 $this->paramName = Yii::$app->getRequest()->get($this->getParamName);
             }
+
             $file = UploadedFile::getInstanceByName($this->paramName);
             $model = new DynamicModel(compact('file'));
+
             $model->addRule('file', $this->_validator, $this->validatorOptions);
+
             if ($model->validate()) {
                 if ($this->unique === true) {
                     $model->file->name = uniqid() . ((empty($model->file->extension)) ? '' : '.' . $model->file->extension);
                 }
+
+                if ($this->useHashPath) {
+                    $hash = preg_replace("%^(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})%ius", "$1/$2/$3/$4/$5/$6/$7", md5($model->file->name));
+
+                    $model->file->name = $hash . '/' . $model->file->name;
+
+                    $dir = $this->path  . '/' . $hash;
+                    if (!is_dir($dir)) {
+                        mkdir($dir, 0777, true);
+                    }
+                }
+
                 if ($model->file->saveAs($this->path . $model->file->name)) {
+
                     $result = [
                         'key' => $model->file->name,
                         'caption' => $model->file->name,
                         'name' => $model->file->name
                     ];
+
                 } else {
                     $result = ['error' => 'Can\'t upload file'];
                 }
+
             } else {
                 $result = ['error' => $model->getErrors()];
             }
+
             if (\Yii::$app->getRequest()->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
             }
+
             return $result;
+
         } else {
             throw new BadRequestHttpException('Only POST is allowed');
         }

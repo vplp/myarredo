@@ -97,18 +97,20 @@ class Factory extends \common\modules\catalog\models\Factory
      * @param string $image_link
      * @return null|string
      */
-    public static function getImage(string $image_link)
+    public static function getImage(string $image_link  = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
+
         $path = $module->getCategoryUploadPath();
         $url = $module->getCategoryUploadUrl();
+
         $image = null;
+
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image = $url . '/' . $image_link;
-        } else {
-            $image = 'http://placehold.it/200x200';
         }
+
         return $image;
     }
 

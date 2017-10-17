@@ -3,10 +3,17 @@
 use backend\app\bootstrap\ActiveForm;
 use backend\themes\defaults\widgets\Tabs;
 
+/**
+ * @var \backend\modules\catalog\models\Category $model
+ * @var \backend\modules\catalog\models\CategoryLang $modelLang
+ * @var \backend\app\bootstrap\ActiveForm $form
+ */
+
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
 <?= $form->submit($model, $this) ?>
+
 <?= Tabs::widget([
     'items' => [
         [
@@ -27,5 +34,7 @@ use backend\themes\defaults\widgets\Tabs;
         ],
     ]
 ]) ?>
+
 <?= $form->submit($model, $this) ?>
 <?php ActiveForm::end(); ?>
+

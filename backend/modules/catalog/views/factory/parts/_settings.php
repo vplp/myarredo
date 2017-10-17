@@ -5,6 +5,7 @@
  * @var \backend\modules\catalog\models\FactoryLang $modelLang
  * @var \backend\app\bootstrap\ActiveForm $form
  */
+
 ?>
 
 <?= $form->text_line($model, 'alias') ?>
