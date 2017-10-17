@@ -22,45 +22,45 @@ foreach (Yii::$app->shop_cart->items as $item) {
     <div class="prod-card-page page">
         <div class="container large-container">
             <div class="row">
+
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
                     'options' => ['class' => 'bread-crumbs']
                 ]) ?>
+
                 <div class="product-title">
                     <h1 class="prod-model"><?= $model->getFullTitle(); ?></h1>
                 </div>
+
                 <div class="col-md-5">
                     <div id="prod-slider" class="carousel slide carousel-fade" data-ride="carousel">
+
                         <!-- Carousel items -->
                         <div class="carousel-inner">
-                            <div class="item active">
-                                <div class="img-cont">
-                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/prod_thumb1.png" alt="">
+                            <?php foreach ($model->getGalleryImage() as $key => $image): ?>
+                                <div class="item<?= ($key==0) ? ' active': ''; ?>">
+                                    <div class="img-cont">
+                                        <img src="<?= $image ?>" alt="">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item">
-                                <div class="img-cont">
-                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/prod_thumb2.png" alt="">
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
                         <!-- Carousel nav -->
+
                         <div class="nav-cont">
                             <a class="left left-arr nav-contr" href="#prod-slider" data-slide="prev">&lsaquo;</a>
                             <ol class="carousel-indicators">
-                                <li data-target="#carousel" data-slide-to="0" class="active">
-                                    <div class="img-min">
-                                        <img src="<?= $bundle->baseUrl ?>/img/pictures/prod_thumb1.png" alt="">
-                                    </div>
-                                </li>
-                                <li data-target="#carousel" data-slide-to="1">
-                                    <div class="img-min">
-                                        <img src="<?= $bundle->baseUrl ?>/img/pictures/prod_thumb2.png" alt="">
-                                    </div>
-                                </li>
+                                <?php foreach ($model->getGalleryImage() as $key => $image): ?>
+                                    <li data-target="#carousel" data-slide-to="<?= $key ?>" class="<?= ($key==0) ?? 'active' ?>">
+                                        <div class="img-min">
+                                            <img src="<?= $image ?>" alt="">
+                                        </div>
+                                    </li>
+                                <?php endforeach; ?>
                             </ol>
                             <a class="right right-arr nav-contr" href="#prod-slider" data-slide="next">&rsaquo;</a>
                         </div>
+
                     </div>
                 </div>
                 <div class="col-md-4">
