@@ -1,0 +1,79 @@
+@media screen and (max-width: 768px) {
+  header {
+    .country, .city {
+      display: none;
+    }
+    #select-city:after {
+      display: none;
+    }
+    .top-navbar .navbar-nav {
+      margin: 0;
+    }
+    .large-container {
+      display: flex;
+      justify-content: space-between;
+      &:after, &:before {
+        display: none;
+      }
+    }
+    #main-menu {
+      overflow: hidden;
+      margin: 0 !important;
+    }
+    .navbar-toggle {
+      margin-right: 21px;
+    }
+  }
+  .italian-furn .one-cat {
+    border-bottom: 1px solid #A6A6A6 !important;
+    &:nth-child(4n+2){
+      border-right: none;
+    }
+  }
+  .sale {
+    padding: 0 10px;
+    .left-side .img-cont {
+      height: 150px;
+    }
+  }
+  .popular-fabr {
+    padding: 0 10px;
+  }
+  .reviews .quote {
+    font-size: 18px;
+  }
+  footer .partner-cities ul {
+    column-count: 3;
+  }
+  body .sale .left-side .img-cont,
+  body .sale .right-side .img-cont {
+    height: 150px;
+  }
+  .factories {
+    padding: 0 10px;
+  }
+  .concact-page {
+    h1 {
+      font-size: 28px;
+    }
+    .one-cont {
+      width: 100%;
+      h4 {
+        font-size: 13px;
+      }
+      &>a {
+        font-size: 19px;
+      }
+    }
+  }
+
+  .sign-in-page {
+    padding: 15px 0;
+    .col-md-4 {
+      border-right: 0;
+    }
+    .flex.row {
+      display: block;
+    }
+  }
+}

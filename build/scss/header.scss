@@ -1,0 +1,277 @@
+/*--header--*/
+header {
+  background: #F6F3E8;
+  position: relative;
+  z-index: 3;
+  -webkit-box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.25);
+  .navbar-nav a {
+    height: 100%;
+    line-height: normal;
+  }
+  .navbar {
+    min-height: 0;
+    height: 68px;
+    background: #FFFFFF;
+    border-bottom: none;
+    border-radius: 0;
+    .large-container {
+      display: flex;
+      align-items: center;
+    }
+  }
+  .navbar-right {
+    margin-right: 0;
+    li {
+      height: 100%;
+    }
+  }
+  .top-navbar {
+    background-color: #f6f3e8;
+    border-bottom: 1px solid #bdbcb3;
+    height: 48px;
+    &>container {
+      height: 100%;
+    }
+    .navbar-nav {
+      height: 100%;
+      li {
+        display: flex;
+        align-items: center;
+      }
+
+    }
+  }
+  .logo {
+    float: left;
+  }
+  .navbar-collapse {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .large-container {
+    height: 100%;
+  }
+  .tel-num {
+    font-size: 21px;
+    color: rgb(65, 64, 62);
+    font-family: 'HelveticaNeueCyr-Roman', 'Roboto', sans-serif;
+    padding-right: 30px;
+    border-right: 1px solid #BDBCB3;
+  }
+  .glyphicon-earphone {
+    top: 5px;
+  }
+  .callback-trigger {
+    color: rgb(65, 64, 62);
+    font-size: 15px;
+    font-family: 'HelveticaNeueCyr-Roman', 'Roboto', sans-serif;
+    display: flex !important;
+    height: auto !important;
+    padding: 0 30px;
+    border-right: 1px solid #BDBCB3;
+    & > span {
+      border-bottom: 1px dashed #444444;
+      transition: all 0.2s ease;
+    }
+    &:hover {
+      &>span {
+        border-bottom: 1px dashed transparent;
+      }
+
+    }
+  }
+  #select-city {
+    color: rgb(65, 64, 62);
+    font-size: 15px;
+    font-family: 'HelveticaNeueCyr-Roman', 'Roboto', sans-serif;
+    position: relative;
+    &:after {
+      content: "\e114";
+      font-family: 'Glyphicons Halflings';
+      color: #F34445;
+      font-size: 13px;
+      margin-left: 3px;
+      position: relative;
+      top: 1px;
+    }
+  }
+  .country:after {
+    content: "|";
+    margin: 0 2px;
+  }
+  .my-notebook {
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center;
+    color: rgb(68, 68, 68);
+    font-size: 15px;
+    text-transform: uppercase;
+    border-right: 1px solid #BDBCB3;
+    .red-but {
+      width: 53px;
+      background: #EC4445;
+      color: #FEF6F6;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .inscription {
+      padding: 0 15px;
+      font-weight: bold;
+    }
+  }
+  .logo {
+    width: 240px;
+    & > img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+  .navbar-collapse {
+    //height: 100% !important;
+    display: flex !important;
+    align-items: center;
+  }
+  #main-menu {
+    font-size: 15px;
+    font-family: 'HelveticaNeueCyr-Roman', 'Roboto', sans-serif;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    a {
+      color: #444;
+      margin: 0 5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      &:hover {
+        background: transparent;
+      }
+    }
+    .navbar-nav {
+      margin:  0 25px;
+      height: 100%;
+      li {
+        height: 100%;
+      }
+    }
+  }
+  .city-select-cont {
+    background: #E3E0D5;
+    min-height: 100px;
+    display: none;
+    .top-panel {
+      border-bottom: 1px solid #BDBCB3;
+      padding: 10px 0;
+    }
+    .top-panel-in {
+      height: 48px;
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      margin: 10px 0;
+      border-bottom: 1px solid #AFADA7;
+      position: relative;
+      &:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        bottom: -6px;
+        left: 75px;
+        border-width: 6px 6px 0;
+        border-color: #afada7 transparent transparent;
+        z-index: 3;
+      }
+      &:before {
+        bottom: -5px;
+        left: 76px;
+        border-width: 5px 5px 0;
+        border-color: #e3e0d5 transparent transparent;
+        z-index: 5;
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+      }
+      a {
+        color: #41403e;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+      }
+    }
+    .tab-country-content {
+      padding: 0 25px;
+      margin: 15px 0;
+    }
+    .links-cont {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      height: 290px;
+      padding-left: 0;
+      li {
+        width: 20%;
+        a {
+          position: relative;
+          padding: 2px 0 2px 30px;
+          color: rgb(68, 68, 68);
+          display: block;
+          &:before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            border: 1px solid #afada7;
+            border-radius: 10px;
+            background-color: #fff;
+          }
+        }
+        &.active {
+          a {
+            color: #cf0002;
+            &:after {
+              content: "";
+              position: absolute;
+              display: block;
+              top: 50%;
+              left: 5px;
+              transform: translateY(-50%);
+              width: 10px;
+              height: 10px;
+              background-color: #cf0002;
+              border-radius: 6px;
+            }
+          }
+        }
+      }
+    }
+    .set-country {
+      text-transform: uppercase;
+      border-right: 1px solid #BDBCB3;
+
+    }
+  }
+  .title-city {
+    display: flex;
+    align-items: center;
+    height: 62px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    font-size: 16px;
+  }
+
+}

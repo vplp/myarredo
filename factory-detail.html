@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>myarredo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./public/css/fonts.css">
+    <link rel="stylesheet" href="./public/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./public/libs/bootstrap-select/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="./public/libs/slick-1.6/slick.css">
+    <link rel="stylesheet" href="./public/libs/nouislider/nouislider.min.css">
+    <link rel='stylesheet' href='./public/css/main.scss.css' type='text/css' media='all' />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<!--[if lt IE 9]>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+<![endif]-->
+<header>
+    <div class="city-select-cont">
+        <div class="container large-container">
+            <div class="row">
+                <div class="top-panel">
+                    <div class="top-panel-in">
+                        <a href="javascript:void(0);" class="set-country">Россия</a>
+                        <a href="javascript:void(0);" id="close-top">
+                            <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="title-city">Ваш город</div>
+                    <div class="tab-country-content">
+                        <ul class="links-cont">
+                            <li class="active">
+                                <a href="#">Москва</a>
+                            </li>
+                            <li>
+                                <a href="#">Санкт-Петербург</a>
+                            </li>
+                            <li>
+                                <a href="#">Альметьевск</a>
+                            </li>
+                            <li>
+                                <a href="#">Анапа</a>
+                            </li>
+                            <li>
+                                <a href="#">Архангельск</a>
+                            </li>
+                            <li>
+                                <a href="#">Барнаул</a>
+                            </li>
+                            <li>
+                                <a href="#">Белгород</a>
+                            </li>
+                            <li>
+                                <a href="#">Благовещенск</a>
+                            </li>
+                            <li>
+                                <a href="#">Брянск</a>
+                            </li>
+                            <li>
+                                <a href="#">Владивосток</a>
+                            </li>
+                            <li>
+                                <a href="#">Владикавказ</a>
+                            </li>
+                            <li>
+                                <a href="#">Владимир</a>
+                            </li>
+                            <li>
+                                <a href="#">Волгоград</a>
+                            </li>
+                            <li>
+                                <a href="#">Воронеж</a>
+                            </li>
+                            <li>
+                                <a href="#">Екатеринбург</a>
+                            </li>
+                            <li>
+                                <a href="#">Иваново</a>
+                            </li>
+                            <li>
+                                <a href="#">Ижевск</a>
+                            </li>
+                            <li>
+                                <a href="#">Иркутск</a>
+                            </li>
+                            <li>
+                                <a href="#">Казань</a>
+                            </li>
+                            <li>
+                                <a href="#">Калининград</a>
+                            </li>
+                            <li>
+                                <a href="#">Калуга</a>
+                            </li>
+                            <li>
+                                <a href="#">Кемерово</a>
+                            </li>
+                            <li>
+                                <a href="#">Киров</a>
+                            </li>
+                            <li>
+                                <a href="#">Кострома</a>
+                            </li>
+                            <li>
+                                <a href="#">Краснодар</a>
+                            </li>
+                            <li>
+                                <a href="#">Курск</a>
+                            </li>
+                            <li>
+                                <a href="#">Магнитогорск</a>
+                            </li>
+                            <li>
+                                <a href="#">Махачкала</a>
+                            </li>
+                            <li>
+                                <a href="#">Мурманск</a>
+                            </li>
+                            <li>
+                                <a href="#">Набережные челны</a>
+                            </li>
+                            <li>
+                                <a href="#">Нальчик</a>
+                            </li>
+                            <li>
+                                <a href="#">Нижничй Новгород</a>
+                            </li>
+                            <li>
+                                <a href="#">Новокузнецк</a>
+                            </li>
+                            <li>
+                                <a href="#">Новороссийск</a>
+                            </li>
+                            <li>
+                                <a href="#">Новосибирск</a>
+                            </li>
+                            <li>
+                                <a href="#">Оренбург</a>
+                            </li>
+                            <li>
+                                <a href="#">Пенза</a>
+                            </li>
+                            <li>
+                                <a href="#">Перьм</a>
+                            </li>
+                            <li>
+                                <a href="#">Рязань</a>
+                            </li>
+                            <li>
+                                <a href="#">Ростов-на-Дону</a>
+                            </li>
+                            <li>
+                                <a href="#">Самара</a>
+                            </li>
+                            <li>
+                                <a href="#">Саратов</a>
+                            </li>
+                            <li>
+                                <a href="#">Смоленск</a>
+                            </li>
+                            <li>
+                                <a href="#">Сочи</a>
+                            </li>
+                            <li>
+                                <a href="#">Ставрополь</a>
+                            </li>
+                            <li>
+                                <a href="#">Таганрог</a>
+                            </li>
+                            <li>
+                                <a href="#">Тамбов</a>
+                            </li>
+                            <li>
+                                <a href="#">Тверь</a>
+                            </li>
+                            <li>
+                                <a href="#">Тольятти</a>
+                            </li>
+                            <li>
+                                <a href="#">Томск</a>
+                            </li>
+                            <li>
+                                <a href="#">Тула</a>
+                            </li>
+                            <li>
+                                <a href="#">Тюмень</a>
+                            </li>
+                            <li>
+                                <a href="#">Ульяновск</a>
+                            </li>
+                            <li>
+                                <a href="#">Уфа</a>
+                            </li>
+                            <li>
+                                <a href="#">Хабаровск</a>
+                            </li>
+                            <li>
+                                <a href="#">Чебоксары</a>
+                            </li>
+                            <li>
+                                <a href="#">Челябинск</a>
+                            </li>
+                            <li>
+                                <a href="#">Южно-Сахалинск</a>
+                            </li>
+                            <li>
+                                <a href="#">Ярославль</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="top-navbar">
+        <div class="container large-container">
+            <ul class="nav navbar-nav top-panel flex">
+                <li class="tel-num">
+						<span>
+							<i class="glyphicon glyphicon-earphone"></i> +7 (844) 297-45-97
+						</span>
+                </li>
+                <li>
+                    <a class="callback-trigger" href="javascript:void(0);">
+							<span>
+								Обратный звонок
+							</span>
+                    </a>
+                </li>
+                <li class="geo">
+                    <a href="javascript: void(0);" id="select-city">
+                        <i class="glyphicon glyphicon-map-marker"></i>
+                        <span class="country">
+								Россия
+							</span>
+                        <span class="city">
+								Москва
+							</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" class="my-notebook">
+							<span class="red-but">
+								<i class="glyphicon glyphicon-book"></i>
+							</span>
+                        <span class="inscription">
+								Мой блокнот
+							</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <nav class="navbar">
+        <div class="container large-container">
+            <a href="javascript:void(0);" class="logo">
+                <img src="public/img/logo.png" alt="">
+            </a>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="main-menu" >
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Каталог мебели</a></li>
+                    <li><a href="#">Фабрики</a></li>
+                    <li><a href="#">Распродажа</a></li>
+                    <li><a href="#">О проекте</a></li>
+                    <li><a href="#">Контакты в москве</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+</header>
+<main>
+    <div class="page factory-page">
+        <div class="letter-nav">
+            <div class="container large-container">
+                <ul class="letter-select">
+                    <li>
+                        <a href="#">a</a>
+                    </li>
+                    <li>
+                        <a href="#">b</a>
+                    </li>
+                    <li>
+                        <a href="#">c</a>
+                    </li>
+                    <li>
+                        <a href="#">d</a>
+                    </li>
+                    <li>
+                        <a href="#">e</a>
+                    </li>
+                    <li>
+                        <a href="#">f</a>
+                    </li>
+                    <li>
+                        <a href="#">g</a>
+                    </li>
+                    <li>
+                        <a href="#">h</a>
+                    </li>
+                    <li>
+                        <a href="#">i</a>
+                    </li>
+                    <li>
+                        <a href="#">j</a>
+                    </li>
+                    <li>
+                        <a href="#">k</a>
+                    </li>
+                    <li>
+                        <a href="#">l</a>
+                    </li>
+                    <li>
+                        <a href="#">m</a>
+                    </li>
+                    <li>
+                        <a href="#">n</a>
+                    </li>
+                    <li>
+                        <a href="#">o</a>
+                    </li>
+                    <li>
+                        <a href="#">p</a>
+                    </li>
+                    <li>
+                        <a href="#">r</a>
+                    </li>
+                    <li>
+                        <a href="#">s</a>
+                    </li>
+                    <li>
+                        <a href="#">t</a>
+                    </li>
+                    <li>
+                        <a href="#">u</a>
+                    </li>
+                    <li>
+                        <a href="#">v</a>
+                    </li>
+                    <li>
+                        <a href="#">w</a>
+                    </li>
+                    <li>
+                        <a href="#">x</a>
+                    </li>
+                    <li>
+                        <a href="#">y</a>
+                    </li>
+                    <li>
+                        <a href="#">z</a>
+                    </li>
+                </ul>
+                <a href="#" class="all">
+                    Все
+                </a>
+            </div>
+        </div>
+        <div class="container large-container">
+            <div class="row">
+                <ul class="bread-crumbs">
+                    <li>
+                        <a href="#">Главная</a>
+                    </li>
+                    <li>
+                        <a href="#">Каталог Итальянской Мебел</a>
+                    </li>
+                    <li>
+                        <a href="#">Столовые комнаты в Москве</a>
+                    </li>
+                    <li>
+                        Буфет
+                    </li>
+                </ul>
+            </div>
+            <div class="row factory-det">
+                <div class="col-sm-3 col-md-3">
+                    <div class="fact-img">
+                        <img src="public/img/pictures/fact-det.png" alt="Логотип фабрики">
+                    </div>
+                </div>
+                <div class="col-sm-9 col-md-9">
+                    <div class="descr">
+                        <h1 class="title-text">
+                            МЕБЕЛЬ ARREDAMENTI
+                        </h1>
+                        <div class="fact-link">
+                            <a href="#">WWW.ARARREDAMENTI.IT</a>
+                        </div>
+                        <div class="fact-assort">
+                            <div class="all-list">
+                                <a href="#" class="title">
+                                    Все предметы мебели
+                                </a>
+                                <ul class="list">
+                                    <li>
+                                        <a href="#">
+                                            Банкетка (3)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Барная стойка (2)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Барный стол (23)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Барный стул (2)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Бра (23)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Буфет (23)
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="list post-list">
+                                    <li>
+                                        <a href="#">
+                                            Банкетка (3)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Барная стойка (2)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Барный стол (23)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Барный стул (2)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Бра (23)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Буфет (23)
+                                        </a>
+                                    </li>
+                                </ul>
+                                <a href="javascript:void(0);" class="view-all">
+                                    Весь список
+                                </a>
+                            </div>
+                            <div class="all-list">
+                                <a href="#" class="title">
+                                    Все коллекции
+                                </a>
+                                <ul class="list">
+                                    <li>
+                                        <a href="#">
+                                            AMADEUS (3)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            CELEBRITY (2)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            DOLCE VITA (23)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            EXSELCIOR (2)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            GRAND RYAL (23)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            HARMONY (23)
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="list post-list">
+                                    <li>
+                                        <a href="#">
+                                            AMADEUS (3)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            CELEBRITY (2)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            DOLCE VITA (23)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            EXSELCIOR (2)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            GRAND RYAL (23)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            HARMONY (23)
+                                        </a>
+                                    </li>
+                                </ul>
+                                <a href="javascript:void(0);" class="view-all">
+                                    Весь список
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="text">
+                            <p>
+                                Итальянская мебельная компания AR Arredamenti имеет длинную и интересную историю.
+                                Она была основана в прошлом веке – в 1967 году – в качестве ремесленной мастерской
+                                талантливых краснодеревщиков, искренне преданных избранной профессии.
+                                В 1986 году произошло значительное расширение производства, переход на новый
+                                качественный уровень, начался рост во всех смыслах. Сотрудничество с лучшими
+                                дизайнерами, обновление коллекций, приверженность классическим
+                                традициям помогли заслужить отличную репутацию бренда, отвечающего и
+                                за качество, и за стиль своей продукции.
+                            </p>
+                            <p>
+                                В ассортименте, предлагаемом клиентам компании на сегодняшний день, представлена
+                                мебель для жилых помещений: кабинетов, столовых, гостиных, спален – наиболее значимых
+                                и важных зон каждого дома. Свойственная этим моделям изысканная роскошь,
+                                элегантный шик и неизменная красота, которую невозможно не заметить,
+                                выгодно отличает мебель от AR Arredamenti, ставит ее на порядок выше
+                                продукции большинства современных брендов.
+                            </p>
+                            <p>
+                                Для того чтобы добиться непревзойденного качества, компания AR Arredamenti
+                                не просто применила все имеющиеся знания и умения, опыт своих квалифицированных
+                                сотрудников и традиционные способы производства, которые передавались от одного
+                                поколения итальянских краснодеревщиков к другому, но и сделала ставку на
+                                современное оборудование, художественный талант и тонкое чутье моды
+                                дизайнеров и высочайший уровень используемых материалов. Результат
+                                не заставил себя ждать. Известность, множество благодарных клиентов
+                                в разных странах мира, рекомендации друзьям и близким –
+                                эта мебель неизменно востребована, ведь она производится
+                                одним из лидеров мебельной промышленности Европы, успешным брендом
+                                AR Arredamenti, чье имя равнозначно качеству и стилю.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row menu-style">
+                <a href="#">
+                    Все
+                </a>
+                <a href="#">
+                    Аксессуары
+                </a>
+                <a href="#">
+                    Гостиные
+                </a>
+                <a href="#">
+                    Кабинеты
+                </a>
+                <a href="#">
+                    Кухни
+                </a>
+                <a href="#">
+                    Мебель для TV
+                </a>
+                <a href="#">
+                    Мебель для ресторанов
+                </a>
+                <a href="#">
+                    Мягкая мебель
+                </a>
+                <a href="#">
+                    Прихожие
+                </a>
+                <a href="#">
+                    Светильники
+                </a>
+                <a href="#">
+                    Спальни
+                </a>
+                <a href="#">
+                    Столовые комнаты
+                </a>
+                <a href="#">
+                    Стулья
+                </a>
+            </div>
+
+            <div class="cat-prod catalog-wrap">
+                <a href="#" class="one-prod-tile">
+                    <object>
+                        <a href="javascript:void(0);" class="request-price">
+                            Запросить цену
+                        </a>
+                    </object>
+                    <div class="img-cont">
+                        <img src="public/img/pictures/prod-cat1.jpeg" alt="">
+                        <div class="brand">
+                            ANGELO CAPPELLINI
+                        </div>
+                    </div>
+                    <div class="item-infoblock">
+                        Спальный гарнитур BEDROOMS
+                    </div>
+                </a>
+                <a href="#" class="one-prod-tile">
+                    <object>
+                        <a href="javascript:void(0);" class="request-price">
+                            Запросить цену
+                        </a>
+                    </object>
+                    <div class="img-cont">
+                        <img src="public/img/pictures/prod-cat2.jpg" alt="">
+                        <div class="brand">
+                            SAVIO FIRMINO
+                        </div>
+                    </div>
+                    <div class="item-infoblock">
+                        Спальный гарнитур BEDROOMS
+                    </div>
+                </a>
+                <a href="#" class="one-prod-tile">
+                    <object>
+                        <a href="javascript:void(0);" class="request-price">
+                            Запросить цену
+                        </a>
+                    </object>
+                    <div class="img-cont">
+                        <img src="public/img/pictures/prod-cat3.jpg" alt="">
+                        <div class="brand">
+                            SAVIO FIRMINO
+                        </div>
+                    </div>
+                    <div class="item-infoblock">
+                        Спальный гарнитур BEDROOMS
+                    </div>
+                </a>
+                <a href="#" class="one-prod-tile">
+                    <object>
+                        <a href="javascript:void(0);" class="request-price">
+                            Запросить цену
+                        </a>
+                    </object>
+                    <div class="img-cont">
+                        <img src="public/img/pictures/prod-cat3.jpg" alt="">
+                        <div class="brand">
+                            SAVIO FIRMINO
+                        </div>
+                    </div>
+                    <div class="item-infoblock">
+                        Спальный гарнитур BEDROOMS
+                    </div>
+                </a>
+                <a href="#" class="one-prod-tile">
+                    <object>
+                        <a href="javascript:void(0);" class="request-price">
+                            Запросить цену
+                        </a>
+                    </object>
+                    <div class="img-cont">
+                        <img src="public/img/pictures/prod-cat3.jpg" alt="">
+                        <div class="brand">
+                            SAVIO FIRMINO
+                        </div>
+                    </div>
+                    <div class="item-infoblock">
+                        Спальный гарнитур BEDROOMS
+                    </div>
+                </a>
+                <a href="#" class="one-prod-tile">
+                    <object>
+                        <a href="javascript:void(0);" class="request-price">
+                            Запросить цену
+                        </a>
+                    </object>
+                    <div class="img-cont">
+                        <img src="public/img/pictures/prod-cat3.jpg" alt="">
+                        <div class="brand">
+                            SAVIO FIRMINO
+                        </div>
+                    </div>
+                    <div class="item-infoblock">
+                        Спальный гарнитур BEDROOMS
+                    </div>
+                </a>
+                <a href="#" class="one-prod-tile">
+                    <object>
+                        <a href="javascript:void(0);" class="request-price">
+                            Запросить цену
+                        </a>
+                    </object>
+                    <div class="img-cont">
+                        <img src="public/img/pictures/prod-cat3.jpg" alt="">
+                        <div class="brand">
+                            SAVIO FIRMINO
+                        </div>
+                    </div>
+                    <div class="item-infoblock">
+                        Спальный гарнитур BEDROOMS
+                    </div>
+                </a>
+                <a href="#" class="one-prod-tile last">
+                    смотреть полный
+                    <div>
+                        Каталог
+                    </div>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container large-container">
+        <div class="row">
+            <div class="col-md-4 center">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#">Главная</a>
+                    </li>
+                    <li>
+                        <a href="#">О проекте</a>
+                    </li>
+                    <li>
+                        <a href="#">СТатьи</a>
+                    </li>
+                    <li>
+                        <a href="#">Фабрики</a>
+                    </li>
+                    <li>
+                        <a href="#">Отзывы</a>
+                    </li>
+                    <li>
+                        <a href="#">Карта сайта</a>
+                    </li>
+                    <li>
+                        <a href="#">Регистрация партнера</a>
+                    </li>
+                    <li>
+                        <a href="#">Как купить мебель из италии</a>
+                    </li>
+                    <li>
+                        <a href="#">Контакты</a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-4 center">
+                <div class="cons">Получить консультацию в Москве</div>
+                <div class="tel"><i class="fa fa-phone" aria-hidden="true"></i>+7 (499) 705-89-98</div>
+                <div class="stud">
+                    Студия "СТАРЫЙ РИМ"</br>
+                    Малый Харитоньевский переулок, 7с1
+                </div>
+                <a href="#" class="more">Посмотреть все офисы продаж</a>
+                <div class="social">
+                    <a href="#">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 center">
+                <a href="" class="btn btn-transparent sign-in">
+                    Вход в систему
+                </a>
+                <div class="copy">
+                    <div class="copy-slogan">
+                        2015 - 2017 (с) MyArredo, лучшая мебель из италии для вашего дома
+                    </div>
+                    <div class="fund">Программирование сайта - <a href="http://www.vipdesign.com.ua/">VipDesign</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="partner-cities container large-container">
+        <div class="row">
+            <div>
+                Этот список городов размещен здесь для вашего удобства.
+                Найдите свой город и купите итальянскую мебель по лучшей цене.
+            </div>
+            <ul>
+                <li><a href="#">Москва</a></li>
+                <li><a href="#">Санкт-Петербург</a></li>
+                <li><a href="#">Альметьевск</a></li>
+                <li><a href="#">Анапа</a></li>
+                <li><a href="#">Архангельск</a></li>
+                <li><a href="#">Барнаул</a></li>
+                <li><a href="#">Белгород</a></li>
+                <li><a href="#">Благовещенск</a></li>
+                <li><a href="http://bryansk.myarredo.ru/">Брянск</a></li>
+                <li><a href="http://vladivostok.myarredo.ru/">Владивосток</a></li>
+                <li><a href="http://vladikavkaz.myarredo.ru/">Владикавказ</a></li>
+                <li><a href="http://vladimir.myarredo.ru/">Владимир</a></li>
+                <li><a href="http://volgograd.myarredo.ru/">Волгоград</a></li>
+                <li><a href="http://voronezh.myarredo.ru/">Воронеж</a></li>
+                <li><a href="http://ekaterinburg.myarredo.ru/">Екатеринбург</a></li>
+                <li><a href="http://ivanovo.myarredo.ru/">Иваново</a></li>
+                <li><a href="http://izhevsk.myarredo.ru/">Ижевск</a></li>
+                <li><a href="http://irkutsk.myarredo.ru/">Иркутск</a></li>
+                <li><a href="http://kazan.myarredo.ru/">Казань</a></li>
+                <li><a href="http://kaliningrad.myarredo.ru/">Калининград</a></li>
+                <li><a href="http://kaluga.myarredo.ru/">Калуга</a></li>
+                <li><a href="http://kemerovo.myarredo.ru/">Кемерово</a></li>
+                <li><a href="http://kirov.myarredo.ru/">Киров</a></li>
+                <li><a href="http://kostroma.myarredo.ru/">Кострома</a></li>
+                <li><a href="http://krasnodar.myarredo.ru/">Краснодар</a></li>
+                <li><a href="http://krasnoyarsk.myarredo.ru/">Красноярск</a></li>
+                <li><a href="http://kursk.myarredo.ru/">Курск</a></li>
+                <li><a href="http://magnitogorsk.myarredo.ru/">Магнитогорск</a></li>
+                <li><a href="http://mahachkala.myarredo.ru/">Махачкала</a></li>
+                <li><a href="http://murmansk.myarredo.ru/">Мурманск</a></li>
+                <li><a href="http://naberezhnye-chelny.myarredo.ru/">Набережные Челны</a></li>
+                <li><a href="http://nalchik.myarredo.ru/">Нальчик</a></li>
+                <li><a href="http://nn.myarredo.ru/">Нижний Новгород</a></li>
+                <li><a href="http://novokuznetsk.myarredo.ru/">Новокузнецк</a></li>
+                <li><a href="http://novorossiysk.myarredo.ru/">Новороссийск</a></li>
+                <li><a href="http://novosibirsk.myarredo.ru/">Новосибирск</a></li>
+                <li><a href="http://orenburg.myarredo.ru/">Оренбург</a></li>
+                <li><a href="http://penza.myarredo.ru/">Пенза</a></li>
+                <li><a href="http://perm.myarredo.ru/">Пермь</a></li>
+                <li><a href="http://rnd.myarredo.ru/">Ростов-на-Дону </a></li>
+                <li><a href="http://ryazan.myarredo.ru/">Рязань</a></li>
+                <li><a href="http://samara.myarredo.ru/">Самара</a></li>
+                <li><a href="http://saratov.myarredo.ru/">Саратов</a></li>
+                <li><a href="http://sevastopol.myarredo.ru/">Севастополь</a></li>
+                <li><a href="http://simferopol.myarredo.ru/">Симферополь</a></li>
+                <li><a href="http://smolensk.myarredo.ru/">Смоленск</a></li>
+                <li><a href="http://sochi.myarredo.ru/">Сочи</a></li>
+                <li><a href="http://stavropol.myarredo.ru/">Ставрополь</a></li>
+                <li><a href="http://taganrog.myarredo.ru/">Таганрог</a></li>
+                <li><a href="http://tambov.myarredo.ru/">Тамбов</a></li>
+                <li><a href="http://tver.myarredo.ru/">Тверь</a></li>
+                <li><a href="http://tolyatti.myarredo.ru/">Тольятти</a></li>
+                <li><a href="http://tomsk.myarredo.ru/">Томск</a></li>
+                <li><a href="http://tula.myarredo.ru/">Тула</a></li>
+                <li><a href="http://tumen.myarredo.ru/">Тюмень</a></li>
+                <li><a href="http://ulyanovsk.myarredo.ru/">Ульяновск</a></li>
+                <li><a href="http://ufa.myarredo.ru/">Уфа</a></li>
+                <li><a href="http://khabarovsk.myarredo.ru/">Хабаровск</a></li>
+                <li><a href="http://cheboksary.myarredo.ru/">Чебоксары</a></li>
+                <li><a href="http://chelyabinsk.myarredo.ru/">Челябинск</a></li>
+                <li><a href="http://yuzhno-sakhalinsk.myarredo.ru/">Южно-Сахалинск</a></li>
+                <li><a href="http://yaroslavl.myarredo.ru/">Ярославль</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+<script src="./public/libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://use.fontawesome.com/35f65baac5.js"></script>
+<script src="./public/libs/bootstrap-select/js/bootstrap-select.min.js"></script>
+<script src="./public/libs/slick-1.6/slick.min.js"></script>
+<script src="./public/libs/nouislider/nouislider.min.js"></script>
+<script src="./public/libs/wNumb.js"></script>
+<!--
+<script async src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+-->
+<script src="./public/js/core.js"></script>
+</body>
+</html>
