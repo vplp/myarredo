@@ -2,9 +2,10 @@
 
 namespace backend\modules\catalog\widgets\grid;
 
-use backend\modules\catalog\models\Specification;
 use yii\grid\DataColumn;
 use yii\helpers\Html;
+//
+use backend\modules\catalog\models\Specification;
 
 /**
  * Class ManyToManySpecificationValueDataColumn
