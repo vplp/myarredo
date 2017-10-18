@@ -17,24 +17,16 @@ class Product extends CommonProductModel implements BaseBackendModel
     public $parent_id = 0;
 
     /**
+     * @param bool $insert
      * @return bool
      */
-    public function beforeValidate()
+    public function beforeSave($insert)
     {
         $this->alias = $this->types->lang->title
             . ' ' . $this->factory->lang->title
             . ' ' . $this->collection->lang->title
             . (($this->article) ? ' ' . $this->article : '');
 
-        return parent::beforeValidate();
-    }
-
-    /**
-     * @param bool $insert
-     * @return bool
-     */
-    public function beforeSave($insert)
-    {
         if ($this->id) {
             $this->alias = $this->id . ' ' . $this->alias;
         }

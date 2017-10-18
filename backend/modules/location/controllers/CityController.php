@@ -23,7 +23,6 @@ class CityController extends BackendController
     public $title = 'City';
     public $name = 'city';
 
-
     public function actionImportCities()
     {
         $rows = (new \yii\db\Query())

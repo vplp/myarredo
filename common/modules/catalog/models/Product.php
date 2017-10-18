@@ -179,6 +179,7 @@ class Product extends ActiveRecord implements iProduct
             'onmain' => ['onmain'],
             'removed' => ['removed'],
             'position' => ['position'],
+            'gallery_image' => ['gallery_image', 'picpath'],
             'backend' => [
                 'catalog_type_id',
                 'user_id',
@@ -195,7 +196,6 @@ class Product extends ActiveRecord implements iProduct
                 'factory_price',
                 'price_from',
                 'retail_price',
-                'picpath',
                 'is_composition',
                 'popular',
                 'novelty',
