@@ -35,7 +35,7 @@ use frontend\modules\catalog\models\{
                         : ['class' => 'one-item'];
 
                     echo Html::a(
-                        $item['lang']['title'] . ' (' . ($category_counts[$item['id']]['count']??0) . ')',
+                        $item['lang']['title'] . ' (' . ($category_counts[$item['id']]['count'] ?? 0) . ')',
                         Yii::$app->catalogFilter->createUrl(['category' => $item['alias']]),
                         $options
                     );
@@ -46,22 +46,22 @@ use frontend\modules\catalog\models\{
         </div>
 
         <div class="one-filter open">
-            <a href="javascript:void(0);" class="filt-but">
-                Предмет
-            </a>
+            <a href="javascript:void(0);" class="filt-but">Предмет</a>
             <div class="list-item">
 
                 <?php foreach ($types as $item): ?>
 
-                    <?php $options = (isset($filter['category']) && $filter['category']['id'] == $item['id'])
-                        ? ['class' => 'one-item-check current']
-                        : ['class' => 'one-item-check'] ?>
+                    <?php $class = (isset($filter['category']) && $filter['category']['id'] == $item['id'])
+                        ? 'one-item-check current'
+                        : 'one-item-check' ?>
 
                     <div>
-                        <?= Html::beginTag('a', ['href' => Yii::$app->catalogFilter->createUrl(['type' => $item['alias']]), $options]); ?>
+                        <?= Html::beginTag('a', [
+                            'href' => Yii::$app->catalogFilter->createUrl(['type' => $item['alias']]),
+                            'class' => $class
+                        ]); ?>
                         <input type="checkbox">
-                        <div class="my-checkbox"></div>
-                        <?= $item['lang']['title'];//. ' ('. $item->getProductCount().')';                         ?>
+                        <div class="my-checkbox"></div><?= $item['lang']['title'] ?>
                         <?= Html::endTag('a'); ?>
                     </div>
                 <?php endforeach; ?>
@@ -70,17 +70,17 @@ use frontend\modules\catalog\models\{
         </div>
 
         <div class="one-filter open">
-            <a href="javascript:void(0);" class="filt-but">
-                Стиль
-            </a>
+            <a href="javascript:void(0);" class="filt-but">Стиль</a>
             <div class="list-item">
 
                 <?php foreach ($style as $item): ?>
                     <div>
-                        <?= Html::beginTag('a', ['href' => Yii::$app->catalogFilter->createUrl(['style' => $item['alias']]), 'class' => 'one-item-check']); ?>
+                        <?= Html::beginTag('a', [
+                            'href' => Yii::$app->catalogFilter->createUrl(['style' => $item['alias']]),
+                            'class' => 'one-item-check'
+                        ]); ?>
                         <input type="checkbox">
-                        <div class="my-checkbox"></div>
-                        <?= $item['lang']['title'];//. ' ('. $item->getProductCount().')';                         ?>
+                        <div class="my-checkbox"></div><?= $item['lang']['title'] ?>
                         <?= Html::endTag('a'); ?>
                     </div>
                 <?php endforeach; ?>
@@ -89,17 +89,17 @@ use frontend\modules\catalog\models\{
         </div>
 
         <div class="one-filter open">
-            <a href="javascript:void(0);" class="filt-but">
-                Фабрики
-            </a>
+            <a href="javascript:void(0);" class="filt-but">Фабрики</a>
             <div class="list-item">
 
                 <?php foreach ($factory as $item): ?>
                     <div>
-                        <?= Html::beginTag('a', ['href' => Yii::$app->catalogFilter->createUrl(['factory' => $item['alias']]), 'class' => 'one-item-check']); ?>
+                        <?= Html::beginTag('a', [
+                                'href' => Yii::$app->catalogFilter->createUrl(['factory' => $item['alias']]),
+                                'class' => 'one-item-check']
+                        ); ?>
                         <input type="checkbox">
-                        <div class="my-checkbox"></div>
-                        <?= $item['lang']['title'];//. ' ('. $item->getProductCount().')';                         ?>
+                        <div class="my-checkbox"></div><?= $item['lang']['title'] ?>
                         <?= Html::endTag('a'); ?>
                     </div>
                 <?php endforeach; ?>
