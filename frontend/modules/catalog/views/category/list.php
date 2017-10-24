@@ -8,8 +8,8 @@ use frontend\modules\catalog\widgets\product\{
 };
 
 /**
- * @var \yii\data\Pagination $pages
- * @var \frontend\modules\catalog\models\Product $model
+ * @var $pages \yii\data\Pagination
+ * @var $model \frontend\modules\catalog\models\Product
  */
 
 ?>

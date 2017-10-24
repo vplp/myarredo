@@ -9,7 +9,12 @@ use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Product, Category, Factory, Types, Specification, Collection
+    Product,
+    Category,
+    Factory,
+    Types,
+    Specification,
+    Collection
 };
 
 /**
