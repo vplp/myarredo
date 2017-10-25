@@ -31,6 +31,7 @@ class AppAsset extends AssetBundle
         'libs/bootstrap-select/js/bootstrap-select.min.js',
         'libs/slick-1.6/slick.min.js',
         'libs/nouislider/nouislider.min.js',
+        'libs/infoBubble/infobubble.js',
         'libs/wNumb.js',
         'libs/shop.js',
         'js/core.js',
