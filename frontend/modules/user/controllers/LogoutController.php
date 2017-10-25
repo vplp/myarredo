@@ -12,8 +12,6 @@ use frontend\components\BaseController;
  * Class UserController
  *
  * @package frontend\modules\user\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class LogoutController extends BaseController
 {

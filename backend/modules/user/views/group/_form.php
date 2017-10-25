@@ -1,7 +1,6 @@
 <?php
 
-use thread\app\bootstrap\ActiveForm;
-
+use backend\app\bootstrap\ActiveForm;
 use backend\modules\sys\modules\user\models\AuthRole;
 
 /**

@@ -11,8 +11,6 @@ use backend\modules\shop\models\{
  * Class OrderItemController
  *
  * @package backend\modules\location\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class OrderItemController extends BackendController
 {

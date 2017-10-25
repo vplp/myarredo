@@ -17,8 +17,6 @@ use backend\modules\{
  * Class OrderItem
  *
  * @package backend\modules\shop\models\search
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class OrderItem extends OrderItemModel implements BaseBackendSearchModel
 {

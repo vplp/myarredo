@@ -1,6 +1,6 @@
 <?php
 
-use thread\app\bootstrap\{
+use backend\app\bootstrap\{
     ActiveForm
 };
 use backend\themes\defaults\widgets\Tabs;

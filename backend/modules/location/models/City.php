@@ -2,6 +2,8 @@
 
 namespace backend\modules\location\models;
 
+use yii\helpers\ArrayHelper;
+//
 use thread\app\model\interfaces\BaseBackendModel;
 
 /**
@@ -11,6 +13,23 @@ use thread\app\model\interfaces\BaseBackendModel;
  */
 class City extends \common\modules\location\models\City implements BaseBackendModel
 {
+    /**
+     * Drop down list
+     *
+     * @param int $country_id
+     * @return mixed
+     */
+    public static function dropDownList($country_id = 0)
+    {
+        $query = self::findBase();
+
+        $query->andFilterWhere(['country_id' => $country_id]);
+
+        $data = $query->undeleted()->all();
+
+        return ArrayHelper::map($data, 'id', 'lang.title');
+    }
+
     /**
      * @param $params
      * @return \yii\data\ActiveDataProvider

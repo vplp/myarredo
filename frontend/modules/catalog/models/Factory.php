@@ -120,8 +120,13 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public static function getAllWithFilter($params = [])
     {
-        return self::findBase()
-            ->all();
+        $query = self::findBase();
+
+        if (isset($params['category'])) {
+
+        }
+
+        return $query->all();
     }
 
     /**

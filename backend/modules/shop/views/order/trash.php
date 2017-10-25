@@ -6,13 +6,6 @@ use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
 };
 
-/**
- *
- * @package admin\modules\order\view
- * @author Alla Kuzmenko
- * @copyright (c), Thread
- */
-
 echo GridView::widget([
     'dataProvider' => $model->trash(Yii::$app->request->queryParams),
     'filterModel' => $filter,

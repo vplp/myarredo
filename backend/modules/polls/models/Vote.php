@@ -10,8 +10,6 @@ use common\modules\polls\models\Vote as CommonVoteModel;
  * Class Vote
  *
  * @package backend\modules\polls\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Vote extends CommonVoteModel implements BaseBackendModel
 {

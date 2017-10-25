@@ -15,8 +15,6 @@ use backend\modules\page\models\{
  * Class PageController
  *
  * @package backend\modules\page\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class PageController extends BackendController
 {

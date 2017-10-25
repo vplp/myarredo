@@ -18,4 +18,22 @@ class Country extends \thread\modules\location\models\Country
             ->innerJoinWith(['lang'])
             ->orderBy(self::tableName(). '.position');
     }
+
+    /**
+     * @param string $alias
+     * @return mixed
+     */
+    public static function findByAlias($alias)
+    {
+        return self::findBase()->byAlias($alias)->one();
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public static function findById($id)
+    {
+        return self::findBase()->byId($id)->one();
+    }
 }

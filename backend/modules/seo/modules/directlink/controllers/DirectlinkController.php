@@ -17,8 +17,6 @@ use backend\modules\seo\modules\directlink\models\{
  * Class InfoController
  *
  * @package backend\modules\seo\modules\info\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class DirectlinkController extends BackendController
 {

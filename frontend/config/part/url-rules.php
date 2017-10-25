@@ -4,6 +4,8 @@ return [
 
     // Module [[Home]]
     '' => 'home/home/index',
+    'contacts' => 'home/contacts/index',
+    'partners-map' => 'home/contacts/list-partners',
 
     // Module [[Users]]
     'partner/registration' => 'user/register/partner',

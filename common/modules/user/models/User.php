@@ -1,14 +1,40 @@
 <?php
 
 namespace common\modules\user\models;
+
 /**
  * Class User
  *
  * @package common\modules\user\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class User extends \thread\modules\user\models\User
 {
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGroup()
+    {
+        return $this->hasOne(Group::className(), ['id' => 'group_id']);
+    }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProfile()
+    {
+        return $this->hasOne(Profile::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function findBase()
+    {
+        return self::find()
+            ->innerJoinWith([
+                'group',
+                'group.lang',
+                'profile'
+            ]);
+    }
 }
