@@ -15,8 +15,6 @@ use frontend\modules\user\models\form\SignInForm;
  * Class LoginController
  *
  * @package frontend\modules\user\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class LoginController extends BaseController
 {

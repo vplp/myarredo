@@ -19,12 +19,9 @@ use frontend\modules\user\models\{
  * Class PasswordController
  *
  * @package frontend\modules\user\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class PasswordController extends BaseController
 {
-
     protected $model = Profile::class;
     public $title = "Profile";
     public $defaultAction = 'index';
