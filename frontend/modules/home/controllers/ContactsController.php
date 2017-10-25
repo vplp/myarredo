@@ -29,16 +29,16 @@ class ContactsController extends BaseController
     {
         $this->title = "Все офисы продаж";
 
-        $partners = User::
+        //$partners = User::
 
         $dataJS = array();
-        foreach ($partners as $k => $obj) {
-            $dataJS[$k][] = (float)$obj->userData->latitude;
-            $dataJS[$k][] = (float)$obj->userData->longitude;
-            $dataJS[$k][] = $obj->userData->city->name;
-            $dataJS[$k][] = $obj->userData->address;
-            $dataJS[$k][] = 'test';//isset($obj->userData->country->name) ? $obj->userData->country->name : '';
-        }
+//        foreach ($partners as $k => $obj) {
+//            $dataJS[$k][] = (float)$obj->userData->latitude;
+//            $dataJS[$k][] = (float)$obj->userData->longitude;
+//            $dataJS[$k][] = $obj->userData->city->name;
+//            $dataJS[$k][] = $obj->userData->address;
+//            $dataJS[$k][] = 'test';//isset($obj->userData->country->name) ? $obj->userData->country->name : '';
+//        }
 //
 //        $this->pageTitle = "Все офисы продаж";
 //        $first = Variable::getValue('first');
