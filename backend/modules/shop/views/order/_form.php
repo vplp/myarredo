@@ -1,5 +1,5 @@
 <?php
-use thread\app\bootstrap\ActiveForm;
+use backend\app\bootstrap\ActiveForm;
 //
 use thread\widgets\HtmlForm;
 
@@ -9,7 +9,7 @@ use backend\modules\{
 
 /**
  * @var $model \backend\modules\shop\models\Order
- * @var $form \thread\app\bootstrap\ActiveForm
+ * @var $form \backend\app\bootstrap\ActiveForm
  */
 ?>
 

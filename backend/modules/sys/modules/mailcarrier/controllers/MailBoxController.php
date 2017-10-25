@@ -15,8 +15,6 @@ use backend\modules\sys\modules\mailcarrier\models\{
  * Class MailBoxController
  *
  * @package backend\modules\sys\modules\mailcarrier\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class MailBoxController extends BackendController
 {

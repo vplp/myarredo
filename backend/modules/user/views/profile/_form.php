@@ -1,7 +1,8 @@
 <?php
+
 use yii\helpers\Html;
 //
-use thread\app\bootstrap\ActiveForm;
+use backend\app\bootstrap\ActiveForm;
 
 /**
  * @var \backend\modules\user\models\Profile $model

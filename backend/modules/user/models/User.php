@@ -10,14 +10,12 @@ use thread\app\model\interfaces\BaseBackendModel;
 /**
  * Class User
  *
- * @package admin\modules\user\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
+ * @package backend\modules\user\models
  */
-class User extends \thread\modules\user\models\User implements BaseBackendModel
+class User extends \common\modules\user\models\User implements BaseBackendModel
 {
     /**
-     * Backend form dropdown list
+     * Backend form drop down list
      * @return array
      */
     public static function dropDownList()

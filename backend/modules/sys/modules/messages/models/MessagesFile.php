@@ -9,8 +9,6 @@ use thread\app\model\interfaces\BaseBackendModel;
  * Class MessagesFile
  *
  * @package backend\modules\sys\modules\messages\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class MessagesFile extends \common\modules\sys\modules\messages\models\MessagesFile implements BaseBackendModel
 {

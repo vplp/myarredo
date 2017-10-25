@@ -4,6 +4,9 @@ namespace common\modules\user\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use common\modules\location\models\{
+    City, Country
+};
 
 /**
  * Class Profile
@@ -98,5 +101,33 @@ class Profile extends \thread\modules\user\models\Profile
             'latitude' => Yii::t('app', 'Latitude'),
             'longitude' => Yii::t('app', 'Longitude'),
         ]);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getCountry()
+    {
+        $model = Country::findById($this->country_id);
+
+        if ($model != null) {
+            return $model['lang']['title'];
+        }
+
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getCity()
+    {
+        $model = City::findById($this->city_id);
+
+        if ($model != null) {
+            return $model['lang']['title'];
+        }
+
+        return false;
     }
 }

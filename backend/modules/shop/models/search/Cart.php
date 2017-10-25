@@ -17,8 +17,6 @@ use backend\modules\{
  * Class Cart
  *
  * @package backend\modules\shop\models\search
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Cart extends CartModel implements BaseBackendSearchModel
 {

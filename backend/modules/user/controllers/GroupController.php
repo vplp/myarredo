@@ -14,8 +14,6 @@ use backend\modules\user\models\{
  * Class GroupController
  *
  * @package admin\modules\user\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class GroupController extends BackendController
 {

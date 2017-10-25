@@ -18,8 +18,6 @@ use backend\modules\page\models\{
  * Class Page
  *
  * @package backend\modules\page\models\search
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Page extends ParentModel implements BaseBackendSearchModel
 {
