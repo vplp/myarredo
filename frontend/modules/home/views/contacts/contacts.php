@@ -4,6 +4,10 @@ use yii\helpers\{
     Html, Url
 };
 
+$session = Yii::$app->session;
+$this->context->title .= ' в ' . $session['city']['lang']['title_where'];
+
+
 ?>
 
     <main>
@@ -11,13 +15,29 @@ use yii\helpers\{
             <div class="container large-container">
                 <div class="col-md-12">
                     <?= Html::tag('h1', $this->context->title); ?>
+                    <div class="of-conts">
 
+                        <?php foreach ($partners as $partner): ?>
+                            <div class="one-cont">
+                                <?= Html::tag('h4', $partner->profile->name_company); ?>
+                                <div class="adres">
+                                    <?= $partner->profile->address ?>
+                                </div>
+                                <a href="tel:<?= $partner->profile->phone ?>"><?= $partner->profile->phone ?></a>
+                            </div>
+                        <?php endforeach; ?>
+
+
+                    </div>
+                    <div class="warning">
+                        * Обращаем ваше внимание, цены партнеров сети могут отличаться.
+                    </div>
                     <div class="map-cont">
                         <div id="map"></div>
 
                         <?= Html::a(
-                            'Вернуться назад',
-                            Url::toRoute('/home/contacts/index'),
+                            'Посмотреть все офисы продаж',
+                            Url::toRoute('/home/contacts/list-partners'),
                             ['class' => 'view-all']
                         ); ?>
 
@@ -36,8 +56,8 @@ initMap();
 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
-        center: new google.maps.LatLng(55.742130, 37.613583),
+        zoom: 6,
+        center: new google.maps.LatLng('$city->lat', '$city->lng'),
         mapTypeControl: true,
         scrollwheel: false,
         zoomControl: true,
@@ -61,6 +81,7 @@ function initMap() {
         arrowPosition: 55,
         padding: 0
     });
+
 
     function addMarker(marker) {
         var template = '$template';
@@ -89,6 +110,8 @@ function initMap() {
     var markings = markers.map(function(item) {
         return addMarker(item);
     });
+
+    map.setZoom(10);
 }
 JS;
 

@@ -2,7 +2,8 @@
 
 namespace frontend\modules\home\controllers;
 
-use frontend\modules\user\User;
+use Yii;
+use frontend\modules\user\models\User;
 use frontend\components\BaseController;
 
 /**
@@ -19,36 +20,51 @@ class ContactsController extends BaseController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $city = Yii::$app->session['city'];
+
+        $partners = User::getPartners($city['id']);
+
+        $dataJS = [];
+
+        foreach ($partners as $k => $obj) {
+            $dataJS[$k]['lat'] = (float)$obj->profile->latitude;
+            $dataJS[$k]['lng'] = (float)$obj->profile->longitude;
+            $dataJS[$k]['address'] = $obj->profile->address;
+            $dataJS[$k]['city'] = isset($obj->profile->city) ? $obj->profile->city->lang->title : '';
+            $dataJS[$k]['country'] = isset($obj->profile->country) ? $obj->profile->country->lang->title : '';
+            $dataJS[$k]['phone'] = 'phone';
+        }
+
+        return $this->render('contacts', array(
+            'partners' => $partners,
+            'city' => $city,
+            'dataJS' => json_encode($dataJS),
+        ));
     }
 
     /**
-     * Карта партнеров (ЯНДЕКСА)
+     * @return string
      */
     public function actionListPartners()
     {
         $this->title = "Все офисы продаж";
 
-        //$partners = User::
+        $partners = User::getPartners();
 
-        $dataJS = array();
-//        foreach ($partners as $k => $obj) {
-//            $dataJS[$k][] = (float)$obj->userData->latitude;
-//            $dataJS[$k][] = (float)$obj->userData->longitude;
-//            $dataJS[$k][] = $obj->userData->city->name;
-//            $dataJS[$k][] = $obj->userData->address;
-//            $dataJS[$k][] = 'test';//isset($obj->userData->country->name) ? $obj->userData->country->name : '';
-//        }
-//
-//        $this->pageTitle = "Все офисы продаж";
-//        $first = Variable::getValue('first');
-//        $second = Variable::getValue('second');
-//        $description = $first . ' ' . $this->pageTitle . '. ' . $second;
-//        Yii::app()->clientScript->registerMetaTag($description, 'description');
+        $dataJS = [];
+
+        foreach ($partners as $k => $obj) {
+            $dataJS[$k]['lat'] = (float)$obj->profile->latitude;
+            $dataJS[$k]['lng'] = (float)$obj->profile->longitude;
+            $dataJS[$k]['address'] = $obj->profile->address;
+            $dataJS[$k]['city'] = isset($obj->profile->city) ? $obj->profile->city->lang->title : '';
+            $dataJS[$k]['country'] = isset($obj->profile->country) ? $obj->profile->country->lang->title : '';
+            $dataJS[$k]['phone'] = 'phone';
+        }
 
         return $this->render('list_partners', array(
-//            'model' => $partners,
-            'dataJS' => $dataJS,
+            'partners' => $partners,
+            'dataJS' => json_encode($dataJS),
         ));
     }
 }

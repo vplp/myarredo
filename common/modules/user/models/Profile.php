@@ -104,30 +104,18 @@ class Profile extends \thread\modules\user\models\Profile
     }
 
     /**
-     * @return bool
+     * @return \yii\db\ActiveQuery
      */
     public function getCountry()
     {
-        $model = Country::findById($this->country_id);
-
-        if ($model != null) {
-            return $model['lang']['title'];
-        }
-
-        return false;
+        return $this->hasOne(Country::class, ['id' => 'country_id']);
     }
 
     /**
-     * @return bool
+     * @return \yii\db\ActiveQuery
      */
     public function getCity()
     {
-        $model = City::findById($this->city_id);
-
-        if ($model != null) {
-            return $model['lang']['title'];
-        }
-
-        return false;
+        return $this->hasOne(City::class, ['id' => 'city_id']);
     }
 }
