@@ -304,6 +304,51 @@
                     </p>
                 </div>
             </div>
+            <a href="javascript:void(0);" class="odis-menu-but">
+                <div class="img-cont">
+                    <img src="./public/img/odis/logo.png" width="70" alt="">
+                </div>
+                <div class="text-tit">
+                    Меню
+                </div>
+            </a>
+            <div class="odis-menu" style="display: none;">
+                <div class="logo-cont">
+                    <div class="img-cont">
+                        <img src="./public/img/odis/logo.png" alt="">
+                    </div>
+                </div>
+                <a class="item" href="#">
+                    Каталог
+                </a>
+                <a class="item" href="#">
+                    Акции
+                </a>
+                <a class="item" href="#">
+                    О компании
+                </a>
+                <a class="item last" href="#">
+                    Контакты
+                </a>
+                <div class="bottom">
+                    <div class="div">
+                        <div class="ico-cont">
+                            <img src="./public/img/odis/ico1.png" alt="">
+                        </div>
+                        <div class="adress">
+                            ул. Козловская, 34б
+                        </div>
+                    </div>
+                    <div>
+                        <div class="ico-cont">
+                            <img src="./public/img/odis/ico2.png" alt="">
+                        </div>
+                        <a href="tel:+88442974597" class="phone">
+                            8(8442)97-45-97
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="slider-wrap">
@@ -850,7 +895,6 @@
         function initMap() {
             var styledMapType = new google.maps.StyledMapType(styleMap);
 
-            // Create a map object and specify the DOM element for display.
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: {lat: 48.693023, lng: 44.487041},
                 zoom: 15,
@@ -860,14 +904,12 @@
                 }
             });
 
-            //Associate the styled map with the MapTypeId and set it to display.
             map.mapTypes.set('styled_map', styledMapType);
             map.setMapTypeId('styled_map');
 
             var marker = new google.maps.Marker({
                 position: {lat: 48.693023, lng: 44.487041},
                 map: map,
-                title: 'Hello World!',
                 icon: "./public/img/odis/marker.png"
             });
         }
@@ -940,7 +982,16 @@
                 }
             ]
         });
+
+        $(".odis-menu-but").click(function(){
+           $(".odis-menu").fadeToggle(150);
+        });
     });
 </script>
+<style>
+    header #main-menu .navbar-nav {
+        display: none;
+    }
+</style>
 </body>
 </html>
