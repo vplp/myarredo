@@ -57,26 +57,21 @@ class ProductFilter extends Widget
      */
     public function init()
     {
-
-        $model = new Product();
-
-        $q = $model->getSubQuery(Yii::$app->catalogFilter->params);
-
-        $counts_c = ProductRelCategory::getCounts($q);
-
-        $c = $this->category;
-        foreach ($c as $k => $cc) {
-            if (!isset($counts_c[$cc['id']]) || $counts_c[$cc['id']]['count'] <= 0) {
-                unset($c[$k]);
-            }
-        }
-
-        $this->category = $c;
-        $this->category_counts = $counts_c ?? [];
-
-//        $this->types = Types::getAllWithFilter(Yii::$app->catalogFilter->params);
-//        $this->style = Specification::getAllWithFilter(Yii::$app->catalogFilter->params);
-//        $this->factory = Factory::getAllWithFilter(Yii::$app->catalogFilter->params);
+//        $model = new Product();
+//
+//        $subQuery = $model->getSubQuery(Yii::$app->catalogFilter->params);
+//
+//        $category_counts = ProductRelCategory::getCounts($subQuery);
+//
+//        $c = $this->category;
+//        foreach ($c as $k => $cc) {
+//            if (!isset($category_counts[$cc['id']]) || $category_counts[$cc['id']]['count'] <= 0) {
+//                unset($c[$k]);
+//            }
+//        }
+//
+//        $this->category = $c;
+//        $this->category_counts = $category_counts ?? [];
     }
 
     /**
@@ -86,7 +81,7 @@ class ProductFilter extends Widget
     {
         return $this->render($this->view, [
             'category' => $this->category,
-            'category_counts' => $this->category_counts,
+            //'category_counts' => $this->category_counts,
             'types' => $this->types,
             'style' => $this->style,
             'factory' => $this->factory,

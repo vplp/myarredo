@@ -144,8 +144,29 @@ class Specification extends \common\modules\catalog\models\Specification
      */
     public static function getAllWithFilter($params = [])
     {
-        return self::findBaseArray()
-            ->andWhere([self::tableName() . '.parent_id' => 9])
+        $query = self::findBaseArray();
+
+        $query->andWhere([self::tableName() . '.parent_id' => 9]);
+
+        if (isset($params['category'])) {
+//            $query
+//                ->innerJoinWith(["product"])
+//                ->innerJoinWith(["product.category productCategory"])
+//                ->andFilterWhere([
+//                    ProductRelCategory::tableName() . '.group_id' => $params['category']['id'],
+//                    Product::tableName() . '.published' => '1',
+//                    Product::tableName() . '.deleted' => '0',
+//                ]);
+        }
+
+        return $query
+            ->select([
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                SpecificationLang::tableName() . '.title',
+                'count(' . self::tableName() . '.id) as count'
+            ])
+            ->groupBy(self::tableName() . '.id')
             ->all();
     }
 }

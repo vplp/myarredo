@@ -101,10 +101,39 @@ class Types extends \common\modules\catalog\models\Types
         $query = self::findBase();
 
         if (isset($params['category'])) {
-            $query->innerJoinWith(["category"])
-                ->andFilterWhere([TypesRelCategory::tableName() . '.group_id' => $params['category']['id']]);
+            $query
+                ->innerJoinWith(["category"], false)
+                ->andFilterWhere([
+                    TypesRelCategory::tableName() . '.group_id' => $params['category']['id']
+                ])
+                ->innerJoinWith(["product"], false)
+                ->innerJoinWith(["product.category productCategory"], false)
+                ->andFilterWhere([
+                    //ProductRelCategory::tableName() . '.group_id' => $params['category']['id'],
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                ]);
+        } else {
+//            $query
+//                ->innerJoinWith(["product"])
+//                ->innerJoinWith(["product.category productCategory"])
+//                ->andFilterWhere([
+//                    ProductRelCategory::tableName() . '.group_id' => Category::tableName() . '.id',
+//                    Product::tableName() . '.published' => '1',
+//                    Product::tableName() . '.deleted' => '0',
+//                ]);
         }
 
-        return $query->all();
+        return $query
+            ->select([
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                TypesLang::tableName() . '.title',
+                'count(' . Product::tableName() . '.catalog_type_id) as count'
+                //'count(' . self::tableName() . '.id) as count'
+            ])
+            ->groupBy(Product::tableName() . '.catalog_type_id')
+            //->groupBy(self::tableName() . '.id')
+            ->all();
     }
 }

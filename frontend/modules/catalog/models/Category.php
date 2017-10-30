@@ -142,10 +142,26 @@ class Category extends \common\modules\catalog\models\Category
         $query = self::findBase();
 
         if (isset($params['type'])) {
-            $query->innerJoinWith(["types"])
-                ->andFilterWhere([TypesRelCategory::tableName() . '.type_id' => $params['type']['id']]);
+//            $query->innerJoinWith(["product.types"])
+//                ->andFilterWhere([TypesRelCategory::tableName() . '.type_id' => $params['type']['id']]);
         }
 
-        return $query->all();
+        return $query
+//            ->innerJoinWith(["product"])
+//            //->innerJoinWith(["product.category productCategory"])
+//            ->andFilterWhere([
+//                //ProductRelCategory::tableName() . '.group_id' => $params['category']['id'],
+//                Product::tableName() . '.published' => '1',
+//                Product::tableName() . '.deleted' => '0',
+//            ])
+            ->select([
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                self::tableName() . '.position',
+                CategoryLang::tableName() . '.title',
+                'count(' . self::tableName() . '.id) as count'
+            ])
+            ->groupBy(self::tableName() . '.id')
+            ->all();
     }
 }

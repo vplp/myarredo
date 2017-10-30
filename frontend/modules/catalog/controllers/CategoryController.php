@@ -4,7 +4,6 @@ namespace frontend\modules\catalog\controllers;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
@@ -24,8 +23,8 @@ use frontend\modules\catalog\models\{
  */
 class CategoryController extends BaseController
 {
-    public $label = "Category";
     public $title = "Category";
+
     public $defaultAction = 'list';
 
     /**
@@ -45,7 +44,6 @@ class CategoryController extends BaseController
 
     /**
      * @return string
-     * @throws NotFoundHttpException
      */
     public function actionList()
     {
