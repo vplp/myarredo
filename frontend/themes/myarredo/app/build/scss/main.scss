@@ -1286,6 +1286,13 @@ footer {
       font-size: 14px;
       position: relative;
       color: #41403e;
+      &.selected {
+        &:before {
+          content: "\f00c";
+          color: #D21113;
+          font-size: 13px;
+        }
+      }
       &:hover {
         color: #cf0002;
         text-decoration: none;
