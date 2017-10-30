@@ -31,11 +31,11 @@ use frontend\modules\catalog\models\{
 
                 <?php foreach ($category as $item):
                     $options = (isset($filter['category']) && $filter['category']['id'] == $item['id'])
-                        ? ['class' => 'one-item current']
+                        ? ['class' => 'one-item selected']
                         : ['class' => 'one-item'];
 
                     echo Html::a(
-                        $item['lang']['title'] . ' (' . ($category_counts[$item['id']]['count'] ?? 0) . ')',
+                        $item['lang']['title'] . ' (' . $item['count'].')',
                         Yii::$app->catalogFilter->createUrl(['category' => $item['alias']]),
                         $options
                     );
@@ -51,8 +51,8 @@ use frontend\modules\catalog\models\{
 
                 <?php foreach ($types as $item): ?>
 
-                    <?php $class = (isset($filter['category']) && $filter['category']['id'] == $item['id'])
-                        ? 'one-item-check current'
+                    <?php $class = (isset($filter['types']) && $filter['types']['id'] == $item['id'])
+                        ? 'one-item-check selected'
                         : 'one-item-check' ?>
 
                     <div>
@@ -61,7 +61,7 @@ use frontend\modules\catalog\models\{
                             'class' => $class
                         ]); ?>
                         <input type="checkbox">
-                        <div class="my-checkbox"></div><?= $item['lang']['title'] ?>
+                        <div class="my-checkbox"></div><?= $item['lang']['title'] ?> (<?= $item['count'] ?>)
                         <?= Html::endTag('a'); ?>
                     </div>
                 <?php endforeach; ?>
@@ -74,13 +74,18 @@ use frontend\modules\catalog\models\{
             <div class="list-item">
 
                 <?php foreach ($style as $item): ?>
+
+                    <?php $class = (isset($filter['style']) && $filter['style']['id'] == $item['id'])
+                        ? 'one-item-check selected'
+                        : 'one-item-check' ?>
+
                     <div>
                         <?= Html::beginTag('a', [
                             'href' => Yii::$app->catalogFilter->createUrl(['style' => $item['alias']]),
-                            'class' => 'one-item-check'
+                            'class' => $class
                         ]); ?>
                         <input type="checkbox">
-                        <div class="my-checkbox"></div><?= $item['lang']['title'] ?>
+                        <div class="my-checkbox"></div><?= $item['lang']['title'] ?>  (<?= $item['count'] ?>)
                         <?= Html::endTag('a'); ?>
                     </div>
                 <?php endforeach; ?>
@@ -93,13 +98,18 @@ use frontend\modules\catalog\models\{
             <div class="list-item">
 
                 <?php foreach ($factory as $item): ?>
+
+                    <?php $class = (isset($filter['factory']) && $filter['factory']['id'] == $item['id'])
+                        ? 'one-item-check selected'
+                        : 'one-item-check' ?>
+
                     <div>
                         <?= Html::beginTag('a', [
                                 'href' => Yii::$app->catalogFilter->createUrl(['factory' => $item['alias']]),
-                                'class' => 'one-item-check']
-                        ); ?>
+                                'class' => $class
+                            ]); ?>
                         <input type="checkbox">
-                        <div class="my-checkbox"></div><?= $item['lang']['title'] ?>
+                        <div class="my-checkbox"></div><?= $item['lang']['title'] ?> (<?= $item['count'] ?>)
                         <?= Html::endTag('a'); ?>
                     </div>
                 <?php endforeach; ?>

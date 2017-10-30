@@ -115,7 +115,7 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
-     * @param $params
+     * @param array $params
      * @return mixed
      */
     public static function getAllWithFilter($params = [])
@@ -123,10 +123,36 @@ class Factory extends \common\modules\catalog\models\Factory
         $query = self::findBase();
 
         if (isset($params['category'])) {
-
+            $query
+                ->innerJoinWith(["product"], false)
+                ->innerJoinWith(["product.category productCategory"], false)
+                ->andFilterWhere([
+                    ProductRelCategory::tableName() . '.group_id' => $params['category']['id'],
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                ]);
+        } else {
+//            $query
+//                ->innerJoinWith(["product"])
+//                ->innerJoinWith(["product.category"])
+//                ->andFilterWhere([
+//                    ProductRelCategory::tableName() . '.group_id' => Category::tableName().'.id',
+//                    Product::tableName() . '.published' => '1',
+//                    Product::tableName() . '.deleted' => '0',
+//                ]);
         }
 
-        return $query->all();
+        return $query
+            ->select([
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                FactoryLang::tableName() . '.title',
+                //'count(' . Product::tableName() . '.factory_id) as count'
+                'count(' . self::tableName() . '.id) as count'
+            ])
+            //->groupBy(Product::tableName() . '.factory_id')
+            ->groupBy(self::tableName() . '.id')
+            ->all();
     }
 
     /**
