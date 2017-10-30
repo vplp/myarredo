@@ -1197,6 +1197,20 @@ footer {
       font-size: 14px;
       padding: 3px 0;
       display: block;
+      &.selected {
+        .my-checkbox {
+          &:after {
+            content: "\f00c";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'FontAwesome';
+            color: #D3181A;
+            font-size: 19px;
+          }
+        }
+      }
       &:hover, &:focus, &:visited {
         text-decoration: none;
       }
