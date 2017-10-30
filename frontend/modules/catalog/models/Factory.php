@@ -147,11 +147,11 @@ class Factory extends \common\modules\catalog\models\Factory
                 self::tableName() . '.id',
                 self::tableName() . '.alias',
                 FactoryLang::tableName() . '.title',
-                'count(' . Product::tableName() . '.factory_id) as count'
-                //'count(' . self::tableName() . '.id) as count'
+                //'count(' . Product::tableName() . '.factory_id) as count'
+                'count(' . self::tableName() . '.id) as count'
             ])
-            ->groupBy(Product::tableName() . '.factory_id')
-            //->groupBy(self::tableName() . '.id')
+            //->groupBy(Product::tableName() . '.factory_id')
+            ->groupBy(self::tableName() . '.id')
             ->all();
     }
 
