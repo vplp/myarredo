@@ -5,7 +5,7 @@ use yii\helpers\{
     Html, Url
 };
 use frontend\modules\catalog\models\{
-    Product, Category
+    Product, Category, Factory
 };
 
 ?>
@@ -45,77 +45,182 @@ use frontend\modules\catalog\models\{
             </div>
         </div>
 
-        <div class="one-filter open">
-            <a href="javascript:void(0);" class="filt-but">Предмет</a>
-            <div class="list-item">
+        <?php if ($types): ?>
+            <div class="one-filter open">
+                <a href="javascript:void(0);" class="filt-but">Предмет</a>
+                <div class="list-item">
 
-                <?php foreach ($types as $item): ?>
+                    <?php foreach ($types as $item): ?>
 
-                    <?php $class = (isset($filter['type']) && $filter['type']['id'] == $item['id'])
-                        ? 'one-item-check selected'
-                        : 'one-item-check' ?>
+                        <?php $class = (isset($filter['type']) && $filter['type']['id'] == $item['id'])
+                            ? 'one-item-check selected'
+                            : 'one-item-check' ?>
 
-                    <div>
-                        <?= Html::beginTag('a', [
-                            'href' => Yii::$app->catalogFilter->createUrl(['type' => $item['alias']]),
-                            'class' => $class
-                        ]); ?>
-                        <input type="checkbox">
-                        <div class="my-checkbox"></div><?= $item['lang']['title'] ?> (<?= $item['count'] ?>)
-                        <?= Html::endTag('a'); ?>
-                    </div>
-                <?php endforeach; ?>
-
-            </div>
-        </div>
-
-        <div class="one-filter open">
-            <a href="javascript:void(0);" class="filt-but">Стиль</a>
-            <div class="list-item">
-
-                <?php foreach ($style as $item): ?>
-
-                    <?php $class = (isset($filter['style']) && $filter['style']['id'] == $item['id'])
-                        ? 'one-item-check selected'
-                        : 'one-item-check' ?>
-
-                    <div>
-                        <?= Html::beginTag('a', [
-                            'href' => Yii::$app->catalogFilter->createUrl(['style' => $item['alias']]),
-                            'class' => $class
-                        ]); ?>
-                        <input type="checkbox">
-                        <div class="my-checkbox"></div><?= $item['lang']['title'] ?>  (<?= $item['count'] ?>)
-                        <?= Html::endTag('a'); ?>
-                    </div>
-                <?php endforeach; ?>
-
-            </div>
-        </div>
-
-        <div class="one-filter open">
-            <a href="javascript:void(0);" class="filt-but">Фабрики</a>
-            <div class="list-item">
-
-                <?php foreach ($factory as $item): ?>
-
-                    <?php $class = (isset($filter['factory']) && $filter['factory']['id'] == $item['id'])
-                        ? 'one-item-check selected'
-                        : 'one-item-check' ?>
-
-                    <div>
-                        <?= Html::beginTag('a', [
-                                'href' => Yii::$app->catalogFilter->createUrl(['factory' => $item['alias']]),
+                        <div>
+                            <?= Html::beginTag('a', [
+                                'href' => Yii::$app->catalogFilter->createUrl(['type' => $item['alias']]),
                                 'class' => $class
                             ]); ?>
-                        <input type="checkbox">
-                        <div class="my-checkbox"></div><?= $item['lang']['title'] ?> (<?= $item['count'] ?>)
-                        <?= Html::endTag('a'); ?>
-                    </div>
-                <?php endforeach; ?>
+                            <input type="checkbox">
+                            <div class="my-checkbox"></div><?= $item['lang']['title'] ?> (<?= $item['count'] ?>)
+                            <?= Html::endTag('a'); ?>
+                        </div>
+                    <?php endforeach; ?>
 
+                </div>
             </div>
-        </div>
+        <?php endif; ?>
+
+        <?php if ($style): ?>
+            <div class="one-filter open">
+                <a href="javascript:void(0);" class="filt-but">Стиль</a>
+                <div class="list-item">
+
+                    <?php foreach ($style as $item): ?>
+
+                        <?php $class = (isset($filter['style']) && $filter['style']['id'] == $item['id'])
+                            ? 'one-item-check selected'
+                            : 'one-item-check' ?>
+
+                        <div>
+                            <?= Html::beginTag('a', [
+                                'href' => Yii::$app->catalogFilter->createUrl(['style' => $item['alias']]),
+                                'class' => $class
+                            ]); ?>
+                            <input type="checkbox">
+                            <div class="my-checkbox"></div><?= $item['lang']['title'] ?>  (<?= $item['count'] ?>)
+                            <?= Html::endTag('a'); ?>
+                        </div>
+                    <?php endforeach; ?>
+
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($factory): ?>
+            <div class="one-filter open">
+                <a href="javascript:void(0);" class="filt-but">Фабрики</a>
+                <div class="list-item">
+
+                    <?php foreach ($factory as $item): ?>
+
+                        <?php $class = (isset($filter['factory']) && $filter['factory']['id'] == $item['id'])
+                            ? 'one-item-check selected'
+                            : 'one-item-check' ?>
+
+                        <div>
+                            <?= Html::beginTag('a', [
+                                    'href' => Yii::$app->catalogFilter->createUrl(['factory' => $item['alias']]),
+                                    'class' => $class
+                                ]); ?>
+                            <input type="checkbox">
+                            <div class="my-checkbox"></div><?= $item['lang']['title'] ?> (<?= $item['count'] ?>)
+                            <?= Html::endTag('a'); ?>
+                        </div>
+                    <?php endforeach; ?>
+
+                    <a href="#" class="show-more" data-toggle="modal" data-target="#factory-modal">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Показать еще
+                    </a>
+
+                    <div id="factory-modal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    Закрыть
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <h3 class="text-center">
+                                    ВЫБОР ФАБРИКИ
+                                </h3>
+                                <div class="alphabet-tab">
+
+                                    <?php foreach (Factory::getListLetters() as $key => $letter): ?>
+                                        <?= Html::a(
+                                            $letter['first_letter'],
+                                            "javascript:void(0);",
+                                            ($key == 0) ? ['class' => 'active'] : []
+                                        ); ?>
+                                    <?php endforeach; ?>
+
+                                </div>
+                                <div class="alphabet-tab-cont">
+                                    <?php foreach (Factory::getListLetters() as $key => $letter): ?>
+                                        <div data-show="<?= $letter['first_letter'] ?>"<?= ($key == 0) ? ' style="display: flex;"' : ''?>>
+
+                                            <?php foreach ($factory as $item): ?>
+
+                                                <?php $class = (isset($filter['factory']) && $filter['factory']['id'] == $item['id'])
+                                                    ? 'one-fact selected'
+                                                    : 'one-fact' ?>
+
+                                                    <?= Html::beginTag('a', [
+                                                        'href' => Yii::$app->catalogFilter->createUrl(['factory' => $item['alias']]),
+                                                        'class' => $class
+                                                    ]); ?>
+                                                    <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                    <?= $item['lang']['title'] ?> (<?= $item['count'] ?>)
+                                                    <?= Html::endTag('a'); ?>
+
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endforeach; ?>
+<!--                                    <div data-show="A" style="display: flex;">-->
+<!--                                        <a href="javascript:void(0);" class="one-fact selected">-->
+<!--                                            <i class="fa fa-square-o" aria-hidden="true"></i>-->
+<!--                                            A.R.ARREDAMENTI SRL (302)-->
+<!--                                        </a>-->
+<!--                                        <a href="javascript:void(0);" class="one-fact selected">-->
+<!--                                            <i class="fa fa-square-o" aria-hidden="true"></i>-->
+<!--                                            ALTA MODA (408)-->
+<!--                                        </a>-->
+<!--                                        <a href="javascript:void(0);" class="one-fact">-->
+<!--                                            <i class="fa fa-square-o" aria-hidden="true"></i>-->
+<!--                                            ANTONELLI MORAVIO (238)-->
+<!--                                        </a>-->
+<!--                                        <a href="javascript:void(0);" class="one-fact">-->
+<!--                                            <i class="fa fa-square-o" aria-hidden="true"></i>-->
+<!--                                            ARMOBIL ROSSETTO (266)-->
+<!--                                        </a>-->
+<!--                                        <a href="javascript:void(0);" class="one-fact">-->
+<!--                                            <i class="fa fa-square-o" aria-hidden="true"></i>-->
+<!--                                            ARTE ANTIQUA (187)-->
+<!--                                        </a>-->
+<!---->
+<!--                                        <a href="javascript:void(0);" class="one-fact">-->
+<!--                                            <i class="fa fa-square-o" aria-hidden="true"></i>-->
+<!--                                            ASNAGHI INTERIORS (1382)-->
+<!--                                        </a>-->
+<!--                                        <a href="javascript:void(0);" class="one-fact">-->
+<!--                                            <i class="fa fa-square-o" aria-hidden="true"></i>-->
+<!--                                            ALBERTA SALOTTI (135)-->
+<!--                                        </a>-->
+<!--                                        <a href="javascript:void(0);" class="one-fact">-->
+<!--                                            <i class="fa fa-square-o" aria-hidden="true"></i>-->
+<!--                                            AMELIHOME (135)-->
+<!--                                        </a>-->
+<!--                                        <a href="javascript:void(0);" class="one-fact">-->
+<!--                                            <i class="fa fa-square-o" aria-hidden="true"></i>-->
+<!--                                            ARCA (391)-->
+<!--                                        </a>-->
+<!--                                        <a href="javascript:void(0);" class="one-fact selected">-->
+<!--                                            <i class="fa fa-square-o" aria-hidden="true"></i>-->
+<!--                                            Arredamenti capriccio (221)-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        <?php endif; ?>
 
         <div class="one-filter">
             <div class="price-slider-cont">
