@@ -104,3 +104,98 @@
   }
 }
 /*--конец Добавить в блокнот модалка--*/
+
+/*--все фабрики модалка--*/
+#factory-modal {
+  color: #FFFFFF;
+  .close {
+    color: #FFFFFF;
+    text-shadow: none;
+    opacity: 0.9;
+    font-size: 15px;
+    top: 15px;
+    right: 30px;
+    position: absolute;
+    span {
+      font-size: 20px;
+    }
+  }
+  .modal-dialog {
+    width: 80%;
+  }
+  .modal-content {
+    border-radius: 0;
+    background: #37332F;
+    padding: 40px 30px 30px;
+    border: 1px solid #C4C0B8;
+    position: relative;
+  }
+  .text-center {
+    text-transform: uppercase;
+    margin: 0;
+    border-top: 1px solid #7B7A79;
+    border-bottom: 1px solid #7B7A79;
+    font-size: 15px;
+    line-height: 30px;
+  }
+  .alphabet-tab {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    height: 65px;
+    align-items: center;
+    border-bottom: 1px solid #7B7A79;
+    a {
+      width: 25px;
+      height: 25px;
+      color: rgba(255, 255, 255, .6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &.active {
+        background: #8A8278;
+        color: #FFFFFF;
+      }
+    }
+  }
+  .alphabet-tab-cont {
+    & > div {
+      display: none;
+      flex-wrap: wrap;
+      padding: 5px 0;
+      a {
+        display: flex;
+        width: 25%;
+        text-decoration: none;
+        color: #fff;
+        font-size: 12px;
+        text-transform: uppercase;
+        height: 30px;
+        align-items: center;
+        .fa {
+          color: #A09D98;
+          font-size: 17px;
+          margin-right: 8px;
+        }
+        &:hover {
+          color: rgba(255, 255, 255, .5);
+        }
+        &.selected {
+          .fa {
+            position: relative;
+            &:after {
+              content: "\f00c";
+              position: absolute;
+              top: 0;
+              left: 0;
+              color: #10893C;
+              font-size: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*--конец все фабрики--*/
