@@ -51,7 +51,7 @@ use frontend\modules\catalog\models\{
 
                 <?php foreach ($types as $item): ?>
 
-                    <?php $class = (isset($filter['types']) && $filter['types']['id'] == $item['id'])
+                    <?php $class = (isset($filter['type']) && $filter['type']['id'] == $item['id'])
                         ? 'one-item-check selected'
                         : 'one-item-check' ?>
 

@@ -114,14 +114,13 @@ class Types extends \common\modules\catalog\models\Types
                     Product::tableName() . '.deleted' => '0',
                 ]);
         } else {
-//            $query
-//                ->innerJoinWith(["product"])
-//                ->innerJoinWith(["product.category productCategory"])
-//                ->andFilterWhere([
-//                    //ProductRelCategory::tableName() . '.group_id' => Category::tableName() . '.id',
-//                    Product::tableName() . '.published' => '1',
-//                    Product::tableName() . '.deleted' => '0',
-//                ]);
+            $query
+                ->innerJoinWith(["product"], false)
+                ->innerJoinWith(["product.category productCategory"], false)
+                ->andFilterWhere([
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                ]);
         }
 
         if (isset($params['factory'])) {
@@ -139,10 +138,8 @@ class Types extends \common\modules\catalog\models\Types
                 self::tableName() . '.id',
                 self::tableName() . '.alias',
                 TypesLang::tableName() . '.title',
-                //'count(' . Product::tableName() . '.catalog_type_id) as count'
                 'count(' . self::tableName() . '.id) as count'
             ])
-            //->groupBy(Product::tableName() . '.catalog_type_id')
             ->groupBy(self::tableName() . '.id')
             ->all();
     }
