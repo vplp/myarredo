@@ -109,29 +109,32 @@ class Types extends \common\modules\catalog\models\Types
                 ->innerJoinWith(["product"], false)
                 ->innerJoinWith(["product.category productCategory"], false)
                 ->andFilterWhere([
-                    //ProductRelCategory::tableName() . '.group_id' => $params['category']['id'],
+                    ProductRelCategory::tableName() . '.group_id' => $params['category']['id'],
                     Product::tableName() . '.published' => '1',
                     Product::tableName() . '.deleted' => '0',
                 ]);
         } else {
-//            $query
-//                ->innerJoinWith(["product"])
-//                ->innerJoinWith(["product.category productCategory"])
-//                ->andFilterWhere([
-//                    //ProductRelCategory::tableName() . '.group_id' => Category::tableName() . '.id',
-//                    Product::tableName() . '.published' => '1',
-//                    Product::tableName() . '.deleted' => '0',
-//                ]);
+            $query
+                ->innerJoinWith(["product"], false)
+                ->innerJoinWith(["product.category productCategory"], false)
+                ->andFilterWhere([
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                ]);
+        }
+
+        if (isset($params['style'])) {
+            $query
+                ->innerJoinWith(["product"], false)
+                ->innerJoinWith(["product.specification productSpecification"], false)
+                ->andFilterWhere([
+                    ProductRelSpecification::tableName() . '.specification_id' => $params['style']['id'],
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                ]);
         }
 
         if (isset($params['factory'])) {
-//            $with['catalogItems.factory'] = array(
-//                'alias' => 'f',
-//                'select' => false,
-//                'joinType' => 'INNER JOIN',
-//                'on' => "`f`.`alias` IN ('" . implode("','", $filter[$keys['factory']]) . "')",
-//                'scopes' => 'published',
-//            );
             $query
                 ->innerJoinWith(["product"], false)
                 ->andFilterWhere([
@@ -146,10 +149,8 @@ class Types extends \common\modules\catalog\models\Types
                 self::tableName() . '.id',
                 self::tableName() . '.alias',
                 TypesLang::tableName() . '.title',
-                //'count(' . Product::tableName() . '.catalog_type_id) as count'
                 'count(' . self::tableName() . '.id) as count'
             ])
-            //->groupBy(Product::tableName() . '.catalog_type_id')
             ->groupBy(self::tableName() . '.id')
             ->all();
     }

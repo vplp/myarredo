@@ -132,14 +132,34 @@ class Factory extends \common\modules\catalog\models\Factory
                     Product::tableName() . '.deleted' => '0',
                 ]);
         } else {
-//            $query
-//                ->innerJoinWith(["product"])
-//                ->innerJoinWith(["product.category"])
-//                ->andFilterWhere([
-//                    ProductRelCategory::tableName() . '.group_id' => Category::tableName().'.id',
-//                    Product::tableName() . '.published' => '1',
-//                    Product::tableName() . '.deleted' => '0',
-//                ]);
+            $query
+                ->innerJoinWith(["product"], false)
+                ->innerJoinWith(["product.category productCategory"], false)
+                ->andFilterWhere([
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                ]);
+        }
+
+        if (isset($params['type'])) {
+            $query
+                ->innerJoinWith(["product"], false)
+                ->andFilterWhere([
+                    Product::tableName() . '.catalog_type_id' => $params['type']['id'],
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                ]);
+        }
+
+        if (isset($params['style'])) {
+            $query
+                ->innerJoinWith(["product"], false)
+                ->innerJoinWith(["product.specification productSpecification"], false)
+                ->andFilterWhere([
+                    ProductRelSpecification::tableName() . '.specification_id' => $params['style']['id'],
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                ]);
         }
 
         return $query
@@ -147,10 +167,8 @@ class Factory extends \common\modules\catalog\models\Factory
                 self::tableName() . '.id',
                 self::tableName() . '.alias',
                 FactoryLang::tableName() . '.title',
-                //'count(' . Product::tableName() . '.factory_id) as count'
                 'count(' . self::tableName() . '.id) as count'
             ])
-            //->groupBy(Product::tableName() . '.factory_id')
             ->groupBy(self::tableName() . '.id')
             ->all();
     }

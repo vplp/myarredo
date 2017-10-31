@@ -142,18 +142,42 @@ class Category extends \common\modules\catalog\models\Category
         $query = self::findBase();
 
         if (isset($params['type'])) {
-//            $query->innerJoinWith(["product.types"])
-//                ->andFilterWhere([TypesRelCategory::tableName() . '.type_id' => $params['type']['id']]);
+            $query
+                ->innerJoinWith(["product"], false)
+                ->andFilterWhere([
+                    Product::tableName() . '.catalog_type_id' => $params['type']['id'],
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                ]);
+        }
+
+        if (isset($params['style'])) {
+            $query
+                ->innerJoinWith(["product"], false)
+                ->innerJoinWith(["product.specification productSpecification"], false)
+                ->andFilterWhere([
+                    ProductRelSpecification::tableName() . '.specification_id' => $params['style']['id'],
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                ]);
+        }
+
+        if (isset($params['factory'])) {
+            $query
+                ->innerJoinWith(["product"], false)
+                ->andFilterWhere([
+                    Product::tableName() . '.factory_id' => $params['factory']['id'],
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                ]);
         }
 
         return $query
-//            ->innerJoinWith(["product"])
-//            //->innerJoinWith(["product.category productCategory"])
-//            ->andFilterWhere([
-//                //ProductRelCategory::tableName() . '.group_id' => $params['category']['id'],
-//                Product::tableName() . '.published' => '1',
-//                Product::tableName() . '.deleted' => '0',
-//            ])
+            ->innerJoinWith(["product"], false)
+            ->andFilterWhere([
+                Product::tableName() . '.published' => '1',
+                Product::tableName() . '.deleted' => '0',
+            ])
             ->select([
                 self::tableName() . '.id',
                 self::tableName() . '.alias',
