@@ -151,6 +151,17 @@ class Category extends \common\modules\catalog\models\Category
                 ]);
         }
 
+        if (isset($params['style'])) {
+            $query
+                ->innerJoinWith(["product"], false)
+                ->innerJoinWith(["product.specification productSpecification"], false)
+                ->andFilterWhere([
+                    ProductRelSpecification::tableName() . '.specification_id' => $params['style']['id'],
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                ]);
+        }
+
         if (isset($params['factory'])) {
             $query
                 ->innerJoinWith(["product"], false)

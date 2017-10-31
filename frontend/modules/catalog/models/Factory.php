@@ -151,6 +151,17 @@ class Factory extends \common\modules\catalog\models\Factory
                 ]);
         }
 
+        if (isset($params['style'])) {
+            $query
+                ->innerJoinWith(["product"], false)
+                ->innerJoinWith(["product.specification productSpecification"], false)
+                ->andFilterWhere([
+                    ProductRelSpecification::tableName() . '.specification_id' => $params['style']['id'],
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                ]);
+        }
+
         return $query
             ->select([
                 self::tableName() . '.id',
