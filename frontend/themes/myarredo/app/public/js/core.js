@@ -300,4 +300,18 @@ $(document).ready(function(){
        window.location.href = href;
     });
 
+    /*--больше фабрик модалка--*/
+    $(".alphabet-tab a").click(function(){
+        $(this).siblings().removeClass("active");
+        $(this).addClass("active");
+
+        var actTab = $(this).text();
+        var actShow = $("[data-show=" + actTab + "]").show();
+        actShow.siblings().hide();
+        actShow.css({
+            "display":"flex"
+        });
+    });
+    /*--конец Больше фабрик модалка--*/
+
 });

@@ -489,4 +489,25 @@
       font-size: 15px;
     }
   }
+
+  body #factory-modal {
+    .close {
+      top: 7px;
+      right: 15px;
+    }
+    .modal-content {
+      padding: 35px 15px 15px;
+    }
+    .modal-dialog {
+      width: 95%;
+    }
+    .alphabet-tab-cont {
+      max-height: 50vh;
+      overflow: auto;
+      & > div a {
+        width: 100% !important;
+      }
+    }
+  }
+
 }

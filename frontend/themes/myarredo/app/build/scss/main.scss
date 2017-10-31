@@ -1290,6 +1290,18 @@ footer {
         right: 15px;
       }
     }
+    .show-more {
+      color: rgb(65, 64, 62);
+      font-size: 17px;
+      .fa {
+        color: #CF0002;
+        font-size: 16px;
+        margin: 0 4px 0 15px;
+      }
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
   .list-item {
     padding: 5px 0;
