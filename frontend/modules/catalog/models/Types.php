@@ -109,7 +109,7 @@ class Types extends \common\modules\catalog\models\Types
                 ->innerJoinWith(["product"], false)
                 ->innerJoinWith(["product.category productCategory"], false)
                 ->andFilterWhere([
-                    //ProductRelCategory::tableName() . '.group_id' => $params['category']['id'],
+                    ProductRelCategory::tableName() . '.group_id' => $params['category']['id'],
                     Product::tableName() . '.published' => '1',
                     Product::tableName() . '.deleted' => '0',
                 ]);
@@ -125,13 +125,6 @@ class Types extends \common\modules\catalog\models\Types
         }
 
         if (isset($params['factory'])) {
-//            $with['catalogItems.factory'] = array(
-//                'alias' => 'f',
-//                'select' => false,
-//                'joinType' => 'INNER JOIN',
-//                'on' => "`f`.`alias` IN ('" . implode("','", $filter[$keys['factory']]) . "')",
-//                'scopes' => 'published',
-//            );
             $query
                 ->innerJoinWith(["product"], false)
                 ->andFilterWhere([

@@ -147,13 +147,13 @@ class Category extends \common\modules\catalog\models\Category
         }
 
         return $query
-//            ->innerJoinWith(["product"])
-//            //->innerJoinWith(["product.category productCategory"])
-//            ->andFilterWhere([
-//                //ProductRelCategory::tableName() . '.group_id' => $params['category']['id'],
-//                Product::tableName() . '.published' => '1',
-//                Product::tableName() . '.deleted' => '0',
-//            ])
+            ->innerJoinWith(["product"], false)
+            //->innerJoinWith(["product.category productCategory"])
+            ->andFilterWhere([
+                //ProductRelCategory::tableName() . '.group_id' => $params['category']['id'],
+                Product::tableName() . '.published' => '1',
+                Product::tableName() . '.deleted' => '0',
+            ])
             ->select([
                 self::tableName() . '.id',
                 self::tableName() . '.alias',

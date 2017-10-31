@@ -142,6 +142,16 @@ class Factory extends \common\modules\catalog\models\Factory
 //                ]);
         }
 
+        if (isset($params['types'])) {
+            $query
+                ->innerJoinWith(["product"], false)
+                ->andFilterWhere([
+                    Product::tableName() . '.catalog_type_id' => $params['types']['id'],
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                ]);
+        }
+
         return $query
             ->select([
                 self::tableName() . '.id',

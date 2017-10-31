@@ -181,7 +181,7 @@ class Product extends \common\modules\catalog\models\Product
                 'collections_id' => $collections_id,
                 'catalog_type_id' => $catalog_type_id
             ])
-            ->orderBy('RAND()')
+            //->orderBy('RAND()')
             ->limit(12)
             ->all();
     }
@@ -199,7 +199,7 @@ class Product extends \common\modules\catalog\models\Product
                 'factory_id' => $factory_id,
                 'catalog_type_id' => $catalog_type_id
             ])
-            ->orderBy('RAND()')
+            //->orderBy('RAND()')
             ->limit(12)
             ->all();
     }
