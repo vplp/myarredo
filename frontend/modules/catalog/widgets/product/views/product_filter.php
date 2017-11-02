@@ -5,7 +5,7 @@ use yii\helpers\{
     Html, Url
 };
 use frontend\modules\catalog\models\{
-    Product, Category
+    Product, Category, Factory
 };
 
 ?>
@@ -45,77 +45,179 @@ use frontend\modules\catalog\models\{
             </div>
         </div>
 
-        <div class="one-filter open">
-            <a href="javascript:void(0);" class="filt-but">Предмет</a>
-            <div class="list-item">
+        <?php if ($types): ?>
+            <div class="one-filter open">
+                <a href="javascript:void(0);" class="filt-but">Предмет</a>
+                <div class="list-item">
 
-                <?php foreach ($types as $item): ?>
+                    <?php foreach ($types as $item): ?>
 
-                    <?php $class = (isset($filter['type']) && $filter['type']['id'] == $item['id'])
-                        ? 'one-item-check selected'
-                        : 'one-item-check' ?>
+                        <?php $class = (isset($filter['type']) && $filter['type']['id'] == $item['id'])
+                            ? 'one-item-check selected'
+                            : 'one-item-check' ?>
 
-                    <div>
-                        <?= Html::beginTag('a', [
-                            'href' => Yii::$app->catalogFilter->createUrl(['type' => $item['alias']]),
-                            'class' => $class
-                        ]); ?>
-                        <input type="checkbox">
-                        <div class="my-checkbox"></div><?= $item['lang']['title'] ?> (<?= $item['count'] ?>)
-                        <?= Html::endTag('a'); ?>
-                    </div>
-                <?php endforeach; ?>
-
-            </div>
-        </div>
-
-        <div class="one-filter open">
-            <a href="javascript:void(0);" class="filt-but">Стиль</a>
-            <div class="list-item">
-
-                <?php foreach ($style as $item): ?>
-
-                    <?php $class = (isset($filter['style']) && $filter['style']['id'] == $item['id'])
-                        ? 'one-item-check selected'
-                        : 'one-item-check' ?>
-
-                    <div>
-                        <?= Html::beginTag('a', [
-                            'href' => Yii::$app->catalogFilter->createUrl(['style' => $item['alias']]),
-                            'class' => $class
-                        ]); ?>
-                        <input type="checkbox">
-                        <div class="my-checkbox"></div><?= $item['lang']['title'] ?>  (<?= $item['count'] ?>)
-                        <?= Html::endTag('a'); ?>
-                    </div>
-                <?php endforeach; ?>
-
-            </div>
-        </div>
-
-        <div class="one-filter open">
-            <a href="javascript:void(0);" class="filt-but">Фабрики</a>
-            <div class="list-item">
-
-                <?php foreach ($factory as $item): ?>
-
-                    <?php $class = (isset($filter['factory']) && $filter['factory']['id'] == $item['id'])
-                        ? 'one-item-check selected'
-                        : 'one-item-check' ?>
-
-                    <div>
-                        <?= Html::beginTag('a', [
-                                'href' => Yii::$app->catalogFilter->createUrl(['factory' => $item['alias']]),
+                        <div>
+                            <?= Html::beginTag('a', [
+                                'href' => Yii::$app->catalogFilter->createUrl(['type' => $item['alias']]),
                                 'class' => $class
                             ]); ?>
-                        <input type="checkbox">
-                        <div class="my-checkbox"></div><?= $item['lang']['title'] ?> (<?= $item['count'] ?>)
-                        <?= Html::endTag('a'); ?>
-                    </div>
-                <?php endforeach; ?>
+                            <input type="checkbox">
+                            <div class="my-checkbox"></div><?= $item['lang']['title'] ?> (<?= $item['count'] ?>)
+                            <?= Html::endTag('a'); ?>
+                        </div>
+                    <?php endforeach; ?>
 
+                </div>
             </div>
-        </div>
+        <?php endif; ?>
+
+        <?php if ($style): ?>
+            <div class="one-filter open">
+                <a href="javascript:void(0);" class="filt-but">Стиль</a>
+                <div class="list-item">
+
+                    <?php foreach ($style as $item): ?>
+
+                        <?php $class = (isset($filter['style']) && $filter['style']['id'] == $item['id'])
+                            ? 'one-item-check selected'
+                            : 'one-item-check' ?>
+
+                        <div>
+                            <?= Html::beginTag('a', [
+                                'href' => Yii::$app->catalogFilter->createUrl(['style' => $item['alias']]),
+                                'class' => $class
+                            ]); ?>
+                            <input type="checkbox">
+                            <div class="my-checkbox"></div><?= $item['lang']['title'] ?>  (<?= $item['count'] ?>)
+                            <?= Html::endTag('a'); ?>
+                        </div>
+                    <?php endforeach; ?>
+
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($factory): ?>
+            <div class="one-filter open">
+                <a href="javascript:void(0);" class="filt-but">Фабрики</a>
+                <div class="list-item">
+
+                    <?php
+                    $count_selected = 0;
+
+                    if (isset($filter['factory'])): ?>
+
+                        <?php foreach ($factory as $key => $item): ?>
+
+                            <?php
+                            if ((isset($filter['factory']) && $filter['factory']['id'] == $item['id'])):
+                                ++$count_selected;
+                                ?>
+
+                                <?php $class = (isset($filter['factory']) && $filter['factory']['id'] == $item['id'])
+                                    ? 'one-item-check selected'
+                                    : 'one-item-check' ?>
+
+                                <div>
+                                    <?= Html::beginTag('a', [
+                                            'href' => Yii::$app->catalogFilter->createUrl(['factory' => $item['alias']]),
+                                            'class' => $class
+                                        ]); ?>
+                                    <input type="checkbox">
+                                    <div class="my-checkbox"></div><?= $item['lang']['title'] ?> (<?= $item['count'] ?>)
+                                    <?= Html::endTag('a'); ?>
+                                </div>
+
+                            <?php endif; ?>
+
+                        <?php endforeach; ?>
+
+                    <?php endif; ?>
+
+                        <?php foreach ($factory as $key => $item): ?>
+
+                            <?php if ($count_selected + $key > 9) break; ?>
+                            <?php if (isset($filter['factory']) && $filter['factory']['id'] == $item['id']) continue; ?>
+
+                            <?php $class = (isset($filter['factory']) && $filter['factory']['id'] == $item['id'])
+                                ? 'one-item-check selected'
+                                : 'one-item-check' ?>
+
+                            <div>
+                                <?= Html::beginTag('a', [
+                                    'href' => Yii::$app->catalogFilter->createUrl(['factory' => $item['alias']]),
+                                    'class' => $class
+                                ]); ?>
+                                <input type="checkbox">
+                                <div class="my-checkbox"></div><?= $item['lang']['title'] ?> (<?= $item['count'] ?>)
+                                <?= Html::endTag('a'); ?>
+                            </div>
+
+                        <?php endforeach; ?>
+
+
+                    <a href="#" class="show-more" data-toggle="modal" data-target="#factory-modal">
+                        <i class="fa fa-plus" aria-hidden="true"></i>Показать еще
+                    </a>
+
+                    <div id="factory-modal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    Закрыть
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <h3 class="text-center">
+                                    ВЫБОР ФАБРИКИ
+                                </h3>
+                                <div class="alphabet-tab">
+
+                                    <?php foreach (Factory::getListLetters() as $key => $letter): ?>
+                                        <?= Html::a(
+                                            $letter['first_letter'],
+                                            "javascript:void(0);",
+                                            ($key == 0) ? ['class' => 'active'] : []
+                                        ); ?>
+                                    <?php endforeach; ?>
+
+                                </div>
+                                <div class="alphabet-tab-cont">
+                                    <?php foreach (Factory::getListLetters() as $key => $letter): ?>
+                                        <div data-show="<?= $letter['first_letter'] ?>"<?= ($key == 0) ? ' style="display: flex;"' : ''?>>
+
+                                            <?php foreach ($factory as $item): ?>
+
+                                                <?php if ($item['first_letter'] == $letter['first_letter']): ?>
+                                                    <?php $class = (isset($filter['factory']) && $filter['factory']['id'] == $item['id'])
+                                                        ? 'one-fact selected'
+                                                        : 'one-fact' ?>
+
+                                                    <?= Html::beginTag('a', [
+                                                        'href' => Yii::$app->catalogFilter->createUrl(['factory' => $item['alias']]),
+                                                        'class' => $class
+                                                    ]); ?>
+                                                    <i class="fa fa-square-o" aria-hidden="true"></i>
+                                                    <?= $item['lang']['title'] ?> (<?= $item['count'] ?>)
+                                                    <?= Html::endTag('a'); ?>
+                                                <?php endif; ?>
+
+                                            <?php endforeach; ?>
+
+                                        </div>
+
+                                    <?php endforeach; ?>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        <?php endif; ?>
 
         <div class="one-filter">
             <div class="price-slider-cont">

@@ -8,7 +8,8 @@ use yii\base\Model;
 //
 use frontend\modules\catalog\models\{
     Product as ProductModel,
-    ProductRelCategory
+    ProductRelCategory,
+    ProductRelSpecification
 };
 use frontend\modules\catalog\Catalog;
 
@@ -81,6 +82,11 @@ class Product extends ProductModel
             $query->andFilterWhere(['catalog_type_id' => $params['type']['id']]);
         }
 
+        if (isset($params['style'])) {
+            $query->innerJoinWith(["specificationValue"])
+                ->andFilterWhere([ProductRelSpecification::tableName() . '.specification_id' => $params['style']['id']]);
+        }
+
         if (isset($params['factory'])) {
             $query->andFilterWhere(['factory_id' => $params['factory']['id']]);
         }
@@ -128,6 +134,11 @@ class Product extends ProductModel
             $query->andFilterWhere(['catalog_type_id' => $params['type']['id']]);
         }
 
+        if (isset($params['style'])) {
+            $query->innerJoinWith(["specificationValue"])
+                ->andFilterWhere([ProductRelSpecification::tableName() . '.specification_id' => $params['style']['id']]);
+        }
+
         if (isset($params['factory'])) {
             $query->andFilterWhere(['factory_id' => $params['factory']['id']]);
         }
@@ -137,7 +148,7 @@ class Product extends ProductModel
         }
 
         $query->select(ProductModel::tableName() . '.id');
-        //
+
         return $query;
     }
 

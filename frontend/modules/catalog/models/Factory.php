@@ -166,6 +166,7 @@ class Factory extends \common\modules\catalog\models\Factory
             ->select([
                 self::tableName() . '.id',
                 self::tableName() . '.alias',
+                self::tableName() . '.first_letter',
                 FactoryLang::tableName() . '.title',
                 'count(' . self::tableName() . '.id) as count'
             ])
