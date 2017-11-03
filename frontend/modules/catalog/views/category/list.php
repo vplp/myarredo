@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
+use frontend\components\Breadcrumbs;
 //
 use frontend\modules\catalog\widgets\product\{
     ProductSorting, ProductFilter

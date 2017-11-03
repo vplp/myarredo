@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
+use frontend\components\Breadcrumbs;
 
 /**
  * @var \yii\data\Pagination $pages

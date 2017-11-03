@@ -3,7 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
-use yii\widgets\Breadcrumbs;
+use frontend\components\Breadcrumbs;
 use yii\widgets\ActiveForm;
 use frontend\modules\catalog\models\Product;
 
