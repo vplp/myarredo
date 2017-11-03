@@ -1,4 +1,8 @@
-<meta itemprop="name" content="<?= $partner['profile']['name_company'] ?>"/>
+<?php
+
+use yii\helpers\Html;
+?>
+<meta itemprop="name" content="<?= Html::encode($partner['profile']['name_company']) ?>"/>
 
 <div class="cons">Получить консультацию в <?= $city['lang']['title_where'] ?></div>
 <div class="tel" itemprop="telephone"><i class="fa fa-phone" aria-hidden="true"></i><?= $partner['profile']['phone'] ?></div>
