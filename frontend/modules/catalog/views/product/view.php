@@ -107,10 +107,10 @@ foreach (Yii::$app->shop_cart->items as $item) {
                             <tr>
                                 <td>Фабрика</td>
                                 <td>
+                                    <meta itemprop="brand" content="<?= $model['factory']['lang']['title'] ?>">
                                     <?= Html::a(
                                         $model['factory']['lang']['title'],
-                                        Factory::getUrl($model['factory']['alias']),
-                                        ['itemprop' => 'brand']
+                                        Factory::getUrl($model['factory']['alias'])
                                     ); ?>
                                 </td>
                             </tr>
