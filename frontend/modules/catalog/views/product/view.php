@@ -159,6 +159,33 @@ foreach (Yii::$app->shop_cart->items as $item) {
                             <?php endif; ?>
 
                         </table>
+
+                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
+                        <div class="downloads">
+                            <?php if (!empty($model->factoryCatalogsFiles)): ?>
+                                <p class="title-small">Посмотреть каталоги</p>
+                                <ul>
+                                    <?php foreach ($model->factoryCatalogsFiles as $obj): ?>
+                                        <li><a target="_blank"
+                                               href="<?= $obj->getFileLink() ?>"><?= $obj->title ?></a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+
+                            <?php if (!empty($model->factoryPricesFiles)): ?>
+                                <p class="title-small">Посмотреть прайс листы</p>
+                                <ul>
+                                    <?php foreach ($model->factoryPricesFiles as $obj): ?>
+                                        <li><a target="_blank"
+                                               href="<?= $obj->getFileLink() ?>"><?= $obj->title ?></a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+                        </div>
+                        <?php endif; ?>
+
                         <div class="prod-descr" itemprop="description"><?= $model['lang']['description']; ?></div>
                     </div>
                 </div>

@@ -142,13 +142,18 @@ class FactoryFile extends ActiveRecord
      */
     public function getFileLink()
     {
+        /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
+
         $path = $module->getFactoryFileUploadPath();
         $url = $module->getFactoryFileUploadUrl();
+
         $image = null;
+
         if (!empty($this->file_link) && is_file($path . '/' . $this->file_link)) {
             $image = $url . '/' . $this->file_link;
         }
+
         return $image;
     }
 }

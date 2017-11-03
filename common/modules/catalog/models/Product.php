@@ -56,6 +56,8 @@ use common\helpers\Inflector;
  * @property ProductRelCategory[] $category
  * @property ProductRelSamples[] $samples
  * @property Factory $factory
+ * @property ProductRelFactoryCatalogsFiles[] $factoryCatalogsFiles
+ * @property ProductRelFactoryPricesFiles[] $factoryPricesFiles
  * @property Types $types
  * @property Collection $collection
  *
