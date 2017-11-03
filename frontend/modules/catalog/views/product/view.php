@@ -160,6 +160,7 @@ foreach (Yii::$app->shop_cart->items as $item) {
 
                         </table>
 
+                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
                         <div class="downloads">
                             <?php if (!empty($model->factoryCatalogsFiles)): ?>
                                 <p class="title-small">Посмотреть каталоги</p>
@@ -183,6 +184,7 @@ foreach (Yii::$app->shop_cart->items as $item) {
                                 </ul>
                             <?php endif; ?>
                         </div>
+                        <?php endif; ?>
 
                         <div class="prod-descr" itemprop="description"><?= $model['lang']['description']; ?></div>
                     </div>
