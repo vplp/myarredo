@@ -33,6 +33,12 @@ return [
     'catalogFilter' => [
         'class' => \frontend\modules\catalog\components\CatalogFilter::class,
     ],
+    'city' => [
+        'class' => \frontend\modules\location\components\CityComponent::class,
+    ],
+    'partner' => [
+        'class' => \frontend\modules\user\components\PartnerComponent::class,
+    ],
     'mailer' => [
         'class' => \yii\swiftmailer\Mailer::class,
         'transport' => [

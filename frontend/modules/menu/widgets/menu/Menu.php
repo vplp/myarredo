@@ -12,8 +12,6 @@ use frontend\modules\menu\models\{
  * Class Menu
  *
  * @package frontend\modules\menu\widgets\menu
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Menu extends Widget
 {

@@ -1,0 +1,39 @@
+<?php
+
+namespace frontend\modules\page\controllers;
+
+use Yii;
+use frontend\modules\user\models\User;
+use frontend\components\BaseController;
+
+/**
+ * Class ContactsController
+ *
+ * @package frontend\modules\page\controllers
+ */
+class ContactsController extends BaseController
+{
+    public $title = "Партнеры сети MYARREDO";
+
+    /**
+     * @return string
+     */
+    public function actionIndex()
+    {
+        $partners = User::getPartners(Yii::$app->city->getCityId());
+
+        return $this->render('contacts', [
+            'partners' => $partners,
+        ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionListPartners()
+    {
+        $this->title = "Все офисы продаж";
+
+        return $this->render('list_partners');
+    }
+}

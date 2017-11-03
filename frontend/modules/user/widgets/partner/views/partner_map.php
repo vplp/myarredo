@@ -1,32 +1,4 @@
-<?php
-
-use yii\helpers\{
-    Html, Url
-};
-
-?>
-
-    <main>
-        <div class="page concact-page">
-            <div class="container large-container">
-                <div class="col-md-12">
-                    <?= Html::tag('h1', $this->context->title); ?>
-
-                    <div class="map-cont">
-                        <div id="map"></div>
-
-                        <?= Html::a(
-                            'Вернуться назад',
-                            Url::toRoute('/home/contacts/index'),
-                            ['class' => 'view-all']
-                        ); ?>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </main>
+<div id="map"></div>
 
 <?php
 $template = '<div class="info-buble"><h4>${marker.city}</h4><div>${marker.address}</div><div>${marker.phone}</div><div class="country">${marker.country}</div></div>';
@@ -36,8 +8,8 @@ initMap();
 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
-        center: new google.maps.LatLng(55.742130, 37.613583),
+        zoom: $zoom,
+        center: new google.maps.LatLng('$lat', '$lng'),
         mapTypeControl: true,
         scrollwheel: false,
         zoomControl: true,

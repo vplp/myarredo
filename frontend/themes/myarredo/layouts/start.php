@@ -4,8 +4,10 @@ use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\catalog\widgets\category\CategoryOnMainPage;
 use frontend\modules\catalog\widgets\factory\FactoryOnMainPage;
 //use frontend\modules\catalog\widgets\sale\SaleOnMainPage;
+use frontend\modules\user\widgets\partner\PartnerMap;
 
 $bundle = AppAsset::register($this);
+
 ?>
 
 <?php $this->beginContent('@app/layouts/main.php'); ?>
@@ -335,116 +337,12 @@ $bundle = AppAsset::register($this);
             </div>
         </div>
         <!-- Конец Отзывы -->
-        <div id="map"></div>
+
+        <?= PartnerMap::widget(['city' => Yii::$app->city->getCity()]) ?>
+
     </div>
 
 </main>
-
-<?php
-
-$template = '<div class="info-buble"><h4>${marker.city}</h4><div>${marker.address}</div><div>${marker.phone}</div><div class="country">${marker.country}</div></div>';
-
-$script = <<<JS
-initMap();
-
-function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 5,
-        center: new google.maps.LatLng(55.742130, 37.613583),
-        mapTypeControl: true,
-        scrollwheel: false,
-        zoomControl: true,
-        fullscreenControl: true,
-        mapTypeId: 'roadmap'
-    });
-
-    var infoBubble = new InfoBubble({
-        map: map,
-        borderRadius: 0,
-        maxWidth: 200,
-        maxHeight: 200,
-        minHeight: 170,
-        minWidth: 200,
-        shadowStyle: 0,
-        arrowSize: 0,
-        borderWidth: 2,
-        borderColor: '#E3E0D5',
-        disableAutoPan: true,
-        hideCloseButton: false,
-        arrowPosition: 55,
-        padding: 0
-    });
-
-
-    function addMarker(marker) {
-        var template = '$template';
-
-        var marker = new google.maps.Marker({
-            position: marker.position,
-            map: map,
-            content: template
-        });
-
-        marker.addListener('click', function() {
-            map.setCenter(new google.maps.LatLng(
-                this.position.lat(),
-                this.position.lng() ) );
-
-            infoBubble.setContent(marker.content);
-            infoBubble.open(map, marker);
-        });
-        return marker;
-    }
-
-    var markers = [
-        {
-            position: new google.maps.LatLng(55.670998, 37.518773),//Удальцова 1-А
-            city: "Москва",
-            address: "улица Удальцова, 1А",
-            phone: "+7 (495) 150-21-21",
-            country: "Россия"
-        },
-        {
-            position: new google.maps.LatLng(55.758028, 37.553448),//Шмитовский проезд, 7/4
-            city: "Москва",
-            address: "Шмитовский проезд, 7/4",
-            phone: "+7 (967) 153-33-47",
-            country: "Россия"
-        },
-        {
-            position: new google.maps.LatLng(55.756710, 37.562377), //ул.Родчельская, д.15, стр.8
-            city: "Москва",
-            address: "ул.Родчельская, д.15, стр.8",
-            phone: "+7 (495) 120-35-00",
-            country: "Россия"
-        },
-        {
-            position: new google.maps.LatLng(55.765870, 37.645350), //Малый Харитоньевский переулок, 7с1
-            city: "Москва",
-            address: "Малый Харитоньевский переулок, 7с1",
-            phone: "+7 (499) 705-89-98",
-            country: "Россия"
-        },
-    ];
-
-    var markings = markers.map(function(item) {
-        return addMarker(item);
-    });
-
-    map.setZoom(11);
-}
-JS;
-
-$this->registerJs($script, yii\web\View::POS_END);
-
-$this->registerJsFile(
-    'https://maps.googleapis.com/maps/api/js?key=AIzaSyDI-EyYe0E1ZPA9IpCTUbP2137VDAcHJGY',
-    [
-        'position' => yii\web\View::POS_END,
-    ]
-);
-
-?>
 
 <?= $content ?>
 

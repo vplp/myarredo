@@ -27,4 +27,20 @@ class User extends \common\modules\user\models\User
 
         return $query->all();
     }
+
+    public static function getPartner($city_id)
+    {
+        $groups = Group::getIdsByRole('partner');
+
+        $query = self::findBase()
+            ->group_ids($groups)
+            ->published();
+
+        if ($city_id) {
+            $query->andFilterWhere([Profile::tableName() . '.city_id' => $city_id]);
+        }
+
+        return $query->one();
+    }
+
 }

@@ -5,9 +5,7 @@ use yii\helpers\{
 };
 use frontend\modules\catalog\widgets\menu\CatalogMenu;
 use frontend\modules\shop\widgets\cart\Cart;
-use frontend\modules\location\widgets\SelectCity;
-
-$session = Yii::$app->session;
+use frontend\modules\location\widgets\ChangeCity;
 
 ?>
 
@@ -15,14 +13,14 @@ $session = Yii::$app->session;
 
     <?php if ((Yii::$app->getUser()->isGuest)): ?>
 
-        <?= SelectCity::widget() ?>
+        <?= ChangeCity::widget() ?>
 
         <div class="top-navbar">
             <div class="container large-container">
                 <ul class="nav navbar-nav top-panel flex">
                     <li class="tel-num">
 						<span>
-							<i class="glyphicon glyphicon-earphone"></i> +7 (844) 297-45-97
+							<i class="glyphicon glyphicon-earphone"></i> <?= Yii::$app->partner->getPartnerPhone() ?>
 						</span>
                     </li>
                     <li>
@@ -36,10 +34,10 @@ $session = Yii::$app->session;
                         <a href="javascript: void(0);" id="select-city">
                             <i class="glyphicon glyphicon-map-marker"></i>
                             <span class="country">
-								<?= $session['country']['lang']['title'] ?>
+								<?= Yii::$app->city->getCountryTitle() ?>
 							</span>
                             <span class="city">
-								<?= $session['city']['lang']['title'] ?>
+								<?= Yii::$app->city->getCitytitle() ?>
 							</span>
                         </a>
                     </li>

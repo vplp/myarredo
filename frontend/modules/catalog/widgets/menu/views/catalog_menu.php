@@ -9,8 +9,6 @@ use frontend\modules\catalog\models\Category;
  * @var $model \frontend\modules\catalog\models\Category
  */
 
-$session = Yii::$app->session;
-
 ?>
 
 <div class="navbar-header">
@@ -59,7 +57,7 @@ $session = Yii::$app->session;
                 Url::toRoute(['/page/page/view', 'alias' => 'about'])
             ) ?></li>
         <li><?= Html::a(
-                'Контакты в ' . $session['city']['lang']['title_where'],
+                'Контакты в ' . Yii::$app->city->getCityTitleWhere(),
                 Url::toRoute(['/page/page/view', 'alias' => 'contacts'])
             ) ?></li>
     </ul>
