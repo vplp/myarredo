@@ -21,7 +21,7 @@ foreach (Yii::$app->shop_cart->items as $item) {
 <main>
     <div class="prod-card-page page">
         <div class="container large-container">
-            <div class="row">
+            <div class="row" itemscope itemtype="http://schema.org/Product">
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
@@ -29,7 +29,7 @@ foreach (Yii::$app->shop_cart->items as $item) {
                 ]) ?>
 
                 <div class="product-title">
-                    <h1 class="prod-model"><?= $model->getFullTitle(); ?></h1>
+                    <h1 class="prod-model" itemprop="name"><?= $model->getFullTitle(); ?></h1>
                 </div>
 
                 <div class="col-md-5">
@@ -40,7 +40,7 @@ foreach (Yii::$app->shop_cart->items as $item) {
                             <?php foreach ($model->getGalleryImage() as $key => $image): ?>
                                 <div class="item<?= ($key==0) ? ' active': ''; ?>">
                                     <div class="img-cont">
-                                        <img src="<?= $image ?>" alt="">
+                                        <img src="<?= $image ?>" itemprop="image">
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -65,17 +65,32 @@ foreach (Yii::$app->shop_cart->items as $item) {
                 </div>
                 <div class="col-md-4">
                     <div class="prod-info-table">
-                        <table class="info-table">
+                        <table class="info-table" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                             <?php if (!$model['removed']): ?>
                                 <tr class="price">
                                     <td>ЦЕНА ОТ:</td>
-                                    <td><?= $model['price_from']; ?>&nbsp;<span class="currency">€</span>*</td>
+                                    <td>
+                                        <?= $model['price_from']; ?>&nbsp;<span class="currency">€</span>*
+                                        <meta itemprop="price" content="<?= number_format($model['price_from'], 0, '', '') ?>">
+                                        <meta itemprop="priceCurrency" content="EUR"/>
+                                    </td>
                                 </tr>
+                            <?php else: ?>
+                                <meta itemprop="price" content="0"/>
+                                <meta itemprop="priceCurrency" content="EUR"/>
                             <?php endif; ?>
                             <tr class="availability">
                                 <td>Наличие</td>
-                                <td><?= ($model['removed']) ? 'Снят с протзводства' : 'Под заказ' ?></td>
+                                <td>
+                                    <?= ($model['removed'])
+                                        ? 'Снят с протзводства'
+                                        : 'Под заказ<meta itemprop="availability" content="PreOrder">';
+                                    ?>
+                                </td>
                             </tr>
+                        </table>
+
+                        <table class="info-table">
                             <tr>
                                 <td>Стиль</td>
                                 <td>
@@ -94,7 +109,8 @@ foreach (Yii::$app->shop_cart->items as $item) {
                                 <td>
                                     <?= Html::a(
                                         $model['factory']['lang']['title'],
-                                        Factory::getUrl($model['factory']['alias'])
+                                        Factory::getUrl($model['factory']['alias']),
+                                        ['itemprop' => 'brand']
                                     ); ?>
                                 </td>
                             </tr>
@@ -144,7 +160,7 @@ foreach (Yii::$app->shop_cart->items as $item) {
                             <?php endif; ?>
 
                         </table>
-                        <div class="prod-descr"><?= $model['lang']['description']; ?></div>
+                        <div class="prod-descr" itemprop="description"><?= $model['lang']['description']; ?></div>
                     </div>
                 </div>
                 <div class="col-md-3">
