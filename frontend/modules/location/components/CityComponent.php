@@ -88,6 +88,12 @@ class CityComponent extends Component
 
         if ($cityAlias) {
             $this->city = City::findByAlias($cityAlias);
+
+            // TODO: need to be redone!
+
+            if ($this->city == null) {
+                $this->city = City::findById($this->defaultCityId);
+            }
         } else {
             $this->city = City::findById($this->defaultCityId);
         }
