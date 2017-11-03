@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
+use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\Factory;
 use frontend\themes\myarredo\assets\AppAsset;
 
@@ -25,7 +25,6 @@ foreach (Yii::$app->shop_cart->items as $item) {
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
-                    'options' => ['class' => 'bread-crumbs']
                 ]) ?>
 
                 <div class="product-title">
@@ -107,10 +106,10 @@ foreach (Yii::$app->shop_cart->items as $item) {
                             <tr>
                                 <td>Фабрика</td>
                                 <td>
+                                    <meta itemprop="brand" content="<?= $model['factory']['lang']['title'] ?>">
                                     <?= Html::a(
                                         $model['factory']['lang']['title'],
-                                        Factory::getUrl($model['factory']['alias']),
-                                        ['itemprop' => 'brand']
+                                        Factory::getUrl($model['factory']['alias'])
                                     ); ?>
                                 </td>
                             </tr>
