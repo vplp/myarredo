@@ -51,7 +51,7 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled()->asArray();
+        return parent::findBase()->enabled();
     }
 
     /**
@@ -59,7 +59,7 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public static function dropDownList()
     {
-        return ArrayHelper::map(self::findBase()->all(), 'id', 'lang.title');
+        return ArrayHelper::map(self::findBase()->asArray()->all(), 'id', 'lang.title');
     }
 
     /**
@@ -171,6 +171,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 'count(' . self::tableName() . '.id) as count'
             ])
             ->groupBy(self::tableName() . '.id')
+            ->asArray()
             ->all();
     }
 
