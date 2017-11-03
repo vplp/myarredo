@@ -8,14 +8,10 @@ use thread\app\model\interfaces\BaseFrontModel;
  * Class Menu
  *
  * @package frontend\modules\menu\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 final class Menu extends \common\modules\menu\models\Menu implements BaseFrontModel
 {
-
     /**
-     *
      * @return array
      */
     public function behaviors()
@@ -24,7 +20,6 @@ final class Menu extends \common\modules\menu\models\Menu implements BaseFrontMo
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()
@@ -33,7 +28,6 @@ final class Menu extends \common\modules\menu\models\Menu implements BaseFrontMo
     }
 
     /**
-     *
      * @return array
      */
     public function attributeLabels()
@@ -42,7 +36,6 @@ final class Menu extends \common\modules\menu\models\Menu implements BaseFrontMo
     }
 
     /**
-     *
      * @return array
      */
     public function rules()

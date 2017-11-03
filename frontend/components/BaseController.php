@@ -3,17 +3,14 @@
 namespace frontend\components;
 
 use yii\helpers\Url;
+use yii\web\Controller;
 
 /**
  * Class BaseController
  *
- * Базовый контроллер для пользовательской части проекта
- *
  * @package frontend\components
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
-abstract class BaseController extends \yii\web\Controller
+abstract class BaseController extends Controller
 {
     /**
      * @var string

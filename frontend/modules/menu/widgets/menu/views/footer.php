@@ -2,6 +2,10 @@
 
 use yii\helpers\Html;
 
+/**
+ * @var $item \frontend\modules\menu\models\MenuItem
+ */
+
 ?>
 
 <?= Html::beginTag('ul', ['class' => 'nav navbar-nav']); ?>
