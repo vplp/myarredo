@@ -1,6 +1,14 @@
 <?php
+
 use yii\helpers\Html;
 
+/**
+ * @var $item \frontend\modules\menu\models\MenuItem
+ */
+
+?>
+
+<?php
 echo Html::beginTag('ul', [
     'class' => 'nav navbar-nav'
 ]);
