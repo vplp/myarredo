@@ -21,7 +21,6 @@ use frontend\modules\catalog\models\Product;
                 <?= Html::tag('h2', $this->context->title) ?>
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
-                    'options' => ['class' => 'bread-crumbs']
                 ]) ?>
             </div>
             <div class="cat-content">

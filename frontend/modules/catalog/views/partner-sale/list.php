@@ -22,7 +22,6 @@ use frontend\components\Breadcrumbs;
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
-                    'options' => ['class' => 'bread-crumbs']
                 ]) ?>
             </div>
             <div class="cat-content">

@@ -17,7 +17,6 @@ use frontend\components\Breadcrumbs;
                 <?= Html::tag('h1', $this->context->title); ?>
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
-                    'options' => ['class' => 'bread-crumbs']
                 ]) ?>
             </div>
             <div class="cat-content">

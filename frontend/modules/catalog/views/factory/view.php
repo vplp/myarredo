@@ -35,7 +35,6 @@ use frontend\modules\catalog\models\Factory;
             <div class="row">
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
-                    'options' => ['class' => 'bread-crumbs']
                 ]) ?>
             </div>
             <div class="row factory-det">
@@ -120,6 +119,13 @@ use frontend\modules\catalog\models\Factory;
 
                             </div>
                         </div>
+
+                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
+                            <?php
+                            //* !!! */ echo  '<pre style="color:red;">'; print_r($model->getFile()); echo '</pre>'; /* !!! */
+                            ?>
+                        <?php endif; ?>
+
                         <div class="text">
                             <?= $model['lang']['content']; ?>
                         </div>
@@ -152,10 +158,6 @@ use frontend\modules\catalog\models\Factory;
 
             <div class="cat-prod catalog-wrap">
 
-                <?php
-
-                //* !!! */ echo  '<pre style="color:red;">'; print_r($product); echo '</pre>'; /* !!! */
-                ?>
                 <?php
 
                 $_types = $_factory = $_collection = [];
