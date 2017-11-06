@@ -120,11 +120,33 @@ use frontend\modules\catalog\models\Factory;
                             </div>
                         </div>
 
+                        <!-- LIST FILES START -->
                         <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
-                            <?php
-                            //* !!! */ echo  '<pre style="color:red;">'; print_r($model->getFile()); echo '</pre>'; /* !!! */
-                            ?>
+                            <div class="downloads">
+                                <?php if (!empty($model->catalogsFiles)): ?>
+                                    <p class="title-small">Посмотреть каталоги</p>
+                                    <ul>
+                                        <?php foreach ($model->catalogsFiles as $obj): ?>
+                                            <li>
+                                                <?= Html::a($obj->title, $obj->getFileLink(), ['target' => '_blank']) ?>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php endif; ?>
+
+                                <?php if (!empty($model->pricesFiles)): ?>
+                                    <p class="title-small">Посмотреть прайс листы</p>
+                                    <ul>
+                                        <?php foreach ($model->pricesFiles as $obj): ?>
+                                            <li>
+                                                <?= Html::a($obj->title, $obj->getFileLink(), ['target' => '_blank']) ?>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php endif; ?>
+                            </div>
                         <?php endif; ?>
+                        <!-- LIST FILES END -->
 
                         <div class="text">
                             <?= $model['lang']['content']; ?>
