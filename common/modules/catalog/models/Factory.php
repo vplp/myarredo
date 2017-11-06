@@ -38,7 +38,9 @@ use common\helpers\Inflector;
  *
  * @property FactoryLang $lang
  * @property Collection $collection
- * @property FactoryFile $file
+ * @property FactoryFile $files
+ * @property CatalogsFiles[] $catalogsFiles
+ * @property PricesFiles[] $pricesFiles
  *
  * @package common\modules\catalog\models
  */
@@ -190,10 +192,29 @@ class Factory extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFile()
+    public function getFiles()
     {
         return $this->hasMany(FactoryFile::class, ['factory_id' => 'id']);
     }
+
+    /**
+     * @return $this
+     */
+    public function getCatalogsFiles()
+    {
+        return self::getFiles()
+            ->andWhere(['file_type' => 1]);
+    }
+
+    /**
+     * @return $this
+     */
+    public function getPricesFiles()
+    {
+        return self::getFiles()
+            ->andWhere(['file_type' => 2]);
+    }
+
 
     /**
      * @return null|string
