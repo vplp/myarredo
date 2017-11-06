@@ -60,35 +60,41 @@ class CatalogFilter extends Component
      * @param array $parameters
      * @return string
      */
-    public function createUrl(array $parameters = [] /* $key, $value, $is = false */)
+    public function createUrl(array $parameters = [])
     {
         $labelEmptyKey = self::getLabelEmptyKey();
 
         $_structure = [];
 
         foreach ($labelEmptyKey as $Lk => $Lv) {
-            if (isset(self::$_parameters[$Lk]) && isset(self::$_parameters[$Lk]['alias']) && isset($parameters[$Lk]) && ($parameters[$Lk] == self::$_parameters[$Lk]['alias'])) {
-                // если есть значение в $_parameters и $value == self::$_parameters[$Lk]['alias']
+            if (
+                isset(self::$_parameters[$Lk]) &&
+                isset(self::$_parameters[$Lk]['alias']) &&
+                isset($parameters[$Lk]) && ($parameters[$Lk] == self::$_parameters[$Lk]['alias'])
+            ) {
                 $_structure[$Lk] = '';
-            } elseif (isset(self::$_parameters[$Lk]) && isset(self::$_parameters[$Lk]['id']) && isset($parameters[$Lk]) && ($parameters[$Lk] == self::$_parameters[$Lk]['id'])) {
-                // если есть значение в $_parameters и $value == self::$_parameters[$Lk]['alias']
+            } elseif (
+                isset(self::$_parameters[$Lk]) &&
+                isset(self::$_parameters[$Lk]['id']) &&
+                isset($parameters[$Lk]) && ($parameters[$Lk] == self::$_parameters[$Lk]['id'])
+            ) {
                 $_structure[$Lk] = '';
             } elseif (isset($parameters[$Lk])) {
                 // если $Lk == $key
-                $_structure[$Lk][0] = $parameters[$Lk];
+                $_structure[$Lk][] = $parameters[$Lk];
             } elseif (isset(self::$_parameters[$Lk]['alias'])) {
                 // если есть значение в $_parameters
-                $_structure[$Lk][0] = self::$_parameters[$Lk]['alias'];
+                $_structure[$Lk][] = self::$_parameters[$Lk]['alias'];
             } elseif (isset(self::$_parameters[$Lk]['id'])) {
                 // если есть значение в $_parameters
-                $_structure[$Lk][0] = self::$_parameters[$Lk]['id'];
+                $_structure[$Lk][] = self::$_parameters[$Lk]['id'];
             } else {
                 // значение по умолчанию
                 $_structure[$Lk] = '';
             }
         }
 
-        /* Видалення пустих елементів з кінця масиву */
+        // Видалення пустих елементів з кінця масиву
         {
             $count = count($_structure) - 1;
             for (; $count >= 0; $count--) {
@@ -110,9 +116,10 @@ class CatalogFilter extends Component
             } else {
                 $res[$k] = $v;
             }
+
             $filter .=
-                (($filter) ? self::AMPERSAND_1 : '')
-                . (($res[$k]) ? $res[$k] : ((!empty($labelEmptyKey[$k])) ? $labelEmptyKey[$k] : ''));
+                (($filter) ? self::AMPERSAND_1 : '') .
+                (($res[$k]) ? $res[$k] : ((!empty($labelEmptyKey[$k])) ? $labelEmptyKey[$k] : ''));
         }
 
         if ($filter !== '') {
@@ -162,15 +169,15 @@ class CatalogFilter extends Component
      */
     private function _parserUrl()
     {
-        /* Розбиття на елементи */
+        // Розбиття на елементи
         $elements = explode(self::AMPERSAND_1, Yii::$app->request->get('filter'));
 
         foreach ($elements as $k => $v) {
             if ($v) {
-                /* Розбиття параметрів елементів */
+                // Розбиття параметрів елементів
                 $elements[$k] = explode(self::AMPERSAND_2, $v);
 
-                /* якщо значення співнадає із значенням масиву  */
+                // якщо значення співнадає із значенням масиву
                 if (!empty($elements[$k][0]) && in_array($elements[$k][0], self::getLabelEmptyKey()))
                     $elements[$k] = array();
             }
