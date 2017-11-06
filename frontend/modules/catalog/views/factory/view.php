@@ -121,7 +121,7 @@ use frontend\modules\catalog\models\Factory;
                         </div>
 
                         <!-- LIST FILES START -->
-                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
+                        <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
                             <div class="downloads">
                                 <?php if (!empty($model->catalogsFiles)): ?>
                                     <p class="title-small">Посмотреть каталоги</p>

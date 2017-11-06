@@ -161,7 +161,7 @@ foreach (Yii::$app->shop_cart->items as $item) {
                         </table>
 
                         <!-- LIST FILES START -->
-                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
+                        <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
                             <div class="downloads">
                                 <?php if (!empty($model->factoryCatalogsFiles)): ?>
                                     <p class="title-small">Посмотреть каталоги</p>

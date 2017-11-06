@@ -72,13 +72,13 @@ class CatalogFilter extends Component
                 isset(self::$_parameters[$Lk]['alias']) &&
                 isset($parameters[$Lk]) && ($parameters[$Lk] == self::$_parameters[$Lk]['alias'])
             ) {
-                $_structure[$Lk] = '';
+                $_structure[$Lk][] = self::$_parameters[$Lk]['alias'];
             } elseif (
                 isset(self::$_parameters[$Lk]) &&
                 isset(self::$_parameters[$Lk]['id']) &&
                 isset($parameters[$Lk]) && ($parameters[$Lk] == self::$_parameters[$Lk]['id'])
             ) {
-                $_structure[$Lk] = '';
+                $_structure[$Lk][] = self::$_parameters[$Lk]['id'];
             } elseif (isset($parameters[$Lk])) {
                 // если $Lk == $key
                 $_structure[$Lk][] = $parameters[$Lk];
