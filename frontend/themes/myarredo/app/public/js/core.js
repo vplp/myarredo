@@ -314,4 +314,20 @@ $(document).ready(function(){
     });
     /*--конец Больше фабрик модалка--*/
 
+    $(".show-all-sub").click(function(){
+        var list = $(this).siblings(".list-item");
+        var variant = $(this).attr("data-variant");
+        var textCont = $(this).find(".btn-text");
+
+           if(list.hasClass('show')){
+               list.removeClass('show');
+               $(this).attr("data-variant",textCont.text());
+               textCont.text(variant);
+           } else {
+               list.addClass('show');
+               $(this).attr("data-variant",textCont.text());
+               textCont.text(variant);
+           }
+    });
+
 });
