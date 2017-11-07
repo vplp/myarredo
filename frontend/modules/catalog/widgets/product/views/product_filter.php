@@ -46,7 +46,7 @@ use frontend\modules\catalog\models\{
         </div>
 
         <?php if ($types): ?>
-            <div class="one-filter open">
+            <div class="one-filter open subject-filter">
                 <a href="javascript:void(0);" class="filt-but">Предмет</a>
                 <div class="list-item">
 
@@ -56,18 +56,26 @@ use frontend\modules\catalog\models\{
                             ? 'one-item-check selected'
                             : 'one-item-check' ?>
 
-                        <div>
-                            <?= Html::beginTag('a', [
-                                'href' => Yii::$app->catalogFilter->createUrl(['type' => $item['alias']]),
-                                'class' => $class
-                            ]); ?>
-                            <input type="checkbox">
-                            <div class="my-checkbox"></div><?= $item['lang']['title'] ?> (<?= $item['count'] ?>)
-                            <?= Html::endTag('a'); ?>
-                        </div>
+
+                        <?= Html::beginTag('a', [
+                            'href' => Yii::$app->catalogFilter->createUrl(['type' => $item['alias']]),
+                            'class' => $class
+                        ]); ?>
+                        <input type="checkbox">
+                        <div class="my-checkbox"></div><?= $item['lang']['title'] ?> (<?= $item['count'] ?>)
+                        <?= Html::endTag('a'); ?>
+
                     <?php endforeach; ?>
 
                 </div>
+
+                <?php if (count($types) > 10): ?>
+                    <a href="javascript:void(0);" class="show-all-sub show-more" data-variant="Скрыть">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        <span class="btn-text">Показать все предметы</span>
+                    </a>
+                <?php endif; ?>
+
             </div>
         <?php endif; ?>
 

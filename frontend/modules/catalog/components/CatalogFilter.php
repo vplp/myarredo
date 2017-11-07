@@ -106,25 +106,51 @@ class CatalogFilter extends Component
             // add current parameters
             if (isset(self::$_parameters[$Lk])) {
                 $_structure[$Lk] = self::$_parameters[$Lk];
+
+//                if ($Lk == self::$keys[0]) {
+//                    foreach ($_structure[$Lk] as $key => $val) {
+//                        if (!in_array($parameters['category'], array_values(self::$_parameters['category']))) {
+//                            unset($_structure[$Lk][$key]);
+//                        }
+//                    }
+//                }
             }
 
             // add parameters
-            if (isset($parameters[$Lk]) && !empty($_structure[$Lk]) && !in_array($parameters[$Lk], array_values($_structure[$Lk]))) {
+            if (
+                isset($parameters[$Lk]) &&
+                !empty($_structure[$Lk]) &&
+                !in_array($parameters[$Lk], array_values($_structure[$Lk]))
+            ) {
                 $_structure[$Lk][] = $parameters[$Lk];
             }
-            elseif (isset($parameters[$Lk]) && !empty($_structure[$Lk]) && in_array($parameters[$Lk], array_values($_structure[$Lk]))) {
+            elseif (
+                isset($parameters[$Lk]) &&
+                !empty($_structure[$Lk]) &&
+                in_array($parameters[$Lk], array_values($_structure[$Lk]))
+            ) {
                 foreach ($_structure[$Lk] as $key => $val) {
                     if ($val == $parameters[$Lk]) {
                         unset($_structure[$Lk][$key]);
                     }
                 }
             }
-            elseif (isset($parameters[$Lk]) && empty($_structure[$Lk])) {
+            elseif (
+                isset($parameters[$Lk]) &&
+                empty($_structure[$Lk])
+            ) {
                 $_structure[$Lk][] = $parameters[$Lk];
             }
             elseif (empty($_structure[$Lk])) {
                 $_structure[$Lk] = '';
             }
+//            if ($Lk == self::$keys[0] && isset(self::$_parameters[$Lk])) {
+//                foreach (self::$_parameters[$Lk] as $key => $val) {
+//                    if ($val == $parameters[$Lk]) {
+//                        unset(self::$_parameters[$Lk][$key]);
+//                    }
+//                }
+//            }
         }
 
         // Видалення пустих елементів з кінця масиву
