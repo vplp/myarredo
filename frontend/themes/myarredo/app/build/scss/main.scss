@@ -1303,6 +1303,16 @@ footer {
       }
     }
   }
+  .subject-filter {
+    .list-item {
+      max-height: 395px;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      &.show {
+        max-height: 5555px;
+      }
+    }
+  }
   .list-item {
     padding: 5px 0;
     .one-item {
