@@ -122,44 +122,28 @@ class Factory extends \common\modules\catalog\models\Factory
     {
         $query = self::findBase();
 
+        $query
+            ->innerJoinWith(["product"], false)
+            ->innerJoinWith(["product.category productCategory"], false)
+            ->andFilterWhere([
+                Product::tableName() . '.published' => '1',
+                Product::tableName() . '.deleted' => '0',
+            ]);
+
         if (isset($params['category'])) {
-            $query
-                ->innerJoinWith(["product"], false)
-                ->innerJoinWith(["product.category productCategory"], false)
-                ->andFilterWhere([
-                    ProductRelCategory::tableName() . '.group_id' => $params['category']['id'],
-                    Product::tableName() . '.published' => '1',
-                    Product::tableName() . '.deleted' => '0',
-                ]);
-        } else {
-            $query
-                ->innerJoinWith(["product"], false)
-                ->innerJoinWith(["product.category productCategory"], false)
-                ->andFilterWhere([
-                    Product::tableName() . '.published' => '1',
-                    Product::tableName() . '.deleted' => '0',
-                ]);
+            $query->andFilterWhere(['IN', 'productCategory.alias', $params['category']]);
         }
 
         if (isset($params['type'])) {
             $query
-                ->innerJoinWith(["product"], false)
-                ->andFilterWhere([
-                    Product::tableName() . '.catalog_type_id' => $params['type']['id'],
-                    Product::tableName() . '.published' => '1',
-                    Product::tableName() . '.deleted' => '0',
-                ]);
+                ->innerJoinWith(["product.types productTypes"], false)
+                ->andFilterWhere(['IN', 'productTypes.alias', $params['type']]);
         }
 
         if (isset($params['style'])) {
             $query
-                ->innerJoinWith(["product"], false)
                 ->innerJoinWith(["product.specification productSpecification"], false)
-                ->andFilterWhere([
-                    ProductRelSpecification::tableName() . '.specification_id' => $params['style']['id'],
-                    Product::tableName() . '.published' => '1',
-                    Product::tableName() . '.deleted' => '0',
-                ]);
+                ->andFilterWhere(['IN', 'productSpecification.alias', $params['style']]);
         }
 
         return $query

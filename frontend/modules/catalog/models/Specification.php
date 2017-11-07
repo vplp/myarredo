@@ -148,43 +148,28 @@ class Specification extends \common\modules\catalog\models\Specification
 
         $query->andWhere([self::tableName() . '.parent_id' => 9]);
 
-        if (isset($params['category'])) {
-            $query
-                ->innerJoinWith(["product"], false)
-                ->innerJoinWith(["product.category productCategory"], false)
-                ->andFilterWhere([
-                    ProductRelCategory::tableName() . '.group_id' => $params['category']['id'],
-                    Product::tableName() . '.published' => '1',
-                    Product::tableName() . '.deleted' => '0',
-                ]);
-        } else {
-            $query
-                ->innerJoinWith(["product"], false)
-                ->innerJoinWith(["product.category productCategory"], false)
-                ->andFilterWhere([
-                    Product::tableName() . '.published' => '1',
-                    Product::tableName() . '.deleted' => '0',
-                ]);
-        }
+        $query
+            ->innerJoinWith(["product"], false)
+            ->innerJoinWith(["product.category productCategory"], false)
+            ->andFilterWhere([
+                Product::tableName() . '.published' => '1',
+                Product::tableName() . '.deleted' => '0',
+            ]);
 
-        if (isset($params['factory'])) {
-            $query
-                ->innerJoinWith(["product"], false)
-                ->andFilterWhere([
-                    Product::tableName() . '.factory_id' => $params['factory']['id'],
-                    Product::tableName() . '.published' => '1',
-                    Product::tableName() . '.deleted' => '0',
-                ]);
+        if (isset($params['category'])) {
+            $query->andFilterWhere(['IN', 'productCategory.alias', $params['category']]);
         }
 
         if (isset($params['type'])) {
             $query
-                ->innerJoinWith(["product"], false)
-                ->andFilterWhere([
-                    Product::tableName() . '.catalog_type_id' => $params['type']['id'],
-                    Product::tableName() . '.published' => '1',
-                    Product::tableName() . '.deleted' => '0',
-                ]);
+                ->innerJoinWith(["product.types productTypes"], false)
+                ->andFilterWhere(['IN', 'productTypes.alias', $params['type']]);
+        }
+
+        if (isset($params['factory'])) {
+            $query
+                ->innerJoinWith(["product.factory productFactory"], false)
+                ->andFilterWhere(['IN', 'productFactory.alias', $params['factory']]);
         }
 
         return $query

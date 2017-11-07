@@ -143,33 +143,20 @@ class Category extends \common\modules\catalog\models\Category
 
         if (isset($params['type'])) {
             $query
-                ->innerJoinWith(["product"], false)
-                ->andFilterWhere([
-                    Product::tableName() . '.catalog_type_id' => $params['type']['id'],
-                    Product::tableName() . '.published' => '1',
-                    Product::tableName() . '.deleted' => '0',
-                ]);
+                ->innerJoinWith(["product.types productTypes"], false)
+                ->andFilterWhere(['IN', 'productTypes.alias', $params['type']]);
         }
 
         if (isset($params['style'])) {
             $query
-                ->innerJoinWith(["product"], false)
                 ->innerJoinWith(["product.specification productSpecification"], false)
-                ->andFilterWhere([
-                    ProductRelSpecification::tableName() . '.specification_id' => $params['style']['id'],
-                    Product::tableName() . '.published' => '1',
-                    Product::tableName() . '.deleted' => '0',
-                ]);
+                ->andFilterWhere(['IN', 'productSpecification.alias', $params['style']]);
         }
 
         if (isset($params['factory'])) {
             $query
-                ->innerJoinWith(["product"], false)
-                ->andFilterWhere([
-                    Product::tableName() . '.factory_id' => $params['factory']['id'],
-                    Product::tableName() . '.published' => '1',
-                    Product::tableName() . '.deleted' => '0',
-                ]);
+                ->innerJoinWith(["product.factory productFactory"], false)
+                ->andFilterWhere(['IN', 'productFactory.alias', $params['factory']]);
         }
 
         return $query

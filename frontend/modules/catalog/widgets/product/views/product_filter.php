@@ -30,7 +30,7 @@ use frontend\modules\catalog\models\{
             <div class="list-item">
 
                 <?php foreach ($category as $item):
-                    $options = (isset($filter['category']) && $filter['category']['id'] == $item['id'])
+                    $options = (isset($filter['category']) && in_array($item['alias'], array_values($filter['category'])))
                         ? ['class' => 'one-item selected']
                         : ['class' => 'one-item'];
 
@@ -52,7 +52,7 @@ use frontend\modules\catalog\models\{
 
                     <?php foreach ($types as $item): ?>
 
-                        <?php $class = (isset($filter['type']) && $filter['type']['id'] == $item['id'])
+                        <?php $class = (isset($filter['type']) && in_array($item['alias'], array_values($filter['type'])))
                             ? 'one-item-check selected'
                             : 'one-item-check' ?>
 
@@ -78,7 +78,7 @@ use frontend\modules\catalog\models\{
 
                     <?php foreach ($style as $item): ?>
 
-                        <?php $class = (isset($filter['style']) && $filter['style']['id'] == $item['id'])
+                        <?php $class = (isset($filter['style']) && in_array($item['alias'], array_values($filter['style'])))
                             ? 'one-item-check selected'
                             : 'one-item-check' ?>
 
@@ -110,11 +110,11 @@ use frontend\modules\catalog\models\{
                         <?php foreach ($factory as $key => $item): ?>
 
                             <?php
-                            if ((isset($filter['factory']) && $filter['factory']['id'] == $item['id'])):
+                            if ((isset($filter['factory']) && in_array($item['alias'], array_values($filter['factory'])))):
                                 ++$count_selected;
                                 ?>
 
-                                <?php $class = (isset($filter['factory']) && $filter['factory']['id'] == $item['id'])
+                                <?php $class = (isset($filter['factory']) && in_array($item['alias'], array_values($filter['factory'])))
                                     ? 'one-item-check selected'
                                     : 'one-item-check' ?>
 
@@ -137,9 +137,9 @@ use frontend\modules\catalog\models\{
                         <?php foreach ($factory as $key => $item): ?>
 
                             <?php if ($count_selected + $key > 9) break; ?>
-                            <?php if (isset($filter['factory']) && $filter['factory']['id'] == $item['id']) continue; ?>
+                            <?php if (isset($filter['factory']) && in_array($item['alias'], array_values($filter['factory']))) continue; ?>
 
-                            <?php $class = (isset($filter['factory']) && $filter['factory']['id'] == $item['id'])
+                            <?php $class = (isset($filter['factory']) && in_array($item['alias'], array_values($filter['factory'])))
                                 ? 'one-item-check selected'
                                 : 'one-item-check' ?>
 
@@ -190,7 +190,7 @@ use frontend\modules\catalog\models\{
                                             <?php foreach ($factory as $item): ?>
 
                                                 <?php if ($item['first_letter'] == $letter['first_letter']): ?>
-                                                    <?php $class = (isset($filter['factory']) && $filter['factory']['id'] == $item['id'])
+                                                    <?php $class = (isset($filter['factory']) && in_array($item['alias'], array_values($filter['factory'])))
                                                         ? 'one-fact selected'
                                                         : 'one-fact' ?>
 
