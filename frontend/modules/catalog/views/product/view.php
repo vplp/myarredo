@@ -270,6 +270,7 @@ foreach (Yii::$app->shop_cart->items as $item) {
                 </div>
             </div>
 
+            <!--
             <div class="row receive-price">
                 <h3>
                     Получите лучшую цену из всех, предложенных поставщиками!
@@ -328,6 +329,7 @@ foreach (Yii::$app->shop_cart->items as $item) {
                     </div>
                 </div>
             </div>
+            -->
 
             <?php if (!$model['removed']): ?>
 

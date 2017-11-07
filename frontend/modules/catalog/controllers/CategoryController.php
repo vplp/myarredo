@@ -90,33 +90,33 @@ class CategoryController extends BaseController
             'url' => ['/catalog/category/list']
         ];
 
-        if (!empty($params['category'])) {
-            $this->breadcrumbs[] = [
-                'label' => $params['category']['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl(['category' => $params['category']['alias']])
-            ];
-        }
+//        if (!empty($params['category'])) {
+//            $this->breadcrumbs[] = [
+//                'label' => $params['category']['lang']['title'],
+//                'url' => Yii::$app->catalogFilter->createUrl(['category' => $params['category']['alias']])
+//            ];
+//        }
 
-        if (!empty($params['type'])) {
-            $this->breadcrumbs[] = [
-                'label' => $params['type']['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl(['type' => $params['type']['alias']])
-            ];
-        }
-
-        if (!empty($params['style'])) {
-            $this->breadcrumbs[] = [
-                'label' => $params['style']['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl(['style' => $params['style']['alias']])
-            ];
-        }
-
-        if (!empty($params['factory'])) {
-            $this->breadcrumbs[] = [
-                'label' => $params['factory']['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl(['factory' => $params['factory']['alias']])
-            ];
-        }
+//        if (!empty($params['type'])) {
+//            $this->breadcrumbs[] = [
+//                'label' => $params['type']['lang']['title'],
+//                'url' => Yii::$app->catalogFilter->createUrl(['type' => $params['type']['alias']])
+//            ];
+//        }
+//
+//        if (!empty($params['style'])) {
+//            $this->breadcrumbs[] = [
+//                'label' => $params['style']['lang']['title'],
+//                'url' => Yii::$app->catalogFilter->createUrl(['style' => $params['style']['alias']])
+//            ];
+//        }
+//
+//        if (!empty($params['factory'])) {
+//            $this->breadcrumbs[] = [
+//                'label' => $params['factory']['lang']['title'],
+//                'url' => Yii::$app->catalogFilter->createUrl(['factory' => $params['factory']['alias']])
+//            ];
+//        }
 
         return parent::beforeAction($action);
     }

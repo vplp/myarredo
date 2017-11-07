@@ -57,6 +57,41 @@ class CatalogFilter extends Component
     }
 
     /**
+     * Filter params
+     *
+     * @return array
+     */
+    public function getParams()
+    {
+        return self::$_parameters;
+    }
+
+    /**
+     * @return array
+     */
+    private static function getLabelEmptyKey()
+    {
+        return [
+            self::$keys[0] => 'c',
+            self::$keys[1] => 't',
+            self::$keys[2] => 's',
+            self::$keys[3] => 'f',
+            self::$keys[4] => 'c',
+            self::$keys[5] => 'd',
+            self::$keys[6] => 'dp',
+            self::$keys[7] => 'ed',
+            self::$keys[8] => 'el',
+            self::$keys[9] => 'h',
+            self::$keys[10] => 'id',
+            self::$keys[11] => 'il',
+            self::$keys[12] => 'l',
+            self::$keys[13] => 'm',
+            self::$keys[14] => 'price',
+            self::$keys[15] => 'city',
+        ];
+    }
+
+    /**
      * @param array $parameters
      * @return string
      */
@@ -67,31 +102,55 @@ class CatalogFilter extends Component
         $_structure = [];
 
         foreach ($labelEmptyKey as $Lk => $Lv) {
+
+            // add current parameters
+            if (isset(self::$_parameters[$Lk])) {
+                $_structure[$Lk] = self::$_parameters[$Lk];
+
+//                if ($Lk == self::$keys[0]) {
+//                    foreach ($_structure[$Lk] as $key => $val) {
+//                        if (!in_array($parameters['category'], array_values(self::$_parameters['category']))) {
+//                            unset($_structure[$Lk][$key]);
+//                        }
+//                    }
+//                }
+            }
+
+            // add parameters
             if (
-                isset(self::$_parameters[$Lk]) &&
-                isset(self::$_parameters[$Lk]['alias']) &&
-                isset($parameters[$Lk]) && ($parameters[$Lk] == self::$_parameters[$Lk]['alias'])
+                isset($parameters[$Lk]) &&
+                !empty($_structure[$Lk]) &&
+                !in_array($parameters[$Lk], array_values($_structure[$Lk]))
             ) {
-                $_structure[$Lk][] = self::$_parameters[$Lk]['alias'];
-            } elseif (
-                isset(self::$_parameters[$Lk]) &&
-                isset(self::$_parameters[$Lk]['id']) &&
-                isset($parameters[$Lk]) && ($parameters[$Lk] == self::$_parameters[$Lk]['id'])
-            ) {
-                $_structure[$Lk][] = self::$_parameters[$Lk]['id'];
-            } elseif (isset($parameters[$Lk])) {
-                // если $Lk == $key
                 $_structure[$Lk][] = $parameters[$Lk];
-            } elseif (isset(self::$_parameters[$Lk]['alias'])) {
-                // если есть значение в $_parameters
-                $_structure[$Lk][] = self::$_parameters[$Lk]['alias'];
-            } elseif (isset(self::$_parameters[$Lk]['id'])) {
-                // если есть значение в $_parameters
-                $_structure[$Lk][] = self::$_parameters[$Lk]['id'];
-            } else {
-                // значение по умолчанию
+            }
+            elseif (
+                isset($parameters[$Lk]) &&
+                !empty($_structure[$Lk]) &&
+                in_array($parameters[$Lk], array_values($_structure[$Lk]))
+            ) {
+                foreach ($_structure[$Lk] as $key => $val) {
+                    if ($val == $parameters[$Lk]) {
+                        unset($_structure[$Lk][$key]);
+                    }
+                }
+            }
+            elseif (
+                isset($parameters[$Lk]) &&
+                empty($_structure[$Lk])
+            ) {
+                $_structure[$Lk][] = $parameters[$Lk];
+            }
+            elseif (empty($_structure[$Lk])) {
                 $_structure[$Lk] = '';
             }
+//            if ($Lk == self::$keys[0] && isset(self::$_parameters[$Lk])) {
+//                foreach (self::$_parameters[$Lk] as $key => $val) {
+//                    if ($val == $parameters[$Lk]) {
+//                        unset(self::$_parameters[$Lk][$key]);
+//                    }
+//                }
+//            }
         }
 
         // Видалення пустих елементів з кінця масиву
@@ -130,56 +189,20 @@ class CatalogFilter extends Component
     }
 
     /**
-     * Filter params
-     *
-     * @return array
-     */
-    public function getParams()
-    {
-        return self::$_parameters;
-    }
-
-    /**
-     * @return array
-     */
-    private static function getLabelEmptyKey()
-    {
-        return [
-            self::$keys[0] => 'c',
-            self::$keys[1] => 't',
-            self::$keys[2] => 's',
-            self::$keys[3] => 'f',
-            self::$keys[4] => 'c',
-            self::$keys[5] => 'd',
-            self::$keys[6] => 'dp',
-            self::$keys[7] => 'ed',
-            self::$keys[8] => 'el',
-            self::$keys[9] => 'h',
-            self::$keys[10] => 'id',
-            self::$keys[11] => 'il',
-            self::$keys[12] => 'l',
-            self::$keys[13] => 'm',
-            self::$keys[14] => 'price',
-            self::$keys[15] => 'city',
-        ];
-    }
-
-    /**
      * Parser upl
      */
     private function _parserUrl()
     {
-        // Розбиття на елементи
         $elements = explode(self::AMPERSAND_1, Yii::$app->request->get('filter'));
 
         foreach ($elements as $k => $v) {
             if ($v) {
-                // Розбиття параметрів елементів
                 $elements[$k] = explode(self::AMPERSAND_2, $v);
 
                 // якщо значення співнадає із значенням масиву
-                if (!empty($elements[$k][0]) && in_array($elements[$k][0], self::getLabelEmptyKey()))
-                    $elements[$k] = array();
+                if (!empty($elements[$k][0]) && in_array($elements[$k][0], self::getLabelEmptyKey())) {
+                    $elements[$k] = [];
+                }
             }
         }
 
@@ -196,48 +219,66 @@ class CatalogFilter extends Component
                 throw new NotFoundHttpException;
             }
 
-            self::$_parameters['category'] = $model;
+            self::$_parameters['category'][] = $model['alias'];
         }
 
         if (!empty(self::$_structure['type'])) {
-            $model = Types::findByAlias(self::$_structure['type'][0]);
+            $model = Types::findBase()
+                ->andFilterWhere(['IN', 'alias', self::$_structure['type']])
+                ->indexBy('id')
+                ->all();
 
             if ($model === null) {
                 throw new NotFoundHttpException;
             }
 
-            self::$_parameters['type'] = $model;
+            foreach ($model as $obj) {
+                self::$_parameters['type'][] = $obj['alias'];
+            }
         }
 
         if (!empty(self::$_structure['style'])) {
-            $model = Specification::findByAlias(self::$_structure['style'][0]);
+            $model = Specification::findBase()
+                ->andFilterWhere(['IN', 'alias', self::$_structure['style']])
+                ->indexBy('id')
+                ->all();
 
             if ($model === null) {
                 throw new NotFoundHttpException;
             }
 
-            self::$_parameters['style'] = $model;
+            foreach ($model as $obj) {
+                self::$_parameters['style'][] = $obj['alias'];
+            }
         }
 
         if (!empty(self::$_structure['factory'])) {
-            $model = Factory::findByAlias(self::$_structure['factory'][0]);
+            $model = Factory::findBase()
+                ->andFilterWhere(['IN', 'alias', self::$_structure['factory']])
+                ->indexBy('id')
+                ->all();
 
             if ($model === null) {
                 throw new NotFoundHttpException;
             }
 
-            self::$_parameters['factory'] = $model;
+            foreach ($model as $obj) {
+                self::$_parameters['factory'][] = $obj['alias'];
+            }
         }
 
         if (!empty(self::$_structure['collection'])) {
-            $model = Collection::findById(self::$_structure['collection'][0]);
-
+            $model = Collection::findBase()
+                ->andFilterWhere(['IN', 'id', self::$_structure['collection']])
+                ->indexBy('id')
+                ->all();
             if ($model === null) {
                 throw new NotFoundHttpException;
             }
 
-            self::$_parameters['collection'] = $model;
+            foreach ($model as $obj) {
+                self::$_parameters['collection'][] = $obj['id'];
+            }
         }
-
     }
 }

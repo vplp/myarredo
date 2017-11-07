@@ -3,13 +3,18 @@
 namespace frontend\modules\catalog\models\search;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
 use frontend\modules\catalog\models\{
+    Category,
+    Types,
+    Factory,
     Product as ProductModel,
     ProductRelCategory,
-    ProductRelSpecification
+    ProductRelSpecification,
+    Specification
 };
 use frontend\modules\catalog\Catalog;
 
@@ -74,21 +79,27 @@ class Product extends ProductModel
         ]);
 
         if (isset($params['category'])) {
-            $query->innerJoinWith(["category"])
-                ->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $params['category']['id']]);
+            $query
+                ->innerJoinWith(["category"])
+                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params['category']]);
         }
 
         if (isset($params['type'])) {
-            $query->andFilterWhere(['catalog_type_id' => $params['type']['id']]);
+            $query
+                ->innerJoinWith(["types"])
+                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params['type']]);
         }
 
         if (isset($params['style'])) {
-            $query->innerJoinWith(["specificationValue"])
-                ->andFilterWhere([ProductRelSpecification::tableName() . '.specification_id' => $params['style']['id']]);
+            $query
+                ->innerJoinWith(["specification"])
+                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params['style']]);
         }
 
         if (isset($params['factory'])) {
-            $query->andFilterWhere(['factory_id' => $params['factory']['id']]);
+            $query
+                ->innerJoinWith(["factory"])
+                ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params['factory']]);
         }
 
         if (isset($params['collection'])) {
@@ -126,17 +137,21 @@ class Product extends ProductModel
         ]);
 
         if (isset($params['category'])) {
-            $query->innerJoinWith(["category"])
-                ->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $params['category']['id']]);
+            $query
+                ->innerJoinWith(["category"])
+                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params['category']]);
         }
 
         if (isset($params['type'])) {
-            $query->andFilterWhere(['catalog_type_id' => $params['type']['id']]);
+            $query
+                ->innerJoinWith(["types"])
+                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params['type']]);
         }
 
         if (isset($params['style'])) {
-            $query->innerJoinWith(["specificationValue"])
-                ->andFilterWhere([ProductRelSpecification::tableName() . '.specification_id' => $params['style']['id']]);
+            $query
+                ->innerJoinWith(["specification"])
+                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params['style']]);
         }
 
         if (isset($params['factory'])) {
