@@ -42,10 +42,6 @@ class ProfileController extends BaseController
                         'roles' => ['@'],
                     ],
                     [
-                        'allow' => true,
-                        'roles' => ['?']
-                    ],
-                    [
                         'allow' => false,
                     ],
                 ],
