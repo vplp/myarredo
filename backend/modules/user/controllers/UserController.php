@@ -82,9 +82,9 @@ class UserController extends BackendController
         return ArrayHelper::merge(
             $action,
             [
-                'list' => [
-                    'layout' => 'list-user',
-                ],
+//                'list' => [
+//                    'layout' => 'list-user',
+//                ],
                 'update' => [
                     'class' => Update::class,
                     'redirect' => function () {
@@ -173,6 +173,10 @@ class UserController extends BackendController
             ->all();
 
         User::deleteAll();
+        Yii::$app->db->createCommand('ALTER TABLE ' . User::tableName() . ' AUTO_INCREMENT = 1')->execute();
+        Yii::$app->db->createCommand('ALTER TABLE ' . Profile::tableName() . ' AUTO_INCREMENT = 1')->execute();
+
+
         Yii::$app->db->createCommand('DELETE FROM fv_auth_assignment')->execute();
 
         foreach ($rows as $row) {
@@ -208,6 +212,7 @@ class UserController extends BackendController
                 $profile = new Profile();
                 $profile->setScenario('basicCreate');
 
+                $profile->id = $user->id;
                 $profile->user_id = $user->id;
                 $profile->first_name = $row['name'];
                 $profile->last_name = $row['surname'];

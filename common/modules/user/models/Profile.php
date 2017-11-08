@@ -118,4 +118,30 @@ class Profile extends \thread\modules\user\models\Profile
     {
         return $this->hasOne(City::class, ['id' => 'city_id']);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCountryTitle()
+    {
+        $model = Country::findById($this->country_id);
+
+        if ($model == null)
+            return false;
+        else
+            return $model->lang->title;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCityTitle()
+    {
+        $model = City::findById($this->country_id);
+
+        if ($model == null)
+            return false;
+        else
+            return $model->lang->title;
+    }
 }
