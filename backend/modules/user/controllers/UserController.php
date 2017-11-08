@@ -166,10 +166,10 @@ class UserController extends BackendController
         ];
 
         $rows = (new \yii\db\Query())
-            ->from('c1myarredo2017_old.user')
-            ->leftJoin('c1myarredo2017_old.auth_assignment', 'auth_assignment.userid = user.login')
-            ->leftJoin('c1myarredo2017_old.user_data', 'user_data.uid = user.id')
-            ->leftJoin('c1myarredo2017_old.user_lang', 'user_lang.rid = user.id')
+            ->from('c1myarredo_old.user')
+            ->leftJoin('c1myarredo_old.auth_assignment', 'auth_assignment.userid = user.login')
+            ->leftJoin('c1myarredo_old.user_data', 'user_data.uid = user.id')
+            ->leftJoin('c1myarredo_old.user_lang', 'user_lang.rid = user.id')
             ->all();
 
         User::deleteAll();
