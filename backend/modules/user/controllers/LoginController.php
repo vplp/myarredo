@@ -35,7 +35,7 @@ class LoginController extends BackendController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'captcha'],
+                        'actions' => ['index', 'captcha', 'validation'],
                         'roles' => ['?'],
                     ],
                     [
