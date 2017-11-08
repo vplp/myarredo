@@ -125,7 +125,7 @@ class ProductController extends BackendController
             if ($model->gallery_id) {
 
                 $photo = (new \yii\db\Query())
-                    ->from('c1myarredo2017_old.photo')
+                    ->from('c1myarredo_old.photo')
                     ->where(['gallery_id' => $model->gallery_id])
                     ->all();
 
