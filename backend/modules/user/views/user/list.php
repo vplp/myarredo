@@ -27,6 +27,7 @@ echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
+        'id',
         [
             'attribute' => 'group_id',
             'value' => 'group.lang.title',
@@ -40,14 +41,14 @@ echo GridView::widget([
         ],
         [
             'value' => function ($model) {
-                return $model->profile->getCountry();
+                return $model->profile->getCountryTitle();
             },
             'label' => Yii::t('app', 'Country'),
             'filter' => GridViewFilter::selectOne($filter, 'country_id', Country::dropDownList()),
         ],
         [
             'value' => function ($model) {
-                return $model->profile->getCity();
+                return $model->profile->getCityTitle();
             },
             'label' => Yii::t('app', 'City'),
             'filter' => GridViewFilter::selectOne($filter, 'city_id', City::dropDownList($country_id)),

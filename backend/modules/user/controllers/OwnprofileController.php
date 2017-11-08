@@ -59,7 +59,9 @@ class OwnprofileController extends BackendController
                 'class' => Update::class,
                 'modelClass' => $this->model,
                 'redirect' => function () {
-                    return $_POST['save_and_exit'] ? ['/user/user/list'] : ['update', 'id' => $this->action->getModel()->id];
+                    return $_POST['save_and_exit']
+                        ? ['/user/user/list']
+                        : ['update', 'id' => $this->action->getModel()->id];
                 }
             ],
             'fileupload' => [
