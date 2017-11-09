@@ -4,9 +4,8 @@ namespace frontend\modules\location\widgets;
 
 use Yii;
 use yii\base\Widget;
-use frontend\modules\location\models\{
-    Country, City
-};
+//
+use frontend\modules\location\models\Country;
 
 /**
  * Class Cities
@@ -30,9 +29,9 @@ class Cities extends Widget
      */
     public function init()
     {
-        $session = Yii::$app->session;
+        $city = Yii::$app->city->getCity();
 
-        $this->country = Country::findById($session['country']['id']);
+        $this->country = Country::findById($city->country_id);
     }
 
     /**
