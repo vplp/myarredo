@@ -139,13 +139,12 @@ use frontend\modules\catalog\models\{
 
                                             <?php foreach ($val as $item): ?>
 
-                                                    <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
+                                                <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
-                                                    <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                                                        <input type="checkbox">
-                                                        <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
-                                                    <?= Html::endTag('a'); ?>
-
+                                                <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
+                                                    <input type="checkbox">
+                                                    <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
+                                                <?= Html::endTag('a'); ?>
 
                                             <?php endforeach; ?>
 
@@ -171,11 +170,11 @@ use frontend\modules\catalog\models\{
                 <div id="price-slider"></div>
                 <div class="flex s-between" style="padding: 10px 0;">
                     <div class="cur">
-                        <input type="text" id="min-price" value="100">
+                        <input type="text" id="min-price" value="<?= $min_max_price['minPrice'] ?>">
                     </div>
                     <span class="indent"> - </span>
                     <div class="cur">
-                        <input type="text" id="max-price" value="10000">
+                        <input type="text" id="max-price" value="<?= $min_max_price['maxPrice'] ?>">
                     </div>
                 </div>
                 <a href="#" class="submit">

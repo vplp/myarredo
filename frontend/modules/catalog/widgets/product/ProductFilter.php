@@ -43,6 +43,18 @@ class ProductFilter extends Widget
     public $factory = [];
 
     /**
+     * @var object
+     */
+    public $min_max_price = [];
+
+    public function init()
+    {
+        parent::init();
+
+        $this->min_max_price = ['maxPrice' => 0, 'minPrice' => 0];
+    }
+
+    /**
      * @return string
      */
     public function run()
@@ -167,9 +179,10 @@ class ProductFilter extends Widget
         }
 
         // список фабрик для первого показа
-        $factory_first_show = array();
+
+        $factory_first_show = [];
         $i = 0;
-        $factory_first_show_checked = array();
+        $factory_first_show_checked = [];
         foreach ($factory as $letter) {
             foreach ($letter as $val) {
                 if($val['checked']) {
@@ -194,6 +207,7 @@ class ProductFilter extends Widget
             'style' => $style,
             'factory' => $factory,
             'factory_first_show' => $factory_first_show,
+            'min_max_price' => !empty($this->min_max_price) ? $this->min_max_price : ['maxPrice' => 0, 'minPrice' => 0],
             'filter' => Yii::$app->catalogFilter->params
         ]);
     }
