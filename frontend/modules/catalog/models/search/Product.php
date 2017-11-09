@@ -59,6 +59,8 @@ class Product extends ProductModel
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
 
+        $keys = Yii::$app->catalogFilter->keys;
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
@@ -78,32 +80,28 @@ class Product extends ProductModel
             'id' => $this->id,
         ]);
 
-        if (isset($params['category'])) {
+        if (isset($params[$keys['category']])) {
             $query
                 ->innerJoinWith(["category"])
-                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params['category']]);
+                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params[$keys['category']]]);
         }
 
-        if (isset($params['type'])) {
+        if (isset($params[$keys['type']])) {
             $query
                 ->innerJoinWith(["types"])
-                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params['type']]);
+                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
         }
 
-        if (isset($params['style'])) {
+        if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["specification"])
-                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params['style']]);
+                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params[$keys['style']]]);
         }
 
-        if (isset($params['factory'])) {
+        if (isset($params[$keys['factory']])) {
             $query
                 ->innerJoinWith(["factory"])
-                ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params['factory']]);
-        }
-
-        if (isset($params['collection'])) {
-            $query->andFilterWhere(['collections_id' => $params['collection']['id']]);
+                ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
         }
 
         $order = [];
@@ -124,8 +122,14 @@ class Product extends ProductModel
         return $dataProvider;
     }
 
+    /**
+     * @param $params
+     * @return mixed
+     */
     public function getSubQuery($params)
     {
+        $keys = Yii::$app->catalogFilter->keys;
+
         $query = ProductModel::findBase();
 
         $query->andWhere([
@@ -136,30 +140,28 @@ class Product extends ProductModel
             'id' => $this->id,
         ]);
 
-        if (isset($params['category'])) {
+        if (isset($params[$keys['category']])) {
             $query
                 ->innerJoinWith(["category"])
-                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params['category']]);
+                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params[$keys['category']]]);
         }
 
-        if (isset($params['type'])) {
+        if (isset($params[$keys['types']])) {
             $query
                 ->innerJoinWith(["types"])
-                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params['type']]);
+                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['types']]]);
         }
 
-        if (isset($params['style'])) {
+        if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["specification"])
-                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params['style']]);
+                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params[$keys['style']]]);
         }
 
-        if (isset($params['factory'])) {
-            $query->andFilterWhere(['factory_id' => $params['factory']['id']]);
-        }
-
-        if (isset($params['collection'])) {
-            $query->andFilterWhere(['collections_id' => $params['collection']['id']]);
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["factory"])
+                ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
         }
 
         $query->select(ProductModel::tableName() . '.id');

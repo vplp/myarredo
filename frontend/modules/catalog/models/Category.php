@@ -139,24 +139,26 @@ class Category extends \common\modules\catalog\models\Category
      */
     public static function getAllWithFilter($params = [])
     {
+        $keys = Yii::$app->catalogFilter->keys;
+
         $query = self::findBase();
 
-        if (isset($params['type'])) {
+        if (isset($params[$keys['type']])) {
             $query
                 ->innerJoinWith(["product.types productTypes"], false)
-                ->andFilterWhere(['IN', 'productTypes.alias', $params['type']]);
+                ->andFilterWhere(['IN', 'productTypes.alias', $params[$keys['type']]]);
         }
 
-        if (isset($params['style'])) {
+        if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["product.specification productSpecification"], false)
-                ->andFilterWhere(['IN', 'productSpecification.alias', $params['style']]);
+                ->andFilterWhere(['IN', 'productSpecification.alias', $params[$keys['style']]]);
         }
 
-        if (isset($params['factory'])) {
+        if (isset($params[$keys['factory']])) {
             $query
                 ->innerJoinWith(["product.factory productFactory"], false)
-                ->andFilterWhere(['IN', 'productFactory.alias', $params['factory']]);
+                ->andFilterWhere(['IN', 'productFactory.alias', $params[$keys['factory']]]);
         }
 
         return $query

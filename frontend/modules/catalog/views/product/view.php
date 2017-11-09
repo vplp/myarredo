@@ -270,7 +270,6 @@ foreach (Yii::$app->shop_cart->items as $item) {
                 </div>
             </div>
 
-            <!--
             <div class="row receive-price">
                 <h3>
                     Получите лучшую цену из всех, предложенных поставщиками!
@@ -329,9 +328,8 @@ foreach (Yii::$app->shop_cart->items as $item) {
                     </div>
                 </div>
             </div>
-            -->
 
-            <?php if (!$model['removed']): ?>
+            <?php /*if (!$model['removed']): ?>
 
                 <div class="recommendation">
                     <div class="container large-container">
@@ -370,7 +368,7 @@ foreach (Yii::$app->shop_cart->items as $item) {
                     </div>
                 </div>
 
-            <?php endif; ?>
+            <?php endif; */ ?>
 
             <?php if ($model['collections_id']): ?>
 

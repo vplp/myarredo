@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\models;
 
+use Yii;
 use yii\helpers\{
     Url, ArrayHelper
 };
@@ -98,6 +99,8 @@ class Types extends \common\modules\catalog\models\Types
      */
     public static function getAllWithFilter($params = [])
     {
+        $keys = Yii::$app->catalogFilter->keys;
+
         $query = self::findBase();
 
         $query
@@ -108,20 +111,20 @@ class Types extends \common\modules\catalog\models\Types
                 Product::tableName() . '.deleted' => '0',
             ]);
 
-        if (isset($params['category'])) {
-            $query->andFilterWhere(['IN', 'productCategory.alias', $params['category']]);
+        if (isset($params[$keys['category']])) {
+            $query->andFilterWhere(['IN', 'productCategory.alias', $params[$keys['category']]]);
         }
 
-        if (isset($params['style'])) {
+        if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["product.specification productSpecification"], false)
-                ->andFilterWhere(['IN', 'productSpecification.alias', $params['style']]);
+                ->andFilterWhere(['IN', 'productSpecification.alias', $params[$keys['style']]]);
         }
 
-        if (isset($params['factory'])) {
+        if (isset($params[$keys['factory']])) {
             $query
                 ->innerJoinWith(["product.factory productFactory"], false)
-                ->andFilterWhere(['IN', 'productFactory.alias', $params['factory']]);
+                ->andFilterWhere(['IN', 'productFactory.alias', $params[$keys['factory']]]);
         }
 
         return $query
