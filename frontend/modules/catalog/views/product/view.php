@@ -131,31 +131,34 @@ foreach (Yii::$app->shop_cart->items as $item) {
                                     <td>Артикул</td>
                                     <td><?= $model['article']; ?></td>
                                 </tr>
-                                <tr>
-                                    <td>Размеры</td>
-                                    <td class="size">
-                                        <?php foreach ($model['specificationValue'] as $item): ?>
-                                            <?php if ($item['specification']['parent_id'] == 4): ?>
-                                                <?= Html::beginTag('span'); ?>
-                                                <?= $item['specification']['alias']; ?>:<?= $item['val']; ?>
-                                                <?= Html::endTag('span'); ?>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Материал</td>
-                                    <td>
-                                        <?php
-                                        $array = [];
-                                        foreach ($model['specificationValue'] as $item): ?>
-                                            <?php if ($item['specification']['parent_id'] == 2): ?>
-                                                <?php $array[] = $item['specification']['lang']['title']; ?>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                        <?= implode('; ', $array); ?>
-                                    </td>
-                                </tr>
+
+                                <?php if (!empty($model['specificationValue'])): ?>
+                                    <tr>
+                                        <td>Размеры</td>
+                                        <td class="size">
+                                            <?php foreach ($model['specificationValue'] as $item): ?>
+                                                <?php if ($item['specification']['parent_id'] == 4): ?>
+                                                    <?= Html::beginTag('span'); ?>
+                                                    <?= $item['specification']['alias']; ?>:<?= $item['val']; ?>
+                                                    <?= Html::endTag('span'); ?>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Материал</td>
+                                        <td>
+                                            <?php
+                                            $array = [];
+                                            foreach ($model['specificationValue'] as $item): ?>
+                                                <?php if ($item['specification']['parent_id'] == 2): ?>
+                                                    <?php $array[] = $item['specification']['lang']['title']; ?>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                            <?= implode('; ', $array); ?>
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
                             <?php endif; ?>
 
                         </table>
