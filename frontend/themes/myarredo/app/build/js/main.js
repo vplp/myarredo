@@ -145,7 +145,9 @@ $(document).ready(function(){
     /*--Ползунок каталог--*/
     (function(){
         var slider = document.getElementById('price-slider');
-
+        if($('#min-price').val() == $('#max-price').val()) {
+            $('#max-price').val( $('#max-price').val() + 1 )
+        }
         if(slider != null){
             noUiSlider.create(slider, {
                 start: [$('#min-price').val(),$('#max-price').val()],
@@ -329,5 +331,19 @@ $(document).ready(function(){
                textCont.text(variant);
            }
     });
+
+    (function(){
+
+        var selItem = $(".one-item-check.selected").parent();
+
+        selItem.each(function(i,item){
+            var wrap = $(item).closest(".list-item");
+
+            wrap.prepend($(item));
+            console.log(item);
+        })
+
+    })();
+
 
 });

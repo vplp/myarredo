@@ -689,7 +689,28 @@ footer {
     }
   }
 }
-
+.categoty-page {
+  .sort-by-name {
+    margin-right: 6px;
+  }
+  .sort-by {
+    .dropdown-toggle {
+      background: none;
+    }
+    .selected {
+      display: inline-flex;
+      border-bottom: 1px dashed black;
+      font-size: 13px;
+      cursor: pointer;
+      padding-left: 3px;
+      padding-right: 3px;
+    }
+    .dropdown-menu {
+      right: 0;
+      left: auto;
+    }
+  }
+}
 .prod-card-page {
   .prod-model {
     font-size: 20px;
@@ -1197,7 +1218,8 @@ footer {
       color: rgb(65, 64, 62);
       font-size: 14px;
       padding: 3px 0;
-      display: block;
+      display: flex;
+      align-items: center;
       &.selected {
         .my-checkbox {
           &:after {
@@ -1306,7 +1328,7 @@ footer {
   }
   .subject-filter {
     .list-item {
-      max-height: 395px;
+      max-height: 380px;
       overflow: hidden;
       transition: max-height 0.3s ease-out;
       &.show {
