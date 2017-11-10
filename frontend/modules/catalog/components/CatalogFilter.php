@@ -32,7 +32,7 @@ class CatalogFilter extends Component
         'type' => '.20',
         'style' => '.30',
         'factory' => '.40',
-//        'collection' => '.50',
+        'collection' => '.50',
 //        'd' => 'd',
 //        'dp' => 'dp',
 //        'ed' => 'ed',
@@ -77,36 +77,11 @@ class CatalogFilter extends Component
     }
 
     /**
-     * @return array
-     */
-    private static function getLabelEmptyKey()
-    {
-        return [
-            self::$keys['category'] => 'c',
-            self::$keys['type'] => 't',
-            self::$keys['style'] => 's',
-            self::$keys['factory'] => 'f',
-//            self::$keys['collection'] => 'c',
-//            self::$keys['d'] => 'd',
-//            self::$keys['dp'] => 'dp',
-//            self::$keys['ed'] => 'ed',
-//            self::$keys['el'] => 'el',
-//            self::$keys['h'] => 'h',
-//            self::$keys['id'] => 'id',
-//            self::$keys['il'] => 'il',
-//            self::$keys['l'] => 'l',
-//            self::$keys['m'] => 'm',
-            self::$keys['price'] => 'price',
-//            self::$keys['city'] => 'city',
-        ];
-    }
-
-    /**
-     * @param string $route
      * @param array $paramsUrl
+     * @param string $route
      * @return string
      */
-    public function createUrl($route, array $paramsUrl = [])
+    public function createUrl(array $paramsUrl = [], $route = '/catalog/category/list')
     {
         $labelEmptyKey = self::getLabelEmptyKey();
 
@@ -157,6 +132,31 @@ class CatalogFilter extends Component
         } else {
             return Url::toRoute([$route]);
         }
+    }
+
+    /**
+     * @return array
+     */
+    private static function getLabelEmptyKey()
+    {
+        return [
+            self::$keys['category'] => 'c',
+            self::$keys['type'] => 't',
+            self::$keys['style'] => 's',
+            self::$keys['factory'] => 'f',
+            self::$keys['collection'] => 'c',
+//            self::$keys['d'] => 'd',
+//            self::$keys['dp'] => 'dp',
+//            self::$keys['ed'] => 'ed',
+//            self::$keys['el'] => 'el',
+//            self::$keys['h'] => 'h',
+//            self::$keys['id'] => 'id',
+//            self::$keys['il'] => 'il',
+//            self::$keys['l'] => 'l',
+//            self::$keys['m'] => 'm',
+            self::$keys['price'] => 'price',
+//            self::$keys['city'] => 'city',
+        ];
     }
 
     /**

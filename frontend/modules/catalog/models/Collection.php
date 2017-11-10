@@ -68,4 +68,14 @@ class Collection extends \common\modules\catalog\models\Collection
     {
         return (new search\Collection())->search($params);
     }
+
+    /**
+     * @param array $params
+     * @return mixed
+     */
+    public static function getWithProduct($params = [])
+    {
+        return self::findBase()
+            ->all();
+    }
 }

@@ -104,11 +104,11 @@ class FactoryController extends BaseController
             throw new NotFoundHttpException;
         }
 
-        $category = Category::getAllWithFilter(Yii::$app->catalogFilter->params);
-        $types = Types::getAllWithFilter(Yii::$app->catalogFilter->params);
-        $style = Specification::getAllWithFilter(Yii::$app->catalogFilter->params);
-        $factory = Factory::getAllWithFilter(Yii::$app->catalogFilter->params);
-        $collection = Collection::getAllWithFilter(Yii::$app->catalogFilter->params);
+        $category = Category::getWithProduct(Yii::$app->catalogFilter->params);
+        $types = Types::getWithProduct(Yii::$app->catalogFilter->params);
+        $style = Specification::getWithProduct(Yii::$app->catalogFilter->params);
+        $factory = Factory::getWithProduct(Yii::$app->catalogFilter->params);
+        $collection = Collection::getWithProduct(Yii::$app->catalogFilter->params);
 
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
