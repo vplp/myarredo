@@ -10,6 +10,8 @@ use frontend\modules\catalog\models\Factory;
  * @var \frontend\modules\catalog\models\Factory $model
  */
 
+$keys = Yii::$app->catalogFilter->keys;
+
 ?>
 
 <main>
@@ -59,21 +61,24 @@ use frontend\modules\catalog\models\Factory;
                                     <?php
                                     $key = 1;
                                     $FactoryTypes = Factory::getFactoryTypes($model['id']);
-                                    foreach ($FactoryTypes as $item): ?>
-                                        <?php
+                                    foreach ($FactoryTypes as $item):
+
+                                        $params = Yii::$app->catalogFilter->params;
+
+                                        $params[$keys['factory']][] = $model['alias'];
+                                        $params[$keys['type']][] = $item['alias'];
+
+
                                         echo Html::beginTag('li') .
                                             Html::a(
                                                 $item['title'] . ' (' . $item['count'] . ')',
-                                                Yii::$app->catalogFilter->createUrl([
-                                                    'factory' => $model['alias'],
-                                                    'type' => $item['alias']
-                                                ])
+                                                Yii::$app->catalogFilter->createUrl($params)
                                             ) .
                                             Html::endTag('li');
                                         if ($key == 10) echo '</ul><ul class="list post-list">';
                                         ++$key;
-                                        ?>
-                                    <?php endforeach; ?>
+
+                                    endforeach; ?>
 
                                 </ul>
 
@@ -93,21 +98,23 @@ use frontend\modules\catalog\models\Factory;
                                     <?php
                                     $key = 1;
                                     $FactoryCollection = Factory::getFactoryCollection($model['id']);
-                                    foreach ($FactoryCollection as $item): ?>
-                                        <?php
+                                    foreach ($FactoryCollection as $item):
+
+                                        $params = Yii::$app->catalogFilter->params;
+
+                                        $params[$keys['factory']][] = $model['alias'];
+                                        $params[$keys['collection']][] = $item['id'];
+
                                         echo Html::beginTag('li') .
                                             Html::a(
                                                 $item['title'] . ' (' . $item['count'] . ')',
-                                                Yii::$app->catalogFilter->createUrl([
-                                                    'factory' => $model['alias'],
-                                                    'collection' => $item['id']
-                                                ])
+                                                Yii::$app->catalogFilter->createUrl($params)
                                             ) .
                                             Html::endTag('li');
                                         if ($key == 10) echo '</ul><ul class="list post-list">';
                                         ++$key;
-                                        ?>
-                                    <?php endforeach; ?>
+
+                                    endforeach; ?>
 
                                 </ul>
 
@@ -163,18 +170,19 @@ use frontend\modules\catalog\models\Factory;
                 <?php
                 $key = 1;
                 $FactoryCategory = Factory::getFactoryCategory([$model['id']]);
-                foreach ($FactoryCategory as $item): ?>
-                    <?php
+
+                foreach ($FactoryCategory as $item):
+                    $params = Yii::$app->catalogFilter->params;
+
+                    $params[$keys['factory']][] = $model['alias'];
+                    $params[$keys['category']][] = $item['alias'];
+
                     echo Html::a(
                             $item['title'],
-                            Yii::$app->catalogFilter->createUrl([
-                                'factory' => $model['alias'],
-                                'category' => $item['alias']
-                            ])
+                            Yii::$app->catalogFilter->createUrl($params)
                         ) .
                         Html::endTag('li');
-                    ?>
-                <?php endforeach; ?>
+                endforeach; ?>
 
             </div>
 
@@ -192,19 +200,14 @@ use frontend\modules\catalog\models\Factory;
                     $_factory[$item['id']] = $item;
                 }
 
-                foreach ($collection as $item) {
-                    $_collection[$item['id']] = $item;
-                }
-
-                foreach ($product as $item): ?>
-                    <?= $this->render('/category/_list_item', [
+                foreach ($product as $item):
+                    $this->render('/category/_list_item', [
                         'model' => $item,
                         'types' => $_types,
                         'style' => $style,
-                        'factory' => $_factory,
-                        'collection' => $_collection,
-                    ]) ?>
-                <?php endforeach; ?>
+                        'factory' => $_factory
+                    ]);
+                endforeach; ?>
 
                 <?= Html::a(
                     'смотреть полный<div>Каталог</div>',
