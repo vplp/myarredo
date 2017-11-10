@@ -1,13 +1,13 @@
 <?php
 
-namespace frontend\modules\catalog\widgets\product;
+namespace frontend\modules\catalog\widgets\filter;
 
 use yii\base\Widget;
 
 /**
  * Class ProductSorting
  *
- * @package frontend\modules\catalog\widgets\product
+ * @package frontend\modules\catalog\widgets\filter
  */
 class ProductSorting extends Widget
 {

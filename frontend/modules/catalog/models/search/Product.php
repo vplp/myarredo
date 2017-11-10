@@ -3,17 +3,14 @@
 namespace frontend\modules\catalog\models\search;
 
 use Yii;
-use yii\helpers\ArrayHelper;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
+use yii\data\ActiveDataProvider;
 //
 use frontend\modules\catalog\models\{
     Category,
     Types,
     Factory,
     Product as ProductModel,
-    ProductRelCategory,
-    ProductRelSpecification,
     Specification
 };
 use frontend\modules\catalog\Catalog;

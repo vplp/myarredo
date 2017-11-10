@@ -97,7 +97,7 @@ class Types extends \common\modules\catalog\models\Types
      * @param array $params
      * @return mixed
      */
-    public static function getAllWithFilter($params = [])
+    public static function getWithProduct($params = [])
     {
         $keys = Yii::$app->catalogFilter->keys;
 
@@ -125,6 +125,51 @@ class Types extends \common\modules\catalog\models\Types
             $query
                 ->innerJoinWith(["product.factory productFactory"], false)
                 ->andFilterWhere(['IN', 'productFactory.alias', $params[$keys['factory']]]);
+        }
+
+        return $query
+            ->select([
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                TypesLang::tableName() . '.title',
+                'count(' . self::tableName() . '.id) as count'
+            ])
+            ->groupBy(self::tableName() . '.id')
+            ->all();
+    }
+
+    /**
+     * @param array $params
+     * @return mixed
+     */
+    public static function getWithSale($params = [])
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = self::findBase();
+
+        $query
+            ->innerJoinWith(["sale"], false)
+            ->innerJoinWith(["sale.category saleCategory"], false)
+            ->andFilterWhere([
+                Sale::tableName() . '.published' => '1',
+                Sale::tableName() . '.deleted' => '0',
+            ]);
+
+        if (isset($params[$keys['category']])) {
+            $query->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["sale.specification saleSpecification"], false)
+                ->andFilterWhere(['IN', 'saleSpecification.alias', $params[$keys['style']]]);
+        }
+
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["sale.factory saleFactory"], false)
+                ->andFilterWhere(['IN', 'saleFactory.alias', $params[$keys['factory']]]);
         }
 
         return $query

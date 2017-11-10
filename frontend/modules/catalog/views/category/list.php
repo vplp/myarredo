@@ -1,9 +1,11 @@
 <?php
 
-use yii\helpers\Html;
+use yii\helpers\{
+    Html, Url
+};
 use frontend\components\Breadcrumbs;
 //
-use frontend\modules\catalog\widgets\product\{
+use frontend\modules\catalog\widgets\filter\{
     ProductSorting, ProductFilter
 };
 
@@ -28,6 +30,7 @@ use frontend\modules\catalog\widgets\product\{
                     <div class="col-md-3 col-lg-3">
 
                         <?= ProductFilter::widget([
+                            'route' => '/catalog/category/list',
                             'category' => $category,
                             'types' => $types,
                             'style' => $style,
@@ -133,10 +136,6 @@ use frontend\modules\catalog\widgets\product\{
 
                                     foreach ($factory as $item) {
                                         $_factory[$item['id']] = $item;
-                                    }
-
-                                    foreach ($collection as $item) {
-                                        $_collection[$item['id']] = $item;
                                     }
 
                                     foreach ($models as $model): ?>

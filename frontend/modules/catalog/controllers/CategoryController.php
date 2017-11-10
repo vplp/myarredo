@@ -12,8 +12,7 @@ use frontend\modules\catalog\models\{
     Category,
     Factory,
     Types,
-    Specification,
-    Collection
+    Specification
 };
 
 /**
@@ -55,11 +54,10 @@ class CategoryController extends BaseController
             $group = Yii::$app->catalogFilter->params['category'];
         }
 
-        $category = Category::getAllWithFilter(Yii::$app->catalogFilter->params);
-        $types = Types::getAllWithFilter(Yii::$app->catalogFilter->params);
-        $style = Specification::getAllWithFilter(Yii::$app->catalogFilter->params);
-        $factory = Factory::getAllWithFilter(Yii::$app->catalogFilter->params);
-        $collection = Collection::getAllWithFilter(Yii::$app->catalogFilter->params);
+        $category = Category::getWithProduct(Yii::$app->catalogFilter->params);
+        $types = Types::getWithProduct(Yii::$app->catalogFilter->params);
+        $style = Specification::getWithProduct(Yii::$app->catalogFilter->params);
+        $factory = Factory::getWithProduct(Yii::$app->catalogFilter->params);
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, Yii::$app->catalogFilter->params));
 
@@ -69,7 +67,6 @@ class CategoryController extends BaseController
             'types' => $types,
             'style' => $style,
             'factory' => $factory,
-            'collection' => $collection,
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),
         ]);

@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\modules\catalog\widgets\product;
+namespace frontend\modules\catalog\widgets\filter;
 
 use Yii;
 use yii\base\Widget;
@@ -8,7 +8,7 @@ use yii\base\Widget;
 /**
  * Class ProductFilter
  *
- * @package frontend\modules\catalog\widgets\product
+ * @package frontend\modules\catalog\widgets\filter
  */
 class ProductFilter extends Widget
 {
@@ -16,6 +16,11 @@ class ProductFilter extends Widget
      * @var string
      */
     public $view = 'product_filter';
+
+    /**
+     * @var string
+     */
+    public $route;
 
     /**
      * @var object
@@ -79,7 +84,7 @@ class ProductFilter extends Widget
                 $params[$keys['category']] = $obj['alias'];
             }
 
-            $link = Yii::$app->catalogFilter->createUrl($params);
+            $link = Yii::$app->catalogFilter->createUrl($this->route, $params);
 
             $category[$key] = array(
                 'checked' => $checked,
@@ -108,7 +113,7 @@ class ProductFilter extends Widget
                 $params[$keys['type']][] = $obj['alias'];
             }
 
-            $link = Yii::$app->catalogFilter->createUrl($params);
+            $link = Yii::$app->catalogFilter->createUrl($this->route, $params);
 
             $types[$key] = array(
                 'checked' => $checked,
@@ -137,7 +142,7 @@ class ProductFilter extends Widget
                 $params[$keys['style']][] = $obj['alias'];
             }
 
-            $link = Yii::$app->catalogFilter->createUrl($params);
+            $link = Yii::$app->catalogFilter->createUrl($this->route, $params);
 
             $style[$key] = array(
                 'checked' => $checked,
@@ -166,7 +171,7 @@ class ProductFilter extends Widget
                 $params[$keys['factory']][] = $obj['alias'];
             }
 
-            $link = Yii::$app->catalogFilter->createUrl($params);
+            $link = Yii::$app->catalogFilter->createUrl($this->route, $params);
 
             $factory[$obj['first_letter']][] = array(
                 'checked' => $checked,
@@ -202,6 +207,7 @@ class ProductFilter extends Widget
         }
 
         return $this->render($this->view, [
+            'route' => $this->route,
             'category' => $category,
             'types' => $types,
             'style' => $style,
