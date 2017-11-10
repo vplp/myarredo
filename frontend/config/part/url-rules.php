@@ -22,6 +22,7 @@ return [
 
     // Module [[Catalog]]
     'catalog/<filter:[\;\-\/\w\d]+>' => 'catalog/category/list',
+    'sale/<filter:[\;\-\/\w\d]+>' => 'catalog/sale/list',
     'factory/<letter:[\w\-]>' => 'catalog/factory/list',
     'factory/<alias:[\w\-]+>' => 'catalog/factory/view',
     'product/<alias:[\w\-]+>' => 'catalog/product/view',

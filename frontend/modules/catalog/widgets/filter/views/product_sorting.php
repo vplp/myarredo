@@ -35,14 +35,14 @@ use yii\helpers\Html;
 </div>
 
 <?php
-$script = <<<JS
-$('.sort-by').on('change', function () {
-    var value = $(this).find('option:selected').val(), 
-        name = $(this).find('select').attr('name');
-    $('#catalog_filter').find('input[name=' + name + ']').val(value);
-    $('#catalog_filter').submit();
-});
-JS;
-
-$this->registerJs($script, yii\web\View::POS_READY);
+//$script = <<<JS
+//$('.sort-by').on('change', function () {
+//    var value = $(this).find('option:selected').val(),
+//        name = $(this).find('select').attr('name');
+//    $('#catalog_filter').find('input[name=' + name + ']').val(value);
+//    $('#catalog_filter').submit();
+//});
+//JS;
+//
+//$this->registerJs($script, yii\web\View::POS_READY);
 ?>

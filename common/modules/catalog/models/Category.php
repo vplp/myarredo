@@ -163,6 +163,16 @@ class Category extends ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSale()
+    {
+        return $this
+            ->hasMany(Sale::class, ['id' => 'sale_item_id'])
+            ->viaTable(SaleRelCategory::tableName(), ['group_id' => 'id']);
+    }
+
+    /**
      * @return null|string
      */
     public function getImageLink()

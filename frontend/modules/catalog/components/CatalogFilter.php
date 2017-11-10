@@ -102,10 +102,11 @@ class CatalogFilter extends Component
     }
 
     /**
+     * @param string $route
      * @param array $paramsUrl
      * @return string
      */
-    public function createUrl(array $paramsUrl = [])
+    public function createUrl($route, array $paramsUrl = [])
     {
         $labelEmptyKey = self::getLabelEmptyKey();
 
@@ -152,9 +153,9 @@ class CatalogFilter extends Component
         }
 
         if ($url !== '') {
-            return Url::toRoute(['/catalog/category/list', 'filter' => $url]);
+            return Url::toRoute([$route, 'filter' => $url]);
         } else {
-            return Url::toRoute(['/catalog/category/list']);
+            return Url::toRoute([$route]);
         }
     }
 

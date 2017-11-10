@@ -15,14 +15,14 @@ use frontend\modules\catalog\models\{
         <?php $form = ActiveForm::begin([
             'method' => 'get',
             'id' => 'catalog_filter',
-            'action' => Url::toRoute(['/catalog/category/list'])
+            'action' => Url::toRoute([$route])
         ]) ?>
 
         <div class="one-filter open">
 
             <?= Html::a(
                 '<i class="fa fa-times" aria-hidden="true"></i>СБРОСИТЬ ФИЛЬТРЫ',
-                Url::toRoute(['/catalog/category/list']),
+                Url::toRoute([$route]),
                 ['class' => 'reset']
             ) ?>
 
@@ -162,6 +162,7 @@ use frontend\modules\catalog\models\{
             </div>
         <?php endif; ?>
 
+        <?php /*
         <div class="one-filter">
             <div class="price-slider-cont">
                 <a href="javascript:void(0);" class="filt-but">
@@ -182,6 +183,8 @@ use frontend\modules\catalog\models\{
                 </a>
             </div>
         </div>
+
+        */ ?>
 
         <?= Html::hiddenInput('sort', Yii::$app->request->get('sort') ?? null) ?>
         <?= Html::hiddenInput('object', Yii::$app->request->get('object') ?? null) ?>

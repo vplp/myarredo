@@ -68,14 +68,4 @@ class Collection extends \common\modules\catalog\models\Collection
     {
         return (new search\Collection())->search($params);
     }
-
-    /**
-     * @param $params
-     * @return mixed
-     */
-    public static function getAllWithFilter($params = [])
-    {
-        return self::findBase()
-            ->all();
-    }
 }

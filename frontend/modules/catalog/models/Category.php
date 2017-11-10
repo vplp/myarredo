@@ -137,7 +137,7 @@ class Category extends \common\modules\catalog\models\Category
      * @param array $params
      * @return mixed
      */
-    public static function getAllWithFilter($params = [])
+    public static function getWithProduct($params = [])
     {
         $keys = Yii::$app->catalogFilter->keys;
 
@@ -166,6 +166,51 @@ class Category extends \common\modules\catalog\models\Category
             ->andFilterWhere([
                 Product::tableName() . '.published' => '1',
                 Product::tableName() . '.deleted' => '0',
+            ])
+            ->select([
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                self::tableName() . '.position',
+                CategoryLang::tableName() . '.title',
+                'count(' . self::tableName() . '.id) as count'
+            ])
+            ->groupBy(self::tableName() . '.id')
+            ->all();
+    }
+
+    /**
+     * @param array $params
+     * @return mixed
+     */
+    public static function getWithSale($params = [])
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = self::findBase();
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["sale.types saleTypes"], false)
+                ->andFilterWhere(['IN', 'saleTypes.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["sale.specification saleSpecification"], false)
+                ->andFilterWhere(['IN', 'saleSpecification.alias', $params[$keys['style']]]);
+        }
+
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["sale.factory saleFactory"], false)
+                ->andFilterWhere(['IN', 'saleFactory.alias', $params[$keys['factory']]]);
+        }
+
+        return $query
+            ->innerJoinWith(["sale"], false)
+            ->andFilterWhere([
+                Sale::tableName() . '.published' => '1',
+                Sale::tableName() . '.deleted' => '0',
             ])
             ->select([
                 self::tableName() . '.id',

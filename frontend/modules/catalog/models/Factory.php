@@ -118,7 +118,7 @@ class Factory extends \common\modules\catalog\models\Factory
      * @param array $params
      * @return mixed
      */
-    public static function getAllWithFilter($params = [])
+    public static function getWithProduct($params = [])
     {
         $keys = Yii::$app->catalogFilter->keys;
 
@@ -160,6 +160,55 @@ class Factory extends \common\modules\catalog\models\Factory
             ->asArray()
             ->all();
     }
+
+
+    /**
+     * @param array $params
+     * @return mixed
+     */
+    public static function getWithSale($params = [])
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = self::findBase();
+
+        $query
+            ->innerJoinWith(["sale"], false)
+            ->innerJoinWith(["sale.category saleCategory"], false)
+            ->andFilterWhere([
+                Sale::tableName() . '.published' => '1',
+                Sale::tableName() . '.deleted' => '0',
+            ]);
+
+        if (isset($params[$keys['category']])) {
+            $query->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
+        }
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["sale.types saleTypes"], false)
+                ->andFilterWhere(['IN', 'saleTypes.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["sale.specification saleSpecification"], false)
+                ->andFilterWhere(['IN', 'saleSpecification.alias', $params[$keys['style']]]);
+        }
+
+        return $query
+            ->select([
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                self::tableName() . '.first_letter',
+                FactoryLang::tableName() . '.title',
+                'count(' . self::tableName() . '.id) as count'
+            ])
+            ->groupBy(self::tableName() . '.id')
+            ->asArray()
+            ->all();
+    }
+
 
     /**
      * @return mixed
