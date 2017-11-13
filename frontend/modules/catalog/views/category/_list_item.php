@@ -20,7 +20,7 @@ use frontend\modules\catalog\models\Product;
 <?php endif; ?>
 
     <div class="img-cont">
-        <?= Html::img(Product::getImage()); ?>
+        <?= Html::img(Product::getImage($model['image_link'])); ?>
         <div class="brand">
             <?= (isset($factory[$model['factory_id']])) ? $factory[$model['factory_id']]['lang']['title'] : null; ?>
         </div>

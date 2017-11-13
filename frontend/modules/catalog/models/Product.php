@@ -92,7 +92,7 @@ class Product extends \common\modules\catalog\models\Product
      * @param string $image_link
      * @return null|string
      */
-    public static function getImage(string $image_link = '')
+    public static function getImage($image_link = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
