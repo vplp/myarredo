@@ -334,13 +334,11 @@ $(document).ready(function(){
 
     (function(){
 
-        var selItem = $(".one-item-check.selected").parent();
+        var selItemIn = $(".one-item-check.selected");
 
-        selItem.each(function(i,item){
-            var wrap = $(item).closest(".list-item");
-
-            wrap.prepend($(item));
-            console.log(item);
+        selItemIn.each(function(i,item){
+            var parent = $(item).closest(".list-item");
+            parent.prepend($(item));
         })
 
     })();
