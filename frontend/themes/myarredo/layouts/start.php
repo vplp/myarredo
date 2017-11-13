@@ -3,7 +3,8 @@
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\catalog\widgets\category\CategoryOnMainPage;
 use frontend\modules\catalog\widgets\factory\FactoryOnMainPage;
-//use frontend\modules\catalog\widgets\sale\SaleOnMainPage;
+use frontend\modules\catalog\widgets\product\ProductNovelty;
+use frontend\modules\catalog\widgets\sale\SaleOnMainPage;
 use frontend\modules\user\widgets\partner\PartnerMap;
 
 $bundle = AppAsset::register($this);
@@ -46,93 +47,9 @@ $bundle = AppAsset::register($this);
 
         <?= CategoryOnMainPage::widget(); ?>
 
-        <!-- Новинки -->
+        <?= ProductNovelty::widget(); ?>
 
-        <div class="novelties">
-            <div class="container large-container">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12">
-                        <div class="header">
-                            <h2>Новинки</h2>
-                            <a href="#" class="more">Смотреть все категории</a>
-                            <div id="novelties-slider" class="carousel slide" data-ride="carousel">
-
-                                <div class="carousel-inner">
-
-                                    <div class="item active">
-                                        <div class="item-in">
-                                            <div class="left">
-                                                <a href="#" class="large">
-                                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/new_1.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="right">
-                                                <a href="#" class="smaller">
-                                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/new_2.jpg" alt="">
-                                                </a>
-                                                <a href="#" class="smaller">
-                                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/new_1.jpg" alt="">
-                                                </a>
-                                                <a href="#" class="smaller">
-                                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/new_2.jpg" alt="">
-                                                </a>
-                                                <a href="#" class="smaller">
-                                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/new_1.jpg" alt="">
-                                                </a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="item">
-                                        <div class="item-in">
-                                            <div class="left">
-                                                <a href="#" class="large">
-                                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/new_2.jpg" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="right">
-                                                <a href="#" class="smaller">
-                                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/new_1.jpg" alt="">
-                                                </a>
-                                                <a href="#" class="smaller">
-                                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/new_2.jpg" alt="">
-                                                </a>
-                                                <a href="#" class="smaller">
-                                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/new_2.jpg" alt="">
-                                                </a>
-                                                <a href="#" class="smaller">
-                                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/new_1.jpg" alt="">
-                                                </a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="arr-cont">
-                                    <a class="left left-arr" href="#novelties-slider" role="button" data-slide="prev">
-                                        <span class="glyphicon glyphicon-chevron-left"></span>
-                                    </a>
-                                    <div class="indent"></div>
-                                    <a class="right right-arr" href="#novelties-slider" role="button" data-slide="next">
-                                        <span class="glyphicon glyphicon-chevron-right"></span>
-                                    </a>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- конец Новинки -->
-
-        <?php //SaleOnMainPage::widget(); ?>
+        <?= SaleOnMainPage::widget(); ?>
 
         <!-- Причины выбрать нас -->
         <div class="causes">
