@@ -2,7 +2,9 @@
 
 namespace frontend\modules\catalog\widgets\filter;
 
+use Yii;
 use yii\base\Widget;
+use yii\helpers\Url;
 
 /**
  * Class ProductSorting
@@ -16,11 +18,12 @@ class ProductSorting extends Widget
      */
     public $view = 'product_sorting';
 
+    public $url;
     /**
      * @var array
      */
     public $sortList = [
-        '' => 'Не выбрано',
+        'null' => 'Не выбрано',
         'asc' => 'По возрастанию',
         'desc' => 'По убыванию',
     ];
@@ -29,7 +32,7 @@ class ProductSorting extends Widget
      * @var array
      */
     public $objectList = [
-        '' => 'Все товары',
+        'null' => 'Все товары',
         'composition' => 'Все композиции',
     ];
 
@@ -40,7 +43,8 @@ class ProductSorting extends Widget
     {
         return $this->render($this->view, [
             'sortList' => $this->sortList,
-            'objectList' => $this->objectList
+            'objectList' => $this->objectList,
+            'url' => Yii::$app->catalogFilter->createUrl(Yii::$app->catalogFilter->params)
         ]);
     }
 }
