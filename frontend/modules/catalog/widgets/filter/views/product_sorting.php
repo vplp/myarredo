@@ -14,35 +14,26 @@ use yii\helpers\Html;
     </a>
 </div>
 
-<div class="sort-by">
-    Сортировать по цене:
-    <?= Html::dropDownList(
-        'sort',
-        Yii::$app->request->get('sort'),
-        $sortList,
-        ['class' => 'selectpicker']
-    ); ?>
+<div class="dropdown sort-by">
+    <span class="sort-by-name">Сортировать по цене:</span>
+    <ul class="dropdown-menu">
+        <?php foreach ($sortList as $key => $item): ?>
+            <li><a href="<?= ($key != 'null') ? $url . '?sort=' . $key : $url; ?>"><?= $item ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+    <button class="btn dropdown-toggle selected" type="button" data-toggle="dropdown">
+        <?= isset($sortList[Yii::$app->getRequest()->get('sort')]) ?  $sortList[Yii::$app->getRequest()->get('sort')] : $sortList['null']?>
+    </button>
 </div>
 
-<div class="sort-by">
-    Показать:
-    <?= Html::dropDownList(
-        'object',
-        Yii::$app->request->get('object'),
-        $objectList,
-        ['class' => 'selectpicker']
-    ); ?>
+<div class="dropdown sort-by">
+    <span class="sort-by-name">Показать:</span>
+    <ul class="dropdown-menu">
+        <?php foreach ($objectList as $key => $item): ?>
+            <li><a href="<?= ($key != 'null') ? $url . '?object=' . $key : $url; ?>"><?= $item ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+    <button class="btn dropdown-toggle selected" type="button" data-toggle="dropdown">
+        <?= isset($objectList[Yii::$app->getRequest()->get('object')]) ?  $objectList[Yii::$app->getRequest()->get('object')] : $objectList['null']?>
+    </button>
 </div>
-
-<?php
-//$script = <<<JS
-//$('.sort-by').on('change', function () {
-//    var value = $(this).find('option:selected').val(),
-//        name = $(this).find('select').attr('name');
-//    $('#catalog_filter').find('input[name=' + name + ']').val(value);
-//    $('#catalog_filter').submit();
-//});
-//JS;
-//
-//$this->registerJs($script, yii\web\View::POS_READY);
-?>
