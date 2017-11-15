@@ -196,12 +196,13 @@ class CatalogFilter extends Component
         }
 
         if (!empty(self::$_structure['type'])) {
+
             $model = Types::findBase()
-                ->andFilterWhere(['IN', 'alias', self::$_structure['type']])
+                ->andWhere(['IN', 'alias', self::$_structure['type']])
                 ->indexBy('id')
                 ->all();
 
-            if ($model === null) {
+            if (count(self::$_structure['type']) !== count($model) || $model === null) {
                 throw new NotFoundHttpException;
             }
 
@@ -216,7 +217,7 @@ class CatalogFilter extends Component
                 ->indexBy('id')
                 ->all();
 
-            if ($model === null) {
+            if (count(self::$_structure['style']) !== count($model) || $model === null) {
                 throw new NotFoundHttpException;
             }
 
@@ -231,7 +232,7 @@ class CatalogFilter extends Component
                 ->indexBy('id')
                 ->all();
 
-            if ($model === null) {
+            if (count(self::$_structure['factory']) !== count($model) || $model === null) {
                 throw new NotFoundHttpException;
             }
 
