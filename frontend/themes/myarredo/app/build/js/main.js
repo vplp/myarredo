@@ -189,7 +189,6 @@ $(document).ready(function(){
     (function () {
         $('.filt-but').click(function(){
             var parent = $(this).parent('.one-filter');
-                console.log(parent);
                 if(parent.hasClass('open')){
                     parent.removeClass('open');
                     parent.find('.list-item').slideUp();
@@ -303,6 +302,7 @@ $(document).ready(function(){
     });
 
     /*--больше фабрик модалка--*/
+    $(".alphabet-tab a:nth-child(1)").click(); //показываем первый элемент по умолчанию
     $(".alphabet-tab a").click(function(){
         $(this).siblings().removeClass("active");
         $(this).addClass("active");
@@ -334,7 +334,7 @@ $(document).ready(function(){
 
     (function(){
 
-        var selItemIn = $(".one-item-check.selected");
+        var selItemIn = $(".list-item > .one-item-check.selected");
 
         selItemIn.each(function(i,item){
             var parent = $(item).closest(".list-item");
