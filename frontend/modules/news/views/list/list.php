@@ -18,17 +18,17 @@ $description = 'description';
 $description .= ($page) ? ' Страница ' . $page : '';
 
 
-$this->registerMetaTag([
-    'name' => 'description',
-    'content' => $description
-]);
-
-if ($page) {
-    $this->registerMetaTag([
-        'name' => 'robots',
-        'content' => 'noindex, follow'
-    ]);
-}
+//$this->registerMetaTag([
+//    'name' => 'description',
+//    'content' => $description
+//]);
+//
+//if ($page) {
+//    $this->registerMetaTag([
+//        'name' => 'robots',
+//        'content' => 'noindex, follow'
+//    ]);
+//}
 
 ?>
 
