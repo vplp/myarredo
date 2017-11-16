@@ -1,27 +1,41 @@
 <?php
-use thread\app\bootstrap\ActiveForm;
-use common\modules\seo\modules\directlink\models\Directlink;
+
+use backend\app\bootstrap\ActiveForm;
+use backend\themes\defaults\widgets\Tabs;
+
+$form = ActiveForm::begin();
+
+$items = [
+    [
+        'label' => Yii::t('app', 'Settings'),
+        'content' => $this->render('parts/_settings', [
+            'form' => $form,
+            'model' => $model
+        ])
+    ],
+    [
+        'label' => Yii::t('app', 'Content'),
+        'content' => $this->render('parts/_content', [
+            'form' => $form,
+            'model' => $model
+        ])
+    ]
+];
+
+//if (!$model->isNewRecord) {
+//    $items[] = [
+//        'label' => Yii::t('seo', 'Seo'),
+//        'content' => $this->render('parts/_seo', [
+//            'form' => $form,
+//            'model' => $model
+//        ]),
+//    ];
+//}
 
 ?>
-<?php $form = ActiveForm::begin(); ?>
 <?= $form->submit($model, $this) ?>
-<?= $form->text_line($model, 'url') ?>
-<?= $form->text_line_lang($model, 'title') ?>
-<?= $form->text_line_lang($model, 'description') ?>
-<?= $form->text_line_lang($model, 'keywords') ?>
-
-<?= $form->text_line($model, 'image_url') ?>
-<div class="row">
-    <div class="col-md-4">
-        <?= $form->field($model, 'meta_robots')->dropDownList(Directlink::statusMetaRobotsRange()) ?>
-    </div>
-    <div class="col-md-3">
-        <?= $form->switcher($model, 'add_to_sitemap') ?>
-    </div>
-    <div class="col-md-3">
-        <?= $form->switcher($model, 'dissallow_in_robotstxt') ?>
-    </div>
-</div>
-<?= $form->switcher($model, 'published') ?>
+<?= Tabs::widget([
+    'items' => $items
+]) ?>
 <?= $form->submit($model, $this) ?>
 <?php ActiveForm::end(); ?>

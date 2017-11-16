@@ -19,7 +19,7 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
     public $fieldClass = ActiveField::class;
 
     public $enableClientValidation = true;
-    public $enableAjaxValidation = true;
+    public $enableAjaxValidation = false;
     public $validateOnSubmit = true;
     public $enableClientScript = true;
 

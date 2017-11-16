@@ -53,17 +53,12 @@ class Directlink extends ParentModel implements BaseBackendSearchModel
     public function baseSearch($query, $params)
     {
         /** @var ParentModule $module */
-        $module = Yii::$app->getModule('seo');
+        $module = Yii::$app->getModule('seo/directlink');
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
                 'pageSize' => $module->itemOnPage
             ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_ASC
-                ]
-            ]
         ]);
 
         if (!($this->load($params) && $this->validate())) {
@@ -82,7 +77,7 @@ class Directlink extends ParentModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = ParentModel::find()->undeleted();
+        $query = ParentModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -92,7 +87,7 @@ class Directlink extends ParentModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = ParentModel::find()->deleted();
+        $query = ParentModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }
