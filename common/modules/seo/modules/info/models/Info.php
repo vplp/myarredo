@@ -5,9 +5,7 @@ namespace common\modules\seo\modules\info\models;
 /**
  * Class Info
  *
- * @package common\modules\seo\modules\info
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
+ * @package common\modules\seo\modules\info\models
  */
 class Info extends \thread\modules\seo\modules\info\models\Info
 {
