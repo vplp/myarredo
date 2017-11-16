@@ -76,9 +76,8 @@ class DirectlinkController extends BackendController
             $model->url = "/catalog/" . $row['url'];
             $model->title = $row['h1'];
             $model->description = $row['h1'] ?? "";
-            $model->keywords = "";
-            $model->text = $row['text_ru'] ?? "";
-            $model->image_url = "";
+            $model->content = $row['text_ru'] ?? "";
+            $model->h1 = $row['h1'] ?? "";
             $model->published = 1;
 
             /** @var PDO $transaction */
@@ -118,10 +117,11 @@ class DirectlinkController extends BackendController
             $model->setScenario('backend');
 
             $model->url = $row['url'];
-            $model->title = $row['h1'];
+            $model->title = $row['title'];
             $model->description = $row['description'] ?? "";
             $model->keywords = $row['keywords'] ?? "";
-            $model->text = $row['text'] ?? "";
+            $model->h1 = $row['h1'] ?? "";
+            $model->content = $row['text'] ?? "";
             $model->image_url = "";
             $model->published = 1;
 
