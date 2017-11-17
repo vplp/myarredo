@@ -112,7 +112,7 @@ class MetaTag extends Component
     /**
      * @return $this
      */
-    public function getDirectModel()
+    protected function getDirectModel()
     {
         if (!empty($this->local_url)) {
             $this->direct_model = Directlink::find()->url($this->local_url)->enabled()->one();
