@@ -55,4 +55,7 @@ return [
             'from' => ['test@vipdesign.com.ua' => 'myarredo'],
         ],
     ],
+    'metatag' => [
+        'class' => \frontend\modules\seo\components\MetaTag::class
+    ],
 ];

@@ -14,6 +14,9 @@ use frontend\modules\catalog\models\{
     Types,
     Specification
 };
+use frontend\modules\seo\modules\{
+    directlink\models\Directlink
+};
 
 /**
  * Class CategoryController
@@ -61,6 +64,8 @@ class CategoryController extends BaseController
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, Yii::$app->catalogFilter->params));
 
+        //$modelDirectlink = Yii::$app->metatag->getDirectModel();
+
         return $this->render('list', [
             'group' => $group,
             'category' => $category,
@@ -71,6 +76,7 @@ class CategoryController extends BaseController
             'pages' => $models->getPagination(),
         ]);
     }
+
 
     /**
      * @param \yii\base\Action $action

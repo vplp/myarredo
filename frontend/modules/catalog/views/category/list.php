@@ -14,6 +14,8 @@ use frontend\modules\catalog\widgets\filter\{
  * @var $model \frontend\modules\catalog\models\Product
  */
 
+$this->title = $this->context->title;
+
 ?>
 
 <main>
