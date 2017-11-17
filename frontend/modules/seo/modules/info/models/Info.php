@@ -8,8 +8,6 @@ use yii\helpers\ArrayHelper;
  * Class Info
  *
  * @package frontend\modules\seo\modules\info\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Info extends \common\modules\seo\modules\info\models\Info
 {

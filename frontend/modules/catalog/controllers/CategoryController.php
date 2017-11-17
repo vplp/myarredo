@@ -61,6 +61,7 @@ class CategoryController extends BaseController
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, Yii::$app->catalogFilter->params));
 
+
         return $this->render('list', [
             'group' => $group,
             'category' => $category,
@@ -117,4 +118,5 @@ class CategoryController extends BaseController
 
         return parent::beforeAction($action);
     }
+
 }

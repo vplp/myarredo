@@ -5,6 +5,10 @@ namespace frontend\components;
 use yii\helpers\Url;
 use yii\web\Controller;
 
+use frontend\modules\seo\modules\{
+    directlink\models\Directlink
+};
+
 /**
  * Class BaseController
  *
@@ -27,6 +31,16 @@ abstract class BaseController extends Controller
      */
     public $breadcrumbs = [];
 
+    protected $directlink;
+
+    public function init()
+    {
+
+        $this->directlink = Directlink::findByUrl();
+
+        parent::init();
+    }
+
     /**
      * @param \yii\base\Action $action
      * @return bool|\yii\web\Response
@@ -40,5 +54,32 @@ abstract class BaseController extends Controller
         }
 
         return parent::beforeAction($action);
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeoH1()
+    {
+        $h1 = false;
+
+        if ($this->directlink['h1']) {
+            $h1 = $this->directlink['h1'];
+        }
+
+        return $h1;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeoContent()
+    {
+        $content = false;
+
+        if ($this->directlink['content']) {
+            $content = $this->directlink['content'];
+        }
+        return $content;
     }
 }
