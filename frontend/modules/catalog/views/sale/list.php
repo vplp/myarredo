@@ -71,7 +71,7 @@ use frontend\modules\catalog\widgets\filter\{
 
                 <div class="row">
                     <div class="comp-advanteges">
-
+                        <?= $this->context->SeoContent ?>
                     </div>
                 </div>
             </div>
