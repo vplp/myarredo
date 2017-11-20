@@ -55,25 +55,25 @@ class Catalog extends aModule {
      * Category upload path
      * @return string
      */
-    public function getCategoryUploadPath()
-    {
-        $dir = $this->getBaseUploadPath() . '/category';
-
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
-
-        return $dir;
-    }
+//    public function getCategoryUploadPath()
+//    {
+//        $dir = $this->getBaseUploadPath() . '/category';
+//
+//        if (!is_dir($dir)) {
+//            mkdir($dir, 0777, true);
+//        }
+//
+//        return $dir;
+//    }
 
     /**
      * Category upload URL
      * @return string
      */
-    public function getCategoryUploadUrl()
-    {
-        return $this->getBaseUploadUrl() . '/category';
-    }
+//    public function getCategoryUploadUrl()
+//    {
+//        return $this->getBaseUploadUrl() . '/category';
+//    }
 
     /**
      * Samples upload path
