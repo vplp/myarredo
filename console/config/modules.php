@@ -33,7 +33,7 @@ return [
     'menu' => [
         'class' => thread\modules\menu\Menu::class
     ],
-    'shop' => [
-        'class' => \thread\modules\shop\Shop::class,
-    ],
+//    'shop' => [
+//        'class' => \thread\modules\shop\Shop::class,
+//    ],
 ];
