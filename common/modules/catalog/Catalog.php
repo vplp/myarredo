@@ -172,6 +172,15 @@ class Catalog extends aModule {
 //    }
 
     /**
+     * Image upload path
+     * @return string
+     */
+    public function getBaseUploadPath()
+    {
+        return Yii::getAlias('@uploads') . '/';
+    }
+
+    /**
      * Base upload URL
      * @return string
      */
