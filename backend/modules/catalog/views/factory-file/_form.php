@@ -16,6 +16,7 @@ $this->context->actionListLinkStatus = Url::to(
         'id' => ($this->context->factory->id !== null) ? $this->context->factory->id : 0,
     ]
 );
+/*
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
@@ -44,4 +45,4 @@ $this->context->actionListLinkStatus = Url::to(
 
 <?= $form->switcher($model, 'published') ?>
 <?= $form->submit($model, $this) ?>
-<?php ActiveForm::end(); ?>
+<?php ActiveForm::end(); */ ?>

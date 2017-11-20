@@ -6,7 +6,6 @@ use Yii;
 use yii\helpers\{
     ArrayHelper
 };
-use yii\behaviors\AttributeBehavior;
 //
 use voskobovich\behaviors\ManyToManyBehavior;
 //
@@ -14,7 +13,6 @@ use thread\app\base\models\ActiveRecord;
 use thread\modules\shop\interfaces\Product as iProduct;
 //
 use common\modules\catalog\Catalog;
-use common\helpers\Inflector;
 
 /**
  * Class Product
@@ -96,16 +94,6 @@ class Product extends ActiveRecord implements iProduct
                     'factory_prices_files_ids' => 'factoryPricesFiles',
                 ],
             ],
-            [
-                'class' => AttributeBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
-                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
-                ],
-                'value' => function ($event) {
-                    return Inflector::slug($this->alias, '_');
-                },
-            ],
         ]);
     }
 
@@ -115,7 +103,7 @@ class Product extends ActiveRecord implements iProduct
     public function rules()
     {
         return [
-            [['factory_id', 'catalog_type_id'], 'required'],
+            [['factory_id', 'catalog_type_id'], 'required', 'on' => 'backend'],
             [
                 [
                     'catalog_type_id',
@@ -181,7 +169,7 @@ class Product extends ActiveRecord implements iProduct
             'onmain' => ['onmain'],
             'removed' => ['removed'],
             'position' => ['position'],
-            'gallery_image' => ['gallery_image', 'picpath'],
+            'setImages' => ['image_link', 'gallery_image', 'picpath'],
             'backend' => [
                 'catalog_type_id',
                 'user_id',
@@ -268,7 +256,7 @@ class Product extends ActiveRecord implements iProduct
     {
         return self::find()
             ->innerJoinWith(['lang'])
-            ->orderBy('updated_at DESC');
+            ->orderBy(self::tableName() . '.id DESC');
     }
 
     /**

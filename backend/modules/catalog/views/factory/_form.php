@@ -47,22 +47,22 @@ use backend\themes\defaults\widgets\Tabs;
                 'modelLang' => $modelLang
             ])
         ],
-//        [
-//            'label' => Yii::t('app', 'Catalogs'),
-//            'content' => $this->render('parts/_catalogs', [
-//                'form' => $form,
-//                'model' => $model,
-//                'modelLang' => $modelLang
-//            ])
-//        ],
-//        [
-//            'label' => Yii::t('app', 'Prices'),
-//            'content' => $this->render('parts/_prices', [
-//                'form' => $form,
-//                'model' => $model,
-//                'modelLang' => $modelLang
-//            ])
-//        ],
+        [
+            'label' => Yii::t('app', 'Catalogs'),
+            'content' => $this->render('parts/_catalogs', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
+        [
+            'label' => Yii::t('app', 'Prices'),
+            'content' => $this->render('parts/_prices', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
         [
             'label' => 'Meta',
             'content' => $this->render('parts/_meta', [

@@ -17,7 +17,8 @@ echo GridView::widget([
     'dataProvider' => (new FactoryFile())->search([
         'FactoryFile' => [
             'factory_id' => $model->id,
-            'file_type' => '1']
+            'file_type' => '1'
+        ]
     ]),
     'columns' => [
         [

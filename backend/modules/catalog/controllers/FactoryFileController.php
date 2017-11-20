@@ -98,13 +98,13 @@ class FactoryFileController extends BackendController
             ],
             'fileupload' => [
                 'class' => UploadAction::class,
-                'path' => $this->module->getFactoryFileUploadPath(),
+                'path' => $this->module->getFactoryFileUploadPath(Yii::$app->request->get('file_type')),
                 'uploadOnlyImage' => false,
                 'unique' => false
             ],
             'filedelete' => [
                 'class' => DeleteAction::class,
-                'path' => $this->module->getFactoryFileUploadPath()
+                'path' => $this->module->getFactoryFileUploadPath(Yii::$app->request->get('file_type'))
             ],
         ]);
     }
