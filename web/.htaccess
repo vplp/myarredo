@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-Options -indexes
-=======
 AddDefaultCharset UTF-8
 
 # mod_autoindex
@@ -43,4 +40,3 @@ AddDefaultCharset UTF-8
 	Order Allow,Deny
 	Deny from all
 </FilesMatch>
->>>>>>> 10aa889f47da309ffcbb252116f8ac6404ee5e60
