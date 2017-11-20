@@ -105,7 +105,7 @@ class Product extends \common\modules\catalog\models\Product
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image = $url . '/' . $image_link;
         }
-        $image = $url . '/' . $image_link;
+
         return $image;
     }
 

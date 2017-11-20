@@ -77,7 +77,7 @@ class Catalog extends aModule {
      */
     public function getSamplesUploadPath()
     {
-        $dir = $this->getBaseUploadPath() . '/samples';
+        $dir = $this->getBaseUploadPath() . '/images';
 
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
@@ -92,7 +92,7 @@ class Catalog extends aModule {
      */
     public function getSamplesUploadUrl()
     {
-        return $this->getBaseUploadUrl() . '/samples';
+        return $this->getBaseUploadUrl() . '/images';
     }
 
     /**
@@ -101,7 +101,7 @@ class Catalog extends aModule {
      */
     public function getSaleUploadPath()
     {
-        $dir = $this->getBaseUploadPath() . '/sale';
+        $dir = $this->getBaseUploadPath() . '/images';
 
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
@@ -116,7 +116,7 @@ class Catalog extends aModule {
      */
     public function getSaleUploadUrl()
     {
-        return $this->getBaseUploadUrl() . '/sale';
+        return $this->getBaseUploadUrl() . '/images';
     }
 
     /**
