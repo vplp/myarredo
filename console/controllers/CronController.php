@@ -47,8 +47,8 @@ class CronController extends Controller
 
                     $images = ArrayHelper::map($photo, 'id', 'photopath');
 
-                    $model->image_link = array_shift($images);
                     $model->gallery_image = implode(',', $images);
+                    $model->image_link = array_shift($images);
                     $model->picpath = '1';
 
                     if ($model->save()) {
