@@ -37,6 +37,9 @@ class m170731_132022_update_catalog_sale_lang_table extends Migration
 
         $this->alterColumn($this->tableLang, 'lang', $this->string(5)->notNull()->comment('Language'));
 
+        // change lang 'ru' on 'ru-RU'
+        $this->update($this->tableLang, ['lang' => 'ru-RU'], ['lang' => 'ru']);
+
         $this->renameTable('sale_catalog_item_lang', 'catalog_sale_item_lang');
     }
 

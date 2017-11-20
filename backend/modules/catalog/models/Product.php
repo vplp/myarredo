@@ -4,7 +4,10 @@ namespace backend\modules\catalog\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\behaviors\AttributeBehavior;
+use thread\app\base\models\ActiveRecord;
 use thread\app\model\interfaces\BaseBackendModel;
+use common\helpers\Inflector;
 use common\modules\catalog\models\Product as CommonProductModel;
 
 /**
@@ -17,14 +20,33 @@ class Product extends CommonProductModel implements BaseBackendModel
     public $parent_id = 0;
 
     /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias, '_');
+                },
+            ],
+        ]);
+    }
+
+    /**
      * @param bool $insert
      * @return bool
      */
     public function beforeSave($insert)
     {
-        $this->alias = $this->types->lang->title
-            . ' ' . $this->factory->lang->title
-            . ' ' . $this->collection->lang->title
+        $this->alias = (!empty($this->types->lang) ? $this->types->lang->title : '')
+            . ' ' . (!empty($this->factory->lang) ? $this->factory->lang->title : '')
+            . ' ' . (!empty($this->collection->lang) ? $this->collection->lang->title : '')
             . (($this->article) ? ' ' . $this->article : '');
 
         if ($this->id) {

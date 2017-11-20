@@ -21,16 +21,16 @@ class CronController extends Controller
     /**
      * Import product gallery image
      */
-    public function actionImportProductGalleryImage()
+    public function actionImportProductImages()
     {
         $models = Product::find()
+            ->select(['id', 'gallery_id', 'image_link', 'gallery_image', 'picpath'])
             ->limit(1000)
             ->where(['picpath' => '0'])
+            ->orderBy('id ASC')
             ->all();
 
         foreach ($models as $model) {
-
-            echo $model->id . PHP_EOL;
 
             if ($model->gallery_id) {
 
@@ -43,13 +43,17 @@ class CronController extends Controller
                 /** @var $model Product */
                 $transaction = $model::getDb()->beginTransaction();
                 try {
-                    $model->setScenario('gallery_image');
+
 
                     $images = ArrayHelper::map($photo, 'id', 'photopath');
 
                     $model->gallery_image = implode(',', $images);
                     $model->image_link = array_shift($images);
                     $model->picpath = '1';
+
+//                    /* !!! */ echo  '<pre style="color:red;">'; print_r($model->attributes); echo '</pre>'; /* !!! */
+//                    die();
+                    $model->setScenario('setImages');
 
                     if ($model->save()) {
                         $transaction->commit();

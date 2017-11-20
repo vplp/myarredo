@@ -39,6 +39,9 @@ class m170728_131922_update_catalog_factory_file_table extends Migration
         $this->addColumn($this->table, 'published', "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published' AFTER file_size");
         $this->addColumn($this->table, 'deleted', "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Deleted' AFTER published");
         $this->addColumn($this->table, 'position', $this->integer(11)->unsigned()->defaultValue(0)->after('deleted'));
+
+        // set published
+        $this->update($this->table, ['published' => '1']);
     }
 
     /**
