@@ -33,7 +33,7 @@ class Catalog extends aModule {
      */
     public function getProductUploadPath()
     {
-        $dir = $this->getBaseUploadPath() . '/product';
+        $dir = $this->getBaseUploadPath() . '/images';
 
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
@@ -48,7 +48,7 @@ class Catalog extends aModule {
      */
     public function getProductUploadUrl()
     {
-        return $this->getBaseUploadUrl() . '/product';
+        return $this->getBaseUploadUrl() . '/images';
     }
 
     /**
@@ -147,29 +147,29 @@ class Catalog extends aModule {
         return $this->getBaseUploadUrl() . '/factory';
     }
 
-    /**
-     * FactoryFile upload path
-     * @return string
-     */
-    public function getFactoryFileUploadPath()
-    {
-        $dir = $this->getBaseUploadPath() . '/factory/files';
-
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
-
-        return $dir;
-    }
-
-    /**
-     * FactoryFile upload URL
-     * @return string
-     */
-    public function getFactoryFileUploadUrl()
-    {
-        return $this->getBaseUploadUrl() . '/factory/files';
-    }
+//    /**
+//     * FactoryFile upload path
+//     * @return string
+//     */
+//    public function getFactoryFileUploadPath()
+//    {
+//        $dir = $this->getBaseUploadPath() . '/factory/files';
+//
+//        if (!is_dir($dir)) {
+//            mkdir($dir, 0777, true);
+//        }
+//
+//        return $dir;
+//    }
+//
+//    /**
+//     * FactoryFile upload URL
+//     * @return string
+//     */
+//    public function getFactoryFileUploadUrl()
+//    {
+//        return $this->getBaseUploadUrl() . '/factory/files';
+//    }
 
     /**
      * Base upload URL
@@ -177,6 +177,6 @@ class Catalog extends aModule {
      */
     public function getBaseUploadUrl()
     {
-        return '/uploads/' . $this->name;
+        return '/uploads';
     }
 }
