@@ -35,10 +35,6 @@ class Catalog extends aModule {
     {
         $dir = $this->getBaseUploadPath() . '/images';
 
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
-
         return $dir;
     }
 
