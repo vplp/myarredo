@@ -60,6 +60,9 @@ return ArrayHelper::merge(
                     "$rootDir/temp",
                 ],
             ],
+            'cron' => [
+                'class' => 'console\controllers\CronController',
+            ],
         ],
         'params' => [],
     ]
