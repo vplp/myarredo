@@ -13,12 +13,12 @@ AddDefaultCharset UTF-8
     RewriteRule ^backend(.*)$ backend/$1 [L]
 
     # Переадресацыя на www
-    RewriteCond %{HTTP_HOST} ^myarredo2017.dev [NC]
-    RewriteRule ^(.*)$ http://www.myarredo2017.dev/$1 [R=permanent,L]
+    RewriteCond %{HTTP_HOST} ^myarredo.ru [NC]
+    RewriteRule ^(.*)$ http://www.myarredo.ru/$1 [R=permanent,L]
 
     # Поддоменн без www
-    RewriteCond %{HTTP_HOST} ^www\.([A-Za-z0-9_-]*)\.myarredo2017\.dev
-    RewriteRule ^(.*)$ http://%1.myarredo2017.dev/$1 [R=permanent,L]
+    RewriteCond %{HTTP_HOST} ^www\.([A-Za-z0-9_-]*)\.myarredo\.ru
+    RewriteRule ^(.*)$ http://%1.myarredo.ru/$1 [R=permanent,L]
 
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
