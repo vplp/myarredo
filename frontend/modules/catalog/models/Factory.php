@@ -102,8 +102,8 @@ class Factory extends \common\modules\catalog\models\Factory
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
 
-        $path = $module->getCategoryUploadPath();
-        $url = $module->getCategoryUploadUrl();
+        $path = $module->getFactoryUploadPath();
+        $url = $module->getFactoryUploadUrl();
 
         $image = null;
 
