@@ -37,6 +37,9 @@ class m170718_160158_update_catalog_factory_lang_table extends Migration
 
         $this->renameColumn($this->tableLang, 'text', 'content');
 
+        // change lang 'ru' on 'ru-RU'
+        $this->update($this->tableLang, ['lang' => 'ru-RU'], ['lang' => 'ru']);
+
         $this->renameTable('factory_lang', 'catalog_factory_lang');
     }
 

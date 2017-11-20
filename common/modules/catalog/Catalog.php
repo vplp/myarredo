@@ -144,28 +144,40 @@ class Catalog extends aModule {
     }
 
     /**
-     * FactoryFile upload path
+     * FactoryFileUploadPath
+     *
+     * @param int $file_type
      * @return string
      */
-//    public function getFactoryFileUploadPath()
-//    {
-//        $dir = $this->getBaseUploadPath() . '/factory/files';
-//
-//        if (!is_dir($dir)) {
-//            mkdir($dir, 0777, true);
-//        }
-//
-//        return $dir;
-//    }
-//
-//    /**
-//     * FactoryFile upload URL
-//     * @return string
-//     */
-//    public function getFactoryFileUploadUrl()
-//    {
-//        return $this->getBaseUploadUrl() . '/factory/files';
-//    }
+    public function getFactoryFileUploadPath($file_type = 0)
+    {
+        switch ($file_type) {
+            case 0:
+                return false;
+            case 1:
+                return $this->getBaseUploadPath() . '/factoryFileCatalog';
+            case 2:
+                return $this->getBaseUploadPath() . '/factoryFilePrice';
+        }
+    }
+
+    /**
+     * FactoryFileUploadUrl
+     *
+     * @param int $file_type
+     * @return bool|string
+     */
+    public function getFactoryFileUploadUrl($file_type = 0)
+    {
+        switch ($file_type) {
+            case 0:
+                return false;
+            case 1:
+                return $this->getBaseUploadUrl() . '/factoryFileCatalog';
+            case 2:
+                return $this->getBaseUploadUrl() . '/factoryFilePrice';
+        }
+    }
 
     /**
      * Image upload path

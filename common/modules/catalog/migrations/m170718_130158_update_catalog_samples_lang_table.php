@@ -33,6 +33,9 @@ class m170718_130158_update_catalog_samples_lang_table extends Migration
 
         $this->alterColumn($this->tableLang, 'lang', $this->string(5)->notNull()->comment('Language'));
 
+        // change lang 'ru' on 'ru-RU'
+        $this->update($this->tableLang, ['lang' => 'ru-RU'], ['lang' => 'ru']);
+
         $this->renameTable('samples_lang', 'catalog_samples_lang');
     }
 

@@ -52,16 +52,16 @@ class FactoryFile extends ActiveRecord
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-            'uploadBehavior' => [
-                'class' => UploadBehavior::class,
-                'attributes' => [
-                    'file_link' => [
-                        'path' => Yii::$app->getModule('catalog')->getFactoryFileUploadPath(),
-                        'tempPath' => Yii::getAlias('@temp'),
-                        'url' => Yii::$app->getModule('catalog')->getFactoryFileUploadPath(),
-                    ]
-                ]
-            ],
+//            'uploadBehavior' => [
+//                'class' => UploadBehavior::class,
+//                'attributes' => [
+//                    'file_link' => [
+//                        'path' => Yii::$app->getModule('catalog')->getFactoryFileUploadPath(),
+//                        'tempPath' => Yii::getAlias('@temp'),
+//                        'url' => Yii::$app->getModule('catalog')->getFactoryFileUploadPath(),
+//                    ]
+//                ]
+//            ],
         ]);
     }
 

@@ -1,18 +1,16 @@
 <?php
 
 use yii\db\Migration;
+//
 use common\modules\catalog\Catalog;
 
 /**
- * Class m171006_071853_create_field_to_category
- *
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
+ * Class m171006_071853_update_catalog_category_table
  */
-class m171006_071853_create_field_to_category extends Migration
+class m171006_071853_update_catalog_category_table extends Migration
 {
-
     /**
+     * table name
      * @var string
      */
     public $table = '{{%catalog_group}}';
@@ -26,15 +24,19 @@ class m171006_071853_create_field_to_category extends Migration
         parent::init();
     }
 
+    /**
+     * Implement migration
+     */
     public function safeUp()
     {
         $this->addColumn($this->table, 'product_count', $this->integer(1)->unsigned()->notNull()->defaultValue(0));
     }
 
+    /**
+     * Cancel migration
+     */
     public function safeDown()
     {
-        echo "m171006_071853_create_field_to_category cannot be reverted.\n";
-
-        return false;
+        $this->dropColumn($this->table, 'product_count');
     }
 }
