@@ -26,3 +26,6 @@ CMS CORE
 
 Дополнительная документация
     /thread/doc
+    
+7. CRON 
+/opt/php71/bin/php /var/www/www-root/data/www/myarredo.ru/yii cron/import-product-gallery-image
