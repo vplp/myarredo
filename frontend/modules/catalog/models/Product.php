@@ -110,6 +110,41 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * @param string $image_link
+     * @return null|string
+     */
+    public static function getImageThumb($image_link  = '')
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getProductUploadPath();
+        $url = $module->getProductUploadUrl();
+
+        $image = null;
+
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = $url . '/' . $image_link;
+
+
+        }
+        $exp = explode('/', $image_link);
+        unset($exp[count($exp)-1]);
+        $dir    = $path . '/' . implode('/' ,$exp);
+        $files = scandir($dir);
+
+        /* !!! */ echo  '<pre style="color:red;">'; print_r($files); echo '</pre>'; /* !!! */
+
+
+
+        // resize
+//        $ImageResize = new ImageResize($path, $url);
+//        $image = $ImageResize->getThumb($image, 340, 340);
+
+        return $image;
+    }
+
+    /**
      * @param string $alias
      * @return string
      */
