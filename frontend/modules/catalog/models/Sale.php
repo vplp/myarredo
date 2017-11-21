@@ -12,39 +12,6 @@ use yii\helpers\Url;
  */
 class Sale extends \common\modules\catalog\models\Sale
 {
-//    /**
-//     * @return array
-//     */
-//    public function behaviors()
-//    {
-//        return [];
-//    }
-
-//    /**
-//     * @return array
-//     */
-//    public function scenarios()
-//    {
-//        return parent::scenarios();
-//    }
-//
-//    /**
-//     * @return array
-//     */
-//    public function attributeLabels()
-//    {
-//        return [];
-//    }
-//
-//    /**
-//     * @return array
-//     */
-//    public function rules()
-//    {
-//        return [];
-//    }
-
-
     /**
      * Get by alias
      *
@@ -109,9 +76,10 @@ class Sale extends \common\modules\catalog\models\Sale
     }
 
     /**
+     * @param string $image_link
      * @return null|string
      */
-    public function getImage()
+    public function getImage(string $image_link = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -121,8 +89,8 @@ class Sale extends \common\modules\catalog\models\Sale
 
         $image = null;
 
-        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
-            $image = $url . '/' . $this->image_link;
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = $url . '/' . $image_link;
         }
 
         return $image;
