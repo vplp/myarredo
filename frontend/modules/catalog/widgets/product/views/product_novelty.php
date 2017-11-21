@@ -30,7 +30,7 @@ use frontend\modules\catalog\models\Product;
 
                                                 <?php if ($key == 0) { ?>
                                                     <a href="<?= Product::getUrl($model['alias']) ?>" class="large">
-                                                        <?= Html::img(Product::getImage($model['image_link'])); ?>
+                                                        <?= Html::img(Product::getImageThumb($model['image_link'])); ?>
                                                     </a>
                                                 <?php } ?>
 
@@ -44,7 +44,7 @@ use frontend\modules\catalog\models\Product;
 
                                             <?php if ($key > 0) { ?>
                                                 <a href="<?= Product::getUrl($model['alias']) ?>" class="smaller">
-                                                    <?= Html::img(Product::getImage($model['image_link'])); ?>
+                                                    <?= Html::img(Product::getImageThumb($model['image_link'])); ?>
                                                 </a>
                                             <?php } ?>
 
