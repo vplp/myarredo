@@ -136,10 +136,8 @@ class Factory extends \common\modules\catalog\models\Factory
 
         $ImageResize = new ImageResize($path, $url);
 
-        return $ImageResize->getThumb($image, 100, 100);
+        return $ImageResize->getThumb($image, 200, 200);
     }
-
-
 
     /**
      * @param array $params
