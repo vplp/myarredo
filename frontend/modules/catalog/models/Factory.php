@@ -6,6 +6,8 @@ use Yii;
 use yii\helpers\{
     Url, ArrayHelper
 };
+//
+use frontend\components\ImageResize;
 
 /**
  * Class Factory
@@ -113,6 +115,31 @@ class Factory extends \common\modules\catalog\models\Factory
 
         return $image;
     }
+
+    /**
+     * @param string $image_link
+     * @return null|string
+     */
+    public static function getImageThumb(string $image_link  = '')
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getFactoryUploadPath();
+        $url = $module->getFactoryUploadUrl();
+
+        $image = null;
+
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = $url . '/' . $image_link;
+        }
+
+        $ImageResize = new ImageResize($path, $url);
+
+        return $ImageResize->getThumb($image, 100, 100);
+    }
+
+
 
     /**
      * @param array $params
