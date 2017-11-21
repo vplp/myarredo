@@ -109,10 +109,9 @@ class Sale extends \common\modules\catalog\models\Sale
     }
 
     /**
-     * @param string $image_link
      * @return null|string
      */
-    public static function getImage(string $image_link = '')
+    public function getImage()
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -122,8 +121,8 @@ class Sale extends \common\modules\catalog\models\Sale
 
         $image = null;
 
-        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-            $image = $url . '/' . $image_link;
+        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
+            $image = $url . '/' . $this->image_link;
         }
 
         return $image;
