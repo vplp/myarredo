@@ -343,5 +343,42 @@ $(document).ready(function(){
 
     })();
 
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $(".fa-angle-right.slick-arrow").click();
+        $(".fa-angle-left.slick-arrow").click();
+    });
+
+    $("#panel2 .row").slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        nextArrow: "<a href=javascript:void(0) class='fa fa-angle-left'></a>",
+        prevArrow: "<a href=javascript:void(0) class='fa fa-angle-right'></a>",
+        responsive: [
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 540,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
+
+
+
 
 });
