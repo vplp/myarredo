@@ -13,7 +13,7 @@ use frontend\modules\catalog\models\Factory;
 
     <div class="flex">
         <div class="logo-img">
-            <?= Html::img(Factory::getImage($model['image_link'])); ?>
+            <?= Html::img(Factory::getImageThumb($model['image_link'])); ?>
         </div>
         <?= Html::tag('h3', $model['lang']['title']); ?>
     </div>
