@@ -124,18 +124,21 @@ class Product extends \common\modules\catalog\models\Product
         $image = null;
 
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-            $image = $url . '/' . $image_link;
 
 
+            $img_path = explode('/', $image_link);
+            $img = $img_path[count($img_path)-1];
+//            unset($exp[count($exp)-1]);
+//            $dir    = $path . '/' . implode('/' ,$exp);
+//            $files = scandir($dir);
+
+            $image = $url . '/' . implode('/', $img_path) . '/thumb_' . $img;
         }
-        $exp = explode('/', $image_link);
-        unset($exp[count($exp)-1]);
-        $dir    = $path . '/' . implode('/' ,$exp);
-        $files = scandir($dir);
-
-        /* !!! */ echo  '<pre style="color:red;">'; print_r($files); echo '</pre>'; /* !!! */
 
 
+        //* !!! */ echo  '<pre style="color:red;">'; print_r($files); echo '</pre>'; /* !!! */
+
+        //thumb_b3dafc3d695204c17f8b466f4ec24b70
 
         // resize
 //        $ImageResize = new ImageResize($path, $url);
