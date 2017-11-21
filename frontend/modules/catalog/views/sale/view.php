@@ -1,6 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+//
+use frontend\modules\catalog\models\Factory;
 
 ?>
 
@@ -10,9 +12,15 @@ use yii\helpers\Html;
             <div class="row">
                 <div class="col-md-12">
                     <div class="flex s-between c-align top-links">
-                        <a href="#" class="brand">
-                            Poliform
-                        </a>
+
+                        <?php if ($model['factory']): ?>
+                            <?= Html::a(
+                                $model['factory']['lang']['title'],
+                                Factory::getUrl($model['factory']['alias']),
+                                ['class' => 'brand']
+                            ); ?>
+                        <?php endif; ?>
+
                         <a href="#" class="back">
                             Вернуться к списку
                         </a>
@@ -26,7 +34,7 @@ use yii\helpers\Html;
                 <div class="col-xs-12 col-sm-12 col-md-5">
                     <div class="img-wrap">
                         <a href="javascript:void(0);" class="img-cont">
-                            <img src="public/img/pictures/sale.jpg" alt="Изображение товара">
+                            <?= Html::img($model->getImage()); ?>
                         </a>
                         <a href="javascript:void(0);" class="zoom">
                             Увеличить
