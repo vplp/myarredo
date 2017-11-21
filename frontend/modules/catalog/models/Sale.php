@@ -79,7 +79,7 @@ class Sale extends \common\modules\catalog\models\Sale
      * @param string $image_link
      * @return null|string
      */
-    public function getImage(string $image_link = '')
+    public static function getImage($image_link = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');

@@ -3,6 +3,8 @@
 use yii\helpers\{
     Html, Url
 };
+//
+use frontend\modules\catalog\models\Sale;
 
 /**
  * @var $model \frontend\modules\catalog\models\Category
@@ -39,29 +41,36 @@ use yii\helpers\{
 
                                                     <a href="#" class="one-tile">
                                                         <div class="img-cont">
-                                                            <?= Html::img($model::getImage($model['image_link']), ['class' => 'cont']); ?>
+                                                            <?= Html::img(Sale::getImage($model['image_link']), ['class' => 'cont']); ?>
                                                         </div>
                                                         <div class="name">
                                                             <?= $model->getTitle(); ?>
                                                         </div>
-                                                        <div class="old-price">14 320 EUR</div>
+
+                                                        <?php if ($model['price'] > 0): ?>
+                                                            <div class="old-price"><?= $model['price']; ?> <?= $model['currency']; ?></div>
+                                                        <?php endif; ?>
                                                         <div class="new-price">
-                                                            10 320 EUR
+                                                            <?= $model['price_new']; ?> <?= $model['currency']; ?>
                                                         </div>
+
                                                     </a>
 
                                                 <?php } else { ?>
+
                                                     </div>
                                                     <div class="right-side">
 
                                                         <a href="#" class="one-tile">
                                                             <div class="img-cont">
-                                                                <?= Html::img($model::getImage($model['image_link']), ['class' => 'cont']); ?>
+                                                                <?= Html::img(Sale::getImage($model['image_link']), ['class' => 'cont']); ?>
                                                             </div>
                                                             <div class="name">
                                                                 <?= $model->getTitle(); ?>
                                                             </div>
-                                                            <div class="old-price"><?= $model['price']; ?> <?= $model['currency']; ?></div>
+                                                            <?php if ($model['price'] > 0): ?>
+                                                                <div class="old-price"><?= $model['price']; ?> <?= $model['currency']; ?></div>
+                                                            <?php endif; ?>
                                                             <div class="new-price">
                                                                 <?= $model['price_new']; ?> <?= $model['currency']; ?>
                                                             </div>

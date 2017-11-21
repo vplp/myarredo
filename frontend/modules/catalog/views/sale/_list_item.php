@@ -1,6 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+//
+use frontend\modules\catalog\models\Sale;
 
 /**
  * @var \frontend\modules\catalog\models\Sale $model
@@ -16,7 +18,7 @@ use yii\helpers\Html;
         </div>
     </object>
     <div class="img-cont">
-        <?= Html::img($model::getImage($model['image_link'])); ?>
+        <?= Html::img(Sale::getImage($model['image_link'])); ?>
         <div class="brand">
             <?= $model['factory']['lang']['title'] ?>
         </div>
