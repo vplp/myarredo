@@ -969,6 +969,23 @@ footer {
     }
   }
 }
+#comp-slider {
+  .tile {
+    .img-cont {
+      img {
+        display: block;
+        min-width: 170px;
+        min-height: 170px;
+      }
+    }
+  }
+  .slick-track {
+    display: flex;
+  }
+  .slick-list, .slick-track {
+    width: 100% !important;
+  }
+}
 #comp-slider,.std-slider {
   position: relative;
   display: flex;

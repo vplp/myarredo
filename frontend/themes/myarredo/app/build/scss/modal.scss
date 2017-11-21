@@ -201,11 +201,14 @@
 #decoration-modal {
   .close {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 7px;
+    top: 7px;
     z-index: 99;
     width: 30px;
     font-size: 30px;
+    background: #FFF;
+    border-radius: 30px;
+    opacity: 0.8;
   }
   .modal-content {
     overflow: hidden;

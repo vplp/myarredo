@@ -301,21 +301,6 @@ $(document).ready(function(){
        window.location.href = href;
     });
 
-    /*--больше фабрик модалка--*/
-    $(".alphabet-tab a:nth-child(1)").click(); //показываем первый элемент по умолчанию
-    $(".alphabet-tab a").click(function(){
-        $(this).siblings().removeClass("active");
-        $(this).addClass("active");
-
-        var actTab = $(this).text();
-        var actShow = $("[data-show=" + actTab + "]").show();
-        actShow.siblings().hide();
-        actShow.css({
-            "display":"flex"
-        });
-    });
-    /*--конец Больше фабрик модалка--*/
-
     $(".show-all-sub").click(function(){
         var list = $(this).siblings(".list-item");
         var variant = $(this).attr("data-variant");
@@ -379,12 +364,28 @@ $(document).ready(function(){
     });
 
     /*--модалка варианты отделки*/
-    $(".composition .show-modal").click(function(){
+    $(".composition .show-modal").click(function(e){
+        e.preventDefault();
         var img = $(this).clone();
         $('#decoration-modal .image-container').html("").append(img);
         $('#decoration-modal').modal();
     });
     /*--конец модалка варианты отделки*/
+
+    /*--больше фабрик модалка--*/
+    $(".alphabet-tab a").click(function(){
+        $(this).siblings().removeClass("active");
+        $(this).addClass("active");
+
+        var actTab = $(this).text();
+        var actShow = $("[data-show=" + actTab + "]").show();
+        actShow.siblings().hide();
+        actShow.css({
+            "display":"flex"
+        });
+    });
+    $(".alphabet-tab a").eq(0).trigger( "click" ); //показываем первый элемент по умолчанию
+    /*--конец Больше фабрик модалка--*/
 
 
 });
