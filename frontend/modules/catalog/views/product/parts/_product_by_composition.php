@@ -25,7 +25,7 @@ use frontend\modules\catalog\models\Product;
                             ]
                         ); ?>
                         <div class="img-cont">
-                            <?= Html::img(Product::getImage()); ?>
+                            <?= Html::img(Product::getImage($model['image_link'])); ?>
                         </div>
                         <div class="add-item-text">
                             <?= $model['lang']['title']; ?>
