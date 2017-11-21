@@ -128,7 +128,7 @@ class Product extends \common\modules\catalog\models\Product
 
             $img_path = explode('/', $image_link);
             $img = $img_path[count($img_path)-1];
-//            unset($exp[count($exp)-1]);
+            unset($img_path[count($img_path)-1]);
 //            $dir    = $path . '/' . implode('/' ,$exp);
 //            $files = scandir($dir);
 
