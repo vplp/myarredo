@@ -1,8 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+//
 use frontend\components\Breadcrumbs;
+//
 use frontend\modules\catalog\models\Factory;
+//
 use frontend\themes\myarredo\assets\AppAsset;
 
 $bundle = AppAsset::register($this);

@@ -39,7 +39,7 @@ use yii\helpers\{
 
                                                     <a href="#" class="one-tile">
                                                         <div class="img-cont">
-                                                            <?= Html::img($model->getImageLink(), ['class' => 'cont']); ?>
+                                                            <?= Html::img($model->getImage(), ['class' => 'cont']); ?>
                                                         </div>
                                                         <div class="name">
                                                             <?= $model->getTitle(); ?>
@@ -56,7 +56,7 @@ use yii\helpers\{
 
                                                         <a href="#" class="one-tile">
                                                             <div class="img-cont">
-                                                                <?= Html::img($model->getImageLink(), ['class' => 'cont']); ?>
+                                                                <?= Html::img($model->getImage(), ['class' => 'cont']); ?>
                                                             </div>
                                                             <div class="name">
                                                                 <?= $model->getTitle(); ?>
