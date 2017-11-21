@@ -25,7 +25,7 @@
     "yiisoft/yii2-swiftmailer": "*",
     "yiisoft/yii2-apidoc": "*",
     "yiisoft/yii2-authclient": "*",
-    "yiisoft/yii2-imagine": "^2.0",
+    "yiisoft/yii2-imagine": "*",
     "yii2tech/crontab": "*",
     "kartik-v/yii2-widgets": "*",
     "kartik-v/yii2-editable": "^1.7",

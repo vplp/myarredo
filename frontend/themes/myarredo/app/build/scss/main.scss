@@ -868,6 +868,33 @@ footer {
     h3 {
       margin: 0;
     }
+    .slick-arrow {
+      position: absolute;
+      top: 50%;
+      font-size: 44px;
+      transform: translateY(-50%);
+      color: #B2B2B2;
+      z-index: 99;
+      &:hover, &:active, &:focus {
+        text-decoration: none;
+      }
+    }
+    .fa-angle-left {
+      left: 0;
+    }
+    .fa-angle-right {
+      right: 0;
+    }
+    .col-md-3 {
+      a {
+        display: block;
+        img {
+          display: block;
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+    }
   }
   .nav-tabs>li {
     margin-right: 25px;

@@ -1,4 +1,14 @@
 @media screen and (max-width: 540px) {
+  header {
+    div.city-select-cont {
+      .links-cont {
+        li {
+          width: 100%;
+        }
+      }
+    }
+  }
+
 
   body header .top-navbar .navbar-nav {
     display: flex;
