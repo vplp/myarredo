@@ -86,7 +86,7 @@ class Sale extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias'], 'required'],
+            [['alias'], 'required', 'on' => 'backend'],
             [
                 [
                     'user_id',
@@ -151,6 +151,7 @@ class Sale extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'on_main' => ['on_main'],
+            'setImages' => ['image_link', 'gallery_image', 'picpath'],
             'backend' => [
                 'country_code',
                 'user_id',
@@ -216,7 +217,9 @@ class Sale extends ActiveRecord
      */
     public function beforeSave($insert)
     {
-        $this->user_id = Yii::$app->getUser()->id;
+        if ($this->scenario == 'backend') {
+            $this->user_id = Yii::$app->getUser()->id;
+        }
 
         return parent::beforeSave($insert);
     }
@@ -227,23 +230,24 @@ class Sale extends ActiveRecord
      */
     public function afterSave($insert, $changedAttributes)
     {
-        // delete relation SaleRelSpecification
-        SaleRelSpecification::deleteAll(['sale_catalog_item_id' => $this->id]);
+        if ($this->scenario == 'backend') {
+            // delete relation SaleRelSpecification
+            SaleRelSpecification::deleteAll(['sale_catalog_item_id' => $this->id]);
 
-        // save relation SaleRelSpecification
-        if (Yii::$app->request->getBodyParam('SpecificationValue')) {
-            foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
-                if ($val) {
-                    $model = new SaleRelSpecification();
-                    $model->setScenario('backend');
-                    $model->sale_catalog_item_id = $this->id;
-                    $model->specification_id = $specification_id;
-                    $model->val = $val;
-                    $model->save();
+            // save relation SaleRelSpecification
+            if (Yii::$app->request->getBodyParam('SpecificationValue')) {
+                foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
+                    if ($val) {
+                        $model = new SaleRelSpecification();
+                        $model->setScenario('backend');
+                        $model->sale_catalog_item_id = $this->id;
+                        $model->specification_id = $specification_id;
+                        $model->val = $val;
+                        $model->save();
+                    }
                 }
             }
         }
-
         parent::afterSave($insert, $changedAttributes);
     }
 
