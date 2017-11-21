@@ -39,53 +39,6 @@ class Product extends CommonProductModel implements BaseBackendModel
     }
 
     /**
-     * @param bool $insert
-     * @return bool
-     */
-    public function beforeSave($insert)
-    {
-        $this->alias = (!empty($this->types->lang) ? $this->types->lang->title : '')
-            . ' ' . (!empty($this->factory->lang) ? $this->factory->lang->title : '')
-            . ' ' . (!empty($this->collection->lang) ? $this->collection->lang->title : '')
-            . (($this->article) ? ' ' . $this->article : '');
-
-        if ($this->id) {
-            $this->alias = $this->id . ' ' . $this->alias;
-        }
-
-        return parent::beforeSave($insert);
-    }
-
-    /**
-     * @param bool $insert
-     * @param array $changedAttributes
-     */
-    public function afterSave($insert, $changedAttributes)
-    {
-        // delete relation ProductRelSpecification
-        ProductRelSpecification::deleteAll(['catalog_item_id' => $this->id]);
-
-        // save relation ProductRelSpecification
-        if (Yii::$app->request->getBodyParam('SpecificationValue')) {
-            foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
-                if ($val) {
-                    $model = new ProductRelSpecification();
-                    $model->setScenario('backend');
-                    $model->catalog_item_id = $this->id;
-                    $model->specification_id = $specification_id;
-                    $model->val = $val;
-                    $model->save();
-                }
-            }
-        }
-
-        //Update Product Count In to Group
-        Category::updateEnabledProductCounts();
-
-        parent::afterSave($insert, $changedAttributes);
-    }
-
-    /**
      * Backend form drop down list
      * @return array
      */
