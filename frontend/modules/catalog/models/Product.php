@@ -140,12 +140,14 @@ class Product extends \common\modules\catalog\models\Product
 
             if (is_file($_image_link)) {
                 $image = $_image_link;
+            } else {
+                $image = $path . '/' . $image_link;
             }
-        }
 
-        // resize
-        $ImageResize = new ImageResize($path, $url);
-        $image = $ImageResize->getThumb($image, 340, 340);
+            // resize
+            $ImageResize = new ImageResize($path, $url);
+            $image = $ImageResize->getThumb($image, 340, 340);
+        }
 
         return $image;
     }
