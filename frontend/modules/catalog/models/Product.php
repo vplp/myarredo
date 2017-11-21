@@ -135,11 +135,6 @@ class Product extends \common\modules\catalog\models\Product
             $image = $url . '/' . implode('/', $img_path) . '/thumb_' . $img;
         }
 
-
-        //* !!! */ echo  '<pre style="color:red;">'; print_r($files); echo '</pre>'; /* !!! */
-
-        //thumb_b3dafc3d695204c17f8b466f4ec24b70
-
         // resize
 //        $ImageResize = new ImageResize($path, $url);
 //        $image = $ImageResize->getThumb($image, 340, 340);
