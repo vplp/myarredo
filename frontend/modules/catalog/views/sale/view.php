@@ -45,7 +45,7 @@ use frontend\modules\catalog\models\{
                 <div class="col-xs-12 col-sm-12 col-md-5">
                     <div class="img-wrap">
                         <a href="javascript:void(0);" class="img-cont">
-                            <?= Html::img(Sale::getImageThumb($model['image_link'])); ?>
+                            <?= Html::img(Sale::getImage($model['image_link'])); ?>
                         </a>
                         <a href="javascript:void(0);" class="zoom">
                             Увеличить
