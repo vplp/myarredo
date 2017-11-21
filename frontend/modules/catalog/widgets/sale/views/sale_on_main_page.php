@@ -39,7 +39,7 @@ use frontend\modules\catalog\models\Sale;
 
                                                 <?php if ($key + 1 !== count($level)) { ?>
 
-                                                    <a href="#" class="one-tile">
+                                                    <?= Html::beginTag('a', ['href' => $model->getUrl(), 'class' => 'one-tile']); ?>
                                                         <div class="img-cont">
                                                             <?= Html::img(Sale::getImage($model['image_link']), ['class' => 'cont']); ?>
                                                         </div>
@@ -53,15 +53,14 @@ use frontend\modules\catalog\models\Sale;
                                                         <div class="new-price">
                                                             <?= $model['price_new']; ?> <?= $model['currency']; ?>
                                                         </div>
-
-                                                    </a>
+                                                    <?= Html::endTag('a'); ?>
 
                                                 <?php } else { ?>
 
                                                     </div>
                                                     <div class="right-side">
 
-                                                        <a href="#" class="one-tile">
+                                                        <?= Html::beginTag('a', ['href' => $model->getUrl(), 'class' => 'one-tile']); ?>
                                                             <div class="img-cont">
                                                                 <?= Html::img(Sale::getImage($model['image_link']), ['class' => 'cont']); ?>
                                                             </div>
@@ -74,7 +73,7 @@ use frontend\modules\catalog\models\Sale;
                                                             <div class="new-price">
                                                                 <?= $model['price_new']; ?> <?= $model['currency']; ?>
                                                             </div>
-                                                        </a>
+                                                        <?= Html::endTag('a'); ?>
 
                                                 <?php } ?>
 
