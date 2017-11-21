@@ -55,11 +55,11 @@ class ImageResize
     {
         if (is_file($original)) {
 
-            $base = Yii::getAlias($this->path) . '/';
+            $base = Yii::getAlias($this->path);
             $name = self::generateName($original, $width, $height, $prefix);
 
-            if (is_file($base . $name)) {
-                return $this->url . $name;
+            if (is_file($base . '/' . $name)) {
+                return $this->url . '/' .  $name;
             }
 
             list($imageWidth, $imageHeight) = getimagesize($original);
@@ -68,8 +68,8 @@ class ImageResize
             $height = $width * $imageHeight / $imageWidth;
             $image->resize(new Box($width, $height));
 
-            if ($image->save($base . $name, ['quality' => 100])) {
-                return $this->url . $name;
+            if ($image->save($base . '/' . $name, ['quality' => 100])) {
+                return $this->url . '/' . $name;
             }
         }
 
