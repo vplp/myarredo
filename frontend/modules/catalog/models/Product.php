@@ -125,19 +125,25 @@ class Product extends \common\modules\catalog\models\Product
 
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
 
+            $image_link_path = explode('/', $image_link);
 
-            $img_path = explode('/', $image_link);
-            $img = $img_path[count($img_path)-1];
-            unset($img_path[count($img_path)-1]);
-//            $dir    = $path . '/' . implode('/' ,$exp);
+            $img_name = $image_link_path[count($image_link_path)-1];
+
+            unset($image_link_path[count($image_link_path)-1]);
+
+//            $dir    = $path . '/' . implode('/' ,$image_link_path);
 //            $files = scandir($dir);
 
-            $image = $url . '/' . implode('/', $img_path) . '/thumb_' . $img;
+            $_image_link = $path . '/' . implode('/', $image_link_path) . '/thumb_' . $img_name;
+
+            if (is_file($_image_link)) {
+                $image = $_image_link;
+            }
         }
 
         // resize
-//        $ImageResize = new ImageResize($path, $url);
-//        $image = $ImageResize->getThumb($image, 340, 340);
+        $ImageResize = new ImageResize($path, $url);
+        $image = $ImageResize->getThumb($image, 340, 340);
 
         return $image;
     }
