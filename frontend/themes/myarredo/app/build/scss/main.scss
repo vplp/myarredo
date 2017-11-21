@@ -271,12 +271,13 @@ nav{
   .one-tile {
     text-decoration: none;
     text-align: center;
+    width: auto;
   }
   .left-side,.right-side {
-    width: 50%;
     display: flex;
-    flex-wrap: wrap;
+    //flex-wrap: wrap;
     padding: 10px;
+    width: 50%;
     .img-cont {
       width: 75%;
       height: 330px;
@@ -297,6 +298,7 @@ nav{
         margin-left: 5px;
       }
       padding-bottom: 15px;
+      width: 25%;
     }
   }
   .name {
