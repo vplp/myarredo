@@ -51,7 +51,7 @@ class Product extends \common\modules\catalog\models\Product
     {
         return self::find()
             ->innerJoinWith(['lang'])
-            ->orderBy(self::tableName() . '.id DESC')
+            ->orderBy(self::tableName() . '.updated_at DESC')
             ->enabled()
             ->asArray();
     }
