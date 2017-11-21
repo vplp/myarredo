@@ -99,7 +99,7 @@ class Factory extends \common\modules\catalog\models\Factory
      * @param string $image_link
      * @return null|string
      */
-    public static function getImage(string $image_link  = '')
+    public static function getImage($image_link  = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -120,7 +120,7 @@ class Factory extends \common\modules\catalog\models\Factory
      * @param string $image_link
      * @return null|string
      */
-    public static function getImageThumb(string $image_link  = '')
+    public static function getImageThumb($image_link  = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -134,9 +134,11 @@ class Factory extends \common\modules\catalog\models\Factory
             $image = $path . '/' . $image_link;
         }
 
+        // resize
         $ImageResize = new ImageResize($path, $url);
+        $image = $ImageResize->getThumb($image, 150, 150);
 
-        return $ImageResize->getThumb($image, 150, 150);
+        return $image;
     }
 
     /**
