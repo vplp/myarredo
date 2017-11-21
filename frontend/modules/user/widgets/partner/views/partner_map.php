@@ -1,7 +1,7 @@
 <div id="map"></div>
 
 <?php
-$template = '<div class="info-buble"><h4>${marker.city}</h4><div>${marker.address}</div><div>${marker.phone}</div><div class="country">${marker.country}</div></div>';
+$template = '`<div class="info-buble"><h4>${marker.city}</h4><div>${marker.address}</div><div>${marker.phone}</div><div class="country">${marker.country}</div></div>`';
 
 $script = <<<JS
 initMap();
@@ -35,7 +35,7 @@ function initMap() {
     });
 
     function addMarker(marker) {
-        var template = `$template`;
+            template = $template;
 
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(marker.lat, marker.lng),
