@@ -7,19 +7,26 @@ use yii\imagine\Image;
 use Imagine\Image\{
     Box
 };
-use yii\base\{
-    Component
-};
 
 /**
  * Class ImageResize
  *
  * @package frontend\components
  */
-class ImageResize extends Component
+class ImageResize
 {
-    const BASE_PATH_TO_CACHE = '@uploads/thumbs';
-    const BASE_URL_TO_CACHE = '/uploads/thumbs/';
+    public $path;
+
+    public $url;
+
+//    const BASE_PATH_TO_CACHE = '@uploads/thumbs';
+//    const BASE_URL_TO_CACHE = '/uploads/thumbs/';
+
+    public function __construct($path, $url)
+    {
+        $this->path = $path;
+        $this->url = $url;
+    }
 
     /**
      * @param $image
@@ -44,15 +51,15 @@ class ImageResize extends Component
      * @param string $prefix
      * @return null|string
      */
-    public static function getThumb($original, $width, $height, $prefix = '-{$width}x{$height}')
+    public function getThumb($original, $width, $height, $prefix = '-{$width}x{$height}')
     {
         if (is_file($original)) {
 
-            $base = Yii::getAlias(self::BASE_PATH_TO_CACHE) . '/';
+            $base = Yii::getAlias($this->path) . '/';
             $name = self::generateName($original, $width, $height, $prefix);
 
             if (is_file($base . $name)) {
-                return self::BASE_URL_TO_CACHE . $name;
+                return $this->url . $name;
             }
 
             list($imageWidth, $imageHeight) = getimagesize($original);
@@ -62,7 +69,7 @@ class ImageResize extends Component
             $image->resize(new Box($width, $height));
 
             if ($image->save($base . $name, ['quality' => 100])) {
-                return self::BASE_URL_TO_CACHE . $name;
+                return $this->url . $name;
             }
         }
 
