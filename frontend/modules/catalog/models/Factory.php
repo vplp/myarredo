@@ -132,11 +132,11 @@ class Factory extends \common\modules\catalog\models\Factory
 
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image = $path . '/' . $image_link;
-        }
 
-        // resize
-        $ImageResize = new ImageResize($path, $url);
-        $image = $ImageResize->getThumb($image, 150, 150);
+            // resize
+            $ImageResize = new ImageResize($path, $url);
+            $image = $ImageResize->getThumb($image, 150, 150);
+        }
 
         return $image;
     }
