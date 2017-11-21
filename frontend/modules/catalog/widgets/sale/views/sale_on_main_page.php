@@ -41,7 +41,7 @@ use frontend\modules\catalog\models\Sale;
 
                                                     <?= Html::beginTag('a', ['href' => $model->getUrl(), 'class' => 'one-tile']); ?>
                                                         <div class="img-cont">
-                                                            <?= Html::img(Sale::getImage($model['image_link']), ['class' => 'cont']); ?>
+                                                            <?= Html::img(Sale::getImageThumb($model['image_link']), ['class' => 'cont']); ?>
                                                         </div>
                                                         <div class="name">
                                                             <?= $model->getTitle(); ?>
@@ -62,7 +62,7 @@ use frontend\modules\catalog\models\Sale;
 
                                                         <?= Html::beginTag('a', ['href' => $model->getUrl(), 'class' => 'one-tile']); ?>
                                                             <div class="img-cont">
-                                                                <?= Html::img(Sale::getImage($model['image_link']), ['class' => 'cont']); ?>
+                                                                <?= Html::img(Sale::getImageThumb($model['image_link']), ['class' => 'cont']); ?>
                                                             </div>
                                                             <div class="name">
                                                                 <?= $model->getTitle(); ?>

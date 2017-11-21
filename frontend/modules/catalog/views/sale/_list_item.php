@@ -18,7 +18,7 @@ use frontend\modules\catalog\models\Sale;
         </div>
     </object>
     <div class="img-cont">
-        <?= Html::img(Sale::getImage($model['image_link'])); ?>
+        <?= Html::img(Sale::getImageThumb($model['image_link'])); ?>
         <div class="brand">
             <?= $model['factory']['lang']['title'] ?>
         </div>
