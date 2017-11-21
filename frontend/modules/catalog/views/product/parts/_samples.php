@@ -12,7 +12,7 @@ use yii\helpers\Html;
     <div class="row">
         <?php foreach ($samples as $model): ?>
             <div class="col-md-3">
-                <?= Html::a(Html::img($model->getImageLink(), ['class' => 'img-cont']), $model->getImageLink()); ?>
+                <?= Html::a(Html::img($model->getImageLink(), ['class' => 'show-modal']), $model->getImageLink()); ?>
             </div>
         <?php endforeach; ?>
     </div>

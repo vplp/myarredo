@@ -378,7 +378,13 @@ $(document).ready(function(){
         ]
     });
 
-
+    /*--модалка варианты отделки*/
+    $(".composition .show-modal").click(function(){
+        var img = $(this).clone();
+        $('#decoration-modal .image-container').html("").append(img);
+        $('#decoration-modal').modal();
+    });
+    /*--конец модалка варианты отделки*/
 
 
 });
