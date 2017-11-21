@@ -403,4 +403,15 @@ foreach (Yii::$app->shop_cart->items as $item) {
 
         </div>
     </div>
+    
+    <div id="decoration-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <div class="modal-content">
+                <div class="image-container">
+                </div>
+            </div>
+        </div>
+    </div>
+
 </main>

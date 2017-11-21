@@ -35,7 +35,7 @@ function initMap() {
     });
 
     function addMarker(marker) {
-        var template = '$template';
+        var template = `$template`;
 
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(marker.lat, marker.lng),
