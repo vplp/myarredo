@@ -64,7 +64,7 @@ abstract class BaseController extends Controller
         $h1 = false;
 
         if ($this->directlink['h1']) {
-            $h1 = $this->directlink['h1'];
+            $h1 = str_replace('#городе#', Yii::$app->city->getCityTitleWhere(), $this->directlink['h1']);
         }
 
         return $h1;
@@ -78,8 +78,9 @@ abstract class BaseController extends Controller
         $content = false;
 
         if ($this->directlink['content']) {
-            $content = $this->directlink['content'];
+            $content = str_replace('#городе#', Yii::$app->city->getCityTitleWhere(), $this->directlink['content']);
         }
+
         return $content;
     }
 }
