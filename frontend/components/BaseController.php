@@ -2,9 +2,11 @@
 
 namespace frontend\components;
 
+use Yii;
+//
 use yii\helpers\Url;
 use yii\web\Controller;
-
+//
 use frontend\modules\seo\modules\{
     directlink\models\Directlink
 };
