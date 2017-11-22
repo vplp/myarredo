@@ -9,6 +9,13 @@ return [
         'enableAutoLogin' => false,
     ],
     'urlManager' => [
+        //'enablePrettyUrl' => true,
+        'suffix' => '/',
+//        'normalizer' => [
+//            'class' => yii\web\UrlNormalizer::class,
+//            // use temporary redirection instead of permanent for debugging
+//            'action' => yii\web\UrlNormalizer::ACTION_REDIRECT_TEMPORARY,
+//        ],
         'rules' => require __DIR__ . '/part/url-rules.php',
     ],
     'errorHandler' => [
