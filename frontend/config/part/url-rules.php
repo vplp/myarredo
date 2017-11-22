@@ -2,12 +2,6 @@
 return [
     // Module [[Home]]
     '' => 'home/home/index',
-//    [
-//        'pattern' => 'contacts',
-//        'route' => 'page/contacts/index',
-//        'suffix' => '/',
-//        'normalizer' => true
-//    ],
     'contacts' => 'page/contacts/index',
     'partners-map' => 'page/contacts/list-partners',
 
