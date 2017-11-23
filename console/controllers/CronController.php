@@ -179,10 +179,22 @@ class CronController extends Controller
         foreach ($rows as $row) {
             // UPDATE
             $connection = Yii::$app->db;
-            $connection->createCommand()->update('c1myarredo.catalog_item', ['mark' => '1'], 'id = ' . $row['id'])->execute();// UPDATE
 
-            //$connection = Yii::$app->db;
-            $connection->createCommand()->update('c1myarredo_old.catalog_item', ['position' => $row['updated']], 'id = ' . $row['id'])->execute();
+            $connection->createCommand()
+                ->update(
+                    'c1myarredo.catalog_item',
+                    ['mark' => '1'],
+                    'id = ' . $row['id']
+                )
+                ->execute();
+
+            $connection->createCommand()
+                ->update(
+                    'c1myarredo_old.catalog_item',
+                    ['position' => $row['updated']],
+                    'id = ' . $row['id']
+                )
+                ->execute();
         }
     }
 }
