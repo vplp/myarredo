@@ -26,11 +26,7 @@ use frontend\modules\catalog\models\Product;
         </div>
     </div>
     <div class="item-infoblock">
-        <?= Product::getTitle(
-            $model,
-            isset($types[$model['catalog_type_id']]) ? $types[$model['catalog_type_id']] : null,
-            isset($collection[$model['collections_id']]) ? $collection[$model['collections_id']] : null
-        ); ?>
+        <?= Product::getStaticTitle($model); ?>
     </div>
 
 <?= Html::endTag('a'); ?>

@@ -4,7 +4,9 @@ use yii\helpers\Html;
 //
 use frontend\components\Breadcrumbs;
 //
-use frontend\modules\catalog\models\Factory;
+use frontend\modules\catalog\models\{
+    Factory, Product
+};
 //
 use frontend\themes\myarredo\assets\AppAsset;
 
@@ -33,7 +35,7 @@ $elementsComposition = $model['elementsComposition'];
                 ]) ?>
 
                 <div class="product-title">
-                    <h1 class="prod-model" itemprop="name"><?= $model->getFullTitle(); ?></h1>
+                    <h1 class="prod-model" itemprop="name"><?= $model->getTitle(); ?></h1>
                 </div>
 
                 <div class="col-md-5">
