@@ -18,8 +18,6 @@ use backend\modules\seo\modules\directlink\models\{
  * Class Directlink
  *
  * @package backend\modules\seo\modules\directlink\models\search
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Directlink extends ParentModel implements BaseBackendSearchModel
 {
@@ -65,7 +63,7 @@ class Directlink extends ParentModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'url', $this->alias])
+        $query->andFilterWhere(['like', 'url', $this->url])
             ->andFilterWhere(['like', 'published', $this->published]);
 
         return $dataProvider;
