@@ -172,10 +172,25 @@ class Product extends \common\modules\catalog\models\Product
     /**
      * Title
      *
-     * @param array $model
      * @return string
      */
-    public static function getTitle(array $model)
+    public function getTitle()
+    {
+        $title = $this->lang->title;
+
+        if ($this->is_composition)
+            $title = 'КОМПОЗИЦИЯ ' . $title;
+
+        return $title;
+    }
+
+    /**
+     * Static title
+     *
+     * @param $model
+     * @return string
+     */
+    public static function getStaticTitle($model)
     {
         $title = $model['lang']['title'];
 
@@ -184,27 +199,6 @@ class Product extends \common\modules\catalog\models\Product
 
         return $title;
     }
-
-//    /**
-//     * Full Title
-//     *
-//     * @return string
-//     */
-//    public function getFullTitle()
-//    {
-//        $title = (($this->catalog_type_id > 0 && !empty($this->types)) ? $this->types->lang->title . ' ' : '');
-//        $title .= (($this->factory_id > 0 && !empty($this->factory)) ? $this->factory->lang->title . ' ' : '');
-//        $title .= (($this->collections_id > 0 && !empty($this->collection)) ? $this->collection->lang->title . ' ' : '');
-//        $title .= ((!$this->is_composition && !empty($this->article)) ? $this->article . ' ' : '');
-//
-//        if ($this->is_composition && $this->category[0]->lang->composition_title !== null) {
-//            $title = $this->category[0]->lang->composition_title . ' ' . $title;
-//        } elseif ($this->is_composition) {
-//            $title = 'КОМПОЗИЦИЯ ' . $title;
-//        }
-//
-//        return $title;
-//    }
 
     /**
      * Product By Collection
