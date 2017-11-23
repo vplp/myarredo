@@ -354,7 +354,7 @@ class Product extends ActiveRecord implements iProduct
 
         if (!empty($this->gallery_image)) {
             $this->gallery_image = $this->gallery_image[0] == ','
-                ? substr($this->gallery_image,1)
+                ? substr($this->gallery_image, 1)
                 : $this->gallery_image;
 
             $images = explode(',', $this->gallery_image);
@@ -453,16 +453,6 @@ class Product extends ActiveRecord implements iProduct
     {
         return $this
             ->hasMany(ProductRelSpecification::class, ['catalog_item_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCompositionProduct()
-    {
-        return $this
-            ->hasMany(Product::class, ['id' => 'catalog_item_id'])
-            ->viaTable(ProductRelComposition::tableName(), ['composition_id' => 'id']);
     }
 
     /**

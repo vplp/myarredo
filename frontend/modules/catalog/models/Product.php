@@ -246,4 +246,54 @@ class Product extends \common\modules\catalog\models\Product
             ->limit(12)
             ->all();
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProductsByCompositionId()
+    {
+        return $this
+            ->hasMany(Product::class, ['id' => 'catalog_item_id'])
+            ->viaTable(ProductRelComposition::tableName(), ['composition_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCompositionByProductId()
+    {
+        return $this
+            ->hasMany(Product::class, ['id' => 'composition_id'])
+            ->viaTable(ProductRelComposition::tableName(), ['catalog_item_id' => 'id'])
+            ->indexBy('alias')
+            ->enabled();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getElementsComposition()
+    {
+        if ($this->is_composition) {
+            return $this->getProductsByCompositionId();
+        } else {
+
+            $composition = $this->getCompositionByProductId()->all();
+
+            if (!empty($composition)) {
+
+                $aliasC = preg_replace('%^.+/%iu', '', trim(Yii::$app->request->url, '/'));
+
+                if ($aliasC && !empty($composition[$aliasC])) {
+                    $id_compos = $composition[$aliasC]->id;
+                } else {
+                    $id_compos = $composition[key($composition)]->id;
+                }
+
+                $c = self::findByID($id_compos);
+
+            }
+            return $c->elementsComposition;
+        }
+    }
 }
