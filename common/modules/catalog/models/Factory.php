@@ -68,16 +68,16 @@ class Factory extends ActiveRecord
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-            'uploadBehavior' => [
-                'class' => UploadBehavior::class,
-                'attributes' => [
-                    'image_link' => [
-                        'path' => Yii::$app->getModule('catalog')->getFactoryUploadPath(),
-                        'tempPath' => Yii::getAlias('@temp'),
-                        'url' => Yii::$app->getModule('catalog')->getFactoryUploadPath(),
-                    ]
-                ]
-            ],
+//            'uploadBehavior' => [
+//                'class' => UploadBehavior::class,
+//                'attributes' => [
+//                    'image_link' => [
+//                        'path' => Yii::$app->getModule('catalog')->getFactoryUploadPath(),
+//                        'tempPath' => Yii::getAlias('@temp'),
+//                        'url' => Yii::$app->getModule('catalog')->getFactoryUploadPath(),
+//                    ]
+//                ]
+//            ],
             [
                 'class' => AttributeBehavior::className(),
                 'attributes' => [
