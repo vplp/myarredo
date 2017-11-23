@@ -325,7 +325,7 @@ class Product extends ActiveRecord implements iProduct
     {
         return self::find()
             ->innerJoinWith(['lang'])
-            ->orderBy(self::tableName() . '.id DESC');
+            ->orderBy(self::tableName() . '.position DESC');
     }
 
     /**

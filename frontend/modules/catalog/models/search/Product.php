@@ -112,7 +112,7 @@ class Product extends ProductModel
             $order[] = self::tableName() . '.is_composition DESC';
         }
 
-        $order[] = self::tableName() . '.updated_at DESC';
+        $order[] = self::tableName() . '.position DESC';
 
         $query->orderBy(implode(',', $order));
 
