@@ -47,7 +47,7 @@ class CronController extends Controller
                 if ($model->save()) {
                     $transaction->commit();
 
-                    echo $model->alias . PHP_EOL;
+                    //echo $model->alias . PHP_EOL;
 
                     $modelLang = ProductLang::findOne([
                         'rid' => $model->id,
@@ -57,7 +57,7 @@ class CronController extends Controller
                     $modelLang->setScenario('backend');
                     $modelLang->save();
 
-                    echo $modelLang->title . PHP_EOL;
+                    //echo $modelLang->title . PHP_EOL;
 
                 } else {
                     $transaction->rollBack();
@@ -75,7 +75,7 @@ class CronController extends Controller
     public function actionImportProductImages()
     {
         $models = Product::find()
-            ->limit(500)
+            ->limit(1000)
             ->where([
                 'picpath' => '0',
                 'image_link' => null
@@ -165,6 +165,24 @@ class CronController extends Controller
                     throw new \Exception($e);
                 }
             }
+        }
+    }
+
+    public function actionSetProductPosition()
+    {
+        $rows = (new \yii\db\Query())
+            ->from('c1myarredo.catalog_item')
+            ->where(['mark' => '0'])
+            ->limit(1000)
+            ->all();
+
+        foreach ($rows as $row) {
+            // UPDATE
+            $connection = Yii::$app->db;
+            $connection->createCommand()->update('c1myarredo.catalog_item', ['mark' => '1'], 'id = ' . $row['id'])->execute();// UPDATE
+
+            //$connection = Yii::$app->db;
+            $connection->createCommand()->update('c1myarredo_old.catalog_item', ['position' => $row['updated']], 'id = ' . $row['id'])->execute();
         }
     }
 }
