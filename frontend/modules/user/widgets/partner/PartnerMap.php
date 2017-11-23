@@ -59,7 +59,7 @@ class PartnerMap extends Widget
             $dataJS[$k]['address'] = $obj->profile->address;
             $dataJS[$k]['city'] = isset($obj->profile->city) ? $obj->profile->city->lang->title : '';
             $dataJS[$k]['country'] = isset($obj->profile->country) ? $obj->profile->country->lang->title : '';
-            $dataJS[$k]['phone'] = 'phone';
+            $dataJS[$k]['phone'] = $obj->profile->phone;
         }
 
         $dataJS = json_encode($dataJS);
