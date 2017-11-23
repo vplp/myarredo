@@ -188,7 +188,7 @@ class CatalogFilter extends Component
         if (!empty(self::$_structure['category'])) {
             $model = Category::findByAlias(self::$_structure['category'][0]);
 
-            if ($model === null) {
+            if ($model === null || count(self::$_structure['category']) > 1) {
                 throw new NotFoundHttpException;
             }
 
