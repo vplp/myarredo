@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\{
     ArrayHelper
 };
+use yii\behaviors\AttributeBehavior;
 //
 use voskobovich\behaviors\ManyToManyBehavior;
 //
@@ -13,6 +14,7 @@ use thread\app\base\models\ActiveRecord;
 use thread\modules\shop\interfaces\Product as iProduct;
 //
 use common\modules\catalog\Catalog;
+use common\helpers\Inflector;
 
 /**
  * Class Product
@@ -49,6 +51,7 @@ use common\modules\catalog\Catalog;
  * @property integer $position
  * @property string $image_link
  * @property string $gallery_image
+ * @property integer $mark
  *
  * @property ProductLang $lang
  * @property ProductRelCategory[] $category
@@ -94,6 +97,16 @@ class Product extends ActiveRecord implements iProduct
                     'factory_prices_files_ids' => 'factoryPricesFiles',
                 ],
             ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias, '_');
+                },
+            ],
         ]);
     }
 
@@ -130,7 +143,8 @@ class Product extends ActiveRecord implements iProduct
                     'published',
                     'deleted',
                     'removed',
-                    'moderation'
+                    'moderation',
+                    'mark'
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
@@ -170,6 +184,7 @@ class Product extends ActiveRecord implements iProduct
             'removed' => ['removed'],
             'position' => ['position'],
             'setImages' => ['image_link', 'gallery_image', 'picpath'],
+            'setAlias' => ['alias', 'mark'],
             'backend' => [
                 'catalog_type_id',
                 'user_id',
@@ -246,6 +261,7 @@ class Product extends ActiveRecord implements iProduct
             'factory_catalogs_files_ids' => Yii::t('app', 'Factory catalogs files'),
             'factory_prices_files_ids' => Yii::t('app', 'Factory prices files'),
             'specification_value_ids',
+            'mark' => 'Mark',
         ];
     }
 
@@ -256,10 +272,10 @@ class Product extends ActiveRecord implements iProduct
      */
     public function beforeSave($insert)
     {
-        if ($this->scenario == 'backend') {
+        if (in_array($this->scenario, ['backend', 'setAlias'])) {
             $this->alias = (!empty($this->types->lang) ? $this->types->lang->title : '')
-                . ' ' . (!empty($this->factory->lang) ? $this->factory->lang->title : '')
-                . ' ' . (!empty($this->collection->lang) ? $this->collection->lang->title : '')
+                . (!empty($this->factory->lang) ? ' ' . $this->factory->lang->title : '')
+                . (!empty($this->collection->lang) ? ' ' . $this->collection->lang->title : '')
                 . (($this->article) ? ' ' . $this->article : '');
 
             if ($this->id) {
@@ -277,6 +293,7 @@ class Product extends ActiveRecord implements iProduct
     public function afterSave($insert, $changedAttributes)
     {
         if ($this->scenario == 'backend') {
+
             // delete relation ProductRelSpecification
             ProductRelSpecification::deleteAll(['catalog_item_id' => $this->id]);
 

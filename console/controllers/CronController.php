@@ -5,10 +5,10 @@ namespace console\controllers;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\console\Controller;
+//
 use common\modules\catalog\models\{
-    Product, Sale
+    Product, ProductLang, Sale
 };
-
 
 /**
  * Class CronController
@@ -17,6 +17,56 @@ use common\modules\catalog\models\{
  */
 class CronController extends Controller
 {
+    public function actionIndex()
+    {
+        $this->actionGenerateProductTitle();
+    }
+
+    /**
+     * Generate product title
+     */
+    public function actionGenerateProductTitle()
+    {
+        $models = Product::find()
+            ->where(['mark' => '0'])
+            ->limit(1000)
+            ->orderBy('id ASC')
+            ->all();
+
+        foreach ($models as $model) {
+            /** @var PDO $transaction */
+            /** @var $model Product */
+            $transaction = $model::getDb()->beginTransaction();
+            try {
+
+                $model->setScenario('setAlias');
+
+                $model->mark = '1';
+
+                if ($model->save()) {
+                    $transaction->commit();
+
+                    echo $model->alias . PHP_EOL;
+
+                    $modelLang = ProductLang::findOne([
+                        'rid' => $model->id,
+                        'lang' => Yii::$app->language,
+                    ]);
+
+                    $modelLang->setScenario('backend');
+                    $modelLang->save();
+
+                    echo $modelLang->title . PHP_EOL;
+
+                } else {
+                    $transaction->rollBack();
+                }
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                throw new \Exception($e);
+            }
+        }
+    }
 
     /**
      * Import product gallery image
@@ -51,8 +101,6 @@ class CronController extends Controller
                     $model->image_link = array_shift($images);
                     $model->picpath = '1';
 
-//                    /* !!! */ echo  '<pre style="color:red;">'; print_r($model->attributes); echo '</pre>'; /* !!! */
-//                    die();
                     $model->setScenario('setImages');
 
                     if ($model->save()) {
@@ -102,8 +150,6 @@ class CronController extends Controller
                     $model->image_link = array_shift($images);
                     $model->picpath = '1';
 
-//                    /* !!! */ echo  '<pre style="color:red;">'; print_r($model->attributes); echo '</pre>'; /* !!! */
-//                    die();
                     $model->setScenario('setImages');
 
                     if ($model->save()) {
