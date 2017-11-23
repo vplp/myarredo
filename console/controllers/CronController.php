@@ -19,7 +19,8 @@ class CronController extends Controller
 {
     public function actionIndex()
     {
-        $this->actionGenerateProductTitle();
+//        $this->actionGenerateProductTitle();
+//        $this->actionImportProductImages();
     }
 
     /**
@@ -74,9 +75,11 @@ class CronController extends Controller
     public function actionImportProductImages()
     {
         $models = Product::find()
-            ->select(['id', 'gallery_id', 'image_link', 'gallery_image', 'picpath'])
-            ->limit(1000)
-            ->where(['picpath' => '0'])
+            ->limit(500)
+            ->where([
+                'picpath' => '0',
+                'image_link' => null
+            ])
             ->orderBy('id ASC')
             ->all();
 
@@ -93,8 +96,6 @@ class CronController extends Controller
                 /** @var $model Product */
                 $transaction = $model::getDb()->beginTransaction();
                 try {
-
-
                     $images = ArrayHelper::map($photo, 'id', 'photopath');
 
                     $model->gallery_image = implode(',', $images);
@@ -104,6 +105,8 @@ class CronController extends Controller
                     $model->setScenario('setImages');
 
                     if ($model->save()) {
+
+                        echo $model->id . ' ' . $model->image_link . PHP_EOL;
                         $transaction->commit();
 
                     } else {
@@ -123,7 +126,6 @@ class CronController extends Controller
     public function actionImportSaleImages()
     {
         $models = Sale::find()
-            ->select(['id', 'gallery_id', 'image_link', 'gallery_image', 'picpath'])
             ->limit(1000)
             ->where(['picpath' => '0'])
             ->orderBy('id ASC')
