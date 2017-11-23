@@ -47,6 +47,8 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * findBase
+     *
      * @return mixed
      */
     public static function findBase()
@@ -59,7 +61,7 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
-     * Get by alias
+     * findByAlias
      *
      * @param string $alias
      * @return ActiveRecord|null
@@ -91,6 +93,8 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * Image
+     *
      * @param string $image_link
      * @return null|string
      */
@@ -112,6 +116,8 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * ImageThumb
+     *
      * @param string $image_link
      * @return null|string
      */
@@ -153,6 +159,8 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * Url
+     *
      * @param string $alias
      * @return string
      */
@@ -162,6 +170,8 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * Title
+     *
      * @param array $model
      * @param array $types
      * @param array $collections
@@ -194,6 +204,11 @@ class Product extends \common\modules\catalog\models\Product
         return $title;
     }
 
+    /**
+     * Full Title
+     *
+     * @return string
+     */
     public function getFullTitle()
     {
         $title = (($this->catalog_type_id > 0 && !empty($this->types)) ? $this->types->lang->title . ' ' : '');
@@ -211,6 +226,8 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * Product By Collection
+     *
      * @param $collections_id
      * @param $catalog_type_id
      * @return mixed
@@ -230,6 +247,8 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * Product By Factory
+     *
      * @param $factory_id
      * @param $catalog_type_id
      * @return mixed
@@ -248,6 +267,8 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * Products By Composition Id
+     *
      * @return \yii\db\ActiveQuery
      */
     public function getProductsByCompositionId()
@@ -258,6 +279,8 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * Composition By Product Id
+     *
      * @return \yii\db\ActiveQuery
      */
     public function getCompositionByProductId()
@@ -270,6 +293,8 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * Elements Composition
+     *
      * @return \yii\db\ActiveQuery
      */
     public function getElementsComposition()
@@ -290,10 +315,13 @@ class Product extends \common\modules\catalog\models\Product
                     $id_compos = $composition[key($composition)]->id;
                 }
 
-                $c = self::findByID($id_compos);
+                $model = self::findByID($id_compos);
 
+                if ($model !== null)
+                    return $model->elementsComposition;
             }
-            return $c->elementsComposition;
+
+            return [];
         }
     }
 }
