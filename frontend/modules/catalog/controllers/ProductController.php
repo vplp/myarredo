@@ -52,17 +52,26 @@ class ProductController extends BaseController
             'url' => ['/catalog/category/list']
         ];
 
+        $keys = Yii::$app->catalogFilter->keys;
+
+
         if (isset($model['category'][0])) {
+            $params = Yii::$app->catalogFilter->params;
+            $params[$keys['category']] = $model['category'][0]['alias'];
+
             $this->breadcrumbs[] = [
                 'label' => $model['category'][0]['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl(['category' => $model['category'][0]['alias']])
+                'url' => Yii::$app->catalogFilter->createUrl($params)
             ];
         }
 
         if (isset($model['types'])) {
+            $params = Yii::$app->catalogFilter->params;
+            $params[$keys['type']] = $model['types']['alias'];
+
             $this->breadcrumbs[] = [
                 'label' => $model['types']['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl(['type' => $model['types']['alias']])
+                'url' => Yii::$app->catalogFilter->createUrl($params)
             ];
         }
 

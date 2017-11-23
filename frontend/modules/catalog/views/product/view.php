@@ -15,6 +15,8 @@ foreach (Yii::$app->shop_cart->items as $item) {
     $products_id[] = $item->product_id;
 }
 
+$elementsComposition = $model['elementsComposition'];
+
 /**
  * @var \frontend\modules\catalog\models\Product $model
  */
@@ -240,7 +242,7 @@ foreach (Yii::$app->shop_cart->items as $item) {
             <div class="row composition">
                 <div class="col-md-12">
                     <ul class="nav nav-tabs">
-                        <?php if ($model['is_composition']): ?>
+                        <?php if (!empty($elementsComposition)): ?>
                             <li><a data-toggle="tab" href="#panel1">ПРЕДМЕТЫ КОмпозиции</a></li>
                         <?php endif; ?>
                         <?php if (!empty($model['samples'])): ?>
@@ -250,12 +252,12 @@ foreach (Yii::$app->shop_cart->items as $item) {
 
                     <div class="tab-content">
 
-                        <?php if ($model['is_composition']): ?>
+                        <?php if (!empty($elementsComposition)): ?>
                             <div id="panel1" class="tab-pane fade">
                                 <?= $this->render(
                                     'parts/_product_by_composition',
                                     [
-                                        'models' => $model['compositionProduct']
+                                        'models' => $elementsComposition
                                     ]
                                 ); ?>
                             </div>
