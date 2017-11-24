@@ -6,6 +6,8 @@ use backend\widgets\LangSwitch\LangSwitch;
 use backend\themes\defaults\widgets\navbar\NavBar;
 use backend\themes\defaults\assets\AppAsset;
 
+use backend\themes\defaults\widgets\Alert;
+
 $navMiniStatus = isset($_COOKIE['navbar-minimalize']) ? intval($_COOKIE['navbar-minimalize']) : 0;
 
 /**
@@ -30,6 +32,7 @@ $this->beginPage()
 <body class="html <?= $navMiniStatus == 1 ? 'mini-navbar' : '' ?>">
 <?php $this->beginBody() ?>
 
+<?= Alert::widget(); ?>
 <div id="wrapper">
 
     <?= NavBar::widget(['bundle' => $bundle]); ?>

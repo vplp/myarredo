@@ -127,7 +127,7 @@ class OwnpasswordController extends BackendController
                         if (Yii::$app->getRequest()->post('save_and_exit')) {
                             return $this->redirect($this->actionListLinkStatus);
                         } else {
-                            $model->addFlash(Yii::t('user', 'Password changed'));
+                            Yii::$app->session->addFlash('success', Yii::t('user', 'Password changed'));
                         }
                     } else {
                         $transaction->rollBack();
