@@ -78,7 +78,8 @@ class CronController extends Controller
             ->limit(1000)
             ->where([
                 //'picpath' => '0',
-                'image_link' => null
+                'image_link' => null,
+                'mark' => '0'
             ])
             ->orderBy('id ASC')
             ->all();
