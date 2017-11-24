@@ -93,11 +93,12 @@ class PasswordController extends BackendController
         $this->label = Yii::t('user', 'Password change') . ' : ' . $user['username'];
 
         $model = new ChangePassword();
-        $model->setScenario('passwordChange');
+        $model->setScenario('adminPasswordChange');
         $model['username'] = $user['username'];
         $model['email'] = $user['email'];
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
+
             if ($user !== null) {
                 $user->setScenario('passwordChange');
                 $user->setPassword($model['password']);
@@ -110,17 +111,20 @@ class PasswordController extends BackendController
                         if (Yii::$app->getRequest()->post('save_and_exit')) {
                             return $this->redirect($this->actionListLinkStatus);
                         } else {
-                            $model->addFlash(Yii::t('user', 'Password changed'));
+                            Yii::$app->session->addFlash('success', Yii::t('user', 'Password changed'));
                         }
-                    } else {
-                        $transaction->rollBack();
-                    };
+                    }
                 } catch (\Exception $e) {
                     $transaction->rollBack();
                     throw new \Exception($e);
                 }
             }
         }
+
+        foreach ($model->getErrors() as $attribute => $errors) {
+            Yii::$app->session->setFlash('error', $errors);
+        }
+
         return $this->render('change', [
             'model' => $model,
             'user' => $user
