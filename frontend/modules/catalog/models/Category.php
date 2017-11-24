@@ -163,9 +163,11 @@ class Category extends \common\modules\catalog\models\Category
 
         return $query
             ->innerJoinWith(["product"], false)
+            ->innerJoinWith(["product.lang"], false)
             ->andFilterWhere([
                 Product::tableName() . '.published' => '1',
                 Product::tableName() . '.deleted' => '0',
+                Product::tableName() . '.removed' => '0',
             ])
             ->select([
                 self::tableName() . '.id',
