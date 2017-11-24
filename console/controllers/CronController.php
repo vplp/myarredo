@@ -77,8 +77,9 @@ class CronController extends Controller
         $models = Product::find()
             ->limit(1000)
             ->where([
-                'picpath' => '0',
-                'image_link' => null
+                //'picpath' => '0',
+                'image_link' => null,
+                'mark' => '0'
             ])
             ->orderBy('id ASC')
             ->all();
@@ -168,6 +169,9 @@ class CronController extends Controller
         }
     }
 
+    /**
+     * Set Product Position
+     */
     public function actionSetProductPosition()
     {
         $rows = (new \yii\db\Query())
