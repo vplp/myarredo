@@ -12,7 +12,7 @@ use backend\modules\user\models\User;
 <?php $form = ActiveForm::begin(); ?>
 
 <?php
-if (!empty($model->getFlash())) {
+if (!empty(Yii::$app->session->getFlash())) {
     $model->password = '';
     $model->password_confirmation = '';
 } ?>
