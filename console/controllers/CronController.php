@@ -101,7 +101,7 @@ class CronController extends Controller
 
                     $model->gallery_image = implode(',', $images);
                     $model->image_link = array_shift($images);
-                    $model->picpath = '1';
+                    $model->mark = '1';
 
                     $model->setScenario('setImages');
 
