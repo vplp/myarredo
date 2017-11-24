@@ -105,14 +105,17 @@ class Types extends \common\modules\catalog\models\Types
 
         $query
             ->innerJoinWith(["product"], false)
-            ->innerJoinWith(["product.category productCategory"], false)
+            ->innerJoinWith(["product.lang"], false)
             ->andFilterWhere([
                 Product::tableName() . '.published' => '1',
                 Product::tableName() . '.deleted' => '0',
+                Product::tableName() . '.removed' => '0',
             ]);
 
         if (isset($params[$keys['category']])) {
-            $query->andFilterWhere(['IN', 'productCategory.alias', $params[$keys['category']]]);
+            $query
+                ->innerJoinWith(["product.category productCategory"], false)
+                ->andFilterWhere(['IN', 'productCategory.alias', $params[$keys['category']]]);
         }
 
         if (isset($params[$keys['style']])) {
