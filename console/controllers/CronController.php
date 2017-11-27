@@ -29,8 +29,8 @@ class CronController extends Controller
     public function actionGenerateProductTitle()
     {
         $models = Product::find()
-            ->where(['mark' => '0'])
-            ->limit(1000)
+            //->where(['mark' => '0'])
+            ->limit(100)
             ->orderBy('id ASC')
             ->all();
 
@@ -47,7 +47,7 @@ class CronController extends Controller
                 if ($model->save()) {
                     $transaction->commit();
 
-                    //echo $model->alias . PHP_EOL;
+                    echo $model->alias . PHP_EOL;
 
                     $modelLang = ProductLang::findOne([
                         'rid' => $model->id,
@@ -57,7 +57,7 @@ class CronController extends Controller
                     $modelLang->setScenario('backend');
                     $modelLang->save();
 
-                    //echo $modelLang->title . PHP_EOL;
+                    echo $modelLang->title . PHP_EOL;
 
                 } else {
                     $transaction->rollBack();
