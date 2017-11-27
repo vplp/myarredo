@@ -2,6 +2,9 @@
 
 namespace backend\modules\location\controllers;
 
+use Yii;
+use yii\web\Response;
+//
 use thread\app\base\controllers\BackendController;
 //
 use backend\modules\location\models\{
@@ -75,6 +78,28 @@ class CityController extends BackendController
                 $transaction->rollBack();
                 throw new \Exception($e);
             }
+        }
+    }
+
+    /**
+     * Get cities
+     */
+    public function actionGetCities()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            $country_id = Yii::$app->getRequest()->post('country_id');
+
+            $cities = City::dropDownList($country_id);
+
+            $options = '';
+            $options .= '<option value="">--</option>';
+            foreach ($cities as $id => $title) {
+                $options .= '<option value="' . $id . '">' . $title . '</option>';
+            }
+
+            return ['success' => 1, 'options' => $options];
         }
     }
 }
