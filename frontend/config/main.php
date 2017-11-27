@@ -8,7 +8,6 @@ return ArrayHelper::merge(
         [
             'id' => 'app-frontend',
             'basePath' => dirname(__DIR__),
-
             'sourceLanguage' => 'de-AT',
             'runtimePath' => '@runtime/frontend',
             'layoutPath' => '@app/layouts',
