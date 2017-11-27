@@ -23,6 +23,8 @@ $elementsComposition = $model['elementsComposition'];
  * @var \frontend\modules\catalog\models\Product $model
  */
 
+$this->title = $this->context->title;
+
 ?>
 
 <main>
