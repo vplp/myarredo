@@ -79,42 +79,47 @@ class CategoryController extends BaseController
      */
     public function beforeAction($action)
     {
+        $keys = Yii::$app->catalogFilter->keys;
         $params = Yii::$app->catalogFilter->params;
 
-        $this->title = 'Каталог итальянской мебели';
+        $this->title = 'Каталог итальянской мебели, цены на мебель из Италии';
 
         $this->breadcrumbs[] = [
-            'label' => 'Каталог итальянской мебели',
+            'label' => 'Каталог итальянской мебели, цены на мебель из Италии',
             'url' => ['/catalog/category/list']
         ];
 
-//        if (!empty($params['category'])) {
-//            $this->breadcrumbs[] = [
-//                'label' => $params['category']['lang']['title'],
-//                'url' => Yii::$app->catalogFilter->createUrl(['category' => $params['category']['alias']])
-//            ];
-//        }
+        if (!empty($params[$keys['category']])) {
+            $model = Category::findByAlias($params[$keys['category']][0]);
+            $this->breadcrumbs[] = [
+                'label' => $model['lang']['title'],
+                'url' => Yii::$app->catalogFilter->createUrl($params)
+            ];
+        }
 
-//        if (!empty($params['type'])) {
-//            $this->breadcrumbs[] = [
-//                'label' => $params['type']['lang']['title'],
-//                'url' => Yii::$app->catalogFilter->createUrl(['type' => $params['type']['alias']])
-//            ];
-//        }
-//
-//        if (!empty($params['style'])) {
-//            $this->breadcrumbs[] = [
-//                'label' => $params['style']['lang']['title'],
-//                'url' => Yii::$app->catalogFilter->createUrl(['style' => $params['style']['alias']])
-//            ];
-//        }
-//
-//        if (!empty($params['factory'])) {
-//            $this->breadcrumbs[] = [
-//                'label' => $params['factory']['lang']['title'],
-//                'url' => Yii::$app->catalogFilter->createUrl(['factory' => $params['factory']['alias']])
-//            ];
-//        }
+        if (!empty($params[$keys['type']])) {
+            $model = Types::findByAlias($params[$keys['type']][0]);
+            $this->breadcrumbs[] = [
+                'label' => $model['lang']['title'],
+                'url' => Yii::$app->catalogFilter->createUrl($params)
+            ];
+        }
+
+        if (!empty($params[$keys['style']])) {
+            $model = Specification::findByAlias($params[$keys['style']][0]);
+            $this->breadcrumbs[] = [
+                'label' => $model['lang']['title'],
+                'url' => Yii::$app->catalogFilter->createUrl($params)
+            ];
+        }
+
+        if (!empty($params[$keys['factory']])) {
+            $model = Factory::findByAlias($params[$keys['factory']][0]);
+            $this->breadcrumbs[] = [
+                'label' => $model['lang']['title'],
+                'url' => Yii::$app->catalogFilter->createUrl($params)
+            ];
+        }
 
         return parent::beforeAction($action);
     }
