@@ -75,6 +75,8 @@ class ProductController extends BaseController
             ];
         }
 
+        $this->title = $model['lang']['title'] . '. Купить в ' . Yii::$app->city->getCityTitleWhere();
+
         return $this->render('view', [
             'model' => $model,
         ]);
