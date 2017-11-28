@@ -3,12 +3,14 @@
 use yii\helpers\Html;
 //
 use frontend\components\Breadcrumbs;
-//
 use frontend\modules\catalog\models\{
     Factory, Product
 };
-//
 use frontend\themes\myarredo\assets\AppAsset;
+
+/**
+ * @var \frontend\modules\catalog\models\Product $model
+ */
 
 $bundle = AppAsset::register($this);
 
@@ -18,10 +20,6 @@ foreach (Yii::$app->shop_cart->items as $item) {
 }
 
 $elementsComposition = $model['elementsComposition'];
-
-/**
- * @var \frontend\modules\catalog\models\Product $model
- */
 
 $this->title = $this->context->title;
 

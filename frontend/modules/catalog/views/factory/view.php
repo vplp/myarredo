@@ -3,6 +3,7 @@
 use yii\helpers\{
     Url, Html
 };
+//
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\Factory;
 
@@ -12,6 +13,7 @@ use frontend\modules\catalog\models\Factory;
 
 $keys = Yii::$app->catalogFilter->keys;
 
+$this->title = $this->context->title;
 ?>
 
 <main>
@@ -49,7 +51,7 @@ $keys = Yii::$app->catalogFilter->keys;
                 </div>
                 <div class="col-sm-9 col-md-9">
                     <div class="descr">
-                        <h1 class="title-text"><?= $model['lang']['title']; ?></h1>
+                        <h1 class="title-text"><?= 'Итальянская мебель ' . $model['lang']['title']; ?></h1>
                         <div class="fact-link">
                             <?= Html::a($model['url'], 'http://' . $model['url'], ['target' => '_blank']); ?>
                         </div>
