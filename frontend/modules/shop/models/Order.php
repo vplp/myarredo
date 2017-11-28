@@ -2,6 +2,7 @@
 
 namespace frontend\modules\shop\models;
 
+use Yii;
 use yii\helpers\Url;
 
 /**
@@ -53,6 +54,15 @@ class Order extends \common\modules\shop\models\Order
     public function getItems()
     {
         return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderAnswer()
+    {
+        return $this->hasOne(OrderAnswer::class, ['order_id' => 'id'])
+            ->andWhere(['user_id' => Yii::$app->getUser()->getId()]);
     }
 
     /**
