@@ -9,15 +9,15 @@ use yii\base\Model;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use backend\modules\catalog\models\{
-    FactoryFile as FactoryFileModel, FactoryFileLang
+    FactoryCatalogsFiles as FactoryCatalogsFilesModel
 };
 
 /**
- * Class FactoryFile
+ * Class FactoryCatalogsFiles
  *
  * @package backend\modules\catalog\models\search
  */
-class FactoryFile extends FactoryFileModel implements BaseBackendSearchModel
+class FactoryCatalogsFiles extends FactoryCatalogsFilesModel implements BaseBackendSearchModel
 {
     /**
      * @return array
@@ -61,15 +61,13 @@ class FactoryFile extends FactoryFileModel implements BaseBackendSearchModel
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'factory_id' => $this->factory_id
+            self::tableName() . '.id' => $this->id,
+            self::tableName() . '.factory_id' => $this->factory_id
         ]);
 
-        $query->andFilterWhere(['like', 'published', $this->published]);
+        $query->andWhere([self::tableName() . '.file_type' => '1']);
 
-        $query->andFilterWhere(['like', 'file_type', $this->file_type]);
-
-        $query->andFilterWhere(['like', 'title', $this->title]);
+        $query->andFilterWhere(['like', self::tableName() . '.title', $this->title]);
 
         return $dataProvider;
     }
@@ -80,7 +78,7 @@ class FactoryFile extends FactoryFileModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = FactoryFileModel::findBase()->undeleted();
+        $query = FactoryCatalogsFilesModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -90,7 +88,7 @@ class FactoryFile extends FactoryFileModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = FactoryFileModel::findBase()->deleted();
+        $query = FactoryCatalogsFilesModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }

@@ -197,19 +197,11 @@ class Factory extends ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFiles()
-    {
-        return $this->hasMany(FactoryFile::class, ['factory_id' => 'id']);
-    }
-
-    /**
      * @return $this
      */
     public function getCatalogsFiles()
     {
-        return self::getFiles()
+        return $this->hasMany(FactoryCatalogsFiles::class, ['factory_id' => 'id'])
             ->andWhere(['file_type' => 1]);
     }
 
@@ -218,7 +210,7 @@ class Factory extends ActiveRecord
      */
     public function getPricesFiles()
     {
-        return self::getFiles()
+        return $this->hasMany(FactoryPricesFiles::class, ['factory_id' => 'id'])
             ->andWhere(['file_type' => 2]);
     }
 
