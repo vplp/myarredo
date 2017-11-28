@@ -127,9 +127,15 @@ class FactoryController extends BaseController
         ];
 
         $this->breadcrumbs[] = [
-            'label' => $model['lang']['title'],
+            'label' => $model['lang']['title'] . ' в ' . Yii::$app->city->getCityTitleWhere(),
             'url' => ['/catalog/factory/view', 'alias' => $model['alias']]
         ];
+
+        $this->title = 'Итальянская мебель ' .
+            $model['lang']['title'] .
+            'купить в ' .
+            Yii::$app->city->getCityTitleWhere() .
+            ' по лучшей цене';
 
         return $this->render('view', [
             'model' => $model,
