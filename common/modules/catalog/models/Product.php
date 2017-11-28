@@ -329,11 +329,49 @@ class Product extends ActiveRecord implements iProduct
     }
 
     /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findByID($id)
+    {
+        return self::findBase()->byID($id)->one();
+    }
+
+    /**
+     * @param $ids
+     * @return array
+     */
+    public static function findByIDs($ids): array
+    {
+        return self::findBase()->andWhere(['IN', 'id', array_unique($ids)])->all();
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getLang()
     {
         return $this->hasOne(ProductLang::class, ['rid' => 'id']);
+    }
+
+    /**
+     * Price
+     *
+     * @return mixed|null
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Discount
+     *
+     * @return int
+     */
+    public function getDiscount()
+    {
+        return 0;
     }
 
     /**
@@ -388,7 +426,6 @@ class Product extends ActiveRecord implements iProduct
         return $imagesSources;
     }
 
-
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -420,6 +457,26 @@ class Product extends ActiveRecord implements iProduct
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getFactoryCatalogsFiles()
+    {
+        return $this
+            ->hasMany(FactoryCatalogsFiles::class, ['id' => 'factory_file_id'])
+            ->viaTable(ProductRelFactoryCatalogsFiles::tableName(), ['catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactoryPricesFiles()
+    {
+        return $this
+            ->hasMany(FactoryPricesFiles::class, ['id' => 'factory_file_id'])
+            ->viaTable(ProductRelFactoryPricesFiles::tableName(), ['catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getTypes()
     {
         return $this->hasOne(Types::class, ['id' => 'catalog_type_id']);
@@ -431,26 +488,6 @@ class Product extends ActiveRecord implements iProduct
     public function getCollection()
     {
         return $this->hasOne(Collection::class, ['id' => 'collections_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFactoryCatalogsFiles()
-    {
-        return $this
-            ->hasMany(FactoryFile::class, ['id' => 'factory_file_id'])
-            ->viaTable(ProductRelFactoryCatalogsFiles::tableName(), ['catalog_item_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFactoryPricesFiles()
-    {
-        return $this
-            ->hasMany(FactoryFile::class, ['id' => 'factory_file_id'])
-            ->viaTable(ProductRelFactoryPricesFiles::tableName(), ['catalog_item_id' => 'id']);
     }
 
     /**
@@ -470,43 +507,5 @@ class Product extends ActiveRecord implements iProduct
     {
         return $this
             ->hasMany(ProductRelSpecification::class, ['catalog_item_id' => 'id']);
-    }
-
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public static function findByID($id)
-    {
-        return self::findBase()->byID($id)->one();
-    }
-
-    /**
-     * @param $ids
-     * @return array
-     */
-    public static function findByIDs($ids): array
-    {
-        return self::findBase()->andWhere(['IN', 'id', array_unique($ids)])->all();
-    }
-
-    /**
-     * Price
-     *
-     * @return mixed|null
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * Discount
-     *
-     * @return int
-     */
-    public function getDiscount()
-    {
-        return 0;
     }
 }

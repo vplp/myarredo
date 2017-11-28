@@ -4,14 +4,14 @@ namespace backend\modules\catalog\models;
 
 use yii\helpers\ArrayHelper;
 use thread\app\model\interfaces\BaseBackendModel;
-use common\modules\catalog\models\FactoryFile as CommonFactoryFileModel;
+use common\modules\catalog\models\FactoryCatalogsFiles as CommonFactoryCatalogsFiles;
 
 /**
- * Class FactoryFile
+ * Class FactoryCatalogsFiles
  *
  * @package backend\modules\catalog\models
  */
-class FactoryFile extends CommonFactoryFileModel implements BaseBackendModel
+class FactoryCatalogsFiles extends CommonFactoryCatalogsFiles implements BaseBackendModel
 {
     /**
      * Backend form drop down list
@@ -46,7 +46,7 @@ class FactoryFile extends CommonFactoryFileModel implements BaseBackendModel
      */
     public function search($params)
     {
-        return (new search\FactoryFile())->search($params);
+        return (new search\FactoryCatalogsFiles())->search($params);
     }
 
     /**
@@ -55,6 +55,6 @@ class FactoryFile extends CommonFactoryFileModel implements BaseBackendModel
      */
     public function trash($params)
     {
-        return (new search\FactoryFile())->trash($params);
+        return (new search\FactoryCatalogsFiles())->trash($params);
     }
 }
