@@ -255,9 +255,21 @@ $(document).ready(function(){
 
     /*--открыть/закрыть заказ (кабинет фабрики)--*/
     $(".manager-history-list .orders-title-block").click(function(){
-       $(this).closest(".item").toggleClass("open");
-       $(this).closest(".item").find(".hidden-order-info").slideToggle();
+        var item = $(this).closest(".item");
+        item.toggleClass("open");
+        item.siblings().removeClass("open");
+        item.siblings().find(".hidden-order-info").slideUp();
+        item.find(".hidden-order-info").slideToggle();
+        if(typeof item.attr("data-hash") !== "undefined") {
+           var hash = item.attr("data-hash");
+           window.location.hash = hash;
+        }
     });
+
+    if(window.location.hash !== ""){
+        var itemHash = window.location.hash.replace("#","");
+        $("[data-hash='" + itemHash + "']").find(".orders-title-block").click();
+    }
     /*--конец открыть/зыкрыть заказ (кабинет фабрики)--*/
 
     /*--поиск по списку (кабинет фабрики)--*/
@@ -386,6 +398,7 @@ $(document).ready(function(){
     });
     $(".alphabet-tab a").eq(0).trigger( "click" ); //показываем первый элемент по умолчанию
     /*--конец Больше фабрик модалка--*/
+
 
 
 });
