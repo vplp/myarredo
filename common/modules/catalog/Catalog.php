@@ -156,7 +156,7 @@ class Catalog extends aModule {
      */
     public function getFactoryCatalogsFilesUploadUrl()
     {
-        return $this->getBaseUploadPath() . '/factoryFileCatalog';
+        return $this->getBaseUploadUrl() . '/factoryFileCatalog';
     }
 
     /**
@@ -172,7 +172,7 @@ class Catalog extends aModule {
      */
     public function getFactoryPricesFilesUploadUrl()
     {
-        return $this->getBaseUploadPath() . '/factoryFilePrice';
+        return $this->getBaseUploadUrl() . '/factoryFilePrice';
     }
 
     /**
