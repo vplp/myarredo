@@ -21,26 +21,28 @@ use frontend\modules\catalog\models\{
                 <div class="col-md-12">
                     <div class="flex s-between c-align top-links">
 
-                        <?php if ($model['factory']): ?>
-                            <?= Html::a(
+                        <?php
+                        if ($model['factory']) {
+                            echo Html::a(
                                 $model['factory']['lang']['title'],
                                 Factory::getUrl($model['factory']['alias']),
                                 ['class' => 'brand']
-                            ); ?>
-                        <?php endif; ?>
+                            );
+                        }
 
-                        <?= Html::a(
+                        echo Html::a(
                             'Вернуться к списку',
                             Url::toRoute(['/catalog/sale/list']),
                             ['class' => 'back']
-                        ); ?>
+                        );
+                        ?>
 
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h1><?= $model->getTitle() ?></h1>
+                    <?= Html::tag('h1', $model->getTitle()); ?>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-5">
                     <div class="img-wrap">
@@ -58,23 +60,26 @@ use frontend\modules\catalog\models\{
 
                         <div class="prod-style">
                             <span>Стиль: </span>
+
                             <?php
                             $array = [];
-                            foreach ($model['specificationValue'] as $item): ?>
-                                <?php if ($item['specification']['parent_id'] == 9): ?>
-                                    <?php $array[] = $item['specification']['lang']['title']; ?>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                            <?= implode('; ', $array); ?>
+                            foreach ($model['specificationValue'] as $item) {
+                                if ($item['specification']['parent_id'] == 9) {
+                                    $array[] = $item['specification']['lang']['title'];
+                                }
+                            }
+                            echo implode('; ', $array);
+                            ?>
+
                         </div>
                         <div class="prod-price">
                             <div class="price">
-                                <?= $model->price_new ?> <?= $model->currency ?>
+                                <?= $model->price_new .' ' .$model->currency; ?>
                             </div>
 
                             <?php if ($model->price > 0): ?>
                                 <div class="old-price">
-                                    (старая цена - <b><?= $model->price ?>  <?= $model->currency ?></b>)
+                                    (старая цена - <b><?= $model->price . ' ' . $model->currency; ?></b>)
                                 </div>
                             <?php endif; ?>
 
@@ -87,13 +92,12 @@ use frontend\modules\catalog\models\{
                                 <td>
                                     Размеры
 
-                                    <?php foreach ($model['specificationValue'] as $item): ?>
-                                        <?php if ($item['specification']['parent_id'] == 4): ?>
-
-                                            <?= $item['specification']['alias']; ?>:<?= $item['val']; ?>
-
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
+                                    <?php
+                                    foreach ($model['specificationValue'] as $item) {
+                                        if ($item['specification']['parent_id'] == 4) {
+                                            echo $item['specification']['alias'] . ':' . $item['val'];
+                                        }
+                                    } ?>
                             </tr>
                             <tr>
                                 <td>
@@ -101,13 +105,15 @@ use frontend\modules\catalog\models\{
 
                                     <?php
                                     $array = [];
-                                    foreach ($model['specificationValue'] as $item): ?>
-                                        <?php if ($item['specification']['parent_id'] == 2): ?>
-                                            <?php $array[] = $item['specification']['lang']['title']; ?>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
+                                    foreach ($model['specificationValue'] as $item) {
+                                        if ($item['specification']['parent_id'] == 2) {
+                                            $array[] = $item['specification']['lang']['title'];
+                                        }
+                                    }
 
-                                    <?= implode('; ', $array); ?>
+                                    echo implode('; ', $array);
+                                    ?>
+
                                 </td>
                             </tr>
                         </table>

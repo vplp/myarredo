@@ -22,10 +22,13 @@ $this->title = $this->context->title;
     <div class="page category-page">
         <div class="container large-container">
             <div class="row">
+
                 <?= Html::tag('h1', $this->context->SeoH1); ?>
+
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
                 ]) ?>
+
             </div>
             <div class="cat-content">
                 <div class="row">
@@ -140,15 +143,15 @@ $this->title = $this->context->title;
                                         $_factory[$item['id']] = $item;
                                     }
 
-                                    foreach ($models as $model): ?>
-                                        <?= $this->render('_list_item', [
+                                    foreach ($models as $model) {
+                                        echo $this->render('_list_item', [
                                             'model' => $model,
                                             'types' => $_types,
                                             'style' => $style,
                                             'factory' => $_factory,
                                             'collection' => $_collection,
-                                        ]) ?>
-                                    <?php endforeach; ?>
+                                        ]);
+                                    } ?>
 
                                 </div>
                                 <div class="pagi-wrap">

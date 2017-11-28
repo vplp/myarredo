@@ -9,10 +9,13 @@ use frontend\components\Breadcrumbs;
     <div class="page about-page">
         <div class="container large-container">
             <div class="col-md-12">
+
                 <?= Html::tag('h1', $this->context->title); ?>
+
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
                 ]) ?>
+
                 <div class="text">
 
                     <p style="text-align:center"><span style="font-size:22px"><span
