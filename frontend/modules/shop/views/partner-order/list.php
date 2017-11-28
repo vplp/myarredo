@@ -9,6 +9,8 @@ use yii\widgets\ActiveForm;
  * @var \frontend\modules\shop\models\Order $order
  */
 
+$this->title = $this->context->title;
+
 ?>
 
 <main>
@@ -136,7 +138,8 @@ use yii\widgets\ActiveForm;
                                 </ul>
 
                                 <div class="hidden-order-info flex">
-                                    <div class="flex">
+                                    <div class="hidden-order-in">
+                                        <div class="flex-product">
                                         <?php foreach ($order->items as $item): ?>
 
                                             <?= $this->render('_list_item', [
@@ -144,22 +147,38 @@ use yii\widgets\ActiveForm;
                                             ]) ?>
 
                                         <?php endforeach; ?>
-
-                                        <div class="best-price-form">
-                                            <?php $form = ActiveForm::begin([
-                                                'method' => 'post',
-                                                'action' => $order->getPartnerOrderUrl(),
-                                                'id' => 'checkout-form',
-                                            ]); ?>
-
-                                            <?php // $form->field($order->getOrderAnswer(), 'answer')->textarea() ?>
-
-                                            <?= $form->field($order, 'comment')->textarea(['disabled' => true]) ?>
-
-                                            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success big']) ?>
-
-                                            <?php ActiveForm::end(); ?>
                                         </div>
+                                        <div class="form-wrap">
+                                            <div class="best-price-form">
+                                                <?php $form = ActiveForm::begin([
+                                                    'method' => 'post',
+                                                    'action' => $order->getPartnerOrderUrl(),
+                                                    'id' => 'checkout-form',
+                                                ]); ?>
+
+                                                <?php // $form->field($order->getOrderAnswer(), 'answer')->textarea() ?>
+
+                                                <?= $form->field($order, 'comment')->textarea(['disabled' => true]) ?>
+
+                                                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+
+                                                <?php ActiveForm::end(); ?>
+                                            </div>
+
+<!--                                            <div class="form-group">-->
+<!--                                                <label>Комментарий клиента</label>-->
+<!--                                                <textarea class="form-control" rows="5"></textarea>-->
+<!--                                            </div>-->
+<!--                                            <div class="form-group">-->
+<!--                                                <label>Ваш ответ</label>-->
+<!--                                                <textarea class="form-control" rows="5"></textarea>-->
+<!--                                            </div>-->
+<!--                                            <div class="form-group">-->
+<!--                                                <label>Результат</label>-->
+<!--                                                <textarea class="form-control" rows="5"></textarea>-->
+<!--                                            </div>-->
+                                        </div>
+
 
                                     </div>
                                 </div>
