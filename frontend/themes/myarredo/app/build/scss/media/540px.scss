@@ -519,5 +519,33 @@
       }
     }
   }
-
+  .adding-product-page {
+    .basket-item-info {
+      width: 100% !important;
+    }
+    .orders-title-block {
+      li {
+        width: 10% !important;
+        &:last-child {
+          display: none;
+        }
+      }
+    }
+    .form-filter-date-cont {
+      flex-direction: column;
+    }
+    .arr-drop {
+      margin-right: 0 !important;
+      margin-bottom: 10px;
+      .btn {
+        width: 100%;
+      }
+    }
+    .large-picker {
+      margin-right: 0 !important;
+      .btn {
+        width: 100%;
+      }
+    }
+  }
 }

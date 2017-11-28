@@ -189,4 +189,19 @@
       }
     }
   }
+  .adding-product-page {
+    .hidden-order-in {
+      flex-direction: column;
+      .flex-product {
+        justify-content: space-between;
+      }
+      .form-wrap {
+        width: 100%;
+      }
+    }
+    .basket-item-info {
+      width: 48%;
+      margin-right: 0;
+    }
+  }
 }
