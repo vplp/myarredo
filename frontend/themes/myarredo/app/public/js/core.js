@@ -232,7 +232,7 @@ $(document).ready(function(){
     });
 
     /*--Блокнот--*/
-    $(".basket-item-info").each(function(i,item){
+    $(".notebook-page .basket-item-info").each(function(i,item){
         if(i > 2){
             $(item).hide();
         }
@@ -254,9 +254,9 @@ $(document).ready(function(){
     /*--конец Блокнот--*/
 
     /*--открыть/закрыть заказ (кабинет фабрики)--*/
-    $(".manager-history-list .item").click(function(){
-       $(this).toggleClass("open");
-       $(this).find(".hidden-order-info").slideToggle();
+    $(".manager-history-list .orders-title-block").click(function(){
+       $(this).closest(".item").toggleClass("open");
+       $(this).closest(".item").find(".hidden-order-info").slideToggle();
     });
     /*--конец открыть/зыкрыть заказ (кабинет фабрики)--*/
 
@@ -300,21 +300,6 @@ $(document).ready(function(){
        var href = $(this).attr('href');
        window.location.href = href;
     });
-
-    /*--больше фабрик модалка--*/
-    $(".alphabet-tab a:nth-child(1)").click(); //показываем первый элемент по умолчанию
-    $(".alphabet-tab a").click(function(){
-        $(this).siblings().removeClass("active");
-        $(this).addClass("active");
-
-        var actTab = $(this).text();
-        var actShow = $("[data-show=" + actTab + "]").show();
-        actShow.siblings().hide();
-        actShow.css({
-            "display":"flex"
-        });
-    });
-    /*--конец Больше фабрик модалка--*/
 
     $(".show-all-sub").click(function(){
         var list = $(this).siblings(".list-item");
@@ -379,12 +364,28 @@ $(document).ready(function(){
     });
 
     /*--модалка варианты отделки*/
-    $(".composition .show-modal").click(function(){
+    $(".composition .show-modal").click(function(e){
+        e.preventDefault();
         var img = $(this).clone();
         $('#decoration-modal .image-container').html("").append(img);
         $('#decoration-modal').modal();
     });
     /*--конец модалка варианты отделки*/
+
+    /*--больше фабрик модалка--*/
+    $(".alphabet-tab a").click(function(){
+        $(this).siblings().removeClass("active");
+        $(this).addClass("active");
+
+        var actTab = $(this).text();
+        var actShow = $("[data-show=" + actTab + "]").show();
+        actShow.siblings().hide();
+        actShow.css({
+            "display":"flex"
+        });
+    });
+    $(".alphabet-tab a").eq(0).trigger( "click" ); //показываем первый элемент по умолчанию
+    /*--конец Больше фабрик модалка--*/
 
 
 });

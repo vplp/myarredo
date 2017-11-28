@@ -29,23 +29,11 @@ use frontend\modules\catalog\models\Product;
 
                         <div class="flex basket-items">
                             <?php foreach ($model->items as $item): ?>
-                                <div class="basket-item-info">
-                                    <div class="item">
-                                        <div class="img-cont">
-                                            <?= Html::a(Html::img($item->product->getImage()), Product::getUrl($item->product['alias'])) ?>
-                                        </div>
-                                        <table width="100%">
-                                            <tr>
-                                                <td>Предмет</td>
-                                                <td><?= $item->product['lang']['title'] ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Фабрика</td>
-                                                <td><?= $item->product['factory']['lang']['title'] ?></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
+
+                                <?= $this->render('_list_item', [
+                                    'item' => $item,
+                                ]) ?>
+
                             <?php endforeach; ?>
                         </div>
 

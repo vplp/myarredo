@@ -3,10 +3,13 @@
 use yii\helpers\{
     Html, Url
 };
+use yii\widgets\ActiveForm;
 
 /**
  * @var \frontend\modules\shop\models\Order $order
  */
+
+$this->title = $this->context->title;
 
 ?>
 
@@ -118,7 +121,9 @@ use yii\helpers\{
                     <?php if (!empty($orders)): ?>
 
                         <?php foreach ($orders as $order): ?>
+
                             <div class="item">
+
                                 <ul class="orders-title-block flex">
                                     <li class="order-id">
                                         <span>
@@ -131,7 +136,55 @@ use yii\helpers\{
                                     <li><span>Москва</span></li>
                                     <li><span><?= $order['order_status'] ?></span></li>
                                 </ul>
+
+                                <div class="hidden-order-info flex">
+                                    <div class="hidden-order-in">
+                                        <div class="flex-product">
+                                        <?php foreach ($order->items as $item): ?>
+
+                                            <?= $this->render('_list_item', [
+                                                'item' => $item,
+                                            ]) ?>
+
+                                        <?php endforeach; ?>
+                                        </div>
+                                        <div class="form-wrap">
+                                            <div class="best-price-form">
+                                                <?php $form = ActiveForm::begin([
+                                                    'method' => 'post',
+                                                    'action' => $order->getPartnerOrderUrl(),
+                                                    'id' => 'checkout-form',
+                                                ]); ?>
+
+                                                <?php // $form->field($order->getOrderAnswer(), 'answer')->textarea() ?>
+
+                                                <?= $form->field($order, 'comment')->textarea(['disabled' => true]) ?>
+
+                                                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+
+                                                <?php ActiveForm::end(); ?>
+                                            </div>
+
+<!--                                            <div class="form-group">-->
+<!--                                                <label>Комментарий клиента</label>-->
+<!--                                                <textarea class="form-control" rows="5"></textarea>-->
+<!--                                            </div>-->
+<!--                                            <div class="form-group">-->
+<!--                                                <label>Ваш ответ</label>-->
+<!--                                                <textarea class="form-control" rows="5"></textarea>-->
+<!--                                            </div>-->
+<!--                                            <div class="form-group">-->
+<!--                                                <label>Результат</label>-->
+<!--                                                <textarea class="form-control" rows="5"></textarea>-->
+<!--                                            </div>-->
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
                             </div>
+
                         <?php endforeach; ?>
 
                     <?php endif; ?>
