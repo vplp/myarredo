@@ -131,6 +131,19 @@ use yii\helpers\{
                                     <li><span>Москва</span></li>
                                     <li><span><?= $order['order_status'] ?></span></li>
                                 </ul>
+
+                                <div class="hidden-order-info flex">
+                                    <div class="flex">
+                                        <?php foreach ($order->items as $item): ?>
+
+                                            <?= $this->render('_list_item', [
+                                                'item' => $item,
+                                            ]) ?>
+
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+
                             </div>
                         <?php endforeach; ?>
 
