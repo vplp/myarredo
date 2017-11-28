@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+use yii\widgets\ActiveForm;
 
 /**
  * @var \frontend\modules\shop\models\Order $order
@@ -118,7 +119,9 @@ use yii\helpers\{
                     <?php if (!empty($orders)): ?>
 
                         <?php foreach ($orders as $order): ?>
+
                             <div class="item">
+
                                 <ul class="orders-title-block flex">
                                     <li class="order-id">
                                         <span>
@@ -131,7 +134,38 @@ use yii\helpers\{
                                     <li><span>Москва</span></li>
                                     <li><span><?= $order['order_status'] ?></span></li>
                                 </ul>
+
+                                <div class="hidden-order-info flex">
+                                    <div class="flex">
+                                        <?php foreach ($order->items as $item): ?>
+
+                                            <?= $this->render('_list_item', [
+                                                'item' => $item,
+                                            ]) ?>
+
+                                        <?php endforeach; ?>
+
+                                        <div class="best-price-form">
+                                            <?php $form = ActiveForm::begin([
+                                                'method' => 'post',
+                                                'action' => $order->getPartnerOrderUrl(),
+                                                'id' => 'checkout-form',
+                                            ]); ?>
+
+                                            <?php // $form->field($order->getOrderAnswer(), 'answer')->textarea() ?>
+
+                                            <?= $form->field($order, 'comment')->textarea(['disabled' => true]) ?>
+
+                                            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success big']) ?>
+
+                                            <?php ActiveForm::end(); ?>
+                                        </div>
+
+                                    </div>
+                                </div>
+
                             </div>
+
                         <?php endforeach; ?>
 
                     <?php endif; ?>
