@@ -111,4 +111,15 @@
       height: 195px;
     }
   }
+  .adding-product-page {
+    .basket-item-info {
+      width: 45%;
+    }
+    .hidden-order-in {
+      .form-wrap {
+        width: 33%;
+        min-width: 33%;
+      }
+    }
+  }
 }

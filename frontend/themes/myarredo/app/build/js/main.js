@@ -232,7 +232,7 @@ $(document).ready(function(){
     });
 
     /*--Блокнот--*/
-    $(".basket-item-info").each(function(i,item){
+    $(".notebook-page .basket-item-info").each(function(i,item){
         if(i > 2){
             $(item).hide();
         }
@@ -254,9 +254,9 @@ $(document).ready(function(){
     /*--конец Блокнот--*/
 
     /*--открыть/закрыть заказ (кабинет фабрики)--*/
-    $(".manager-history-list .item").click(function(){
-       $(this).toggleClass("open");
-       $(this).find(".hidden-order-info").slideToggle();
+    $(".manager-history-list .orders-title-block").click(function(){
+       $(this).closest(".item").toggleClass("open");
+       $(this).closest(".item").find(".hidden-order-info").slideToggle();
     });
     /*--конец открыть/зыкрыть заказ (кабинет фабрики)--*/
 
