@@ -3,6 +3,7 @@
 use yii\helpers\{
     Url, Html
 };
+//
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\Factory;
 
@@ -12,6 +13,7 @@ use frontend\modules\catalog\models\Factory;
 
 $keys = Yii::$app->catalogFilter->keys;
 
+$this->title = $this->context->title;
 ?>
 
 <main>
@@ -34,11 +36,13 @@ $keys = Yii::$app->catalogFilter->keys;
             </div>
         </div>
         <div class="container large-container">
+
             <div class="row">
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
                 ]) ?>
             </div>
+
             <div class="row factory-det">
                 <div class="col-sm-3 col-md-3">
                     <div class="fact-img">
@@ -47,7 +51,7 @@ $keys = Yii::$app->catalogFilter->keys;
                 </div>
                 <div class="col-sm-9 col-md-9">
                     <div class="descr">
-                        <h1 class="title-text"><?= $model['lang']['title']; ?></h1>
+                        <h1 class="title-text"><?= 'Итальянская мебель ' . $model['lang']['title']; ?></h1>
                         <div class="fact-link">
                             <?= Html::a($model['url'], 'http://' . $model['url'], ['target' => '_blank']); ?>
                         </div>
@@ -127,33 +131,12 @@ $keys = Yii::$app->catalogFilter->keys;
                             </div>
                         </div>
 
-                        <!-- LIST FILES START -->
-                        <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
-                            <div class="downloads">
-                                <?php if (!empty($model->catalogsFiles)): ?>
-                                    <p class="title-small">Посмотреть каталоги</p>
-                                    <ul>
-                                        <?php foreach ($model->catalogsFiles as $obj): ?>
-                                            <li>
-                                                <?= Html::a($obj->title, $obj->getFileLink(), ['target' => '_blank']) ?>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                <?php endif; ?>
-
-                                <?php if (!empty($model->pricesFiles)): ?>
-                                    <p class="title-small">Посмотреть прайс листы</p>
-                                    <ul>
-                                        <?php foreach ($model->pricesFiles as $obj): ?>
-                                            <li>
-                                                <?= Html::a($obj->title, $obj->getFileLink(), ['target' => '_blank']) ?>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                <?php endif; ?>
-                            </div>
-                        <?php endif; ?>
-                        <!-- LIST FILES END -->
+                        <?= $this->render(
+                            'parts/_factory_files',
+                            [
+                                'model' => $model
+                            ]
+                        ); ?>
 
                         <div class="text">
                             <?= $model['lang']['content']; ?>

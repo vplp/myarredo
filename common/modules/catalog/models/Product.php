@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\{
     ArrayHelper
 };
+use yii\behaviors\AttributeBehavior;
 //
 use voskobovich\behaviors\ManyToManyBehavior;
 //
@@ -13,6 +14,7 @@ use thread\app\base\models\ActiveRecord;
 use thread\modules\shop\interfaces\Product as iProduct;
 //
 use common\modules\catalog\Catalog;
+use common\helpers\Inflector;
 
 /**
  * Class Product
@@ -49,6 +51,7 @@ use common\modules\catalog\Catalog;
  * @property integer $position
  * @property string $image_link
  * @property string $gallery_image
+ * @property integer $mark
  *
  * @property ProductLang $lang
  * @property ProductRelCategory[] $category
@@ -94,6 +97,16 @@ class Product extends ActiveRecord implements iProduct
                     'factory_prices_files_ids' => 'factoryPricesFiles',
                 ],
             ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias, '_');
+                },
+            ],
         ]);
     }
 
@@ -130,7 +143,8 @@ class Product extends ActiveRecord implements iProduct
                     'published',
                     'deleted',
                     'removed',
-                    'moderation'
+                    'moderation',
+                    'mark'
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
@@ -170,6 +184,7 @@ class Product extends ActiveRecord implements iProduct
             'removed' => ['removed'],
             'position' => ['position'],
             'setImages' => ['image_link', 'gallery_image', 'picpath'],
+            'setAlias' => ['alias', 'mark'],
             'backend' => [
                 'catalog_type_id',
                 'user_id',
@@ -246,6 +261,7 @@ class Product extends ActiveRecord implements iProduct
             'factory_catalogs_files_ids' => Yii::t('app', 'Factory catalogs files'),
             'factory_prices_files_ids' => Yii::t('app', 'Factory prices files'),
             'specification_value_ids',
+            'mark' => 'Mark',
         ];
     }
 
@@ -256,10 +272,10 @@ class Product extends ActiveRecord implements iProduct
      */
     public function beforeSave($insert)
     {
-        if ($this->scenario == 'backend') {
-            $this->alias = (!empty($this->types->lang) ? $this->types->lang->title : '')
-                . ' ' . (!empty($this->factory->lang) ? $this->factory->lang->title : '')
-                . ' ' . (!empty($this->collection->lang) ? $this->collection->lang->title : '')
+        if (in_array($this->scenario, ['backend', 'setAlias'])) {
+            $this->alias = (!empty($this->types) ? $this->types->alias : '')
+                . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
+                . (!empty($this->collection->lang) ? ' ' . $this->collection->lang->title : '')
                 . (($this->article) ? ' ' . $this->article : '');
 
             if ($this->id) {
@@ -277,6 +293,7 @@ class Product extends ActiveRecord implements iProduct
     public function afterSave($insert, $changedAttributes)
     {
         if ($this->scenario == 'backend') {
+
             // delete relation ProductRelSpecification
             ProductRelSpecification::deleteAll(['catalog_item_id' => $this->id]);
 
@@ -308,7 +325,25 @@ class Product extends ActiveRecord implements iProduct
     {
         return self::find()
             ->innerJoinWith(['lang'])
-            ->orderBy(self::tableName() . '.id DESC');
+            ->orderBy(self::tableName() . '.position DESC');
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findByID($id)
+    {
+        return self::findBase()->byID($id)->one();
+    }
+
+    /**
+     * @param $ids
+     * @return array
+     */
+    public static function findByIDs($ids): array
+    {
+        return self::findBase()->andWhere(['IN', 'id', array_unique($ids)])->all();
     }
 
     /**
@@ -317,6 +352,26 @@ class Product extends ActiveRecord implements iProduct
     public function getLang()
     {
         return $this->hasOne(ProductLang::class, ['rid' => 'id']);
+    }
+
+    /**
+     * Price
+     *
+     * @return mixed|null
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Discount
+     *
+     * @return int
+     */
+    public function getDiscount()
+    {
+        return 0;
     }
 
     /**
@@ -354,7 +409,7 @@ class Product extends ActiveRecord implements iProduct
 
         if (!empty($this->gallery_image)) {
             $this->gallery_image = $this->gallery_image[0] == ','
-                ? substr($this->gallery_image,1)
+                ? substr($this->gallery_image, 1)
                 : $this->gallery_image;
 
             $images = explode(',', $this->gallery_image);
@@ -370,7 +425,6 @@ class Product extends ActiveRecord implements iProduct
 
         return $imagesSources;
     }
-
 
     /**
      * @return \yii\db\ActiveQuery
@@ -403,6 +457,26 @@ class Product extends ActiveRecord implements iProduct
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getFactoryCatalogsFiles()
+    {
+        return $this
+            ->hasMany(FactoryCatalogsFiles::class, ['id' => 'factory_file_id'])
+            ->viaTable(ProductRelFactoryCatalogsFiles::tableName(), ['catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactoryPricesFiles()
+    {
+        return $this
+            ->hasMany(FactoryPricesFiles::class, ['id' => 'factory_file_id'])
+            ->viaTable(ProductRelFactoryPricesFiles::tableName(), ['catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getTypes()
     {
         return $this->hasOne(Types::class, ['id' => 'catalog_type_id']);
@@ -414,26 +488,6 @@ class Product extends ActiveRecord implements iProduct
     public function getCollection()
     {
         return $this->hasOne(Collection::class, ['id' => 'collections_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFactoryCatalogsFiles()
-    {
-        return $this
-            ->hasMany(FactoryFile::class, ['id' => 'factory_file_id'])
-            ->viaTable(ProductRelFactoryCatalogsFiles::tableName(), ['catalog_item_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFactoryPricesFiles()
-    {
-        return $this
-            ->hasMany(FactoryFile::class, ['id' => 'factory_file_id'])
-            ->viaTable(ProductRelFactoryPricesFiles::tableName(), ['catalog_item_id' => 'id']);
     }
 
     /**
@@ -453,53 +507,5 @@ class Product extends ActiveRecord implements iProduct
     {
         return $this
             ->hasMany(ProductRelSpecification::class, ['catalog_item_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCompositionProduct()
-    {
-        return $this
-            ->hasMany(Product::class, ['id' => 'catalog_item_id'])
-            ->viaTable(ProductRelComposition::tableName(), ['composition_id' => 'id']);
-    }
-
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public static function findByID($id)
-    {
-        return self::findBase()->byID($id)->one();
-    }
-
-    /**
-     * @param $ids
-     * @return array
-     */
-    public static function findByIDs($ids): array
-    {
-        return self::findBase()->andWhere(['IN', 'id', array_unique($ids)])->all();
-    }
-
-    /**
-     * Price
-     *
-     * @return mixed|null
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * Discount
-     *
-     * @return int
-     */
-    public function getDiscount()
-    {
-        return 0;
     }
 }

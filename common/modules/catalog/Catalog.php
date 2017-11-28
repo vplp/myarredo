@@ -144,39 +144,35 @@ class Catalog extends aModule {
     }
 
     /**
-     * FactoryFileUploadPath
-     *
-     * @param int $file_type
      * @return string
      */
-    public function getFactoryFileUploadPath($file_type = 0)
+    public function getFactoryCatalogsFilesUploadPath()
     {
-        switch ($file_type) {
-            case 0:
-                return false;
-            case 1:
-                return $this->getBaseUploadPath() . '/factoryFileCatalog';
-            case 2:
-                return $this->getBaseUploadPath() . '/factoryFilePrice';
-        }
+        return $this->getBaseUploadPath() . '/factoryFileCatalog';
     }
 
     /**
-     * FactoryFileUploadUrl
-     *
-     * @param int $file_type
-     * @return bool|string
+     * @return string
      */
-    public function getFactoryFileUploadUrl($file_type = 0)
+    public function getFactoryCatalogsFilesUploadUrl()
     {
-        switch ($file_type) {
-            case 0:
-                return false;
-            case 1:
-                return $this->getBaseUploadUrl() . '/factoryFileCatalog';
-            case 2:
-                return $this->getBaseUploadUrl() . '/factoryFilePrice';
-        }
+        return $this->getBaseUploadUrl() . '/factoryFileCatalog';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFactoryPricesFilesUploadPath()
+    {
+        return $this->getBaseUploadPath() . '/factoryFilePrice';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFactoryPricesFilesUploadUrl()
+    {
+        return $this->getBaseUploadUrl() . '/factoryFilePrice';
     }
 
     /**
@@ -185,7 +181,7 @@ class Catalog extends aModule {
      */
     public function getBaseUploadPath()
     {
-        return Yii::getAlias('@uploads') . '/';
+        return Yii::getAlias('@uploads');
     }
 
     /**

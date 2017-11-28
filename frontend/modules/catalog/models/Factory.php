@@ -6,6 +6,8 @@ use Yii;
 use yii\helpers\{
     Url, ArrayHelper
 };
+//
+use frontend\components\ImageResize;
 
 /**
  * Class Factory
@@ -97,7 +99,7 @@ class Factory extends \common\modules\catalog\models\Factory
      * @param string $image_link
      * @return null|string
      */
-    public static function getImage(string $image_link  = '')
+    public static function getImage($image_link  = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -115,6 +117,31 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
+     * @param string $image_link
+     * @return null|string
+     */
+    public static function getImageThumb($image_link  = '')
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getFactoryUploadPath();
+        $url = $module->getFactoryUploadUrl();
+
+        $image = null;
+
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = $path . '/' . $image_link;
+
+            // resize
+            $ImageResize = new ImageResize($path, $url);
+            $image = $ImageResize->getThumb($image, 150, 150);
+        }
+
+        return $image;
+    }
+
+    /**
      * @param array $params
      * @return mixed
      */
@@ -126,14 +153,17 @@ class Factory extends \common\modules\catalog\models\Factory
 
         $query
             ->innerJoinWith(["product"], false)
-            ->innerJoinWith(["product.category productCategory"], false)
+            ->innerJoinWith(["product.lang"], false)
             ->andFilterWhere([
                 Product::tableName() . '.published' => '1',
                 Product::tableName() . '.deleted' => '0',
+                Product::tableName() . '.removed' => '0',
             ]);
 
         if (isset($params[$keys['category']])) {
-            $query->andFilterWhere(['IN', 'productCategory.alias', $params[$keys['category']]]);
+            $query
+                ->innerJoinWith(["product.category productCategory"], false)
+                ->andFilterWhere(['IN', 'productCategory.alias', $params[$keys['category']]]);
         }
 
         if (isset($params[$keys['type']])) {

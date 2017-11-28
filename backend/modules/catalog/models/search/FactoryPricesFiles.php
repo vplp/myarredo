@@ -1,41 +1,38 @@
 <?php
 
-namespace backend\modules\seo\modules\directlink\models\search;
+namespace backend\modules\catalog\models\search;
 
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
-use thread\app\base\models\query\ActiveQuery;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
-use backend\modules\seo\modules\directlink\Directlink as ParentModule;
-use backend\modules\seo\modules\directlink\models\{
-    Directlink as ParentModel
+use backend\modules\catalog\models\{
+    FactoryPricesFiles as FactoryPricesFilesModel
 };
 
 /**
- * Class Directlink
+ * Class FactoryPricesFiles
  *
- * @package backend\modules\seo\modules\directlink\models\search
+ * @package backend\modules\catalog\models\search
  */
-class Directlink extends ParentModel implements BaseBackendSearchModel
+class FactoryPricesFiles extends FactoryPricesFilesModel implements BaseBackendSearchModel
 {
-    public $title;
-
     /**
      * @return array
      */
     public function rules()
     {
         return [
-            [['url'], 'string', 'max' => 255],
+            [['factory_id'], 'integer'],
+            [['title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [['file_type'], 'in', 'range' => [1, 2]],
         ];
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()
@@ -44,14 +41,14 @@ class Directlink extends ParentModel implements BaseBackendSearchModel
     }
 
     /**
-     * @param ActiveQuery $query
-     * @param array $params
+     * @param $query
+     * @param $params
      * @return ActiveDataProvider
      */
     public function baseSearch($query, $params)
     {
-        /** @var ParentModule $module */
-        $module = Yii::$app->getModule('seo/directlink');
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
@@ -63,29 +60,35 @@ class Directlink extends ParentModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'url', $this->url])
-            ->andFilterWhere(['like', 'published', $this->published]);
+        $query->andFilterWhere([
+            self::tableName() . '.id' => $this->id,
+            self::tableName() . '.factory_id' => $this->factory_id
+        ]);
+
+        $query->andWhere([self::tableName() . '.file_type' => '2']);
+
+        $query->andFilterWhere(['like', self::tableName() . '.title', $this->title]);
 
         return $dataProvider;
     }
 
     /**
-     * @param array $params
+     * @param $params
      * @return ActiveDataProvider
      */
     public function search($params)
     {
-        $query = ParentModel::findBase()->undeleted();
+        $query = FactoryPricesFilesModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
     /**
-     * @param array $params
+     * @param $params
      * @return ActiveDataProvider
      */
     public function trash($params)
     {
-        $query = ParentModel::findBase()->deleted();
+        $query = FactoryPricesFilesModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 ?>
 
+<?php /*
 <div class="location-buts flex">
     <a href="javascript:void(0);" data-style="small" class="tiles4 flex active">
         <i></i><i></i><i></i><i></i>
@@ -13,6 +14,7 @@ use yii\helpers\Html;
         <i></i><i></i>
     </a>
 </div>
+*/ ?>
 
 <div class="dropdown sort-by">
     <span class="sort-by-name">Сортировать по цене:</span>

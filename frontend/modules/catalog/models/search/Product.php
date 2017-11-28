@@ -66,7 +66,7 @@ class Product extends ProductModel
         ]);
 
         $query->andWhere([
-            'removed' => '0'
+            self::tableName() . '.removed' => '0'
         ]);
 
         if (!($this->load($params, ''))) {
@@ -74,7 +74,7 @@ class Product extends ProductModel
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
+            self::tableName() . '.id' => $this->id,
         ]);
 
         if (isset($params[$keys['category']])) {
@@ -112,7 +112,7 @@ class Product extends ProductModel
             $order[] = self::tableName() . '.is_composition DESC';
         }
 
-        $order[] = self::tableName() . '.updated_at DESC';
+        $order[] = self::tableName() . '.position DESC';
 
         $query->orderBy(implode(',', $order));
 
@@ -130,7 +130,7 @@ class Product extends ProductModel
         $query = ProductModel::findBase();
 
         $query->andWhere([
-            'removed' => '0'
+            ProductModel::tableName() . '.removed' => '0'
         ]);
 
         $query->andFilterWhere([

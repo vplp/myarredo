@@ -3,10 +3,14 @@
 use yii\helpers\Html;
 //
 use frontend\components\Breadcrumbs;
-//
-use frontend\modules\catalog\models\Factory;
-//
+use frontend\modules\catalog\models\{
+    Factory, Product
+};
 use frontend\themes\myarredo\assets\AppAsset;
+
+/**
+ * @var \frontend\modules\catalog\models\Product $model
+ */
 
 $bundle = AppAsset::register($this);
 
@@ -15,9 +19,9 @@ foreach (Yii::$app->shop_cart->items as $item) {
     $products_id[] = $item->product_id;
 }
 
-/**
- * @var \frontend\modules\catalog\models\Product $model
- */
+$elementsComposition = $model['elementsComposition'];
+
+$this->title = $this->context->title;
 
 ?>
 
@@ -31,7 +35,7 @@ foreach (Yii::$app->shop_cart->items as $item) {
                 ]) ?>
 
                 <div class="product-title">
-                    <h1 class="prod-model" itemprop="name"><?= $model->getFullTitle(); ?></h1>
+                    <h1 class="prod-model" itemprop="name"><?= $model->getTitle(); ?></h1>
                 </div>
 
                 <div class="col-md-5">
@@ -166,33 +170,12 @@ foreach (Yii::$app->shop_cart->items as $item) {
 
                         </table>
 
-                        <!-- LIST FILES START -->
-                        <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
-                            <div class="downloads">
-                                <?php if (!empty($model->factoryCatalogsFiles)): ?>
-                                    <p class="title-small">Посмотреть каталоги</p>
-                                    <ul>
-                                        <?php foreach ($model->factoryCatalogsFiles as $obj): ?>
-                                            <li>
-                                                <?= Html::a($obj->title, $obj->getFileLink(), ['target' => '_blank']) ?>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                <?php endif; ?>
-
-                                <?php if (!empty($model->factoryPricesFiles)): ?>
-                                    <p class="title-small">Посмотреть прайс листы</p>
-                                    <ul>
-                                        <?php foreach ($model->factoryPricesFiles as $obj): ?>
-                                            <li>
-                                                <?= Html::a($obj->title, $obj->getFileLink(), ['target' => '_blank']) ?>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                <?php endif; ?>
-                            </div>
-                        <?php endif; ?>
-                        <!-- LIST FILES END -->
+                        <?= $this->render(
+                            'parts/_factory_files',
+                            [
+                                'model' => $model
+                            ]
+                        ); ?>
 
                         <div class="prod-descr" itemprop="description"><?= $model['lang']['description']; ?></div>
                     </div>
@@ -201,30 +184,31 @@ foreach (Yii::$app->shop_cart->items as $item) {
 
                     <?php if (!$model['removed']): ?>
                         <div class="best-price-form">
+
                             <h3>Заполните форму - получите лучшую цену на этот товар</h3>
 
                             <?= \frontend\modules\shop\widgets\request\RequestPrice::widget(['product_id' => $model['id']]) ?>
 
-                                <?php if (!in_array($model['id'], $products_id)): ?>
-                                    <?= Html::a(
-                                        'Отложить в блокнот',
-                                        'javascript:void(0);',
-                                        [
-                                            'class' => 'add-to-notepad btn btn-default big',
-                                            'data-id' => $model['id'],
-                                            'data-toggle' => 'modal',
-                                            'data-target' => '#myModal'
-                                        ]
-                                    ) ?>
-                                <?php else: ?>
-                                    <?= Html::a(
-                                        'В блокноте',
-                                        'javascript:void(0);',
-                                        [
-                                            'class' => 'btn btn-default big',
-                                        ]
-                                    ) ?>
-                                <?php endif; ?>
+                            <?php if (!in_array($model['id'], $products_id)): ?>
+                                <?= Html::a(
+                                    'Отложить в блокнот',
+                                    'javascript:void(0);',
+                                    [
+                                        'class' => 'add-to-notepad btn btn-default big',
+                                        'data-id' => $model['id'],
+                                        'data-toggle' => 'modal',
+                                        'data-target' => '#myModal'
+                                    ]
+                                ) ?>
+                            <?php else: ?>
+                                <?= Html::a(
+                                    'В блокноте',
+                                    'javascript:void(0);',
+                                    [
+                                        'class' => 'btn btn-default big',
+                                    ]
+                                ) ?>
+                            <?php endif; ?>
 
                         </div>
                     <?php else: ?>
@@ -240,7 +224,7 @@ foreach (Yii::$app->shop_cart->items as $item) {
             <div class="row composition">
                 <div class="col-md-12">
                     <ul class="nav nav-tabs">
-                        <?php if ($model['is_composition']): ?>
+                        <?php if (!empty($elementsComposition)): ?>
                             <li><a data-toggle="tab" href="#panel1">ПРЕДМЕТЫ КОмпозиции</a></li>
                         <?php endif; ?>
                         <?php if (!empty($model['samples'])): ?>
@@ -250,12 +234,12 @@ foreach (Yii::$app->shop_cart->items as $item) {
 
                     <div class="tab-content">
 
-                        <?php if ($model['is_composition']): ?>
+                        <?php if (!empty($elementsComposition)): ?>
                             <div id="panel1" class="tab-pane fade">
                                 <?= $this->render(
                                     'parts/_product_by_composition',
                                     [
-                                        'models' => $model['compositionProduct']
+                                        'models' => $elementsComposition
                                     ]
                                 ); ?>
                             </div>
@@ -408,8 +392,7 @@ foreach (Yii::$app->shop_cart->items as $item) {
         <div class="modal-dialog">
             <button type="button" class="close" data-dismiss="modal">×</button>
             <div class="modal-content">
-                <div class="image-container">
-                </div>
+                <div class="image-container"></div>
             </div>
         </div>
     </div>

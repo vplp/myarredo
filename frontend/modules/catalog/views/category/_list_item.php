@@ -20,17 +20,13 @@ use frontend\modules\catalog\models\Product;
 <?php endif; ?>
 
     <div class="img-cont">
-        <?= Html::img(Product::getImage($model['image_link'])); ?>
+        <?= Html::img(Product::getImageThumb($model['image_link'])); ?>
         <div class="brand">
             <?= (isset($factory[$model['factory_id']])) ? $factory[$model['factory_id']]['lang']['title'] : null; ?>
         </div>
     </div>
     <div class="item-infoblock">
-        <?= Product::getTitle(
-            $model,
-            isset($types[$model['catalog_type_id']]) ? $types[$model['catalog_type_id']] : null,
-            isset($collection[$model['collections_id']]) ? $collection[$model['collections_id']] : null
-        ); ?>
+        <?= Product::getStaticTitle($model); ?>
     </div>
 
 <?= Html::endTag('a'); ?>

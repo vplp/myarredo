@@ -4,6 +4,8 @@ namespace frontend\modules\catalog\models;
 
 use Yii;
 use yii\helpers\Url;
+//
+use frontend\components\ImageResize;
 
 /**
  * Class Sale
@@ -12,39 +14,6 @@ use yii\helpers\Url;
  */
 class Sale extends \common\modules\catalog\models\Sale
 {
-//    /**
-//     * @return array
-//     */
-//    public function behaviors()
-//    {
-//        return [];
-//    }
-
-//    /**
-//     * @return array
-//     */
-//    public function scenarios()
-//    {
-//        return parent::scenarios();
-//    }
-//
-//    /**
-//     * @return array
-//     */
-//    public function attributeLabels()
-//    {
-//        return [];
-//    }
-//
-//    /**
-//     * @return array
-//     */
-//    public function rules()
-//    {
-//        return [];
-//    }
-
-
     /**
      * Get by alias
      *
@@ -109,9 +78,10 @@ class Sale extends \common\modules\catalog\models\Sale
     }
 
     /**
+     * @param string $image_link
      * @return null|string
      */
-    public function getImage()
+    public static function getImage($image_link = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -121,8 +91,49 @@ class Sale extends \common\modules\catalog\models\Sale
 
         $image = null;
 
-        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
-            $image = $url . '/' . $this->image_link;
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = $url . '/' . $image_link;
+        }
+
+        return $image;
+    }
+
+    /**
+     * @param string $image_link
+     * @return null|string
+     */
+    public static function getImageThumb($image_link  = '')
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getSaleUploadPath();
+        $url = $module->getSaleUploadUrl();
+
+        $image = null;
+
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+
+            $image_link_path = explode('/', $image_link);
+
+            $img_name = $image_link_path[count($image_link_path)-1];
+
+            unset($image_link_path[count($image_link_path)-1]);
+
+//            $dir    = $path . '/' . implode('/' ,$image_link_path);
+//            $files = scandir($dir);
+
+            $_image_link = $path . '/' . implode('/', $image_link_path) . '/thumb_' . $img_name;
+
+            if (is_file($_image_link)) {
+                $image = $_image_link;
+            } else {
+                $image = $path . '/' . $image_link;
+            }
+
+            // resize
+            $ImageResize = new ImageResize($path, $url);
+            $image = $ImageResize->getThumb($image, 340, 340);
         }
 
         return $image;

@@ -1,7 +1,5 @@
 <?php
 return [
-    'gii' => 'gii',
-
     // Module [[Home]]
     '' => 'home/home/index',
     'contacts' => 'page/contacts/index',

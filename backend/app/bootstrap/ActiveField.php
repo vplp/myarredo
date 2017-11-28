@@ -182,8 +182,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
                     key: '" . basename($preview) . "',
                     filename: '" . basename($preview) . "',
                     caption: '" . basename($preview) . "',
-                    size: " . filesize( '..' . $preview) . ",
-                   
+                    size: " . filesize(($preview == '' ? '..'.$preview : $preview)) . ",
                     url: '" . Url::toRoute(['filedelete', 'id' => $this->model->id]) . "'
                 }";
 

@@ -12,6 +12,7 @@ use voskobovich\behaviors\ManyToManyBehavior;
 use thread\app\base\models\ActiveRecord;
 //
 use common\modules\catalog\Catalog;
+use common\modules\user\models\User;
 
 /**
  * Class Sale
@@ -43,6 +44,7 @@ use common\modules\catalog\Catalog;
  * @property SaleLang $lang
  * @property SaleRelCategory[] $category
  * @property Factory $factory
+ * @property User $user
  * @property Types $types
  *
  * @package common\modules\catalog\models
@@ -293,6 +295,14 @@ class Sale extends ActiveRecord
     public function getTypes()
     {
         return $this->hasOne(Types::class, ['id' => 'catalog_type_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     /**

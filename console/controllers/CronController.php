@@ -5,10 +5,10 @@ namespace console\controllers;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\console\Controller;
+//
 use common\modules\catalog\models\{
-    Product, Sale
+    Product, ProductLang, Sale
 };
-
 
 /**
  * Class CronController
@@ -17,6 +17,57 @@ use common\modules\catalog\models\{
  */
 class CronController extends Controller
 {
+    public function actionIndex()
+    {
+//        $this->actionGenerateProductTitle();
+//        $this->actionImportProductImages();
+    }
+
+    /**
+     * Generate product title
+     */
+    public function actionGenerateProductTitle()
+    {
+        $models = Product::find()
+            //->where(['mark' => '0'])
+            ->limit(100)
+            ->orderBy('id ASC')
+            ->all();
+
+        foreach ($models as $model) {
+            /** @var PDO $transaction */
+            /** @var $model Product */
+            $transaction = $model::getDb()->beginTransaction();
+            try {
+
+                $model->setScenario('setAlias');
+
+                $model->mark = '1';
+
+                if ($model->save()) {
+                    $transaction->commit();
+
+                    echo $model->alias . PHP_EOL;
+
+                    $modelLang = ProductLang::findOne([
+                        'rid' => $model->id,
+                        'lang' => Yii::$app->language,
+                    ]);
+
+                    $modelLang->setScenario('backend');
+                    $modelLang->save();
+
+                    echo $modelLang->title . PHP_EOL;
+
+                } else {
+                    $transaction->rollBack();
+                }
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                throw new \Exception($e);
+            }
+        }
+    }
 
     /**
      * Import product gallery image
@@ -24,9 +75,12 @@ class CronController extends Controller
     public function actionImportProductImages()
     {
         $models = Product::find()
-            ->select(['id', 'gallery_id', 'image_link', 'gallery_image', 'picpath'])
             ->limit(1000)
-            ->where(['picpath' => '0'])
+            ->where([
+                //'picpath' => '0',
+                'image_link' => null,
+                'mark' => '0'
+            ])
             ->orderBy('id ASC')
             ->all();
 
@@ -43,19 +97,17 @@ class CronController extends Controller
                 /** @var $model Product */
                 $transaction = $model::getDb()->beginTransaction();
                 try {
-
-
                     $images = ArrayHelper::map($photo, 'id', 'photopath');
 
                     $model->gallery_image = implode(',', $images);
                     $model->image_link = array_shift($images);
-                    $model->picpath = '1';
+                    $model->mark = '1';
 
-//                    /* !!! */ echo  '<pre style="color:red;">'; print_r($model->attributes); echo '</pre>'; /* !!! */
-//                    die();
                     $model->setScenario('setImages');
 
                     if ($model->save()) {
+
+                        echo $model->id . ' ' . $model->image_link . PHP_EOL;
                         $transaction->commit();
 
                     } else {
@@ -75,7 +127,6 @@ class CronController extends Controller
     public function actionImportSaleImages()
     {
         $models = Sale::find()
-            ->select(['id', 'gallery_id', 'image_link', 'gallery_image', 'picpath'])
             ->limit(1000)
             ->where(['picpath' => '0'])
             ->orderBy('id ASC')
@@ -102,8 +153,6 @@ class CronController extends Controller
                     $model->image_link = array_shift($images);
                     $model->picpath = '1';
 
-//                    /* !!! */ echo  '<pre style="color:red;">'; print_r($model->attributes); echo '</pre>'; /* !!! */
-//                    die();
                     $model->setScenario('setImages');
 
                     if ($model->save()) {
@@ -117,6 +166,39 @@ class CronController extends Controller
                     throw new \Exception($e);
                 }
             }
+        }
+    }
+
+    /**
+     * Set Product Position
+     */
+    public function actionSetProductPosition()
+    {
+        $rows = (new \yii\db\Query())
+            ->from('c1myarredo.catalog_item')
+            ->where(['mark' => '0'])
+            ->limit(1000)
+            ->all();
+
+        foreach ($rows as $row) {
+            // UPDATE
+            $connection = Yii::$app->db;
+
+            $connection->createCommand()
+                ->update(
+                    'c1myarredo.catalog_item',
+                    ['mark' => '1'],
+                    'id = ' . $row['id']
+                )
+                ->execute();
+
+            $connection->createCommand()
+                ->update(
+                    'c1myarredo_old.catalog_item',
+                    ['position' => $row['updated']],
+                    'id = ' . $row['id']
+                )
+                ->execute();
         }
     }
 }

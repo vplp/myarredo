@@ -81,6 +81,20 @@ class Profile extends \thread\modules\user\models\Profile
                 'latitude',
                 'longitude'
             ],
+            'backend' => [
+                'first_name',
+                'last_name',
+                'phone',
+                'address',
+                'name_company',
+                'website',
+                'exp_with_italian',
+                'country_id',
+                'city_id',
+                'delivery_to_other_cities',
+                'latitude',
+                'longitude'
+            ]
         ]);
     }
 

@@ -9,6 +9,7 @@ return [
         'enableAutoLogin' => false,
     ],
     'urlManager' => [
+        'suffix' => '/',
         'rules' => require __DIR__ . '/part/url-rules.php',
     ],
     'errorHandler' => [
