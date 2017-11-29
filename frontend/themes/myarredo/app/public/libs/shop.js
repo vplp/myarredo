@@ -5,7 +5,7 @@ $('.request-price').on('click', function () {
     var product_id = $(this).data('id'),
         count = 1;
 
-    $.post('/shop/cart/add-to-cart',
+    $.post('/shop/cart/add-to-cart/',
         {
             _csrf: $('#token').val(),
             id: product_id,
@@ -18,7 +18,7 @@ $('.request-price').on('click', function () {
             refresh_full_cart();
 
             $.post(
-                '/shop/widget/request-price',
+                '/shop/widget/request-price/',
                 {
                     _csrf: $('#token').val(),
                     view: 'full'
@@ -56,7 +56,7 @@ $('.add-to-notepad').on('click', function () {
  */
 function add_to_popup(id, count) {
     count = count || 1;
-    $.post('/shop/cart/add-to-cart',
+    $.post('/shop/cart/add-to-cart/',
         {
             _csrf: $('#token').val(),
             id: id,
@@ -74,7 +74,7 @@ function add_to_popup(id, count) {
  */
 function add_to_cart(id, count) {
     count = count || 1;
-    $.post('/shop/cart/add-to-cart',
+    $.post('/shop/cart/add-to-cart/',
         {
             _csrf: $('#token').val(),
             id: id,
@@ -92,7 +92,7 @@ function add_to_cart(id, count) {
  */
 function delete_from_popup(id, count) {
     count = count || 0;
-    $.post('/shop/cart/delete-from-cart',
+    $.post('/shop/cart/delete-from-cart/',
         {
             _csrf: $('#token').val(),
             product_id: id,
@@ -110,7 +110,7 @@ function delete_from_popup(id, count) {
  */
 function delete_from_cart(id, count) {
     count = count || 0;
-    $.post('/shop/cart/delete-from-cart',
+    $.post('/shop/cart/delete-from-cart/',
         {
             _csrf: $('#token').val(),
             product_id: id,
@@ -161,7 +161,7 @@ function change_count_cart_popup_item(id, value, count) {
  */
 function refresh_popup_cart() {
     $.post(
-        '/shop/widget',
+        '/shop/widget/',
         {
             _csrf: $('#token').val(),
             view: 'full_popup'
@@ -181,7 +181,7 @@ function refresh_popup_cart() {
  */
 function refresh_full_cart() {
     $.post(
-        '/shop/widget',
+        '/shop/widget/',
         {
             _csrf: $('#token').val(),
             view: 'full'
