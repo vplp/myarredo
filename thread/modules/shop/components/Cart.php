@@ -191,12 +191,14 @@ class Cart extends Component
             $this->saveCart($cartItemKey);
         }
 
-        //посчитаем скидку на весь заказ
-        $this->cart = CartModel::findBySessionID();
-        $this->cart = (new $this->discountCartClass)->calculate($this->cart);
+        if ($this->cart !== null) {
+            //посчитаем скидку на весь заказ
+            $this->cart = CartModel::findBySessionID();
+            $this->cart = (new $this->discountCartClass)->calculate($this->cart);
 
-        //пересчитаем сумму
-        $this->cart->recalculate();
+            //пересчитаем сумму
+            $this->cart->recalculate();
+        }
     }
 
     /**
