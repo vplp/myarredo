@@ -107,7 +107,7 @@ class Cart extends Component
                 'extra_param' => implode(', ', $extra_param)
             ]);
         }
-        //$this->recalculate($cartItemKey);
+        $this->recalculate($cartItemKey);
 
         return $this->saveCart($cartItemKey);
     }
@@ -123,13 +123,13 @@ class Cart extends Component
         if ($cartItemKey !== false) {
             if ($this->items[$cartItemKey]->count > $count && $count != 0) {
                 $this->items[$cartItemKey]->count -= $count;
-                //$this->recalculate($cartItemKey);
+                $this->recalculate($cartItemKey);
             } elseif ($this->items[$cartItemKey]->count == $count || $count == 0) {
                 $this->deleteFromCart($cartItemKey);
                 unset($this->items[$cartItemKey]);
 
                 //удаляем индекс товара который удалили
-                //$this->recalculate();
+                $this->recalculate();
                 $cartItemKey = false;
             }
             return $this->saveCart($cartItemKey);
@@ -314,10 +314,10 @@ class Cart extends Component
             }
 
             // пересчитаем сумму
-            //$this->items[$cartItemKey]->recalculate();
+            $this->items[$cartItemKey]->recalculate();
 
             // пересчитаем сумму
-            //$this->cart->recalculate();
+            $this->cart->recalculate();
 
             // пересчистав итем нужно его сохранить, чтобы правильно пересчитать корзину
             $this->saveCart($cartItemKey);
