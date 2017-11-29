@@ -205,32 +205,6 @@ $(document).ready(function(){
        $(this).parent('.all-list').find('.post-list').slideToggle();
     });
 
-
-
-    $('#comp-slider, .std-slider').slick({
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        dots: false,
-        prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
-        nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>',responsive: [
-            {
-                breakpoint: 992,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                }
-            },
-            {
-                breakpoint: 540,
-                arrows: false,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
-    });
-
     /*--Блокнот--*/
     $(".notebook-page .basket-item-info").each(function(i,item){
         if(i > 2){
@@ -340,17 +314,74 @@ $(document).ready(function(){
 
     })();
 
+    function slickInit(){
+        $("#panel2 .row").slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            nextArrow: "<a href=javascript:void(0) class='fa fa-angle-left'></a>",
+            prevArrow: "<a href=javascript:void(0) class='fa fa-angle-right'></a>",
+            responsive: [
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 540,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+        $('#comp-slider').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            dots: false,
+            prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
+            nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>',responsive: [
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 540,
+                    arrows: false,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+
+    }
+    slickInit();
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        $(".fa-angle-right.slick-arrow").click();
-        $(".fa-angle-left.slick-arrow").click();
+        $("#panel2 .row").slick('unslick');
+        $('#comp-slider').slick('unslick');
+        slickInit();
     });
 
-    $("#panel2 .row").slick({
-        slidesToShow: 4,
+    $('.std-slider').slick({
+        slidesToShow: 5,
         slidesToScroll: 1,
-        nextArrow: "<a href=javascript:void(0) class='fa fa-angle-left'></a>",
-        prevArrow: "<a href=javascript:void(0) class='fa fa-angle-right'></a>",
-        responsive: [
+        dots: false,
+        prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
+        nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>',responsive: [
             {
                 breakpoint: 992,
                 settings: {
@@ -359,14 +390,8 @@ $(document).ready(function(){
                 }
             },
             {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1
-                }
-            },
-            {
                 breakpoint: 540,
+                arrows: false,
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1
