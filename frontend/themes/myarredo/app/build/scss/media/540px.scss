@@ -308,11 +308,16 @@
       }
     }
   }
-  #prod-slider .img-cont {
-    height: 285px;
-  }
-  #prod-slider .carousel-inner {
-    height: 390px;
+  #prod-slider {
+    .img-cont {
+      height: 285px;
+    }
+    .carousel-inner {
+      height: 390px;
+      .item {
+        padding-top: 0;
+      }
+    }
   }
   #panel1 {
     .col-md-12 {
