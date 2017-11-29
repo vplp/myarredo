@@ -177,9 +177,15 @@ class Cart extends Component
 
     /**
      * @param bool $cartItemKey
+     * @throws ErrorException
      */
     public function recalculate($cartItemKey = false)
     {
+
+        if (empty($this->cart)) {
+            throw new ErrorException('Cart can not create!');
+        }
+
         if ($cartItemKey !== false) {
             //посчитаем скидку на товар
             (new $this->discountCartItemClass)->calculate($this->items[$cartItemKey]);
