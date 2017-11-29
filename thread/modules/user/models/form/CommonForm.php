@@ -83,9 +83,9 @@ class CommonForm extends Model
         return [
             'group_id' => Yii::t('app', 'Group'),
             'published' => Yii::t('app', 'Published'),
-            'username' => Yii::t('user', 'Username'),
-            'password_old' => Yii::t('user', 'Password old'),
-            'password' => Yii::t('user', 'Password'),
+            'username' => Yii::t('app', 'Username'),
+            'password_old' => Yii::t('app', 'Password old'),
+            'password' => Yii::t('app', 'Password'),
             'password_confirmation' => Yii::t('user', 'Password confirmation'),
             'email' => Yii::t('app', 'Email'),
             'rememberMe' => Yii::t('app', 'Remember me'),

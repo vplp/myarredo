@@ -24,6 +24,7 @@ class AppAsset extends AssetBundle
         'libs/slick-1.6/slick.css',
         'libs/bootstrap-select/css/bootstrap-select.min.css',
         'css/fonts.css',
+        'libs/fancybox/jquery.fancybox.css'
     ];
 
     public $js = [
@@ -35,6 +36,7 @@ class AppAsset extends AssetBundle
         'libs/wNumb.js',
         'libs/shop.js',
         'js/core.js',
+        'libs/fancybox/jquery.fancybox.pack.js'
     ];
 
     public $depends = [
