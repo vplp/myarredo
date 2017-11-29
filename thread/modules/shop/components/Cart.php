@@ -182,7 +182,7 @@ class Cart extends Component
     {
         if ($cartItemKey !== false) {
             //посчитаем скидку на товар
-            (new $this->discountCartItemClass)->calculate($this->items[$cartItemKey]);
+            //(new $this->discountCartItemClass)->calculate($this->items[$cartItemKey]);
 
             //пересчитаем сумму
             $this->items[$cartItemKey]->recalculate();
@@ -191,14 +191,12 @@ class Cart extends Component
             $this->saveCart($cartItemKey);
         }
 
-        if ($this->cart !== null) {
-            //посчитаем скидку на весь заказ
-            $this->cart = CartModel::findBySessionID();
-            $this->cart = (new $this->discountCartClass)->calculate($this->cart);
+        //посчитаем скидку на весь заказ
+        $this->cart = CartModel::findBySessionID();
+        //$this->cart = (new $this->discountCartClass)->calculate($this->cart);
 
-            //пересчитаем сумму
-            $this->cart->recalculate();
-        }
+        //пересчитаем сумму
+        $this->cart->recalculate();
     }
 
     /**
