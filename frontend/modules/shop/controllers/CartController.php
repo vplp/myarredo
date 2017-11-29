@@ -84,21 +84,20 @@ class CartController extends BaseController
      */
     public function actionAddToCart()
     {
-        if (Yii::$app->request->isPost && $product_id = Yii::$app->getRequest()->post('id')) {
-            $count = Yii::$app->getRequest()->post('count') ?? 1;
-            $extra_param = Yii::$app->getRequest()->post('extra_param') ?? [];
+        $product_id = Yii::$app->getRequest()->post('id');
+        $count = Yii::$app->getRequest()->post('count') ?? 1;
+        $extra_param = Yii::$app->getRequest()->post('extra_param') ?? [];
 
-            if (Yii::$app->getRequest()->post('flag') == 'request-price') {
-                foreach (Yii::$app->shop_cart->items as $item) {
-                    Yii::$app->shop_cart->deleteItem($item['product_id']);
-                }
+        if (Yii::$app->getRequest()->post('flag') == 'request-price') {
+            foreach (Yii::$app->shop_cart->items as $item) {
+                Yii::$app->shop_cart->deleteItem($item['product_id']);
             }
+        }
 
-            if (Yii::$app->shop_cart->addItem($product_id, $count, $extra_param)) {
-                return true;
-            } else {
-                return false;
-            }
+        if (Yii::$app->shop_cart->addItem($product_id, $count, $extra_param)) {
+            return true;
+        } else {
+            return false;
         }
     }
 
