@@ -16,7 +16,7 @@ use frontend\modules\catalog\models\Factory;
             <div class="fabr-cont">
 
                 <?php foreach ($models as $model): ?>
-                    <div class="col-xs-6 col-sm-3 col-md-3 one-cat">
+                    <div class="col-xs-6 col-sm-3 col-md-3 one-fabr">
                         <?= Html::beginTag('a', ['href' => Factory::getUrl($model['alias'])]); ?>
                         <div class="img-cont"><?= Html::img(Factory::getImageThumb($model['image_link'])); ?></div>
                         <div class="descr"><?= $model['lang']['title']; ?></div>
