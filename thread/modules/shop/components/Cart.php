@@ -193,10 +193,10 @@ class Cart extends Component
 
         //посчитаем скидку на весь заказ
         $this->cart = CartModel::findBySessionID();
-        //$this->cart = (new $this->discountCartClass)->calculate($this->cart);
+        $this->cart = (new $this->discountCartClass)->calculate($this->cart);
 
         //пересчитаем сумму
-        //$this->cart->recalculate();
+        $this->cart->recalculate();
     }
 
     /**
