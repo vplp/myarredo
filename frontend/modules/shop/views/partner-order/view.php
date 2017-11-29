@@ -5,7 +5,6 @@ use yii\helpers\{
 };
 use frontend\components\Breadcrumbs;
 use yii\widgets\ActiveForm;
-use frontend\modules\catalog\models\Product;
 
 /* @var $this yii\web\View */
 /* @var $product \frontend\modules\catalog\models\Product */
@@ -44,13 +43,41 @@ use frontend\modules\catalog\models\Product;
                             <?php $form = ActiveForm::begin([
                                 'method' => 'post',
                                 'action' => $model->getPartnerOrderUrl(),
-                                'id' => 'checkout-form',
                             ]); ?>
 
-                            <?= $form->field($modelAnswer, 'answer')->textarea() ?>
-                            <?= $form->field($model, 'comment')->textarea(['disabled' => true]) ?>
+                            <?= $form
+                                ->field($model->orderAnswer, 'answer')
+                                ->textarea(['rows' => 5]) ?>
 
-                            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success big']) ?>
+                            <?= $form
+                                ->field($model->orderAnswer, 'id')
+                                ->input('hidden')
+                                ->label(false) ?>
+
+                            <?= $form
+                                ->field($model->orderAnswer, 'order_id')
+                                ->input('hidden', ['value' => $model->id])
+                                ->label(false) ?>
+
+                            <?= $form->field($model, 'comment')
+                                ->textarea(['disabled' => true, 'rows' => 5]) ?>
+
+                            <?= $form->field($model->orderAnswer, 'results')
+                                ->textarea(['rows' => 5]) ?>
+
+                            <?= Html::submitButton('Сохранить', [
+                                'class' => 'btn btn-success',
+                                'name' => 'action-save-answer',
+                                'value' => 1
+                            ]) ?>
+
+                            <?php if ($model->orderAnswer->id) {
+                                echo Html::submitButton('Отправить ответ клиенту', [
+                                    'class' => 'btn btn-success',
+                                    'name' => 'action-send-answer',
+                                    'value' => 1
+                                ]);
+                            } ?>
 
                             <?php ActiveForm::end(); ?>
                         </div>

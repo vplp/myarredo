@@ -9,7 +9,13 @@ use frontend\modules\catalog\models\Factory;
 
 ?>
 
-<?= Html::beginTag('a', ['href' => Factory::getUrl($model['alias']), 'class' => 'factory-tile']); ?>
+<?= Html::beginTag(
+    'a',
+    [
+        'href' => Factory::getUrl($model['alias']),
+        'class' => 'factory-tile'
+    ]
+); ?>
 
     <div class="flex">
         <div class="logo-img">
@@ -17,20 +23,19 @@ use frontend\modules\catalog\models\Factory;
         </div>
         <?= Html::tag('h3', $model['lang']['title']); ?>
     </div>
+
     <object>
         <ul class="assortment">
-            <?php foreach ($categories as $item): ?>
+            <?php
+            foreach ($categories as $item) {
 
-                <?php
                 echo Html::beginTag('li') .
                     Html::a(
                         $item['title'],
                         Yii::$app->catalogFilter->createUrl(['factory' => $model['alias']])
                     ) .
                     Html::endTag('li');
-                ?>
-
-            <?php endforeach; ?>
+            } ?>
 
         </ul>
     </object>

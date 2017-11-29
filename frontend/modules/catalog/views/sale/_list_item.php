@@ -10,7 +10,9 @@ use frontend\modules\catalog\models\Sale;
 
 ?>
 
-<?= Html::beginTag('a', ['href' => $model->getUrl(), 'class' => 'one-prod-tile']); ?>
+<?= Html::beginTag('a', [
+    'href' => $model->getUrl(), 'class' => 'one-prod-tile'
+]); ?>
 
     <div class="img-cont">
 
@@ -19,6 +21,7 @@ use frontend\modules\catalog\models\Sale;
         <div class="brand">
             <?= $model['factory']['lang']['title'] ?>
         </div>
+
     </div>
 
     <div class="item-infoblock">

@@ -35,7 +35,11 @@ $this->title = $this->context->title;
                 ]) ?>
 
                 <div class="product-title">
-                    <h1 class="prod-model" itemprop="name"><?= $model->getTitle(); ?></h1>
+                    <?= Html::tag(
+                        'h1',
+                        $model->getTitle(),
+                        ['class' => 'prod-model', 'itemprop' => 'name']
+                    ); ?>
                 </div>
 
                 <div class="col-md-5">
@@ -43,26 +47,31 @@ $this->title = $this->context->title;
 
                         <!-- Carousel items -->
                         <div class="carousel-inner">
-                            <?php foreach ($model->getGalleryImage() as $key => $image): ?>
-                                <div class="item<?= ($key==0) ? ' active': ''; ?>">
+
+                            <?php foreach ($model->getGalleryImage() as $key => $src): ?>
+                                <div class="item<?= ($key == 0) ? ' active' : ''; ?>">
                                     <div class="img-cont">
-                                        <img src="<?= $image ?>" itemprop="image">
+                                        <?= Html::img($src, ['itemprop' => 'image']); ?>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
+
                         </div>
                         <!-- Carousel nav -->
 
                         <div class="nav-cont">
                             <a class="left left-arr nav-contr" href="#prod-slider" data-slide="prev">&lsaquo;</a>
                             <ol class="carousel-indicators">
-                                <?php foreach ($model->getGalleryImage() as $key => $image): ?>
-                                    <li data-target="#carousel" data-slide-to="<?= $key ?>" class="<?= ($key==0) ?? 'active' ?>">
+
+                                <?php foreach ($model->getGalleryImage() as $key => $src): ?>
+                                    <li data-target="#carousel" data-slide-to="<?= $key ?>"
+                                        class="<?= ($key == 0) ?? 'active' ?>">
                                         <div class="img-min">
-                                            <img src="<?= $image ?>" alt="">
+                                            <?= Html::img($src); ?>
                                         </div>
                                     </li>
                                 <?php endforeach; ?>
+
                             </ol>
                             <a class="right right-arr nav-contr" href="#prod-slider" data-slide="next">&rsaquo;</a>
                         </div>
@@ -77,7 +86,8 @@ $this->title = $this->context->title;
                                     <td>ЦЕНА ОТ:</td>
                                     <td>
                                         <?= $model['price_from']; ?>&nbsp;<span class="currency">€</span>*
-                                        <meta itemprop="price" content="<?= number_format($model['price_from'], 0, '', '') ?>">
+                                        <meta itemprop="price"
+                                              content="<?= number_format($model['price_from'], 0, '', '') ?>">
                                         <meta itemprop="priceCurrency" content="EUR"/>
                                     </td>
                                 </tr>
@@ -102,12 +112,14 @@ $this->title = $this->context->title;
                                 <td>
                                     <?php
                                     $array = [];
-                                    foreach ($model['specificationValue'] as $item): ?>
-                                        <?php if ($item['specification']['parent_id'] == 9): ?>
-                                            <?php $array[] = $item['specification']['lang']['title']; ?>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                    <?= implode('; ', $array); ?>
+                                    foreach ($model['specificationValue'] as $item) {
+                                        if ($item['specification']['parent_id'] == 9) {
+                                            $array[] = $item['specification']['lang']['title'];
+                                        }
+                                    }
+
+                                    echo implode('; ', $array);
+                                    ?>
                                 </td>
                             </tr>
                             <tr>
@@ -143,13 +155,16 @@ $this->title = $this->context->title;
                                     <tr>
                                         <td>Размеры</td>
                                         <td class="size">
-                                            <?php foreach ($model['specificationValue'] as $item): ?>
-                                                <?php if ($item['specification']['parent_id'] == 4): ?>
-                                                    <?= Html::beginTag('span'); ?>
-                                                    <?= $item['specification']['alias']; ?>:<?= $item['val']; ?>
-                                                    <?= Html::endTag('span'); ?>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
+                                            <?php
+                                            foreach ($model['specificationValue'] as $item) {
+                                                if ($item['specification']['parent_id'] == 4) {
+                                                    echo Html::beginTag('span') .
+                                                        $item['specification']['alias'] .
+                                                        ':' .
+                                                        $item['val'] .
+                                                        Html::endTag('span');
+                                                }
+                                            } ?>
                                         </td>
                                     </tr>
                                     <tr>
@@ -157,12 +172,13 @@ $this->title = $this->context->title;
                                         <td>
                                             <?php
                                             $array = [];
-                                            foreach ($model['specificationValue'] as $item): ?>
-                                                <?php if ($item['specification']['parent_id'] == 2): ?>
-                                                    <?php $array[] = $item['specification']['lang']['title']; ?>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                            <?= implode('; ', $array); ?>
+                                            foreach ($model['specificationValue'] as $item) {
+                                                if ($item['specification']['parent_id'] == 2) {
+                                                    $array[] = $item['specification']['lang']['title'];
+                                                }
+                                            }
+                                            echo implode('; ', $array);
+                                            ?>
                                         </td>
                                     </tr>
                                 <?php endif; ?>
@@ -182,15 +198,16 @@ $this->title = $this->context->title;
                 </div>
                 <div class="col-md-3">
 
-                    <?php if (!$model['removed']): ?>
+                    <?php if (!$model['removed']) { ?>
                         <div class="best-price-form">
 
                             <h3>Заполните форму - получите лучшую цену на этот товар</h3>
 
                             <?= \frontend\modules\shop\widgets\request\RequestPrice::widget(['product_id' => $model['id']]) ?>
 
-                            <?php if (!in_array($model['id'], $products_id)): ?>
-                                <?= Html::a(
+                            <?php
+                            if (!in_array($model['id'], $products_id)) {
+                                echo Html::a(
                                     'Отложить в блокнот',
                                     'javascript:void(0);',
                                     [
@@ -199,24 +216,25 @@ $this->title = $this->context->title;
                                         'data-toggle' => 'modal',
                                         'data-target' => '#myModal'
                                     ]
-                                ) ?>
-                            <?php else: ?>
-                                <?= Html::a(
+                                );
+                            } else {
+                                echo Html::a(
                                     'В блокноте',
                                     'javascript:void(0);',
                                     [
                                         'class' => 'btn btn-default big',
                                     ]
-                                ) ?>
-                            <?php endif; ?>
+                                );
+                            } ?>
 
                         </div>
-                    <?php else: ?>
+
+                    <?php } else { ?>
                         Данный товар
                         снят с протзводства.
                         Но мы можем предложить
                         альтернативную модель.
-                    <?php endif; ?>
+                    <?php } ?>
 
                 </div>
             </div>
@@ -224,12 +242,15 @@ $this->title = $this->context->title;
             <div class="row composition">
                 <div class="col-md-12">
                     <ul class="nav nav-tabs">
+
                         <?php if (!empty($elementsComposition)): ?>
                             <li><a data-toggle="tab" href="#panel1">ПРЕДМЕТЫ КОмпозиции</a></li>
                         <?php endif; ?>
+
                         <?php if (!empty($model['samples'])): ?>
                             <li><a data-toggle="tab" href="#panel2">ВАРИАНТЫ ОТДЕЛКИ</a></li>
                         <?php endif; ?>
+
                     </ul>
 
                     <div class="tab-content">
@@ -360,30 +381,26 @@ $this->title = $this->context->title;
 
             <?php endif; */ ?>
 
-            <?php if ($model['collections_id']): ?>
-
-                <?= $this->render(
+            <?php if ($model['collections_id']) {
+                echo $this->render(
                     'parts/_product_by_collection',
                     [
                         'collection' => $model['collection'],
                         'models' => $model->getProductByCollection($model['collections_id'], $model['catalog_type_id'])
                     ]
-                ); ?>
+                );
+            } ?>
 
-            <?php endif; ?>
-
-            <?php if ($model['collections_id']): ?>
-
-                <?= $this->render(
+            <?php if ($model['collections_id']) {
+                echo $this->render(
                     'parts/_product_by_factory',
                     [
                         'factory' => $model['factory'],
                         'types' => $model['types'],
                         'models' => $model->getProductByFactory($model['factory_id'], $model['catalog_type_id'])
                     ]
-                ); ?>
-
-            <?php endif; ?>
+                );
+            } ?>
 
         </div>
     </div>

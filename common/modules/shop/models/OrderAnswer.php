@@ -14,6 +14,8 @@ use common\modules\shop\Shop;
  * @property integer $order_id
  * @property integer $user_id
  * @property string $answer
+ * @property string $answer_time
+ * @property string $results
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $published
@@ -48,6 +50,13 @@ class OrderAnswer extends ActiveRecord
             [['order_id', 'user_id'], 'required'],
             [['order_id', 'user_id', 'created_at', 'updated_at'], 'integer'],
             [['answer'], 'string'],
+            [
+                ['answer_time'],
+                'date',
+                'format' => 'php:d:m:Y',
+                'timestampAttribute' => 'answer_time'
+            ],
+            [['results'], 'string', 'max' => 255],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
@@ -64,6 +73,8 @@ class OrderAnswer extends ActiveRecord
                 'order_id',
                 'user_id',
                 'answer',
+                'answer_time',
+                'results',
                 'published',
                 'deleted'
             ],
@@ -71,6 +82,8 @@ class OrderAnswer extends ActiveRecord
                 'order_id',
                 'user_id',
                 'answer',
+                'answer_time',
+                'results',
                 'published',
                 'deleted'
             ],
@@ -87,6 +100,8 @@ class OrderAnswer extends ActiveRecord
             'order_id' => Yii::t('app', 'Order id'),
             'user_id' => Yii::t('app', 'User id'),
             'answer' => Yii::t('app', 'Answer'),
+            'answer_time' => Yii::t('app', 'Answer time'),
+            'results' => Yii::t('app', 'Results'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
@@ -104,5 +119,14 @@ class OrderAnswer extends ActiveRecord
         return self::findBase()
             ->andWhere([self::tableName().'.order_id' => $order_id, self::tableName().'.user_id' => $user_id])
             ->one();
+    }
+
+    /**
+     * @return string
+     */
+    public function getAnswerTime()
+    {
+        $format = 'd.m.Y';
+        return $this->answer_time == 0 ? '' : date($format, $this->answer_time);
     }
 }

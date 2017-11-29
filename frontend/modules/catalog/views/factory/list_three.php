@@ -18,14 +18,15 @@ use frontend\modules\catalog\models\Factory;
             <div class="container large-container">
                 <ul class="letter-select">
 
-                    <?php foreach (Factory::getListLetters() as $letter): ?>
-                        <li>
-                            <?= Html::a(
+                    <?php
+                    foreach (Factory::getListLetters() as $letter) {
+                        echo Html::beginTag('li') .
+                            Html::a(
                                 $letter['first_letter'],
                                 Url::toRoute(['/catalog/factory/list', 'letter' => strtolower($letter['first_letter']), 'view' => 'three'])
-                            ); ?>
-                        </li>
-                    <?php endforeach; ?>
+                            ) .
+                            Html::endTag('li');
+                    } ?>
 
                 </ul>
                 <?= Html::a('Все', Url::toRoute(['/catalog/factory/list', 'view' => 'three']), ['class' => 'all']); ?>
@@ -74,7 +75,9 @@ use frontend\modules\catalog\models\Factory;
                                 ) .
                                 Html::endTag('li');
 
-                            if ($key % 12 == 0) echo '</ul><ul class="let-list">';
+                            if ($key % 12 == 0) {
+                                echo '</ul><ul class="let-list">';
+                            }
 
                             ++$key;
                         } ?>

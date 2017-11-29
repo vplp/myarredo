@@ -22,14 +22,15 @@ $this->title = $this->context->title;
             <div class="container large-container">
                 <ul class="letter-select">
 
-                    <?php foreach (Factory::getListLetters() as $letter): ?>
-                        <li>
-                            <?= Html::a(
+                    <?php
+                    foreach (Factory::getListLetters() as $letter) {
+                        echo Html::beginTag('li') .
+                            Html::a(
                                 $letter['first_letter'],
                                 Url::toRoute(['/catalog/factory/list', 'letter' => strtolower($letter['first_letter'])])
-                            ); ?>
-                        </li>
-                    <?php endforeach; ?>
+                            ) .
+                            Html::endTag('li');
+                    } ?>
 
                 </ul>
                 <?= Html::a('Все', Url::toRoute(['/catalog/factory/list']), ['class' => 'all']); ?>
@@ -51,27 +52,31 @@ $this->title = $this->context->title;
                 </div>
                 <div class="col-sm-9 col-md-9">
                     <div class="descr">
-                        <h1 class="title-text"><?= 'Итальянская мебель ' . $model['lang']['title']; ?></h1>
+
+                        <?= Html::tag(
+                            'h1',
+                            'Итальянская мебель ' . $model['lang']['title'],
+                            ['class' => 'title-text']
+                        ); ?>
+
                         <div class="fact-link">
                             <?= Html::a($model['url'], 'http://' . $model['url'], ['target' => '_blank']); ?>
                         </div>
+
                         <div class="fact-assort">
                             <div class="all-list">
-                                <a href="#" class="title">
-                                    Все предметы мебели
-                                </a>
+                                <a href="#" class="title">Все предметы мебели</a>
                                 <ul class="list">
 
                                     <?php
                                     $key = 1;
                                     $FactoryTypes = Factory::getFactoryTypes($model['id']);
-                                    foreach ($FactoryTypes as $item):
+                                    foreach ($FactoryTypes as $item) {
 
                                         $params = Yii::$app->catalogFilter->params;
 
                                         $params[$keys['factory']][] = $model['alias'];
                                         $params[$keys['type']][] = $item['alias'];
-
 
                                         echo Html::beginTag('li') .
                                             Html::a(
@@ -79,18 +84,25 @@ $this->title = $this->context->title;
                                                 Yii::$app->catalogFilter->createUrl($params)
                                             ) .
                                             Html::endTag('li');
-                                        if ($key == 10) echo '</ul><ul class="list post-list">';
+
+                                        if ($key == 10) {
+                                            echo '</ul><ul class="list post-list">';
+                                        }
+
                                         ++$key;
 
-                                    endforeach; ?>
+                                    } ?>
 
                                 </ul>
 
-                                <?php if (count($FactoryTypes) > 10): ?>
-                                    <a href="javascript:void(0);" class="view-all">
-                                        Весь список
-                                    </a>
-                                <?php endif; ?>
+                                <?php
+                                if (count($FactoryCollection) > 10) {
+                                    echo Html::a(
+                                        'Весь список',
+                                        'javascript:void(0);',
+                                        ['class' => 'view-all']
+                                    );
+                                } ?>
 
                             </div>
                             <div class="all-list">
@@ -102,7 +114,7 @@ $this->title = $this->context->title;
                                     <?php
                                     $key = 1;
                                     $FactoryCollection = Factory::getFactoryCollection($model['id']);
-                                    foreach ($FactoryCollection as $item):
+                                    foreach ($FactoryCollection as $item) {
 
                                         $params = Yii::$app->catalogFilter->params;
 
@@ -115,18 +127,25 @@ $this->title = $this->context->title;
                                                 Yii::$app->catalogFilter->createUrl($params)
                                             ) .
                                             Html::endTag('li');
-                                        if ($key == 10) echo '</ul><ul class="list post-list">';
+
+                                        if ($key == 10) {
+                                            echo '</ul><ul class="list post-list">';
+                                        }
+
                                         ++$key;
 
-                                    endforeach; ?>
+                                    } ?>
 
                                 </ul>
 
-                                <?php if (count($FactoryCollection) > 10): ?>
-                                    <a href="javascript:void(0);" class="view-all">
-                                        Весь список
-                                    </a>
-                                <?php endif; ?>
+                                <?php
+                                if (count($FactoryCollection) > 10) {
+                                    echo Html::a(
+                                        'Весь список',
+                                        'javascript:void(0);',
+                                        ['class' => 'view-all']
+                                    );
+                                } ?>
 
                             </div>
                         </div>
@@ -146,15 +165,13 @@ $this->title = $this->context->title;
             </div>
 
             <div class="row menu-style">
-                <a href="#">
-                    Все
-                </a>
+                <a href="#">Все</a>
 
                 <?php
                 $key = 1;
                 $FactoryCategory = Factory::getFactoryCategory([$model['id']]);
 
-                foreach ($FactoryCategory as $item):
+                foreach ($FactoryCategory as $item) {
                     $params = Yii::$app->catalogFilter->params;
 
                     $params[$keys['factory']][] = $model['alias'];
@@ -165,7 +182,7 @@ $this->title = $this->context->title;
                             Yii::$app->catalogFilter->createUrl($params)
                         ) .
                         Html::endTag('li');
-                endforeach; ?>
+                } ?>
 
             </div>
 
@@ -183,23 +200,22 @@ $this->title = $this->context->title;
                     $_factory[$item['id']] = $item;
                 }
 
-                foreach ($product as $item):
+                foreach ($product as $item) {
                     $this->render('/category/_list_item', [
                         'model' => $item,
                         'types' => $_types,
                         'style' => $style,
                         'factory' => $_factory
                     ]);
-                endforeach; ?>
+                }
 
-                <?= Html::a(
+                echo Html::a(
                     'смотреть полный<div>Каталог</div>',
                     Yii::$app->catalogFilter->createUrl(['factory' => $model['alias']]),
                     ['class' => 'one-prod-tile last']
                 ); ?>
 
             </div>
-
 
         </div>
     </div>

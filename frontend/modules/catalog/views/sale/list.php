@@ -18,10 +18,13 @@ use frontend\modules\catalog\widgets\filter\{
     <div class="page category-page">
         <div class="container large-container">
             <div class="row">
+
                 <?= Html::tag('h1', $this->context->title); ?>
+
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
                 ]) ?>
+
             </div>
             <div class="cat-content">
                 <div class="row">
@@ -42,19 +45,19 @@ use frontend\modules\catalog\widgets\filter\{
                             <div class="cat-prod-wrap">
                                 <div class="cat-prod">
 
-                                    <?php if (!empty($models)): ?>
-                                        <?php foreach ($models as $model): ?>
-                                            <?= $this->render('_list_item', ['model' => $model]) ?>
-                                        <?php endforeach; ?>
-                                    <?php else: ?>
-                                        <p>Не найдено</p>
-                                    <?php endif; ?>
+                                    <?php
+                                    if (!empty($models)) {
+                                        foreach ($models as $model) {
+                                            echo $this->render('_list_item', ['model' => $model]);
+                                        }
+                                    } else {
+                                        echo '<p>Не найдено</p>';
+                                    } ?>
 
                                 </div>
                                 <div class="pagi-wrap">
 
-                                    <?=
-                                    yii\widgets\LinkPager::widget([
+                                    <?= yii\widgets\LinkPager::widget([
                                         'pagination' => $pages,
                                         'registerLinkTags' => true,
                                         'nextPageLabel' => 'Далее<i class="fa fa-angle-right" aria-hidden="true"></i>',

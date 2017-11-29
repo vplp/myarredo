@@ -8,6 +8,8 @@ use yii\helpers\Url;
 /**
  * Class Order
  *
+ * @property OrderAnswer[] $orderAnswer
+ *
  * @package frontend\modules\shop\models
  */
 class Order extends \common\modules\shop\models\Order
@@ -46,23 +48,6 @@ class Order extends \common\modules\shop\models\Order
     public static function findBase()
     {
         return parent::findBase()->innerJoinWith(['items'])->enabled();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getItems()
-    {
-        return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOrderAnswer()
-    {
-        return $this->hasOne(OrderAnswer::class, ['order_id' => 'id'])
-            ->andWhere(['user_id' => Yii::$app->getUser()->getId()]);
     }
 
     /**
@@ -150,6 +135,14 @@ class Order extends \common\modules\shop\models\Order
     public function getOrderUrl()
     {
         return Url::toRoute(['/shop/order/view', 'id' => $this->id]);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPartnerOrderOnListUrl()
+    {
+        return Url::toRoute(['/shop/partner-order/list']) . '#'.$this->id;
     }
 
     /**

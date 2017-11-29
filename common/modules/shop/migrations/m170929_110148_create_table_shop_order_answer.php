@@ -1,7 +1,7 @@
 <?php
 
 use yii\db\Migration;
-use thread\modules\shop\Shop;
+use common\modules\shop\Shop;
 
 /**
  * Class m170929_110148_create_table_shop_order_answer
