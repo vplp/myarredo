@@ -96,7 +96,7 @@ $this->title = $this->context->title;
                                 </ul>
 
                                 <?php
-                                if (count($FactoryCollection) > 10) {
+                                if (count($FactoryTypes) > 10) {
                                     echo Html::a(
                                         'Весь список',
                                         'javascript:void(0);',
