@@ -62,18 +62,32 @@
   .italian-furn .one-cat .img-cont img {
     max-width: 90%;
   }
-  .novelties .item-in {
-    flex-direction: column;
-  }
-  .novelties .item-in .right {
-    padding: 0;
-  }
-  .novelties .item-in .left {
-    padding: 0 5px;
-  }
-  .novelties .item-in .left,
-  .novelties .item-in .right {
-    width: 100%;
+  .novelties {
+    .item-in {
+      flex-direction: column;
+      .right {
+        padding: 0;
+        width: 100%;
+        height: 185px;
+        .smaller {
+          width: calc( 50% - 2px) !important;
+          &:nth-child(odd){
+            margin: 0 2px 0 0 !important;
+          }
+          &:nth-child(even) {
+            margin: 0 0 0 2px !important;
+          }
+        }
+      }
+      .left {
+        width: 100%;
+        height: 185px !important;
+        .large {
+          margin-right: 0;
+          margin-bottom: 8px;
+        }
+      }
+    }
   }
   .sale .left-side, .sale .right-side {
     width: 100%;
