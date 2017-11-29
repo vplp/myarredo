@@ -2315,10 +2315,12 @@ footer {
   }
   .img-cont {
     display: block;
+    height: 400px;
     img {
       display: block;
-      width: 100%;
-      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      margin: 0 auto;
     }
   }
   .prod-style {
