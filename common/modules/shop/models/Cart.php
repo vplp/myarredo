@@ -2,6 +2,8 @@
 
 namespace common\modules\shop\models;
 
+use yii\helpers\ArrayHelper;
+
 /**
  * Class Cart
  *
