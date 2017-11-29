@@ -400,6 +400,12 @@ $(document).ready(function(){
         ]
     });
 
+    /*--Галерея Карточка товара--*/
+    $(document).ready(function() {
+        $("a.fancyimage").fancybox();
+    });
+    /*--конец Галерея Карточка товара --*/
+
     /*--модалка варианты отделки*/
     $(".composition .show-modal").click(function(e){
         e.preventDefault();
@@ -424,6 +430,8 @@ $(document).ready(function(){
     $(".alphabet-tab a").eq(0).trigger( "click" ); //показываем первый элемент по умолчанию
     /*--конец Больше фабрик модалка--*/
 
-
+    $(".img-zoom").click(function(){
+       $("#prod-slider .item.active .fancyimage").click();
+    });
 
 });
