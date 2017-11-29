@@ -177,13 +177,9 @@ class Cart extends Component
 
     /**
      * @param bool $cartItemKey
-     * @throws ErrorException
      */
     public function recalculate($cartItemKey = false)
     {
-        /* !!! */ echo  '<pre style="color:red;">'; print_r($this->cart); echo '</pre>'; /* !!! */
-
-
         if ($cartItemKey !== false) {
             //посчитаем скидку на товар
             (new $this->discountCartItemClass)->calculate($this->items[$cartItemKey]);
@@ -197,16 +193,10 @@ class Cart extends Component
 
         //посчитаем скидку на весь заказ
         $this->cart = CartModel::findBySessionID();
+        $this->cart = (new $this->discountCartClass)->calculate($this->cart);
 
-        /* !!! */ echo  '<pre style="color:red;">'; print_r($this->cart); echo '</pre>'; /* !!! */
-
-        die;
-        if (!empty($this->cart)) {
-            $this->cart = (new $this->discountCartClass)->calculate($this->cart);
-
-            //пересчитаем сумму
-            $this->cart->recalculate();
-        }
+        //пересчитаем сумму
+        $this->cart->recalculate();
     }
 
     /**
