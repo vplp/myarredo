@@ -24,7 +24,7 @@ return [
         'cachingDuration' => 3600
     ],
     'shop_cart' => [
-        'class' => \thread\modules\shop\components\Cart::class,
+        'class' => \common\modules\shop\components\Cart::class,
         'threadProductClass' => \common\modules\catalog\models\Product::class,
         'frontendProductClass' => \frontend\modules\catalog\models\Product::class
     ],
