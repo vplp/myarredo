@@ -196,7 +196,7 @@ class Cart extends Component
         //$this->cart = (new $this->discountCartClass)->calculate($this->cart);
 
         //пересчитаем сумму
-        $this->cart->recalculate();
+        //$this->cart->recalculate();
     }
 
     /**
