@@ -982,9 +982,6 @@ footer {
   .slick-track {
     display: flex;
   }
-  .slick-list, .slick-track {
-    width: 100% !important;
-  }
 }
 #comp-slider,.std-slider {
   position: relative;
@@ -1043,6 +1040,8 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    line-height: 20px;
+    padding: 0 8px;
   }
   .slider-controls {
     position: absolute;
