@@ -400,6 +400,12 @@ $(document).ready(function(){
         ]
     });
 
+    /*--Галерея Карточка товара--*/
+    $(document).ready(function() {
+        $("a.fancyimage").fancybox();
+    });
+    /*--конец Галерея Карточка товара --*/
+
     /*--модалка варианты отделки*/
     $(".composition .show-modal").click(function(e){
         e.preventDefault();
