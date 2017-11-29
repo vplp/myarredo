@@ -715,6 +715,23 @@ footer {
     }
   }
 }
+.fancybox-inner {
+  display: inline-block;
+  width: auto !important;
+  .fancyimage {
+    width: auto;
+    display: inline-block;
+  }
+}
+.fancybox-outer {
+  display: inline-block;
+}
+.fancybox-skin {
+  display: inline-block;
+}
+.fancybox-wrap {
+  text-align: center;
+}
 .prod-card-page {
   .prod-model {
     font-size: 20px;
@@ -797,6 +814,14 @@ footer {
   .carousel-inner {
     height: 510px;
     background: #FFFFFF;
+    .item {
+      padding-top: 15px;
+    }
+    .active {
+      .fancyimage {
+        display: flex !important;
+      }
+    }
   }
   .nav-cont {
     height: 55px;
@@ -981,6 +1006,17 @@ footer {
   }
   .slick-track {
     display: flex;
+  }
+}
+.fancyimage {
+  display: block;
+  height: 100%;
+  max-width: 100%;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
   }
 }
 #comp-slider,.std-slider {
