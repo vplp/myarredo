@@ -206,6 +206,7 @@ nav{
     display: flex;
     .left,.right {
       width: 50%;
+      height: 450px;
       a {
         display: block;
       }
@@ -455,6 +456,20 @@ nav{
   }
   .one-fabr {
     height: 110px;
+    .img-cont {
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      width: 116px;
+      display: inline-flex;
+      vertical-align: middle;
+      margin-right: 20px;
+      img {
+        display: block;
+        max-height: 100%;
+        max-width: 100%;
+      }
+    }
     a {
       display: flex;
       align-items: center;
