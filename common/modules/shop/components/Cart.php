@@ -181,6 +181,7 @@ class Cart extends Component
      */
     public function recalculate($cartItemKey = false)
     {
+        /* !!! */ echo  '<pre style="color:red;">'; print_r($this->cart); echo '</pre>'; /* !!! */
 
 
         if ($cartItemKey !== false) {
@@ -200,7 +201,7 @@ class Cart extends Component
         /* !!! */ echo  '<pre style="color:red;">'; print_r($this->cart); echo '</pre>'; /* !!! */
 
         die;
-        if (empty($this->cart)) {
+        if (!empty($this->cart)) {
             $this->cart = (new $this->discountCartClass)->calculate($this->cart);
 
             //пересчитаем сумму
