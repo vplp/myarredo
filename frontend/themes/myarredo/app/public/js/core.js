@@ -430,6 +430,8 @@ $(document).ready(function(){
     $(".alphabet-tab a").eq(0).trigger( "click" ); //показываем первый элемент по умолчанию
     /*--конец Больше фабрик модалка--*/
 
-
+    $(".img-zoom").click(function(){
+       $("#prod-slider .item.active .fancyimage").click();
+    });
 
 });
