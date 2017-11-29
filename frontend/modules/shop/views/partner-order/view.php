@@ -24,6 +24,12 @@ use yii\widgets\ActiveForm;
             </div>
             <div class="cat-content">
                 <div class="row">
+
+                    <?php $form = ActiveForm::begin([
+                        'method' => 'post',
+                        'action' => $model->getPartnerOrderUrl(),
+                    ]); ?>
+
                     <div class="col-md-8">
 
                         <div class="flex basket-items">
@@ -40,10 +46,6 @@ use yii\widgets\ActiveForm;
                     <div class="col-md-4">
 
                         <div class="best-price-form">
-                            <?php $form = ActiveForm::begin([
-                                'method' => 'post',
-                                'action' => $model->getPartnerOrderUrl(),
-                            ]); ?>
 
                             <?= $form
                                 ->field($model->orderAnswer, 'answer')
@@ -65,24 +67,25 @@ use yii\widgets\ActiveForm;
                             <?= $form->field($model->orderAnswer, 'results')
                                 ->textarea(['rows' => 5]) ?>
 
-                            <?= Html::submitButton('Сохранить', [
-                                'class' => 'btn btn-success',
-                                'name' => 'action-save-answer',
-                                'value' => 1
-                            ]) ?>
-
-                            <?php if ($model->orderAnswer->id) {
-                                echo Html::submitButton('Отправить ответ клиенту', [
-                                    'class' => 'btn btn-success',
-                                    'name' => 'action-send-answer',
-                                    'value' => 1
-                                ]);
-                            } ?>
-
-                            <?php ActiveForm::end(); ?>
                         </div>
-
                     </div>
+
+                    <?= Html::submitButton('Сохранить', [
+                        'class' => 'btn btn-success',
+                        'name' => 'action-save-answer',
+                        'value' => 1
+                    ]) ?>
+
+                    <?php if ($model->orderAnswer->id) {
+                        echo Html::submitButton('Отправить ответ клиенту', [
+                            'class' => 'btn btn-success',
+                            'name' => 'action-send-answer',
+                            'value' => 1
+                        ]);
+                    } ?>
+
+                    <?php ActiveForm::end(); ?>
+
                 </div>
             </div>
         </div>
