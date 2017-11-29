@@ -197,6 +197,9 @@ class Cart extends Component
         //посчитаем скидку на весь заказ
         $this->cart = CartModel::findBySessionID();
 
+        /* !!! */ echo  '<pre style="color:red;">'; print_r($this->cart); echo '</pre>'; /* !!! */
+
+        die;
         if (empty($this->cart)) {
             $this->cart = (new $this->discountCartClass)->calculate($this->cart);
 
