@@ -718,6 +718,7 @@ footer {
 .fancybox-inner {
   display: inline-block;
   width: auto !important;
+  height: auto !important;
   .fancyimage {
     width: auto;
     display: inline-block;
@@ -731,6 +732,7 @@ footer {
 }
 .fancybox-image {
   width: auto;
+  height: auto;
 }
 .fancybox-wrap {
   display: inline-block;
@@ -875,7 +877,7 @@ footer {
       }
     }
     .nav-contr {
-      font-size: 40px;
+      font-size: 32px;
       color: #A6A6A6;
       display: inline-block;
       padding: 0 10px 4px 10px;
