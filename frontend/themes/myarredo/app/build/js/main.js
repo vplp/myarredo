@@ -434,4 +434,8 @@ $(document).ready(function(){
        $("#prod-slider .item.active .fancyimage").click();
     });
 
+    if($(".carousel-indicators li").length == 1){  //Скрываем стрелки если только одна картинка в слайдере
+        $(".nav-contr").hide();
+    }
+
 });
