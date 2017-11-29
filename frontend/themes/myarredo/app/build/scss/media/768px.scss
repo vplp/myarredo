@@ -204,4 +204,11 @@
       margin-right: 0;
     }
   }
+  .novelties {
+    .item-in {
+      .left, .right {
+        height: 210px !important;
+      }
+    }
+  }
 }
