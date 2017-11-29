@@ -61,8 +61,16 @@ class Order extends \common\modules\shop\models\Order
      */
     public function getOrderAnswer()
     {
-        return $this->hasOne(OrderAnswer::class, ['order_id' => 'id'])
-            ->andWhere(['user_id' => Yii::$app->getUser()->getId()]);
+
+        $modelAnswer = OrderAnswer::findByOrderIdUserId($this->id, Yii::$app->getUser()->getId());
+
+        if (empty($modelAnswer)) {
+            $modelAnswer = new OrderAnswer();
+        }
+
+        return $modelAnswer;
+//        return $this->hasOne(OrderAnswer::class, ['order_id' => 'id'])
+//            ->andWhere(['user_id' => Yii::$app->getUser()->getId()]);
     }
 
     /**
@@ -150,6 +158,14 @@ class Order extends \common\modules\shop\models\Order
     public function getOrderUrl()
     {
         return Url::toRoute(['/shop/order/view', 'id' => $this->id]);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPartnerOrderOnListUrl()
+    {
+        return Url::toRoute(['/shop/partner-order/list', 'id' => $this->id]);
     }
 
     /**

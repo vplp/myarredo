@@ -16,7 +16,9 @@ $this->title = $this->context->title;
 <main>
     <div class="page adding-product-page">
         <div class="container large-container">
+
             <?= Html::tag('h1', $this->context->title); ?>
+
             <!--
             <form class="form-filter-date-cont flex">
                 <div class="dropdown arr-drop">
@@ -99,6 +101,7 @@ $this->title = $this->context->title;
                 </div>
             </form>
             -->
+
             <div class="manager-history">
                 <div class="manager-history-header">
                     <ul class="orders-title-block flex">
@@ -140,43 +143,33 @@ $this->title = $this->context->title;
                                 <div class="hidden-order-info flex">
                                     <div class="hidden-order-in">
                                         <div class="flex-product">
-                                        <?php foreach ($order->items as $item): ?>
 
-                                            <?= $this->render('_list_item', [
-                                                'item' => $item,
-                                            ]) ?>
+                                            <?php
+                                            foreach ($order->items as $item) {
+                                                echo $this->render('_list_item', [
+                                                    'item' => $item,
+                                                ]);
+                                            } ?>
 
-                                        <?php endforeach; ?>
                                         </div>
                                         <div class="form-wrap">
-                                            <div class="best-price-form">
-                                                <?php $form = ActiveForm::begin([
-                                                    'method' => 'post',
-                                                    'action' => $order->getPartnerOrderUrl(),
-                                                    'id' => 'checkout-form',
-                                                ]); ?>
 
-                                                <?php // $form->field($order->getOrderAnswer(), 'answer')->textarea() ?>
+                                            <?php $form = ActiveForm::begin([
+                                                'method' => 'post',
+                                                'action' => $order->getPartnerOrderOnListUrl(),
+                                                'id' => 'checkout-form',
+                                            ]); ?>
 
-                                                <?= $form->field($order, 'comment')->textarea(['disabled' => true]) ?>
+                                            <?= $form->field($order->orderAnswer, 'answer')->textarea(['rows' => 5]) ?>
 
-                                                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+                                            <?= $form->field($order, 'comment')->textarea(['disabled' => true, 'rows' => 5]) ?>
 
-                                                <?php ActiveForm::end(); ?>
-                                            </div>
+                                            <?= $form->field($order->orderAnswer, 'results')->textarea(['rows' => 5]) ?>
 
-<!--                                            <div class="form-group">-->
-<!--                                                <label>Комментарий клиента</label>-->
-<!--                                                <textarea class="form-control" rows="5"></textarea>-->
-<!--                                            </div>-->
-<!--                                            <div class="form-group">-->
-<!--                                                <label>Ваш ответ</label>-->
-<!--                                                <textarea class="form-control" rows="5"></textarea>-->
-<!--                                            </div>-->
-<!--                                            <div class="form-group">-->
-<!--                                                <label>Результат</label>-->
-<!--                                                <textarea class="form-control" rows="5"></textarea>-->
-<!--                                            </div>-->
+                                            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+
+                                            <?php ActiveForm::end(); ?>
+
                                         </div>
 
 
