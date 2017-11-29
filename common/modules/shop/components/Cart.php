@@ -182,9 +182,6 @@ class Cart extends Component
     public function recalculate($cartItemKey = false)
     {
 
-        if (empty($this->cart)) {
-            throw new ErrorException('Cart can not create!');
-        }
 
         if ($cartItemKey !== false) {
             //посчитаем скидку на товар
@@ -199,10 +196,13 @@ class Cart extends Component
 
         //посчитаем скидку на весь заказ
         $this->cart = CartModel::findBySessionID();
-        $this->cart = (new $this->discountCartClass)->calculate($this->cart);
 
-        //пересчитаем сумму
-        $this->cart->recalculate();
+        if (empty($this->cart)) {
+            $this->cart = (new $this->discountCartClass)->calculate($this->cart);
+
+            //пересчитаем сумму
+            $this->cart->recalculate();
+        }
     }
 
     /**
