@@ -33,7 +33,7 @@ class PartnerOrderController extends BaseController
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'list' => ['get'],
+                    'list' => ['get', 'post'],
                     'view' => ['get', 'post'],
                 ],
             ],
@@ -69,6 +69,10 @@ class PartnerOrderController extends BaseController
             'label' => $this->title,
         ];
 
+        $this->actionSaveAnswer();
+
+        $this->actionSendAnswer();
+
         return $this->render('list', [
             'orders' => $orders,
         ]);
@@ -87,33 +91,7 @@ class PartnerOrderController extends BaseController
             throw new ForbiddenHttpException('Access denied');
         }
 
-        $modelAnswer = OrderAnswer::findByOrderIdUserId($model->id, Yii::$app->getUser()->getId());
-
-        if (empty($modelAnswer)) {
-            $modelAnswer = new OrderAnswer();
-        }
-
-        $modelAnswer->setScenario('frontend');
-
-        $modelAnswer->order_id = $model->id;
-        $modelAnswer->user_id = Yii::$app->getUser()->getId();
-
-
-        if ($modelAnswer->load(Yii::$app->getRequest()->post()) && $modelAnswer->validate()) {
-            $transaction = $modelAnswer::getDb()->beginTransaction();
-            try {
-                $save = $modelAnswer->save();
-                if ($save) {
-                    $transaction->commit();
-                } else {
-                    $transaction->rollBack();
-                }
-            } catch (Exception $e) {
-                $transaction->rollBack();
-            }
-        }
-
-        $this->title = 'Заявка №'. $model->id;
+        $this->title = 'Заявка №' . $model->id;
 
         $this->breadcrumbs[] = [
             'label' => 'Заявки',
@@ -125,8 +103,82 @@ class PartnerOrderController extends BaseController
         ];
 
         return $this->render('view', [
-            'model' => $model,
-            'modelAnswer' => $modelAnswer,
+            'model' => $model
         ]);
+    }
+
+    /**
+     * Action save answer
+     */
+    private function actionSaveAnswer()
+    {
+        if (
+            Yii::$app->request->isPost &&
+            (Yii::$app->request->post('OrderAnswer'))['order_id'] &&
+            Yii::$app->request->post('action-save-answer')
+        ) {
+            $order_id = (Yii::$app->request->post('OrderAnswer'))['order_id'];
+
+            $modelAnswer = OrderAnswer::findByOrderIdUserId($order_id, Yii::$app->getUser()->getId());
+
+            if (empty($modelAnswer)) {
+                $modelAnswer = new OrderAnswer();
+            }
+
+            $modelAnswer->setScenario('frontend');
+            $modelAnswer->user_id = Yii::$app->getUser()->getId();
+
+            if ($modelAnswer->load(Yii::$app->request->post()) && $modelAnswer->validate()) {
+                $transaction = $modelAnswer::getDb()->beginTransaction();
+                try {
+                    $save = $modelAnswer->save();
+                    if ($save) {
+                        $transaction->commit();
+                    } else {
+                        $transaction->rollBack();
+                    }
+                } catch (Exception $e) {
+                    $transaction->rollBack();
+                }
+            }
+        }
+    }
+
+    /**
+     * Action send answer
+     */
+    private function actionSendAnswer()
+    {
+        if (
+            Yii::$app->request->isPost &&
+            (Yii::$app->request->post('OrderAnswer'))['order_id'] &&
+            Yii::$app->request->post('action-send-answer')
+        ) {
+            $order_id = (Yii::$app->request->post('OrderAnswer'))['order_id'];
+
+            $modelAnswer = OrderAnswer::findByOrderIdUserId($order_id, Yii::$app->getUser()->getId());
+
+            if (empty($modelAnswer)) {
+                $modelAnswer = new OrderAnswer();
+            }
+
+            $modelAnswer->setScenario('frontend');
+            $modelAnswer->user_id = Yii::$app->getUser()->getId();
+            $modelAnswer->answer_time = time();
+
+            if ($modelAnswer->load(Yii::$app->request->post()) && $modelAnswer->validate()) {
+                $transaction = $modelAnswer::getDb()->beginTransaction();
+                try {
+                    $save = $modelAnswer->save();
+                    if ($save) {
+                        $transaction->commit();
+                    } else {
+                        $transaction->rollBack();
+                    }
+                } catch (Exception $e) {
+                    $transaction->rollBack();
+                }
+            }
+        }
     }
 }

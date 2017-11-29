@@ -8,14 +8,20 @@ use yii\helpers\Html;
 
 ?>
 
-<?= Html::beginTag('a', ['href' => $model->getUrlUpdate(), 'class' => 'one-prod-tile']); ?>
+<?= Html::beginTag('a', [
+    'href' => $model->getUrlUpdate(), 'class' => 'one-prod-tile'
+]); ?>
 
     <div class="img-cont">
+
         <?= Html::img($model::getImage()); ?>
+
         <div class="brand">
             <?= $model['factory']['lang']['title'] ?>
         </div>
+
     </div>
+
     <div class="item-infoblock">
         <?= $model->getTitle() ?>
     </div>

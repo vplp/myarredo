@@ -10,33 +10,43 @@ use yii\helpers\Html;
 
 ?>
 
-<?php if (!Yii::$app->getUser()->isGuest && Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
+<?php
+if (
+    !Yii::$app->getUser()->isGuest &&
+    Yii::$app->getUser()->getIdentity()->group->role == 'admin'
+): ?>
 
     <div class="downloads">
 
         <?php if (!empty($model->catalogsFiles)): ?>
             <p class="title-small">Посмотреть каталоги</p>
             <ul>
-                <?php foreach ($model->catalogsFiles as $catalogFile): ?>
-                    <?php if ($fileLink = $catalogFile->getFileLink()): ?>
-                        <li>
-                            <?= Html::a($catalogFile->title, $fileLink, ['target' => '_blank']) ?>
-                        </li>
-                    <?php endif; ?>
-                <?php endforeach; ?>
+
+                <?php
+                foreach ($model->catalogsFiles as $catalogFile) {
+                    if ($fileLink = $catalogFile->getFileLink()) {
+                        echo Html::beginTag('li') .
+                            Html::a($catalogFile->title, $fileLink, ['target' => '_blank']) .
+                            Html::endTag('li');
+                    }
+                } ?>
+
             </ul>
         <?php endif; ?>
 
         <?php if (!empty($model->pricesFiles)): ?>
             <p class="title-small">Посмотреть прайс листы</p>
             <ul>
-                <?php foreach ($model->pricesFiles as $priceFile): ?>
-                    <?php if ($fileLink = $priceFile->getFileLink()): ?>
-                        <li>
-                            <?= Html::a($priceFile->title, $fileLink, ['target' => '_blank']) ?>
-                        </li>
-                    <?php endif; ?>
-                <?php endforeach; ?>
+
+                <?php
+                foreach ($model->pricesFiles as $priceFile) {
+                    if ($fileLink = $priceFile->getFileLink()) {
+                        echo Html::beginTag('li') .
+                            Html::a($priceFile->title, $fileLink, ['target' => '_blank']) .
+                            Html::endTag('li');
+                    }
+                } ?>
+
             </ul>
         <?php endif; ?>
 
