@@ -120,4 +120,13 @@ class OrderAnswer extends ActiveRecord
             ->andWhere([self::tableName().'.order_id' => $order_id, self::tableName().'.user_id' => $user_id])
             ->one();
     }
+
+    /**
+     * @return string
+     */
+    public function getAnswerTime()
+    {
+        $format = 'd.m.Y';
+        return $this->answer_time == 0 ? '' : date($format, $this->answer_time);
+    }
 }

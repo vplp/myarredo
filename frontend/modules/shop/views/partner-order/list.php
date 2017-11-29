@@ -6,7 +6,7 @@ use yii\helpers\{
 use yii\widgets\ActiveForm;
 
 /**
- * @var \frontend\modules\shop\models\Order $order
+ * @var \frontend\modules\shop\models\Order $model
  */
 
 $this->title = $this->context->title;
@@ -109,7 +109,13 @@ $this->title = $this->context->title;
                             <span>№</span>
                         </li>
                         <li class="application-date">
-                            <span>Дата</span>
+                            <span>Дата заявки</span>
+                        </li>
+                        <li>
+                            <span>Имя</span>
+                        </li>
+                        <li>
+                            <span>Дата ответа</span>
                         </li>
                         <li>
                             <span>Город</span>
@@ -123,29 +129,41 @@ $this->title = $this->context->title;
 
                     <?php if (!empty($orders)): ?>
 
-                        <?php foreach ($orders as $order): ?>
+                        <?php foreach ($orders as $model): ?>
 
-                            <div class="item">
+                            <div class="item" data-hash="<?= $model->id; ?>">
 
                                 <ul class="orders-title-block flex">
                                     <li class="order-id">
                                         <span>
-                                            <?= Html::a($order->id, $order->getPartnerOrderUrl()) ?>
+                                            <?= Html::a($model->id, $model->getPartnerOrderUrl()) ?>
                                         </span>
                                     </li>
                                     <li class="application-date">
-                                        <span><?= $order->getCreatedTime() ?></span>
+                                        <span><?= $model->getCreatedTime() ?></span>
+                                    </li>
+                                    <li>
+                                        <span><?= $model->customer->full_name ?></span>
+                                    </li>
+                                    <li>
+                                        <span><?= $model->orderAnswer->getAnswerTime() ?></span>
                                     </li>
                                     <li><span>Москва</span></li>
-                                    <li><span><?= $order['order_status'] ?></span></li>
+                                    <li><span><?= $model['order_status'] ?></span></li>
                                 </ul>
 
                                 <div class="hidden-order-info flex">
+
+                                    <?php $form = ActiveForm::begin([
+                                        'method' => 'post',
+                                        'action' => $model->getPartnerOrderOnListUrl(),
+                                    ]); ?>
+
                                     <div class="hidden-order-in">
                                         <div class="flex-product">
 
                                             <?php
-                                            foreach ($order->items as $item) {
+                                            foreach ($model->items as $item) {
                                                 echo $this->render('_list_item', [
                                                     'item' => $item,
                                                 ]);
@@ -154,26 +172,45 @@ $this->title = $this->context->title;
                                         </div>
                                         <div class="form-wrap">
 
-                                            <?php $form = ActiveForm::begin([
-                                                'method' => 'post',
-                                                'action' => $order->getPartnerOrderOnListUrl(),
-                                                'id' => 'checkout-form',
-                                            ]); ?>
+                                            <?= $form
+                                                ->field($model->orderAnswer, 'answer')
+                                                ->textarea(['rows' => 5]) ?>
 
-                                            <?= $form->field($order->orderAnswer, 'answer')->textarea(['rows' => 5]) ?>
+                                            <?= $form
+                                                ->field($model->orderAnswer, 'id')
+                                                ->input('hidden')
+                                                ->label(false) ?>
 
-                                            <?= $form->field($order, 'comment')->textarea(['disabled' => true, 'rows' => 5]) ?>
+                                            <?= $form
+                                                ->field($model->orderAnswer, 'order_id')
+                                                ->input('hidden', ['value' => $model->id])
+                                                ->label(false) ?>
 
-                                            <?= $form->field($order->orderAnswer, 'results')->textarea(['rows' => 5]) ?>
+                                            <?= $form->field($model, 'comment')
+                                                ->textarea(['disabled' => true, 'rows' => 5]) ?>
 
-                                            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
-
-                                            <?php ActiveForm::end(); ?>
+                                            <?= $form->field($model->orderAnswer, 'results')
+                                                ->textarea(['rows' => 5]) ?>
 
                                         </div>
-
-
                                     </div>
+
+                                    <?= Html::submitButton('Сохранить', [
+                                        'class' => 'btn btn-success',
+                                        'name' => 'action-save-answer',
+                                        'value' => 1
+                                    ]) ?>
+
+                                    <?php if ($model->orderAnswer->id) {
+                                        echo Html::submitButton('Отправить ответ клиенту', [
+                                            'class' => 'btn btn-success',
+                                            'name' => 'action-send-answer',
+                                            'value' => 1
+                                        ]);
+                                    } ?>
+
+                                    <?php ActiveForm::end(); ?>
+
                                 </div>
 
                             </div>
