@@ -9,7 +9,7 @@ use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Product, Category, Factory, Types, Specification, Collection
+    Product, Factory
 };
 
 /**
@@ -56,7 +56,6 @@ class FactoryController extends BaseController
             throw new NotFoundHttpException;
         }
 
-
         if ($view == 'three') {
             /**
              * view three
@@ -98,26 +97,22 @@ class FactoryController extends BaseController
      */
     public function actionView(string $alias)
     {
+        $keys = Yii::$app->catalogFilter->keys;
+
         $model = Factory::findByAlias($alias);
 
         if ($model === null) {
             throw new NotFoundHttpException;
         }
 
-        $category = Category::getWithProduct(Yii::$app->catalogFilter->params);
-        $types = Types::getWithProduct(Yii::$app->catalogFilter->params);
-        $style = Specification::getWithProduct(Yii::$app->catalogFilter->params);
-        $factory = Factory::getWithProduct(Yii::$app->catalogFilter->params);
-        $collection = Collection::getWithProduct(Yii::$app->catalogFilter->params);
-
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
-        $module->itemOnPage = 7;
+        $module->itemOnPage = 19;
 
         $modelProduct = new Product();
         $product = $modelProduct->search([
-            'factory' => [
-                'id' => $model['id']
+            $keys['factory'] => [
+                $model['alias']
             ]
         ]);
 
@@ -139,11 +134,6 @@ class FactoryController extends BaseController
 
         return $this->render('view', [
             'model' => $model,
-            'category' => $category,
-            'types' => $types,
-            'style' => $style,
-            'factory' => $factory,
-            'collection' => $collection,
             'product' => $product->getModels(),
         ]);
     }
