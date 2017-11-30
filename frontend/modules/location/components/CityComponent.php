@@ -80,7 +80,7 @@ class CityComponent extends Component
         // get domain name
         $exp_host = explode('myarredo.', $_SERVER["HTTP_HOST"]);
         $this->country = $exp_host[1];
-/* !!! */ echo  '<pre style="color:red;">'; print_r($this->country); echo '</pre>'; /* !!! */
+
         $exp_host = explode('.', $_SERVER['HTTP_HOST']);
 
         // get city name
@@ -111,10 +111,10 @@ class CityComponent extends Component
      */
     private function getDefaultCityId()
     {
-        if ($this->country == 'by') {
+        if (in_array($this->country, ['by', 'by:8080'])) {
             // minsk
             $this->defaultCityId = 2;
-        } else if ($this->country == 'ua') {
+        } else if (in_array($this->country, ['ua', 'ua:8080'])) {
             // kiev
             $this->defaultCityId = 1;
         } else {
