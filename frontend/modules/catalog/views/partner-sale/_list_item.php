@@ -14,7 +14,7 @@ use yii\helpers\Html;
 
     <div class="img-cont">
 
-        <?= Html::img($model::getImage()); ?>
+        <?= Html::img($model::getImageThumb($model['image_link'])); ?>
 
         <div class="brand">
             <?= $model['factory']['lang']['title'] ?>

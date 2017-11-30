@@ -144,10 +144,10 @@ class Sale extends \common\modules\catalog\models\Sale
      */
     public function getTitle()
     {
-        $title = (($this->catalog_type_id > 0 && !empty($this->types)) ? $this->types->lang->title . ' ' : '');
-        $title .= $this->getFactoryTitle();
+//        $title = (($this->catalog_type_id > 0 && !empty($this->types)) ? $this->types->lang->title . ' ' : '');
+//        $title .= $this->getFactoryTitle();
 
-        return $title;
+        return $this->lang->title;
     }
 
     /**

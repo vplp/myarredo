@@ -24,6 +24,7 @@ use frontend\components\Breadcrumbs;
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
                 ]) ?>
+
             </div>
             <div class="cat-content">
                 <div class="row">
