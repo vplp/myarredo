@@ -50,7 +50,7 @@ $this->title = $this->context->title;
 
                             <?php
                             foreach ($model->getGalleryImage() as $key => $src) {
-                                $class = 'item' . ($key == 0) ? ' active' : '';
+                                $class = 'item' . (($key == 0) ? ' active' : '');
 
                                 echo Html::beginTag('div', ['class' => $class]) .
                                     Html::a(
