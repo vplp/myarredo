@@ -235,7 +235,9 @@ class Sale extends ActiveRecord
             $this->user_id = Yii::$app->getUser()->id;
         }
 
-        $this->alias = (Yii::$app->request->post('SalesLang'))['title'];
+        if ($this->alias == '') {
+            $this->alias = time();
+        }
 
         return parent::beforeSave($insert);
     }
