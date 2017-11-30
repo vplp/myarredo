@@ -77,7 +77,7 @@ class CityComponent extends Component
      */
     private function setup()
     {
-        // get domain name
+        // get country name
         $exp_host = explode('myarredo.', $_SERVER["HTTP_HOST"]);
         $this->country = $exp_host[1];
 
@@ -95,8 +95,6 @@ class CityComponent extends Component
 
         if ($cityAlias) {
             $this->city = City::findByAlias($cityAlias);
-
-            // TODO: need to be redone!
 
             if ($this->city == null) {
                 $this->city = City::findById($this->defaultCityId);
