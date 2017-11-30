@@ -19,7 +19,7 @@ return [
     'user/login/validation' => 'user/login/validation',
 
     // Module [[Catalog]]
-    'catalog/<filter:[\;\-\/\w\d]+>' => 'catalog/category/list',
+    'catalog/<filter:[\;\-\w\d]+>' => 'catalog/category/list',
     'sale/<filter:[\;\-\/\w\d]+>' => 'catalog/sale/list',
     'factory/<letter:[\w\-]>' => 'catalog/factory/list',
     'factory/<alias:[\w\-]+>' => 'catalog/factory/view',
@@ -32,6 +32,8 @@ return [
     'partner/sale' => 'catalog/partner-sale/list',
     'partner/sale/create' => 'catalog/partner-sale/create',
     'partner/sale/update/<id:[\d\-]+>' => 'catalog/partner-sale/update',
+    'catalog/partner-sale/fileupload' => 'catalog/partner-sale/fileupload',
+    'catalog/partner-sale/filedelete' => 'catalog/partner-sale/filedelete',
     'partner/mailing-by-cities' => 'catalog/partner-sale/mailing-by-cities',
 
     'razmeshchenie_koda' => 'catalog/partner-sale/code',

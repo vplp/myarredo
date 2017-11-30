@@ -1,6 +1,7 @@
 <?php
 
-use backend\themes\defaults\widgets\forms\ActiveForm;
+//use backend\themes\defaults\widgets\forms\ActiveForm;
+use backend\app\bootstrap\ActiveForm;
 //use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
@@ -41,16 +42,21 @@ $this->title = ($model->isNewRecord) ? 'Добавить товар в расп�
                     ]); ?>
 
                     <?php if ($model->isNewRecord): ?>
+
                         <div class="alert alert-warning">
                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                             Для загрузки изображений - сначала создайте товар
                         </div>
+
                     <?php else: ?>
-                        <?php //$form->field($model, 'picpath')->imageOne($model->getImage()) ?>
+
+                        <?= $form->field($model, 'image_link')->imageOne($model->getImageLink()) ?>
+
+                        <?php //$form->field($model, 'gallery_image')->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
+
                     <?php endif; ?>
 
                     <?= $form->field($modelLang, 'title') ?>
-                    <?= $form->field($model, 'alias') ?>
 
                     <?= $form
                         ->field($model, 'category_ids')
