@@ -209,14 +209,11 @@ class Product extends \common\modules\catalog\models\Product
      */
     public static function getProductByCollection(int $collections_id, int $catalog_type_id)
     {
-        //TODO Переделать
         return parent::findBase()
             ->enabled()
-            ->andFilterWhere([
+            ->andWhere([
                 'collections_id' => $collections_id,
-                'catalog_type_id' => $catalog_type_id
             ])
-            //->orderBy('RAND()')
             ->limit(12)
             ->all();
     }
@@ -232,11 +229,10 @@ class Product extends \common\modules\catalog\models\Product
     {
         return parent::findBase()
             ->enabled()
-            ->andFilterWhere([
+            ->andWhere([
                 'factory_id' => $factory_id,
                 'catalog_type_id' => $catalog_type_id
             ])
-            //->orderBy('RAND()')
             ->limit(12)
             ->all();
     }
