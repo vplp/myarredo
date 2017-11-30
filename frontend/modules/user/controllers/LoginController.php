@@ -63,7 +63,11 @@ class LoginController extends BaseController
         $model->setScenario('signIn');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
-            return $this->redirect(Url::toRoute(['/user/profile/index']));
+            if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') {
+                return $this->redirect(Url::toRoute(['/shop/partner-order/list']));
+            } else {
+                return $this->redirect(Url::toRoute(['/user/profile/index']));
+            }
         } else {
             return $this->render('index', [
                 'model' => $model,
