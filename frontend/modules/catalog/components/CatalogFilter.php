@@ -240,5 +240,20 @@ class CatalogFilter extends Component
                 self::$_parameters[self::$keys['factory']][] = $obj['alias'];
             }
         }
+
+        if (!empty(self::$_structure['collection'])) {
+            $model = Collection::findBase()
+                ->andWhere(['IN', 'id', self::$_structure['collection']])
+                ->indexBy('id')
+                ->all();
+
+            if (count(self::$_structure['collection']) !== count($model) || $model === null) {
+                throw new NotFoundHttpException;
+            }
+
+            foreach ($model as $obj) {
+                self::$_parameters[self::$keys['collection']][] = $obj['id'];
+            }
+        }
     }
 }

@@ -101,6 +101,12 @@ class Product extends ProductModel
                 ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
         }
 
+        if (isset($params[$keys['collection']])) {
+            $query
+                ->innerJoinWith(["collection"])
+                ->andFilterWhere(['IN', Collection::tableName() . '.id', $params[$keys['collection']]]);
+        }
+
         $order = [];
 
         if (isset($params['sort']) && $params['sort'] == 'asc') {
