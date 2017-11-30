@@ -149,8 +149,21 @@ class UserController extends BackendController
         ]);
     }
 
+    public function actionClearUsers()
+    {
+        User::deleteAll();
+
+        Yii::$app->db->createCommand('ALTER TABLE ' . User::tableName() . ' AUTO_INCREMENT = 1')->execute();
+        Yii::$app->db->createCommand('ALTER TABLE ' . Profile::tableName() . ' AUTO_INCREMENT = 1')->execute();
+
+        Yii::$app->db->createCommand('DELETE FROM fv_auth_assignment')->execute();
+
+    }
+
     public function actionImportUsers()
     {
+        $limitCount = 1000;
+
         $userGroups = [
             'admin' => 1,
             'editor' => 2,
@@ -163,18 +176,14 @@ class UserController extends BackendController
         ];
 
         $rows = (new \yii\db\Query())
-            ->from('c1myarredo_old.user')
-            ->leftJoin('c1myarredo_old.auth_assignment', 'auth_assignment.userid = user.login')
-            ->leftJoin('c1myarredo_old.user_data', 'user_data.uid = user.id')
-            ->leftJoin('c1myarredo_old.user_lang', 'user_lang.rid = user.id')
+            ->from('c1myarredo.user')
+            ->leftJoin('c1myarredo.auth_assignment', 'auth_assignment.userid = user.login')
+            ->leftJoin('c1myarredo.user_data', 'user_data.uid = user.id')
+            ->leftJoin('c1myarredo.user_lang', 'user_lang.rid = user.id')
+            ->where(['user.mark' => '0'])
+            ->limit($limitCount)
+            ->orderBy('id ASC')
             ->all();
-
-        User::deleteAll();
-        Yii::$app->db->createCommand('ALTER TABLE ' . User::tableName() . ' AUTO_INCREMENT = 1')->execute();
-        Yii::$app->db->createCommand('ALTER TABLE ' . Profile::tableName() . ' AUTO_INCREMENT = 1')->execute();
-
-
-        Yii::$app->db->createCommand('DELETE FROM fv_auth_assignment')->execute();
 
         foreach ($rows as $row) {
 
@@ -224,9 +233,17 @@ class UserController extends BackendController
                 $profile->latitude = $row['latitude'] ?? 0;
                 $profile->longitude = $row['longitude'] ?? 0;
 
-                $profile->save();
+                if ($profile->save()) {
+                    Yii::$app->db->createCommand()
+                        ->update(
+                            'c1myarredo.user',
+                            ['mark' => '1'],
+                            'id = ' . $row['id']
+                        )
+                        ->execute();
 
-                $transaction->commit();
+                    $transaction->commit();
+                }
             } catch (\Exception $e) {
                 $transaction->rollBack();
                 throw $e;

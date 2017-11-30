@@ -178,6 +178,7 @@ class CronController extends Controller
             ->from('c1myarredo.catalog_item')
             ->where(['mark' => '0'])
             ->limit(1000)
+            ->orderBy('id ASC')
             ->all();
 
         foreach ($rows as $row) {
@@ -211,6 +212,7 @@ class CronController extends Controller
             ->from('c1myarredo.catalog_item')
             ->where(['mark' => '0'])
             ->limit(1000)
+            ->orderBy('id ASC')
             ->all();
 
         foreach ($rows as $row) {
