@@ -1,5 +1,9 @@
 <?php
 
+use yii\helpers\{
+    Html, Url
+};
+//
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\catalog\widgets\category\CategoryOnMainPage;
 use frontend\modules\catalog\widgets\factory\FactoryOnMainPage;
@@ -76,7 +80,7 @@ $bundle = AppAsset::register($this);
                                     Лучший
                                 </div>
                                 <div class="descr">
-                                    Поставщик товаров из Италии в Москве
+                                    Поставщик товаров из Италии в <?= Yii::$app->city->getCityTitleWhere() ?>
                                 </div>
                             </div>
                         </div>
@@ -94,9 +98,13 @@ $bundle = AppAsset::register($this);
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="to-cat btn btn-default">
-                            Перейти в каталог
-                        </a>
+
+                        <?= Html::a(
+                            'Перейти в каталог',
+                            Url::toRoute('/catalog/category/list'),
+                            ['class' => 'to-cat btn btn-default']
+                        ); ?>
+
                     </div>
 
                 </div>
@@ -185,17 +193,21 @@ $bundle = AppAsset::register($this);
         </div>
         <!-- конец Факторы -->
 
-        <!-- контакты в Москве -->
+        <!-- контакты -->
         <div class="manager-request">
             <div class="title">
                 <div class="quest">Не нашли что искали?</div>
                 <div class="sm-title">НАШ МЕНЕДЖЕР ПОДБЕРЕТ МЕБЕЛЬ ПО ВАШИМ ПАРАМЕТРАМ</div>
-                <a href="#" class="btn btn-default">
-                    Контакты в Москве
-                </a>
+
+                <?= Html::a(
+                    'Контакты в ' . Yii::$app->city->getCityTitleWhere(),
+                    Url::toRoute('/page/contacts/index'),
+                    ['class' => 'btn btn-default']
+                ); ?>
+
             </div>
         </div>
-        <!-- конец контакты в Москве -->
+        <!-- конец  -->
 
         <!-- Отзывы -->
         <div class="reviews">
