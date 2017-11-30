@@ -28,7 +28,7 @@ class Inflector extends BaseInflector
     {
         $string = static::transliterate($string);
 
-        $string = preg_replace('/[^a-zA-Z0-9=\,\.\s—–-]+/u', '', $string);
+        $string = preg_replace('/[^a-zA-Z0-9=\,\.\_\s—–-]+/u', '', $string);
         $string = preg_replace('/[=\,\.\s—–-]+/u', $replacement, $string);
         $string = trim($string, $replacement);
 

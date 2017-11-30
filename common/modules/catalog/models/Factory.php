@@ -9,8 +9,8 @@ use yii\helpers\{
 use yii\behaviors\AttributeBehavior;
 //
 use thread\app\base\models\ActiveRecord;
+//
 use common\modules\catalog\Catalog;
-use common\actions\upload\UploadBehavior;
 use common\helpers\Inflector;
 
 /**
@@ -68,16 +68,6 @@ class Factory extends ActiveRecord
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-//            'uploadBehavior' => [
-//                'class' => UploadBehavior::class,
-//                'attributes' => [
-//                    'image_link' => [
-//                        'path' => Yii::$app->getModule('catalog')->getFactoryUploadPath(),
-//                        'tempPath' => Yii::getAlias('@temp'),
-//                        'url' => Yii::$app->getModule('catalog')->getFactoryUploadPath(),
-//                    ]
-//                ]
-//            ],
             [
                 'class' => AttributeBehavior::className(),
                 'attributes' => [

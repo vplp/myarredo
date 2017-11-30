@@ -4,13 +4,11 @@ namespace backend\modules\catalog\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-use yii\behaviors\AttributeBehavior;
 //
-use thread\app\base\models\ActiveRecord;
 use thread\app\model\interfaces\BaseBackendModel;
+//
 use common\modules\catalog\models\Factory as CommonFactoryModel;
 use common\actions\upload\UploadBehavior;
-use common\helpers\Inflector;
 /**
  * Class Factory
  *
@@ -34,16 +32,6 @@ class Factory extends CommonFactoryModel implements BaseBackendModel
                     ]
                 ]
             ],
-//            [
-//                'class' => AttributeBehavior::className(),
-//                'attributes' => [
-//                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
-//                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
-//                ],
-//                'value' => function ($event) {
-//                    return Inflector::slug($this->alias);
-//                },
-//            ],
         ]);
     }
 
