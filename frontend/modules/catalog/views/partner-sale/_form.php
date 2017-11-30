@@ -52,7 +52,7 @@ $this->title = ($model->isNewRecord) ? 'Добавить товар в расп�
 
                         <?= $form->field($model, 'image_link')->imageOne($model->getImageLink()) ?>
 
-                        <?php //$form->field($model, 'gallery_image')->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
+                        <?= $form->field($model, 'gallery_image')->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
 
                     <?php endif; ?>
 
