@@ -55,7 +55,7 @@ $this->title = $this->context->title;
 
                         <?= Html::tag(
                             'h1',
-                            'Итальянская мебель ' . $model['lang']['title'],
+                            (($this->context->SeoH1) ? $this->context->SeoH1 : $model['lang']['title']),
                             ['class' => 'title-text']
                         ); ?>
 
@@ -160,6 +160,7 @@ $this->title = $this->context->title;
                         <div class="text">
                             <?= $model['lang']['content']; ?>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -203,6 +204,8 @@ $this->title = $this->context->title;
                 ); ?>
 
             </div>
+
+            <?= $this->context->SeoContent ?>
 
         </div>
     </div>
