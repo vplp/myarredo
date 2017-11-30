@@ -857,14 +857,34 @@ footer {
   .img-zoom {
     display: inline-flex;
     background: #DBDAD6;
-    color: #5F5856;
     text-decoration: none;
     position: relative;
     bottom: 90px;
     z-index: 9;
     left: 20px;
     padding: 3px 5px;
-    font-size: 16px;
+    text-transform: uppercase;
+    text-align: left;
+    font-family: Arial;
+    font-size: 10px;
+    padding-left: 8px;
+    color: #5f5856;
+    width: 100px;
+    height: 25px;
+    line-height: 23px;
+    padding-right: 25px;
+    &:after {
+      content: "";
+      background-image: url("../img/zoom.png");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100%;
+      width: 18px;
+      position: absolute;
+      top: 0;
+      right: 8px;
+    }
     .fa {
       position: relative;
       top:2px;
