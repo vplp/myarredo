@@ -16,6 +16,10 @@ use frontend\modules\catalog\models\{
 use thread\actions\{
     CreateWithLang, UpdateWithLang
 };
+//
+use common\actions\upload\{
+    DeleteAction, UploadAction
+};
 
 /**
  * Class PartnerSaleController
@@ -46,6 +50,8 @@ class PartnerSaleController extends BaseController
                     'list' => ['get'],
                     'create' => ['get', 'post'],
                     'update' => ['get', 'post'],
+                    'fileupload' => ['post'],
+                    'filedelete' => ['post'],
                     'code' => ['get'],
                     'instructions' => ['get'],
                 ],
@@ -61,7 +67,9 @@ class PartnerSaleController extends BaseController
                             'list',
                             'code',
                             'instructions',
-                            'mailing-by-cities'
+                            'mailing-by-cities',
+                            'fileupload',
+                            'filedelete'
                         ],
                         'roles' => ['partner'],
                     ],
@@ -94,6 +102,16 @@ class PartnerSaleController extends BaseController
                 'redirect' => function () {
                     return ['update', 'id' => $this->action->getModel()->id];
                 }
+            ],
+            'fileupload' => [
+                'class' => UploadAction::class,
+                'useHashPath' => true,
+                'path' => $this->module->getSaleUploadPath()
+            ],
+            'filedelete' => [
+                'class' => DeleteAction::class,
+                'useHashPath' => true,
+                'path' => $this->module->getSaleUploadPath()
             ],
         ];
     }

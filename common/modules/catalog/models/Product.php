@@ -13,8 +13,8 @@ use voskobovich\behaviors\ManyToManyBehavior;
 use thread\app\base\models\ActiveRecord;
 use thread\modules\shop\interfaces\Product as iProduct;
 //
-use common\modules\catalog\Catalog;
 use common\helpers\Inflector;
+use common\modules\catalog\Catalog;
 
 /**
  * Class Product
