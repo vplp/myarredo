@@ -189,23 +189,10 @@ $this->title = $this->context->title;
             <div class="cat-prod catalog-wrap">
 
                 <?php
-
-                $_types = $_factory = $_collection = [];
-
-                foreach ($types as $item) {
-                    $_types[$item['id']] = $item;
-                }
-
-                foreach ($factory as $item) {
-                    $_factory[$item['id']] = $item;
-                }
-
                 foreach ($product as $item) {
-                    $this->render('/category/_list_item', [
+                    echo $this->render('/category/_list_item', [
                         'model' => $item,
-                        'types' => $_types,
-                        'style' => $style,
-                        'factory' => $_factory
+                        'factory' => [$model->id => $model]
                     ]);
                 }
 

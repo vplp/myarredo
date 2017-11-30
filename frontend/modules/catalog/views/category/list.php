@@ -133,12 +133,6 @@ $this->title = $this->context->title;
 
                                     <?php
 
-                                    $_types = $_factory = $_collection = [];
-
-                                    foreach ($types as $item) {
-                                        $_types[$item['id']] = $item;
-                                    }
-
                                     foreach ($factory as $item) {
                                         $_factory[$item['id']] = $item;
                                     }
@@ -146,10 +140,7 @@ $this->title = $this->context->title;
                                     foreach ($models as $model) {
                                         echo $this->render('_list_item', [
                                             'model' => $model,
-                                            'types' => $_types,
-                                            'style' => $style,
                                             'factory' => $_factory,
-                                            'collection' => $_collection,
                                         ]);
                                     } ?>
 
