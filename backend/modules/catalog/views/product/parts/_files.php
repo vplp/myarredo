@@ -2,7 +2,9 @@
 
 use kartik\widgets\Select2;
 //
-use backend\modules\catalog\models\FactoryFile;
+use backend\modules\catalog\models\{
+    FactoryCatalogsFiles, FactoryPricesFiles
+};
 
 /**
  * @var \backend\modules\catalog\models\Product $model
@@ -19,9 +21,9 @@ use backend\modules\catalog\models\FactoryFile;
     <?= $form
         ->field($model, 'factory_catalogs_files_ids')
         ->widget(Select2::classname(), [
-            'data' => FactoryFile::dropDownList([
+            'data' => FactoryCatalogsFiles::dropDownList([
                 'factory_id' => $model['factory_id'],
-                'file_type' => '1'
+                //'file_type' => '1'
             ]),
             'options' => [
                 'placeholder' => Yii::t('app', 'Select option'),
@@ -32,9 +34,9 @@ use backend\modules\catalog\models\FactoryFile;
     <?= $form
         ->field($model, 'factory_prices_files_ids')
         ->widget(Select2::classname(), [
-            'data' => FactoryFile::dropDownList([
+            'data' => FactoryPricesFiles::dropDownList([
                 'factory_id' => $model['factory_id'],
-                'file_type' => '2'
+                //'file_type' => '2'
             ]),
             'options' => [
                 'placeholder' => Yii::t('app', 'Select option'),
