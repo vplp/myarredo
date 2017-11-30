@@ -53,7 +53,7 @@ $bundle = AppAsset::register($this);
 
         <?= CategoryOnMainPage::widget(); ?>
 
-        <?php //ProductNovelty::widget(); ?>
+        <?= ProductNovelty::widget(); ?>
 
         <?= SaleOnMainPage::widget(); ?>
 
