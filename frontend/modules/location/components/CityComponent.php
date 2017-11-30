@@ -80,7 +80,7 @@ class CityComponent extends Component
         // get domain name
         $exp_host = explode('myarredo.', $_SERVER["HTTP_HOST"]);
         $this->country = $exp_host[1];
-
+/* !!! */ echo  '<pre style="color:red;">'; print_r($this->country); echo '</pre>'; /* !!! */
         $exp_host = explode('.', $_SERVER['HTTP_HOST']);
 
         // get city name
