@@ -201,4 +201,37 @@ class CronController extends Controller
                 ->execute();
         }
     }
+
+    /**
+     * Set Product Position
+     */
+    public function actionSetProductAlias()
+    {
+        $rows = (new \yii\db\Query())
+            ->from('c1myarredo.catalog_item')
+            ->where(['mark' => '0'])
+            ->limit(1000)
+            ->all();
+
+        foreach ($rows as $row) {
+            // UPDATE
+            $connection = Yii::$app->db;
+
+            $connection->createCommand()
+                ->update(
+                    'c1myarredo.catalog_item',
+                    ['mark' => '1'],
+                    'id = ' . $row['id']
+                )
+                ->execute();
+
+            $connection->createCommand()
+                ->update(
+                    'c1myarredo_old.catalog_item',
+                    ['alias' => $row['alias']],
+                    'id = ' . $row['id']
+                )
+                ->execute();
+        }
+    }
 }
