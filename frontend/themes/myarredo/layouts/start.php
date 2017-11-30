@@ -36,12 +36,14 @@ $bundle = AppAsset::register($this);
 
             </div>
 
+            <?php /*
             <div class="search-form flex c-align">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Название товара или фабрики">
                 </div>
                 <button type="button" class="btn btn-success">Найти</button>
             </div>
+            */ ?>
 
         </div>
 
