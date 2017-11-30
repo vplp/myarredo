@@ -10,7 +10,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $user \thread\modules\user\models\User */
 
-$resetLink = Yii::$app->urlManager->createAbsoluteUrl(['/user/profile/reset-password', 'token' => $user->password_reset_token]);
+$resetLink = Yii::$app->urlManager->createAbsoluteUrl(['/user/password/reset', 'token' => $user->password_reset_token]);
 ?>
 <div class="password-reset">
     <p>Hello <?= Html::encode($user->username) ?>,</p>
