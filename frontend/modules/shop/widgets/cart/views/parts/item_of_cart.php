@@ -4,8 +4,8 @@ use yii\helpers\Html;
 use frontend\modules\catalog\models\Product;
 
 /* @var $this yii\web\View */
-/* @var $item \frontend\modules\catalog\models\Product */
-/* @var $product \frontend\modules\shop\models\CartItem */
+/* @var $product \frontend\modules\catalog\models\Product */
+/* @var $item \frontend\modules\shop\models\CartItem */
 
 ?>
 
@@ -17,7 +17,7 @@ use frontend\modules\catalog\models\Product;
                 <i class="fa fa-times" aria-hidden="true"></i>
             </a>
             <div class="img-cont">
-                <?= Html::a(Html::img($product->getImage()), Product::getUrl($product['alias'])) ?>
+                <?= Html::a(Html::img($product::getImageThumb($product['image_link'])), $product::getUrl($product['alias'])) ?>
             </div>
             <table width="100%">
                 <tr>
