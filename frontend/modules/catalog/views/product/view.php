@@ -48,19 +48,37 @@ $this->title = $this->context->title;
                         <!-- Carousel items -->
                         <div class="carousel-inner">
 
-                            <?php foreach ($model->getGalleryImage() as $key => $src): ?>
-                                <div class="item<?= ($key == 0) ? ' active' : ''; ?>">
-                                    <div class="img-cont">
-                                        <?= Html::img($src, ['itemprop' => 'image']); ?>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
+                            <?php
+                            foreach ($model->getGalleryImage() as $key => $src) {
+                                $class = 'item' . ($key == 0) ? ' active' : '';
+
+                                echo Html::beginTag('div', ['class' => $class]) .
+                                    Html::a(
+                                        Html::img($src, ['itemprop' => 'image']),
+                                        $src,
+                                        [
+                                            'class' => 'img-cont fancyimage',
+                                            'data-fancybox-group' => 'group'
+                                        ]
+                                    ) .
+                                    Html::endTag('div');
+                            } ?>
 
                         </div>
+
+                        <a href="javascript:void(0);" class="img-zoom">
+                            <i class="fa fa-search-plus" aria-hidden="true"></i>
+                            Увеличить
+                        </a>
+
                         <!-- Carousel nav -->
 
                         <div class="nav-cont">
-                            <a class="left left-arr nav-contr" href="#prod-slider" data-slide="prev">&lsaquo;</a>
+
+                            <a class="left left-arr nav-contr" href="#prod-slider" data-slide="prev">
+                                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                            </a>
+
                             <ol class="carousel-indicators">
 
                                 <?php foreach ($model->getGalleryImage() as $key => $src): ?>
@@ -73,7 +91,11 @@ $this->title = $this->context->title;
                                 <?php endforeach; ?>
 
                             </ol>
-                            <a class="right right-arr nav-contr" href="#prod-slider" data-slide="next">&rsaquo;</a>
+
+                            <a class="right right-arr nav-contr" href="#prod-slider" data-slide="next">
+                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            </a>
+
                         </div>
 
                     </div>
