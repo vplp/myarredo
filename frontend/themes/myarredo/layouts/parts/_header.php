@@ -17,36 +17,38 @@ use frontend\modules\location\widgets\ChangeCity;
 
         <div class="top-navbar">
             <div class="container large-container">
-                <ul class="nav navbar-nav top-panel flex">
-                    <li class="tel-num">
+                <div class="row">
+                    <ul class="nav navbar-nav top-panel flex">
+                        <li class="tel-num">
 						<span>
 							<i class="glyphicon glyphicon-earphone"></i> <?= Yii::$app->partner->getPartnerPhone() ?>
 						</span>
-                    </li>
-                    <li>
-                        <a class="callback-trigger" href="javascript:void(0);">
+                        </li>
+                        <li>
+                            <a class="callback-trigger" href="javascript:void(0);">
 							<span>
 								Обратный звонок
 							</span>
-                        </a>
-                    </li>
-                    <li class="geo">
-                        <a href="javascript: void(0);" id="select-city">
-                            <i class="glyphicon glyphicon-map-marker"></i>
-                            <span class="country">
+                            </a>
+                        </li>
+                        <li class="geo">
+                            <a href="javascript: void(0);" id="select-city">
+                                <i class="glyphicon glyphicon-map-marker"></i>
+                                <span class="country">
 								<?= Yii::$app->city->getCountryTitle() ?>
 							</span>
-                            <span class="city">
+                                <span class="city">
 								<?= Yii::$app->city->getCitytitle() ?>
 							</span>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li id="short_cart">
-                        <?= Cart::widget(['view' => 'short']) ?>
-                    </li>
-                </ul>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="short_cart">
+                            <?= Cart::widget(['view' => 'short']) ?>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -54,18 +56,18 @@ use frontend\modules\location\widgets\ChangeCity;
 
         <div class="top-navbar">
             <div class="container large-container">
-
-                <?php //if (Yii::$app->getUser()->getIdentity()->group->role == 'user'): ?>
+                <div class="row">
+                    <?php //if (Yii::$app->getUser()->getIdentity()->group->role == 'user'): ?>
                     <ul class="nav navbar-nav navbar-right">
                         <li id="short_cart">
                             <?= Cart::widget(['view' => 'short']) ?>
                         </li>
                     </ul>
-                <?php //endif; ?>
+                    <?php //endif; ?>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <div class="my-notebook dropdown">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <div class="my-notebook dropdown">
                             <span class="red-but notebook-but dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bars" aria-hidden="true"></i>
                                 Меню
@@ -129,9 +131,11 @@ use frontend\modules\location\widgets\ChangeCity;
                                     </ul>
                                 </object>
                             </span>
-                        </div>
-                    </li>
-                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
         </div>
 
@@ -139,10 +143,12 @@ use frontend\modules\location\widgets\ChangeCity;
 
     <nav class="navbar">
         <div class="container large-container">
-            <a href="/" class="logo">
-                <img src="<?= $bundle->baseUrl ?>/img/logo.png" alt="">
-            </a>
-            <?= CatalogMenu::widget([]); ?>
+            <div class="row">
+                <a href="/" class="logo">
+                    <img src="<?= $bundle->baseUrl ?>/img/logo.png" alt="">
+                </a>
+                <?= CatalogMenu::widget([]); ?>
+            </div>
         </div>
     </nav>
 </header>
