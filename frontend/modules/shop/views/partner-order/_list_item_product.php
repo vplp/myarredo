@@ -12,46 +12,43 @@ use frontend\modules\catalog\models\Product;
 
 <div class="basket-item-info">
 
-        <div class="img-cont">
-            <?= Html::a(
-                Html::img(Product::getImageThumb($orderItem->product['image_link'])),
-                Product::getUrl($orderItem->product['alias'])
-            ); ?>
-        </div>
-        <table class="char" width="100%">
-            <tr>
-                <td>Предмет</td>
-                <td>
-                    <?= Html::a(
-                        $orderItem->product['lang']['title'],
-                        Product::getUrl($orderItem->product['alias'])
-                    ); ?>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Артикул
-                </td>
-                <td>
-                    <?= $orderItem->product['article'] ?>
-                </td>
-            </tr>
-            <tr>
-                <td>Фабрика</td>
-                <td><?= $orderItem->product['factory']['lang']['title'] ?></td>
-            </tr>  
-            <tr>
-                <td>ЦЕНА для клиента</td>
-                <td>
-                    <?= $form
-                        ->field($orderItem->orderItemPrice, 'price')
-                        ->input('text', [
-                                'name' => 'OrderItemPrice['.$orderItem->product_id.']',
-                        ])
-                        ->label(false);
-                    ?>
-                </td>
-            </tr>
-        </table>
-
+    <div class="img-cont">
+        <?= Html::a(
+            Html::img(Product::getImageThumb($orderItem->product['image_link'])),
+            Product::getUrl($orderItem->product['alias'])
+        ); ?>
+    </div>
+    <table class="char" width="100%">
+        <tr>
+            <td>Предмет</td>
+            <td>
+                <?= Html::a(
+                    $orderItem->product['lang']['title'],
+                    Product::getUrl($orderItem->product['alias'])
+                ); ?>
+            </td>
+        </tr>
+        <tr>
+            <td>Артикул</td>
+            <td>
+                <?= $orderItem->product['article'] ?>
+            </td>
+        </tr>
+        <tr>
+            <td>Фабрика</td>
+            <td><?= $orderItem->product['factory']['lang']['title'] ?></td>
+        </tr>
+        <tr>
+            <td>ЦЕНА для клиента</td>
+            <td>
+                <?= $form
+                    ->field($orderItem->orderItemPrice, 'price')
+                    ->input('text', [
+                            'name' => 'OrderItemPrice['.$orderItem->product_id.']',
+                    ])
+                    ->label(false);
+                ?>
+            </td>
+        </tr>
+    </table>
 </div>
