@@ -44,7 +44,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'string',
                 'max' => 255
             ],
-            [['delivery_to_other_cities', 'partner_in_city'], 'in', 'range' => [0, 1]],
+            [['delivery_to_other_cities', 'partner_in_city'], 'in', 'range' => array_keys(self::statusKeyRange())],
             [['country_id', 'city_id'], 'integer'],
             [['latitude', 'longitude'], 'double'],
         ]);
