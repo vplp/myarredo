@@ -19,6 +19,9 @@ class CityComponent extends Component
     /** @var object */
     private $city;
 
+    /** @var object */
+    private $country;
+
     /**
      * @inheritdoc
      */
@@ -74,6 +77,10 @@ class CityComponent extends Component
      */
     private function setup()
     {
+        // get country name
+        $exp_host = explode('myarredo.', $_SERVER["HTTP_HOST"]);
+        $this->country = $exp_host[1];
+
         $exp_host = explode('.', $_SERVER['HTTP_HOST']);
 
         // get city name
@@ -89,13 +96,30 @@ class CityComponent extends Component
         if ($cityAlias) {
             $this->city = City::findByAlias($cityAlias);
 
-            // TODO: need to be redone!
-
             if ($this->city == null) {
                 $this->city = City::findById($this->defaultCityId);
             }
         } else {
-            $this->city = City::findById($this->defaultCityId);
+            $this->city = City::findById($this->getDefaultCityId());
         }
+    }
+
+    /**
+     * @return int
+     */
+    private function getDefaultCityId()
+    {
+        if (in_array($this->country, ['by', 'by:8080'])) {
+            // minsk
+            $this->defaultCityId = 2;
+        } else if (in_array($this->country, ['ua', 'ua:8080'])) {
+            // kiev
+            $this->defaultCityId = 1;
+        } else {
+            // msk
+            $this->defaultCityId = 4;
+        }
+
+        return $this->defaultCityId;
     }
 }

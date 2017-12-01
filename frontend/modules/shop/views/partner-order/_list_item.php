@@ -13,7 +13,7 @@ use frontend\modules\catalog\models\Product;
 <div class="basket-item-info">
     <div class="item">
         <div class="img-cont">
-            <?= Html::a(Html::img(Product::getImageThumb($item->product->image_link))); ?>
+            <?= Html::a(Html::img(Product::getImageThumb($item->product['image_link']))); ?>
         </div>
         <table width="100%">
             <tr>
