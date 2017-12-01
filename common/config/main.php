@@ -1,11 +1,14 @@
 <?php
+
 use yii\helpers\ArrayHelper;
-//DEFINE SECTION
+
+// DEFINE SECTION
 require(__DIR__ . '/alias.php');
 
 return ArrayHelper::merge(
     require(dirname(__DIR__, 2) . '/thread/config/main.php'),
     [
+        'name' => 'MY ARREDO FAMILY',
         'sourceLanguage' => 'ru-RU',
         'language' => 'ru-RU',
         'components' => ArrayHelper::merge(
