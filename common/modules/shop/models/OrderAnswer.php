@@ -50,12 +50,6 @@ class OrderAnswer extends ActiveRecord
             [['order_id', 'user_id'], 'required'],
             [['order_id', 'user_id', 'answer_time', 'created_at', 'updated_at'], 'integer'],
             [['answer'], 'string'],
-//            [
-//                ['answer_time'],
-//                'date',
-//                'format' => 'php:d:m:Y',
-//                'timestampAttribute' => 'answer_time'
-//            ],
             [['results'], 'string', 'max' => 255],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -117,7 +111,10 @@ class OrderAnswer extends ActiveRecord
     public static function findByOrderIdUserId($order_id, $user_id)
     {
         return self::findBase()
-            ->andWhere([self::tableName().'.order_id' => $order_id, self::tableName().'.user_id' => $user_id])
+            ->andWhere([
+                self::tableName().'.order_id' => $order_id,
+                self::tableName().'.user_id' => $user_id
+            ])
             ->one();
     }
 

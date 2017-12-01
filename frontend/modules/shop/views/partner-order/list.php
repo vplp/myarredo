@@ -157,62 +157,9 @@ $this->title = $this->context->title;
 
                                 <div class="hidden-order-info flex">
 
-                                    <?php $form = ActiveForm::begin([
-                                        'method' => 'post',
-                                        'action' => $model->getPartnerOrderOnListUrl(),
-                                    ]); ?>
-
-                                    <div class="hidden-order-in">
-                                        <div class="flex-product">
-
-                                            <?php
-                                            foreach ($model->items as $item) {
-                                                echo $this->render('_list_item', [
-                                                    'item' => $item,
-                                                ]);
-                                            } ?>
-
-                                        </div>
-                                        <div class="form-wrap">
-
-                                            <?= $form
-                                                ->field($model->orderAnswer, 'answer')
-                                                ->textarea(['rows' => 5]) ?>
-
-                                            <?= $form
-                                                ->field($model->orderAnswer, 'id')
-                                                ->input('hidden')
-                                                ->label(false) ?>
-
-                                            <?= $form
-                                                ->field($model->orderAnswer, 'order_id')
-                                                ->input('hidden', ['value' => $model->id])
-                                                ->label(false) ?>
-
-                                            <?= $form->field($model, 'comment')
-                                                ->textarea(['disabled' => true, 'rows' => 5]) ?>
-
-                                            <?= $form->field($model->orderAnswer, 'results')
-                                                ->textarea(['rows' => 5]) ?>
-
-                                        </div>
-                                    </div>
-
-                                    <?= Html::submitButton('Сохранить', [
-                                        'class' => 'btn btn-success',
-                                        'name' => 'action-save-answer',
-                                        'value' => 1
+                                    <?= $this->render('_list_item', [
+                                        'model' => $model,
                                     ]) ?>
-
-                                    <?php if ($model->orderAnswer->id) {
-                                        echo Html::submitButton('Отправить ответ клиенту', [
-                                            'class' => 'btn btn-success',
-                                            'name' => 'action-send-answer',
-                                            'value' => 1
-                                        ]);
-                                    } ?>
-
-                                    <?php ActiveForm::end(); ?>
 
                                 </div>
 

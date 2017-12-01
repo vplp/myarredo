@@ -33,10 +33,11 @@ use yii\widgets\ActiveForm;
                     <div class="col-md-8">
 
                         <div class="flex basket-items">
-                            <?php foreach ($model->items as $item): ?>
+                            <?php foreach ($model->items as $orderItem): ?>
 
-                                <?= $this->render('_list_item', [
-                                    'item' => $item,
+                                <?= $this->render('_list_item_product', [
+                                    'form' => $form,
+                                    'orderItem' => $orderItem,
                                 ]) ?>
 
                             <?php endforeach; ?>

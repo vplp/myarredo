@@ -3,35 +3,67 @@
 use yii\helpers\{
     Html, Url
 };
-use frontend\modules\catalog\models\Product;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $item \frontend\modules\shop\models\CartItem */
+/* @var $model \frontend\modules\shop\models\Order */
 
 ?>
 
-<div class="basket-item-info">
-    <div class="item">
-        <div class="img-cont">
-            <?= Html::a(Html::img(Product::getImageThumb($item->product['image_link']))); ?>
+<?php $form = ActiveForm::begin([
+    'method' => 'post',
+    'action' => $model->getPartnerOrderOnListUrl(),
+]); ?>
+
+    <div class="hidden-order-in">
+        <div class="flex-product">
+
+            <?php
+            foreach ($model->items as $orderItem) {
+                echo $this->render('_list_item_product', [
+                    'form' => $form,
+                    'orderItem' => $orderItem,
+                ]);
+            } ?>
+
         </div>
-        <table width="100%">
-            <tr>
-                <td>Предмет</td>
-                <td><?= $item->product['lang']['title'] ?></td>
-            </tr>
-            <tr>
-                <td>
-                    Артикул
-                </td>
-                <td>
-                    <?= $item->product['article'] ?>
-                </td>
-            </tr>
-            <tr>
-                <td>Фабрика</td>
-                <td><?= $item->product['factory']['lang']['title'] ?></td>
-            </tr>
-        </table>
+        <div class="form-wrap">
+
+            <?= $form
+                ->field($model->orderAnswer, 'answer')
+                ->textarea(['rows' => 5]) ?>
+
+            <?= $form
+                ->field($model->orderAnswer, 'id')
+                ->input('hidden')
+                ->label(false) ?>
+
+            <?= $form
+                ->field($model->orderAnswer, 'order_id')
+                ->input('hidden', ['value' => $model->id])
+                ->label(false) ?>
+
+            <?= $form->field($model, 'comment')
+                ->textarea(['disabled' => true, 'rows' => 5]) ?>
+
+            <?= $form->field($model->orderAnswer, 'results')
+                ->textarea(['rows' => 5]) ?>
+
+        </div>
     </div>
-</div>
+
+<?= Html::submitButton('Сохранить', [
+    'class' => 'btn btn-success',
+    'name' => 'action-save-answer',
+    'value' => 1
+]) ?>
+
+<?php if ($model->orderAnswer->id) {
+    echo Html::submitButton('Отправить ответ клиенту', [
+        'class' => 'btn btn-success',
+        'name' => 'action-send-answer',
+        'value' => 1
+    ]);
+} ?>
+
+<?php ActiveForm::end(); ?>

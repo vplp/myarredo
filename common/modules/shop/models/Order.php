@@ -24,6 +24,7 @@ use common\modules\location\models\City;
  * @property integer $published
  * @property integer $deleted
  *
+ * @property OrderAnswer[] $orderAnswer
  * @property OrderItem[] $items
  * @property Customer[] $customer
  * @property City[] $city
@@ -127,9 +128,12 @@ class Order extends \thread\modules\shop\models\Order
      */
     public function getOrderAnswer()
     {
-        $modelAnswer = OrderAnswer::findByOrderIdUserId($this->id, Yii::$app->getUser()->getId());
+        $modelAnswer = OrderAnswer::findByOrderIdUserId(
+            $this->id,
+            Yii::$app->getUser()->getId()
+        );
 
-        if (empty($modelAnswer)) {
+        if ($modelAnswer == null) {
             $modelAnswer = new OrderAnswer();
         }
 
