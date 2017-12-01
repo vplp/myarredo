@@ -20,6 +20,16 @@ header {
       display: flex;
       align-items: center;
       position: relative;
+      &:after, &:before {
+        display: none;
+      }
+      &>.row {
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 103%;
+        height: 100%;
+      }
     }
   }
   .navbar-right {

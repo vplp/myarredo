@@ -19,6 +19,13 @@
       position: relative;
       align-items: center;
       justify-content: space-between;
+      & > .row {
+        justify-content: space-between;
+        &:after,
+        &:before {
+          display: none;
+        }
+      }
       &:after,
       &:before {
         display: none;
@@ -75,7 +82,7 @@
 
   header .navbar-collapse {
     position: absolute;
-    width: 95%;
+    width: 100%;
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
