@@ -67,7 +67,6 @@ $this->title = $this->context->title;
                         </div>
 
                         <a href="javascript:void(0);" class="img-zoom">
-                            <i class="fa fa-search-plus" aria-hidden="true"></i>
                             Увеличить
                         </a>
 
@@ -82,7 +81,7 @@ $this->title = $this->context->title;
                             <ol class="carousel-indicators">
 
                                 <?php foreach ($model->getGalleryImage() as $key => $src): ?>
-                                    <li data-target="#carousel" data-slide-to="<?= $key ?>"
+                                    <li data-target="#prod-slider" data-slide-to="<?= $key ?>"
                                         class="<?= ($key == 0) ?? 'active' ?>">
                                         <div class="img-min">
                                             <?= Html::img($src); ?>
