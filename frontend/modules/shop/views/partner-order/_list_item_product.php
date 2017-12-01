@@ -47,7 +47,9 @@ use frontend\modules\catalog\models\Product;
                         ->field($orderItem->orderItemPrice, 'price')
                         ->input('text', [
                                 'name' => 'OrderItemPrice['.$orderItem->product_id.']',
-                        ]); ?>
+                        ])
+                        ->label(false);
+                    ?>
                 </td>
             </tr>
         </table>
