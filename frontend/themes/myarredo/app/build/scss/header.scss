@@ -32,8 +32,11 @@ header {
     background-color: #f6f3e8;
     border-bottom: 1px solid #bdbcb3;
     height: 48px;
-    &>container {
+    &>.container {
       height: 100%;
+      &>.row {
+        height: 100%;
+      }
     }
     .navbar-nav {
       height: 100%;
