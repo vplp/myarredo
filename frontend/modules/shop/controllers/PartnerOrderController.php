@@ -61,7 +61,9 @@ class PartnerOrderController extends BaseController
      */
     public function actionList()
     {
-        $orders = Order::findBaseAll();
+        $model = new Order();
+
+        $models = $model->search(Yii::$app->request->queryParams);
 
         $this->title = 'Заявки';
 
@@ -74,7 +76,8 @@ class PartnerOrderController extends BaseController
         $this->actionSendAnswer();
 
         return $this->render('list', [
-            'orders' => $orders,
+            'models' => $models->getModels(),
+            'pages' => $models->getPagination()
         ]);
     }
 

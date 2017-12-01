@@ -146,4 +146,22 @@ class Order extends \common\modules\shop\models\Order
     {
         return Url::toRoute(['/shop/partner-order/view', 'id' => $this->id]);
     }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function search($params)
+    {
+        return (new search\Order())->search($params);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function trash($params)
+    {
+        return (new search\Order())->trash($params);
+    }
 }

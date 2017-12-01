@@ -15,6 +15,11 @@ use thread\modules\shop\Shop;
  * @property string $email
  * @property string $phone
  * @property string $full_name
+ * @property integer $created_at
+ * @property integer $updated_at
+ * @property integer $published
+ * @property integer $deleted
+ *
  * @property Order[] $orders
  *
  * @package thread\modules\shop\models
@@ -61,7 +66,14 @@ class Customer extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['user_id', 'email', 'phone', 'full_name', 'published', 'deleted'],
+            'backend' => [
+                'user_id',
+                'email',
+                'phone',
+                'full_name',
+                'published',
+                'deleted'
+            ],
         ];
     }
 

@@ -127,9 +127,9 @@ $this->title = $this->context->title;
                 </div>
                 <div class="manager-history-list">
 
-                    <?php if (!empty($orders)): ?>
+                    <?php if (!empty($models)): ?>
 
-                        <?php foreach ($orders as $model): ?>
+                        <?php foreach ($models as $model): ?>
 
                             <div class="item" data-hash="<?= $model->id; ?>">
 
@@ -223,6 +223,15 @@ $this->title = $this->context->title;
                     <?php endif; ?>
 
                 </div>
+
+                <?= yii\widgets\LinkPager::widget([
+                    'pagination' => $pages,
+                    'registerLinkTags' => true,
+                    'nextPageLabel' => 'Далее<i class="fa fa-angle-right" aria-hidden="true"></i>',
+                    'prevPageLabel' => '<i class="fa fa-angle-left" aria-hidden="true"></i>Назад'
+                ]);
+                ?>
+
             </div>
         </div>
     </div>

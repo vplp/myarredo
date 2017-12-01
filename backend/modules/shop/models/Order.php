@@ -7,10 +7,8 @@ use common\modules\shop\models\Order as CommonOrderModel;
 
 /**
  * Class Order
+ *
  * @package backend\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @author Alla Kuzmenko
- * @copyright (c) 2016, VipDesign
  */
 class Order extends CommonOrderModel implements BaseBackendModel
 {
