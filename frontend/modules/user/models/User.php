@@ -28,6 +28,10 @@ class User extends \common\modules\user\models\User
         return $query->all();
     }
 
+    /**
+     * @param $city_id
+     * @return mixed
+     */
     public static function getPartner($city_id)
     {
         $groups = Group::getIdsByRole('partner');
@@ -37,7 +41,10 @@ class User extends \common\modules\user\models\User
             ->published();
 
         if ($city_id) {
-            $query->andFilterWhere([Profile::tableName() . '.city_id' => $city_id]);
+            $query->andWhere([
+                Profile::tableName() . '.city_id' => $city_id,
+                Profile::tableName() . '.partner_in_city' => '1',
+            ]);
         }
 
         return $query->one();
