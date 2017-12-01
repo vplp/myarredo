@@ -21,6 +21,7 @@ use common\modules\location\models\{
  * @property int $city_id
  * @property float $latitude
  * @property float $longitude
+ * @property float $partner_in_city
  *
  * @package common\modules\user\models
  */
@@ -43,7 +44,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'string',
                 'max' => 255
             ],
-            [['delivery_to_other_cities'], 'in', 'range' => [0, 1]],
+            [['delivery_to_other_cities', 'partner_in_city'], 'in', 'range' => [0, 1]],
             [['country_id', 'city_id'], 'integer'],
             [['latitude', 'longitude'], 'double'],
         ]);
@@ -67,7 +68,8 @@ class Profile extends \thread\modules\user\models\Profile
                 'city_id',
                 'delivery_to_other_cities',
                 'latitude',
-                'longitude'
+                'longitude',
+                'partner_in_city'
             ],
             'basicCreate' => [
                 'phone',
@@ -79,7 +81,8 @@ class Profile extends \thread\modules\user\models\Profile
                 'city_id',
                 'delivery_to_other_cities',
                 'latitude',
-                'longitude'
+                'longitude',
+                'partner_in_city'
             ],
             'backend' => [
                 'first_name',
@@ -93,7 +96,8 @@ class Profile extends \thread\modules\user\models\Profile
                 'city_id',
                 'delivery_to_other_cities',
                 'latitude',
-                'longitude'
+                'longitude',
+                'partner_in_city'
             ]
         ]);
     }
@@ -114,6 +118,7 @@ class Profile extends \thread\modules\user\models\Profile
             'delivery_to_other_cities' => 'Готов к поставкам мебели в другие города',
             'latitude' => Yii::t('app', 'Latitude'),
             'longitude' => Yii::t('app', 'Longitude'),
+            'partner_in_city' => Yii::t('app', 'Partner in city'),
         ]);
     }
 

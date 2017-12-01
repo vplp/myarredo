@@ -17,8 +17,11 @@ use backend\modules\user\models\{
 
 <?= $form->text_line($model, 'username') ?>
 <?= $form->text_line($model, 'email') ?>
+
 <?php if ($model['id'] != 1): echo $form->field($model, 'group_id')->selectOne(Group::dropDownList()); endif; ?>
-<?php if (!in_array($model['id'], [1])):
+
+<?php
+if (!in_array($model['id'], [1])):
     echo $form->switcher($model, 'published');
 endif; ?>
 
