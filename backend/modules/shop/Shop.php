@@ -16,16 +16,16 @@ class Shop extends \common\modules\shop\Shop
         'icon' => 'fa-map-marker',
         'position' => 6,
         'items' => [
-            [
-                'name' => 'Delivery Methods',
-                'icon' => 'fa-tasks',
-                'url' => ['/shop/delivery-methods/list'],
-            ],
-            [
-                'name' => 'Payment Methods',
-                'icon' => 'fa-tasks',
-                'url' => ['/shop/payment-methods/list'],
-            ],
+//            [
+//                'name' => 'Delivery Methods',
+//                'icon' => 'fa-tasks',
+//                'url' => ['/shop/delivery-methods/list'],
+//            ],
+//            [
+//                'name' => 'Payment Methods',
+//                'icon' => 'fa-tasks',
+//                'url' => ['/shop/payment-methods/list'],
+//            ],
             [
                 'name' => 'Orders',
                 'icon' => 'fa-tasks',

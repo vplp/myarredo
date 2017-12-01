@@ -69,7 +69,7 @@ class OrderController extends BackendController
             ->from('c1myarredo.order')
             ->where(['mark' => '0'])
             ->limit($limitCount)
-            ->orderBy('id ASC')
+            ->orderBy('id desc')
             ->all();
 
         foreach ($dataOrder as $order) {
