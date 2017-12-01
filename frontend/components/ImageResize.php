@@ -7,6 +7,7 @@ use yii\imagine\Image;
 use Imagine\Image\{
     Box
 };
+use Imagine\Image\Metadata\DefaultMetadataReader;
 
 /**
  * Class ImageResize
@@ -66,9 +67,9 @@ class ImageResize
             $base = Yii::getAlias($this->path);
             $name = self::generateName($original, $width, $height, $prefix);
 
-            if (is_file($base . '/' . $name)) {
-                return $this->url . '/' .  $name;
-            }
+//            if (is_file($base . '/' . $name)) {
+//                return $this->url . '/' .  $name;
+//            }
 
             list($imageWidth, $imageHeight) = getimagesize($original);
             $image = Image::getImagine()->open($original);
@@ -78,7 +79,9 @@ class ImageResize
 
             $image->effects()->sharpen();
 
-            if ($image->save($base . '/' . $name, ['quality' => 100])) {
+            $image->setMetadataReader(new DefaultMetadataReader());
+
+            if ($image->save($base . '/' . $name, ['quality' => 65])) {
                 return $this->url . '/' . $name;
             }
         }
