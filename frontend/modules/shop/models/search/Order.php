@@ -6,11 +6,8 @@ use Yii;
 use yii\base\Exception;
 use yii\log\Logger;
 use frontend\modules\shop\models\{
-    Cart,
     CartCustomerForm,
-    DeliveryMethods,
     OrderItem,
-    PaymentMethods,
     Order as FrontendOrderModel,
     Customer
 };
@@ -34,21 +31,25 @@ class Order extends FrontendOrderModel
 
         $order = new FrontendOrderModel();
         $order->scenario = 'addNewOrder';
+
         // переносим все одинаковые атрибуты из корзины в заказ
         $order->setAttributes($cart->getAttributes());
+
         // переносим все атрибуты из заполненой формы в заказ
         $order->setAttributes($customerForm->getAttributes());
         $order->customer_id = $customer_id;
+        $order->city_id = Yii::$app->city->getCityId();
+
         $order->generateToken();
-        $order->delivery_method_id = $customerForm->delivery;
-        $order->payment_method_id = $customerForm->pay;
 
         $transaction = $order::getDb()->beginTransaction();
         try {
             if ($order->validate() && $order->save()) {
                 foreach ($cart->items as $cartItem) {
                     $orderItem = new OrderItem();
+
                     $orderItem->scenario = 'addNewOrderItem';
+
                     // переносим все одинаковые атрибуты из корзины в заказ
                     $orderItem->order_id = $order->id;
                     $orderItem->setAttributes($cartItem->getAttributes());
@@ -86,10 +87,14 @@ class Order extends FrontendOrderModel
         $customer = Customer::find()->andWhere(['email' => $customerForm['email']])->one();
 
         if ($customer === null) {
+
             $customer = new Customer();
+
             $customer->scenario = 'addNewCustomer';
+
             $customer->user_id = Yii::$app->getUser()->id ?? 0;
             $customer->setAttributes($customerForm->getAttributes());
+
             $transaction = $customer::getDb()->beginTransaction();
             try {
                 if ($customer->save()) {

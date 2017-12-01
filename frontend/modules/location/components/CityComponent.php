@@ -79,6 +79,7 @@ class CityComponent extends Component
     {
         // get country name
         $exp_host = explode('myarredo.', $_SERVER["HTTP_HOST"]);
+
         $this->country = $exp_host[1];
 
         $exp_host = explode('.', $_SERVER['HTTP_HOST']);
