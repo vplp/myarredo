@@ -6,6 +6,7 @@ use Yii;
 //
 use thread\app\base\models\ActiveRecord;
 use common\modules\shop\Shop;
+use common\modules\user\models\User;
 
 /**
  * Class OrderAnswer
@@ -125,5 +126,14 @@ class OrderAnswer extends ActiveRecord
     {
         $format = 'd.m.Y';
         return $this->answer_time == 0 ? '' : date($format, $this->answer_time);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this
+            ->hasOne(User::class, ['id' => 'user_id']);
     }
 }
