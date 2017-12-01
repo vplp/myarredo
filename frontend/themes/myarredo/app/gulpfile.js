@@ -91,7 +91,7 @@ gulp.task('watch', function () {
     gulp.watch(dev_patches['js'], ['scripts']);
     gulp.watch(dev_patches['images'], ['images']);
     gulp.watch(dev_patches['css'], ['concat']);
-    //gulp.watch(dev_patches['css'], ['minify-css']);
+    gulp.watch(dev_patches['css'], ['minify-css']);
     gulp.watch(dev_patches['scss'], ['scss']);
     gulp.watch(dev_patches['less'], ['less']);
     gulp.watch(dev_patches['font'], ['font']);
@@ -107,7 +107,7 @@ gulp.task('watch-lend', function () {
 });
 
 // The default task (called when you run `gulp` from cli) 
-gulp.task('default', ['watch', 'scss', 'less', 'scripts', 'images', 'minify-css']);
+gulp.task('default', ['watch', 'scss', 'less', 'scripts', 'images', 'minify-css', 'minify-js']);
 //'webserver', 'livereload', 'base64'
 //------------------------------------------------------------------------
 
@@ -223,8 +223,7 @@ gulp.task('lintSCSS', function () {
 // [ ОБРОБКА CSS ]
 //Мінімізація CSS файлів
 gulp.task('minify-css', function () {
-    return gulp.src(build_patches['css'])
-        .pipe(cssBase64())
+    return gulp.src("./public/css/main.scss.css")
         .pipe(rename({
             'suffix': '.min'
         }))
@@ -259,11 +258,11 @@ gulp.task('scripts', ['minify-js', 'lintJS'], function () {
 
 // [ МІНІФІКАЦІЯ JS ]
 gulp.task('minify-js', function () {
-    return gulp.src(build_patches['scripts'] + 'core.js')
-        .pipe(rename(build_patches['scripts'] + 'core.min.js'))
+    return gulp.src('./public/js/core.js')
+        .pipe(rename('core.min.js'))
         .pipe(uglify())
         .on('error', console.log)
-        .pipe(gulp.dest('.'));
+        .pipe(gulp.dest('./public/js'));
 });
 
 // [ ПЕРЕВІРКА КОДУ JS ]
