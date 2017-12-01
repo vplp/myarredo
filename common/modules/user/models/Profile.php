@@ -156,7 +156,7 @@ class Profile extends \thread\modules\user\models\Profile
      */
     public function getCityTitle()
     {
-        $model = City::findById($this->country_id);
+        $model = City::findById($this->city_id);
 
         if ($model == null)
             return false;
