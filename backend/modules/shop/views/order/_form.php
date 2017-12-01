@@ -19,6 +19,8 @@ use backend\modules\{
 <p><?= Yii::t('app', 'User') . ': ' . $model['customer']['full_name'] ?? '' ?></p>
 <p><?= Yii::t('app', 'Phone') . ': ' . $model['customer']['phone'] ?? '' ?></p>
 <p><?= Yii::t('app', 'Email') . ': ' . $model['customer']['email'] ?? '' ?></p>
+<p><?= Yii::t('app', 'City') . ': ' . $model->city->lang->title ?? '' ?></p>
+
 <?php HtmlForm::showTextInput($model, 'items_total_count') ?>
 <?php HtmlForm::showTextInput($model, 'discount_full') ?>
 <?php HtmlForm::showTextInput($model, 'total_summ') ?>
