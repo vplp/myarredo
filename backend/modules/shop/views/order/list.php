@@ -12,12 +12,30 @@ echo GridView::widget([
                 return $model->getCreatedTime();
             },
         ],
-//        [
-//            'attribute' => 'customer',
-//            'value' => function ($model) {
-//                return $model->customer->full_name;
-//            }
-//        ],
+        [
+            'attribute' => 'full_name',
+            'value' => function ($model) {
+                return $model->customer->full_name;
+            }
+        ],
+        [
+            'attribute' => 'phone',
+            'value' => function ($model) {
+                return $model->customer->phone;
+            }
+        ],
+        [
+            'attribute' => 'email',
+            'value' => function ($model) {
+                return $model->customer->email;
+            }
+        ],
+        [
+            'attribute' => 'city',
+            'value' => function ($model) {
+                return $model->city->lang->title ?? '';
+            }
+        ],
 //        [
 //            'attribute' => 'deliveryMethod',
 //            'value' => function ($model) {
