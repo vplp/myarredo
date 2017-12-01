@@ -17,8 +17,8 @@ echo GridView::widget([
             'attribute' => 'product_id',
             'value' => function ($model) {
                 //тянем модель продукта которая указана в компоненте shop_cart
-                $product = call_user_func([Yii::$app->shop_cart->threadProductClass, 'findByID'], $model->product_id);
-                return $product['id'] . ' ' . $product['Name'];
+                $product = call_user_func([Yii::$app->shop_cart->threadProductClass, 'findByID'], $model->id);
+                return $product['id'] . ' ' . $product['lang']['title'];
             }
         ],
         'count',
