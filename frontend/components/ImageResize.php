@@ -67,9 +67,9 @@ class ImageResize
             $base = Yii::getAlias($this->path);
             $name = self::generateName($original, $width, $height, $prefix);
 
-//            if (is_file($base . '/' . $name)) {
-//                return $this->url . '/' .  $name;
-//            }
+            if (is_file($base . '/' . $name)) {
+                return $this->url . '/' .  $name;
+            }
 
             list($imageWidth, $imageHeight) = getimagesize($original);
             $image = Image::getImagine()->open($original);
@@ -79,9 +79,9 @@ class ImageResize
 
             $image->effects()->sharpen();
 
-            $image->setMetadataReader(new DefaultMetadataReader());
+            //$image->setMetadataReader(new DefaultMetadataReader());
 
-            if ($image->save($base . '/' . $name, ['quality' => 65])) {
+            if ($image->save($base . '/' . $name, ['quality' => 60])) {
                 return $this->url . '/' . $name;
             }
         }
