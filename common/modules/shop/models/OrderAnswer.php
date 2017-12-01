@@ -48,14 +48,14 @@ class OrderAnswer extends ActiveRecord
     {
         return [
             [['order_id', 'user_id'], 'required'],
-            [['order_id', 'user_id', 'created_at', 'updated_at'], 'integer'],
+            [['order_id', 'user_id', 'answer_time', 'created_at', 'updated_at'], 'integer'],
             [['answer'], 'string'],
-            [
-                ['answer_time'],
-                'date',
-                'format' => 'php:d:m:Y',
-                'timestampAttribute' => 'answer_time'
-            ],
+//            [
+//                ['answer_time'],
+//                'date',
+//                'format' => 'php:d:m:Y',
+//                'timestampAttribute' => 'answer_time'
+//            ],
             [['results'], 'string', 'max' => 255],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
