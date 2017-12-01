@@ -2,8 +2,11 @@
 
 namespace common\modules\shop\models;
 
+
 use Yii;
 use yii\helpers\ArrayHelper;
+//
+use common\modules\location\models\City;
 
 /**
  * Class Order
@@ -23,6 +26,7 @@ use yii\helpers\ArrayHelper;
  *
  * @property OrderItem[] $items
  * @property Customer[] $customer
+ * @property City[] $city
  *
  * @package common\modules\shop\models
  */
@@ -63,7 +67,9 @@ class Order extends \thread\modules\shop\models\Order
                 'comment',
                 'token',
                 'published',
-                'deleted'
+                'deleted',
+                'created_at',
+                'updated_at'
             ],
         ];
     }
@@ -95,6 +101,15 @@ class Order extends \thread\modules\shop\models\Order
     {
         return $this
             ->hasOne(Customer::class, ['id' => 'customer_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCity()
+    {
+        return $this
+            ->hasOne(City::class, ['id' => 'city_id']);
     }
 
     /**

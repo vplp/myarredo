@@ -71,7 +71,7 @@ class PartnerSaleController extends BaseController
                             'fileupload',
                             'filedelete'
                         ],
-                        'roles' => ['partner'],
+                        'roles' => ['partner', 'admin'],
                     ],
                     [
                         'allow' => false,

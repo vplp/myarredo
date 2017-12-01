@@ -148,7 +148,10 @@ $this->title = $this->context->title;
                                     <li>
                                         <span><?= $model->orderAnswer->getAnswerTime() ?></span>
                                     </li>
-                                    <li><span>Москва</span></li>
+                                    <li><span>
+                                            <?= ($model->city) ? $model->city->lang->title : ''; ?>
+                                        </span>
+                                    </li>
                                     <li><span><?= $model['order_status'] ?></span></li>
                                 </ul>
 
