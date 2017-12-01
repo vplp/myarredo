@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php $form = ActiveForm::begin([
                     'id' => 'reset-password-form',
-                    'action' => Url::toRoute('/user/password/reset'),
+                    //'action' => Url::toRoute('/user/password/reset'),
                 ]); ?>
 
                 <?= $form->field($model, 'password')->passwordInput(['autofocus' => true]) ?>

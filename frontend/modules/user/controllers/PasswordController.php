@@ -130,11 +130,14 @@ class PasswordController extends BaseController
         } catch (InvalidParamException $e) {
             throw new BadRequestHttpException($e->getMessage());
         }
+
         $model->setScenario('setPassword');
+
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->setPassword()) {
             Yii::$app->session->setFlash('success', 'New password was saved.');
             return $this->goHome();
         }
+
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
