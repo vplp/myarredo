@@ -98,7 +98,17 @@ use frontend\modules\location\widgets\ChangeCity;
                                             <li>
                                                 <?= Html::a(Yii::t('app', 'Sign Up'), ['/user/logout/index']); ?>
                                             </li>
-
+                                        <?php elseif (Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
+                                            <li>
+                                                <?= Html::a('Заявки', ['/shop/partner-order/list']); ?>
+                                            </li>
+                                            <li role="separator" class="divider"></li>
+                                            <li>
+                                                <?= Html::a('Профиль', ['/user/profile/index']); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a(Yii::t('app', 'Sign Up'), ['/user/logout/index']); ?>
+                                            </li>
                                         <?php elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory'): ?>
 
                                             <li>
@@ -118,10 +128,11 @@ use frontend\modules\location\widgets\ChangeCity;
                                         <?php else: ?>
 
                                             <li>
-                                                <?= Html::a('Профиль', ['/user/profile/index']); ?>
-                                            </li>
-                                            <li>
                                                 <?= Html::a('Заказы', ['/shop/order/list']); ?>
+                                            </li>
+                                            <li role="separator" class="divider"></li>
+                                            <li>
+                                                <?= Html::a('Профиль', ['/user/profile/index']); ?>
                                             </li>
                                             <li>
                                                 <?= Html::a(Yii::t('app', 'Sign Up'), ['/user/logout/index']); ?>
