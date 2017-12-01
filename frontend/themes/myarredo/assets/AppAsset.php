@@ -19,12 +19,12 @@ class AppAsset extends AssetBundle
     public $sourcePath = '@app/themes/myarredo/app/public';
 
     public $css = [
-        'css/main.scss.css',
         'libs/nouislider/nouislider.min.css',
         'libs/slick-1.6/slick.css',
         'libs/bootstrap-select/css/bootstrap-select.min.css',
         'css/fonts.css',
-        'libs/fancybox/jquery.fancybox.css'
+        'libs/fancybox/jquery.fancybox.css',
+        'css/main.scss.min.css',
     ];
 
     public $js = [
@@ -35,8 +35,8 @@ class AppAsset extends AssetBundle
         'libs/infoBubble/infobubble.js',
         'libs/wNumb.js',
         'libs/shop.js',
-        'js/core.js',
-        'libs/fancybox/jquery.fancybox.pack.js'
+        'libs/fancybox/jquery.fancybox.pack.js',
+        'js/core.min.js',
     ];
 
     public $depends = [
