@@ -16,7 +16,6 @@ use frontend\modules\catalog\models\Category;
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="header">
-                    <h1>ИТАЛЬЯНСКАЯ МЕБЕЛЬ В <?= Yii::$app->city->getCityTitleWhere() ?></h1>
                     <?= Html::a(
                         'Смотреть все категории',
                         Url::toRoute(['/catalog/category/list']),
