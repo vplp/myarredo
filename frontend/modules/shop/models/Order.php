@@ -23,22 +23,16 @@ class Order extends \common\modules\shop\models\Order
             'addNewOrder' => [
                 'delivery_method_id',
                 'payment_method_id',
-                'delivery_price',
                 'order_status',
-                'payd_status',
                 'comment',
-                'items_summ',
-                'items_total_summ',
-                'discount_percent',
-                'discount_money',
-                'discount_full',
-                'total_summ',
                 'customer_id',
+                'city_id',
                 'items_count',
                 'items_total_count',
                 'token',
                 'published',
-                'deleted'],
+                'deleted'
+            ],
         ];
     }
 
@@ -151,5 +145,23 @@ class Order extends \common\modules\shop\models\Order
     public function getPartnerOrderUrl()
     {
         return Url::toRoute(['/shop/partner-order/view', 'id' => $this->id]);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function search($params)
+    {
+        return (new search\Order())->search($params);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function trash($params)
+    {
+        return (new search\Order())->trash($params);
     }
 }

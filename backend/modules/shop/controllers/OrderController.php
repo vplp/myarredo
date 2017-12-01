@@ -2,6 +2,7 @@
 
 namespace backend\modules\shop\controllers;
 
+
 use Yii;
 use yii\helpers\ArrayHelper;
 //
@@ -13,6 +14,8 @@ use thread\actions\{
 use backend\modules\shop\models\{
     Customer, Order, OrderItem, search\OrderItem as filterOrderItemModel
 };
+//
+use common\modules\shop\models\OrderAnswer;
 
 /**
  * Class OrderController
@@ -63,11 +66,11 @@ class OrderController extends BackendController
 
     public function actionImportOrders()
     {
-        $limitCount = 500;
+        $limitCount = 1000;
 
         $dataOrder = (new \yii\db\Query())
             ->from('c1myarredo.order')
-            ->where(['mark' => '0'])
+            //->where(['mark' => '0'])
             ->limit($limitCount)
             ->orderBy('id desc')
             ->all();
@@ -83,15 +86,17 @@ class OrderController extends BackendController
                 continue;
             }
 
-            $modelOrder = new Order();
+            $modelOrder = Order::findOne(['id' => $order['id']]);
+
+            if ($modelOrder == null) {
+                $modelOrder = new Order();
+                $modelOrder->id = $order['id'];
+            }
+
             $modelOrder->setScenario('backend');
 
-            $modelOrder->id = $order['id'];
             $modelOrder->comment = $order['comments_client'];
-
-            $modelOrder->delivery_method_id = 0;
-            $modelOrder->payment_method_id = 0;
-
+            $modelOrder->city_id = $order['city'];
             $modelOrder->created_at = $order['created'];
             $modelOrder->updated_at = $order['updated'];
             $modelOrder->published = '1';
@@ -99,25 +104,69 @@ class OrderController extends BackendController
 
             // save Customer
             {
-                $modelCustomer = new Customer();
+                $modelCustomer = Customer::findOne([
+                    'user_id' => $order['user_id']
+                ]);
+
+                if ($modelCustomer == null) {
+                    $modelCustomer = new Customer();
+                }
 
                 $modelCustomer->setScenario('backend');
 
                 $modelCustomer->user_id = $order['user_id'];
                 $modelCustomer->email = $order['e_mail'];
-                $modelCustomer->phone = $order['telephone'];
+                $modelCustomer->phone = $order['telephone'] ? $order['telephone'] : '--';
 
-                $modelCustomer->full_name = $user_profile['first_name'];
+                $modelCustomer->full_name = $user_profile['first_name'] ? $user_profile['first_name'] : '--';
                 $modelCustomer->created_at = $order['created'];
                 $modelCustomer->updated_at = $order['updated'];
                 $modelCustomer->published = '1';
-                $modelCustomer->published = '0';
+                $modelCustomer->deleted = '0';
 
-                $modelCustomer->save();
+                $transaction = $modelCustomer::getDb()->beginTransaction();
+                try {
+                    if ($modelCustomer->save()) {
+                        $transaction->commit();
+                    } else {
+                        /* !!! */
+                        echo '<pre style="color:red;">';
+                        print_r($order['user_id']);
+                        echo '</pre>'; /* !!! */
+                        /* !!! */
+                        echo '<pre style="color:red;">';
+                        print_r($modelCustomer->getErrors());
+                        echo '</pre>'; /* !!! */
+                        die;
+                    }
+                } catch (\Exception $e) {
+                    $transaction->rollBack();
+                    throw new \Exception($e);
+                }
+
+                $modelOrder->customer_id = $modelCustomer->id;
+
             }
 
-            $modelOrder->customer_id = $modelCustomer->id;
-            $modelOrder->save();
+            $transaction = $modelOrder::getDb()->beginTransaction();
+            try {
+                if ($modelOrder->save()) {
+                    $transaction->commit();
+                } else {
+                    /* !!! */
+                    echo '<pre style="color:red;">';
+                    print_r($order['id']);
+                    echo '</pre>'; /* !!! */
+                    /* !!! */
+                    echo '<pre style="color:red;">';
+                    print_r($modelOrder->getErrors());
+                    echo '</pre>'; /* !!! */
+                    die;
+                }
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                throw new \Exception($e);
+            }
 
             // save OrderItem
             {
@@ -128,14 +177,88 @@ class OrderController extends BackendController
 
                 foreach ($dataOrderItem as $orderItem) {
 
-                    $modelOrderItem = new OrderItem();
-                    $modelOrderItem->setScenario('backend');
+                    $modelOrderItem = OrderItem::findOne([
+                        'order_id' => $orderItem['order_id'],
+                        'product_id' => $orderItem['tovar_id']
+                    ]);
 
-                    //$modelOrderItem->id = $orderItem['id'];
-                    $modelOrderItem->order_id = $orderItem['order_id'];
-                    $modelOrderItem->product_id = $orderItem['tovar_id'];
+                    if ($modelOrderItem == null) {
+                        $modelOrderItem = new OrderItem();
+                        $modelOrderItem->setScenario('backend');
 
-                    $modelOrderItem->save();
+                        $modelOrderItem->order_id = $orderItem['order_id'];
+                        $modelOrderItem->product_id = $orderItem['tovar_id'];
+
+                        $transaction = $modelOrderItem::getDb()->beginTransaction();
+                        try {
+                            if ($modelOrderItem->save()) {
+                                $transaction->commit();
+                            } else {
+                                /* !!! */
+                                echo '<pre style="color:red;">';
+                                print_r($orderItem['id']);
+                                echo '</pre>'; /* !!! */
+                                /* !!! */
+                                echo '<pre style="color:red;">';
+                                print_r($modelOrderItem->getErrors());
+                                echo '</pre>'; /* !!! */
+                                die;
+                            }
+                        } catch (\Exception $e) {
+                            $transaction->rollBack();
+                            throw new \Exception($e);
+                        }
+                    }
+                }
+            }
+
+            // save Order Answer
+            {
+                $dataOrderAnswer = (new \yii\db\Query())
+                    ->from('c1myarredo.order_answer')
+                    ->where(['order_id' => $order['id']])
+                    ->all();
+
+                foreach ($dataOrderAnswer as $orderAnswer) {
+
+                    $modelOrderAnswer = OrderAnswer::findOne([
+                        'order_id' => $orderAnswer['order_id'],
+                        'user_id' => $orderAnswer['partner_id']
+                    ]);
+
+                    if ($modelOrderAnswer == null) {
+                        $modelOrderAnswer = new OrderAnswer();
+                    }
+
+                    $modelOrderAnswer->setScenario('backend');
+
+                    $modelOrderAnswer->order_id = $orderAnswer['order_id'];
+                    $modelOrderAnswer->user_id = $orderAnswer['partner_id'];
+                    $modelOrderAnswer->answer = $orderAnswer['answer'];
+                    $modelOrderAnswer->answer_time = $orderAnswer['answer_date_time'];
+                    $modelOrderAnswer->results = $orderAnswer['results'];
+                    $modelCustomer->published = '1';
+                    $modelCustomer->deleted = '0';
+
+                    $transaction = $modelOrderAnswer::getDb()->beginTransaction();
+                    try {
+                        if ($modelOrderAnswer->save()) {
+                            $transaction->commit();
+                        } else {
+                            /* !!! */
+                            echo '<pre style="color:red;">';
+                            print_r($orderAnswer['id']);
+                            echo '</pre>'; /* !!! */
+                            /* !!! */
+                            echo '<pre style="color:red;">';
+                            print_r($modelOrderAnswer->getErrors());
+                            echo '</pre>'; /* !!! */
+                            die;
+                        }
+                    } catch (\Exception $e) {
+                        $transaction->rollBack();
+                        throw new \Exception($e);
+                    }
                 }
             }
 

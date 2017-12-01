@@ -31,7 +31,6 @@ class Sale extends SaleModel
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()

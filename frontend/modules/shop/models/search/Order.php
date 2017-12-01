@@ -2,13 +2,18 @@
 
 namespace frontend\modules\shop\models\search;
 
+
 use Yii;
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
 use yii\base\Exception;
 use yii\log\Logger;
+//
+use frontend\modules\shop\Shop;
 use frontend\modules\shop\models\{
     CartCustomerForm,
     OrderItem,
-    Order as FrontendOrderModel,
+    Order as OrderModel,
     Customer
 };
 
@@ -17,8 +22,66 @@ use frontend\modules\shop\models\{
  *
  * @package frontend\modules\shop\models\search
  */
-class Order extends FrontendOrderModel
+class Order extends OrderModel
 {
+    /**
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            [['id', 'customer_id', 'city_id'], 'integer'],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function scenarios()
+    {
+        return Model::scenarios();
+    }
+
+    /**
+     * @param $query
+     * @param $params
+     * @return ActiveDataProvider
+     */
+    public function baseSearch($query, $params)
+    {
+        /** @var Shop $module */
+        $module = Yii::$app->getModule('shop');
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => $module->itemOnPage
+            ],
+        ]);
+
+        if (!($this->load($params, ''))) {
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'customer_id' => $this->customer_id,
+            'city_id' => $this->city_id,
+        ]);
+
+        return $dataProvider;
+    }
+
+    /**
+     * @param array $params
+     * @return ActiveDataProvider
+     */
+    public function search($params)
+    {
+        $query = OrderModel::findBase();
+        return $this->baseSearch($query, $params);
+    }
+
     /**
      * @param $cart
      * @param CartCustomerForm $customerForm
@@ -29,7 +92,7 @@ class Order extends FrontendOrderModel
         // сначала добавляем покупателя и получаем его id
         $customer_id = self::addNewCustomer($customerForm);
 
-        $order = new FrontendOrderModel();
+        $order = new OrderModel();
         $order->scenario = 'addNewOrder';
 
         // переносим все одинаковые атрибуты из корзины в заказ

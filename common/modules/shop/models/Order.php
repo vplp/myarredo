@@ -61,6 +61,7 @@ class Order extends \thread\modules\shop\models\Order
             'backend' => [
                 'customer_id',
                 'city_id',
+                'delivery_method_id', 'payment_method_id',
                 'items_count',
                 'items_total_count',
                 'order_status',
