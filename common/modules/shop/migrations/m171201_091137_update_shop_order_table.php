@@ -3,13 +3,13 @@
 use yii\db\Migration;
 use common\modules\shop\Shop;
 
-class m171129_154403_update_shop_cart_table extends Migration
+class m171201_091137_update_shop_order_table extends Migration
 {
     /**
      * table name
      * @var string
      */
-    public $table = '{{%shop_cart}}';
+    public $table = '{{%shop_order}}';
 
     /**
      * @inheritdoc
@@ -25,7 +25,7 @@ class m171129_154403_update_shop_cart_table extends Migration
      */
     public function safeUp()
     {
-        $this->alterColumn($this->table, 'php_session_id', $this->string(180)->notNull()->comment('Session ID'));
+        $this->addColumn($this->table, 'city_id', $this->integer(11)->notNull()->defaultValue(0)->after('customer_id'));
     }
 
     /**
@@ -33,6 +33,6 @@ class m171129_154403_update_shop_cart_table extends Migration
      */
     public function safeDown()
     {
-        $this->alterColumn($this->table, 'php_session_id', $this->string(30)->notNull()->comment('Session ID'));
+        $this->dropColumn($this->table, 'city_id');
     }
 }
