@@ -115,6 +115,12 @@ $this->title = $this->context->title;
                             <span>Имя</span>
                         </li>
                         <li>
+                            <span>Телефон</span>
+                        </li>
+                        <li>
+                            <span>Email</span>
+                        </li>
+                        <li>
                             <span>Дата ответа</span>
                         </li>
                         <li>
@@ -144,6 +150,12 @@ $this->title = $this->context->title;
                                     </li>
                                     <li>
                                         <span><?= $model->customer->full_name ?></span>
+                                    </li>
+                                    <li>
+                                        <span>-</span>
+                                    </li>
+                                    <li>
+                                        <span>-</span>
                                     </li>
                                     <li>
                                         <span><?= $model->orderAnswer->getAnswerTime() ?></span>
