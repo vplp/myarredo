@@ -74,7 +74,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                 <object>
                                     <ul class="dropdown-menu">
 
-                                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner'): ?>
+                                        <?php if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner', 'admin'])): ?>
 
                                             <li>
                                                 <?= Html::a('Города', ['/catalog/partner-sale/mailing-by-cities']); ?>

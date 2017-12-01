@@ -46,7 +46,7 @@ class PartnerOrderController extends BaseController
                             'list',
                             'view'
                         ],
-                        'roles' => ['partner'],
+                        'roles' => ['partner', 'admin'],
                     ],
                     [
                         'allow' => false,
