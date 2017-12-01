@@ -212,6 +212,8 @@ class PartnerOrderController extends BaseController
         ) {
             $order_id = (Yii::$app->request->post('OrderAnswer'))['order_id'];
 
+            $modelOrder = Order::findById($order_id);
+
             $modelAnswer = OrderAnswer::findByOrderIdUserId($order_id, Yii::$app->getUser()->getId());
 
             if (empty($modelAnswer)) {
@@ -228,6 +230,22 @@ class PartnerOrderController extends BaseController
                     $save = $modelAnswer->save();
                     if ($save) {
                         $transaction->commit();
+
+                        // send user letter
+                        Yii::$app
+                            ->mailer
+                            ->compose(
+                                '/../mail/answer_order_user_letter',
+                                [
+                                    'modelOrder' => $modelOrder,
+                                    'modelAnswer' => $modelAnswer,
+                                ]
+                            )
+                            ->setFrom(['info@myarredo.ru'])
+                            ->setTo($modelOrder->customer['email'])
+                            ->setSubject('Ответ за заказ № ' . $modelOrder['id'])
+                            ->send();
+
                     } else {
                         $transaction->rollBack();
                     }
