@@ -245,6 +245,11 @@ class PartnerOrderController extends BaseController
                             ->setTo($modelOrder->customer['email'])
                             ->setSubject('Ответ за заказ № ' . $modelOrder['id'])
                             ->send();
+                        // message
+                        Yii::$app->getSession()->setFlash(
+                            'success',
+                            'Отправлено'
+                        );
 
                     } else {
                         $transaction->rollBack();
