@@ -21,19 +21,20 @@ use backend\modules\{
 <p><?= Yii::t('app', 'Email') . ': ' . $model['customer']['email'] ?? '' ?></p>
 <p><?= Yii::t('app', 'City') . ': ' . $model->city->lang->title ?? '' ?></p>
 
-<?php HtmlForm::showTextInput($model, 'items_total_count') ?>
-<?php HtmlForm::showTextInput($model, 'discount_full') ?>
-<?php HtmlForm::showTextInput($model, 'total_summ') ?>
+<?php //HtmlForm::showTextInput($model, 'items_total_count') ?>
+<?php //HtmlForm::showTextInput($model, 'discount_full') ?>
+<?php //HtmlForm::showTextInput($model, 'total_summ') ?>
 
 
-<?= $form->field($model, 'order_status')->dropDownList($model::getOrderStatuses()) ?>
-<?= $form->field($model, 'payment_method_id')->dropDownList(PaymentMethods::dropDownList()) ?>
-<?= $form->field($model, 'payd_status')->dropDownList($model::getPaidStatuses()) ?>
-<?= $form->field($model, 'delivery_method_id')->dropDownList(DeliveryMethods::dropDownList()) ?>
-<?= $form->text_line($model, 'delivery_price') ?>
+<?php //$form->field($model, 'order_status')->dropDownList($model::getOrderStatuses()) ?>
+<?php //$form->field($model, 'payment_method_id')->dropDownList(PaymentMethods::dropDownList()) ?>
+<?php //$form->field($model, 'payd_status')->dropDownList($model::getPaidStatuses()) ?>
+<?php //$form->field($model, 'delivery_method_id')->dropDownList(DeliveryMethods::dropDownList()) ?>
+<?php //$form->text_line($model, 'delivery_price') ?>
 <?= $form->text_line($model, 'comment')->textarea(['style' => 'height:100px;', 'value' => ' ']) ?>
-<?= $form->submit($model, $this) ?>
+
+
 <?= $this->render('parts/_items_list', ['model' => $model]) ?>
 
-
+<?= $form->submit($model, $this) ?>
 <?php ActiveForm::end();
