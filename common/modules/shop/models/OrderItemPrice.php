@@ -84,4 +84,21 @@ class OrderItemPrice extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
         ];
     }
+
+    /**
+     * @param $order_id
+     * @param $user_id
+     * @param $product_id
+     * @return mixed
+     */
+    public static function findByOrderIdUserIdProductId($order_id, $user_id, $product_id)
+    {
+        return self::findBase()
+            ->andWhere([
+                self::tableName().'.order_id' => $order_id,
+                self::tableName().'.user_id' => $user_id,
+                self::tableName().'.product_id' => $product_id
+            ])
+            ->one();
+    }
 }

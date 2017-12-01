@@ -2,7 +2,7 @@
 
 namespace common\modules\shop\models;
 
-
+use Yii;
 use common\modules\catalog\models\Product;
 
 /**
@@ -12,12 +12,29 @@ use common\modules\catalog\models\Product;
  */
 class OrderItem extends \thread\modules\shop\models\OrderItem
 {
-
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getProduct()
     {
         return $this->hasOne(Product::class, ['id' => 'product_id']);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderItemPrice()
+    {
+        $modelOrderItemPrice = OrderItemPrice::findByOrderIdUserIdProductId(
+            $this->order_id,
+            Yii::$app->getUser()->getId(),
+            $this->product_id
+        );
+
+        if ($modelOrderItemPrice == null) {
+            $modelOrderItemPrice = new OrderItemPrice();
+        }
+
+        return $modelOrderItemPrice;
     }
 }

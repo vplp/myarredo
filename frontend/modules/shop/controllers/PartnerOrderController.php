@@ -10,7 +10,7 @@ use yii\web\ForbiddenHttpException;
 //
 use frontend\components\BaseController;
 use frontend\modules\shop\models\{
-    Order, OrderAnswer, search\Order as filterOrderModel
+    Order, OrderAnswer, OrderItemPrice, search\Order as filterOrderModel
 };
 
 /**
@@ -72,6 +72,8 @@ class PartnerOrderController extends BaseController
         ];
 
         $this->actionSaveAnswer();
+
+        $this->actionSaveItemPrice();
 
         $this->actionSendAnswer();
 
@@ -142,6 +144,57 @@ class PartnerOrderController extends BaseController
                     }
                 } catch (Exception $e) {
                     $transaction->rollBack();
+                }
+            }
+        }
+    }
+
+    /**
+     * Action save answer
+     */
+    private function actionSaveItemPrice()
+    {
+        if (
+            Yii::$app->request->isPost &&
+            (Yii::$app->request->post('OrderAnswer'))['order_id'] &&
+            Yii::$app->request->post('OrderItemPrice') &&
+            Yii::$app->request->post('action-save-answer')
+        ) {
+            $order_id = (Yii::$app->request->post('OrderAnswer'))['order_id'];
+
+            $dataOrderItemPrice = Yii::$app->request->post('OrderItemPrice');
+
+            foreach ($dataOrderItemPrice as $product_id => $price) {
+
+                $modelItemPrice = OrderItemPrice::findByOrderIdUserIdProductId(
+                    $order_id,
+                    Yii::$app->getUser()->getId(),
+                    $product_id
+                );
+
+                if ($modelItemPrice == null) {
+                    $modelItemPrice = new OrderItemPrice();
+                }
+
+                $modelItemPrice->setScenario('frontend');
+
+                $modelItemPrice->order_id = $order_id;
+                $modelItemPrice->user_id = Yii::$app->getUser()->getId();
+                $modelItemPrice->product_id = $product_id;
+                $modelItemPrice->price = intval($price);
+
+                if ($modelItemPrice->load(Yii::$app->request->post()) && $modelItemPrice->validate()) {
+                    $transaction = $modelItemPrice::getDb()->beginTransaction();
+                    try {
+                        $save = $modelItemPrice->save();
+                        if ($save) {
+                            $transaction->commit();
+                        } else {
+                            $transaction->rollBack();
+                        }
+                    } catch (Exception $e) {
+                        $transaction->rollBack();
+                    }
                 }
             }
         }

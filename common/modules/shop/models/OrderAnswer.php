@@ -111,7 +111,10 @@ class OrderAnswer extends ActiveRecord
     public static function findByOrderIdUserId($order_id, $user_id)
     {
         return self::findBase()
-            ->andWhere([self::tableName().'.order_id' => $order_id, self::tableName().'.user_id' => $user_id])
+            ->andWhere([
+                self::tableName().'.order_id' => $order_id,
+                self::tableName().'.user_id' => $user_id
+            ])
             ->one();
     }
 

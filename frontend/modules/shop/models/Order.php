@@ -8,8 +8,6 @@ use yii\helpers\Url;
 /**
  * Class Order
  *
- * @property OrderAnswer[] $orderAnswer
- *
  * @package frontend\modules\shop\models
  */
 class Order extends \common\modules\shop\models\Order
