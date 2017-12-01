@@ -170,7 +170,7 @@ $this->title = $this->context->title;
                     <?php endif; ?>
 
                 </div>
-
+<!--
                 <?= yii\widgets\LinkPager::widget([
                     'pagination' => $pages,
                     'registerLinkTags' => true,
@@ -178,7 +178,7 @@ $this->title = $this->context->title;
                     'prevPageLabel' => '<i class="fa fa-angle-left" aria-hidden="true"></i>Назад'
                 ]);
                 ?>
-
+-->
             </div>
         </div>
     </div>
