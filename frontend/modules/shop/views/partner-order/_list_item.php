@@ -6,23 +6,23 @@ use yii\helpers\{
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model \frontend\modules\shop\models\Order */
+/* @var $modelOrder \frontend\modules\shop\models\Order */
 
 ?>
 
 <?php $form = ActiveForm::begin([
     'method' => 'post',
-    'action' => $model->getPartnerOrderOnListUrl(),
+    'action' => $modelOrder->getPartnerOrderOnListUrl(),
 ]); ?>
 
     <div class="hidden-order-in">
         <div class="flex-product">
 
             <?php
-            foreach ($model->items as $orderItem) {
+            foreach ($modelOrder->items as $orderItem) {
                 echo $this->render('_list_item_product', [
                     'form' => $form,
-                    'order' => $model,
+                    'modelOrder' => $modelOrder,
                     'orderItem' => $orderItem,
                 ]);
             } ?>
@@ -31,23 +31,23 @@ use yii\widgets\ActiveForm;
         <div class="form-wrap">
 
             <?= $form
-                ->field($model->orderAnswer, 'answer')
+                ->field($modelOrder->orderAnswer, 'answer')
                 ->textarea(['rows' => 5]) ?>
 
             <?= $form
-                ->field($model->orderAnswer, 'id')
+                ->field($modelOrder->orderAnswer, 'id')
                 ->input('hidden')
                 ->label(false) ?>
 
             <?= $form
-                ->field($model->orderAnswer, 'order_id')
-                ->input('hidden', ['value' => $model->id])
+                ->field($modelOrder->orderAnswer, 'order_id')
+                ->input('hidden', ['value' => $modelOrder->id])
                 ->label(false) ?>
 
-            <?= $form->field($model, 'comment')
+            <?= $form->field($modelOrder, 'comment')
                 ->textarea(['disabled' => true, 'rows' => 5]) ?>
 
-            <?= $form->field($model->orderAnswer, 'results')
+            <?= $form->field($modelOrder->orderAnswer, 'results')
                 ->textarea(['rows' => 5]) ?>
 
         </div>
@@ -59,7 +59,7 @@ use yii\widgets\ActiveForm;
     'value' => 1
 ]) ?>
 
-<?php if ($model->orderAnswer->id && $model->orderAnswer->answer_time == 0) {
+<?php if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time == 0) {
     echo Html::submitButton('Отправить ответ клиенту', [
         'class' => 'btn btn-success',
         'name' => 'action-send-answer',

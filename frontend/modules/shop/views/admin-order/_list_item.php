@@ -5,7 +5,7 @@ use yii\helpers\{
 };
 
 /* @var $this yii\web\View */
-/* @var $model \frontend\modules\shop\models\Order */
+/* @var $modelOrder \frontend\modules\shop\models\Order */
 
 ?>
 
@@ -13,7 +13,7 @@ use yii\helpers\{
     <div class="flex-product">
 
         <?php
-        foreach ($model->items as $orderItem) {
+        foreach ($modelOrder->items as $orderItem) {
             echo $this->render('_list_item_product', [
                 'orderItem' => $orderItem,
             ]);
@@ -25,10 +25,10 @@ use yii\helpers\{
         <div class="form-group">
 
             <?php
-            echo Html::label($model->getAttributeLabel('comment')) .
+            echo Html::label($modelOrder->getAttributeLabel('comment')) .
                 Html::textarea(
                     null,
-                    $model->comment, [
+                    $modelOrder->comment, [
                     'class' => 'form-control',
                     'rows' => 5,
                     'disabled' => true
@@ -36,7 +36,7 @@ use yii\helpers\{
             ?>
 
             <?php
-            foreach ($model->orderAnswers as $answer) {
+            foreach ($modelOrder->orderAnswers as $answer) {
                 echo '<div><strong>' .
                     $answer['user']['profile']['name_company'] .
                     ' ' .

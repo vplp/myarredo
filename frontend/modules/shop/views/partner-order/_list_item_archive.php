@@ -5,7 +5,7 @@ use yii\helpers\{
 };
 
 /* @var $this yii\web\View */
-/* @var $model \frontend\modules\shop\models\Order */
+/* @var $modelOrder \frontend\modules\shop\models\Order */
 
 ?>
 
@@ -13,7 +13,7 @@ use yii\helpers\{
         <div class="flex-product">
 
             <?php
-            foreach ($model->items as $orderItem) {
+            foreach ($modelOrder->items as $orderItem) {
                 echo $this->render('_list_item_product_archive', [
                     'orderItem' => $orderItem,
                 ]);

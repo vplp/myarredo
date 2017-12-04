@@ -5,7 +5,7 @@ use yii\helpers\{
 };
 
 /**
- * @var \frontend\modules\shop\models\Order $model
+ * @var \frontend\modules\shop\models\Order $modelOrder
  */
 
 $this->title = $this->context->title;
@@ -134,27 +134,27 @@ $this->title = $this->context->title;
 
                     <?php if (!empty($models)): ?>
 
-                        <?php foreach ($models as $model): ?>
+                        <?php foreach ($models as $modelOrder): ?>
 
-                            <div class="item" data-hash="<?= $model->id; ?>">
+                            <div class="item" data-hash="<?= $modelOrder->id; ?>">
 
                                 <ul class="orders-title-block flex">
                                     <li class="order-id">
                                         <span>
-                                            <?= $model->id //Html::a($model->id, $model->getPartnerOrderUrl())  ?>
+                                            <?= $modelOrder->id //Html::a($modelOrder->id, $modelOrder->getPartnerOrderUrl())  ?>
                                         </span>
                                     </li>
                                     <li class="application-date">
-                                        <span><?= $model->getCreatedTime() ?></span>
+                                        <span><?= $modelOrder->getCreatedTime() ?></span>
                                     </li>
                                     <li>
-                                        <span><?= $model->customer->full_name ?></span>
+                                        <span><?= $modelOrder->customer->full_name ?></span>
                                     </li>
                                     <li>
                                         <span>
                                             <?php
-                                            if ($model->orderAnswer->id && $model->orderAnswer->answer_time != 0) {
-                                                echo $model->customer->phone;
+                                            if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
+                                                echo $modelOrder->customer->phone;
                                             } else {
                                                 echo '-';
                                             } ?>
@@ -163,31 +163,31 @@ $this->title = $this->context->title;
                                     <li>
                                         <span>
                                         <?php
-                                        if ($model->orderAnswer->id && $model->orderAnswer->answer_time != 0) {
-                                            echo $model->customer->email;
+                                        if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
+                                            echo $modelOrder->customer->email;
                                         } else {
                                             echo '-';
                                         } ?>
                                         </span>
                                     </li>
                                     <li>
-                                        <span><?= $model->orderAnswer->getAnswerTime() ?></span>
+                                        <span><?= $modelOrder->orderAnswer->getAnswerTime() ?></span>
                                     </li>
                                     <li><span>
-                                            <?= ($model->city) ? $model->city->lang->title : ''; ?>
+                                            <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
                                         </span>
                                     </li>
-                                    <li><span><?= $model->getOrderStatus(); ?></span></li>
+                                    <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
                                 </ul>
 
                                 <div class="hidden-order-info flex">
-                                    <?php if ($model->isArchive()): ?>
+                                    <?php if ($modelOrder->isArchive()): ?>
                                         <?= $this->render('_list_item_archive', [
-                                            'model' => $model,
+                                            'modelOrder' => $modelOrder,
                                         ]) ?>
                                     <?php else: ?>
                                         <?= $this->render('_list_item', [
-                                            'model' => $model,
+                                            'modelOrder' => $modelOrder,
                                         ]) ?>
                                     <?php endif; ?>
                                 </div>
