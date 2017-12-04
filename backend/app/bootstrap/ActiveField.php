@@ -182,7 +182,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
                     key: '" . basename($preview) . "',
                     filename: '" . basename($preview) . "',
                     caption: '" . basename($preview) . "',
-                    size: " . filesize(($preview == '' ? '..'.$preview : $preview)) . ",
+                    size: " . filesize('..' .$preview) . ",
                     url: '" . Url::toRoute(['filedelete', 'id' => $this->model->id]) . "'
                 }";
 
@@ -208,17 +208,17 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
                 'preferIconicPreview' => true,
                 'previewFileIconSettings' => [
                     'doc' => '<i class="fa fa-file-word-o text-primary"></i>',
-                    'xls'=> '<i class="fa fa-file-excel-o text-success"></i>',
-                    'ppt'=> '<i class="fa fa-file-powerpoint-o text-danger"></i>',
-                    'pdf'=> '<i class="fa fa-file-pdf-o text-danger"></i>',
-                    'zip'=> '<i class="fa fa-file-archive-o text-muted"></i>',
-                    'htm'=> '<i class="fa fa-file-code-o text-info"></i>',
-                    'txt'=> '<i class="fa fa-file-text-o text-info"></i>',
-                    'mov'=> '<i class="fa fa-file-movie-o text-warning"></i>',
-                    'mp3'=> '<i class="fa fa-file-audio-o text-warning"></i>',
-                    'jpg'=> '<i class="fa fa-file-photo-o text-danger"></i>',
-                    'gif'=> '<i class="fa fa-file-photo-o text-muted"></i>',
-                    'png'=> '<i class="fa fa-file-photo-o text-primary"></i>'
+                    'xls' => '<i class="fa fa-file-excel-o text-success"></i>',
+                    'ppt' => '<i class="fa fa-file-powerpoint-o text-danger"></i>',
+                    'pdf' => '<i class="fa fa-file-pdf-o text-danger"></i>',
+                    'zip' => '<i class="fa fa-file-archive-o text-muted"></i>',
+                    'htm' => '<i class="fa fa-file-code-o text-info"></i>',
+                    'txt' => '<i class="fa fa-file-text-o text-info"></i>',
+                    'mov' => '<i class="fa fa-file-movie-o text-warning"></i>',
+                    'mp3' => '<i class="fa fa-file-audio-o text-warning"></i>',
+                    'jpg' => '<i class="fa fa-file-photo-o text-danger"></i>',
+                    'gif' => '<i class="fa fa-file-photo-o text-muted"></i>',
+                    'png' => '<i class="fa fa-file-photo-o text-primary"></i>'
                 ],
                 'autoReplace' => true,
                 'maxFileCount' => 1,
