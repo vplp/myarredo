@@ -6,6 +6,7 @@ use Yii;
 //
 use thread\app\base\models\ActiveRecord;
 use common\modules\shop\Shop;
+use common\modules\user\models\User;
 
 /**
  * Class OrderItemPrice
@@ -100,5 +101,14 @@ class OrderItemPrice extends ActiveRecord
                 self::tableName().'.product_id' => $product_id
             ])
             ->one();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this
+            ->hasOne(User::class, ['id' => 'user_id']);
     }
 }

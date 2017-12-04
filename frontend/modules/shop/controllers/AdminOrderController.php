@@ -14,13 +14,13 @@ use frontend\modules\shop\models\{
 };
 
 /**
- * Class PartnerOrderController
+ * Class AdminOrderController
  *
  * @package frontend\modules\shop\controllers
  */
-class PartnerOrderController extends BaseController
+class AdminOrderController extends BaseController
 {
-    public $title = "PartnerOrder";
+    public $title = "AdminOrder";
 
     public $defaultAction = 'list';
 
@@ -46,7 +46,7 @@ class PartnerOrderController extends BaseController
                             'list',
                             'view'
                         ],
-                        'roles' => ['partner'],
+                        'roles' => ['admin'],
                     ],
                     [
                         'allow' => false,
@@ -100,7 +100,7 @@ class PartnerOrderController extends BaseController
 
         $this->breadcrumbs[] = [
             'label' => 'Заявки',
-            'url' => ['/shop/partner-order/list']
+            'url' => ['/shop/admin-order/list']
         ];
 
         $this->breadcrumbs[] = [

@@ -23,6 +23,15 @@ class OrderItem extends \thread\modules\shop\models\OrderItem
     /**
      * @return mixed
      */
+    public function getOrderItemPrices()
+    {
+        return $this
+            ->hasMany(OrderItemPrice::class, ['product_id' => 'product_id', 'order_id' => 'order_id']);
+    }
+
+    /**
+     * @return mixed
+     */
     public function getOrderItemPrice()
     {
         $modelOrderItemPrice = OrderItemPrice::findByOrderIdUserIdProductId(

@@ -74,7 +74,8 @@ return [
     'shop/cart/delete-from-cart' => 'shop/cart/delete-from-cart',
     'shop/cart/delete-from-cart-popup' => 'shop/cart/delete-from-cart-popup',
     'partner/orders' => 'shop/partner-order/list',
-    'partner/orders/view/<id:[\d\-]+>' => 'shop/partner-order/view',
+    'admin/orders' => 'shop/admin-order/list',
+    //'partner/orders/view/<id:[\d\-]+>' => 'shop/partner-order/view',
 
     // Module [[Location]]
     'location/location/get-cities' => 'location/location/get-cities'
