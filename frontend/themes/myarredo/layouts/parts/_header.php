@@ -57,13 +57,13 @@ use frontend\modules\location\widgets\ChangeCity;
         <div class="top-navbar">
             <div class="container large-container">
                 <div class="row">
-                    <?php //if (Yii::$app->getUser()->getIdentity()->group->role == 'user'): ?>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li id="short_cart">
-                            <?= Cart::widget(['view' => 'short']) ?>
-                        </li>
-                    </ul>
-                    <?php //endif; ?>
+                    <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'user'): ?>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li id="short_cart">
+                                <?= Cart::widget(['view' => 'short']) ?>
+                            </li>
+                        </ul>
+                    <?php endif; ?>
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
