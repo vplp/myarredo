@@ -124,26 +124,36 @@ class PartnerOrderController extends BaseController
         ) {
             $order_id = (Yii::$app->request->post('OrderAnswer'))['order_id'];
 
-            $modelAnswer = OrderAnswer::findByOrderIdUserId($order_id, Yii::$app->getUser()->getId());
+            $modelOrder = Order::findById($order_id);
 
-            if (empty($modelAnswer)) {
-                $modelAnswer = new OrderAnswer();
-            }
+            if ($modelOrder->isArchive()) {
+                // message
+                Yii::$app->getSession()->setFlash(
+                    'error',
+                    'Не успели'
+                );
+            } else {
+                $modelAnswer = OrderAnswer::findByOrderIdUserId($order_id, Yii::$app->getUser()->getId());
 
-            $modelAnswer->setScenario('frontend');
-            $modelAnswer->user_id = Yii::$app->getUser()->getId();
+                if (empty($modelAnswer)) {
+                    $modelAnswer = new OrderAnswer();
+                }
 
-            if ($modelAnswer->load(Yii::$app->request->post()) && $modelAnswer->validate()) {
-                $transaction = $modelAnswer::getDb()->beginTransaction();
-                try {
-                    $save = $modelAnswer->save();
-                    if ($save) {
-                        $transaction->commit();
-                    } else {
+                $modelAnswer->setScenario('frontend');
+                $modelAnswer->user_id = Yii::$app->getUser()->getId();
+
+                if ($modelAnswer->load(Yii::$app->request->post()) && $modelAnswer->validate()) {
+                    $transaction = $modelAnswer::getDb()->beginTransaction();
+                    try {
+                        $save = $modelAnswer->save();
+                        if ($save) {
+                            $transaction->commit();
+                        } else {
+                            $transaction->rollBack();
+                        }
+                    } catch (Exception $e) {
                         $transaction->rollBack();
                     }
-                } catch (Exception $e) {
-                    $transaction->rollBack();
                 }
             }
         }
@@ -162,38 +172,49 @@ class PartnerOrderController extends BaseController
         ) {
             $order_id = (Yii::$app->request->post('OrderAnswer'))['order_id'];
 
-            $dataOrderItemPrice = Yii::$app->request->post('OrderItemPrice');
+            $modelOrder = Order::findById($order_id);
 
-            foreach ($dataOrderItemPrice as $product_id => $price) {
-
-                $modelItemPrice = OrderItemPrice::findByOrderIdUserIdProductId(
-                    $order_id,
-                    Yii::$app->getUser()->getId(),
-                    $product_id
+            if ($modelOrder->isArchive()) {
+                // message
+                Yii::$app->getSession()->setFlash(
+                    'error',
+                    'Не успели'
                 );
+            } else {
 
-                if ($modelItemPrice == null) {
-                    $modelItemPrice = new OrderItemPrice();
-                }
+                $dataOrderItemPrice = Yii::$app->request->post('OrderItemPrice');
 
-                $modelItemPrice->setScenario('frontend');
+                foreach ($dataOrderItemPrice as $product_id => $price) {
 
-                $modelItemPrice->order_id = $order_id;
-                $modelItemPrice->user_id = Yii::$app->getUser()->getId();
-                $modelItemPrice->product_id = $product_id;
-                $modelItemPrice->price = intval($price);
+                    $modelItemPrice = OrderItemPrice::findByOrderIdUserIdProductId(
+                        $order_id,
+                        Yii::$app->getUser()->getId(),
+                        $product_id
+                    );
 
-                if ($modelItemPrice->load(Yii::$app->request->post()) && $modelItemPrice->validate()) {
-                    $transaction = $modelItemPrice::getDb()->beginTransaction();
-                    try {
-                        $save = $modelItemPrice->save();
-                        if ($save) {
-                            $transaction->commit();
-                        } else {
+                    if ($modelItemPrice == null) {
+                        $modelItemPrice = new OrderItemPrice();
+                    }
+
+                    $modelItemPrice->setScenario('frontend');
+
+                    $modelItemPrice->order_id = $order_id;
+                    $modelItemPrice->user_id = Yii::$app->getUser()->getId();
+                    $modelItemPrice->product_id = $product_id;
+                    $modelItemPrice->price = intval($price);
+
+                    if ($modelItemPrice->load(Yii::$app->request->post()) && $modelItemPrice->validate()) {
+                        $transaction = $modelItemPrice::getDb()->beginTransaction();
+                        try {
+                            $save = $modelItemPrice->save();
+                            if ($save) {
+                                $transaction->commit();
+                            } else {
+                                $transaction->rollBack();
+                            }
+                        } catch (Exception $e) {
                             $transaction->rollBack();
                         }
-                    } catch (Exception $e) {
-                        $transaction->rollBack();
                     }
                 }
             }
@@ -245,6 +266,7 @@ class PartnerOrderController extends BaseController
                             ->setTo($modelOrder->customer['email'])
                             ->setSubject('Ответ за заказ № ' . $modelOrder['id'])
                             ->send();
+
                         // message
                         Yii::$app->getSession()->setFlash(
                             'success',
