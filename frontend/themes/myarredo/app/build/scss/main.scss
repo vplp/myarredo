@@ -2867,6 +2867,22 @@ footer {
         }
       }
     }
+    .pagination {
+      padding-left: 0;
+      margin: 20px 0;
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      li {
+        display: inline;
+        box-sizing: border-box;
+        padding-left: 0;
+        word-break: break-all;
+        font-size: 13px;
+        border-left: none;
+        width: auto;
+      }
+    }
     .order-id {
       width: 7%;
     }
