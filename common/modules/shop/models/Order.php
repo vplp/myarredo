@@ -83,9 +83,11 @@ class Order extends \thread\modules\shop\models\Order
      */
     public function attributeLabels()
     {
-        $attributeLabels = [];
+        $attributeLabels = [
+            'comment' => Yii::t('app', 'Comment client'),
+        ];
 
-        return ArrayHelper::merge($attributeLabels, parent::attributeLabels());
+        return ArrayHelper::merge(parent::attributeLabels(), $attributeLabels);
     }
 
     /**
