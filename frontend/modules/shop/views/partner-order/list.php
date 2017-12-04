@@ -141,7 +141,7 @@ $this->title = $this->context->title;
                                 <ul class="orders-title-block flex">
                                     <li class="order-id">
                                         <span>
-                                            <?= Html::a($model->id, $model->getPartnerOrderUrl()) ?>
+                                            <?= $model->id //Html::a($model->id, $model->getPartnerOrderUrl()) ?>
                                         </span>
                                     </li>
                                     <li class="application-date">

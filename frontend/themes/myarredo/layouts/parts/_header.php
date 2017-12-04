@@ -100,7 +100,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                             </li>
                                         <?php elseif (Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
                                             <li>
-                                                <?= Html::a('Заявки', ['/shop/partner-order/list']); ?>
+                                                <?= Html::a('Заявки', ['/shop/admin-order/list']); ?>
                                             </li>
                                             <li role="separator" class="divider"></li>
                                             <li>
