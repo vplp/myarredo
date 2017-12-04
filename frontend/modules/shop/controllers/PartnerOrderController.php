@@ -262,7 +262,6 @@ class PartnerOrderController extends BaseController
                                     'modelAnswer' => $modelAnswer,
                                 ]
                             )
-                            ->setFrom(['info@myarredo.ru'])
                             ->setTo($modelOrder->customer['email'])
                             ->setSubject('Ответ за заказ № ' . $modelOrder['id'])
                             ->send();
