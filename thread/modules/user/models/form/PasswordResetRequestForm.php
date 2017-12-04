@@ -56,7 +56,6 @@ class PasswordResetRequestForm extends CommonForm
                 ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
                 ['user' => $this->getUserByEmail()]
             )
-            ->setFrom(['info@myarredo.ru'])
             ->setTo($this->email)
             ->setSubject('Password reset for ' . \Yii::$app->name)
             ->send();
