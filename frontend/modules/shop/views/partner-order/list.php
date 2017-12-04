@@ -3,7 +3,6 @@
 use yii\helpers\{
     Html, Url
 };
-use yii\widgets\ActiveForm;
 
 /**
  * @var \frontend\modules\shop\models\Order $model
@@ -164,15 +163,19 @@ $this->title = $this->context->title;
                                             <?= ($model->city) ? $model->city->lang->title : ''; ?>
                                         </span>
                                     </li>
-                                    <li><span><?= $model['order_status'] ?></span></li>
+                                    <li><span><?= $model->getOrderStatus(); ?></span></li>
                                 </ul>
 
                                 <div class="hidden-order-info flex">
-
-                                    <?= $this->render('_list_item', [
-                                        'model' => $model,
-                                    ]) ?>
-
+                                    <?php if ($model->isArchive()): ?>
+                                        <?= $this->render('_list_item_archive', [
+                                            'model' => $model,
+                                        ]) ?>
+                                    <?php else: ?>
+                                        <?= $this->render('_list_item', [
+                                            'model' => $model,
+                                        ]) ?>
+                                    <?php endif; ?>
                                 </div>
 
                             </div>
@@ -182,7 +185,7 @@ $this->title = $this->context->title;
                     <?php endif; ?>
 
                 </div>
-<!--
+
                 <?= yii\widgets\LinkPager::widget([
                     'pagination' => $pages,
                     'registerLinkTags' => true,
@@ -190,7 +193,7 @@ $this->title = $this->context->title;
                     'prevPageLabel' => '<i class="fa fa-angle-left" aria-hidden="true"></i>Назад'
                 ]);
                 ?>
--->
+
             </div>
         </div>
     </div>

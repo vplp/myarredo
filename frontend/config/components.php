@@ -44,9 +44,9 @@ return [
         'class' => \yii\swiftmailer\Mailer::class,
         'transport' => [
             'class' => 'Swift_SmtpTransport',
-            'host' => 'mail.itsfera.com.ua',
-            'username' => 'test@vipdesign.com.ua',
-            'password' => 'iesh1eeXuiqu',
+            'host' => 'smtp-pulse.com',
+            'username' => 'myarredo@mail.ru',
+            'password' => 'ZYfKZWr29eB3',
             'port' => '465',
             'encryption' => 'ssl',
         ],

@@ -24,6 +24,8 @@ use common\modules\location\models\City;
  * @property integer $published
  * @property integer $deleted
  *
+ * @property boolean $isArchive
+ * @property OrderAnswer[] $orderAnswers
  * @property OrderAnswer[] $orderAnswer
  * @property OrderItem[] $items
  * @property Customer[] $customer
@@ -126,6 +128,15 @@ class Order extends \thread\modules\shop\models\Order
     /**
      * @return mixed
      */
+    public function getOrderAnswers()
+    {
+        return $this
+            ->hasMany(OrderAnswer::class, ['order_id' => 'id']);
+    }
+
+    /**
+     * @return mixed
+     */
     public function getOrderAnswer()
     {
         $modelAnswer = OrderAnswer::findByOrderIdUserId(
@@ -138,5 +149,15 @@ class Order extends \thread\modules\shop\models\Order
         }
 
         return $modelAnswer;
+    }
+
+    public function isArchive()
+    {
+        return (count($this->orderAnswers) >= 3) ? true : false;
+    }
+
+    public function getOrderStatus()
+    {
+        return ($this->isArchive()) ? "Архивная" : "Новая";
     }
 }
