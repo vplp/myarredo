@@ -141,7 +141,7 @@
   .alphabet-tab {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: 65px;
     align-items: center;
     border-bottom: 1px solid #7B7A79;
@@ -152,6 +152,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-right: 1%;
+      &:last-child {
+        margin-right: 0;
+      }
       &.active {
         background: #8A8278;
         color: #FFFFFF;
