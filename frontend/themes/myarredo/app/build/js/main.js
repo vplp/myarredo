@@ -444,4 +444,20 @@ $(document).ready(function(){
         $(item).parent().css({"background-image": "url(" + src + ")"});
     });
 
+    /*-- лоадер\отключение кнопки в карточке товара --*/
+
+    /*-- конец лоадер\отключение кнопки в карточке товара --*/
+
+
 });
+(function(){
+    var btn = $("#checkout-form button[type=submit]")
+    $("#checkout-form").on("submit",function(e){
+        btn.addClass("disabled");
+        $(".loader").show();
+    });
+    document.getElementById("checkout-form").addEventListener("DOMSubtreeModified", function(){
+        $(".loader").hide();
+        btn.removeClass("disabled");
+    });
+})();
