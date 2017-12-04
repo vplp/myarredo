@@ -22,6 +22,7 @@ use yii\widgets\ActiveForm;
             foreach ($model->items as $orderItem) {
                 echo $this->render('_list_item_product', [
                     'form' => $form,
+                    'order' => $model,
                     'orderItem' => $orderItem,
                 ]);
             } ?>
@@ -58,7 +59,7 @@ use yii\widgets\ActiveForm;
     'value' => 1
 ]) ?>
 
-<?php if ($model->orderAnswer->id) {
+<?php if ($model->orderAnswer->id && $model->orderAnswer->answer_time == 0) {
     echo Html::submitButton('Отправить ответ клиенту', [
         'class' => 'btn btn-success',
         'name' => 'action-send-answer',

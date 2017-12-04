@@ -65,10 +65,10 @@ $this->title = $this->context->title;
                                         <span><?= $model->customer->full_name ?></span>
                                     </li>
                                     <li>
-                                        <span>-</span>
+                                        <span><?= $model->customer->phone ?></span>
                                     </li>
                                     <li>
-                                        <span>-</span>
+                                        <span><?= $model->customer->email ?></span>
                                     </li>
                                     <li><span>
                                             <?= ($model->city) ? $model->city->lang->title : ''; ?>

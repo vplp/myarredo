@@ -141,7 +141,7 @@ $this->title = $this->context->title;
                                 <ul class="orders-title-block flex">
                                     <li class="order-id">
                                         <span>
-                                            <?= $model->id //Html::a($model->id, $model->getPartnerOrderUrl()) ?>
+                                            <?= $model->id //Html::a($model->id, $model->getPartnerOrderUrl())  ?>
                                         </span>
                                     </li>
                                     <li class="application-date">
@@ -151,10 +151,24 @@ $this->title = $this->context->title;
                                         <span><?= $model->customer->full_name ?></span>
                                     </li>
                                     <li>
-                                        <span>-</span>
+                                        <span>
+                                            <?php
+                                            if ($model->orderAnswer->id && $model->orderAnswer->answer_time != 0) {
+                                                echo $model->customer->phone;
+                                            } else {
+                                                echo '-';
+                                            } ?>
+                                        </span>
                                     </li>
                                     <li>
-                                        <span>-</span>
+                                        <span>
+                                        <?php
+                                        if ($model->orderAnswer->id && $model->orderAnswer->answer_time != 0) {
+                                            echo $model->customer->email;
+                                        } else {
+                                            echo '-';
+                                        } ?>
+                                        </span>
                                     </li>
                                     <li>
                                         <span><?= $model->orderAnswer->getAnswerTime() ?></span>
