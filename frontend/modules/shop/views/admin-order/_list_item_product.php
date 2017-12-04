@@ -43,14 +43,9 @@ use frontend\modules\catalog\models\Product;
             <td>
                 <?php
                 foreach ($orderItem->orderItemPrices as $price) {
-                    echo '<div><strong>' .
-                        $price['user']['profile']['name_company'] .
-                        ' ' .
-                        $price['user']['email'] .
-                        '</strong></div>' .
-                        '<div>' .
-                        $price['price'] .
-                        '</div><br>';
+                    echo '<div><strong>' . $price['user']['profile']['name_company'] . '</strong></div>' .
+                        '<div>' . $price['user']['email'] . '</div>' .
+                        '<div><strong>' . $price['price'] . '</strong></div><br>';
                 }
                 ?>
             </td>
