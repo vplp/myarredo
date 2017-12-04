@@ -30,6 +30,10 @@ use yii\widgets\ActiveForm;
         </div>
         <div class="form-wrap">
 
+
+            <?= $form->field($modelOrder, 'comment')
+                ->textarea(['disabled' => true, 'rows' => 5]) ?>
+
             <?= $form
                 ->field($modelOrder->orderAnswer, 'answer')
                 ->textarea(['rows' => 5]) ?>
@@ -43,12 +47,6 @@ use yii\widgets\ActiveForm;
                 ->field($modelOrder->orderAnswer, 'order_id')
                 ->input('hidden', ['value' => $modelOrder->id])
                 ->label(false) ?>
-
-            <?= $form->field($modelOrder, 'comment')
-                ->textarea(['disabled' => true, 'rows' => 5]) ?>
-
-            <?= $form->field($modelOrder->orderAnswer, 'results')
-                ->textarea(['rows' => 5]) ?>
 
         </div>
     </div>
