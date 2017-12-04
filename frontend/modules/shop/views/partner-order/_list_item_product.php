@@ -45,7 +45,7 @@ use frontend\modules\catalog\models\Product;
                     ->field($orderItem->orderItemPrice, 'price')
                     ->input('text', [
                         'name' => 'OrderItemPrice[' . $orderItem->product_id . ']',
-                        'disabled' => ($order->orderAnswer->answer_time == 0) ? false : true
+                        'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true
                     ])
                     ->label(false);
                 ?>

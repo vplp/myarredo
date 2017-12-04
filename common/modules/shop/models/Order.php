@@ -131,7 +131,8 @@ class Order extends \thread\modules\shop\models\Order
     public function getOrderAnswers()
     {
         return $this
-            ->hasMany(OrderAnswer::class, ['order_id' => 'id']);
+            ->hasMany(OrderAnswer::class, ['order_id' => 'id'])
+            ->andWhere(OrderAnswer::tableName() . '.answer_time > 0');
     }
 
     /**

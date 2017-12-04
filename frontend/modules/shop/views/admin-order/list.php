@@ -5,7 +5,7 @@ use yii\helpers\{
 };
 
 /**
- * @var \frontend\modules\shop\models\Order $model
+ * @var $modelOrder \frontend\modules\shop\models\Order
  */
 
 $this->title = $this->context->title;
@@ -48,39 +48,39 @@ $this->title = $this->context->title;
 
                     <?php if (!empty($models)): ?>
 
-                        <?php foreach ($models as $model): ?>
+                        <?php foreach ($models as $modelOrder): ?>
 
-                            <div class="item" data-hash="<?= $model->id; ?>">
+                            <div class="item" data-hash="<?= $modelOrder->id; ?>">
 
                                 <ul class="orders-title-block flex">
                                     <li class="order-id">
                                         <span>
-                                            <?= $model->id; ?>
+                                            <?= $modelOrder->id; ?>
                                         </span>
                                     </li>
                                     <li class="application-date">
-                                        <span><?= $model->getCreatedTime() ?></span>
+                                        <span><?= $modelOrder->getCreatedTime() ?></span>
                                     </li>
                                     <li>
-                                        <span><?= $model->customer->full_name ?></span>
+                                        <span><?= $modelOrder->customer->full_name ?></span>
                                     </li>
                                     <li>
-                                        <span><?= $model->customer->phone ?></span>
+                                        <span><?= $modelOrder->customer->phone ?></span>
                                     </li>
                                     <li>
-                                        <span><?= $model->customer->email ?></span>
+                                        <span><?= $modelOrder->customer->email ?></span>
                                     </li>
                                     <li><span>
-                                            <?= ($model->city) ? $model->city->lang->title : ''; ?>
+                                            <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
                                         </span>
                                     </li>
-                                    <li><span><?= $model->getOrderStatus(); ?></span></li>
+                                    <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
                                 </ul>
 
                                 <div class="hidden-order-info flex">
 
                                     <?= $this->render('_list_item', [
-                                        'model' => $model,
+                                        'modelOrder' => $modelOrder,
                                     ]) ?>
 
                                 </div>

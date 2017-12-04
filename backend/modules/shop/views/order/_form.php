@@ -22,7 +22,5 @@ use backend\app\bootstrap\ActiveForm;
 
 <?= $this->render('parts/_product_list', ['model' => $model]) ?>
 
-<?= $this->render('parts/_order_answer_list', ['model' => $model]) ?>
-
 <?= $form->cancel($model, $this) ?>
 <?php ActiveForm::end();
