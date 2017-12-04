@@ -2,32 +2,19 @@
 
 use yii\grid\GridView;
 
-/**
- *
- * @package backend\modules\shop\view
- * @author Alla Kuzmenko
- * @copyright (c) 2015, Thread
- *
- */
+/* @var $this yii\web\View */
+/* @var $model \backend\modules\shop\models\Order */
+
 echo GridView::widget([
     'dataProvider' => $model->items[0]->search(['OrderItem' => ['order_id' => $model->id]]),
-    //'filterModel' => $filter,
     'columns' => [
         [
-            'attribute' => 'product_id',
+            'attribute' => Yii::t('app', 'Product'),
             'value' => function ($model) {
                 //тянем модель продукта которая указана в компоненте shop_cart
                 $product = call_user_func([Yii::$app->shop_cart->threadProductClass, 'findByID'], $model->id);
                 return $product['id'] . ' ' . $product['lang']['title'];
             }
         ],
-        'count',
-        'price',
-        // 'summ',
-        // 'discount_full',
-        'total_summ',
-        //'discount_percent',
-        // 'discount_money',
-        //'extra_param',
     ],
 ]);

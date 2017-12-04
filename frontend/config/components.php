@@ -53,7 +53,7 @@ return [
         'useFileTransport' => false,
         'messageConfig' => [
             'charset' => 'UTF-8',
-            'from' => ['test@vipdesign.com.ua' => 'myarredo'],
+            'from' => ['myarredo@mail.ru' => 'info@myarredo.ru'],
         ],
     ],
     'metatag' => [

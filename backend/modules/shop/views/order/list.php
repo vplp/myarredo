@@ -13,54 +13,35 @@ echo GridView::widget([
             },
         ],
         [
-            'attribute' => 'full_name',
+            'attribute' => Yii::t('app', 'Full name'),
             'value' => function ($model) {
                 return $model->customer->full_name;
             }
         ],
         [
-            'attribute' => 'phone',
+            'attribute' => Yii::t('app', 'Phone'),
             'value' => function ($model) {
                 return $model->customer->phone;
             }
         ],
         [
-            'attribute' => 'email',
+            'attribute' => Yii::t('app', 'Email'),
             'value' => function ($model) {
                 return $model->customer->email;
             }
         ],
         [
-            'attribute' => 'city',
+            'attribute' => Yii::t('app', 'City'),
             'value' => function ($model) {
                 return $model->city->lang->title ?? '';
             }
         ],
-//        [
-//            'attribute' => 'deliveryMethod',
-//            'value' => function ($model) {
-//                return $model->deliveryMethod->lang->title;
-//            }
-//        ],
-//        [
-//            'attribute' => 'paymentMethod',
-//            'value' => function ($model) {
-//                return $model->paymentMethod->lang->title;
-//            }
-//        ],
-//        [
-//            'attribute' => 'order_status',
-//            'value' => function ($model) {
-//                return ($model->order_status == '') ? 'Новый' : $model->order_status;
-//            }
-//        ],
-//        [
-//            'attribute' => 'payd_status',
-//            'value' => function ($model) {
-//                return Yii::t('app', $model->payd_status);
-//            }
-//        ],
-//        'total_summ',
+        [
+            'attribute' => 'order_status',
+            'value' => function ($model) {
+                return $model->getOrderStatus();
+            }
+        ],
         [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
         ],

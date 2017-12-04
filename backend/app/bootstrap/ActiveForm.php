@@ -159,4 +159,25 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
 
         return $content;
     }
+
+    /**
+     * Form submit buttons
+     *
+     * @param $model
+     * @param $view
+     * @return string
+     */
+    public function cancel($model, $view)
+    {
+        $content = Html::beginTag('div', ['class' => 'row form-group', 'style' => ["margin-right" => '0px']]);
+        $content .= Html::beginTag('div', [
+            'class' => "text-right submit-panel-buttons",
+        ]);
+
+        $content .= Html::a(Yii::t('app', 'Cancel'), $view->context->actionListLinkStatus, ['class' => 'btn btn-danger']);
+        $content .= Html::endTag('div');
+        $content .= Html::endTag('div');
+
+        return $content;
+    }
 }
