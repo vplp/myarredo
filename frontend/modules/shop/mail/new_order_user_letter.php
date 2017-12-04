@@ -10,7 +10,7 @@ use frontend\modules\catalog\models\Product;
 ?>
 
 <div style="width:540px; height: 700px; font: 16px Arial,sans-serif;">
-    <div style="background:#c4c0b8 url('http://www.myarredo.ru/pic/letters/logo_note.png') center 10px no-repeat; height: 35px;  padding-top:45px; text-align:center;">
+    <div style="background:#c4c0b8 url('http://www.myarredo.ru/uploads/mailer/logo_note.png') center 10px no-repeat; height: 35px;  padding-top:45px; text-align:center;">
         <span style="color: #fff; font:bold 16px Arial,sans-serif;">Мы помогаем купить итальянскую мебель по лучшим ценам.</span>
     </div>
     <div style="background-color:#fff9ea; text-align: left; padding: 10px 0 40px 10px;">
