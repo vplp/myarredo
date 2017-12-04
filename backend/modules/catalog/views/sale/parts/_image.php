@@ -1,8 +1,7 @@
 <?php
 
 /**
- * @var \backend\modules\catalog\models\Product $model
- * @var \backend\modules\catalog\models\ProductLang $modelLang
+ * @var \backend\modules\catalog\models\Sale $model
  * @var \backend\app\bootstrap\ActiveForm $form
  */
 
