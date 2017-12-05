@@ -1,6 +1,12 @@
 <?php
 
 return [
+    // FileCache
+//    'cache' => [
+//        'class' => \yii\caching\FileCache::class,
+//        'cachePath' => '@runtime',
+//        'keyPrefix' => 'frontend'
+//    ],
     'languages' => [
         'class' => \thread\app\model\Languages::class,
         'languageModel' => \frontend\modules\sys\models\Language::class,
