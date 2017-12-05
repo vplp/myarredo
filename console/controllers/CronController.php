@@ -23,7 +23,10 @@ class CronController extends Controller
     public function actionGenerateProductTitle()
     {
         $models = Product::find()
-            ->where(['mark' => '0'])
+            ->where([
+                'mark' => '0',
+                'is_composition' => '1'
+            ])
             ->limit(100)
             ->orderBy('id ASC')
             ->all();
