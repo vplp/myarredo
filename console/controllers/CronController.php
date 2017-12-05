@@ -17,12 +17,6 @@ use common\modules\catalog\models\{
  */
 class CronController extends Controller
 {
-    public function actionIndex()
-    {
-//        $this->actionGenerateProductTitle();
-//        $this->actionImportProductImages();
-    }
-
     /**
      * Generate product title
      */
@@ -47,8 +41,6 @@ class CronController extends Controller
                 if ($model->save()) {
                     $transaction->commit();
 
-                    echo $model->alias . PHP_EOL;
-
                     $modelLang = ProductLang::findOne([
                         'rid' => $model->id,
                         'lang' => Yii::$app->language,
@@ -56,9 +48,6 @@ class CronController extends Controller
 
                     $modelLang->setScenario('backend');
                     $modelLang->save();
-
-                    echo $modelLang->title . PHP_EOL;
-
                 } else {
                     $transaction->rollBack();
                 }
