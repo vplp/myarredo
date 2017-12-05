@@ -19,7 +19,8 @@
     }
   }
   .cat-prod .one-prod-tile {
-    width: 48%;
+    //width: 48%;
+    width: calc( 50% - 20px);
     .img-cont {
       height: 180px;
     }
