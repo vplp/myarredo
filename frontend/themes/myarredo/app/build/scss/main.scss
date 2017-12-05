@@ -727,13 +727,9 @@ footer {
     }
   }
 }
-.categoty-page {
+.category-page, .categoty-page {
   .sort-by-name {
     margin-right: 6px;
-  }
-  .pageChanger {
-    background: transparent;
-    border: none;
   }
   .sort-by {
     .dropdown-toggle {
@@ -751,6 +747,10 @@ footer {
       right: 0;
       left: auto;
     }
+  }
+  .pageChanger {
+    background: transparent;
+    border: none;
   }
 }
 .fancybox-inner {
@@ -1789,7 +1789,7 @@ footer {
 .cat-prod {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin: 0 -10px;
   .one-prod-tile {
     width: calc( 33% - 20px );
