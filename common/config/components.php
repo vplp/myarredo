@@ -42,4 +42,20 @@ return [
             'class' => 'Swift_SmtpTransport',
         ],
     ],
+    // FileCache
+    'cache' => [
+        'class' => \yii\caching\FileCache::class,
+        'cachePath' => '@runtime',
+        'keyPrefix' => 'thread'
+    ],
+    // MemCache
+    'memCache' => [
+        'class' => 'yii\caching\MemCache',
+        'servers' => [
+            [
+                'host' => 'localhost',
+                'port' => 11211,
+            ],
+        ],
+    ],
 ];
