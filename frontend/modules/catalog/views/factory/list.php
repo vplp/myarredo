@@ -58,7 +58,7 @@ use frontend\modules\catalog\models\Factory;
                         '_list_item',
                         [
                             'model' => $model,
-                            'categories' => $factory_categories[$model['id']]
+                            'categories' => $factory_categories[$model['id']] ?? []
                         ]
                     );
                 } ?>
