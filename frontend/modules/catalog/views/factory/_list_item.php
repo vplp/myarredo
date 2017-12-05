@@ -34,7 +34,9 @@ $keys = Yii::$app->catalogFilter->keys;
                     Html::a(
                         $item['title'],
                         Yii::$app->catalogFilter->createUrl(
-                            Yii::$app->catalogFilter->params + [$keys['factory'] => $model['alias']]
+                            Yii::$app->catalogFilter->params +
+                            [$keys['category'] => $item['alias']] +
+                            [$keys['factory'] => $model['alias']]
                         )
                     ) .
                     Html::endTag('li');
