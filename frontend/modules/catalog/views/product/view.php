@@ -7,6 +7,7 @@ use frontend\modules\catalog\models\{
     Factory, Product
 };
 use frontend\themes\myarredo\assets\AppAsset;
+use frontend\modules\shop\widgets\request\RequestPrice;
 
 /**
  * @var \frontend\modules\catalog\models\Product $model
@@ -20,6 +21,8 @@ foreach (Yii::$app->shop_cart->items as $item) {
 }
 
 $elementsComposition = $model['elementsComposition'];
+
+$keys = Yii::$app->catalogFilter->keys;
 
 $this->title = $this->context->title;
 
@@ -110,7 +113,10 @@ $this->title = $this->context->title;
                                     <td>
                                         <?= Html::a(
                                             $model['collection']['lang']['title'],
-                                            Yii::$app->catalogFilter->createUrl(['collection' => $model['collection']['id']])
+                                            Yii::$app->catalogFilter->createUrl(
+                                                Yii::$app->catalogFilter->params +
+                                                [$keys['collection'] => $model['collection']['id']]
+                                            )
                                         ); ?>
                                     </td>
                                 </tr>
@@ -171,7 +177,7 @@ $this->title = $this->context->title;
 
                             <h3>Заполните форму - получите лучшую цену на этот товар</h3>
 
-                            <?= \frontend\modules\shop\widgets\request\RequestPrice::widget(['product_id' => $model['id']]) ?>
+                            <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
 
                             <?php
                             if (!in_array($model['id'], $products_id)) {
