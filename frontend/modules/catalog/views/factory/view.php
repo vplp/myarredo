@@ -14,6 +14,7 @@ use frontend\modules\catalog\models\Factory;
 $keys = Yii::$app->catalogFilter->keys;
 
 $this->title = $this->context->title;
+
 ?>
 
 <main>
@@ -65,7 +66,10 @@ $this->title = $this->context->title;
                             <?= Html::a(
                                 $model['url'],
                                 'http://' . $model['url'],
-                                ['target' => '_blank']
+                                [
+                                    'target' => '_blank',
+                                    'rel' => 'nofollow'
+                                ]
                             ); ?>
                         </div>
 
