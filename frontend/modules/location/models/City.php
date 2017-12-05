@@ -50,7 +50,7 @@ class City extends \common\modules\location\models\City
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled();
+        return parent::findBase();
     }
 
     /**
