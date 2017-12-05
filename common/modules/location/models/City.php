@@ -69,7 +69,7 @@ class City extends \thread\modules\location\models\City
     {
         return self::find()
             ->innerJoinWith(['lang'])
-            ->orderBy(self::tableName(). '.position');
+            ->orderBy(CityLang::tableName() . '.title');
     }
 
     /**

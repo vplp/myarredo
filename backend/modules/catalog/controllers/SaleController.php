@@ -40,6 +40,16 @@ class SaleController extends BackendController
                 'attribute' => 'on_main',
                 'redirect' => $this->defaultAction,
             ],
+            'fileupload' => [
+                'class' => UploadAction::class,
+                'useHashPath' => true,
+                'path' => $this->module->getProductUploadPath()
+            ],
+            'filedelete' => [
+                'class' => DeleteAction::class,
+                'useHashPath' => true,
+                'path' => $this->module->getProductUploadPath()
+            ],
         ]);
     }
 }
