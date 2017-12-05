@@ -27,7 +27,7 @@ class CronController extends Controller
                 'mark' => '0',
                 'is_composition' => '1'
             ])
-            ->limit(100)
+            ->limit(500)
             ->orderBy('id ASC')
             ->all();
 
