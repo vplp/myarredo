@@ -185,7 +185,10 @@ class Product extends \common\modules\catalog\models\Product
             if (file_exists($path . '/' . $image)) {
 
                 //$imagesSources[] = self::getImageThumb($image);
-                $imagesSources[] = $url . '/' . $image;
+                $imagesSources[] = [
+                    'img' => $url . '/' . $image,
+                    'thumb' => self::getImageThumb($image)
+                ];
             }
         }
 

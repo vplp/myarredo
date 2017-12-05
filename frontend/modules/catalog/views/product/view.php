@@ -43,61 +43,11 @@ $this->title = $this->context->title;
                 </div>
 
                 <div class="col-md-5">
-                    <div id="prod-slider" class="carousel slide carousel-fade" data-ride="carousel">
 
-                        <!-- Carousel items -->
-                        <div class="carousel-inner">
+                    <?= $this->render('parts/_carousel', [
+                        'model' => $model
+                    ]); ?>
 
-                            <?php
-                            foreach ($model->getGalleryImage() as $key => $src) {
-                                $class = 'item' . (($key == 0) ? ' active' : '');
-
-                                echo Html::beginTag('div', ['class' => $class]) .
-                                    Html::a(
-                                        Html::img($src, ['itemprop' => 'image']),
-                                        $src,
-                                        [
-                                            'class' => 'img-cont fancyimage',
-                                            'data-fancybox-group' => 'group'
-                                        ]
-                                    ) .
-                                    Html::endTag('div');
-                            } ?>
-
-                        </div>
-
-                        <a href="javascript:void(0);" class="img-zoom">
-                            Увеличить
-                        </a>
-
-                        <!-- Carousel nav -->
-
-                        <div class="nav-cont">
-
-                            <a class="left left-arr nav-contr" href="#prod-slider" data-slide="prev">
-                                <i class="fa fa-angle-left" aria-hidden="true"></i>
-                            </a>
-
-                            <ol class="carousel-indicators">
-
-                                <?php foreach ($model->getGalleryImage() as $key => $src): ?>
-                                    <li data-target="#prod-slider" data-slide-to="<?= $key ?>"
-                                        class="<?= ($key == 0) ?? 'active' ?>">
-                                        <div class="img-min">
-                                            <?= Html::img($src); ?>
-                                        </div>
-                                    </li>
-                                <?php endforeach; ?>
-
-                            </ol>
-
-                            <a class="right right-arr nav-contr" href="#prod-slider" data-slide="next">
-                                <i class="fa fa-angle-right" aria-hidden="true"></i>
-                            </a>
-
-                        </div>
-
-                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="prod-info-table">
@@ -207,12 +157,9 @@ $this->title = $this->context->title;
 
                         </table>
 
-                        <?= $this->render(
-                            'parts/_factory_files',
-                            [
-                                'model' => $model
-                            ]
-                        ); ?>
+                        <?= $this->render('parts/_factory_files', [
+                            'model' => $model
+                        ]); ?>
 
                         <div class="prod-descr" itemprop="description"><?= $model['lang']['description']; ?></div>
                     </div>
@@ -278,23 +225,17 @@ $this->title = $this->context->title;
 
                         <?php if (!empty($elementsComposition)): ?>
                             <div id="panel1" class="tab-pane fade">
-                                <?= $this->render(
-                                    'parts/_product_by_composition',
-                                    [
-                                        'models' => $elementsComposition
-                                    ]
-                                ); ?>
+                                <?= $this->render('parts/_product_by_composition', [
+                                    'models' => $elementsComposition
+                                ]); ?>
                             </div>
                         <?php endif; ?>
 
                         <?php if (!empty($model['samples'])): ?>
                             <div id="panel2" class="tab-pane fade">
-                                <?= $this->render(
-                                    'parts/_samples',
-                                    [
-                                        'samples' => $model['samples']
-                                    ]
-                                ); ?>
+                                <?= $this->render('parts/_samples', [
+                                    'samples' => $model['samples']
+                                ]); ?>
                             </div>
                         <?php endif; ?>
 
@@ -403,24 +344,18 @@ $this->title = $this->context->title;
             <?php endif; */ ?>
 
             <?php if ($model['collections_id']) {
-                echo $this->render(
-                    'parts/_product_by_collection',
-                    [
-                        'collection' => $model['collection'],
-                        'models' => $model->getProductByCollection($model['collections_id'], $model['catalog_type_id'])
-                    ]
-                );
+                echo $this->render('parts/_product_by_collection', [
+                    'collection' => $model['collection'],
+                    'models' => $model->getProductByCollection($model['collections_id'], $model['catalog_type_id'])
+                ]);
             } ?>
 
             <?php if ($model['collections_id']) {
-                echo $this->render(
-                    'parts/_product_by_factory',
-                    [
-                        'factory' => $model['factory'],
-                        'types' => $model['types'],
-                        'models' => $model->getProductByFactory($model['factory_id'], $model['catalog_type_id'])
-                    ]
-                );
+                echo $this->render('parts/_product_by_factory', [
+                    'factory' => $model['factory'],
+                    'types' => $model['types'],
+                    'models' => $model->getProductByFactory($model['factory_id'], $model['catalog_type_id'])
+                ]);
             } ?>
 
         </div>
