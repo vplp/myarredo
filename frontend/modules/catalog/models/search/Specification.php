@@ -51,7 +51,7 @@ class Specification extends SpecificationModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => $module->itemOnPage
+                'defaultPageSize' => $module->itemOnPage
             ],
         ]);
 

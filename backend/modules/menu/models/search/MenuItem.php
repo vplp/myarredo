@@ -57,7 +57,7 @@ class MenuItem extends ParentModel implements BaseBackendSearchModel
             [
                 'query' => $query,
                 'pagination' => [
-                    'pageSize' => $module->itemOnPage
+                    'defaultPageSize' => $module->itemOnPage
                 ],
                 'sort' => [
                     'defaultOrder' => [

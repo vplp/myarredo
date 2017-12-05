@@ -52,7 +52,7 @@ class User extends UserModel implements BaseBackendSearchModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => Yii::$app->modules['user']->itemOnPage
+                'defaultPageSize' => Yii::$app->modules['user']->itemOnPage
             ]
         ]);
 

@@ -52,7 +52,7 @@ class Customer extends CustomerModel implements BaseBackendSearchModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => $module->itemOnPage
+                'defaultPageSize' => $module->itemOnPage
             ],
             'sort' => [
                 'defaultOrder' => [
