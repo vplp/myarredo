@@ -1,5 +1,5 @@
 <?php
-use thread\app\bootstrap\ActiveForm;
+use backend\app\bootstrap\ActiveForm;
 //
 use backend\widgets\Forms\Tabs;
 

@@ -1,5 +1,5 @@
 <?php
-use thread\app\bootstrap\ActiveForm;
+use backend\app\bootstrap\ActiveForm;
 
 /**
  * @var \backend\modules\news\models\GroupLang $modelLang

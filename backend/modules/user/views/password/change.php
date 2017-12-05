@@ -1,5 +1,5 @@
 <?php
-use thread\app\bootstrap\ActiveForm;
+use backend\app\bootstrap\ActiveForm;
 use thread\modules\user\models\form\ChangePassword;
 //
 use backend\modules\user\models\User;
