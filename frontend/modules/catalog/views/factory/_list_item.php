@@ -7,6 +7,8 @@ use frontend\modules\catalog\models\Factory;
  * @var \frontend\modules\catalog\models\Factory $model
  */
 
+$keys = Yii::$app->catalogFilter->keys;
+
 ?>
 
 <?= Html::beginTag(
@@ -26,13 +28,14 @@ use frontend\modules\catalog\models\Factory;
 
     <object>
         <ul class="assortment">
-            <?php
-            foreach ($categories as $item) {
+            <?php foreach ($categories as $item) {
 
                 echo Html::beginTag('li') .
                     Html::a(
                         $item['title'],
-                        Yii::$app->catalogFilter->createUrl(['factory' => $model['alias']])
+                        Yii::$app->catalogFilter->createUrl(
+                            Yii::$app->catalogFilter->params + [$keys['factory'] => $model['alias']]
+                        )
                     ) .
                     Html::endTag('li');
             } ?>

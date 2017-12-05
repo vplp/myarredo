@@ -27,7 +27,9 @@ $this->title = $this->context->title;
                         echo Html::beginTag('li') .
                             Html::a(
                                 $letter['first_letter'],
-                                Url::toRoute(['/catalog/factory/list', 'letter' => strtolower($letter['first_letter'])])
+                                Url::toRoute(
+                                    ['/catalog/factory/list', 'letter' => strtolower($letter['first_letter'])]
+                                )
                             ) .
                             Html::endTag('li');
                     } ?>
@@ -60,7 +62,11 @@ $this->title = $this->context->title;
                         ); ?>
 
                         <div class="fact-link">
-                            <?= Html::a($model['url'], 'http://' . $model['url'], ['target' => '_blank']); ?>
+                            <?= Html::a(
+                                $model['url'],
+                                'http://' . $model['url'],
+                                ['target' => '_blank']
+                            ); ?>
                         </div>
 
                         <div class="fact-assort">
@@ -189,8 +195,7 @@ $this->title = $this->context->title;
 
             <div class="cat-prod catalog-wrap">
 
-                <?php
-                foreach ($product as $item) {
+                <?php foreach ($product as $item) {
                     echo $this->render('/category/_list_item', [
                         'model' => $item,
                         'factory' => [$model->id => $model]
@@ -199,7 +204,9 @@ $this->title = $this->context->title;
 
                 echo Html::a(
                     'смотреть полный<div>Каталог</div>',
-                    Yii::$app->catalogFilter->createUrl(['factory' => $model['alias']]),
+                    Yii::$app->catalogFilter->createUrl(
+                        Yii::$app->catalogFilter->params + [$keys['factory'] => $model['alias']]
+                    ),
                     ['class' => 'one-prod-tile last']
                 ); ?>
 
