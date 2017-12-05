@@ -1,6 +1,6 @@
 <?php
 
-use thread\app\bootstrap\ActiveForm;
+use backend\app\bootstrap\ActiveForm;
 
 /**
  * @var ActiveForm $form
