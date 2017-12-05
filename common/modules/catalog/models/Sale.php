@@ -231,7 +231,7 @@ class Sale extends ActiveRecord
      */
     public function beforeSave($insert)
     {
-        if ($this->scenario == 'backend') {
+        if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') {
             $this->user_id = Yii::$app->getUser()->id;
         }
 

@@ -41,17 +41,6 @@ return [
         'class' => \frontend\modules\user\components\PartnerComponent::class,
     ],
     'mailer' => [
-//        'class' => \yii\swiftmailer\Mailer::class,
-//        'useFileTransport' => false,
-//        'enableSwiftMailerLogging' => false,
-//        'transport' => [
-//            'class' => 'Swift_SmtpTransport',
-//        ],
-//        'messageConfig' => [
-//            'charset' => 'UTF-8',
-//            'from' => ['myarredo@mail.ru' => 'info@myarredo.ru'],
-//        ],
-
         'class' => \yii\swiftmailer\Mailer::class,
         'transport' => [
             'class' => 'Swift_SmtpTransport',
