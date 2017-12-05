@@ -310,7 +310,7 @@ $(document).ready(function(){
         selItemIn.each(function(i,item){
             var parent = $(item).closest(".list-item");
             parent.prepend($(item));
-        })
+        });
 
     })();
 
@@ -444,9 +444,12 @@ $(document).ready(function(){
         $(item).parent().css({"background-image": "url(" + src + ")"});
     });
 
-    /*-- лоадер\отключение кнопки в карточке товара --*/
+        $(".drop-date-picker").daterangepicker({
+            posX: null,
+            posY: null
+        });
 
-    /*-- конец лоадер\отключение кнопки в карточке товара --*/
+        $(".ui-daterangepickercontain").appendTo($(".datepicker-drop")); // переносим datepicker в выпадающий список
 
 
 });
@@ -464,5 +467,4 @@ $(document).ready(function(){
             btn.removeClass("disabled");
         });
     }
-
 })();
