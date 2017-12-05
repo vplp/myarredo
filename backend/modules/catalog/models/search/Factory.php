@@ -54,7 +54,7 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => $module->itemOnPage
+                'defaultPageSize' => $module->itemOnPage
             ],
         ]);
 

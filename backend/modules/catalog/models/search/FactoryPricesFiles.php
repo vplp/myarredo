@@ -52,7 +52,7 @@ class FactoryPricesFiles extends FactoryPricesFilesModel implements BaseBackendS
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => $module->itemOnPage
+                'defaultPageSize' => $module->itemOnPage
             ],
         ]);
 

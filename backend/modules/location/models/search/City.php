@@ -56,7 +56,7 @@ class City extends CityModel implements BaseBackendSearchModel
             [
                 'query' => $query,
                 'pagination' => [
-                    'pageSize' => $module->itemOnPage
+                    'defaultPageSize' => $module->itemOnPage
                 ]
             ]
         );

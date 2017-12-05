@@ -52,7 +52,7 @@ class FactoryCatalogsFiles extends FactoryCatalogsFilesModel implements BaseBack
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => $module->itemOnPage
+                'defaultPageSize' => $module->itemOnPage
             ],
         ]);
 
