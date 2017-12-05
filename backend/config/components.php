@@ -5,12 +5,6 @@
  * @copyright (c), Thread
  */
 return [
-    // FileCache
-    'cache' => [
-        'class' => \yii\caching\FileCache::class,
-        'cachePath' => '@runtime',
-        'keyPrefix' => 'backend'
-    ],
     'languages' => [
         'class' => \thread\app\model\Languages::class,
         'languageModel' => \backend\modules\sys\models\Language::class,
