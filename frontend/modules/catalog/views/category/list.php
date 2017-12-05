@@ -8,6 +8,7 @@ use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\widgets\filter\{
     ProductSorting, ProductFilter
 };
+use frontend\modules\catalog\widgets\paginator\PageChanger;
 
 /**
  * @var $pages \yii\data\Pagination
@@ -51,14 +52,9 @@ $this->title = $this->context->title;
 
                                 <?= ProductSorting::widget(); ?>
 
-                                <div class="this-page">
-                                    Страница
-                                    <input type="text" value="1">
-                                    из <?= $pages->getPageCount(); ?>
-                                    <a href="#">
-                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                    </a>
-                                </div>
+                                <?= PageChanger::widget([
+                                    'pages' => $pages
+                                ]); ?>
 
                             </div>
 
