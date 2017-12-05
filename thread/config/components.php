@@ -15,12 +15,6 @@ return [
         'class' => \thread\app\model\Languages::class,
         'languageModel' => \thread\app\model\Language::class,
     ],
-    //DEFAULT CACHE
-    'cache' => [
-        'class' => \yii\caching\FileCache::class,
-        'cachePath' => '@runtime',
-        'keyPrefix' => 'thread'
-    ],
     'mailer' => [
         'class' => \yii\swiftmailer\Mailer::class,
         'useFileTransport' => false,
