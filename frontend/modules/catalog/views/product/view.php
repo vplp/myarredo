@@ -115,7 +115,7 @@ $this->title = $this->context->title;
                                             $model['collection']['lang']['title'],
                                             Yii::$app->catalogFilter->createUrl(
                                                 Yii::$app->catalogFilter->params +
-                                                [$keys['factory'] => $model['factory']['lang']['title']] +
+                                                [$keys['factory'] => $model['factory']['alias']] +
                                                 [$keys['collection'] => $model['collection']['id']]
                                             )
                                         ); ?>
