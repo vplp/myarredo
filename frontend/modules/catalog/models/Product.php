@@ -184,8 +184,8 @@ class Product extends \common\modules\catalog\models\Product
         foreach ($images as $image) {
             if (file_exists($path . '/' . $image)) {
 
-                $imagesSources[] = self::getImageThumb($image);
-                //$imagesSources[] = $url . '/' . $image;
+                //$imagesSources[] = self::getImageThumb($image);
+                $imagesSources[] = $url . '/' . $image;
             }
         }
 
