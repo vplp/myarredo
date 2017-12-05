@@ -1790,9 +1790,10 @@ footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: 0 -10px;
   .one-prod-tile {
-    width: 31.5%;
-    margin-bottom: 23px;
+    width: calc( 33% - 20px );
+    margin: 0 10px 20px 10px;
     border: 1px solid transparent;
     transition: all 0.2s ease;
     position: relative;
