@@ -451,13 +451,18 @@ $(document).ready(function(){
 
 });
 (function(){
-    var btn = $("#checkout-form button[type=submit]")
-    $("#checkout-form").on("submit",function(e){
-        btn.addClass("disabled");
-        $(".loader").show();
-    });
-    document.getElementById("checkout-form").addEventListener("DOMSubtreeModified", function(){
-        $(".loader").hide();
-        btn.removeClass("disabled");
-    });
+    if( $("#checkout-form").length ){
+
+        var btn = $("#checkout-form button[type=submit]");
+
+        $("#checkout-form").on("submit",function(e){
+            btn.addClass("disabled");
+            $(".loader").show();
+        });
+        document.getElementById("checkout-form").addEventListener("DOMSubtreeModified", function(){
+            $(".loader").hide();
+            btn.removeClass("disabled");
+        });
+    }
+
 })();
