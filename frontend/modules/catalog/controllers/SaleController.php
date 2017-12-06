@@ -3,16 +3,16 @@
 namespace frontend\modules\catalog\controllers;
 
 use Yii;
-use yii\helpers\ArrayHelper;
+use yii\helpers\{
+    ArrayHelper, Html
+};
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-//
-use thread\actions\RecordView;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
     Sale,
-    SaleLang ,
+    SaleLang,
     search\Sale as filterSaleModel,
     Category,
     Factory,
@@ -71,20 +71,6 @@ class SaleController extends BaseController
     }
 
     /**
-     * @return array
-     */
-    public function actions()
-    {
-        return [
-            'view' => [
-                'class' => RecordView::class,
-                'modelClass' => $this->model,
-                'methodName' => 'findByAlias',
-            ],
-        ];
-    }
-
-    /**
      * @return string
      */
     public function actionList()
@@ -112,6 +98,41 @@ class SaleController extends BaseController
             'factory' => $factory,
             'models' => $models->getModels(),
             'pages' => $models->getPagination()
+        ]);
+    }
+
+    /**
+     * @param string $alias
+     * @return string
+     */
+    public function actionView(string $alias)
+    {
+        $model = Sale::findByAlias($alias);
+
+        if ($model === null) {
+            throw new NotFoundHttpException;
+        }
+
+        $this->breadcrumbs[] = [
+            'label' => 'Каталог итальянской мебели',
+            'url' => ['/catalog/category/list']
+        ];
+
+        $this->title = 'Распродажа: ' .
+            $model['lang']['title'] .
+            ' - '. $model['price_new'] . ' ' . $model['currency'] .
+            ' - интернет-магазин Myarredo в ' .
+            Yii::$app->city->getCityTitleWhere();
+
+        Yii::$app->view->registerMetaTag([
+            'name' => 'description',
+            'content' => strip_tags($model['lang']['description']) .
+                ' Купить в интернет-магазине Myarredo в ' .
+                Yii::$app->city->getCityTitleWhere()
+        ]);
+
+        return $this->render('view', [
+            'model' => $model,
         ]);
     }
 }
