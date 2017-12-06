@@ -5,7 +5,7 @@
  * http://www.filamentgroup.com
  * reference article: http://www.filamentgroup.com/lab/update_date_range_picker_with_jquery_ui/
  * demo page: http://www.filamentgroup.com/examples/daterangepicker/
- * 
+ *
  * Copyright (c) 2008 Filament Group, Inc
  * Dual licensed under the MIT (filamentgroup.com/examples/mit-license.txt) and GPL (filamentgroup.com/examples/gpl-license.txt) licenses.
  *
@@ -14,12 +14,12 @@
  * 	10.23.2008 initial Version
  *  11.12.2008 changed dateFormat option to allow custom date formatting (credit: http://alexgoldstone.com/)
  *  01.04.09 updated markup to new jQuery UI CSS Framework
- *  01.19.2008 changed presets hash to support different text 
+ *  01.19.2008 changed presets hash to support different text
  * --------------------------------------------------------------------
  */
 jQuery.fn.daterangepicker = function(settings){
 	var rangeInput = jQuery(this);
-	
+
 	//defaults
 	var options = jQuery.extend({
 		presetRanges: [
@@ -34,13 +34,13 @@ jQuery.fn.daterangepicker = function(settings){
 			//{text: 'Last 30 Days', dateStart: 'Today-30', dateEnd: 'Today' },
 			//{text: 'Next 30 Days', dateStart: 'Today', dateEnd: 'Today+30' },
 			//{text: 'Our Ad Campaign', dateStart: '03/07/08', dateEnd: '07/08/08' }
-		], 
-		//presetRanges: array of objects for each menu preset. 
+		],
+		//presetRanges: array of objects for each menu preset.
 		//Each obj must have text, dateStart, dateEnd. dateStart, dateEnd accept date.js string or a function which returns a date object
 		presets: {
-			specificDate: 'Specific Date', 
-			allDatesBefore: 'All Dates Before', 
-			allDatesAfter: 'All Dates After', 
+			specificDate: 'Specific Date',
+			allDatesBefore: 'All Dates Before',
+			allDatesAfter: 'All Dates After',
 			dateRange: 'Date Range'
 		},
 		rangeStartTitle: 'Start date',
@@ -48,8 +48,8 @@ jQuery.fn.daterangepicker = function(settings){
 		nextLinkText: 'Next',
 		prevLinkText: 'Prev',
 		doneButtonText: 'Done',
-		earliestDate: Date.parse('-15years'), //earliest date allowed 
-		latestDate: Date.parse('+15years'), //latest date allowed 
+		earliestDate: Date.parse('-15years'), //earliest date allowed
+		latestDate: Date.parse('+15years'), //latest date allowed
 		rangeSplitter: '-', //string to use between dates in single input
 		dateFormat: 'm/d/yy', // date formatting. Available formats: http://docs.jquery.com/UI/Datepicker/%24.datepicker.formatDate
 		closeOnSelect: true, //if a complete selection is made, close the menu
@@ -62,17 +62,17 @@ jQuery.fn.daterangepicker = function(settings){
 		onChange: function(){},
 		datepickerOptions: null //object containing native UI datepicker API options
 	}, settings);
-	
+
 
 	//custom datepicker options, extended by options
 	var datepickerOptions = {
-		onSelect: function() { 
+		onSelect: function() {
 				if(rp.find('.ui-daterangepicker-specificDate').is('.ui-state-active')){
-					rp.find('.range-end').datepicker('setDate', rp.find('.range-start').datepicker('getDate') ); 
+					rp.find('.range-end').datepicker('setDate', rp.find('.range-start').datepicker('getDate') );
 				}
 				var rangeA = fDate( rp.find('.range-start').datepicker('getDate') );
 				var rangeB = fDate( rp.find('.range-end').datepicker('getDate') );
-				
+
 				//send back to input or inputs
 				if(rangeInput.length == 2){
 					rangeInput.eq(0).val(rangeA);
@@ -86,27 +86,27 @@ jQuery.fn.daterangepicker = function(settings){
 					if(!rp.find('li.ui-state-active').is('.ui-daterangepicker-dateRange') && !rp.is(':animated') ){
 						hideRP();
 					}
-				}	
-				options.onChange();			
+				}
+				options.onChange();
 			},
 			defaultDate: +0
 	};
-	
+
 	//change event fires both when a calendar is updated or a change event on the input is triggered
 	rangeInput.change(options.onChange);
-	
-	
+
+
 	//datepicker options from options
 	options.datepickerOptions = (settings) ? jQuery.extend(datepickerOptions, settings.datepickerOptions) : datepickerOptions;
-	
+
 	//Capture Dates from input(s)
 	var inputDateA, inputDateB = Date.parse('today');
 	var inputDateAtemp, inputDateBtemp;
 	if(rangeInput.size() == 2){
 		inputDateAtemp = Date.parse( rangeInput.eq(0).val() );
 		inputDateBtemp = Date.parse( rangeInput.eq(1).val() );
-		if(inputDateAtemp == null){inputDateAtemp = inputDateBtemp;} 
-		if(inputDateBtemp == null){inputDateBtemp = inputDateAtemp;} 
+		if(inputDateAtemp == null){inputDateAtemp = inputDateBtemp;}
+		if(inputDateBtemp == null){inputDateBtemp = inputDateAtemp;}
 	}
 	else {
 		inputDateAtemp = Date.parse( rangeInput.val().split(options.rangeSplitter)[0] );
@@ -116,8 +116,8 @@ jQuery.fn.daterangepicker = function(settings){
 	if(inputDateAtemp != null){inputDateA = inputDateAtemp;}
 	if(inputDateBtemp != null){inputDateB = inputDateBtemp;}
 
-		
-	//build picker and 
+
+	//build picker and
 	var rp = jQuery('<div class="ui-daterangepicker ui-widget ui-helper-clearfix ui-widget-content ui-corner-all"></div>');
 	var rpPresets = (function(){
 		var ul = jQuery('<ul class="ui-widget-content"></ul>').appendTo(rp);
@@ -133,7 +133,7 @@ jQuery.fn.daterangepicker = function(settings){
 			.appendTo(ul);
 			x++;
 		});
-		
+
 		ul.find('li').hover(
 				function(){
 					jQuery(this).addClass('ui-state-hover');
@@ -148,8 +148,8 @@ jQuery.fn.daterangepicker = function(settings){
 			});
 		return ul;
 	})();
-				
-	//function to format a date string        
+
+	//function to format a date string
 	function fDate(date){
 	   if(!date.getDate()){return '';}
 	   var day = date.getDate();
@@ -157,13 +157,13 @@ jQuery.fn.daterangepicker = function(settings){
 	   var year = date.getFullYear();
 	   month++; // adjust javascript month
 	   var dateFormat = options.dateFormat;
-	   return jQuery.datepicker.formatDate( dateFormat, date ); 
+	   return jQuery.datepicker.formatDate( dateFormat, date );
 	}
-	
-	
+
+
 	jQuery.fn.restoreDateFromData = function(){
 		if(jQuery(this).data('saveDate')){
-			jQuery(this).datepicker('setDate', jQuery(this).data('saveDate')).removeData('saveDate'); 
+			jQuery(this).datepicker('setDate', jQuery(this).data('saveDate')).removeData('saveDate');
 		}
 		return this;
 	}
@@ -173,20 +173,20 @@ jQuery.fn.daterangepicker = function(settings){
 		}
 		return this;
 	}
-	
+
 	//show, hide, or toggle rangepicker
 	function showRP(){
-		if(rp.data('state') == 'closed'){ 
+		if(rp.data('state') == 'closed'){
 			rp.data('state', 'open');
 			rp.fadeIn(300);
-			options.onOpen(); 
+			options.onOpen();
 		}
 	}
 	function hideRP(){
-		if(rp.data('state') == 'open'){ 
+		if(rp.data('state') == 'open'){
 			rp.data('state', 'closed');
 			rp.fadeOut(300);
-			options.onClose(); 
+			options.onClose();
 		}
 	}
 	function toggleRP(){
@@ -194,10 +194,10 @@ jQuery.fn.daterangepicker = function(settings){
 		else { showRP(); }
 	}
 	rp.data('state', 'closed');
-					
-	//preset menu click events	
+
+	//preset menu click events
 	jQuery.fn.clickActions = function(rp, rpPickers, doneBtn){
-		
+
 		if(jQuery(this).is('.ui-daterangepicker-specificDate')){
 			doneBtn.hide();
 			rpPickers.show();
@@ -242,10 +242,10 @@ jQuery.fn.daterangepicker = function(settings){
 				rp.find('.range-start').datepicker('setDate', dateStart).find('.ui-datepicker-current-day').trigger('click');
 				rp.find('.range-end').datepicker('setDate', dateEnd).find('.ui-datepicker-current-day').trigger('click');
 		}
-		
+
 		return false;
-	}	
-	
+	}
+
 
 	//picker divs
 	var rpPickers = jQuery('<div class="ranges ui-widget-header ui-corner-all ui-helper-clearfix"><div class="range-start"><span class="title-start">Start Date</span></div><div class="range-end"><span class="title-end">End Date</span></div></div>').appendTo(rp);
@@ -266,10 +266,10 @@ jQuery.fn.daterangepicker = function(settings){
 			}
 	)
 	.appendTo(rpPickers);
-	
-	
-	
-	
+
+
+
+
 	//inputs toggle rangepicker visibility
 	jQuery(this).click(function(){
 		toggleRP();
@@ -277,10 +277,10 @@ jQuery.fn.daterangepicker = function(settings){
 	});
 	//hide em all
 	rpPickers.css('display', 'none').find('.range-start, .range-end, .btnDone').css('display', 'none');
-	
+
 	//inject rp
 	jQuery(options.appendTo).append(rp);
-	
+
 	//wrap and position
 	rp.wrap('<div class="ui-daterangepickercontain"></div>');
 	if(options.posX){
@@ -304,13 +304,13 @@ jQuery.fn.daterangepicker = function(settings){
 			var dateB = rpPickers.find('.range-end').datepicker('getDate');
 			var diff = Math.abs( new TimeSpan(dateA - dateB).getTotalMilliseconds() ) + 86400000; //difference plus one day
 			if(jQuery(this).is('.ui-daterangepicker-prev')){ diff = -diff; }
-			
+
 			rpPickers.find('.range-start, .range-end ').each(function(){
 					var thisDate = jQuery(this).datepicker( "getDate");
 					if(thisDate == null){return false;}
 					jQuery(this).datepicker( "setDate", thisDate.add({milliseconds: diff}) ).find('.ui-datepicker-current-day').trigger('click');
 			});
-			
+
 			return false;
 		})
 		.hover(
@@ -322,13 +322,13 @@ jQuery.fn.daterangepicker = function(settings){
 			})
 		;
 	}
-	
-	
+
+
 	jQuery(document).click(function(){
 		if (rp.is(':visible')) {
 			hideRP();
 		}
-	}); 
+	});
 
 	rp.click(function(){return false;}).hide();
 	return this;
@@ -339,10 +339,10 @@ jQuery.fn.daterangepicker = function(settings){
 
 
 /**
- * Version: 1.0 Alpha-1 
+ * Version: 1.0 Alpha-1
  * Build Date: 13-Nov-2007
  * Copyright (c) 2006-2007, Coolite Inc. (http://www.coolite.com/). All rights reserved.
- * License: Licensed under The MIT License. See license.txt and http://www.datejs.com/license/. 
+ * License: Licensed under The MIT License. See license.txt and http://www.datejs.com/license/.
  * Website: http://www.datejs.com/ or http://www.coolite.com/datejs/
  */
 Date.CultureInfo={name:"en-US",englishName:"English (United States)",nativeName:"English (United States)",dayNames:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],abbreviatedDayNames:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],shortestDayNames:["Su","Mo","Tu","We","Th","Fr","Sa"],firstLetterDayNames:["S","M","T","W","T","F","S"],monthNames:["January","February","March","April","May","June","July","August","September","October","November","December"],abbreviatedMonthNames:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],amDesignator:"AM",pmDesignator:"PM",firstDayOfWeek:0,twoDigitYearMax:2029,dateElementOrder:"mdy",formatPatterns:{shortDate:"M/d/yyyy",longDate:"dddd, MMMM dd, yyyy",shortTime:"h:mm tt",longTime:"h:mm:ss tt",fullDateTime:"dddd, MMMM dd, yyyy h:mm:ss tt",sortableDateTime:"yyyy-MM-ddTHH:mm:ss",universalSortableDateTime:"yyyy-MM-dd HH:mm:ssZ",rfc1123:"ddd, dd MMM yyyy HH:mm:ss GMT",monthDay:"MMMM dd",yearMonth:"MMMM, yyyy"},regexPatterns:{jan:/^jan(uary)?/i,feb:/^feb(ruary)?/i,mar:/^mar(ch)?/i,apr:/^apr(il)?/i,may:/^may/i,jun:/^jun(e)?/i,jul:/^jul(y)?/i,aug:/^aug(ust)?/i,sep:/^sep(t(ember)?)?/i,oct:/^oct(ober)?/i,nov:/^nov(ember)?/i,dec:/^dec(ember)?/i,sun:/^su(n(day)?)?/i,mon:/^mo(n(day)?)?/i,tue:/^tu(e(s(day)?)?)?/i,wed:/^we(d(nesday)?)?/i,thu:/^th(u(r(s(day)?)?)?)?/i,fri:/^fr(i(day)?)?/i,sat:/^sa(t(urday)?)?/i,future:/^next/i,past:/^last|past|prev(ious)?/i,add:/^(\+|after|from)/i,subtract:/^(\-|before|ago)/i,yesterday:/^yesterday/i,today:/^t(oday)?/i,tomorrow:/^tomorrow/i,now:/^n(ow)?/i,millisecond:/^ms|milli(second)?s?/i,second:/^sec(ond)?s?/i,minute:/^min(ute)?s?/i,hour:/^h(ou)?rs?/i,week:/^w(ee)?k/i,month:/^m(o(nth)?s?)?/i,day:/^d(ays?)?/i,year:/^y((ea)?rs?)?/i,shortMeridian:/^(a|p)/i,longMeridian:/^(a\.?m?\.?|p\.?m?\.?)/i,timezone:/^((e(s|d)t|c(s|d)t|m(s|d)t|p(s|d)t)|((gmt)?\s*(\+|\-)\s*\d\d\d\d?)|gmt)/i,ordinalSuffix:/^\s*(st|nd|rd|th)/i,timeContext:/^\s*(\:|a|p)/i},abbreviatedTimeZoneStandard:{GMT:"-000",EST:"-0400",CST:"-0500",MST:"-0600",PST:"-0700"},abbreviatedTimeZoneDST:{GMT:"-000",EDT:"-0500",CDT:"-0600",MDT:"-0700",PDT:"-0800"}};
@@ -449,31 +449,31 @@ return((r[1].length===0)?r[0]:null);};};Date.parseExact=function(s,fx){return Da
  * @author: Coolite Inc. http://www.coolite.com/
  * @date: 2008-04-13
  * @copyright: Copyright (c) 2006-2008, Coolite Inc. (http://www.coolite.com/). All rights reserved.
- * @license: Licensed under The MIT License. See license.txt and http://www.datejs.com/license/. 
+ * @license: Licensed under The MIT License. See license.txt and http://www.datejs.com/license/.
  * @website: http://www.datejs.com/
  */
- 
-/* 
+
+/*
  * TimeSpan(milliseconds);
  * TimeSpan(days, hours, minutes, seconds);
  * TimeSpan(days, hours, minutes, seconds, milliseconds);
  */
 var TimeSpan = function (days, hours, minutes, seconds, milliseconds) {
     var attrs = "days hours minutes seconds milliseconds".split(/\s+/);
-    
-    var gFn = function (attr) { 
-        return function () { 
-            return this[attr]; 
-        }; 
+
+    var gFn = function (attr) {
+        return function () {
+            return this[attr];
+        };
     };
-	
-    var sFn = function (attr) { 
-        return function (val) { 
-            this[attr] = val; 
-            return this; 
-        }; 
+
+    var sFn = function (attr) {
+        return function (val) {
+            this[attr] = val;
+            return this;
+        };
     };
-	
+
     for (var i = 0; i < attrs.length ; i++) {
         var $a = attrs[i], $b = $a.slice(0, 1).toUpperCase() + $a.slice(1);
         TimeSpan.prototype[$a] = 0;
@@ -481,21 +481,21 @@ var TimeSpan = function (days, hours, minutes, seconds, milliseconds) {
         TimeSpan.prototype["set" + $b] = sFn($a);
     }
 
-    if (arguments.length == 4) { 
-        this.setDays(days); 
-        this.setHours(hours); 
-        this.setMinutes(minutes); 
-        this.setSeconds(seconds); 
-    } else if (arguments.length == 5) { 
-        this.setDays(days); 
-        this.setHours(hours); 
-        this.setMinutes(minutes); 
-        this.setSeconds(seconds); 
-        this.setMilliseconds(milliseconds); 
+    if (arguments.length == 4) {
+        this.setDays(days);
+        this.setHours(hours);
+        this.setMinutes(minutes);
+        this.setSeconds(seconds);
+    } else if (arguments.length == 5) {
+        this.setDays(days);
+        this.setHours(hours);
+        this.setMinutes(minutes);
+        this.setSeconds(seconds);
+        this.setMilliseconds(milliseconds);
     } else if (arguments.length == 1 && typeof days == "number") {
         var orient = (days < 0) ? -1 : +1;
         this.setMilliseconds(Math.abs(days));
-        
+
         this.setDays(Math.floor(this.getMilliseconds() / 86400000) * orient);
         this.setMilliseconds(this.getMilliseconds() % 86400000);
 
@@ -512,13 +512,13 @@ var TimeSpan = function (days, hours, minutes, seconds, milliseconds) {
     }
 
     this.getTotalMilliseconds = function () {
-        return (this.getDays() * 86400000) + (this.getHours() * 3600000) + (this.getMinutes() * 60000) + (this.getSeconds() * 1000); 
+        return (this.getDays() * 86400000) + (this.getHours() * 3600000) + (this.getMinutes() * 60000) + (this.getSeconds() * 1000);
     };
-    
+
     this.compareTo = function (time) {
         var t1 = new Date(1970, 1, 1, this.getHours(), this.getMinutes(), this.getSeconds()), t2;
-        if (time === null) { 
-            t2 = new Date(1970, 1, 1, 0, 0, 0); 
+        if (time === null) {
+            t2 = new Date(1970, 1, 1, 0, 0, 0);
         }
         else {
             t2 = new Date(1970, 1, 1, time.getHours(), time.getMinutes(), time.getSeconds());
@@ -528,41 +528,41 @@ var TimeSpan = function (days, hours, minutes, seconds, milliseconds) {
 
     this.equals = function (time) {
         return (this.compareTo(time) === 0);
-    };    
-
-    this.add = function (time) { 
-        return (time === null) ? this : this.addSeconds(time.getTotalMilliseconds() / 1000); 
     };
 
-    this.subtract = function (time) { 
-        return (time === null) ? this : this.addSeconds(-time.getTotalMilliseconds() / 1000); 
+    this.add = function (time) {
+        return (time === null) ? this : this.addSeconds(time.getTotalMilliseconds() / 1000);
     };
 
-    this.addDays = function (n) { 
-        return new TimeSpan(this.getTotalMilliseconds() + (n * 86400000)); 
+    this.subtract = function (time) {
+        return (time === null) ? this : this.addSeconds(-time.getTotalMilliseconds() / 1000);
     };
 
-    this.addHours = function (n) { 
-        return new TimeSpan(this.getTotalMilliseconds() + (n * 3600000)); 
+    this.addDays = function (n) {
+        return new TimeSpan(this.getTotalMilliseconds() + (n * 86400000));
     };
 
-    this.addMinutes = function (n) { 
-        return new TimeSpan(this.getTotalMilliseconds() + (n * 60000)); 
+    this.addHours = function (n) {
+        return new TimeSpan(this.getTotalMilliseconds() + (n * 3600000));
+    };
+
+    this.addMinutes = function (n) {
+        return new TimeSpan(this.getTotalMilliseconds() + (n * 60000));
     };
 
     this.addSeconds = function (n) {
-        return new TimeSpan(this.getTotalMilliseconds() + (n * 1000)); 
+        return new TimeSpan(this.getTotalMilliseconds() + (n * 1000));
     };
 
     this.addMilliseconds = function (n) {
-        return new TimeSpan(this.getTotalMilliseconds() + n); 
+        return new TimeSpan(this.getTotalMilliseconds() + n);
     };
 
     this.get12HourHour = function () {
         return (this.getHours() > 12) ? this.getHours() - 12 : (this.getHours() === 0) ? 12 : this.getHours();
     };
 
-    this.getDesignator = function () { 
+    this.getDesignator = function () {
         return (this.getHours() < 12) ? Date.CultureInfo.amDesignator : Date.CultureInfo.pmDesignator;
     };
 
@@ -571,106 +571,106 @@ var TimeSpan = function (days, hours, minutes, seconds, milliseconds) {
             if (this.getDays() !== null && this.getDays() > 0) {
                 return this.getDays() + "." + this.getHours() + ":" + this.p(this.getMinutes()) + ":" + this.p(this.getSeconds());
             }
-            else { 
+            else {
                 return this.getHours() + ":" + this.p(this.getMinutes()) + ":" + this.p(this.getSeconds());
             }
         };
-        
+
         this.p = function (s) {
             return (s.toString().length < 2) ? "0" + s : s;
         };
-        
+
         var me = this;
-        
-        return format ? format.replace(/dd?|HH?|hh?|mm?|ss?|tt?/g, 
+
+        return format ? format.replace(/dd?|HH?|hh?|mm?|ss?|tt?/g,
         function (format) {
             switch (format) {
-            case "d":	
+            case "d":
                 return me.getDays();
-            case "dd":	
+            case "dd":
                 return me.p(me.getDays());
-            case "H":	
+            case "H":
                 return me.getHours();
-            case "HH":	
+            case "HH":
                 return me.p(me.getHours());
-            case "h":	
+            case "h":
                 return me.get12HourHour();
-            case "hh":	
+            case "hh":
                 return me.p(me.get12HourHour());
-            case "m":	
+            case "m":
                 return me.getMinutes();
-            case "mm":	
+            case "mm":
                 return me.p(me.getMinutes());
-            case "s":	
+            case "s":
                 return me.getSeconds();
-            case "ss":	
+            case "ss":
                 return me.p(me.getSeconds());
-            case "t":	
+            case "t":
                 return ((me.getHours() < 12) ? Date.CultureInfo.amDesignator : Date.CultureInfo.pmDesignator).substring(0, 1);
-            case "tt":	
+            case "tt":
                 return (me.getHours() < 12) ? Date.CultureInfo.amDesignator : Date.CultureInfo.pmDesignator;
             }
         }
         ) : this._toString();
     };
     return this;
-};    
+};
 
 /**
- * Gets the time of day for this date instances. 
+ * Gets the time of day for this date instances.
  * @return {TimeSpan} TimeSpan
  */
 Date.prototype.getTimeOfDay = function () {
     return new TimeSpan(0, this.getHours(), this.getMinutes(), this.getSeconds(), this.getMilliseconds());
 };
 
-/* 
+/*
  * TimePeriod(startDate, endDate);
  * TimePeriod(years, months, days, hours, minutes, seconds, milliseconds);
  */
 var TimePeriod = function (years, months, days, hours, minutes, seconds, milliseconds) {
     var attrs = "years months days hours minutes seconds milliseconds".split(/\s+/);
-    
-    var gFn = function (attr) { 
-        return function () { 
-            return this[attr]; 
-        }; 
+
+    var gFn = function (attr) {
+        return function () {
+            return this[attr];
+        };
     };
-	
-    var sFn = function (attr) { 
-        return function (val) { 
-            this[attr] = val; 
-            return this; 
-        }; 
+
+    var sFn = function (attr) {
+        return function (val) {
+            this[attr] = val;
+            return this;
+        };
     };
-	
+
     for (var i = 0; i < attrs.length ; i++) {
         var $a = attrs[i], $b = $a.slice(0, 1).toUpperCase() + $a.slice(1);
         TimePeriod.prototype[$a] = 0;
         TimePeriod.prototype["get" + $b] = gFn($a);
         TimePeriod.prototype["set" + $b] = sFn($a);
     }
-    
-    if (arguments.length == 7) { 
+
+    if (arguments.length == 7) {
         this.years = years;
         this.months = months;
         this.setDays(days);
-        this.setHours(hours); 
-        this.setMinutes(minutes); 
-        this.setSeconds(seconds); 
+        this.setHours(hours);
+        this.setMinutes(minutes);
+        this.setSeconds(seconds);
         this.setMilliseconds(milliseconds);
     } else if (arguments.length == 2 && arguments[0] instanceof Date && arguments[1] instanceof Date) {
         // startDate and endDate as arguments
-    
+
         var d1 = years.clone();
         var d2 = months.clone();
-    
+
         var temp = d1.clone();
         var orient = (d1 > d2) ? -1 : +1;
-        
+
         this.years = d2.getFullYear() - d1.getFullYear();
         temp.addYears(this.years);
-        
+
         if (orient == +1) {
             if (temp > d2) {
                 if (this.years !== 0) {
@@ -684,7 +684,7 @@ var TimePeriod = function (years, months, days, hours, minutes, seconds, millise
                 }
             }
         }
-        
+
         d1.addYears(this.years);
 
         if (orient == +1) {
@@ -699,7 +699,7 @@ var TimePeriod = function (years, months, days, hours, minutes, seconds, millise
                 this.months--;
             }
         }
-        
+
         var diff = d2 - d1;
 
         if (diff !== 0) {

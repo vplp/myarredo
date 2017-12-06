@@ -446,11 +446,42 @@ $(document).ready(function(){
 
         $(".drop-date-picker").daterangepicker({
             posX: null,
-            posY: null
+            posY: null,
+            presetRanges: [
+                {text:"Сегодня", dateStart: 'today', dateEnd: 'today' },
+                {text: 'Неделя', dateStart: 'today-7days', dateEnd: 'today' },
+            ]
         });
 
         $(".ui-daterangepickercontain").appendTo($(".datepicker-drop")); // переносим datepicker в выпадающий список
 
+    $('#reportrange').daterangepicker({
+            ranges: {
+                'Сегодня': [new Date(), new Date()],
+                'Вчера': [moment().subtract('days', 1), moment().subtract('days', 1)],
+                'Неделя': [moment().subtract('days', 6), moment()],
+                'За 30 дней': [moment().subtract('days', 29), moment()],
+                'Текущий месяц': [moment().startOf('month'), moment().endOf('month')],
+                'Прошлый месяц': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+            },
+            dateLimit: {
+                "days": 31
+            },
+            maxDate: moment(),
+            format: 'DD.MM.YYYY',
+            startDate: '06.12.2017',
+            endDate: '06.12.2017',
+            locale: {
+                applyLabel: 'Применить',
+                cancelLabel: 'Отмена',
+                fromLabel: 'От',
+                toLabel: 'До',
+                customRangeLabel: 'Диапазон дат',
+                daysOfWeek: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+                firstDay: 1
+            }
+        });
 
 });
 (function(){
