@@ -24,7 +24,7 @@ $this->title = $this->context->title;
         <div class="container large-container">
             <div class="row">
 
-                <?= Html::tag('h1', $this->context->SeoH1); ?>
+                <?= Html::tag('h1', $this->context->h1); ?>
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
