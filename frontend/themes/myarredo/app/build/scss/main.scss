@@ -753,6 +753,9 @@ footer {
     border: none;
   }
 }
+.ui-daterangepickercontain {
+  position: relative;
+}
 .fancybox-inner {
   display: inline-block;
   width: auto !important;
@@ -2813,6 +2816,15 @@ footer {
       right: 7px;
       font-family: FontAwesome;
     }
+  }
+  .ui-daterangepicker {
+    .ranges {
+      display: flex;
+    }
+  }
+  .datepicker-drop {
+    left: auto;
+    right: 0;
   }
   .large-picker {
     .btn {
