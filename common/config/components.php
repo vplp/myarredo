@@ -3,11 +3,11 @@
 return [
     'languages' => [
         'class' => \thread\app\model\Languages::class,
-        'languageModel' => \thread\modules\sys\models\Language::class,
+        'languageModel' => \common\modules\sys\models\Language::class,
     ],
     'user' => [
         'class' => \yii\web\User::class,
-        'identityClass' => \thread\modules\user\models\User::class,
+        'identityClass' => \common\modules\user\models\User::class,
         'enableAutoLogin' => false,
         'loginUrl' => ['/user/login']
     ],
@@ -19,7 +19,7 @@ return [
     ],
     'i18n' => [
         'class' => \thread\modules\sys\modules\translation\components\I18N::class,
-        'languageModel' => \thread\modules\sys\models\Language::class,
+        'languageModel' => \common\modules\sys\models\Language::class,
         'enableCaching' => false,
         'cachingDuration' => 3600
     ],
@@ -50,7 +50,7 @@ return [
     ],
     // MemCache
     'memCache' => [
-        'class' => 'yii\caching\MemCache',
+        'class' => \yii\caching\MemCache::class,
         'servers' => [
             [
                 'host' => 'localhost',

@@ -10,7 +10,10 @@ use yii\helpers\Html;
 
 ?>
 
-<?php if (!Yii::$app->getUser()->isGuest && Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
+<?php if (
+    !Yii::$app->getUser()->isGuest &&
+    Yii::$app->user->identity->profile->isPdfAccess()
+): ?>
 
     <div class="downloads">
 

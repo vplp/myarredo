@@ -23,8 +23,7 @@ $this->title = $this->context->title;
             <div class="container large-container">
                 <ul class="letter-select">
 
-                    <?php
-                    foreach (Factory::getListLetters() as $letter) {
+                    <?php foreach (Factory::getListLetters() as $letter) {
                         echo Html::beginTag('li') .
                             Html::a(
                                 $letter['first_letter'],
