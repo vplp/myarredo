@@ -190,10 +190,12 @@ class Profile extends \thread\modules\user\models\Profile
      */
     public function isPdfAccess()
     {
-        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin']) || (
+        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin']) ||
+            (
                 in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner']) &&
-                Yii::$app->getUser()->getIdentity()->profile['pdf_access']
-            )) {
+                Yii::$app->getUser()->getIdentity()->profile->pdf_access
+            )
+        ) {
             return true;
         } else {
             return false;
