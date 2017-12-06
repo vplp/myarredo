@@ -21,7 +21,9 @@ use common\modules\location\models\{
  * @property int $city_id
  * @property float $latitude
  * @property float $longitude
- * @property float $partner_in_city
+ * @property int $partner_in_city
+ * @property int $possibility_to_answer
+ * @property int $pdf_access
  *
  * @package common\modules\user\models
  */
@@ -44,7 +46,16 @@ class Profile extends \thread\modules\user\models\Profile
                 'string',
                 'max' => 255
             ],
-            [['delivery_to_other_cities', 'partner_in_city'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [
+                [
+                    'delivery_to_other_cities',
+                    'partner_in_city',
+                    'possibility_to_answer',
+                    'pdf_access'
+                ],
+                'in',
+                'range' => array_keys(self::statusKeyRange())
+            ],
             [['country_id', 'city_id'], 'integer'],
             [['latitude', 'longitude'], 'double'],
         ]);
@@ -69,7 +80,9 @@ class Profile extends \thread\modules\user\models\Profile
                 'delivery_to_other_cities',
                 'latitude',
                 'longitude',
-                'partner_in_city'
+                'partner_in_city',
+                'possibility_to_answer',
+                'pdf_access'
             ],
             'basicCreate' => [
                 'phone',
@@ -82,7 +95,9 @@ class Profile extends \thread\modules\user\models\Profile
                 'delivery_to_other_cities',
                 'latitude',
                 'longitude',
-                'partner_in_city'
+                'partner_in_city',
+                'possibility_to_answer',
+                'pdf_access'
             ],
             'backend' => [
                 'first_name',
@@ -97,7 +112,9 @@ class Profile extends \thread\modules\user\models\Profile
                 'delivery_to_other_cities',
                 'latitude',
                 'longitude',
-                'partner_in_city'
+                'partner_in_city',
+                'possibility_to_answer',
+                'pdf_access'
             ]
         ]);
     }
@@ -119,6 +136,8 @@ class Profile extends \thread\modules\user\models\Profile
             'latitude' => Yii::t('app', 'Latitude'),
             'longitude' => Yii::t('app', 'Longitude'),
             'partner_in_city' => Yii::t('app', 'Partner in city'),
+            'possibility_to_answer' => 'Отвечает без установки кода на сайт',
+            'pdf_access' => 'Доступ к прайсам и каталогам',
         ]);
     }
 
@@ -162,5 +181,22 @@ class Profile extends \thread\modules\user\models\Profile
             return false;
         else
             return $model->lang->title;
+    }
+
+    /**
+     * isPdfAccess
+     *
+     * @return bool
+     */
+    public function isPdfAccess()
+    {
+        if (in_array(Yii::$app->user->identity->group->role, ['admin']) || (
+                in_array(Yii::$app->user->identity->group->role, ['admin', 'partner']) &&
+                Yii::$app->user->identity->profile->pdf_access
+            )) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
