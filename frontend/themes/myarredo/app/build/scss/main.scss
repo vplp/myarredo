@@ -2857,6 +2857,48 @@ footer {
     left: auto;
     right: 0;
   }
+  .ui-datepicker {
+    .ui-datepicker-prev {
+      span {
+        position: relative;
+        text-indent: 0;
+        font-size: 0;
+        &:before {
+          content: "\f104";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          font-family: "FontAwesome";
+          font-size: 15px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+    .ui-datepicker-next {
+      span {
+        position: relative;
+        text-indent: 0;
+        font-size: 0;
+        &:before {
+          content: "\f105";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          font-family: "FontAwesome";
+          font-size: 15px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
   .large-picker {
     & > .btn {
       position: relative;
