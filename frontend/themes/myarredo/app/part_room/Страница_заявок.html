@@ -327,11 +327,11 @@
                         <div class="range-inputs">
                             <label>
                                 <span>От</span>
-                                <input class="input-mini range-a" type="text" name="daterangepicker_start" value="">
+                                <input class="input-mini range-a" type="text" name="daterangepicker_start" value="21.08.2017">
                             </label>
                             <label>
                                 <span>До</span>
-                                <input class="input-mini range-b" type="text" name="daterangepicker_end" value="">
+                                <input class="input-mini range-b" type="text" name="daterangepicker_end" value="21.08.2017">
                             </label>
                         </div>
                         <div class="flex btns-cont">
@@ -882,7 +882,7 @@
     <div class="partner-cities container large-container">
         <div class="row">
             <div>
-                Этот список городов размещен здесь для вашего удобства.
+                Этот список городов размещен здесь для вашего удобства,
                 Найдите свой город и купите итальянскую мебель по лучшей цене.
             </div>
             <ul>
@@ -953,19 +953,10 @@
     </div>
 </footer>
 
+<!--Добавить только на этой странице -->
+
 <script src="../public/libs/jqueryui/jquery-ui.min.js"></script>
-<script src="../public/libs/moment.js"></script>
 <script src="../public/libs/daterangepicker.jQuery.js"></script>
-
-
-<script src="../public/libs/fancybox/jquery.fancybox.pack.js"></script>
-<script src="../public/libs/bootstrap/js/bootstrap.min.js"></script>
-<script src="https://use.fontawesome.com/35f65baac5.js"></script>
-<script src="../public/libs/bootstrap-select/js/bootstrap-select.min.js"></script>
-<script src="../public/libs/slick-1.6/slick.min.js"></script>
-<script src="../public/libs/nouislider/nouislider.min.js"></script>
-<script src="../public/libs/wNumb.js"></script>
-<script src="../public/js/core.js"></script>
 
 <script>
 
@@ -1010,13 +1001,25 @@
     },$.datepicker.setDefaults( $.datepicker.regional[ "ru" ] ));
 
     $(".drop-date-picker").click(function(){
-       $(this).parent().click();
+        $(this).parent().click();
     });
 
     $(".ui-daterangepickercontain").prependTo($(".datepicker-drop")); // переносим datepicker в выпадающий список
 
 
 </script>
+
+<!--конец Добавить только на этой странице -->
+
+
+<script src="../public/libs/fancybox/jquery.fancybox.pack.js"></script>
+<script src="../public/libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://use.fontawesome.com/35f65baac5.js"></script>
+<script src="../public/libs/bootstrap-select/js/bootstrap-select.min.js"></script>
+<script src="../public/libs/slick-1.6/slick.min.js"></script>
+<script src="../public/libs/nouislider/nouislider.min.js"></script>
+<script src="../public/libs/wNumb.js"></script>
+<script src="../public/js/core.js"></script>
 
 </body>
 </html>
