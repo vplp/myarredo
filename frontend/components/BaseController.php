@@ -33,6 +33,8 @@ abstract class BaseController extends Controller
      */
     public $breadcrumbs = [];
 
+    public $h1 = [];
+
     protected $directlink;
 
     public function init()

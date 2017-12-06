@@ -61,7 +61,6 @@ class CategoryController extends BaseController
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, Yii::$app->catalogFilter->params));
 
-
         return $this->render('list', [
             'group' => $group,
             'category' => $category,
@@ -83,6 +82,8 @@ class CategoryController extends BaseController
         $params = Yii::$app->catalogFilter->params;
 
         $this->title = 'Каталог итальянской мебели, цены на мебель из Италии';
+
+        $this->h1 = 'Каталог итальянской мебели в ' . Yii::$app->city->getCityTitleWhere();
 
         $this->breadcrumbs[] = [
             'label' => 'Каталог итальянской мебели, цены на мебель из Италии',
