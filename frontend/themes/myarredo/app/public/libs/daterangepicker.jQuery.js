@@ -73,6 +73,9 @@ jQuery.fn.daterangepicker = function(settings){
 				var rangeA = fDate( rp.find('.range-start').datepicker('getDate') );
 				var rangeB = fDate( rp.find('.range-end').datepicker('getDate') );
 
+				$(".range-a").val(rangeA);
+            	$(".range-b").val(rangeB);
+
 				//send back to input or inputs
 				if(rangeInput.length == 2){
 					rangeInput.eq(0).val(rangeA);
