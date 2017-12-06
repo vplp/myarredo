@@ -30,7 +30,7 @@ use frontend\modules\catalog\models\Product;
                 <div style="float: left;">
 
                     <?= Html::img(
-                        'http://www.myarredo.ru/' . Product::getImageThumb($item->product['image_link']),
+                        'http://www.myarredo.ru' . Product::getImageThumb($item->product['image_link']),
                         ['class' => 'width: 140px; max-height: 100px;']
                     ); ?>
 

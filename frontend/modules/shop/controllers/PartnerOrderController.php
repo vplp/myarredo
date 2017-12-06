@@ -262,7 +262,8 @@ class PartnerOrderController extends BaseController
                                     'modelAnswer' => $modelAnswer,
                                 ]
                             )
-                            ->setFrom(Yii::$app->params['mailer']['setFrom'])
+                            //->setFrom(['info@myarredo.ru' => Yii::$app->user->identity->email])
+                            //->setFrom(Yii::$app->params['mailer']['setFrom'])
                             ->setTo($modelOrder->customer['email'])
                             ->setSubject('Ответ за заказ № ' . $modelOrder['id'])
                             ->send();

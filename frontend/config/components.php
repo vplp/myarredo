@@ -51,7 +51,11 @@ return [
             'encryption' => 'ssl',
         ],
         'useFileTransport' => false,
-        'enableSwiftMailerLogging' => false,
+        'enableSwiftMailerLogging' => true,
+        'messageConfig' => [
+            'charset' => 'UTF-8',
+            'from' => ['info@myarredo.ru' => 'myarredo'],
+        ],
     ],
     'metatag' => [
         'class' => \frontend\modules\seo\components\MetaTag::class
