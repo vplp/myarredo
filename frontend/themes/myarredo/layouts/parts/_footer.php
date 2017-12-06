@@ -64,8 +64,6 @@ use frontend\modules\user\widgets\partner\PartnerInfo;
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 
-<?php if (!in_array(Yii::$app->getRequest()->getUserIP(), ['127.0.0.1'])): ?>
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-54015829-1"></script>
     <script>
@@ -117,6 +115,8 @@ use frontend\modules\user\widgets\partner\PartnerInfo;
         <div><img src="https://mc.yandex.ru/watch/24814823" style="position:absolute; left:-9999px;" alt=""/></div>
     </noscript>
     <!-- /Yandex.Metrika counter -->
+
+<?php if (Yii::$app->city->domain == 'ru'): ?>
 
     <!-- BEGIN JIVOSITE CODE {literal} -->
     <script type='text/javascript'>
