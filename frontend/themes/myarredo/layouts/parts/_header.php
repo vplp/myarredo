@@ -156,7 +156,7 @@ use frontend\modules\location\widgets\ChangeCity;
         <div class="container large-container">
             <div class="row">
                 <a href="/" class="logo">
-                    <img src="<?= $bundle->baseUrl ?>/img/logo.png" alt="">
+                    <img src="<?= $bundle->baseUrl ?>/img/logo.svg" alt="">
                 </a>
                 <?= CatalogMenu::widget([]); ?>
             </div>

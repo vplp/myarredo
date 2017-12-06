@@ -774,6 +774,8 @@ footer {
 .fancybox-image {
   width: auto;
   height: auto;
+  max-width: 90vw;
+  max-height: 90vh;
 }
 .fancybox-wrap {
   display: inline-block;
@@ -783,6 +785,11 @@ footer {
   transform: translate(-50%,-50%);
 }
 .prod-card-page {
+  & > .container {
+    & > .row {
+      margin-bottom: 20px;
+    }
+  }
   .prod-model {
     font-size: 20px;
     margin: 15px 0;
@@ -861,12 +868,15 @@ footer {
 #prod-slider {
   position: relative;
   margin-left: -15px;
+  background: #FFFFFF;
+  padding-bottom: 20px;
   .img-zoom {
     display: inline-flex;
     background: #DBDAD6;
     text-decoration: none;
     position: relative;
-    bottom: 90px;
+    bottom: 0;
+    margin-top: 10px;
     z-index: 9;
     left: 20px;
     padding: 3px 5px;
@@ -898,8 +908,8 @@ footer {
     }
   }
   .carousel-inner {
-    height: 520px;
-    background: #FFFFFF;
+    height: auto;
+    background: transparent;
     .item {
       padding-top: 15px;
     }
@@ -910,9 +920,9 @@ footer {
     }
   }
   .nav-cont {
-    height: 55px;
+    height: auto;
     width: 100%;
-    bottom: 100px;
+    bottom: 0;
     position: relative;
     display: flex;
     align-items: center;
@@ -924,14 +934,24 @@ footer {
       width: auto;
       margin: 0;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
+      max-width: 360px;
+      overflow: hidden;
+      margin: 0 -8px;
       li {
-        margin: 0 20px 0 0;
+        margin: 0 6px;
         height: auto;
         width: auto;
         background: none;
-        border: none;
+        border-radius: 0;
+        overflow: hidden;
+        margin-bottom: 6px;
+        border: 1px solid transparent;
+        &.active {
+          border: 1px solid #CF0002;
+        }
         &:last-child {
           margin-right: 0;
         }
@@ -951,6 +971,8 @@ footer {
     width: 50px;
     height: 50px;
     display: flex;
+    align-items: center;
+    justify-content: center;
     img {
       width: 100%;
       height: auto;
@@ -2836,6 +2858,9 @@ footer {
         margin-left: 7px;
       }
     }
+  }
+  .ui-corner-all.ui-daterangepicker {
+    display: flex !important;
   }
   .manager-history-header {
     ul {
