@@ -29,6 +29,10 @@ class Directlink extends \common\modules\seo\modules\directlink\models\Directlin
 
         $local_url = str_replace($base_url, '', $url);
 
+        $exp = explode('?', $local_url);
+
+        $local_url = $exp[0];
+        
         if (!empty($local_url)) {
             return Directlink::findBase()->url($local_url)->one();
         }
