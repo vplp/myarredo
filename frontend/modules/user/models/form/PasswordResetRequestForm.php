@@ -23,7 +23,7 @@ class PasswordResetRequestForm extends \common\modules\user\models\form\Password
                 ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
                 ['user' => $this->getUserByEmail()]
             )
-            ->setFrom(Yii::$app->params['mailer']['setFrom'])
+            //->setFrom(Yii::$app->params['mailer']['setFrom'])
             ->setTo($this->email)
             ->setSubject('Password reset for ' . \Yii::$app->name)
             ->send();
