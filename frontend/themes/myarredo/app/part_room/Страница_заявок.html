@@ -944,5 +944,19 @@
 <script src="../public/libs/nouislider/nouislider.min.js"></script>
 <script src="../public/libs/wNumb.js"></script>
 <script src="../public/js/core.js"></script>
+
+<script>
+    $(".drop-date-picker").daterangepicker({
+        posX: null,
+        posY: null,
+        presetRanges: [
+            {text:"Сегодня", dateStart: 'today', dateEnd: 'today' },
+            {text: 'Неделя', dateStart: 'today-7days', dateEnd: 'today' },
+        ]
+    });
+
+    $(".ui-daterangepickercontain").appendTo($(".datepicker-drop")); // переносим datepicker в выпадающий список
+</script>
+
 </body>
 </html>
