@@ -12,6 +12,8 @@ use frontend\modules\catalog\models\{
  * @var \frontend\modules\catalog\models\Sale $model
  */
 
+$this->title = $this->context->title;
+
 ?>
 
 <main>
@@ -45,15 +47,11 @@ use frontend\modules\catalog\models\{
                     <?= Html::tag('h1', $model->getTitle()); ?>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-5">
-                    <div class="img-wrap">
-                        <a href="javascript:void(0);" class="img-cont">
-                            <?= Html::img(Sale::getImage($model['image_link'])); ?>
-                        </a>
-                        <a href="javascript:void(0);" class="zoom">
-                            Увеличить
-                            <i class="fa fa-search-plus" aria-hidden="true"></i>
-                        </a>
-                    </div>
+
+                    <?= $this->render('parts/_carousel', [
+                        'model' => $model
+                    ]); ?>
+
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-7">
                     <div class="prod-info">
