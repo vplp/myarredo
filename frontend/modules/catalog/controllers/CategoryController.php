@@ -83,10 +83,6 @@ class CategoryController extends BaseController
 
         $this->title = 'Каталог итальянской мебели, цены на мебель из Италии';
 
-        $this->h1 = ($this->SeoH1 != '')
-            ? $this->SeoH1
-            : 'Каталог итальянской мебели в ' . Yii::$app->city->getCityTitleWhere();
-
         $this->breadcrumbs[] = [
             'label' => 'Каталог итальянской мебели, цены на мебель из Италии',
             'url' => ['/catalog/category/list']

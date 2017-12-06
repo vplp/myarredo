@@ -24,7 +24,12 @@ $this->title = $this->context->title;
         <div class="container large-container">
             <div class="row">
 
-                <?= Html::tag('h1', $this->context->h1); ?>
+                <?= Html::tag(
+                    'h1',
+                    ($this->context->SeoH1 != '')
+                        ? $this->context->SeoH1
+                        : 'Каталог итальянской мебели в ' . Yii::$app->city->getCityTitleWhere()
+                ); ?>
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
@@ -46,7 +51,6 @@ $this->title = $this->context->title;
                     </div>
                     <div class="col-md-9 col-lg-9">
                         <div class="cont-area">
-
 
                             <div class="hidden-xs hidden-sm top-bar flex">
 
@@ -162,8 +166,9 @@ $this->title = $this->context->title;
                 <div class="row">
                     <div class="comp-advanteges">
 
-                        <?= $this->context->SeoContent ?>
-
+                        <?php if (!Yii::$app->request->get('page')): ?>
+                            <?= $this->context->SeoContent ?>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

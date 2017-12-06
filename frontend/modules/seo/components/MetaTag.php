@@ -33,7 +33,6 @@ class MetaTag extends Component
     protected $set_seo_description = '';
     protected $set_seo_keywords = '';
     protected $set_seo_image_url = '';
-    protected $set_seo_h1 = '';
 
     /**
      * @inheritdoc
@@ -104,7 +103,13 @@ class MetaTag extends Component
         $url = Yii::$app->getRequest()->getUrl();
         $base_url = Yii::$app->getRequest()->getBaseUrl();
 
-        $this->local_url = str_replace($base_url, '', $url);
+        $local_url = str_replace($base_url, '', $url);
+
+        $exp = explode('?', $local_url);
+
+        $local_url = $exp[0];
+
+        $this->local_url = $local_url;
 
         return $this;
     }
