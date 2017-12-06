@@ -444,14 +444,6 @@ $(document).ready(function(){
         $(item).parent().css({"background-image": "url(" + src + ")"});
     });
 
-        $(".drop-date-picker").daterangepicker({
-            posX: null,
-            posY: null
-        });
-
-        $(".ui-daterangepickercontain").appendTo($(".datepicker-drop")); // переносим datepicker в выпадающий список
-
-
 });
 (function(){
     if( $("#checkout-form").length ){
