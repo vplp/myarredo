@@ -116,7 +116,7 @@ use frontend\modules\user\widgets\partner\PartnerInfo;
     </noscript>
     <!-- /Yandex.Metrika counter -->
 
-<?php if (Yii::$app->city->domain == 'ru'): ?>
+<?php if (Yii::$app->getUser()->isGuest && Yii::$app->city->domain == 'ru'): ?>
 
     <!-- BEGIN JIVOSITE CODE {literal} -->
     <script type='text/javascript'>
