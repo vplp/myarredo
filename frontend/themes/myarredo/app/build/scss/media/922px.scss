@@ -197,6 +197,13 @@
       }
     }
   }
+  .factory-page {
+    .catalog-wrap {
+      .one-prod-tile {
+        width: calc( 50% - 20px );
+      }
+    }
+  }
   .factory-det .fact-assort .all-list {
     padding-left: 40px;
   }

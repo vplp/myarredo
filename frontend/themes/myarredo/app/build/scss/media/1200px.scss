@@ -79,6 +79,13 @@
       }
     }
   }
+  .factory-page {
+    .catalog-wrap {
+      .one-prod-tile {
+        width: calc( 33% - 20px );
+      }
+    }
+  }
   .sign-in-page {
     .col-md-4 {
       padding-left: 15px;
