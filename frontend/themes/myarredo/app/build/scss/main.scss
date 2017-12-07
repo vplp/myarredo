@@ -2325,6 +2325,13 @@ footer {
     }
   }
 }
+.factory-page {
+  .catalog-wrap {
+    .one-prod-tile {
+      width: calc( 25% - 20px );
+    }
+  }
+}
 .about-page {
   color: rgb(65, 64, 62);
   font-size: 14px;
