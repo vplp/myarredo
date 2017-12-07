@@ -28,11 +28,12 @@ class SignInForm extends CommonForm
     {
         if ($this->validate()) {
             $user = $this->getUser();
-            if ($user !== null && $this->ONLY_ADMIN === true) {
-                if ($user['group_id'] != Group::ADMIN) {
-                    $this->addError($this->password, Yii::t('app', 'User access is prohibited'));
-                }
-            }
+//            if ($user !== null && $this->ONLY_ADMIN === true) {
+//                if ($user['group_id'] != Group::ADMIN) {
+//                    Yii::$app->session->addFlash('success', Yii::t('app', 'User access is prohibited'));
+//                    $this->addError($this->password, Yii::t('app', 'User access is prohibited'));
+//                }
+//            }
             if ($this->validatePassword()) {
                 return Yii::$app->getUser()->login($user, $this->rememberMe ? $this->getTimeRememberUserSignIn() : 0);
             } else {

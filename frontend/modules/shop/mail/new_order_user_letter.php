@@ -29,8 +29,8 @@ use frontend\modules\catalog\models\Product;
                 <div style="float: left;">
 
                     <?= Html::img(
-                            Product::getImageThumb($item->product->image_link),
-                            ['class' => 'width: 140px; max-height: 100px;']
+                        'http://www.myarredo.ru' . Product::getImageThumb($item->product['image_link']),
+                        ['class' => 'width: 140px; max-height: 100px;']
                     ); ?>
 
                 </div>
@@ -50,42 +50,4 @@ use frontend\modules\catalog\models\Product;
 
     </div>
 
-<?php /*
-    <div style="background-color:#c4c0b8; padding:25px 60px 20px;">
-        <p style="color: #591612; margin-bottom: 1px;"><?php
-            echo (!empty($modelsTovarsOrderClient->partner))
-                ? $modelsTovarsOrderClient->partner->userData->address
-                : '';
-            ?></p>
-        <span style="display: block; color: #591612; margin-bottom: 5px;"><?php
-            echo (!empty($modelsTovarsOrderClient->partner))
-                ? $modelsTovarsOrderClient->partner->email
-                : '';
-            ?></span>
-        <span style="text-align: left; color: #0077ca; border-bottom: 1px dotted #0077ca;"><?php
-            echo (!empty($modelsTovarsOrderClient->partner))
-                ? $modelsTovarsOrderClient->partner->userData->telephone
-                : '';
-            ?></span>
-    </div>
-     */ ?>
 </div>
-
-<?php /*
-<p>Здравствуйте, <?= $order->customer['full_name'] ?></p>
-<p>Ваш запрос №<?= $order['id'] ?> успешно принят.</p>
-<p>Вам прийдут письма с ценами на предметы, которые Вас заинтересовали от разных поставщиков.</p>
-<p>Вам нужно будет только выбрать лучшие условия для покупки.</p>
-<p>Просчет занимает от 15 мнут до 1 рабочего дня.</p>
-
-<p>Запрашиваемый товар(товары):</p>
-
-<?php foreach ($order->items as $item): ?>
-    <p>
-        <?= Html::a($item->product['lang']['title'], Product::getUrl($item->product['alias'])) ?>
-    </p>
-<?php endforeach; ?>
-
-<p>Для просмотра заказа пройдите по <a href="<?= $order->getTokenLink() ?>">ссылке</a>.</p>
-
- */ ?>

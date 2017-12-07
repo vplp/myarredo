@@ -3,6 +3,7 @@
 namespace backend\modules\catalog\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Response;
 //
@@ -29,6 +30,29 @@ class ProductController extends BackendController
     public $filterModel = filterProduct::class;
     public $title = 'Product';
     public $name = 'product';
+
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin', 'catalogEditor'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
 
     /**
      * @return array

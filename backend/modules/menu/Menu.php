@@ -2,6 +2,8 @@
 
 namespace backend\modules\menu;
 
+use Yii;
+
 /**
  * Class Menu
  *
@@ -19,10 +21,19 @@ class Menu extends \common\modules\menu\Menu
      */
     public $configPath = __DIR__ . '/config.php';
 
-    public $menuItems = [
-        'name' => 'Menu',
-        'icon' => 'fa fa-sitemap',
-        'url' => ['/menu/menu/list'],
-        'position' => 2,
-    ];
+    public function getMenuItems()
+    {
+        $menuItems = [];
+
+        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin'])) {
+            $menuItems = [
+                'name' => 'Menu',
+                'icon' => 'fa fa-sitemap',
+                'url' => ['/menu/menu/list'],
+                'position' => 2,
+            ];
+        }
+
+        return $menuItems;
+    }
 }

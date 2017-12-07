@@ -83,19 +83,24 @@ class NavBar extends \yii\bootstrap\NavBar
         foreach ($modules as $moduleName => $moduleValue) {
             $moduleClass = Yii::$app->getModule($moduleName);
 
-            // get item 1st level menu
-            if (isset($moduleClass->menuItems)) {
-                $this->menuItems[$moduleName] = $this->getItem($moduleClass->menuItems);
-            }
+            if (method_exists($moduleClass, 'getMenuItems')) {
 
-            // get items 2nd level menu
-            if (isset($moduleClass->menuItems) && key_exists('items', $moduleClass->menuItems)) {
-                $items = [];
-                foreach ($moduleClass->menuItems['items'] as $item) {
-                    $items[] = $this->getItem($item);
+                $MenuItems = $moduleClass->getMenuItems();
+
+                // get item 1st level menu
+                if (!empty($MenuItems)) {
+                    $this->menuItems[$moduleName] = $this->getItem($moduleClass->getMenuItems());
                 }
-                // set items menu 2nd level and sort them
-                $this->menuItems[$moduleName]['items'] = $this->sortItems($items);
+
+                // get items 2nd level menu
+                if (key_exists('items', $MenuItems)) {
+                    $items = [];
+                    foreach ($MenuItems['items'] as $item) {
+                        $items[] = $this->getItem($item);
+                    }
+                    // set items menu 2nd level and sort them
+                    $this->menuItems[$moduleName]['items'] = $this->sortItems($items);
+                }
             }
         }
 

@@ -2,6 +2,7 @@
 
 namespace backend\modules\catalog\controllers;
 
+use yii\filters\AccessControl;
 use thread\app\base\controllers\BackendController;
 use backend\modules\catalog\models\{
     Types, TypesLang, search\Types as filterTypes
@@ -20,4 +21,26 @@ class TypesController extends BackendController
     public $title = 'Types';
     public $name = 'types';
 
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin', 'catalogEditor'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
 }
