@@ -126,7 +126,6 @@ class Factory extends \common\modules\catalog\models\Factory
         $module = Yii::$app->getModule('catalog');
 
         $path = $module->getFactoryUploadPath();
-        $url = $module->getFactoryUploadUrl();
 
         $image = null;
 
@@ -134,7 +133,7 @@ class Factory extends \common\modules\catalog\models\Factory
             $image = $path . '/' . $image_link;
 
             // resize
-            $ImageResize = new ImageResize($path, $url);
+            $ImageResize = new ImageResize();
             $image = $ImageResize->getThumb($image, 150, 150);
         }
 

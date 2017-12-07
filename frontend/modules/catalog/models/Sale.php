@@ -108,7 +108,6 @@ class Sale extends \common\modules\catalog\models\Sale
         $module = Yii::$app->getModule('catalog');
 
         $path = $module->getSaleUploadPath();
-        $url = $module->getSaleUploadUrl();
 
         $image = null;
 
@@ -132,7 +131,7 @@ class Sale extends \common\modules\catalog\models\Sale
             }
 
             // resize
-            $ImageResize = new ImageResize($path, $url);
+            $ImageResize = new ImageResize();
             $image = $ImageResize->getThumb($image, 340, 340);
         }
 
