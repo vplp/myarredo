@@ -67,6 +67,10 @@ class ImageResize
             $base = Yii::getAlias($this->path);
             $name = self::generateName($original, $width, $height, $prefix);
 
+            if (!is_dir($base)) {
+                mkdir($base, 0777, true);
+            }
+
             // use hash file
             $hash = preg_replace(
                 "%^(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})%ius",
