@@ -3,6 +3,7 @@
 namespace backend\modules\catalog\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
 use yii\helpers\{
     ArrayHelper, Url
 };
@@ -32,6 +33,29 @@ class FactoryCatalogsFilesController extends BackendController
     public $name = 'factory';
 
     public $factory = null;
+
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin', 'catalogEditor'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
 
     /**
      * @return array

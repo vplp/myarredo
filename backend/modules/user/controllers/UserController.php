@@ -35,7 +35,6 @@ class UserController extends BackendController
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'allow' => true,
                         'actions' => [
                             'published',
                             'create',
@@ -43,26 +42,26 @@ class UserController extends BackendController
                             'list',
                             'validation',
                             'trash',
-                            //'import-users'
                         ],
-                        'roles' => ['admin'],
                         'matchCallback' => function ($rule, $action) {
                             return (Yii::$app->getUser()->id === 1) ? true : false;
-                        }
+                        },
+                        'allow' => true,
+                        'roles' => ['admin'],
                     ],
                     [
-                        'allow' => true,
                         'actions' => [
                             'outtrash',
                             'intrash'
                         ],
-                        'roles' => ['admin'],
                         'matchCallback' => function ($rule, $action) {
                             return (Yii::$app->getUser()->id === 1) ? true : false;
-                        }
+                        },
+                        'allow' => true,
+                        'roles' => ['admin'],
                     ],
                     [
-                        'allow' => true,
+                        'allow' => false,
                     ],
                 ],
             ],
@@ -149,105 +148,105 @@ class UserController extends BackendController
         ]);
     }
 
-    public function actionClearUsers()
-    {
-        User::deleteAll();
+//    public function actionClearUsers()
+//    {
+//        User::deleteAll();
+//
+//        Yii::$app->db->createCommand('ALTER TABLE ' . User::tableName() . ' AUTO_INCREMENT = 1')->execute();
+//        Yii::$app->db->createCommand('ALTER TABLE ' . Profile::tableName() . ' AUTO_INCREMENT = 1')->execute();
+//
+//        Yii::$app->db->createCommand('DELETE FROM fv_auth_assignment')->execute();
+//
+//    }
 
-        Yii::$app->db->createCommand('ALTER TABLE ' . User::tableName() . ' AUTO_INCREMENT = 1')->execute();
-        Yii::$app->db->createCommand('ALTER TABLE ' . Profile::tableName() . ' AUTO_INCREMENT = 1')->execute();
-
-        Yii::$app->db->createCommand('DELETE FROM fv_auth_assignment')->execute();
-
-    }
-
-    public function actionImportUsers()
-    {
-        $limitCount = 1000;
-
-        $userGroups = [
-            'admin' => 1,
-            'editor' => 2,
-            'editorurl' => 2,
-            'factory' => 3,
-            'super_manager' => 2,
-            'super_partner' => 4,
-            'super_visitor' => 2,
-            'visitor' => 2
-        ];
-
-        $rows = (new \yii\db\Query())
-            ->from('c1myarredo.user')
-            ->leftJoin('c1myarredo.auth_assignment', 'auth_assignment.userid = user.login')
-            ->leftJoin('c1myarredo.user_data', 'user_data.uid = user.id')
-            ->leftJoin('c1myarredo.user_lang', 'user_lang.rid = user.id')
-            ->where(['user.mark' => '0'])
-            ->limit($limitCount)
-            ->orderBy('id ASC')
-            ->all();
-
-        foreach ($rows as $row) {
-
-            $user = new User();
-            $user->setScenario('userCreate');
-
-            $user->id = $row['id'];
-
-            $user->group_id = ($row['id'] == 1)
-                ? 1
-                : $userGroups[$row['itemname']];
-
-            $user->username = ($row['id'] == 1)
-                ? 'admin'
-                : $row['login'];
-
-            $user->email = $row['email'];
-
-            $user->password_hash = ($row['id'] == 1)
-                ? '$2y$13$XCcJ9zM6YbClmQYmQd9l2.kM4cadZA5GQTajDkHsgml.IbogBKxdK'
-                : $row['password'];
-
-            $user->auth_key = '';
-            $user->published = $row['enabled'];
-            $user->deleted = $row['deleted'];
-
-            /** @var PDO $transaction */
-            $transaction = $user::getDb()->beginTransaction();
-            try {
-                $user->save();
-
-                $profile = new Profile();
-                $profile->setScenario('basicCreate');
-
-                $profile->id = $user->id;
-                $profile->user_id = $user->id;
-                $profile->first_name = $row['name'];
-                $profile->last_name = $row['surname'];
-                $profile->country_id = $row['country_id'] ?? 0;
-                $profile->city_id = $row['city_id'] ?? 0;
-                $profile->phone = $row['telephone'];
-                $profile->address = $row['address'];
-                $profile->name_company = $row['name_company'];
-                $profile->website = $row['website'];
-                $profile->exp_with_italian = $row['exp_with_italian'];
-                $profile->delivery_to_other_cities = $row['delivery_to_other_cities'] ?? 0;
-                $profile->latitude = $row['latitude'] ?? 0;
-                $profile->longitude = $row['longitude'] ?? 0;
-
-                if ($profile->save()) {
-                    Yii::$app->db->createCommand()
-                        ->update(
-                            'c1myarredo.user',
-                            ['mark' => '1'],
-                            'id = ' . $row['id']
-                        )
-                        ->execute();
-
-                    $transaction->commit();
-                }
-            } catch (\Exception $e) {
-                $transaction->rollBack();
-                throw $e;
-            }
-        }
-    }
+//    public function actionImportUsers()
+//    {
+//        $limitCount = 1000;
+//
+//        $userGroups = [
+//            'admin' => 1,
+//            'editor' => 2,
+//            'editorurl' => 2,
+//            'factory' => 3,
+//            'super_manager' => 2,
+//            'super_partner' => 4,
+//            'super_visitor' => 2,
+//            'visitor' => 2
+//        ];
+//
+//        $rows = (new \yii\db\Query())
+//            ->from('c1myarredo.user')
+//            ->leftJoin('c1myarredo.auth_assignment', 'auth_assignment.userid = user.login')
+//            ->leftJoin('c1myarredo.user_data', 'user_data.uid = user.id')
+//            ->leftJoin('c1myarredo.user_lang', 'user_lang.rid = user.id')
+//            ->where(['user.mark' => '0'])
+//            ->limit($limitCount)
+//            ->orderBy('id ASC')
+//            ->all();
+//
+//        foreach ($rows as $row) {
+//
+//            $user = new User();
+//            $user->setScenario('userCreate');
+//
+//            $user->id = $row['id'];
+//
+//            $user->group_id = ($row['id'] == 1)
+//                ? 1
+//                : $userGroups[$row['itemname']];
+//
+//            $user->username = ($row['id'] == 1)
+//                ? 'admin'
+//                : $row['login'];
+//
+//            $user->email = $row['email'];
+//
+//            $user->password_hash = ($row['id'] == 1)
+//                ? '$2y$13$XCcJ9zM6YbClmQYmQd9l2.kM4cadZA5GQTajDkHsgml.IbogBKxdK'
+//                : $row['password'];
+//
+//            $user->auth_key = '';
+//            $user->published = $row['enabled'];
+//            $user->deleted = $row['deleted'];
+//
+//            /** @var PDO $transaction */
+//            $transaction = $user::getDb()->beginTransaction();
+//            try {
+//                $user->save();
+//
+//                $profile = new Profile();
+//                $profile->setScenario('basicCreate');
+//
+//                $profile->id = $user->id;
+//                $profile->user_id = $user->id;
+//                $profile->first_name = $row['name'];
+//                $profile->last_name = $row['surname'];
+//                $profile->country_id = $row['country_id'] ?? 0;
+//                $profile->city_id = $row['city_id'] ?? 0;
+//                $profile->phone = $row['telephone'];
+//                $profile->address = $row['address'];
+//                $profile->name_company = $row['name_company'];
+//                $profile->website = $row['website'];
+//                $profile->exp_with_italian = $row['exp_with_italian'];
+//                $profile->delivery_to_other_cities = $row['delivery_to_other_cities'] ?? 0;
+//                $profile->latitude = $row['latitude'] ?? 0;
+//                $profile->longitude = $row['longitude'] ?? 0;
+//
+//                if ($profile->save()) {
+//                    Yii::$app->db->createCommand()
+//                        ->update(
+//                            'c1myarredo.user',
+//                            ['mark' => '1'],
+//                            'id = ' . $row['id']
+//                        )
+//                        ->execute();
+//
+//                    $transaction->commit();
+//                }
+//            } catch (\Exception $e) {
+//                $transaction->rollBack();
+//                throw $e;
+//            }
+//        }
+//    }
 }
