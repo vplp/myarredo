@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @var \backend\modules\catalog\models\Product $model
  * @var \backend\app\bootstrap\ActiveForm $form
+ * @var \backend\modules\catalog\models\Product $model
  */
 
 ?>

@@ -109,47 +109,47 @@ class ProductController extends BackendController
         return $response;
     }
 
-    /**
-     * Import Gallery photo
-     * @throws \Exception
-     */
-    public function actionImportGallery()
-    {
-        $models = Product::findBase()
-            ->limit(10)
-            ->where(['picpath' => '0'])
-            ->all();
-
-        foreach ($models as $model) {
-
-            if ($model->gallery_id) {
-
-                $photo = (new \yii\db\Query())
-                    ->from('c1myarredo_old.photo')
-                    ->where(['gallery_id' => $model->gallery_id])
-                    ->all();
-
-                /** @var PDO $transaction */
-                /** @var $model Product */
-                $transaction = $model::getDb()->beginTransaction();
-                try {
-                    $model->setScenario('gallery_image');
-
-                    $gallery_image = implode(',', ArrayHelper::map($photo, 'id', 'photopath'));
-                    $model->gallery_image = $gallery_image;
-                    $model->picpath = '1';
-
-                    if ($model->save()) {
-                        $transaction->commit();
-                    } else {
-                        $transaction->rollBack();
-                    }
-                } catch (\Exception $e) {
-                    $transaction->rollBack();
-                    throw new \Exception($e);
-                }
-            }
-        }
-    }
+//    /**
+//     * Import Gallery photo
+//     * @throws \Exception
+//     */
+//    public function actionImportGallery()
+//    {
+//        $models = Product::findBase()
+//            ->limit(10)
+//            ->where(['picpath' => '0'])
+//            ->all();
+//
+//        foreach ($models as $model) {
+//
+//            if ($model->gallery_id) {
+//
+//                $photo = (new \yii\db\Query())
+//                    ->from('c1myarredo_old.photo')
+//                    ->where(['gallery_id' => $model->gallery_id])
+//                    ->all();
+//
+//                /** @var PDO $transaction */
+//                /** @var $model Product */
+//                $transaction = $model::getDb()->beginTransaction();
+//                try {
+//                    $model->setScenario('gallery_image');
+//
+//                    $gallery_image = implode(',', ArrayHelper::map($photo, 'id', 'photopath'));
+//                    $model->gallery_image = $gallery_image;
+//                    $model->picpath = '1';
+//
+//                    if ($model->save()) {
+//                        $transaction->commit();
+//                    } else {
+//                        $transaction->rollBack();
+//                    }
+//                } catch (\Exception $e) {
+//                    $transaction->rollBack();
+//                    throw new \Exception($e);
+//                }
+//            }
+//        }
+//    }
 
 }

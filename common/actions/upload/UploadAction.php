@@ -102,15 +102,22 @@ class UploadAction extends Action
 
             if ($model->validate()) {
                 if ($this->unique === true) {
-                    $model->file->name = uniqid() . ((empty($model->file->extension)) ? '' : '.' . $model->file->extension);
+                    $model->file->name = uniqid() .
+                        (empty($model->file->extension)
+                            ? ''
+                            : '.' . $model->file->extension);
                 }
 
                 if ($this->useHashPath) {
-                    $hash = preg_replace("%^(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})%ius", "$1/$2/$3/$4/$5/$6/$7", md5($model->file->name));
+                    $hash = preg_replace(
+                        "%^(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})%ius",
+                        "$1/$2/$3/$4/$5/$6/$7",
+                        md5($model->file->name)
+                    );
 
                     $model->file->name = $hash . '/' . $model->file->name;
 
-                    $dir = $this->path  . '/' . $hash;
+                    $dir = $this->path . '/' . $hash;
                     if (!is_dir($dir)) {
                         mkdir($dir, 0777, true);
                     }

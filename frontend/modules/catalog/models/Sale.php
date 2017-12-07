@@ -164,8 +164,6 @@ class Sale extends \common\modules\catalog\models\Sale
 
         foreach ($images as $image) {
             if (file_exists($path . '/' . $image)) {
-
-                //$imagesSources[] = self::getImageThumb($image);
                 $imagesSources[] = [
                     'img' => $url . '/' . $image,
                     'thumb' => self::getImageThumb($image)
