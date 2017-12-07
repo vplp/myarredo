@@ -33,8 +33,8 @@ class ImageResize
      */
     public function __construct($path, $url)
     {
-        $this->path = $path;
-        $this->url = $url;
+        $this->path = Yii::getAlias('@uploads') . '/thumb'; //$path;
+        $this->url = '/uploads/thumb'; //$url;
     }
 
     /**
@@ -50,7 +50,7 @@ class ImageResize
 
         return $ext[0] .
             str_replace(['{$width}', '{$height}'], [$width, $height], $prefix) .
-            '.' .$ext[1];
+            '.' . $ext[1];
     }
 
     /**
@@ -67,8 +67,16 @@ class ImageResize
             $base = Yii::getAlias($this->path);
             $name = self::generateName($original, $width, $height, $prefix);
 
-            if (is_file($base . '/' . $name)) {
-                return $this->url . '/' .  $name;
+            // use hash file
+            $hash = preg_replace(
+                "%^(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})%ius",
+                "$1/$2/$3/$4/$5/$6/$7",
+                md5($name)
+            );
+            $hash_name = $hash . '/' . $name;
+
+            if (is_file($base . '/' . $hash_name)) {
+                return $this->url . '/' . $hash_name;
             }
 
             list($imageWidth, $imageHeight) = getimagesize($original);
@@ -79,10 +87,14 @@ class ImageResize
 
             $image->effects()->sharpen();
 
-            //$image->setMetadataReader(new DefaultMetadataReader());
+            $dir = $this->path . '/' . $hash;
+            if (!is_dir($dir)) {
+                mkdir($dir, 0777, true);
+            }
 
-            if ($image->save($base . '/' . $name, ['quality' => 60])) {
-                return $this->url . '/' . $name;
+
+            if ($image->save($base . '/' . $hash_name, ['quality' => 60])) {
+                return $this->url . '/' . $hash_name;
             }
         }
 

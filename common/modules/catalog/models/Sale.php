@@ -100,7 +100,6 @@ class Sale extends ActiveRecord
     public function rules()
     {
         return [
-            //[['alias'], 'required', 'on' => 'backend'],
             [
                 [
                     'user_id',
