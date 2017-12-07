@@ -127,7 +127,6 @@ class Product extends \common\modules\catalog\models\Product
         $module = Yii::$app->getModule('catalog');
 
         $path = $module->getProductUploadPath();
-        $url = $module->getProductUploadUrl();
 
         $image = null;
 
@@ -139,9 +138,6 @@ class Product extends \common\modules\catalog\models\Product
 
             unset($image_link_path[count($image_link_path)-1]);
 
-//            $dir    = $path . '/' . implode('/' ,$image_link_path);
-//            $files = scandir($dir);
-
             $_image_link = $path . '/' . implode('/', $image_link_path) . '/thumb_' . $img_name;
 
             if (is_file($_image_link)) {
@@ -151,7 +147,7 @@ class Product extends \common\modules\catalog\models\Product
             }
 
             // resize
-            $ImageResize = new ImageResize($path, $url);
+            $ImageResize = new ImageResize();
             $image = $ImageResize->getThumb($image, 340, 340);
         }
 

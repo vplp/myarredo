@@ -7,7 +7,6 @@ use yii\imagine\Image;
 use Imagine\Image\{
     Box
 };
-use Imagine\Image\Metadata\DefaultMetadataReader;
 
 /**
  * Class ImageResize
@@ -19,23 +18,12 @@ class ImageResize
     /**
      * @var string
      */
-    public $path;
+    private $path;
 
     /**
      * @var string
      */
-    public $url;
-
-    /**
-     * ImageResize constructor.
-     * @param $path
-     * @param $url
-     */
-    public function __construct($path, $url)
-    {
-        $this->path = Yii::getAlias('@uploads') . '/thumb'; //$path;
-        $this->url = '/uploads/thumb'; //$url;
-    }
+    private $url;
 
     /**
      * @param $image
@@ -64,12 +52,11 @@ class ImageResize
     {
         if (is_file($original)) {
 
+            $this->path = Yii::getAlias('@uploads') . '/thumb';
+            $this->url = '/uploads/thumb';
+
             $base = Yii::getAlias($this->path);
             $name = self::generateName($original, $width, $height, $prefix);
-
-            if (!is_dir($base)) {
-                mkdir($base, 0777, true);
-            }
 
             // use hash file
             $hash = preg_replace(
@@ -92,10 +79,10 @@ class ImageResize
             $image->effects()->sharpen();
 
             $dir = $this->path . '/' . $hash;
+
             if (!is_dir($dir)) {
                 mkdir($dir, 0777, true);
             }
-
 
             if ($image->save($base . '/' . $hash_name, ['quality' => 60])) {
                 return $this->url . '/' . $hash_name;
