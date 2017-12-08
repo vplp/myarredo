@@ -53,6 +53,15 @@ class FactoryPricesFiles extends FactoryFile
     }
 
     /**
+     * @return mixed
+     */
+    public static function findBase()
+    {
+        return self::find()
+            ->andWhere([self::tableName() . '.file_type' => '2']);
+    }
+
+    /**
      * @return null|string
      */
     public function getFileLink()
