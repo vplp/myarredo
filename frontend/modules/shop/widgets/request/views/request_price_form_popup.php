@@ -31,7 +31,7 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'phone')
             ->widget(\yii\widgets\MaskedInput::className(), [
-                'mask' => '79999999999',
+                'mask' => Yii::$app->city->getPhoneMask(),
                 'clientOptions' => [
                     'clearIncomplete' => true
                 ]
