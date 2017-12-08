@@ -129,6 +129,9 @@ $this->registerJs($script, yii\web\View::POS_READY);
         <?= $form->switcher($model, 'removed') ?>
     </div>
     <div class="col-md-3">
+        <?= $form->switcher($model, 'in_stock') ?>
+    </div>
+    <div class="col-md-3">
         <?= $form->text_line($model, 'position') ?>
     </div>
 </div>

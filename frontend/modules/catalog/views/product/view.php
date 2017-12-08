@@ -69,15 +69,20 @@ $this->title = $this->context->title;
                                 <meta itemprop="price" content="0"/>
                                 <meta itemprop="priceCurrency" content="EUR"/>
                             <?php endif; ?>
+
                             <tr class="availability">
                                 <td>Наличие</td>
                                 <td>
-                                    <?= ($model['removed'])
-                                        ? 'Снят с протзводства'
-                                        : 'Под заказ<meta itemprop="availability" content="PreOrder">';
-                                    ?>
+                                    <?= ($model['status']) ?>
+
+                                    <?php if(!$model['removed'] && $model['in_stock']):?>
+                                        <meta itemprop="availability" content="InStock">
+                                    <?php elseif (!$model['removed']): ?>
+                                        <meta itemprop="availability" content="PreOrder">
+                                    <?php endif; ?>
                                 </td>
                             </tr>
+
                         </table>
 
                         <table class="info-table">
