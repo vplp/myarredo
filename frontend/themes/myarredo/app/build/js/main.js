@@ -240,6 +240,18 @@ $(document).ready(function(){
         }
     });
 
+    window.onload = function(){
+        if( window.location !== "" ){
+            var hash = window.location.hash.replace("#","");
+            var el = $('[data-hash="' + String(hash) + '"]');
+            if(el.length){
+                var top = el.offset().top;
+                $("html,body").animate({"scrollTop":top},100);
+                el.click();
+            }
+        }
+    };
+
     if(window.location.hash !== ""){
         var itemHash = window.location.hash.replace("#","");
         $("[data-hash='" + itemHash + "']").find(".orders-title-block").click();
