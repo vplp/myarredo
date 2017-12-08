@@ -9,7 +9,7 @@ use yii\helpers\{
     Html, Url
 };
 
-$this->title = 'Request password reset';
+$this->title = 'Запросить сброс пароля';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -21,9 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="part-contact">
 
-
-                <p>Please fill out your email. A link to reset password will be sent there.</p>
-
+                <p>Пожалуйста, заполните свой адрес электронной почты. Здесь будет отправлена ссылка на сброс пароля.</p>
 
                 <?php $form = ActiveForm::begin([
                     'id' => 'request-password-reset-form',
@@ -33,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
+                    <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
                 </div>
 
                 <?php ActiveForm::end(); ?>

@@ -9,7 +9,7 @@ use yii\helpers\{
  * @var \frontend\modules\user\models\form\ChangePassword $model
  */
 
-$this->title = Yii::t('user', 'Change password');
+$this->title = 'Изменить пароль';
 
 ?>
 
