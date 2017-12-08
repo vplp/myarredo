@@ -65,8 +65,6 @@ class FactoryPricesFiles extends FactoryPricesFilesModel implements BaseBackendS
             self::tableName() . '.factory_id' => $this->factory_id
         ]);
 
-        $query->andWhere([self::tableName() . '.file_type' => '2']);
-
         $query->andFilterWhere(['like', self::tableName() . '.title', $this->title]);
 
         return $dataProvider;

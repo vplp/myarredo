@@ -65,8 +65,6 @@ class FactoryCatalogsFiles extends FactoryCatalogsFilesModel implements BaseBack
             self::tableName() . '.factory_id' => $this->factory_id
         ]);
 
-        $query->andWhere([self::tableName() . '.file_type' => '1']);
-
         $query->andFilterWhere(['like', self::tableName() . '.title', $this->title]);
 
         return $dataProvider;
