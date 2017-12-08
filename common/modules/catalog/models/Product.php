@@ -52,6 +52,7 @@ use common\modules\catalog\Catalog;
  * @property string $image_link
  * @property string $gallery_image
  * @property integer $mark
+ * @property integer $in_stock
  *
  * @property ProductLang $lang
  * @property ProductRelCategory[] $category
@@ -144,7 +145,8 @@ class Product extends ActiveRecord implements iProduct
                     'deleted',
                     'removed',
                     'moderation',
-                    'mark'
+                    'mark',
+                    'in_stock'
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
@@ -182,6 +184,7 @@ class Product extends ActiveRecord implements iProduct
             'bestseller' => ['bestseller'],
             'onmain' => ['onmain'],
             'removed' => ['removed'],
+            'in_stock' => ['in_stock'],
             'position' => ['position'],
             'setImages' => ['image_link', 'gallery_image', 'picpath'],
             'setAlias' => ['alias', 'mark'],
@@ -209,6 +212,7 @@ class Product extends ActiveRecord implements iProduct
                 'published',
                 'deleted',
                 'removed',
+                'in_stock',
                 'moderation',
                 'country_code',
                 'user',
@@ -239,6 +243,7 @@ class Product extends ActiveRecord implements iProduct
             'factory_price' => 'Цена фибрики',
             'price_from' => 'Цена от',
             'removed' => 'Снят с производства',
+            'in_stock' => 'В наличии',
             'factory_id' => 'Фабрика',
             'collections_id' => 'Коллекция',
             'catalog_type_id' => 'Тип предмета',

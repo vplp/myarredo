@@ -218,6 +218,24 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * Status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        $status = 'Снят с производства';
+
+        if (!$this->removed && $this->in_stock) {
+            $status = 'Товар в наличии';
+        } else if (!$this->removed) {
+            $status = 'Под заказ';
+        }
+
+        return $status;
+    }
+
+    /**
      * Static title
      *
      * @param $model
