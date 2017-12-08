@@ -9,7 +9,7 @@ use yii\helpers\{
     Html, Url
 };
 
-$this->title = 'Reset password';
+$this->title = 'Сброс пароля';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="part-contact">
 
-                <p>Please choose your new password:</p>
+                <p>Выберите новый пароль</p>
 
                 <?php $form = ActiveForm::begin([
                     'id' => 'reset-password-form',
