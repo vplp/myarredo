@@ -75,6 +75,22 @@ class CityComponent extends Component
     /**
      * @return string
      */
+    public function getPhoneMask()
+    {
+        if (in_array($this->domain, ['by'])) {
+            $mask = '375999999999';
+        } else if (in_array($this->domain, ['ua'])) {
+            $mask = '380999999999';
+        } else {
+            $mask = '79999999999';
+        }
+
+        return $mask;
+    }
+
+    /**
+     * @return string
+     */
     public function getCityTitleWhere()
     {
         return $this->city['lang']['title_where'];
