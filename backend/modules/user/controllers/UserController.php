@@ -35,30 +35,13 @@ class UserController extends BackendController
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => [
-                            'published',
-                            'create',
-                            'update',
-                            'list',
-                            'validation',
-                            'trash',
-                        ],
-                        'matchCallback' => function ($rule, $action) {
-                            return (Yii::$app->getUser()->id === 1) ? true : false;
-                        },
                         'allow' => true,
-                        'roles' => ['admin'],
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
                     ],
                     [
-                        'actions' => [
-                            'outtrash',
-                            'intrash'
-                        ],
-                        'matchCallback' => function ($rule, $action) {
-                            return (Yii::$app->getUser()->id === 1) ? true : false;
-                        },
                         'allow' => true,
-                        'roles' => ['admin'],
+                        'roles' => ['admin', 'catalogEditor'],
                     ],
                     [
                         'allow' => false,
