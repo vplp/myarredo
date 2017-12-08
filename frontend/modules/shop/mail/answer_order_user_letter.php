@@ -22,11 +22,11 @@ use frontend\modules\catalog\models\Product;
             отправляем цены на интересующие Ваc товары. Спасибо за обращение!</p>
     </div>
 
-    <div style="background-color:#fff; padding:20px; clear: both; display: block;">
+    <div style="background-color:#fff; padding:20px; clear: both; display: block; overflow: hidden">
         <p style="color: #591612; font-size: 15px;">Цены на запрошенные товары</p>
 
         <?php foreach ($modelOrder->items as $item): ?>
-            <div style="clear: both; height: 100px;">
+            <div style="clear: both; overflow: hidden">
                 <div style="float: left;">
 
                     <?= Html::img(
