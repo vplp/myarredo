@@ -86,5 +86,10 @@ return [
     //'partner/orders/view/<id:[\d\-]+>' => 'shop/partner-order/view',
 
     // Module [[Location]]
-    'location/location/get-cities' => 'location/location/get-cities'
+    'location/location/get-cities' => 'location/location/get-cities',
+
+    'banner/factory-banner/list' => 'banner/factory-banner/list',
+    'banner/factory-banner/update/<id:[\d\-]+>' => 'banner/factory-banner/update',
+
+
 ];

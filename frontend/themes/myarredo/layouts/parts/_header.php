@@ -115,7 +115,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                                 <?= Html::a('Заявки', ['/shop/factory-order/list']); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Баннера', ['/user/profile/index']); ?>
+                                                <?= Html::a('Баннера', ['/banner/factory-banner/list']); ?>
                                             </li>
                                             <li role="separator" class="divider"></li>
                                             <li>
