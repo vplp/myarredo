@@ -22,6 +22,13 @@ return [
     'catalog/<filter:[\;\-\w\d]+>' => 'catalog/category/list',
     'sale/<filter:[\;\-\/\w\d]+>' => 'catalog/sale/list',
     'factory/<letter:[\w\-]>' => 'catalog/factory/list',
+
+    'factory/<alias:(nieri)>' => 'catalog/template-factory/factory',
+    'factory/<alias:(nieri)>/contacts' => 'catalog/template-factory/contacts',
+    'factory/<alias:(nieri)>/catalog/<filter:[\;\-\w\d]+>' => 'catalog/template-factory/catalog',
+    'factory/<alias:(nieri)>/catalog' => 'catalog/template-factory/catalog',
+    'factory/<alias:(nieri)>/product/<alias:[\w\-]+>' => 'catalog/template-factory/product',
+
     'factory/<alias:[\w\-]+>' => 'catalog/factory/view',
     'product/<alias:[\w\-]+>' => 'catalog/product/view',
     'sale-product/<alias:[\w\-]+>' => 'catalog/sale/view',

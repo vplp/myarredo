@@ -39,11 +39,29 @@ $this->title = 'Редактировать профиль';
                             ]) ?>
                     </div>
 
-                    <div class="col-sm-4 col-md-4 col-lg-4 one-row">
-                    </div>
+                    <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') { ?>
+                        <div class="col-sm-4 col-md-4 col-lg-4 one-row">
+                            <?= $form->field($model, 'name_company') ?>
+                            <?= $form->field($model, 'website') ?>
+                        </div>
 
-                    <div class="col-sm-4 col-md-4 col-lg-4 one-row">
-                    </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4 one-row">
+                            <?= $form->field($model, 'country_id')
+                                ->dropDownList(
+                                    [null => '--'] + Country::dropDownList(),
+                                    ['class' => 'selectpicker']
+                                ); ?>
+
+                            <?= $form->field($model, 'city_id')
+                                ->dropDownList(
+                                    [null => '--'] + City::dropDownList($model->country_id),
+                                    ['class' => 'selectpicker']
+                                ); ?>
+
+                            <?= $form->field($model, 'address') ?>
+                        </div>
+
+                    <?php } ?>
 
                 </div>
 
