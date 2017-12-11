@@ -1,7 +1,11 @@
 <?php
 
+use yii\helpers\{
+    Url, Html
+};
 use frontend\themes\myarredo\assets\TemplateFactoryAsset;
 use frontend\themes\myarredo\widgets\Alert;
+use frontend\modules\catalog\models\Factory;
 
 $bundle = TemplateFactoryAsset::register($this);
 
@@ -26,7 +30,49 @@ $this->beginPage()
 
     <?= Alert::widget() ?>
 
+    <div class="tom-header">
+        <div class="container large-container">
+            <div class="top-topm-header flex">
+                <div class="logo-cont">
+                    <?= Html::img(Factory::getImage($this->context->factory['image_link'])); ?>
+                </div>
+
+                <?= Html::tag(
+                    'h3',
+                    $this->context->factory['lang']['h1'] . ', купить в ' . Yii::$app->city->getCityTitleWhere()
+                ); ?>
+
+            </div>
+            <a href="tel:+74951502121" class="tel">
+                +7 (495) 150-21-21
+            </a>
+            <nav class="nav">
+                <?= Html::a('Каталог мебели', ['/catalog/template-factory/catalog', 'alias' => $this->context->factory['alias']]); ?>
+                <?= Html::a('Контанты', ['/catalog/template-factory/contacts', 'alias' => $this->context->factory['alias']]); ?>
+            </nav>
+        </div>
+    </div>
+
     <?= $content ?>
+
+    <div class="top-footer">
+        <div class="container large-container">
+            <div class="get-consl">
+                <p>Получить консультацию в <?= Yii::$app->city->getCityTitleWhere() ?></p>
+                <p>+7 (495) 150-21-21</p>
+                <p>Студия Триумф</p>
+                <p>улица Удальцова, 1А</p>
+            </div>
+            <div class="flex copy-r">
+                <div>
+                    2015 - <?= date('Y'); ?> (С) MYARREDO, ЛУЧШАЯ МЕБЕЛЬ ИЗ ИТАЛИИ ДЛЯ ВАШЕГО ДОМА
+                </div>
+                <div>
+                    <?= $this->context->factory['lang']['h1'] . ', купить в ' . Yii::$app->city->getCityTitleWhere() ?>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <?php $this->endBody() ?>
     </body>

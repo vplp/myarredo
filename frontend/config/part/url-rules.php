@@ -21,20 +21,21 @@ return [
     // Module [[Catalog]]
     'catalog/<filter:[\;\-\w\d]+>' => 'catalog/category/list',
     'sale/<filter:[\;\-\/\w\d]+>' => 'catalog/sale/list',
-    'factory/<letter:[\w\-]>' => 'catalog/factory/list',
 
     'factory/<alias:(nieri)>' => 'catalog/template-factory/factory',
-    'factory/<alias:(nieri)>/contacts' => 'catalog/template-factory/contacts',
-    'factory/<alias:(nieri)>/catalog/<filter:[\;\-\w\d]+>' => 'catalog/template-factory/catalog',
-    'factory/<alias:(nieri)>/catalog' => 'catalog/template-factory/catalog',
-    'factory/<alias:(nieri)>/product/<alias:[\w\-]+>' => 'catalog/template-factory/product',
 
     'factory/<alias:[\w\-]+>' => 'catalog/factory/view',
     'product/<alias:[\w\-]+>' => 'catalog/product/view',
     'sale-product/<alias:[\w\-]+>' => 'catalog/sale/view',
     'catalog' => 'catalog/category/list',
+    'factories/<letter:[\w\-]>' => 'catalog/factory/list',
     'factories' => 'catalog/factory/list',
     'sale' => 'catalog/sale/list',
+
+    'factory/<alias:(nieri)>/contacts' => 'catalog/template-factory/contacts',
+    'factory/<alias:(nieri)>/catalog/<filter:[\;\-\w\d]+>' => 'catalog/template-factory/catalog',
+    'factory/<alias:(nieri)>/catalog' => 'catalog/template-factory/catalog',
+    'factory/<alias:(nieri)>/product/<product:[\w\-]+>' => 'catalog/template-factory/product',
 
     'partner/sale' => 'catalog/partner-sale/list',
     'partner/sale/create' => 'catalog/partner-sale/create',

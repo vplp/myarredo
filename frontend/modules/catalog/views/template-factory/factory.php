@@ -15,29 +15,6 @@ $this->title = $this->context->title;
 
 ?>
 
-    <div class="tom-header">
-        <div class="container large-container">
-            <div class="top-topm-header flex">
-                <div class="logo-cont">
-                    <?= Html::img(Factory::getImage($model['image_link'])); ?>
-                </div>
-
-                <?= Html::tag(
-                    'h3',
-                    $model['lang']['h1'] . ', купить в ' . Yii::$app->city->getCityTitleWhere()
-                ); ?>
-
-            </div>
-            <a href="tel:+74951502121" class="tel">
-                +7 (495) 150-21-21
-            </a>
-            <nav class="nav">
-                <a href="#">Каталог мебели</a>
-                <a href="#">Контанты</a>
-            </nav>
-        </div>
-    </div>
-
     <div class="tom-cont">
 
         <div class="container large-container">
@@ -112,23 +89,6 @@ $this->title = $this->context->title;
         </div>
     </div>
 
-    <div class="top-footer">
-        <div class="container large-container">
-            <div class="get-consl">
-                <p>Получить консультацию в <?= Yii::$app->city->getCityTitleWhere() ?></p>
-                <p>+7 (495) 150-21-21</p>
-                <p>Студия Триумф</p>
-                <p>улица Удальцова, 1А</p>
-            </div>
-            <div class="flex copy-r">
-                <div>
-                    2015 - <?= date('Y'); ?> (С) MYARREDO, ЛУЧШАЯ МЕБЕЛЬ ИЗ ИТАЛИИ ДЛЯ ВАШЕГО ДОМА
-                </div>
-                <div class="fund">Программирование сайта - <a href="http://www.vipdesign.com.ua/">VipDesign</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
 <?php
 $script = <<<JS
