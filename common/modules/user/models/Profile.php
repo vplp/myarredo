@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use common\modules\location\models\{
     City, Country
 };
+use common\modules\catalog\models\Factory;
 
 /**
  * Class Profile
@@ -19,6 +20,7 @@ use common\modules\location\models\{
  * @property boolean $delivery_to_other_cities
  * @property int $country_id
  * @property int $city_id
+ * @property int $factor_id
  * @property float $latitude
  * @property float $longitude
  * @property int $partner_in_city
@@ -56,7 +58,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'in',
                 'range' => array_keys(self::statusKeyRange())
             ],
-            [['country_id', 'city_id'], 'integer'],
+            [['country_id', 'city_id', 'factory_id'], 'integer'],
             [['latitude', 'longitude'], 'double'],
         ]);
     }
@@ -77,6 +79,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'exp_with_italian',
                 'country_id',
                 'city_id',
+                'factory_id',
                 'delivery_to_other_cities',
                 'latitude',
                 'longitude',
@@ -92,6 +95,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'exp_with_italian',
                 'country_id',
                 'city_id',
+                'factory_id',
                 'delivery_to_other_cities',
                 'latitude',
                 'longitude',
@@ -109,6 +113,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'exp_with_italian',
                 'country_id',
                 'city_id',
+                'factory_id',
                 'delivery_to_other_cities',
                 'latitude',
                 'longitude',
@@ -132,6 +137,7 @@ class Profile extends \thread\modules\user\models\Profile
             'exp_with_italian' => 'Опыт работы с итальянской мебелью, лет',
             'country_id' => 'Ваша страна',
             'city_id' => 'Ваш город',
+            'factory_id' => 'Фабрика',
             'delivery_to_other_cities' => 'Готов к поставкам мебели в другие города',
             'latitude' => Yii::t('app', 'Latitude'),
             'longitude' => Yii::t('app', 'Longitude'),
@@ -155,6 +161,14 @@ class Profile extends \thread\modules\user\models\Profile
     public function getCity()
     {
         return $this->hasOne(City::class, ['id' => 'city_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactory()
+    {
+        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
     }
 
     /**

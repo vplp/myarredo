@@ -6,6 +6,7 @@ use backend\app\bootstrap\ActiveForm;
 use backend\modules\location\models\{
     Country, City
 };
+use backend\modules\catalog\models\Factory;
 /**
  * @var \backend\modules\user\models\Profile $model
  */
@@ -23,10 +24,14 @@ use backend\modules\location\models\{
 <?= $form->text_line($model, 'website') ?>
 
 <?= $form->field($model, 'country_id')
-    ->selectOne([null => '--'] + Country::dropDownList()); ?>
+    ->selectOne([0 => '--'] + Country::dropDownList()); ?>
 
 <?= $form->field($model, 'city_id')
-    ->selectOne([null => '--'] + City::dropDownList($model->country_id)); ?>
+    ->selectOne([0 => '--'] + City::dropDownList($model->country_id)); ?>
+
+<?= $form->field($model, 'factory_id')
+    ->selectOne([0 => '--'] + Factory::dropDownList($model->factory_id)); ?>
+
 
 <?= $form->text_line($model, 'latitude') ?>
 <?= $form->text_line($model, 'longitude') ?>
