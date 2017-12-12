@@ -456,6 +456,10 @@ $(document).ready(function(){
         $(item).parent().css({"background-image": "url(" + src + ")"});
     });
 
+    if( $(".text-col").text().trim() == "" ){
+        $(".text-col").closest(".text-description").remove();
+    }
+
 });
 (function(){
     if( $("#checkout-form").length ){
