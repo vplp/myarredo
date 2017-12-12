@@ -3472,7 +3472,7 @@ footer {
       padding: 20px 0;
     }
     .cat-prod .one-prod-tile {
-      width: 24%;
+      width: calc( 25% - 20px);
       .item-infoblock {
         background: #E1E1E1;
       }
