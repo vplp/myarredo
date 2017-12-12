@@ -1,7 +1,12 @@
 <?php
+
+use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ListView;
 
 ?>
+
+<?= Html::a('Добавить', Url::toRoute(['/banner/factory-banner/create']), ['class' => 'btn btn-default']) ?>
 
 <?=
 ListView::widget([

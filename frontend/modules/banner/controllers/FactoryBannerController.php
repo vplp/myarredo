@@ -14,7 +14,7 @@ use frontend\modules\banner\models\{
     BannerItem, BannerItemLang, search\BannerItem as filterBannerItem
 };
 use thread\actions\{
-    CreateWithLang, UpdateWithLang, ListModel
+    CreateWithLang, UpdateWithLang, ListModel, AttributeSwitch
 };
 
 /**
@@ -25,6 +25,8 @@ use thread\actions\{
 class FactoryBannerController extends BaseController
 {
     public $title = 'Banner';
+
+    public $defaultAction = 'list';
 
     protected $model = BannerItem::class;
 
@@ -59,6 +61,12 @@ class FactoryBannerController extends BaseController
                     'redirect' => function () {
                         return ['update', 'id' => $this->action->getModel()->id];
                     }
+                ],
+                'intrash' => [
+                    'class' => AttributeSwitch::class,
+                    'modelClass' => $this->model,
+                    'attribute' => 'deleted',
+                    'redirect' => $this->defaultAction,
                 ],
                 'fileupload' => [
                     'class' => UploadAction::class,

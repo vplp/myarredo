@@ -90,6 +90,8 @@ return [
     'location/location/get-cities' => 'location/location/get-cities',
 
     'banner/factory-banner/list' => 'banner/factory-banner/list',
+    'banner/factory-banner/create' => 'banner/factory-banner/create',
+    'banner/factory-banner/intrash' => 'banner/factory-banner/intrash',
     'banner/factory-banner/update/<id:[\d\-]+>' => 'banner/factory-banner/update',
     'banner/factory-banner/fileupload' => 'banner/factory-banner/fileupload',
     'banner/factory-banner/filedelete' => 'banner/factory-banner/filedelete',
