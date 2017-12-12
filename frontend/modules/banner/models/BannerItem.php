@@ -51,7 +51,7 @@ class BannerItem extends \common\modules\banner\models\BannerItem
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled();
+        return parent::findBase()->undeleted();
     }
 
     /**
@@ -60,7 +60,10 @@ class BannerItem extends \common\modules\banner\models\BannerItem
      */
     public static function findById($id)
     {
-        return self::findBase()->byID($id)->one();
+        return self::findBase()
+            ->byID($id)
+            ->published()
+            ->one();
     }
 
     /**
@@ -71,6 +74,7 @@ class BannerItem extends \common\modules\banner\models\BannerItem
     {
         return self::findBase()
             ->andWhere([self::tableName() . '.factory_id' => $factory_id])
+            ->published()
             ->all();
     }
 
