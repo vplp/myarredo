@@ -115,8 +115,13 @@
   }
 
   .tomassy-page {
-    .cat-prod .one-prod-tile .img-cont {
-      height: 195px;
+    .cat-container {
+      .cat-prod .one-prod-tile {
+        width: calc( 33% - 20px );
+        .img-cont {
+          height: 195px;
+        }
+      }
     }
   }
   .adding-product-page {
