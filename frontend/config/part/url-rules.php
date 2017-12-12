@@ -82,6 +82,7 @@ return [
     'shop/cart/delete-from-cart' => 'shop/cart/delete-from-cart',
     'shop/cart/delete-from-cart-popup' => 'shop/cart/delete-from-cart-popup',
     'partner/orders' => 'shop/partner-order/list',
+    'shop/factory-order/list' => 'shop/factory-order/list',
     'admin/orders' => 'shop/admin-order/list',
     //'partner/orders/view/<id:[\d\-]+>' => 'shop/partner-order/view',
 
