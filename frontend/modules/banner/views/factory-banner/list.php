@@ -4,6 +4,15 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
 
+/**
+ * @var \frontend\modules\banner\models\BannerItem $model
+ */
+
+$dataProvider = $model->search(Yii::$app->request->queryParams);
+$dataProvider->sort = false;
+
+$this->title = 'Баннера';
+
 ?>
 
 <main>
@@ -18,7 +27,7 @@ use yii\grid\GridView;
 
 
                 <?= GridView::widget([
-                    'dataProvider' => $model->search(Yii::$app->request->queryParams),
+                    'dataProvider' => $dataProvider,
                     'columns' => [
                         [
                             'attribute' => 'id',
