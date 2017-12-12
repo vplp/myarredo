@@ -108,16 +108,27 @@ class TemplateFactoryController extends BaseController
      */
     public function actionCatalog(string $alias)
     {
-        $model = Factory::findByAlias($alias);
+        $factory = Factory::findByAlias($alias);
 
-        if ($model === null) {
+        if ($factory === null) {
             throw new NotFoundHttpException;
         }
 
-        $this->factory = $model;
+        $this->factory = $factory;
+
+        $model = new Product();
+
+        $keys = Yii::$app->catalogFilter->keys;
+        $params = Yii::$app->catalogFilter->params;
+
+        $params[$keys['factory']] = [$factory['alias']];
+
+        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
 
         return $this->render('catalog', [
-            'model' => $model,
+            'factory' => $factory,
+            'models' => $models->getModels(),
+            'pages' => $models->getPagination(),
         ]);
     }
 }
