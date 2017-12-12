@@ -28,18 +28,6 @@ $this->title = $this->context->title;
                             <span>Дата заявки</span>
                         </li>
                         <li>
-                            <span>Имя</span>
-                        </li>
-                        <li>
-                            <span>Телефон</span>
-                        </li>
-                        <li>
-                            <span>Email</span>
-                        </li>
-                        <li>
-                            <span>Дата ответа</span>
-                        </li>
-                        <li>
                             <span>Город</span>
                         </li>
                         <li>
@@ -63,32 +51,6 @@ $this->title = $this->context->title;
                                     </li>
                                     <li class="application-date">
                                         <span><?= $modelOrder->getCreatedTime() ?></span>
-                                    </li>
-                                    <li>
-                                        <span><?= $modelOrder->customer->full_name ?></span>
-                                    </li>
-                                    <li>
-                                        <span>
-                                            <?php
-                                            if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
-                                                echo $modelOrder->customer->phone;
-                                            } else {
-                                                echo '-';
-                                            } ?>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span>
-                                        <?php
-                                        if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
-                                            echo $modelOrder->customer->email;
-                                        } else {
-                                            echo '-';
-                                        } ?>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span><?= $modelOrder->orderAnswer->getAnswerTime() ?></span>
                                     </li>
                                     <li><span>
                                             <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>

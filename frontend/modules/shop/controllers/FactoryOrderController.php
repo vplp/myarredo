@@ -3,6 +3,7 @@
 namespace frontend\modules\shop\controllers;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\filters\{
     VerbFilter, AccessControl
 };
@@ -60,7 +61,14 @@ class FactoryOrderController extends BaseController
     {
         $model = new Order();
 
-        $models = $model->search(Yii::$app->request->queryParams);
+        $models = $model->search(
+            ArrayHelper::merge(
+                Yii::$app->request->queryParams,
+                [
+                    'factory_id' => Yii::$app->getUser()->getIdentity()->profile->factory_id
+                ]
+            )
+        );
 
         $this->title = 'Заявки';
 
