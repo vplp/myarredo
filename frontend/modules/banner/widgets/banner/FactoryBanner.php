@@ -6,16 +6,21 @@ use yii\base\Widget;
 use frontend\modules\banner\models\BannerItem;
 
 /**
- * Class BannerList
+ * Class FactoryBanner
  *
  * @package frontend\modules\banner\widgets\banner
  */
-class BannerList extends Widget
+class FactoryBanner extends Widget
 {
     /**
      * @var string
      */
-    public $view = 'banner_list';
+    public $view = 'factory_banner';
+
+    /**
+     * @var int
+     */
+    public $factory_id;
 
     /**
      * @var object
@@ -27,7 +32,7 @@ class BannerList extends Widget
      */
     public function init()
     {
-        $this->model = BannerItem::findBase()->all();
+        $this->model = BannerItem::findByFactoryId($this->factory_id);
     }
 
     /**

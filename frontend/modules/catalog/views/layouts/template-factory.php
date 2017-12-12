@@ -6,6 +6,7 @@ use yii\helpers\{
 use frontend\themes\myarredo\assets\TemplateFactoryAsset;
 use frontend\themes\myarredo\widgets\Alert;
 use frontend\modules\catalog\models\Factory;
+use frontend\modules\user\widgets\partner\PartnerInfo;
 
 $bundle = TemplateFactoryAsset::register($this);
 
@@ -43,8 +44,8 @@ $this->beginPage()
                 ); ?>
 
             </div>
-            <a href="tel:+74951502121" class="tel">
-                +7 (495) 150-21-21
+            <a href="tel:<?= Yii::$app->partner->getPartnerPhone() ?>" class="tel">
+                <?= Yii::$app->partner->getPartnerPhone() ?>
             </a>
             <nav class="nav">
                 <?= Html::a('Каталог мебели', ['/catalog/template-factory/catalog', 'alias' => $this->context->factory['alias']]); ?>
@@ -57,12 +58,9 @@ $this->beginPage()
 
     <div class="top-footer">
         <div class="container large-container">
-            <div class="get-consl">
-                <p>Получить консультацию в <?= Yii::$app->city->getCityTitleWhere() ?></p>
-                <p>+7 (495) 150-21-21</p>
-                <p>Студия Триумф</p>
-                <p>улица Удальцова, 1А</p>
-            </div>
+
+            <?= PartnerInfo::widget(['view' => 'template_factory_partner_info']) ?>
+
             <div class="flex copy-r">
                 <div>
                     2015 - <?= date('Y'); ?> (С) MYARREDO, ЛУЧШАЯ МЕБЕЛЬ ИЗ ИТАЛИИ ДЛЯ ВАШЕГО ДОМА

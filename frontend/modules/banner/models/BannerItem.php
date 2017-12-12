@@ -10,7 +10,8 @@ use Yii;
  *
  * @package frontend\modules\banner\models
  */
-class BannerItem extends \common\modules\banner\models\BannerItem {
+class BannerItem extends \common\modules\banner\models\BannerItem
+{
 
 //    /**
 //     *
@@ -48,7 +49,8 @@ class BannerItem extends \common\modules\banner\models\BannerItem {
      *
      * @return yii\db\ActiveQuery
      */
-    public static function findBase() {
+    public static function findBase()
+    {
         return parent::findBase()->enabled();
     }
 
@@ -56,8 +58,20 @@ class BannerItem extends \common\modules\banner\models\BannerItem {
      * @param $id
      * @return mixed
      */
-    public static function findById($id) {
+    public static function findById($id)
+    {
         return self::findBase()->byID($id)->one();
+    }
+
+    /**
+     * @param $factory_id
+     * @return array|null|\yii\db\ActiveRecord
+     */
+    public static function findByFactoryId($factory_id)
+    {
+        return self::findBase()
+            ->andWhere([self::tableName() . '.factory_id' => $factory_id])
+            ->all();
     }
 
     /**

@@ -42,7 +42,6 @@ class FactoryBannerController extends BaseController
                 'list' => [
                     'class' => ListModel::class,
                     'modelClass' => $this->model,
-                    //'layout' => '@app/layouts/list',
                     'filterModel' => $this->filterModel,
                 ],
                 'create' => [

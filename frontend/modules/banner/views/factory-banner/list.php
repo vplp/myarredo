@@ -12,11 +12,8 @@ ListView::widget([
         'id' => 'list-wrapper',
     ],
     'layout' => "{pager}\n{items}\n{summary}",
-    'itemView' => function ($model, $key, $index, $widget) {
+    'itemView' => function ($model) {
         return $this->render('_list_item',['model' => $model]);
-
-        // or just do some echo
-        // return $model->title . ' posted by ' . $model->author;
     },
 ]);
 ?>

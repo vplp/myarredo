@@ -1,6 +1,6 @@
 <?php
 
-use yii\widgets\ActiveForm;
+use backend\app\bootstrap\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
@@ -9,7 +9,7 @@ use yii\helpers\{
  * @var \frontend\modules\banner\models\BannerItem $model
  */
 
-$this->title = 'Banner';
+$this->title = 'Баннера';
 
 ?>
 
@@ -28,9 +28,34 @@ $this->title = 'Banner';
                 <div class="row">
 
                     <div class="col-sm-4 col-md-4 col-lg-4 one-row">
+
+                        <?php if ($model->isNewRecord): ?>
+                            <div class="alert alert-warning">
+                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                Для загрузки изображений - сначала создайте
+                            </div>
+                        <?php else: ?>
+                            <?= $form->field($model, 'image_link')->imageOne($model->getImageLink()) ?>
+                        <?php endif; ?>
+
                         <?= $form->field($modelLang, 'title') ?>
+
                         <?= $form->field($modelLang, 'link') ?>
+
                         <?= $form->field($model, 'position') ?>
+
+                        <?= $form->switcher($model, 'published') ?>
+
+                        <?= $form->field($model, 'user_id')
+                            ->hiddenInput(['value' => Yii::$app->user->identity->id])
+                            ->label(false); ?>
+
+                        <?= $form->field($model, 'factory_id')
+                            ->hiddenInput(['value' => Yii::$app->user->identity->profile->factory_id])
+                            ->label(false); ?>
+
+
+
                     </div>
 
                 </div>
