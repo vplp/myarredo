@@ -190,8 +190,7 @@ $this->title = $this->context->title;
                     echo Html::a(
                             $item['title'],
                             Yii::$app->catalogFilter->createUrl($params)
-                        ) .
-                        Html::endTag('li');
+                        );
                 } ?>
 
             </div>

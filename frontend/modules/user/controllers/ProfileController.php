@@ -76,15 +76,7 @@ class ProfileController extends BaseController
         $model->setScenario('frontend');
         $user = $model::findByUserId(Yii::$app->getUser()->id);
 
-        $view = 'index';
-
-        if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') {
-            $view = 'index_partner';
-        } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
-            $view = 'index_factory';
-        }
-
-        return $this->render($view, [
+        return $this->render('index', [
             'model' => $user,
         ]);
     }
@@ -116,15 +108,7 @@ class ProfileController extends BaseController
             }
         }
 
-        $view = '_form';
-
-        if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') {
-            $view = '_form_partner';
-        } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
-            $view = '_form_factory';
-        }
-
-        return $this->render($view, [
+        return $this->render('_form', [
             'model' => $profile,
         ]);
     }

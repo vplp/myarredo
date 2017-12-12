@@ -112,10 +112,10 @@ use frontend\modules\location\widgets\ChangeCity;
                                         <?php elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory'): ?>
 
                                             <li>
-                                                <?= Html::a('Каталог', ['/user/profile/index']); ?>
+                                                <?= Html::a('Заявки', ['/shop/factory-order/list']); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Коллекции', ['/user/profile/index']); ?>
+                                                <?= Html::a('Баннера', ['/banner/factory-banner/list']); ?>
                                             </li>
                                             <li role="separator" class="divider"></li>
                                             <li>
