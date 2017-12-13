@@ -56,6 +56,8 @@ class FactoryController extends BaseController
             throw new NotFoundHttpException;
         }
 
+        $this->title = 'Итальянские фабрики мебели';
+
         if ($view == 'three') {
             /**
              * view three
@@ -128,7 +130,7 @@ class FactoryController extends BaseController
 
         $this->title = 'Итальянская мебель ' .
             $model['lang']['title'] .
-            'купить в ' .
+            ' купить в ' .
             Yii::$app->city->getCityTitleWhere() .
             ' по лучшей цене';
 
