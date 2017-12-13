@@ -6,7 +6,7 @@ use yii\helpers\{
 //
 use frontend\modules\user\widgets\partner\PartnerMap;
 
-$this->context->title .= ' в ' . Yii::$app->city->getCityTitleWhere();
+$this->title = $this->context->title;
 
 ?>
 
@@ -26,7 +26,6 @@ $this->context->title .= ' в ' . Yii::$app->city->getCityTitleWhere();
                             <a href="tel:<?= $partner->profile->phone ?>"><?= $partner->profile->phone ?></a>
                         </div>
                     <?php endforeach; ?>
-
 
                 </div>
                 <div class="warning">

@@ -64,7 +64,7 @@ class TemplateFactoryController extends BaseController
 
         $this->title = 'Итальянская мебель ' .
             $model['lang']['title'] .
-            'купить в ' .
+            ' купить в ' .
             Yii::$app->city->getCityTitleWhere() .
             ' по лучшей цене';
 
@@ -93,7 +93,8 @@ class TemplateFactoryController extends BaseController
 
         $this->factory = $model;
 
-        $this->title =  $model['lang']['title'];
+        $this->title = 'Партнеры сети MYARREDO в ' .
+            Yii::$app->city->getCityTitleWhere();
 
         return $this->render('contacts', [
             'model' => $model,
@@ -124,6 +125,12 @@ class TemplateFactoryController extends BaseController
         $params[$keys['factory']] = [$factory['alias']];
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
+
+        $this->title = 'Каталог итальянской мебели ' .
+            $factory['lang']['title'] .
+            ' купить в ' .
+            Yii::$app->city->getCityTitleWhere() .
+            ' по лучшей цене';
 
         return $this->render('catalog', [
             'factory' => $factory,

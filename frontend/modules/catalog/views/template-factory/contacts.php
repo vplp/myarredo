@@ -7,7 +7,7 @@ use yii\helpers\{
 //
 use frontend\modules\user\widgets\partner\PartnerMap;
 
-$this->context->title .= ' в ' . Yii::$app->city->getCityTitleWhere();
+$this->title = $this->context->title;
 
 ?>
 
