@@ -3,10 +3,9 @@
 namespace frontend\modules\catalog\components;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
-use yii\base\{
-    Component
-};
+use yii\base\Component;
 use yii\web\NotFoundHttpException;
 use frontend\modules\catalog\models\{
     Product, Category, Factory, Types, Specification, Collection
@@ -78,10 +77,10 @@ class CatalogFilter extends Component
 
     /**
      * @param array $paramsUrl
-     * @param string $route
+     * @param array $route
      * @return string
      */
-    public function createUrl(array $paramsUrl = [], $route = '/catalog/category/list')
+    public function createUrl(array $paramsUrl = [], $route = ['/catalog/category/list'])
     {
         $labelEmptyKey = self::getLabelEmptyKey();
 
@@ -128,9 +127,9 @@ class CatalogFilter extends Component
         }
 
         if ($url !== '') {
-            return Url::toRoute([$route, 'filter' => $url]);
+            return Url::toRoute(ArrayHelper::merge($route, ['filter' => $url]));
         } else {
-            return Url::toRoute([$route]);
+            return Url::toRoute($route);
         }
     }
 

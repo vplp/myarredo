@@ -1,15 +1,5 @@
 <?php
 
-use yii\helpers\{
-    Html, Url
-};
-use frontend\components\Breadcrumbs;
-//
-use frontend\modules\catalog\widgets\filter\{
-    ProductSorting, ProductFilter
-};
-use frontend\modules\catalog\widgets\paginator\PageChanger;
-
 /**
  * @var $pages \yii\data\Pagination
  * @var $model \frontend\modules\catalog\models\Product
