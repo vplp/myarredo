@@ -31,6 +31,7 @@ return [
     'factories/<letter:[\w\-]>' => 'catalog/factory/list',
     'factories' => 'catalog/factory/list',
     'sale' => 'catalog/sale/list',
+    'product-stats' => 'catalog/product-stats/list',
 
     'factory/<alias:(nieri)>/contacts' => 'catalog/template-factory/contacts',
     'factory/<alias:(nieri)>/catalog/<filter:[\;\-\w\d]+>' => 'catalog/template-factory/catalog',

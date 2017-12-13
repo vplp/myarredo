@@ -102,6 +102,9 @@ use frontend\modules\location\widgets\ChangeCity;
                                             <li>
                                                 <?= Html::a('Заявки', ['/shop/admin-order/list']); ?>
                                             </li>
+                                            <li>
+                                                <?= Html::a('Статистика', ['/catalog/product-stats/list']); ?>
+                                            </li>
                                             <li role="separator" class="divider"></li>
                                             <li>
                                                 <?= Html::a('Профиль', ['/user/profile/index']); ?>
@@ -113,6 +116,9 @@ use frontend\modules\location\widgets\ChangeCity;
 
                                             <li>
                                                 <?= Html::a('Заявки', ['/shop/factory-order/list']); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a('Статистика', ['/catalog/product-stats/list']); ?>
                                             </li>
                                             <li>
                                                 <?= Html::a('Баннера', ['/banner/factory-banner/list']); ?>
