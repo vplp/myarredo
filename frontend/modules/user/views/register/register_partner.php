@@ -48,7 +48,7 @@ $model->delivery_to_other_cities = 1;
 
                         <?= $form->field($model, 'phone')
                             ->widget(\yii\widgets\MaskedInput::className(), [
-                                'mask' => '79999999999',
+                                'mask' => Yii::$app->city->getPhoneMask(),
                                 'clientOptions' => [
                                     'clearIncomplete' => true
                                 ]
