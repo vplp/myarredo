@@ -3,6 +3,9 @@
 namespace frontend\modules\catalog\controllers;
 
 use Yii;
+use yii\filters\{
+    VerbFilter, AccessControl
+};
 use yii\helpers\ArrayHelper;
 use frontend\modules\catalog\models\{
     ProductStats, Factory
@@ -18,7 +21,38 @@ class ProductStatsController extends BaseController
 {
     public $label = "Stats";
     public $title = "Stats";
+
     public $defaultAction = 'list';
+
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'list' => ['get', 'post'],
+                ],
+            ],
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => [
+                            'list',
+                        ],
+                        'roles' => ['admin', 'factory'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
 
     public function actionList()
     {

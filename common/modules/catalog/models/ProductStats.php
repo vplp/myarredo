@@ -111,14 +111,12 @@ class ProductStats extends ActiveRecord
     {
         return self::find()
             ->select([
-                self::tableName() . '.id',
-                self::tableName() . '.user_id',
                 self::tableName() . '.product_id',
-                self::tableName() . '.city_id',
-                'count(' . self::tableName() . '.id) as count'
+                'count(' . self::tableName() . '.product_id) as count'
             ])
             ->innerJoinWith(["product"])
             ->innerJoinWith(["product.lang"])
-            ->groupBy(self::tableName() . '.id');
+            ->groupBy(self::tableName() . '.product_id')
+            ->orderBy('count DESC');
     }
 }
