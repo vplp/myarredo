@@ -98,10 +98,10 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
         $initImageConfig = [];
         $initImage = [];
         if (isset($options['initialPreview']) && !empty($options['initialPreview'])) {
-            foreach ($options['initialPreview'] as $image) {
+            foreach ($options['initialPreview'] as $key => $image) {
                 $initImage[] = $image;
                 $initImageConfig[] = "{
-                    key: '" . basename($image) . "',
+                   key: '" . basename($image) . "',
                     url: '" . Url::toRoute(['filedelete', 'id' => $this->model->id]) . "'
                 }";
             }

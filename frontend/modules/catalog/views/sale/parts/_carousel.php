@@ -13,7 +13,7 @@ use yii\helpers\Html;
     <!-- Carousel items -->
     <div class="carousel-inner">
 
-        <?php foreach ($model->getGalleryImage() as $key => $src) {
+        <?php foreach ($model->getFrontGalleryImage() as $key => $src) {
 
             $class = 'item' . (($key == 0) ? ' active' : '');
 
@@ -45,7 +45,7 @@ use yii\helpers\Html;
 
         <ol class="carousel-indicators">
 
-            <?php foreach ($model->getGalleryImage() as $key => $src): ?>
+            <?php foreach ($model->getFrontGalleryImage() as $key => $src): ?>
 
                 <li data-target="#prod-slider" data-slide-to="<?= $key ?>"
                     class="<?= ($key == 0) ?? 'active' ?>">
