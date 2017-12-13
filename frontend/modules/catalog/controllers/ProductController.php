@@ -6,7 +6,9 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 //
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\{
+    Product, ProductStats
+};
 use frontend\components\BaseController;
 
 /**
@@ -46,6 +48,9 @@ class ProductController extends BaseController
         if ($model === null) {
             throw new NotFoundHttpException;
         }
+
+        // ProductStats
+        ProductStats::create($model->id);
 
         $this->breadcrumbs[] = [
             'label' => 'Каталог итальянской мебели',
