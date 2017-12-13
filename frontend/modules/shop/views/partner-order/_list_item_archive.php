@@ -23,7 +23,7 @@ use yii\helpers\{
     <div class="form-wrap">
 
         <div class="form-group">
-            <?= Html::label('comment', null, ['class' => 'control-label']); ?>
+            <?= Html::label($modelOrder->getAttributeLabel('comment'), null, ['class' => 'control-label']); ?>
             <?= Html::textarea(null, $modelOrder['comment'], [
                 'class' => 'form-control',
                 'disabled' => true
@@ -31,8 +31,8 @@ use yii\helpers\{
         </div>
 
         <div class="form-group">
-            <?= Html::label('answer', null, ['class' => 'control-label']); ?>
-            <?= Html::textarea(null, $modelOrder['answer'], [
+            <?= Html::label($modelOrder->orderAnswer->getAttributeLabel('answer'), null, ['class' => 'control-label']); ?>
+            <?= Html::textarea(null, $modelOrder['orderAnswer']['answer'], [
                 'class' => 'form-control',
                 'disabled' => true
             ]); ?>
