@@ -23,7 +23,7 @@ use frontend\modules\catalog\models\Product;
     </div>
 
     <div class="item-infoblock">
-        <?= $model['product']['id']; ?> <?= Product::getStaticTitle($model['product']); ?>
+        <?= Product::getStaticTitle($model['product']); ?>
     </div>
 
 <?= Html::endTag('a'); ?>
