@@ -32,6 +32,8 @@ HTML;
         'class' => 'form-filter-date-cont flex'
     ]
 ]); ?>
+
+<?php if (Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
     <div class="form-group">
         <?= Select2::widget([
             'name' => 'factory_id',
@@ -44,6 +46,7 @@ HTML;
             ]
         ]); ?>
     </div>
+<?php endif; ?>
 
     <div class="form-group">
         <?= Select2::widget([
