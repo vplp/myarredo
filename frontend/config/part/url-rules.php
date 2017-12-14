@@ -20,6 +20,7 @@ return [
 
     // Module [[Catalog]]
     'catalog/<filter:[\;\-\w\d]+>' => 'catalog/category/list',
+    'test/<filter:[\;\-\w\d]+>' => 'catalog/category/test',
     'sale/<filter:[\;\-\/\w\d]+>' => 'catalog/sale/list',
 
     'factory/<alias:(nieri)>' => 'catalog/template-factory/factory',
@@ -28,6 +29,7 @@ return [
     'product/<alias:[\w\-]+>' => 'catalog/product/view',
     'sale-product/<alias:[\w\-]+>' => 'catalog/sale/view',
     'catalog' => 'catalog/category/list',
+    'test' => 'catalog/category/test',
     'factories/<letter:[\w\-]>' => 'catalog/factory/list',
     'factories' => 'catalog/factory/list',
     'sale' => 'catalog/sale/list',

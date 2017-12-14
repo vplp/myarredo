@@ -26,7 +26,8 @@ use yii\helpers\{
             <?= Html::label($modelOrder->getAttributeLabel('comment'), null, ['class' => 'control-label']); ?>
             <?= Html::textarea(null, $modelOrder['comment'], [
                 'class' => 'form-control',
-                'disabled' => true
+                'disabled' => true,
+                'rows' => 5
             ]); ?>
         </div>
 
@@ -34,7 +35,8 @@ use yii\helpers\{
             <?= Html::label($modelOrder->orderAnswer->getAttributeLabel('answer'), null, ['class' => 'control-label']); ?>
             <?= Html::textarea(null, $modelOrder['orderAnswer']['answer'], [
                 'class' => 'form-control',
-                'disabled' => true
+                'disabled' => true,
+                'rows' => 5
             ]); ?>
         </div>
 
