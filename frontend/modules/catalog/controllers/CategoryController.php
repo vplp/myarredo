@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
     Product,
+    ProductTest,
     Category,
     Factory,
     Types,
@@ -47,6 +48,37 @@ class CategoryController extends BaseController
     public function actionList()
     {
         $model = new Product();
+
+        $group = [];
+
+        if (isset(Yii::$app->catalogFilter->params['category'])) {
+            $group = Yii::$app->catalogFilter->params['category'];
+        }
+
+        $category = Category::getWithProduct(Yii::$app->catalogFilter->params);
+        $types = Types::getWithProduct(Yii::$app->catalogFilter->params);
+        $style = Specification::getWithProduct(Yii::$app->catalogFilter->params);
+        $factory = Factory::getWithProduct(Yii::$app->catalogFilter->params);
+
+        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, Yii::$app->catalogFilter->params));
+
+        return $this->render('list', [
+            'group' => $group,
+            'category' => $category,
+            'types' => $types,
+            'style' => $style,
+            'factory' => $factory,
+            'models' => $models->getModels(),
+            'pages' => $models->getPagination(),
+        ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionTest()
+    {
+        $model = new ProductTest();
 
         $group = [];
 

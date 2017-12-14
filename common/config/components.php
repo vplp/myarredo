@@ -43,11 +43,11 @@ return [
         ],
     ],
     // FileCache
-    'cache' => [
-        'class' => \yii\caching\FileCache::class,
-        'cachePath' => '@runtime',
-        'keyPrefix' => 'thread'
-    ],
+//    'cache' => [
+//        'class' => \yii\caching\FileCache::class,
+//        'cachePath' => '@runtime',
+//        'keyPrefix' => 'thread'
+//    ],
     // MemCache
     'memCache' => [
         'class' => \yii\caching\MemCache::class,
