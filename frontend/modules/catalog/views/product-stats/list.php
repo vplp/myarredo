@@ -13,17 +13,14 @@ $this->title = $this->context->title;
     <div class="page adding-product-page">
         <div class="container large-container">
 
-            <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'admin') {
-                echo $this->render('_form_filter', [
-                    'model' => $model,
-                ]);
-            } ?>
+            <?= $this->render('_form_filter', [
+                'model' => $model,
+            ]); ?>
 
             <div class="cat-prod-wrap">
                 <div class="cat-prod">
 
-                    <?php
-                    foreach ($models as $model) {
+                    <?php foreach ($models as $model) {
                         echo $this->render('_list_item', [
                             'model' => $model,
                         ]);
