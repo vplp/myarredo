@@ -58,7 +58,7 @@ class ProductStatsController extends BaseController
     {
         $model = new ProductStats();
 
-        $params = Yii::$app->request->post();
+        $params = Yii::$app->request->get();
 
         if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
             $params['factory_id'] = Yii::$app->getUser()->getIdentity()->profile->factory_id;
