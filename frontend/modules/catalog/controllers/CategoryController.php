@@ -74,20 +74,6 @@ class CategoryController extends BaseController
     }
 
     /**
-     * @return string
-     */
-    public function actionTest()
-    {
-        $model = Product::findByID(81649);
-
-        if ($model === null) {
-            throw new NotFoundHttpException;
-        }
-
-        /* !!! */ echo  '<pre style="color:red;">'; print_r($model); echo '</pre>'; /* !!! */
-    }
-
-    /**
      * @param \yii\base\Action $action
      * @return bool|\yii\web\Response
      */
