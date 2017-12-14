@@ -25,6 +25,8 @@ class User extends \common\modules\user\models\User
             $query->andFilterWhere([Profile::tableName() . '.city_id' => $city_id]);
         }
 
+        $query->orderBy(Profile::tableName() . '.partner_in_city DESC');
+
         return $query->all();
     }
 
