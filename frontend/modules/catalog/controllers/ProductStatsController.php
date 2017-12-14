@@ -60,6 +60,10 @@ class ProductStatsController extends BaseController
 
         $params = [];
 
+        if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
+            $params['factory_id'] = Yii::$app->getUser()->getIdentity()->profile->factory_id;
+        }
+
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
 
         return $this->render('list', [
