@@ -1,8 +1,5 @@
 <?php
 
-//use frontend\themes\myarredo\assets\JqueryUiAsset;
-//JqueryUiAsset::register($this);
-
 /**
  * @var $pages \yii\data\Pagination
  * @var $model \frontend\modules\catalog\models\Product
