@@ -23,6 +23,7 @@ use common\modules\catalog\Catalog;
 class ProductStats extends ActiveRecord
 {
     public $count;
+
     /**
      * @return null|object|string
      */
