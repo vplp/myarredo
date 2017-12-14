@@ -17,13 +17,15 @@ use frontend\modules\catalog\models\{
  */
 class ProductStats extends ProductStatsModel
 {
+    public $factory_id;
+
     /**
      * @return array
      */
     public function rules()
     {
         return [
-
+            [['city_id', 'factory_id'], 'integer'],
         ];
     }
 
@@ -53,8 +55,12 @@ class ProductStats extends ProductStatsModel
             ],
         ]);
 
-        if (!($this->load($params) && $this->validate())) {
+        if (!($this->load($params, '') && $this->validate())) {
             return $dataProvider;
+        }
+
+        if (isset($params['factory_id'])) {
+            $query->andWhere([Product::tableName() . '.factory_id' => $params['factory_id']]);
         }
 
         return $dataProvider;
