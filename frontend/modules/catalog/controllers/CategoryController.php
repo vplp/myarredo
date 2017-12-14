@@ -78,30 +78,13 @@ class CategoryController extends BaseController
      */
     public function actionTest()
     {
-        $model = new ProductTest();
+        $model = Product::findByID(81649);
 
-        $group = [];
-
-        if (isset(Yii::$app->catalogFilter->params['category'])) {
-            $group = Yii::$app->catalogFilter->params['category'];
+        if ($model === null) {
+            throw new NotFoundHttpException;
         }
 
-        $category = Category::getWithProduct(Yii::$app->catalogFilter->params);
-        $types = Types::getWithProduct(Yii::$app->catalogFilter->params);
-        $style = Specification::getWithProduct(Yii::$app->catalogFilter->params);
-        $factory = Factory::getWithProduct(Yii::$app->catalogFilter->params);
-
-        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, Yii::$app->catalogFilter->params));
-
-        return $this->render('list', [
-            'group' => $group,
-            'category' => $category,
-            'types' => $types,
-            'style' => $style,
-            'factory' => $factory,
-            'models' => $models->getModels(),
-            'pages' => $models->getPagination(),
-        ]);
+        /* !!! */ echo  '<pre style="color:red;">'; print_r($model); echo '</pre>'; /* !!! */
     }
 
     /**
