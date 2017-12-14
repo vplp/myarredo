@@ -18,6 +18,8 @@ use frontend\modules\catalog\models\{
 class ProductStats extends ProductStatsModel
 {
     public $factory_id;
+    public $start_date;
+    public $end_date;
 
     /**
      * @return array
@@ -26,6 +28,7 @@ class ProductStats extends ProductStatsModel
     {
         return [
             [['city_id', 'factory_id'], 'integer'],
+            [['start_date', 'end_date'], 'string', 'max' => 10],
         ];
     }
 
@@ -59,8 +62,17 @@ class ProductStats extends ProductStatsModel
             return $dataProvider;
         }
 
-        if (isset($params['factory_id'])) {
+        if ($params['factory_id']) {
             $query->andWhere([Product::tableName() . '.factory_id' => $params['factory_id']]);
+        }
+
+        if ($params['city_id']) {
+            $query->andWhere([self::tableName() . '.city_id' => $params['city_id']]);
+        }
+
+        if ($params['start_date'] && $params['end_date']) {
+            $query->andWhere(['>=', self::tableName() . '.created_at', strtotime($params['start_date']. ' 0:00')]);
+            $query->andWhere(['<=', self::tableName() . '.created_at', strtotime($params['end_date']. ' 23:59')]);
         }
 
         return $dataProvider;
