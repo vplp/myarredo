@@ -54,6 +54,9 @@ class ProductStatsController extends BaseController
         ];
     }
 
+    /**
+     * @return string
+     */
     public function actionList()
     {
         $model = new ProductStats();
