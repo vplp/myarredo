@@ -38,6 +38,11 @@ $bundle = AppAsset::register($this);
                             <img src="<?= $bundle->baseUrl ?>/img/pictures/banner_3.png" alt="Изображение слайда">
                         </a>
                     </div>
+                    <div class="item">
+                        <a href="http://www.myarredo.ru/factory/nieri/">
+                            <img src="<?= $bundle->baseUrl ?>/img/pictures/banner_4.png" alt="Изображение слайда">
+                        </a>
+                    </div>
                 </div>
 
                 <a class="left carousel-control" href="#home-slider" role="button" data-slide="prev">
