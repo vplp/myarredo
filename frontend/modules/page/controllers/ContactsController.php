@@ -22,6 +22,9 @@ class ContactsController extends BaseController
     {
         $partners = User::getPartners(Yii::$app->city->getCityId());
 
+        $this->title = 'Партнеры сети MYARREDO в ' .
+            Yii::$app->city->getCityTitleWhere();
+
         return $this->render('contacts', [
             'partners' => $partners,
         ]);

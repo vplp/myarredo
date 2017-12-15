@@ -84,7 +84,7 @@ class ProductFilter extends Widget
                 $params[$keys['category']] = $obj['alias'];
             }
 
-            $link = Yii::$app->catalogFilter->createUrl($params, $this->route);
+            $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
 
             $category[$key] = array(
                 'checked' => $checked,
@@ -113,7 +113,7 @@ class ProductFilter extends Widget
                 $params[$keys['type']][] = $obj['alias'];
             }
 
-            $link = Yii::$app->catalogFilter->createUrl($params, $this->route);
+            $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
 
             $types[$key] = array(
                 'checked' => $checked,
@@ -142,7 +142,7 @@ class ProductFilter extends Widget
                 $params[$keys['style']][] = $obj['alias'];
             }
 
-            $link = Yii::$app->catalogFilter->createUrl($params, $this->route);
+            $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
 
             $style[$key] = array(
                 'checked' => $checked,
@@ -171,7 +171,7 @@ class ProductFilter extends Widget
                 $params[$keys['factory']][] = $obj['alias'];
             }
 
-            $link = Yii::$app->catalogFilter->createUrl($params, $this->route);
+            $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
 
             $factory[$obj['first_letter']][] = array(
                 'checked' => $checked,

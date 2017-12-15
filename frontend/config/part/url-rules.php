@@ -21,13 +21,20 @@ return [
     // Module [[Catalog]]
     'catalog/<filter:[\;\-\w\d]+>' => 'catalog/category/list',
     'sale/<filter:[\;\-\/\w\d]+>' => 'catalog/sale/list',
-    'factory/<letter:[\w\-]>' => 'catalog/factory/list',
+    'factory/<alias:(nieri)>' => 'catalog/template-factory/factory',
     'factory/<alias:[\w\-]+>' => 'catalog/factory/view',
     'product/<alias:[\w\-]+>' => 'catalog/product/view',
     'sale-product/<alias:[\w\-]+>' => 'catalog/sale/view',
     'catalog' => 'catalog/category/list',
+    'factories/<letter:[\w\-]>' => 'catalog/factory/list',
     'factories' => 'catalog/factory/list',
     'sale' => 'catalog/sale/list',
+    'product-stats' => 'catalog/product-stats/list',
+
+    'factory/<alias:(nieri)>/contacts' => 'catalog/template-factory/contacts',
+    'factory/<alias:(nieri)>/catalog/<filter:[\;\-\w\d]+>' => 'catalog/template-factory/catalog',
+    'factory/<alias:(nieri)>/catalog' => 'catalog/template-factory/catalog',
+    'factory/<alias:(nieri)>/product/<product:[\w\-]+>' => 'catalog/template-factory/product',
 
     'partner/sale' => 'catalog/partner-sale/list',
     'partner/sale/create' => 'catalog/partner-sale/create',
@@ -74,9 +81,18 @@ return [
     'shop/cart/delete-from-cart' => 'shop/cart/delete-from-cart',
     'shop/cart/delete-from-cart-popup' => 'shop/cart/delete-from-cart-popup',
     'partner/orders' => 'shop/partner-order/list',
+    'shop/factory-order/list' => 'shop/factory-order/list',
     'admin/orders' => 'shop/admin-order/list',
     //'partner/orders/view/<id:[\d\-]+>' => 'shop/partner-order/view',
 
     // Module [[Location]]
-    'location/location/get-cities' => 'location/location/get-cities'
+    'location/location/get-cities' => 'location/location/get-cities',
+
+    'banner/factory-banner/list' => 'banner/factory-banner/list',
+    'banner/factory-banner/create' => 'banner/factory-banner/create',
+    'banner/factory-banner/intrash/<id:[\d\-]+>' => 'banner/factory-banner/intrash',
+    'banner/factory-banner/update/<id:[\d\-]+>' => 'banner/factory-banner/update',
+    'banner/factory-banner/fileupload' => 'banner/factory-banner/fileupload',
+    'banner/factory-banner/filedelete' => 'banner/factory-banner/filedelete',
+
 ];

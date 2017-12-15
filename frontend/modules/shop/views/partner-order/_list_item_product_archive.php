@@ -38,5 +38,11 @@ use frontend\modules\catalog\models\Product;
             <td>Фабрика</td>
             <td><?= $orderItem->product['factory']['lang']['title'] ?></td>
         </tr>
+        <tr>
+            <td>ЦЕНА для клиента</td>
+            <td>
+                <?= $orderItem->orderItemPrice['price'] ?>
+            </td>
+        </tr>
     </table>
 </div>

@@ -48,7 +48,7 @@ $model->delivery_to_other_cities = 1;
 
                         <?= $form->field($model, 'phone')
                             ->widget(\yii\widgets\MaskedInput::className(), [
-                                'mask' => '79999999999',
+                                'mask' => Yii::$app->city->getPhoneMask(),
                                 'clientOptions' => [
                                     'clearIncomplete' => true
                                 ]
@@ -118,16 +118,14 @@ $model->delivery_to_other_cities = 1;
 <?php
 
 $script = <<<JS
-    
-    $('select#registerform-country_id').change(function(){
-        var country_id = parseInt($(this).val());
-        $.post('/location/location/get-cities', {_csrf: $('#token').val(),country_id:country_id}, function(data){
-            var select = $('select#registerform-city_id');
-            select.html(data.options);
-            select.selectpicker("refresh");
-        });
+$('select#registerform-country_id').change(function(){
+    var country_id = parseInt($(this).val());
+    $.post('/location/location/get-cities/', {_csrf: $('#token').val(),country_id:country_id}, function(data){
+        var select = $('select#registerform-city_id');
+        select.html(data.options);
+        select.selectpicker("refresh");
     });
-
+});
 JS;
 
 $this->registerJs($script, yii\web\View::POS_READY);

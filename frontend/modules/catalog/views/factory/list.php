@@ -10,6 +10,8 @@ use frontend\modules\catalog\models\Factory;
  * @var \frontend\modules\catalog\models\Factory $model
  */
 
+$this->title = $this->context->title;
+
 ?>
 
 <main>

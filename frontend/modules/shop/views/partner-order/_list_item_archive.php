@@ -9,18 +9,36 @@ use yii\helpers\{
 
 ?>
 
-    <div class="hidden-order-in">
-        <div class="flex-product">
+<div class="hidden-order-in">
+    <div class="flex-product">
 
-            <?php
-            foreach ($modelOrder->items as $orderItem) {
-                echo $this->render('_list_item_product_archive', [
-                    'orderItem' => $orderItem,
-                ]);
-            } ?>
+        <?php
+        foreach ($modelOrder->items as $orderItem) {
+            echo $this->render('_list_item_product_archive', [
+                'orderItem' => $orderItem,
+            ]);
+        } ?>
 
-        </div>
-        <div class="form-wrap">
-
-        </div>
     </div>
+    <div class="form-wrap">
+
+        <div class="form-group">
+            <?= Html::label($modelOrder->getAttributeLabel('comment'), null, ['class' => 'control-label']); ?>
+            <?= Html::textarea(null, $modelOrder['comment'], [
+                'class' => 'form-control',
+                'disabled' => true,
+                'rows' => 5
+            ]); ?>
+        </div>
+
+        <div class="form-group">
+            <?= Html::label($modelOrder->orderAnswer->getAttributeLabel('answer'), null, ['class' => 'control-label']); ?>
+            <?= Html::textarea(null, $modelOrder['orderAnswer']['answer'], [
+                'class' => 'form-control',
+                'disabled' => true,
+                'rows' => 5
+            ]); ?>
+        </div>
+
+    </div>
+</div>

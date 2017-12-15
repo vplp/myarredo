@@ -24,13 +24,14 @@ use frontend\modules\shop\models\{
  */
 class Order extends OrderModel
 {
+    public $factory_id;
     /**
      * @return array
      */
     public function rules()
     {
         return [
-            [['id', 'customer_id', 'city_id'], 'integer'],
+            [['id', 'customer_id', 'city_id', 'factory_id'], 'integer'],
         ];
     }
 
@@ -68,6 +69,12 @@ class Order extends OrderModel
             'customer_id' => $this->customer_id,
             'city_id' => $this->city_id,
         ]);
+
+        if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
+            $query
+                ->innerJoinWith(["items.product.factory productFactory"], false)
+                ->andFilterWhere(['IN', 'productFactory.id', $this->factory_id]);
+        }
 
         return $dataProvider;
     }

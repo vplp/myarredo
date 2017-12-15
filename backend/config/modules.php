@@ -59,4 +59,7 @@ return [
     'catalog' => [
         'class' => \backend\modules\catalog\Catalog::class
     ],
+    'banner' => [
+        'class' => \backend\modules\banner\Banner::class,
+    ],
 ];

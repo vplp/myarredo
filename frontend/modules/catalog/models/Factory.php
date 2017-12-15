@@ -260,7 +260,7 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public static function getFactoryCategory(array $ids)
     {
-        $command = Yii::$app->db_myarredo->createCommand("SELECT
+        $command = Yii::$app->db->createCommand("SELECT
                 factory.id AS factory_id,
                 category.id AS category_id,
                 category.alias AS alias,
@@ -293,13 +293,12 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
-     * Get Factory Types
-     *
      * @param int $id
+     * @return array
      */
     public static function getFactoryTypes(int $id)
     {
-        $command = Yii::$app->db_myarredo->createCommand("SELECT
+        $command = Yii::$app->db->createCommand("SELECT
                 COUNT(types.id) as count, 
                 types.id, 
                 types.alias,
@@ -327,13 +326,12 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
-     * Get Factory Collection
-     *
      * @param int $id
+     * @return array
      */
     public static function getFactoryCollection(int $id)
     {
-        $command = Yii::$app->db_myarredo->createCommand("SELECT
+        $command = Yii::$app->db->createCommand("SELECT
                 COUNT(collection.id) as count, 
                 collection.id,
                 collectionLang.title AS title
