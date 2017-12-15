@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\models\search;
 
+use frontend\modules\location\models\City;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -66,8 +67,18 @@ class ProductStats extends ProductStatsModel
             $query->andWhere([Product::tableName() . '.factory_id' => $params['factory_id']]);
         }
 
-        if (isset($params['city_id']) && $params['city_id'] > 0) {
-            $query->andWhere([self::tableName() . '.city_id' => $params['city_id']]);
+        if (isset($params['country_id']) && $params['country_id'] > 0 && !$params['city_id']) {
+
+            $model = City::findAll(['country_id' => $params['country_id']]);
+
+            if ($model != null) {
+                foreach ($model as $city) {
+                    $city_id[] = $city['id'];
+                }
+                $query->andFilterWhere(['IN', self::tableName() . '.city_id', $city_id]);
+            }
+        } elseif (isset($params['city_id']) && $params['city_id'] > 0) {
+            $query->andFilterWhere(['IN', self::tableName() . '.city_id', $params['city_id']]);
         }
 
         if (isset($params['start_date']) && $params['start_date'] != '' && isset($params['end_date']) && $params['end_date'] != '') {
