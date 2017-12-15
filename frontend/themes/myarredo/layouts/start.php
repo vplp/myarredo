@@ -25,7 +25,7 @@ $bundle = AppAsset::register($this);
                 <div class="carousel-inner">
                     <div class="item active">
                         <a href="http://www.myarredo.ru/factory/nieri/">
-                            <img src="<?= $bundle->baseUrl ?>/img/pictures/banner_1.jpg" alt="Изображение слайда">
+                            <img src="<?= $bundle->baseUrl ?>/img/pictures/banner_1.png" alt="Изображение слайда">
                         </a>
                     </div>
                     <div class="item">
