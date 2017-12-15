@@ -33,9 +33,11 @@ $this->title = $this->context->title;
         <div class="container large-container">
             <div class="row" itemscope itemtype="http://schema.org/Product">
 
-                <?= Breadcrumbs::widget([
-                    'links' => $this->context->breadcrumbs,
-                ]) ?>
+                <?php if (!isset($this->context->factory)): ?>
+                    <?= Breadcrumbs::widget([
+                        'links' => $this->context->breadcrumbs,
+                    ]) ?>
+                <?php endif; ?>
 
                 <div class="product-title">
                     <?= Html::tag(
@@ -75,7 +77,7 @@ $this->title = $this->context->title;
                                 <td>
                                     <?= ($model['status']) ?>
 
-                                    <?php if(!$model['removed'] && $model['in_stock']):?>
+                                    <?php if (!$model['removed'] && $model['in_stock']): ?>
                                         <meta itemprop="availability" content="InStock">
                                     <?php elseif (!$model['removed']): ?>
                                         <meta itemprop="availability" content="PreOrder">
