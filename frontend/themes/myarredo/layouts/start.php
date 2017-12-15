@@ -24,10 +24,19 @@ $bundle = AppAsset::register($this);
 
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img src="<?= $bundle->baseUrl ?>/img/pictures/thumb1.jpg" alt="Изображение слайда">
+                        <a href="http://www.myarredo.ru/factory/nieri/">
+                            <img src="<?= $bundle->baseUrl ?>/img/pictures/banner_1.jpg" alt="Изображение слайда">
+                        </a>
                     </div>
                     <div class="item">
-                        <img src="<?= $bundle->baseUrl ?>/img/pictures/thumb2.png" alt="Изображение слайда">
+                        <a href="http://www.myarredo.ru/factory/nieri/">
+                            <img src="<?= $bundle->baseUrl ?>/img/pictures/banner_2.png" alt="Изображение слайда">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="http://www.myarredo.ru/factory/nieri/">
+                            <img src="<?= $bundle->baseUrl ?>/img/pictures/banner_3.png" alt="Изображение слайда">
+                        </a>
                     </div>
                 </div>
 
