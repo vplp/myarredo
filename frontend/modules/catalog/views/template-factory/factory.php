@@ -34,10 +34,12 @@ $this->title = $this->context->title;
 
     <div class="cat-container">
         <div class="container large-container">
+
             <?= Html::tag(
                 'h3',
                 $model['lang']['title'] . ' | Купить в ' . Yii::$app->city->getCityTitleWhere()
             ); ?>
+
             <div class="submenu">
 
                 <?php

@@ -9,7 +9,7 @@ use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Product, Factory
+    Product, Factory, ProductStats
 };
 use frontend\modules\user\models\User;
 
@@ -136,6 +136,60 @@ class TemplateFactoryController extends BaseController
             'factory' => $factory,
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),
+        ]);
+    }
+
+    public function actionProduct(string $alias, string $product)
+    {
+        $factory = Factory::findByAlias($alias);
+
+        if ($factory === null) {
+            throw new NotFoundHttpException;
+        }
+
+        $this->factory = $factory;
+
+        $model = Product::findByAlias($product);
+
+        if ($model === null) {
+            throw new NotFoundHttpException;
+        }
+
+        // ProductStats
+        ProductStats::create($model->id);
+
+        $this->breadcrumbs[] = [
+            'label' => 'Каталог итальянской мебели',
+            'url' => ['/catalog/category/list']
+        ];
+
+        $keys = Yii::$app->catalogFilter->keys;
+
+
+        if (isset($model['category'][0])) {
+            $params = Yii::$app->catalogFilter->params;
+            $params[$keys['category']] = $model['category'][0]['alias'];
+
+            $this->breadcrumbs[] = [
+                'label' => $model['category'][0]['lang']['title'],
+                'url' => Yii::$app->catalogFilter->createUrl($params)
+            ];
+        }
+
+        if (isset($model['types'])) {
+            $params = Yii::$app->catalogFilter->params;
+            $params[$keys['type']] = $model['types']['alias'];
+
+            $this->breadcrumbs[] = [
+                'label' => $model['types']['lang']['title'],
+                'url' => Yii::$app->catalogFilter->createUrl($params)
+            ];
+        }
+
+        $this->title = $model['lang']['title'] . '. Купить в ' . Yii::$app->city->getCityTitleWhere();
+
+        return $this->render('/product/view', [
+            'model' => $model,
         ]);
     }
 }
