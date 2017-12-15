@@ -121,7 +121,7 @@ class Product extends \common\modules\catalog\models\Product
      * @param string $image_link
      * @return null|string
      */
-    public static function getImageThumb($image_link  = '')
+    public static function getImageThumb($image_link = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -134,9 +134,9 @@ class Product extends \common\modules\catalog\models\Product
 
             $image_link_path = explode('/', $image_link);
 
-            $img_name = $image_link_path[count($image_link_path)-1];
+            $img_name = $image_link_path[count($image_link_path) - 1];
 
-            unset($image_link_path[count($image_link_path)-1]);
+            unset($image_link_path[count($image_link_path) - 1]);
 
             $_image_link = $path . '/' . implode('/', $image_link_path) . '/thumb_' . $img_name;
 
@@ -179,8 +179,6 @@ class Product extends \common\modules\catalog\models\Product
 
         foreach ($images as $image) {
             if (file_exists($path . '/' . $image)) {
-
-                //$imagesSources[] = self::getImageThumb($image);
                 $imagesSources[] = [
                     'img' => $url . '/' . $image,
                     'thumb' => self::getImageThumb($image)
@@ -192,14 +190,23 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
-     * Url
-     *
      * @param string $alias
      * @return string
      */
     public static function getUrl(string $alias)
     {
-        return Url::toRoute(['/catalog/product/view', 'alias' => $alias], true);
+        if (isset(Yii::$app->controller->factory)) {
+            return Url::toRoute([
+                '/catalog/template-factory/product',
+                'alias' => Yii::$app->controller->factory->alias,
+                'product' => $alias
+            ], true);
+        } else {
+            return Url::toRoute([
+                '/catalog/product/view',
+                'alias' => $alias
+            ], true);
+        }
     }
 
     /**
