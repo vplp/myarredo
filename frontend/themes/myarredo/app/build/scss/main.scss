@@ -1105,14 +1105,16 @@ footer {
   }
 }
 #comp-slider {
+  &:not(.slick-slider){
+    .item {
+      min-width: 20%;
+    }
+  }
   .slick-list {
     width: 100%;
   }
   .slick-track {
     min-width: 100%;
-  }
-  .item {
-    min-width: 20%;
   }
   .tile {
     .img-cont {
