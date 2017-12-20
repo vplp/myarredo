@@ -8,7 +8,12 @@ AddDefaultCharset UTF-8
 # mod_rewrite
 <IfModule mod_rewrite.c>
     Options +FollowSymlinks
+
     RewriteEngine On
+
+    # 301 редирект всех адресов с index.php
+    RewriteCond %{REQUEST_URI} /index.php
+    RewriteRule ^(.*)$ http://myarredo.ru/ [R=301,L]
 
     RewriteRule ^backend(.*)$ backend/$1 [L]
 
