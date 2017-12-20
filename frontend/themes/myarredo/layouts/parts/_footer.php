@@ -50,8 +50,7 @@ use frontend\modules\user\widgets\partner\PartnerInfo;
                         <div class="copy-slogan">
                             2015 - <?= date('Y'); ?> (с) MyArredo, лучшая мебель из италии для вашего дома
                         </div>
-                        <div class="fund">Программирование сайта - <a href="http://www.vipdesign.com.ua/">VipDesign</a>
-                        </div>
+                        <div class="fund">Программирование сайта - <a href="http://www.vipdesign.com.ua/" rel="nofollow">VipDesign</a></div>
                     </div>
                 </div>
 
