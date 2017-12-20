@@ -8,12 +8,7 @@ AddDefaultCharset UTF-8
 # mod_rewrite
 <IfModule mod_rewrite.c>
     Options +FollowSymlinks
-
     RewriteEngine On
-
-    # 301 редирект всех адресов с index.php
-    RewriteCond %{REQUEST_URI} /index.php
-    RewriteRule ^(.*)$ http://myarredo.ru/ [R=301,L]
 
     RewriteRule ^backend(.*)$ backend/$1 [L]
 
@@ -24,6 +19,10 @@ AddDefaultCharset UTF-8
     # Поддоменн без www
     RewriteCond %{HTTP_HOST} ^www\.([A-Za-z0-9_-]*)\.myarredo\.ru
     RewriteRule ^(.*)$ http://%1.myarredo.ru/$1 [R=permanent,L]
+
+    # убираем index.php
+    RewriteCond %{THE_REQUEST} ^.*/index.php
+    RewriteRule ^(.*)index.php$ /$1 [R=301,L]
 
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
