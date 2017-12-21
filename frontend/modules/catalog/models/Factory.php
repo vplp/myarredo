@@ -177,6 +177,12 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->andFilterWhere(['IN', 'productSpecification.alias', $params[$keys['style']]]);
         }
 
+        if (Yii::$app->request->get('show') == 'in_stock') {
+            $query->andWhere([
+                Product::tableName() . '.in_stock' => '1'
+            ]);
+        }
+
         return $query
             ->select([
                 self::tableName() . '.id',
