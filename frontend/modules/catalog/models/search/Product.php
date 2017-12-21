@@ -114,8 +114,15 @@ class Product extends ProductModel
         } else if (isset($params['sort']) && $params['sort'] == 'desc') {
             $order[] = self::tableName() . '.factory_price DESC';
         }
+
         if (isset($params['object']) && $params['object'] == 'composition') {
             $order[] = self::tableName() . '.is_composition DESC';
+        }
+
+        if (isset($params['show']) && $params['show'] == 'in_stock') {
+            $query->andWhere([
+                self::tableName() . '.in_stock' => '1'
+            ]);
         }
 
         $order[] = self::tableName() . '.position DESC';

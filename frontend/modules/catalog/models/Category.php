@@ -161,6 +161,12 @@ class Category extends \common\modules\catalog\models\Category
                 ->andFilterWhere(['IN', 'productFactory.alias', $params[$keys['factory']]]);
         }
 
+        if (Yii::$app->request->get('show') == 'in_stock') {
+            $query->andWhere([
+                Product::tableName() . '.in_stock' => '1'
+            ]);
+        }
+
         return $query
             ->innerJoinWith(["product"], false)
             ->innerJoinWith(["product.lang"], false)
