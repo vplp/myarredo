@@ -57,7 +57,7 @@ $this->title = $this->context->title;
                 <div class="col-md-4">
                     <div class="prod-info-table">
                         <table class="info-table" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                            <?php if (!$model['removed']): ?>
+                            <?php if (!$model['removed'] && $model['price_from'] > 0): ?>
                                 <tr class="price">
                                     <td>ЦЕНА ОТ:</td>
                                     <td>
