@@ -2,6 +2,7 @@
 
 return [
     'mailer' => [
-        'setFrom' => 'info@myarredo.ru'
+        'setFrom' => 'info@myarredo.ru',
+        'setTo' => 'myarredo@myarredo.ru'
     ]
 ];
