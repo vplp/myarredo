@@ -61,7 +61,7 @@ $this->title = $this->context->title;
                                 <tr class="price">
                                     <td>ЦЕНА ОТ:</td>
                                     <td>
-                                        <?= $model['price_from']; ?>&nbsp;<span class="currency">€</span>*
+                                        <?= $model['price_from']; ?>&nbsp;<span class="currency">€</span>
                                         <meta itemprop="price"
                                               content="<?= number_format($model['price_from'], 0, '', '') ?>">
                                         <meta itemprop="priceCurrency" content="EUR"/>
@@ -144,7 +144,7 @@ $this->title = $this->context->title;
                                             foreach ($model['specificationValue'] as $item) {
                                                 if ($item['specification']['parent_id'] == 4) {
                                                     echo Html::beginTag('span') .
-                                                        $item['specification']['alias'] .
+                                                        $item['specification']['lang']['title'] .
                                                         ':' .
                                                         $item['val'] .
                                                         Html::endTag('span');

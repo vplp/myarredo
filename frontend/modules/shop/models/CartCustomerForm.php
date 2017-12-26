@@ -62,7 +62,7 @@ Class CartCustomerForm extends Model
     public function attributeLabels()
     {
         return [
-            'full_name' => Yii::t('app', 'Full name'),
+            'full_name' => Yii::t('app', 'Name'),
             'email' => Yii::t('app', 'Email'),
             'phone' => Yii::t('app', 'Phone'),
             'comment' => Yii::t('app', 'Comment'),

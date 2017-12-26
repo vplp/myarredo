@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
             ->label(false) ?>
 
         <?= $form->field($model, 'full_name')
-            ->input('text', ['placeholder' => Yii::t('app', 'Full name')])
+            ->input('text', ['placeholder' => Yii::t('app', 'Name')])
             ->label(false) ?>
 
         <?= $form->field($model, 'phone')
