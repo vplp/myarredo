@@ -151,7 +151,7 @@ class CommonForm extends Model
             'country_id' => 'Ваша страна',
             'city_id' => 'Ваш город',
             'delivery_to_other_cities' => 'Готов к поставкам мебели в другие города',
-            'user_agreement' => 'Подтверждаю пользовательское соглашение',
+            'user_agreement' => 'Подтверждаю <a href="/terms-of-use">пользовательское соглашение</a>',
         ];
     }
 
