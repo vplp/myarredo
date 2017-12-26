@@ -103,7 +103,8 @@ class RegisterForm extends CommonForm
                 'exp_with_italian',
                 'country_id',
                 'city_id',
-                'delivery_to_other_cities'
+                'delivery_to_other_cities',
+                'user_agreement'
             ],
         ];
     }
