@@ -51,6 +51,7 @@ class RegisterController extends BaseController
 
     /**
      * @return string|\yii\web\Response
+     * @throws \Exception
      */
     public function actionUser()
     {
@@ -83,6 +84,7 @@ class RegisterController extends BaseController
 
     /**
      * @return string|\yii\web\Response
+     * @throws \Exception
      */
     public function actionPartner()
     {
@@ -99,7 +101,7 @@ class RegisterController extends BaseController
             $status = $model->addPartner();
 
             if ($status === true) {
-                // send user letter
+
                 Yii::$app
                     ->mailer
                     ->compose(

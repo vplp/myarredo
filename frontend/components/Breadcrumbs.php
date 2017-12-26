@@ -4,6 +4,11 @@ namespace frontend\components;
 
 use yii\helpers\Html;
 
+/**
+ * Class Breadcrumbs
+ *
+ * @package frontend\components
+ */
 class Breadcrumbs extends \yii\widgets\Breadcrumbs
 {
     /**
