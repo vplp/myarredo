@@ -58,6 +58,7 @@ class CommonForm extends Model
     public $website;
     public $exp_with_italian;
     public $delivery_to_other_cities;
+    public $user_agreement;
     public $country_id;
     public $city_id;
 
@@ -120,7 +121,7 @@ class CommonForm extends Model
                 'string',
                 'max' => 255
             ],
-            [['delivery_to_other_cities'], 'in', 'range' => [0, 1]],
+            [['delivery_to_other_cities, user_agreement'], 'in', 'range' => [0, 1]],
             [['country_id', 'city_id'], 'integer'],
         ];
     }
@@ -150,6 +151,7 @@ class CommonForm extends Model
             'country_id' => 'Ваша страна',
             'city_id' => 'Ваш город',
             'delivery_to_other_cities' => 'Готов к поставкам мебели в другие города',
+            'user_agreement' => 'Подтверждаю пользовательское соглашение',
         ];
     }
 

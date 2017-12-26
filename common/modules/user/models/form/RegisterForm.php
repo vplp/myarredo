@@ -39,7 +39,7 @@ class RegisterForm extends CommonForm
             ],
             [
                 [
-                    'first_name', 'last_name', 'phone', 'name_company', 'address', 'country_id', 'city_id'
+                    'first_name', 'last_name', 'phone', 'name_company', 'address', 'country_id', 'city_id', 'user_agreement'
                 ],
                 'required',
                 'on' => 'registerPartner'
