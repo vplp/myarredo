@@ -57,10 +57,17 @@ class RegisterForm extends CommonForm
                 'string',
                 'max' => 255
             ],
+            [
+                ['user_agreement'],
+                'required',
+                'on' => ['registerPartner'],
+                'requiredValue' => 1,
+                'message' => 'Вы должны ознакомиться и согласиться'
+            ],
             [['delivery_to_other_cities', 'user_agreement'], 'in', 'range' => [0, 1]],
             [['country_id', 'city_id'], 'integer'],
             [['country_id', 'city_id'], 'default', 'value' => 0],
-            [['delivery_to_other_cities', 'user_agreement'], 'default', 'value' => '0'],
+            [['delivery_to_other_cities'], 'default', 'value' => '0'],
         ];
 
         if ($this->_username_attribute === 'email') {

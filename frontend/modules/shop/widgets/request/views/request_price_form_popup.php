@@ -43,6 +43,9 @@ use yii\widgets\ActiveForm;
             ->textarea(['placeholder' => Yii::t('app', 'Comment')])
             ->label(false) ?>
 
+        <?= $form->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])->checkbox([], false)
+            ->label('&nbsp;'.$model->getAttributeLabel('user_agreement')) ?>
+
     </div>
     <div class="modal-footer">
         <?= Html::submitButton('Получить лучшую цену', ['class' => 'btn btn-success big']) ?>

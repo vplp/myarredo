@@ -18,6 +18,7 @@ Class CartCustomerForm extends Model
     public $comment;
     public $delivery;
     public $pay;
+    public $user_agreement;
 
     /**
      * @return array
@@ -33,7 +34,15 @@ Class CartCustomerForm extends Model
             [['phone'], 'string', 'max' => 15],
             [['email'], 'email'],
             [['delivery', 'pay'], 'default', 'value' => 0],
+            [['user_agreement'], 'in', 'range' => [0, 1]],
             [['comment'], 'default', 'value' => ''],
+            [
+                ['user_agreement'],
+                'required',
+                'on' => ['frontend'],
+                'requiredValue' => 1,
+                'message' => 'Вы должны ознакомиться и согласиться'
+            ],
         ];
     }
 
@@ -43,7 +52,7 @@ Class CartCustomerForm extends Model
     public function scenarios()
     {
         return [
-            'frontend' => ['full_name', 'email', 'phone', 'comment', 'delivery', 'pay'],
+            'frontend' => ['full_name', 'email', 'phone', 'comment', 'delivery', 'pay', 'user_agreement'],
         ];
     }
 
@@ -58,7 +67,8 @@ Class CartCustomerForm extends Model
             'phone' => Yii::t('app', 'Phone'),
             'comment' => Yii::t('app', 'Comment'),
             'delivery' => Yii::t('app', 'Delivery method'),
-            'pay' => Yii::t('app', 'Payment method')
+            'pay' => Yii::t('app', 'Payment method'),
+            'user_agreement' => 'Подтверждаю <a href="/terms-of-use/">пользовательское соглашение</a>',
         ];
     }
 }
