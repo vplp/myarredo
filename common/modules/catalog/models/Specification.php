@@ -109,7 +109,7 @@ class Specification extends ActiveRecord
     {
         return self::find()
             ->innerJoinWith(['lang'])
-            ->orderBy(SpecificationLang::tableName() . '.title');
+            ->orderBy(SpecificationLang::tableName() . '.position');
     }
 
     /**
