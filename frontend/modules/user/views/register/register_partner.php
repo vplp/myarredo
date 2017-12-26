@@ -70,9 +70,7 @@ $model->delivery_to_other_cities = 1;
 
                         <?= $form->field($model, 'delivery_to_other_cities')->checkbox() ?>
 
-                        <?= $form->field($model, 'user_agreement')
-                            ->label('Подтверждаю <a href="/">пользовательское соглашение</a>')
-                            ->checkbox() ?>
+                        <?= $form->field($model, 'user_agreement')->checkbox() ?>
 
                         <div class="a-warning">
                             * поля обязательны для заполнения

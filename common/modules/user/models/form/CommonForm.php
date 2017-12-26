@@ -7,6 +7,7 @@ use yii\base\Model;
 //
 use common\modules\user\User;
 use common\modules\user\models\User as UserModel;
+use yii\helpers\Html;
 
 /**
  * Class CommonForm
@@ -151,7 +152,7 @@ class CommonForm extends Model
             'country_id' => 'Ваша страна',
             'city_id' => 'Ваш город',
             'delivery_to_other_cities' => 'Готов к поставкам мебели в другие города',
-            'user_agreement' => 'Подтверждаю пользовательское соглашение',
+            'user_agreement' => 'Подтверждаю ' . Html::a('пользовательское соглашение' , '#'),
         ];
     }
 
