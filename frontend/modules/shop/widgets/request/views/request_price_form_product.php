@@ -36,6 +36,9 @@ use yii\widgets\ActiveForm;
     ->textarea(['placeholder' => Yii::t('app', 'Comment')])
     ->label(false) ?>
 
+<?= $form->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])->checkbox([], false)
+    ->label('&nbsp;'.$model->getAttributeLabel('user_agreement')) ?>
+
 <?= Html::submitButton('Получить лучшую цену', ['class' => 'add-to-notepad-product btn btn-success big', 'data-id' => $product_id,]) ?>
 
 <?php ActiveForm::end(); ?>

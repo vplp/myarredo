@@ -70,7 +70,8 @@ $model->delivery_to_other_cities = 1;
 
                         <?= $form->field($model, 'delivery_to_other_cities')->checkbox() ?>
 
-                        <?= $form->field($model, 'user_agreement')->checkbox() ?>
+                        <?= $form->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])->checkbox([], false)
+                            ->label('&nbsp;'.$model->getAttributeLabel('user_agreement')) ?>
 
                         <div class="a-warning">
                             * поля обязательны для заполнения
