@@ -70,7 +70,7 @@ class Specification extends \common\modules\catalog\models\Specification
         return parent::getChildren()
             ->enabled()
             ->innerJoinWith(['lang'])
-            ->orderBy(SpecificationLang::tableName() . '.title');
+            ->orderBy(self::tableName() . '.position');
     }
 
     /**
@@ -81,7 +81,7 @@ class Specification extends \common\modules\catalog\models\Specification
         return parent::getParent()
             ->enabled()
             ->innerJoinWith(['lang'])
-            ->orderBy(SpecificationLang::tableName() . '.title');
+            ->orderBy(self::tableName() . '.position');
     }
 
     /**
