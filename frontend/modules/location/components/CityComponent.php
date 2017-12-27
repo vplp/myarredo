@@ -123,10 +123,9 @@ class CityComponent extends Component
             $this->city = City::findByAlias($cityAlias);
 
             if ($this->city == null) {
-                $this->city = City::findById($this->defaultCityId);
-            } else {
                 Yii::$app->response->redirect('http://' . 'www.myarredo.' . $this->domain, 301);
                 Yii::$app->end();
+                //$this->city = City::findById($this->defaultCityId);
             }
         } else {
             $this->city = City::findById($this->getDefaultCityId());
