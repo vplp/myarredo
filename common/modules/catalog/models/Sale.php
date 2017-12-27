@@ -275,7 +275,7 @@ class Sale extends ActiveRecord
     {
         return self::find()
             ->innerJoinWith(['lang'])
-            ->orderBy('id DESC');
+            ->orderBy(self::tableName() . '.updated_at DESC');
     }
 
     /**
