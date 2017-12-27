@@ -2,6 +2,7 @@
 
 namespace frontend\modules\location\components;
 
+use Yii;
 use yii\base\Component;
 //
 use frontend\modules\location\models\City;
@@ -123,6 +124,9 @@ class CityComponent extends Component
 
             if ($this->city == null) {
                 $this->city = City::findById($this->defaultCityId);
+            } else {
+                Yii::$app->response->redirect('http://' . 'www.myarredo.' . $this->domain, 301);
+                Yii::$app->end();
             }
         } else {
             $this->city = City::findById($this->getDefaultCityId());
