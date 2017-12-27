@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 ?>
 
-<?php if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner', 'admin', 'factory'])): ?>
+<?php if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner', 'admin', 'factory'])): ?>
 
     <div class="cons">Администрация проекта</div>
 
