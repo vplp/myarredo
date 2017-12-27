@@ -151,7 +151,7 @@ class Composition extends Product
         return self::find()
             ->innerJoinWith(['lang'])
             ->andWhere(['is_composition' => '1'])
-            ->orderBy('updated_at DESC');
+            ->orderBy(self::tableName() . '.updated_at DESC');
     }
 
     /**
