@@ -53,7 +53,8 @@ class Factory extends FactoryModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => (Yii::$app->request->get('view')) ? false : [
-                'defaultPageSize' => $module->itemOnPage
+                'defaultPageSize' => $module->itemOnPage,
+                'forcePageParam' => false,
             ],
         ]);
 

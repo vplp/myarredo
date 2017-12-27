@@ -57,11 +57,8 @@ use frontend\modules\catalog\widgets\filter\{
                                 </div>
                                 <div class="pagi-wrap">
 
-                                    <?= yii\widgets\LinkPager::widget([
+                                    <?= frontend\components\LinkPager::widget([
                                         'pagination' => $pages,
-                                        'registerLinkTags' => true,
-                                        'nextPageLabel' => 'Далее<i class="fa fa-angle-right" aria-hidden="true"></i>',
-                                        'prevPageLabel' => '<i class="fa fa-angle-left" aria-hidden="true"></i>Назад'
                                     ]);
                                     ?>
 

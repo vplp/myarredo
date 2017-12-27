@@ -35,6 +35,7 @@ class Breadcrumbs extends \yii\widgets\Breadcrumbs
      * @param array $link
      * @param string $template
      * @return string
+     * @throws \yii\base\InvalidConfigException
      */
     protected function renderItem($link, $template)
     {
