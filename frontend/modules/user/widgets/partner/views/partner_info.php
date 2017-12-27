@@ -6,7 +6,7 @@ use yii\helpers\Html;
 
 <?php if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner', 'admin', 'factory'])): ?>
 
-    <div class="cons">Администрации проекта</div>
+    <div class="cons">Администрация проекта</div>
 
     <?php
     $phone = (Yii::$app->city->domain == 'ua') ? '<span class="tel-num">+39 (0422) 150-02-15</span>' : '<span class="tel-num">+7 968 353 36 36</span>';
