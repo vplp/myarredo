@@ -68,7 +68,7 @@ Class CartCustomerForm extends Model
             'comment' => Yii::t('app', 'Comment'),
             'delivery' => Yii::t('app', 'Delivery method'),
             'pay' => Yii::t('app', 'Payment method'),
-            'user_agreement' => 'Подтверждаю <a href="/terms-of-use/">пользовательское соглашение</a>',
+            'user_agreement' => 'Подтверждаю <a href="/terms-of-use/" target="_blank">пользовательское соглашение</a>',
         ];
     }
 }
