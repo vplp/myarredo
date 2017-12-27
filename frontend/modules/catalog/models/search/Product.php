@@ -61,7 +61,8 @@ class Product extends ProductModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'defaultPageSize' => $module->itemOnPage
+                'defaultPageSize' => $module->itemOnPage,
+                'forcePageParam' => false,
             ],
         ]);
 
