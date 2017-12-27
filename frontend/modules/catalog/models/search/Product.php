@@ -126,7 +126,7 @@ class Product extends ProductModel
             ]);
         }
 
-        $order[] = self::tableName() . '.position DESC';
+        $order[] = self::tableName() . '.updated_at DESC';
 
         $query->orderBy(implode(',', $order));
 
