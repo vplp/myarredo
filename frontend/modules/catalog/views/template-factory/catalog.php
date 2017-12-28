@@ -12,15 +12,10 @@ $this->title = $this->context->title;
 <main>
     <div class="page category-page">
         <div class="container large-container">
-            <div class="row">
-
-            </div>
             <div class="cat-content">
                 <div class="row">
-                    <div class="col-md-3 col-lg-3">
 
-                    </div>
-                    <div class="col-md-9 col-lg-9">
+                    <div class="col-md-12 col-lg-12">
                         <div class="cont-area">
 
                             <div class="cat-prod-wrap">
@@ -38,8 +33,7 @@ $this->title = $this->context->title;
 
                                     <?= frontend\components\LinkPager::widget([
                                         'pagination' => $pages,
-                                    ]);
-                                    ?>
+                                    ]); ?>
 
                                 </div>
                             </div>

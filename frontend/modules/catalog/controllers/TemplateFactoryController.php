@@ -139,6 +139,12 @@ class TemplateFactoryController extends BaseController
         ]);
     }
 
+    /**
+     * @param string $alias
+     * @param string $product
+     * @return string
+     * @throws NotFoundHttpException
+     */
     public function actionProduct(string $alias, string $product)
     {
         $factory = Factory::findByAlias($alias);
@@ -225,4 +231,50 @@ class TemplateFactoryController extends BaseController
             'pages' => $models->getPagination(),
         ]);
     }
+
+    /**
+     * @param string $alias
+     * @param string $product
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionSaleProduct(string $alias, string $product)
+    {
+        $factory = Factory::findByAlias($alias);
+
+        if ($factory === null) {
+            throw new NotFoundHttpException;
+        }
+
+        $this->factory = $factory;
+
+        $model = Sale::findByAlias($product);
+
+        if ($model === null) {
+            throw new NotFoundHttpException;
+        }
+
+        $this->breadcrumbs[] = [
+            'label' => 'Каталог итальянской мебели',
+            'url' => ['/catalog/category/list']
+        ];
+
+        $this->title = 'Распродажа: ' .
+            $model['lang']['title'] .
+            ' - '. $model['price_new'] . ' ' . $model['currency'] .
+            ' - интернет-магазин Myarredo в ' .
+            Yii::$app->city->getCityTitleWhere();
+
+        Yii::$app->view->registerMetaTag([
+            'name' => 'description',
+            'content' => strip_tags($model['lang']['description']) .
+                ' Купить в интернет-магазине Myarredo в ' .
+                Yii::$app->city->getCityTitleWhere()
+        ]);
+
+        return $this->render('/sale/view', [
+            'model' => $model,
+        ]);
+    }
+
 }
