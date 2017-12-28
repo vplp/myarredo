@@ -19,8 +19,8 @@ use frontend\components\BaseController;
  */
 class ProductStatsController extends BaseController
 {
-    public $label = "Stats";
-    public $title = "Stats";
+    public $label = '';
+    public $title = '';
 
     public $defaultAction = 'list';
 
@@ -69,7 +69,7 @@ class ProductStatsController extends BaseController
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
 
-        $this->title = 'Статистика';
+        $this->title = Yii::t('app', 'Statistics');
 
         return $this->render('list', [
             'model' => $model,

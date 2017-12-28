@@ -45,12 +45,12 @@ use frontend\modules\catalog\models\Category;
             </div>
         </li>
         <li><?= Html::a(
-                'Фабрики',
-                Url::toRoute(['/catalog/factory/list'])
-            ) ?></li>
-        <li><?= Html::a(
                 'Распродажа',
                 Url::toRoute(['/catalog/sale/list'])
+            ) ?></li>
+        <li><?= Html::a(
+                'Фабрики',
+                Url::toRoute(['/catalog/factory/list'])
             ) ?></li>
         <li><?= Html::a(
                 'О проекте',

@@ -6,7 +6,7 @@ use yii\helpers\Html;
  * @var \frontend\modules\user\models\Profile $model
  */
 
-$this->title = 'Профиль';
+$this->title = Yii::t('app', 'Profile');
 
 ?>
 

@@ -39,12 +39,22 @@ abstract class BaseController extends Controller
     {
         $this->directlink = Directlink::findByUrl();
 
+        /**
+         * Set user interface language
+         */
+        if (!Yii::$app->getUser()->isGuest) {
+            /** @var User $user */
+            $user = Yii::$app->getUser()->getIdentity();
+            Yii::$app->params['themes']['language'] = $user->profile->preferred_language;
+        }
+
         parent::init();
     }
 
     /**
-     * @param \yii\base\Action $action
+     * @param $action
      * @return bool|\yii\web\Response
+     * @throws \yii\web\BadRequestHttpException
      */
     public function beforeAction($action)
     {

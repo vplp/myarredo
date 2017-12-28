@@ -19,7 +19,7 @@ use frontend\modules\shop\models\{
  */
 class AdminOrderController extends BaseController
 {
-    public $title = "AdminOrder";
+    public $title = '';
 
     public $defaultAction = 'list';
 
@@ -62,7 +62,7 @@ class AdminOrderController extends BaseController
 
         $models = $model->search(Yii::$app->request->queryParams);
 
-        $this->title = 'Заявки';
+        $this->title = Yii::t('app', 'Orders');
 
         $this->breadcrumbs[] = [
             'label' => $this->title,

@@ -9,7 +9,7 @@ use yii\helpers\{
  * @var \frontend\modules\user\models\Profile $model
  */
 
-$this->title = 'Редактировать профиль';
+$this->title = Yii::t('app', 'Profile');
 
 ?>
 
