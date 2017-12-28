@@ -36,6 +36,7 @@ return [
     'factory/<alias:(nieri)>/catalog' => 'catalog/template-factory/catalog',
     'factory/<alias:(nieri)>/sale' => 'catalog/template-factory/sale',
     'factory/<alias:(nieri)>/product/<product:[\w\-]+>' => 'catalog/template-factory/product',
+    'factory/<alias:(nieri)>/sale-product/<product:[\w\-]+>' => 'catalog/template-factory/sale-product',
 
     'partner/sale' => 'catalog/partner-sale/list',
     'partner/sale/create' => 'catalog/partner-sale/create',
