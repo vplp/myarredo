@@ -790,6 +790,20 @@ footer {
       margin-bottom: 20px;
     }
   }
+  .field-cartcustomerform-user_agreement {
+    input[type="checkbox"]{
+      position: relative;
+      top: 2px;
+    }
+    label {
+      font-size: 13px;
+      font-weight: normal;
+      a {
+        color: #333333;
+        text-decoration: underline;
+      }
+    }
+  }
   .prod-model {
     font-size: 20px;
     margin: 15px 0;
