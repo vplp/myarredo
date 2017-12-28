@@ -9,7 +9,7 @@ use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Product, Factory, ProductStats
+    Product, Factory, ProductStats, Sale
 };
 use frontend\modules\user\models\User;
 
@@ -190,6 +190,39 @@ class TemplateFactoryController extends BaseController
 
         return $this->render('/product/view', [
             'model' => $model,
+        ]);
+    }
+
+    /**
+     * @param string $alias
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionSale(string $alias)
+    {
+        $factory = Factory::findByAlias($alias);
+
+        if ($factory === null) {
+            throw new NotFoundHttpException;
+        }
+
+        $this->factory = $factory;
+
+        $model = new Sale();
+
+        $keys = Yii::$app->catalogFilter->keys;
+        $params = Yii::$app->catalogFilter->params;
+
+        $params[$keys['factory']] = [$factory['alias']];
+
+        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
+
+        $this->title = 'Распродажа итальянской мебели';
+
+        return $this->render('sale', [
+            'factory' => $factory,
+            'models' => $models->getModels(),
+            'pages' => $models->getPagination(),
         ]);
     }
 }

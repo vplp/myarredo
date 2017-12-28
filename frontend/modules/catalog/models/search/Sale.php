@@ -92,7 +92,7 @@ class Sale extends SaleModel
                 ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
         }
 
-        $query->andFilterWhere(['like', 'alias', $this->alias]);
+        //$query->andFilterWhere(['like', 'alias', $this->alias]);
 
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);
 
