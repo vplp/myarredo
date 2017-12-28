@@ -18,7 +18,7 @@ use frontend\modules\shop\models\Order;
  */
 class OrderController extends BaseController
 {
-    public $title = "Заказы";
+    public $title = '';
     public $defaultAction = 'list';
 
     /**
@@ -61,6 +61,8 @@ class OrderController extends BaseController
     public function actionList()
     {
         $orders = Order::findByUserId(Yii::$app->getUser()->id);
+
+        $this->title = Yii::t('app', 'Orders');
 
         return $this->render('list', [
             'orders' => $orders,

@@ -11,11 +11,15 @@ use frontend\modules\location\models\{
     Country, City
 };
 
+
+$start_date = Yii::t('app', 'Start date');
+$end_date = Yii::t('app', 'End date');
+
 $layout3 = <<< HTML
-    <span class="input-group-addon">Дата начала</span>
+    <span class="input-group-addon">$start_date</span>
     {input1}
     {separator}
-    <span class="input-group-addon">Дата окончания</span>
+    <span class="input-group-addon">$end_date</span>
     {input2}
     <span class="input-group-addon kv-date-remove">
         <i class="glyphicon glyphicon-remove"></i>
@@ -42,7 +46,7 @@ HTML;
             'options' => [
                 'id' => 'factory_id',
                 'multiple' => false,
-                'placeholder' => 'Выберите фабрику'
+                'placeholder' => Yii::t('app', 'Choose factory')
             ]
         ]); ?>
     </div>
@@ -56,7 +60,7 @@ HTML;
             'options' => [
                 'id' => 'country_id',
                 'multiple' => false,
-                'placeholder' => 'Выберите страну'
+                'placeholder' => Yii::t('app', 'Choose the country')
             ]
         ]); ?>
     </div>
@@ -68,7 +72,7 @@ HTML;
             'options' => [
                 'id' => 'city_id',
                 'multiple' => false,
-                'placeholder' => 'Выберите город'
+                'placeholder' => Yii::t('app', 'Select a city')
             ]
         ]); ?>
     </div>
@@ -81,11 +85,11 @@ HTML;
             'separator' => '<i class="glyphicon glyphicon-resize-horizontal"></i>',
             'options' => [
                 'id' => 'start_date',
-                'placeholder' => 'Дата начала'
+                'placeholder' => Yii::t('app', 'Start date')
             ],
             'options2' => [
                 'id' => 'end_date',
-                'placeholder' => 'Дата окончания'
+                'placeholder' => Yii::t('app', 'End date')
             ],
             'layout' => $layout3,
             'type' => DatePicker::TYPE_RANGE,

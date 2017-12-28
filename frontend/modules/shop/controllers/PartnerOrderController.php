@@ -20,7 +20,7 @@ use frontend\modules\shop\models\{
  */
 class PartnerOrderController extends BaseController
 {
-    public $title = "PartnerOrder";
+    public $title = '';
 
     public $defaultAction = 'list';
 
@@ -65,7 +65,7 @@ class PartnerOrderController extends BaseController
 
         $models = $model->search(Yii::$app->request->queryParams);
 
-        $this->title = 'Заявки';
+        $this->title = Yii::t('app', 'Orders');
 
         $this->breadcrumbs[] = [
             'label' => $this->title,
@@ -99,7 +99,7 @@ class PartnerOrderController extends BaseController
         $this->title = 'Заявка №' . $model->id;
 
         $this->breadcrumbs[] = [
-            'label' => 'Заявки',
+            'label' => Yii::t('app', 'Orders'),
             'url' => ['/shop/partner-order/list']
         ];
 

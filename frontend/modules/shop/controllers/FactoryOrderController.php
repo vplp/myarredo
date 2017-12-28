@@ -19,7 +19,7 @@ use frontend\modules\shop\models\{
  */
 class FactoryOrderController extends BaseController
 {
-    public $title = "FactoryOrder";
+    public $title = '';
 
     public $defaultAction = 'list';
 
@@ -70,7 +70,7 @@ class FactoryOrderController extends BaseController
             )
         );
 
-        $this->title = 'Заявки';
+        $this->title = Yii::t('app', 'Orders');
 
         $this->breadcrumbs[] = [
             'label' => $this->title,
