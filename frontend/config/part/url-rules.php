@@ -34,6 +34,7 @@ return [
     'factory/<alias:(nieri)>/contacts' => 'catalog/template-factory/contacts',
     'factory/<alias:(nieri)>/catalog/<filter:[\;\-\w\d]+>' => 'catalog/template-factory/catalog',
     'factory/<alias:(nieri)>/catalog' => 'catalog/template-factory/catalog',
+    'factory/<alias:(nieri)>/sale' => 'catalog/template-factory/sale',
     'factory/<alias:(nieri)>/product/<product:[\w\-]+>' => 'catalog/template-factory/product',
 
     'partner/sale' => 'catalog/partner-sale/list',
