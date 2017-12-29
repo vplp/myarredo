@@ -30,6 +30,7 @@ use common\modules\user\models\User as UserModel;
  * @property boolean $delivery_to_other_cities
  * @property int $country_id
  * @property int $city_id
+ * @property int $user_agreement
  *
  * @package thread\modules\user\models\form
  */

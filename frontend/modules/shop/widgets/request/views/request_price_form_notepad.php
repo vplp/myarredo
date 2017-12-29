@@ -5,6 +5,13 @@ use yii\helpers\{
 };
 use yii\widgets\ActiveForm;
 
+/**
+ * @var \frontend\modules\shop\models\CartCustomerForm $model
+ */
+
+
+$model->user_agreement = 1;
+
 ?>
 
 <?php $form = ActiveForm::begin([
