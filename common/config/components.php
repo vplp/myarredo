@@ -42,6 +42,12 @@ return [
             'class' => 'Swift_SmtpTransport',
         ],
     ],
+    'redis' => [
+        'class' => \yii\redis\Connection::class,
+        'hostname' => 'localhost',
+        'port' => 6379,
+        'database' => 0,
+    ],
     // FileCache
     'cache' => [
         'class' => \yii\caching\FileCache::class,
@@ -51,6 +57,16 @@ return [
     // MemCache
     'memCache' => [
         'class' => \yii\caching\MemCache::class,
+        'servers' => [
+            [
+                'host' => 'localhost',
+                'port' => 11211,
+            ],
+        ],
+    ],
+    // RedisCache
+    'redisCache' => [
+        'class' => \yii\redis\Cache::class,
         'servers' => [
             [
                 'host' => 'localhost',
