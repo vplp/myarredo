@@ -5,6 +5,7 @@ use yii\helpers\{
 };
 use yii\widgets\ActiveForm;
 
+$model->user_agreement = 1;
 ?>
 
 <?php $form = ActiveForm::begin([

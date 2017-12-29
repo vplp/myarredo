@@ -15,7 +15,7 @@ use frontend\modules\location\models\{
 
 $this->title = 'Регистрация партнера';
 $model->delivery_to_other_cities = 1;
-
+$model->user_agreement = 1;
 ?>
 
     <main>

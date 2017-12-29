@@ -8,6 +8,12 @@ use yii\base\Model;
 /**
  * Class CartCustomerForm
  *
+ * @property string $full_name
+ * @property string $email
+ * @property string $phone
+ * @property string $comment
+ * @property int $user_agreement
+ *
  * @package frontend\modules\shop\models
  */
 Class CartCustomerForm extends Model
