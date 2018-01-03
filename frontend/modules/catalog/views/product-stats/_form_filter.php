@@ -29,7 +29,7 @@ HTML;
 ?>
 
 <?php $form = ActiveForm::begin([
-    'method' => 'get',
+    'method' => 'post',
     'action' => Url::toRoute(['/catalog/product-stats/list']),
     'id' => 'form-stats',
     'options' => [
@@ -41,7 +41,7 @@ HTML;
     <div class="form-group">
         <?= Select2::widget([
             'name' => 'factory_id',
-            'value' => Yii::$app->request->get('factory_id'),
+            'value' => $params['factory_id'],
             'data' => [0 => '--'] + Factory::dropDownList(),
             'options' => [
                 'id' => 'factory_id',
@@ -55,7 +55,7 @@ HTML;
     <div class="form-group">
         <?= Select2::widget([
             'name' => 'country_id',
-            'value' => Yii::$app->request->get('country_id'),
+            'value' => $params['country_id'],
             'data' => [0 => '--'] + Country::dropDownList(),
             'options' => [
                 'id' => 'country_id',
@@ -67,8 +67,8 @@ HTML;
     <div class="form-group">
         <?= Select2::widget([
             'name' => 'city_id',
-            'value' => Yii::$app->request->get('city_id'),
-            'data' => [0 => '--'] + City::dropDownList(Yii::$app->request->get('country_id')),
+            'value' => $params['city_id'],
+            'data' => [0 => '--'] + City::dropDownList($params['country_id']),
             'options' => [
                 'id' => 'city_id',
                 'multiple' => false,
@@ -80,8 +80,8 @@ HTML;
         <?= DatePicker::widget([
             'name' => 'start_date',
             'name2' => 'end_date',
-            'value' => Yii::$app->request->get('start_date'),
-            'value2' => Yii::$app->request->get('end_date'),
+            'value' => $params['start_date'],
+            'value2' => $params['end_date'],
             'separator' => '<i class="glyphicon glyphicon-resize-horizontal"></i>',
             'options' => [
                 'id' => 'start_date',
