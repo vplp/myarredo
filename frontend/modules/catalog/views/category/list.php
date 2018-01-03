@@ -132,7 +132,7 @@ $this->title = $this->context->title;
                                 <div class="cat-prod">
 
                                     <?php
-
+                                    $_factory = [];
                                     foreach ($factory as $item) {
                                         $_factory[$item['id']] = $item;
                                     }
