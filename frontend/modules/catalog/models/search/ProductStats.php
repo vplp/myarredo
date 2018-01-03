@@ -60,10 +60,10 @@ class ProductStats extends ProductStatsModel
             ],
         ]);
 
-        if (!($this->load($params, '') && $this->validate())) {
+        if (!($this->load($params, '') /*&& $this->validate()*/)) {
             return $dataProvider;
         }
-
+        
         if (isset($params['factory_id']) && $params['factory_id'] > 0) {
             $query->andWhere([Product::tableName() . '.factory_id' => $params['factory_id']]);
         }
@@ -83,8 +83,8 @@ class ProductStats extends ProductStatsModel
         }
 
         if (isset($params['start_date']) && $params['start_date'] != '' && isset($params['end_date']) && $params['end_date'] != '') {
-            $query->andWhere(['>=', self::tableName() . '.created_at', strtotime($params['start_date']. ' 0:00')]);
-            $query->andWhere(['<=', self::tableName() . '.created_at', strtotime($params['end_date']. ' 23:59')]);
+            $query->andWhere(['>=', self::tableName() . '.created_at', strtotime($params['start_date'] . ' 0:00')]);
+            $query->andWhere(['<=', self::tableName() . '.created_at', strtotime($params['end_date'] . ' 23:59')]);
         }
 
         return $dataProvider;

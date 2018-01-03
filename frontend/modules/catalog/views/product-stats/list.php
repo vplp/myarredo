@@ -15,6 +15,7 @@ $this->title = $this->context->title;
 
             <?= $this->render('_form_filter', [
                 'model' => $model,
+                'params' => $params,
             ]); ?>
 
             <div class="cat-prod-wrap">
