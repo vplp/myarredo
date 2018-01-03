@@ -17,7 +17,14 @@ return ArrayHelper::merge(
             // добавление обратного слэша в конце адресной строки
             'on beforeRequest' => function () {
                 $pathInfo = Yii::$app->request->pathInfo;
-                if (!empty($pathInfo) && Yii::$app->request->isGet && substr($pathInfo, -1) !== '/') {
+                if (strripos($pathInfo, '.txt')) {
+
+                    //die;
+                } elseif (
+                    !empty($pathInfo) &&
+                    Yii::$app->request->isGet &&
+                    substr($pathInfo, -1) !== '/'
+                ) {
                     Yii::$app->response->redirect('/' . rtrim($pathInfo) . '/', 301)->send();
                     die;
                 }
