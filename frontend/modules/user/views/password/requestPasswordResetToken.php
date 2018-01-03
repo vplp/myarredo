@@ -30,6 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
 
+                <?= $form->field($model, 'reCaptcha')
+                    ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
+                    ->label(false) ?>
+
                 <div class="form-group">
                     <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
                 </div>

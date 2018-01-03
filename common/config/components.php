@@ -83,4 +83,11 @@ return [
             'database' => 1,
         ]
     ],
+    // reCaptcha
+    'reCaptcha' => [
+        'name' => 'reCaptcha',
+        'class' => \himiklab\yii2\recaptcha\ReCaptcha::class,
+        'siteKey' => '6LehPRkUAAAAAB1TVTLbwB1GYua9tI4aC1cHYSTU',
+        'secret' => '_reCaptcha_SECRET',
+    ],
 ];
