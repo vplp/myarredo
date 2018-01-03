@@ -50,7 +50,7 @@ class RegisterForm extends CommonForm
                     'country_id',
                     'city_id',
                     'user_agreement',
-                    'reCaptcha'
+                    //'reCaptcha'
                 ],
                 'required',
                 'on' => 'registerPartner'
@@ -123,7 +123,7 @@ class RegisterForm extends CommonForm
                 'city_id',
                 'delivery_to_other_cities',
                 'user_agreement',
-                'reCaptcha'
+                //'reCaptcha'
             ],
         ];
     }

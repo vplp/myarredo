@@ -130,7 +130,6 @@ class CommonForm extends Model
                 ['reCaptcha'],
                 \himiklab\yii2\recaptcha\ReCaptchaValidator::className(),
                 'secret' => '_reCaptcha_SECRET',
-                'uncheckedMessage' => 'Please confirm that you are not a bot.'
             ]
         ];
     }
