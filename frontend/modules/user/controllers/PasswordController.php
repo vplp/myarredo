@@ -57,6 +57,7 @@ class PasswordController extends BaseController
 
     /**
      * @return string
+     * @throws \yii\base\Exception
      */
     public function actionChange()
     {
