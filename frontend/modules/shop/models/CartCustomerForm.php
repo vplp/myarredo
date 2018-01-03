@@ -18,6 +18,7 @@ use yii\base\Model;
  */
 Class CartCustomerForm extends Model
 {
+    public $reCaptcha;
     public $full_name;
     public $email;
     public $phone;
@@ -32,7 +33,7 @@ Class CartCustomerForm extends Model
     public function rules()
     {
         return [
-            [['full_name', 'email', 'phone'], 'required'],
+            [['full_name', 'email', 'phone', 'reCaptcha'], 'required'],
             [['delivery'], 'in', 'range' => array_keys(DeliveryMethods::dropDownList())],
             [['pay'], 'in', 'range' => array_keys(PaymentMethods::dropDownList())],
             [['comment'], 'string', 'max' => 2048],
@@ -49,6 +50,12 @@ Class CartCustomerForm extends Model
                 'requiredValue' => 1,
                 'message' => 'Вы должны ознакомиться и согласиться'
             ],
+            [
+                ['reCaptcha'],
+                \himiklab\yii2\recaptcha\ReCaptchaValidator::className(),
+                'secret' => '_reCaptcha_SECRET',
+                'uncheckedMessage' => 'Please confirm that you are not a bot.'
+            ]
         ];
     }
 
@@ -58,7 +65,7 @@ Class CartCustomerForm extends Model
     public function scenarios()
     {
         return [
-            'frontend' => ['full_name', 'email', 'phone', 'comment', 'delivery', 'pay', 'user_agreement'],
+            'frontend' => ['full_name', 'email', 'phone', 'comment', 'delivery', 'pay', 'user_agreement', 'reCaptcha'],
         ];
     }
 
