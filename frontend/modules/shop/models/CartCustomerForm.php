@@ -33,7 +33,7 @@ Class CartCustomerForm extends Model
     public function rules()
     {
         return [
-            [['full_name', 'email', 'phone', 'reCaptcha'], 'required'],
+            [['full_name', 'email', 'phone'], 'required'],
             [['delivery'], 'in', 'range' => array_keys(DeliveryMethods::dropDownList())],
             [['pay'], 'in', 'range' => array_keys(PaymentMethods::dropDownList())],
             [['comment'], 'string', 'max' => 2048],
@@ -54,7 +54,7 @@ Class CartCustomerForm extends Model
                 ['reCaptcha'],
                 \himiklab\yii2\recaptcha\ReCaptchaValidator::className(),
                 'secret' => '_reCaptcha_SECRET',
-                'uncheckedMessage' => 'Please confirm that you are not a bot.'
+                //'uncheckedMessage' => 'Please confirm that you are not a bot.'
             ]
         ];
     }
@@ -65,7 +65,7 @@ Class CartCustomerForm extends Model
     public function scenarios()
     {
         return [
-            'frontend' => ['full_name', 'email', 'phone', 'comment', 'delivery', 'pay', 'user_agreement', 'reCaptcha'],
+            'frontend' => ['full_name', 'email', 'phone', 'comment', 'delivery', 'pay', 'user_agreement'],
         ];
     }
 
