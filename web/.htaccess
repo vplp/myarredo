@@ -57,4 +57,12 @@ AddDefaultCharset UTF-8
 <IfModule mod_headers.c>
     Header unset ETag
 </IfModule>
+
 FileETag None
+
+#Сжимаем элементы с помощью mod_deflate
+<IfModule mod_deflate.c="">
+    <filesmatch .(js|css|jpg|gif|png|tiff|ico|svg)$="">
+        SetOutputFilter DEFLATE
+    </filesmatch>
+</IfModule>

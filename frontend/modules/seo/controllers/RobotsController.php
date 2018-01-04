@@ -18,7 +18,7 @@ class RobotsController extends Controller
     public function actionIndex()
     {
         echo 'User-agent: *' . PHP_EOL;
-        echo 'Disallow: /admin/' . PHP_EOL;
+        echo 'Disallow: *?view' . PHP_EOL;
         echo 'Disallow: /partner/' . PHP_EOL;
         echo 'Disallow: /*openstat*' . PHP_EOL;
         echo 'Disallow: /*utm*' . PHP_EOL;
