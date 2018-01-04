@@ -1,5 +1,7 @@
 <?php
 return [
+    ['pattern' => 'robots', 'route' => 'seo/robots/index', 'suffix' => '.txt'],
+
     // Module [[Home]]
     '' => 'home/home/index',
     'contacts' => 'page/contacts/index',

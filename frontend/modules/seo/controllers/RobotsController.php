@@ -3,23 +3,20 @@
 namespace frontend\modules\seo\controllers;
 
 use Yii;
-use frontend\components\BaseController;
+use yii\web\Controller;
 
 /**
  * Class RobotsController
  *
  * @package frontend\modules\seo\controllers
  */
-class RobotsController extends BaseController
+class RobotsController extends Controller
 {
     /**
-     * Перезаписуем robots.txt
-     * @return string
+     * robots.txt
      */
     public function actionIndex()
     {
-
-        die;
         echo 'User-agent: *' . PHP_EOL;
         echo 'Disallow: /admin/' . PHP_EOL;
         echo 'Disallow: /partner/' . PHP_EOL;
@@ -40,14 +37,16 @@ class RobotsController extends BaseController
         echo 'Disallow: *=bestseller*' . PHP_EOL;
         echo 'Disallow: /catalog/*?' . PHP_EOL;
 
-//        $server = Yii::app()->getRequest()->getServerName();
-//
-//        $name = ($this->subdomain) ? $this->subdomain : $this->domain;
-//
-//        echo PHP_EOL . 'Host: ' . $server . PHP_EOL;
-//        echo 'Sitemap: http://' . $server . '/sitemap/sitemap_' . $name . '.xml' . PHP_EOL;
+        echo PHP_EOL . 'Host: ' . Yii::$app->request->serverName . PHP_EOL;
 
+        $city = Yii::$app->city->getCity();
 
-        die;
+        echo 'Sitemap: ' . Yii::$app->request->hostName . '/sitemap/sitemap_' . $city->alias . '.xml' . PHP_EOL;
+
+        $response = Yii::$app->response;
+        $response->format = yii\web\Response::FORMAT_RAW;
+        $response->headers->set('Content-Type', 'text/plain');
+
+        return $response;
     }
 }
