@@ -74,13 +74,7 @@ return ArrayHelper::merge(
                 'models' => [
                     [
                         'class' => \frontend\modules\catalog\models\Category::class,
-//                        'scope' => function ($model) {
-//                            /** @var \yii\db\ActiveQuery $model */
-//                            $model->select(['url', 'lastmod']);
-//                            $model->andWhere(['is_deleted' => 0]);
-//                        },
                         'dataClosure' => function ($model) {
-                            /** @var self $model */
                             return [
                                 'loc' => Category::getUrl($model->alias),
                                 'lastmod' => date('c', $model->updated_at),
