@@ -126,11 +126,7 @@ class CommonForm extends Model
             ],
             [['delivery_to_other_cities, user_agreement'], 'in', 'range' => [0, 1]],
             [['country_id', 'city_id'], 'integer'],
-            [
-                ['reCaptcha'],
-                \himiklab\yii2\recaptcha\ReCaptchaValidator::className(),
-                'secret' => '_reCaptcha_SECRET',
-            ]
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className()]
         ];
     }
 
