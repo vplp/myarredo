@@ -60,6 +60,10 @@ class Country extends \common\modules\location\models\Country
     {
         return $this
             ->hasMany(City::class, ['country_id' => 'id'])
+            ->andFilterWhere([
+                City::tableName() . '.published' => '1',
+                City::tableName() . '.deleted' => '0',
+            ])
             ->innerJoinWith(['lang'])
             ->orderBy(CityLang::tableName() . '.title');
     }
