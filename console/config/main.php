@@ -39,6 +39,8 @@ return ArrayHelper::merge(
             ],
             'urlManager' => [
                 'suffix' => '/',
+                'hostInfo' => '',
+                'baseUrl' => '',
                 'rules' => require(dirname(__DIR__, 2) . '/frontend/config/part/url-rules.php'),
             ],
         ],
