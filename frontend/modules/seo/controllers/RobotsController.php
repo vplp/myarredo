@@ -41,7 +41,7 @@ class RobotsController extends Controller
 
         $city = Yii::$app->city->getCity();
 
-        echo 'Sitemap: ' . Yii::$app->request->hostName . '/sitemap/sitemap_' . $city->alias . '.xml' . PHP_EOL;
+        echo 'Sitemap: http://' . Yii::$app->request->hostName . '/sitemap/sitemap_' . $city->alias . '.xml' . PHP_EOL;
 
         $response = Yii::$app->response;
         $response->format = yii\web\Response::FORMAT_RAW;
