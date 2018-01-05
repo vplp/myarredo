@@ -93,6 +93,16 @@ class SitemapController extends Controller
                     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL
                 );
 
+                // add domain site
+                $str = "\t<url>" . PHP_EOL .
+                    "\t\t<loc>" . $city->getSubDomainUrl() . "</loc>" . PHP_EOL .
+                    "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>" . PHP_EOL .
+                    "\t\t<changefreq>always</changefreq>" . PHP_EOL .
+                    "\t\t<priority>1</priority>" . PHP_EOL .
+                    "\t</url>" . PHP_EOL;
+
+                fwrite($handle, $str);
+
                 for ($j = $i * $this->countUrlInSitemap; $j < ($i + 1) * $this->countUrlInSitemap; $j++) {
                     if (isset($urls[$j])) {
 
@@ -113,6 +123,7 @@ class SitemapController extends Controller
                 fclose($handle);
                 chmod($filePath, 0777);
             }
+
 
             // create the main sitemap file
 
