@@ -64,7 +64,6 @@ class SitemapController extends Controller
             $query = $model::findBase();
 
             foreach ($query->batch(1000) as $models) {
-                //$urls[] = call_user_func($modelName['dataClosure'], $model);
                 foreach ($models as $model) {
                     $urls[] = call_user_func($modelName['dataClosure'], $model);
                 }
@@ -138,9 +137,9 @@ class SitemapController extends Controller
             );
 
             for ($i = 0; $i < $count_files; $i++) {
-                $lnkD = '/sitemap/' . $city['alias'] . '_' . $i . '.xml';
+                $link = '/sitemap/' . $city['alias'] . '_' . $i . '.xml';
                 $str = PHP_EOL . "\t<sitemap>"
-                    . PHP_EOL . "\t\t<loc>" . $city->getSubDomainUrl() . $lnkD . "</loc>"
+                    . PHP_EOL . "\t\t<loc>" . $city->getSubDomainUrl() . $link . "</loc>"
                     . PHP_EOL . "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>"
                     . PHP_EOL . "\t</sitemap>";
                 fwrite($handle, $str);
