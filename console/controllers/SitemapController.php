@@ -64,7 +64,6 @@ class SitemapController extends Controller
             $query = $model::findBase();
 
             foreach ($query->batch(1000) as $models) {
-                //$urls[] = call_user_func($modelName['dataClosure'], $model);
                 foreach ($models as $model) {
                     $urls[] = call_user_func($modelName['dataClosure'], $model);
                 }
@@ -93,6 +92,16 @@ class SitemapController extends Controller
                     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL
                 );
 
+                // add domain site
+                $str = "\t<url>" . PHP_EOL .
+                    "\t\t<loc>" . $city->getSubDomainUrl() . "</loc>" . PHP_EOL .
+                    "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>" . PHP_EOL .
+                    "\t\t<changefreq>always</changefreq>" . PHP_EOL .
+                    "\t\t<priority>1</priority>" . PHP_EOL .
+                    "\t</url>" . PHP_EOL;
+
+                fwrite($handle, $str);
+
                 for ($j = $i * $this->countUrlInSitemap; $j < ($i + 1) * $this->countUrlInSitemap; $j++) {
                     if (isset($urls[$j])) {
 
@@ -114,6 +123,7 @@ class SitemapController extends Controller
                 chmod($filePath, 0777);
             }
 
+
             // create the main sitemap file
 
             $filePath = Yii::getAlias($this->filepath . '/sitemap_' . $city['alias'] . '.xml');
@@ -127,9 +137,9 @@ class SitemapController extends Controller
             );
 
             for ($i = 0; $i < $count_files; $i++) {
-                $lnkD = '/sitemap/' . $city['alias'] . '_' . $i . '.xml';
+                $link = '/sitemap/' . $city['alias'] . '_' . $i . '.xml';
                 $str = PHP_EOL . "\t<sitemap>"
-                    . PHP_EOL . "\t\t<loc>" . $city->getSubDomainUrl() . $lnkD . "</loc>"
+                    . PHP_EOL . "\t\t<loc>" . $city->getSubDomainUrl() . $link . "</loc>"
                     . PHP_EOL . "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>"
                     . PHP_EOL . "\t</sitemap>";
                 fwrite($handle, $str);
