@@ -68,7 +68,7 @@ class City extends \thread\modules\location\models\City
     public static function findBase()
     {
         return self::find()
-            ->innerJoinWith(['lang'])
+            ->joinWith(['lang'])
             ->orderBy(CityLang::tableName() . '.title');
     }
 

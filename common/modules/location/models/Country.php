@@ -15,7 +15,7 @@ class Country extends \thread\modules\location\models\Country
     public static function findBase()
     {
         return self::find()
-            ->innerJoinWith(['lang'])
+            ->joinWith(['lang'])
             ->orderBy(self::tableName(). '.position');
     }
 
