@@ -17,10 +17,7 @@ class Catalog extends aModule {
     public $translationsBasePath = __DIR__ . '/messages';
 
     /**
-     * Db connection
-     *
-     * @return null|object
-     * @throws \yii\base\InvalidConfigException
+     * @return null|object|string
      */
     public static function getDb()
     {
