@@ -114,6 +114,9 @@ class Order extends \thread\modules\shop\models\Order
      */
     public function getCity()
     {
+        $user = Yii::$app->getUser()->getIdentity();
+        Yii::$app->language = $user->profile->preferred_language;
+
         return $this
             ->hasOne(City::class, ['id' => 'city_id']);
     }
