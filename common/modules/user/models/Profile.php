@@ -178,7 +178,7 @@ class Profile extends \thread\modules\user\models\Profile
     {
         $model = Country::findById($this->country_id);
 
-        if ($model == null)
+        if ($model == null || empty($model->lang))
             return false;
         else
             return $model->lang->title;
@@ -191,7 +191,7 @@ class Profile extends \thread\modules\user\models\Profile
     {
         $model = City::findById($this->city_id);
 
-        if ($model == null)
+        if ($model == null || empty($model->lang))
             return false;
         else
             return $model->lang->title;
