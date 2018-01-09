@@ -130,6 +130,10 @@ class Product extends ProductModel
 
         $query->orderBy(implode(',', $order));
 
+        self::getDb()->cache(function ($db) use ($dataProvider) {
+            $dataProvider->prepare();
+        });
+
         return $dataProvider;
     }
 

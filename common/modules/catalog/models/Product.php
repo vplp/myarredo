@@ -68,7 +68,7 @@ use common\modules\catalog\Catalog;
 class Product extends ActiveRecord implements iProduct
 {
     /**
-     * @return string
+     * @return null|object|string|\yii\db\Connection
      */
     public static function getDb()
     {

@@ -61,24 +61,28 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
-     * findByAlias
-     *
-     * @param string $alias
-     * @return ActiveRecord|null
+     * @param $alias
+     * @return mixed
+     * @throws \Exception
+     * @throws \Throwable
      */
     public static function findByAlias($alias)
     {
-        return self::find()
-            ->innerJoinWith(['lang'])
-            ->orderBy('position DESC')
-            ->enabled()
-            ->byAlias($alias)
-            ->innerJoinWith([
-                    'category' => function ($q) {
-                        $q->with(['lang']);
-                    }]
-            )
-            ->one();
+        $result = self::getDb()->cache(function ($db) use ($alias) {
+            return self::find()
+                ->innerJoinWith(['lang'])
+                ->orderBy('position DESC')
+                ->enabled()
+                ->byAlias($alias)
+                ->innerJoinWith([
+                        'category' => function ($q) {
+                            $q->with(['lang']);
+                        }]
+                )
+                ->one();
+        });
+
+        return $result;
     }
 
     /**

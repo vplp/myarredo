@@ -40,6 +40,8 @@ class ProductController extends BaseController
      * @param string $alias
      * @return string
      * @throws NotFoundHttpException
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function actionView(string $alias)
     {
