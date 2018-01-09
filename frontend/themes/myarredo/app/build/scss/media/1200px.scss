@@ -19,7 +19,8 @@
     }
   }
   .cat-prod .one-prod-tile {
-    width: 48%;
+    //width: 48%;
+    width: calc( 50% - 20px);
     .img-cont {
       height: 180px;
     }
@@ -78,6 +79,13 @@
       }
     }
   }
+  .factory-page {
+    .catalog-wrap {
+      .one-prod-tile {
+        width: calc( 33% - 20px );
+      }
+    }
+  }
   .sign-in-page {
     .col-md-4 {
       padding-left: 15px;
@@ -107,8 +115,31 @@
   }
 
   .tomassy-page {
-    .cat-prod .one-prod-tile .img-cont {
-      height: 195px;
+    .cat-container {
+      .cat-prod .one-prod-tile {
+        width: calc( 33% - 20px );
+        .img-cont {
+          height: 195px;
+        }
+      }
+    }
+  }
+  .adding-product-page {
+    .basket-item-info {
+      width: 45%;
+    }
+    .hidden-order-in {
+      .form-wrap {
+        width: 33%;
+        min-width: 33%;
+      }
+    }
+  }
+  .novelties {
+    .item-in {
+      .left, .right {
+        height: 385px;
+      }
     }
   }
 }

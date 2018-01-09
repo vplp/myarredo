@@ -3,13 +3,8 @@
 namespace frontend\modules\shop\widgets\request;
 
 use Yii;
-use yii\helpers\Url;
 use yii\base\Widget;
-use frontend\modules\shop\models\{
-    CartCustomerForm,
-    Order,
-    search\Order as SearchOrder
-};
+use frontend\modules\shop\models\CartCustomerForm;
 
 /**
  * Class RequestPrice
@@ -29,6 +24,8 @@ class RequestPrice extends Widget
     {
         $model = new CartCustomerForm;
         $model->setScenario('frontend');
+
+        $model->load(Yii::$app->getRequest()->post());
 
         return $this->render($this->view, [
             'model' => $model,

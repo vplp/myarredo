@@ -7,30 +7,40 @@ use frontend\modules\catalog\models\Factory;
  * @var \frontend\modules\catalog\models\Factory $model
  */
 
+$keys = Yii::$app->catalogFilter->keys;
+
 ?>
 
-<?= Html::beginTag('a', ['href' => Factory::getUrl($model['alias']), 'class' => 'factory-tile']); ?>
+<?= Html::beginTag(
+    'a',
+    [
+        'href' => Factory::getUrl($model['alias']),
+        'class' => 'factory-tile'
+    ]
+); ?>
 
     <div class="flex">
         <div class="logo-img">
-            <?= Html::img(Factory::getImage($model['image_link'])); ?>
+            <?= Html::img(Factory::getImageThumb($model['image_link'])); ?>
         </div>
         <?= Html::tag('h3', $model['lang']['title']); ?>
     </div>
+
     <object>
         <ul class="assortment">
-            <?php foreach ($categories as $item): ?>
+            <?php foreach ($categories as $item) {
 
-                <?php
                 echo Html::beginTag('li') .
                     Html::a(
                         $item['title'],
-                        Yii::$app->catalogFilter->createUrl(['factory' => $model['alias']])
+                        Yii::$app->catalogFilter->createUrl(
+                            Yii::$app->catalogFilter->params +
+                            [$keys['category'] => $item['alias']] +
+                            [$keys['factory'] => $model['alias']]
+                        )
                     ) .
                     Html::endTag('li');
-                ?>
-
-            <?php endforeach; ?>
+            } ?>
 
         </ul>
     </object>

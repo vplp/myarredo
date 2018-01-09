@@ -6,6 +6,8 @@ use Yii;
 use yii\helpers\{
     Url, ArrayHelper
 };
+//
+use frontend\components\ImageResize;
 
 /**
  * Class Factory
@@ -51,7 +53,7 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled()->asArray();
+        return parent::findBase()->enabled();
     }
 
     /**
@@ -59,7 +61,7 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public static function dropDownList()
     {
-        return ArrayHelper::map(self::findBase()->all(), 'id', 'lang.title');
+        return ArrayHelper::map(self::findBase()->asArray()->all(), 'id', 'lang.title');
     }
 
     /**
@@ -70,7 +72,11 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->byAlias($alias)->one();
+        $result = self::getDb()->cache(function ($db) use ($alias) {
+            return self::findBase()->byAlias($alias)->one();
+        });
+
+        return $result;
     }
 
     /**
@@ -97,13 +103,13 @@ class Factory extends \common\modules\catalog\models\Factory
      * @param string $image_link
      * @return null|string
      */
-    public static function getImage(string $image_link  = '')
+    public static function getImage($image_link  = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
 
-        $path = $module->getCategoryUploadPath();
-        $url = $module->getCategoryUploadUrl();
+        $path = $module->getFactoryUploadPath();
+        $url = $module->getFactoryUploadUrl();
 
         $image = null;
 
@@ -115,14 +121,138 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
-     * @param $params
+     * @param string $image_link
+     * @return null|string
+     */
+    public static function getImageThumb($image_link  = '')
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getFactoryUploadPath();
+
+        $image = null;
+
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = $path . '/' . $image_link;
+
+            // resize
+            $ImageResize = new ImageResize();
+            $image = $ImageResize->getThumb($image, 150, 150);
+        }
+
+        return $image;
+    }
+
+    /**
+     * @param array $params
      * @return mixed
      */
-    public static function getAllWithFilter($params = [])
+    public static function getWithProduct($params = [])
     {
-        return self::findBase()
-            ->all();
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = self::findBase();
+
+        $query
+            ->innerJoinWith(["product"], false)
+            ->innerJoinWith(["product.lang"], false)
+            ->andFilterWhere([
+                Product::tableName() . '.published' => '1',
+                Product::tableName() . '.deleted' => '0',
+                Product::tableName() . '.removed' => '0',
+            ]);
+
+        if (isset($params[$keys['category']])) {
+            $query
+                ->innerJoinWith(["product.category productCategory"], false)
+                ->andFilterWhere(['IN', 'productCategory.alias', $params[$keys['category']]]);
+        }
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["product.types productTypes"], false)
+                ->andFilterWhere(['IN', 'productTypes.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["product.specification productSpecification"], false)
+                ->andFilterWhere(['IN', 'productSpecification.alias', $params[$keys['style']]]);
+        }
+
+        if (Yii::$app->request->get('show') == 'in_stock') {
+            $query->andWhere([
+                Product::tableName() . '.in_stock' => '1'
+            ]);
+        }
+
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.alias',
+                    self::tableName() . '.first_letter',
+                    FactoryLang::tableName() . '.title',
+                    'count(' . self::tableName() . '.id) as count'
+                ])
+                ->groupBy(self::tableName() . '.id')
+                ->asArray()
+                ->all();
+        });
+
+        return $result;
     }
+
+
+    /**
+     * @param array $params
+     * @return mixed
+     */
+    public static function getWithSale($params = [])
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = self::findBase();
+
+        $query
+            ->innerJoinWith(["sale"], false)
+            ->innerJoinWith(["sale.category saleCategory"], false)
+            ->andFilterWhere([
+                Sale::tableName() . '.published' => '1',
+                Sale::tableName() . '.deleted' => '0',
+            ]);
+
+        if (isset($params[$keys['category']])) {
+            $query->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
+        }
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["sale.types saleTypes"], false)
+                ->andFilterWhere(['IN', 'saleTypes.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["sale.specification saleSpecification"], false)
+                ->andFilterWhere(['IN', 'saleSpecification.alias', $params[$keys['style']]]);
+        }
+
+        return $query
+            ->select([
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                self::tableName() . '.first_letter',
+                FactoryLang::tableName() . '.title',
+                'count(' . self::tableName() . '.id) as count'
+            ])
+            ->groupBy(self::tableName() . '.id')
+            ->asArray()
+            ->all();
+
+    }
+
 
     /**
      * @return mixed
@@ -145,7 +275,7 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public static function getFactoryCategory(array $ids)
     {
-        $command = Yii::$app->db_myarredo->createCommand("SELECT
+        $command = Yii::$app->db->createCommand("SELECT
                 factory.id AS factory_id,
                 category.id AS category_id,
                 category.alias AS alias,
@@ -178,13 +308,12 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
-     * Get Factory Types
-     *
      * @param int $id
+     * @return array
      */
     public static function getFactoryTypes(int $id)
     {
-        $command = Yii::$app->db_myarredo->createCommand("SELECT
+        $command = Yii::$app->db->createCommand("SELECT
                 COUNT(types.id) as count, 
                 types.id, 
                 types.alias,
@@ -212,13 +341,12 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
-     * Get Factory Collection
-     *
      * @param int $id
+     * @return array
      */
     public static function getFactoryCollection(int $id)
     {
-        $command = Yii::$app->db_myarredo->createCommand("SELECT
+        $command = Yii::$app->db->createCommand("SELECT
                 COUNT(collection.id) as count, 
                 collection.id,
                 collectionLang.title AS title

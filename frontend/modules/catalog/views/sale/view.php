@@ -1,6 +1,18 @@
 <?php
 
-use yii\helpers\Html;
+use yii\helpers\{
+    Html, Url
+};
+//
+use frontend\modules\catalog\models\{
+    Factory, Sale
+};
+
+/**
+ * @var \frontend\modules\catalog\models\Sale $model
+ */
+
+$this->title = $this->context->title;
 
 ?>
 
@@ -10,92 +22,121 @@ use yii\helpers\Html;
             <div class="row">
                 <div class="col-md-12">
                     <div class="flex s-between c-align top-links">
-                        <a href="#" class="brand">
-                            Poliform
-                        </a>
-                        <a href="#" class="back">
-                            Вернуться к списку
-                        </a>
+
+                        <?php
+                        if ($model['factory']) {
+                            echo Html::a(
+                                $model['factory']['lang']['title'],
+                                Factory::getUrl($model['factory']['alias']),
+                                ['class' => 'brand']
+                            );
+                        }
+
+                        echo Html::a(
+                            'Вернуться к списку',
+                            Url::toRoute(['/catalog/sale/list']),
+                            ['class' => 'back']
+                        );
+                        ?>
+
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h1><?= $model->getTitle() ?></h1>
+                    <?= Html::tag('h1', $model->getTitle()); ?>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-5">
-                    <div class="img-wrap">
-                        <a href="javascript:void(0);" class="img-cont">
-                            <img src="public/img/pictures/sale.jpg" alt="Изображение товара">
-                        </a>
-                        <a href="javascript:void(0);" class="zoom">
-                            Увеличить
-                            <i class="fa fa-search-plus" aria-hidden="true"></i>
-                        </a>
-                    </div>
+
+                    <?= $this->render('parts/_carousel', [
+                        'model' => $model
+                    ]); ?>
+
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-7">
                     <div class="prod-info">
+
                         <div class="prod-style">
                             <span>Стиль: </span>
-                            <a href="#">
-                                Современный
-                            </a>
+
+                            <?php
+                            $array = [];
+                            foreach ($model['specificationValue'] as $item) {
+                                if ($item['specification']['parent_id'] == 9) {
+                                    $array[] = $item['specification']['lang']['title'];
+                                }
+                            }
+                            echo implode('; ', $array);
+                            ?>
+
                         </div>
                         <div class="prod-price">
                             <div class="price">
-                                2172 EUR
+                                <?= $model->price_new .' ' .$model->currency; ?>
                             </div>
-                            <div class="old-price">
-                                (старая цена - <b>4 334  EUR</b>)
-                            </div>
+
+                            <?php if ($model->price > 0): ?>
+                                <div class="old-price">
+                                    (старая цена - <b><?= $model->price . ' ' . $model->currency; ?></b>)
+                                </div>
+                            <?php endif; ?>
+
                         </div>
                         <div class="prod-shortstory">
-                            Стол обеденный с столешницей из натурального мрамора и ногами в шпоне ореха.
+                            <?= $model['lang']['description']; ?>
                         </div>
                         <table class="infotable" width="100%">
                             <tr>
                                 <td>
                                     Размеры
-                                </td>
-                                <td>
-                                    L:2200
-                                </td>
-                                <td>
-                                    DP:1100
-                                </td>
-                                <td>
-                                    H:740
-                                </td>
+
+                                    <?php
+                                    foreach ($model['specificationValue'] as $item) {
+                                        if ($item['specification']['parent_id'] == 4) {
+                                            echo $item['specification']['alias'] . ':' . $item['val'];
+                                        }
+                                    } ?>
                             </tr>
                             <tr>
                                 <td>
                                     Материал
-                                </td>
-                                <td colspan="3">
-                                    Мрамор
+
+                                    <?php
+                                    $array = [];
+                                    foreach ($model['specificationValue'] as $item) {
+                                        if ($item['specification']['parent_id'] == 2) {
+                                            $array[] = $item['specification']['lang']['title'];
+                                        }
+                                    }
+
+                                    echo implode('; ', $array);
+                                    ?>
+
                                 </td>
                             </tr>
                         </table>
-                        <div class="seller-cont">
-                            <h4>Контакты продавца</h4>
-                            <div class="title">
-                                Салон "Sfera Design"
+
+                        <?php if (!empty($model['user'])) { ?>
+
+                            <div class="seller-cont">
+                                <h4>Контакты продавца</h4>
+                                <div class="title"><?= $model['user']['profile']['name_company']; ?></div>
+                                <a href="tel:+380442309379">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    <?= $model['user']['profile']['phone']; ?>
+                                </a>
+                                <div class="location">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <?= $model['user']['profile']['address']; ?>
+                                </div>
+                                <a href="mailto:<?= $model['user']['email']; ?>">
+                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                    <?= $model['user']['email']; ?>
+                                </a>
                             </div>
-                            <a href="tel:+380442309379">
-                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                +380 (44) 230-93-79
-                            </a>
-                            <div class="location">
-                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                Украина - Киев </br>
-                                бульвар Леси Украинки, 16
-                            </div>
-                            <a href="mailto:sferadesignkiev@gmail.com">
-                                <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                sferadesignkiev@gmail.com
-                            </a>
-                        </div>
+
+                        <?php } ?>
+
                     </div>
                 </div>
             </div>

@@ -20,6 +20,16 @@ header {
       display: flex;
       align-items: center;
       position: relative;
+      &:after, &:before {
+        display: none;
+      }
+      &>.row {
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 103%;
+        height: 100%;
+      }
     }
   }
   .navbar-right {
@@ -32,8 +42,11 @@ header {
     background-color: #f6f3e8;
     border-bottom: 1px solid #bdbcb3;
     height: 48px;
-    &>container {
+    &>.container {
       height: 100%;
+      &>.row {
+        height: 100%;
+      }
     }
     .navbar-nav {
       height: 100%;
@@ -242,9 +255,9 @@ header {
     .links-cont {
       list-style: none;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       flex-wrap: wrap;
-      height: 290px;
+      height: auto;
       padding-left: 0;
       li {
         width: 20%;

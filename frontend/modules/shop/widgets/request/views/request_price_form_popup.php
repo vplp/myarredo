@@ -5,6 +5,8 @@ use yii\helpers\{
 };
 use yii\widgets\ActiveForm;
 
+$model->user_agreement = 1;
+
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -26,12 +28,12 @@ use yii\widgets\ActiveForm;
             ->label(false) ?>
 
         <?= $form->field($model, 'full_name')
-            ->input('text', ['placeholder' => Yii::t('app', 'Full name')])
+            ->input('text', ['placeholder' => Yii::t('app', 'Name')])
             ->label(false) ?>
 
         <?= $form->field($model, 'phone')
             ->widget(\yii\widgets\MaskedInput::className(), [
-                'mask' => '79999999999',
+                'mask' => Yii::$app->city->getPhoneMask(),
                 'clientOptions' => [
                     'clearIncomplete' => true
                 ]
@@ -41,6 +43,13 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'comment')
             ->textarea(['placeholder' => Yii::t('app', 'Comment')])
+            ->label(false) ?>
+
+        <?= $form->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])->checkbox([], false)
+            ->label('&nbsp;'.$model->getAttributeLabel('user_agreement')) ?>
+
+        <?= $form->field($model, 'reCaptcha')
+            ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
             ->label(false) ?>
 
     </div>

@@ -1,6 +1,6 @@
 <?php
 
-use thread\app\bootstrap\ActiveForm;
+use backend\app\bootstrap\ActiveForm;
 
 /**
  * @var \backend\modules\location\models\Currency $model

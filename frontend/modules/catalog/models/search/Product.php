@@ -3,12 +3,15 @@
 namespace frontend\modules\catalog\models\search;
 
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
+use yii\data\ActiveDataProvider;
 //
 use frontend\modules\catalog\models\{
+    Category,
+    Types,
+    Factory,
     Product as ProductModel,
-    ProductRelCategory
+    Specification
 };
 use frontend\modules\catalog\Catalog;
 
@@ -53,15 +56,18 @@ class Product extends ProductModel
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
 
+        $keys = Yii::$app->catalogFilter->keys;
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => $module->itemOnPage
+                'defaultPageSize' => $module->itemOnPage,
+                'forcePageParam' => false,
             ],
         ]);
 
         $query->andWhere([
-            'removed' => '0'
+            self::tableName() . '.removed' => '0'
         ]);
 
         if (!($this->load($params, ''))) {
@@ -69,24 +75,37 @@ class Product extends ProductModel
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
+            self::tableName() . '.id' => $this->id,
         ]);
 
-        if (isset($params['category'])) {
-            $query->innerJoinWith(["category"])
-                ->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $params['category']['id']]);
+        if (isset($params[$keys['category']])) {
+            $query
+                ->innerJoinWith(["category"])
+                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params[$keys['category']]]);
         }
 
-        if (isset($params['type'])) {
-            $query->andFilterWhere(['catalog_type_id' => $params['type']['id']]);
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["types"])
+                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
         }
 
-        if (isset($params['factory'])) {
-            $query->andFilterWhere(['factory_id' => $params['factory']['id']]);
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["specification"])
+                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params[$keys['style']]]);
         }
 
-        if (isset($params['collection'])) {
-            $query->andFilterWhere(['collections_id' => $params['collection']['id']]);
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["factory"])
+                ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
+        }
+
+        if (isset($params[$keys['collection']])) {
+            $query
+                ->innerJoinWith(["collection"])
+                ->andFilterWhere(['IN', Collection::tableName() . '.id', $params[$keys['collection']]]);
         }
 
         $order = [];
@@ -96,48 +115,72 @@ class Product extends ProductModel
         } else if (isset($params['sort']) && $params['sort'] == 'desc') {
             $order[] = self::tableName() . '.factory_price DESC';
         }
+
         if (isset($params['object']) && $params['object'] == 'composition') {
             $order[] = self::tableName() . '.is_composition DESC';
+        }
+
+        if (isset($params['show']) && $params['show'] == 'in_stock') {
+            $query->andWhere([
+                self::tableName() . '.in_stock' => '1'
+            ]);
         }
 
         $order[] = self::tableName() . '.updated_at DESC';
 
         $query->orderBy(implode(',', $order));
 
+        self::getDb()->cache(function ($db) use ($dataProvider) {
+            $dataProvider->prepare();
+        });
+
         return $dataProvider;
     }
 
+    /**
+     * @param $params
+     * @return mixed
+     */
     public function getSubQuery($params)
     {
+        $keys = Yii::$app->catalogFilter->keys;
+
         $query = ProductModel::findBase();
 
         $query->andWhere([
-            'removed' => '0'
+            ProductModel::tableName() . '.removed' => '0'
         ]);
 
         $query->andFilterWhere([
             'id' => $this->id,
         ]);
 
-        if (isset($params['category'])) {
-            $query->innerJoinWith(["category"])
-                ->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $params['category']['id']]);
+        if (isset($params[$keys['category']])) {
+            $query
+                ->innerJoinWith(["category"])
+                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params[$keys['category']]]);
         }
 
-        if (isset($params['type'])) {
-            $query->andFilterWhere(['catalog_type_id' => $params['type']['id']]);
+        if (isset($params[$keys['types']])) {
+            $query
+                ->innerJoinWith(["types"])
+                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['types']]]);
         }
 
-        if (isset($params['factory'])) {
-            $query->andFilterWhere(['factory_id' => $params['factory']['id']]);
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["specification"])
+                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params[$keys['style']]]);
         }
 
-        if (isset($params['collection'])) {
-            $query->andFilterWhere(['collections_id' => $params['collection']['id']]);
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["factory"])
+                ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
         }
 
         $query->select(ProductModel::tableName() . '.id');
-        //
+
         return $query;
     }
 

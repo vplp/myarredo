@@ -3,6 +3,7 @@
 namespace backend\modules\user\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 //
 use thread\app\base\controllers\BackendController;
@@ -45,6 +46,29 @@ class OwnprofileController extends BackendController
         return parent::init();
     }
 
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
+
     /**
      *
      * @return array
@@ -59,7 +83,9 @@ class OwnprofileController extends BackendController
                 'class' => Update::class,
                 'modelClass' => $this->model,
                 'redirect' => function () {
-                    return $_POST['save_and_exit'] ? ['/user/user/list'] : ['update', 'id' => $this->action->getModel()->id];
+                    return $_POST['save_and_exit']
+                        ? ['/user/user/list']
+                        : ['update', 'id' => $this->action->getModel()->id];
                 }
             ],
             'fileupload' => [

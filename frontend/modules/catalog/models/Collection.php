@@ -70,10 +70,10 @@ class Collection extends \common\modules\catalog\models\Collection
     }
 
     /**
-     * @param $params
+     * @param array $params
      * @return mixed
      */
-    public static function getAllWithFilter($params = [])
+    public static function getWithProduct($params = [])
     {
         return self::findBase()
             ->all();

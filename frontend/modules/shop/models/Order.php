@@ -2,6 +2,7 @@
 
 namespace frontend\modules\shop\models;
 
+use Yii;
 use yii\helpers\Url;
 
 /**
@@ -20,22 +21,16 @@ class Order extends \common\modules\shop\models\Order
             'addNewOrder' => [
                 'delivery_method_id',
                 'payment_method_id',
-                'delivery_price',
                 'order_status',
-                'payd_status',
                 'comment',
-                'items_summ',
-                'items_total_summ',
-                'discount_percent',
-                'discount_money',
-                'discount_full',
-                'total_summ',
                 'customer_id',
+                'city_id',
                 'items_count',
                 'items_total_count',
                 'token',
                 'published',
-                'deleted'],
+                'deleted'
+            ],
         ];
     }
 
@@ -45,14 +40,6 @@ class Order extends \common\modules\shop\models\Order
     public static function findBase()
     {
         return parent::findBase()->innerJoinWith(['items'])->enabled();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getItems()
-    {
-        return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
     }
 
     /**
@@ -145,8 +132,34 @@ class Order extends \common\modules\shop\models\Order
     /**
      * @return string
      */
+    public function getPartnerOrderOnListUrl()
+    {
+        return Url::toRoute(['/shop/partner-order/list']) . '#'.$this->id;
+    }
+
+    /**
+     * @return string
+     */
     public function getPartnerOrderUrl()
     {
         return Url::toRoute(['/shop/partner-order/view', 'id' => $this->id]);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function search($params)
+    {
+        return (new search\Order())->search($params);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     */
+    public function trash($params)
+    {
+        return (new search\Order())->trash($params);
     }
 }

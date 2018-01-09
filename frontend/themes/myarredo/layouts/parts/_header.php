@@ -5,9 +5,7 @@ use yii\helpers\{
 };
 use frontend\modules\catalog\widgets\menu\CatalogMenu;
 use frontend\modules\shop\widgets\cart\Cart;
-use frontend\modules\location\widgets\SelectCity;
-
-$session = Yii::$app->session;
+use frontend\modules\location\widgets\ChangeCity;
 
 ?>
 
@@ -15,40 +13,42 @@ $session = Yii::$app->session;
 
     <?php if ((Yii::$app->getUser()->isGuest)): ?>
 
-        <?= SelectCity::widget() ?>
+        <?= ChangeCity::widget() ?>
 
         <div class="top-navbar">
             <div class="container large-container">
-                <ul class="nav navbar-nav top-panel flex">
-                    <li class="tel-num">
+                <div class="row">
+                    <ul class="nav navbar-nav top-panel flex">
+                        <li class="tel-num">
 						<span>
-							<i class="glyphicon glyphicon-earphone"></i> +7 (844) 297-45-97
+							<i class="glyphicon glyphicon-earphone"></i> <?= Yii::$app->partner->getPartnerPhone() ?>
 						</span>
-                    </li>
-                    <li>
-                        <a class="callback-trigger" href="javascript:void(0);">
+                        </li>
+                        <li>
+                            <a class="callback-trigger" href="javascript:void(0);">
 							<span>
 								Обратный звонок
 							</span>
-                        </a>
-                    </li>
-                    <li class="geo">
-                        <a href="javascript: void(0);" id="select-city">
-                            <i class="glyphicon glyphicon-map-marker"></i>
-                            <span class="country">
-								<?= $session['country']['lang']['title'] ?>
+                            </a>
+                        </li>
+                        <li class="geo">
+                            <a href="javascript: void(0);" id="select-city">
+                                <i class="glyphicon glyphicon-map-marker"></i>
+                                <span class="country">
+								<?= Yii::$app->city->getCountryTitle() ?>
 							</span>
-                            <span class="city">
-								<?= $session['city']['lang']['title'] ?>
+                                <span class="city">
+								<?= Yii::$app->city->getCitytitle() ?>
 							</span>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li id="short_cart">
-                        <?= Cart::widget(['view' => 'short']) ?>
-                    </li>
-                </ul>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="short_cart">
+                            <?= Cart::widget(['view' => 'short']) ?>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -56,84 +56,160 @@ $session = Yii::$app->session;
 
         <div class="top-navbar">
             <div class="container large-container">
+                <div class="row">
+                    <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'user'): ?>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li id="short_cart">
+                                <?= Cart::widget(['view' => 'short']) ?>
+                            </li>
+                        </ul>
+                    <?php endif; ?>
 
-                <?php //if (Yii::$app->getUser()->getIdentity()->group->role == 'user'): ?>
                     <ul class="nav navbar-nav navbar-right">
-                        <li id="short_cart">
-                            <?= Cart::widget(['view' => 'short']) ?>
-                        </li>
-                    </ul>
-                <?php //endif; ?>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <div class="my-notebook dropdown">
+                        <li>
+                            <div class="my-notebook dropdown">
                             <span class="red-but notebook-but dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bars" aria-hidden="true"></i>
-                                Меню
+                                <?= Yii::t('app', 'Menu') ?>
                                 <object>
                                     <ul class="dropdown-menu">
 
-                                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner'): ?>
+                                        <?php if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner'])): ?>
 
                                             <li>
-                                                <?= Html::a('Города', ['/catalog/partner-sale/mailing-by-cities']); ?>
+                                                <?= Html::a(
+                                                        'Города',
+                                                        ['/catalog/partner-sale/mailing-by-cities']
+                                                ); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Заявки', ['/shop/partner-order/list']); ?>
+                                                <?= Html::a(
+                                                        Yii::t('app', 'Orders'),
+                                                        ['/shop/partner-order/list']
+                                                ); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Распродажа', ['/catalog/partner-sale/list']); ?>
+                                                <?= Html::a(
+                                                        'Распродажа',
+                                                        ['/catalog/partner-sale/list']
+                                                ); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Размещение кода', ['/catalog/partner-sale/code']); ?>
+                                                <?= Html::a(
+                                                        'Размещение кода',
+                                                        ['/catalog/partner-sale/code']
+                                                ); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Инструкция партнерам', ['/catalog/partner-sale/instructions']); ?>
+                                                <?= Html::a(
+                                                        'Инструкция партнерам',
+                                                        ['/catalog/partner-sale/instructions']
+                                                ); ?>
                                             </li>
                                             <li role="separator" class="divider"></li>
                                             <li>
-                                                <?= Html::a('Профиль', ['/user/profile/index']); ?>
+                                                <?= Html::a(
+                                                        Yii::t('app', 'Profile'),
+                                                        ['/user/profile/index']
+                                                ); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a(Yii::t('app', 'Sign Up'), ['/user/logout/index']); ?>
+                                                <?= Html::a(
+                                                        Yii::t('app', 'Sign Up'),
+                                                        ['/user/logout/index']
+                                                ); ?>
                                             </li>
-
+                                        <?php elseif (Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
+                                            <li>
+                                                <?= Html::a(
+                                                        Yii::t('app', 'Orders'),
+                                                        ['/shop/admin-order/list']
+                                                ); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a(
+                                                        Yii::t('app', 'Statistics'),
+                                                        ['/catalog/product-stats/list']
+                                                ); ?>
+                                            </li>
+                                            <li role="separator" class="divider"></li>
+                                            <li>
+                                                <?= Html::a(
+                                                        Yii::t('app', 'Profile'),
+                                                        ['/user/profile/index']
+                                                ); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a(
+                                                        Yii::t('app', 'Sign Up'),
+                                                        ['/user/logout/index']
+                                                ); ?>
+                                            </li>
                                         <?php elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory'): ?>
 
                                             <li>
-                                                <?= Html::a('Каталог', ['/user/profile/index']); ?>
+                                                <?= Html::a(
+                                                        Yii::t('app', 'Orders'),
+                                                        ['/shop/factory-order/list']
+                                                ); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Коллекции', ['/user/profile/index']); ?>
+                                                <?= Html::a(
+                                                        Yii::t('app', 'Statistics'),
+                                                        ['/catalog/product-stats/list']
+                                                ); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a(
+                                                        'Баннера',
+                                                        ['/banner/factory-banner/list']
+                                                ); ?>
                                             </li>
                                             <li role="separator" class="divider"></li>
                                             <li>
-                                                <?= Html::a('Профиль', ['/user/profile/index']); ?>
+                                                <?= Html::a(
+                                                        Yii::t('app', 'Profile'),
+                                                        ['/user/profile/index']
+                                                ); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a(Yii::t('app', 'Sign Up'), ['/user/logout/index']); ?>
+                                                <?= Html::a(
+                                                        Yii::t('app', 'Sign Up'),
+                                                        ['/user/logout/index']
+                                                ); ?>
                                             </li>
 
                                         <?php else: ?>
 
                                             <li>
-                                                <?= Html::a('Профиль', ['/user/profile/index']); ?>
+                                                <?= Html::a(
+                                                        Yii::t('app', 'Orders'),
+                                                        ['/shop/order/list']
+                                                ); ?>
+                                            </li>
+                                            <li role="separator" class="divider"></li>
+                                            <li>
+                                                <?= Html::a(
+                                                        Yii::t('app', 'Profile'),
+                                                        ['/user/profile/index']
+                                                ); ?>
                                             </li>
                                             <li>
-                                                <?= Html::a('Заказы', ['/shop/order/list']); ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a(Yii::t('app', 'Sign Up'), ['/user/logout/index']); ?>
+                                                <?= Html::a(
+                                                        Yii::t('app', 'Sign Up'),
+                                                        ['/user/logout/index']
+                                                ); ?>
                                             </li>
 
                                         <?php endif; ?>
                                     </ul>
                                 </object>
                             </span>
-                        </div>
-                    </li>
-                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
         </div>
 
@@ -141,10 +217,12 @@ $session = Yii::$app->session;
 
     <nav class="navbar">
         <div class="container large-container">
-            <a href="/" class="logo">
-                <img src="<?= $bundle->baseUrl ?>/img/logo.png" alt="">
-            </a>
-            <?= CatalogMenu::widget([]); ?>
+            <div class="row">
+                <a href="/" class="logo">
+                    <img src="<?= $bundle->baseUrl ?>/img/logo.svg" alt="">
+                </a>
+                <?= CatalogMenu::widget([]); ?>
+            </div>
         </div>
     </nav>
 </header>

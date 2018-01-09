@@ -17,8 +17,6 @@ use backend\modules\shop\{
  * Class DeliveryMethods
  *
  * @package backend\modules\shop\models\search
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class DeliveryMethods extends DeliveryMethodsModel implements BaseBackendSearchModel
 {
@@ -54,7 +52,7 @@ class DeliveryMethods extends DeliveryMethodsModel implements BaseBackendSearchM
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => $module->itemOnPage
+                'defaultPageSize' => $module->itemOnPage
             ],
             'sort' => [
                 'defaultOrder' => [

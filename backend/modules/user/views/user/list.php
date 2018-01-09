@@ -1,16 +1,25 @@
 <?php
 
-use yii\helpers\Html;
 use backend\widgets\GridView\GridView;
 //
 use backend\modules\user\models\Group;
+use backend\modules\location\models\{
+    Country, City
+};
 //
 use thread\widgets\grid\{
     ActionCheckboxColumn, GridViewFilter
 };
 
+$country_id = 0;
+
+$getUser = Yii::$app->getRequest()->get('User');
+
+if(isset($getUser['country_id'])) {
+    $country_id = $getUser['country_id'];
+}
+
 /**
- *
  * @var $model \backend\modules\user\models\User
  */
 
@@ -18,6 +27,7 @@ echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
+        'id',
         [
             'attribute' => 'group_id',
             'value' => 'group.lang.title',
@@ -27,25 +37,27 @@ echo GridView::widget([
         [
             'value' => function ($model) {
                 return $model->profile->getFullName();
-            }
+            },
+        ],
+        [
+            'value' => function ($model) {
+                return $model->profile->getCountryTitle();
+            },
+            'label' => Yii::t('app', 'Country'),
+            'filter' => GridViewFilter::selectOne($filter, 'country_id', Country::dropDownList()),
+        ],
+        [
+            'value' => function ($model) {
+                return $model->profile->getCityTitle();
+            },
+            'label' => Yii::t('app', 'City'),
+            'filter' => GridViewFilter::selectOne($filter, 'city_id', City::dropDownList($country_id)),
         ],
         [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',
             'action' => function ($model) {
                 return (in_array($model['id'], [1])) ? false : 'published';
-            },
-        ],
-        [
-            'format' => 'raw',
-            'value' => function ($model) {
-                return Html::a(Yii::t('user', 'Edit profile'), ['/user/profile/update', 'id' => $model->profile->id]);
-            },
-        ],
-        [
-            'format' => 'raw',
-            'value' => function ($model) {
-                return Html::a(Yii::t('user', 'Change password'), ['/user/password/change', 'id' => $model->id]);
             },
         ],
         [

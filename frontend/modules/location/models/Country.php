@@ -58,7 +58,14 @@ class Country extends \common\modules\location\models\Country
      */
     public function getCities()
     {
-        return $this->hasMany(City::class, ['country_id' => 'id']);
+        return $this
+            ->hasMany(City::class, ['country_id' => 'id'])
+            ->andFilterWhere([
+                City::tableName() . '.published' => '1',
+                City::tableName() . '.deleted' => '0',
+            ])
+            ->innerJoinWith(['lang'])
+            ->orderBy(CityLang::tableName() . '.title');
     }
 
     /**

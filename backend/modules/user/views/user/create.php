@@ -1,17 +1,10 @@
 <?php
 
 use yii\bootstrap\ActiveForm;
-use thread\app\bootstrap\ActiveForm as threadActiveForm;
-
-use thread\modules\user\models\form\CreateForm;
-use thread\modules\user\models\User;
+use backend\app\bootstrap\ActiveForm as backendActiveForm;
 use backend\modules\user\models\Group;
 
-/**
- * @var CreateForm|User $model
- */
-
-$f = new threadActiveForm();
+$f = new backendActiveForm();
 
 $form = ActiveForm::begin();
 

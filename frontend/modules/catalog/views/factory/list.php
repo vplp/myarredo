@@ -10,6 +10,8 @@ use frontend\modules\catalog\models\Factory;
  * @var \frontend\modules\catalog\models\Factory $model
  */
 
+$this->title = $this->context->title;
+
 ?>
 
 <main>
@@ -18,14 +20,15 @@ use frontend\modules\catalog\models\Factory;
             <div class="container large-container">
                 <ul class="letter-select">
 
-                    <?php foreach (Factory::getListLetters() as $letter): ?>
-                        <li>
-                            <?= Html::a(
+                    <?php
+                    foreach (Factory::getListLetters() as $letter) {
+                        echo Html::beginTag('li') .
+                            Html::a(
                                 $letter['first_letter'],
                                 Url::toRoute(['/catalog/factory/list', 'letter' => strtolower($letter['first_letter'])])
-                            ); ?>
-                        </li>
-                    <?php endforeach; ?>
+                            ) .
+                            Html::endTag('li');
+                    } ?>
 
                 </ul>
                 <?= Html::a('Все', Url::toRoute(['/catalog/factory/list']), ['class' => 'all']); ?>
@@ -40,7 +43,7 @@ use frontend\modules\catalog\models\Factory;
                     (<?= Factory::findBase()->count(); ?> фабрик представлено в нашем каталоге)
                 </span>
                 <div class="view-but">
-                    <a href="<?= Url::toRoute(['/catalog/factory/list', 'view'=> 'three']); ?>" class="tiles4 flex">
+                    <a href="<?= Url::toRoute(['/catalog/factory/list', 'view' => 'three']); ?>" class="tiles4 flex">
                         <i></i><i></i><i></i><i></i>
                         <i></i><i></i><i></i><i></i>
                     </a>
@@ -52,19 +55,22 @@ use frontend\modules\catalog\models\Factory;
 
             <div class="factory-tiles flex">
 
-                <?php foreach ($models as $model): ?>
-                    <?= $this->render('_list_item', ['model' => $model, 'categories' => $factory_categories[$model['id']]]) ?>
-                <?php endforeach; ?>
+                <?php foreach ($models as $model) {
+                    echo $this->render(
+                        '_list_item',
+                        [
+                            'model' => $model,
+                            'categories' => $factory_categories[$model['id']] ?? []
+                        ]
+                    );
+                } ?>
+
             </div>
 
             <div class="pagi-wrap">
-                <?= yii\widgets\LinkPager::widget([
+                <?= frontend\components\LinkPager::widget([
                     'pagination' => $pages,
-                    'registerLinkTags' => true,
-                    'nextPageLabel' => 'Далее<i class="fa fa-angle-right" aria-hidden="true"></i>',
-                    'prevPageLabel' => '<i class="fa fa-angle-left" aria-hidden="true"></i>Назад'
-                ]);
-                ?>
+                ]); ?>
             </div>
 
         </div>

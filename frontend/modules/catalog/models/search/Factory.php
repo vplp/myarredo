@@ -53,7 +53,8 @@ class Factory extends FactoryModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => (Yii::$app->request->get('view')) ? false : [
-                'pageSize' => $module->itemOnPage
+                'defaultPageSize' => $module->itemOnPage,
+                'forcePageParam' => false,
             ],
         ]);
 
@@ -65,6 +66,10 @@ class Factory extends FactoryModel
         //
         $query->andFilterWhere(['like', FactoryLang::tableName() . '.title', $this->title]);
         $query->andFilterWhere(['like', 'first_letter', $this->letter]);
+
+        self::getDb()->cache(function ($db) use ($dataProvider) {
+            $dataProvider->prepare();
+        });
 
         return $dataProvider;
     }

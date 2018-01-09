@@ -6,6 +6,7 @@ use Yii;
 //
 use thread\app\base\models\ActiveRecord;
 use common\modules\shop\Shop;
+use common\modules\user\models\User;
 
 /**
  * Class OrderAnswer
@@ -14,6 +15,8 @@ use common\modules\shop\Shop;
  * @property integer $order_id
  * @property integer $user_id
  * @property string $answer
+ * @property string $answer_time
+ * @property string $results
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $published
@@ -46,8 +49,9 @@ class OrderAnswer extends ActiveRecord
     {
         return [
             [['order_id', 'user_id'], 'required'],
-            [['order_id', 'user_id', 'created_at', 'updated_at'], 'integer'],
+            [['order_id', 'user_id', 'answer_time', 'created_at', 'updated_at'], 'integer'],
             [['answer'], 'string'],
+            [['results'], 'string', 'max' => 255],
             [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
@@ -64,6 +68,8 @@ class OrderAnswer extends ActiveRecord
                 'order_id',
                 'user_id',
                 'answer',
+                'answer_time',
+                'results',
                 'published',
                 'deleted'
             ],
@@ -71,6 +77,8 @@ class OrderAnswer extends ActiveRecord
                 'order_id',
                 'user_id',
                 'answer',
+                'answer_time',
+                'results',
                 'published',
                 'deleted'
             ],
@@ -87,6 +95,8 @@ class OrderAnswer extends ActiveRecord
             'order_id' => Yii::t('app', 'Order id'),
             'user_id' => Yii::t('app', 'User id'),
             'answer' => Yii::t('app', 'Answer'),
+            'answer_time' => Yii::t('app', 'Answer time'),
+            'results' => Yii::t('app', 'Results'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
@@ -102,7 +112,28 @@ class OrderAnswer extends ActiveRecord
     public static function findByOrderIdUserId($order_id, $user_id)
     {
         return self::findBase()
-            ->andWhere([self::tableName().'.order_id' => $order_id, self::tableName().'.user_id' => $user_id])
+            ->andWhere([
+                self::tableName().'.order_id' => $order_id,
+                self::tableName().'.user_id' => $user_id
+            ])
             ->one();
+    }
+
+    /**
+     * @return string
+     */
+    public function getAnswerTime()
+    {
+        $format = 'd.m.Y';
+        return $this->answer_time == 0 ? '' : date($format, $this->answer_time);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this
+            ->hasOne(User::class, ['id' => 'user_id']);
     }
 }

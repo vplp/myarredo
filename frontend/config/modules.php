@@ -41,5 +41,8 @@ return [
     ],
     'location' => [
         'class' => \frontend\modules\location\Location::class,
-    ]
+    ],
+    'banner' => [
+        'class' => \frontend\modules\banner\Banner::class,
+    ],
 ];

@@ -3,12 +3,8 @@
 namespace common\modules\catalog\models;
 
 use Yii;
-use yii\helpers\{
-    ArrayHelper
-};
 use thread\app\base\models\ActiveRecord;
 use common\modules\catalog\Catalog;
-use common\actions\upload\UploadBehavior;
 
 /**
  * Class FactoryFile
@@ -49,25 +45,6 @@ class FactoryFile extends ActiveRecord
     /**
      * @return array
      */
-    public function behaviors()
-    {
-        return ArrayHelper::merge(parent::behaviors(), [
-            'uploadBehavior' => [
-                'class' => UploadBehavior::class,
-                'attributes' => [
-                    'file_link' => [
-                        'path' => Yii::$app->getModule('catalog')->getFactoryFileUploadPath(),
-                        'tempPath' => Yii::getAlias('@temp'),
-                        'url' => Yii::$app->getModule('catalog')->getFactoryFileUploadPath(),
-                    ]
-                ]
-            ],
-        ]);
-    }
-
-    /**
-     * @return array
-     */
     public function rules()
     {
         return [
@@ -77,7 +54,6 @@ class FactoryFile extends ActiveRecord
             [['file_type'], 'in', 'range' => [1, 2]],
             [['title', 'file_link'], 'string', 'max' => 255],
             ['position', 'default', 'value' => '0'],
-            ['file_type', 'default', 'value' => '1'],
             [['discount'], 'double'],
             ['discount', 'default', 'value' => 0.00],
         ];
@@ -88,7 +64,7 @@ class FactoryFile extends ActiveRecord
      */
     public function beforeValidate()
     {
-        $this->title = $this->file_link;
+        $this->title = ($this->title == '') ? $this->file_link : $this->title;
 
         return parent::beforeValidate();
     }
@@ -124,7 +100,7 @@ class FactoryFile extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'factory_id' => Yii::t('app', 'Factory'),
-            'discount',
+            'discount' => Yii::t('app', 'Discount'),
             'title' => Yii::t('app', 'Title'),
             'file_link',
             'file_type',
@@ -135,20 +111,5 @@ class FactoryFile extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getFileLink()
-    {
-        $module = Yii::$app->getModule('catalog');
-        $path = $module->getFactoryFileUploadPath();
-        $url = $module->getFactoryFileUploadUrl();
-        $image = null;
-        if (!empty($this->file_link) && is_file($path . '/' . $this->file_link)) {
-            $image = $url . '/' . $this->file_link;
-        }
-        return $image;
     }
 }

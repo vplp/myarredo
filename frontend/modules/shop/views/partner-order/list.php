@@ -5,15 +5,19 @@ use yii\helpers\{
 };
 
 /**
- * @var \frontend\modules\shop\models\Order $order
+ * @var \frontend\modules\shop\models\Order $modelOrder
  */
+
+$this->title = $this->context->title;
 
 ?>
 
 <main>
     <div class="page adding-product-page">
         <div class="container large-container">
+
             <?= Html::tag('h1', $this->context->title); ?>
+
             <!--
             <form class="form-filter-date-cont flex">
                 <div class="dropdown arr-drop">
@@ -96,6 +100,7 @@ use yii\helpers\{
                 </div>
             </form>
             -->
+
             <div class="manager-history">
                 <div class="manager-history-header">
                     <ul class="orders-title-block flex">
@@ -103,7 +108,19 @@ use yii\helpers\{
                             <span>№</span>
                         </li>
                         <li class="application-date">
-                            <span>Дата</span>
+                            <span>Дата заявки</span>
+                        </li>
+                        <li>
+                            <span>Имя</span>
+                        </li>
+                        <li>
+                            <span>Телефон</span>
+                        </li>
+                        <li>
+                            <span>Email</span>
+                        </li>
+                        <li>
+                            <span>Дата ответа</span>
                         </li>
                         <li>
                             <span>Город</span>
@@ -115,28 +132,79 @@ use yii\helpers\{
                 </div>
                 <div class="manager-history-list">
 
-                    <?php if (!empty($orders)): ?>
+                    <?php if (!empty($models)): ?>
 
-                        <?php foreach ($orders as $order): ?>
-                            <div class="item">
+                        <?php foreach ($models as $modelOrder): ?>
+
+                            <div class="item" data-hash="<?= $modelOrder->id; ?>">
+
                                 <ul class="orders-title-block flex">
                                     <li class="order-id">
                                         <span>
-                                            <?= Html::a($order->id, $order->getPartnerOrderUrl()) ?>
+                                            <?= $modelOrder->id //Html::a($modelOrder->id, $modelOrder->getPartnerOrderUrl())  ?>
                                         </span>
                                     </li>
                                     <li class="application-date">
-                                        <span><?= $order->getCreatedTime() ?></span>
+                                        <span><?= $modelOrder->getCreatedTime() ?></span>
                                     </li>
-                                    <li><span>Москва</span></li>
-                                    <li><span><?= $order['order_status'] ?></span></li>
+                                    <li>
+                                        <span><?= $modelOrder->customer->full_name ?></span>
+                                    </li>
+                                    <li>
+                                        <span>
+                                            <?php
+                                            if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
+                                                echo $modelOrder->customer->phone;
+                                            } else {
+                                                echo '-';
+                                            } ?>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>
+                                        <?php
+                                        if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
+                                            echo $modelOrder->customer->email;
+                                        } else {
+                                            echo '-';
+                                        } ?>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span><?= $modelOrder->orderAnswer->getAnswerTime() ?></span>
+                                    </li>
+                                    <li><span>
+                                            <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
+                                        </span>
+                                    </li>
+                                    <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
                                 </ul>
+
+                                <div class="hidden-order-info flex">
+                                    <?php if ($modelOrder->isArchive()): ?>
+                                        <?= $this->render('_list_item_archive', [
+                                            'modelOrder' => $modelOrder,
+                                        ]) ?>
+                                    <?php else: ?>
+                                        <?= $this->render('_list_item', [
+                                            'modelOrder' => $modelOrder,
+                                        ]) ?>
+                                    <?php endif; ?>
+                                </div>
+
                             </div>
+
                         <?php endforeach; ?>
 
                     <?php endif; ?>
 
                 </div>
+
+                <?= frontend\components\LinkPager::widget([
+                    'pagination' => $pages,
+                ]);
+                ?>
+
             </div>
         </div>
     </div>

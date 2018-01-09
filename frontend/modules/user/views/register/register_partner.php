@@ -15,7 +15,7 @@ use frontend\modules\location\models\{
 
 $this->title = 'Регистрация партнера';
 $model->delivery_to_other_cities = 1;
-
+$model->user_agreement = 1;
 ?>
 
     <main>
@@ -48,7 +48,7 @@ $model->delivery_to_other_cities = 1;
 
                         <?= $form->field($model, 'phone')
                             ->widget(\yii\widgets\MaskedInput::className(), [
-                                'mask' => '79999999999',
+                                'mask' => Yii::$app->city->getPhoneMask(),
                                 'clientOptions' => [
                                     'clearIncomplete' => true
                                 ]
@@ -69,6 +69,13 @@ $model->delivery_to_other_cities = 1;
                         <?= $form->field($model, 'exp_with_italian') ?>
 
                         <?= $form->field($model, 'delivery_to_other_cities')->checkbox() ?>
+
+                        <?= $form->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])->checkbox([], false)
+                            ->label('&nbsp;'.$model->getAttributeLabel('user_agreement')) ?>
+
+                        <?= $form->field($model, 'reCaptcha')
+                            ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
+                            ->label(false) ?>
 
                         <div class="a-warning">
                             * поля обязательны для заполнения
@@ -118,16 +125,14 @@ $model->delivery_to_other_cities = 1;
 <?php
 
 $script = <<<JS
-    
-    $('select#registerform-country_id').change(function(){
-        var country_id = parseInt($(this).val());
-        $.post('/location/location/get-cities', {_csrf: $('#token').val(),country_id:country_id}, function(data){
-            var select = $('select#registerform-city_id');
-            select.html(data.options);
-            select.selectpicker("refresh");
-        });
+$('select#registerform-country_id').change(function(){
+    var country_id = parseInt($(this).val());
+    $.post('/location/location/get-cities/', {_csrf: $('#token').val(),country_id:country_id}, function(data){
+        var select = $('select#registerform-city_id');
+        select.html(data.options);
+        select.selectpicker("refresh");
     });
-
+});
 JS;
 
 $this->registerJs($script, yii\web\View::POS_READY);

@@ -13,12 +13,16 @@ AddDefaultCharset UTF-8
     RewriteRule ^backend(.*)$ backend/$1 [L]
 
     # Переадресацыя на www
-    RewriteCond %{HTTP_HOST} ^myarredo2017.dev [NC]
-    RewriteRule ^(.*)$ http://www.myarredo2017.dev/$1 [R=permanent,L]
+    RewriteCond %{HTTP_HOST} ^myarredo.ru [NC]
+    RewriteRule ^(.*)$ http://www.myarredo.ru/$1 [R=permanent,L]
 
     # Поддоменн без www
-    RewriteCond %{HTTP_HOST} ^www\.([A-Za-z0-9_-]*)\.myarredo2017\.dev
-    RewriteRule ^(.*)$ http://%1.myarredo2017.dev/$1 [R=permanent,L]
+    RewriteCond %{HTTP_HOST} ^www\.([A-Za-z0-9_-]*)\.myarredo\.ru
+    RewriteRule ^(.*)$ http://%1.myarredo.ru/$1 [R=permanent,L]
+
+    # убираем index.php
+    RewriteCond %{THE_REQUEST} ^.*/index.php
+    RewriteRule ^(.*)index.php$ /$1 [R=301,L]
 
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
@@ -40,3 +44,25 @@ AddDefaultCharset UTF-8
 	Order Allow,Deny
 	Deny from all
 </FilesMatch>
+
+# кеширование в браузере на стороне пользователя
+<IfModule mod_expires.c>
+    ExpiresActive On
+    <FilesMatch "\.(ogg|ogv|svg|svgz|eot|otf|woff|mp4|ttf|rss|atom|jpg|jpeg|gif|png|ico|zip|tgz|gz|rar|bz2|doc|xls|exe|ppt|tar|mid|midi|wav|bmp|rtf)$">
+        Header set Cache-Control "max-age=2592000, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+# Удалить заголовок ETag (иначе есть проблемы с кешированием при включенном сжатии)
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+
+FileETag None
+
+#Сжимаем элементы с помощью mod_deflate
+<IfModule mod_deflate.c="">
+    <filesmatch .(js|css|jpg|gif|png|tiff|ico|svg)$="">
+        SetOutputFilter DEFLATE
+    </filesmatch>
+</IfModule>

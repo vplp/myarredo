@@ -51,7 +51,8 @@ class Types extends TypesModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => $module->itemOnPage
+                'defaultPageSize' => $module->itemOnPage,
+                'forcePageParam' => false,
             ],
         ]);
 
@@ -62,6 +63,10 @@ class Types extends TypesModel
         $query->andFilterWhere(['like', 'alias', $this->alias]);
         //
         $query->andFilterWhere(['like', TypesLang::tableName() . '.title', $this->title]);
+
+        self::getDb()->cache(function ($db) use ($dataProvider) {
+            $dataProvider->prepare();
+        });
 
         return $dataProvider;
     }

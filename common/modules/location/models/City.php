@@ -68,7 +68,25 @@ class City extends \thread\modules\location\models\City
     public static function findBase()
     {
         return self::find()
-            ->innerJoinWith(['lang'])
-            ->orderBy(self::tableName(). '.position');
+            ->joinWith(['lang'])
+            ->orderBy(CityLang::tableName() . '.title');
+    }
+
+    /**
+     * @param string $alias
+     * @return mixed
+     */
+    public static function findByAlias($alias)
+    {
+        return self::findBase()->byAlias($alias)->one();
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public static function findById($id)
+    {
+        return self::findBase()->byId($id)->one();
     }
 }

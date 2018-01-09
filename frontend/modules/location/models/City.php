@@ -92,11 +92,9 @@ class City extends \common\modules\location\models\City
 
     public function getSubDomainUrl()
     {
-        $exp_host = explode('.', $_SERVER['HTTP_HOST']);
-
         $url = (!in_array($this->id, array(4, 2, 1)))
-            ? 'http://' . $this->alias . '.' . $exp_host[1] . '.' . $exp_host[2]
-            : 'http://' . 'www.' . $exp_host[1] . '.' . $exp_host[2];
+            ? 'http://' . $this->alias . '.myarredo.' . $this->country->alias
+            : 'http://' . 'www.myarredo.' . $this->country->alias;
 
         return $url;
     }

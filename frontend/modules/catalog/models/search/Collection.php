@@ -51,7 +51,8 @@ class Collection extends CollectionModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => $module->itemOnPage
+                'defaultPageSize' => $module->itemOnPage,
+                'forcePageParam' => false,
             ],
         ]);
 
@@ -62,6 +63,10 @@ class Collection extends CollectionModel
         $query->andFilterWhere(['like', 'alias', $this->alias]);
         //
         $query->andFilterWhere(['like', CollectionLang::tableName() . '.title', $this->title]);
+
+        self::getDb()->cache(function ($db) use ($dataProvider) {
+            $dataProvider->prepare();
+        });
 
         return $dataProvider;
     }

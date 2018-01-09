@@ -1,8 +1,7 @@
 <?php
 
-use thread\app\bootstrap\ActiveForm;
-//
-use backend\modules\location\models\Country;
+use backend\app\bootstrap\ActiveForm;
+use backend\themes\defaults\widgets\Tabs;
 
 /**
  * @var $model \backend\modules\location\models\City
@@ -15,30 +14,28 @@ use backend\modules\location\models\Country;
 <?php $form = ActiveForm::begin(); ?>
 
 <?= $form->submit($model, $this) ?>
-    <div class="row control-group">
-        <div class="col-md-3">
-            <?= $form->text_line($model, 'alias') ?>
-        </div>
-    </div>
-<?= $form->text_line_lang($modelLang, 'title') ?>
-<?= $form->text_line_lang($modelLang, 'title_where') ?>
-<?= $form->field($model, 'country_id')->selectOne(Country::dropDownList()) ?>
-    <div class="row control-group">
-        <div class="col-md-3">
-            <?= $form->text_line($model, 'lat') ?>
-        </div>
-        <div class="col-md-3">
-            <?= $form->text_line($model, 'lng') ?>
-        </div>
-    </div>
-    <div class="row control-group">
-        <div class="col-md-3">
-            <?= $form->switcher($model, 'published') ?>
-        </div>
-        <div class="col-md-3">
-            <?= $form->text_line($model, 'position') ?>
-        </div>
-    </div>
+
+<?= Tabs::widget([
+    'items' => [
+        [
+            'label' => Yii::t('app', 'General'),
+            'content' => $this->render('parts/_settings', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
+        [
+            'label' => 'Гео-(Мета)Тэги',
+            'content' => $this->render('parts/_geo', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
+    ]
+]) ?>
+
 <?= $form->submit($model, $this) ?>
 
-<?php ActiveForm::end();
+<?php ActiveForm::end(); ?>

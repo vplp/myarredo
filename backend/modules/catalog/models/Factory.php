@@ -4,9 +4,11 @@ namespace backend\modules\catalog\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+//
 use thread\app\model\interfaces\BaseBackendModel;
+//
 use common\modules\catalog\models\Factory as CommonFactoryModel;
-
+use common\actions\upload\UploadBehavior;
 /**
  * Class Factory
  *
@@ -14,6 +16,25 @@ use common\modules\catalog\models\Factory as CommonFactoryModel;
  */
 class Factory extends CommonFactoryModel implements BaseBackendModel
 {
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'uploadBehavior' => [
+                'class' => UploadBehavior::class,
+                'attributes' => [
+                    'image_link' => [
+                        'path' => Yii::$app->getModule('catalog')->getFactoryUploadPath(),
+                        'tempPath' => Yii::getAlias('@temp'),
+                        'url' => Yii::$app->getModule('catalog')->getFactoryUploadPath(),
+                    ]
+                ]
+            ],
+        ]);
+    }
+
     /**
      * @return bool
      */

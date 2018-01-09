@@ -1,4 +1,14 @@
 @media screen and (max-width: 540px) {
+  header {
+    div.city-select-cont {
+      .links-cont {
+        li {
+          width: 100%;
+        }
+      }
+    }
+  }
+
 
   body header .top-navbar .navbar-nav {
     display: flex;
@@ -52,18 +62,32 @@
   .italian-furn .one-cat .img-cont img {
     max-width: 90%;
   }
-  .novelties .item-in {
-    flex-direction: column;
-  }
-  .novelties .item-in .right {
-    padding: 0;
-  }
-  .novelties .item-in .left {
-    padding: 0 5px;
-  }
-  .novelties .item-in .left,
-  .novelties .item-in .right {
-    width: 100%;
+  .novelties {
+    .item-in {
+      flex-direction: column;
+      .right {
+        padding: 0;
+        width: 100%;
+        height: 185px;
+        .smaller {
+          width: calc( 50% - 2px) !important;
+          &:nth-child(odd){
+            margin: 0 2px 0 0 !important;
+          }
+          &:nth-child(even) {
+            margin: 0 0 0 2px !important;
+          }
+        }
+      }
+      .left {
+        width: 100%;
+        height: 185px !important;
+        .large {
+          margin-right: 0;
+          margin-bottom: 8px;
+        }
+      }
+    }
   }
   .sale .left-side, .sale .right-side {
     width: 100%;
@@ -164,7 +188,7 @@
     height: 30px;
   }
   body .catalog-wrap .one-prod-tile {
-    width: 100%;
+    width: 100% !important;
   }
 
   .about-page {
@@ -298,11 +322,16 @@
       }
     }
   }
-  #prod-slider .img-cont {
-    height: 285px;
-  }
-  #prod-slider .carousel-inner {
-    height: 390px;
+  #prod-slider {
+    .img-cont {
+      height: 285px;
+    }
+    .carousel-inner {
+      height: auto;
+      .item {
+        padding-top: 0;
+      }
+    }
   }
   #panel1 {
     .col-md-12 {
@@ -487,6 +516,55 @@
     }
     .get-consl {
       font-size: 15px;
+    }
+  }
+
+  body #factory-modal {
+    .close {
+      top: 7px;
+      right: 15px;
+    }
+    .modal-content {
+      padding: 35px 15px 15px;
+    }
+    .modal-dialog {
+      width: 95%;
+    }
+    .alphabet-tab-cont {
+      max-height: 50vh;
+      overflow: auto;
+      & > div a {
+        width: 100% !important;
+      }
+    }
+  }
+  .adding-product-page {
+    .basket-item-info {
+      width: 100% !important;
+    }
+    .orders-title-block {
+      li {
+        width: 10% !important;
+        &:last-child {
+          display: none;
+        }
+      }
+    }
+    .form-filter-date-cont {
+      flex-direction: column;
+    }
+    .arr-drop {
+      margin-right: 0 !important;
+      margin-bottom: 10px;
+      .btn {
+        width: 100%;
+      }
+    }
+    .large-picker {
+      margin-right: 0 !important;
+      .btn {
+        width: 100%;
+      }
     }
   }
 }

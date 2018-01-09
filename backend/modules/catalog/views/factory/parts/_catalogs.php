@@ -4,7 +4,7 @@ use yii\grid\GridView;
 use yii\helpers\{
     Url, Html
 };
-use backend\modules\catalog\models\FactoryFile;
+use backend\modules\catalog\models\FactoryCatalogsFiles;
 use thread\widgets\grid\ActionStatusColumn;
 
 /**
@@ -14,10 +14,10 @@ use thread\widgets\grid\ActionStatusColumn;
  */
 
 echo GridView::widget([
-    'dataProvider' => (new FactoryFile())->search([
-        'FactoryFile' => [
+    'dataProvider' => (new FactoryCatalogsFiles())->search([
+        'FactoryCatalogsFiles' => [
             'factory_id' => $model->id,
-            'file_type' => '1']
+        ]
     ]),
     'columns' => [
         [
@@ -29,23 +29,21 @@ echo GridView::widget([
         [
             'class' => ActionStatusColumn::class,
             'attribute' => 'published',
-            'action' => '/catalog/factory-file/published'
+            'action' => '/catalog/factory-catalogs-files/published'
         ],
         [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
             'updateLink' => function ($model) {
                 return Url::toRoute([
-                    '/catalog/factory-file/update',
+                    '/catalog/factory-catalogs-files/update',
                     'factory_id' => $model['factory_id'],
-                    'file_type' => $model['file_type'],
                     'id' => $model['id']
                 ]);
             },
             'deleteLink' => function ($model) {
                 return Url::toRoute([
-                    '/catalog/factory-file/intrash',
+                    '/catalog/factory-catalogs-files/intrash',
                     'factory_id' => $model['factory_id'],
-                    'file_type' => $model['file_type'],
                     'id' => $model['id']
                 ]);
             }
@@ -55,6 +53,6 @@ echo GridView::widget([
 
 echo Html::a(
     Yii::t('app', 'Add'),
-    ['/catalog/factory-file/create', 'factory_id' => $model['id'], 'file_type' => 1],
+    ['/catalog/factory-catalogs-files/create', 'factory_id' => $model['id']],
     ['class' => 'btn btn-info']
 );

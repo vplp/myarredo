@@ -15,8 +15,6 @@ use frontend\modules\user\models\form\SignInForm;
  * Class LoginController
  *
  * @package frontend\modules\user\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class LoginController extends BaseController
 {
@@ -65,7 +63,13 @@ class LoginController extends BaseController
         $model->setScenario('signIn');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
-            return $this->redirect(Url::toRoute(['/user/profile/index']));
+            if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') {
+                return $this->redirect(Url::toRoute(['/shop/partner-order/list']));
+            } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'admin') {
+                return $this->redirect(Url::toRoute(['/shop/admin-order/list']));
+            } else {
+                return $this->redirect(Url::toRoute(['/user/profile/index']));
+            }
         } else {
             return $this->render('index', [
                 'model' => $model,

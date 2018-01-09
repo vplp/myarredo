@@ -80,8 +80,12 @@ class ProductRelCategory extends ActiveRecord
      */
     public static function getCounts($subQuery)
     {
-        $s = $subQuery;
-        return self::find()->asArray()->indexBy('group_id')->select('group_id, count(group_id) as count')
-            ->groupBy('group_id')->andWhere(['in', 'catalog_item_id', $s])->all();
+        return self::find()
+            ->asArray()
+            ->indexBy('group_id')
+            ->select('group_id, count(group_id) as count')
+            ->groupBy('group_id')
+            ->andWhere(['in', 'catalog_item_id', $subQuery])
+            ->all();
     }
 }

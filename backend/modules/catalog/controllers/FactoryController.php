@@ -2,6 +2,7 @@
 
 namespace backend\modules\catalog\controllers;
 
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 //
 use common\actions\upload\{
@@ -26,6 +27,29 @@ class FactoryController extends BackendController
     public $filterModel = filterFactory::class;
     public $title = 'Factory';
     public $name = 'factory';
+
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin', 'catalogEditor'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
 
     /**
      * @return array

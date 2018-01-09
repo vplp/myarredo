@@ -18,17 +18,22 @@ use frontend\modules\catalog\models\Factory;
             <div class="container large-container">
                 <ul class="letter-select">
 
-                    <?php foreach (Factory::getListLetters() as $letter): ?>
-                        <li>
-                            <?= Html::a(
+                    <?php
+                    foreach (Factory::getListLetters() as $letter) {
+                        echo Html::beginTag('li') .
+                            Html::a(
                                 $letter['first_letter'],
                                 Url::toRoute(['/catalog/factory/list', 'letter' => strtolower($letter['first_letter']), 'view' => 'three'])
-                            ); ?>
-                        </li>
-                    <?php endforeach; ?>
+                            ) .
+                            Html::endTag('li');
+                    } ?>
 
                 </ul>
-                <?= Html::a('Все', Url::toRoute(['/catalog/factory/list', 'view' => 'three']), ['class' => 'all']); ?>
+                <?= Html::a(
+                    'Все',
+                    Url::toRoute(['/catalog/factory/list', 'view' => 'three']),
+                    ['class' => 'all']
+                ); ?>
             </div>
         </div>
         <div class="container large-container">
@@ -40,7 +45,8 @@ use frontend\modules\catalog\models\Factory;
                     (<?= Factory::findBase()->count(); ?> фабрик представлено в нашем каталоге)
                 </span>
                 <div class="view-but">
-                    <a href="<?= Url::toRoute(['/catalog/factory/list', 'view' => 'three']); ?>" class="tiles4 flex active">
+                    <a href="<?= Url::toRoute(['/catalog/factory/list', 'view' => 'three']); ?>"
+                       class="tiles4 flex active">
                         <i></i><i></i><i></i><i></i>
                         <i></i><i></i><i></i><i></i>
                     </a>
@@ -74,7 +80,9 @@ use frontend\modules\catalog\models\Factory;
                                 ) .
                                 Html::endTag('li');
 
-                            if ($key % 12 == 0) echo '</ul><ul class="let-list">';
+                            if ($key % 12 == 0) {
+                                echo '</ul><ul class="let-list">';
+                            }
 
                             ++$key;
                         } ?>
@@ -87,11 +95,8 @@ use frontend\modules\catalog\models\Factory;
             <?php if (!Yii::$app->request->get('view')): ?>
 
                 <div class="pagi-wrap">
-                    <?= yii\widgets\LinkPager::widget([
+                    <?= frontend\components\LinkPager::widget([
                         'pagination' => $pages,
-                        'registerLinkTags' => true,
-                        'nextPageLabel' => 'Далее<i class="fa fa-angle-right" aria-hidden="true"></i>',
-                        'prevPageLabel' => '<i class="fa fa-angle-left" aria-hidden="true"></i>Назад'
                     ]);
                     ?>
                 </div>

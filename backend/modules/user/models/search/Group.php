@@ -17,8 +17,6 @@ use backend\modules\user\models\{
  * Class Group
  *
  * @package admin\modules\user\models\search
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Group extends GroupModel implements BaseBackendSearchModel
 {
@@ -54,7 +52,7 @@ class Group extends GroupModel implements BaseBackendSearchModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => Yii::$app->modules['user']->itemOnPage
+                'defaultPageSize' => Yii::$app->modules['user']->itemOnPage
             ]
         ]);
         if (!($this->load($params) && $this->validate())) {
@@ -74,7 +72,7 @@ class Group extends GroupModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = GroupModel::find()->joinWith(['lang'])->undeleted();
+        $query = GroupModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -85,7 +83,7 @@ class Group extends GroupModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = GroupModel::find()->joinWith(['lang'])->deleted();
+        $query = GroupModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }

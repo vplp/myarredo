@@ -9,6 +9,7 @@ return [
         'enableAutoLogin' => false,
     ],
     'urlManager' => [
+        'suffix' => '/',
         'rules' => require __DIR__ . '/part/url-rules.php',
     ],
     'errorHandler' => [
@@ -30,23 +31,36 @@ return [
             ],
         ],
     ],
+    'i18n' => [
+        'class' => \thread\app\base\i18n\I18N::class,
+    ],
     'catalogFilter' => [
         'class' => \frontend\modules\catalog\components\CatalogFilter::class,
+    ],
+    'city' => [
+        'class' => \frontend\modules\location\components\CityComponent::class,
+    ],
+    'partner' => [
+        'class' => \frontend\modules\user\components\PartnerComponent::class,
     ],
     'mailer' => [
         'class' => \yii\swiftmailer\Mailer::class,
         'transport' => [
             'class' => 'Swift_SmtpTransport',
-            'host' => 'mail.itsfera.com.ua',
-            'username' => 'test@vipdesign.com.ua',
-            'password' => 'iesh1eeXuiqu',
+            'host' => 'smtp-pulse.com',
+            'username' => 'myarredo@mail.ru',
+            'password' => 'ZYfKZWr29eB3',
             'port' => '465',
             'encryption' => 'ssl',
         ],
         'useFileTransport' => false,
+        'enableSwiftMailerLogging' => true,
         'messageConfig' => [
             'charset' => 'UTF-8',
-            'from' => ['test@vipdesign.com.ua' => 'myarredo'],
+            'from' => ['info@myarredo.ru' => 'myarredo'],
         ],
+    ],
+    'metatag' => [
+        'class' => \frontend\modules\seo\components\MetaTag::class
     ],
 ];

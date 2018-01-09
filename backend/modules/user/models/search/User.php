@@ -9,17 +9,19 @@ use yii\db\ActiveQuery;
 //
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
+use backend\modules\user\models\Profile;
 use backend\modules\user\models\User as UserModel;
 
 /**
  * Class User
  *
  * @package admin\modules\user\models\search
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class User extends UserModel implements BaseBackendSearchModel
 {
+    public $country_id;
+    public $city_id;
+
     /**
      * @return array
      */
@@ -27,7 +29,7 @@ class User extends UserModel implements BaseBackendSearchModel
     {
         return [
             [['username', 'email'], 'string', 'max' => 255],
-            [['group_id'], 'integer'],
+            [['group_id', 'country_id', 'city_id'], 'integer'],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
@@ -50,7 +52,7 @@ class User extends UserModel implements BaseBackendSearchModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => Yii::$app->modules['user']->itemOnPage
+                'defaultPageSize' => Yii::$app->modules['user']->itemOnPage
             ]
         ]);
 
@@ -59,8 +61,10 @@ class User extends UserModel implements BaseBackendSearchModel
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'group_id' => $this->group_id
+            self::tableName() . '.id' => $this->id,
+            self::tableName() . '.group_id' => $this->group_id,
+            Profile::tableName() . '.country_id' => $this->country_id,
+            Profile::tableName() . '.city_id' => $this->city_id,
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
@@ -76,10 +80,7 @@ class User extends UserModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = UserModel::find()->with([
-            'group',
-            'group.lang',
-        ])->undeleted();
+        $query = UserModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -89,10 +90,7 @@ class User extends UserModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = UserModel::find()->with([
-            'group',
-            'group.lang',
-        ])->deleted();
+        $query = UserModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }

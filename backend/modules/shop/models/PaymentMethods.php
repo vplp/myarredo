@@ -13,8 +13,6 @@ use thread\app\model\interfaces\BaseBackendModel;
  * Class PaymentMethods
  *
  * @package backend\modules\shop\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c) 2015, Thread
  */
 class PaymentMethods extends CommonPaymentMethodsModel implements BaseBackendModel
 {

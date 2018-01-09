@@ -26,20 +26,31 @@ class RegisterForm extends CommonForm
         $rules = [
             [
                 [
-                    'password', 'password_confirmation'
+                    'password',
+                    'password_confirmation'
                 ],
                 'required'
             ],
             [
                 [
-                    'first_name', 'last_name', 'phone'
+                    'first_name',
+                    'last_name',
+                    'phone'
                 ],
                 'required',
                 'on' => 'register'
             ],
             [
                 [
-                    'first_name', 'last_name', 'phone', 'name_company', 'address', 'country_id', 'city_id'
+                    'first_name',
+                    'last_name',
+                    'phone',
+                    'name_company',
+                    'address',
+                    'country_id',
+                    'city_id',
+                    'user_agreement',
+                    'reCaptcha'
                 ],
                 'required',
                 'on' => 'registerPartner'
@@ -57,7 +68,14 @@ class RegisterForm extends CommonForm
                 'string',
                 'max' => 255
             ],
-            [['delivery_to_other_cities'], 'in', 'range' => [0, 1]],
+            [
+                ['user_agreement'],
+                'required',
+                'on' => ['registerPartner'],
+                'requiredValue' => 1,
+                'message' => 'Вы должны ознакомиться и согласиться'
+            ],
+            [['delivery_to_other_cities', 'user_agreement'], 'in', 'range' => [0, 1]],
             [['country_id', 'city_id'], 'integer'],
             [['country_id', 'city_id'], 'default', 'value' => 0],
             [['delivery_to_other_cities'], 'default', 'value' => '0'],
@@ -103,7 +121,9 @@ class RegisterForm extends CommonForm
                 'exp_with_italian',
                 'country_id',
                 'city_id',
-                'delivery_to_other_cities'
+                'delivery_to_other_cities',
+                'user_agreement',
+                'reCaptcha'
             ],
         ];
     }

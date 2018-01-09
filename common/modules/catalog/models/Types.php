@@ -137,4 +137,12 @@ class Types extends ActiveRecord
     {
         return $this->hasMany(Product::class, ['catalog_type_id' => 'id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSale()
+    {
+        return $this->hasMany(Sale::class, ['catalog_type_id' => 'id']);
+    }
 }

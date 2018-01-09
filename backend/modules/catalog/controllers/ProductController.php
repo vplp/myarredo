@@ -3,6 +3,7 @@
 namespace backend\modules\catalog\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Response;
 //
@@ -29,6 +30,29 @@ class ProductController extends BackendController
     public $filterModel = filterProduct::class;
     public $title = 'Product';
     public $name = 'product';
+
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin', 'catalogEditor'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
 
     /**
      * @return array
@@ -73,6 +97,7 @@ class ProductController extends BackendController
             ],
             'filedelete' => [
                 'class' => DeleteAction::class,
+                'useHashPath' => true,
                 'path' => $this->module->getProductUploadPath()
             ],
         ]);
@@ -107,4 +132,48 @@ class ProductController extends BackendController
 
         return $response;
     }
+
+//    /**
+//     * Import Gallery photo
+//     * @throws \Exception
+//     */
+//    public function actionImportGallery()
+//    {
+//        $models = Product::findBase()
+//            ->limit(10)
+//            ->where(['picpath' => '0'])
+//            ->all();
+//
+//        foreach ($models as $model) {
+//
+//            if ($model->gallery_id) {
+//
+//                $photo = (new \yii\db\Query())
+//                    ->from('c1myarredo_old.photo')
+//                    ->where(['gallery_id' => $model->gallery_id])
+//                    ->all();
+//
+//                /** @var PDO $transaction */
+//                /** @var $model Product */
+//                $transaction = $model::getDb()->beginTransaction();
+//                try {
+//                    $model->setScenario('gallery_image');
+//
+//                    $gallery_image = implode(',', ArrayHelper::map($photo, 'id', 'photopath'));
+//                    $model->gallery_image = $gallery_image;
+//                    $model->picpath = '1';
+//
+//                    if ($model->save()) {
+//                        $transaction->commit();
+//                    } else {
+//                        $transaction->rollBack();
+//                    }
+//                } catch (\Exception $e) {
+//                    $transaction->rollBack();
+//                    throw new \Exception($e);
+//                }
+//            }
+//        }
+//    }
+
 }

@@ -6,12 +6,15 @@ use Yii;
 use yii\helpers\{
     ArrayHelper
 };
+use yii\behaviors\AttributeBehavior;
 //
 use voskobovich\behaviors\ManyToManyBehavior;
 //
 use thread\app\base\models\ActiveRecord;
 //
+use common\helpers\Inflector;
 use common\modules\catalog\Catalog;
+use common\modules\user\models\User;
 
 /**
  * Class Sale
@@ -43,6 +46,7 @@ use common\modules\catalog\Catalog;
  * @property SaleLang $lang
  * @property SaleRelCategory[] $category
  * @property Factory $factory
+ * @property User $user
  * @property Types $types
  *
  * @package common\modules\catalog\models
@@ -77,6 +81,16 @@ class Sale extends ActiveRecord
                     'category_ids' => 'category',
                 ],
             ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias, '_');
+                },
+            ],
         ]);
     }
 
@@ -86,7 +100,6 @@ class Sale extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias'], 'required'],
             [
                 [
                     'user_id',
@@ -151,6 +164,7 @@ class Sale extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'on_main' => ['on_main'],
+            'setImages' => ['image_link', 'gallery_image', 'picpath'],
             'backend' => [
                 'country_code',
                 'user_id',
@@ -216,7 +230,13 @@ class Sale extends ActiveRecord
      */
     public function beforeSave($insert)
     {
-        $this->user_id = Yii::$app->getUser()->id;
+        if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') {
+            $this->user_id = Yii::$app->getUser()->id;
+        }
+
+        if ($this->alias == '') {
+            $this->alias = time();
+        }
 
         return parent::beforeSave($insert);
     }
@@ -227,23 +247,24 @@ class Sale extends ActiveRecord
      */
     public function afterSave($insert, $changedAttributes)
     {
-        // delete relation SaleRelSpecification
-        SaleRelSpecification::deleteAll(['sale_catalog_item_id' => $this->id]);
+        if ($this->scenario == 'backend') {
+            // delete relation SaleRelSpecification
+            SaleRelSpecification::deleteAll(['sale_catalog_item_id' => $this->id]);
 
-        // save relation SaleRelSpecification
-        if (Yii::$app->request->getBodyParam('SpecificationValue')) {
-            foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
-                if ($val) {
-                    $model = new SaleRelSpecification();
-                    $model->setScenario('backend');
-                    $model->sale_catalog_item_id = $this->id;
-                    $model->specification_id = $specification_id;
-                    $model->val = $val;
-                    $model->save();
+            // save relation SaleRelSpecification
+            if (Yii::$app->request->getBodyParam('SpecificationValue')) {
+                foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
+                    if ($val) {
+                        $model = new SaleRelSpecification();
+                        $model->setScenario('backend');
+                        $model->sale_catalog_item_id = $this->id;
+                        $model->specification_id = $specification_id;
+                        $model->val = $val;
+                        $model->save();
+                    }
                 }
             }
         }
-
         parent::afterSave($insert, $changedAttributes);
     }
 
@@ -254,7 +275,7 @@ class Sale extends ActiveRecord
     {
         return self::find()
             ->innerJoinWith(['lang'])
-            ->orderBy('id DESC');
+            ->orderBy(self::tableName() . '.updated_at DESC');
     }
 
     /**
@@ -289,6 +310,14 @@ class Sale extends ActiveRecord
     public function getTypes()
     {
         return $this->hasOne(Types::class, ['id' => 'catalog_type_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     /**
@@ -359,5 +388,37 @@ class Sale extends ActiveRecord
         }
 
         return $image;
+    }
+
+    /**
+     * @return array
+     */
+    public function getGalleryImage()
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getProductUploadPath();
+        $url = $module->getProductUploadUrl();
+
+        $images = [];
+
+        if (!empty($this->gallery_image)) {
+            $this->gallery_image = $this->gallery_image[0] == ','
+                ? substr($this->gallery_image, 1)
+                : $this->gallery_image;
+
+            $images = explode(',', $this->gallery_image);
+        }
+
+        $imagesSources = [];
+
+        foreach ($images as $image) {
+            if (file_exists($path . '/' . $image)) {
+                $imagesSources[] = $url . '/' . $image;
+            }
+        }
+
+        return $imagesSources;
     }
 }

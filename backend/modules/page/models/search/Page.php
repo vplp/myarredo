@@ -18,8 +18,6 @@ use backend\modules\page\models\{
  * Class Page
  *
  * @package backend\modules\page\models\search
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Page extends ParentModel implements BaseBackendSearchModel
 {
@@ -57,7 +55,7 @@ class Page extends ParentModel implements BaseBackendSearchModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => $module->itemOnPage
+                'defaultPageSize' => $module->itemOnPage
             ],
             'sort' => [
                 'defaultOrder' => [

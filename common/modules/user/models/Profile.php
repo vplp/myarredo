@@ -4,6 +4,10 @@ namespace common\modules\user\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use common\modules\location\models\{
+    City, Country
+};
+use common\modules\catalog\models\Factory;
 
 /**
  * Class Profile
@@ -16,8 +20,12 @@ use yii\helpers\ArrayHelper;
  * @property boolean $delivery_to_other_cities
  * @property int $country_id
  * @property int $city_id
+ * @property int $factor_id
  * @property float $latitude
  * @property float $longitude
+ * @property int $partner_in_city
+ * @property int $possibility_to_answer
+ * @property int $pdf_access
  *
  * @package common\modules\user\models
  */
@@ -40,8 +48,17 @@ class Profile extends \thread\modules\user\models\Profile
                 'string',
                 'max' => 255
             ],
-            [['delivery_to_other_cities'], 'in', 'range' => [0, 1]],
-            [['country_id', 'city_id'], 'integer'],
+            [
+                [
+                    'delivery_to_other_cities',
+                    'partner_in_city',
+                    'possibility_to_answer',
+                    'pdf_access'
+                ],
+                'in',
+                'range' => array_keys(self::statusKeyRange())
+            ],
+            [['country_id', 'city_id', 'factory_id'], 'integer'],
             [['latitude', 'longitude'], 'double'],
         ]);
     }
@@ -62,9 +79,13 @@ class Profile extends \thread\modules\user\models\Profile
                 'exp_with_italian',
                 'country_id',
                 'city_id',
+                'factory_id',
                 'delivery_to_other_cities',
                 'latitude',
-                'longitude'
+                'longitude',
+                'partner_in_city',
+                'possibility_to_answer',
+                'pdf_access'
             ],
             'basicCreate' => [
                 'phone',
@@ -74,10 +95,32 @@ class Profile extends \thread\modules\user\models\Profile
                 'exp_with_italian',
                 'country_id',
                 'city_id',
+                'factory_id',
                 'delivery_to_other_cities',
                 'latitude',
-                'longitude'
+                'longitude',
+                'partner_in_city',
+                'possibility_to_answer',
+                'pdf_access'
             ],
+            'backend' => [
+                'first_name',
+                'last_name',
+                'phone',
+                'address',
+                'name_company',
+                'website',
+                'exp_with_italian',
+                'country_id',
+                'city_id',
+                'factory_id',
+                'delivery_to_other_cities',
+                'latitude',
+                'longitude',
+                'partner_in_city',
+                'possibility_to_answer',
+                'pdf_access'
+            ]
         ]);
     }
 
@@ -94,9 +137,82 @@ class Profile extends \thread\modules\user\models\Profile
             'exp_with_italian' => 'Опыт работы с итальянской мебелью, лет',
             'country_id' => 'Ваша страна',
             'city_id' => 'Ваш город',
+            'factory_id' => 'Фабрика',
             'delivery_to_other_cities' => 'Готов к поставкам мебели в другие города',
             'latitude' => Yii::t('app', 'Latitude'),
             'longitude' => Yii::t('app', 'Longitude'),
+            'partner_in_city' => Yii::t('app', 'Partner in city'),
+            'possibility_to_answer' => 'Отвечает без установки кода на сайт',
+            'pdf_access' => 'Доступ к прайсам и каталогам',
         ]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCountry()
+    {
+        return $this->hasOne(Country::class, ['id' => 'country_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCity()
+    {
+        return $this->hasOne(City::class, ['id' => 'city_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactory()
+    {
+        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountryTitle()
+    {
+        $model = Country::findById($this->country_id);
+
+        if ($model == null || empty($model->lang))
+            return false;
+        else
+            return $model->lang->title;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCityTitle()
+    {
+        $model = City::findById($this->city_id);
+
+        if ($model == null || empty($model->lang))
+            return false;
+        else
+            return $model->lang->title;
+    }
+
+    /**
+     * isPdfAccess
+     *
+     * @return bool
+     */
+    public function isPdfAccess()
+    {
+        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin']) ||
+            (
+                in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner']) &&
+                Yii::$app->getUser()->getIdentity()->profile->pdf_access
+            )
+        ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

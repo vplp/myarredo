@@ -17,8 +17,6 @@ use backend\modules\shop\{
  * Class Order
  *
  * @package backend\modules\shop\models\search
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Order extends OrderModel implements BaseBackendSearchModel
 {
@@ -54,7 +52,7 @@ class Order extends OrderModel implements BaseBackendSearchModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => $module->itemOnPage
+                'defaultPageSize' => $module->itemOnPage
             ],
             'sort' => [
                 'defaultOrder' => [

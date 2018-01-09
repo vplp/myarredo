@@ -2,16 +2,18 @@
 
 namespace frontend\modules\shop\models\search;
 
+
 use Yii;
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
 use yii\base\Exception;
 use yii\log\Logger;
+//
+use frontend\modules\shop\Shop;
 use frontend\modules\shop\models\{
-    Cart,
     CartCustomerForm,
-    DeliveryMethods,
     OrderItem,
-    PaymentMethods,
-    Order as FrontendOrderModel,
+    Order as OrderModel,
     Customer
 };
 
@@ -20,8 +22,74 @@ use frontend\modules\shop\models\{
  *
  * @package frontend\modules\shop\models\search
  */
-class Order extends FrontendOrderModel
+class Order extends OrderModel
 {
+    public $factory_id;
+    /**
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            [['id', 'customer_id', 'city_id', 'factory_id'], 'integer'],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function scenarios()
+    {
+        return Model::scenarios();
+    }
+
+    /**
+     * @param $query
+     * @param $params
+     * @return ActiveDataProvider
+     */
+    public function baseSearch($query, $params)
+    {
+        /** @var Shop $module */
+        $module = Yii::$app->getModule('shop');
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'defaultPageSize' => $module->itemOnPage,
+                'forcePageParam' => false,
+            ],
+        ]);
+
+        if (!($this->load($params, ''))) {
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'customer_id' => $this->customer_id,
+            'city_id' => $this->city_id,
+        ]);
+
+        if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
+            $query
+                ->innerJoinWith(["items.product.factory productFactory"], false)
+                ->andFilterWhere(['IN', 'productFactory.id', $this->factory_id]);
+        }
+
+        return $dataProvider;
+    }
+
+    /**
+     * @param array $params
+     * @return ActiveDataProvider
+     */
+    public function search($params)
+    {
+        $query = OrderModel::findBase();
+        return $this->baseSearch($query, $params);
+    }
+
     /**
      * @param $cart
      * @param CartCustomerForm $customerForm
@@ -32,23 +100,27 @@ class Order extends FrontendOrderModel
         // сначала добавляем покупателя и получаем его id
         $customer_id = self::addNewCustomer($customerForm);
 
-        $order = new FrontendOrderModel();
+        $order = new OrderModel();
         $order->scenario = 'addNewOrder';
+
         // переносим все одинаковые атрибуты из корзины в заказ
         $order->setAttributes($cart->getAttributes());
+
         // переносим все атрибуты из заполненой формы в заказ
         $order->setAttributes($customerForm->getAttributes());
         $order->customer_id = $customer_id;
+        $order->city_id = Yii::$app->city->getCityId();
+
         $order->generateToken();
-        $order->delivery_method_id = $customerForm->delivery;
-        $order->payment_method_id = $customerForm->pay;
 
         $transaction = $order::getDb()->beginTransaction();
         try {
             if ($order->validate() && $order->save()) {
                 foreach ($cart->items as $cartItem) {
                     $orderItem = new OrderItem();
+
                     $orderItem->scenario = 'addNewOrderItem';
+
                     // переносим все одинаковые атрибуты из корзины в заказ
                     $orderItem->order_id = $order->id;
                     $orderItem->setAttributes($cartItem->getAttributes());
@@ -86,10 +158,14 @@ class Order extends FrontendOrderModel
         $customer = Customer::find()->andWhere(['email' => $customerForm['email']])->one();
 
         if ($customer === null) {
+
             $customer = new Customer();
+
             $customer->scenario = 'addNewCustomer';
+
             $customer->user_id = Yii::$app->getUser()->id ?? 0;
             $customer->setAttributes($customerForm->getAttributes());
+
             $transaction = $customer::getDb()->beginTransaction();
             try {
                 if ($customer->save()) {

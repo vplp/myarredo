@@ -24,10 +24,10 @@ return [
         'schemaCache' => 'cache',
         'enableSchemaCache' => !YII_ENV_DEV,
     ],
-    'db_myarredo' => [
+    'db-cache' => [
         'class' => \yii\db\Connection::class,
         'charset' => 'utf8',
-        'tablePrefix' => '',
+        'tablePrefix' => 'fv_',
         // Duration of schema cache.
         'schemaCacheDuration' => YII_ENV_DEV ? 100 : 3600,
         // Name of the cache component used to store schema information

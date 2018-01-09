@@ -109,7 +109,7 @@ class Specification extends ActiveRecord
     {
         return self::find()
             ->innerJoinWith(['lang'])
-            ->orderBy(SpecificationLang::tableName() . '.title');
+            ->orderBy(self::tableName() . '.position');
     }
 
     /**
@@ -144,5 +144,15 @@ class Specification extends ActiveRecord
         return $this
             ->hasMany(Product::class, ['id' => 'catalog_item_id'])
             ->viaTable(ProductRelSpecification::tableName(), ['specification_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSale()
+    {
+        return $this
+            ->hasMany(Sale::class, ['id' => 'sale_catalog_item_id'])
+            ->viaTable(SaleRelSpecification::tableName(), ['specification_id' => 'id']);
     }
 }

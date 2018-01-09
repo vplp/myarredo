@@ -3,8 +3,8 @@
 namespace frontend\modules\catalog\models\search;
 
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\base\Model;
+use yii\data\ActiveDataProvider;
 //
 use frontend\modules\catalog\models\{
     Sale as SaleModel, SaleLang
@@ -25,13 +25,12 @@ class Sale extends SaleModel
     public function rules()
     {
         return [
-            [['id', 'user_id'], 'integer'],
+            [['id', 'category_id', 'factory_id', 'user_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
         ];
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()
@@ -49,10 +48,13 @@ class Sale extends SaleModel
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
 
+        $keys = Yii::$app->catalogFilter->keys;
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => $module->itemOnPage
+                'defaultPageSize' => $module->itemOnPage,
+                'forcePageParam' => false,
             ],
         ]);
 
@@ -64,10 +66,36 @@ class Sale extends SaleModel
             'id' => $this->id,
             'user_id' => $this->user_id
         ]);
-        //
-        $query->andFilterWhere(['like', 'alias', $this->alias]);
-        //
+
+        if (isset($params[$keys['category']])) {
+            $query
+                ->innerJoinWith(["category"])
+                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params[$keys['category']]]);
+        }
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["types"])
+                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["specification"])
+                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params[$keys['style']]]);
+        }
+
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["factory"])
+                ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
+        }
+
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);
+
+        self::getDb()->cache(function ($db) use ($dataProvider) {
+            $dataProvider->prepare();
+        });
 
         return $dataProvider;
     }

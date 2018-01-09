@@ -47,9 +47,9 @@ return [
 //    'correspondence' => [
 //        'class' => \backend\modules\correspondence\Correspondence::class,
 //    ],
-//    'shop' => [
-//        'class' => \backend\modules\shop\Shop::class,
-//    ],
+    'shop' => [
+        'class' => \backend\modules\shop\Shop::class,
+    ],
 //    'translation' => [
 //        'class' => \backend\modules\sys\modules\translation\Translation::class
 //    ],
@@ -58,5 +58,8 @@ return [
 //    ],
     'catalog' => [
         'class' => \backend\modules\catalog\Catalog::class
+    ],
+    'banner' => [
+        'class' => \backend\modules\banner\Banner::class,
     ],
 ];

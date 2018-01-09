@@ -6,7 +6,9 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 //
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\{
+    Product, ProductStats
+};
 use frontend\components\BaseController;
 
 /**
@@ -38,6 +40,8 @@ class ProductController extends BaseController
      * @param string $alias
      * @return string
      * @throws NotFoundHttpException
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function actionView(string $alias)
     {
@@ -47,24 +51,38 @@ class ProductController extends BaseController
             throw new NotFoundHttpException;
         }
 
+        // ProductStats
+        ProductStats::create($model->id);
+
         $this->breadcrumbs[] = [
             'label' => 'Каталог итальянской мебели',
             'url' => ['/catalog/category/list']
         ];
 
+        $keys = Yii::$app->catalogFilter->keys;
+
+
         if (isset($model['category'][0])) {
+            $params = Yii::$app->catalogFilter->params;
+            $params[$keys['category']] = $model['category'][0]['alias'];
+
             $this->breadcrumbs[] = [
                 'label' => $model['category'][0]['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl(['category' => $model['category'][0]['alias']])
+                'url' => Yii::$app->catalogFilter->createUrl($params)
             ];
         }
 
         if (isset($model['types'])) {
+            $params = Yii::$app->catalogFilter->params;
+            $params[$keys['type']] = $model['types']['alias'];
+
             $this->breadcrumbs[] = [
                 'label' => $model['types']['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl(['type' => $model['types']['alias']])
+                'url' => Yii::$app->catalogFilter->createUrl($params)
             ];
         }
+
+        $this->title = $model['lang']['title'] . '. Купить в ' . Yii::$app->city->getCityTitleWhere();
 
         return $this->render('view', [
             'model' => $model,

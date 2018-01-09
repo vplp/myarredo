@@ -9,8 +9,8 @@ use yii\helpers\{
 use yii\behaviors\AttributeBehavior;
 //
 use thread\app\base\models\ActiveRecord;
+//
 use common\modules\catalog\Catalog;
-use common\actions\upload\UploadBehavior;
 use common\helpers\Inflector;
 
 /**
@@ -38,7 +38,9 @@ use common\helpers\Inflector;
  *
  * @property FactoryLang $lang
  * @property Collection $collection
- * @property FactoryFile $file
+ * @property FactoryFile $files
+ * @property CatalogsFiles[] $catalogsFiles
+ * @property PricesFiles[] $pricesFiles
  *
  * @package common\modules\catalog\models
  */
@@ -66,16 +68,6 @@ class Factory extends ActiveRecord
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-            'uploadBehavior' => [
-                'class' => UploadBehavior::class,
-                'attributes' => [
-                    'image_link' => [
-                        'path' => Yii::$app->getModule('catalog')->getFactoryUploadPath(),
-                        'tempPath' => Yii::getAlias('@temp'),
-                        'url' => Yii::$app->getModule('catalog')->getFactoryUploadPath(),
-                    ]
-                ]
-            ],
             [
                 'class' => AttributeBehavior::className(),
                 'attributes' => [
@@ -178,6 +170,13 @@ class Factory extends ActiveRecord
         return $this->hasMany(Product::class, ['factory_id' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSale()
+    {
+        return $this->hasMany(Sale::class, ['factory_id' => 'id']);
+    }
 
     /**
      * @return \yii\db\ActiveQuery
@@ -188,12 +187,23 @@ class Factory extends ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return $this
      */
-    public function getFile()
+    public function getCatalogsFiles()
     {
-        return $this->hasMany(FactoryFile::class, ['factory_id' => 'id']);
+        return $this->hasMany(FactoryCatalogsFiles::class, ['factory_id' => 'id'])
+            ->andWhere(['file_type' => 1]);
     }
+
+    /**
+     * @return $this
+     */
+    public function getPricesFiles()
+    {
+        return $this->hasMany(FactoryPricesFiles::class, ['factory_id' => 'id'])
+            ->andWhere(['file_type' => 2]);
+    }
+
 
     /**
      * @return null|string

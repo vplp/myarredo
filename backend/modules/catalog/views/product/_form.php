@@ -3,11 +3,13 @@
 use yii\helpers\{
     Html
 };
-//use thread\app\bootstrap\{
-//    ActiveForm
-//};
 use backend\app\bootstrap\ActiveForm;
 use backend\themes\defaults\widgets\Tabs;
+
+/**
+ * @var \backend\app\bootstrap\ActiveForm $form
+ * @var \backend\modules\catalog\models\Product $model
+ */
 
 ?>
 

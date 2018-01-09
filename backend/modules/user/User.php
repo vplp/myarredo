@@ -2,21 +2,30 @@
 
 namespace backend\modules\user;
 
+use Yii;
+
 /**
  * Class User
  *
  * @package backend\modules\user
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class User extends \common\modules\user\User
 {
     public $username_attribute = 'username';
 
-    public $menuItems = [
-        'name' => 'User',
-        'icon' => 'fa fa-sitemap',
-        'url' => ['/user/user/list'],
-        'position' => 5,
-    ];
+    public function getMenuItems()
+    {
+        $menuItems = [];
+
+        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin'])) {
+            $menuItems = [
+                'name' => 'User',
+                'icon' => 'fa fa-sitemap',
+                'url' => ['/user/user/list'],
+                'position' => 5,
+            ];
+        }
+
+        return $menuItems;
+    }
 }

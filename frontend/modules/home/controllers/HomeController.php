@@ -2,23 +2,19 @@
 
 namespace frontend\modules\home\controllers;
 
-use Yii;
 use yii\web\ErrorAction;
+use frontend\components\BaseController;
 
 /**
  * Class HomeController
  *
  * @package frontend\modules\home\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
-class HomeController extends \frontend\components\BaseController
+class HomeController extends BaseController
 {
-
     public $layout = "@app/layouts/start";
 
     /**
-     *
      * @return array
      */
     public function actions()
@@ -32,7 +28,6 @@ class HomeController extends \frontend\components\BaseController
     }
 
     /**
-     *
      * @return string
      */
     public function actionIndex()
@@ -41,18 +36,16 @@ class HomeController extends \frontend\components\BaseController
     }
 
     /**
-     *
-     * @param type $action
-     * @return boollean
+     * @param $action
+     * @return bool|\yii\web\Response
+     * @throws \yii\web\BadRequestHttpException
      */
     public function beforeAction($action)
     {
-
         if ($action->id == 'error') {
             $this->layout = '/error';
         }
 
         return parent::beforeAction($action);
     }
-
 }

@@ -2,18 +2,21 @@
 
 namespace frontend\components;
 
+use Yii;
+//
 use yii\helpers\Url;
+use yii\web\Controller;
+//
+use frontend\modules\seo\modules\{
+    directlink\models\Directlink
+};
 
 /**
  * Class BaseController
  *
- * Базовый контроллер для пользовательской части проекта
- *
  * @package frontend\components
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
-abstract class BaseController extends \yii\web\Controller
+abstract class BaseController extends Controller
 {
     /**
      * @var string
@@ -30,9 +33,28 @@ abstract class BaseController extends \yii\web\Controller
      */
     public $breadcrumbs = [];
 
+    protected $directlink;
+
+    public function init()
+    {
+        $this->directlink = Directlink::findByUrl();
+
+        /**
+         * Set user interface language
+         */
+        if (!Yii::$app->getUser()->isGuest) {
+            /** @var User $user */
+            $user = Yii::$app->getUser()->getIdentity();
+            Yii::$app->params['themes']['language'] = $user->profile->preferred_language;
+        }
+
+        parent::init();
+    }
+
     /**
-     * @param \yii\base\Action $action
+     * @param $action
      * @return bool|\yii\web\Response
+     * @throws \yii\web\BadRequestHttpException
      */
     public function beforeAction($action)
     {
@@ -43,5 +65,33 @@ abstract class BaseController extends \yii\web\Controller
         }
 
         return parent::beforeAction($action);
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeoH1()
+    {
+        $h1 = false;
+
+        if ($this->directlink['h1']) {
+            $h1 = str_replace('#городе#', Yii::$app->city->getCityTitleWhere(), $this->directlink['h1']);
+        }
+
+        return $h1;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeoContent()
+    {
+        $content = false;
+
+        if ($this->directlink['content']) {
+            $content = str_replace('#городе#', Yii::$app->city->getCityTitleWhere(), $this->directlink['content']);
+        }
+
+        return $content;
     }
 }

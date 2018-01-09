@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
+use frontend\components\Breadcrumbs;
 
 ?>
 
@@ -9,11 +9,13 @@ use yii\widgets\Breadcrumbs;
     <div class="page about-page">
         <div class="container large-container">
             <div class="col-md-12">
+
                 <?= Html::tag('h1', $this->context->title); ?>
+
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
-                    'options' => ['class' => 'bread-crumbs']
                 ]) ?>
+
                 <div class="text">
 
                     <p style="text-align:center"><span style="font-size:22px"><span

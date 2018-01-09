@@ -24,35 +24,36 @@
     "yiisoft/yii2-bootstrap": "*",
     "yiisoft/yii2-swiftmailer": "*",
     "yiisoft/yii2-apidoc": "*",
-    "yiisoft/yii2-elasticsearch": "*",
     "yiisoft/yii2-authclient": "*",
-    "yiisoft/yii2-imagine": "^2.0",
-    "yii2tech/crontab": "*",
-    "codeception/codeception": "*",
+    "yiisoft/yii2-imagine": "*",
+    "yiisoft/yii2-redis": "~2.0.0",
     "kartik-v/yii2-widgets": "*",
     "kartik-v/yii2-editable": "^1.7",
     "kartik-v/yii2-date-range": "*",
     "kartik-v/yii2-field-range": "*",
     "kartik-v/yii2-grid": "*",
-    "tinymce/tinymce": ">=4.6",
+    "tinymce/tinymce": "4.4.0",
+    "yii2tech/crontab": "*",
     "voskobovich/yii2-many-many-behavior": "^3.0",
-    "leandrogehlen/yii2-treegrid": "*"
+    "leandrogehlen/yii2-treegrid": "*",
+    "himiklab/yii2-recaptcha-widget": "*"
   },
   "require-dev": {
-    "yiisoft/yii2-codeception": "*",
     "yiisoft/yii2-debug": "*",
     "yiisoft/yii2-gii": "*",
     "yiisoft/yii2-faker": "*",
     "cedx/yii2-mustache": "^0.5.2"
   },
   "config": {
+    "fxp-asset": {
+      "installer-paths": {
+        "npm-asset-library": "vendor/npm",
+        "bower-asset-library": "vendor/bower"
+      }
+    },
     "process-timeout": 1800
   },
   "extra": {
-    "asset-installer-paths": {
-      "npm-asset-library": "vendor/npm",
-      "bower-asset-library": "vendor/bower"
-    }
   },
   "scripts": {
     "post-install-cmd": "php init --env=Development --overwrite=n"

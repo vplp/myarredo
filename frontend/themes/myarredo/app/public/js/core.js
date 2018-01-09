@@ -145,7 +145,9 @@ $(document).ready(function(){
     /*--Ползунок каталог--*/
     (function(){
         var slider = document.getElementById('price-slider');
-
+        if($('#min-price').val() == $('#max-price').val()) {
+            $('#max-price').val( $('#max-price').val() + 1 )
+        }
         if(slider != null){
             noUiSlider.create(slider, {
                 start: [$('#min-price').val(),$('#max-price').val()],
@@ -187,7 +189,6 @@ $(document).ready(function(){
     (function () {
         $('.filt-but').click(function(){
             var parent = $(this).parent('.one-filter');
-                console.log(parent);
                 if(parent.hasClass('open')){
                     parent.removeClass('open');
                     parent.find('.list-item').slideUp();
@@ -204,34 +205,8 @@ $(document).ready(function(){
        $(this).parent('.all-list').find('.post-list').slideToggle();
     });
 
-
-
-    $('#comp-slider, .std-slider').slick({
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        dots: false,
-        prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
-        nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>',responsive: [
-            {
-                breakpoint: 992,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                }
-            },
-            {
-                breakpoint: 540,
-                arrows: false,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
-    });
-
     /*--Блокнот--*/
-    $(".basket-item-info").each(function(i,item){
+    $(".notebook-page .basket-item-info").each(function(i,item){
         if(i > 2){
             $(item).hide();
         }
@@ -253,10 +228,34 @@ $(document).ready(function(){
     /*--конец Блокнот--*/
 
     /*--открыть/закрыть заказ (кабинет фабрики)--*/
-    $(".manager-history-list .item").click(function(){
-       $(this).toggleClass("open");
-       $(this).find(".hidden-order-info").slideToggle();
+    $(".manager-history-list .orders-title-block").click(function(){
+        var item = $(this).closest(".item");
+        item.toggleClass("open");
+        item.siblings().removeClass("open");
+        item.siblings().find(".hidden-order-info").slideUp();
+        item.find(".hidden-order-info").slideToggle();
+        if(typeof item.attr("data-hash") !== "undefined") {
+           var hash = item.attr("data-hash");
+           window.location.hash = hash;
+        }
     });
+
+    window.onload = function(){
+        if( window.location !== "" ){
+            var hash = window.location.hash.replace("#","");
+            var el = $('[data-hash="' + String(hash) + '"]');
+            if(el.length){
+                var top = el.offset().top;
+                $("html,body").animate({"scrollTop":top},100);
+                el.click();
+            }
+        }
+    };
+
+    if(window.location.hash !== ""){
+        var itemHash = window.location.hash.replace("#","");
+        $("[data-hash='" + itemHash + "']").find(".orders-title-block").click();
+    }
     /*--конец открыть/зыкрыть заказ (кабинет фабрики)--*/
 
     /*--поиск по списку (кабинет фабрики)--*/
@@ -300,4 +299,180 @@ $(document).ready(function(){
        window.location.href = href;
     });
 
+    $(".show-all-sub").click(function(){
+        var list = $(this).siblings(".list-item");
+        var variant = $(this).attr("data-variant");
+        var textCont = $(this).find(".btn-text");
+
+           if(list.hasClass('show')){
+               list.removeClass('show');
+               $(this).attr("data-variant",textCont.text());
+               textCont.text(variant);
+           } else {
+               list.addClass('show');
+               $(this).attr("data-variant",textCont.text());
+               textCont.text(variant);
+           }
+    });
+
+    (function(){
+
+        var selItemIn = $(".list-item > .one-item-check.selected");
+
+        selItemIn.each(function(i,item){
+            var parent = $(item).closest(".list-item");
+            parent.prepend($(item));
+        });
+
+    })();
+
+    function slickInit(){
+        $("#panel2 .row").slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            nextArrow: "<a href=javascript:void(0) class='fa fa-angle-left'></a>",
+            prevArrow: "<a href=javascript:void(0) class='fa fa-angle-right'></a>",
+            responsive: [
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 540,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+        $('#comp-slider').slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            dots: false,
+            prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
+            nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>',responsive: [
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 540,
+                    arrows: false,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+
+    }
+    slickInit();
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $("#panel2 .row").slick('unslick');
+        $('#comp-slider').slick('unslick');
+        slickInit();
+    });
+
+    $('.std-slider').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        dots: false,
+        prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
+        nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>',responsive: [
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 540,
+                arrows: false,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
+
+    /*--Галерея Карточка товара--*/
+    $(document).ready(function() {
+        $("a.fancyimage").fancybox();
+    });
+    /*--конец Галерея Карточка товара --*/
+
+    /*--модалка варианты отделки*/
+    $(".composition .show-modal").click(function(e){
+        e.preventDefault();
+        var img = $(this).clone();
+        $('#decoration-modal .image-container').html("").append(img);
+        $('#decoration-modal').modal();
+    });
+    /*--конец модалка варианты отделки*/
+
+    /*--больше фабрик модалка--*/
+    $(".alphabet-tab a").click(function(){
+        $(this).siblings().removeClass("active");
+        $(this).addClass("active");
+
+        var actTab = $(this).text();
+        var actShow = $("[data-show=" + actTab + "]").show();
+        actShow.siblings().hide();
+        actShow.css({
+            "display":"flex"
+        });
+    });
+    $(".alphabet-tab a").eq(0).trigger( "click" ); //показываем первый элемент по умолчанию
+    /*--конец Больше фабрик модалка--*/
+
+    $(".img-zoom").click(function(){
+       $("#prod-slider .item.active .fancyimage").click();
+    });
+
+    if($(".carousel-indicators li").length == 1){  //Скрываем стрелки если только одна картинка в слайдере
+        $(".nav-contr").hide();
+    }
+
+    $("#novelties-slider .item img").each(function(i,item){
+        var src = $(item).attr("src");
+        $(item).css({"opacity":"0"});
+        $(item).parent().css({"background-image": "url(" + src + ")"});
+    });
+
+    if( $(".text-col").text().trim() == "" ){
+        $(".text-col").closest(".text-description").remove();
+    }
+
 });
+(function(){
+    if( $("#checkout-form").length ){
+
+        var btn = $("#checkout-form button[type=submit]");
+
+        $("#checkout-form").on("submit",function(e){
+            btn.addClass("disabled");
+            $(".loader").show();
+        });
+        document.getElementById("checkout-form").addEventListener("DOMSubtreeModified", function(){
+            $(".loader").hide();
+            btn.removeClass("disabled");
+        });
+    }
+})();

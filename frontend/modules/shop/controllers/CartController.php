@@ -57,6 +57,7 @@ class CartController extends BaseController
                             'order' => $order,
                         ]
                     )
+                    //->setFrom(Yii::$app->params['mailer']['setFrom'])
                     ->setTo($model['email'])
                     ->setSubject(Yii::t('app', 'Your order № {order_id}', ['order_id' => $new_order['id']]))
                     ->send();

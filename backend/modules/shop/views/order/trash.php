@@ -6,13 +6,6 @@ use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
 };
 
-/**
- *
- * @package admin\modules\order\view
- * @author Alla Kuzmenko
- * @copyright (c), Thread
- */
-
 echo GridView::widget([
     'dataProvider' => $model->trash(Yii::$app->request->queryParams),
     'filterModel' => $filter,
@@ -25,36 +18,35 @@ echo GridView::widget([
             },
         ],
         [
-            'attribute' => 'customer',
+            'attribute' => Yii::t('app', 'Full name'),
             'value' => function ($model) {
                 return $model->customer->full_name;
             }
         ],
         [
-            'attribute' => 'deliveryMethod',
+            'attribute' => Yii::t('app', 'Phone'),
             'value' => function ($model) {
-                return $model->deliveryMethod->lang->title;
+                return $model->customer->phone;
             }
         ],
         [
-            'attribute' => 'paymentMethod',
+            'attribute' => Yii::t('app', 'Email'),
             'value' => function ($model) {
-                return $model->paymentMethod->lang->title;
+                return $model->customer->email;
+            }
+        ],
+        [
+            'attribute' => Yii::t('app', 'City'),
+            'value' => function ($model) {
+                return $model->city->lang->title ?? '';
             }
         ],
         [
             'attribute' => 'order_status',
             'value' => function ($model) {
-                return ($model->order_status == '') ? 'Новый' : $model->order_status;
+                return $model->getOrderStatus();
             }
         ],
-        [
-            'attribute' => 'payd_status',
-            'value' => function ($model) {
-                return Yii::t('app', $model->payd_status);
-            }
-        ],
-        'total_summ',
         [
             'class' => ActionDeleteColumn::class,
         ],

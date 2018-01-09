@@ -1,9 +1,17 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
-use frontend\modules\catalog\models\Factory;
+//
+use frontend\components\Breadcrumbs;
+use frontend\modules\catalog\models\{
+    Factory, Product
+};
 use frontend\themes\myarredo\assets\AppAsset;
+use frontend\modules\shop\widgets\request\RequestPrice;
+
+/**
+ * @var \frontend\modules\catalog\models\Product $model
+ */
 
 $bundle = AppAsset::register($this);
 
@@ -12,86 +20,93 @@ foreach (Yii::$app->shop_cart->items as $item) {
     $products_id[] = $item->product_id;
 }
 
-/**
- * @var \frontend\modules\catalog\models\Product $model
- */
+$elementsComposition = $model['elementsComposition'];
+
+$keys = Yii::$app->catalogFilter->keys;
+
+$this->title = $this->context->title;
 
 ?>
 
 <main>
     <div class="prod-card-page page">
         <div class="container large-container">
-            <div class="row">
-                <?= Breadcrumbs::widget([
-                    'links' => $this->context->breadcrumbs,
-                    'options' => ['class' => 'bread-crumbs']
-                ]) ?>
+            <div class="row" itemscope itemtype="http://schema.org/Product">
+
+                <?php if (!isset($this->context->factory)): ?>
+                    <?= Breadcrumbs::widget([
+                        'links' => $this->context->breadcrumbs,
+                    ]) ?>
+                <?php endif; ?>
+
                 <div class="product-title">
-                    <h1 class="prod-model"><?= $model->getFullTitle(); ?></h1>
+                    <?= Html::tag(
+                        'h1',
+                        $model->getTitle(),
+                        ['class' => 'prod-model', 'itemprop' => 'name']
+                    ); ?>
                 </div>
+
                 <div class="col-md-5">
-                    <div id="prod-slider" class="carousel slide carousel-fade" data-ride="carousel">
-                        <!-- Carousel items -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <div class="img-cont">
-                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/prod_thumb1.png" alt="">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="img-cont">
-                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/prod_thumb2.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Carousel nav -->
-                        <div class="nav-cont">
-                            <a class="left left-arr nav-contr" href="#prod-slider" data-slide="prev">&lsaquo;</a>
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel" data-slide-to="0" class="active">
-                                    <div class="img-min">
-                                        <img src="<?= $bundle->baseUrl ?>/img/pictures/prod_thumb1.png" alt="">
-                                    </div>
-                                </li>
-                                <li data-target="#carousel" data-slide-to="1">
-                                    <div class="img-min">
-                                        <img src="<?= $bundle->baseUrl ?>/img/pictures/prod_thumb2.png" alt="">
-                                    </div>
-                                </li>
-                            </ol>
-                            <a class="right right-arr nav-contr" href="#prod-slider" data-slide="next">&rsaquo;</a>
-                        </div>
-                    </div>
+
+                    <?= $this->render('parts/_carousel', [
+                        'model' => $model
+                    ]); ?>
+
                 </div>
                 <div class="col-md-4">
                     <div class="prod-info-table">
-                        <table class="info-table">
-                            <?php if (!$model['removed']): ?>
+                        <table class="info-table" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                            <?php if (!$model['removed'] && $model['price_from'] > 0): ?>
                                 <tr class="price">
                                     <td>ЦЕНА ОТ:</td>
-                                    <td><?= $model['price_from']; ?>&nbsp;<span class="currency">€</span>*</td>
+                                    <td>
+                                        <?= $model['price_from']; ?>&nbsp;<span class="currency">€</span>
+                                        <meta itemprop="price"
+                                              content="<?= number_format($model['price_from'], 0, '', '') ?>">
+                                        <meta itemprop="priceCurrency" content="EUR"/>
+                                    </td>
                                 </tr>
+                            <?php else: ?>
+                                <meta itemprop="price" content="0"/>
+                                <meta itemprop="priceCurrency" content="EUR"/>
                             <?php endif; ?>
+
                             <tr class="availability">
                                 <td>Наличие</td>
-                                <td><?= ($model['removed']) ? 'Снят с протзводства' : 'Под заказ' ?></td>
+                                <td>
+                                    <?= ($model['status']) ?>
+
+                                    <?php if (!$model['removed'] && $model['in_stock']): ?>
+                                        <meta itemprop="availability" content="InStock">
+                                    <?php elseif (!$model['removed']): ?>
+                                        <meta itemprop="availability" content="PreOrder">
+                                    <?php endif; ?>
+                                </td>
                             </tr>
+
+                        </table>
+
+                        <table class="info-table">
                             <tr>
                                 <td>Стиль</td>
                                 <td>
                                     <?php
                                     $array = [];
-                                    foreach ($model['specificationValue'] as $item): ?>
-                                        <?php if ($item['specification']['parent_id'] == 9): ?>
-                                            <?php $array[] = $item['specification']['lang']['title']; ?>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                    <?= implode('; ', $array); ?>
+                                    foreach ($model['specificationValue'] as $item) {
+                                        if ($item['specification']['parent_id'] == 9) {
+                                            $array[] = $item['specification']['lang']['title'];
+                                        }
+                                    }
+
+                                    echo implode('; ', $array);
+                                    ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Фабрика</td>
                                 <td>
+                                    <meta itemprop="brand" content="<?= $model['factory']['lang']['title'] ?>">
                                     <?= Html::a(
                                         $model['factory']['lang']['title'],
                                         Factory::getUrl($model['factory']['alias'])
@@ -105,7 +120,11 @@ foreach (Yii::$app->shop_cart->items as $item) {
                                     <td>
                                         <?= Html::a(
                                             $model['collection']['lang']['title'],
-                                            Yii::$app->catalogFilter->createUrl(['collection' => $model['collection']['id']])
+                                            Yii::$app->catalogFilter->createUrl(
+                                                Yii::$app->catalogFilter->params +
+                                                [$keys['factory'] => $model['factory']['alias']] +
+                                                [$keys['collection'] => $model['collection']['id']]
+                                            )
                                         ); ?>
                                     </td>
                                 </tr>
@@ -116,73 +135,88 @@ foreach (Yii::$app->shop_cart->items as $item) {
                                     <td>Артикул</td>
                                     <td><?= $model['article']; ?></td>
                                 </tr>
-                                <tr>
-                                    <td>Размеры</td>
-                                    <td class="size">
-                                        <?php foreach ($model['specificationValue'] as $item): ?>
-                                            <?php if ($item['specification']['parent_id'] == 4): ?>
-                                                <?= Html::beginTag('span'); ?>
-                                                <?= $item['specification']['alias']; ?>:<?= $item['val']; ?>
-                                                <?= Html::endTag('span'); ?>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Материал</td>
-                                    <td>
-                                        <?php
-                                        $array = [];
-                                        foreach ($model['specificationValue'] as $item): ?>
-                                            <?php if ($item['specification']['parent_id'] == 2): ?>
-                                                <?php $array[] = $item['specification']['lang']['title']; ?>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                        <?= implode('; ', $array); ?>
-                                    </td>
-                                </tr>
+
+                                <?php if (!empty($model['specificationValue'])): ?>
+                                    <tr>
+                                        <td>Размеры</td>
+                                        <td class="size">
+                                            <?php
+                                            foreach ($model['specificationValue'] as $item) {
+                                                if ($item['specification']['parent_id'] == 4) {
+                                                    echo Html::beginTag('span') .
+                                                        $item['specification']['lang']['title'] .
+                                                        ':' .
+                                                        $item['val'] .
+                                                        Html::endTag('span');
+                                                }
+                                            } ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Материал</td>
+                                        <td>
+                                            <?php
+                                            $array = [];
+                                            foreach ($model['specificationValue'] as $item) {
+                                                if ($item['specification']['parent_id'] == 2) {
+                                                    $array[] = $item['specification']['lang']['title'];
+                                                }
+                                            }
+                                            echo implode('; ', $array);
+                                            ?>
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
                             <?php endif; ?>
 
                         </table>
-                        <div class="prod-descr"><?= $model['lang']['description']; ?></div>
+
+                        <?= $this->render('parts/_factory_files', [
+                            'model' => $model
+                        ]); ?>
+
+                        <div class="prod-descr" itemprop="description"><?= $model['lang']['description']; ?></div>
                     </div>
                 </div>
                 <div class="col-md-3">
 
-                    <?php if (!$model['removed']): ?>
+                    <?php if (!$model['removed']) { ?>
                         <div class="best-price-form">
+
                             <h3>Заполните форму - получите лучшую цену на этот товар</h3>
 
-                            <?= \frontend\modules\shop\widgets\request\RequestPrice::widget(['product_id' => $model['id']]) ?>
+                            <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
 
-                                <?php if (!in_array($model['id'], $products_id)): ?>
-                                    <?= Html::a(
-                                        'Отложить в блокнот',
-                                        'javascript:void(0);',
-                                        [
-                                            'class' => 'add-to-notepad btn btn-default big',
-                                            'data-id' => $model['id'],
-                                            'data-toggle' => 'modal',
-                                            'data-target' => '#myModal'
-                                        ]
-                                    ) ?>
-                                <?php else: ?>
-                                    <?= Html::a(
-                                        'В блокноте',
-                                        'javascript:void(0);',
-                                        [
-                                            'class' => 'btn btn-default big',
-                                        ]
-                                    ) ?>
-                                <?php endif; ?>
+                            <?php
+                            if (!in_array($model['id'], $products_id)) {
+                                echo Html::a(
+                                    'Отложить в блокнот',
+                                    'javascript:void(0);',
+                                    [
+                                        'class' => 'add-to-notepad btn btn-default big',
+                                        'data-id' => $model['id'],
+                                        'data-toggle' => 'modal',
+                                        'data-target' => '#myModal'
+                                    ]
+                                );
+                            } else {
+                                echo Html::a(
+                                    'В блокноте',
+                                    'javascript:void(0);',
+                                    [
+                                        'class' => 'btn btn-default big',
+                                    ]
+                                );
+                            } ?>
 
                         </div>
-                    <?php else: ?>
+
+                    <?php } else { ?>
                         Данный товар
                         снят с протзводства.
                         Но мы можем предложить
                         альтернативную модель.
-                    <?php endif; ?>
+                    <?php } ?>
 
                 </div>
             </div>
@@ -190,35 +224,32 @@ foreach (Yii::$app->shop_cart->items as $item) {
             <div class="row composition">
                 <div class="col-md-12">
                     <ul class="nav nav-tabs">
-                        <?php if ($model['is_composition']): ?>
+
+                        <?php if (!empty($elementsComposition)): ?>
                             <li><a data-toggle="tab" href="#panel1">ПРЕДМЕТЫ КОмпозиции</a></li>
                         <?php endif; ?>
+
                         <?php if (!empty($model['samples'])): ?>
                             <li><a data-toggle="tab" href="#panel2">ВАРИАНТЫ ОТДЕЛКИ</a></li>
                         <?php endif; ?>
+
                     </ul>
 
                     <div class="tab-content">
 
-                        <?php if ($model['is_composition']): ?>
+                        <?php if (!empty($elementsComposition)): ?>
                             <div id="panel1" class="tab-pane fade">
-                                <?= $this->render(
-                                    'parts/_product_by_composition',
-                                    [
-                                        'models' => $model['compositionProduct']
-                                    ]
-                                ); ?>
+                                <?= $this->render('parts/_product_by_composition', [
+                                    'models' => $elementsComposition
+                                ]); ?>
                             </div>
                         <?php endif; ?>
 
                         <?php if (!empty($model['samples'])): ?>
                             <div id="panel2" class="tab-pane fade">
-                                <?= $this->render(
-                                    'parts/_samples',
-                                    [
-                                        'samples' => $model['samples']
-                                    ]
-                                ); ?>
+                                <?= $this->render('parts/_samples', [
+                                    'samples' => $model['samples']
+                                ]); ?>
                             </div>
                         <?php endif; ?>
 
@@ -285,7 +316,7 @@ foreach (Yii::$app->shop_cart->items as $item) {
                 </div>
             </div>
 
-            <?php if (!$model['removed']): ?>
+            <?php /*if (!$model['removed']): ?>
 
                 <div class="recommendation">
                     <div class="container large-container">
@@ -324,33 +355,33 @@ foreach (Yii::$app->shop_cart->items as $item) {
                     </div>
                 </div>
 
-            <?php endif; ?>
+            <?php endif; */ ?>
 
-            <?php if ($model['collections_id']): ?>
+            <?php if ($model['collections_id']) {
+                echo $this->render('parts/_product_by_collection', [
+                    'collection' => $model['collection'],
+                    'models' => $model->getProductByCollection($model['collections_id'], $model['catalog_type_id'])
+                ]);
+            } ?>
 
-                <?= $this->render(
-                    'parts/_product_by_collection',
-                    [
-                        'collection' => $model['collection'],
-                        'models' => $model->getProductByCollection($model['collections_id'], $model['catalog_type_id'])
-                    ]
-                ); ?>
-
-            <?php endif; ?>
-
-            <?php if ($model['collections_id']): ?>
-
-                <?= $this->render(
-                    'parts/_product_by_factory',
-                    [
-                        'factory' => $model['factory'],
-                        'types' => $model['types'],
-                        'models' => $model->getProductByFactory($model['factory_id'], $model['catalog_type_id'])
-                    ]
-                ); ?>
-
-            <?php endif; ?>
+            <?php if ($model['collections_id']) {
+                echo $this->render('parts/_product_by_factory', [
+                    'factory' => $model['factory'],
+                    'types' => $model['types'],
+                    'models' => $model->getProductByFactory($model['factory_id'], $model['catalog_type_id'])
+                ]);
+            } ?>
 
         </div>
     </div>
+
+    <div id="decoration-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <div class="modal-content">
+                <div class="image-container"></div>
+            </div>
+        </div>
+    </div>
+
 </main>

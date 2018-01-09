@@ -18,8 +18,6 @@ use backend\modules\seo\modules\directlink\models\{
  * Class Directlink
  *
  * @package backend\modules\seo\modules\directlink\models\search
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Directlink extends ParentModel implements BaseBackendSearchModel
 {
@@ -53,24 +51,19 @@ class Directlink extends ParentModel implements BaseBackendSearchModel
     public function baseSearch($query, $params)
     {
         /** @var ParentModule $module */
-        $module = Yii::$app->getModule('seo');
+        $module = Yii::$app->getModule('seo/directlink');
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => $module->itemOnPage
+                'defaultPageSize' => $module->itemOnPage
             ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_ASC
-                ]
-            ]
         ]);
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'url', $this->alias])
+        $query->andFilterWhere(['like', 'url', $this->url])
             ->andFilterWhere(['like', 'published', $this->published]);
 
         return $dataProvider;
@@ -82,7 +75,7 @@ class Directlink extends ParentModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = ParentModel::find()->undeleted();
+        $query = ParentModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -92,7 +85,7 @@ class Directlink extends ParentModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = ParentModel::find()->deleted();
+        $query = ParentModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }

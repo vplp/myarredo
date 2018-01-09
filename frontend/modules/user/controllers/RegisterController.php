@@ -51,6 +51,7 @@ class RegisterController extends BaseController
 
     /**
      * @return string|\yii\web\Response
+     * @throws \Exception
      */
     public function actionUser()
     {
@@ -63,10 +64,13 @@ class RegisterController extends BaseController
         $model->setScenario('register');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
+
             $status = $model->addUser();
+
             if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
                 return $this->redirect(Url::toRoute('/user/profile/index'));
             }
+
             if ($status === true) {
                 Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
                 return $this->redirect(Url::toRoute('/user/login/index'));
@@ -80,6 +84,7 @@ class RegisterController extends BaseController
 
     /**
      * @return string|\yii\web\Response
+     * @throws \Exception
      */
     public function actionPartner()
     {
@@ -92,10 +97,29 @@ class RegisterController extends BaseController
         $model->setScenario('registerPartner');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
+
             $status = $model->addPartner();
+
+            if ($status === true) {
+
+                Yii::$app
+                    ->mailer
+                    ->compose(
+                        'letter_new_partner',
+                        [
+                            'message' => 'Зарегистрирован новый партнер',
+                            'model' => $model,
+                        ]
+                    )
+                    ->setTo(Yii::$app->params['mailer']['setTo'])
+                    ->setSubject('Зарегистрирован новый партнер')
+                    ->send();
+            }
+
             if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
                 return $this->redirect(Url::toRoute('/user/profile/index'));
             }
+
             if ($status === true) {
                 Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
                 return $this->redirect(Url::toRoute('/user/login/index'));

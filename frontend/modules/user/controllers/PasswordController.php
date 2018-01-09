@@ -19,12 +19,9 @@ use frontend\modules\user\models\{
  * Class PasswordController
  *
  * @package frontend\modules\user\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class PasswordController extends BaseController
 {
-
     protected $model = Profile::class;
     public $title = "Profile";
     public $defaultAction = 'index';
@@ -60,6 +57,7 @@ class PasswordController extends BaseController
 
     /**
      * @return string
+     * @throws \yii\base\Exception
      */
     public function actionChange()
     {
@@ -83,7 +81,7 @@ class PasswordController extends BaseController
                     $save = $user->save();
                     if ($save) {
                         $transaction->commit();
-                        $model->addFlash(Yii::t('app', 'Password changed'));
+                        $model->addFlash('Пароль изменен');
                     } else {
                         $transaction->rollBack();
                     }
@@ -108,10 +106,10 @@ class PasswordController extends BaseController
         $model->setScenario('remind');
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->generateResetToken()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+                Yii::$app->session->setFlash('success', 'Проверьте свою электронную почту для получения дальнейших инструкций.');
                 return $this->goHome();
             } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
+                Yii::$app->session->setFlash('error', 'Извините, мы не можем сбросить пароль для отправки по электронной почте.');
             }
         }
         return $this->render('requestPasswordResetToken', [
@@ -133,11 +131,14 @@ class PasswordController extends BaseController
         } catch (InvalidParamException $e) {
             throw new BadRequestHttpException($e->getMessage());
         }
+
         $model->setScenario('setPassword');
+
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->setPassword()) {
-            Yii::$app->session->setFlash('success', 'New password was saved.');
+            Yii::$app->session->setFlash('success', 'Новый пароль был сохранен.');
             return $this->goHome();
         }
+
         return $this->render('resetPassword', [
             'model' => $model,
         ]);

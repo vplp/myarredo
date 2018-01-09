@@ -2,6 +2,7 @@
 
 namespace backend\modules\catalog\controllers;
 
+use yii\filters\AccessControl;
 use thread\app\base\controllers\BackendController;
 use backend\modules\catalog\models\{
     Specification, SpecificationLang, search\Specification as filterSpecification
@@ -20,4 +21,26 @@ class SpecificationController extends BackendController
     public $title = 'Specification';
     public $name = 'specification';
 
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin', 'catalogEditor'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
 }

@@ -10,8 +10,6 @@ use thread\app\model\interfaces\BaseBackendModel;
  * Class Group
  *
  * @package backend\modules\feedback\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Group extends \common\modules\feedback\models\Group implements BaseBackendModel
 {

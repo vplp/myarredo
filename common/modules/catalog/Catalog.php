@@ -17,14 +17,11 @@ class Catalog extends aModule {
     public $translationsBasePath = __DIR__ . '/messages';
 
     /**
-     * Db connection
-     *
-     * @return null|object
-     * @throws \yii\base\InvalidConfigException
+     * @return null|object|string
      */
     public static function getDb()
     {
-        return Yii::$app->get('db_myarredo');
+        return Yii::$app->get('db');
     }
 
     /**
@@ -33,11 +30,7 @@ class Catalog extends aModule {
      */
     public function getProductUploadPath()
     {
-        $dir = $this->getBaseUploadPath() . '/product';
-
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
+        $dir = $this->getBaseUploadPath() . '/images';
 
         return $dir;
     }
@@ -48,7 +41,7 @@ class Catalog extends aModule {
      */
     public function getProductUploadUrl()
     {
-        return $this->getBaseUploadUrl() . '/product';
+        return $this->getBaseUploadUrl() . '/images';
     }
 
     /**
@@ -57,7 +50,7 @@ class Catalog extends aModule {
      */
     public function getCategoryUploadPath()
     {
-        $dir = $this->getBaseUploadPath() . '/category';
+        $dir = $this->getBaseUploadPath() . '/images';
 
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
@@ -72,7 +65,7 @@ class Catalog extends aModule {
      */
     public function getCategoryUploadUrl()
     {
-        return $this->getBaseUploadUrl() . '/category';
+        return $this->getBaseUploadUrl() . '/images';
     }
 
     /**
@@ -81,7 +74,7 @@ class Catalog extends aModule {
      */
     public function getSamplesUploadPath()
     {
-        $dir = $this->getBaseUploadPath() . '/samples';
+        $dir = $this->getBaseUploadPath() . '/images';
 
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
@@ -96,7 +89,7 @@ class Catalog extends aModule {
      */
     public function getSamplesUploadUrl()
     {
-        return $this->getBaseUploadUrl() . '/samples';
+        return $this->getBaseUploadUrl() . '/images';
     }
 
     /**
@@ -105,7 +98,7 @@ class Catalog extends aModule {
      */
     public function getSaleUploadPath()
     {
-        $dir = $this->getBaseUploadPath() . '/sale';
+        $dir = $this->getBaseUploadPath() . '/images';
 
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
@@ -120,7 +113,7 @@ class Catalog extends aModule {
      */
     public function getSaleUploadUrl()
     {
-        return $this->getBaseUploadUrl() . '/sale';
+        return $this->getBaseUploadUrl() . '/images';
     }
 
     /**
@@ -148,27 +141,44 @@ class Catalog extends aModule {
     }
 
     /**
-     * FactoryFile upload path
      * @return string
      */
-    public function getFactoryFileUploadPath()
+    public function getFactoryCatalogsFilesUploadPath()
     {
-        $dir = $this->getBaseUploadPath() . '/factory/files';
-
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
-
-        return $dir;
+        return $this->getBaseUploadPath() . '/factoryFileCatalog';
     }
 
     /**
-     * FactoryFile upload URL
      * @return string
      */
-    public function getFactoryFileUploadUrl()
+    public function getFactoryCatalogsFilesUploadUrl()
     {
-        return $this->getBaseUploadUrl() . '/factory/files';
+        return $this->getBaseUploadUrl() . '/factoryFileCatalog';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFactoryPricesFilesUploadPath()
+    {
+        return $this->getBaseUploadPath() . '/factoryFilePrice';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFactoryPricesFilesUploadUrl()
+    {
+        return $this->getBaseUploadUrl() . '/factoryFilePrice';
+    }
+
+    /**
+     * Image upload path
+     * @return string
+     */
+    public function getBaseUploadPath()
+    {
+        return Yii::getAlias('@uploads');
     }
 
     /**
@@ -177,6 +187,6 @@ class Catalog extends aModule {
      */
     public function getBaseUploadUrl()
     {
-        return '/uploads/' . $this->name;
+        return '/uploads';
     }
 }

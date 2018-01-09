@@ -4,6 +4,8 @@ namespace frontend\modules\catalog\models;
 
 use Yii;
 use yii\helpers\Url;
+//
+use frontend\components\ImageResize;
 
 /**
  * Class Sale
@@ -12,39 +14,6 @@ use yii\helpers\Url;
  */
 class Sale extends \common\modules\catalog\models\Sale
 {
-//    /**
-//     * @return array
-//     */
-//    public function behaviors()
-//    {
-//        return [];
-//    }
-
-//    /**
-//     * @return array
-//     */
-//    public function scenarios()
-//    {
-//        return parent::scenarios();
-//    }
-//
-//    /**
-//     * @return array
-//     */
-//    public function attributeLabels()
-//    {
-//        return [];
-//    }
-//
-//    /**
-//     * @return array
-//     */
-//    public function rules()
-//    {
-//        return [];
-//    }
-
-
     /**
      * Get by alias
      *
@@ -97,7 +66,18 @@ class Sale extends \common\modules\catalog\models\Sale
      */
     public function getUrl()
     {
-        return Url::toRoute(['/catalog/sale/view', 'alias' => $this->alias]);
+        if (isset(Yii::$app->controller->factory)) {
+            return Url::toRoute([
+                '/catalog/template-factory/sale-product',
+                'alias' => Yii::$app->controller->factory->alias,
+                'product' => $this->alias
+            ], true);
+        } else {
+            return Url::toRoute([
+                '/catalog/sale/view',
+                'alias' => $this->alias
+            ], true);
+        }
     }
 
     /**
@@ -112,7 +92,7 @@ class Sale extends \common\modules\catalog\models\Sale
      * @param string $image_link
      * @return null|string
      */
-    public static function getImage(string $image_link = '')
+    public static function getImage($image_link = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -130,14 +110,87 @@ class Sale extends \common\modules\catalog\models\Sale
     }
 
     /**
+     * @param string $image_link
+     * @return null|string
+     */
+    public static function getImageThumb($image_link  = '')
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getSaleUploadPath();
+
+        $image = null;
+
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+
+            $image_link_path = explode('/', $image_link);
+
+            $img_name = $image_link_path[count($image_link_path)-1];
+
+            unset($image_link_path[count($image_link_path)-1]);
+
+//            $dir    = $path . '/' . implode('/' ,$image_link_path);
+//            $files = scandir($dir);
+
+            $_image_link = $path . '/' . implode('/', $image_link_path) . '/thumb_' . $img_name;
+
+            if (is_file($_image_link)) {
+                $image = $_image_link;
+            } else {
+                $image = $path . '/' . $image_link;
+            }
+
+            // resize
+            $ImageResize = new ImageResize();
+            $image = $ImageResize->getThumb($image, 340, 340);
+        }
+
+        return $image;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFrontGalleryImage()
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getProductUploadPath();
+        $url = $module->getProductUploadUrl();
+
+        $images = [];
+
+        if (!empty($this->gallery_image)) {
+            $this->gallery_image = $this->gallery_image[0] == ','
+                ? substr($this->gallery_image, 1)
+                : $this->gallery_image;
+
+            $images = explode(',', $this->gallery_image);
+        }
+
+        $imagesSources = [];
+
+        foreach ($images as $image) {
+            if (file_exists($path . '/' . $image)) {
+                $imagesSources[] = [
+                    'img' => $url . '/' . $image,
+                    'thumb' => self::getImageThumb($image)
+                ];
+            }
+        }
+
+        return $imagesSources;
+    }
+
+
+    /**
      * @return string
      */
     public function getTitle()
     {
-        $title = (($this->catalog_type_id > 0 && !empty($this->types)) ? $this->types->lang->title . ' ' : '');
-        $title .= $this->getFactoryTitle();
-
-        return $title;
+        return $this->lang->title;
     }
 
     /**

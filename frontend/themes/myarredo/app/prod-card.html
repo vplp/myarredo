@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./public/css/fonts.css">
     <link rel="stylesheet" href="./public/libs/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="./public/libs/slick-1.6/slick.css">
+    <link rel="stylesheet" href="./public/libs/fancybox/jquery.fancybox.css">
     <link rel='stylesheet' href='./public/css/main.scss.css' type='text/css' media='all' />
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
 </head>
@@ -256,7 +257,7 @@
     <nav class="navbar">
         <div class="container large-container">
             <a href="javascript:void(0);" class="logo">
-                <img src="public/img/logo.png" alt="">
+                <img src="public/img/logo.svg" alt="">
             </a>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
@@ -308,19 +309,25 @@
                         <!-- Carousel items -->
                         <div class="carousel-inner">
                             <div class="item active">
-                                <div class="img-cont">
+                                <a href="public/img/pictures/prod_thumb1.png" class="img-cont fancyimage" data-fancybox-group="group">
                                     <img src="public/img/pictures/prod_thumb1.png" alt="">
-                                </div>
+                                </a>
                             </div>
                             <div class="item">
-                                <div class="img-cont">
+                                <a href="public/img/pictures/prod_thumb2.png" class="img-cont fancyimage" data-fancybox-group="group">
                                     <img src="public/img/pictures/prod_thumb2.png" alt="">
-                                </div>
+                                </a>
                             </div>
                         </div>
+
+                        <a href="javascript:void(0);" class="img-zoom">
+                            Увеличить
+                        </a>
                         <!-- Carousel nav -->
                         <div class="nav-cont">
-                            <a class="left left-arr nav-contr" href="#prod-slider" data-slide="prev">&lsaquo;</a>
+                            <a class="left left-arr nav-contr" href="#prod-slider" data-slide="prev">
+                                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                            </a>
                             <ol class="carousel-indicators">
                                 <li data-target="#carousel" data-slide-to="0" class="active">
                                     <div class="img-min">
@@ -333,8 +340,11 @@
                                     </div>
                                 </li>
                             </ol>
-                            <a class="right right-arr nav-contr" href="#prod-slider" data-slide="next">&rsaquo;</a>
+                            <a class="right right-arr nav-contr" href="#prod-slider" data-slide="next">
+                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            </a>
                         </div>
+
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -406,7 +416,7 @@
                         <h3>
                             Заполните форму - получите лучшую цену на этот товар
                         </h3>
-                        <form role="form">
+                        <form role="form" id="checkout-form">
                             <div class="form-group">
                                 <input type="email" class="form-control" id="email" placeholder="Введите email">
                             </div>
@@ -448,7 +458,27 @@
                                                         <img src="public/img/pictures/comp_1.png" alt="">
                                                     </div>
                                                     <div class="add-item-text">
-                                                        Стул  STILE LEGNO 5086.017
+                                                        Тумбочка VITTORIA ORLANDI Catalogo 01 Romina
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="item">
+                                                <a href="#1" class="tile">
+                                                    <div class="img-cont">
+                                                        <img src="public/img/pictures/comp_1.png" alt="">
+                                                    </div>
+                                                    <div class="add-item-text">
+                                                        Тумбочка VITTORIA ORLANDI Catalogo 01 Romina
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="item">
+                                                <a href="#1" class="tile">
+                                                    <div class="img-cont">
+                                                        <img src="public/img/pictures/comp_1.png" alt="">
+                                                    </div>
+                                                    <div class="add-item-text">
+                                                        Тумбочка VITTORIA ORLANDI Catalogo 01 Romina
                                                     </div>
                                                 </a>
                                             </div>
@@ -458,7 +488,7 @@
                                                         <img src="public/img/pictures/comp_2.png" alt="">
                                                     </div>
                                                     <div class="add-item-text">
-                                                        Стул  STILE LEGNO 5086.017
+                                                        Люстра VITTORIA ORLANDI Catalogo 01 Zefiro 2
                                                     </div>
                                                 </a>
                                             </div>
@@ -466,6 +496,26 @@
                                                 <a href="#1" class="tile">
                                                     <div class="img-cont">
                                                         <img src="public/img/pictures/comp_3.png" alt="">
+                                                    </div>
+                                                    <div class="add-item-text">
+                                                        Зеркало VITTORIA ORLANDI Catalogo 01 Eva
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="item">
+                                                <a href="#1" class="tile">
+                                                    <div class="img-cont">
+                                                        <img src="public/img/pictures/comp_4.png" alt="">
+                                                    </div>
+                                                    <div class="add-item-text">
+                                                        Напольная лампа VITTORIA ORLANDI Catalogo 01 Jasmine
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="item">
+                                                <a href="#1" class="tile">
+                                                    <div class="img-cont">
+                                                        <img src="public/img/pictures/comp_1.png" alt="">
                                                     </div>
                                                     <div class="add-item-text">
                                                         Стул  STILE LEGNO 5086.017
@@ -478,7 +528,7 @@
                                                         <img src="public/img/pictures/comp_4.png" alt="">
                                                     </div>
                                                     <div class="add-item-text">
-                                                        Стул  STILE LEGNO 5086.017
+                                                        Напольная лампа VITTORIA ORLANDI Catalogo 01 Jasmine
                                                     </div>
                                                 </a>
                                             </div>
@@ -501,23 +551,28 @@
                             <div class="container large-container">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <a href="#" class="img-cont">
-                                            <img src="public/img/pictures/thumb_comp.jpg" alt="">
+                                        <a href="#" class="show-modal">
+                                            <img src="public/img/pictures/combo1.jpg" alt="">
                                         </a>
                                     </div>
                                     <div class="col-md-3">
-                                        <a href="#" class="img-cont">
-                                            <img src="public/img/pictures/thumb_comp.jpg" alt="">
+                                        <a href="#" class="show-modal">
+                                            <img src="public/img/pictures/combo2.jpg" alt="">
                                         </a>
                                     </div>
                                     <div class="col-md-3">
-                                        <a href="#" class="img-cont">
-                                            <img src="public/img/pictures/thumb_comp.jpg" alt="">
+                                        <a href="#" class="show-modal">
+                                            <img src="public/img/pictures/combo2.jpg" alt="">
                                         </a>
                                     </div>
                                     <div class="col-md-3">
-                                        <a href="#" class="img-cont">
-                                            <img src="public/img/pictures/thumb_comp.jpg" alt="">
+                                        <a href="#">
+                                            <img class="show-modal" src="public/img/pictures/combo2.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="#">
+                                            <img class="show-modal" src="public/img/pictures/combo1.jpg" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -654,6 +709,26 @@
                             <div class="item">
                                 <a href="#1" class="tile">
                                     <div class="img-cont">
+                                        <img src="public/img/pictures/comp_2.png" alt="">
+                                    </div>
+                                    <div class="add-item-text">
+                                        Стул  STILE LEGNO 5086.017
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item">
+                                <a href="#1" class="tile">
+                                    <div class="img-cont">
+                                        <img src="public/img/pictures/comp_3.png" alt="">
+                                    </div>
+                                    <div class="add-item-text">
+                                        Стул  STILE LEGNO 5086.017
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item">
+                                <a href="#1" class="tile">
+                                    <div class="img-cont">
                                         <img src="public/img/pictures/comp_3.png" alt="">
                                     </div>
                                     <div class="add-item-text">
@@ -709,6 +784,26 @@
                                 <a href="#1" class="tile">
                                     <div class="img-cont">
                                         <img src="public/img/pictures/comp_2.png" alt="">
+                                    </div>
+                                    <div class="add-item-text">
+                                        Стул  STILE LEGNO 5086.017
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item">
+                                <a href="#1" class="tile">
+                                    <div class="img-cont">
+                                        <img src="public/img/pictures/comp_3.png" alt="">
+                                    </div>
+                                    <div class="add-item-text">
+                                        Стул  STILE LEGNO 5086.017
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item">
+                                <a href="#1" class="tile">
+                                    <div class="img-cont">
+                                        <img src="public/img/pictures/comp_4.png" alt="">
                                     </div>
                                     <div class="add-item-text">
                                         Стул  STILE LEGNO 5086.017
@@ -934,10 +1029,35 @@
 </div>
 <!-- конец модалка Добавить в блокнот -->
 
+<!-- модалка варианты отделки -->
+<div id="decoration-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <div class="modal-content">
+            <div class="image-container">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- конец модалка варианты отделки -->
+<div class="loader" style="display: none;">
+    <div id="floatingCirclesG">
+        <div class="f_circleG" id="frotateG_01"></div>
+        <div class="f_circleG" id="frotateG_02"></div>
+        <div class="f_circleG" id="frotateG_03"></div>
+        <div class="f_circleG" id="frotateG_04"></div>
+        <div class="f_circleG" id="frotateG_05"></div>
+        <div class="f_circleG" id="frotateG_06"></div>
+        <div class="f_circleG" id="frotateG_07"></div>
+        <div class="f_circleG" id="frotateG_08"></div>
+    </div>
+</div>
+
 <script src="./public/libs/bootstrap/js/bootstrap.min.js"></script>
-<script src="libs/formstyler/jquery.formstyler.js"></script>
+<script src="./public/libs/formstyler/jquery.formstyler.js"></script>
 <script src="https://use.fontawesome.com/35f65baac5.js"></script>
 <script src="./public/libs/slick-1.6/slick.min.js"></script>
+<script src="./public/libs/fancybox/jquery.fancybox.pack.js"></script>
 <!--
 <script async src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 -->

@@ -12,8 +12,19 @@
     .large-container {
       display: flex;
       justify-content: space-between;
+      width: 100%;
       &:after, &:before {
         display: none;
+      }
+      .row {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-left: 0;
+        margin-right: 0;
+        &:after, &:before {
+          display: none;
+        }
       }
     }
     #main-menu {
@@ -21,7 +32,8 @@
       margin: 0 !important;
     }
     .navbar-toggle {
-      margin-right: 21px;
+      margin-right: auto;
+      margin-left: auto;
     }
   }
   .italian-furn .one-cat {
@@ -138,7 +150,7 @@
       padding: 20px 40px;
     }
     .cat-container .cat-prod .one-prod-tile {
-      width: 49% !important;
+      width: calc( 50% - 20px ) !important;
     }
     .cat-container .full-cat {
       width: 49% !important;
@@ -151,6 +163,64 @@
      }
     .copy-r {
       font-size: 10px;
+    }
+  }
+
+  body #factory-modal {
+    .modal-content {
+      background: #FFFFFF;
+      border: 1px solid #7b7a79;
+      color: #545451;
+    }
+    .close {
+      color: #545451;
+    }
+    .modal-dialog {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .alphabet-tab-cont > div a {
+      width: 50%;
+      color: #545451;
+      font-size: 13px;
+      &:hover {
+        color: #545451;
+      }
+    }
+    .alphabet-tab {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 10px 0;
+      justify-content: center;
+      a {
+        width: 45px;
+        height: 45px;
+        background: #E3E0D5;
+        border-radius: 3px;
+        margin: 0 2px 3px 2px;
+      }
+    }
+  }
+  .adding-product-page {
+    .hidden-order-in {
+      flex-direction: column;
+      .flex-product {
+        justify-content: space-between;
+      }
+      .form-wrap {
+        width: 100%;
+      }
+    }
+    .basket-item-info {
+      width: 48%;
+      margin-right: 0;
+    }
+  }
+  .novelties {
+    .item-in {
+      .left, .right {
+        height: 210px !important;
+      }
     }
   }
 }

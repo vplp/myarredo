@@ -20,8 +20,6 @@ use backend\modules\news\models\{
  * Class ArticleController
  *
  * @package backend\modules\news\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class ArticleController extends BackendController
 {

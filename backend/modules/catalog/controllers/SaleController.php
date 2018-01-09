@@ -2,6 +2,7 @@
 
 namespace backend\modules\catalog\controllers;
 
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 //
 use common\actions\upload\{
@@ -28,6 +29,29 @@ class SaleController extends BackendController
     public $title = 'Sale';
     public $name = 'sale';
 
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin', 'catalogEditor'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
+
     /**
      * @return array
      */
@@ -39,6 +63,16 @@ class SaleController extends BackendController
                 'modelClass' => $this->model,
                 'attribute' => 'on_main',
                 'redirect' => $this->defaultAction,
+            ],
+            'fileupload' => [
+                'class' => UploadAction::class,
+                'useHashPath' => true,
+                'path' => $this->module->getProductUploadPath()
+            ],
+            'filedelete' => [
+                'class' => DeleteAction::class,
+                'useHashPath' => true,
+                'path' => $this->module->getProductUploadPath()
             ],
         ]);
     }

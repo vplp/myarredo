@@ -131,7 +131,7 @@ class Category extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->innerJoinWith(['lang'])->orderBy('position');
+        return self::find()->innerJoinWith(['lang'])->orderBy(self::tableName() . '.position');
     }
 
     /**
@@ -160,6 +160,16 @@ class Category extends ActiveRecord
         return $this
             ->hasMany(Product::class, ['id' => 'catalog_item_id'])
             ->viaTable(ProductRelCategory::tableName(), ['group_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSale()
+    {
+        return $this
+            ->hasMany(Sale::class, ['id' => 'sale_item_id'])
+            ->viaTable(SaleRelCategory::tableName(), ['group_id' => 'id']);
     }
 
     /**
