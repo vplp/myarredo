@@ -115,13 +115,8 @@ class Order extends \thread\modules\shop\models\Order
      */
     public function getCity()
     {
-        $user = Yii::$app->getUser()->getIdentity();
-        //Yii::$app->language = $user->profile->preferred_language;
-
         return $this
-            ->hasOne(City::class, ['id' => 'city_id'])
-            ->viaTable(CityLang::tableName(), ['lang' => $user->profile->preferred_language]);
-            //->joinWith('lang')->andWhere(['lang' => \Yii::$app->language];
+            ->hasOne(City::class, ['id' => 'city_id']);
     }
 
     /**
@@ -167,6 +162,8 @@ class Order extends \thread\modules\shop\models\Order
 
     public function getOrderStatus()
     {
-        return ($this->isArchive()) ? "Архивная" : "Новая";
+        return ($this->isArchive())
+            ? Yii::t('app', 'Archival')
+            : Yii::t('app', 'New');
     }
 }
