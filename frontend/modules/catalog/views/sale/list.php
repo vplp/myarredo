@@ -19,7 +19,9 @@ use frontend\modules\catalog\widgets\filter\{
         <div class="container large-container">
             <div class="row">
 
-                <?= Html::tag('h1', $this->context->title); ?>
+                <?= Html::tag('h1', ($this->context->SeoH1 != '')
+                    ? $this->context->SeoH1
+                    : $this->context->title); ?>
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
