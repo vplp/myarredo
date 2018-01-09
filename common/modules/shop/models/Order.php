@@ -3,6 +3,7 @@
 namespace common\modules\shop\models;
 
 
+use common\modules\location\models\CityLang;
 use Yii;
 use yii\helpers\ArrayHelper;
 //
@@ -115,10 +116,12 @@ class Order extends \thread\modules\shop\models\Order
     public function getCity()
     {
         $user = Yii::$app->getUser()->getIdentity();
-        Yii::$app->language = $user->profile->preferred_language;
+        //Yii::$app->language = $user->profile->preferred_language;
 
         return $this
-            ->hasOne(City::class, ['id' => 'city_id']);
+            ->hasOne(City::class, ['id' => 'city_id'])
+            ->viaTable(CityLang::tableName(), ['lang' => $user->profile->preferred_language]);
+            //->joinWith('lang')->andWhere(['lang' => \Yii::$app->language];
     }
 
     /**
