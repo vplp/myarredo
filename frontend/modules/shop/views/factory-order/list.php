@@ -25,13 +25,13 @@ $this->title = $this->context->title;
                             <span>№</span>
                         </li>
                         <li class="application-date">
-                            <span>Дата заявки</span>
+                            <span><?= Yii::t('app', 'Request Date') ?></span>
                         </li>
                         <li>
-                            <span>Город</span>
+                            <span><?= Yii::t('app', 'City') ?></span>
                         </li>
                         <li>
-                            <span>Статус</span>
+                            <span><?= Yii::t('app', 'Status') ?></span>
                         </li>
                     </ul>
                 </div>

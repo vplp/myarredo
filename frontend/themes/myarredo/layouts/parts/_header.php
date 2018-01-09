@@ -161,7 +161,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                             </li>
                                             <li>
                                                 <?= Html::a(
-                                                        'Баннера',
+                                                        Yii::t('app', 'Banners'),
                                                         ['/banner/factory-banner/list']
                                                 ); ?>
                                             </li>

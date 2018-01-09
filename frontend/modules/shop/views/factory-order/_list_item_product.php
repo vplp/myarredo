@@ -20,7 +20,7 @@ use frontend\modules\catalog\models\Product;
     </div>
     <table class="char" width="100%">
         <tr>
-            <td>Предмет</td>
+            <td><?= Yii::t('app', 'Subject') ?></td>
             <td>
                 <?= Html::a(
                     $orderItem->product['lang']['title'],
@@ -29,13 +29,13 @@ use frontend\modules\catalog\models\Product;
             </td>
         </tr>
         <tr>
-            <td>Артикул</td>
+            <td><?= Yii::t('app', 'Article') ?></td>
             <td>
                 <?= $orderItem->product['article'] ?>
             </td>
         </tr>
         <tr>
-            <td>Фабрика</td>
+            <td><?= Yii::t('app', 'Factory') ?></td>
             <td><?= $orderItem->product['factory']['lang']['title'] ?></td>
         </tr>
     </table>
