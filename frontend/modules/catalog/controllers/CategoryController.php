@@ -9,7 +9,6 @@ use yii\filters\VerbFilter;
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
     Product,
-    ProductTest,
     Category,
     Factory,
     Types,

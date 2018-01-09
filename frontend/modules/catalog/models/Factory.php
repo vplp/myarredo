@@ -72,7 +72,11 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->byAlias($alias)->one();
+        $result = self::getDb()->cache(function ($db) use ($alias) {
+            return self::findBase()->byAlias($alias)->one();
+        });
+
+        return $result;
     }
 
     /**
@@ -183,17 +187,21 @@ class Factory extends \common\modules\catalog\models\Factory
             ]);
         }
 
-        return $query
-            ->select([
-                self::tableName() . '.id',
-                self::tableName() . '.alias',
-                self::tableName() . '.first_letter',
-                FactoryLang::tableName() . '.title',
-                'count(' . self::tableName() . '.id) as count'
-            ])
-            ->groupBy(self::tableName() . '.id')
-            ->asArray()
-            ->all();
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.alias',
+                    self::tableName() . '.first_letter',
+                    FactoryLang::tableName() . '.title',
+                    'count(' . self::tableName() . '.id) as count'
+                ])
+                ->groupBy(self::tableName() . '.id')
+                ->asArray()
+                ->all();
+        });
+
+        return $result;
     }
 
 
@@ -242,6 +250,7 @@ class Factory extends \common\modules\catalog\models\Factory
             ->groupBy(self::tableName() . '.id')
             ->asArray()
             ->all();
+
     }
 
 

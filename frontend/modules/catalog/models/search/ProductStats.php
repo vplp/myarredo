@@ -87,6 +87,10 @@ class ProductStats extends ProductStatsModel
             $query->andWhere(['<=', self::tableName() . '.created_at', strtotime($params['end_date'] . ' 23:59')]);
         }
 
+        self::getDb()->cache(function ($db) use ($dataProvider) {
+            $dataProvider->prepare();
+        });
+
         return $dataProvider;
     }
 

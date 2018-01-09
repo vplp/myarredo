@@ -50,7 +50,6 @@ class Sale extends SaleModel
 
         $keys = Yii::$app->catalogFilter->keys;
 
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
@@ -92,9 +91,11 @@ class Sale extends SaleModel
                 ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
         }
 
-        //$query->andFilterWhere(['like', 'alias', $this->alias]);
-
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);
+
+        self::getDb()->cache(function ($db) use ($dataProvider) {
+            $dataProvider->prepare();
+        });
 
         return $dataProvider;
     }
