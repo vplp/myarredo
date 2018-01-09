@@ -70,7 +70,11 @@ class Types extends \common\modules\catalog\models\Types
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->byAlias($alias)->one();
+        $result = self::getDb()->cache(function ($db) use ($alias) {
+            return self::findBase()->byAlias($alias)->one();
+        });
+
+        return $result;
     }
 
     /**
@@ -136,15 +140,19 @@ class Types extends \common\modules\catalog\models\Types
             ]);
         }
 
-        return $query
-            ->select([
-                self::tableName() . '.id',
-                self::tableName() . '.alias',
-                TypesLang::tableName() . '.title',
-                'count(' . self::tableName() . '.id) as count'
-            ])
-            ->groupBy(self::tableName() . '.id')
-            ->all();
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.alias',
+                    TypesLang::tableName() . '.title',
+                    'count(' . self::tableName() . '.id) as count'
+                ])
+                ->groupBy(self::tableName() . '.id')
+                ->all();
+        });
+
+        return $result;
     }
 
     /**

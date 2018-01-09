@@ -80,7 +80,11 @@ class Category extends \common\modules\catalog\models\Category
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->byAlias($alias)->one();
+        $result = self::getDb()->cache(function ($db) use ($alias) {
+            return self::findBase()->byAlias($alias)->one();
+        });
+
+        return $result;
     }
 
     /**
@@ -89,7 +93,11 @@ class Category extends \common\modules\catalog\models\Category
      */
     public static function findById($id)
     {
-        return self::findBase()->byId($id)->one();
+        $result = self::getDb()->cache(function ($db) use ($id) {
+            return self::findBase()->byId($id)->one();
+        });
+
+        return $result;
     }
 
     /**
@@ -116,7 +124,7 @@ class Category extends \common\modules\catalog\models\Category
      * @param string $image_link
      * @return null|string
      */
-    public static function getImage(string $image_link  = '')
+    public static function getImage(string $image_link = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -167,23 +175,27 @@ class Category extends \common\modules\catalog\models\Category
             ]);
         }
 
-        return $query
-            ->innerJoinWith(["product"], false)
-            ->innerJoinWith(["product.lang"], false)
-            ->andFilterWhere([
-                Product::tableName() . '.published' => '1',
-                Product::tableName() . '.deleted' => '0',
-                Product::tableName() . '.removed' => '0',
-            ])
-            ->select([
-                self::tableName() . '.id',
-                self::tableName() . '.alias',
-                self::tableName() . '.position',
-                CategoryLang::tableName() . '.title',
-                'count(' . self::tableName() . '.id) as count'
-            ])
-            ->groupBy(self::tableName() . '.id')
-            ->all();
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query
+                ->innerJoinWith(["product"], false)
+                ->innerJoinWith(["product.lang"], false)
+                ->andFilterWhere([
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                    Product::tableName() . '.removed' => '0',
+                ])
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.alias',
+                    self::tableName() . '.position',
+                    CategoryLang::tableName() . '.title',
+                    'count(' . self::tableName() . '.id) as count'
+                ])
+                ->groupBy(self::tableName() . '.id')
+                ->all();
+        });
+
+        return $result;
     }
 
     /**

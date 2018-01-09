@@ -64,6 +64,10 @@ class Specification extends SpecificationModel
         //
         $query->andFilterWhere(['like', SpecificationLang::tableName() . '.title', $this->title]);
 
+        self::getDb()->cache(function ($db) use ($dataProvider) {
+            $dataProvider->prepare();
+        });
+
         return $dataProvider;
     }
 

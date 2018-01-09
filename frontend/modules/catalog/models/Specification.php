@@ -171,15 +171,20 @@ class Specification extends \common\modules\catalog\models\Specification
                 Product::tableName() . '.in_stock' => '1'
             ]);
         }
-        return $query
-            ->select([
-                self::tableName() . '.id',
-                self::tableName() . '.alias',
-                SpecificationLang::tableName() . '.title',
-                'count(' . self::tableName() . '.id) as count'
-            ])
-            ->groupBy(self::tableName() . '.id')
-            ->all();
+
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.alias',
+                    SpecificationLang::tableName() . '.title',
+                    'count(' . self::tableName() . '.id) as count'
+                ])
+                ->groupBy(self::tableName() . '.id')
+                ->all();
+        });
+
+        return $result;
     }
 
     /**

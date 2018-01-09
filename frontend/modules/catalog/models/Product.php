@@ -263,32 +263,36 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
-     * Product By Collection
-     *
-     * @param $collections_id
-     * @param $catalog_type_id
+     * @param int $collections_id
      * @return mixed
+     * @throws \Exception
+     * @throws \Throwable
      */
-    public static function getProductByCollection(int $collections_id, int $catalog_type_id)
+    public static function getProductByCollection(int $collections_id)
     {
-        return parent::findBase()
-            ->enabled()
-            ->andWhere([
-                'collections_id' => $collections_id,
-            ])
-            ->limit(12)
-            ->all();
+        $result = self::getDb()->cache(function ($db) use ($collections_id) {
+            return parent::findBase()
+                ->enabled()
+                ->andWhere([
+                    'collections_id' => $collections_id,
+                ])
+                ->limit(12)
+                ->all();
+        });
+
+        return $result;
     }
 
     /**
-     * Product By Factory
-     *
      * @param $factory_id
      * @param $catalog_type_id
      * @return mixed
+     * @throws \Exception
+     * @throws \Throwable
      */
     public static function getProductByFactory($factory_id, $catalog_type_id)
     {
+        $result = self::getDb()->cache(function ($db) use ($factory_id, $catalog_type_id) {
         return parent::findBase()
             ->enabled()
             ->andWhere([
@@ -297,6 +301,9 @@ class Product extends \common\modules\catalog\models\Product
             ])
             ->limit(12)
             ->all();
+        });
+
+        return $result;
     }
 
     /**
