@@ -10,13 +10,10 @@ use thread\app\model\interfaces\BaseFrontModel;
  * Class Page
  *
  * @package frontend\modules\page\models
- * @author Andrii Bondarchuk
- * @copyright (c) 2016
  */
 class Page extends \common\modules\page\models\Page implements BaseFrontModel
 {
     /**
-     *
      * @return array
      */
     public function behaviors()
@@ -25,7 +22,6 @@ class Page extends \common\modules\page\models\Page implements BaseFrontModel
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()
@@ -34,7 +30,6 @@ class Page extends \common\modules\page\models\Page implements BaseFrontModel
     }
 
     /**
-     *
      * @return array
      */
     public function attributeLabels()
@@ -43,7 +38,6 @@ class Page extends \common\modules\page\models\Page implements BaseFrontModel
     }
 
     /**
-     *
      * @return array
      */
     public function rules()
@@ -77,9 +71,8 @@ class Page extends \common\modules\page\models\Page implements BaseFrontModel
     }
 
     /**
-     *
-     * @param string $alias
-     * @return ActiveRecord|null
+     * @param $alias
+     * @return mixed
      */
     public static function findByAlias($alias)
     {
@@ -87,9 +80,8 @@ class Page extends \common\modules\page\models\Page implements BaseFrontModel
     }
 
     /**
-     * Url route to view particular page
      * @param null $schema
-     * @return string
+     * @return mixed|string
      */
     public function getUrl($schema = null)
     {

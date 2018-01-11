@@ -2,6 +2,12 @@
 
 use yii\helpers\Html;
 
+/**
+ * @var $model \frontend\modules\page\models\Page
+ */
+
+$this->title = $this->context->title;
+
 ?>
 
 <main>
