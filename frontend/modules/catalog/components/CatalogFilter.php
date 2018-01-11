@@ -104,30 +104,27 @@ class CatalogFilter extends Component
             }
         }
 
-//* !!! */ echo  '<pre style="color:red;">'; print_r($paramsUrl); echo '</pre>'; /* !!! */
-
-        $url = '';
+        $res = [];
 
         foreach ($paramsUrl as $k => $v) {
-
-            $res[$k] = '';
-
             if (is_array($v)) {
                 if (isset($v['from']) && $v['from'] != '' || isset($v['to']) && $v['to'] != '')
                     $res[$k] = implode(self::AMPERSAND_2, $v);
-                else if (!isset($v['from']) && !isset($v['to']))
+                else if (!empty($v) && !isset($v['from']) && !isset($v['to']))
                     $res[$k] = implode(self::AMPERSAND_2, $v);
-                else
+                else if (!empty($v))
                     $res[$k] = implode(self::AMPERSAND_2, $v);
+                else {
+                    unset($res[$k]);
+                }
             } else if ($v != '') {
                 $res[$k] = $v;
-            }
-
-            if ($res[$k] != '') {
-                $url .= (($url) ? self::AMPERSAND_1 : '') .
-                    (($res[$k]) ? $res[$k] : ((!empty($labelEmptyKey[$k])) ? $labelEmptyKey[$k] : ''));
+            } else {
+                $res[$k] = $labelEmptyKey[$k];
             }
         }
+
+        $url = implode(self::AMPERSAND_1, $res);
 
         if ($url !== '') {
             return Url::toRoute(ArrayHelper::merge($route, ['filter' => $url]));
