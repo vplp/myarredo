@@ -104,6 +104,8 @@ class CatalogFilter extends Component
             }
         }
 
+//* !!! */ echo  '<pre style="color:red;">'; print_r($paramsUrl); echo '</pre>'; /* !!! */
+
         $url = '';
 
         foreach ($paramsUrl as $k => $v) {
@@ -117,13 +119,14 @@ class CatalogFilter extends Component
                     $res[$k] = implode(self::AMPERSAND_2, $v);
                 else
                     $res[$k] = implode(self::AMPERSAND_2, $v);
-            } else {
+            } else if ($v != '') {
                 $res[$k] = $v;
             }
 
-            $url .=
-                (($url) ? self::AMPERSAND_1 : '') .
-                (($res[$k]) ? $res[$k] : ((!empty($labelEmptyKey[$k])) ? $labelEmptyKey[$k] : ''));
+            if ($res[$k] != '') {
+                $url .= (($url) ? self::AMPERSAND_1 : '') .
+                    (($res[$k]) ? $res[$k] : ((!empty($labelEmptyKey[$k])) ? $labelEmptyKey[$k] : ''));
+            }
         }
 
         if ($url !== '') {
