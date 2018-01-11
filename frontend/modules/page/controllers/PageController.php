@@ -5,8 +5,6 @@ namespace frontend\modules\page\controllers;
 use Yii;
 use yii\filters\VerbFilter;
 //
-use thread\actions\RecordView;
-//
 use frontend\components\BaseController;
 use frontend\modules\page\models\Page;
 
@@ -14,13 +12,11 @@ use frontend\modules\page\models\Page;
  * Class PageController
  *
  * @package frontend\modules\page\controllers
- * @author Andrii Bondarchuk
- * @copyright (c) 2016
  */
 class PageController extends BaseController
 {
-    public $title = "Page";
-    public $layout = "/page";
+    public $title = "";
+
     public $defaultAction = 'index';
 
     /**
@@ -41,27 +37,32 @@ class PageController extends BaseController
     }
 
     /**
-     * @return array
+     * @param string $alias
+     * @return string
      */
-    public function actions()
+    public function actionView($alias)
     {
-        return [
-            'view' => [
-                'class' => RecordView::class,
-                'modelClass' => Page::class,
-                'methodName' => 'findByAlias'
-            ]
-        ];
+        $model = Page::findByAlias($alias);
+
+        if ($model === null) {
+            throw new NotFoundHttpException;
+        }
+
+        $this->title = $model['lang']['title'];
+
+        Yii::$app->metatag->registerModel($model);
+
+        return $this->render('view', [
+            'model' => $model,
+        ]);
     }
 
     /**
-     *
-     * @return string
+     * @return mixed
      */
     public function actionIndex()
     {
         $this->layout = "/start";
         return $this->run('view', ['alias' => 'start']);
     }
-
 }

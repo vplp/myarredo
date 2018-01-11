@@ -12,6 +12,10 @@ use frontend\modules\catalog\widgets\filter\{
  * @var $model \frontend\modules\catalog\models\Sale
  */
 
+$this->title = ($this->context->SeoH1 != '')
+    ? $this->context->SeoH1
+    : $this->context->title;
+
 ?>
 
 <main>
