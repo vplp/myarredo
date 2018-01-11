@@ -97,6 +97,7 @@ class MetaTag extends Component
 
     /**
      * @return $this
+     * @throws \yii\base\InvalidConfigException
      */
     protected function getLocalUrl()
     {
