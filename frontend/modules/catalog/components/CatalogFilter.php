@@ -104,27 +104,27 @@ class CatalogFilter extends Component
             }
         }
 
-        $res = [];
+        $url = '';
 
         foreach ($paramsUrl as $k => $v) {
+
+            $res[$k] = '';
+
             if (is_array($v)) {
                 if (isset($v['from']) && $v['from'] != '' || isset($v['to']) && $v['to'] != '')
                     $res[$k] = implode(self::AMPERSAND_2, $v);
-                else if (!empty($v) && !isset($v['from']) && !isset($v['to']))
+                else if (!isset($v['from']) && !isset($v['to']))
                     $res[$k] = implode(self::AMPERSAND_2, $v);
-                else if (!empty($v))
+                else
                     $res[$k] = implode(self::AMPERSAND_2, $v);
-                else {
-                    unset($res[$k]);
-                }
-            } else if ($v != '') {
-                $res[$k] = $v;
             } else {
-                $res[$k] = $labelEmptyKey[$k];
+                $res[$k] = $v;
             }
-        }
 
-        $url = implode(self::AMPERSAND_1, $res);
+            $url .=
+                (($url) ? self::AMPERSAND_1 : '') .
+                (($res[$k]) ? $res[$k] : ((!empty($labelEmptyKey[$k])) ? $labelEmptyKey[$k] : ''));
+        }
 
         if ($url !== '') {
             return Url::toRoute(ArrayHelper::merge($route, ['filter' => $url]));
