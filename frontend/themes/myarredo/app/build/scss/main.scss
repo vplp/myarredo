@@ -3491,6 +3491,10 @@ footer {
       a {
         color: #000;
         text-transform: uppercase;
+        margin-right: 15px;
+        &:last-child {
+          margin-right: 0;
+        }
         &:hover {
           text-decoration: none;
         }
