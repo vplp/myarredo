@@ -84,6 +84,54 @@ class ProductController extends BaseController
 
         $this->title = $model['lang']['title'] . '. Купить в ' . Yii::$app->city->getCityTitleWhere();
 
+        $description = $model['lang']['title'] . '. ';
+
+        if ($model['collections_id']) {
+            $description .= 'Коллекция: ' . $model['collection']['lang']['title'] . '. ';
+        }
+
+        $array = [];
+        foreach ($model['specificationValue'] as $item) {
+            if ($item['specification']['parent_id'] == 9) {
+                $array[] = $item['specification']['lang']['title'];
+            }
+        }
+
+        if (!empty($array)) {
+            $description .= 'Стиль: ' . implode(', ', $array) . '. ';
+        }
+
+        $array = [];
+        foreach ($model['specificationValue'] as $item) {
+            if ($item['specification']['parent_id'] == 2) {
+                $array[] = $item['specification']['lang']['title'];
+            }
+        }
+
+        if (!empty($array)) {
+            $description .= 'Материал: ' . implode(', ', $array) . '. ';
+        }
+
+        $array = [];
+        foreach ($model['specificationValue'] as $item) {
+            if ($item['specification']['parent_id'] == 4) {
+                $array[] = $item['specification']['lang']['title'] .
+                    ': ' .
+                    $item['val'] . ' см';
+            }
+        }
+
+        if (!empty($array)) {
+            $description .= implode(', ', $array) . '. ';
+        }
+
+        $description .= 'Купить в интернет-магазине Myarredo в ' . Yii::$app->city->getCityTitleWhere();
+
+        Yii::$app->view->registerMetaTag([
+            'name' => 'description',
+            'content' => $description,
+        ]);
+
         return $this->render('view', [
             'model' => $model,
         ]);

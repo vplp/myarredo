@@ -6,13 +6,10 @@ namespace frontend\modules\page\models;
  * Class PageLang
  *
  * @package frontend\modules\page\models
- * @author Andrii Bondarchuk
- * @copyright (c) 2016
  */
 class PageLang extends \common\modules\page\models\PageLang {
 
     /**
-     * 
      * @return array
      */
     public function behaviors() {
@@ -20,7 +17,6 @@ class PageLang extends \common\modules\page\models\PageLang {
     }
 
     /**
-     * 
      * @return array
      */
     public function scenarios() {
@@ -28,7 +24,6 @@ class PageLang extends \common\modules\page\models\PageLang {
     }
 
     /**
-     * 
      * @return array
      */
     public function attributeLabels() {
@@ -36,7 +31,6 @@ class PageLang extends \common\modules\page\models\PageLang {
     }
 
     /**
-     * 
      * @return array
      */
     public function rules() {
