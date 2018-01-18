@@ -61,7 +61,9 @@ $this->beginPage()
     <div class="top-footer">
         <div class="container large-container">
 
-            <?= PartnerInfo::widget(['view' => 'template_factory_partner_info']) ?>
+            <?php if (!in_array(Yii::$app->controller->action->id, ['sale', 'sale-product'])): ?>
+                <?= PartnerInfo::widget(['view' => 'template_factory_partner_info']) ?>
+            <?php endif; ?>
 
             <div class="flex copy-r">
                 <div>
