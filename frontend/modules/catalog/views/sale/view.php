@@ -127,6 +127,7 @@ $this->title = $this->context->title;
                                 </a>
                                 <div class="location">
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <?= $model['user']['profile']['city']['lang']['title']; ?>,
                                     <?= $model['user']['profile']['address']; ?>
                                 </div>
                                 <a href="mailto:<?= $model['user']['email']; ?>">
