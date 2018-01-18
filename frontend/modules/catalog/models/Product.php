@@ -57,6 +57,9 @@ class Product extends \common\modules\catalog\models\Product
             ->innerJoinWith(['lang'])
             ->orderBy(self::tableName() . '.updated_at DESC')
             ->enabled()
+            ->andFilterWhere([
+                Product::tableName() . '.removed' => '0',
+            ])
             ->asArray();
     }
 

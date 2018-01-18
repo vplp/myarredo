@@ -73,7 +73,6 @@ $this->title = $this->context->title;
                             <?php endif; ?>
 
                             <tr class="availability">
-                                <td>Наличие</td>
                                 <td>
                                     <?= ($model['status']) ?>
 
@@ -82,6 +81,9 @@ $this->title = $this->context->title;
                                     <?php elseif (!$model['removed']): ?>
                                         <meta itemprop="availability" content="PreOrder">
                                     <?php endif; ?>
+                                </td>
+                                <td>
+
                                 </td>
                             </tr>
 
