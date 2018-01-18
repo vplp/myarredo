@@ -30,6 +30,8 @@ class CityComponent extends Component
     {
         $this->setup();
 
+        $this->setGeoMetaTags();
+
         parent::init();
     }
 
@@ -149,5 +151,28 @@ class CityComponent extends Component
         }
 
         return $this->defaultCityId;
+    }
+
+    /**
+     * Set geo meta tags
+     */
+    public function setGeoMetaTags()
+    {
+        Yii::$app->view->registerMetaTag([
+            'name' => 'geo.region',
+            'content' => $this->city['country']['alias'],
+        ]);
+        Yii::$app->view->registerMetaTag([
+            'name' => 'geo.placename',
+            'content' => $this->city['lang']['title'],
+        ]);
+        Yii::$app->view->registerMetaTag([
+            'name' => 'geo.position',
+            'content' => $this->city['lat'] .';'. $this->city['lng'],
+        ]);
+        Yii::$app->view->registerMetaTag([
+            'name' => 'ICBM',
+            'content' => $this->city['lat'] .', '. $this->city['lng'],
+        ]);
     }
 }
