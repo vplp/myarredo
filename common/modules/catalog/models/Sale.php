@@ -203,7 +203,7 @@ class Sale extends ActiveRecord
             'user_city_id' => 'User city id',
             'catalog_type_id' => 'Предмет',
             'factory_id' => Yii::t('app', 'Factory'),
-            'factory_name' => 'Фабрика (если нету в списке)',
+            'factory_name' => 'Фабрика (если нет в списке)',
             'gallery_id' => 'Gallery',
             'image_link' => Yii::t('app', 'Image link'),
             'gallery_image' => Yii::t('app', 'Gallery image'),
