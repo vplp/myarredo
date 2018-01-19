@@ -104,7 +104,7 @@ $this->title = $this->context->title;
                 <div style="color:red; font-size: 24px;">
                     Вы сможете ответить на Заявки покупателей после размещения
                     небольшого кода на Вашем сайте.
-                    <?= Html::a('Подробнее..', '#', ['style' => 'color:red; font-size: 24px;']); ?>
+                    <?= Html::a('Подробнее..', Url::toRoute(['/page/page/view', 'alias' => 'razmeshchenie-koda']), ['style' => 'color:red; font-size: 24px;']); ?>
                 </div>
             <?php endif; ?>
 
