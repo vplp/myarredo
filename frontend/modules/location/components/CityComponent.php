@@ -160,7 +160,7 @@ class CityComponent extends Component
     {
         Yii::$app->view->registerMetaTag([
             'name' => 'geo.region',
-            'content' => $this->city['geo_placename'],
+            'content' => $this->city['geo_region'],
         ]);
         Yii::$app->view->registerMetaTag([
             'name' => 'geo.placename',
