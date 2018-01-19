@@ -215,4 +215,33 @@ class Profile extends \thread\modules\user\models\Profile
             return false;
         }
     }
+
+    /**
+     * Get Myarredo Link On Partner Site
+     *
+     * @return bool
+     */
+    public function getPossibilityToAnswer()
+    {
+        if (Yii::$app->getUser()->getIdentity()->profile->possibility_to_answer) {
+            return true;
+        } else if (Yii::$app->getUser()->getIdentity()->profile->website) {
+
+            $html = @file_get_contents(Yii::$app->getUser()->getIdentity()->profile->website);
+
+            $matches = array();
+
+            preg_match_all('/<a href="(.*?)"/s', $html, $matches);
+
+            if (in_array('http://www.myarredo.ru/', $matches[1])) {
+                return true;
+            } elseif (in_array('http://www.myarredo.ua/', $matches[1])) {
+                return true;
+            } elseif (in_array('http://www.myarredo.by/', $matches[1])) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

@@ -8,12 +8,13 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $modelOrder \frontend\modules\shop\models\Order */
 
-?>
 
-<?php $form = ActiveForm::begin([
-    'method' => 'post',
-    'action' => $modelOrder->getPartnerOrderOnListUrl(),
-]); ?>
+if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
+
+    <?php $form = ActiveForm::begin([
+        'method' => 'post',
+        'action' => $modelOrder->getPartnerOrderOnListUrl(),
+    ]); ?>
 
     <div class="hidden-order-in">
         <div class="flex-product">
@@ -51,18 +52,38 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
 
-<?= Html::submitButton('Сохранить', [
-    'class' => 'btn btn-success',
-    'name' => 'action-save-answer',
-    'value' => 1
-]) ?>
-
-<?php if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time == 0) {
-    echo Html::submitButton('Отправить ответ клиенту', [
+    <?= Html::submitButton('Сохранить', [
         'class' => 'btn btn-success',
-        'name' => 'action-send-answer',
+        'name' => 'action-save-answer',
         'value' => 1
-    ]);
-} ?>
+    ]) ?>
 
-<?php ActiveForm::end(); ?>
+    <?php if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time == 0) {
+        echo Html::submitButton('Отправить ответ клиенту', [
+            'class' => 'btn btn-success',
+            'name' => 'action-send-answer',
+            'value' => 1
+        ]);
+    } ?>
+
+    <?php ActiveForm::end(); ?>
+
+<?php } else { ?>
+    <div class="hidden-order-in">
+        <div class="flex-product">
+
+            <?php
+            foreach ($modelOrder->items as $orderItem) {
+                echo $this->render('_list_item_product_archive', [
+                    'orderItem' => $orderItem,
+                ]);
+            } ?>
+
+        </div>
+        <div class="form-wrap">
+
+        </div>
+    </div>
+
+<?php } ?>
+

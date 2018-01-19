@@ -9,7 +9,6 @@ use yii\helpers\{
  */
 
 $this->title = $this->context->title;
-
 ?>
 
 <main>
@@ -100,6 +99,14 @@ $this->title = $this->context->title;
                 </div>
             </form>
             -->
+
+            <?php if (!Yii::$app->user->identity->profile->possibilityToAnswer): ?>
+                <div style="color:red; font-size: 24px;">
+                    Вы сможете ответить на Заявки покупателей после размещения
+                    небольшого кода на Вашем сайте.
+                    <?= Html::a('Подробнее..', '#', ['style' => 'color:red; font-size: 24px;']); ?>
+                </div>
+            <?php endif; ?>
 
             <div class="manager-history">
                 <div class="manager-history-header">
