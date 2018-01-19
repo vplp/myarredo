@@ -20,6 +20,32 @@ class CronController extends Controller
     /**
      * Set Product Position
      */
+    public function actionUpdateCity()
+    {
+        $rows = (new \yii\db\Query())
+            ->from('c1myarredo.city')
+            ->all();
+
+        foreach ($rows as $row) {
+            $connection = Yii::$app->db;
+            $connection->createCommand()
+                ->update(
+                    'c1myarredo.fv_location_city',
+                    [
+                        'geo_placename' => $row['geo_placename'],
+                        'geo_position'  => $row['geo_position'],
+                        'geo_region'  => $row['geo_region'],
+                        'icbm' => $row['icbm'],
+                    ],
+                    'id = ' . $row['id']
+                )
+                ->execute();
+        }
+    }
+
+    /**
+     * Set Product Position
+     */
     public function actionUpdateUserProfile()
     {
         // update pdf_access

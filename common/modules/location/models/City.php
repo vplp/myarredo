@@ -13,6 +13,10 @@ use yii\helpers\ArrayHelper;
  * @property integer $country_id
  * @property float $lat
  * @property float $lng
+ * @property string $geo_placename
+ * @property string $geo_position
+ * @property string $geo_region
+ * @property string $icbm
  * @property integer $created_at
  * @property integer $updated_at
  * @property boolean $published
@@ -30,6 +34,7 @@ class City extends \thread\modules\location\models\City
     {
         $rules = [
             [['lat', 'lng'], 'double'],
+            [['geo_placename', 'geo_position', 'geo_region', 'icbm'], 'string', 'max' => 128]
         ];
 
         return ArrayHelper::merge($rules, parent::rules());
@@ -42,7 +47,7 @@ class City extends \thread\modules\location\models\City
     {
         $scenarios = [
             'backend' => [
-                'lat', 'lng'
+                'lat', 'lng', 'geo_placename', 'geo_position', 'geo_region', 'icbm'
             ]
         ];
 
@@ -57,6 +62,10 @@ class City extends \thread\modules\location\models\City
         $attributeLabels = [
             'lat' => Yii::t('app', 'Latitude'),
             'lng' => Yii::t('app', 'Longitude'),
+            'geo_placename' => 'geo.placename',
+            'geo_position'  => 'geo.position',
+            'geo_region'  => 'geo.region',
+            'icbm'  => 'ICBM',
         ];
 
         return ArrayHelper::merge($attributeLabels, parent::attributeLabels());

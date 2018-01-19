@@ -26,7 +26,7 @@ use backend\themes\defaults\widgets\Tabs;
             ])
         ],
         [
-            'label' => 'Гео-(Мета)Тэги',
+            'label' => 'Гео-(Мета) Тэги',
             'content' => $this->render('parts/_geo', [
                 'form' => $form,
                 'model' => $model,

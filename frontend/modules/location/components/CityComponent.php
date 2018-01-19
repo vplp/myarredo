@@ -160,19 +160,19 @@ class CityComponent extends Component
     {
         Yii::$app->view->registerMetaTag([
             'name' => 'geo.region',
-            'content' => $this->city['country']['alias'],
+            'content' => $this->city['geo_placename'],
         ]);
         Yii::$app->view->registerMetaTag([
             'name' => 'geo.placename',
-            'content' => $this->city['lang']['title'],
+            'content' => $this->city['geo_placename'],
         ]);
         Yii::$app->view->registerMetaTag([
             'name' => 'geo.position',
-            'content' => $this->city['lat'] .';'. $this->city['lng'],
+            'content' => $this->city['geo_position'],
         ]);
         Yii::$app->view->registerMetaTag([
             'name' => 'ICBM',
-            'content' => $this->city['lat'] .', '. $this->city['lng'],
+            'content' => $this->city['icbm'],
         ]);
     }
 }

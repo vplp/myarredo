@@ -10,7 +10,6 @@ use yii\helpers\Html;
 
 ?>
 
-
 <div>
     <p>Взять данные можно по ссылке <?= Html::a(
             'http://ru.mygeoposition.com/#geometatags',
@@ -18,6 +17,7 @@ use yii\helpers\Html;
             ['target' => '_blank']
         ); ?></p>
 </div>
+
 <div class="row control-group">
     <div class="col-md-3">
         <?= $form->text_line($model, 'lat') ?>
@@ -26,3 +26,11 @@ use yii\helpers\Html;
         <?= $form->text_line($model, 'lng') ?>
     </div>
 </div>
+
+<?= $form->text_line($model, 'geo_placename') ?>
+
+<?= $form->text_line($model, 'geo_position') ?>
+
+<?= $form->text_line($model, 'geo_region') ?>
+
+<?= $form->text_line($model, 'icbm') ?>
