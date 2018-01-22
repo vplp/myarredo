@@ -17,71 +17,72 @@ use common\modules\catalog\models\{
  */
 class CronController extends Controller
 {
-    /**
-     * Set Product Position
-     */
-    public function actionUpdateUserProfile()
-    {
-        // update pdf_access
 
-        $rows = (new \yii\db\Query())
-            ->from('c1myarredo.user_data')
-            ->where(['pdf_access' => '1'])
-            ->all();
-
-        foreach ($rows as $row) {
-            // UPDATE
-            $connection = Yii::$app->db;
-
-            $connection->createCommand()
-                ->update(
-                    'c1myarredo.fv_user_profile',
-                    ['pdf_access' => '1'],
-                    'user_id = ' . $row['uid']
-                )
-                ->execute();
-        }
-
-        // update possibility_to_answer
-
-        $rows = (new \yii\db\Query())
-            ->from('c1myarredo.user_data')
-            ->where(['possibility_to_answer' => '1'])
-            ->all();
-
-        foreach ($rows as $row) {
-            // UPDATE
-            $connection = Yii::$app->db;
-
-            $connection->createCommand()
-                ->update(
-                    'c1myarredo.fv_user_profile',
-                    ['possibility_to_answer' => '1'],
-                    'user_id = ' . $row['uid']
-                )
-                ->execute();
-        }
-
-        // update city_partner
-
-        $rows = (new \yii\db\Query())
-            ->from('c1myarredo.user_data')
-            ->where(['city_partner' => '1'])
-            ->all();
-
-        foreach ($rows as $row) {
-            // UPDATE
-            $connection = Yii::$app->db;
-
-            $connection->createCommand()
-                ->update(
-                    'c1myarredo.fv_user_profile',
-                    ['partner_in_city' => '1'],
-                    'user_id = ' . $row['uid']
-                )
-                ->execute();
-        }
-    }
+//    /**
+//     * Set Product Position
+//     */
+//    public function actionUpdateUserProfile()
+//    {
+//        // update pdf_access
+//
+//        $rows = (new \yii\db\Query())
+//            ->from('c1myarredo.user_data')
+//            ->where(['pdf_access' => '1'])
+//            ->all();
+//
+//        foreach ($rows as $row) {
+//            // UPDATE
+//            $connection = Yii::$app->db;
+//
+//            $connection->createCommand()
+//                ->update(
+//                    'c1myarredo.fv_user_profile',
+//                    ['pdf_access' => '1'],
+//                    'user_id = ' . $row['uid']
+//                )
+//                ->execute();
+//        }
+//
+//        // update possibility_to_answer
+//
+//        $rows = (new \yii\db\Query())
+//            ->from('c1myarredo.user_data')
+//            ->where(['possibility_to_answer' => '1'])
+//            ->all();
+//
+//        foreach ($rows as $row) {
+//            // UPDATE
+//            $connection = Yii::$app->db;
+//
+//            $connection->createCommand()
+//                ->update(
+//                    'c1myarredo.fv_user_profile',
+//                    ['possibility_to_answer' => '1'],
+//                    'user_id = ' . $row['uid']
+//                )
+//                ->execute();
+//        }
+//
+//        // update city_partner
+//
+//        $rows = (new \yii\db\Query())
+//            ->from('c1myarredo.user_data')
+//            ->where(['city_partner' => '1'])
+//            ->all();
+//
+//        foreach ($rows as $row) {
+//            // UPDATE
+//            $connection = Yii::$app->db;
+//
+//            $connection->createCommand()
+//                ->update(
+//                    'c1myarredo.fv_user_profile',
+//                    ['partner_in_city' => '1'],
+//                    'user_id = ' . $row['uid']
+//                )
+//                ->execute();
+//        }
+//    }
 
 //    /**
 //     * Generate product title
@@ -294,4 +295,5 @@ class CronController extends Controller
 //                ->execute();
 //        }
 //    }
+
 }

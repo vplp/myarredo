@@ -52,8 +52,8 @@ class PartnerSaleController extends BaseController
                     'update' => ['get', 'post'],
                     'fileupload' => ['post'],
                     'filedelete' => ['post'],
-                    'code' => ['get'],
-                    'instructions' => ['get'],
+                    //'code' => ['get'],
+                    //'instructions' => ['get'],
                 ],
             ],
             'AccessControl' => [
@@ -65,8 +65,8 @@ class PartnerSaleController extends BaseController
                             'create',
                             'update',
                             'list',
-                            'code',
-                            'instructions',
+                            //'code',
+                            //'instructions',
                             'mailing-by-cities',
                             'fileupload',
                             'filedelete'
@@ -142,11 +142,11 @@ class PartnerSaleController extends BaseController
     /**
      * @return string
      */
-    public function actionCode()
-    {
-        $this->title = 'Размещение кода';
-        return $this->render('code', []);
-    }
+//    public function actionCode()
+//    {
+//        $this->title = 'Размещение кода';
+//        return $this->render('code', []);
+//    }
 
     /**
      * @return string
@@ -160,9 +160,9 @@ class PartnerSaleController extends BaseController
     /**
      * @return string
      */
-    public function actionInstructions()
-    {
-        $this->title = 'Инструкция партнерам';
-        return $this->render('instructions', ['domain' => 'ru']);
-    }
+//    public function actionInstructions()
+//    {
+//        $this->title = 'Инструкция партнерам';
+//        return $this->render('instructions', ['domain' => 'ru']);
+//    }
 }

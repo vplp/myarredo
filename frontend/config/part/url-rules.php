@@ -1,6 +1,11 @@
 <?php
+
 return [
-    ['pattern' => 'robots', 'route' => 'seo/robots/index', 'suffix' => '.txt'],
+    [
+        'pattern' => 'robots',
+        'route' => 'seo/robots/index',
+        'suffix' => '.txt'
+    ],
 
     // Module [[Home]]
     '' => 'home/home/index',
@@ -47,8 +52,8 @@ return [
     'catalog/partner-sale/filedelete' => 'catalog/partner-sale/filedelete',
     'partner/mailing-by-cities' => 'catalog/partner-sale/mailing-by-cities',
 
-    'razmeshchenie_koda' => 'catalog/partner-sale/code',
-    'instruktsiya_partneram' => 'catalog/partner-sale/instructions',
+    //'razmeshchenie_koda' => 'catalog/partner-sale/code',
+    //'instruktsiya_partneram' => 'catalog/partner-sale/instructions',
 
     // Module [[News]]
     'news/<alias:[\w\-]+>' => 'news/list/index',

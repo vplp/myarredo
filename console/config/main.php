@@ -41,7 +41,11 @@ return ArrayHelper::merge(
                 'suffix' => '/',
                 'hostInfo' => '',
                 'baseUrl' => '',
-                'rules' => require(dirname(__DIR__, 2) . '/frontend/config/part/url-rules.php'),
+                //'rules' => require(dirname(__DIR__, 2) . '/frontend/config/part/url-rules.php'),
+                'rules' => [
+                    'catalog/<filter:[\;\-\w\d]+>' => 'catalog/category/list',
+                    'product/<alias:[\w\-]+>' => 'catalog/product/view',
+                ]
             ],
         ],
         'controllerMap' => [
@@ -80,7 +84,7 @@ return ArrayHelper::merge(
                         'class' => \frontend\modules\catalog\models\Category::class,
                         'dataClosure' => function ($model) {
                             return [
-                                'loc' => Category::getUrl($model['alias']),
+                                'loc' => '/catalog/'. $model['alias'] . '/', //Category::getUrl($model['alias']),
                                 'lastmod' => date('c', $model['updated_at']),
                                 'changefreq' => 'daily',
                                 'priority' => 0.8
@@ -91,7 +95,7 @@ return ArrayHelper::merge(
                         'class' => \frontend\modules\catalog\models\Product::class,
                         'dataClosure' => function ($model) {
                             return [
-                                'loc' => Product::getUrl($model['alias']),
+                                'loc' => '/product/'. $model['alias'] . '/', //Product::getUrl($model['alias']),
                                 'lastmod' => date('c', $model['updated_at']),
                                 'changefreq' => 'daily',
                                 'priority' => 0.5
