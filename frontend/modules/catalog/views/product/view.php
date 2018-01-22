@@ -105,16 +105,19 @@ $this->title = $this->context->title;
                                     ?>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Фабрика</td>
-                                <td>
-                                    <meta itemprop="brand" content="<?= $model['factory']['lang']['title'] ?>">
-                                    <?= Html::a(
-                                        $model['factory']['lang']['title'],
-                                        Factory::getUrl($model['factory']['alias'])
-                                    ); ?>
-                                </td>
-                            </tr>
+
+                            <?php if ($model['factory'] != null): ?>
+                                <tr>
+                                    <td>Фабрика</td>
+                                    <td>
+                                        <meta itemprop="brand" content="<?= $model['factory']['lang']['title'] ?>">
+                                        <?= Html::a(
+                                            $model['factory']['lang']['title'],
+                                            Factory::getUrl($model['factory']['alias'])
+                                        ); ?>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
 
                             <?php if ($model['collections_id']): ?>
                                 <tr>
