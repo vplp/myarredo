@@ -5,11 +5,9 @@ namespace thread\app\base\models\query;
 use thread\app\base\models\ActiveRecord;
 
 /**
- * class CommonQuery
+ * Class ActiveQuery
  *
- * @package thread\app\base\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
+ * @package thread\app\base\models\query
  */
 class ActiveQuery extends \yii\db\ActiveQuery
 {
@@ -20,7 +18,9 @@ class ActiveQuery extends \yii\db\ActiveQuery
     public function user_id(int $user_id)
     {
         $modelClass = $this->modelClass;
+
         $this->andWhere($modelClass::tableName() . '.user_id = :user_id', [':user_id' => $user_id]);
+
         return $this;
     }
 
@@ -31,7 +31,13 @@ class ActiveQuery extends \yii\db\ActiveQuery
     public function byAlias($alias)
     {
         $modelClass = $this->modelClass;
-        $this->andWhere($modelClass::tableName() . '.alias = :alias', [':alias' => $alias]);
+
+        if (is_array($alias)) {
+            $this->andWhere(['IN', $modelClass::tableName() . '.alias', $alias]);
+        } else {
+            $this->andWhere($modelClass::tableName() . '.alias = :alias', [':alias' => $alias]);
+        }
+
         return $this;
     }
 
@@ -50,7 +56,9 @@ class ActiveQuery extends \yii\db\ActiveQuery
     {
         /** @var ActiveRecord $modelClass */
         $modelClass = $this->modelClass;
+
         $this->andWhere($modelClass::tableName() . '.published = :published', [':published' => ActiveRecord::STATUS_KEY_ON]);
+
         return $this;
     }
 
@@ -61,7 +69,9 @@ class ActiveQuery extends \yii\db\ActiveQuery
     {
         /** @var ActiveRecord $modelClass */
         $modelClass = $this->modelClass;
+
         $this->andWhere($modelClass::tableName() . '.published = :published', [':published' => ActiveRecord::STATUS_KEY_OFF]);
+
         return $this;
     }
 
@@ -72,7 +82,9 @@ class ActiveQuery extends \yii\db\ActiveQuery
     {
         /** @var ActiveRecord $modelClass */
         $modelClass = $this->modelClass;
+
         $this->andWhere($modelClass::tableName() . '.deleted = :deleted', [':deleted' => ActiveRecord::STATUS_KEY_ON]);
+
         return $this;
     }
 
@@ -83,7 +95,9 @@ class ActiveQuery extends \yii\db\ActiveQuery
     {
         /** @var ActiveRecord $modelClass */
         $modelClass = $this->modelClass;
+
         $this->andWhere($modelClass::tableName() . '.deleted = :deleted', [':deleted' => ActiveRecord::STATUS_KEY_OFF]);
+
         return $this;
     }
 
@@ -94,7 +108,9 @@ class ActiveQuery extends \yii\db\ActiveQuery
     {
         /** @var ActiveRecord $modelClass */
         $modelClass = $this->modelClass;
+
         $this->andWhere($modelClass::tableName() . '.readonly = :readonly', [':readonly' => ActiveRecord::STATUS_KEY_OFF]);
+
         return $this;
     }
 
@@ -114,7 +130,9 @@ class ActiveQuery extends \yii\db\ActiveQuery
     {
         /** @var ActiveRecord $modelClass */
         $modelClass = $this->modelClass;
+
         $this->andWhere($modelClass::tableName() . '.group_id = :group_id', [':group_id' => $group_id]);
+
         return $this;
     }
 
@@ -126,12 +144,12 @@ class ActiveQuery extends \yii\db\ActiveQuery
     {
         /** @var ActiveRecord $modelClass */
         $modelClass = $this->modelClass;
+
         if (is_array($id)) {
-            $this->andWhere(['in', $modelClass::tableName() . '.id', $id]);
+            $this->andWhere(['IN', $modelClass::tableName() . '.id', $id]);
         } else {
             $this->andWhere($modelClass::tableName() . '.id = :id', [':id' => $id]);
         }
-
 
         return $this;
     }
@@ -143,7 +161,9 @@ class ActiveQuery extends \yii\db\ActiveQuery
     {
         /** @var ActiveRecord $modelClass */
         $modelClass = $this->modelClass . "Lang";
+
         $this->leftJoin($modelClass::tableName(), 'rid = id')->_lang();
+
         return $this;
     }
 }

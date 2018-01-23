@@ -24,12 +24,7 @@ $this->title = $this->context->title;
         <div class="container large-container">
             <div class="row">
 
-                <?= Html::tag(
-                    'h1',
-                    ($this->context->SeoH1 != '')
-                        ? $this->context->SeoH1
-                        : 'Каталог итальянской мебели в ' . Yii::$app->city->getCityTitleWhere()
-                ); ?>
+                <?= Html::tag('h1', $this->context->SeoH1) ?>
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,

@@ -104,7 +104,15 @@ class Specification extends \common\modules\catalog\models\Specification
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->byAlias($alias)->one();
+        $result = self::getDb()->cache(function ($db) use ($alias) {
+            if (is_array($alias)) {
+                return self::findBase()->byAlias($alias)->all();
+            } else {
+                return self::findBase()->byAlias($alias)->one();
+            }
+        });
+
+        return $result;
     }
 
     /**

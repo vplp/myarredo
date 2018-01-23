@@ -49,30 +49,45 @@ class FactoryController extends BaseController
 
         $params = [];
 
+        $pageTitle[] = 'Итальянские фабрики мебели - производители из Италии';
+        $pageDescription[] = 'Каталог итальянских производителей мебели - ' .
+            'продукция лучших фабрик из Италии: кухни, гостиные, мягкая мебель. Заказать мебель итальянских фабрик';
+
         $models = $model->search(ArrayHelper::merge($params, Yii::$app->request->queryParams));
+
         $view = Yii::$app->request->get('view');
+
+        if (Yii::$app->request->get('letter')) {
+            $pageTitle[] = 'на букву ' . strtoupper(Yii::$app->request->get('letter'));
+            $pageDescription[] = 'название на букву ' . strtoupper(Yii::$app->request->get('letter'));
+        }
+
+        $pageTitle[] = 'в ' . Yii::$app->city->getCityTitleWhere();
+        $pageDescription[] = 'в ' . Yii::$app->city->getCityTitleWhere();
 
         if ($view && $view !== 'three') {
             throw new NotFoundHttpException;
         }
 
-        $this->title = 'Итальянские фабрики мебели';
+        $this->title = implode(' ', $pageTitle);
+
+        Yii::$app->view->registerMetaTag([
+            'name' => 'description',
+            'content' => implode(' ', $pageDescription),
+        ]);
 
         if ($view == 'three') {
-            /**
-             * view three
-             */
+
             foreach ($models->getModels() as $obj) {
                 $_models[$obj['first_letter']][] = $obj;
             }
+
             return $this->render('list_three', [
                 'models' => $_models,
                 'pages' => $models->getPagination(),
             ]);
         } else {
-            /**
-             * view list
-             */
+
             $factory_ids = [];
             foreach ($models->getModels() as $obj) {
                 $factory_ids[] = $obj['id'];
@@ -128,11 +143,16 @@ class FactoryController extends BaseController
             'url' => ['/catalog/factory/view', 'alias' => $model['alias']]
         ];
 
-        $this->title = 'Итальянская мебель ' .
-            $model['lang']['title'] .
-            ' купить в ' .
-            Yii::$app->city->getCityTitleWhere() .
-            ' по лучшей цене';
+        $this->title = $model['lang']['title'] .
+            ' - мебели из Италии в ' .
+            Yii::$app->city->getCityTitleWhere();
+
+        Yii::$app->view->registerMetaTag([
+            'name' => 'description',
+            'content' => 'Каталог итальянской мебели от фабрики' . $model['lang']['title'] .
+                ' в интернет-магазине Myarredo. Заказать мебель из Италии в ' .
+                Yii::$app->city->getCityTitleWhere(),
+        ]);
 
         return $this->render('view', [
             'model' => $model,

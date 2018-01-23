@@ -57,7 +57,9 @@ $this->title = $this->context->title;
 
                         <?= Html::tag(
                             'h1',
-                            (($this->context->SeoH1) ? $this->context->SeoH1 : $model['lang']['title']),
+                            (($this->context->SeoH1)
+                                ? $this->context->SeoH1
+                                : 'МЕБЕЛЬ ' . $model['lang']['title'] . ' в ' . Yii::$app->city->getCityTitleWhere()),
                             ['class' => 'title-text']
                         ); ?>
 

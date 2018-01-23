@@ -25,6 +25,13 @@ class ContactsController extends BaseController
         $this->title = 'Партнеры сети MYARREDO в ' .
             Yii::$app->city->getCityTitleWhere();
 
+        Yii::$app->view->registerMetaTag([
+            'name' => 'description',
+            'content' => 'Сеть салонов мебели «myARREDO» предлагает элитную мебель ' .
+                'только итальянского производства. Контакты в ' .
+                Yii::$app->city->getCityTitleWhere(),
+        ]);
+
         return $this->render('contacts', [
             'partners' => $partners,
         ]);

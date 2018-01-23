@@ -71,7 +71,11 @@ class Types extends \common\modules\catalog\models\Types
     public static function findByAlias($alias)
     {
         $result = self::getDb()->cache(function ($db) use ($alias) {
-            return self::findBase()->byAlias($alias)->one();
+            if (is_array($alias)) {
+                return self::findBase()->byAlias($alias)->all();
+            } else {
+                return self::findBase()->byAlias($alias)->one();
+            }
         });
 
         return $result;

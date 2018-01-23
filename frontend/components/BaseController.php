@@ -32,6 +32,7 @@ abstract class BaseController extends Controller
      * @var array
      */
     public $breadcrumbs = [];
+    public $pageH1 = '';
 
     protected $directlink;
 
@@ -72,13 +73,11 @@ abstract class BaseController extends Controller
      */
     public function getSeoH1()
     {
-        $h1 = false;
-
         if ($this->directlink['h1']) {
-            $h1 = str_replace('#городе#', Yii::$app->city->getCityTitleWhere(), $this->directlink['h1']);
+            $this->pageH1 = str_replace('#городе#', Yii::$app->city->getCityTitleWhere(), $this->directlink['h1']);
         }
 
-        return $h1;
+        return $this->pageH1;
     }
 
     /**

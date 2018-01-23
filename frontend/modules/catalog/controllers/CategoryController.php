@@ -8,11 +8,7 @@ use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Product,
-    Category,
-    Factory,
-    Types,
-    Specification
+    Collection, Product, Category, Factory, Types, Specification
 };
 
 /**
@@ -82,44 +78,134 @@ class CategoryController extends BaseController
         $keys = Yii::$app->catalogFilter->keys;
         $params = Yii::$app->catalogFilter->params;
 
-        $this->title = 'Каталог итальянской мебели, цены на мебель из Италии';
-
         $this->breadcrumbs[] = [
             'label' => 'Каталог итальянской мебели, цены на мебель из Италии',
             'url' => ['/catalog/category/list']
         ];
 
+        $noindex = 0;
+        $pageTitle = $pageH1 = $pageDescription = [];
+
+        /**
+         * query
+         */
+
         if (!empty($params[$keys['category']])) {
             $model = Category::findByAlias($params[$keys['category']][0]);
+
             $this->breadcrumbs[] = [
                 'label' => $model['lang']['title'],
                 'url' => Yii::$app->catalogFilter->createUrl($params)
             ];
         }
+
+        $pageDescription[] = Yii::$app->city->getCityTitle() . ': Заказать';
 
         if (!empty($params[$keys['type']])) {
-            $model = Types::findByAlias($params[$keys['type']][0]);
+            $models = Types::findByAlias($params[$keys['type']]);
+
+            if (count($params[$keys['type']]) > 1) {
+                $noindex = 1;
+            }
+
+            $type = [];
+            foreach ($models as $model) {
+                $type[] = $model['lang']['title'];
+            }
+
+            $pageTitle[] = implode(', ', $type);
+            $pageH1[] = implode(' - ', $type);
+            $pageDescription[] = implode(', ', $type);
+
             $this->breadcrumbs[] = [
-                'label' => $model['lang']['title'],
+                'label' => implode(', ', $type),
                 'url' => Yii::$app->catalogFilter->createUrl($params)
             ];
         }
 
+        $pageDescription[] = 'из Италии.';
+
         if (!empty($params[$keys['style']])) {
-            $model = Specification::findByAlias($params[$keys['style']][0]);
+            $models = Specification::findByAlias($params[$keys['style']]);
+
+            if (count($params[$keys['style']]) > 1) {
+                $noindex = 1;
+            }
+
+            $style = [];
+            foreach ($models as $model) {
+                $style[] = $model['lang']['title'];
+            }
+
+            $pageTitle[] = implode(', ', $style);
+            $pageH1[] = implode(' - ', $style);
+            $pageDescription[] = 'Стиль: ' . implode(' - ', $style) . '.';
+
             $this->breadcrumbs[] = [
-                'label' => $model['lang']['title'],
+                'label' => implode(', ', $style),
                 'url' => Yii::$app->catalogFilter->createUrl($params)
             ];
         }
 
         if (!empty($params[$keys['factory']])) {
             $model = Factory::findByAlias($params[$keys['factory']][0]);
+
+            if (count($params[$keys['factory']]) > 1) {
+                $noindex = 1;
+            }
+
             $this->breadcrumbs[] = [
                 'label' => $model['lang']['title'],
                 'url' => Yii::$app->catalogFilter->createUrl($params)
             ];
         }
+
+        if (!empty($params[$keys['collection']])) {
+            $model = Collection::findById($params[$keys['collection']][0]);
+
+            $pageTitle[] = 'Коллекция мебели ' . $model['lang']['title'];
+            $pageH1[] = 'Коллекция ' . $model['lang']['title'];
+            $pageDescription[] = 'Коллекция ' . $model['lang']['title'];
+
+            $this->breadcrumbs[] = [
+                'label' => 'Коллекция ' . $model['lang']['title'],
+                'url' => Yii::$app->catalogFilter->createUrl($params)
+            ];
+        }
+
+        if (!empty($params[$keys['category']])) {
+            $model = Category::findByAlias($params[$keys['category']][0]);
+
+            $pageTitle[] = $model['lang']['title'];
+            $pageH1[] = $model['lang']['title'];
+        }
+
+        /**
+         * set options
+         */
+
+        $pageTitle[] = 'Купить в ' . Yii::$app->city->getCityTitleWhere();
+        $pageDescription[] = 'Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo';
+
+        $this->title = !empty($pageTitle)
+            ? implode('. ', $pageTitle)
+            : 'Каталог итальянской мебели, цены на мебель из Италии';
+
+        Yii::$app->view->registerMetaTag([
+            'name' => 'description',
+            'content' => implode(' ', $pageDescription),
+        ]);
+
+        if ($noindex) {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'robots',
+                'content' => 'noindex, follow',
+            ]);
+        }
+
+        $this->pageH1 = ($this->pageH1 != '')
+            ? $this->pageH1
+            : implode(', ', $pageH1);
 
         return parent::beforeAction($action);
     }

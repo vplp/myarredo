@@ -61,10 +61,18 @@ class ProductController extends BaseController
 
         $keys = Yii::$app->catalogFilter->keys;
 
+        if (!$model['is_composition']) {
+            $pageTitle[] = $model['lang']['title'];
+            $pageDescription[] = $model['lang']['title'];
+        }
 
         if (isset($model['category'][0])) {
             $params = Yii::$app->catalogFilter->params;
             $params[$keys['category']] = $model['category'][0]['alias'];
+
+            if ($model['is_composition']) {
+                $pageTitle[] = $model['category'][0]['lang']['composition_title'];
+            }
 
             $this->breadcrumbs[] = [
                 'label' => $model['category'][0]['lang']['title'],
@@ -76,18 +84,19 @@ class ProductController extends BaseController
             $params = Yii::$app->catalogFilter->params;
             $params[$keys['type']] = $model['types']['alias'];
 
+            if ($model['is_composition']) {
+                $pageTitle[] = $model['types']['lang']['title'];
+            }
+
             $this->breadcrumbs[] = [
                 'label' => $model['types']['lang']['title'],
                 'url' => Yii::$app->catalogFilter->createUrl($params)
             ];
         }
 
-        $this->title = $model['lang']['title'] . '. Купить в ' . Yii::$app->city->getCityTitleWhere();
-
-        $description = $model['lang']['title'] . '. ';
-
         if ($model['collections_id']) {
-            $description .= 'Коллекция: ' . $model['collection']['lang']['title'] . '. ';
+            $pageTitle[] = $model['collection']['lang']['title'];
+            $pageDescription[] = 'Коллекция: ' . $model['collection']['lang']['title'];
         }
 
         $array = [];
@@ -98,7 +107,10 @@ class ProductController extends BaseController
         }
 
         if (!empty($array)) {
-            $description .= 'Стиль: ' . implode(', ', $array) . '. ';
+            if ($model['is_composition']) {
+                $pageTitle[] = implode(', ', $array);
+            }
+            $pageDescription[] = 'Стиль: ' . implode(', ', $array);
         }
 
         $array = [];
@@ -109,7 +121,7 @@ class ProductController extends BaseController
         }
 
         if (!empty($array)) {
-            $description .= 'Материал: ' . implode(', ', $array) . '. ';
+            $pageDescription[] = 'Материал: ' . implode(', ', $array);
         }
 
         $array = [];
@@ -122,14 +134,17 @@ class ProductController extends BaseController
         }
 
         if (!empty($array)) {
-            $description .= implode(', ', $array) . '. ';
+            $pageDescription[] = implode(', ', $array) . '. ';
         }
 
-        $description .= 'Купить в интернет-магазине Myarredo в ' . Yii::$app->city->getCityTitleWhere();
+        $pageTitle[] = 'Купить в ' . Yii::$app->city->getCityTitleWhere();
+        $pageDescription[] = 'Купить в интернет-магазине Myarredo в ' . Yii::$app->city->getCityTitleWhere();
+
+        $this->title = implode('. ', $pageTitle);
 
         Yii::$app->view->registerMetaTag([
             'name' => 'description',
-            'content' => $description,
+            'content' => implode('. ', $pageDescription),
         ]);
 
         return $this->render('view', [
