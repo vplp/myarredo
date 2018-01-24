@@ -5,6 +5,6 @@
  * @copyright (c), Thread
  */
 return [
-    'directlink' => 'SEO',
-    'Directlink' => 'SEO ссылки'
+    'translation' => 'Переводы',
+    'Translation' => 'Переводы',
 ];

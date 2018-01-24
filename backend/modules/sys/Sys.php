@@ -38,7 +38,7 @@ class Sys extends \common\modules\sys\Sys
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/translation/translation/list'],
                     ],
-                    [
+                    /*[
                         'name' => 'Configs',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/configs/params/list'],
@@ -52,13 +52,13 @@ class Sys extends \common\modules\sys\Sys
                         'name' => 'MailBox',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/mail-carrier/mail-carrier/list'],
-                    ],
+                    ],*/
                     [
                         'name' => 'Role of User',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/user/role/list'],
                     ],
-                    [
+                    /*[
                         'name' => 'Messages',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/messages/file/list'],
@@ -67,7 +67,7 @@ class Sys extends \common\modules\sys\Sys
                         'name' => 'Log',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/logbook/logbook/list'],
-                    ],
+                    ],*/
                 ]
             ];
         }

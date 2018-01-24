@@ -16,6 +16,7 @@ class Translation extends Module implements ModuleInterface
 {
     public $name = 'translation';
     public $configPath = __DIR__ . '/config.php';
+    public $translationsBasePath = __DIR__ . '/messages';
 
     public static function t($message, $params = [], $language = null)
     {

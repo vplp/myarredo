@@ -1,12 +1,9 @@
 <?php
 
 /**
- * @author Alla Kuzmenko
  * translate for backend menu
- * @copyright (c) 2016, Thread
  */
 return [
-    //name item menu
     'Structure' => 'Структура',
     'Menu' => 'Меню',
     'Pages' => 'Страницы',
@@ -46,5 +43,7 @@ return [
     'Samples' => 'Отделка',
     'Specification' => 'Характеристики',
     'Factory' => 'Фабрики',
-    'Sale' => 'Распродажа'
+    'Sale' => 'Распродажа',
+    'Direct Link' => 'SEO ссылки',
+    'Banner' => 'Баннер'
 ];

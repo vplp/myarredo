@@ -3,5 +3,5 @@
 return [
     //module name
     'Banner' => 'Баннер',
-    'banner' => 'баннер',
+    'banner' => 'Баннер',
 ];

@@ -11,4 +11,5 @@ return [
     'Specification' => 'Характеристики',
     'Factory' => 'Фабрики',
     'Collection' => 'Коллекции',
+    'Sale' => 'Распродажа',
 ];

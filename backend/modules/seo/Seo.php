@@ -11,16 +11,13 @@ use backend\modules\seo\modules\{
  * Class Seo
  *
  * @package backend\modules\seo
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Seo extends \common\modules\seo\Seo
 {
-    public $itemOnPage = 20;
+    public $itemOnPage = 100;
 
     public function init()
     {
-
         $this->modules = [
             'info' => [
                 'class' => Info::class,
@@ -39,7 +36,7 @@ class Seo extends \common\modules\seo\Seo
 
         if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin'])) {
             $menuItems = [
-                'name' => 'Seo',
+                'name' => 'SEO',
                 'icon' => 'fa-file-text',
                 'position' => 10,
                 'items' =>
