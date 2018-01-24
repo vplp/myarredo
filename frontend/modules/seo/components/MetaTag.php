@@ -3,6 +3,7 @@
 namespace frontend\modules\seo\components;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\base\Component;
 use yii\log\Logger;
 //
@@ -164,6 +165,14 @@ class MetaTag extends Component
             Yii::getLogger()->log('DIRECT MODEL REGISTER', Logger::LEVEL_INFO);
 
             $model = $this->direct_model;
+
+            if (
+                $model->cities != null
+                && !in_array(Yii::$app->city->getCityId(), ArrayHelper::map($model->cities,'id', 'id'))
+            ) {
+                return $this;
+            }
+
             $this->seo_title = (!empty($model['title'])) ? $model['title'] : $this->seo_title;
             $this->seo_description = (!empty($model['description'])) ? $model['description'] : $this->seo_description;
             $this->seo_keywords = (!empty($model['keywords'])) ? $model['keywords'] : $this->seo_keywords;

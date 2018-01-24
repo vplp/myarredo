@@ -23,7 +23,9 @@ class City extends \common\modules\location\models\City implements BaseBackendMo
     {
         $query = self::findBase();
 
-        $query->andFilterWhere(['country_id' => $country_id]);
+        if ($country_id) {
+            $query->andFilterWhere(['country_id' => $country_id]);
+        }
 
         $data = $query->undeleted()->all();
 

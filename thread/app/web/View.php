@@ -36,7 +36,7 @@ class View extends yiiWebView
     public function beginPage()
     {
         //render seo meta tags
-        Yii::$app->metatag->render()->render_graph();
+        Yii::$app->metatag->render(); //->render_graph();
         parent::beginPage();
     }
 
@@ -51,7 +51,6 @@ class View extends yiiWebView
         if (!empty($this->metaTags)) {
             $lines[] = implode("\n", $this->metaTags);
         }
-
         if (!empty($this->linkTags)) {
             $lines[] = implode("\n", $this->linkTags);
         }

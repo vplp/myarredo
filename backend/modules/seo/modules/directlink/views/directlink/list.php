@@ -11,16 +11,11 @@ echo GridView::widget([
     'filterModel' => $filter,
     'columns' => [
         'url',
-        /*[
-            'class' => ActionStatusColumn::class,
-            'attribute' => 'add_to_sitemap',
-            'action' => 'add_to_sitemap'
-        ],
         [
-            'class' => ActionStatusColumn::class,
-            'attribute' => 'dissallow_in_robotstxt',
-            'action' => 'dissallow_in_robotstxt'
-        ],*/
+            //'attribute' => 'title',
+            //'value' => 'lang.title',
+            'label' => Yii::t('app', 'Cities'),
+        ],
         [
             'class' => ActionStatusColumn::class,
             'attribute' => 'published',
