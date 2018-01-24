@@ -1312,6 +1312,7 @@ footer {
 }
 .rec-slider-wrap {
   margin-bottom: 35px;
+  margin-top: 30px;
   h3 {
     font-size: 21px;
     color: #777;
@@ -1326,7 +1327,15 @@ footer {
       margin: 0 25px;
     }
   }
-  margin-top: 30px;
+  .slick-list {
+    min-width: 100%;
+    .slick-track {
+      min-width: 100%;
+    }
+    .slick-slide {
+      width: 20%;
+    }
+  }
   .show-more {
     color: #777777;
     font-size: 19px;
