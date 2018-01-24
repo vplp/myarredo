@@ -14,13 +14,13 @@ use frontend\modules\catalog\models\Product;
     'class' => 'one-prod-tile'
 ]); ?>
 
-<?php if (!$model['removed']): ?>
-    <object>
-        <div class="request-price" data-id=<?= $model['id'] ?> data-toggle="modal" data-target="#myModal">
-            Запросить цену
-        </div>
-    </object>
-<?php endif; ?>
+    <?php /*if (!$model['removed']): ?>
+        <object>
+            <div class="request-price" data-id=<?= $model['id'] ?> data-toggle="modal" data-target="#myModal">
+                Запросить цену
+            </div>
+        </object>
+    <?php endif;*/ ?>
 
     <div class="img-cont">
 
