@@ -50,10 +50,6 @@ return [
     'partner/sale/update/<id:[\d\-]+>' => 'catalog/partner-sale/update',
     'catalog/partner-sale/fileupload' => 'catalog/partner-sale/fileupload',
     'catalog/partner-sale/filedelete' => 'catalog/partner-sale/filedelete',
-    'partner/mailing-by-cities' => 'catalog/partner-sale/mailing-by-cities',
-
-    //'razmeshchenie_koda' => 'catalog/partner-sale/code',
-    //'instruktsiya_partneram' => 'catalog/partner-sale/instructions',
 
     // Module [[News]]
     'news/<alias:[\w\-]+>' => 'news/list/index',

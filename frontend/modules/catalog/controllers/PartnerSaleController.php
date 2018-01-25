@@ -65,9 +65,6 @@ class PartnerSaleController extends BaseController
                             'create',
                             'update',
                             'list',
-                            //'code',
-                            //'instructions',
-                            'mailing-by-cities',
                             'fileupload',
                             'filedelete'
                         ],
@@ -138,31 +135,4 @@ class PartnerSaleController extends BaseController
             'pages' => $models->getPagination(),
         ]);
     }
-
-    /**
-     * @return string
-     */
-//    public function actionCode()
-//    {
-//        $this->title = 'Размещение кода';
-//        return $this->render('code', []);
-//    }
-
-    /**
-     * @return string
-     */
-    public function actionMailingByCities()
-    {
-        $this->title = 'Размещение кода';
-        return $this->render('mailing_by_cities', []);
-    }
-
-    /**
-     * @return string
-     */
-//    public function actionInstructions()
-//    {
-//        $this->title = 'Инструкция партнерам';
-//        return $this->render('instructions', ['domain' => 'ru']);
-//    }
 }
