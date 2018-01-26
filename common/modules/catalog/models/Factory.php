@@ -19,6 +19,7 @@ use common\helpers\Inflector;
  * @property integer $id
  * @property string $country_code
  * @property string $alias
+ * @property string $title
  * @property string $first_letter
  * @property string $url
  * @property string $email
@@ -87,10 +88,10 @@ class Factory extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias'], 'required'],
+            [['alias', 'title'], 'required'],
             [['created_at', 'updated_at', 'position', 'partner_id'], 'integer'],
             [['published', 'deleted', 'position', 'popular_ua', 'popular_by', 'novelty', 'alternative'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['alias', 'country_code', 'url', 'email', 'novelty_url', 'image_link'], 'string', 'max' => 255],
+            [['alias', 'title', 'country_code', 'url', 'email', 'novelty_url', 'image_link'], 'string', 'max' => 255],
             [['first_letter'], 'string', 'max' => 2],
             [['alias'], 'unique'],
             [['position', 'partner_id'], 'default', 'value' => '0'],
@@ -111,10 +112,23 @@ class Factory extends ActiveRecord
             'popular_by' => ['popular_by'],
             'popular_ua' => ['popular_ua'],
             'backend' => [
-                'alias', 'country_code', 'url', 'email', 'novelty_url', 'image_link',
+                'title',
+                'alias',
+                'country_code',
+                'url',
+                'email',
+                'novelty_url',
+                'image_link',
                 'first_letter',
-                'published', 'deleted', 'position', 'popular_ua', 'popular_by', 'novelty', 'alternative',
-                'position', 'partner_id'
+                'published',
+                'deleted',
+                'position',
+                'popular_ua',
+                'popular_by',
+                'novelty',
+                'alternative',
+                'position',
+                'partner_id'
             ],
         ];
     }
@@ -127,6 +141,7 @@ class Factory extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
+            'title' => Yii::t('app', 'Title'),
             'country_code' => 'Показывать для страны',
             'url' => 'url',
             'email' => 'E-Mail',
@@ -203,7 +218,6 @@ class Factory extends ActiveRecord
         return $this->hasMany(FactoryPricesFiles::class, ['factory_id' => 'id'])
             ->andWhere(['file_type' => 2]);
     }
-
 
     /**
      * @return null|string

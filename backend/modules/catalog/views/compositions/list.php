@@ -31,7 +31,7 @@ echo GridView::widget([
         ],
         [
             'attribute' => Yii::t('app', 'Factory'),
-            'value' => 'factory.lang.title',
+            'value' => 'factory.title',
             'filter' => GridViewFilter::selectOne($filter, 'factory_id', Factory::dropDownList()),
         ],
         'updated_at:datetime',
