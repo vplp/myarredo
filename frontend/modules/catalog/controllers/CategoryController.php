@@ -150,27 +150,27 @@ class CategoryController extends BaseController
         }
 
         if (!empty($params[$keys['factory']])) {
-            $model = Factory::findByAlias($params[$keys['factory']][0]);
+            $factory = Factory::findByAlias($params[$keys['factory']][0]);
 
             if (count($params[$keys['factory']]) > 1) {
                 $noindex = 1;
             }
 
             $this->breadcrumbs[] = [
-                'label' => $model['lang']['title'],
+                'label' => $factory['title'],
                 'url' => Yii::$app->catalogFilter->createUrl($params)
             ];
         }
 
         if (!empty($params[$keys['collection']])) {
-            $model = Collection::findById($params[$keys['collection']][0]);
+            $collection = Collection::findById($params[$keys['collection']][0]);
 
-            $pageTitle[] = 'Коллекция мебели ' . $model['lang']['title'];
-            $pageH1[] = 'Коллекция ' . $model['lang']['title'];
-            $pageDescription[] = 'Коллекция ' . $model['lang']['title'];
+            $pageTitle[] = 'Коллекция мебели ' . $collection['lang']['title'];
+            $pageH1[] = 'Коллекция ' . $collection['lang']['title'];
+            $pageDescription[] = 'Коллекция ' . $collection['lang']['title'];
 
             $this->breadcrumbs[] = [
-                'label' => 'Коллекция ' . $model['lang']['title'],
+                'label' => 'Коллекция ' . $collection['lang']['title'],
                 'url' => Yii::$app->catalogFilter->createUrl($params)
             ];
         }
