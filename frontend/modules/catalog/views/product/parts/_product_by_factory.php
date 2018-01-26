@@ -18,7 +18,7 @@ $keys = Yii::$app->catalogFilter->keys;
 
             <?= Html::tag(
                 'h3',
-                'Другие ' . $types['lang']['plural_name'] . ' ' . $factory['lang']['title']
+                'Другие ' . $types['lang']['plural_name'] . ' ' . $factory['title']
             ); ?>
 
             <?= Html::a(
