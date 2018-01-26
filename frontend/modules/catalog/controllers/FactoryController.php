@@ -76,6 +76,8 @@ class FactoryController extends BaseController
             'content' => implode(' ', $pageDescription),
         ]);
 
+        Yii::$app->metatag->render();
+
         if ($view == 'three') {
 
             foreach ($models->getModels() as $obj) {
@@ -118,6 +120,8 @@ class FactoryController extends BaseController
 
         $model = Factory::findByAlias($alias);
 
+        Yii::$app->metatag->render();
+
         if ($model === null) {
             throw new NotFoundHttpException;
         }
@@ -147,12 +151,14 @@ class FactoryController extends BaseController
             ' - мебели из Италии в ' .
             Yii::$app->city->getCityTitleWhere();
 
-        Yii::$app->view->registerMetaTag([
-            'name' => 'description',
-            'content' => 'Каталог итальянской мебели от фабрики' . $model['lang']['title'] .
-                ' в интернет-магазине Myarredo. Заказать мебель из Италии в ' .
-                Yii::$app->city->getCityTitleWhere(),
-        ]);
+        if (!Yii::$app->metatag->seo_description) {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'description',
+                'content' => 'Каталог итальянской мебели от фабрики' . $model['lang']['title'] .
+                    ' в интернет-магазине Myarredo. Заказать мебель из Италии в ' .
+                    Yii::$app->city->getCityTitleWhere(),
+            ]);
+        }
 
         return $this->render('view', [
             'model' => $model,
