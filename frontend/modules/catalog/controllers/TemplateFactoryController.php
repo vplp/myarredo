@@ -127,7 +127,7 @@ class TemplateFactoryController extends BaseController
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
 
         $this->title = 'Каталог итальянской мебели ' .
-            $factory['lang']['title'] .
+            $factory['title'] .
             ' купить в ' .
             Yii::$app->city->getCityTitleWhere() .
             ' по лучшей цене';
