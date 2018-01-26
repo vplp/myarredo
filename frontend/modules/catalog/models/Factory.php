@@ -61,7 +61,7 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public static function dropDownList()
     {
-        return ArrayHelper::map(self::findBase()->asArray()->all(), 'id', 'lang.title');
+        return ArrayHelper::map(self::findBase()->asArray()->all(), 'id', 'title');
     }
 
     /**
@@ -193,7 +193,7 @@ class Factory extends \common\modules\catalog\models\Factory
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
                     self::tableName() . '.first_letter',
-                    FactoryLang::tableName() . '.title',
+                    self::tableName() . '.title',
                     'count(' . self::tableName() . '.id) as count'
                 ])
                 ->groupBy(self::tableName() . '.id')
@@ -244,7 +244,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 self::tableName() . '.id',
                 self::tableName() . '.alias',
                 self::tableName() . '.first_letter',
-                FactoryLang::tableName() . '.title',
+                self::tableName() . '.title',
                 'count(' . self::tableName() . '.id) as count'
             ])
             ->groupBy(self::tableName() . '.id')
@@ -269,9 +269,6 @@ class Factory extends \common\modules\catalog\models\Factory
 
     /**
      * Get Factory Categories
-     *
-     * @param array $ids
-     * @return mixed
      */
     public static function getFactoryCategory(array $ids)
     {
@@ -310,6 +307,7 @@ class Factory extends \common\modules\catalog\models\Factory
     /**
      * @param int $id
      * @return array
+     * @throws \yii\db\Exception
      */
     public static function getFactoryTypes(int $id)
     {
@@ -343,6 +341,7 @@ class Factory extends \common\modules\catalog\models\Factory
     /**
      * @param int $id
      * @return array
+     * @throws \yii\db\Exception
      */
     public static function getFactoryCollection(int $id)
     {

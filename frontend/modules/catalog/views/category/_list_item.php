@@ -28,7 +28,7 @@ use frontend\modules\catalog\models\Product;
 
         <div class="brand">
             <?= (isset($factory[$model['factory_id']]))
-                ? $factory[$model['factory_id']]['lang']['title']
+                ? $factory[$model['factory_id']]['title']
                 : null;
             ?>
         </div>
