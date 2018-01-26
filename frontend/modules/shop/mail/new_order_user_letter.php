@@ -43,7 +43,7 @@ use frontend\modules\catalog\models\Product;
                     ); ?>
 
                     <br>
-                    <span style="color:#9f8b80; font-size: 14px;"><?= $item->product['factory']['lang']['title']; ?></span>
+                    <span style="color:#9f8b80; font-size: 14px;"><?= $item->product['factory']['title']; ?></span>
                 </div>
             </div>
         <?php endforeach; ?>
