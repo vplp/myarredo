@@ -2,6 +2,7 @@
 
 namespace frontend\modules\home\controllers;
 
+use Yii;
 use yii\web\ErrorAction;
 use frontend\components\BaseController;
 
@@ -32,6 +33,8 @@ class HomeController extends BaseController
      */
     public function actionIndex()
     {
+        Yii::$app->metatag->render();
+
         return $this->render('index');
     }
 

@@ -24,8 +24,8 @@ class MetaTag extends Component
     protected $direct_model = null;
     protected $local_url = '';
 
-    protected $seo_title = '';
-    protected $seo_description = '';
+    public $seo_title = '';
+    public $seo_description = '';
     protected $seo_keywords = '';
     protected $seo_robots = '';
     protected $seo_image_url = '';
@@ -91,7 +91,7 @@ class MetaTag extends Component
      */
     public function registerModel(ActiveRecord $model)
     {
-        $this->findModel(self::getModelKey($model), $model->id);
+        $this->findModel(self::getModelKey($model), $model['id']);
 
         return $this;
     }

@@ -91,6 +91,8 @@ class SaleController extends BaseController
             'url' => ['/catalog/sale/list']
         ];
 
+        Yii::$app->metatag->render();
+
         return $this->render('list', [
             'category' => $category,
             'types' => $types,

@@ -61,7 +61,7 @@ use frontend\modules\user\widgets\partner\PartnerInfo;
 
     </footer>
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"></div>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-54015829-1"></script>
