@@ -34,7 +34,7 @@ use frontend\modules\catalog\models\Product;
                                         </tr>
                                         <tr>
                                             <td>Фабрика</td>
-                                            <td><?= $item->product['factory']['lang']['title'] ?></td>
+                                            <td><?= $item->product['factory']['title'] ?></td>
                                         </tr>
                                     </table>
                                 </div>

@@ -36,7 +36,7 @@ use frontend\modules\catalog\models\Product;
         </tr>
         <tr>
             <td>Фабрика</td>
-            <td><?= $orderItem->product['factory']['lang']['title'] ?></td>
+            <td><?= $orderItem->product['factory']['title'] ?></td>
         </tr>
         <tr>
             <td>ЦЕНА для клиента</td>
