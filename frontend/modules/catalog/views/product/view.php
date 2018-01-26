@@ -110,9 +110,9 @@ $this->title = $this->context->title;
                                 <tr>
                                     <td>Фабрика</td>
                                     <td>
-                                        <meta itemprop="brand" content="<?= $model['factory']['lang']['title'] ?>">
+                                        <meta itemprop="brand" content="<?= $model['factory']['title'] ?>">
                                         <?= Html::a(
-                                            $model['factory']['lang']['title'],
+                                            $model['factory']['title'],
                                             Factory::getUrl($model['factory']['alias'])
                                         ); ?>
                                     </td>

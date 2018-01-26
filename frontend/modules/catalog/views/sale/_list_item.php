@@ -19,7 +19,7 @@ use frontend\modules\catalog\models\Sale;
         <?= Html::img(Sale::getImageThumb($model['image_link'])); ?>
 
         <div class="brand">
-            <?= $model['factory']['lang']['title'] ?>
+            <?= $model['factory']['title'] ?>
         </div>
 
     </div>
