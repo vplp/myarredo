@@ -58,12 +58,12 @@ class TemplateFactoryController extends BaseController
         ];
 
         $this->breadcrumbs[] = [
-            'label' => $model['lang']['title'] . ' в ' . Yii::$app->city->getCityTitleWhere(),
+            'label' => $model['title'] . ' в ' . Yii::$app->city->getCityTitleWhere(),
             'url' => ['/catalog/factory/view', 'alias' => $model['alias']]
         ];
 
         $this->title = 'Итальянская мебель ' .
-            $model['lang']['title'] .
+            $model['title'] .
             ' купить в ' .
             Yii::$app->city->getCityTitleWhere() .
             ' по лучшей цене';
@@ -144,6 +144,8 @@ class TemplateFactoryController extends BaseController
      * @param string $product
      * @return string
      * @throws NotFoundHttpException
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function actionProduct(string $alias, string $product)
     {
