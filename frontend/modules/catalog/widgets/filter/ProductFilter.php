@@ -176,7 +176,7 @@ class ProductFilter extends Widget
             $factory[$obj['first_letter']][] = array(
                 'checked' => $checked,
                 'link' => $link,
-                'title' => $obj['lang']['title'],
+                'title' => $obj['title'],
                 'count' => $obj['count'],
                 'alias' => $obj['alias'],
                 'first_letter' => $obj['first_letter'],
