@@ -16,8 +16,9 @@ $this->beginPage()
         <title><?= $this->title ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <?php $this->head(); ?>
-        <input type="hidden" id="token" value="<?= Yii::$app->request->getCsrfToken() ?>">
-        <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js" type="text/javascript" charset="UTF-8"></script>
+        <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js" type="text/javascript"
+                charset="UTF-8"></script>
         <![endif]-->
     </head>
     <body>
@@ -30,6 +31,8 @@ $this->beginPage()
     <?= $content ?>
 
     <?= $this->render('parts/_footer', []) ?>
+
+    <input type="hidden" id="token" value="<?= Yii::$app->request->getCsrfToken() ?>">
 
     <?php $this->endBody() ?>
     </body>
