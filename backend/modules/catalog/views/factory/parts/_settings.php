@@ -10,7 +10,7 @@
 
 <?= $form->text_line($model, 'alias') ?>
 
-<?= $form->text_line_lang($modelLang, 'title') ?>
+<?= $form->text_line_lang($model, 'title') ?>
 
 <?= $form->text_line($model, 'url') ?>
 
