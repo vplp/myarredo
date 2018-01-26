@@ -37,7 +37,7 @@ $this->title = $this->context->title;
 
             <?= Html::tag(
                 'h3',
-                $model['lang']['title'] . ' | Купить в ' . Yii::$app->city->getCityTitleWhere()
+                $model['title'] . ' | Купить в ' . Yii::$app->city->getCityTitleWhere()
             ); ?>
 
             <div class="submenu">
