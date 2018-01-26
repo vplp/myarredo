@@ -24,7 +24,7 @@ echo GridView::widget([
             'value' => function ($model) {
                 $result = [];
                 foreach ($model->category as $category) {
-                    $result[] = $category->lang->title;
+                    $result[] = ($category->lang) ? $category->lang->title : '(не задано)';
                 }
                 return implode(', ', $result);
             },

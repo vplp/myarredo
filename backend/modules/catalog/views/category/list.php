@@ -7,8 +7,6 @@ use thread\widgets\grid\{
 
 /**
  * @var \backend\modules\catalog\models\Category $model
- * @var \backend\modules\catalog\models\CategoryLang $modelLang
- * @var \backend\app\bootstrap\ActiveForm $form
  */
 
 echo GridView::widget([
