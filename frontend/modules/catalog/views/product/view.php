@@ -193,25 +193,27 @@ $this->title = $this->context->title;
                             <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
 
                             <?php
-                            if (!in_array($model['id'], $products_id)) {
-                                echo Html::a(
-                                    'Отложить в блокнот',
-                                    'javascript:void(0);',
-                                    [
-                                        'class' => 'add-to-notepad btn btn-default big',
-                                        'data-id' => $model['id'],
-                                        'data-toggle' => 'modal',
-                                        'data-target' => '#myModal'
-                                    ]
-                                );
-                            } else {
-                                echo Html::a(
-                                    'В блокноте',
-                                    'javascript:void(0);',
-                                    [
-                                        'class' => 'btn btn-default big',
-                                    ]
-                                );
+                            if (!in_array(Yii::$app->controller->action->id, ['product'])) {
+                                if (!in_array($model['id'], $products_id)) {
+                                    echo Html::a(
+                                        'Отложить в блокнот',
+                                        'javascript:void(0);',
+                                        [
+                                            'class' => 'add-to-notepad btn btn-default big',
+                                            'data-id' => $model['id'],
+                                            'data-toggle' => 'modal',
+                                            'data-target' => '#myModal'
+                                        ]
+                                    );
+                                } else {
+                                    echo Html::a(
+                                        'В блокноте',
+                                        'javascript:void(0);',
+                                        [
+                                            'class' => 'btn btn-default big',
+                                        ]
+                                    );
+                                }
                             } ?>
 
                         </div>
