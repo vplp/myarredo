@@ -198,7 +198,7 @@ class Sale extends \common\modules\catalog\models\Sale
      */
     public function getFactoryTitle()
     {
-        $title = !empty($this->factory->lang) ? $this->factory->lang->title : '';
+        $title = !empty($this->factory) ? $this->factory->title : '';
         $title .= ' ' . !empty($this->factory_name) ? $this->factory_name : '';
 
         return $title;
