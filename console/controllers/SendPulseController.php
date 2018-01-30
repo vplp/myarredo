@@ -30,7 +30,10 @@ class SendPulseController extends Controller
 
         foreach ($modelCountry as $country) {
             $modelUser = User::findBase()
-                ->andWhere(['group_id' => Group::PARTNER, Profile::tableName() . '.country_id' => $country['id']])
+                ->andWhere([
+                    'group_id' => Group::PARTNER,
+                    Profile::tableName() . '.country_id' => $country['id']
+                ])
                 ->all();
 
             /**
@@ -54,6 +57,44 @@ class SendPulseController extends Controller
 
         $this->stdout("SendPulse: end import emails. \n", Console::FG_GREEN);
     }
+
+    /**
+     * SendPulse: remove emails
+     */
+    public function actionRemoveEmails()
+    {
+        $this->stdout("SendPulse: start remove emails. \n", Console::FG_GREEN);
+
+        $modelCountry = Country::findBase()->all();
+
+        foreach ($modelCountry as $country) {
+
+            $bookId = $country['bookId'];
+            $emails = [];
+
+            $requestResult = Yii::$app->sendPulse->getEmailsFromBook($bookId);
+
+            foreach ($requestResult as $item) {
+                $modelUser = User::findBase()
+                    ->andWhere([
+                        'group_id' => Group::PARTNER,
+                        'email' => $item->email,
+                    ])
+                    ->one();
+
+                if ($modelUser == null) {
+                    $emails[] = $item->email;
+                }
+            }
+
+            if (!empty($emails)) {
+                Yii::$app->sendPulse->removeEmails($bookId, $emails);
+            }
+        }
+
+        $this->stdout("SendPulse: end remove emails. \n", Console::FG_GREEN);
+    }
+
 
     /**
      * SendPulse: send test campaign
