@@ -10,6 +10,16 @@ namespace frontend\modules\user\models;
 class User extends \common\modules\user\models\User
 {
     /**
+     * findBase
+     *
+     * @return mixed
+     */
+    public static function findBase()
+    {
+        return parent::findBase()->enabled();
+    }
+
+    /**
      * @param integer $city_id
      * @return mixed
      */

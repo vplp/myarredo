@@ -61,6 +61,31 @@ class SendPulse extends Component
     }
 
     /**
+     * List email addresses from book
+     *
+     * @param $id
+     *
+     * @return mixed|stdClass
+     */
+    public function getEmailsFromBook($id)
+    {
+        return $this->client->getEmailsFromBook($id);
+    }
+
+    /**
+     * Remove email addresses from book
+     *
+     * @param $bookId
+     * @param $emails
+     *
+     * @return mixed|stdClass
+     */
+    public function removeEmails($bookId, $emails)
+    {
+        return $this->client->removeEmails($bookId, $emails);
+    }
+
+    /**
      * Create new campaign
      *
      * @param $senderName
