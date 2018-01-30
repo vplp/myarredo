@@ -60,7 +60,7 @@ class SendPulseController extends Controller
     /**
      * SendPulse: send test campaign
      */
-    public function actionSendTestCampaign()
+    public function actionSendCampaign()
     {
         $this->stdout("SendPulse: start send test campaign. \n", Console::FG_GREEN);
 
