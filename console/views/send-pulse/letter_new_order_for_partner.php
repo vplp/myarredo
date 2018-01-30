@@ -34,7 +34,7 @@ use frontend\modules\catalog\models\Product;
 
             echo Html::a(
                 $item->product['lang']['title'],
-                'http://www.myarredo.' . $order->city->country->alias . Product::getUrl($item->product['alias']),
+                'http://www.myarredo.' . $order->city->country->alias . '/product/' . $item->product['alias'] . '/',
                 ['style' => 'font-weight:bold; display: block; color: #000; text-transform: uppercase; text-decoration: underline;']
             );
 
