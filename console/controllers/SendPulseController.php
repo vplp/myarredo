@@ -108,7 +108,7 @@ class SendPulseController extends Controller
             ->all();
 
         foreach ($modelOrder as $order) {
-            $bookId = 1509649; //  $order->city->country->bookId
+            $bookId = /*1509649;*/  $order->city->country->bookId
             $senderName = 'myarredo';
             $senderEmail = 'info@myarredo.ru';
             $subject = 'Новая заявка №' . $order['id'];
