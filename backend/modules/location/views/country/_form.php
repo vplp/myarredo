@@ -18,6 +18,11 @@ use backend\app\bootstrap\ActiveForm;
             <?= $form->text_line($model, 'alias') ?>
         </div>
     </div>
+    <div class="row control-group">
+        <div class="col-md-3">
+            <?= $form->text_line($model, 'bookId') ?>
+        </div>
+    </div>
 <?= $form->text_line_lang($modelLang, 'title') ?>
 <div class="row control-group">
     <div class="col-md-3">

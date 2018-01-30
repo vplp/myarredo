@@ -3,7 +3,9 @@
 namespace frontend\modules\shop\models;
 
 use Yii;
-use yii\helpers\Url;
+use yii\helpers\{
+    Url, ArrayHelper
+};
 
 /**
  * Class Order
@@ -17,7 +19,7 @@ class Order extends \common\modules\shop\models\Order
      */
     public function scenarios()
     {
-        return [
+        return ArrayHelper::merge(parent::scenarios(), [
             'addNewOrder' => [
                 'delivery_method_id',
                 'payment_method_id',
@@ -31,7 +33,7 @@ class Order extends \common\modules\shop\models\Order
                 'published',
                 'deleted'
             ],
-        ];
+        ]);
     }
 
     /**
@@ -76,7 +78,7 @@ class Order extends \common\modules\shop\models\Order
     {
         return self::findBase()
             ->innerJoinWith(['customer'])
-            ->andWhere([Customer::tableName().'.user_id' => $user_id])
+            ->andWhere([Customer::tableName() . '.user_id' => $user_id])
             ->all();
     }
 
@@ -117,7 +119,7 @@ class Order extends \common\modules\shop\models\Order
         return self::findBase()
             ->byId($id)
             ->innerJoinWith(['customer'])
-            ->andWhere([Customer::tableName().'.user_id' => $user_id])
+            ->andWhere([Customer::tableName() . '.user_id' => $user_id])
             ->one();
     }
 
@@ -134,7 +136,7 @@ class Order extends \common\modules\shop\models\Order
      */
     public function getPartnerOrderOnListUrl()
     {
-        return Url::toRoute(['/shop/partner-order/list']) . '#'.$this->id;
+        return Url::toRoute(['/shop/partner-order/list']) . '#' . $this->id;
     }
 
     /**
