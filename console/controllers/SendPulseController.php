@@ -3,7 +3,6 @@
 namespace console\controllers;
 
 use Yii;
-use yii\helpers\Html;
 use yii\console\Controller;
 use yii\helpers\Console;
 //
@@ -11,7 +10,6 @@ use frontend\modules\location\models\Country;
 use frontend\modules\user\models\{
     User, Group, Profile
 };
-use frontend\modules\catalog\models\Product;
 use frontend\modules\shop\models\Order;
 
 /**
