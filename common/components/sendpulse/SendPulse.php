@@ -21,7 +21,7 @@ class SendPulse extends Component
 
     public function init()
     {
-        $this->client = new ApiClient($this->userId, $this->secret);
+        $this->client = new ApiClient($this->userId, $this->secret, new FileStorage('temp/'));
 
         parent::init();
     }
