@@ -90,4 +90,9 @@ return [
         'siteKey' => '6LehPRkUAAAAAB1TVTLbwB1GYua9tI4aC1cHYSTU',
         'secret' => '6LehPRkUAAAAADUIdKWBJx1tPKLztXMoVcsrHVrl',
     ],
+    'sendPulse' => [
+        'class' => \common\components\sendpulse\SendPulse::className(),
+        'userId' => '5a4017d2702c0caa55238646202925af',
+        'secret' => 'b93e723419dbdf7a0be49143c702d804',
+    ]
 ];

@@ -5,6 +5,7 @@ namespace frontend\modules\catalog\models;
 use Yii;
 use yii\helpers\Url;
 //
+use frontend\modules\catalog\Catalog;
 use frontend\components\ImageResize;
 
 /**
@@ -99,6 +100,22 @@ class Product extends \common\modules\catalog\models\Product
         return (new search\Product())->search($params);
     }
 
+    public static function isImage($image_link = '')
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getProductUploadPath();
+
+        $image = false;
+
+        if (!empty($image_link) && file_exists($path . '/' . $image_link)) {
+            $image = true;
+        }
+
+        return $image;
+    }
+
     /**
      * Image
      *
@@ -115,7 +132,7 @@ class Product extends \common\modules\catalog\models\Product
 
         $image = null;
 
-        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+        if (!empty($image_link) && file_exists($path . '/' . $image_link)) {
             $image = $url . '/' . $image_link;
         }
 
@@ -137,7 +154,7 @@ class Product extends \common\modules\catalog\models\Product
 
         $image = null;
 
-        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+        if (!empty($image_link) && file_exists($path . '/' . $image_link)) {
 
             $image_link_path = explode('/', $image_link);
 
@@ -147,7 +164,7 @@ class Product extends \common\modules\catalog\models\Product
 
             $_image_link = $path . '/' . implode('/', $image_link_path) . '/thumb_' . $img_name;
 
-            if (is_file($_image_link)) {
+            if (file_exists($_image_link)) {
                 $image = $_image_link;
             } else {
                 $image = $path . '/' . $image_link;

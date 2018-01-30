@@ -24,6 +24,7 @@ use common\modules\location\models\City;
  * @property integer $updated_at
  * @property integer $published
  * @property integer $deleted
+ * @property integer $create_campaign
  *
  * @property boolean $isArchive
  * @property OrderAnswer[] $orderAnswers
@@ -47,7 +48,7 @@ class Order extends \thread\modules\shop\models\Order
             [['token'], 'string', 'max' => 255],
             [['customer_id', 'city_id', 'items_count', 'items_total_count'], 'integer'],
             [['order_status'], 'in', 'range' => array_keys(self::getOrderStatuses())],
-            [['published', 'deleted'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [['published', 'deleted', 'create_campaign'], 'in', 'range' => array_keys(self::statusKeyRange())],
 
             // set default values
             [['delivery_method_id', 'payment_method_id'], 'default', 'value' => 0]
@@ -62,6 +63,7 @@ class Order extends \thread\modules\shop\models\Order
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
+            'create_campaign' => ['create_campaign'],
             'backend' => [
                 'customer_id',
                 'city_id',
@@ -73,6 +75,7 @@ class Order extends \thread\modules\shop\models\Order
                 'token',
                 'published',
                 'deleted',
+                'create_campaign',
                 'created_at',
                 'updated_at'
             ],
