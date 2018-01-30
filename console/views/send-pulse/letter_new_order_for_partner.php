@@ -19,7 +19,7 @@ use frontend\modules\catalog\models\Product;
             <span style="display:block;">Kлиент из г. <?= $order->city->lang->title ?></span>
         </p>
 
-        <p>Клиента интересует следующая мебель:</p>';
+        <p>Клиента интересует следующая мебель:</p>
 
         <?php foreach ($order->items as $item) {
 
