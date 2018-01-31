@@ -45,8 +45,7 @@ class SaleLang extends ActiveRecordLang
             [['title'], 'required'],
             ['rid', 'exist', 'targetClass' => Sale::class, 'targetAttribute' => 'id'],
             [['title'], 'string', 'max' => 255],
-            [['description'], 'string', 'max' => 511],
-            [['content'], 'string'],
+            [['description', 'content'], 'string'],
             [['description', 'content'], 'default', 'value' => '']
         ]);
     }
