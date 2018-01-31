@@ -35,14 +35,12 @@ use yii\helpers\{
                 ]);
             ?>
 
-            <?php
-            foreach ($modelOrder->orderAnswers as $answer) {
+            <?php foreach ($modelOrder->orderAnswers as $answer) {
                 echo '<div><strong>' . $answer['user']['profile']['name_company'] . '</strong></div>' .
                     '<div>' . $answer['user']['email'] . '</div>' .
                     '<div>' . $answer->getAnswerTime() . '</div>' .
                     '<div>' . $answer['answer'] . '</div><br>';
-            }
-            ?>
+            } ?>
 
         </div>
 

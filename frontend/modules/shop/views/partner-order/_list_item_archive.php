@@ -39,6 +39,13 @@ use yii\helpers\{
                 'rows' => 5
             ]); ?>
         </div>
+        <div class="form-group">
+            <div>Время ответов:</div>
+        <?php foreach ($modelOrder->orderAnswers as $answer) {
+            echo '<div><strong>' . $answer['user']['profile']['name_company'] . '</strong></div>' .
+                '<div>' . $answer->getAnswerTime() . '</div>';
+        } ?>
+        </div>
 
     </div>
 </div>
