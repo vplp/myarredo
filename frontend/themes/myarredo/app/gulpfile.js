@@ -250,7 +250,6 @@ gulp.task('lintCSS', function () {
 // [ COMMON JS TASK ]
 gulp.task('scripts', ['minify-js', 'lintJS'], function () {
     return gulp.src(dev_patches['js'])
-        .pipe(remember('lintingJS'))
         .pipe(concat('core.js'))
         .on('error', console.log)
         .pipe(gulp.dest(build_patches['js']));
