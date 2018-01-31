@@ -124,7 +124,7 @@ class OrderAnswer extends ActiveRecord
      */
     public function getAnswerTime()
     {
-        $format = 'd.m.Y';
+        $format = 'd.m.Y H:i';
         return $this->answer_time == 0 ? '' : date($format, $this->answer_time);
     }
 
