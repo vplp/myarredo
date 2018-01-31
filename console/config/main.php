@@ -1,11 +1,9 @@
 <?php
 
 use yii\helpers\ArrayHelper;
-use frontend\modules\catalog\models\{
-    Category, Product
-};
 
 $main = require(dirname(__DIR__, 2) . '/common/config/main.php');
+
 foreach ($main['bootstrap'] as $itemkey => $item) {
     if ($item == 'languages') {
         unset($main['bootstrap'][$itemkey]);
@@ -41,7 +39,6 @@ return ArrayHelper::merge(
                 'suffix' => '/',
                 'hostInfo' => '',
                 'baseUrl' => '',
-                //'rules' => require(dirname(__DIR__, 2) . '/frontend/config/part/url-rules.php'),
                 'rules' => [
                     'catalog/<filter:[\;\-\w\d]+>' => 'catalog/category/list',
                     'product/<alias:[\w\-]+>' => 'catalog/product/view',
@@ -87,7 +84,7 @@ return ArrayHelper::merge(
                         'class' => \frontend\modules\catalog\models\Category::class,
                         'dataClosure' => function ($model) {
                             return [
-                                'loc' => '/catalog/'. $model['alias'] . '/', //Category::getUrl($model['alias']),
+                                'loc' => '/catalog/'. $model['alias'] . '/',
                                 'lastmod' => date('c', $model['updated_at']),
                                 'changefreq' => 'daily',
                                 'priority' => 0.8
@@ -98,7 +95,7 @@ return ArrayHelper::merge(
                         'class' => \frontend\modules\catalog\models\Product::class,
                         'dataClosure' => function ($model) {
                             return [
-                                'loc' => '/product/'. $model['alias'] . '/', //Product::getUrl($model['alias']),
+                                'loc' => '/product/'. $model['alias'] . '/',
                                 'lastmod' => date('c', $model['updated_at']),
                                 'changefreq' => 'daily',
                                 'priority' => 0.5
