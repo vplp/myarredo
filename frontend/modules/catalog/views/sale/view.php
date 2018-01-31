@@ -26,7 +26,7 @@ $this->title = $this->context->title;
                         <?php
                         if ($model['factory']) {
                             echo Html::a(
-                                $model['factory']['lang']['title'],
+                                $model['factory']['title'],
                                 Factory::getUrl($model['factory']['alias']),
                                 ['class' => 'brand']
                             );

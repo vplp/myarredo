@@ -20,7 +20,7 @@ use yii\helpers\Html;
  */
 class LinkPager extends \yii\widgets\LinkPager
 {
-    public $registerLinkTags = true;
+    public $registerLinkTags = false;
 
     public $nextPageLabel = 'Далее<i class="fa fa-angle-right" aria-hidden="true"></i>';
 

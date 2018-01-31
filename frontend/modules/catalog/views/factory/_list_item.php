@@ -23,7 +23,7 @@ $keys = Yii::$app->catalogFilter->keys;
         <div class="logo-img">
             <?= Html::img(Factory::getImageThumb($model['image_link'])); ?>
         </div>
-        <?= Html::tag('h3', $model['lang']['title']); ?>
+        <?= Html::tag('h3', $model['title']); ?>
     </div>
 
     <object>

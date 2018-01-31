@@ -59,7 +59,7 @@ $this->title = $this->context->title;
                             'h1',
                             (($this->context->SeoH1)
                                 ? $this->context->SeoH1
-                                : 'МЕБЕЛЬ ' . $model['lang']['title'] . ' в ' . Yii::$app->city->getCityTitleWhere()),
+                                : 'МЕБЕЛЬ ' . $model['title'] . ' в ' . Yii::$app->city->getCityTitleWhere()),
                             ['class' => 'title-text']
                         ); ?>
 

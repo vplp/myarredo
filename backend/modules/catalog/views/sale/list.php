@@ -24,7 +24,7 @@ echo GridView::widget([
             'value' => function ($model) {
                 $result = [];
                 foreach ($model->category as $category) {
-                    $result[] = $category->lang->title;
+                    $result[] = ($category->lang) ? $category->lang->title : '(не задано)';
                 }
                 return implode(', ', $result);
             },
@@ -33,7 +33,7 @@ echo GridView::widget([
         ],
         [
             'attribute' => Yii::t('app', 'Factory'),
-            'value' => 'factory.lang.title',
+            'value' => 'factory.title',
             'filter' => GridViewFilter::selectOne($filter, 'factory_id', Factory::dropDownList()),
         ],
         [

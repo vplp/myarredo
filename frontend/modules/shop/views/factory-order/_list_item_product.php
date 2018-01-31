@@ -36,7 +36,7 @@ use frontend\modules\catalog\models\Product;
         </tr>
         <tr>
             <td><?= Yii::t('app', 'Factory') ?></td>
-            <td><?= $orderItem->product['factory']['lang']['title'] ?></td>
+            <td><?= $orderItem->product['factory']['title'] ?></td>
         </tr>
     </table>
 </div>

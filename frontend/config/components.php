@@ -22,7 +22,7 @@ return [
         'cookieValidationKey' => 'thread',
     ],
     'view' => [
-        'class' => \thread\app\web\View::class,
+        //'class' => \thread\app\web\View::class,
         'theme' => [
             'basePath' => '@app/themes/myarredo',
             'baseUrl' => '@web/themes/myarredo',

@@ -45,7 +45,7 @@ use frontend\modules\catalog\models\Product;
                         ['style' => 'font-weight:bold; color: #000; text-transform: uppercase; text-decoration: underline;']
                     ); ?>
                     <br>
-                    <span style="color:#9f8b80; font-size: 14px;"><?= $item->product['factory']['lang']['title']; ?></span>
+                    <span style="color:#9f8b80; font-size: 14px;"><?= $item->product['factory']['title']; ?></span>
                 </div>
                 <div style="padding-top: 10px; color:#8e3628"><?= $item->orderItemPrice->price; ?> &euro;</div>
             </div>

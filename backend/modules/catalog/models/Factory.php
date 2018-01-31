@@ -54,11 +54,12 @@ class Factory extends CommonFactoryModel implements BaseBackendModel
      */
     public static function dropDownList()
     {
-        return ArrayHelper::map(self::findBase()->undeleted()->all(), 'id', 'lang.title');
+        return ArrayHelper::map(self::findBase()->undeleted()->all(), 'id', 'title');
     }
 
     /**
      * @param $id
+     * @return mixed
      */
     public static function getById($id)
     {

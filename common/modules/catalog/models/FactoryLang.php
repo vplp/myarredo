@@ -12,7 +12,6 @@ use common\modules\catalog\Catalog;
  *
  * @property integer $rid
  * @property string $lang
- * @property string $title
  * @property string $description
  * @property string $content
  * @property string $contacts
@@ -46,9 +45,8 @@ class FactoryLang extends ActiveRecordLang
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            [['title'], 'required'],
             ['rid', 'exist', 'targetClass' => Factory::class, 'targetAttribute' => 'id'],
-            [['title', 'h1', 'meta_title', 'meta_desc'], 'string', 'max' => 255],
+            [['h1', 'meta_title', 'meta_desc'], 'string', 'max' => 255],
             [['description', 'content', 'contacts'], 'string'],
         ]);
     }
@@ -59,7 +57,7 @@ class FactoryLang extends ActiveRecordLang
     public function scenarios()
     {
         return [
-            'backend' => ['title', 'h1', 'meta_title', 'meta_desc', 'description', 'content', 'contacts'],
+            'backend' => ['h1', 'meta_title', 'meta_desc', 'description', 'content', 'contacts'],
         ];
     }
 
@@ -69,7 +67,6 @@ class FactoryLang extends ActiveRecordLang
     public function attributeLabels()
     {
         return [
-            'title' => Yii::t('app', 'Title'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
             'contacts' => 'Контакты',

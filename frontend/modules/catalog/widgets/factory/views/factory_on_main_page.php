@@ -19,7 +19,7 @@ use frontend\modules\catalog\models\Factory;
                     <div class="col-xs-12 col-sm-6 col-md-3 one-fabr">
                         <?= Html::beginTag('a', ['href' => Factory::getUrl($model['alias'])]); ?>
                         <div class="img-cont"><?= Html::img(Factory::getImageThumb($model['image_link'])); ?></div>
-                        <div class="descr"><?= $model['lang']['title']; ?></div>
+                        <div class="descr"><?= $model['title']; ?></div>
                         <?= Html::endTag('a'); ?>
                     </div>
                 <?php endforeach; ?>

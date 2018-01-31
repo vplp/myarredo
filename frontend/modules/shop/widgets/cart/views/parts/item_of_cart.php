@@ -26,7 +26,7 @@ use frontend\modules\catalog\models\Product;
                 </tr>
                 <tr>
                     <td>Фабрика</td>
-                    <td><?= $product['factory']['lang']['title'] ?></td>
+                    <td><?= $product['factory']['title'] ?></td>
                 </tr>
             </table>
             <button type="button" class="btn btn-default read-more">Подробнее</button>

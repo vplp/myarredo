@@ -99,6 +99,22 @@ class Product extends \common\modules\catalog\models\Product
         return (new search\Product())->search($params);
     }
 
+    public static function isImage($image_link = '')
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getProductUploadPath();
+
+        $image = false;
+
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = true;
+        }
+
+        return $image;
+    }
+
     /**
      * Image
      *

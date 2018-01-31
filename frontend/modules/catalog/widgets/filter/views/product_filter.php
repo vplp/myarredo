@@ -56,7 +56,6 @@ use frontend\modules\catalog\models\{
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                            <input type="checkbox">
                             <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
                         <?= Html::endTag('a'); ?>
 
@@ -84,7 +83,6 @@ use frontend\modules\catalog\models\{
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                            <input type="checkbox">
                             <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
                         <?= Html::endTag('a'); ?>
 
@@ -104,7 +102,6 @@ use frontend\modules\catalog\models\{
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                            <input type="checkbox">
                             <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
                         <?= Html::endTag('a'); ?>
 
@@ -142,7 +139,6 @@ use frontend\modules\catalog\models\{
                                                 <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                                                 <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                                                    <input type="checkbox">
                                                     <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
                                                 <?= Html::endTag('a'); ?>
 

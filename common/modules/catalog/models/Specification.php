@@ -108,7 +108,7 @@ class Specification extends ActiveRecord
     public static function findBase()
     {
         return self::find()
-            ->innerJoinWith(['lang'])
+            ->joinWith(['lang'])
             ->orderBy(self::tableName() . '.position');
     }
 

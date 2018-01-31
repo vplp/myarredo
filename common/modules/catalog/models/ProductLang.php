@@ -82,7 +82,7 @@ class ProductLang extends ActiveRecordLang
     public function beforeSave($insert)
     {
         $this->title = (!empty($this->parent->types->lang) ? $this->parent->types->lang->title : '')
-            . (!empty($this->parent->factory->lang) ? ' ' . $this->parent->factory->lang->title : '')
+            . (!empty($this->parent->factory) ? ' ' . $this->parent->factory->title : '')
             . (!empty($this->parent->collection->lang) ? ' ' . $this->parent->collection->lang->title : '')
             . (($this->parent->article && $this->parent->is_composition == '0') ? ' ' . $this->parent->article : '');
 

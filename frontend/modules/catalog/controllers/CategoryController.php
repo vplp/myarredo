@@ -57,6 +57,10 @@ class CategoryController extends BaseController
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, Yii::$app->catalogFilter->params));
 
+        Yii::$app->metatag->render();
+
+        $this->seo();
+
         return $this->render('list', [
             'group' => $group,
             'category' => $category,
@@ -69,11 +73,9 @@ class CategoryController extends BaseController
     }
 
     /**
-     * @param $action
-     * @return bool|\yii\web\Response
-     * @throws \yii\web\BadRequestHttpException
+     * @return $this
      */
-    public function beforeAction($action)
+    public function seo()
     {
         $keys = Yii::$app->catalogFilter->keys;
         $params = Yii::$app->catalogFilter->params;
@@ -148,27 +150,27 @@ class CategoryController extends BaseController
         }
 
         if (!empty($params[$keys['factory']])) {
-            $model = Factory::findByAlias($params[$keys['factory']][0]);
+            $factory = Factory::findByAlias($params[$keys['factory']][0]);
 
             if (count($params[$keys['factory']]) > 1) {
                 $noindex = 1;
             }
 
             $this->breadcrumbs[] = [
-                'label' => $model['lang']['title'],
+                'label' => $factory['title'],
                 'url' => Yii::$app->catalogFilter->createUrl($params)
             ];
         }
 
         if (!empty($params[$keys['collection']])) {
-            $model = Collection::findById($params[$keys['collection']][0]);
+            $collection = Collection::findById($params[$keys['collection']][0]);
 
-            $pageTitle[] = 'Коллекция мебели ' . $model['lang']['title'];
-            $pageH1[] = 'Коллекция ' . $model['lang']['title'];
-            $pageDescription[] = 'Коллекция ' . $model['lang']['title'];
+            $pageTitle[] = 'Коллекция мебели ' . $collection['lang']['title'];
+            $pageH1[] = 'Коллекция ' . $collection['lang']['title'];
+            $pageDescription[] = 'Коллекция ' . $collection['lang']['title'];
 
             $this->breadcrumbs[] = [
-                'label' => 'Коллекция ' . $model['lang']['title'],
+                'label' => 'Коллекция ' . $collection['lang']['title'],
                 'url' => Yii::$app->catalogFilter->createUrl($params)
             ];
         }
@@ -187,14 +189,17 @@ class CategoryController extends BaseController
         $pageTitle[] = 'Купить в ' . Yii::$app->city->getCityTitleWhere();
         $pageDescription[] = 'Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo';
 
+
         $this->title = !empty($pageTitle)
             ? implode('. ', $pageTitle)
             : 'Каталог итальянской мебели, цены на мебель из Италии';
 
-        Yii::$app->view->registerMetaTag([
-            'name' => 'description',
-            'content' => implode(' ', $pageDescription),
-        ]);
+        if (!Yii::$app->metatag->seo_description) {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'description',
+                'content' => implode(' ', $pageDescription),
+            ]);
+        }
 
         if ($noindex) {
             Yii::$app->view->registerMetaTag([
@@ -207,7 +212,7 @@ class CategoryController extends BaseController
             ? $this->pageH1
             : implode(', ', $pageH1);
 
-        return parent::beforeAction($action);
+        return $this;
     }
 
 }

@@ -40,7 +40,7 @@ use yii\helpers\Html;
     <div class="stud" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
         <meta itemprop="addressLocality" content="<?= $city['country']['lang']['title'] ?> <?= $city['lang']['title'] ?>"/>
         <meta itemprop="streetAddress" content="<?= $partner['profile']['address'] ?>"/>
-        <?= $partner['profile']['name_company'] ?></br><?= $partner['profile']['address'] ?>
+        <?= $partner['profile']['name_company'] ?><br><?= $partner['profile']['address'] ?>
     </div>
 
 <?php endif; ?>

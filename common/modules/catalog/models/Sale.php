@@ -274,7 +274,7 @@ class Sale extends ActiveRecord
     public static function findBase()
     {
         return self::find()
-            ->innerJoinWith(['lang'])
+            ->joinWith(['lang'])
             ->orderBy(self::tableName() . '.updated_at DESC');
     }
 
