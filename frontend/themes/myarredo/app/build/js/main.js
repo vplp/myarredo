@@ -462,7 +462,8 @@ $(document).ready(function(){
 
 });
 (function(){
-    console.log("lala");
+    console.log("lala23");
+    /*
     var loaderTemplate =
         `<div class="loader" style="display: none;">
             <div id="floatingCirclesG">
@@ -476,11 +477,12 @@ $(document).ready(function(){
                 <div class="f_circleG" id="frotateG_08"></div>
             </div>
         </div>`;
+        */
 
     if( $("#checkout-form").length ){
 
         var btn = $("#checkout-form button[type=submit]");
-        $('body').append(loaderTemplate);
+        //$('body').append(loaderTemplate);
         $("#checkout-form").on("submit",function(e){
             btn.addClass("disabled");
             $(".loader").show();
