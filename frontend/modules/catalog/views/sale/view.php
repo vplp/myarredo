@@ -30,6 +30,8 @@ $this->title = $this->context->title;
                                 Factory::getUrl($model['factory']['alias']),
                                 ['class' => 'brand']
                             );
+                        } else {
+                            $model['factory_name'];
                         }
 
                         echo Html::a(
