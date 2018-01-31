@@ -17,7 +17,7 @@ use yii\helpers\Html;
         <?= Html::img($model::getImageThumb($model['image_link'])); ?>
 
         <div class="brand">
-            <?= $model['factory']['title'] ?>
+            <?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name'] ?>
         </div>
 
     </div>
