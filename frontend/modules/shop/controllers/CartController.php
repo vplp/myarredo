@@ -34,6 +34,8 @@ class CartController extends BaseController
         $model = new CartCustomerForm;
         $model->setScenario('frontend');
 
+        $view = 'notepad';
+
         if (
             $model->load(Yii::$app->getRequest()->post(), 'CartCustomerForm') &&
             $model->validate() &&
@@ -71,11 +73,11 @@ class CartController extends BaseController
                     Yii::t('app', 'Your order № {order_id}', ['order_id' => $new_order['id']])
                 );
 
-                return Yii::$app->controller->redirect(Url::toRoute('/shop/cart/notepad'));
+                $view = 'order_success';
             }
         }
 
-        return $this->render('notepad');
+        return $this->render($view);
     }
 
     /**
