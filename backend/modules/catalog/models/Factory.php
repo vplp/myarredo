@@ -40,10 +40,8 @@ class Factory extends CommonFactoryModel implements BaseBackendModel
      */
     public function beforeValidate()
     {
-        $title = (Yii::$app->request->post('FactoryLang'))['title'];
-
-        $this->first_letter = mb_strtoupper(mb_substr(trim($title), 0, 1, 'UTF-8'), 'UTF-8');
-        $this->alias = $title;
+        $this->first_letter = mb_strtoupper(mb_substr(trim($this->title), 0, 1, 'UTF-8'), 'UTF-8');
+        $this->alias = $this->title;
 
         return parent::beforeValidate();
     }
