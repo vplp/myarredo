@@ -81,11 +81,11 @@ class CityComponent extends Component
     public function getPhoneMask()
     {
         if (in_array($this->domain, ['by'])) {
-            $mask = '375999999999';
+            $mask = '+375 (99) 999-99-99';
         } else if (in_array($this->domain, ['ua'])) {
-            $mask = '380999999999';
+            $mask = '+380 (99) 999-99-99';
         } else {
-            $mask = '79999999999';
+            $mask = '+7 (999) 999-99-99';
         }
 
         return $mask;

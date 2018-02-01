@@ -38,7 +38,7 @@ Class CartCustomerForm extends Model
             [['pay'], 'in', 'range' => array_keys(PaymentMethods::dropDownList())],
             [['comment'], 'string', 'max' => 2048],
             [['full_name'], 'string', 'max' => 255],
-            [['phone'], 'string', 'max' => 15],
+            [['phone'], 'string', 'max' => 50],
             [['email'], 'email'],
             [['delivery', 'pay'], 'default', 'value' => 0],
             [['user_agreement'], 'in', 'range' => [0, 1]],
