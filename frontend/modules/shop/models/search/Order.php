@@ -68,8 +68,16 @@ class Order extends OrderModel
         $query->andFilterWhere([
             'id' => $this->id,
             'customer_id' => $this->customer_id,
-            'city_id' => $this->city_id,
         ]);
+
+        if (is_array($params['city_id'])) {
+            $query->andFilterWhere(['IN', 'city_id', $params['city_id']]);
+        } else if ($params['city_id'] > 0) {
+            $query->andFilterWhere([
+                'city_id' => $params['city_id'],
+            ]);
+        }
+
 
         if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
             $query

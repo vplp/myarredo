@@ -32,7 +32,7 @@ class AdminOrderController extends BaseController
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'list' => ['get'],
+                    'list' => ['get', 'post'],
                 ],
             ],
             'AccessControl' => [
@@ -60,7 +60,17 @@ class AdminOrderController extends BaseController
     {
         $model = new Order();
 
-        $models = $model->search(Yii::$app->request->queryParams);
+        $params = Yii::$app->request->post() ?? [];
+
+        if (!isset($params['country_id'])) {
+            $params['country_id'] = 0;
+        }
+
+        if (!isset($params['city_id'])) {
+            $params['city_id'] = 0;
+        }
+
+        $models = $model->search($params);
 
         $this->title = Yii::t('app', 'Orders');
 
@@ -69,8 +79,10 @@ class AdminOrderController extends BaseController
         ];
 
         return $this->render('list', [
+            'model' => $model,
             'models' => $models->getModels(),
-            'pages' => $models->getPagination()
+            'pages' => $models->getPagination(),
+            'params' => $params,
         ]);
     }
 }

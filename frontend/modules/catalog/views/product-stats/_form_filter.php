@@ -106,6 +106,7 @@ HTML;
 
 $script = <<<JS
 $('select#country_id').change(function(){
+    $('select#city_id').val(0);
     $('#form-stats').submit();
 });
 $('select#city_id').change(function(){

@@ -9,8 +9,9 @@ use yii\filters\{
 use yii\web\ForbiddenHttpException;
 //
 use frontend\components\BaseController;
+use frontend\modules\location\models\City;
 use frontend\modules\shop\models\{
-    Order, OrderAnswer, OrderItemPrice, search\Order as filterOrderModel
+    Order, OrderAnswer, OrderItemPrice
 };
 
 /**
@@ -63,7 +64,20 @@ class PartnerOrderController extends BaseController
     {
         $model = new Order();
 
-        $models = $model->search(Yii::$app->request->queryParams);
+        $params = Yii::$app->request->post() ?? [];
+
+        /**
+         * add city_id
+         */
+        $modelCity = City::findAll(['country_id' => Yii::$app->user->identity->profile->country_id]);
+
+        if ($modelCity != null) {
+            foreach ($modelCity as $city) {
+                $params['city_id'][] = $city['id'];
+            }
+        }
+
+        $models = $model->search($params);
 
         $this->title = Yii::t('app', 'Orders');
 

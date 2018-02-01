@@ -5,6 +5,7 @@ use yii\helpers\{
 };
 
 /**
+ * @var $pages \yii\data\Pagination
  * @var $modelOrder \frontend\modules\shop\models\Order
  */
 
@@ -15,6 +16,11 @@ $this->title = $this->context->title;
 <main>
     <div class="page adding-product-page">
         <div class="container large-container">
+
+            <?= $this->render('_form_filter', [
+                'model' => $model,
+                'params' => $params,
+            ]); ?>
 
             <?= Html::tag('h1', $this->context->title); ?>
 
