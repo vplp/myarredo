@@ -26,6 +26,7 @@ use common\modules\catalog\models\Factory;
  * @property int $partner_in_city
  * @property int $possibility_to_answer
  * @property int $pdf_access
+ * @property int $show_contacts
  *
  * @package common\modules\user\models
  */
@@ -53,7 +54,8 @@ class Profile extends \thread\modules\user\models\Profile
                     'delivery_to_other_cities',
                     'partner_in_city',
                     'possibility_to_answer',
-                    'pdf_access'
+                    'pdf_access',
+                    'show_contacts'
                 ],
                 'in',
                 'range' => array_keys(self::statusKeyRange())
@@ -85,7 +87,8 @@ class Profile extends \thread\modules\user\models\Profile
                 'longitude',
                 'partner_in_city',
                 'possibility_to_answer',
-                'pdf_access'
+                'pdf_access',
+                'show_contacts'
             ],
             'basicCreate' => [
                 'phone',
@@ -101,7 +104,8 @@ class Profile extends \thread\modules\user\models\Profile
                 'longitude',
                 'partner_in_city',
                 'possibility_to_answer',
-                'pdf_access'
+                'pdf_access',
+                'show_contacts'
             ],
             'backend' => [
                 'first_name',
@@ -119,7 +123,8 @@ class Profile extends \thread\modules\user\models\Profile
                 'longitude',
                 'partner_in_city',
                 'possibility_to_answer',
-                'pdf_access'
+                'pdf_access',
+                'show_contacts'
             ]
         ]);
     }
@@ -144,6 +149,7 @@ class Profile extends \thread\modules\user\models\Profile
             'partner_in_city' => Yii::t('app', 'Partner in city'),
             'possibility_to_answer' => 'Отвечает без установки кода на сайт',
             'pdf_access' => 'Доступ к прайсам и каталогам',
+            'show_contacts' => 'Показывать в контактах',
         ]);
     }
 

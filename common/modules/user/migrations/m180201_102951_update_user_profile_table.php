@@ -4,7 +4,7 @@ use yii\db\Migration;
 //
 use common\modules\user\User as UserModule;
 
-class m171211_145123_update_user_profile_table extends Migration
+class m180201_102951_update_user_profile_table extends Migration
 {
     /**
      * table name
@@ -26,7 +26,7 @@ class m171211_145123_update_user_profile_table extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn($this->table, 'factory_id', $this->integer(11)->unsigned()->notNull()->defaultValue(0)->after('user_id'));
+        $this->addColumn($this->table, 'show_contacts', "enum('0','1') NOT NULL DEFAULT '0'");
     }
 
     /**
@@ -34,6 +34,6 @@ class m171211_145123_update_user_profile_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropColumn($this->table, 'factory_id');
+        $this->dropColumn($this->table, 'show_contacts');
     }
 }

@@ -46,6 +46,7 @@ use backend\modules\catalog\models\Factory;
     echo $form->switcher($model, 'partner_in_city');
     echo $form->switcher($model, 'possibility_to_answer');
     echo $form->switcher($model, 'pdf_access');
+    echo $form->switcher($model, 'show_contacts');
 endif; ?>
 
 <?= Html::a(Yii::t('user', 'Change password'), ['/user/password/change', 'id' => $model['id']], ['class' => 'btn btn-info']); ?>
