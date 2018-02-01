@@ -12,7 +12,7 @@ use frontend\modules\location\models\{
 ?>
 
 <?php $form = ActiveForm::begin([
-    'method' => 'post',
+    'method' => 'get',
     'action' => Url::toRoute(['/shop/admin-order/list']),
     'id' => 'form-stats',
     'options' => [
@@ -36,7 +36,7 @@ use frontend\modules\location\models\{
     <div class="form-group">
         <?= Select2::widget([
             'name' => 'city_id',
-            'value' => $params['city_id'],
+            'value' => (!is_array($params['city_id'])) ? $params['city_id'] : 0,
             'data' => [0 => '--'] + City::dropDownList($params['country_id']),
             'options' => [
                 'id' => 'city_id',
@@ -44,6 +44,10 @@ use frontend\modules\location\models\{
                 'placeholder' => Yii::t('app', 'Select a city')
             ]
         ]); ?>
+    </div>
+
+    <div class="form-group">
+        <div class="form-control">Количество заявок: <?= $models->getTotalCount() ?></div>
     </div>
 
 <?php ActiveForm::end(); ?>

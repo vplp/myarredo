@@ -8,9 +8,8 @@ use yii\filters\{
 };
 //
 use frontend\components\BaseController;
-use frontend\modules\shop\models\{
-    Order
-};
+use frontend\modules\location\models\City;
+use frontend\modules\shop\models\Order;
 
 /**
  * Class AdminOrderController
@@ -60,7 +59,17 @@ class AdminOrderController extends BaseController
     {
         $model = new Order();
 
-        $params = Yii::$app->request->post() ?? [];
+        $params = Yii::$app->request->get() ?? [];
+
+        if (isset($params['country_id']) && $params['country_id'] > 0 && $params['city_id'] == 0) {
+            $modelCity = City::findAll(['country_id' => $params['country_id']]);
+            $params['city_id'] = [];
+            if ($modelCity != null) {
+                foreach ($modelCity as $city) {
+                    $params['city_id'][] = $city['id'];
+                }
+            }
+        }
 
         if (!isset($params['country_id'])) {
             $params['country_id'] = 0;
@@ -80,8 +89,7 @@ class AdminOrderController extends BaseController
 
         return $this->render('list', [
             'model' => $model,
-            'models' => $models->getModels(),
-            'pages' => $models->getPagination(),
+            'models' => $models,
             'params' => $params,
         ]);
     }

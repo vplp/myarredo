@@ -10,19 +10,21 @@ use yii\helpers\{
  */
 
 $this->title = $this->context->title;
-
 ?>
 
 <main>
     <div class="page adding-product-page">
         <div class="container large-container">
 
+            <?= Html::tag('h1', $this->context->title); ?>
+
             <?= $this->render('_form_filter', [
                 'model' => $model,
                 'params' => $params,
+                'models' => $models,
             ]); ?>
 
-            <?= Html::tag('h1', $this->context->title); ?>
+
 
             <div class="manager-history">
                 <div class="manager-history-header">
@@ -52,55 +54,51 @@ $this->title = $this->context->title;
                 </div>
                 <div class="manager-history-list">
 
-                    <?php if (!empty($models)): ?>
+                    <?php foreach ($models->getModels() as $modelOrder): ?>
 
-                        <?php foreach ($models as $modelOrder): ?>
+                        <div class="item" data-hash="<?= $modelOrder->id; ?>">
 
-                            <div class="item" data-hash="<?= $modelOrder->id; ?>">
-
-                                <ul class="orders-title-block flex">
-                                    <li class="order-id">
+                            <ul class="orders-title-block flex">
+                                <li class="order-id">
                                         <span>
                                             <?= $modelOrder->id; ?>
                                         </span>
-                                    </li>
-                                    <li class="application-date">
-                                        <span><?= $modelOrder->getCreatedTime() ?></span>
-                                    </li>
-                                    <li>
-                                        <span><?= $modelOrder->customer->full_name ?></span>
-                                    </li>
-                                    <li>
-                                        <span><?= $modelOrder->customer->phone ?></span>
-                                    </li>
-                                    <li>
-                                        <span><?= $modelOrder->customer->email ?></span>
-                                    </li>
-                                    <li><span>
+                                </li>
+                                <li class="application-date">
+                                    <span><?= $modelOrder->getCreatedTime() ?></span>
+                                </li>
+                                <li>
+                                    <span><?= $modelOrder->customer->full_name ?></span>
+                                </li>
+                                <li>
+                                    <span><?= $modelOrder->customer->phone ?></span>
+                                </li>
+                                <li>
+                                    <span><?= $modelOrder->customer->email ?></span>
+                                </li>
+                                <li><span>
                                             <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
                                         </span>
-                                    </li>
-                                    <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
-                                </ul>
+                                </li>
+                                <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
+                            </ul>
 
-                                <div class="hidden-order-info flex">
+                            <div class="hidden-order-info flex">
 
-                                    <?= $this->render('_list_item', [
-                                        'modelOrder' => $modelOrder,
-                                    ]) ?>
-
-                                </div>
+                                <?= $this->render('_list_item', [
+                                    'modelOrder' => $modelOrder,
+                                ]) ?>
 
                             </div>
 
-                        <?php endforeach; ?>
+                        </div>
 
-                    <?php endif; ?>
+                    <?php endforeach; ?>
 
                 </div>
 
                 <?= frontend\components\LinkPager::widget([
-                    'pagination' => $pages,
+                    'pagination' => $models->getPagination(),
                 ]);
                 ?>
 
