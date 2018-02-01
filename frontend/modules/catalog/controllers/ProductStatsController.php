@@ -6,10 +6,8 @@ use Yii;
 use yii\filters\{
     VerbFilter, AccessControl
 };
-use yii\helpers\ArrayHelper;
-use frontend\modules\catalog\models\{
-    ProductStats, Factory
-};
+//
+use frontend\modules\catalog\models\ProductStats;
 use frontend\components\BaseController;
 
 /**
@@ -61,7 +59,7 @@ class ProductStatsController extends BaseController
     {
         $model = new ProductStats();
 
-        $params = Yii::$app->request->post() ?? [];
+        $params = Yii::$app->request->get() ?? [];
 
         if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
             $params['factory_id'] = Yii::$app->getUser()->getIdentity()->profile->factory_id;

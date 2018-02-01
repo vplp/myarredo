@@ -29,7 +29,7 @@ HTML;
 ?>
 
 <?php $form = ActiveForm::begin([
-    'method' => 'post',
+    'method' => 'get',
     'action' => Url::toRoute(['/catalog/product-stats/list']),
     'id' => 'form-stats',
     'options' => [
