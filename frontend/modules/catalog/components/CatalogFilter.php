@@ -8,7 +8,12 @@ use yii\helpers\Url;
 use yii\base\Component;
 use yii\web\NotFoundHttpException;
 use frontend\modules\catalog\models\{
-    Product, Category, Factory, Types, Specification, Collection
+    Product,
+    Category,
+    Factory,
+    Types,
+    Specification,
+    Collection
 };
 
 /**
@@ -18,14 +23,35 @@ use frontend\modules\catalog\models\{
  */
 class CatalogFilter extends Component
 {
+    /**
+     * delimiter
+     */
     const AMPERSAND_1 = '--';
 
+    /**
+     * delimiter
+     */
     const AMPERSAND_2 = '-';
 
+    /**
+     * Filter parameters
+     *
+     * @var array
+     */
     private static $_parameters = [];
 
+    /**
+     * Filter structure
+     *
+     * @var array
+     */
     private static $_structure = [];
 
+    /**
+     * Filter keys
+     *
+     * @var array
+     */
     static $keys = [
         'category' => '.10',
         'type' => '.20',
@@ -76,15 +102,17 @@ class CatalogFilter extends Component
     }
 
     /**
+     * Create filter url
+     *
      * @param array $paramsUrl
      * @param array $route
      * @return string
      */
-    public function createUrl(array $paramsUrl = [], $route = ['/catalog/category/list'])
+    public function createUrl($paramsUrl = [], $route = ['/catalog/category/list'])
     {
-        $labelEmptyKey = self::getLabelEmptyKey();
+        $labelEmptyKey = $this->getLabelEmptyKey();
 
-        $structure = self::$_parameters;
+        $structure = $this->getParams();
 
         $paramsUrl = array_merge($labelEmptyKey, $paramsUrl);
 
@@ -134,9 +162,11 @@ class CatalogFilter extends Component
     }
 
     /**
+     * Filter stubs
+     *
      * @return array
      */
-    private static function getLabelEmptyKey()
+    private function getLabelEmptyKey()
     {
         return [
             self::$keys['category'] => 'c',
@@ -170,7 +200,7 @@ class CatalogFilter extends Component
                 $elements[$k] = explode(self::AMPERSAND_2, $v);
 
                 // якщо значення співнадає із значенням масиву
-                if (!empty($elements[$k][0]) && in_array($elements[$k][0], self::getLabelEmptyKey())) {
+                if (!empty($elements[$k][0]) && in_array($elements[$k][0], $this->getLabelEmptyKey())) {
                     $elements[$k] = [];
                 }
             }
