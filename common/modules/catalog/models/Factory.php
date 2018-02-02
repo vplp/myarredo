@@ -36,6 +36,7 @@ use common\helpers\Inflector;
  * @property integer $position
  * @property integer $partner_id
  * @property integer $alternative
+ * @property integer $new_price
  *
  * @property FactoryLang $lang
  * @property Collection $collection
@@ -90,8 +91,16 @@ class Factory extends ActiveRecord
         return [
             [['alias', 'title'], 'required'],
             [['created_at', 'updated_at', 'position', 'partner_id'], 'integer'],
-            [['published', 'deleted', 'position', 'popular_ua', 'popular_by', 'novelty', 'alternative'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['alias', 'title', 'country_code', 'url', 'email', 'novelty_url', 'image_link'], 'string', 'max' => 255],
+            [
+                ['published', 'deleted', 'position', 'popular_ua', 'popular_by', 'novelty', 'alternative', 'new_price'],
+                'in',
+                'range' => array_keys(static::statusKeyRange())
+            ],
+            [
+                ['alias', 'title', 'country_code', 'url', 'email', 'novelty_url', 'image_link'],
+                'string',
+                'max' => 255
+            ],
             [['first_letter'], 'string', 'max' => 2],
             [['alias'], 'unique'],
             [['position', 'partner_id'], 'default', 'value' => '0'],
@@ -128,7 +137,8 @@ class Factory extends ActiveRecord
                 'novelty',
                 'alternative',
                 'position',
-                'partner_id'
+                'partner_id',
+                'new_price'
             ],
         ];
     }
@@ -158,6 +168,7 @@ class Factory extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'new_price' => 'Цена требует проверки, есть новый прайс',
         ];
     }
 

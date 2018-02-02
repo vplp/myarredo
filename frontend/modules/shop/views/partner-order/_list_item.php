@@ -31,7 +31,6 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
         </div>
         <div class="form-wrap">
 
-
             <?= $form->field($modelOrder, 'comment')
                 ->textarea(['disabled' => true, 'rows' => 5]) ?>
 

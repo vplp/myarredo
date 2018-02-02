@@ -73,7 +73,7 @@ $this->title = $this->context->title;
                             <?php endif; ?>
 
                             <tr class="availability">
-                                <td>
+                                <td colspan="2">
                                     <?= ($model['status']) ?>
 
                                     <?php if (!$model['removed'] && $model['in_stock']): ?>
@@ -82,12 +82,12 @@ $this->title = $this->context->title;
                                         <meta itemprop="availability" content="PreOrder">
                                     <?php endif; ?>
                                 </td>
-                                <td>
-
-                                </td>
                             </tr>
-
                         </table>
+
+                        <?php if ($model['factory']['new_price']): ?>
+                            <span style="color: red;">Цена требует проверки, есть новый прайс</span>
+                        <?php endif; ?>
 
                         <table class="info-table">
                             <tr>

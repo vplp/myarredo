@@ -27,6 +27,7 @@
     </div>
 </div>
 <?= $form->switcher($model, 'alternative') ?>
+<?= $form->switcher($model, 'new_price') ?>
 <div class="row control-group">
     <div class="col-md-3">
         <?= $form->switcher($model, 'novelty') ?>
