@@ -27,7 +27,7 @@ class CatalogMenu extends Widget
      */
     public function init()
     {
-        $this->category = Category::findBase()->all();
+        $this->category = Category::getWithProduct(); //findBase()->all()
     }
 
     /**

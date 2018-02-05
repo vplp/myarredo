@@ -30,7 +30,7 @@ use frontend\modules\catalog\models\Category;
 
                         <?php foreach ($category as $model):
                             echo Html::beginTag('li')
-                                . Html::a($model['lang']['title'] . ' (' . $model['product_count'] . ')', Category::getUrl($model['alias']))
+                                . Html::a($model['lang']['title'] . ' (' . $model['count'] . ')', Category::getUrl($model['alias']))
                                 . Html::endTag('li');
                             //
                             (isset($i)) ? $i++ : $i = 1;
