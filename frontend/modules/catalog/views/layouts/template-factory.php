@@ -48,10 +48,10 @@ $this->beginPage()
                 <?= Yii::$app->partner->getPartnerPhone() ?>
             </a>
             <nav class="nav">
-                <?= Html::a('Главная', ['/catalog/factory/view', 'alias' => $this->context->factory['alias']]); ?>
-                <?= Html::a('Каталог мебели', ['/catalog/template-factory/catalog', 'alias' => $this->context->factory['alias']]); ?>
+                <?= Html::a(Yii::t('app', 'Main') , ['/catalog/factory/view', 'alias' => $this->context->factory['alias']]); ?>
+                <?= Html::a(Yii::t('app', 'Catalog of furniture') , ['/catalog/template-factory/catalog', 'alias' => $this->context->factory['alias']]); ?>
                 <?= Html::a(Yii::t('app', 'Sale'), ['/catalog/template-factory/sale', 'alias' => $this->context->factory['alias']]); ?>
-                <?= Html::a('Контанты', ['/catalog/template-factory/contacts', 'alias' => $this->context->factory['alias']]); ?>
+                <?= Html::a(Yii::t('app', 'Contacts'), ['/catalog/template-factory/contacts', 'alias' => $this->context->factory['alias']]); ?>
             </nav>
         </div>
     </div>
