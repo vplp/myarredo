@@ -77,8 +77,6 @@ class CatalogFilter extends Component
     public function init()
     {
         parent::init();
-
-        $this->_parserUrl();
     }
 
     /**
@@ -214,7 +212,7 @@ class CatalogFilter extends Component
     /**
      * Parser upl
      */
-    private function _parserUrl()
+    public function parserUrl()
     {
         $elements = explode(self::AMPERSAND_1, Yii::$app->request->get('filter'));
 
@@ -229,6 +227,10 @@ class CatalogFilter extends Component
             }
         }
 
+        if (count($elements) > 1 && empty(end($elements))) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        }
+
         $i = 0;
         foreach (self::$keys as $key => $value) {
             if (!empty($elements[$i])) {
@@ -241,7 +243,7 @@ class CatalogFilter extends Component
             $model = Category::findByAlias(self::$_structure['category'][0]);
 
             if ($model === null || count(self::$_structure['category']) > 1) {
-                throw new NotFoundHttpException;
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
             self::$_parameters[self::$keys['category']][] = $model['alias'];
@@ -255,7 +257,7 @@ class CatalogFilter extends Component
                 ->all();
 
             if (count(self::$_structure['type']) !== count($model) || $model === null) {
-                throw new NotFoundHttpException;
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
             foreach ($model as $obj) {
@@ -270,7 +272,7 @@ class CatalogFilter extends Component
                 ->all();
 
             if (count(self::$_structure['style']) !== count($model) || $model === null) {
-                throw new NotFoundHttpException;
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
             foreach ($model as $obj) {
@@ -285,7 +287,7 @@ class CatalogFilter extends Component
                 ->all();
 
             if (count(self::$_structure['factory']) !== count($model) || $model === null) {
-                throw new NotFoundHttpException;
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
             foreach ($model as $obj) {
@@ -300,7 +302,7 @@ class CatalogFilter extends Component
                 ->all();
 
             if (count(self::$_structure['collection']) !== count($model) || $model === null) {
-                throw new NotFoundHttpException;
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
             foreach ($model as $obj) {

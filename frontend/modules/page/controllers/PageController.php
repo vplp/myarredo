@@ -46,7 +46,7 @@ class PageController extends BaseController
         $model = Page::findByAlias($alias);
 
         if ($model === null) {
-            throw new NotFoundHttpException;
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
         $this->title = $model['lang']['title'];

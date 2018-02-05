@@ -66,7 +66,7 @@ class FactoryController extends BaseController
         $pageDescription[] = 'в ' . Yii::$app->city->getCityTitleWhere();
 
         if ($view && $view !== 'three') {
-            throw new NotFoundHttpException;
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
         $this->title = implode(' ', $pageTitle);
@@ -123,7 +123,7 @@ class FactoryController extends BaseController
         Yii::$app->metatag->render();
 
         if ($model === null) {
-            throw new NotFoundHttpException;
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
         /** @var Catalog $module */

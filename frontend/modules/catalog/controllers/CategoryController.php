@@ -50,6 +50,8 @@ class CategoryController extends BaseController
             $group = Yii::$app->catalogFilter->params['category'];
         }
 
+        Yii::$app->catalogFilter->parserUrl();
+
         $category = Category::getWithProduct(Yii::$app->catalogFilter->params);
         $types = Types::getWithProduct(Yii::$app->catalogFilter->params);
         $style = Specification::getWithProduct(Yii::$app->catalogFilter->params);

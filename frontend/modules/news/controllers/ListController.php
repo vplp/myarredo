@@ -54,7 +54,7 @@ class ListController extends BaseController
                 $item = Group::findByAlias(Yii::$app->request->get('alias'));
 
                 if ($item === null)
-                    throw new NotFoundHttpException;
+                    throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
 
                 $r = $item['id'];
 

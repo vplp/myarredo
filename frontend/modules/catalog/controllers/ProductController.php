@@ -48,7 +48,7 @@ class ProductController extends BaseController
         $model = Product::findByAlias($alias);
 
         if ($model === null) {
-            throw new NotFoundHttpException;
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
         // ProductStats

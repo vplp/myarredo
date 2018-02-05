@@ -77,6 +77,8 @@ class SaleController extends BaseController
     {
         $model = new Sale();
 
+        Yii::$app->catalogFilter->parserUrl();
+
         $category = Category::getWithSale(Yii::$app->catalogFilter->params);
         $types = Types::getWithSale(Yii::$app->catalogFilter->params);
         $style = Specification::getWithSale(Yii::$app->catalogFilter->params);
@@ -112,7 +114,7 @@ class SaleController extends BaseController
         $model = Sale::findByAlias($alias);
 
         if ($model === null) {
-            throw new NotFoundHttpException;
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
         $this->breadcrumbs[] = [
