@@ -46,6 +46,7 @@ class OrderItemPrice extends ActiveRecord
             [['order_id', 'user_id', 'product_id'], 'required'],
             [['order_id', 'user_id', 'product_id'], 'integer'],
             [['price'], 'double'],
+            ['price', 'compare', 'compareValue' => 108, 'operator' => '>=', 'message'=>'You cannot invite yourself.'],
         ];
     }
 

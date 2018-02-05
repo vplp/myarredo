@@ -74,7 +74,7 @@ abstract class BaseController extends Controller
      */
     public function getSeoH1()
     {
-        if ($this->directlink['h1']) {
+        if ($this->directLink['h1']) {
             $this->pageH1 = str_replace('#городе#', Yii::$app->city->getCityTitleWhere(), $this->directLink['h1']);
         }
 
