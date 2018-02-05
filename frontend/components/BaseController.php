@@ -34,11 +34,11 @@ abstract class BaseController extends Controller
     public $breadcrumbs = [];
     public $pageH1 = '';
 
-    protected $directlink;
+    protected $directLink;
 
     public function init()
     {
-        $this->directlink = Directlink::findByUrl();
+        $this->directLink = Directlink::findByUrl();
 
         /**
          * Set user interface language
@@ -47,7 +47,7 @@ abstract class BaseController extends Controller
             /** @var User $user */
             $user = Yii::$app->getUser()->getIdentity();
             Yii::$app->params['themes']['language'] = $user->profile->preferred_language;
-            Yii::$app->language = $user->profile->preferred_language;
+            //Yii::$app->language = $user->profile->preferred_language;
         }
 
         parent::init();
@@ -75,7 +75,7 @@ abstract class BaseController extends Controller
     public function getSeoH1()
     {
         if ($this->directlink['h1']) {
-            $this->pageH1 = str_replace('#городе#', Yii::$app->city->getCityTitleWhere(), $this->directlink['h1']);
+            $this->pageH1 = str_replace('#городе#', Yii::$app->city->getCityTitleWhere(), $this->directLink['h1']);
         }
 
         return $this->pageH1;
@@ -88,8 +88,8 @@ abstract class BaseController extends Controller
     {
         $content = false;
 
-        if ($this->directlink['content']) {
-            $content = str_replace('#городе#', Yii::$app->city->getCityTitleWhere(), $this->directlink['content']);
+        if ($this->directLink['content']) {
+            $content = str_replace('#городе#', Yii::$app->city->getCityTitleWhere(), $this->directLink['content']);
         }
 
         return $content;
