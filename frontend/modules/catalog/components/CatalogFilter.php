@@ -110,6 +110,10 @@ class CatalogFilter extends Component
      */
     public function createUrl($paramsUrl = [], $route = ['/catalog/category/list'])
     {
+        if (empty($paramsUrl)) {
+            $paramsUrl = $this->getParams();
+        }
+
         $labelEmptyKey = $this->getLabelEmptyKey();
 
         $structure = $this->getParams();
@@ -121,14 +125,35 @@ class CatalogFilter extends Component
         ksort($paramsUrl, SORT_STRING);
 
         // Видалення пустих елементів з кінця масиву
+
+        $reversed = array_reverse($paramsUrl);
+
+        foreach ($reversed as $key => $val) {
+            if (in_array($val, array_values($labelEmptyKey))) {
+                unset($paramsUrl[$key]);
+            } else {
+                break;
+            }
+        }
+
         {
             $count = count($paramsUrl) - 1;
-            for (; ; $count--) {
-                if (!in_array(end($paramsUrl), array_values($labelEmptyKey))) {
+            for (; $count >= 0; $count--) {
+                if (end($paramsUrl)) {
                     break;
                 } else {
                     unset($paramsUrl[key($paramsUrl)]);
                 }
+            }
+        }
+
+        $reversed = array_reverse($paramsUrl);
+
+        foreach ($reversed as $key => $val) {
+            if (in_array($val, array_values($labelEmptyKey))) {
+                unset($paramsUrl[$key]);
+            } else {
+                break;
             }
         }
 
@@ -142,8 +167,6 @@ class CatalogFilter extends Component
                 if (isset($v['from']) && $v['from'] != '' || isset($v['to']) && $v['to'] != '')
                     $res[$k] = implode(self::AMPERSAND_2, $v);
                 else if (!isset($v['from']) && !isset($v['to']))
-                    $res[$k] = implode(self::AMPERSAND_2, $v);
-                else
                     $res[$k] = implode(self::AMPERSAND_2, $v);
             } else {
                 $res[$k] = $v;
