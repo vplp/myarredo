@@ -2,8 +2,6 @@
 
 namespace common\modules\shop\models;
 
-
-use common\modules\location\models\CityLang;
 use Yii;
 use yii\helpers\ArrayHelper;
 //
