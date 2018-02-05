@@ -23,7 +23,7 @@ use yii\helpers\{
         <div class="form-wrap">
 
             <div class="form-group">
-                <div>Время ответов:</div>
+                <div><?= Yii::t('app', 'Response time') ?>:</div>
                 <?php foreach ($modelOrder->orderAnswers as $key => $answer) {
                     echo '<div><strong>' . $answer['user']['profile']['name_company'] . '</strong></div>' .
                         '<div>' . ($key+1) . ') '.$answer->getAnswerTime() . '</div>';

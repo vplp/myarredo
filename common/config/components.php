@@ -42,14 +42,6 @@ return [
             'class' => 'Swift_SmtpTransport',
         ],
     ],
-/*
-    'redis' => [
-        'class' => \yii\redis\Connection::class,
-        'hostname' => 'localhost',
-        'port' => 6379,
-        'database' => 0,
-    ],
-*/
     // FileCache
     'cache' => [
         'class' => \yii\caching\FileCache::class,
@@ -90,6 +82,7 @@ return [
         'siteKey' => '6LehPRkUAAAAAB1TVTLbwB1GYua9tI4aC1cHYSTU',
         'secret' => '6LehPRkUAAAAADUIdKWBJx1tPKLztXMoVcsrHVrl',
     ],
+    // sendPulse
     'sendPulse' => [
         'class' => \common\components\sendpulse\SendPulse::className(),
         'userId' => '5a4017d2702c0caa55238646202925af',
