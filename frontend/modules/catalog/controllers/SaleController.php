@@ -122,7 +122,7 @@ class SaleController extends BaseController
             'url' => ['/catalog/category/list']
         ];
 
-        $this->title = 'Распродажа: ' .
+        $this->title = Yii::t('app', 'Sale') . ': ' .
             $model['lang']['title'] .
             ' - '. $model['price_new'] . ' ' . $model['currency'] .
             ' - интернет-магазин Myarredo в ' .

@@ -23,7 +23,7 @@ use frontend\modules\catalog\models\Category;
 <div class="collapse navbar-collapse" id="main-menu">
     <ul class="nav navbar-nav">
         <li>
-            <?= Html::a('Каталог мебели', ['/catalog/category/list']); ?>
+            <?= Html::a(Yii::t('app', 'Catalog of furniture'), ['/catalog/category/list']); ?>
             <div class="dropdown-item">
                 <div class="container large-container">
                     <ul class="drop-down-list">
@@ -45,19 +45,19 @@ use frontend\modules\catalog\models\Category;
             </div>
         </li>
         <li><?= Html::a(
-                'Распродажа',
+                Yii::t('app', 'Sale'),
                 Url::toRoute(['/catalog/sale/list'])
             ) ?></li>
         <li><?= Html::a(
-                'Фабрики',
+                Yii::t('app', 'Factory'),
                 Url::toRoute(['/catalog/factory/list'])
             ) ?></li>
         <li><?= Html::a(
-                'О проекте',
+                Yii::t('app', 'About the project'),
                 Url::toRoute(['/page/page/view', 'alias' => 'about'])
             ) ?></li>
         <li><?= Html::a(
-                'Контакты в ' . Yii::$app->city->getCityTitleWhere(),
+                Yii::t('app', 'Contacts in') . ' ' . Yii::$app->city->getCityTitleWhere(),
                 Url::toRoute(['/page/page/view', 'alias' => 'contacts'])
             ) ?></li>
     </ul>

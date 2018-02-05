@@ -17,7 +17,7 @@ use frontend\modules\catalog\models\Sale;
         <div class="row">
             <div class="col-ms-12">
                 <div class="header">
-                    <h2>Распродажа</h2>
+                    <h2><?= Yii::t('app', 'Sale') ?></h2>
 
                     <?= Html::a(
                         'Все акционные товары',

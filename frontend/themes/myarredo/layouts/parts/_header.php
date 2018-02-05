@@ -83,7 +83,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                             </li>
                                             <li>
                                                 <?= Html::a(
-                                                    'Распродажа',
+                                                    Yii::t('app', 'Sale'),
                                                     ['/catalog/partner-sale/list']
                                                 ); ?>
                                             </li>

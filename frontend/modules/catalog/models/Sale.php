@@ -190,7 +190,7 @@ class Sale extends \common\modules\catalog\models\Sale
      */
     public function getTitle()
     {
-        return $this->lang->title;
+        return (isset($this->lang->title)) ? $this->lang->title : "{{-}}";
     }
 
     /**

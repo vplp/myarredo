@@ -50,7 +50,7 @@ $this->beginPage()
             <nav class="nav">
                 <?= Html::a('Главная', ['/catalog/factory/view', 'alias' => $this->context->factory['alias']]); ?>
                 <?= Html::a('Каталог мебели', ['/catalog/template-factory/catalog', 'alias' => $this->context->factory['alias']]); ?>
-                <?= Html::a('Распродажа', ['/catalog/template-factory/sale', 'alias' => $this->context->factory['alias']]); ?>
+                <?= Html::a(Yii::t('app', 'Sale'), ['/catalog/template-factory/sale', 'alias' => $this->context->factory['alias']]); ?>
                 <?= Html::a('Контанты', ['/catalog/template-factory/contacts', 'alias' => $this->context->factory['alias']]); ?>
             </nav>
         </div>

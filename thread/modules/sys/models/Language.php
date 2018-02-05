@@ -25,14 +25,12 @@ use yii\helpers\ArrayHelper;
  * @property integer $deleted
  *
  * @package thread\modules\configs\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @author Alla Kuzmenko
- * @copyright (c) 2016, VipDesign
  */
 class Language extends ActiveRecord implements LanguageModel
 {
     /**
-     * @return string
+     * @return null|object|\yii\db\Connection
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

@@ -2,8 +2,6 @@
 
 namespace frontend\modules\location\models;
 
-use Yii;
-use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 
 /**
