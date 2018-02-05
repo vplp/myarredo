@@ -70,9 +70,9 @@ class Order extends OrderModel
             'customer_id' => $this->customer_id,
         ]);
 
-        if (is_array($params['city_id'])) {
+        if (isset($params['city_id']) && is_array($params['city_id'])) {
             $query->andFilterWhere(['IN', 'city_id', $params['city_id']]);
-        } else if ($params['city_id'] > 0) {
+        } else if (isset($params['city_id']) && $params['city_id'] > 0) {
             $query->andFilterWhere([
                 'city_id' => $params['city_id'],
             ]);
