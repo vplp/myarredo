@@ -21,6 +21,11 @@ use backend\modules\catalog\models\Factory;
 <?= $form->text_line($model, 'phone') ?>
 
 <?= $form->text_line($model, 'name_company') ?>
+
+<?php if (in_array($model['user']['group_id'], [3])):
+    echo $form->text_line($model, 'email_company');
+endif; ?>
+
 <?= $form->text_line($model, 'website') ?>
 
 <?= $form->field($model, 'country_id')
@@ -31,7 +36,6 @@ use backend\modules\catalog\models\Factory;
 
 <?= $form->field($model, 'factory_id')
     ->selectOne([0 => '--'] + Factory::dropDownList($model->factory_id)); ?>
-
 
 <?= $form->text_line($model, 'latitude') ?>
 <?= $form->text_line($model, 'longitude') ?>

@@ -15,6 +15,7 @@ use common\modules\catalog\models\Factory;
  * @property string $phone
  * @property string $address
  * @property string $name_company
+ * @property string $email_company
  * @property string $website
  * @property string $exp_with_italian
  * @property boolean $delivery_to_other_cities
@@ -43,12 +44,14 @@ class Profile extends \thread\modules\user\models\Profile
                     'phone',
                     'address',
                     'name_company',
+                    'email_company',
                     'website',
                     'exp_with_italian'
                 ],
                 'string',
                 'max' => 255
             ],
+            [['email_company'], 'email'],
             [
                 [
                     'delivery_to_other_cities',
@@ -77,6 +80,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'phone',
                 'address',
                 'name_company',
+                'email_company',
                 'website',
                 'exp_with_italian',
                 'country_id',
@@ -94,6 +98,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'phone',
                 'address',
                 'name_company',
+                'email_company',
                 'website',
                 'exp_with_italian',
                 'country_id',
@@ -113,6 +118,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'phone',
                 'address',
                 'name_company',
+                'email_company',
                 'website',
                 'exp_with_italian',
                 'country_id',
@@ -138,6 +144,7 @@ class Profile extends \thread\modules\user\models\Profile
             'phone' => Yii::t('app', 'Phone'),
             'address' => 'Адресс',
             'name_company' => 'Название компании',
+            'email_company' => 'E-mail',
             'website' => 'Адресс сайта',
             'exp_with_italian' => 'Опыт работы с итальянской мебелью, лет',
             'country_id' => 'Ваша страна',

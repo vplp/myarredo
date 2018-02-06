@@ -37,6 +37,9 @@ $this->title = Yii::t('app', 'Profile');
                                     'clearIncomplete' => true
                                 ]
                             ]) ?>
+                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
+                            <?= $form->field($model, 'email_company') ?>
+                        <?php } ?>
                     </div>
 
                     <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') { ?>
@@ -62,6 +65,7 @@ $this->title = Yii::t('app', 'Profile');
                         </div>
 
                     <?php } ?>
+
 
                 </div>
 
