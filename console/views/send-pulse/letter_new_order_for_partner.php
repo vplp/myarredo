@@ -13,9 +13,7 @@ use frontend\modules\catalog\models\Product;
         <span style="color: #fff; font:bold 18px Arial,sans-serif;">Мы помогаем продавать итальянскую мебель.</span>
     </div>
     <div style="text-align:center;">
-        <p style="font-weight:bold;">НОВАЯ <a
-                    href="http://www.myarredo.<?= $order->city->country->alias ?>/partner/orders/">ЗАЯВКА</a>
-            НА САЙТЕ MYARREDO.<?= $order->city->country->alias ?>
+        <p style="font-weight:bold;">НОВАЯ <a href="http://www.myarredo.<?= $order->city->country->alias ?>/partner/orders/">ЗАЯВКА</a> НА САЙТЕ MYARREDO.<?= $order->city->country->alias ?>
             <span style="display:block;">Kлиент из г. <?= $order->city->lang->title ?></span>
         </p>
 
@@ -46,10 +44,8 @@ use frontend\modules\catalog\models\Product;
         ?>
 
         <div style="text-align: left; padding-left: 20px;">
-            <p>Поторопитесь, возможность ответить есть только у первых 3 дилеров, далее заявка приобретает статус
-                архивной, после чего ответить на заявку и получить контакты клиента будет невозможно.</p>
-            <p>Напишите в комментариях к ответу, что возможно заказать товар в других отделках, и это может значительно
-                снизить окончательную цену.</p>
+            <p>Поторопитесь, возможность ответить есть только у первых 3 дилеров, далее заявка приобретает статус архивной, после чего ответить на заявку и получить контакты клиента будет невозможно.</p>
+            <p>Напишите в комментариях к ответу, что возможно заказать товар в других отделках, и это может значительно снизить окончательную цену.</p>
             <p>Будьте доброжелательны к своим потенциальным клиентам!</p>
         </div>
 
