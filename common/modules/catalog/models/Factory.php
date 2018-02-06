@@ -213,7 +213,7 @@ class Factory extends ActiveRecord
     }
 
     /**
-     * @return $this
+     * @return \yii\db\ActiveQuery
      */
     public function getCatalogsFiles()
     {
@@ -222,7 +222,7 @@ class Factory extends ActiveRecord
     }
 
     /**
-     * @return $this
+     * @return \yii\db\ActiveQuery
      */
     public function getPricesFiles()
     {

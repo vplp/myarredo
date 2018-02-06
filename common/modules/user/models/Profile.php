@@ -4,6 +4,7 @@ namespace common\modules\user\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+//
 use common\modules\location\models\{
     City, Country
 };

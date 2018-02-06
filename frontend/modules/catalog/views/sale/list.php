@@ -3,9 +3,7 @@
 use yii\helpers\Html;
 use frontend\components\Breadcrumbs;
 
-use frontend\modules\catalog\widgets\filter\{
-    ProductFilter
-};
+use frontend\modules\catalog\widgets\filter\SaleFilter;
 
 /**
  * @var $pages \yii\data\Pagination
@@ -36,12 +34,14 @@ $this->title = ($this->context->SeoH1 != '')
                 <div class="row">
                     <div class="col-md-3 col-lg-3">
 
-                        <?= ProductFilter::widget([
+                        <?= SaleFilter::widget([
                             'route' => '/catalog/sale/list',
                             'category' => $category,
                             'types' => $types,
                             'style' => $style,
                             'factory' => $factory,
+                            'countries' => $countries,
+                            'cities' => $cities,
                         ]); ?>
 
                     </div>

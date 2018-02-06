@@ -193,6 +193,18 @@ class Types extends \common\modules\catalog\models\Types
                 ->andFilterWhere(['IN', 'saleFactory.alias', $params[$keys['factory']]]);
         }
 
+        if (isset($params[$keys['country']])) {
+            $query
+                ->innerJoinWith(["sale.country saleCountry"], false)
+                ->andFilterWhere(['IN', 'saleCountry.alias', $params[$keys['country']]]);
+        }
+
+        if (isset($params[$keys['city']])) {
+            $query
+                ->innerJoinWith(["sale.city saleCity"], false)
+                ->andFilterWhere(['IN', 'saleCity.alias', $params[$keys['city']]]);
+        }
+
         return $query
             ->select([
                 self::tableName() . '.id',

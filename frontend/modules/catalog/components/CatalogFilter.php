@@ -3,17 +3,21 @@
 namespace frontend\modules\catalog\components;
 
 use Yii;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
+use yii\helpers\{
+    ArrayHelper, Url
+};
 use yii\base\Component;
 use yii\web\NotFoundHttpException;
+//
 use frontend\modules\catalog\models\{
-    Product,
     Category,
     Factory,
     Types,
     Specification,
     Collection
+};
+use frontend\modules\location\models\{
+    Country, City
 };
 
 /**
@@ -58,17 +62,9 @@ class CatalogFilter extends Component
         'style' => '.30',
         'factory' => '.40',
         'collection' => '.50',
-//        'd' => 'd',
-//        'dp' => 'dp',
-//        'ed' => 'ed',
-//        'el' => 'el',
-//        'h' => 'h',
-//        'id' => 'id',
-//        'il' => 'il',
-//        'l' => 'l',
-//        'm' => 'm',
-        'price' => 'p',
-//        'city' => 'city',
+        //'price' => '.60',
+        'country' => '.70',
+        'city' => '.80',
     ];
 
     /**
@@ -195,17 +191,9 @@ class CatalogFilter extends Component
             self::$keys['style'] => 's',
             self::$keys['factory'] => 'f',
             self::$keys['collection'] => 'c',
-//            self::$keys['d'] => 'd',
-//            self::$keys['dp'] => 'dp',
-//            self::$keys['ed'] => 'ed',
-//            self::$keys['el'] => 'el',
-//            self::$keys['h'] => 'h',
-//            self::$keys['id'] => 'id',
-//            self::$keys['il'] => 'il',
-//            self::$keys['l'] => 'l',
-//            self::$keys['m'] => 'm',
-            self::$keys['price'] => 'price',
-//            self::$keys['city'] => 'city',
+            //self::$keys['price'] => 'price',
+            self::$keys['country'] => 'country',
+            self::$keys['city'] => 'city',
         ];
     }
 
@@ -239,6 +227,10 @@ class CatalogFilter extends Component
             ++$i;
         }
 
+        /**
+         * Category
+         */
+
         if (!empty(self::$_structure['category'])) {
             $model = Category::findByAlias(self::$_structure['category'][0]);
 
@@ -248,6 +240,10 @@ class CatalogFilter extends Component
 
             self::$_parameters[self::$keys['category']][] = $model['alias'];
         }
+
+        /**
+         * Type
+         */
 
         if (!empty(self::$_structure['type'])) {
 
@@ -265,6 +261,10 @@ class CatalogFilter extends Component
             }
         }
 
+        /**
+         * Style
+         */
+
         if (!empty(self::$_structure['style'])) {
             $model = Specification::findBase()
                 ->andFilterWhere(['IN', 'alias', self::$_structure['style']])
@@ -279,6 +279,10 @@ class CatalogFilter extends Component
                 self::$_parameters[self::$keys['style']][] = $obj['alias'];
             }
         }
+
+        /**
+         * Factory
+         */
 
         if (!empty(self::$_structure['factory'])) {
             $model = Factory::findBase()
@@ -295,6 +299,10 @@ class CatalogFilter extends Component
             }
         }
 
+        /**
+         * Collection
+         */
+
         if (!empty(self::$_structure['collection'])) {
             $model = Collection::findBase()
                 ->andWhere(['IN', 'id', self::$_structure['collection']])
@@ -307,6 +315,42 @@ class CatalogFilter extends Component
 
             foreach ($model as $obj) {
                 self::$_parameters[self::$keys['collection']][] = $obj['id'];
+            }
+        }
+
+        /**
+         * Country
+         */
+
+        if (!empty(self::$_structure['country'])) {
+            $model = Country::findByAlias(self::$_structure['country'][0]);
+
+            if ($model === null || count(self::$_structure['country']) > 1) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            self::$_parameters[self::$keys['country']][] = $model['alias'];
+        }
+
+        /**
+         * City
+         */
+
+        if (!empty(self::$_structure['city']) && !empty(self::$_structure['country'])) {
+
+            $model = City::findBase()
+                ->innerJoinWith(["country as country"], false)
+                ->andFilterWhere(['IN', 'country.alias', self::$_structure['country']])
+                ->andFilterWhere(['IN', City::tableName() .'.alias', self::$_structure['city']])
+                ->indexBy('id')
+                ->all();
+
+            if ($model === null || count(self::$_structure['city']) !== count($model)) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            foreach ($model as $obj) {
+                self::$_parameters[self::$keys['city']][] = $obj['alias'];
             }
         }
     }

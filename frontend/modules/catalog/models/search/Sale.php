@@ -9,6 +9,9 @@ use yii\data\ActiveDataProvider;
 use frontend\modules\catalog\models\{
     Sale as SaleModel, SaleLang
 };
+use frontend\modules\location\models\{
+    Country, City
+};
 
 /**
  * Class Sale
@@ -89,6 +92,18 @@ class Sale extends SaleModel
             $query
                 ->innerJoinWith(["factory"])
                 ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
+        }
+
+        if (isset($params[$keys['country']])) {
+            $query
+                ->innerJoinWith(["country"])
+                ->andFilterWhere(['IN', Country::tableName() . '.alias', $params[$keys['country']]]);
+        }
+
+        if (isset($params[$keys['city']])) {
+            $query
+                ->innerJoinWith(["city"])
+                ->andFilterWhere(['IN', City::tableName() . '.alias', $params[$keys['city']]]);
         }
 
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);

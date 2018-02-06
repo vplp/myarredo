@@ -11,6 +11,9 @@ use kartik\widgets\Select2;
 use frontend\modules\catalog\models\{
     Category, Factory, Types, Specification
 };
+use frontend\modules\location\models\{
+    Country, City
+};
 
 /**
  * @var \frontend\modules\catalog\models\Sale $model
@@ -159,6 +162,37 @@ $this->title = ($model->isNewRecord) ? 'Добавить товар в расп�
                             )
                             ->dropDownList($model::currencyRange())
                             ->label(false) ?>
+
+                    </div>
+                    <div class="form-group row">
+                        <?= $form->field(
+                            $model,
+                            'country_id',
+                            [
+                                'template' => "{label}<div class=\"col-sm-4\">{input}</div>\n{hint}\n{error}",
+                                'options' => [
+                                    'class' => '',
+                                ]
+                            ])
+                            ->dropDownList(
+                                [null => '--'] + Country::dropDownList(),
+                                ['class' => 'selectpicker']
+                            ); ?>
+                    </div>
+                    <div class="form-group row">
+                        <?= $form->field(
+                            $model,
+                            'city_id',
+                            [
+                                'template' => "{label}<div class=\"col-sm-4\">{input}</div>\n{hint}\n{error}",
+                                'options' => [
+                                    'class' => '',
+                                ]
+                            ])
+                            ->dropDownList(
+                                [null => '--'] + City::dropDownList($model->country_id),
+                                ['class' => 'selectpicker']
+                            ); ?>
                     </div>
 
                     <div class="form-group row">
@@ -194,3 +228,19 @@ $this->title = ($model->isNewRecord) ? 'Добавить товар в расп�
         </div>
     </div>
 </main>
+
+<?php
+
+$script = <<<JS
+$('select#registerform-country_id').change(function(){
+    var country_id = parseInt($(this).val());
+    $.post('/location/location/get-cities/', {_csrf: $('#token').val(),country_id:country_id}, function(data){
+        var select = $('select#registerform-city_id');
+        select.html(data.options);
+        select.selectpicker("refresh");
+    });
+});
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);
+?>

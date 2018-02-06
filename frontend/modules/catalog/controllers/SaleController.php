@@ -10,6 +10,9 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 //
 use frontend\components\BaseController;
+use frontend\modules\location\models\{
+    Country, City
+};
 use frontend\modules\catalog\models\{
     Sale,
     SaleLang,
@@ -84,6 +87,9 @@ class SaleController extends BaseController
         $style = Specification::getWithSale(Yii::$app->catalogFilter->params);
         $factory = Factory::getWithSale(Yii::$app->catalogFilter->params);
 
+        $countries = Country::getWithSale(Yii::$app->catalogFilter->params);
+        $cities = City::getWithSale(Yii::$app->catalogFilter->params);
+
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, Yii::$app->catalogFilter->params));
 
         $this->title = 'Распродажа итальянской мебели';
@@ -100,6 +106,8 @@ class SaleController extends BaseController
             'types' => $types,
             'style' => $style,
             'factory' => $factory,
+            'countries' => $countries,
+            'cities' => $cities,
             'models' => $models->getModels(),
             'pages' => $models->getPagination()
         ]);

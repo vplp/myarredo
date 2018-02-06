@@ -13,6 +13,9 @@ use voskobovich\behaviors\ManyToManyBehavior;
 use thread\app\base\models\ActiveRecord;
 //
 use common\helpers\Inflector;
+use common\modules\location\models\{
+    City, Country
+};
 use common\modules\catalog\Catalog;
 use common\modules\user\models\User;
 
@@ -20,6 +23,8 @@ use common\modules\user\models\User;
  * Class Sale
  *
  * @property integer $id
+ * @property integer $country_id
+ * @property integer $city_id
  * @property string $country_code
  * @property integer $user_id
  * @property integer $user_city_id
@@ -47,6 +52,8 @@ use common\modules\user\models\User;
  * @property SaleRelCategory[] $category
  * @property Factory $factory
  * @property User $user
+ * @property Country $country
+ * @property City $city
  * @property Types $types
  *
  * @package common\modules\catalog\models
@@ -102,6 +109,8 @@ class Sale extends ActiveRecord
         return [
             [
                 [
+                    'country_id',
+                    'city_id',
                     'user_id',
                     'user_city_id',
                     'catalog_type_id',
@@ -166,6 +175,8 @@ class Sale extends ActiveRecord
             'on_main' => ['on_main'],
             'setImages' => ['image_link', 'gallery_image', 'picpath'],
             'backend' => [
+                'country_id',
+                'city_id',
                 'country_code',
                 'user_id',
                 'user_city_id',
@@ -198,6 +209,8 @@ class Sale extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'country_id' => Yii::t('app', 'Country'),
+            'city_id' => Yii::t('app', 'City'),
             'country_code' => 'Показывать для страны',
             'user_id' => 'User',
             'user_city_id' => 'User city id',
@@ -294,6 +307,22 @@ class Sale extends ActiveRecord
         return $this
             ->hasMany(Category::class, ['id' => 'group_id'])
             ->viaTable(SaleRelCategory::tableName(), ['sale_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCountry()
+    {
+        return $this->hasOne(Country::class, ['id' => 'country_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCity()
+    {
+        return $this->hasOne(City::class, ['id' => 'city_id']);
     }
 
     /**

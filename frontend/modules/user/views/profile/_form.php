@@ -4,6 +4,10 @@ use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
+//
+use frontend\modules\location\models\{
+    Country, City
+};
 
 /**
  * @var \frontend\modules\user\models\Profile $model
