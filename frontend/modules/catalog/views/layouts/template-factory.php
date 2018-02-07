@@ -67,7 +67,7 @@ $this->beginPage()
 
             <div class="flex copy-r">
                 <div>
-                    2015 - <?= date('Y'); ?> (С) MYARREDO, ЛУЧШАЯ МЕБЕЛЬ ИЗ ИТАЛИИ ДЛЯ ВАШЕГО ДОМА
+                    2015 - <?= date('Y'); ?> (С) <a href="/">MYARREDO</a>, ЛУЧШАЯ МЕБЕЛЬ ИЗ ИТАЛИИ ДЛЯ ВАШЕГО ДОМА
                 </div>
                 <div>
                     <?= $this->context->factory['lang']['h1'] . ', купить в ' . Yii::$app->city->getCityTitleWhere() ?>
