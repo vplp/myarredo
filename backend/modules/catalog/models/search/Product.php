@@ -60,21 +60,29 @@ class Product extends ProductModel implements BaseBackendSearchModel
             ],
         ]);
 
+        $query->andFilterWhere([
+            'is_composition' => '0'
+        ]);
+
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'factory_id' => $this->factory_id
+            'factory_id' => $this->factory_id,
         ]);
-        //
-        $query->andFilterWhere(['like', 'alias', $this->alias])
+
+        $query
+            ->andFilterWhere(['like', 'alias', $this->alias])
             ->andFilterWhere(['like', 'published', $this->published]);
-        //
-        $query->andFilterWhere(['like', ProductLang::tableName() . '.title', $this->title]);
-        //
-        $query->innerJoinWith(["category"])->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $this->category]);
+
+        $query
+            ->andFilterWhere(['like', ProductLang::tableName() . '.title', $this->title]);
+
+        $query
+            ->innerJoinWith(["category"])
+            ->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $this->category]);
 
         return $dataProvider;
     }
