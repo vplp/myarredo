@@ -97,9 +97,10 @@ class CategoryController extends BaseController
         if (!empty($params[$keys['category']])) {
             $model = Category::findByAlias($params[$keys['category']][0]);
 
+
             $this->breadcrumbs[] = [
                 'label' => $model['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl($params)
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['category'] => $params[$keys['category']]])
             ];
         }
 
@@ -123,7 +124,7 @@ class CategoryController extends BaseController
 
             $this->breadcrumbs[] = [
                 'label' => implode(', ', $type),
-                'url' => Yii::$app->catalogFilter->createUrl($params)
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['type'] => $params[$keys['type']]])
             ];
         }
 
@@ -147,7 +148,7 @@ class CategoryController extends BaseController
 
             $this->breadcrumbs[] = [
                 'label' => implode(', ', $style),
-                'url' => Yii::$app->catalogFilter->createUrl($params)
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['style'] => $params[$keys['style']]])
             ];
         }
 
@@ -160,7 +161,7 @@ class CategoryController extends BaseController
 
             $this->breadcrumbs[] = [
                 'label' => $factory['title'],
-                'url' => Yii::$app->catalogFilter->createUrl($params)
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['factory'] => $params[$keys['factory']]])
             ];
         }
 
@@ -173,7 +174,7 @@ class CategoryController extends BaseController
 
             $this->breadcrumbs[] = [
                 'label' => 'Коллекция ' . $collection['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl($params)
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['collection'] => $params[$keys['collection']]])
             ];
         }
 
