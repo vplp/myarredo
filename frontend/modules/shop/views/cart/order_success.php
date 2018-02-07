@@ -15,7 +15,6 @@ use yii\helpers\{
                 </div>
 
                 <div class="col-md-12">
-                    <p><?= $message ?></p>
                     <p>Благодарим за обращение, Ваша заявка отправлена.</p>
                 </div>
 

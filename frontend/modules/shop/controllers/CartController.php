@@ -34,6 +34,10 @@ class CartController extends BaseController
         $model = new CartCustomerForm;
         $model->setScenario('frontend');
 
+        if (Yii::$app->getRequest()->get('order') && Yii::$app->getRequest()->get('order') == 'good') {
+            return $this->render('order_success');
+        }
+
         if (
             $model->load(Yii::$app->getRequest()->post(), 'CartCustomerForm') &&
             $model->validate() &&
@@ -65,10 +69,7 @@ class CartController extends BaseController
                 // clear cart
                 Yii::$app->shop_cart->deleteCart();
 
-                // message
-                $message = Yii::t('app', 'Your order № {order_id}', ['order_id' => $new_order['id']]);
-
-                return $this->render('order_success', ['message' => $message]);
+                return Yii::$app->controller->redirect(Url::toRoute(['/shop/cart/notepad', 'order' => 'good']));
             }
         }
 
