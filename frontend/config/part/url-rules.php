@@ -88,7 +88,6 @@ return [
     'partner/orders' => 'shop/partner-order/list',
     'shop/factory-order/list' => 'shop/factory-order/list',
     'admin/orders' => 'shop/admin-order/list',
-    //'partner/orders/view/<id:[\d\-]+>' => 'shop/partner-order/view',
 
     // Module [[Location]]
     'location/location/get-cities' => 'location/location/get-cities',

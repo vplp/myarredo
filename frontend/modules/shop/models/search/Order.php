@@ -120,7 +120,7 @@ class Order extends OrderModel
         $order->city_id = Yii::$app->city->getCityId();
 
         $order->generateToken();
-
+        /** @var PDO $transaction */
         $transaction = $order::getDb()->beginTransaction();
         try {
             if ($order->validate() && $order->save()) {
@@ -173,7 +173,7 @@ class Order extends OrderModel
 
             $customer->user_id = Yii::$app->getUser()->id ?? 0;
             $customer->setAttributes($customerForm->getAttributes());
-
+            /** @var PDO $transaction */
             $transaction = $customer::getDb()->beginTransaction();
             try {
                 if ($customer->save()) {

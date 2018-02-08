@@ -8,6 +8,8 @@ use common\modules\catalog\models\Product;
 /**
  * Class OrderItem
  *
+ * @property OrderItemPrice[] $orderItemPrice
+ *
  * @package common\modules\shop\models
  */
 class OrderItem extends \thread\modules\shop\models\OrderItem

@@ -148,7 +148,7 @@ $this->title = $this->context->title;
                                 <ul class="orders-title-block flex">
                                     <li class="order-id">
                                         <span>
-                                            <?= $modelOrder->id //Html::a($modelOrder->id, $modelOrder->getPartnerOrderUrl())  ?>
+                                            <?= $modelOrder->id ?>
                                         </span>
                                     </li>
                                     <li class="application-date">
@@ -180,7 +180,8 @@ $this->title = $this->context->title;
                                     <li>
                                         <span><?= $modelOrder->orderAnswer->getAnswerTime() ?></span>
                                     </li>
-                                    <li><span>
+                                    <li>
+                                        <span>
                                             <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
                                         </span>
                                     </li>
@@ -195,6 +196,7 @@ $this->title = $this->context->title;
                                     <?php else: ?>
                                         <?= $this->render('_list_item', [
                                             'modelOrder' => $modelOrder,
+                                            'modelOrderAnswer' => $modelOrder->orderAnswer,
                                         ]) ?>
                                     <?php endif; ?>
                                 </div>

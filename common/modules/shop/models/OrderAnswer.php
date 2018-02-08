@@ -48,7 +48,7 @@ class OrderAnswer extends ActiveRecord
     public function rules()
     {
         return [
-            [['order_id', 'user_id'], 'required'],
+            [['order_id', 'user_id', 'answer'], 'required'],
             [['order_id', 'user_id', 'answer_time', 'created_at', 'updated_at'], 'integer'],
             [['answer'], 'string'],
             [['results'], 'string', 'max' => 255],

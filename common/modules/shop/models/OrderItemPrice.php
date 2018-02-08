@@ -43,10 +43,10 @@ class OrderItemPrice extends ActiveRecord
     public function rules()
     {
         return [
-            [['order_id', 'user_id', 'product_id'], 'required'],
+            [['order_id', 'user_id', 'product_id', 'price'], 'required'],
             [['order_id', 'user_id', 'product_id'], 'integer'],
             [['price'], 'double'],
-            ['price', 'compare', 'compareValue' => 108, 'operator' => '>=', 'message'=>'You cannot invite yourself.'],
+            ['price', 'compare', 'compareValue' => 108, 'operator' => '>=', 'message' => 'Цена должна быть больше'],
         ];
     }
 
@@ -97,9 +97,9 @@ class OrderItemPrice extends ActiveRecord
     {
         return self::findBase()
             ->andWhere([
-                self::tableName().'.order_id' => $order_id,
-                self::tableName().'.user_id' => $user_id,
-                self::tableName().'.product_id' => $product_id
+                self::tableName() . '.order_id' => $order_id,
+                self::tableName() . '.user_id' => $user_id,
+                self::tableName() . '.product_id' => $product_id
             ])
             ->one();
     }

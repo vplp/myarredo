@@ -31,6 +31,7 @@ class Cities extends Widget
     {
         $city = Yii::$app->city->getCity();
 
+        // TODO: replace by findCitiesByCountryId()
         $this->country = Country::findById($city->country_id);
     }
 
