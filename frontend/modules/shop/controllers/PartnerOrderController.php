@@ -157,6 +157,10 @@ class PartnerOrderController extends BaseController
                     }
                 }
 
+                if (isset($response['OrderItemPrice'])) {
+                    return $response;
+                }
+
                 /**
                  * save OrderAnswer
                  */
@@ -225,18 +229,18 @@ class PartnerOrderController extends BaseController
                         $transaction->commit();
 
                         // send user letter
-//                        Yii::$app
-//                            ->mailer
-//                            ->compose(
-//                                '/../mail/answer_order_user_letter',
-//                                [
-//                                    'modelOrder' => $modelOrder,
-//                                    'modelAnswer' => $modelAnswer,
-//                                ]
-//                            )
-//                            ->setTo($modelOrder->customer['email'])
-//                            ->setSubject('Ответ за заказ № ' . $modelOrder['id'])
-//                            ->send();
+                        Yii::$app
+                            ->mailer
+                            ->compose(
+                                '/../mail/answer_order_user_letter',
+                                [
+                                    'modelOrder' => $modelOrder,
+                                    'modelAnswer' => $modelAnswer,
+                                ]
+                            )
+                            ->setTo($modelOrder->customer['email'])
+                            ->setSubject('Ответ за заказ № ' . $modelOrder['id'])
+                            ->send();
 
                         // message
                         Yii::$app->getSession()->setFlash(
