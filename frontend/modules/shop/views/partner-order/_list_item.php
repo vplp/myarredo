@@ -3,8 +3,8 @@
 use yii\helpers\{
     Html, Url
 };
-use yii\widgets\Pjax;
 use yii\widgets\ActiveForm;
+//
 use frontend\modules\catalog\models\Product;
 
 /* @var $this yii\web\View */
@@ -14,13 +14,9 @@ use frontend\modules\catalog\models\Product;
 
 if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
 
-    <?php
-    Pjax::begin([
-        // Pjax options
-    ]);
-
-    $form = ActiveForm::begin([
+    <?php $form = ActiveForm::begin([
         //'method' => 'post',
+        'id' => 'OrderAnswerForm',
         'options' => ['data' => ['pjax' => true]],
         'action' => $modelOrder->getPartnerOrderOnListUrl(),
     ]); ?>
@@ -68,7 +64,7 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                                         'name' => 'OrderItemPrice[' . $orderItem->product_id . ']',
                                         'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true
                                     ])
-                                ->label(false);
+                                    ->label(false);
                                 ?>
                             </td>
                         </tr>
@@ -81,11 +77,11 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
         <div class="form-wrap">
 
             <?= $form->field($modelOrder, 'comment')
-                ->textarea(['disabled' => true, 'rows' => 5]) ?>
+                ->textarea(['rows' => 5, 'disabled' => true]) ?>
 
             <?= $form
                 ->field($modelOrderAnswer, 'answer')
-                ->textarea(['rows' => 5]) ?>
+                ->textarea(['rows' => 5, 'disabled' => (!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0) ? false : true]) ?>
 
             <?= $form
                 ->field($modelOrderAnswer, 'id')
@@ -100,11 +96,13 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
         </div>
     </div>
 
-    <?= Html::submitButton('Сохранить', [
-        'class' => 'btn btn-success',
-        'name' => 'action-save-answer',
-        'value' => 1
-    ]) ?>
+    <?php if (!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0) {
+        echo Html::submitButton('Сохранить', [
+            'class' => 'btn btn-success action-save-answer',
+            'name' => 'action-save-answer',
+            'value' => 1
+        ]);
+    } ?>
 
     <?php if ($modelOrderAnswer->id && $modelOrderAnswer->answer_time == 0) {
         echo Html::submitButton('Отправить ответ клиенту', [
@@ -114,10 +112,7 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
         ]);
     } ?>
 
-    <?php
-    ActiveForm::end();
-    Pjax::end();
-    ?>
+    <?php ActiveForm::end(); ?>
 
 <?php } else { ?>
 

@@ -85,9 +85,10 @@ return [
     'shop/cart/add-to-cart' => 'shop/cart/add-to-cart',
     'shop/cart/delete-from-cart' => 'shop/cart/delete-from-cart',
     'shop/cart/delete-from-cart-popup' => 'shop/cart/delete-from-cart-popup',
-    'partner/orders' => 'shop/partner-order/list',
     'shop/factory-order/list' => 'shop/factory-order/list',
     'admin/orders' => 'shop/admin-order/list',
+    'partner/orders' => 'shop/partner-order/list',
+    'partner/orders/pjax-save' => 'shop/partner-order/pjax-save',
 
     // Module [[Location]]
     'location/location/get-cities' => 'location/location/get-cities',

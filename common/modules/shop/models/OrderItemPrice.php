@@ -46,7 +46,13 @@ class OrderItemPrice extends ActiveRecord
             [['order_id', 'user_id', 'product_id', 'price'], 'required'],
             [['order_id', 'user_id', 'product_id'], 'integer'],
             [['price'], 'double'],
-            ['price', 'compare', 'compareValue' => 108, 'operator' => '>=', 'message' => 'Цена должна быть больше'],
+            [
+                'price',
+                'compare',
+                'compareValue' => 108,
+                'operator' => '>=',
+                'message' => 'Ваш ответ должен быть максимально приближен к реальности'
+            ],
         ];
     }
 

@@ -11,153 +11,153 @@ use yii\helpers\{
 $this->title = $this->context->title;
 ?>
 
-<main>
-    <div class="page adding-product-page">
-        <div class="container large-container">
+    <main>
+        <div class="page adding-product-page">
+            <div class="container large-container">
 
-            <?= Html::tag('h1', $this->context->title); ?>
+                <?= Html::tag('h1', $this->context->title); ?>
 
-            <!--
-            <form class="form-filter-date-cont flex">
-                <div class="dropdown arr-drop">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Россия</button>
-                    <ul class="dropdown-menu drop-down-find">
-                        <li>
-                            <input type="text" class="find">
-                        </li>
-                        <li>
-                            <a href="#">Россия</a>
-                        </li>
-                        <li>
-                            <a href="#">Украина</a>
-                        </li>
-                        <li>
-                            <a href="#">Беларусь</a>
-                        </li>
-                    </ul>
-                </div>
+                <!--
+                <form class="form-filter-date-cont flex">
+                    <div class="dropdown arr-drop">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Россия</button>
+                        <ul class="dropdown-menu drop-down-find">
+                            <li>
+                                <input type="text" class="find">
+                            </li>
+                            <li>
+                                <a href="#">Россия</a>
+                            </li>
+                            <li>
+                                <a href="#">Украина</a>
+                            </li>
+                            <li>
+                                <a href="#">Беларусь</a>
+                            </li>
+                        </ul>
+                    </div>
 
-                <div class="dropdown arr-drop">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Выберите
-                        город
-                    </button>
-                    <ul class="dropdown-menu drop-down-find">
-                        <li>
-                            <input type="text" class="find">
-                        </li>
-                        <li>
-                            <a href="#">Киев</a>
-                        </li>
-                        <li>
-                            <a href="#">Днепр</a>
-                        </li>
-                        <li>
-                            <a href="#">Харьков</a>
-                        </li>
-                    </ul>
-                </div>
+                    <div class="dropdown arr-drop">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Выберите
+                            город
+                        </button>
+                        <ul class="dropdown-menu drop-down-find">
+                            <li>
+                                <input type="text" class="find">
+                            </li>
+                            <li>
+                                <a href="#">Киев</a>
+                            </li>
+                            <li>
+                                <a href="#">Днепр</a>
+                            </li>
+                            <li>
+                                <a href="#">Харьков</a>
+                            </li>
+                        </ul>
+                    </div>
 
-                <div class="dropdown large-picker">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">21.08.2017 -
-                        21.08.2017
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#">
-                                Oggi
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Leri
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Settimana
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                30 giorni
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Messe attuale
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Mese precedente
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"></a>
-                        </li>
-                    </ul>
-                </div>
-            </form>
-            -->
+                    <div class="dropdown large-picker">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">21.08.2017 -
+                            21.08.2017
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">
+                                    Oggi
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Leri
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Settimana
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    30 giorni
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Messe attuale
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Mese precedente
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+                -->
 
-            <?php if (!Yii::$app->user->identity->profile->possibilityToAnswer): ?>
-                <div style="color:red; font-size: 24px;">
-                    Вы сможете ответить на Заявки покупателей после размещения
-                    небольшого кода на Вашем сайте.
-                    <u><?= Html::a('Подробнее..', Url::toRoute(['/page/page/view', 'alias' => 'razmeshchenie-koda']), ['style' => 'color:red; font-size: 24px;']); ?></u>
-                </div>
-            <?php endif; ?>
+                <?php if (!Yii::$app->user->identity->profile->possibilityToAnswer): ?>
+                    <div style="color:red; font-size: 24px;">
+                        Вы сможете ответить на Заявки покупателей после размещения
+                        небольшого кода на Вашем сайте.
+                        <u><?= Html::a('Подробнее..', Url::toRoute(['/page/page/view', 'alias' => 'razmeshchenie-koda']), ['style' => 'color:red; font-size: 24px;']); ?></u>
+                    </div>
+                <?php endif; ?>
 
-            <div class="manager-history">
-                <div class="manager-history-header">
-                    <ul class="orders-title-block flex">
-                        <li class="order-id">
-                            <span>№</span>
-                        </li>
-                        <li class="application-date">
-                            <span>Дата заявки</span>
-                        </li>
-                        <li>
-                            <span>Имя</span>
-                        </li>
-                        <li>
-                            <span>Телефон</span>
-                        </li>
-                        <li>
-                            <span>Email</span>
-                        </li>
-                        <li>
-                            <span>Дата ответа</span>
-                        </li>
-                        <li>
-                            <span>Город</span>
-                        </li>
-                        <li>
-                            <span>Статус</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="manager-history-list">
+                <div class="manager-history">
+                    <div class="manager-history-header">
+                        <ul class="orders-title-block flex">
+                            <li class="order-id">
+                                <span>№</span>
+                            </li>
+                            <li class="application-date">
+                                <span>Дата заявки</span>
+                            </li>
+                            <li>
+                                <span>Имя</span>
+                            </li>
+                            <li>
+                                <span>Телефон</span>
+                            </li>
+                            <li>
+                                <span>Email</span>
+                            </li>
+                            <li>
+                                <span>Дата ответа</span>
+                            </li>
+                            <li>
+                                <span>Город</span>
+                            </li>
+                            <li>
+                                <span>Статус</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="manager-history-list">
 
-                    <?php if (!empty($models)): ?>
+                        <?php if (!empty($models)): ?>
 
-                        <?php foreach ($models as $modelOrder): ?>
+                            <?php foreach ($models as $modelOrder): ?>
 
-                            <div class="item" data-hash="<?= $modelOrder->id; ?>">
+                                <div class="item" data-hash="<?= $modelOrder->id; ?>">
 
-                                <ul class="orders-title-block flex">
-                                    <li class="order-id">
+                                    <ul class="orders-title-block flex">
+                                        <li class="order-id">
                                         <span>
                                             <?= $modelOrder->id ?>
                                         </span>
-                                    </li>
-                                    <li class="application-date">
-                                        <span><?= $modelOrder->getCreatedTime() ?></span>
-                                    </li>
-                                    <li>
-                                        <span><?= $modelOrder->customer->full_name ?></span>
-                                    </li>
-                                    <li>
+                                        </li>
+                                        <li class="application-date">
+                                            <span><?= $modelOrder->getCreatedTime() ?></span>
+                                        </li>
+                                        <li>
+                                            <span><?= $modelOrder->customer->full_name ?></span>
+                                        </li>
+                                        <li>
                                         <span>
                                             <?php
                                             if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
@@ -166,8 +166,8 @@ $this->title = $this->context->title;
                                                 echo '-';
                                             } ?>
                                         </span>
-                                    </li>
-                                    <li>
+                                        </li>
+                                        <li>
                                         <span>
                                         <?php
                                         if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
@@ -176,45 +176,102 @@ $this->title = $this->context->title;
                                             echo '-';
                                         } ?>
                                         </span>
-                                    </li>
-                                    <li>
-                                        <span><?= $modelOrder->orderAnswer->getAnswerTime() ?></span>
-                                    </li>
-                                    <li>
+                                        </li>
+                                        <li>
+                                            <span><?= $modelOrder->orderAnswer->getAnswerTime() ?></span>
+                                        </li>
+                                        <li>
                                         <span>
                                             <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
                                         </span>
-                                    </li>
-                                    <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
-                                </ul>
+                                        </li>
+                                        <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
+                                    </ul>
 
-                                <div class="hidden-order-info flex">
-                                    <?php if ($modelOrder->isArchive()): ?>
-                                        <?= $this->render('_list_item_archive', [
-                                            'modelOrder' => $modelOrder,
-                                        ]) ?>
-                                    <?php else: ?>
-                                        <?= $this->render('_list_item', [
-                                            'modelOrder' => $modelOrder,
-                                            'modelOrderAnswer' => $modelOrder->orderAnswer,
-                                        ]) ?>
-                                    <?php endif; ?>
+                                    <div class="hidden-order-info flex">
+                                        <?php if ($modelOrder->isArchive()): ?>
+                                            <?= $this->render('_list_item_archive', [
+                                                'modelOrder' => $modelOrder,
+                                            ]) ?>
+                                        <?php else: ?>
+                                            <?= $this->render('_list_item', [
+                                                'modelOrder' => $modelOrder,
+                                                'modelOrderAnswer' => $modelOrder->orderAnswer,
+                                            ]) ?>
+                                        <?php endif; ?>
+                                    </div>
+
                                 </div>
 
-                            </div>
+                            <?php endforeach; ?>
 
-                        <?php endforeach; ?>
 
-                    <?php endif; ?>
+                        <?php endif; ?>
+
+                    </div>
+
+                    <?= frontend\components\LinkPager::widget([
+                        'pagination' => $pages,
+                    ]);
+                    ?>
 
                 </div>
-
-                <?= frontend\components\LinkPager::widget([
-                    'pagination' => $pages,
-                ]);
-                ?>
-
             </div>
         </div>
-    </div>
-</main>
+    </main>
+
+<?php
+$url = Url::toRoute(['/shop/partner-order/pjax-save']);
+
+$script = <<<JS
+$( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
+    var form = $(this).parent();
+   
+    // clear messages
+    
+    form
+        .find('.field-orderanswer-answer')
+        .removeClass('has-error')
+        .find('.help-block')
+        .text('');
+    
+    form.find('.basket-item-info').each(function (index, value) {
+        $(this)
+            .find('.field-orderitemprice-price')
+            .removeClass('has-error')
+            .find('.help-block')
+            .text('');
+    });
+    
+    // send form
+    
+    $.post('$url', form.serialize()+'&action-save-answer=1').done(function (data) {
+        if (data.OrderAnswer) {
+            form
+                .find('.field-orderanswer-answer')
+                .addClass('has-error')
+                .find('.help-block')
+                .text(data.OrderAnswer.answer);
+        }
+        if (data.OrderItemPrice) {
+            $.each(data.OrderItemPrice, function( product_id, error ) {
+                form
+                    .find('input[name="OrderItemPrice['+product_id+']"]')
+                    .parent()
+                    .addClass('has-error')
+                    .find('.help-block').text(error.price);
+            });
+        }
+        
+        if (data.success == 1) {
+            document.location.reload(true);
+        }
+            
+    }, 'json');
+      
+    return false;
+});
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);
+?>

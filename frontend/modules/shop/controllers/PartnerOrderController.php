@@ -75,13 +75,7 @@ class PartnerOrderController extends BaseController
             'label' => $this->title,
         ];
 
-
-
-        $this->saveAnswer();
-
-//        $this->saveItemPrice();
-//
-//        $this->sendAnswer();
+        $this->sendAnswer();
 
         return $this->render('list', [
             'models' => $models->getModels(),
@@ -90,9 +84,9 @@ class PartnerOrderController extends BaseController
     }
 
     /**
-     * @return string
+     * @return array
      */
-    private function saveAnswer()
+    public function actionPjaxSave()
     {
         if (
             Yii::$app->request->isPost &&
@@ -100,6 +94,11 @@ class PartnerOrderController extends BaseController
             Yii::$app->request->post('OrderItemPrice') &&
             Yii::$app->request->post('action-save-answer')
         ) {
+
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            $response = ['success' => 1];
+
             $order_id = (Yii::$app->request->post('OrderAnswer'))['order_id'];
 
             /** @var  $modelOrder  Order */
@@ -152,6 +151,9 @@ class PartnerOrderController extends BaseController
                             $transaction->rollBack();
 
                         }
+                    } else {
+                        $response['success'] = 0;
+                        $response['OrderItemPrice'][$product_id] = $modelOrderItemPrice->getFirstErrors();
                     }
                 }
 
@@ -180,12 +182,12 @@ class PartnerOrderController extends BaseController
                     } catch (Exception $e) {
                         $transaction->rollBack();
                     }
+                } else {
+                    $response['success'] = 0;
+                    $response['OrderAnswer'] = $modelOrderAnswer->getFirstErrors();
                 }
 
-                return $this->render('_list_item', [
-                    'modelOrder' => $modelOrder,
-                    'modelOrderAnswer' => $modelOrderAnswer
-                ]);
+                return $response;
             }
         }
     }
@@ -223,20 +225,18 @@ class PartnerOrderController extends BaseController
                         $transaction->commit();
 
                         // send user letter
-                        Yii::$app
-                            ->mailer
-                            ->compose(
-                                '/../mail/answer_order_user_letter',
-                                [
-                                    'modelOrder' => $modelOrder,
-                                    'modelAnswer' => $modelAnswer,
-                                ]
-                            )
-                            //->setFrom(['info@myarredo.ru' => Yii::$app->user->identity->email])
-                            //->setFrom(Yii::$app->params['mailer']['setFrom'])
-                            ->setTo($modelOrder->customer['email'])
-                            ->setSubject('Ответ за заказ № ' . $modelOrder['id'])
-                            ->send();
+//                        Yii::$app
+//                            ->mailer
+//                            ->compose(
+//                                '/../mail/answer_order_user_letter',
+//                                [
+//                                    'modelOrder' => $modelOrder,
+//                                    'modelAnswer' => $modelAnswer,
+//                                ]
+//                            )
+//                            ->setTo($modelOrder->customer['email'])
+//                            ->setSubject('Ответ за заказ № ' . $modelOrder['id'])
+//                            ->send();
 
                         // message
                         Yii::$app->getSession()->setFlash(
