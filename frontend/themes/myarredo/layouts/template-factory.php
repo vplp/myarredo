@@ -48,8 +48,8 @@ $this->beginPage()
                 <?= Yii::$app->partner->getPartnerPhone() ?>
             </a>
             <nav class="nav">
-                <?= Html::a(Yii::t('app', 'Main') , ['/catalog/factory/view', 'alias' => $this->context->factory['alias']]); ?>
-                <?= Html::a(Yii::t('app', 'Catalog of furniture') , ['/catalog/template-factory/catalog', 'alias' => $this->context->factory['alias']]); ?>
+                <?= Html::a(Yii::t('app', 'Main'), ['/catalog/factory/view', 'alias' => $this->context->factory['alias']]); ?>
+                <?= Html::a(Yii::t('app', 'Catalog of furniture'), ['/catalog/template-factory/catalog', 'alias' => $this->context->factory['alias']]); ?>
                 <?= Html::a(Yii::t('app', 'Sale'), ['/catalog/template-factory/sale', 'alias' => $this->context->factory['alias']]); ?>
                 <?= Html::a(Yii::t('app', 'Contacts'), ['/catalog/template-factory/contacts', 'alias' => $this->context->factory['alias']]); ?>
             </nav>
@@ -75,6 +75,9 @@ $this->beginPage()
             </div>
         </div>
     </div>
+
+    <?= $this->render('parts/_jivosite', []) ?>
+    <?= $this->render('parts/_yandex_metrika', []) ?>
 
     <?php $this->endBody() ?>
     </body>

@@ -32,6 +32,10 @@ $this->beginPage()
 
     <?= $this->render('parts/_footer', []) ?>
 
+    <?= $this->render('parts/_jivosite', []) ?>
+
+    <?= $this->render('parts/_yandex_metrika', []) ?>
+
     <input type="hidden" id="token" value="<?= Yii::$app->request->getCsrfToken() ?>">
 
     <?php $this->endBody() ?>

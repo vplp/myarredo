@@ -22,7 +22,7 @@ class TemplateFactoryController extends BaseController
 {
     public $label = "TemplateFactory";
     public $title = "TemplateFactory";
-    public $layout = 'template-factory';
+    public $layout = '@app/layouts/template-factory';
 
     public $factory = [];
 
