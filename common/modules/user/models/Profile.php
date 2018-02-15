@@ -246,7 +246,7 @@ class Profile extends \thread\modules\user\models\Profile
             $matches = array();
 
             preg_match_all('/<a href="(.*?)"/s', $html, $matches);
-
+/* !!! */ echo  '<pre style="color:red;">'; print_r($matches[1]); echo '</pre>'; /* !!! */
             if (in_array('http://www.myarredo.ru/', $matches[1])) {
                 return true;
             } elseif (in_array('http://www.myarredo.ua/', $matches[1])) {
