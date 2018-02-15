@@ -244,7 +244,7 @@ class Profile extends \thread\modules\user\models\Profile
             $html = $this->get_data(Yii::$app->getUser()->getIdentity()->profile->website);
 
             $matches = array();
-echo $html;
+
             preg_match_all('/<a href="(.*?)"/s', $html, $matches);
 
             if (in_array('http://www.myarredo.ru/', $matches[1])) {
