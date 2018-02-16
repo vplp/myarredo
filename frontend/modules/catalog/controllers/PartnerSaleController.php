@@ -4,9 +4,7 @@ namespace frontend\modules\catalog\controllers;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-use yii\filters\{
-    VerbFilter, AccessControl
-};
+use yii\filters\AccessControl;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
@@ -44,28 +42,11 @@ class PartnerSaleController extends BaseController
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'list' => ['get'],
-                    'create' => ['get', 'post'],
-                    'update' => ['get', 'post'],
-                    'fileupload' => ['post'],
-                    'filedelete' => ['post'],
-                ],
-            ],
             'AccessControl' => [
                 'class' => AccessControl::class,
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => [
-                            'create',
-                            'update',
-                            'list',
-                            'fileupload',
-                            'filedelete'
-                        ],
                         'roles' => ['partner'],
                     ],
                     [

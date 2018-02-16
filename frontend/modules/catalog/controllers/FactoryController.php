@@ -120,8 +120,6 @@ class FactoryController extends BaseController
 
         $model = Factory::findByAlias($alias);
 
-        Yii::$app->metatag->render();
-
         if ($model === null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }

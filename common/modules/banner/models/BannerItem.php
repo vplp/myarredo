@@ -28,7 +28,8 @@ use common\modules\banner\Banner as BannerModule;
 class BannerItem extends ActiveRecord
 {
     /**
-     * @return null|object|string
+     * @return null|object|\yii\db\Connection
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

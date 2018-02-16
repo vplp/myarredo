@@ -107,6 +107,7 @@ class Sale extends ActiveRecord
     public function rules()
     {
         return [
+            [['country_id', 'city_id'], 'required'],
             [
                 [
                     'country_id',
