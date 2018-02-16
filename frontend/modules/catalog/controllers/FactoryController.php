@@ -160,6 +160,8 @@ class FactoryController extends BaseController
             ]);
         }
 
+        Yii::$app->metatag->render();
+
         return $this->render('view', [
             'model' => $model,
             'product' => $product->getModels(),
