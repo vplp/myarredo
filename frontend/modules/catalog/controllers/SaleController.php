@@ -92,14 +92,16 @@ class SaleController extends BaseController
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, Yii::$app->catalogFilter->params));
 
-        $this->title = 'Распродажа итальянской мебели';
+        Yii::$app->metatag->render();
+
+        $this->title = Yii::$app->metatag->seo_title
+            ? Yii::$app->metatag->seo_title
+            : 'Распродажа итальянской мебели';
 
         $this->breadcrumbs[] = [
             'label' => 'Распродажа итальянской мебели',
             'url' => ['/catalog/sale/list']
         ];
-
-        Yii::$app->metatag->render();
 
         return $this->render('list', [
             'category' => $category,

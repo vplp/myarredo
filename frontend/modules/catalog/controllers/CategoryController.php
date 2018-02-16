@@ -193,9 +193,11 @@ class CategoryController extends BaseController
         $pageDescription[] = 'Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo';
 
 
-        $this->title = !empty($pageTitle)
-            ? implode('. ', $pageTitle)
-            : 'Каталог итальянской мебели, цены на мебель из Италии';
+        $this->title = Yii::$app->metatag->seo_title
+            ? Yii::$app->metatag->seo_title
+            : (!empty($pageTitle)
+                ? implode('. ', $pageTitle)
+                : 'Каталог итальянской мебели, цены на мебель из Италии');
 
         if (!Yii::$app->metatag->seo_description) {
             Yii::$app->view->registerMetaTag([

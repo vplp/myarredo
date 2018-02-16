@@ -10,9 +10,7 @@ use frontend\modules\catalog\widgets\filter\SaleFilter;
  * @var $model \frontend\modules\catalog\models\Sale
  */
 
-$this->title = ($this->context->SeoH1 != '')
-    ? $this->context->SeoH1
-    : $this->context->title;
+$this->title = $this->context->title;
 
 ?>
 
@@ -23,7 +21,7 @@ $this->title = ($this->context->SeoH1 != '')
 
                 <?= Html::tag('h1', ($this->context->SeoH1 != '')
                     ? $this->context->SeoH1
-                    : $this->context->title); ?>
+                    : 'Распродажа итальянской мебели'); ?>
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
