@@ -2,7 +2,6 @@
 
 namespace frontend\modules\shop\models\search;
 
-
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -25,6 +24,7 @@ use frontend\modules\shop\models\{
 class Order extends OrderModel
 {
     public $factory_id;
+
     /**
      * @return array
      */
@@ -65,19 +65,24 @@ class Order extends OrderModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'customer_id' => $this->customer_id,
-        ]);
+        $query
+            ->andFilterWhere([
+                'id' => $this->id,
+                self::tableName() . '.customer_id' => $this->customer_id,
+            ]);
 
         if (isset($params['city_id']) && is_array($params['city_id'])) {
-            $query->andFilterWhere(['IN', 'city_id', $params['city_id']]);
+            $query
+                ->andFilterWhere(['IN', self::tableName() . '.city_id', $params['city_id']]);
         } else if (isset($params['city_id']) && $params['city_id'] > 0) {
-            $query->andFilterWhere([
-                'city_id' => $params['city_id'],
-            ]);
+            $query
+                ->andFilterWhere([
+                    self::tableName() . '.city_id' => $params['city_id'],
+                ]);
         }
 
+        $query
+            ->groupBy(self::tableName() . '.id');
 
         if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
             $query
