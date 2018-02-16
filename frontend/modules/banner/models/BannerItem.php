@@ -25,7 +25,7 @@ class BannerItem extends \common\modules\banner\models\BannerItem
                 ->undeleted();
         } else {
             $query
-                ->published();
+                ->enabled();
         }
 
         return $query;
