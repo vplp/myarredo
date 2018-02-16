@@ -11,7 +11,7 @@ use yii\grid\GridView;
 $dataProvider = $model->search(Yii::$app->request->queryParams);
 $dataProvider->sort = false;
 
-$this->title = 'Баннера';
+$this->title = $this->context->title;
 
 ?>
 
@@ -24,7 +24,6 @@ $this->title = 'Баннера';
             <div class="part-contact">
 
                 <?= Html::a('Добавить', Url::toRoute(['/banner/factory-banner/create']), ['class' => 'btn btn-default']) ?>
-
 
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
@@ -62,7 +61,10 @@ $this->title = 'Баннера';
                                     return Html::a(
                                         '<span class="glyphicon glyphicon-trash"></span>',
                                         Url::to(['/banner/factory-banner/intrash', 'id' => $model->id]),
-                                        ['class' => 'btn btn-default btn-xs']
+                                        [
+                                            'class' => 'btn btn-default btn-xs',
+                                            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                        ]
                                     );
                                 },
                             ],
@@ -70,7 +72,8 @@ $this->title = 'Баннера';
                             'headerOptions' => ['class' => 'col-sm-1',],
                         ],
                     ],
-                ]); ?>
+                ]) ?>
+
             </div>
         </div>
     </div>

@@ -66,8 +66,8 @@ class Sale extends SaleModel
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'user_id' => $this->user_id
+            self::tableName() . '.id' => $this->id,
+            self::tableName() . '.user_id' => $this->user_id
         ]);
 
         if (isset($params[$keys['category']])) {
@@ -117,7 +117,7 @@ class Sale extends SaleModel
      */
     public function search($params)
     {
-        $query = SaleModel::findBase()->enabled();
+        $query = SaleModel::findBase();
         return $this->baseSearch($query, $params);
     }
 
@@ -127,17 +127,7 @@ class Sale extends SaleModel
      */
     public function trash($params)
     {
-        $query = SaleModel::findBase()->deleted();
-        return $this->baseSearch($query, $params);
-    }
-
-    /**
-     * @param array $params
-     * @return ActiveDataProvider
-     */
-    public function partnerSearch($params)
-    {
-        $query = SaleModel::findBase()->undeleted();
+        $query = SaleModel::findBase();
         return $this->baseSearch($query, $params);
     }
 }

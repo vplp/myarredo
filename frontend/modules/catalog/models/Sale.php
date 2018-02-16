@@ -15,6 +15,25 @@ use frontend\components\ImageResize;
 class Sale extends \common\modules\catalog\models\Sale
 {
     /**
+     * @return mixed
+     */
+    public static function findBase()
+    {
+        $query = parent::findBase();
+
+        if (Yii::$app->controller->id == 'partner-sale') {
+            $query
+                ->andWhere(['user_id' => Yii::$app->user->identity->id])
+                ->undeleted();
+        } else {
+            $query
+                ->enabled();
+        }
+
+        return $query;
+    }
+
+    /**
      * Get by alias
      *
      * @param string $alias
@@ -22,7 +41,7 @@ class Sale extends \common\modules\catalog\models\Sale
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->byAlias($alias)->enabled()->one();
+        return self::findBase()->byAlias($alias)->one();
     }
 
     /**
@@ -31,7 +50,7 @@ class Sale extends \common\modules\catalog\models\Sale
      */
     public static function findById($id)
     {
-        return self::findBase()->byId($id)->enabled()->one();
+        return self::findBase()->byId($id)->one();
     }
 
     /**
@@ -53,15 +72,6 @@ class Sale extends \common\modules\catalog\models\Sale
     }
 
     /**
-     * @param $params
-     * @return \yii\data\ActiveDataProvider
-     */
-    public function partnerSearch($params)
-    {
-        return (new search\Sale())->partnerSearch($params);
-    }
-
-    /**
      * @return string
      */
     public function getUrl()
@@ -78,14 +88,6 @@ class Sale extends \common\modules\catalog\models\Sale
                 'alias' => $this->alias
             ], true);
         }
-    }
-
-    /**
-     * @return string
-     */
-    public function getUrlUpdate()
-    {
-        return Url::toRoute(['/catalog/partner-sale/update', 'id' => $this->id]);
     }
 
     /**

@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\{
     ArrayHelper, Html
 };
+use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 //
@@ -118,6 +119,7 @@ class SaleController extends BaseController
     /**
      * @param string $alias
      * @return string
+     * @throws NotFoundHttpException
      */
     public function actionView(string $alias)
     {

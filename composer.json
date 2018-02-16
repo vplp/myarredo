@@ -32,6 +32,7 @@
     "kartik-v/yii2-date-range": "*",
     "kartik-v/yii2-field-range": "*",
     "kartik-v/yii2-grid": "*",
+    "kartik-v/yii2-export": "*",
     "tinymce/tinymce": "4.4.0",
     "yii2tech/crontab": "*",
     "voskobovich/yii2-many-many-behavior": "^3.0",

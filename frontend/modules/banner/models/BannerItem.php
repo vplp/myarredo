@@ -12,8 +12,7 @@ use Yii;
 class BannerItem extends \common\modules\banner\models\BannerItem
 {
     /**
-     *
-     * @return yii\db\ActiveQuery
+     * @return mixed
      */
     public static function findBase()
     {

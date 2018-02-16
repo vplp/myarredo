@@ -30,7 +30,6 @@ class FactoryBannerController extends BaseController
     public $defaultAction = 'list';
 
     protected $model = BannerItem::class;
-
     protected $modelLang = BannerItemLang::class;
     protected $filterModel = filterBannerItem::class;
 

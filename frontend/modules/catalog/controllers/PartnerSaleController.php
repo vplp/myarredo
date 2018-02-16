@@ -2,18 +2,18 @@
 
 namespace frontend\modules\catalog\controllers;
 
-use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Sale, SaleLang , search\Sale as filterSaleModel
+    Sale, SaleLang, search\Sale as filterSaleModel
 };
 //
 use thread\actions\{
-    CreateWithLang, UpdateWithLang
+    CreateWithLang, ListModel, AttributeSwitch
 };
+use frontend\actions\UpdateWithLang;
 //
 use common\actions\upload\{
     DeleteAction, UploadAction
@@ -31,9 +31,7 @@ class PartnerSaleController extends BaseController
     public $defaultAction = 'list';
 
     protected $model = Sale::class;
-
     protected $modelLang = SaleLang::class;
-
     protected $filterModel = filterSaleModel::class;
 
     /**
@@ -62,56 +60,47 @@ class PartnerSaleController extends BaseController
      */
     public function actions()
     {
-        return [
-            'create' => [
-                'class' => CreateWithLang::class,
-                'modelClass' => $this->model,
-                'modelClassLang' => $this->modelLang,
-                'redirect' => function () {
-                    return ['update', 'id' => $this->action->getModel()->id];
-                }
-            ],
-            'update' => [
-                'class' => UpdateWithLang::class,
-                'modelClass' => $this->model,
-                'modelClassLang' => $this->modelLang,
-                'redirect' => function () {
-                    return ['update', 'id' => $this->action->getModel()->id];
-                }
-            ],
-            'fileupload' => [
-                'class' => UploadAction::class,
-                'useHashPath' => true,
-                'path' => $this->module->getSaleUploadPath()
-            ],
-            'filedelete' => [
-                'class' => DeleteAction::class,
-                'useHashPath' => true,
-                'path' => $this->module->getSaleUploadPath()
-            ],
-        ];
-    }
-
-    /**
-     * @return string
-     */
-    public function actionList()
-    {
-        $model = new Sale();
-
-        $params = ['user_id' => Yii::$app->getUser()->id];
-
-        $models = $model->partnerSearch(ArrayHelper::merge($params, Yii::$app->request->queryParams));
-
-        $this->title = 'Моя распродажа';
-
-        $this->breadcrumbs[] = [
-            'label' => 'Моя распродажа',
-        ];
-
-        return $this->render('list', [
-            'models' => $models->getModels(),
-            'pages' => $models->getPagination(),
-        ]);
+        return ArrayHelper::merge(
+            parent::actions(),
+            [
+                'list' => [
+                    'class' => ListModel::class,
+                    'modelClass' => $this->model,
+                    'filterModel' => $this->filterModel,
+                ],
+                'create' => [
+                    'class' => CreateWithLang::class,
+                    'modelClass' => $this->model,
+                    'modelClassLang' => $this->modelLang,
+                    'redirect' => function () {
+                        return ['update', 'id' => $this->action->getModel()->id];
+                    }
+                ],
+                'update' => [
+                    'class' => UpdateWithLang::class,
+                    'modelClass' => $this->model,
+                    'modelClassLang' => $this->modelLang,
+                    'redirect' => function () {
+                        return ['update', 'id' => $this->action->getModel()->id];
+                    }
+                ],
+                'intrash' => [
+                    'class' => AttributeSwitch::class,
+                    'modelClass' => $this->model,
+                    'attribute' => 'deleted',
+                    'redirect' => $this->defaultAction,
+                ],
+                'fileupload' => [
+                    'class' => UploadAction::class,
+                    'useHashPath' => true,
+                    'path' => $this->module->getSaleUploadPath()
+                ],
+                'filedelete' => [
+                    'class' => DeleteAction::class,
+                    'useHashPath' => true,
+                    'path' => $this->module->getSaleUploadPath()
+                ],
+            ]
+        );
     }
 }

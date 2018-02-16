@@ -39,9 +39,6 @@ class AdminOrderController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => [
-                            'list',
-                        ],
                         'roles' => ['admin'],
                     ],
                     [

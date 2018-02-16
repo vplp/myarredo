@@ -45,4 +45,5 @@ return [
     'banner' => [
         'class' => \frontend\modules\banner\Banner::class,
     ],
+    'gridview' => ['class' => 'kartik\grid\Module']
 ];

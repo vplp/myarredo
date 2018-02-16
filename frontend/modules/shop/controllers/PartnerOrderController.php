@@ -34,9 +34,6 @@ class PartnerOrderController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => [
-                            'list', 'pjax-save'
-                        ],
                         'roles' => ['partner'],
                     ],
                     [

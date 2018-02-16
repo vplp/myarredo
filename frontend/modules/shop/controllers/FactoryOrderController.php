@@ -41,9 +41,6 @@ class FactoryOrderController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => [
-                            'list',
-                        ],
                         'roles' => ['factory'],
                     ],
                     [

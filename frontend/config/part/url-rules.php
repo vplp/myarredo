@@ -48,6 +48,7 @@ return [
     'partner/sale' => 'catalog/partner-sale/list',
     'partner/sale/create' => 'catalog/partner-sale/create',
     'partner/sale/update/<id:[\d\-]+>' => 'catalog/partner-sale/update',
+    'partner/sale/intrash/<id:[\d\-]+>' => 'catalog/partner-sale/intrash',
     'catalog/partner-sale/fileupload' => 'catalog/partner-sale/fileupload',
     'catalog/partner-sale/filedelete' => 'catalog/partner-sale/filedelete',
 
@@ -93,6 +94,7 @@ return [
     // Module [[Location]]
     'location/location/get-cities' => 'location/location/get-cities',
 
+    // Module [[Banner]]
     'banner/factory-banner/list' => 'banner/factory-banner/list',
     'banner/factory-banner/create' => 'banner/factory-banner/create',
     'banner/factory-banner/intrash/<id:[\d\-]+>' => 'banner/factory-banner/intrash',
