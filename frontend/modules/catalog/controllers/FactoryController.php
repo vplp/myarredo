@@ -147,7 +147,11 @@ class FactoryController extends BaseController
             'url' => ['/catalog/factory/view', 'alias' => $model['alias']]
         ];
 
-        $this->title = $model['title'] .
+        Yii::$app->metatag->render();
+
+        $this->title = Yii::$app->metatag->seo_title
+            ? Yii::$app->metatag->seo_title
+            : $model['title'] .
             ' - мебели из Италии в ' .
             Yii::$app->city->getCityTitleWhere();
 
@@ -160,7 +164,6 @@ class FactoryController extends BaseController
             ]);
         }
 
-        Yii::$app->metatag->render();
 
         return $this->render('view', [
             'model' => $model,
