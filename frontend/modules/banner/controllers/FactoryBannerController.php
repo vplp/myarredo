@@ -3,6 +3,7 @@
 namespace frontend\modules\banner\controllers;
 
 use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl;
 //
 use common\actions\upload\{
     DeleteAction, UploadAction
@@ -32,6 +33,27 @@ class FactoryBannerController extends BaseController
 
     protected $modelLang = BannerItemLang::class;
     protected $filterModel = filterBannerItem::class;
+
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['factory'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
 
     /**
      * @return array

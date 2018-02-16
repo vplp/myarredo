@@ -2,7 +2,6 @@
 
 namespace frontend\modules\banner\models;
 
-use yii\helpers\Url;
 use Yii;
 
 /**
@@ -12,46 +11,24 @@ use Yii;
  */
 class BannerItem extends \common\modules\banner\models\BannerItem
 {
-
-//    /**
-//     *
-//     * @return array
-//     */
-//    public function behaviors() {
-//        return [];
-//    }
-
-//    /**
-//     *
-//     * @return array
-//     */
-//    public function scenarios() {
-//        return [];
-//    }
-
-//    /**
-//     *
-//     * @return array
-//     */
-//    public function attributeLabels() {
-//        return [];
-//    }
-
-//    /**
-//     *
-//     * @return array
-//     */
-//    public function rules() {
-//        return [];
-//    }
-
     /**
      *
      * @return yii\db\ActiveQuery
      */
     public static function findBase()
     {
-        return parent::findBase()->undeleted();
+        $query = parent::findBase();
+
+        if (Yii::$app->controller->id == 'factory-banner') {
+            $query
+                ->andWhere(['user_id' => Yii::$app->user->identity->id])
+                ->undeleted();
+        } else {
+            $query
+                ->published();
+        }
+
+        return $query;
     }
 
     /**
@@ -62,7 +39,6 @@ class BannerItem extends \common\modules\banner\models\BannerItem
     {
         return self::findBase()
             ->byID($id)
-            ->published()
             ->one();
     }
 
@@ -74,7 +50,6 @@ class BannerItem extends \common\modules\banner\models\BannerItem
     {
         return self::findBase()
             ->andWhere([self::tableName() . '.factory_id' => $factory_id])
-            ->published()
             ->all();
     }
 

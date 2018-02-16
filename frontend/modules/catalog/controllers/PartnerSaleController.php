@@ -52,8 +52,6 @@ class PartnerSaleController extends BaseController
                     'update' => ['get', 'post'],
                     'fileupload' => ['post'],
                     'filedelete' => ['post'],
-                    //'code' => ['get'],
-                    //'instructions' => ['get'],
                 ],
             ],
             'AccessControl' => [
