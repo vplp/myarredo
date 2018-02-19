@@ -169,7 +169,7 @@ class MetaTag extends Component
 
             if (
                 $model->cities != null
-                && !in_array(Yii::$app->city->getCityId(), ArrayHelper::map($model->cities,'id', 'id'))
+                && !in_array(Yii::$app->city->getCityId(), ArrayHelper::map($model->cities, 'id', 'id'))
             ) {
                 return $this;
             }
@@ -227,7 +227,10 @@ class MetaTag extends Component
                 'name' => 'robots',
                 'content' => 'noindex, follow',
             ]);
-            $view->registerLinkTag(['rel' => 'canonical', 'href' => Url::canonical()]);
+            $view->registerLinkTag([
+                'rel' => 'canonical',
+                'href' => Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo
+            ]);
         }
 
         return $this;
