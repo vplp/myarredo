@@ -3,6 +3,7 @@
 namespace frontend\modules\seo\components;
 
 use Yii;
+use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use yii\base\Component;
 use yii\log\Logger;
@@ -216,11 +217,17 @@ class MetaTag extends Component
         }
 
         // robots_register
-        if ($this->seo_robots) {
+        if ($this->seo_robots && !Yii::$app->getRequest()->get('page')) {
             $view->registerMetaTag([
                 'name' => 'robots',
                 'content' => $this->seo_robots,
             ]);
+        } elseif (Yii::$app->getRequest()->get('page')) {
+            $view->registerMetaTag([
+                'name' => 'robots',
+                'content' => 'noindex, follow',
+            ]);
+            $view->registerLinkTag(['rel' => 'canonical', 'href' => Url::canonical()]);
         }
 
         return $this;
