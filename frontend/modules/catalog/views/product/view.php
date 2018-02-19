@@ -85,7 +85,7 @@ $this->title = $this->context->title;
                             </tr>
                         </table>
 
-                        <?php if ($model['factory']['new_price']): ?>
+                        <?php if (!Yii::$app->getUser()->isGuest && $model['factory']['new_price']): ?>
                             <span style="color: red;">Цена требует проверки, есть новый прайс</span>
                         <?php endif; ?>
 
