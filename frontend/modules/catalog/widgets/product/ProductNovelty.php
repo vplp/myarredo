@@ -30,6 +30,7 @@ class ProductNovelty extends Widget
         $this->models = Product::findBase()
             ->andWhere(['onmain' => '1'])
             ->asArray()
+            ->cache(7200)
             ->all();
 
         $i = 0;

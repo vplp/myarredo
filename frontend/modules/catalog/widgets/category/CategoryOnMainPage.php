@@ -29,6 +29,7 @@ class CategoryOnMainPage extends Widget
     {
         $this->models = Category::findBase()
             ->andWhere(['popular' => '1'])
+            ->cache(7200)
             ->all();
     }
 

@@ -57,23 +57,33 @@ class City extends \common\modules\location\models\City
     }
 
     /**
-     * Get by alias
-     *
      * @param string $alias
-     * @return ActiveRecord|null
+     * @return mixed
+     * @throws \Exception
+     * @throws \Throwable
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->byAlias($alias)->one();
+        $result = self::getDb()->cache(function ($db) use ($alias) {
+            return self::findBase()->byAlias($alias)->one();
+        });
+
+        return $result;
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return mixed
+     * @throws \Exception
+     * @throws \Throwable
      */
     public static function findById($id)
     {
-        return self::findBase()->byId($id)->one();
+        $result = self::getDb()->cache(function ($db) use ($id) {
+            return self::findBase()->byId($id)->one();
+        });
+
+        return $result;
     }
 
     /**

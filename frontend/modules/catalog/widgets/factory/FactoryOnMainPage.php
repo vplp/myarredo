@@ -29,6 +29,7 @@ class FactoryOnMainPage extends Widget
     {
         $this->models = Factory::findBase()
             ->andWhere(['popular' => '1'])
+            ->cache(7200)
             ->all();
     }
 

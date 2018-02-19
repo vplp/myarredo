@@ -88,7 +88,11 @@ class Country extends \common\modules\location\models\Country
      */
     public static function findById($id)
     {
-        return self::findBase()->byId($id)->one();
+        $result = self::getDb()->cache(function ($db) use ($id) {
+            return self::findBase()->byId($id)->one();
+        });
+
+        return $result;
     }
 
     /**
@@ -147,14 +151,18 @@ class Country extends \common\modules\location\models\Country
                 ->andFilterWhere(['IN', 'saleFactory.alias', $params[$keys['factory']]]);
         }
 
-        return $query
-            ->select([
-                self::tableName() . '.id',
-                self::tableName() . '.alias',
-                CountryLang::tableName() . '.title',
-                'count(' . self::tableName() . '.id) as count'
-            ])
-            ->groupBy(self::tableName() . '.id')
-            ->all();
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.alias',
+                    CountryLang::tableName() . '.title',
+                    'count(' . self::tableName() . '.id) as count'
+                ])
+                ->groupBy(self::tableName() . '.id')
+                ->all();
+        });
+
+        return $result;
     }
 }

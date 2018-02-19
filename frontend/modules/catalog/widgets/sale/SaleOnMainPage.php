@@ -29,6 +29,7 @@ class SaleOnMainPage extends Widget
     {
         $this->models = Sale::findBase()
             ->andWhere(['on_main' => '1'])
+            ->cache(7200)
             ->all();
 
         if ($this->models != null) {
