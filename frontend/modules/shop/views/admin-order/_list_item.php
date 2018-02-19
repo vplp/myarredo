@@ -57,18 +57,22 @@ use frontend\modules\catalog\models\Product;
                     </tr>
                 </table>
 
-                <?php if (!empty($orderItem->product['factoryPricesFiles'])): ?>
-                    <p class="title-small">Посмотреть прайс листы</p>
-                    <ul>
-                        <?php foreach ($orderItem->product['factoryPricesFiles'] as $priceFile): ?>
-                            <?php if ($fileLink = $priceFile->getFileLink()): ?>
-                                <li>
-                                    <?= Html::a($priceFile->title, $fileLink, ['target' => '_blank']) ?>
-                                </li>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </ul>
-                <?php endif; ?>
+                <div class="downloads">
+
+                    <?php if (!empty($orderItem->product['factoryPricesFiles'])): ?>
+                        <p class="title-small">Посмотреть прайс листы</p>
+                        <ul>
+                            <?php foreach ($orderItem->product['factoryPricesFiles'] as $priceFile): ?>
+                                <?php if ($fileLink = $priceFile->getFileLink()): ?>
+                                    <li>
+                                        <?= Html::a($priceFile->title, $fileLink, ['target' => '_blank']) ?>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
+
+                </div>
 
             </div>
         <?php } ?>
