@@ -107,22 +107,31 @@ class SendPulseController extends Controller
             ->andWhere(['create_campaign' => '0'])
             ->one();
 
-        $bookId = $modelOrder->city->country->bookId;
-        $senderName = 'myarredo';
-        $senderEmail = 'info@myarredo.ru';
-        $subject = 'Новая заявка №' . $modelOrder['id'];
-        $body = $this->renderPartial('letter_new_order_for_partner', ['order' => $modelOrder]);
-        $name = 'Новая заявка №' . $modelOrder['id'];
+        if ($modelOrder !== null) {
+            $bookId = $modelOrder->city->country->bookId;
+            $senderName = 'myarredo';
+            $senderEmail = 'info@myarredo.ru';
+            $subject = 'Новая заявка №' . $modelOrder['id'];
+            $body = $this->renderPartial('letter_new_order_for_partner', ['order' => $modelOrder]);
+            $name = 'Новая заявка №' . $modelOrder['id'];
 
-        $response = Yii::$app->sendPulse->createCampaign($senderName, $senderEmail, $subject, $body, $bookId, $name);
+            $response = Yii::$app->sendPulse->createCampaign($senderName, $senderEmail, $subject, $body, $bookId, $name);
 
-        $response = (array)$response;
+            $response = (array)$response;
 
-        if (isset($response['is_error']) && $response['is_error'] == 0) {
-            // set create_campaign and save
-            $modelOrder->setScenario('create_campaign');
-            $modelOrder->create_campaign = '1';
-            $modelOrder->save();
+            if (isset($response['is_error']) && $response['is_error'] == 0) {
+                // set create_campaign and save
+                $modelOrder->setScenario('create_campaign');
+                $modelOrder->create_campaign = '1';
+                $modelOrder->save();
+
+                $this->stdout("Create campaign: " . $subject . " \n", Console::FG_GREEN);
+            }
+
+            /* !!! */
+            echo '<pre style="color:red;">';
+            print_r($response);
+            echo '</pre>'; /* !!! */
         }
 
         $this->stdout("SendPulse: end send test campaign. \n", Console::FG_GREEN);
