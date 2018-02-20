@@ -107,7 +107,6 @@ class SendPulseController extends Controller
             ->andWhere(['create_campaign' => '0'])
             ->one();
 
-        //foreach ($modelOrder as $order) {
         $bookId = $modelOrder->city->country->bookId;
         $senderName = 'myarredo';
         $senderEmail = 'info@myarredo.ru';
@@ -115,15 +114,14 @@ class SendPulseController extends Controller
         $body = $this->renderPartial('letter_new_order_for_partner', ['order' => $modelOrder]);
         $name = 'Новая заявка №' . $modelOrder['id'];
 
-        $data = Yii::$app->sendPulse->createCampaign($senderName, $senderEmail, $subject, $body, $bookId, $name);
+        $response = Yii::$app->sendPulse->createCampaign($senderName, $senderEmail, $subject, $body, $bookId, $name);
 
-        /* !!! */ echo  '<pre style="color:red;">'; print_r($data); echo '</pre>'; /* !!! */
-
-        // set create_campaign and save
-        $modelOrder->setScenario('create_campaign');
-        $modelOrder->create_campaign = '1';
-        $modelOrder->save();
-        //}
+        if (isset($response['is_error']) && $response['is_error'] == 0) {
+            // set create_campaign and save
+            $modelOrder->setScenario('create_campaign');
+            $modelOrder->create_campaign = '1';
+            $modelOrder->save();
+        }
 
         $this->stdout("SendPulse: end send test campaign. \n", Console::FG_GREEN);
     }
