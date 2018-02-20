@@ -115,7 +115,9 @@ class SendPulseController extends Controller
         $body = $this->renderPartial('letter_new_order_for_partner', ['order' => $modelOrder]);
         $name = 'Новая заявка №' . $modelOrder['id'];
 
-        Yii::$app->sendPulse->createCampaign($senderName, $senderEmail, $subject, $body, $bookId, $name);
+        $data = Yii::$app->sendPulse->createCampaign($senderName, $senderEmail, $subject, $body, $bookId, $name);
+
+        /* !!! */ echo  '<pre style="color:red;">'; print_r($data); echo '</pre>'; /* !!! */
 
         // set create_campaign and save
         $modelOrder->setScenario('create_campaign');
