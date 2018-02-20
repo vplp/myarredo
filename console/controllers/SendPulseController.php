@@ -105,23 +105,23 @@ class SendPulseController extends Controller
 
         $modelOrder = Order::findBase()
             ->andWhere(['create_campaign' => '0'])
-            ->all();
+            ->one();
 
-        foreach ($modelOrder as $order) {
-            $bookId = $order->city->country->bookId;
-            $senderName = 'myarredo';
-            $senderEmail = 'info@myarredo.ru';
-            $subject = 'Новая заявка №' . $order['id'];
-            $body = $this->renderPartial('letter_new_order_for_partner', ['order' => $order]);
-            $name = 'Новая заявка №' . $order['id'];
+        //foreach ($modelOrder as $order) {
+        $bookId = $modelOrder->city->country->bookId;
+        $senderName = 'myarredo';
+        $senderEmail = 'info@myarredo.ru';
+        $subject = 'Новая заявка №' . $modelOrder['id'];
+        $body = $this->renderPartial('letter_new_order_for_partner', ['order' => $modelOrder]);
+        $name = 'Новая заявка №' . $modelOrder['id'];
 
-            Yii::$app->sendPulse->createCampaign($senderName, $senderEmail, $subject, $body, $bookId, $name);
+        Yii::$app->sendPulse->createCampaign($senderName, $senderEmail, $subject, $body, $bookId, $name);
 
-            // set create_campaign and save
-            $order->setScenario('create_campaign');
-            $order->create_campaign = '1';
-            $order->save();
-        }
+        // set create_campaign and save
+        $modelOrder->setScenario('create_campaign');
+        $modelOrder->create_campaign = '1';
+        $modelOrder->save();
+        //}
 
         $this->stdout("SendPulse: end send test campaign. \n", Console::FG_GREEN);
     }
