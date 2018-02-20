@@ -116,6 +116,8 @@ class SendPulseController extends Controller
 
         $response = Yii::$app->sendPulse->createCampaign($senderName, $senderEmail, $subject, $body, $bookId, $name);
 
+        $response = (array)$response;
+
         if (isset($response['is_error']) && $response['is_error'] == 0) {
             // set create_campaign and save
             $modelOrder->setScenario('create_campaign');
