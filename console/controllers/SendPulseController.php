@@ -119,19 +119,20 @@ class SendPulseController extends Controller
 
             $response = (array)$response;
 
-            if (isset($response['is_error']) && $response['is_error'] == 1) {
+            if (isset($response['is_error']) && $response['is_error'] == '1') {
                 /* !!! */
                 echo '<pre style="color:red;">';
                 print_r($response);
                 echo '</pre>'; /* !!! */
-            } else {
-                // set create_campaign and save
-                $modelOrder->setScenario('create_campaign');
-                $modelOrder->create_campaign = '1';
-                $modelOrder->save();
-
-                $this->stdout("Create campaign: " . $subject . " \n", Console::FG_GREEN);
             }
+
+            // set create_campaign and save
+            $modelOrder->setScenario('create_campaign');
+            $modelOrder->create_campaign = '1';
+            $modelOrder->save();
+
+            $this->stdout("Create campaign: " . $subject . " \n", Console::FG_GREEN);
+
         }
 
         $this->stdout("SendPulse: end send test campaign. \n", Console::FG_GREEN);
