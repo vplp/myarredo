@@ -115,24 +115,17 @@ class SendPulseController extends Controller
             $body = $this->renderPartial('letter_new_order_for_partner', ['order' => $modelOrder]);
             $name = 'Новая заявка №' . $modelOrder['id'];
 
+            // set create_campaign and save
+
             $response = Yii::$app->sendPulse->createCampaign($senderName, $senderEmail, $subject, $body, $bookId, $name);
 
-            $response = (array)$response;
+            var_dump($response);
 
-            if (isset($response['is_error']) && $response['is_error'] == '1') {
-                /* !!! */
-                echo '<pre style="color:red;">';
-                print_r($response);
-                echo '</pre>'; /* !!! */
-            }
-
-            // set create_campaign and save
             $modelOrder->setScenario('create_campaign');
             $modelOrder->create_campaign = '1';
             $modelOrder->save();
 
             $this->stdout("Create campaign: " . $subject . " \n", Console::FG_GREEN);
-
         }
 
         $this->stdout("SendPulse: end send test campaign. \n", Console::FG_GREEN);
