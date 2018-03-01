@@ -42,23 +42,6 @@ return [
     'partner' => [
         'class' => \frontend\modules\user\components\PartnerComponent::class,
     ],
-    'mailer' => [
-        'class' => \yii\swiftmailer\Mailer::class,
-        'transport' => [
-            'class' => 'Swift_SmtpTransport',
-            'host' => 'smtp-pulse.com',
-            'username' => 'myarredo@mail.ru',
-            'password' => 'ZYfKZWr29eB3',
-            'port' => '465',
-            'encryption' => 'ssl',
-        ],
-        'useFileTransport' => false,
-        'enableSwiftMailerLogging' => true,
-        'messageConfig' => [
-            'charset' => 'UTF-8',
-            'from' => ['info@myarredo.ru' => 'myarredo'],
-        ],
-    ],
     'metatag' => [
         'class' => \frontend\modules\seo\components\MetaTag::class
     ],

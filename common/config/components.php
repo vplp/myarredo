@@ -28,7 +28,7 @@ return [
         'threadProductClass' => \common\modules\catalog\models\Product::class,
         'frontendProductClass' => \frontend\modules\catalog\models\Product::class
     ],
-    //MAIL
+    // MAIL
     'mail-carrier' => [
         'class' => \thread\modules\sys\modules\mailcarrier\components\MailCarrier::class,
         'pathToLayout' => '@frontend/mail/layouts',
@@ -36,10 +36,19 @@ return [
     ],
     'mailer' => [
         'class' => \yii\swiftmailer\Mailer::class,
-        'useFileTransport' => false,
-        'enableSwiftMailerLogging' => true,
         'transport' => [
             'class' => 'Swift_SmtpTransport',
+            'host' => 'smtp-pulse.com',
+            'username' => 'myarredo@mail.ru',
+            'password' => 'ZYfKZWr29eB3',
+            'port' => '465',
+            'encryption' => 'ssl',
+        ],
+        'useFileTransport' => false,
+        'enableSwiftMailerLogging' => true,
+        'messageConfig' => [
+            'charset' => 'UTF-8',
+            'from' => ['info@myarredo.ru' => 'myarredo'],
         ],
     ],
     // FileCache
@@ -84,7 +93,7 @@ return [
     ],
     // sendPulse
     'sendPulse' => [
-        'class' => \common\components\sendpulse\SendPulse::className(),
+        'class' => \common\components\sendpulse\SendPulse::class,
         'userId' => '5a4017d2702c0caa55238646202925af',
         'secret' => 'b93e723419dbdf7a0be49143c702d804',
     ]
