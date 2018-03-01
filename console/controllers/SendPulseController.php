@@ -119,9 +119,9 @@ class SendPulseController extends Controller
 
             // send partner campaign
 
-            $response = Yii::$app->sendPulse->createCampaign($senderName, $senderEmail, $subject, $body, $bookId, $name);
-
-            var_dump($response);
+//            $response = Yii::$app->sendPulse->createCampaign($senderName, $senderEmail, $subject, $body, $bookId, $name);
+//
+//            var_dump($response);
 
             // send factory campaign
 

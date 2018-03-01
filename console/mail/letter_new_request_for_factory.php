@@ -44,11 +44,12 @@ use frontend\modules\catalog\models\Product;
         $phone = ($order->city->country->alias == 'ua') ? '+39 (0422) 150-02-15' : '+7 968 353 36 36';
         ?>
 
-        <p>Text</p>
-
-        <p>user</p>
-        <p>email: <?= $modelUser['email'] ?></p>
-        <p>factory_id: <?= $modelUser['profile']['factory_id'] ?></p>
+        <a href="http://www.myarredo.<?= $order->city->country->alias ?>/shop/factory-order/list/"
+           style="text-decoration: none; color:#fff;">
+            <div style="background-color:#00b05a; width: 80%; font-size: 18px; padding:20px; color: #fff; margin: 35px auto 20px; text-align: center;">
+                <span style="display: block;">Список запросов</span>
+            </div>
+        </a>
 
     </div>
     <div style="background-color:#c4c0b8; padding:15px 60px;">
