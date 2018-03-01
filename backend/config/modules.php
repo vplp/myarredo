@@ -41,21 +41,9 @@ return [
     'location' => [
         'class' => \backend\modules\location\Location::class,
     ],
-//    'polls' => [
-//        'class' => \backend\modules\polls\Polls::class,
-//    ],
-//    'correspondence' => [
-//        'class' => \backend\modules\correspondence\Correspondence::class,
-//    ],
     'shop' => [
         'class' => \backend\modules\shop\Shop::class,
     ],
-//    'translation' => [
-//        'class' => \backend\modules\sys\modules\translation\Translation::class
-//    ],
-//    'feedback' => [
-//        'class' => \backend\modules\feedback\Feedback::class
-//    ],
     'catalog' => [
         'class' => \backend\modules\catalog\Catalog::class
     ],

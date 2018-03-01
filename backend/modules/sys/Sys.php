@@ -38,12 +38,12 @@ class Sys extends \common\modules\sys\Sys
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/translation/translation/list'],
                     ],
-                    /*[
+                    [
                         'name' => 'Configs',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/configs/params/list'],
                     ],
-                    [
+                    /*[
                         'name' => 'Growl',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/growl/growl/list'],

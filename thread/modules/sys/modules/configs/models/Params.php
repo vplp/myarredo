@@ -9,12 +9,13 @@ use thread\app\base\models\{
 };
 use thread\modules\sys\modules\configs\Configs as ConfigsModule;
 
-
 /**
- * Class Topic
+ * Class Params
  *
  * @property integer $id
- * @property string $sort
+ * @property integer $group_id
+ * @property string $alias
+ * @property string $value
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $published
@@ -30,7 +31,8 @@ use thread\modules\sys\modules\configs\Configs as ConfigsModule;
 class Params extends ActiveRecord
 {
     /**
-     * @return string
+     * @return null|object|\yii\db\Connection
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

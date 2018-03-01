@@ -44,6 +44,10 @@ use frontend\modules\catalog\models\Product;
         $phone = ($order->city->country->alias == 'ua') ? '+39 (0422) 150-02-15' : '+7 968 353 36 36';
         ?>
 
+        <div style="text-align: left; padding-left: 20px;">
+            <?= Yii::$app->param->getByName('LETTER_NEW_REQUEST_FOR_FACTORY') ?>
+        </div>
+
         <a href="http://www.myarredo.<?= $order->city->country->alias ?>/shop/factory-order/list/"
            style="text-decoration: none; color:#fff;">
             <div style="background-color:#00b05a; width: 80%; font-size: 18px; padding:20px; color: #fff; margin: 35px auto 20px; text-align: center;">

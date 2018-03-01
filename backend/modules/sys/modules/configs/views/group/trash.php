@@ -1,9 +1,15 @@
 <?php
+
 use backend\widgets\GridView\GridView;
 //
 use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
 };
+
+/**
+ * @var $model \backend\modules\sys\modules\configs\models\Group
+ * @var $modelLang \backend\modules\sys\modules\configs\models\GroupLang
+ */
 
 echo GridView::widget([
     'dataProvider' => $model->trash(Yii::$app->request->queryParams),

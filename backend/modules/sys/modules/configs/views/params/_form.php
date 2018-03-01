@@ -1,18 +1,22 @@
 <?php
+
 use backend\app\bootstrap\ActiveForm;
 //
 use backend\modules\sys\modules\configs\models\Group;
 
 /**
- * @var \backend\modules\news\models\GroupLang $modelLang
- * @var \backend\modules\news\models\Group $model
+ * @var $model \backend\modules\sys\modules\configs\models\Params
+ * @var $modelLang \backend\modules\sys\modules\configs\models\ParamsLang
  */
 ?>
+
 <?php $form = ActiveForm::begin(); ?>
+
 <?= $form->submit($model, $this) ?>
-<?= $form->field($model, 'group_id')->selecOne(Group::dropDownList(), ['promt' => '---' . Yii::t('app', 'Choose group') . '---']) ?>
+<?= $form->field($model, 'group_id')->dropDownList(Group::dropDownList(), ['promt' => '---' . Yii::t('app', 'Choose group') . '---']) ?>
 <?= $form->text_line_lang($modelLang, 'title') ?>
 <?= $form->text_line($model, 'alias') ?>
-<?= $form->text_line($model, 'value') ?>
+<?= $form->text_editor($model, 'value') ?>
 <?= $form->submit($model, $this) ?>
+
 <?php ActiveForm::end(); ?>

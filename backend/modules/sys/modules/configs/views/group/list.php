@@ -7,6 +7,11 @@ use thread\widgets\grid\{
     ActionCheckboxColumn
 };
 
+/**
+ * @var $model \backend\modules\sys\modules\configs\models\Group
+ * @var $modelLang \backend\modules\sys\modules\configs\models\GroupLang
+ */
+
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,

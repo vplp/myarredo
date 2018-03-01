@@ -7,6 +7,11 @@ use thread\widgets\grid\{
 };
 use backend\modules\sys\modules\configs\models\Group;
 
+/**
+ * @var $model \backend\modules\sys\modules\configs\models\Params
+ * @var $modelLang \backend\modules\sys\modules\configs\models\ParamsLang
+ */
+
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,

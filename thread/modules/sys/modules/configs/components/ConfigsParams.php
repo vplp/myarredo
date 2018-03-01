@@ -2,16 +2,14 @@
 
 namespace thread\modules\sys\modules\configs\components;
 
-use Yii;
 use yii\base\Component;
 //
 use thread\modules\sys\modules\configs\models\Params;
 
 /**
  * Class ConfigsParams
- * @package thread\modules\configs\components
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
+ *
+ * @package thread\modules\sys\modules\configs\components
  */
 class ConfigsParams extends Component
 {
