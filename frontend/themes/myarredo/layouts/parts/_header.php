@@ -35,11 +35,11 @@ use frontend\modules\location\widgets\ChangeCity;
                             <a href="javascript: void(0);" id="select-city">
                                 <i class="glyphicon glyphicon-map-marker"></i>
                                 <span class="country">
-								<?= Yii::$app->city->getCountryTitle() ?>
-							</span>
+								    <?= Yii::$app->city->getCountryTitle() ?>
+							    </span>
                                 <span class="city">
-								<?= Yii::$app->city->getCitytitle() ?>
-							</span>
+								    <?= Yii::$app->city->getCitytitle() ?>
+							    </span>
                             </a>
                         </li>
                     </ul>
@@ -211,9 +211,13 @@ use frontend\modules\location\widgets\ChangeCity;
     <nav class="navbar">
         <div class="container large-container">
             <div class="row">
-                <a href="/" class="logo">
-                    <img src="<?= $bundle->baseUrl ?>/img/logo.svg" alt="">
-                </a>
+
+                <?= Html::a(
+                    Html::img($bundle->baseUrl . '/img/logo.svg'),
+                    Url::toRoute('/home/home/index'),
+                    ['class' => 'logo']
+                ) ?>
+
                 <?= CatalogMenu::widget([]); ?>
             </div>
         </div>
