@@ -50,7 +50,9 @@ class LoginController extends BaseController
     }
 
     /**
-     * @return string
+     * @return string|Response
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function actionIndex()
     {
@@ -63,9 +65,15 @@ class LoginController extends BaseController
         $model->setScenario('signIn');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
-            if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') {
+
+            $user = Yii::$app->getUser()->getIdentity();
+
+            Yii::$app->params['themes']['language'] = $user->profile->preferred_language;
+            Yii::$app->language = $user->profile->preferred_language;
+
+            if ($user->group->role == 'partner') {
                 return $this->redirect(Url::toRoute(['/shop/partner-order/list']));
-            } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'admin') {
+            } elseif ($user->group->role == 'admin') {
                 return $this->redirect(Url::toRoute(['/shop/admin-order/list']));
             } else {
                 return $this->redirect(Url::toRoute(['/user/profile/index']));
