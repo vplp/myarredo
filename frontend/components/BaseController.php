@@ -43,12 +43,12 @@ abstract class BaseController extends Controller
         /**
          * Set user interface language
          */
-        if (!Yii::$app->getUser()->isGuest) {
-            /** @var User $user */
-            $user = Yii::$app->getUser()->getIdentity();
-            Yii::$app->params['themes']['language'] = $user->profile->preferred_language;
-            //Yii::$app->language = $user->profile->preferred_language;
-        }
+//        if (!Yii::$app->getUser()->isGuest) {
+//            /** @var User $user */
+//            $user = Yii::$app->getUser()->getIdentity();
+//            Yii::$app->params['themes']['language'] = $user->profile->preferred_language;
+//            //Yii::$app->language = $user->profile->preferred_language;
+//        }
 
         parent::init();
     }

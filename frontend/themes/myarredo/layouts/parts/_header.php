@@ -27,7 +27,7 @@ use frontend\modules\location\widgets\ChangeCity;
                         <li>
                             <a class="callback-trigger" href="javascript:void(0);">
 							<span>
-								Обратный звонок
+								<?= Yii::t('app', 'Feedback form') ?>
 							</span>
                             </a>
                         </li>
