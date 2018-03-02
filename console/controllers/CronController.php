@@ -9,6 +9,7 @@ use yii\console\Controller;
 use common\modules\catalog\models\{
     Product, ProductLang, Sale
 };
+use Google\Cloud\Translate\TranslateClient;
 
 /**
  * Class CronController
@@ -296,4 +297,62 @@ class CronController extends Controller
 //        }
 //    }
 
+    /**
+     * Generate product title
+     */
+    public function actionGenerateProductItTitle()
+    {
+        // UPDATE `fv_catalog_item` SET `mark`='0'
+
+        $models = Product::find()
+            ->where([
+                'mark' => '0',
+                'is_composition' => '1'
+            ])
+            ->limit(500)
+            ->orderBy('id DESC')
+            ->all();
+
+        foreach ($models as $model) {
+            /** @var PDO $transaction */
+            /** @var $model Product */
+            $transaction = $model::getDb()->beginTransaction();
+            try {
+
+                $model->setScenario('setMark');
+
+                $model->mark = '1';
+
+                if ($model->save()) {
+                    $transaction->commit();
+
+                    Yii::$app->language = 'ru-RU';
+
+                    $modelLangRu = ProductLang::find()
+                        ->where([
+                            'rid' => $model->id,
+                        ])
+                        ->one();
+
+                    Yii::$app->language = 'it-IT';
+
+                    $modelLangIt = new ProductLang();
+
+                    $modelLangIt->rid = $model->id;
+                    $modelLangIt->lang = Yii::$app->language;
+
+                    $modelLangIt->title = ($modelLangRu != null) ? $modelLangRu->title : '';
+                    $modelLangIt->description = ($modelLangRu != null) ? $modelLangRu->description : '';
+
+                    $modelLangIt->setScenario('backend');
+                    $modelLangIt->save();
+                } else {
+                    $transaction->rollBack();
+                }
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                throw new \Exception($e);
+            }
+        }
+    }
 }
