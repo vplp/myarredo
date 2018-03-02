@@ -152,27 +152,20 @@ class SendPulseController extends Controller
 
                 $senderEmail = $item->product['factory']['email'];
 
-                $modelUser = User::findBase()
-                    ->andWhere([
-                        'group_id' => Group::FACTORY,
-                        Profile::tableName() . '.factory_id' => $item->product['factory_id']
-                    ])
-                    ->one();
+                $this->stdout("Send to factory: " . $senderEmail . " \n", Console::FG_GREEN);
 
-                if ($modelUser !== null) {
-                    Yii::$app
-                        ->mailer
-                        ->compose(
-                            'letter_new_request_for_factory',
-                            [
-                                'order' => $modelOrder,
-                                'item' => $item
-                            ]
-                        )
-                        ->setTo($senderEmail)
-                        ->setSubject('Новый запрос на товар')
-                        ->send();
-                }
+                Yii::$app
+                    ->mailer
+                    ->compose(
+                        'letter_new_request_for_factory',
+                        [
+                            'order' => $modelOrder,
+                            'item' => $item
+                        ]
+                    )
+                    ->setTo($senderEmail)
+                    ->setSubject('Новый запрос на товар')
+                    ->send();
 
             } else if ($item->product['factory_id']) {
 
@@ -188,6 +181,8 @@ class SendPulseController extends Controller
                 if ($modelUser !== null) {
 
                     $senderEmail = $modelUser['email'];
+
+                    $this->stdout("Send to factory: " . $senderEmail . " \n", Console::FG_GREEN);
 
                     Yii::$app
                         ->mailer
