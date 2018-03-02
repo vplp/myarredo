@@ -127,7 +127,7 @@ class SendPulseController extends Controller
 
             if(!isset($response['is_error'])) {
 
-                $this->sendNewRequestForFactory($modelOrder);
+                //$this->sendNewRequestForFactory($modelOrder);
 
                 $modelOrder->setScenario('create_campaign');
                 $modelOrder->create_campaign = '1';
