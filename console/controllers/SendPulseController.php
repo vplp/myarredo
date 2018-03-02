@@ -123,39 +123,7 @@ class SendPulseController extends Controller
 
             var_dump($response);
 
-            // send factory campaign
-
-            foreach ($modelOrder->items as $item) {
-                if ($item->product['factory_id']) {
-
-
-
-
-                    $modelUser = User::findBase()
-                        ->andWhere([
-                            'group_id' => Group::FACTORY,
-                            Profile::tableName() . '.factory_id' => $item->product['factory_id']
-                        ])
-                        ->one();
-
-                    if ($modelUser !== null) {
-                        Yii::$app
-                            ->mailer
-                            ->compose(
-                                'letter_new_request_for_factory',
-                                [
-                                    'order' => $modelOrder,
-                                    'item' => $item,
-                                    'modelUser' => $modelUser
-                                ]
-                            )
-                            ->setTo('zndron@gmail.com') // $modelUser['email']
-                            ->setSubject('Новый запрос на товар')
-                            ->send();
-                    }
-
-                }
-            }
+            $this->sendNewRequestForFactory($modelOrder);
 
             $modelOrder->setScenario('create_campaign');
             $modelOrder->create_campaign = '1';
@@ -165,5 +133,76 @@ class SendPulseController extends Controller
         }
 
         $this->stdout("SendPulse: end send test campaign. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * @param object $modelOrder
+     */
+    private function sendNewRequestForFactory($modelOrder)
+    {
+        foreach ($modelOrder->items as $item) {
+
+            if (
+                $item->product['factory_id'] &&
+                $item->product['factory'] &&
+                $item->product['factory']['email'] != ''
+            ) {
+
+                // use factory email
+
+                $senderEmail = $item->product['factory']['email'];
+
+                $modelUser = User::findBase()
+                    ->andWhere([
+                        'group_id' => Group::FACTORY,
+                        Profile::tableName() . '.factory_id' => $item->product['factory_id']
+                    ])
+                    ->one();
+
+                if ($modelUser !== null) {
+                    Yii::$app
+                        ->mailer
+                        ->compose(
+                            'letter_new_request_for_factory',
+                            [
+                                'order' => $modelOrder,
+                                'item' => $item
+                            ]
+                        )
+                        ->setTo($senderEmail)
+                        ->setSubject('Новый запрос на товар')
+                        ->send();
+                }
+
+            } else if ($item->product['factory_id']) {
+
+                // use user factory email
+
+                $modelUser = User::findBase()
+                    ->andWhere([
+                        'group_id' => Group::FACTORY,
+                        Profile::tableName() . '.factory_id' => $item->product['factory_id']
+                    ])
+                    ->one();
+
+                if ($modelUser !== null) {
+
+                    $senderEmail = $modelUser['email'];
+
+                    Yii::$app
+                        ->mailer
+                        ->compose(
+                            'letter_new_request_for_factory',
+                            [
+                                'order' => $modelOrder,
+                                'item' => $item
+                            ]
+                        )
+                        ->setTo($senderEmail)
+                        ->setSubject('Новый запрос на товар')
+                        ->send();
+                }
+            }
+        }
     }
 }
