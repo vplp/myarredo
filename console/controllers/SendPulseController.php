@@ -121,9 +121,11 @@ class SendPulseController extends Controller
 
             $response = Yii::$app->sendPulse->createCampaign($senderName, $senderEmail, $subject, $body, $bookId, $name);
 
+            $response = (array)$response;
+
             var_dump($response);
 
-            if($response['is_error'] == false) {
+            if(!isset($response['is_error'])) {
 
                 $this->sendNewRequestForFactory($modelOrder);
 
