@@ -123,13 +123,15 @@ class SendPulseController extends Controller
 
             var_dump($response);
 
-            $this->sendNewRequestForFactory($modelOrder);
+            if($response['is_error'] == false) {
 
-            $modelOrder->setScenario('create_campaign');
-            $modelOrder->create_campaign = '1';
-            $modelOrder->save();
+                $this->sendNewRequestForFactory($modelOrder);
 
-            $this->stdout("Create campaign: " . $subject . " \n", Console::FG_GREEN);
+                $modelOrder->setScenario('create_campaign');
+                $modelOrder->create_campaign = '1';
+                $modelOrder->save();
+                $this->stdout("Create campaign: " . $subject . " \n", Console::FG_GREEN);
+            }
         }
 
         $this->stdout("SendPulse: end send test campaign. \n", Console::FG_GREEN);
