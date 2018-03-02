@@ -37,7 +37,7 @@ use backend\themes\defaults\widgets\TreeGrid;
                 'attributeRow' => 'val',
                 'primaryKeySecondTable' => 'catalog_item_id',
                 'valueSecondTable' => Yii::$app->getRequest()->get('id'),
-                'namespace' => ProductRelSpecification::className(),
+                'namespace' => ProductRelSpecification::class,
             ],
         ]
     ]); ?>

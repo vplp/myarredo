@@ -5,6 +5,8 @@ namespace common\modules\user\models;
 use Yii;
 use yii\helpers\ArrayHelper;
 //
+use voskobovich\behaviors\ManyToManyBehavior;
+//
 use common\modules\location\models\{
     City, Country
 };
@@ -37,6 +39,21 @@ class Profile extends \thread\modules\user\models\Profile
     /**
      * @return array
      */
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'city_ids' => 'cities',
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * @return array
+     */
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
@@ -66,6 +83,13 @@ class Profile extends \thread\modules\user\models\Profile
             ],
             [['country_id', 'city_id', 'factory_id'], 'integer'],
             [['latitude', 'longitude'], 'double'],
+            [
+                [
+                    'city_ids',
+                ],
+                'each',
+                'rule' => ['integer']
+            ],
         ]);
     }
 
@@ -93,7 +117,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'partner_in_city',
                 'possibility_to_answer',
                 'pdf_access',
-                'show_contacts'
+                'show_contacts',
             ],
             'basicCreate' => [
                 'phone',
@@ -111,7 +135,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'partner_in_city',
                 'possibility_to_answer',
                 'pdf_access',
-                'show_contacts'
+                'show_contacts',
             ],
             'backend' => [
                 'first_name',
@@ -131,7 +155,8 @@ class Profile extends \thread\modules\user\models\Profile
                 'partner_in_city',
                 'possibility_to_answer',
                 'pdf_access',
-                'show_contacts'
+                'show_contacts',
+                'city_ids'
             ]
         ]);
     }
@@ -158,6 +183,7 @@ class Profile extends \thread\modules\user\models\Profile
             'possibility_to_answer' => 'Отвечает без установки кода на сайт',
             'pdf_access' => 'Доступ к прайсам и каталогам',
             'show_contacts' => 'Показывать в контактах',
+            'city_ids' => 'Ответы в городах',
         ]);
     }
 
@@ -175,6 +201,16 @@ class Profile extends \thread\modules\user\models\Profile
     public function getCity()
     {
         return $this->hasOne(City::class, ['id' => 'city_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCities()
+    {
+        return $this
+            ->hasMany(City::class, ['id' => 'location_city_id'])
+            ->viaTable('fv_user_rel_location_city', ['user_id' => 'user_id']);
     }
 
     /**

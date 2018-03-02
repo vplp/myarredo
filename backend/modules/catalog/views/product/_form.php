@@ -78,5 +78,7 @@ use backend\themes\defaults\widgets\Tabs;
         ],
     ]
 ]) ?>
+
 <?= $form->submit($model, $this) ?>
+
 <?php ActiveForm::end(); ?>
