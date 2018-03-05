@@ -32,6 +32,9 @@ use common\modules\catalog\models\Factory;
  * @property int $pdf_access
  * @property int $show_contacts
  *
+ * @property Country $country
+ * @property City $city
+ *
  * @package common\modules\user\models
  */
 class Profile extends \thread\modules\user\models\Profile

@@ -5,6 +5,9 @@ namespace common\modules\user\models;
 /**
  * Class User
  *
+ * @property Profile $profile
+ * @property Group $group
+ *
  * @package common\modules\user\models
  */
 class User extends \thread\modules\user\models\User

@@ -2,6 +2,7 @@
 
 namespace frontend\modules\user\controllers;
 
+use frontend\modules\user\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
@@ -102,6 +103,8 @@ class RegisterController extends BaseController
 
             if ($status === true) {
 
+                $modelUser = User::findByEmail($model->email);
+
                 Yii::$app
                     ->mailer
                     ->compose(
@@ -109,6 +112,7 @@ class RegisterController extends BaseController
                         [
                             'message' => 'Зарегистрирован новый партнер',
                             'model' => $model,
+                            'modelUser' => $modelUser,
                         ]
                     )
                     ->setTo(Yii::$app->params['mailer']['setTo'])
