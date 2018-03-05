@@ -15,7 +15,6 @@ use frontend\modules\catalog\models\Product;
 if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
 
     <?php $form = ActiveForm::begin([
-        //'method' => 'post',
         'id' => 'OrderAnswerForm',
         'options' => ['data' => ['pjax' => true]],
         'action' => $modelOrder->getPartnerOrderOnListUrl(),
@@ -120,15 +119,18 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
         </div>
     </div>
 
-    <?php if (!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0) {
+    <?php
+    if (Yii::$app->user->identity->profile->cities != null && (!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0)) {
         echo Html::submitButton('Сохранить', [
             'class' => 'btn btn-success action-save-answer',
             'name' => 'action-save-answer',
             'value' => 1
         ]);
+    } else {
+      echo '<p>Оплатите возможность отвечать на заявки из этого города!</p>';
     } ?>
 
-    <?php if ($modelOrderAnswer->id && $modelOrderAnswer->answer_time == 0) {
+    <?php if (Yii::$app->user->identity->profile->cities != null && ($modelOrderAnswer->id && $modelOrderAnswer->answer_time == 0)) {
         echo Html::submitButton('Отправить ответ клиенту', [
             'class' => 'btn btn-success',
             'name' => 'action-send-answer',

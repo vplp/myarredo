@@ -73,7 +73,7 @@ class PasswordController extends BaseController
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
             $user = User::findIdentity(Yii::$app->getUser()->id);
-            if ($user !== null) {
+            if ($user != null) {
                 $user->setScenario('passwordChange');
                 $user->setPassword($model->password);
                 $transaction = $user::getDb()->beginTransaction();

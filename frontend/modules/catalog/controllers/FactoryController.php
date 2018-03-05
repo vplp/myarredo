@@ -120,7 +120,7 @@ class FactoryController extends BaseController
 
         $model = Factory::findByAlias($alias);
 
-        if ($model === null) {
+        if ($model == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 

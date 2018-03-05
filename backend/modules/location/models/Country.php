@@ -13,9 +13,7 @@ use thread\app\model\interfaces\BaseBackendModel;
  */
 class Country extends \common\modules\location\models\Country implements BaseBackendModel
 {
-
     /**
-     * Backend form dropdown list
      * @return array
      */
     public static function dropDownList()

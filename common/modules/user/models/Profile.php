@@ -24,7 +24,7 @@ use common\modules\catalog\models\Factory;
  * @property boolean $delivery_to_other_cities
  * @property int $country_id
  * @property int $city_id
- * @property int $factor_id
+ * @property int $factory_id
  * @property float $latitude
  * @property float $longitude
  * @property int $partner_in_city

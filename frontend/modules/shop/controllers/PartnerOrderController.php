@@ -87,6 +87,7 @@ class PartnerOrderController extends BaseController
     {
         if (
             Yii::$app->request->isPost &&
+            Yii::$app->user->identity->profile->cities != null &&
             (Yii::$app->request->post('OrderAnswer'))['order_id'] &&
             Yii::$app->request->post('OrderItemPrice') &&
             Yii::$app->request->post('action-save-answer')
@@ -200,6 +201,7 @@ class PartnerOrderController extends BaseController
     {
         if (
             Yii::$app->request->isPost &&
+            Yii::$app->user->identity->profile->cities != null &&
             (Yii::$app->request->post('OrderAnswer'))['order_id'] &&
             Yii::$app->request->post('action-send-answer')
         ) {

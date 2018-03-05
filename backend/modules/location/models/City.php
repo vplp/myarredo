@@ -6,6 +6,7 @@ use yii\helpers\ArrayHelper;
 //
 use thread\app\model\interfaces\BaseBackendModel;
 
+
 /**
  * Class City
  *
@@ -14,10 +15,8 @@ use thread\app\model\interfaces\BaseBackendModel;
 class City extends \common\modules\location\models\City implements BaseBackendModel
 {
     /**
-     * Drop down list
-     *
      * @param int $country_id
-     * @return mixed
+     * @return array
      */
     public static function dropDownList($country_id = 0)
     {

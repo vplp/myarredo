@@ -53,7 +53,7 @@ class ListController extends BaseController
             if (Yii::$app->request->get('alias')) {
                 $item = Group::findByAlias(Yii::$app->request->get('alias'));
 
-                if ($item === null)
+                if ($item == null)
                     throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
 
                 $r = $item['id'];
@@ -85,7 +85,7 @@ class ListController extends BaseController
             ? Group::findByAlias($_GET['alias'])
             : null;
 
-        if ($item !== null) {
+        if ($item != null) {
             $this->label = $item['lang']['title'];
         }
 

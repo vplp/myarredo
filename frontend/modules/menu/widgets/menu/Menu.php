@@ -49,7 +49,7 @@ class Menu extends Widget
      */
     public function run()
     {
-        if ($this->items !== null) {
+        if ($this->items != null) {
             return $this->render($this->view, [
                 'items' => $this->items,
             ]);

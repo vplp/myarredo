@@ -170,7 +170,7 @@ class Order extends OrderModel
     {
         $customer = Customer::find()->andWhere(['email' => $customerForm['email']])->one();
 
-        if ($customer === null) {
+        if ($customer == null) {
 
             $customer = new Customer();
 

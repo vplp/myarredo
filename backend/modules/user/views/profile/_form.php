@@ -23,7 +23,7 @@ use backend\themes\defaults\widgets\Tabs;
             ])
         ],
         [
-            'label' => 'Partner',
+            'label' => Yii::t('app', 'Partner'),
             'content' => $this->render('parts/_partner_profile', [
                 'form' => $form,
                 'model' => $model,
@@ -31,7 +31,7 @@ use backend\themes\defaults\widgets\Tabs;
             'visible' => ($model->user->group_id == 4) ? 1 : 0
         ],
         [
-            'label' => 'Factory',
+            'label' => Yii::t('app', 'Factory'),
             'content' => $this->render('parts/_factory_profile', [
                 'form' => $form,
                 'model' => $model,

@@ -37,7 +37,7 @@ class TemplateFactoryController extends BaseController
 
         $model = Factory::findByAlias($alias);
 
-        if ($model === null) {
+        if ($model == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
@@ -85,7 +85,7 @@ class TemplateFactoryController extends BaseController
     {
         $model = Factory::findByAlias($alias);
 
-        if ($model === null) {
+        if ($model == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
@@ -111,7 +111,7 @@ class TemplateFactoryController extends BaseController
     {
         $factory = Factory::findByAlias($alias);
 
-        if ($factory === null) {
+        if ($factory == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
@@ -153,7 +153,7 @@ class TemplateFactoryController extends BaseController
     {
         $factory = Factory::findByAlias($alias);
 
-        if ($factory === null) {
+        if ($factory == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
@@ -161,7 +161,7 @@ class TemplateFactoryController extends BaseController
 
         $model = Product::findByAlias($product);
 
-        if ($model === null) {
+        if ($model == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
@@ -212,7 +212,7 @@ class TemplateFactoryController extends BaseController
     {
         $factory = Factory::findByAlias($alias);
 
-        if ($factory === null) {
+        if ($factory == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
@@ -246,7 +246,7 @@ class TemplateFactoryController extends BaseController
     {
         $factory = Factory::findByAlias($alias);
 
-        if ($factory === null) {
+        if ($factory == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
@@ -254,7 +254,7 @@ class TemplateFactoryController extends BaseController
 
         $model = Sale::findByAlias($product);
 
-        if ($model === null) {
+        if ($model == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 

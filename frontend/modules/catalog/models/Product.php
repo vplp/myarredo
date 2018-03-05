@@ -376,7 +376,7 @@ class Product extends \common\modules\catalog\models\Product
 
                 $model = self::findByID($id_compos);
 
-                if ($model !== null) {
+                if ($model != null) {
                     return $model->elementsComposition;
                 }
             }

@@ -45,7 +45,7 @@ class PageController extends BaseController
     {
         $model = Page::findByAlias($alias);
 
-        if ($model === null) {
+        if ($model == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 

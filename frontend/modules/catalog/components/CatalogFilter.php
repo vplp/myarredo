@@ -234,7 +234,7 @@ class CatalogFilter extends Component
         if (!empty(self::$_structure['category'])) {
             $model = Category::findByAlias(self::$_structure['category'][0]);
 
-            if ($model === null || count(self::$_structure['category']) > 1) {
+            if ($model == null || count(self::$_structure['category']) > 1) {
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
@@ -252,7 +252,7 @@ class CatalogFilter extends Component
                 ->indexBy('id')
                 ->all();
 
-            if (count(self::$_structure['type']) !== count($model) || $model === null) {
+            if (count(self::$_structure['type']) != count($model) || $model == null) {
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
@@ -271,7 +271,7 @@ class CatalogFilter extends Component
                 ->indexBy('id')
                 ->all();
 
-            if (count(self::$_structure['style']) !== count($model) || $model === null) {
+            if (count(self::$_structure['style']) != count($model) || $model == null) {
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
@@ -290,7 +290,7 @@ class CatalogFilter extends Component
                 ->indexBy('id')
                 ->all();
 
-            if (count(self::$_structure['factory']) !== count($model) || $model === null) {
+            if (count(self::$_structure['factory']) != count($model) || $model == null) {
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
@@ -309,7 +309,7 @@ class CatalogFilter extends Component
                 ->indexBy('id')
                 ->all();
 
-            if (count(self::$_structure['collection']) !== count($model) || $model === null) {
+            if (count(self::$_structure['collection']) != count($model) || $model == null) {
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
@@ -325,7 +325,7 @@ class CatalogFilter extends Component
         if (!empty(self::$_structure['country'])) {
             $model = Country::findByAlias(self::$_structure['country'][0]);
 
-            if ($model === null || count(self::$_structure['country']) > 1) {
+            if ($model == null || count(self::$_structure['country']) > 1) {
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
@@ -345,7 +345,7 @@ class CatalogFilter extends Component
                 ->indexBy('id')
                 ->all();
 
-            if ($model === null || count(self::$_structure['city']) !== count($model)) {
+            if ($model == null || count(self::$_structure['city']) !== count($model)) {
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 

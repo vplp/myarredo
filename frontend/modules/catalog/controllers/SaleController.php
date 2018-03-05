@@ -125,7 +125,7 @@ class SaleController extends BaseController
     {
         $model = Sale::findByAlias($alias);
 
-        if ($model === null) {
+        if ($model == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
