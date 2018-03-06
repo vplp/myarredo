@@ -251,9 +251,9 @@ class Profile extends \thread\modules\user\models\Profile
     }
 
     /**
-     * isPdfAccess
-     *
      * @return bool
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function isPdfAccess()
     {
@@ -270,9 +270,9 @@ class Profile extends \thread\modules\user\models\Profile
     }
 
     /**
-     * Get Myarredo Link On Partner Site
-     *
      * @return bool
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function getPossibilityToAnswer()
     {
@@ -292,6 +292,27 @@ class Profile extends \thread\modules\user\models\Profile
                 return true;
             } elseif (in_array('http://www.myarredo.by/', $matches[1])) {
                 return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param int $city_id
+     * @return bool
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public function getPossibilityToSaveAnswer($city_id = 0)
+    {
+        $modelCities = Yii::$app->getUser()->getIdentity()->profile->cities;
+
+        if ($modelCities != null) {
+            foreach ($modelCities as $item) {
+                if($item['id'] == $city_id) {
+                    return true;
+                }
             }
         }
 

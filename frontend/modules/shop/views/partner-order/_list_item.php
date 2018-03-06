@@ -120,7 +120,7 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
     </div>
 
     <?php
-    if (Yii::$app->user->identity->profile->cities != null && (!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0)) {
+    if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null && (!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0)) {
         echo Html::submitButton('Сохранить', [
             'class' => 'btn btn-success action-save-answer',
             'name' => 'action-save-answer',
@@ -130,7 +130,7 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
       echo '<p>Оплатите возможность отвечать на заявки из этого города!</p>';
     } ?>
 
-    <?php if (Yii::$app->user->identity->profile->cities != null && ($modelOrderAnswer->id && $modelOrderAnswer->answer_time == 0)) {
+    <?php if (Yii::$app->user->identity->profile->>getPossibilityToSaveAnswer($modelOrder->city_id) != null && ($modelOrderAnswer->id && $modelOrderAnswer->answer_time == 0)) {
         echo Html::submitButton('Отправить ответ клиенту', [
             'class' => 'btn btn-success',
             'name' => 'action-send-answer',

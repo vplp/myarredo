@@ -87,12 +87,10 @@ class PartnerOrderController extends BaseController
     {
         if (
             Yii::$app->request->isPost &&
-            Yii::$app->user->identity->profile->cities != null &&
             (Yii::$app->request->post('OrderAnswer'))['order_id'] &&
             Yii::$app->request->post('OrderItemPrice') &&
             Yii::$app->request->post('action-save-answer')
         ) {
-
             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
             $response = ['success' => 1];
@@ -147,7 +145,6 @@ class PartnerOrderController extends BaseController
                             }
                         } catch (Exception $e) {
                             $transaction->rollBack();
-
                         }
                     } else {
                         $response['success'] = 0;
@@ -201,7 +198,6 @@ class PartnerOrderController extends BaseController
     {
         if (
             Yii::$app->request->isPost &&
-            Yii::$app->user->identity->profile->cities != null &&
             (Yii::$app->request->post('OrderAnswer'))['order_id'] &&
             Yii::$app->request->post('action-send-answer')
         ) {
