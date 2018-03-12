@@ -128,7 +128,7 @@ class PartnerOrderController extends BaseController
 
                     $modelOrderItemPrice->setScenario('frontend');
 
-                    $modelOrderItemPrice->order_id =  $modelOrder->id;
+                    $modelOrderItemPrice->order_id = $modelOrder->id;
                     $modelOrderItemPrice->user_id = Yii::$app->getUser()->getId();
                     $modelOrderItemPrice->product_id = $product_id;
                     $modelOrderItemPrice->price = intval($price);
@@ -204,11 +204,13 @@ class PartnerOrderController extends BaseController
             $order_id = (Yii::$app->request->post('OrderAnswer'))['order_id'];
 
             $modelOrder = Order::findById($order_id);
-
             $modelAnswer = OrderAnswer::findByOrderIdUserId($order_id, Yii::$app->getUser()->getId());
 
             if (empty($modelAnswer)) {
                 $modelAnswer = new OrderAnswer();
+            } else if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null &&
+                ($modelAnswer->id && $modelAnswer->answer_time != 0)) {
+                return false;
             }
 
             $modelAnswer->setScenario('frontend');
