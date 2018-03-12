@@ -220,10 +220,12 @@ $this->title = $this->context->title;
         </div>
     </main>
 
-<?php
-$url = Url::toRoute(['/shop/partner-order/pjax-save']);
+<?php if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
 
-$script = <<<JS
+    <?php
+    $url = Url::toRoute(['/shop/partner-order/pjax-save']);
+
+    $script = <<<JS
 $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
     var form = $(this).parent();
    
@@ -273,5 +275,7 @@ $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
 });
 JS;
 
-$this->registerJs($script, yii\web\View::POS_READY);
-?>
+    $this->registerJs($script, yii\web\View::POS_READY);
+    ?>
+
+<?php } ?>

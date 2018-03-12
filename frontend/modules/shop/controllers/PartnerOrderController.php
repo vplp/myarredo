@@ -72,8 +72,6 @@ class PartnerOrderController extends BaseController
             'label' => $this->title,
         ];
 
-        $this->sendAnswer();
-
         return $this->render('list', [
             'models' => $models->getModels(),
             'pages' => $models->getPagination()
@@ -194,7 +192,7 @@ class PartnerOrderController extends BaseController
     /**
      * Send answer
      */
-    private function sendAnswer()
+    public function actionSendAnswer()
     {
         if (
             Yii::$app->request->isPost &&
@@ -208,9 +206,8 @@ class PartnerOrderController extends BaseController
 
             if (empty($modelAnswer)) {
                 $modelAnswer = new OrderAnswer();
-            } else if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null &&
-                ($modelAnswer->id && $modelAnswer->answer_time != 0)) {
-                return false;
+            } else {
+                return $this->redirect($modelOrder->getPartnerOrderOnListUrl());
             }
 
             $modelAnswer->setScenario('frontend');
@@ -252,6 +249,8 @@ class PartnerOrderController extends BaseController
                     $transaction->rollBack();
                 }
             }
+
+            return $this->redirect($modelOrder->getPartnerOrderOnListUrl());
         }
     }
 }

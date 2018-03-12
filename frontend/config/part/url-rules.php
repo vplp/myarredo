@@ -90,6 +90,7 @@ return [
     'admin/orders' => 'shop/admin-order/list',
     'partner/orders' => 'shop/partner-order/list',
     'partner/orders/pjax-save' => 'shop/partner-order/pjax-save',
+    'partner/orders/send-answer' => 'shop/partner-order/send-answer',
 
     // Module [[Location]]
     'location/location/get-cities' => 'location/location/get-cities',
