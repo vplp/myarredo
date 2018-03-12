@@ -37,8 +37,7 @@
     "voskobovich/yii2-many-many-behavior": "^3.0",
     "leandrogehlen/yii2-treegrid": "*",
     "himiklab/yii2-recaptcha-widget": "*",
-    "sendpulse/rest-api": "^1.0",
-    "google/cloud-translate": "^1.1"
+    "sendpulse/rest-api": "^1.0"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "*",

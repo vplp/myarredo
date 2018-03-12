@@ -2,7 +2,6 @@
 
 namespace frontend\modules\user\models\form;
 
-use Yii;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -25,7 +24,6 @@ class CommonForm extends \common\modules\user\models\form\CommonForm
 
         return ArrayHelper::merge($rules, parent::rules());
     }
-
 
     /**
      * @return array
