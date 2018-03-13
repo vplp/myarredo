@@ -21,7 +21,7 @@ use yii\helpers\{
                         <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
                     </a>
                 </div>
-                <div class="title-city">Ваш город</div>
+                <div class="title-city"><?= Yii::t('app', 'Your city') ?></div>
                 <div class="tab-country-content">
                     <ul class="links-cont">
 

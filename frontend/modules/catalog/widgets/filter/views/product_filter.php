@@ -26,9 +26,7 @@ use frontend\modules\catalog\models\{
                 ['class' => 'reset']
             ) ?>
 
-            <a href="javascript:void(0);" class="filt-but">
-                Категории
-            </a>
+            <a href="javascript:void(0);" class="filt-but">Категории</a>
 
             <div class="list-item">
 
