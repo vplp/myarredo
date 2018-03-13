@@ -309,10 +309,8 @@ class CronController extends Controller
         $models = Product::find()
             ->where([
                 'mark' => '0',
-                'is_composition' => '1'
             ])
             ->limit(500)
-            ->orderBy('id DESC')
             ->all();
 
         foreach ($models as $model) {
@@ -338,10 +336,19 @@ class CronController extends Controller
 
                     Yii::$app->language = 'it-IT';
 
-                    $modelLangIt = new ProductLang();
+                    $modelLangIt = ProductLang::find()
+                        ->where([
+                            'rid' => $model->id,
+                            'lang' => Yii::$app->language,
+                        ])
+                        ->one();
 
-                    $modelLangIt->rid = $model->id;
-                    $modelLangIt->lang = Yii::$app->language;
+                    if ($modelLangIt == null) {
+                        $modelLangIt = new ProductLang();
+
+                        $modelLangIt->rid = $model->id;
+                        $modelLangIt->lang = Yii::$app->language;
+                    }
 
                     $modelLangIt->title = ($modelLangRu != null) ? $modelLangRu->title : '';
                     $modelLangIt->description = ($modelLangRu != null) ? $modelLangRu->description : '';
