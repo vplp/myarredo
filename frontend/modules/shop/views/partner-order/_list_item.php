@@ -119,16 +119,14 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
         </div>
     </div>
 
-    <?php
-    if (
-        Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null &&
-        (!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0)
-    ) {
-        echo Html::submitButton('Сохранить', [
-            'class' => 'btn btn-success action-save-answer',
-            'name' => 'action-save-answer',
-            'value' => 1
-        ]);
+    <?php if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null) {
+        if ((!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0)) {
+            echo Html::submitButton('Сохранить', [
+                'class' => 'btn btn-success action-save-answer',
+                'name' => 'action-save-answer',
+                'value' => 1
+            ]);
+        }
     } else {
         echo '<p>Оплатите возможность отвечать на заявки из этого города!</p>';
     } ?>

@@ -206,8 +206,6 @@ class PartnerOrderController extends BaseController
 
             if (empty($modelAnswer)) {
                 $modelAnswer = new OrderAnswer();
-            } else {
-                return $this->redirect($modelOrder->getPartnerOrderOnListUrl());
             }
 
             $modelAnswer->setScenario('frontend');
