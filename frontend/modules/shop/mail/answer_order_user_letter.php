@@ -10,7 +10,7 @@ use frontend\modules\catalog\models\Product;
 
 ?>
 
-<div style="width:540px; height: 700px; font: 16px Arial,sans-serif;">
+<div style="width:540px; font: 16px Arial,sans-serif;">
     <div style="background:#c4c0b8; padding:15px 0 0; color:#fff;">
         <p style="text-transform: uppercase; margin:0; padding-left: 20px;">
             <?= $modelOrder->orderAnswer->user->profile->name_company; ?>
