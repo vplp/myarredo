@@ -4,12 +4,12 @@ namespace console\controllers;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Console;
 use yii\console\Controller;
 //
 use common\modules\catalog\models\{
     Product, ProductLang, Sale
 };
-use Google\Cloud\Translate\TranslateClient;
 
 /**
  * Class CronController
@@ -304,6 +304,8 @@ class CronController extends Controller
     {
         // UPDATE `fv_catalog_item` SET `mark`='0'
 
+        $this->stdout("GenerateProductItTitle: start. \n", Console::FG_GREEN);
+
         $models = Product::find()
             ->where([
                 'mark' => '0',
@@ -346,6 +348,8 @@ class CronController extends Controller
 
                     $modelLangIt->setScenario('backend');
                     $modelLangIt->save();
+
+                    $this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
                 } else {
                     $transaction->rollBack();
                 }
@@ -354,5 +358,7 @@ class CronController extends Controller
                 throw new \Exception($e);
             }
         }
+
+        $this->stdout("GenerateProductItTitle: finish. \n", Console::FG_GREEN);
     }
 }
