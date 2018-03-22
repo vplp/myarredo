@@ -20,14 +20,12 @@ use frontend\modules\catalog\models\{
         <div class="one-filter open">
 
             <?= Html::a(
-                '<i class="fa fa-times" aria-hidden="true"></i>СБРОСИТЬ ФИЛЬТРЫ',
+                '<i class="fa fa-times" aria-hidden="true"></i>'. Yii::t('app', 'Сбросить фильтры'),
                 Url::toRoute([$route]),
                 ['class' => 'reset']
             ) ?>
 
-            <a href="javascript:void(0);" class="filt-but">
-                Категории
-            </a>
+            <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app','Category') ?></a>
 
             <div class="list-item">
 
@@ -47,7 +45,7 @@ use frontend\modules\catalog\models\{
 
         <?php if ($types): ?>
             <div class="one-filter open subject-filter">
-                <a href="javascript:void(0);" class="filt-but">Предмет</a>
+                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app','Предмет') ?></a>
                 <div class="list-item">
 
                     <?php foreach ($types as $item): ?>
@@ -65,7 +63,7 @@ use frontend\modules\catalog\models\{
                 <?php if (count($types) > 10): ?>
                     <a href="javascript:void(0);" class="show-all-sub show-more" data-variant="Скрыть">
                         <i class="fa fa-plus" aria-hidden="true"></i>
-                        <span class="btn-text">Показать все предметы</span>
+                        <span class="btn-text"><?= Yii::t('app','Показать все предметы') ?></span>
                     </a>
                 <?php endif; ?>
 
@@ -74,7 +72,7 @@ use frontend\modules\catalog\models\{
 
         <?php if ($style): ?>
             <div class="one-filter open">
-                <a href="javascript:void(0);" class="filt-but">Стиль</a>
+                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app','Стиль') ?></a>
                 <div class="list-item">
 
                     <?php foreach ($style as $item): ?>
@@ -93,7 +91,7 @@ use frontend\modules\catalog\models\{
 
         <?php if ($factory): ?>
             <div class="one-filter open">
-                <a href="javascript:void(0);" class="filt-but">Фабрики</a>
+                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app','Фабрики') ?></a>
                 <div class="list-item">
 
                     <?php foreach ($factory_first_show as $key => $item): ?>
@@ -107,7 +105,7 @@ use frontend\modules\catalog\models\{
                     <?php endforeach; ?>
 
                     <a href="#" class="show-more" data-toggle="modal" data-target="#factory-modal">
-                        <i class="fa fa-plus" aria-hidden="true"></i>Показать еще
+                        <i class="fa fa-plus" aria-hidden="true"></i><?= Yii::t('app','Показать еще') ?>
                     </a>
 
                     <div id="factory-modal" class="modal fade" role="dialog">
@@ -116,12 +114,10 @@ use frontend\modules\catalog\models\{
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    Закрыть
+                                    <?= Yii::t('app','Close') ?>
                                     <span aria-hidden="true">×</span>
                                 </button>
-                                <h3 class="text-center">
-                                    ВЫБОР ФАБРИКИ
-                                </h3>
+                                <h3 class="text-center"><?= Yii::t('app','Выбор фабрики') ?></h3>
                                 <div class="alphabet-tab">
 
                                     <?php foreach ($factory as $letter => $val): ?>
@@ -159,7 +155,7 @@ use frontend\modules\catalog\models\{
 
         <?php if ($countries): ?>
             <div class="one-filter open subject-filter">
-                <a href="javascript:void(0);" class="filt-but">Страна</a>
+                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app','Country') ?></a>
                 <div class="list-item">
 
                     <?php foreach ($countries as $item): ?>
@@ -177,7 +173,7 @@ use frontend\modules\catalog\models\{
                 <?php if (count($countries) > 10): ?>
                     <a href="javascript:void(0);" class="show-all-sub show-more" data-variant="Скрыть">
                         <i class="fa fa-plus" aria-hidden="true"></i>
-                        <span class="btn-text">Показать все страны</span>
+                        <span class="btn-text"><?= Yii::t('app','Показать все страны') ?></span>
                     </a>
                 <?php endif; ?>
 
@@ -186,7 +182,7 @@ use frontend\modules\catalog\models\{
 
         <?php if ($cities): ?>
             <div class="one-filter open subject-filter">
-                <a href="javascript:void(0);" class="filt-but">Город</a>
+                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app','City') ?></a>
                 <div class="list-item">
 
                     <?php foreach ($cities as $item): ?>
@@ -204,36 +200,12 @@ use frontend\modules\catalog\models\{
                 <?php if (count($cities) > 10): ?>
                     <a href="javascript:void(0);" class="show-all-sub show-more" data-variant="Скрыть">
                         <i class="fa fa-plus" aria-hidden="true"></i>
-                        <span class="btn-text">Показать все города</span>
+                        <span class="btn-text"><?= Yii::t('app','Показать все города') ?></span>
                     </a>
                 <?php endif; ?>
 
             </div>
         <?php endif; ?>
-
-        <?php /*
-        <div class="one-filter">
-            <div class="price-slider-cont">
-                <a href="javascript:void(0);" class="filt-but">
-                    Цена
-                </a>
-                <div id="price-slider"></div>
-                <div class="flex s-between" style="padding: 10px 0;">
-                    <div class="cur">
-                        <input type="text" id="min-price" value="<?= $min_max_price['minPrice'] ?>">
-                    </div>
-                    <span class="indent"> - </span>
-                    <div class="cur">
-                        <input type="text" id="max-price" value="<?= $min_max_price['maxPrice'] ?>">
-                    </div>
-                </div>
-                <a href="#" class="submit">
-                    OK
-                </a>
-            </div>
-        </div>
-
-        */ ?>
 
         <?= Html::hiddenInput('sort', Yii::$app->request->get('sort') ?? null) ?>
         <?= Html::hiddenInput('object', Yii::$app->request->get('object') ?? null) ?>

@@ -12,7 +12,7 @@ use frontend\modules\catalog\models\Factory;
 <div class="popular-fabr">
     <div class="container large-container">
         <div class="row">
-            <h2>Популярные итальянские фабрики</h2>
+            <h2><?= Yii::t('app', 'Популярные итальянские фабрики') ?></h2>
             <div class="fabr-cont">
 
                 <?php foreach ($models as $model): ?>

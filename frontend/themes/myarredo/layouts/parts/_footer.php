@@ -26,7 +26,7 @@ use frontend\modules\user\widgets\partner\PartnerInfo;
                 <?= PartnerInfo::widget() ?>
 
                 <?= Html::a(
-                    'Посмотреть все офисы продаж',
+                    Yii::t('app', 'View all sales offices'),
                     Url::toRoute('/page/contacts/list-partners'),
                     ['class' => 'more']
                 ); ?>

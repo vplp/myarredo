@@ -17,7 +17,7 @@ use yii\helpers\Html;
 */ ?>
 
 <div class="dropdown sort-by">
-    <span class="sort-by-name">Сортировать по цене:</span>
+    <span class="sort-by-name"><?= Yii::t('app','Сортировать по цене') ?>:</span>
     <ul class="dropdown-menu">
         <?php foreach ($sortList as $key => $item): ?>
             <li><a href="<?= ($key != 'null') ? $url . '?sort=' . $key : $url; ?>"><?= $item ?></a></li>
@@ -29,7 +29,7 @@ use yii\helpers\Html;
 </div>
 
 <div class="dropdown sort-by">
-    <span class="sort-by-name">Показать:</span>
+    <span class="sort-by-name"><?= Yii::t('app','Показать') ?>:</span>
     <ul class="dropdown-menu">
         <?php foreach ($objectList as $key => $item): ?>
             <li><a href="<?= ($key != 'null') ? $url . '?object=' . $key : $url; ?>"><?= $item ?></a></li>

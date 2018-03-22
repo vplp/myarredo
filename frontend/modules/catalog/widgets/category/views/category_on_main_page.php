@@ -17,7 +17,7 @@ use frontend\modules\catalog\models\Category;
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="header">
                     <?= Html::a(
-                        'Смотреть все категории',
+                        Yii::t('app', 'Смотреть все категории'),
                         Url::toRoute(['/catalog/category/list']),
                         ['class' => 'more']
                     ); ?>

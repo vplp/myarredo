@@ -9,16 +9,15 @@ use yii\helpers\Url;
 
         <?= Html::beginForm() ?>
 
-        Страница
+        <?= Yii::t('app','Page') ?>
 
         <?= Html::textInput('page', $pageArray['page'] ?? 1, ['class' => 'pageInput']) ?>
 
         <?php
         $pageArray['page'] = 'newPage';
-        //$pageArray['page'] = Yii::$app->request->get('page') ? Yii::$app->request->get('page') + 1 : 2;
         $data = Url::toRoute(['/catalog/category/list'] + $pageArray);
         ?>
-        из <?= $pages->getPageCount(); ?>
+        <?= Yii::t('app','из') ?> <?= $pages->getPageCount(); ?>
         <?= Html::submitButton('<i class="fa fa-angle-right" aria-hidden="true"></i>', ['class' => 'pageChanger', 'data-url' => $data]) ?>
 
         <?= Html::endForm(); ?>

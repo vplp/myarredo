@@ -21,12 +21,12 @@ use frontend\modules\catalog\models\{
         <div class="one-filter open">
 
             <?= Html::a(
-                '<i class="fa fa-times" aria-hidden="true"></i>СБРОСИТЬ ФИЛЬТРЫ',
+                '<i class="fa fa-times" aria-hidden="true"></i>'. Yii::t('app', 'Сбросить фильтры'),
                 Url::toRoute([$route]),
                 ['class' => 'reset']
             ) ?>
 
-            <a href="javascript:void(0);" class="filt-but">Категории</a>
+            <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app','Category') ?></a>
 
             <div class="list-item">
 
@@ -46,7 +46,7 @@ use frontend\modules\catalog\models\{
 
         <?php if ($types): ?>
             <div class="one-filter open subject-filter">
-                <a href="javascript:void(0);" class="filt-but">Предмет</a>
+                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app','Предмет') ?></a>
                 <div class="list-item">
 
                     <?php foreach ($types as $item): ?>
@@ -64,7 +64,7 @@ use frontend\modules\catalog\models\{
                 <?php if (count($types) > 10): ?>
                     <a href="javascript:void(0);" class="show-all-sub show-more" data-variant="Скрыть">
                         <i class="fa fa-plus" aria-hidden="true"></i>
-                        <span class="btn-text">Показать все предметы</span>
+                        <span class="btn-text"><?= Yii::t('app','Показать все предметы') ?></span>
                     </a>
                 <?php endif; ?>
 
@@ -73,7 +73,7 @@ use frontend\modules\catalog\models\{
 
         <?php if ($style): ?>
             <div class="one-filter open">
-                <a href="javascript:void(0);" class="filt-but">Стиль</a>
+                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app','Стиль') ?></a>
                 <div class="list-item">
 
                     <?php foreach ($style as $item): ?>
@@ -92,7 +92,7 @@ use frontend\modules\catalog\models\{
 
         <?php if ($factory): ?>
             <div class="one-filter open">
-                <a href="javascript:void(0);" class="filt-but">Фабрики</a>
+                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app','Фабрики') ?></a>
                 <div class="list-item">
 
                     <?php foreach ($factory_first_show as $key => $item): ?>
@@ -106,7 +106,7 @@ use frontend\modules\catalog\models\{
                     <?php endforeach; ?>
 
                     <a href="#" class="show-more" data-toggle="modal" data-target="#factory-modal">
-                        <i class="fa fa-plus" aria-hidden="true"></i>Показать еще
+                        <i class="fa fa-plus" aria-hidden="true"></i><?= Yii::t('app','Показать еще') ?>
                     </a>
 
                     <div id="factory-modal" class="modal fade" role="dialog">
@@ -115,11 +115,11 @@ use frontend\modules\catalog\models\{
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    Закрыть
+                                    <?= Yii::t('app','Close') ?>
                                     <span aria-hidden="true">×</span>
                                 </button>
                                 <h3 class="text-center">
-                                    ВЫБОР ФАБРИКИ
+                                    <?= Yii::t('app','Выбор фабрики') ?>
                                 </h3>
                                 <div class="alphabet-tab">
 

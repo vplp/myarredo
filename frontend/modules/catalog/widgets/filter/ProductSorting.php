@@ -40,6 +40,16 @@ class ProductSorting extends Widget
      */
     public function run()
     {
+        $this->sortList = [
+            'null' => Yii::t('app', 'Не выбрано'),
+            'asc' => Yii::t('app', 'По возрастанию'),
+            'desc' => Yii::t('app', 'По убыванию'),
+        ];
+        $this->objectList = [
+            'null' => Yii::t('app', 'Все товары'),
+            'composition' => Yii::t('app', 'Все композиции'),
+        ];
+
         return $this->render($this->view, [
             'sortList' => $this->sortList,
             'objectList' => $this->objectList,

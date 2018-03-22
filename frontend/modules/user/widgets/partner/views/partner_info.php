@@ -9,7 +9,7 @@ use yii\helpers\Html;
     && in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner', 'admin', 'factory'])
 ): ?>
 
-    <div class="cons">Администрация проекта</div>
+    <div class="cons"><?= Yii::t('app', 'Администрация проекта') ?></div>
 
     <?php
     $phone = (Yii::$app->city->domain == 'ua') ? '<span class="tel-num">+39 (0422) 150-02-15</span>' : '<span class="tel-num">+7 968 353 36 36</span>';
@@ -32,7 +32,7 @@ use yii\helpers\Html;
 
     <meta itemprop="name" content="<?= Html::encode($partner['profile']['name_company']) ?>"/>
 
-    <div class="cons">Получить консультацию в <?= $city['lang']['title_where'] ?></div>
+    <div class="cons"><?= Yii::t('app', 'Получить консультацию в') ?> <?= $city['lang']['title_where'] ?></div>
 
     <div class="tel" itemprop="telephone">
         <i class="fa fa-phone" aria-hidden="true"></i><?= $partner['profile']['phone'] ?>

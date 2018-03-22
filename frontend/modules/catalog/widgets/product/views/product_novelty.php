@@ -5,15 +5,13 @@ use frontend\modules\catalog\models\Product;
 
 ?>
 
-<!-- Новинки -->
-
 <div class="novelties">
     <div class="container large-container">
         <div class="row">
             <div class="col-sm-12 col-md-12">
                 <div class="header">
-                    <h2>Новинки</h2>
-                    <a href="#" class="more">Смотреть все категории</a>
+                    <h2><?= Yii::t('app', 'Новинки') ?></h2>
+                    <a href="#" class="more"><?= Yii::t('app', 'Смотреть все категории') ?></a>
                     <div id="novelties-slider" class="carousel slide" data-ride="carousel">
 
                         <div class="carousel-inner">
@@ -69,7 +67,6 @@ use frontend\modules\catalog\models\Product;
                             </a>
                         </div>
 
-
                     </div>
                 </div>
             </div>
@@ -77,5 +74,3 @@ use frontend\modules\catalog\models\Product;
     </div>
 
 </div>
-
-<!-- конец Новинки -->

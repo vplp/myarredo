@@ -36,6 +36,17 @@ class LinkPager extends \yii\widgets\LinkPager
     public $activePageAsLink = true;
 
     /**
+     * Initializes the pager.
+     */
+    public function init()
+    {
+        parent::init();
+
+        $this->nextPageLabel = Yii::t('app','Далее') . '<i class="fa fa-angle-right" aria-hidden="true"></i>';
+        $this->prevPageLabel = '<i class="fa fa-angle-left" aria-hidden="true"></i>'. Yii::t('app','Назад');
+    }
+
+    /**
      * @inheritdoc
      */
     protected function renderPageButtons()

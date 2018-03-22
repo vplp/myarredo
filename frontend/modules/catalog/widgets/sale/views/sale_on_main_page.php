@@ -20,7 +20,7 @@ use frontend\modules\catalog\models\Sale;
                     <h2><?= Yii::t('app', 'Sale') ?></h2>
 
                     <?= Html::a(
-                        'Все акционные товары',
+                        Yii::t('app', 'Все акционные товары'),
                         Url::toRoute(['/catalog/sale/list']),
                         ['class' => 'more']
                     ); ?>
