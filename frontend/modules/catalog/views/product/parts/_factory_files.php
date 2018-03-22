@@ -18,7 +18,7 @@ use yii\helpers\Html;
     <div class="downloads">
 
         <?php if (!empty($model->factoryCatalogsFiles)): ?>
-            <p class="title-small">Посмотреть каталоги</p>
+            <p class="title-small"><?= Yii::t('app','Посмотреть каталоги') ?></p>
             <ul>
                 <?php foreach ($model->factoryCatalogsFiles as $catalogFile): ?>
                     <?php if ($fileLink = $catalogFile->getFileLink()): ?>
@@ -31,7 +31,7 @@ use yii\helpers\Html;
         <?php endif; ?>
 
         <?php if (!empty($model->factoryPricesFiles)): ?>
-            <p class="title-small">Посмотреть прайс листы</p>
+            <p class="title-small"><?= Yii::t('app','Посмотреть прайс листы') ?></p>
             <ul>
                 <?php foreach ($model->factoryPricesFiles as $priceFile): ?>
                     <?php if ($fileLink = $priceFile->getFileLink()): ?>

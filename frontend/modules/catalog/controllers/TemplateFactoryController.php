@@ -53,20 +53,20 @@ class TemplateFactoryController extends BaseController
         ]);
 
         $this->breadcrumbs[] = [
-            'label' => 'Итальянские фабрики мебели',
+            'label' => Yii::t('app','Итальянские фабрики мебели'),
             'url' => ['/catalog/factory/list']
         ];
 
         $this->breadcrumbs[] = [
-            'label' => $model['title'] . ' в ' . Yii::$app->city->getCityTitleWhere(),
+            'label' => $model['title'] . Yii::t('app',' в ') . Yii::$app->city->getCityTitleWhere(),
             'url' => ['/catalog/factory/view', 'alias' => $model['alias']]
         ];
 
-        $this->title = 'Итальянская мебель ' .
+        $this->title = Yii::t('app','Итальянская мебель ') .
             $model['title'] .
-            ' купить в ' .
+            Yii::t('app',' купить в ') .
             Yii::$app->city->getCityTitleWhere() .
-            ' по лучшей цене';
+            Yii::t('app',' по лучшей цене');
 
         $this->factory = $model;
 
@@ -93,7 +93,7 @@ class TemplateFactoryController extends BaseController
 
         $this->factory = $model;
 
-        $this->title = 'Партнеры сети MYARREDO в ' .
+        $this->title = Yii::t('app','Партнеры сети MYARREDO в ') .
             Yii::$app->city->getCityTitleWhere();
 
         return $this->render('contacts', [
@@ -128,11 +128,11 @@ class TemplateFactoryController extends BaseController
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
 
-        $this->title = 'Каталог итальянской мебели ' .
+        $this->title = Yii::t('app','Каталог итальянской мебели ') .
             $factory['title'] .
-            ' купить в ' .
+            Yii::t('app',' купить в ') .
             Yii::$app->city->getCityTitleWhere() .
-            ' по лучшей цене';
+                Yii::t('app',' по лучшей цене');
 
         return $this->render('catalog', [
             'factory' => $factory,
@@ -169,7 +169,7 @@ class TemplateFactoryController extends BaseController
         ProductStats::create($model->id);
 
         $this->breadcrumbs[] = [
-            'label' => 'Каталог итальянской мебели',
+            'label' => Yii::t('app','Каталог итальянской мебели'),
             'url' => ['/catalog/category/list']
         ];
 
@@ -196,7 +196,7 @@ class TemplateFactoryController extends BaseController
             ];
         }
 
-        $this->title = $model['lang']['title'] . '. Купить в ' . Yii::$app->city->getCityTitleWhere();
+        $this->title = $model['lang']['title'] . Yii::t('app','. Купить в ') . Yii::$app->city->getCityTitleWhere();
 
         return $this->render('/product/view', [
             'model' => $model,
@@ -227,7 +227,7 @@ class TemplateFactoryController extends BaseController
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
 
-        $this->title = 'Распродажа итальянской мебели';
+        $this->title = Yii::t('app','Распродажа итальянской мебели');
 
         return $this->render('sale', [
             'factory' => $factory,
@@ -259,20 +259,20 @@ class TemplateFactoryController extends BaseController
         }
 
         $this->breadcrumbs[] = [
-            'label' => 'Каталог итальянской мебели',
+            'label' => Yii::t('app','Каталог итальянской мебели'),
             'url' => ['/catalog/category/list']
         ];
 
         $this->title = Yii::t('app', 'Sale') . ': ' .
             $model['lang']['title'] .
             ' - '. $model['price_new'] . ' ' . $model['currency'] .
-            ' - интернет-магазин Myarredo в ' .
+            Yii::t('app',' - интернет-магазин Myarredo в ') .
             Yii::$app->city->getCityTitleWhere();
 
         Yii::$app->view->registerMetaTag([
             'name' => 'description',
             'content' => strip_tags($model['lang']['description']) .
-                ' Купить в интернет-магазине Myarredo в ' .
+                Yii::t('app',' Купить в интернет-магазине Myarredo в ') .
                 Yii::$app->city->getCityTitleWhere()
         ]);
 

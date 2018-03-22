@@ -18,11 +18,11 @@ $keys = Yii::$app->catalogFilter->keys;
 
             <?= Html::tag(
                 'h3',
-                'Другие изделия коллекции ' . $collection['lang']['title']
+                Yii::t('app','Другие изделия коллекции ') . $collection['lang']['title']
             ); ?>
 
             <?= Html::a(
-                'Показать все',
+                Yii::t('app','Показать все'),
                 Yii::$app->catalogFilter->createUrl(
                     Yii::$app->catalogFilter->params + [$keys['collection'] => $collection['id']]
                 ),

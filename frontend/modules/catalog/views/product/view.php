@@ -60,7 +60,7 @@ $this->title = $this->context->title;
                         <table class="info-table" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                             <?php if (!$model['removed'] && $model['price_from'] > 0): ?>
                                 <tr class="price">
-                                    <td>ЦЕНА ОТ:</td>
+                                    <td><?= Yii::t('app', 'Цена от') ?>:</td>
                                     <td>
                                         <?= $model['price_from']; ?>&nbsp;<span class="currency">€</span>
                                         <meta itemprop="price"
@@ -87,7 +87,7 @@ $this->title = $this->context->title;
                         </table>
 
                         <?php if (!Yii::$app->getUser()->isGuest && $model['factory']['new_price']): ?>
-                            <span style="color: red;">Цена требует проверки, есть новый прайс</span>
+                            <span style="color: red;"><?= Yii::t('app', 'Цена требует проверки, есть новый прайс') ?></span>
                         <?php endif; ?>
 
                         <table class="info-table">
@@ -122,7 +122,7 @@ $this->title = $this->context->title;
 
                             <?php if ($model['collections_id']): ?>
                                 <tr>
-                                    <td>Коллекция</td>
+                                    <td><?= Yii::t('app', 'Коллекция') ?></td>
                                     <td>
                                         <?= Html::a(
                                             $model['collection']['lang']['title'],
@@ -138,13 +138,13 @@ $this->title = $this->context->title;
 
                             <?php if (!$model['is_composition']): ?>
                                 <tr>
-                                    <td>Артикул</td>
+                                    <td><?= Yii::t('app', 'Артикул') ?></td>
                                     <td><?= $model['article']; ?></td>
                                 </tr>
 
                                 <?php if (!empty($model['specificationValue'])): ?>
                                     <tr>
-                                        <td>Размеры</td>
+                                        <td><?= Yii::t('app', 'Размеры') ?></td>
                                         <td class="size">
                                             <?php
                                             foreach ($model['specificationValue'] as $item) {
@@ -159,7 +159,7 @@ $this->title = $this->context->title;
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Материал</td>
+                                        <td><?= Yii::t('app', 'Материал') ?></td>
                                         <td>
                                             <?php
                                             $array = [];
@@ -189,7 +189,7 @@ $this->title = $this->context->title;
                     <?php if (!$model['removed']) { ?>
                         <div class="best-price-form">
 
-                            <h3>Заполните форму - получите лучшую цену на этот товар</h3>
+                            <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
 
                             <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
 
@@ -197,7 +197,7 @@ $this->title = $this->context->title;
                             if (!in_array(Yii::$app->controller->action->id, ['product'])) {
                                 if (!in_array($model['id'], $products_id)) {
                                     echo Html::a(
-                                        'Отложить в блокнот',
+                                        Yii::t('app', 'Отложить в блокнот'),
                                         'javascript:void(0);',
                                         [
                                             'class' => 'add-to-notepad btn btn-default big',
@@ -208,7 +208,7 @@ $this->title = $this->context->title;
                                     );
                                 } else {
                                     echo Html::a(
-                                        'В блокноте',
+                                        Yii::t('app', 'В блокноте'),
                                         'javascript:void(0);',
                                         [
                                             'class' => 'btn btn-default big',
@@ -220,10 +220,7 @@ $this->title = $this->context->title;
                         </div>
 
                     <?php } else { ?>
-                        Данный товар
-                        снят с протзводства.
-                        Но мы можем предложить
-                        альтернативную модель.
+                        <?= Yii::t('app', 'Данный товар снят с протзводства. Но мы можем предложить альтернативную модель.') ?>'
                     <?php } ?>
 
                 </div>
@@ -234,11 +231,11 @@ $this->title = $this->context->title;
                     <ul class="nav nav-tabs">
 
                         <?php if (!empty($elementsComposition)): ?>
-                            <li><a data-toggle="tab" href="#panel1">ПРЕДМЕТЫ КОмпозиции</a></li>
+                            <li><a data-toggle="tab" href="#panel1"><?= Yii::t('app', 'Предметы композиции') ?></a></li>
                         <?php endif; ?>
 
                         <?php if (!empty($model['samples'])): ?>
-                            <li><a data-toggle="tab" href="#panel2">ВАРИАНТЫ ОТДЕЛКИ</a></li>
+                            <li><a data-toggle="tab" href="#panel2"><?= Yii::t('app', 'Варианты отделки') ?></a></li>
                         <?php endif; ?>
 
                     </ul>
@@ -265,64 +262,68 @@ $this->title = $this->context->title;
                 </div>
             </div>
 
-            <div class="row receive-price">
-                <h3>
-                    Получите лучшую цену из всех, предложенных поставщиками!
-                </h3>
-                <h4>
-                    Как мы получаем лучшие цены для Вас?
-                </h4>
-                <div class="order-cont">
-                    <div class="one-ord">
-                        <div class="number">
-                            1
+            <?php if (Yii::$app->language == 'ru-RU'): ?>
+
+                <div class="row receive-price">
+                    <h3>
+                        Получите лучшую цену из всех, предложенных поставщиками!
+                    </h3>
+                    <h4>
+                        Как мы получаем лучшие цены для Вас?
+                    </h4>
+                    <div class="order-cont">
+                        <div class="one-ord">
+                            <div class="number">
+                                1
+                            </div>
+                            <div class="order-text">
+                                Ваш запрос отправляется всем поставщикам,
+                                авторизрованым в нашей сети MY ARREDO FAMILY.
+                            </div>
                         </div>
-                        <div class="order-text">
-                            Ваш запрос отправляется всем поставщикам,
-                            авторизрованым в нашей сети MY ARREDO FAMILY.
+                        <div class="one-ord">
+                            <div class="number">
+                                2
+                            </div>
+                            <div class="order-text">
+                                Самые активные и успешные профессионалы
+                                рассчитают для вас лучшие цены.
+                            </div>
                         </div>
-                    </div>
-                    <div class="one-ord">
-                        <div class="number">
-                            2
+                        <div class="one-ord">
+                            <div class="number">
+                                3
+                            </div>
+                            <div class="order-text">
+                                Вы получите 3 предложения и останется только выбрать
+                                лучшее по цене и условиям. Экономьте время и усилия
+                                на поиск по множеству сайтов.
+                            </div>
                         </div>
-                        <div class="order-text">
-                            Самые активные и успешные профессионалы
-                            рассчитают для вас лучшие цены.
+                        <div class="one-ord">
+                            <div class="number">
+                                4
+                            </div>
+                            <div class="order-text">
+                                Дополнительные скидки и бонусы от итальянскийх фабрик
+                                участникам сети MY ARREDO FAMILY дают возможность
+                                предоставить Вам самые привлекательные цены.
+                            </div>
                         </div>
-                    </div>
-                    <div class="one-ord">
-                        <div class="number">
-                            3
-                        </div>
-                        <div class="order-text">
-                            Вы получите 3 предложения и останется только выбрать
-                            лучшее по цене и условиям. Экономьте время и усилия
-                            на поиск по множеству сайтов.
-                        </div>
-                    </div>
-                    <div class="one-ord">
-                        <div class="number">
-                            4
-                        </div>
-                        <div class="order-text">
-                            Дополнительные скидки и бонусы от итальянскийх фабрик
-                            участникам сети MY ARREDO FAMILY дают возможность
-                            предоставить Вам самые привлекательные цены.
-                        </div>
-                    </div>
-                    <div class="one-ord">
-                        <div class="number">
-                            5
-                        </div>
-                        <div class="order-text">
-                            В сети MY ARREDO FAMILY только проверенные поставщики,
-                            которые подтвердили свою надежность. Лучшие поставщики
-                            итальянской мебели поборются за ваш заказ!
+                        <div class="one-ord">
+                            <div class="number">
+                                5
+                            </div>
+                            <div class="order-text">
+                                В сети MY ARREDO FAMILY только проверенные поставщики,
+                                которые подтвердили свою надежность. Лучшие поставщики
+                                итальянской мебели поборются за ваш заказ!
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+            <?php endif; ?>
 
             <?php /*if (!$model['removed']): ?>
 

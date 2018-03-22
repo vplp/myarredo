@@ -97,10 +97,10 @@ class SaleController extends BaseController
 
         $this->title = Yii::$app->metatag->seo_title
             ? Yii::$app->metatag->seo_title
-            : 'Распродажа итальянской мебели';
+            : Yii::t('app','Распродажа итальянской мебели');
 
         $this->breadcrumbs[] = [
-            'label' => 'Распродажа итальянской мебели',
+            'label' => Yii::t('app','Распродажа итальянской мебели'),
             'url' => ['/catalog/sale/list']
         ];
 
@@ -130,20 +130,20 @@ class SaleController extends BaseController
         }
 
         $this->breadcrumbs[] = [
-            'label' => 'Каталог итальянской мебели',
+            'label' => Yii::t('app','Каталог итальянской мебели'),
             'url' => ['/catalog/category/list']
         ];
 
         $this->title = Yii::t('app', 'Sale') . ': ' .
             $model['lang']['title'] .
             ' - '. $model['price_new'] . ' ' . $model['currency'] .
-            ' - интернет-магазин Myarredo в ' .
+            Yii::t('app',' - интернет-магазин Myarredo в ') .
             Yii::$app->city->getCityTitleWhere();
 
         Yii::$app->view->registerMetaTag([
             'name' => 'description',
             'content' => strip_tags($model['lang']['description']) .
-                ' Купить в интернет-магазине Myarredo в ' .
+                Yii::t('app',' Купить в интернет-магазине Myarredo в ') .
                 Yii::$app->city->getCityTitleWhere()
         ]);
 

@@ -18,11 +18,11 @@ $keys = Yii::$app->catalogFilter->keys;
 
             <?= Html::tag(
                 'h3',
-                'Другие ' . $types['lang']['plural_name'] . ' ' . $factory['title']
+                Yii::t('app','Другие ') . $types['lang']['plural_name'] . ' ' . $factory['title']
             ); ?>
 
             <?= Html::a(
-                'Показать все',
+                Yii::t('app','Показать все'),
                 Yii::$app->catalogFilter->createUrl(
                     Yii::$app->catalogFilter->params + [$keys['factory'] => $factory['alias']]
                 ),

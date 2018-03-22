@@ -83,7 +83,7 @@ class CategoryController extends BaseController
         $params = Yii::$app->catalogFilter->params;
 
         $this->breadcrumbs[] = [
-            'label' => 'Каталог итальянской мебели, цены на мебель из Италии',
+            'label' => Yii::t('app','Каталог итальянской мебели, цены на мебель из Италии'),
             'url' => ['/catalog/category/list']
         ];
 
@@ -128,7 +128,7 @@ class CategoryController extends BaseController
             ];
         }
 
-        $pageDescription[] = 'из Италии.';
+        $pageDescription[] = Yii::t('app','из Италии.');
 
         if (!empty($params[$keys['style']])) {
             $models = Specification::findByAlias($params[$keys['style']]);
@@ -144,7 +144,7 @@ class CategoryController extends BaseController
 
             $pageTitle[] = implode(', ', $style);
             $pageH1[] = implode(' - ', $style);
-            $pageDescription[] = 'Стиль: ' . implode(' - ', $style) . '.';
+            $pageDescription[] = Yii::t('app','Стиль: ') . implode(' - ', $style) . '.';
 
             $this->breadcrumbs[] = [
                 'label' => implode(', ', $style),
@@ -168,12 +168,12 @@ class CategoryController extends BaseController
         if (!empty($params[$keys['collection']])) {
             $collection = Collection::findById($params[$keys['collection']][0]);
 
-            $pageTitle[] = 'Коллекция мебели ' . $collection['lang']['title'];
-            $pageH1[] = 'Коллекция ' . $collection['lang']['title'];
-            $pageDescription[] = 'Коллекция ' . $collection['lang']['title'];
+            $pageTitle[] = Yii::t('app','Коллекция мебели ') . $collection['lang']['title'];
+            $pageH1[] = Yii::t('app','Коллекция ') . $collection['lang']['title'];
+            $pageDescription[] = Yii::t('app','Коллекция ') . $collection['lang']['title'];
 
             $this->breadcrumbs[] = [
-                'label' => 'Коллекция ' . $collection['lang']['title'],
+                'label' => Yii::t('app','Коллекция ') . $collection['lang']['title'],
                 'url' => Yii::$app->catalogFilter->createUrl([$keys['collection'] => $params[$keys['collection']]])
             ];
         }
@@ -189,15 +189,15 @@ class CategoryController extends BaseController
          * set options
          */
 
-        $pageTitle[] = 'Купить в ' . Yii::$app->city->getCityTitleWhere();
-        $pageDescription[] = 'Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo';
+        $pageTitle[] = Yii::t('app','Купить в ') . Yii::$app->city->getCityTitleWhere();
+        $pageDescription[] = Yii::t('app','Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo');
 
 
         $this->title = Yii::$app->metatag->seo_title
             ? Yii::$app->metatag->seo_title
             : (!empty($pageTitle)
                 ? implode('. ', $pageTitle)
-                : 'Каталог итальянской мебели, цены на мебель из Италии');
+                : Yii::t('app','Каталог итальянской мебели, цены на мебель из Италии'));
 
         if (!Yii::$app->metatag->seo_description) {
             Yii::$app->view->registerMetaTag([

@@ -51,6 +51,8 @@ class ProductStatsController extends BaseController
 
     /**
      * @return string
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function actionList()
     {
