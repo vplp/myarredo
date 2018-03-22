@@ -5,8 +5,7 @@ use frontend\themes\myarredo\widgets\Alert;
 
 $bundle = AppAsset::register($this);
 
-$this->beginPage()
-
+$this->beginPage();
 ?>
     <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">

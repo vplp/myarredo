@@ -168,6 +168,7 @@ class Product extends ActiveRecord implements iProduct
                 'each',
                 'rule' => ['integer']
             ],
+            [['category_ids'], 'required'],
         ];
     }
 
