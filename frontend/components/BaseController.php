@@ -74,8 +74,8 @@ abstract class BaseController extends Controller
      */
     public function getSeoH1()
     {
-        if ($this->directLink['h1']) {
-            $this->pageH1 = str_replace('#городе#', Yii::$app->city->getCityTitleWhere(), $this->directLink['h1']);
+        if ($this->directLink['lang']['h1']) {
+            $this->pageH1 = str_replace('#городе#', Yii::$app->city->getCityTitleWhere(), $this->directLink['lang']['h1']);
         }
 
         return $this->pageH1;
@@ -88,8 +88,8 @@ abstract class BaseController extends Controller
     {
         $content = false;
 
-        if ($this->directLink['content']) {
-            $content = str_replace('#городе#', Yii::$app->city->getCityTitleWhere(), $this->directLink['content']);
+        if ($this->directLink['lang']['content']) {
+            $content = str_replace('#городе#', Yii::$app->city->getCityTitleWhere(), $this->directLink['lang']['content']);
         }
 
         return $content;

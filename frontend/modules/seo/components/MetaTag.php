@@ -10,7 +10,8 @@ use yii\log\Logger;
 //
 use frontend\modules\seo\modules\{
     modellink\models\Modellink,
-    directlink\models\Directlink
+    directlink\models\Directlink,
+    directlink\models\DirectlinkLang
 };
 use thread\app\base\models\ActiveRecord;
 
@@ -140,9 +141,9 @@ class MetaTag extends Component
 
             $model = $this->model;
 
-            $this->seo_title = $model['title'];
-            $this->seo_description = $model['description'];
-            $this->seo_keywords = $model['keywords'];
+            $this->seo_title = $model['lang']['title'];
+            $this->seo_description = $model['lang']['description'];
+            $this->seo_keywords = $model['lang']['keywords'];
             $this->seo_robots = Modellink::statusMetaRobotsRange()[$model['meta_robots']];
             $this->seo_image_url = $model['image_url'];
         }
@@ -174,9 +175,9 @@ class MetaTag extends Component
                 return $this;
             }
 
-            $this->seo_title = (!empty($model['title'])) ? $model['title'] : $this->seo_title;
-            $this->seo_description = (!empty($model['description'])) ? $model['description'] : $this->seo_description;
-            $this->seo_keywords = (!empty($model['keywords'])) ? $model['keywords'] : $this->seo_keywords;
+            $this->seo_title = (!empty($model['lang']['title'])) ? $model['lang']['title'] : $this->seo_title;
+            $this->seo_description = (!empty($model['lang']['description'])) ? $model['lang']['description'] : $this->seo_description;
+            $this->seo_keywords = (!empty($model['lang']['keywords'])) ? $model['lang']['keywords'] : $this->seo_keywords;
             $this->seo_robots = Directlink::statusMetaRobotsRange()[$model['meta_robots']];
             $this->seo_image_url = (!empty($model['image_url'])) ? $model['image_url'] : $this->seo_image_url;
         }

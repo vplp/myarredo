@@ -5,9 +5,9 @@ use common\modules\seo\modules\directlink\models\Directlink;
 ?>
 
 <?= $form->text_line($model, 'url') ?>
-<?= $form->text_line($model, 'title') ?>
-<?= $form->text_line($model, 'description') ?>
-<?= $form->text_line($model, 'keywords') ?>
+<?= $form->text_line($modelLang, 'title') ?>
+<?= $form->text_line($modelLang, 'description') ?>
+<?= $form->text_line($modelLang, 'keywords') ?>
 
 <?= $form->text_line($model, 'image_url') ?>
     <div class="row">

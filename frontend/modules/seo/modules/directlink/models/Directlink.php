@@ -20,7 +20,8 @@ class Directlink extends \common\modules\seo\modules\directlink\models\Directlin
     }
 
     /**
-     * @return $this
+     * @return array
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findByUrl()
     {

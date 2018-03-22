@@ -4,6 +4,9 @@ use yii\db\Migration;
 //
 use common\modules\seo\Seo;
 
+/**
+ * Class m171116_142804_update_seo_direct_link_table
+ */
 class m171116_142804_update_seo_direct_link_table extends Migration
 {
     /**

@@ -5,12 +5,10 @@ namespace backend\modules\seo\modules\directlink\controllers;
 use yii\helpers\ArrayHelper;
 //
 use thread\app\base\controllers\BackendController;
-use thread\actions\{
-    Create, Update, AttributeSwitch
-};
+use thread\actions\AttributeSwitch;
 //
 use backend\modules\seo\modules\directlink\models\{
-    Directlink, search\Directlink as filterModel
+    Directlink, DirectlinkLang, search\Directlink as filterModel
 };
 
 /**
@@ -21,22 +19,17 @@ use backend\modules\seo\modules\directlink\models\{
 class DirectlinkController extends BackendController
 {
     public $model = Directlink::class;
-
+    public $modelLang = DirectlinkLang::class;
     public $filterModel = filterModel::class;
-
     public $title = 'Directlink';
-
     public $name = 'directlink';
 
+    /**
+     * @return array
+     */
     public function actions()
     {
         return ArrayHelper::merge(parent::actions(), [
-            'create' => [
-                'class' => Create::class,
-            ],
-            'update' => [
-                'class' => Update::class,
-            ],
             'add_to_sitemap' => [
                 'class' => AttributeSwitch::class,
                 'modelClass' => $this->model,

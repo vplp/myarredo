@@ -10,8 +10,7 @@ use common\modules\location\models\City;
 /**
  * Class Directlink
  *
- * @property string $h1
- * @property string $contacts
+ * @property Lang $lang
  *
  * @package common\modules\seo\modules\directlink\models
  */
@@ -38,16 +37,8 @@ class Directlink extends \thread\modules\seo\modules\directlink\models\Directlin
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            [['content'], 'string'],
-            [['h1'], 'string', 'max' => 255],
-            [['description', 'keywords', 'image_url', 'h1', 'content'], 'default', 'value' => ''],
-            [
-                [
-                    'city_ids',
-                ],
-                'each',
-                'rule' => ['integer']
-            ],
+            [['image_url'], 'default', 'value' => ''],
+            [['city_ids'], 'each', 'rule' => ['integer']],
         ]);
     }
 
@@ -56,9 +47,22 @@ class Directlink extends \thread\modules\seo\modules\directlink\models\Directlin
      */
     public function scenarios()
     {
-        return ArrayHelper::merge(parent::scenarios(), [
-            'backend' => ['h1', 'content', 'city_ids'],
-        ]);
+        return [
+            'published' => ['published'],
+            'deleted' => ['deleted'],
+            'add_to_sitemap' => ['add_to_sitemap'],
+            'dissallow_in_robotstxt' => ['dissallow_in_robotstxt'],
+            'backend' => [
+                'url',
+                'published',
+                'deleted',
+                'add_to_sitemap',
+                'dissallow_in_robotstxt',
+                'meta_robots',
+                'image_url',
+                'city_ids'
+            ],
+        ];
     }
 
     /**
@@ -67,10 +71,16 @@ class Directlink extends \thread\modules\seo\modules\directlink\models\Directlin
     public function attributeLabels()
     {
         return ArrayHelper::merge(parent::attributeLabels(), [
-            'h1' => 'H1',
-            'content' => Yii::t('app', 'Content'),
             'city_ids' => Yii::t('app', 'Cities'),
         ]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function findBase()
+    {
+        return self::find()->joinWith(['lang']);
     }
 
     /**
@@ -81,5 +91,13 @@ class Directlink extends \thread\modules\seo\modules\directlink\models\Directlin
         return $this
             ->hasMany(City::class, ['id' => 'location_city_id'])
             ->viaTable('fv_seo_direct_link_rel_location_city', ['seo_direct_link_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLang()
+    {
+        return $this->hasOne(DirectlinkLang::class, ['rid' => 'id']);
     }
 }
