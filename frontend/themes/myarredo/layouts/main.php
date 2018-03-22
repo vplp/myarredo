@@ -38,6 +38,7 @@ $this->beginPage();
     <input type="hidden" id="token" value="<?= Yii::$app->request->getCsrfToken() ?>">
 
     <?php $this->endBody() ?>
+
     </body>
     </html>
 <?php $this->endPage() ?>

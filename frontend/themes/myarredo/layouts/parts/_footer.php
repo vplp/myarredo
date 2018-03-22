@@ -77,3 +77,9 @@ use frontend\modules\user\widgets\partner\PartnerInfo;
 
     gtag('config', 'UA-54015829-1');
 </script>
+
+<script type="text/javascript">
+    var _cs = _cs || [];
+    __cs.push(["setCsAccount", "KNKIlw22peShQSsYcaBCDumFwgrDNrWx"]);
+</script>
+<script type="text/javascript" async src="//app.comagic.ru/static/cs.min.js"></script>
