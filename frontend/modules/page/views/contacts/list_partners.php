@@ -19,7 +19,7 @@ use frontend\modules\user\widgets\partner\PartnerMap;
                     <?= PartnerMap::widget([]) ?>
 
                     <?= Html::a(
-                        'Вернуться назад',
+                        Yii::t('app','Вернуться назад'),
                         Url::toRoute('/page/contacts/index'),
                         ['class' => 'view-all']
                     ); ?>

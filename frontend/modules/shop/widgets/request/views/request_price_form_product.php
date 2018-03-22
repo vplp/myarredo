@@ -44,6 +44,6 @@ $model->user_agreement = 1;
     ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
     ->label(false) ?>
 
-<?= Html::submitButton('Получить лучшую цену', ['class' => 'add-to-notepad-product btn btn-success big', 'data-id' => $product_id,]) ?>
+<?= Html::submitButton(Yii::t('app','Получить лучшую цену'), ['class' => 'add-to-notepad-product btn btn-success big', 'data-id' => $product_id,]) ?>
 
 <?php ActiveForm::end(); ?>

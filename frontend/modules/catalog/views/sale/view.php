@@ -35,7 +35,7 @@ $this->title = $this->context->title;
                         }
 
                         echo Html::a(
-                            'Вернуться к списку',
+                            Yii::t('app', 'Вернуться к списку'),
                             Url::toRoute(['/catalog/sale/list']),
                             ['class' => 'back']
                         );
@@ -68,7 +68,7 @@ $this->title = $this->context->title;
 
                         if (!empty($array)) { ?>
                             <div class="prod-style">
-                                <span>Стиль: </span>
+                                <span><?= Yii::t('app', 'Стиль') ?> : </span>
                                 <?= implode('; ', $array) ?>
                             </div>
                         <?php } ?>
@@ -81,7 +81,7 @@ $this->title = $this->context->title;
 
                         <?php if ($model->price > 0): ?>
                             <div class="old-price">
-                                (старая цена - <b><?= $model->price . ' ' . $model->currency; ?></b>)
+                                (<?= Yii::t('app', 'старая цена') ?> - <b><?= $model->price . ' ' . $model->currency; ?></b>)
                             </div>
                         <?php endif; ?>
 
@@ -94,7 +94,7 @@ $this->title = $this->context->title;
                     <table class="infotable" width="100%">
                         <?php if (!empty($model['specificationValue'])): ?>
                         <tr>
-                            <td>Размеры</td>
+                            <td><?= Yii::t('app', 'Размеры') ?></td>
                             <td class="size">
                                 <?php
                                 foreach ($model['specificationValue'] as $item) {
@@ -109,7 +109,7 @@ $this->title = $this->context->title;
                             </td>
                         </tr>
                         <tr>
-                            <td>Материал</td>
+                            <td><?= Yii::t('app', 'Материал') ?></td>
                             <td>
                                 <?php
                                 $array = [];
@@ -128,7 +128,7 @@ $this->title = $this->context->title;
                     <?php if (!empty($model['user'])) { ?>
 
                         <div class="seller-cont">
-                            <h4>Контакты продавца</h4>
+                            <h4><?= Yii::t('app', 'Контакты продавца') ?></h4>
                             <div class="title"><?= $model['user']['profile']['name_company']; ?></div>
                             <a href="tel:+380442309379">
                                 <i class="fa fa-phone" aria-hidden="true"></i>

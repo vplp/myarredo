@@ -59,7 +59,7 @@ $this->title = $this->context->title;
                             'h1',
                             (($this->context->SeoH1)
                                 ? $this->context->SeoH1
-                                : 'МЕБЕЛЬ ' . $model['title'] . ' в ' . Yii::$app->city->getCityTitleWhere()),
+                                : Yii::t('app','Мебель ') . $model['title'] . Yii::t('app',' в ') . Yii::$app->city->getCityTitleWhere()),
                             ['class' => 'title-text']
                         ); ?>
 
@@ -76,7 +76,7 @@ $this->title = $this->context->title;
 
                         <div class="fact-assort">
                             <div class="all-list">
-                                <a href="#" class="title">Все предметы мебели</a>
+                                <a href="#" class="title"><?= Yii::t('app','Все предметы мебели') ?></a>
                                 <ul class="list">
 
                                     <?php
@@ -109,7 +109,7 @@ $this->title = $this->context->title;
                                 <?php
                                 if (count($FactoryTypes) > 10) {
                                     echo Html::a(
-                                        'Весь список',
+                                        Yii::t('app','Весь список'),
                                         'javascript:void(0);',
                                         ['class' => 'view-all']
                                     );
@@ -118,7 +118,7 @@ $this->title = $this->context->title;
                             </div>
                             <div class="all-list">
                                 <a href="#" class="title">
-                                    Все коллекции
+                                    <?= Yii::t('app','Все коллекции') ?>
                                 </a>
                                 <ul class="list">
 
@@ -152,7 +152,7 @@ $this->title = $this->context->title;
                                 <?php
                                 if (count($FactoryCollection) > 10) {
                                     echo Html::a(
-                                        'Весь список',
+                                        Yii::t('app','Весь список'),
                                         'javascript:void(0);',
                                         ['class' => 'view-all']
                                     );
@@ -207,7 +207,7 @@ $this->title = $this->context->title;
                 }
 
                 echo Html::a(
-                    'смотреть полный<div>Каталог</div>',
+                    Yii::t('app','смотреть полный<div>Каталог</div>'),
                     Yii::$app->catalogFilter->createUrl(
                         Yii::$app->catalogFilter->params + [$keys['factory'] => $model['alias']]
                     ),

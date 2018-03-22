@@ -29,14 +29,14 @@ $this->title = $this->context->title;
 
                 </div>
                 <div class="warning">
-                    * Обращаем ваше внимание, цены партнеров сети могут отличаться.
+                    * <?= Yii::t('app','Обращаем ваше внимание, цены партнеров сети могут отличаться.') ?>)
                 </div>
                 <div class="map-cont">
 
                     <?= PartnerMap::widget(['city' => Yii::$app->city->getCity()]) ?>
 
                     <?= Html::a(
-                        'Посмотреть все офисы продаж',
+                        Yii::t('app','Посмотреть все офисы продаж'),
                         Url::toRoute('/page/contacts/list-partners'),
                         ['class' => 'view-all']
                     ); ?>

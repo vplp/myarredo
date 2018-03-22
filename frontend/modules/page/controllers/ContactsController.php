@@ -22,13 +22,12 @@ class ContactsController extends BaseController
     {
         $partners = User::getPartners(Yii::$app->city->getCityId());
 
-        $this->title = 'Партнеры сети MYARREDO в ' .
+        $this->title = Yii::t('app','Партнеры сети MYARREDO в ') .
             Yii::$app->city->getCityTitleWhere();
 
         Yii::$app->view->registerMetaTag([
             'name' => 'description',
-            'content' => 'Сеть салонов мебели «myARREDO» предлагает элитную мебель ' .
-                'только итальянского производства. Контакты в ' .
+            'content' => Yii::t('app','Сеть салонов мебели «myARREDO» предлагает элитную мебель только итальянского производства. Контакты в ') .
                 Yii::$app->city->getCityTitleWhere(),
         ]);
 
@@ -42,7 +41,7 @@ class ContactsController extends BaseController
      */
     public function actionListPartners()
     {
-        $this->title = "Все офисы продаж";
+        $this->title = Yii::t('app','Все офисы продаж');
 
         return $this->render('list_partners');
     }

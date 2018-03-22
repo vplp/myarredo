@@ -149,7 +149,7 @@ class FactoryController extends BaseController
         $this->title = Yii::$app->metatag->seo_title
             ? Yii::$app->metatag->seo_title
             : $model['title'] .
-            ' - мебели из Италии в ' .
+            Yii::t('app',' - мебели из Италии в ') .
             Yii::$app->city->getCityTitleWhere();
 
         if (!Yii::$app->metatag->seo_description) {

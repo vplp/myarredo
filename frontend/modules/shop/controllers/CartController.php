@@ -29,7 +29,7 @@ class CartController extends BaseController
      */
     public function actionNotepad()
     {
-        $this->title = 'Мой блокнот';
+        $this->title = Yii::t('app','Мой блокнот');
 
         $model = new CartCustomerForm;
         $model->setScenario('frontend');

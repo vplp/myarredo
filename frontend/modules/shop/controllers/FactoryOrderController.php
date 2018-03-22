@@ -53,6 +53,8 @@ class FactoryOrderController extends BaseController
 
     /**
      * @return string
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function actionList()
     {

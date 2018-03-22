@@ -21,7 +21,7 @@ $this->title = $this->context->title;
 
                 <?= Html::tag('h1', ($this->context->SeoH1 != '')
                     ? $this->context->SeoH1
-                    : 'Распродажа итальянской мебели'); ?>
+                    : Yii::t('app', 'Распродажа итальянской мебели')); ?>
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
@@ -55,7 +55,7 @@ $this->title = $this->context->title;
                                             echo $this->render('_list_item', ['model' => $model]);
                                         }
                                     } else {
-                                        echo '<p>Не найдено</p>';
+                                        echo '<p>' . Yii::t('app', 'Не найдено') . '</p>';
                                     } ?>
 
                                 </div>

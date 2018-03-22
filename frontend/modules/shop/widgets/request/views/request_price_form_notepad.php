@@ -50,6 +50,6 @@ $model->user_agreement = 1;
     ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
     ->label(false) ?>
 
-<?= Html::submitButton('Получить лучшую цену', ['class' => 'btn btn-success big']) ?>
+<?= Html::submitButton(Yii::t('app','Получить лучшую цену'), ['class' => 'btn btn-success big']) ?>
 
 <?php ActiveForm::end(); ?>

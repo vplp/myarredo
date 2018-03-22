@@ -18,7 +18,7 @@ $model->user_agreement = 1;
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                 aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Заполните форму - получите лучшую цену на этот товар</h4>
+        <h4 class="modal-title" id="myModalLabel"><?= Yii::t('app','Заполните форму - получите лучшую цену на этот товар') ?></h4>
     </div>
     <div class="modal-body">
 
@@ -54,7 +54,7 @@ $model->user_agreement = 1;
 
     </div>
     <div class="modal-footer">
-        <?= Html::submitButton('Получить лучшую цену', ['class' => 'btn btn-success big']) ?>
+        <?= Html::submitButton(Yii::t('app','Получить лучшую цену'), ['class' => 'btn btn-success big']) ?>
     </div>
 
 <?php ActiveForm::end(); ?>

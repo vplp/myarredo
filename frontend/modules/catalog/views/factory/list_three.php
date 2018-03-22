@@ -30,7 +30,7 @@ use frontend\modules\catalog\models\Factory;
 
                 </ul>
                 <?= Html::a(
-                    'Все',
+                    Yii::t('app','Все'),
                     Url::toRoute(['/catalog/factory/list', 'view' => 'three']),
                     ['class' => 'all']
                 ); ?>
@@ -39,10 +39,10 @@ use frontend\modules\catalog\models\Factory;
         <div class="container large-container">
             <div class="title-mark">
                 <h1 class="title-text">
-                    Итальянские фабрики мебели - производители из Италии
+                    <?= Yii::t('app','Итальянские фабрики мебели - производители из Италии') ?>
                 </h1>
                 <span>
-                    (<?= Factory::findBase()->count(); ?> фабрик представлено в нашем каталоге)
+                    (<?= Factory::findBase()->count(); ?> <?= Yii::t('app','фабрик представлено в нашем каталоге') ?>)
                 </span>
                 <div class="view-but">
                     <a href="<?= Url::toRoute(['/catalog/factory/list', 'view' => 'three']); ?>"

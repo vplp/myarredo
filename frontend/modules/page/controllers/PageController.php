@@ -38,8 +38,9 @@ class PageController extends BaseController
     }
 
     /**
-     * @param string $alias
+     * @param $alias
      * @return string
+     * @throws NotFoundHttpException
      */
     public function actionView($alias)
     {
