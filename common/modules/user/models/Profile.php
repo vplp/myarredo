@@ -255,6 +255,16 @@ class Profile extends \thread\modules\user\models\Profile
     }
 
     /**
+     * @return string
+     */
+    public function getPhone()
+    {
+        return ($this->additional_phone != '')
+            ? $this->additional_phone
+            : $this->phone;
+    }
+
+    /**
      * @return bool
      * @throws \Exception
      * @throws \Throwable

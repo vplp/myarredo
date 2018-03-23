@@ -23,7 +23,7 @@ $this->title = $this->context->title;
                             <div class="adres">
                                 <?= $partner->profile->address ?>
                             </div>
-                            <a href="tel:<?= $partner->profile->phone ?>"><?= $partner->profile->phone ?></a>
+                            <a href="tel:<?= $partner->profile->getPhone() ?>"><?= $partner->profile->getPhone() ?></a>
                         </div>
                     <?php endforeach; ?>
 
