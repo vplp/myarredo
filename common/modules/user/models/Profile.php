@@ -16,6 +16,7 @@ use common\modules\catalog\models\Factory;
  * Class Profile
  *
  * @property string $phone
+ * @property string $additional_phone
  * @property string $address
  * @property string $name_company
  * @property string $email_company
@@ -63,6 +64,7 @@ class Profile extends \thread\modules\user\models\Profile
             [
                 [
                     'phone',
+                    'additional_phone',
                     'address',
                     'name_company',
                     'email_company',
@@ -144,6 +146,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'first_name',
                 'last_name',
                 'phone',
+                'additional_phone',
                 'address',
                 'name_company',
                 'email_company',
@@ -171,6 +174,7 @@ class Profile extends \thread\modules\user\models\Profile
     {
         return ArrayHelper::merge(parent::attributeLabels(), [
             'phone' => Yii::t('app', 'Phone'),
+            'additional_phone' => 'Телефон для подмены',
             'address' => 'Адресс',
             'name_company' => 'Название компании',
             'email_company' => 'E-mail',

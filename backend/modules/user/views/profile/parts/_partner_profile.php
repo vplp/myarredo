@@ -14,6 +14,8 @@ use backend\modules\location\models\{
 
 <?php if (in_array($model['user']['group_id'], [4])):
 
+    echo $form->text_line($model, 'additional_phone');
+
     echo $form->text_line($model, 'name_company');
 
     echo $form->text_line($model, 'website');

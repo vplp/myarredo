@@ -40,7 +40,9 @@ class PartnerComponent extends Component
      */
     public function getPartnerPhone()
     {
-        return $this->partner['profile']['phone'];
+        return ($this->partner['profile']['additional_phone'] != '')
+            ? $this->partner['profile']['additional_phone']
+            : $this->partner['profile']['phone'];
     }
 
     /**

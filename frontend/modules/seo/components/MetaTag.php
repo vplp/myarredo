@@ -3,15 +3,13 @@
 namespace frontend\modules\seo\components;
 
 use Yii;
-use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use yii\base\Component;
 use yii\log\Logger;
 //
 use frontend\modules\seo\modules\{
     modellink\models\Modellink,
-    directlink\models\Directlink,
-    directlink\models\DirectlinkLang
+    directlink\models\Directlink
 };
 use thread\app\base\models\ActiveRecord;
 
