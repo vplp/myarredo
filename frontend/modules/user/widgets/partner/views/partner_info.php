@@ -35,7 +35,7 @@ use yii\helpers\Html;
     <div class="cons"><?= Yii::t('app', 'Получить консультацию в') ?> <?= $city['lang']['title_where'] ?></div>
 
     <div class="tel" itemprop="telephone">
-        <i class="fa fa-phone" aria-hidden="true"></i><?= $partner['profile']['phone'] ?>
+        <i class="fa fa-phone" aria-hidden="true"></i><?= Yii::$app->partner->getPartnerPhone() ?>
     </div>
 
     <div class="stud" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">

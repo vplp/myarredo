@@ -130,7 +130,7 @@ $this->title = $this->context->title;
                         <div class="seller-cont">
                             <h4><?= Yii::t('app', 'Контакты продавца') ?></h4>
                             <div class="title"><?= $model['user']['profile']['name_company']; ?></div>
-                            <a href="tel:+380442309379">
+                            <a href="tel:<?= $model['user']['profile']['phone']; ?>">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <?= $model['user']['profile']['phone']; ?>
                             </a>
