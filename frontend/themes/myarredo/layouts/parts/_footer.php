@@ -79,7 +79,7 @@ use frontend\modules\user\widgets\partner\PartnerInfo;
 </script>
 
 <script type="text/javascript">
-    var _cs = _cs || [];
+    var __cs = __cs || [];
     __cs.push(["setCsAccount", "KNKIlw22peShQSsYcaBCDumFwgrDNrWx"]);
 </script>
 <script type="text/javascript" async src="//app.comagic.ru/static/cs.min.js"></script>
