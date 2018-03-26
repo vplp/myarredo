@@ -308,7 +308,7 @@ class CronController extends Controller
 
         $models = Product::find()
             ->where([
-                'mark' => '1',
+                'mark' => '0',
             ])
             ->limit(500)
             ->all();
@@ -321,7 +321,7 @@ class CronController extends Controller
 
                 $model->setScenario('setMark');
 
-                $model->mark = '0';
+                $model->mark = '1';
 
                 if ($model->save()) {
                     $transaction->commit();
