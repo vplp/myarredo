@@ -27,7 +27,8 @@ echo GridView::widget([
                 return Html::img($model->getImageLink(), ['width' => 50]);
             },
             'label' => Yii::t('app', 'Image'),
-            'format' => 'raw'
+            'format' => 'raw',
+            'filter' => false
         ],
         [
             'attribute' => 'title',
