@@ -24,7 +24,7 @@ echo GridView::widget([
             'attribute' => 'image_link',
             'value' => function ($model) {
                 /** @var \backend\modules\catalog\models\Product $model */
-                Html::img($model->getImageLink());
+                return Html::img($model->getImageLink(), []);
             },
             'label' => Yii::t('app', 'Image')
         ],

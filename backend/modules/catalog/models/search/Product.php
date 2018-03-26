@@ -30,7 +30,7 @@ class Product extends ProductModel implements BaseBackendSearchModel
     {
         return [
             [['id', 'category', 'factory_id'], 'integer'],
-            [['alias', 'title'], 'string', 'max' => 255],
+            [['alias', 'title', 'image_link'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
