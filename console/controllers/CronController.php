@@ -308,9 +308,9 @@ class CronController extends Controller
 
         $models = Product::find()
             ->where([
-                'mark' => '0',
+                'mark' => '1',
             ])
-            ->limit(10)
+            ->limit(500)
             ->all();
 
         foreach ($models as $model) {
