@@ -54,6 +54,6 @@ class Bell extends GrowlModel
      */
     public function getDateTime()
     {
-        return date('d.m.Y H;i', $this->updated_at);
+        return date('d.m.Y H:i', $this->updated_at);
     }
 }

@@ -30,7 +30,14 @@ echo GridView::widget([
             'value' => 'discount',
             'label' => Yii::t('app', 'Discount'),
         ],
-        'updated_at:datetime',
+        [
+            'attribute' => 'updated_at',
+            'value' => function ($model) {
+                return date('d.n.Y H:i', $model->updated_at);
+            },
+            'format' => 'raw',
+            'filter' => false
+        ],
         [
             'class' => ActionStatusColumn::class,
             'attribute' => 'published',
