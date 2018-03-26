@@ -310,7 +310,7 @@ class CronController extends Controller
             ->where([
                 'mark' => '0',
             ])
-            ->limit(500)
+            ->limit(10)
             ->all();
 
         foreach ($models as $model) {
@@ -321,7 +321,7 @@ class CronController extends Controller
 
                 $model->setScenario('setMark');
 
-                $model->mark = '1';
+                $model->mark = '0';
 
                 if ($model->save()) {
                     $transaction->commit();
@@ -351,9 +351,13 @@ class CronController extends Controller
                     }
 
                     $modelLangIt->title = ($modelLangRu != null) ? $modelLangRu->title : '';
-                    $modelLangIt->description = ($modelLangRu != null) ? $modelLangRu->description : '';
+
+                    $description = ($modelLangRu != null) ? $modelLangRu->description : '';
+
+                    $modelLangIt->description = Yii::$app->yandexTranslator->getTranslate($description, 'ru-it');
 
                     $modelLangIt->setScenario('backend');
+
                     $modelLangIt->save();
 
                     $this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
