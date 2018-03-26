@@ -1,5 +1,7 @@
 <?php
 
+use yii\helpers\Html;
+//
 use backend\widgets\GridView\GridView;
 //
 use backend\modules\catalog\models\{
@@ -22,7 +24,7 @@ echo GridView::widget([
             'attribute' => 'image_link',
             'value' => function ($model) {
                 /** @var \backend\modules\catalog\models\Product $model */
-                $model->getImageLink();
+                Html::img($model->getImageLink());
             },
             'label' => Yii::t('app', 'Image')
         ],
