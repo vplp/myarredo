@@ -19,10 +19,19 @@ echo GridView::widget([
     'filterModel' => $filter,
     'columns' => [
         [
+            'attribute' => 'image_link',
+            'value' => function ($model) {
+                /** @var \backend\modules\catalog\models\Product $model */
+                $model->getImageLink();
+            },
+            'label' => Yii::t('app', 'Image')
+        ],
+        [
             'attribute' => 'title',
             'value' => 'lang.title',
             'label' => Yii::t('app', 'Title'),
         ],
+        'updated_at:datetime',
         [
             'attribute' => 'category',
             'value' => function ($model) {
@@ -39,26 +48,6 @@ echo GridView::widget([
             'attribute' => Yii::t('app', 'Factory'),
             'value' => 'factory.title',
             'filter' => GridViewFilter::selectOne($filter, 'factory_id', Factory::dropDownList()),
-        ],
-        [
-            'class' => ActionStatusColumn::class,
-            'attribute' => 'popular',
-            'action' => 'popular'
-        ],
-        [
-            'class' => ActionStatusColumn::class,
-            'attribute' => 'novelty',
-            'action' => 'novelty'
-        ],
-        [
-            'class' => ActionStatusColumn::class,
-            'attribute' => 'bestseller',
-            'action' => 'bestseller'
-        ],
-        [
-            'class' => ActionStatusColumn::class,
-            'attribute' => 'onmain',
-            'action' => 'onmain'
         ],
         [
             'class' => ActionStatusColumn::class,
