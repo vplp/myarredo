@@ -35,7 +35,7 @@ class RegisterController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['user', 'partner'],
+                        'actions' => ['user', 'partner', 'factory'],
                         'roles' => ['?'],
                     ],
                     [
@@ -131,6 +131,58 @@ class RegisterController extends BaseController
         }
 
         return $this->render('register_partner', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * @return string|\yii\web\Response
+     * @throws \Exception
+     */
+    public function actionFactory()
+    {
+        if (!\Yii::$app->getUser()->getIsGuest()) {
+            return $this->redirect(Url::toRoute('/home/home/index'));
+        }
+
+        /** @var RegisterForm $model */
+        $model = new $this->model;
+        $model->setScenario('registerFactory');
+
+        if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
+
+            $status = $model->addFactory();
+
+            if ($status === true) {
+
+                $modelUser = User::findByEmail($model->email);
+
+                Yii::$app
+                    ->mailer
+                    ->compose(
+                        'letter_new_factory',
+                        [
+                            'message' => 'Зарегистрирована новая фабрика',
+                            'model' => $model,
+                            'modelUser' => $modelUser,
+                        ]
+                    )
+                    ->setTo(Yii::$app->params['mailer']['setTo'])
+                    ->setSubject('Зарегистрирована новая фабрика')
+                    ->send();
+            }
+
+            if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
+                return $this->redirect(Url::toRoute('/user/profile/index'));
+            }
+
+            if ($status === true) {
+                Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
+                return $this->redirect(Url::toRoute('/user/login/index'));
+            }
+        }
+
+        return $this->render('register_factory', [
             'model' => $model,
         ]);
     }

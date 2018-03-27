@@ -14,6 +14,7 @@ return [
 
     // Module [[Users]]
     'partner/registration' => 'user/register/partner',
+    'factory/registration' => 'user/register/factory',
     'user/register' => 'user/register/user',
     'user/login' => 'user/login/index',
     'user/logout' => 'user/logout/index',

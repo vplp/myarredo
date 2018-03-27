@@ -52,7 +52,7 @@ class RegisterForm extends CommonForm
                     'user_agreement',
                 ],
                 'required',
-                'on' => 'registerPartner'
+                'on' => ['registerPartner', 'registerFactory']
             ],
             [
                 [
@@ -70,7 +70,7 @@ class RegisterForm extends CommonForm
             [
                 ['user_agreement'],
                 'required',
-                'on' => ['registerPartner'],
+                'on' => ['registerPartner', 'registerFactory'],
                 'requiredValue' => 1,
                 'message' => 'Вы должны ознакомиться и согласиться'
             ],
@@ -121,6 +121,21 @@ class RegisterForm extends CommonForm
                 'country_id',
                 'city_id',
                 'delivery_to_other_cities',
+                'user_agreement',
+            ],
+            'registerFactory' => [
+                'username',
+                'email',
+                'password',
+                'password_confirmation',
+                'first_name',
+                'last_name',
+                'phone',
+                'address',
+                'name_company',
+                'website',
+                'country_id',
+                'city_id',
                 'user_agreement',
             ],
         ];
@@ -258,6 +273,81 @@ class RegisterForm extends CommonForm
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
             'delivery_to_other_cities' => $this->delivery_to_other_cities,
+        ]);
+        if ($model->validate()) {
+            /** @var PDO $transaction */
+            $transaction = self::getDb()->beginTransaction();
+            try {
+                $save = $model->save();
+                ($save) ? $transaction->commit() : $transaction->rollBack();
+                return $save;
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                throw new \Exception($e);
+            }
+        } else {
+            $this->addErrors($model->getErrors());
+            return false;
+        }
+    }
+
+    /**
+     * Add new Factory to base
+     */
+    public function addFactory()
+    {
+        $model = new User([
+            'scenario' => 'userCreate',
+            'username' => $this->email,
+            'email' => $this->email,
+            'published' => ActiveRecord::STATUS_KEY_ON,
+            'group_id' => Group::FACTORY,
+        ]);
+
+        $model->setPassword($this->password)->generateAuthKey();
+
+        if ($model->validate()) {
+            /** @var PDO $transaction */
+            $transaction = self::getDb()->beginTransaction();
+            try {
+                $save = $model->save();
+                if ($save) {
+                    $transaction->commit();
+                    return $this->addFactoryProfile($model->id);
+                } else {
+                    $transaction->rollBack();
+                    return false;
+                }
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                throw new \Exception($e);
+            }
+        } else {
+            $this->addErrors($model->getErrors());
+            return false;
+        }
+    }
+
+    /**
+     * Create new empty profile for a new Factory
+     *
+     * @param $userId
+     * @return bool
+     * @throws \Exception
+     */
+    private function addFactoryProfile($userId)
+    {
+        $model = new Profile([
+            'scenario' => 'basicCreate',
+            'user_id' => $userId,
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'phone' => $this->phone,
+            'address' => $this->address,
+            'name_company' => $this->name_company,
+            'website' => $this->website,
+            'country_id' => $this->country_id,
+            'city_id' => $this->city_id,
         ]);
         if ($model->validate()) {
             /** @var PDO $transaction */

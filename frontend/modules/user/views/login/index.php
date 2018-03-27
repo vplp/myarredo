@@ -48,7 +48,7 @@ $this->title = Yii::t('app', 'Login');
                     <h3>
                         <?= Yii::t('app','Регистрация для фабрики') ?>
                     </h3>
-                    <?= Html::a(Yii::t('app','Войти'), ['/user/login/index'], ['class' => 'btn btn-default']) ?>
+                    <?= Html::a(Yii::t('app','Зарегистрироваться'), ['/user/register/factory'], ['class' => 'btn btn-default']) ?>
                 </div>
             </div>
 
