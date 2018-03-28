@@ -11,8 +11,6 @@ use yii\helpers\Html;
 
 <div>Зарегистрирована новая фабрика</div>
 
-<div><?= $model->getAttributeLabel('country_id') ?>: <?= $modelUser->profile->country->lang->title ?></div>
-<div><?= $model->getAttributeLabel('city_id') ?>: <?= $modelUser->profile->city->lang->title ?></div>
 <div><?= $model->getAttributeLabel('name_company') ?>: <?= $model->name_company ?></div>
 <div><?= $model->getAttributeLabel('phone') ?>: <?= $model->phone ?></div>
 <div><?= $model->getAttributeLabel('email') ?>: <?= $model->email ?></div>
