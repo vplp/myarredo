@@ -145,14 +145,14 @@ class CommonForm extends Model
             'first_name' => Yii::t('app', 'First name'),
             'last_name' => Yii::t('app', 'Last name'),
             'phone' => Yii::t('app', 'Phone'),
-            'address' => 'Адресс',
-            'name_company' => 'Название компании',
-            'website' => 'Адресс сайта',
-            'exp_with_italian' => 'Опыт работы с итальянской мебелью, лет',
-            'country_id' => 'Ваша страна',
-            'city_id' => 'Ваш город',
-            'delivery_to_other_cities' => 'Готов к поставкам мебели в другие города',
-            'user_agreement' => 'Подтверждаю <a href="/terms-of-use/" target="_blank">пользовательское соглашение</a>',
+            'address' => Yii::t('app','Address'),
+            'name_company' => Yii::t('app','Название компании'),
+            'website' => Yii::t('app','Адресс сайта'),
+            'exp_with_italian' => Yii::t('app','Опыт работы с итальянской мебелью, лет'),
+            'country_id' => Yii::t('app','Country'),
+            'city_id' => Yii::t('app','City'),
+            'delivery_to_other_cities' => Yii::t('app','Готов к поставкам мебели в другие города'),
+            'user_agreement' => Yii::t('app','Подтверждаю <a href="/terms-of-use/" target="_blank">пользовательское соглашение</a>'),
         ];
     }
 

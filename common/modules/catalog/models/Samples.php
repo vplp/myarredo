@@ -95,7 +95,7 @@ class Samples extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'factory_id' => 'Фабрика',
+            'factory_id' => Yii::t('app','Factory'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
