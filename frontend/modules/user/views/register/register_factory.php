@@ -83,9 +83,6 @@ $model->user_agreement = 1;
                     <div class="col-xs-12 col-sm-6 col-lg-offset-2 col-sm-6 col-md-6 col-lg-5">
                         <div class="text">
                             <?= Yii::$app->param->getByName('USER_FACTORY_REG_TEXT') ?>
-                            <p>Зарегистрируйтесь на портале и выбирайте, как управлять:</p>
-                            <p>-START edition: минимальное размещение 3 месяца. Данный пакет поможет протестировать сервис, в любой момент вы сможете перейти на полную версию TOP edition.</p>
-                            <p>-TOP edition: минимальное размещение 1 год. Начинайте развивать свой бизнес!!!</p>
                         </div>
                     </div>
                 </div>
