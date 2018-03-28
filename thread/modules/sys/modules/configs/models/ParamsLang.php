@@ -22,7 +22,8 @@ use thread\modules\sys\modules\configs\Configs as ConfigsModule;
 class ParamsLang extends ActiveRecordLang
 {
     /**
-     * @return string
+     * @return null|object|\yii\db\Connection
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

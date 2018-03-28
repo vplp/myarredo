@@ -12,8 +12,6 @@ use common\modules\sys\modules\configs\models\Group as CommonGroupModel;
  * Class Group
  *
  * @package backend\modules\sys\modules\configs\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Group extends CommonGroupModel implements BaseBackendModel
 {

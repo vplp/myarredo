@@ -101,5 +101,8 @@ return [
     'yandexTranslator' => [
         'class' => \common\components\YandexTranslator::class,
         'key' => 'trnsl.1.1.20180326T121847Z.97ead48fdb04534c.3713f3146271d3c8c47c8c97be8fae539ac776fd',
-    ]
+    ],
+    'param' => [
+        'class' => \common\modules\sys\modules\configs\components\ConfigsParams::class,
+    ],
 ];

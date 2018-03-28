@@ -15,10 +15,8 @@ echo GridView::widget([
     'dataProvider' => $model->trash(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
-        [
-            'attribute' => 'title',
-            'value' => 'lang.title',
-        ],
+        'alias',
+        'lang.title',
         [
             'class' => ActionDeleteColumn::class,
         ],

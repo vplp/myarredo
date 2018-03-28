@@ -39,7 +39,7 @@ class Sys extends \common\modules\sys\Sys
                         'url' => ['/sys/translation/translation/list'],
                     ],
                     [
-                        'name' => 'Configs',
+                        'name' => 'Params',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/configs/params/list'],
                     ],

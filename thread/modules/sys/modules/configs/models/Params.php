@@ -24,9 +24,6 @@ use thread\modules\sys\modules\configs\Configs as ConfigsModule;
  * @property ParamsLang $lang
  *
  * @package thread\modules\sys\modules\configs\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @author Alla Kuzmenko
- * @copyright (c) 2016, VipDesign
  */
 class Params extends ActiveRecord
 {
@@ -53,12 +50,13 @@ class Params extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias', 'value'], 'required'],
+            [['alias'], 'required'],
             [['alias'], 'unique'],
             [['alias'], 'string', 'max' => 255],
             ['value', 'string'],
             [['created_at', 'updated_at', 'sort'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
+            [['value'], 'default', 'value' => ''],
         ];
     }
 

@@ -14,8 +14,6 @@ use backend\modules\sys\modules\configs\models\{
  * Class ParamsController
  *
  * @package backend\modules\sys\modules\configs\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class ParamsController extends BackendController
 {

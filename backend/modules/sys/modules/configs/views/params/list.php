@@ -21,11 +21,9 @@ echo GridView::widget([
             'value' => 'group.lang.title',
             'filter' => GridViewFilter::selectOne($filter, 'group_id', Group::dropDownList())
         ],
-        [
-            'attribute' => 'title',
-            'value' => 'lang.title',
-        ],
-        'value',
+        'alias',
+        'lang.title',
+        'lang.content',
         [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class
         ],
