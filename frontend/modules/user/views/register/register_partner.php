@@ -79,7 +79,7 @@ $model->user_agreement = 1;
                             ->label(false) ?>
 
                         <div class="a-warning">
-                            * поля обязательны для заполнения
+                            * <?= Yii::t('app', 'Поля обязательны для заполнения') ?>
                         </div>
 
                         <?= Html::submitButton(Yii::t('app', 'Зарегистрироваться'), ['class' => 'btn btn-success']) ?>

@@ -34,7 +34,7 @@ class ConfigsParams extends Component
      */
     public function getByName($alias)
     {
-        $value = Params::find()->alias($alias)->one();
+        $value = Params::find()->byAlias($alias)->one();
         return ($value !== null) ? $this->cache($value) : '';
     }
 
@@ -45,7 +45,7 @@ class ConfigsParams extends Component
     protected function cache(Params $value)
     {
         $id = $value['id'];
-        $v = $value['content'];
+        $v = $value['lang']['content'];
 
         if (isset($this->cach[$id])) {
             if ($this->cach[$id] != $v) {
