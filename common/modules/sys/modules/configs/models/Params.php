@@ -2,8 +2,6 @@
 
 namespace common\modules\sys\modules\configs\models;
 
-use yii\helpers\ArrayHelper;
-
 /**
  * Class Params
  *
@@ -11,13 +9,5 @@ use yii\helpers\ArrayHelper;
  */
 class Params extends \thread\modules\sys\modules\configs\models\Params
 {
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return ArrayHelper::merge(parent::rules(), [
-            ['value', 'string'],
-        ]);
-    }
+
 }

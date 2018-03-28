@@ -56,7 +56,7 @@ class Params extends ActiveRecord
             [['alias', 'value'], 'required'],
             [['alias'], 'unique'],
             [['alias'], 'string', 'max' => 255],
-            ['value', 'string', 'max' => 1024],
+            ['value', 'string'],
             [['created_at', 'updated_at', 'sort'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
         ];

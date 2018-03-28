@@ -10,8 +10,6 @@ use common\modules\sys\modules\configs\models\Params as CommonParamsModel;
  * Class Params
  *
  * @package backend\modules\sys\modules\configs\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Params extends CommonParamsModel implements BaseBackendModel
 {

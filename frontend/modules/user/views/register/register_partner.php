@@ -13,7 +13,8 @@ use frontend\modules\location\models\{
  * @var \frontend\modules\user\models\form\RegisterForm $model
  */
 
-$this->title = 'Регистрация партнера';
+$this->title = Yii::t('app', 'Регистрация для салонов продаж');
+
 $model->delivery_to_other_cities = 1;
 $model->user_agreement = 1;
 ?>
@@ -81,11 +82,12 @@ $model->user_agreement = 1;
                             * поля обязательны для заполнения
                         </div>
 
-                        <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-success']) ?>
+                        <?= Html::submitButton(Yii::t('app', 'Зарегистрироваться'), ['class' => 'btn btn-success']) ?>
 
                     </div>
                     <div class="col-xs-12 col-sm-6 col-lg-offset-2 col-sm-6 col-md-6 col-lg-5">
                         <div class="text">
+                            <?= Yii::$app->param->getByName('USER_PARTNER_REG_TEXT') ?>
                             <p>
                                 MyARREO FAMILY - это группа компаний, состоящая из лучших поставщиков итальянской мебели
                                 на рынке СНГ. Мы объединились в единую сеть в 2013 году, и постоянно
