@@ -300,7 +300,7 @@ class RegisterForm extends CommonForm
             'scenario' => 'userCreate',
             'username' => $this->email,
             'email' => $this->email,
-            'published' => ActiveRecord::STATUS_KEY_ON,
+            'published' => ActiveRecord::STATUS_KEY_OFF,
             'group_id' => Group::FACTORY,
         ]);
 

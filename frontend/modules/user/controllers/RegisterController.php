@@ -2,12 +2,12 @@
 
 namespace frontend\modules\user\controllers;
 
-use frontend\modules\user\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 //
 use frontend\components\BaseController;
+use frontend\modules\user\models\User;
 use frontend\modules\user\models\form\RegisterForm;
 
 
@@ -172,12 +172,8 @@ class RegisterController extends BaseController
                     ->send();
             }
 
-            if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
-                return $this->redirect(Url::toRoute('/user/profile/index'));
-            }
-
             if ($status === true) {
-                Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
+                Yii::$app->getSession()->addFlash('login', Yii::$app->param->getByName('USER_FACTORY_REG_MESSAGE'));
                 return $this->redirect(Url::toRoute('/user/login/index'));
             }
         }
