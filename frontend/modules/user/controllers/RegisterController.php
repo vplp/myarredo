@@ -170,11 +170,7 @@ class RegisterController extends BaseController
                     ->setTo(Yii::$app->params['mailer']['setTo'])
                     ->setSubject('Зарегистрирована новая фабрика')
                     ->send();
-            }
-
-            if ($status === true) {
                 Yii::$app->getSession()->addFlash('login', Yii::$app->param->getByName('USER_FACTORY_REG_MESSAGE'));
-                return $this->redirect(Url::toRoute('/user/login/index'));
             }
         }
 
