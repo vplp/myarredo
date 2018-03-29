@@ -37,7 +37,7 @@ use yii\helpers\Html;
     <div class="tel" itemprop="telephone">
         <i class="fa fa-phone" aria-hidden="true"></i><?= Yii::$app->partner->getPartnerPhone() ?>
     </div>
-    <div>Бесплатно по всей России</div>
+    <div class="after-tel-text">Бесплатно по всей России</div>
     <div class="stud" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
         <meta itemprop="addressLocality"
               content="<?= $city['country']['lang']['title'] ?> <?= $city['lang']['title'] ?>"/>
