@@ -2,6 +2,7 @@
 
 namespace common\modules\user\models\form;
 
+use Yii;
 use yii\db\mssql\PDO;
 use yii\helpers\ArrayHelper;
 //
@@ -52,7 +53,21 @@ class RegisterForm extends CommonForm
                     'user_agreement',
                 ],
                 'required',
-                'on' => ['registerPartner', 'registerFactory']
+                'on' => 'registerPartner'
+            ],
+            [
+                [
+                    'last_name',
+                    'phone',
+                    'name_company',
+                    'address',
+                    'country_id',
+                    'city_id',
+                    'user_agreement',
+                    'factory_package',
+                ],
+                'required',
+                'on' => 'registerFactory'
             ],
             [
                 [
@@ -76,8 +91,7 @@ class RegisterForm extends CommonForm
             ],
             [['delivery_to_other_cities', 'user_agreement'], 'in', 'range' => [0, 1]],
             [['country_id', 'city_id'], 'integer'],
-            [['country_id', 'city_id'], 'default', 'value' => 0],
-            [['delivery_to_other_cities'], 'default', 'value' => '0'],
+            [['country_id', 'city_id', 'delivery_to_other_cities'], 'default', 'value' => 0],
         ];
 
         if ($this->_username_attribute === 'email') {
@@ -137,6 +151,7 @@ class RegisterForm extends CommonForm
                 'country_id',
                 'city_id',
                 'user_agreement',
+                'factory_package'
             ],
         ];
     }
@@ -196,6 +211,7 @@ class RegisterForm extends CommonForm
             'address' => $this->address,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
+            'preferred_language' => Yii::$app->language,
         ]);
         if ($model->validate()) {
             /** @var PDO $transaction */
@@ -348,6 +364,8 @@ class RegisterForm extends CommonForm
             'website' => $this->website,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
+            'factory_package' => $this->factory_package,
+            'preferred_language' => Yii::$app->language,
         ]);
         if ($model->validate()) {
             /** @var PDO $transaction */

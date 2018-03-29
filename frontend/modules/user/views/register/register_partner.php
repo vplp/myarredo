@@ -57,9 +57,9 @@ $model->user_agreement = 1;
 
                         <?= $form->field($model, 'website') ?>
 
-                        <?= $form->field($model, 'first_name') ?>
-
                         <?= $form->field($model, 'last_name') ?>
+
+                        <?= $form->field($model, 'first_name') ?>
 
                         <?= $form->field($model, 'email') ?>
 

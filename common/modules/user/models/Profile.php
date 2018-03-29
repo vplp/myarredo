@@ -32,6 +32,7 @@ use common\modules\catalog\models\Factory;
  * @property int $possibility_to_answer
  * @property int $pdf_access
  * @property int $show_contacts
+ * @property int $factory_package
  *
  * @property Country $country
  * @property City $city
@@ -53,6 +54,17 @@ class Profile extends \thread\modules\user\models\Profile
                 ],
             ],
         ]);
+    }
+
+    /**
+     * @return array
+     */
+    public static function factoryPackageKeyRange()
+    {
+        return [
+            1 => Yii::t('app', 'START edition'),
+            2 => Yii::t('app', 'TOP edition'),
+        ];
     }
 
     /**
@@ -85,6 +97,11 @@ class Profile extends \thread\modules\user\models\Profile
                 ],
                 'in',
                 'range' => array_keys(self::statusKeyRange())
+            ],
+            [
+                'factory_package',
+                'in',
+                'range' => array_keys(self::factoryPackageKeyRange())
             ],
             [['country_id', 'city_id', 'factory_id'], 'integer'],
             [['latitude', 'longitude'], 'double'],
@@ -141,6 +158,8 @@ class Profile extends \thread\modules\user\models\Profile
                 'possibility_to_answer',
                 'pdf_access',
                 'show_contacts',
+                'preferred_language',
+                'factory_package'
             ],
             'backend' => [
                 'first_name',
@@ -162,7 +181,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'possibility_to_answer',
                 'pdf_access',
                 'show_contacts',
-                'city_ids'
+                'city_ids',
             ]
         ]);
     }
@@ -191,6 +210,7 @@ class Profile extends \thread\modules\user\models\Profile
             'pdf_access' => Yii::t('app','Доступ к прайсам и каталогам'),
             'show_contacts' => Yii::t('app','Показывать в контактах'),
             'city_ids' => Yii::t('app','Ответы в городах'),
+            'factory_package' => Yii::t('app','Package'),
         ]);
     }
 

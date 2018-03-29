@@ -172,6 +172,9 @@ class RegisterController extends BaseController
                     ->send();
 
                 Yii::$app->getSession()->addFlash('success', Yii::$app->param->getByName('USER_FACTORY_REG_MESSAGE'));
+
+//                $model = new $this->model;
+//                $model->setScenario('registerFactory');
             }
         }
 
