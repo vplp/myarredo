@@ -50,6 +50,8 @@ class Product extends ProductModel
      * @param $query
      * @param $params
      * @return ActiveDataProvider
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function baseSearch($query, $params)
     {

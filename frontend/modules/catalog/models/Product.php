@@ -54,13 +54,31 @@ class Product extends \common\modules\catalog\models\Product
     public static function findBase()
     {
         return self::find()
-            ->innerJoinWith(['lang'])
+            ->innerJoinWith(['lang', 'factory', 'types'])
             ->orderBy(self::tableName() . '.updated_at DESC')
             ->enabled()
             ->andFilterWhere([
                 Product::tableName() . '.removed' => '0',
             ])
             ->asArray();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactory()
+    {
+        return $this->hasOne(Factory::class, ['id' => 'factory_id'])
+            ->enabled();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTypes()
+    {
+        return $this->hasOne(Types::class, ['id' => 'catalog_type_id'])
+            ->enabled();
     }
 
     /**
