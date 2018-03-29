@@ -64,7 +64,7 @@ class TemplateFactoryController extends BaseController
 
         $this->title = Yii::t('app','Итальянская мебель ') .
             $model['title'] .
-            Yii::t('app',' купить в ') .
+            Yii::t('app',' купить в') .' '.
             Yii::$app->city->getCityTitleWhere() .
             Yii::t('app',' по лучшей цене');
 
@@ -130,7 +130,7 @@ class TemplateFactoryController extends BaseController
 
         $this->title = Yii::t('app','Каталог итальянской мебели ') .
             $factory['title'] .
-            Yii::t('app',' купить в ') .
+            Yii::t('app',' купить в') . ' ' .
             Yii::$app->city->getCityTitleWhere() .
                 Yii::t('app',' по лучшей цене');
 
@@ -196,7 +196,7 @@ class TemplateFactoryController extends BaseController
             ];
         }
 
-        $this->title = $model['lang']['title'] . Yii::t('app','. Купить в ') . Yii::$app->city->getCityTitleWhere();
+        $this->title = $model['lang']['title'] . Yii::t('app','. Купить в') .' '. Yii::$app->city->getCityTitleWhere();
 
         return $this->render('/product/view', [
             'model' => $model,
@@ -272,7 +272,7 @@ class TemplateFactoryController extends BaseController
         Yii::$app->view->registerMetaTag([
             'name' => 'description',
             'content' => strip_tags($model['lang']['description']) .
-                Yii::t('app',' Купить в интернет-магазине Myarredo в ') .
+                Yii::t('app',' Купить в интернет-магазине Myarredo в') .' '.
                 Yii::$app->city->getCityTitleWhere()
         ]);
 

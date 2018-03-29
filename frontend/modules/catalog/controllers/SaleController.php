@@ -143,7 +143,7 @@ class SaleController extends BaseController
         Yii::$app->view->registerMetaTag([
             'name' => 'description',
             'content' => strip_tags($model['lang']['description']) .
-                Yii::t('app',' Купить в интернет-магазине Myarredo в ') .
+                Yii::t('app',' Купить в интернет-магазине Myarredo в') . ' ' .
                 Yii::$app->city->getCityTitleWhere()
         ]);
 

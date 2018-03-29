@@ -189,7 +189,7 @@ class CategoryController extends BaseController
          * set options
          */
 
-        $pageTitle[] = Yii::t('app','Купить в ') . Yii::$app->city->getCityTitleWhere();
+        $pageTitle[] = Yii::t('app','Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
         $pageDescription[] = Yii::t('app','Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo');
 
 
