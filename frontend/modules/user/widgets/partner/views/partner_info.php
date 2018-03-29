@@ -21,7 +21,7 @@ use yii\helpers\Html;
     </div>
 
     <?php if (Yii::$app->city->domain == 'ru'): ?>
-        <div class="after-tel-text">Бесплатно по всей России</div>
+        <div class="after-tel-text"><?= Yii::t('app','Бесплатно по всей России') ?></div>
     <?php endif; ?>
 
     <div class="tel">
@@ -43,7 +43,7 @@ use yii\helpers\Html;
     </div>
 
     <?php if (Yii::$app->city->domain == 'ru'): ?>
-        <div class="after-tel-text">Бесплатно по всей России</div>
+        <div class="after-tel-text"><?= Yii::t('app','Бесплатно по всей России') ?></div>
     <?php endif; ?>
 
     <div class="stud" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
