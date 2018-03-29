@@ -23,7 +23,9 @@ use frontend\modules\location\widgets\ChangeCity;
                             <span>
                                 <i class="glyphicon glyphicon-earphone"></i> <?= Yii::$app->partner->getPartnerPhone() ?>
                             </span>
-                            <div>Бесплатно по всей России</div>
+                            <?php if (Yii::$app->city->domain == 'ru'): ?>
+                                <div>Бесплатно по всей России</div>
+                            <?php endif; ?>
                         </li>
                         <?php /*
                         <li>

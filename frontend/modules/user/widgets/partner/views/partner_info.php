@@ -19,7 +19,11 @@ use yii\helpers\Html;
     <div class="tel" itemprop="telephone">
         <i class="fa fa-phone" aria-hidden="true"></i><?= $phone ?>
     </div>
-    <div>Бесплатно по всей России</div>
+
+    <?php if (Yii::$app->city->domain == 'ru'): ?>
+        <div class="after-tel-text">Бесплатно по всей России</div>
+    <?php endif; ?>
+
     <div class="tel">
         <i class="fa" aria-hidden="true"></i><?= $email ?>
     </div>
@@ -37,7 +41,11 @@ use yii\helpers\Html;
     <div class="tel" itemprop="telephone">
         <i class="fa fa-phone" aria-hidden="true"></i><?= Yii::$app->partner->getPartnerPhone() ?>
     </div>
-    <div class="after-tel-text">Бесплатно по всей России</div>
+
+    <?php if (Yii::$app->city->domain == 'ru'): ?>
+        <div class="after-tel-text">Бесплатно по всей России</div>
+    <?php endif; ?>
+
     <div class="stud" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
         <meta itemprop="addressLocality"
               content="<?= $city['country']['lang']['title'] ?> <?= $city['lang']['title'] ?>"/>
