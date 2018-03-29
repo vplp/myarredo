@@ -25,13 +25,14 @@ use frontend\modules\location\widgets\ChangeCity;
                             </span>
                             <div>Бесплатно по всей России</div>
                         </li>
+                        <?php /*
                         <li>
                             <a class="callback-trigger" href="javascript:void(0);">
 							<span>
 								<?= Yii::t('app', 'Feedback form') ?>
 							</span>
                             </a>
-                        </li>
+                        </li> */ ?>
                         <li class="geo">
                             <a href="javascript: void(0);" id="select-city">
                                 <i class="glyphicon glyphicon-map-marker"></i>
