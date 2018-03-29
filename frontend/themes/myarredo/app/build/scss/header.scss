@@ -54,7 +54,15 @@ header {
         display: flex;
         align-items: center;
       }
-
+      .tel-num {
+        flex-direction: column;
+        & > div {
+          font-size: 9px;
+          margin-left: 10px;
+          letter-spacing: 0.7px;
+          text-transform: uppercase;
+        }
+      }
     }
   }
   .logo {
