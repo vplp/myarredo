@@ -20,9 +20,10 @@ use frontend\modules\location\widgets\ChangeCity;
                 <div class="row">
                     <ul class="nav navbar-nav top-panel flex">
                         <li class="tel-num">
-						<span>
-							<i class="glyphicon glyphicon-earphone"></i> <?= Yii::$app->partner->getPartnerPhone() ?>
-						</span>
+                            <span>
+                                <i class="glyphicon glyphicon-earphone"></i> <?= Yii::$app->partner->getPartnerPhone() ?>
+                            </span>
+                            <div>Бесплатно по всей России</div>
                         </li>
                         <li>
                             <a class="callback-trigger" href="javascript:void(0);">

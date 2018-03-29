@@ -19,7 +19,7 @@ use yii\helpers\Html;
     <div class="tel" itemprop="telephone">
         <i class="fa fa-phone" aria-hidden="true"></i><?= $phone ?>
     </div>
-
+    <div>Бесплатно по всей России</div>
     <div class="tel">
         <i class="fa" aria-hidden="true"></i><?= $email ?>
     </div>
