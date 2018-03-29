@@ -19,7 +19,6 @@ return ArrayHelper::merge(
                 $pathInfo = Yii::$app->request->pathInfo;
 
                 if (strripos($pathInfo, '.txt')) {
-
                     //die;
                 } elseif ($_SERVER['REQUEST_URI'] == '/it') {
                     Yii::$app->response->redirect('/it/', 301)->send();
