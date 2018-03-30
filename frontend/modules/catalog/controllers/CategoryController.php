@@ -128,8 +128,6 @@ class CategoryController extends BaseController
             ];
         }
 
-        $pageDescription[] = Yii::t('app','из Италии');
-
         if (!empty($params[$keys['style']])) {
             $models = Specification::findByAlias($params[$keys['style']]);
 
@@ -142,26 +140,13 @@ class CategoryController extends BaseController
                 $style[] = $model['lang']['title'];
             }
 
-            $pageTitle[] = implode(', ', $style);
+            $pageTitle[] = Yii::t('app','Стиль') . ' ' . implode(', ', $style);
             $pageH1[] = implode(' - ', $style);
-            $pageDescription[] = Yii::t('app','Стиль') .': '. implode(' - ', $style) . '.';
+            $pageDescription[] = Yii::t('app','Стиль') .': '. implode(' - ', $style);
 
             $this->breadcrumbs[] = [
                 'label' => implode(', ', $style),
                 'url' => Yii::$app->catalogFilter->createUrl([$keys['style'] => $params[$keys['style']]])
-            ];
-        }
-
-        if (!empty($params[$keys['factory']])) {
-            $factory = Factory::findByAlias($params[$keys['factory']][0]);
-
-            if (count($params[$keys['factory']]) > 1) {
-                $noindex = 1;
-            }
-
-            $this->breadcrumbs[] = [
-                'label' => $factory['title'],
-                'url' => Yii::$app->catalogFilter->createUrl([$keys['factory'] => $params[$keys['factory']]])
             ];
         }
 
@@ -185,13 +170,36 @@ class CategoryController extends BaseController
             $pageH1[] = $model['lang']['title'];
         }
 
+        if (!empty($params[$keys['factory']])) {
+            $models = Factory::findAllByAlias($params[$keys['factory']]);
+
+            $factory = [];
+            foreach ($models as $model) {
+                $factory[] = $model['title'];
+            }
+
+            if (count($params[$keys['factory']]) > 1) {
+                $noindex = 1;
+            }
+
+            $pageTitle[] = implode(', ', $factory);
+            $pageH1[] = implode(', ', $factory);
+            $pageDescription[] = implode(', ', $factory);
+
+            $this->breadcrumbs[] = [
+                'label' => implode(', ', $factory),
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['factory'] => $params[$keys['factory']]])
+            ];
+        }
+
+        $pageDescription[] = Yii::t('app','из Италии');
+
         /**
          * set options
          */
 
         $pageTitle[] = Yii::t('app','Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
-        $pageDescription[] = Yii::t('app','Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo');
-
+        $pageDescription[] = '. '.Yii::t('app','Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo');
 
         $this->title = Yii::$app->metatag->seo_title
             ? Yii::$app->metatag->seo_title

@@ -79,6 +79,17 @@ class Factory extends \common\modules\catalog\models\Factory
         return $result;
     }
 
+    public static function findAllByAlias($alias)
+    {
+        $result = self::getDb()->cache(function ($db) use ($alias) {
+            return self::findBase()
+                ->andFilterWhere(['IN', self::tableName() . '.alias', $alias])
+                ->all();
+        });
+
+        return $result;
+    }
+
     /**
      * Search
      *
