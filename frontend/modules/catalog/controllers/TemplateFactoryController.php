@@ -63,8 +63,8 @@ class TemplateFactoryController extends BaseController
         ];
 
         $this->title = Yii::t('app', 'Итальянская мебель') . ' ' .
-            $model['title'] . ' ' .
-            Yii::t('app', 'купить в') . ' ' .
+            $model['title'] . '. ' .
+            Yii::t('app', 'Купить в') . ' ' .
             Yii::$app->city->getCityTitleWhere() . ' ' .
             Yii::t('app', 'по лучшей цене');
 
@@ -129,8 +129,8 @@ class TemplateFactoryController extends BaseController
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
 
         $this->title = Yii::t('app', 'Каталог итальянской мебели') . ' ' .
-            $factory['title'] . ' ' .
-            Yii::t('app', 'купить в') . ' ' .
+            $factory['title'] . '. ' .
+            Yii::t('app', 'Купить в') . ' ' .
             Yii::$app->city->getCityTitleWhere() . ' ' .
             Yii::t('app', 'по лучшей цене');
 
