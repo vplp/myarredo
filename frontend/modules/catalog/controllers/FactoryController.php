@@ -57,8 +57,8 @@ class FactoryController extends BaseController
         $view = Yii::$app->request->get('view');
 
         if (Yii::$app->request->get('letter')) {
-            $pageTitle[] = Yii::t('app','на букву ') . strtoupper(Yii::$app->request->get('letter'));
-            $pageDescription[] = Yii::t('app','название на букву ') . strtoupper(Yii::$app->request->get('letter'));
+            $pageTitle[] = Yii::t('app','на букву') .' '. strtoupper(Yii::$app->request->get('letter'));
+            $pageDescription[] = Yii::t('app','название на букву') .' '. strtoupper(Yii::$app->request->get('letter'));
         }
 
         $pageTitle[] = Yii::t('app','в') . ' ' . Yii::$app->city->getCityTitleWhere();

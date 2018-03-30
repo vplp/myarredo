@@ -96,7 +96,7 @@ class ProductController extends BaseController
 
         if ($model['collections_id']) {
             $pageTitle[] = $model['collection']['lang']['title'];
-            $pageDescription[] = Yii::t('app','Коллекция: ') . $model['collection']['lang']['title'];
+            $pageDescription[] = Yii::t('app','Коллекция') .': '. $model['collection']['lang']['title'];
         }
 
         $array = [];
@@ -121,7 +121,7 @@ class ProductController extends BaseController
         }
 
         if (!empty($array)) {
-            $pageDescription[] = Yii::t('app','Материал: ') . implode(', ', $array);
+            $pageDescription[] = Yii::t('app','Материал') .': '. implode(', ', $array);
         }
 
         $array = [];

@@ -144,7 +144,7 @@ class CategoryController extends BaseController
 
             $pageTitle[] = implode(', ', $style);
             $pageH1[] = implode(' - ', $style);
-            $pageDescription[] = Yii::t('app','Стиль: ') . implode(' - ', $style) . '.';
+            $pageDescription[] = Yii::t('app','Стиль') .': '. implode(' - ', $style) . '.';
 
             $this->breadcrumbs[] = [
                 'label' => implode(', ', $style),
@@ -168,12 +168,12 @@ class CategoryController extends BaseController
         if (!empty($params[$keys['collection']])) {
             $collection = Collection::findById($params[$keys['collection']][0]);
 
-            $pageTitle[] = Yii::t('app','Коллекция мебели ') . $collection['lang']['title'];
-            $pageH1[] = Yii::t('app','Коллекция ') . $collection['lang']['title'];
-            $pageDescription[] = Yii::t('app','Коллекция ') . $collection['lang']['title'];
+            $pageTitle[] = Yii::t('app','Коллекция мебели') .' '. $collection['lang']['title'];
+            $pageH1[] = Yii::t('app','Коллекция') .' '. $collection['lang']['title'];
+            $pageDescription[] = Yii::t('app','Коллекция') .' '. $collection['lang']['title'];
 
             $this->breadcrumbs[] = [
-                'label' => Yii::t('app','Коллекция ') . $collection['lang']['title'],
+                'label' => Yii::t('app','Коллекция') .' '. $collection['lang']['title'],
                 'url' => Yii::$app->catalogFilter->createUrl([$keys['collection'] => $params[$keys['collection']]])
             ];
         }
