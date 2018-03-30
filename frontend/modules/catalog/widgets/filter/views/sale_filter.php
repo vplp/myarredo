@@ -153,7 +153,7 @@ use frontend\modules\catalog\models\{
             </div>
         <?php endif; ?>
 
-        <?php if ($countries): ?>
+        <?php /*if ($countries): ?>
             <div class="one-filter open subject-filter">
                 <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app','Country') ?></a>
                 <div class="list-item">
@@ -178,7 +178,7 @@ use frontend\modules\catalog\models\{
                 <?php endif; ?>
 
             </div>
-        <?php endif; ?>
+        <?php endif;*/ ?>
 
         <?php if ($cities): ?>
             <div class="one-filter open subject-filter">

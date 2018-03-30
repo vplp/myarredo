@@ -76,8 +76,6 @@ class CatalogFilter extends Component
     }
 
     /**
-     * Filter params
-     *
      * @return array
      */
     public function getParams()
@@ -86,8 +84,16 @@ class CatalogFilter extends Component
     }
 
     /**
-     * Filter params
-     *
+     * @param $name
+     * @param $value
+     * @return mixed
+     */
+    public function setParam($name, $value)
+    {
+        return self::$_parameters[$name][] = $value;
+    }
+
+    /**
      * @return array
      */
     public function getKeys()
@@ -329,7 +335,7 @@ class CatalogFilter extends Component
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
-            self::$_parameters[self::$keys['country']][] = $model['alias'];
+            self::$_parameters[self::$keys['country']][0] = $model['alias'];
         }
 
         /**

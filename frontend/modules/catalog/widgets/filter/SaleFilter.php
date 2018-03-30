@@ -231,7 +231,7 @@ class SaleFilter extends Widget
          */
 
         $countries = [];
-
+        /*
         foreach ($this->countries as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
@@ -258,6 +258,7 @@ class SaleFilter extends Widget
                 'alias' => $obj['alias'],
             );
         }
+        */
 
         /**
          * Cities list
