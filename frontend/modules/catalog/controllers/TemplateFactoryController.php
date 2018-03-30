@@ -58,13 +58,13 @@ class TemplateFactoryController extends BaseController
         ];
 
         $this->breadcrumbs[] = [
-            'label' => $model['title'] . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere(),
+            'label' => $model['title'] . ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere(),
             'url' => ['/catalog/factory/view', 'alias' => $model['alias']]
         ];
 
         $this->title = Yii::t('app', 'Итальянская мебель') . ' ' .
-            $model['title'] .
-            Yii::t('app', ' купить в') . ' ' .
+            $model['title'] . ' ' .
+            Yii::t('app', 'купить в') . ' ' .
             Yii::$app->city->getCityTitleWhere() . ' ' .
             Yii::t('app', 'по лучшей цене');
 
@@ -93,7 +93,7 @@ class TemplateFactoryController extends BaseController
 
         $this->factory = $model;
 
-        $this->title = Yii::t('app', 'Партнеры сети MYARREDO в ') .
+        $this->title = Yii::t('app', 'Партнеры сети MYARREDO в') . ' ' .
             Yii::$app->city->getCityTitleWhere();
 
         return $this->render('contacts', [
@@ -129,8 +129,8 @@ class TemplateFactoryController extends BaseController
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
 
         $this->title = Yii::t('app', 'Каталог итальянской мебели') . ' ' .
-            $factory['title'] .
-            Yii::t('app', ' купить в') . ' ' .
+            $factory['title'] . ' ' .
+            Yii::t('app', 'купить в') . ' ' .
             Yii::$app->city->getCityTitleWhere() . ' ' .
             Yii::t('app', 'по лучшей цене');
 
@@ -196,7 +196,7 @@ class TemplateFactoryController extends BaseController
             ];
         }
 
-        $this->title = $model['lang']['title'] . Yii::t('app', '. Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
+        $this->title = $model['lang']['title'] . '. ' . Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
 
         return $this->render('/product/view', [
             'model' => $model,
@@ -265,8 +265,8 @@ class TemplateFactoryController extends BaseController
 
         $this->title = Yii::t('app', 'Sale') . ': ' .
             $model['lang']['title'] .
-            ' - ' . $model['price_new'] . ' ' . $model['currency'] .
-            Yii::t('app', ' - интернет-магазин Myarredo в') . ' ' .
+            ' - ' . $model['price_new'] . ' ' . $model['currency'] . ' - ' .
+            Yii::t('app', 'интернет-магазин Myarredo в') . ' ' .
             Yii::$app->city->getCityTitleWhere();
 
         Yii::$app->view->registerMetaTag([

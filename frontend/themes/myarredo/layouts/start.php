@@ -155,7 +155,7 @@ $bundle = AppAsset::register($this);
                     <div class="sm-title">НАШ МЕНЕДЖЕР ПОДБЕРЕТ МЕБЕЛЬ ПО ВАШИМ ПАРАМЕТРАМ</div>
 
                     <?= Html::a(
-                        'Контакты в ' . Yii::$app->city->getCityTitleWhere(),
+                        'Контакты в' . ' ' . Yii::$app->city->getCityTitleWhere(),
                         Url::toRoute('/page/contacts/index'),
                         ['class' => 'btn btn-default']
                     ); ?>

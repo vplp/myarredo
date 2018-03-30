@@ -40,7 +40,7 @@ $this->beginPage()
 
                 <?= Html::tag(
                     'h3',
-                    $this->context->factory['lang']['h1'] . ', '.Yii::t('app',' купить в') . ' ' . Yii::$app->city->getCityTitleWhere()
+                    $this->context->factory['lang']['h1'] . ', '.Yii::t('app','купить в') . ' ' . Yii::$app->city->getCityTitleWhere()
                 ); ?>
 
             </div>
@@ -70,7 +70,7 @@ $this->beginPage()
                     2015 - <?= date('Y'); ?> (С) <a href="/">MYARREDO</a>, ЛУЧШАЯ МЕБЕЛЬ ИЗ ИТАЛИИ ДЛЯ ВАШЕГО ДОМА
                 </div>
                 <div>
-                    <?= $this->context->factory['lang']['h1'] . ',' .Yii::t('app',' купить в'). ' ' . Yii::$app->city->getCityTitleWhere() ?>
+                    <?= $this->context->factory['lang']['h1'] . ', ' .Yii::t('app','купить в'). ' ' . Yii::$app->city->getCityTitleWhere() ?>
                 </div>
             </div>
         </div>
