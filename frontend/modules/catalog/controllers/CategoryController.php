@@ -128,7 +128,7 @@ class CategoryController extends BaseController
             ];
         }
 
-        $pageDescription[] = Yii::t('app','из Италии.');
+        $pageDescription[] = Yii::t('app','из Италии');
 
         if (!empty($params[$keys['style']])) {
             $models = Specification::findByAlias($params[$keys['style']]);
