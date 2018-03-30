@@ -137,13 +137,13 @@ class SaleController extends BaseController
         $this->title = Yii::t('app', 'Sale') . ': ' .
             $model['lang']['title'] .
             ' - '. $model['price_new'] . ' ' . $model['currency'] .
-            Yii::t('app',' - интернет-магазин Myarredo в ') .
+            ' - '. Yii::t('app','интернет-магазин Myarredo в') . ' ' .
             Yii::$app->city->getCityTitleWhere();
 
         Yii::$app->view->registerMetaTag([
             'name' => 'description',
             'content' => strip_tags($model['lang']['description']) .
-                Yii::t('app',' Купить в интернет-магазине Myarredo в') . ' ' .
+                ' ' . Yii::t('app','Купить в интернет-магазине Myarredo в') . ' ' .
                 Yii::$app->city->getCityTitleWhere()
         ]);
 
