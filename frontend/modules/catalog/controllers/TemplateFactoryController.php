@@ -227,7 +227,7 @@ class TemplateFactoryController extends BaseController
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
 
-        $this->title = Yii::t('app', 'Распродажа итальянской мебели');
+        $this->title = Yii::t('app', 'Распродажа итальянской мебели') . ' ' . $factory['title'];
 
         return $this->render('sale', [
             'factory' => $factory,
