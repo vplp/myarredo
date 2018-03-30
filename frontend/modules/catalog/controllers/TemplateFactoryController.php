@@ -9,7 +9,7 @@ use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Product, Factory, ProductStats, Sale
+    Collection, Product, Category, Factory, ProductStats, Sale, Types, Specification
 };
 use frontend\modules\user\models\User;
 
@@ -122,11 +122,16 @@ class TemplateFactoryController extends BaseController
         Yii::$app->catalogFilter->parserUrl();
 
         $keys = Yii::$app->catalogFilter->keys;
-        $params = Yii::$app->catalogFilter->params;
 
-        $params[$keys['factory']] = [$factory['alias']];
+        if (!isset(Yii::$app->catalogFilter->params[$keys['factory']])) {
+            Yii::$app->catalogFilter->setParam($keys['factory'], $factory['alias']);
+        }
 
-        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
+        $category = Category::getWithProduct(Yii::$app->catalogFilter->params);
+        $types = Types::getWithProduct(Yii::$app->catalogFilter->params);
+        $style = Specification::getWithProduct(Yii::$app->catalogFilter->params);
+
+        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, Yii::$app->catalogFilter->params));
 
         $this->title = Yii::t('app', 'Каталог итальянской мебели') . ' ' .
             $factory['title'] . '. ' .
@@ -135,6 +140,9 @@ class TemplateFactoryController extends BaseController
             Yii::t('app', 'по лучшей цене');
 
         return $this->render('catalog', [
+            'category' => $category,
+            'types' => $types,
+            'style' => $style,
             'factory' => $factory,
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),

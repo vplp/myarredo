@@ -4,6 +4,9 @@
  * @var $pages \yii\data\Pagination
  * @var $model \frontend\modules\catalog\models\Product
  */
+use frontend\modules\catalog\widgets\filter\{
+    ProductFilter
+};
 
 $this->title = $this->context->title;
 
@@ -15,7 +18,18 @@ $this->title = $this->context->title;
             <div class="cat-content">
                 <div class="row">
 
-                    <div class="col-md-12 col-lg-12">
+                    <div class="col-md-3 col-lg-3">
+
+                        <?= ProductFilter::widget([
+                            'route' => '/factory/'.$factory['alias'].'/catalog',
+                            'category' => $category,
+                            'types' => $types,
+                            'style' => $style,
+                        ]); ?>
+
+                    </div>
+
+                    <div class="col-md-9 col-lg-9">
                         <div class="cont-area">
 
                             <div class="cat-prod-wrap">
