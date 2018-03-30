@@ -129,7 +129,7 @@ class ProductController extends BaseController
             if ($item['specification']['parent_id'] == 4) {
                 $array[] = $item['specification']['lang']['title'] .
                     ': ' .
-                    $item['val'] . Yii::t('app',' см');
+                    $item['val'] . Yii::t('app','см');
             }
         }
 
