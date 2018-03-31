@@ -178,7 +178,7 @@ class CatalogFilter extends Component
         }
 
         if ($url !== '') {
-            return Url::toRoute(ArrayHelper::merge($route, ['filter' => $url]));
+            return Url::toRoute($route) . $url . '/';
         } else {
             return Url::toRoute($route);
         }
