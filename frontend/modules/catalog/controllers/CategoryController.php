@@ -182,6 +182,10 @@ class CategoryController extends BaseController
                 $noindex = 1;
             }
 
+            if (count($params) == 1 && count($params[$keys['factory']]) == 1) {
+                $noindex = 1;
+            }
+
             $pageTitle[] = implode(', ', $factory);
             $pageH1[] = implode(', ', $factory);
             $pageDescription[] = implode(', ', $factory);
@@ -215,11 +219,6 @@ class CategoryController extends BaseController
         }
 
         if ($noindex) {
-            Yii::$app->view->registerMetaTag([
-                'name' => 'robots',
-                'content' => 'noindex, follow',
-            ]);
-        } else if (isset($params[$keys['factory']]) && count($params) == 1 && count($params[$keys['factory']]) == 1) {
             Yii::$app->view->registerMetaTag([
                 'name' => 'robots',
                 'content' => 'noindex, follow',
