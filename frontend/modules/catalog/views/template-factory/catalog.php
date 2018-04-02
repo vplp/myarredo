@@ -4,6 +4,7 @@
  * @var $pages \yii\data\Pagination
  * @var $model \frontend\modules\catalog\models\Product
  */
+
 use frontend\modules\catalog\widgets\filter\{
     ProductFilter
 };
@@ -18,45 +19,49 @@ $this->title = $this->context->title;
             <div class="cat-content">
                 <div class="row">
 
-                    <div class="col-md-3 col-lg-3">
+                    <?php if (count($category) == 1 && count($types) == 1 && count($style) == 1): ?>
+                        <div class="col-md-12 col-lg-12">
+                    <?php else: ?>
+                        <div class="col-md-3 col-lg-3">
 
-                        <?= ProductFilter::widget([
-                            'route' => '/factory/'.$factory['alias'].'/catalog',
-                            'category' => $category,
-                            'types' => $types,
-                            'style' => $style,
-                        ]); ?>
+                            <?= ProductFilter::widget([
+                                'route' => '/factory/' . $factory['alias'] . '/catalog',
+                                'category' => $category,
+                                'types' => $types,
+                                'style' => $style,
+                            ]); ?>
 
-                    </div>
+                        </div>
 
-                    <div class="col-md-9 col-lg-9">
-                        <div class="cont-area">
 
-                            <div class="cat-prod-wrap">
-                                <div class="cat-prod">
+                        <div class="col-md-9 col-lg-9">
+                    <?php endif; ?>
 
-                                    <?php foreach ($models as $model) {
-                                        echo $this->render('/category/_list_item', [
-                                            'model' => $model,
-                                            'factory' => [$factory->id => $factory],
-                                        ]);
-                                    } ?>
+                            <div class="cont-area">
+                                <div class="cat-prod-wrap">
+                                    <div class="cat-prod">
 
-                                </div>
-                                <div class="pagi-wrap">
+                                        <?php foreach ($models as $model) {
+                                            echo $this->render('/category/_list_item', [
+                                                'model' => $model,
+                                                'factory' => [$factory->id => $factory],
+                                            ]);
+                                        } ?>
 
-                                    <?= frontend\components\LinkPager::widget([
-                                        'pagination' => $pages,
-                                    ]); ?>
+                                    </div>
+                                    <div class="pagi-wrap">
 
+                                        <?= frontend\components\LinkPager::widget([
+                                            'pagination' => $pages,
+                                        ]); ?>
+
+                                    </div>
                                 </div>
                             </div>
 
-                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-    </div>
 </main>
