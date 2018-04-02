@@ -196,6 +196,10 @@ class CategoryController extends BaseController
             ];
         }
 
+        if (count($params) > 2) {
+            $noindex = 1;
+        }
+
         $pageDescription[] = Yii::t('app','из Италии');
 
         /**
