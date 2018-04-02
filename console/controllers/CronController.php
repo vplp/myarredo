@@ -310,7 +310,7 @@ class CronController extends Controller
             ->where([
                 'mark' => '0',
             ])
-            ->limit(500)
+            ->limit(100)
             ->all();
 
         foreach ($models as $model) {
