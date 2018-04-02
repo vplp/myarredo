@@ -219,7 +219,7 @@ class CategoryController extends BaseController
                 'name' => 'robots',
                 'content' => 'noindex, follow',
             ]);
-        } else if (count($params) == 1 && count($params[$keys['factory']]) == 1) {
+        } else if (isset($params[$keys['factory']]) && count($params) == 1 && count($params[$keys['factory']]) == 1) {
             Yii::$app->view->registerMetaTag([
                 'name' => 'robots',
                 'content' => 'noindex, nofollow',

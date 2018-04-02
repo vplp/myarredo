@@ -4,9 +4,6 @@ use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
-use frontend\modules\catalog\models\{
-    Product, Category, Factory
-};
 
 ?>
 
@@ -20,13 +17,15 @@ use frontend\modules\catalog\models\{
 
         <div class="one-filter open">
 
-            <?= Html::a(
-                '<i class="fa fa-times" aria-hidden="true"></i>'. Yii::t('app', 'Сбросить фильтры'),
-                Url::toRoute([$route]),
-                ['class' => 'reset']
-            ) ?>
+            <?php if (count(Yii::$app->catalogFilter->params) > 1): ?>
+                <?= Html::a(
+                    '<i class="fa fa-times" aria-hidden="true"></i>' . Yii::t('app', 'Сбросить фильтры'),
+                    Url::toRoute([$route]),
+                    ['class' => 'reset']
+                ) ?>
+            <?php endif; ?>
 
-            <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app','Category') ?></a>
+            <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Category') ?></a>
 
             <div class="list-item">
 
@@ -34,7 +33,7 @@ use frontend\modules\catalog\models\{
                     $options = $item['checked'] ? ['class' => 'one-item selected'] : ['class' => 'one-item'];
 
                     echo Html::a(
-                        $item['title'] . ' (' . $item['count'].')',
+                        $item['title'] . ' (' . $item['count'] . ')',
                         $item['link'],
                         $options
                     );
@@ -46,7 +45,7 @@ use frontend\modules\catalog\models\{
 
         <?php if ($types): ?>
             <div class="one-filter open subject-filter">
-                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app','Предмет') ?></a>
+                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Предмет') ?></a>
                 <div class="list-item">
 
                     <?php foreach ($types as $item): ?>
@@ -54,7 +53,7 @@ use frontend\modules\catalog\models\{
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                            <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
+                        <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
                         <?= Html::endTag('a'); ?>
 
                     <?php endforeach; ?>
@@ -64,7 +63,7 @@ use frontend\modules\catalog\models\{
                 <?php if (count($types) > 10): ?>
                     <a href="javascript:void(0);" class="show-all-sub show-more" data-variant="Скрыть">
                         <i class="fa fa-plus" aria-hidden="true"></i>
-                        <span class="btn-text"><?= Yii::t('app','Показать все предметы') ?></span>
+                        <span class="btn-text"><?= Yii::t('app', 'Показать все предметы') ?></span>
                     </a>
                 <?php endif; ?>
 
@@ -73,7 +72,7 @@ use frontend\modules\catalog\models\{
 
         <?php if ($style): ?>
             <div class="one-filter open">
-                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app','Стиль') ?></a>
+                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Стиль') ?></a>
                 <div class="list-item">
 
                     <?php foreach ($style as $item): ?>
@@ -81,7 +80,7 @@ use frontend\modules\catalog\models\{
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                            <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
+                        <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
                         <?= Html::endTag('a'); ?>
 
                     <?php endforeach; ?>
@@ -92,7 +91,7 @@ use frontend\modules\catalog\models\{
 
         <?php if ($factory): ?>
             <div class="one-filter open">
-                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app','Фабрики') ?></a>
+                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Фабрики') ?></a>
                 <div class="list-item">
 
                     <?php foreach ($factory_first_show as $key => $item): ?>
@@ -100,13 +99,13 @@ use frontend\modules\catalog\models\{
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                            <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
+                        <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
                         <?= Html::endTag('a'); ?>
 
                     <?php endforeach; ?>
 
                     <a href="#" class="show-more" data-toggle="modal" data-target="#factory-modal">
-                        <i class="fa fa-plus" aria-hidden="true"></i><?= Yii::t('app','Показать еще') ?>
+                        <i class="fa fa-plus" aria-hidden="true"></i><?= Yii::t('app', 'Показать еще') ?>
                     </a>
 
                     <div id="factory-modal" class="modal fade" role="dialog">
@@ -115,16 +114,16 @@ use frontend\modules\catalog\models\{
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <?= Yii::t('app','Close') ?>
+                                    <?= Yii::t('app', 'Close') ?>
                                     <span aria-hidden="true">×</span>
                                 </button>
                                 <h3 class="text-center">
-                                    <?= Yii::t('app','Выбор фабрики') ?>
+                                    <?= Yii::t('app', 'Выбор фабрики') ?>
                                 </h3>
                                 <div class="alphabet-tab">
 
                                     <?php foreach ($factory as $letter => $val): ?>
-                                        <?= Html::a($letter,"javascript:void(0);"); ?>
+                                        <?= Html::a($letter, "javascript:void(0);"); ?>
                                     <?php endforeach; ?>
 
                                 </div>
@@ -137,7 +136,7 @@ use frontend\modules\catalog\models\{
                                                 <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                                                 <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                                                    <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
+                                                <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
                                                 <?= Html::endTag('a'); ?>
 
                                             <?php endforeach; ?>
