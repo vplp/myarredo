@@ -110,6 +110,12 @@ class Order extends OrderModel
      */
     public static function addNewOrder($cart, CartCustomerForm $customerForm)
     {
+        $session = Yii::$app->session;
+
+        $session->set('order_email', $customerForm['email']);
+        $session->set('order_phone', $customerForm['phone']);
+        $session->set('order_full_name', $customerForm['full_name']);
+
         // сначала добавляем покупателя и получаем его id
         $customer_id = self::addNewCustomer($customerForm);
 

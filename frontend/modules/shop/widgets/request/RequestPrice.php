@@ -27,6 +27,12 @@ class RequestPrice extends Widget
 
         $model->load(Yii::$app->getRequest()->post());
 
+        $session = Yii::$app->session;
+
+        $model->email = $session->get('order_email');
+        $model->phone = $session->get('order_phone');
+        $model->full_name = $session->get('order_full_name');
+
         return $this->render($this->view, [
             'model' => $model,
             'product_id' => $this->product_id,
