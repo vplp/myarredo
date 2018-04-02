@@ -292,7 +292,7 @@ class CatalogFilter extends Component
 
         if (!empty(self::$_structure['factory'])) {
             $model = Factory::findBase()
-                ->andFilterWhere(['IN', 'alias', self::$_structure['factory']])
+                ->andFilterWhere(['IN', Factory::tableName().'.alias', self::$_structure['factory']])
                 ->indexBy('id')
                 ->all();
 
@@ -311,7 +311,7 @@ class CatalogFilter extends Component
 
         if (!empty(self::$_structure['collection'])) {
             $model = Collection::findBase()
-                ->andWhere(['IN', 'id', self::$_structure['collection']])
+                ->andWhere(['IN', Collection::tableName() . '.id', self::$_structure['collection']])
                 ->indexBy('id')
                 ->all();
 
@@ -347,7 +347,7 @@ class CatalogFilter extends Component
             $model = City::findBase()
                 ->innerJoinWith(["country as country"], false)
                 ->andFilterWhere(['IN', 'country.alias', self::$_structure['country']])
-                ->andFilterWhere(['IN', City::tableName() .'.alias', self::$_structure['city']])
+                ->andFilterWhere(['IN', City::tableName() . '.alias', self::$_structure['city']])
                 ->indexBy('id')
                 ->all();
 

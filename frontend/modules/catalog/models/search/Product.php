@@ -68,10 +68,6 @@ class Product extends ProductModel
             ],
         ]);
 
-        $query->andWhere([
-            self::tableName() . '.removed' => '0'
-        ]);
-
         if (!($this->load($params, ''))) {
             return $dataProvider;
         }

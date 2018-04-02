@@ -192,6 +192,12 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->andFilterWhere(['IN', 'productSpecification.alias', $params[$keys['style']]]);
         }
 
+        if (isset($params[$keys['collection']])) {
+            $query
+                ->innerJoinWith(["product.collection productCollection"], false)
+                ->andFilterWhere(['IN', 'productCollection.id', $params[$keys['collection']]]);
+        }
+
         if (Yii::$app->request->get('show') == 'in_stock') {
             $query->andWhere([
                 Product::tableName() . '.in_stock' => '1'
@@ -376,7 +382,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 ON (collectionLang.rid = collection.id) AND (collectionLang.lang = :lang)
             INNER JOIN " . Product::tableName() . " product 
                 ON (product.collections_id = collection.id) 
-                AND (product.published = :published AND product.deleted = :deleted)
+                AND (product.published = :published AND product.deleted = :deleted AND product.removed = :removed)
             WHERE
                 product.factory_id = :id
             GROUP BY 
@@ -385,6 +391,7 @@ class Factory extends \common\modules\catalog\models\Factory
             ->bindValues([
                 ':published' => '1',
                 ':deleted' => '0',
+                ':removed' => '0',
                 ':id' => $id,
                 ':lang' => Yii::$app->language,
             ]);

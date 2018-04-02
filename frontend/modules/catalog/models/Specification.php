@@ -174,6 +174,12 @@ class Specification extends \common\modules\catalog\models\Specification
                 ->andFilterWhere(['IN', 'productFactory.alias', $params[$keys['factory']]]);
         }
 
+        if (isset($params[$keys['collection']])) {
+            $query
+                ->innerJoinWith(["product.collection productCollection"], false)
+                ->andFilterWhere(['IN', 'productCollection.id', $params[$keys['collection']]]);
+        }
+
         if (Yii::$app->request->get('show') == 'in_stock') {
             $query->andWhere([
                 Product::tableName() . '.in_stock' => '1'
