@@ -13,6 +13,8 @@ use common\modules\catalog\Catalog;
  *
  * @property integer $id
  * @property integer $user_id
+ * @property string $ip
+ * @property string $http_user_agent
  * @property integer $product_id
  * @property integer $city_id
  * @property integer $created_at
@@ -54,6 +56,8 @@ class ProductStats extends ActiveRecord
     public function rules()
     {
         return [
+            [['ip'], 'string', 'max' => 45],
+            [['http_user_agent'], 'string', 'max' => 512],
             [
                 [
                     'user_id',
@@ -76,6 +80,8 @@ class ProductStats extends ActiveRecord
         return [
             'frontend' => [
                 'user_id',
+                'id',
+                'http_user_agent',
                 'product_id',
                 'city_id',
             ],
@@ -90,6 +96,8 @@ class ProductStats extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User'),
+            'id',
+            'http_user_agent',
             'product_id' => Yii::t('app', 'Product'),
             'city_id' => Yii::t('app', 'City'),
             'created_at' => Yii::t('app', 'Create time'),
