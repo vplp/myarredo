@@ -48,9 +48,9 @@ use frontend\modules\user\widgets\partner\PartnerInfo;
 
                 <div class="copy">
                     <div class="copy-slogan">
-                        2015 - <?= date('Y'); ?> (с) MyArredo, лучшая мебель из италии для вашего дома
+                        2015 - <?= date('Y'); ?> (с) <?= Yii::t('app','MyArredo, лучшая мебель из италии для вашего дома') ?>
                     </div>
-                    <div class="fund">Программирование сайта - <a href="http://www.vipdesign.com.ua/" rel="nofollow">VipDesign</a>
+                    <div class="fund"><?= Yii::t('app','Программирование сайта') ?>' - <a href="http://www.vipdesign.com.ua/" rel="nofollow">VipDesign</a>
                     </div>
                 </div>
             </div>
