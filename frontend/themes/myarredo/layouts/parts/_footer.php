@@ -83,12 +83,3 @@ use frontend\modules\user\widgets\partner\PartnerInfo;
     __cs.push(["setCsAccount", "KNKIlw22peShQSsYcaBCDumFwgrDNrWx"]);
 </script>
 <script type="text/javascript" async src="//app.comagic.ru/static/cs.min.js"></script>
-
-<?php /*
-<div id="google_translate_element"></div><script type="text/javascript">
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'ru', includedLanguages: 'it', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT, autoDisplay: false, multilanguagePage: true}, 'google_translate_element');
-    }
-</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
- */ ?>
-
