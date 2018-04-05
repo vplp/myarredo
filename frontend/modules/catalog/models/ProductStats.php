@@ -19,6 +19,7 @@ class ProductStats extends \common\modules\catalog\models\ProductStats
 
         $model->user_id = Yii::$app->getUser()->id ?? 0;
         $model->ip = Yii::$app->request->userIP;
+        $model->is_bot = self::isBot2();
         $model->http_user_agent = $_SERVER['HTTP_USER_AGENT'];
         $model->city_id = Yii::$app->city->getCityId();
         $model->product_id = $product_id;

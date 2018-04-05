@@ -14,6 +14,7 @@ use common\modules\catalog\Catalog;
  * @property integer $id
  * @property integer $user_id
  * @property string $ip
+ * @property integer $is_bot
  * @property string $http_user_agent
  * @property integer $product_id
  * @property integer $city_id
@@ -57,6 +58,7 @@ class ProductStats extends ActiveRecord
     {
         return [
             [['ip'], 'string', 'max' => 45],
+            [['is_bot'], 'in', 'range' => [0, 1]],
             [['http_user_agent'], 'string', 'max' => 512],
             [
                 [
@@ -68,7 +70,7 @@ class ProductStats extends ActiveRecord
                 ],
                 'integer'
             ],
-            [['position'], 'default', 'value' => 0]
+            [['is_bot'], 'default', 'value' => 0]
         ];
     }
 
@@ -81,6 +83,7 @@ class ProductStats extends ActiveRecord
             'frontend' => [
                 'user_id',
                 'id',
+                'is_bot',
                 'http_user_agent',
                 'product_id',
                 'city_id',
@@ -97,6 +100,7 @@ class ProductStats extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User'),
             'id',
+            'is_bot',
             'http_user_agent',
             'product_id' => Yii::t('app', 'Product'),
             'city_id' => Yii::t('app', 'City'),
