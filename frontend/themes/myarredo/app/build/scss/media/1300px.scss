@@ -1,0 +1,32 @@
+@media (max-width: 1300px) {
+  .header {
+    .search-cont {
+      min-width: 208px;
+      .search-group {
+        width: 208px;
+      }
+    }
+    .bot-header {
+      .navigation {
+        a {
+          font-size: 14px;
+        }
+        .list-level {
+          padding: 40px 70px 45px;
+          a {
+            font-size: 14px;
+          }
+          li {
+            width: 250px;
+            margin-right: 12%;
+            .img-cont {
+              height: 21px;
+              width: 21px;
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

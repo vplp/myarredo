@@ -4,7 +4,6 @@ var gulp = require('gulp'), //Відповідно сам gulp
     rename = require("gulp-rename"), //Перейменування файлів
     sourcemaps = require('gulp-sourcemaps'), //Робота з переліком файлів
     watch = require('gulp-watch'); //Наглядачі
-    gulpCopy = require('gulp-file-copy');
 
 //Сервер для розробки
 var cached = require('gulp-cached'), //Кешування файлів для прискорення обробки в память
@@ -47,8 +46,9 @@ var jshint = require('gulp-jshint'), //Перевірка JS
 var dev_patches = {
     'js': ['./build/js/*'],
     'font': ['./build/font/*'],
+    'less': ['./build/less/**/*.less'],
     'scss': ['./build/scss/**/*.scss'],
-    'css': ['./build/css/**/*.css'],
+    'css': ['./build/css/template-style.css'],
     'css-base': './build/css/',
     'images-jpg': ['./build/img/**/*.jpg', './build/img/*.jpg'],
     'images-svg': ['./build/img/**/*.svg'],
@@ -72,8 +72,8 @@ var build_patches_copy_list = {
 };
 
 //build yii patches
-//Для копіювання то теми фреймворку
-var yii_base_path = './frontend/themes/default/web';
+//Для копіювання до теми фреймворку
+var yii_base_path = '../web';
 var yii_patches = {
     'images': yii_base_path + '/img/',
     'js': yii_base_path + '/js/',
@@ -86,28 +86,18 @@ var yii_patches = {
 
 // [ ПРОГРАМА ]
 // [ НАЛАШТУВАННЯ SERVER ]
-// Rerun the task when a file changes 
+// Rerun the task when a file changes
 gulp.task('watch', function () {
     gulp.watch(dev_patches['js'], ['scripts']);
     gulp.watch(dev_patches['images'], ['images']);
-    gulp.watch(dev_patches['css'], ['concat']);
     gulp.watch(dev_patches['css'], ['minify-css']);
     gulp.watch(dev_patches['scss'], ['scss']);
     gulp.watch(dev_patches['less'], ['less']);
     gulp.watch(dev_patches['font'], ['font']);
 });
 
-gulp.task('watch-lend', function () {
-    gulp.watch(dev_patches['js'], ['scripts']);
-    gulp.watch(dev_patches['images'], ['images']);
-    //gulp.watch(dev_patches['css'], ['minify-css']);
-    gulp.watch(dev_patches['scss'], ['scss']);
-    gulp.watch(dev_patches['less'], ['less']);
-    gulp.watch(dev_patches['font'], ['font']);
-});
-
-// The default task (called when you run `gulp` from cli) 
-gulp.task('default', ['watch', 'scss', 'less', 'scripts', 'images', 'minify-css', 'minify-js']);
+// The default task (called when you run `gulp` from cli)
+gulp.task('default', ['watch', 'scss', 'less', 'scripts', 'images', 'minify-css']);
 //'webserver', 'livereload', 'base64'
 //------------------------------------------------------------------------
 
@@ -191,6 +181,18 @@ gulp.task('compass', function () {
 
 //------------------------------------------------------------------------
 
+// [ ОБРОБКА LESS ]
+gulp.task('less', function () {
+    return gulp.src(dev_patches['less'])
+        .pipe(sourcemaps.init())
+        .pipe(less())
+        .pipe(sourcemaps.write())
+        .pipe(rename({suffix: '.less'}))
+        .pipe(gulp.dest(dev_patches['css-base']));
+});
+
+//------------------------------------------------------------------------
+
 // [ ОБРОБКА SASS ]
 //['lintSCSS']
 gulp.task('scss', function () {
@@ -198,15 +200,8 @@ gulp.task('scss', function () {
         .pipe(sourcemaps.init())
         .pipe(scss())
         .pipe(sourcemaps.write())
-        .pipe(rename({suffix: '.scss'}))
-        .pipe(gulp.dest(dev_patches['css-base']))
-        .pipe(gulp.dest(build_patches['css']));
-});
-
-gulp.task('concat', function() {
-    return gulp.src(dev_patches['css'])
-        .pipe(concat('main.scss.css'))
-        .pipe(gulp.dest(build_patches['css']));
+        .pipe(rename({suffix: ''}))
+        .pipe(gulp.dest(dev_patches['css-base']));
 });
 
 // [ ПЕРЕВІРКА КОДУ SCSS ]
@@ -223,7 +218,8 @@ gulp.task('lintSCSS', function () {
 // [ ОБРОБКА CSS ]
 //Мінімізація CSS файлів
 gulp.task('minify-css', function () {
-    return gulp.src("./public/css/main.scss.css")
+    return gulp.src(dev_patches['css'])
+    //.pipe(cssBase64())
         .pipe(rename({
             'suffix': '.min'
         }))
@@ -232,7 +228,6 @@ gulp.task('minify-css', function () {
         .pipe(gulp.dest(build_patches['css']))
         .pipe(connect.reload());
 });
-
 
 // [ ПЕРЕВІРКА КОДУ CSS ]
 gulp.task('lintCSS', function () {
@@ -250,18 +245,19 @@ gulp.task('lintCSS', function () {
 // [ COMMON JS TASK ]
 gulp.task('scripts', ['minify-js', 'lintJS'], function () {
     return gulp.src(dev_patches['js'])
-        .pipe(concat('core.js'))
+        .pipe(remember('lintingJS'))
+        .pipe(concat('main.js'))
         .on('error', console.log)
         .pipe(gulp.dest(build_patches['js']));
 });
 
 // [ МІНІФІКАЦІЯ JS ]
 gulp.task('minify-js', function () {
-    return gulp.src('./public/js/core.js')
-        .pipe(rename('core.min.js'))
+    return gulp.src(build_patches['scripts'] + 'main.js')
+        .pipe(rename(build_patches['scripts'] + 'main.min.js'))
         .pipe(uglify())
         .on('error', console.log)
-        .pipe(gulp.dest('./public/js'));
+        .pipe(gulp.dest('.'));
 });
 
 // [ ПЕРЕВІРКА КОДУ JS ]
@@ -273,26 +269,17 @@ gulp.task('lintJS', function () {
         .pipe(jshint.reporter('jshint-stylish'));
 });
 //------------------------------------------------------------------------
-gulp.task('copy', function() {
-    var start = 'build/img'
-    gulp.src(start)
-        .pipe(gulpCopy('public/img', {
-            start: start
-        }))
 
-});
 // [ ОБРОБКА ЗОБРАЖЕНЬ ]
 gulp.task('images', ['image-jpg', 'image-png', 'image-svg']);
 
 // [ ОБРОБКА JPG ]
-/*
 gulp.task('image-jpg', function () {
     return gulp.src(dev_patches['images-jpg'])
-        .pipe(imageminJpegtran({progressive: true})())
-         .on('error', console.log)
+    // .pipe(imageminJpegtran({progressive: true})())
+    // .on('error', console.log)
         .pipe(gulp.dest(build_patches['images']));
 });
-*/
 
 // [ ОБРОБКА PNG ]
 gulp.task('image-png', function () {
@@ -319,7 +306,7 @@ gulp.task('image-svg', function () {
 
 // [ ПЕРЕВІРКА КОДУ HTML ]
 gulp.task('lintHTML', function () {
-    return gulp.src('./src/*.html')
+    return gulp.src('./build/*.html')
         .pipe(cache('lintingHTML'))
         // if flag is not defined default value is 'auto'
         .pipe(jshint.extract('auto|always|never'))

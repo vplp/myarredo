@@ -234,5 +234,15 @@
       }
     }
   }
+}
 
+/*--Новые стили--*/
+
+@media screen and (max-width: 768px) {
+  .header {
+    display: none;
+  }
+  .mobile-header {
+    display: flex;
+  }
 }

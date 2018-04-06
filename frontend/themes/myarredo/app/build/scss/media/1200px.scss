@@ -143,3 +143,82 @@
     }
   }
 }
+
+/*--Новые стили --*/
+
+@media screen and (max-width: 1200px) {
+  .header {
+    .top-header {
+      .phone {
+        font-size: 12px;
+      }
+      .descr {
+        font-size: 8px;
+      }
+    }
+    .phone-num {
+      padding-right: 15px;
+      .fa {
+        font-size: 18px;
+        margin-right: 10px;
+      }
+    }
+    .back-call {
+      padding: 0 10px 0 10px;
+      font-size: 12px;
+      .fa {
+        font-size: 18px;
+      }
+    }
+    .select-city {
+      .fa {
+        font-size: 18px;
+      }
+      .js-select-city {
+        padding: 0 10px 0 10px;
+        font-size: 12px;
+      }
+    }
+    .wishlist {
+      padding: 0 20px;
+      font-size: 12px;
+    }
+    .sign-in {
+      padding: 0 20px;
+      font-size: 13px;
+    }
+    .company-logo {
+      width: 80px;
+    }
+    .logo {
+      max-width: 160px;
+      min-width: 160px;
+    }
+    .bot-header {
+      .navigation {
+        a {
+          font-size: 12px;
+          padding: 10px 10px;
+        }
+        .list-level {
+          padding: 25px 40px 30px;
+          li {
+            width: 220px;
+            height: 30px;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+    .search-cont {
+      width: 175px;
+      min-width: 175px;
+      .search-group {
+        width: 175px;
+        input {
+          width: calc( 100% - 32px );
+        }
+      }
+    }
+  }
+}

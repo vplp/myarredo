@@ -290,3 +290,52 @@
     }
   }
 }
+/*--Новые стили--*/
+@media screen and (max-width: 992px) {
+  .header {
+    .wishlist {
+      font-size: 0;
+      padding: 0 13px;
+      .fa {
+        margin-right: 0;
+      }
+    }
+    .back-call {
+      font-size: 0;
+      .fa {
+        font-size: 20px;
+      }
+    }
+    .sign-in {
+      font-size: 0;
+      background: rgba(240,240,240,0.9);
+      padding: 0 12px;
+      .fa {
+        margin-right: 0;
+      }
+    }
+    .search-cont {
+      display: none;
+    }
+    .logo {
+      max-width: 140px;
+      min-width: 140px;
+    }
+    .bot-header {
+      .navigation {
+        .list-level {
+          li {
+            width: 185px;
+            margin-right: 8%;
+            .img-cont {
+              margin-right: 5px;
+            }
+          }
+          a {
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}

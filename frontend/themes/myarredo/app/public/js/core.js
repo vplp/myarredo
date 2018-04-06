@@ -491,3 +491,17 @@ $(document).ready(function(){
         });
     }
 })();
+
+$(document).ready(function(){
+    $('.js-has-list').hover(function(){
+        console.log('hover2');
+        $(this).find('.list-level-wrap').fadeIn(100);
+    }, function(){
+        console.log('hover');
+        $(this).find('.list-level-wrap').fadeOut(80);
+    });
+
+    $('.js-select-city').on('click', function(){
+
+    });
+});
