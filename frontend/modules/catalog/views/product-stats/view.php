@@ -6,6 +6,8 @@ use yii\helpers\Html;
  * @var \frontend\modules\catalog\models\Product $model
  */
 
+$this->title = $this->context->title;
+
 ?>
 
 <main>
@@ -21,6 +23,12 @@ use yii\helpers\Html;
                 </div>
 
                 <div class="col-md-12">
+
+                    <?= $this->render('_form_filter', [
+                        'model' => $modelProductStatsDays,
+                        'params' => $params,
+                    ]); ?>
+
                     <table border="1">
                         <tr>
                             <td>город</td>

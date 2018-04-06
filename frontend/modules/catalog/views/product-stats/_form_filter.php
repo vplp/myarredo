@@ -30,14 +30,14 @@ HTML;
 
 <?php $form = ActiveForm::begin([
     'method' => 'get',
-    'action' => Url::toRoute(['/catalog/product-stats/list']),
+    'action' => Yii::$app->request->url,
     'id' => 'form-stats',
     'options' => [
         'class' => 'form-filter-date-cont flex'
     ]
 ]); ?>
 
-<?php if (Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
+<?php if (Yii::$app->getUser()->getIdentity()->group->role == 'admin' && isset($params['factory_id'])): ?>
     <div class="form-group">
         <?= Select2::widget([
             'name' => 'factory_id',
