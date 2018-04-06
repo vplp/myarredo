@@ -6,19 +6,17 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 //
-use frontend\modules\location\models\City;
 use frontend\modules\catalog\models\{
-    ProductStats as ProductStatsModel
+    ProductStatsDays as ProductStatsModel
 };
 
 /**
- * Class ProductStats
+ * Class ProductStatsDays
  *
  * @package frontend\modules\catalog\models\search
  */
-class ProductStats extends ProductStatsModel
+class ProductStatsDays extends ProductStatsModel
 {
-    public $factory_id;
     public $start_date;
     public $end_date;
 
@@ -28,7 +26,7 @@ class ProductStats extends ProductStatsModel
     public function rules()
     {
         return [
-            [['city_id', 'factory_id'], 'integer'],
+            [['product_id', 'country_id', 'city_id', 'factory_id'], 'integer'],
             [['start_date', 'end_date'], 'string', 'max' => 10],
         ];
     }
@@ -60,31 +58,21 @@ class ProductStats extends ProductStatsModel
             ],
         ]);
 
-        if (!($this->load($params, '') /*&& $this->validate()*/)) {
+        if (!($this->load($params, ''))) {
             return $dataProvider;
         }
         
         if (isset($params['factory_id']) && $params['factory_id'] > 0) {
-            $query->andWhere([Product::tableName() . '.factory_id' => $params['factory_id']]);
+            $query->andWhere([self::tableName() . '.factory_id' => $params['factory_id']]);
         }
 
-        if (isset($params['country_id']) && $params['country_id'] > 0 && !$params['city_id']) {
-
-            $model = City::findAll(['country_id' => $params['country_id']]);
-
-            if ($model != null) {
-                foreach ($model as $city) {
-                    $city_id[] = $city['id'];
-                }
-                $query->andFilterWhere(['IN', self::tableName() . '.city_id', $city_id]);
-            }
-        } elseif (isset($params['city_id']) && $params['city_id'] > 0) {
-            $query->andFilterWhere(['IN', self::tableName() . '.city_id', $params['city_id']]);
+        if (isset($params['product_id']) && $params['product_id'] > 0) {
+            $query->andWhere([self::tableName() . '.product_id' => $params['product_id']]);
         }
 
         if (isset($params['start_date']) && $params['start_date'] != '' && isset($params['end_date']) && $params['end_date'] != '') {
-            $query->andWhere(['>=', self::tableName() . '.created_at', strtotime($params['start_date'] . ' 0:00')]);
-            $query->andWhere(['<=', self::tableName() . '.created_at', strtotime($params['end_date'] . ' 23:59')]);
+            $query->andWhere(['>=', self::tableName() . '.date', strtotime($params['start_date'] . ' 0:00')]);
+            $query->andWhere(['<=', self::tableName() . '.date', strtotime($params['end_date'] . ' 23:59')]);
         }
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
