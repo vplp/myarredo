@@ -42,8 +42,6 @@ class m180405_145150_create_catalog_product_stats_days_table extends Migration
             'updated_at' => $this->integer(11)->unsigned()->notNull()->defaultValue(0),
         ]);
 
-        $this->createIndex('product_city_date', $this->table, ['product_id', 'city_id', 'date'], true);
-
         $this->createIndex('idx-product_id', $this->table, 'product_id');
         $this->createIndex('idx-factory_id', $this->table, 'factory_id');
         $this->createIndex('idx-country_id', $this->table, 'country_id');
@@ -56,8 +54,6 @@ class m180405_145150_create_catalog_product_stats_days_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropIndex('product_city_date', $this->table);
-
         $this->dropIndex('idx-product_id', $this->table);
         $this->dropIndex('idx-factory_id', $this->table);
         $this->dropIndex('idx-country_id', $this->table);

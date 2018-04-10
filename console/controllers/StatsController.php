@@ -18,35 +18,38 @@ use frontend\modules\catalog\models\{
  */
 class StatsController extends Controller
 {
-    public function actionIndex($time = 0)
+    public function actionIndex()
     {
         $this->stdout("Start. \n", Console::FG_GREEN);
 
-        $timestamp = ($time)
-            ? strtotime($time)
-            : strtotime(date('d-m-Y', time() - 60 * 60 * 24));
-
-        $params = [];
-
-        $params['start_date'] = date('d-m-Y', $timestamp);
-        $params['end_date'] = date('d-m-Y', $timestamp);
+        // UPDATE `fv_catalog_item_stats` SET `mark`='0' WHERE `mark`='1'
 
         $data = ProductStats::find()
-            ->select([
-                ProductStats::tableName() . '.product_id',
-                ProductStats::tableName() . '.city_id',
-                'count(' . ProductStats::tableName() . '.product_id) as views',
-            ])
             ->innerJoinWith(["product"])
-            ->andWhere(['>=', ProductStats::tableName() . '.created_at', strtotime($params['start_date'] . ' 0:00')])
-            ->andWhere(['<=', ProductStats::tableName() . '.created_at', strtotime($params['end_date'] . ' 23:59')])
-            ->groupBy(ProductStats::tableName() . '.product_id, ' . ProductStats::tableName() . '.city_id')
-            ->orderBy('views DESC')
-            ->asArray()
+            ->where([
+                ProductStats::tableName().'.mark' => '0',
+            ])
+            ->limit(500)
             ->all();
 
         foreach ($data as $item) {
-            $model = new ProductStatsDays();
+
+            $timestamp = strtotime(date('d-m-Y', $item['created_at']));
+            $date = mktime(0, 0, 0, date("m", $timestamp), date("d", $timestamp), date("Y", $timestamp));
+
+            $model = ProductStatsDays::find()
+                ->andWhere([
+                    'product_id' => $item['product_id'],
+                    'city_id' => $item['city_id'],
+                    'factory_id' => $item['product']['factory_id'],
+                    'city_id' => $item['city_id'],
+                    'date' => $date,
+                ])
+                ->one();
+
+            if ($model == null) {
+                $model = new ProductStatsDays();
+            }
 
             $model->setScenario('frontend');
 
@@ -54,13 +57,15 @@ class StatsController extends Controller
             $model->factory_id = $item['product']['factory_id'];
             $model->country_id = 0;
             $model->city_id = $item['city_id'];
-            $model->views = $item['views'];
-            $model->requests = 0;
-            $model->date = mktime(0, 0, 0, date("m", $timestamp), date("d", $timestamp), date("Y", $timestamp));
+            $model->date = $date;
 
-            $model->save();
+            $model->views = $model->views + 1;
 
-            $this->stdout($item['product_id'] . ' ' . $item['city_id'] . ' ' . $item['views'] . "\n", Console::FG_GREEN);
+            if($model->save()) {
+                $item->setScenario('setMark');
+                $item->mark = '1';
+                $item->save();
+            }
         }
 
         $this->stdout("Finish. \n", Console::FG_GREEN);

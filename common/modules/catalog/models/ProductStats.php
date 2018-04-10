@@ -20,6 +20,7 @@ use common\modules\catalog\Catalog;
  * @property integer $city_id
  * @property integer $created_at
  * @property integer $updated_at
+ * @property integer $mark
  *
  * @package common\modules\catalog\models
  */
@@ -58,7 +59,7 @@ class ProductStats extends ActiveRecord
     {
         return [
             [['ip'], 'string', 'max' => 45],
-            [['is_bot'], 'in', 'range' => [0, 1]],
+            [['is_bot', 'mark'], 'in', 'range' => [0, 1]],
             [['http_user_agent'], 'string', 'max' => 512],
             [
                 [
@@ -80,9 +81,9 @@ class ProductStats extends ActiveRecord
     public function scenarios()
     {
         return [
+            'setMark' => ['mark'],
             'frontend' => [
                 'user_id',
-                'id',
                 'is_bot',
                 'http_user_agent',
                 'product_id',
@@ -106,6 +107,7 @@ class ProductStats extends ActiveRecord
             'city_id' => Yii::t('app', 'City'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
+            'mark',
         ];
     }
 
@@ -125,11 +127,11 @@ class ProductStats extends ActiveRecord
         return self::find()
             ->select([
                 self::tableName() . '.product_id',
-                'count(' . self::tableName() . '.product_id) as views'
+                'count(' . self::tableName() . '.product_id) as count'
             ])
             ->innerJoinWith(["product"])
             ->innerJoinWith(["product.lang"])
             ->groupBy(self::tableName() . '.product_id')
-            ->orderBy('views DESC');
+            ->orderBy('count DESC');
     }
 }
