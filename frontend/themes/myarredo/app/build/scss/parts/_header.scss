@@ -424,6 +424,7 @@
     align-items: center;
     color: #FFFFFF;
     font-size: 19px;
+    cursor: pointer;
   }
   .search-btn {
     height: 50%;
@@ -476,6 +477,7 @@
     border-left: 1px solid #BDBCB3;
     border-bottom: 1px solid #BDBCB3;
     background: #FFFFFF;
+    display: none;
     .stripe {
       height: 40px;
       border-bottom: 1px solid #BDBCB3;
@@ -488,6 +490,7 @@
         align-items: center;
         padding: 0 9px;
         border-right: 1px solid #BDBCB3;
+        text-decoration: none;
         .fa-sign-in {
           color: #BEBDB4;
           font-size: 18px;
