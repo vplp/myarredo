@@ -19,7 +19,7 @@ use frontend\modules\catalog\models\Product;
 
         <?= Html::img(Product::getImageThumb($model['product']['image_link'])) ?>
 
-        <div class="brand"><?= $model->count ?></div>
+        <div class="brand"><?= $model['views'] ?></div>
 
     </div>
 

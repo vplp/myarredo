@@ -56,7 +56,7 @@ class ProductStatsController extends BaseController
      * @throws \Exception
      * @throws \Throwable
      */
-    public function actionList()
+    public function actionListOld()
     {
         $model = new ProductStats();
 
@@ -107,7 +107,7 @@ class ProductStatsController extends BaseController
      * @throws \Exception
      * @throws \Throwable
      */
-    public function actionListNew()
+    public function actionList()
     {
         $model = new ProductStatsDays();
 
