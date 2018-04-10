@@ -48,9 +48,9 @@ use frontend\modules\user\widgets\partner\PartnerInfo;
 
                 <div class="copy">
                     <div class="copy-slogan">
-                        2015 - <?= date('Y'); ?> (с) MyArredo, лучшая мебель из италии для вашего дома
+                        2015 - <?= date('Y'); ?> (с) <?= Yii::t('app','MyArredo, лучшая мебель из италии для вашего дома') ?>
                     </div>
-                    <div class="fund">Программирование сайта - <a href="http://www.vipdesign.com.ua/" rel="nofollow">VipDesign</a>
+                    <div class="fund"><?= Yii::t('app','Программирование сайта') ?>' - <a href="http://www.vipdesign.com.ua/" rel="nofollow">VipDesign</a>
                     </div>
                 </div>
             </div>
@@ -83,12 +83,3 @@ use frontend\modules\user\widgets\partner\PartnerInfo;
     __cs.push(["setCsAccount", "KNKIlw22peShQSsYcaBCDumFwgrDNrWx"]);
 </script>
 <script type="text/javascript" async src="//app.comagic.ru/static/cs.min.js"></script>
-
-<?php /*
-<div id="google_translate_element"></div><script type="text/javascript">
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'ru', includedLanguages: 'it', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT, autoDisplay: false, multilanguagePage: true}, 'google_translate_element');
-    }
-</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
- */ ?>
-

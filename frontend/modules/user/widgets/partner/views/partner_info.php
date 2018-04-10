@@ -20,10 +20,6 @@ use yii\helpers\Html;
         <i class="fa fa-phone" aria-hidden="true"></i><?= $phone ?>
     </div>
 
-    <?php if (Yii::$app->city->domain == 'ru'): ?>
-        <div class="after-tel-text"><?= Yii::t('app','Бесплатно по всей России') ?></div>
-    <?php endif; ?>
-
     <div class="tel">
         <i class="fa" aria-hidden="true"></i><?= $email ?>
     </div>

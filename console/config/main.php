@@ -76,6 +76,9 @@ return ArrayHelper::merge(
             'cron' => [
                 'class' => \console\controllers\CronController::class,
             ],
+            'stats' => [
+                'class' => \console\controllers\StatsController::class,
+            ],
             'send-pulse' => [
                 'class' => \console\controllers\SendPulseController::class,
             ],

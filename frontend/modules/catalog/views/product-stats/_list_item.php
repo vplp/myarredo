@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use frontend\modules\catalog\models\Product;
 
 /**
@@ -10,20 +11,20 @@ use frontend\modules\catalog\models\Product;
 ?>
 
 <?= Html::beginTag('a', [
-    'href' => '#',
+    'href' => Url::toRoute(['/catalog/product-stats/view', 'id' => $model['product']['id']]),
     'class' => 'one-prod-tile'
 ]); ?>
 
     <div class="img-cont">
 
-        <?= Html::img(Product::getImageThumb($model['product']['image_link'])); ?>
+        <?= Html::img(Product::getImageThumb($model['product']['image_link'])) ?>
 
-        <div class="brand"><?= $model['count']; ?></div>
+        <div class="brand"><?= $model->count ?></div>
 
     </div>
 
     <div class="item-infoblock">
-        <?= Product::getStaticTitle($model['product']); ?>
+        <?= Product::getStaticTitle($model['product']) ?>
     </div>
 
 <?= Html::endTag('a'); ?>

@@ -63,6 +63,12 @@ class CategoryController extends BaseController
 
         $this->seo();
 
+        if (empty($models->getModels())) {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'robots',
+                'content' => 'noindex, nofollow',
+            ]);
+        }
         return $this->render('list', [
             'group' => $group,
             'category' => $category,

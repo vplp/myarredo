@@ -2,6 +2,7 @@
 
 namespace common\modules\catalog\models;
 
+use common\modules\location\models\City;
 use Yii;
 //
 use thread\app\base\models\ActiveRecord;
@@ -9,22 +10,22 @@ use thread\app\base\models\ActiveRecord;
 use common\modules\catalog\Catalog;
 
 /**
- * Class ProductStats
+ * Class ProductStatsDays
  *
  * @property integer $id
- * @property integer $user_id
- * @property string $ip
- * @property integer $is_bot
- * @property string $http_user_agent
  * @property integer $product_id
+ * @property integer $factory_id
+ * @property integer $country_id
  * @property integer $city_id
+ * @property integer $views
+ * @property integer $requests
+ * @property integer $date
  * @property integer $created_at
  * @property integer $updated_at
- * @property integer $mark
  *
  * @package common\modules\catalog\models
  */
-class ProductStats extends ActiveRecord
+class ProductStatsDays extends ActiveRecord
 {
     public $count;
 
@@ -41,7 +42,7 @@ class ProductStats extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%catalog_item_stats}}';
+        return '{{%catalog_item_stats_days}}';
     }
 
     /**
@@ -58,21 +59,38 @@ class ProductStats extends ActiveRecord
     public function rules()
     {
         return [
-            [['ip'], 'string', 'max' => 45],
-            [['is_bot', 'mark'], 'in', 'range' => [0, 1]],
-            [['http_user_agent'], 'string', 'max' => 512],
             [
                 [
-                    'user_id',
                     'product_id',
+                    'factory_id',
+                    'country_id',
                     'city_id',
+                    'views',
+                    'requests',
+                    'date',
                     'create_time',
                     'update_time'
                 ],
                 'integer'
             ],
-            [['is_bot'], 'default', 'value' => 0]
+            //[['product_id', 'city_id', 'date'], 'validateProductCityDate', 'on' => 'frontend'],
+            [['views', 'requests'], 'default', 'value' => 0]
         ];
+    }
+
+    public function validateProductCityDate()
+    {
+        $data = self::find()
+            ->andWhere(['product_id' => $this->product_id])
+            ->andWhere(['city_id' => $this->city_id])
+            ->andWhere(['date' => $this->date])
+            ->one();
+
+        if ($data != null) {
+            $this->addError('product_id', Yii::t('yii', '{attribute} "{value}" has already been taken.'));
+            $this->addError('city_id', Yii::t('yii', '{attribute} "{value}" has already been taken.'));
+            $this->addError('date', Yii::t('yii', '{attribute} "{value}" has already been taken.'));
+        }
     }
 
     /**
@@ -81,13 +99,14 @@ class ProductStats extends ActiveRecord
     public function scenarios()
     {
         return [
-            'setMark' => ['mark'],
             'frontend' => [
-                'user_id',
-                'is_bot',
-                'http_user_agent',
                 'product_id',
+                'factory_id',
+                'country_id',
                 'city_id',
+                'views',
+                'requests',
+                'date',
             ],
         ];
     }
@@ -99,15 +118,15 @@ class ProductStats extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User'),
-            'id',
-            'is_bot',
-            'http_user_agent',
-            'product_id' => Yii::t('app', 'Product'),
-            'city_id' => Yii::t('app', 'City'),
+            'product_id',
+            'factory_id',
+            'country_id',
+            'city_id',
+            'views',
+            'requests',
+            'date',
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
-            'mark',
         ];
     }
 
@@ -120,18 +139,20 @@ class ProductStats extends ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCity()
+    {
+        return $this->hasOne(City::class, ['id' => 'city_id']);
+    }
+
+    /**
      * @return mixed
      */
     public static function findBase()
     {
         return self::find()
-            ->select([
-                self::tableName() . '.product_id',
-                'count(' . self::tableName() . '.product_id) as count'
-            ])
             ->innerJoinWith(["product"])
-            ->innerJoinWith(["product.lang"])
-            ->groupBy(self::tableName() . '.product_id')
-            ->orderBy('count DESC');
+            ->orderBy('views DESC');
     }
 }

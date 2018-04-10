@@ -302,7 +302,7 @@ class CronController extends Controller
      */
     public function actionGenerateProductItTitle()
     {
-        // UPDATE `fv_catalog_item` SET `mark`='0'
+        // UPDATE `fv_catalog_item` SET `mark`='0' WHERE `mark`='1'
 
         $this->stdout("GenerateProductItTitle: start. \n", Console::FG_GREEN);
 

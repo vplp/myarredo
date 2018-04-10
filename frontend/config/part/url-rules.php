@@ -38,6 +38,7 @@ return [
     'factories' => 'catalog/factory/list',
     'sale' => 'catalog/sale/list',
     'product-stats' => 'catalog/product-stats/list',
+    'product-stats/<id:[\d\-]+>' => 'catalog/product-stats/view',
 
     'factory/<alias:(nieri|tomassi_cucine)>/contacts' => 'catalog/template-factory/contacts',
     'factory/<alias:(nieri|tomassi_cucine)>/catalog/<filter:[\;\-\w\d]+>' => 'catalog/template-factory/catalog',
