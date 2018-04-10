@@ -104,7 +104,9 @@ class Sale extends \common\modules\catalog\models\Sale
 
         $image = null;
 
-        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+        if (YII_ENV_DEV && !empty($image_link)){
+            $image = 'http://www.myarredo.ru/uploads/images/' . $image_link;
+        } elseif (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image = $url . '/' . $image_link;
         }
 
@@ -124,16 +126,15 @@ class Sale extends \common\modules\catalog\models\Sale
 
         $image = null;
 
-        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+        if (YII_ENV_DEV && !empty($image_link)){
+            $image = 'http://www.myarredo.ru/uploads/images/' . $image_link;
+        } elseif (!empty($image_link) && is_file($path . '/' . $image_link)) {
 
             $image_link_path = explode('/', $image_link);
 
             $img_name = $image_link_path[count($image_link_path)-1];
 
             unset($image_link_path[count($image_link_path)-1]);
-
-//            $dir    = $path . '/' . implode('/' ,$image_link_path);
-//            $files = scandir($dir);
 
             $_image_link = $path . '/' . implode('/', $image_link_path) . '/thumb_' . $img_name;
 
@@ -175,7 +176,13 @@ class Sale extends \common\modules\catalog\models\Sale
         $imagesSources = [];
 
         foreach ($images as $image) {
-            if (file_exists($path . '/' . $image)) {
+            if (YII_ENV_DEV){
+                $url = 'http://www.myarredo.ru/uploads/images';
+                $imagesSources[] = [
+                    'img' => $url . '/' . $image,
+                    'thumb' => self::getImageThumb($image)
+                ];
+            } elseif (file_exists($path . '/' . $image)) {
                 $imagesSources[] = [
                     'img' => $url . '/' . $image,
                     'thumb' => self::getImageThumb($image)

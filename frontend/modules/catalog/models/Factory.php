@@ -124,7 +124,9 @@ class Factory extends \common\modules\catalog\models\Factory
 
         $image = null;
 
-        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+        if (YII_ENV_DEV){
+            $image = 'http://www.myarredo.ru/uploads/factory/' . $image_link;
+        } elseif (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image = $url . '/' . $image_link;
         }
 
@@ -144,7 +146,9 @@ class Factory extends \common\modules\catalog\models\Factory
 
         $image = null;
 
-        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+        if (YII_ENV_DEV && !empty($image_link)){
+            $image = 'http://www.myarredo.ru/uploads/factory/' . $image_link;
+        } elseif (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image = $path . '/' . $image_link;
 
             // resize
