@@ -29,7 +29,7 @@ class StatsController extends Controller
             ->where([
                 ProductStats::tableName().'.mark' => '0',
             ])
-            ->limit(500)
+            ->limit(1000)
             ->all();
 
         foreach ($data as $item) {
