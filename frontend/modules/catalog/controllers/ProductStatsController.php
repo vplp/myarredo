@@ -167,7 +167,7 @@ class ProductStatsController extends BaseController
 
         $params['product_id'] = $model['id'];
 
-        $start_date = mktime(0, 0, 0, date("m"), date("d")-7, date("Y"));
+        $start_date = mktime(0, 0, 0, date("m"), date("d")-365, date("Y"));
         $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
 
 
@@ -200,7 +200,6 @@ class ProductStatsController extends BaseController
             'params' => $params,
             'modelProductStatsDays' => $modelProductStatsDays,
             'modelsStats' => $stats->getModels(),
-            'pagesStats' => $stats->getPagination(),
         ]);
     }
 }

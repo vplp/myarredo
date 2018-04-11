@@ -52,10 +52,11 @@ class ProductStatsDays extends ProductStatsModel
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'defaultPageSize' => $module->itemOnPage,
-                'forcePageParam' => false,
-            ],
+            'pagination' => false
+//            'pagination' => [
+//                'defaultPageSize' => $module->itemOnPage,
+//                'forcePageParam' => false,
+//            ],
         ]);
 
         if (!($this->load($params, ''))) {

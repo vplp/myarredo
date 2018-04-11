@@ -1,7 +1,9 @@
 <?php
 
-use yii\helpers\Html;
-use yii\helpers\Url;
+use yii\helpers\{
+    Html, Url
+};
+//
 use frontend\modules\catalog\models\Product;
 
 /**

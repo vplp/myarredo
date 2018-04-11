@@ -2,12 +2,14 @@
 
 namespace common\modules\catalog\models;
 
-use common\modules\location\models\City;
 use Yii;
 //
 use thread\app\base\models\ActiveRecord;
 //
 use common\modules\catalog\Catalog;
+use common\modules\location\models\{
+    City, Country
+};
 
 /**
  * Class ProductStatsDays
@@ -144,6 +146,23 @@ class ProductStatsDays extends ActiveRecord
     public function getCity()
     {
         return $this->hasOne(City::class, ['id' => 'city_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCountry()
+    {
+        return $this->city->country;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateTime()
+    {
+        $format = 'd.m.Y';
+        return $this->date == 0 ? date($format) : date($format, $this->date);
     }
 
     /**
