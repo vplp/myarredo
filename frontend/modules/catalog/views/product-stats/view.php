@@ -36,10 +36,10 @@ $this->title = $this->context->title;
 
                     <table border="1">
                         <tr>
-                            <td>город</td>
-                            <td>страна</td>
-                            <td>количество просмотров</td>
-                            <td>дата</td>
+                            <td>Город</td>
+                            <td>Страна</td>
+                            <td>Количество просмотров</td>
+                            <td>Даты</td>
                         </tr>
                         <?php
                         $labels = [];
@@ -73,24 +73,54 @@ $js_data = implode(',', $data);
 
 $script = <<<JS
 var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
 
-        // The data for our dataset
-        data: {
-            labels: [$js_labels],
-            datasets: [{
-                label: "views",             
-                borderColor: 'rgb(255, 99, 132)',
-                data: [$js_data],
-                fill: false,
-            }]
+    // The data for our dataset
+    data: {
+        labels: [$js_labels],
+        datasets: [{
+            label: "Количество просмотров",             
+            borderColor: 'rgb(255, 99, 132)',
+            data: [$js_data],
+            fill: false,
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: ''
         },
-
-        // Configuration options go here
-        options: {}
-    });
+        tooltips: {
+            mode: 'index',
+            intersect: false,
+        },
+        hover: {
+            mode: 'nearest',
+            intersect: true
+        },
+        scales: {
+            xAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Даты'
+                }
+            }],
+            yAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Количество'
+                }
+            }]
+        }
+    }
+});
 JS;
 
 $this->registerJs($script, yii\web\View::POS_END);
