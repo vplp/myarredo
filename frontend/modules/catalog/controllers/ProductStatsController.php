@@ -142,10 +142,6 @@ class ProductStatsController extends BaseController
             $params['city_id'] = 0;
         }
 
-        if (!isset($params['factory_id'])) {
-            $params['factory_id'] = 0;
-        }
-
         $params['action'] = 'view';
 
         $stats = $modelProductStatsDays->search($params);
