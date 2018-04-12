@@ -36,8 +36,8 @@ $this->title = $this->context->title;
 
                     <table border="1">
                         <tr>
-                            <td>Город</td>
-                            <td>Страна</td>
+                            <!--<td>Город</td>
+                            <td>Страна</td>-->
                             <td>Количество просмотров</td>
                             <td>Даты</td>
                         </tr>
@@ -50,8 +50,8 @@ $this->title = $this->context->title;
                             $data[$item['date']] = (isset($data[$item['date']]) ? $data[$item['date']] : 0) + $item['views'];
                             ?>
                             <tr>
-                                <td><?= $item['city']['lang']['title'] ?></td>
-                                <td><?php //$item['country']['lang']['title'] ?></td>
+                                <!--<td><?php //$item['city']['lang']['title'] ?></td>
+                                <td><?php //$item['country']['lang']['title'] ?></td>-->
                                 <td><?= $item['views'] ?></td>
                                 <td><?= $item['dateTime'] ?></td>
                             </tr>

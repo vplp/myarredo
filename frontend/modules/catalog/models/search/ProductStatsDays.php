@@ -98,7 +98,8 @@ class ProductStatsDays extends ProductStatsModel
                 'count(' . self::tableName() . '.date) as count',
                 'sum(' . self::tableName() . '.views) as views'
             ]);
-            $query->groupBy(self::tableName() . '.date');
+            $query->groupBy(self::tableName() . '.date')
+                ->orderBy(self::tableName() . '.date');
 
         } elseif ($params['action'] == 'list' && isset($params['city_id']) && $params['city_id'] == 0) {
             $query->select([
@@ -106,7 +107,8 @@ class ProductStatsDays extends ProductStatsModel
                 'count(' . self::tableName() . '.product_id) as count',
                 'sum(' . self::tableName() . '.views) as views'
             ]);
-            $query->groupBy(self::tableName() . '.product_id');
+            $query->groupBy(self::tableName() . '.product_id')
+                ->orderBy(self::tableName() . '.date');
         }
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
