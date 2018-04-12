@@ -107,8 +107,7 @@ class ProductStatsDays extends ProductStatsModel
                 'count(' . self::tableName() . '.product_id) as count',
                 'sum(' . self::tableName() . '.views) as views'
             ]);
-            $query->groupBy(self::tableName() . '.product_id')
-                ->orderBy(self::tableName() . '.date');
+            $query->groupBy(self::tableName() . '.product_id');
         }
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
