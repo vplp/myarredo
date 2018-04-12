@@ -2,15 +2,28 @@ $(document).ready(function(){
     var state = {
         _device: "",
         _mobInit: function(){
-            mobInit();
+            runMobile();
+        },
+        _tabletInit: function() {
+            runTablet();
         },
         _descInit: function() {
-            descInit();
+            runDesctop();
+        },
+        _preWindowWidth: $(window).width(),
+        _windowIncreases: function() {
+            if(state._preWindowWidth > $(window).width()){
+                state._preWindowWidth = $(window).width();
+                return false;
+            } else if (state._preWindowWidth < $(window).width()){
+                state._preWindowWidth = $(window).width();
+                return true;
+            }
         }
     };
 
     (function( $ ) {
-        $.fn.getDevice = function(braikPoint) {
+        $.fn.getDevice = function(braikPointMob,braikPointTablet) {
             Object.defineProperty(state, "device", {
 
                 get: function() {
@@ -22,6 +35,8 @@ $(document).ready(function(){
                     if(value == "desctop"){
                         state._descInit();
 
+                    } else if (value == "tablet"){
+                        state._tabletInit();
                     } else if (value == "mobile"){
                         state._mobInit();
                     }
@@ -29,28 +44,49 @@ $(document).ready(function(){
             });
 
             $(this).on("resize load", function(){
-                if($(this).width() < braikPoint && state.device != "mobile"){
+                if($(this).width() < braikPointMob && state.device != "mobile"){
                     state.device = "mobile";
-                } else if ($(this).width() > braikPoint && state.device != "desctop") {
+                } else if($(this).width() > braikPointMob && $(this).width() < braikPointTablet && state.device != "tablet") {
+                    state.device = "tablet";
+                }
+                else if ($(this).width() > braikPointTablet && state.device != "desctop") {
                     state.device = "desctop";
                 }
             });
         };
     })(jQuery);
 
-    $(window).getDevice(768);
+    $(window).getDevice(540,768);
 
     console.log(state.device);
 
-
-    function mobInit(){
+    function runMobile(){
         console.log('mobile');
-        $('.filters .one-filter').removeClass('open');
+        //Слайдер с номерками
+        $('.js-numbers').slick({
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            dots: true
+        });
+        /*--конец Главная--*/
     }
 
-    function descInit() {
+    function runTablet(){
+        console.log('tablet');
+        $('.filters .one-filter').removeClass('open');
+        if($('.js-numbers').hasClass('slick-slider')){
+            $('.js-numbers').slick('unslick');
+        }
+    }
+
+    function runDesctop() {
         console.log("desctp");
         $('.filters .one-filter').addClass('open');
+        if($('.js-numbers').hasClass('slick-slider')){
+            $('.js-numbers').slick('unslick');
+        }
     }
     /*--Конец определения девайса--*/
 
@@ -551,7 +587,8 @@ $(document).ready(function(){
         $(this).text(variant);
         $(this).closest('.post-content').toggleClass('opened');
     });
-    /*--конец Главная--*/
+
+
 
 
     // $('[data-dominant-color]').each(function(i,item){

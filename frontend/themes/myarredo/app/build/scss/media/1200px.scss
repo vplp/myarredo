@@ -299,5 +299,53 @@
         }
       }
     }
+    .categories-sect {
+      .categories-wrap {
+        justify-content: center;
+      }
+      .one-cat {
+        width: 33.33%;
+      }
+    }
+    .sale-sect {
+      .img-cont {
+        height: 240px;
+        margin-bottom: 42px;
+        .prod-title {
+          width: 80%;
+          height: auto;
+          font-size: 13px;
+          line-height: normal;
+          padding: 10px 10px;
+        }
+      }
+      .price {
+        font-size: 14px;
+        height: 45px;
+        .new-price {
+          font-size: 19px;
+        }
+      }
+    }
+    .large-text {
+      .post-title {
+        width: 320px;
+        min-width: 320px;
+        font-size: 25px;
+        line-height: normal;
+        padding: 20px 0;
+        margin-left: 45px;
+      }
+      .post-title-in {
+        margin-left: -45px;
+      }
+      .post-content {
+        padding-left: 55px;
+      }
+      .post-text {
+        font-size: 15px;
+        line-height: normal;
+      }
+    }
   }
 }

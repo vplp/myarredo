@@ -29,4 +29,17 @@
       }
     }
   }
+  .home-main {
+    .categories-sect {
+      .one-cat {
+        max-width: 285px;
+        width: 285px;
+      }
+    }
+    .sale-sect {
+      .one-sale {
+        width: calc( 25% - 20px );
+      }
+    }
+  }
 }

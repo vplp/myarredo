@@ -246,6 +246,9 @@
     display: flex;
   }
   .home-main {
+    .section-header {
+      height: 100px;
+    }
     .filter {
       left: 10px;
       right: 10px;
@@ -304,6 +307,67 @@
       color: #535351;
       font-size: 20px;
       line-height: 26px;
+    }
+    .categories-sect {
+      .one-cat {
+        width: 50%;
+        height: auto;
+      }
+      .one-cat-in {
+        border: 1px solid #CDCDC6;
+      }
+    }
+    .sale-sect {
+      .one-sale {
+        width: calc(50% - 20px);
+      }
+    }
+    .best-price {
+      .img-container {
+        margin-right: 30px;
+        width: 150px;
+        min-width: 150px;
+        img {
+          bottom: auto;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+        }
+      }
+      .after-text {
+        font-size: 16px;
+        padding: 20px;
+      }
+    }
+  }
+  .footer {
+    .cont-bg {
+      display: none;
+    }
+    .cont-info {
+      width: 100%;
+      padding-top: 30px;
+      padding-bottom: 40px;
+    }
+    .cont-flex {
+      height: auto;
+    }
+    .cont-info-border {
+      padding-bottom: 45px;
+    }
+    .cities-list {
+      .list-of-cities {
+        column-count: 4;
+      }
+      .initial-letter {
+        font-size: 21px;
+      }
+    }
+    .logo-reg {
+      width: 230px;
+    }
+    .menu-items {
+      width: calc( 100% - 230px );
     }
   }
 }

@@ -130,6 +130,8 @@
     .sticker {
       display: flex;
       align-items: center;
+      flex-wrap: nowrap;
+      white-space: nowrap;
       height: 33px;
       background: #448339;
       font-size: 13px;
@@ -229,8 +231,7 @@
         overflow: visible;
         .one-cat-in {
           border: 1px solid #CDCDC6;
-          position: relative;
-          z-index: 1;
+          z-index: 2;
         }
       }
     }
@@ -239,6 +240,7 @@
       background: #FFFFFF;
       padding-bottom: 35px;
       transition: all 0.1s ease-out;
+      position: relative;
     }
     .img-cont {
       width: 100%;
@@ -258,6 +260,21 @@
         transform: translate(-50%,-50%);
       }
     }
+    .cat-title {
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      height: 30px;
+      background: #FFFFFF;
+      border-top: 1px solid #BDBCB3;
+      border-bottom: 1px solid #BDBCB3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 75%;
+      z-index: 1;
+    }
     .cat-list {
       margin: 0 auto 30px auto;
       padding: 0;
@@ -276,8 +293,8 @@
           content: "";
           position: absolute;
           left: -14px;
-          top: 4px;
-          border: 6px solid transparent;
+          top: 8px;
+          border: 5px solid transparent;
           border-left: 8px solid #535351;
         }
       }
@@ -303,6 +320,7 @@
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+      margin-bottom: 20px;
     }
     .one-sale {
       width: 320px;
