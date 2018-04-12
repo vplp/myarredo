@@ -126,13 +126,13 @@ use frontend\modules\location\widgets\ChangeCity;
                                             <li>
                                                 <?= Html::a(
                                                     Yii::t('app', 'Statistics'),
-                                                    ['/catalog/product-stats/product']
+                                                    ['/catalog/product-stats/list']
                                                 ); ?>
                                             </li>
                                             <li>
                                                 <?= Html::a(
                                                     'Статистика по фабрике',
-                                                    ['/catalog/product-stats/factory']
+                                                    ['/catalog/factory-stats/list']
                                                 ); ?>
                                             </li>
                                             <li role="separator" class="divider"></li>

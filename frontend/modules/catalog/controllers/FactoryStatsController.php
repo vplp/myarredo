@@ -13,11 +13,11 @@ use frontend\modules\catalog\models\{
 use frontend\components\BaseController;
 
 /**
- * Class ProductStatsController
+ * Class FactoryStatsController
  *
  * @package frontend\modules\catalog\controllers
  */
-class ProductStatsController extends BaseController
+class FactoryStatsController extends BaseController
 {
     public $label = '';
     public $title = '';
@@ -90,7 +90,7 @@ class ProductStatsController extends BaseController
             $params['factory_id'] = 0;
         }
 
-        $params['action'] = 'product';
+        $params['action'] = 'factory';
 
         $models = $model->search($params);
 
