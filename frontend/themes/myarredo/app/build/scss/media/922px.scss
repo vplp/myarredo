@@ -338,4 +338,126 @@
       }
     }
   }
+  .footer {
+    .cont-info {
+      padding-top: 50px;
+    }
+    .cont-info-border {
+      h4 {
+        font-size: 25px;
+      }
+    }
+    .num {
+      margin-bottom: 20px;
+    }
+    .icon {
+      width: 25px;
+      height: 25px;
+    }
+    .cont-info-in {
+      width: 290px;
+    }
+    .cont-flex {
+      height: 445px;
+    }
+    .white-stripe {
+      height: 110px;
+    }
+    #map {
+      height: 315px;
+    }
+    .cities-list {
+      .list-of-cities {
+        column-count: 5;
+      }
+      h5 {
+        margin: 0 0 30px;
+      }
+      .initial-letter {
+        font-size: 24px;
+      }
+    }
+    .logo {
+      width: 190px;
+    }
+    .reg {
+      width: 190px;
+    }
+    .logo-reg {
+      width: 300px;
+    }
+    .menu-items {
+      width: calc( 100% - 300px );
+      .one-column {
+        width: 50%;
+      }
+      a {
+        font-size: 12px;
+      }
+      li {
+        margin-bottom: 8px;
+      }
+    }
+    .logo {
+      margin-bottom: 11px;
+    }
+    .footer-cont {
+      flex-wrap: wrap;
+    }
+    .soc-copy {
+      width: 100%;
+      margin-top: 25px;
+      .social {
+        justify-content: center;
+        margin-bottom: 5px;
+      }
+      .copyright {
+        text-align: center;
+      }
+    }
+    .bot-footer {
+      padding-bottom: 15px;
+    }
+  }
+  .home-main {
+    .filter {
+      width: 730px;
+    }
+    .filter-title {
+      font-size: 28px;
+      line-height: normal;
+      height: auto;
+      padding: 25px;
+    }
+    .jq-selectbox__select {
+      padding: 0 25px 0 15px;
+      height: 50px;
+    }
+    .jq-selectbox__trigger-arrow {
+      right: 18px;
+      top: 6px;
+    }
+    .filter-price {
+      input[type=text] {
+        width: 85px;
+      }
+      .left {
+        padding-left: 10px;
+      }
+    }
+    .numbers {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .one-number {
+      max-width: 180px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    .best-price {
+      .after-text {
+        font-size: 18px;
+      }
+    }
+  }
 }

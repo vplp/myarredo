@@ -540,3 +540,30 @@ $(document).ready(function(){
         $(this).parent().find('.js-list-container').slideToggle();
     });
 });
+/*--------------------------------------------------------*/
+$(document).ready(function(){
+    /*--Главная--*/
+    $('[data-styler]').styler();
+
+    $('.js-read-more').on('click', function(){
+        var variant = $(this).attr('data-variant');
+        $(this).attr('data-variant', $(this).text());
+        $(this).text(variant);
+        $(this).closest('.post-content').toggleClass('opened');
+    });
+    /*--конец Главная--*/
+
+
+    // $('[data-dominant-color]').each(function(i,item){
+    //    console.log(item);
+    //    var img = $(item).find('img').get(0);
+    //    var vibrant = new Vibrant(img);
+    //    var swatches = vibrant.swatches();
+    //     for (var swatch in swatches){
+    //         if (swatches.hasOwnProperty(swatch) && swatches[swatch]){
+    //             console.log(swatch, swatches[swatch].getHex());
+    //         }
+    //     }
+    // });
+
+});

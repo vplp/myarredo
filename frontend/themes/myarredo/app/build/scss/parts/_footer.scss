@@ -87,9 +87,27 @@
     height: 138px;
     background: #FFFFFF;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .icon {
+      width: 45px;
+      height: 30px;
+      margin-bottom: 5px;
+      img {
+        max-height: 100%;
+        max-width: 100%;
+        height: auto;
+        width: auto;
+        display: block;
+      }
+    }
     a {
       color: #535351;
       font-size: 16px;
+      text-decoration: none;
+      border-bottom: 1px solid #535351;
     }
   }
   .cities-list {
@@ -129,12 +147,13 @@
     }
   }
   .bot-footer {
-    padding-top: 50px;
-    padding-bottom: 55px;
+    padding-top: 35px;
+    padding-bottom: 40px;
     background: #E3E2E0;
   }
   .footer-cont {
     display: flex;
+    align-items: flex-start;
     width: 100%;
   }
   .logo-reg {

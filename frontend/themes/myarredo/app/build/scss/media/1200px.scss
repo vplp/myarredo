@@ -221,4 +221,83 @@
       }
     }
   }
+  .footer {
+    .cont-info {
+      width: 480px;
+      padding-top: 60px;
+    }
+    .cont-flex {
+      height: 475px;
+    }
+    .cont-info-in {
+      width: 330px;
+    }
+    .cont-info-border {
+      padding-bottom: 60px;
+      h4 {
+        font-size: 31px;
+        margin-bottom: 0;
+      }
+    }
+    .ico {
+      width: 30px;
+      height: 30px;
+    }
+    p {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    .cities-list {
+      .list-of-cities {
+        column-count: 6;
+      }
+    }
+    .menu-items {
+      .one-column {
+        padding-left: 20px;
+        width: 190px;
+      }
+    }
+  }
+  .home-main {
+    .filter-title {
+      .frosted-glass {
+        background-position: center 34%;
+        background-size: 113%;
+      }
+    }
+    .section-title {
+      font-size: 28px;
+    }
+    .numbers {
+      .title {
+        font-size: 90px;
+      }
+      .img-cont {
+        height: 90px;
+        width: 90px;
+      }
+      .descr {
+        font-size: 13px;
+        line-height: normal;
+        margin-top: -10px;
+      }
+      .one-number {
+        max-width: 165px;
+      }
+    }
+    .best-price {
+      .after-text {
+        padding: 30px 30px;
+        font-size: 21px;
+        line-height: normal;
+      }
+      .img-container {
+        min-width: 245px;
+        img {
+          bottom: -10px;
+        }
+      }
+    }
+  }
 }
