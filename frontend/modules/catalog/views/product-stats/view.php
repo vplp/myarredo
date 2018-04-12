@@ -25,7 +25,7 @@ $this->title = $this->context->title;
                     ); ?>
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-md-12 adding-product-page">
 
                     <?= $this->render('_form_filter', [
                         'model' => $modelProductStatsDays,
