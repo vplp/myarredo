@@ -51,7 +51,7 @@ $this->title = $this->context->title;
                             ?>
                             <tr>
                                 <td><?= $item['city']['lang']['title'] ?></td>
-                                <td><?= $item['country']['lang']['title'] ?></td>
+                                <td><?php //$item['country']['lang']['title'] ?></td>
                                 <td><?= $item['views'] ?></td>
                                 <td><?= $item['dateTime'] ?></td>
                             </tr>

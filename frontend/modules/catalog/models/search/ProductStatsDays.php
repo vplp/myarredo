@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 //
+use frontend\modules\location\models\City;
 use frontend\modules\catalog\models\{
     ProductStatsDays as ProductStatsModel
 };
@@ -61,7 +62,7 @@ class ProductStatsDays extends ProductStatsModel
         if (!($this->load($params, ''))) {
             return $dataProvider;
         }
-        
+
         if (isset($params['factory_id']) && $params['factory_id'] > 0) {
             $query->andWhere([self::tableName() . '.factory_id' => $params['factory_id']]);
         }
@@ -73,6 +74,39 @@ class ProductStatsDays extends ProductStatsModel
         if (isset($params['start_date']) && $params['start_date'] != '' && isset($params['end_date']) && $params['end_date'] != '') {
             $query->andWhere(['>=', self::tableName() . '.date', strtotime($params['start_date'] . ' 0:00')]);
             $query->andWhere(['<=', self::tableName() . '.date', strtotime($params['end_date'] . ' 23:59')]);
+        }
+
+        if (isset($params['country_id']) && $params['country_id'] > 0 && !$params['city_id']) {
+
+            $model = City::findAll(['country_id' => $params['country_id']]);
+
+            if ($model != null) {
+                $city_id = [];
+                foreach ($model as $city) {
+                    $city_id[] = $city['id'];
+                }
+                $query->andFilterWhere(['IN', self::tableName() . '.city_id', $city_id]);
+            }
+        } elseif (isset($params['city_id']) && $params['city_id'] > 0) {
+            $query->andFilterWhere(['IN', self::tableName() . '.city_id', $params['city_id']]);
+        }
+
+        if ($params['action'] == 'view' && isset($params['city_id']) && $params['city_id'] == 0) {
+            $query->select([
+                self::tableName() . '.product_id',
+                self::tableName() . '.date',
+                'count(' . self::tableName() . '.date) as count',
+                'sum(' . self::tableName() . '.views) as views'
+            ]);
+            $query->groupBy(self::tableName() . '.date');
+
+        } elseif ($params['action'] == 'list' && isset($params['city_id']) && $params['city_id'] == 0) {
+            $query->select([
+                self::tableName() . '.product_id',
+                'count(' . self::tableName() . '.product_id) as count',
+                'sum(' . self::tableName() . '.views) as views'
+            ]);
+            $query->groupBy(self::tableName() . '.product_id');
         }
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
