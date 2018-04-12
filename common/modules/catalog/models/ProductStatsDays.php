@@ -143,6 +143,14 @@ class ProductStatsDays extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getFactory()
+    {
+        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getCity()
     {
         return $this->hasOne(City::class, ['id' => 'city_id']);

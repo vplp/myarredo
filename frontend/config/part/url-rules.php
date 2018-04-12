@@ -37,7 +37,8 @@ return [
     'factories/<letter:[\w\-]>' => 'catalog/factory/list',
     'factories' => 'catalog/factory/list',
     'sale' => 'catalog/sale/list',
-    'product-stats' => 'catalog/product-stats/list',
+    'product-stats' => 'catalog/product-stats/product',
+    'factory-stats' => 'catalog/product-stats/factory',
     'product-stats/<id:[\d\-]+>' => 'catalog/product-stats/view',
 
     'factory/<alias:(nieri|tomassi_cucine)>/contacts' => 'catalog/template-factory/contacts',
