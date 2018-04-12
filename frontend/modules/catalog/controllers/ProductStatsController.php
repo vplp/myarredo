@@ -67,7 +67,7 @@ class ProductStatsController extends BaseController
             $params['factory_id'] = Yii::$app->getUser()->getIdentity()->profile->factory_id;
         }
 
-        $start_date = mktime(0, 0, 0, date("m"), date("d") - 356, date("Y"));
+        $start_date = mktime(0, 0, 0, date("m"), date("d") - 30, date("Y"));
         $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
 
 
@@ -123,7 +123,7 @@ class ProductStatsController extends BaseController
 
         $params['product_id'] = $model['id'];
 
-        $start_date = mktime(0, 0, 0, date("m"), date("d") - 365, date("Y"));
+        $start_date = mktime(0, 0, 0, date("m"), date("d") - 30, date("Y"));
         $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
 
 
@@ -172,7 +172,7 @@ class ProductStatsController extends BaseController
             $params['factory_id'] = Yii::$app->getUser()->getIdentity()->profile->factory_id;
         }
 
-        $start_date = mktime(0, 0, 0, date("m"), date("d") - 356, date("Y"));
+        $start_date = mktime(0, 0, 0, date("m"), date("d") - 30, date("Y"));
         $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
 
 
