@@ -30,7 +30,12 @@ $this->title = $this->context->title;
                     <?php foreach ($models as $model): ?>
 
                         <?= Html::beginTag('a', [
-                            'href' => Url::toRoute(['/catalog/product-stats/view', 'id' => $model['product']['id']]),
+                            'href' => Url::toRoute([
+                                '/catalog/product-stats/view',
+                                'id' => $model['product']['id'],
+                                'start_date' => Yii::$app->request->get('start_date'),
+                                'end_date' => Yii::$app->request->get('end_date'),
+                            ]),
                             'class' => 'one-prod-tile'
                         ]); ?>
 
