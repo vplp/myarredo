@@ -125,13 +125,13 @@ use frontend\modules\location\widgets\ChangeCity;
                                             </li>
                                             <li>
                                                 <?= Html::a(
-                                                    Yii::t('app', 'Statistics'),
+                                                    Yii::t('app', 'Product statistics'),
                                                     ['/catalog/product-stats/list']
                                                 ); ?>
                                             </li>
                                             <li>
                                                 <?= Html::a(
-                                                    'Статистика по фабрике',
+                                                    Yii::t('app', 'Factory statistics'),
                                                     ['/catalog/factory-stats/list']
                                                 ); ?>
                                             </li>
@@ -158,7 +158,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                             </li>
                                             <li>
                                                 <?= Html::a(
-                                                    Yii::t('app', 'Statistics'),
+                                                    Yii::t('app', 'Product statistics'),
                                                     ['/catalog/product-stats/product']
                                                 ); ?>
                                             </li>

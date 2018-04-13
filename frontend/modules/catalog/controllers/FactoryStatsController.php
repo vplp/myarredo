@@ -96,7 +96,7 @@ class FactoryStatsController extends BaseController
 
         $models = $model->factorySearch($params);
 
-        $this->title = Yii::t('app', 'Statistics');
+        $this->title = Yii::t('app', 'Factory statistics');
 
         return $this->render('list', [
             'model' => $model,
@@ -149,7 +149,7 @@ class FactoryStatsController extends BaseController
 
         $stats = $modelProductStatsDays->factorySearch($params);
 
-        $this->title = Yii::t('app', 'Statistics');
+        $this->title = Yii::t('app', 'Factory statistics');
 
         return $this->render('view', [
             'model' => $model,

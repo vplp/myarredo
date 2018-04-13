@@ -95,7 +95,7 @@ class ProductStatsController extends BaseController
 
         $models = $model->search($params);
 
-        $this->title = Yii::t('app', 'Statistics');
+        $this->title = Yii::t('app', 'Product statistics');
 
         return $this->render('list', [
             'model' => $model,
@@ -148,7 +148,7 @@ class ProductStatsController extends BaseController
 
         $stats = $modelProductStatsDays->search($params);
 
-        $this->title = Yii::t('app', 'Statistics');
+        $this->title = Yii::t('app', 'Product statistics');
 
         return $this->render('view', [
             'model' => $model,
