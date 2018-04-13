@@ -11,6 +11,22 @@ use frontend\modules\catalog\models\Product;
 
 $this->title = $this->context->title;
 
+$labels = [];
+$data = [];
+
+foreach ($modelsStats as $item) {
+    $labels[$item['date']] = $item['dateTime'];
+    $data[$item['date']] = (isset($data[$item['date']]) ? $data[$item['date']] : 0) + $item['views'];
+}
+
+$_js_labels = [];
+foreach ($labels as $val) {
+    $_js_labels[] = '"' . $val . '"';
+}
+
+$js_labels = implode(',', $_js_labels);
+
+$js_data = implode(',', $data);
 ?>
 
 <main>
@@ -34,6 +50,7 @@ $this->title = $this->context->title;
 
                     <?= Html::img(Product::getImageThumb($model['image_link'])) ?>
 
+                    <?php /*
                     <table border="1">
                         <tr>
                             <!--<td>Город</td>
@@ -41,14 +58,7 @@ $this->title = $this->context->title;
                             <td>Количество просмотров</td>
                             <td>Даты</td>
                         </tr>
-                        <?php
-                        $labels = [];
-                        $data = [];
-
-                        foreach ($modelsStats as $item):
-                            $labels[$item['date']] = $item['dateTime'];
-                            $data[$item['date']] = (isset($data[$item['date']]) ? $data[$item['date']] : 0) + $item['views'];
-                            ?>
+                        <?php foreach ($modelsStats as $item): ?>
                             <tr>
                                 <!--<td><?php //$item['city']['lang']['title'] ?></td>
                                 <td><?php //$item['country']['lang']['title'] ?></td>-->
@@ -57,21 +67,14 @@ $this->title = $this->context->title;
                             </tr>
                         <?php endforeach; ?>
                     </table>
+                    */ ?>
 
 
                     <canvas id="myChart"></canvas>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
-<?php
-$_js_labels = [];
-foreach ($labels as $val) {
-    $_js_labels[] = '"'.$val.'"';
-}
-$js_labels = implode(',', $_js_labels);
-
-$js_data = implode(',', $data);
-
-$script = <<<JS
+                    <?php
+                    $script = <<<JS
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
     // The type of chart we want to create
@@ -123,8 +126,9 @@ var chart = new Chart(ctx, {
 });
 JS;
 
-$this->registerJs($script, yii\web\View::POS_END);
-?>
+                    $this->registerJs($script, yii\web\View::POS_END);
+                    ?>
+
                 </div>
             </div>
         </div>
