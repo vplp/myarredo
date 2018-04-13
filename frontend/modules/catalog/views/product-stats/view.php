@@ -48,7 +48,33 @@ $js_data = implode(',', $data);
                         'params' => $params,
                     ]); ?>
 
-                    <?= Html::img(Product::getImageThumb($model['image_link'])) ?>
+                    <div>
+                        <?= Html::img(Product::getImageThumb($model['image_link'])) ?>
+                    </div>
+
+                    <div>
+                        <?= Html::a(
+                            Yii::t('app', 'Factory statistics'),
+                            [
+                                '/catalog/factory-stats/view',
+                                'alias' => $model['factory']['alias'],
+                                'start_date' => Yii::$app->request->get('start_date'),
+                                'end_date' => Yii::$app->request->get('end_date'),
+
+                            ]
+                        ) ?>
+                    </div>
+
+                    <div>
+                        <?= Html::a(
+                            Yii::t('app', 'Product statistics'),
+                            [
+                                '/catalog/product-stats/list',
+                                'start_date' => Yii::$app->request->get('start_date'),
+                                'end_date' => Yii::$app->request->get('end_date'),
+                            ]
+                        ) ?>
+                    </div>
 
                     <?php /*
                     <table border="1">

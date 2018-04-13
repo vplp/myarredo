@@ -159,7 +159,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                             <li>
                                                 <?= Html::a(
                                                     Yii::t('app', 'Product statistics'),
-                                                    ['/catalog/product-stats/product']
+                                                    ['/catalog/product-stats/list']
                                                 ); ?>
                                             </li>
                                             <li>
