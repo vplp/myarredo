@@ -11,7 +11,6 @@ use frontend\modules\location\models\{
     Country, City
 };
 
-
 $start_date = Yii::t('app', 'Start date');
 $end_date = Yii::t('app', 'End date');
 
@@ -30,7 +29,7 @@ HTML;
 
 <?php $form = ActiveForm::begin([
     'method' => 'get',
-    'action' => Yii::$app->request->url,
+    'action' => false,
     'id' => 'form-stats',
     'options' => [
         'class' => 'form-filter-date-cont flex'
