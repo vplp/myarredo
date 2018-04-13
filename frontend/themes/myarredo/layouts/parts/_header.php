@@ -164,6 +164,12 @@ use frontend\modules\location\widgets\ChangeCity;
                                             </li>
                                             <li>
                                                 <?= Html::a(
+                                                    Yii::t('app', 'Factory statistics'),
+                                                    ['/catalog/factory-stats/list']
+                                                ); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a(
                                                     Yii::t('app', 'Banners'),
                                                     ['/banner/factory-banner/list']
                                                 ); ?>
