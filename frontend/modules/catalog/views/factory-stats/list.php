@@ -30,7 +30,7 @@ $this->title = $this->context->title;
                     <?php foreach ($models as $model): ?>
 
                         <?= Html::beginTag('a', [
-                            'href' => Url::toRoute(['/catalog/factory-stats/view', 'id' => $model['factory']['id']]),
+                            'href' => Url::toRoute(['/catalog/factory-stats/view', 'alias' => $model['factory']['alias']]),
                             'class' => 'one-prod-tile'
                         ]); ?>
 

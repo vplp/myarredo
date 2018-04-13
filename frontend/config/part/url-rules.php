@@ -42,7 +42,7 @@ return [
     'product-stats/<id:[\d\-]+>' => 'catalog/product-stats/view',
 
     'factory-stats' => 'catalog/factory-stats/list',
-    'factory-stats/<id:[\d\-]+>' => 'catalog/factory-stats/view',
+    'factory-stats/<alias:[\w\-]+>' => 'catalog/factory-stats/view',
 
     'factory/<alias:(nieri|tomassi_cucine)>/contacts' => 'catalog/template-factory/contacts',
     'factory/<alias:(nieri|tomassi_cucine)>/catalog/<filter:[\;\-\w\d]+>' => 'catalog/template-factory/catalog',

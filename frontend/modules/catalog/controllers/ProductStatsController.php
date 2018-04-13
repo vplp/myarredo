@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\{
     VerbFilter, AccessControl
 };
+use yii\web\NotFoundHttpException;
 //
 use frontend\modules\catalog\models\{
     Product, ProductStats, ProductStatsDays
@@ -90,7 +91,7 @@ class ProductStatsController extends BaseController
             $params['factory_id'] = 0;
         }
 
-        $params['action'] = 'product';
+        $params['action'] = 'list';
 
         $models = $model->search($params);
 
@@ -107,6 +108,7 @@ class ProductStatsController extends BaseController
     /**
      * @param $id
      * @return string
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {

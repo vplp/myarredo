@@ -6,7 +6,9 @@ use Yii;
 use yii\filters\{
     VerbFilter, AccessControl
 };
+use yii\web\NotFoundHttpException;
 //
+use frontend\modules\catalog\models\Factory;
 use frontend\modules\catalog\models\{
     Product, ProductStats, ProductStatsDays
 };
@@ -90,9 +92,9 @@ class FactoryStatsController extends BaseController
             $params['factory_id'] = 0;
         }
 
-        $params['action'] = 'factory';
+        $params['action'] = 'list';
 
-        $models = $model->search($params);
+        $models = $model->factorySearch($params);
 
         $this->title = Yii::t('app', 'Statistics');
 
@@ -105,12 +107,13 @@ class FactoryStatsController extends BaseController
     }
 
     /**
-     * @param $id
+     * @param $alias
      * @return string
+     * @throws NotFoundHttpException
      */
-    public function actionView($id)
+    public function actionView($alias)
     {
-        $model = Product::findByID($id);
+        $model = Factory::findByAlias($alias);
 
         if ($model == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
@@ -120,7 +123,7 @@ class FactoryStatsController extends BaseController
 
         $params = Yii::$app->request->get() ?? [];
 
-        $params['product_id'] = $model['id'];
+        $params['factory_id'] = $model['id'];
 
         $start_date = mktime(0, 0, 0, date("m"), date("d") - 30, date("Y"));
         $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
@@ -144,7 +147,7 @@ class FactoryStatsController extends BaseController
 
         $params['action'] = 'view';
 
-        $stats = $modelProductStatsDays->search($params);
+        $stats = $modelProductStatsDays->factorySearch($params);
 
         $this->title = Yii::t('app', 'Statistics');
 

@@ -4,9 +4,9 @@ use yii\helpers\{
     Html, Url
 };
 //
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\Factory;
 
-/** @var \frontend\modules\catalog\models\Product $model */
+/** @var \frontend\modules\catalog\models\Factory $model */
 /** @var \frontend\modules\catalog\models\ProductStatsDays $item */
 
 $this->title = $this->context->title;
@@ -20,7 +20,7 @@ $this->title = $this->context->title;
                 <div class="product-title">
                     <?= Html::tag(
                         'h1',
-                        $model->getTitle(),
+                        $model->title,
                         ['class' => 'prod-model', 'itemprop' => 'name']
                     ); ?>
                 </div>
@@ -32,7 +32,7 @@ $this->title = $this->context->title;
                         'params' => $params,
                     ]); ?>
 
-                    <?= Html::img(Product::getImageThumb($model['image_link'])) ?>
+                    <?= Html::img(Factory::getImageThumb($model['image_link'])) ?>
 
                     <table border="1">
                         <tr>

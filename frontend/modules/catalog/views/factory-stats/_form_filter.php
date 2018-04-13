@@ -35,9 +35,11 @@ HTML;
     'options' => [
         'class' => 'form-filter-date-cont flex'
     ]
-]); ?>
+]) ?>
 
-<?php if (Yii::$app->getUser()->getIdentity()->group->role == 'admin' && isset($params['factory_id'])): ?>
+<?php if (Yii::$app->getUser()->getIdentity()->group->role == 'admin' &&
+    isset($params['factory_id']) &&
+    Yii::$app->controller->action->id != 'view'): ?>
     <div class="form-group">
         <?= Select2::widget([
             'name' => 'factory_id',
