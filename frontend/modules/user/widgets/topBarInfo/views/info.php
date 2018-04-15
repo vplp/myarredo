@@ -8,6 +8,6 @@ use yii\helpers\Html;
     Yii::t('app', 'Sign Up'),
     ['/user/logout/index'],
     [
-        'class' => 'btn btn-transparent sign-in'
+        'class' => 'reg'
     ]
 ); ?>

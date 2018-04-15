@@ -9,7 +9,9 @@ use yii\helpers\Url;
 
         <?= Html::beginForm() ?>
 
-        <?= Yii::t('app','Page') ?>
+        <span class="label">
+            <?= Yii::t('app','Page') ?>
+        </span>
 
         <?= Html::textInput('page', $pageArray['page'] ?? 1, ['class' => 'pageInput']) ?>
 
@@ -18,7 +20,7 @@ use yii\helpers\Url;
         $data = Url::toRoute(['/catalog/category/list'] + $pageArray);
         ?>
         <?= Yii::t('app','из') ?> <?= $pages->getPageCount(); ?>
-        <?= Html::submitButton('<i class="fa fa-angle-right" aria-hidden="true"></i>', ['class' => 'pageChanger', 'data-url' => $data]) ?>
+        <?= Html::submitButton('<i class="fa fa-chevron-right" aria-hidden="true"></i>', ['class' => 'pageChanger', 'data-url' => $data]) ?>
 
         <?= Html::endForm(); ?>
     </div>

@@ -10,22 +10,21 @@ use yii\helpers\{
  */
 
 ?>
-
-<div class="partner-cities container large-container">
-    <div class="row">
-        <div>
-            <?= Yii::t('app', 'Этот список городов размещен здесь для вашего удобства. Найдите свой город и купите итальянскую мебель по лучшей цене.') ?>
-        </div>
-        <ul>
-
+<div class="cities-list">
+    <div class="container large-container">
+        <h5><?= Yii::t('app', 'Этот список городов размещен здесь для вашего удобства. Найдите свой город и купите итальянскую мебель по лучшей цене.') ?></h5>
+        <div class="list-of-cities">
+            <?php $currentLetter = '' ?>
             <?php foreach ($country['cities'] as $cityCountry): ?>
-
-                <?= Html::beginTag('li') ?>
+                <?php
+                    if ($currentLetter != mb_substr ( $cityCountry['lang']['title'], 0, 1) ){
+                        $currentLetter = mb_substr ( $cityCountry['lang']['title'], 0, 1);
+                        echo Html::tag('h4', $currentLetter);
+                    }
+                ?>
                 <?= Html::a($cityCountry['lang']['title'], $cityCountry->getSubDomainUrl()) ?>
-                <?= Html::endTag('li') ?>
 
             <?php endforeach; ?>
-
-        </ul>
+        </div>
     </div>
 </div>

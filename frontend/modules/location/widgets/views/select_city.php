@@ -11,33 +11,14 @@ use yii\helpers\{
 
 ?>
 
-<div class="city-select-cont">
-    <div class="container large-container">
-        <div class="row">
-            <div class="top-panel">
-                <div class="top-panel-in">
-                    <a href="javascript:void(0);" class="set-country"><?= $country['lang']['title'] ?></a>
-                    <a href="javascript:void(0);" id="close-top">
-                        <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
-                    </a>
-                </div>
-                <div class="title-city"><?= Yii::t('app', 'Your city') ?></div>
-                <div class="tab-country-content">
-                    <ul class="links-cont">
+<ul class="mobile-city-list js-list-container">
+    <?php foreach ($country['cities'] as $cityCountry):
+        $option = ($cityCountry['id'] == $city['id']) ? ['class'=>'active'] : [];
+        ?>
 
-                        <?php foreach ($country['cities'] as $cityCountry):
-                            $option = ($cityCountry['id'] == $city['id']) ? ['class'=>'active'] : [];
-                            ?>
+        <?= Html::beginTag('li', $option) ?>
+        <?= Html::a($cityCountry['lang']['title'], $cityCountry->getSubDomainUrl()) ?>
+        <?= Html::endTag('li') ?>
 
-                            <?= Html::beginTag('li', $option) ?>
-                                <?= Html::a($cityCountry['lang']['title'], $cityCountry->getSubDomainUrl()) ?>
-                            <?= Html::endTag('li') ?>
-
-                        <?php endforeach; ?>
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    <?php endforeach; ?>
+</ul>

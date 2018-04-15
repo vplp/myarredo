@@ -16,7 +16,7 @@ foreach ($items as $item):
     echo Html::tag('li', Html::a($item['lang']['title'], $item->getLink(), [
         'target' => $item->getTarget()
     ]), [
-        'class' => 'mega-menu'
+        'class' => ''
     ]);
 endforeach;
 echo Html::endTag('ul');

@@ -22,9 +22,9 @@ class LinkPager extends \yii\widgets\LinkPager
 {
     public $registerLinkTags = false;
 
-    public $nextPageLabel = 'Далее<i class="fa fa-angle-right" aria-hidden="true"></i>';
+    public $nextPageLabel = '<i class="fa fa-angle-right" aria-hidden="true"></i>';
 
-    public $prevPageLabel = '<i class="fa fa-angle-left" aria-hidden="true"></i>Назад';
+    public $prevPageLabel = '<i class="fa fa-angle-left" aria-hidden="true"></i>';
 
     /**
      * @var string the name of the input checkbox input fields. This will be appended with `[]` to ensure it is an array.
@@ -42,8 +42,8 @@ class LinkPager extends \yii\widgets\LinkPager
     {
         parent::init();
 
-        $this->nextPageLabel = Yii::t('app','Далее') . '<i class="fa fa-angle-right" aria-hidden="true"></i>';
-        $this->prevPageLabel = '<i class="fa fa-angle-left" aria-hidden="true"></i>'. Yii::t('app','Назад');
+        $this->nextPageLabel = '<i class="fa fa-angle-right" aria-hidden="true"></i>';
+        $this->prevPageLabel = '<i class="fa fa-angle-left" aria-hidden="true"></i>';
     }
 
     /**
