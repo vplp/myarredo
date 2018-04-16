@@ -25,7 +25,6 @@ foreach ($labels as $val) {
 }
 
 $js_labels = implode(',', $_js_labels);
-
 $js_data = implode(',', $data);
 ?>
 
@@ -100,6 +99,11 @@ $js_data = implode(',', $data);
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
                     <?php
+
+                    $app_label_1 = Yii::t('app', 'Количество просмотров');
+                    $app_label_2 = Yii::t('app', 'Даты');
+                    $app_label_3 = Yii::t('app', 'Количество');
+
                     $script = <<<JS
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
@@ -109,7 +113,7 @@ var chart = new Chart(ctx, {
     data: {
         labels: [$js_labels],
         datasets: [{
-            label: "Количество просмотров",             
+            label: '$app_label_1',             
             borderColor: 'rgb(255, 99, 132)',
             data: [$js_data],
             fill: false,
@@ -136,14 +140,14 @@ var chart = new Chart(ctx, {
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Даты'
+                    labelString: '$app_label_2'
                 }
             }],
             yAxes: [{
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Количество'
+                    labelString: '$app_label_3'
                 }
             }]
         }
