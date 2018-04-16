@@ -127,7 +127,6 @@ class ProductStatsController extends BaseController
         $start_date = mktime(0, 0, 0, date("m"), date("d") - 30, date("Y"));
         $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
 
-
         if (!isset($params['start_date'])) {
             $params['start_date'] = date('d-m-Y', $start_date);
         }

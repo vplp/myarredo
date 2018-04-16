@@ -53,10 +53,12 @@ class ProductStatsDays extends ProductStatsModel
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'defaultPageSize' => $module->itemOnPage,
-                'forcePageParam' => false,
-            ],
+            'pagination' => ($params['action'] == 'view')
+                ? false
+                : [
+                    'defaultPageSize' => $module->itemOnPage,
+                    'forcePageParam' => false,
+                ],
         ]);
 
         if (!($this->load($params, ''))) {
@@ -91,7 +93,7 @@ class ProductStatsDays extends ProductStatsModel
             $query->andFilterWhere(['IN', self::tableName() . '.city_id', $params['city_id']]);
         }
 
-        if ($params['action'] == 'view' ) {
+        if ($params['action'] == 'view') {
             $query->select([
                 self::tableName() . '.product_id',
                 self::tableName() . '.date',
@@ -140,10 +142,12 @@ class ProductStatsDays extends ProductStatsModel
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'defaultPageSize' => $module->itemOnPage,
-                'forcePageParam' => false,
-            ],
+            'pagination' => ($params['action'] == 'view')
+                ? false
+                : [
+                    'defaultPageSize' => $module->itemOnPage,
+                    'forcePageParam' => false,
+                ],
         ]);
 
         if (!($this->load($params, ''))) {
