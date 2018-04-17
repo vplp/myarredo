@@ -41,10 +41,10 @@ use frontend\modules\catalog\models\Product;
             </div>
         </div>
         <object class="btn-block">
-            <a href="javascrip:void(0);">
+            <a href="javascrip:void(0);" class="more-info">
                 Детальнее
             </a>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" class="get-price">
                 запросить цену
             </a>
         </object>

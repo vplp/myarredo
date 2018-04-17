@@ -84,7 +84,7 @@ $bundle = AppAsset::register($this);
     </div>
 </div>
 
-<footer>
+<footer style="display: none;">
     <div class="container large-container">
         <div class="row">
 

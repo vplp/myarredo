@@ -663,6 +663,58 @@
       }
     }
   }
+
+  .bread-crumbs {
+    height: auto;
+    li {
+      height: auto;
+      font-size: 14px;
+      display: inline;
+    }
+  }
+  .category-page {
+    .cat-prod {
+      .one-prod-tile {
+        width: 100%;
+        height: auto;
+      }
+      .btn-block {
+        opacity: 1;
+      }
+      .tile-prod-name {
+        height: auto !important;
+      }
+    }
+    .filters {
+      .one-filter {
+        margin-left: 0;
+        margin-right: 0;
+        .filt-but {
+          height: 45px;
+          font-size: 13px;
+        }
+        .list-item {
+          padding: 0;
+        }
+      }
+    }
+    .sort-by {
+      padding: 0 5px;
+    }
+  }
+  .pagi-wrap {
+    .pagination {
+      li {
+        display: none;
+        &.active {
+          display: block;
+        }
+        &.disabled {
+          display: block;
+        }
+      }
+    }
+  }
 }
 
 /*-----конец Новые стили----*/

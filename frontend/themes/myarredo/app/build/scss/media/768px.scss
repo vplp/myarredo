@@ -371,3 +371,16 @@
     }
   }
 }
+
+/*--Новые стили--*/
+
+@media screen and (max-width: 768px) {
+  .category-page {
+    .cat-prod {
+      .one-prod-tile {
+        width: calc( 50% - 20px);
+        height: 325px;
+      }
+    }
+  }
+}

@@ -75,7 +75,7 @@ $(document).ready(function(){
 
     function runTablet(){
         console.log('tablet');
-        $('.filters .one-filter').removeClass('open');
+        //$('.filters .one-filter').removeClass('open');
         if($('.js-numbers').hasClass('slick-slider')){
             $('.js-numbers').slick('unslick');
         }
@@ -394,7 +394,7 @@ $(document).ready(function(){
             ]
         });
         $('#comp-slider').slick({
-            slidesToShow: 5,
+            slidesToShow: 4,
             slidesToScroll: 1,
             dots: false,
             prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
@@ -426,7 +426,7 @@ $(document).ready(function(){
     });
 
     $('.std-slider').slick({
-        slidesToShow: 5,
+        slidesToShow: 4,
         slidesToScroll: 1,
         dots: false,
         prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
@@ -602,5 +602,35 @@ $(document).ready(function(){
        });
        var img = $(item).find('img').get(0);
     });
+
+    $('.js-filter-btn').on('click', function(){
+       $('.js-filter-modal').fadeIn();
+    });
+
+
+    $('#prod-slider .carousel-inner').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '#prod-slider .carousel-indicators'
+    });
+    $('#prod-slider .carousel-indicators').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        asNavFor: '#prod-slider .carousel-inner',
+        focusOnSelect: true,
+        arrows: true,
+        prevArrow: "<a class='arrow prev'><i class='fa fa-angle-left'></i></a>",
+        nextArrow: "<a class='arrow next'><i class='fa fa-angle-right'></i></a>",
+        dots: false
+    });
+    // $('#prod-slider').on('slide.bs.carousel', function(){
+    //    console.log('lala');
+    //    var activeSlideNum = $(this).find('.active');
+    // });
+
+    $('#cartcustomerform-user_agreement').styler();
+
 
 });

@@ -35,8 +35,11 @@ $this->title = $this->context->title;
 
                 </div>
                 <div class="cat-content">
+                    <a href="javascript:void(0);" class="js-filter-btn">
+                        Фильтры
+                    </a>
                     <div class="row">
-                        <div class="col-md-3 col-lg-3">
+                        <div class="col-md-3 col-lg-3 js-filter-modal">
 
                             <?= ProductFilter::widget([
                                 'route' => '/catalog/category/list',
@@ -50,7 +53,7 @@ $this->title = $this->context->title;
                         <div class="col-md-9 col-lg-9">
                             <div class="cont-area">
 
-                                <div class="hidden-xs hidden-sm top-bar flex">
+                                <div class="top-bar flex">
 
                                     <?= ProductSorting::widget(); ?>
 

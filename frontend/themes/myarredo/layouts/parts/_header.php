@@ -330,7 +330,7 @@ use frontend\modules\location\widgets\ChangeCity;
                         </ul>
                     </div>
                     <a href="#" class="company-logo">
-                        <img src="<?= $bundle->baseUrl ?>/public/img/logo-odis.png" alt="">
+                        <img src="<?= $bundle->baseUrl ?>/img/logo-odis.png" alt="">
                     </a>
 
                 </div>
@@ -525,7 +525,7 @@ use frontend\modules\location\widgets\ChangeCity;
     <div class="left-info-part">
         <div class="logo-num">
             <a href="#" class="logo">
-                <img src="public/img/logo.svg" alt="">
+                <img src="<?= $bundle->baseUrl ?>/img/logo.svg" alt="">
             </a>
             <div class="phone-container">
                 <a href="#" class="phone-num">
