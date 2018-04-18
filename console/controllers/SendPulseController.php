@@ -46,7 +46,7 @@ class SendPulseController extends Controller
                 $emails[] = [
                     'email' => $user['email'],
                     'variables' => [
-                        'phone' => $user['profile']['phone'],
+                        //'phone' => $user['profile']['phone'],
                         'name' => $user['profile']['fullName'],
                     ],
                 ];
