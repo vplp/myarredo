@@ -383,4 +383,118 @@
       }
     }
   }
+  .prod-card-page {
+    .prod-model {
+      font-size: 23px;
+    }
+    .best-price {
+      .img-container {
+        padding-right: 0;
+        border-right: none;
+        margin-left: -30px;
+        display: flex;
+        margin-bottom: 20px;
+      }
+    }
+    .after-text {
+      flex-direction: column;
+      font-size: 20px !important;
+      padding-top: 15px !important;
+      margin-top: 35px !important;
+    }
+    .text-contain {
+      text-align: center;
+    }
+    #prod-slider {
+      margin-left: 0;
+      padding-bottom: 15px;
+      .nav-cont {
+        display: none;
+      }
+    }
+    .price-availability {
+      flex-direction: column;
+      align-items: flex-start;
+      .price-sticker {
+        margin-bottom: 13px;
+      }
+      .availability {
+        height: 33px;
+      }
+    }
+    .info-table {
+      margin-bottom: 5px;
+      td {
+        &:first-child {
+          font-size: 11px;
+        }
+        &:last-child {
+          font-size: 12px;
+        }
+      }
+    }
+    .prod-model {
+      margin: 0 0 20px;
+    }
+    .numbers {
+      .one-number {
+        max-width: none;
+      }
+      .slick-dots {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex !important;
+        li {
+          margin-right: 13px;
+          &:last-child {
+            margin-right: 0;
+          }
+          &.slick-active {
+            button {
+              background: #448339;
+            }
+          }
+          button {
+            font-size: 0;
+            border: none;
+            background: #E3E0D5;
+            width: 16px;
+            height: 16px;
+            border-radius: 8px;
+          }
+        }
+      }
+    }
+    .composition {
+      .nav-tabs {
+        display: flex;
+        &>li {
+          width: 50% !important;
+          margin-bottom: 0;
+          height: auto;
+          position: relative;
+          &.active {
+            border-bottom: none;
+          }
+          &:after {
+            content: '';
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            //height: ;
+          }
+          a {
+            padding-bottom: 4px;
+            font-size: 14px;
+            height: auto;
+            white-space: normal;
+            line-height: normal;
+          }
+        }
+      }
+    }
+
+  }
 }

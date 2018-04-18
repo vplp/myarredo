@@ -423,4 +423,36 @@
       }
     }
   }
+  .prod-card-page {
+    .best-price {
+      .after-text {
+        padding: 30px 30px;
+        font-size: 21px;
+        line-height: normal;
+      }
+      .img-container {
+        min-width: 245px;
+        img {
+          bottom: -10px;
+        }
+      }
+    }
+    .numbers {
+      .title {
+        font-size: 90px;
+      }
+      .img-cont {
+        height: 90px;
+        width: 90px;
+      }
+      .descr {
+        font-size: 13px;
+        line-height: normal;
+        margin-top: -10px;
+      }
+      .one-number {
+        max-width: 165px;
+      }
+    }
+  }
 }

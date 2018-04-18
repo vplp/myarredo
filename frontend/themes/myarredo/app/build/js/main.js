@@ -430,7 +430,8 @@ $(document).ready(function(){
         slidesToScroll: 1,
         dots: false,
         prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
-        nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>',responsive: [
+        nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>',
+        responsive: [
             {
                 breakpoint: 992,
                 settings: {
@@ -613,7 +614,16 @@ $(document).ready(function(){
         slidesToScroll: 1,
         arrows: false,
         fade: true,
-        asNavFor: '#prod-slider .carousel-indicators'
+        asNavFor: '#prod-slider .carousel-indicators',
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: true
+                }
+            },
+        ]
+
     });
     $('#prod-slider .carousel-indicators').slick({
         slidesToShow: 4,
@@ -625,10 +635,6 @@ $(document).ready(function(){
         nextArrow: "<a class='arrow next'><i class='fa fa-angle-right'></i></a>",
         dots: false
     });
-    // $('#prod-slider').on('slide.bs.carousel', function(){
-    //    console.log('lala');
-    //    var activeSlideNum = $(this).find('.active');
-    // });
 
     $('#cartcustomerform-user_agreement').styler();
 

@@ -40,14 +40,14 @@ $this->title = $this->context->title;
                         ]) ?>
                     <?php endif; ?>
 
-                    <div class="col-md-5">
+                    <div class="col-sm-6 col-md-6 col-lg-5">
 
                         <?= $this->render('parts/_carousel', [
                             'model' => $model
                         ]); ?>
 
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-sm-6 col-md-6 col-lg-4">
                         <div class="product-title">
                             <?= Html::tag(
                                 'h1',
@@ -183,7 +183,7 @@ $this->title = $this->context->title;
                             <div class="prod-descr" itemprop="description"><?= $model['lang']['description']; ?></div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-sm-12 col-md-12 col-lg-3">
 
                         <?php if (!$model['removed']) { ?>
                             <div class="best-price-form">

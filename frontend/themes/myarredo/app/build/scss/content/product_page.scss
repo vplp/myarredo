@@ -3,6 +3,9 @@
     background: #FFFFFF;
   }
   #prod-slider {
+    .slick-track {
+      display: flex;
+    }
     .img-zoom {
       display: none;
     }
@@ -19,12 +22,14 @@
         max-width: none;
         padding-left: 7px;
         padding-right: 7px;
+        width: 100%;
       }
       .thumb-item {
         position: relative;
         overflow: hidden;
         border: 1px solid #FFFFFF;
         border-bottom: 4px solid #FFFFFF;
+        max-width: 130px;
         &.slick-current {
           border-bottom: 4px solid #538D49;
           outline: none;
@@ -356,6 +361,9 @@
   .alert-danger {
     margin-top: 15px;
   }
+  .prod-info-table {
+    margin-bottom: 20px;
+  }
 }
 .composition {
   .tab-pane {
@@ -485,8 +493,8 @@
   padding: 0;
 }
 .std-slider {
-  margin-left: -30px;
-  margin-right: -30px;
+  //margin-left: -30px;
+  //margin-right: -30px;
   .item {
     padding-bottom: 40px;
     margin: 0 15px;
