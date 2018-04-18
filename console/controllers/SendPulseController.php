@@ -140,7 +140,7 @@ class SendPulseController extends Controller
     }
 
     /**
-     * @param object $modelOrder
+     * @param $modelOrder
      */
     private function sendNewRequestForFactory($modelOrder)
     {
