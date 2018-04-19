@@ -156,6 +156,7 @@
     .copy {
       margin-top: 30px;
     }
+
   }
   .factory-stripe {
     flex-wrap: wrap;
@@ -384,7 +385,7 @@
       width: 190px;
     }
     .logo-reg {
-      width: 300px;
+      width: 275px;
     }
     .menu-items {
       width: calc( 100% - 300px );
@@ -393,9 +394,10 @@
       }
       a {
         font-size: 12px;
+        padding-left: 25px;
       }
       li {
-        margin-bottom: 8px;
+        width: auto;
       }
     }
     .logo {
@@ -594,6 +596,56 @@
           height: 100px;
           max-height: 130px;
         }
+      }
+    }
+  }
+  .sale-page {
+    h2 {
+      font-size: 30px;
+      line-height: 27px;
+    }
+    .back {
+      padding-left: 35px;
+      padding-right: 35px;
+    }
+    .prod-info {
+      h1 {
+        font-size: 25px;
+        margin-bottom: 10px;
+      }
+      .old-price {
+        font-size: 16px;
+      }
+      .price {
+        font-size: 11px;
+        height: 26px;
+        span {
+          font-size: 17px;
+        }
+      }
+      .economy {
+        font-size: 11px;
+      }
+      .prod-price {
+        margin-bottom: 0;
+      }
+    }
+    .prod-style {
+      height: 40px;
+      font-size: 14px;
+      span {
+        font-size: 11px;
+      }
+    }
+    .similar-prod-grid {
+      .item {
+        width: calc(33.33% - 20px);
+        margin: 0 10px 20px;
+      }
+      .add-item-text {
+        font-size: 12px;
+        padding-left: 5px;
+        padding-right: 5px;
       }
     }
   }

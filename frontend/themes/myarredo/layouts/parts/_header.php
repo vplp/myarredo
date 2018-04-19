@@ -546,7 +546,7 @@ use frontend\modules\location\widgets\ChangeCity;
         </div>
     </div>
 
-    <div class="mobile-menu">
+    <div class="mobile-menu js-mobile-menu">
         <div class="stripe">
             <a href="javascript:void(0);" class="mobile-btn">
                 <i class="fa fa-sign-in" aria-hidden="true"></i>

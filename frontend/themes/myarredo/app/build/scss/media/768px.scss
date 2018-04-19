@@ -364,10 +364,15 @@
       }
     }
     .logo-reg {
-      width: 230px;
+      display: none;
     }
     .menu-items {
-      width: calc( 100% - 230px );
+      width: 100%;
+    }
+    .navbar-nav {
+      width: 100%;
+      margin: 0 auto;
+      border-left: none;
     }
   }
 }
@@ -495,6 +500,23 @@
         }
       }
     }
-
+  }
+  .sale-page {
+    h2 {
+      font-size: 25px;
+    }
+    .section-header {
+      height: 80px;
+      .back {
+        height: 30px;
+        padding-left: 25px;
+        padding-right: 25px;
+      }
+    }
+    .similar-prod-grid {
+      .item {
+        width: calc(50% - 20px);
+      }
+    }
   }
 }

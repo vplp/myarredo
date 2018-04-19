@@ -8,16 +8,14 @@ use yii\helpers\Html;
 
 ?>
 
-<div id="prod-slider" class="carousel slide carousel-fade" data-ride="carousel">
+<div id="prod-slider" class=" carousel-fade" >
 
     <!-- Carousel items -->
     <div class="carousel-inner">
 
         <?php foreach ($model->getFrontGalleryImage() as $key => $src) {
 
-            $class = 'item' . (($key == 0) ? ' active' : '');
-
-            echo Html::beginTag('div', ['class' => $class]) .
+            echo Html::beginTag('div', ['class' => $class, 'data-dominant-color' => '']) .
                 Html::a(
                     Html::img($src['img'], ['itemprop' => 'image']),
                     $src['img'],
@@ -26,6 +24,7 @@ use yii\helpers\Html;
                         'data-fancybox-group' => 'group'
                     ]
                 ) .
+                Html::tag('span', '', ['class' => 'background']) .
                 Html::endTag('div');
         } ?>
 
@@ -38,30 +37,18 @@ use yii\helpers\Html;
     <!-- Carousel nav -->
 
     <div class="nav-cont">
-
-        <a class="left left-arr nav-contr" href="#prod-slider" data-slide="prev">
-            <i class="fa fa-angle-left" aria-hidden="true"></i>
-        </a>
-
         <ol class="carousel-indicators">
 
             <?php foreach ($model->getFrontGalleryImage() as $key => $src): ?>
 
-                <li data-target="#prod-slider" data-slide-to="<?= $key ?>"
-                    class="<?= ($key == 0) ?? 'active' ?>">
-                    <div class="img-min">
-                        <?= Html::img($src['thumb']); ?>
-                    </div>
-                </li>
+                <div class="thumb-item" data-dominant-color>
+                    <span class="background"></span>
+                    <?= Html::img($src['thumb']); ?>
+                </div>
 
             <?php endforeach; ?>
 
         </ol>
-
-        <a class="right right-arr nav-contr" href="#prod-slider" data-slide="next">
-            <i class="fa fa-angle-right" aria-hidden="true"></i>
-        </a>
-
     </div>
 
 </div>

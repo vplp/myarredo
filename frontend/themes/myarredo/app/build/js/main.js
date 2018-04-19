@@ -619,7 +619,9 @@ $(document).ready(function(){
             {
                 breakpoint: 768,
                 settings: {
-                    arrows: true
+                    arrows: true,
+                    prevArrow: "<a class='arrow prev'><i class='fa fa-angle-left'></i></a>",
+                    nextArrow: "<a class='arrow next'><i class='fa fa-angle-right'></i></a>"
                 }
             },
         ]
@@ -633,7 +635,8 @@ $(document).ready(function(){
         arrows: true,
         prevArrow: "<a class='arrow prev'><i class='fa fa-angle-left'></i></a>",
         nextArrow: "<a class='arrow next'><i class='fa fa-angle-right'></i></a>",
-        dots: false
+        dots: false,
+        variableWidth: true
     });
 
     $('#cartcustomerform-user_agreement').styler();

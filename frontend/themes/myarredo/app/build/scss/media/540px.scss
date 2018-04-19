@@ -238,41 +238,6 @@
     }
   }
 
-  body .sale-page {
-    h1 {
-      font-size: 17px;
-    }
-    .zoom {
-      display: none;
-    }
-    .img-wrap {
-      padding: 10px 10px 10px 10px;
-    }
-    .prod-style {
-      font-size: 13px;
-      height: 40px;
-    }
-    .prod-price {
-      flex-direction: column;
-      margin-bottom: 0;
-      .price {
-        margin-bottom: 10px;
-      }
-    }
-    .prod-shortstory {
-      font-size: 14px;
-    }
-    .infotable {
-      font-size: 15px;
-      margin-bottom: 0;
-    }
-    h4,.title,.location {
-      text-align: left;
-    }
-    .seller-cont > a {
-      text-align: left;
-    }
-  }
 
   body .sign-in-page {
     h3 {
@@ -715,6 +680,139 @@
       }
     }
   }
+  .sale-page {
+    h2 {
+      font-size: 20px;
+    }
+    .section-header {
+      height: 60px;
+      .back {
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 10px;
+      }
+    }
+    .prod-info {
+      h1 {
+        font-size: 21px;
+        margin-bottom: 6px;
+      }
+      .prod-price {
+        flex-direction: row;
+      }
+      .price {
+        span {
+          font-size: 13px;
+        }
+      }
+    }
+    .prod-style {
+      span {
+
+      }
+    }
+    .brand-info {
+      .image-container {
+        min-width: 100%;
+      }
+      .white-area {
+        flex-direction: column;
+      }
+    }
+    .sale-prod {
+      padding-bottom: 30px;
+    }
+    .similar-prod {
+      h3 {
+        margin: 20px 0;
+        font-size: 20px;
+      }
+    }
+    .similar-prod-grid {
+      .item {
+        width: 100%;
+        margin: 0 0px 20px;
+      }
+    }
+  }
+  .footer {
+    .cont-info {
+      padding-top: 33px;
+    }
+    .cont-info-in {
+      width: 100%;
+      padding-top: 0;
+    }
+    .cont-info-border {
+      border: none;
+      padding-bottom: 0;
+      h4 {
+        font-size: 35px;
+        position: static;
+        margin-top: 0;
+        margin-bottom: 15px;
+        &:after {
+          display: none;
+        }
+        &:before {
+          display: none;
+        }
+      }
+      .ico {
+        margin-bottom: 2px;
+      }
+    }
+    p {
+      font-size: 16px;
+    }
+    .num {
+      font-size: 26px;
+    }
+    .cities-list {
+      padding-bottom: 39px;
+      h5 {
+        font-size: 16px;
+        font-weight: 400;
+        margin-bottom: 25px;
+      }
+    }
+    .list-of-cities {
+      display: none;
+    }
+    .navbar-nav {
+      column-count: 1;
+      li {
+        text-align: center;
+      }
+    }
+    .bot-footer {
+      & > .large-container {
+        padding-top: 39px;
+        border-top: 1px solid #BDBCB3;
+      }
+    }
+    .menu-items {
+      & > li {
+        & > a {
+          padding-top: 5px;
+          padding-bottom: 5px;
+        }
+      }
+      a {
+        font-size: 16px;
+      }
+    }
+    .soc-copy {
+      .social {
+        margin-bottom: 20px;
+      }
+    }
+    .dropdown-toggle {
+      display: block;
+    }
+  }
+
+
 }
 
 /*-----конец Новые стили----*/
