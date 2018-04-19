@@ -573,6 +573,10 @@ $(document).ready(function(){
         $('.js-mobile-menu').fadeIn(120);
     });
 
+    $('.js-close-mobile-menu').on('click', function(){
+        $('.js-mobile-menu').fadeOut(120);
+    });
+
     $('.js-toggle-list').on('click', function(){
         $(this).toggleClass('opened');
         $(this).parent().find('.js-list-container').slideToggle();

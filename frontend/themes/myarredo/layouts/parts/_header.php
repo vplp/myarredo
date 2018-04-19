@@ -4,6 +4,7 @@ use yii\helpers\{
     Html, Url
 };
 use frontend\modules\catalog\widgets\menu\CatalogMenu;
+use frontend\modules\catalog\widgets\menu_mobile\CatalogMenuMobile;
 use frontend\modules\shop\widgets\cart\Cart;
 use frontend\modules\location\widgets\ChangeCity;
 
@@ -251,61 +252,7 @@ use frontend\modules\location\widgets\ChangeCity;
                             Россия | Москва
                         </a>
                         <div class="city-list-cont">
-                            <ul class="links-cont">
-                                <li><a href="http://almetevsk.myarredo.ru">Альметьевск</a></li>
-                                <li><a href="http://anapa.myarredo.ru">Анапа</a></li>
-                                <li><a href="http://barnaul.myarredo.ru">Барнаул</a></li>
-                                <li><a href="http://belgorod.myarredo.ru">Белгород</a></li>
-                                <li><a href="http://blagoveshchensk.myarredo.ru">Благовещенск</a></li>
-                                <li><a href="http://bryansk.myarredo.ru">Брянск</a></li>
-                                <li><a href="http://vladivostok.myarredo.ru">Владивосток</a></li>
-                                <li><a href="http://vladikavkaz.myarredo.ru">Владикавказ</a></li>
-                                <li><a href="http://vladimir.myarredo.ru">Владимир</a></li>
-                                <li><a href="http://volgograd.myarredo.ru">Волгоград</a></li>
-                                <li><a href="http://ekaterinburg.myarredo.ru">Екатеринбург</a></li>
-                                <li><a href="http://irkutsk.myarredo.ru">Иркутск</a></li>
-                                <li><a href="http://kazan.myarredo.ru">Казань</a></li>
-                                <li><a href="http://kaluga.myarredo.ru">Калуга</a></li>
-                                <li><a href="http://kemerovo.myarredo.ru">Кемерово</a></li>
-                                <li><a href="http://kirov.myarredo.ru">Киров</a></li>
-                                <li><a href="http://kostroma.myarredo.ru">Кострома</a></li>
-                                <li><a href="http://krasnodar.myarredo.ru">Краснодар</a></li>
-                                <li><a href="http://krasnoyarsk.myarredo.ru">Красноярск</a></li>
-                                <li><a href="http://kursk.myarredo.ru">Курск</a></li>
-                                <li><a href="http://magnitogorsk.myarredo.ru">Магнитогорск</a></li>
-                                <li><a href="http://mahachkala.myarredo.ru">Махачкала</a></li>
-                                <li class="active"><a href="http://www.myarredo.ru">Москва</a></li>
-                                <li><a href="http://murmansk.myarredo.ru">Мурманск</a></li>
-                                <li><a href="http://naberezhnye-chelny.myarredo.ru">Набережные Челны</a></li>
-                                <li><a href="http://nalchik.myarredo.ru">Нальчик</a></li>
-                                <li><a href="http://nn.myarredo.ru">Нижний Новгород</a></li>
-                                <li><a href="http://novokuznetsk.myarredo.ru">Новокузнецк</a></li>
-                                <li><a href="http://novorossiysk.myarredo.ru">Новороссийск</a></li>
-                                <li><a href="http://novosibirsk.myarredo.ru">Новосибирск</a></li>
-                                <li><a href="http://penza.myarredo.ru">Пенза</a></li>
-                                <li><a href="http://perm.myarredo.ru">Пермь</a></li>
-                                <li><a href="http://rnd.myarredo.ru">Ростов-на-Дону </a></li>
-                                <li><a href="http://ryazan.myarredo.ru">Рязань</a></li>
-                                <li><a href="http://samara.myarredo.ru">Самара</a></li>
-                                <li><a href="http://spb.myarredo.ru">Санкт-Петербург</a></li>
-                                <li><a href="http://saratov.myarredo.ru">Саратов</a></li>
-                                <li><a href="http://sevastopol.myarredo.ru">Севастополь</a></li>
-                                <li><a href="http://simferopol.myarredo.ru">Симферополь</a></li>
-                                <li><a href="http://smolensk.myarredo.ru">Смоленск</a></li>
-                                <li><a href="http://sochi.myarredo.ru">Сочи</a></li>
-                                <li><a href="http://stavropol.myarredo.ru">Ставрополь</a></li>
-                                <li><a href="http://taganrog.myarredo.ru">Таганрог</a></li>
-                                <li><a href="http://tambov.myarredo.ru">Тамбов</a></li>
-                                <li><a href="http://tolyatti.myarredo.ru">Тольятти</a></li>
-                                <li><a href="http://tula.myarredo.ru">Тула</a></li>
-                                <li><a href="http://tumen.myarredo.ru">Тюмень</a></li>
-                                <li><a href="http://ulyanovsk.myarredo.ru">Ульяновск</a></li>
-                                <li><a href="http://ufa.myarredo.ru">Уфа</a></li>
-                                <li><a href="http://khabarovsk.myarredo.ru">Хабаровск</a></li>
-                                <li><a href="http://chegem.myarredo.ru">Чегем</a></li>
-                                <li><a href="http://chelyabinsk.myarredo.ru">Челябинск</a></li>
-                                <li><a href="http://yaroslavl.myarredo.ru">Ярославль</a></li>
-                            </ul>
+                            <?= ChangeCity::widget() ?>
                         </div>
                     </div>
                     <div class="lang-selector">
@@ -340,6 +287,7 @@ use frontend\modules\location\widgets\ChangeCity;
                         Вход
                     </a>
                     <a href="#" class="wishlist">
+                        <?= Cart::widget(['view' => 'short']) ?>
                         <i class="fa fa-heart" aria-hidden="true"></i> Избранное
                     </a>
                 </div>
@@ -538,7 +486,7 @@ use frontend\modules\location\widgets\ChangeCity;
         </div>
     </div>
     <div class="right-btn-part">
-        <div class="menu-btn">
+        <div class="menu-btn js-menu-btn">
             <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
         </div>
         <div class="search-btn">
@@ -556,7 +504,7 @@ use frontend\modules\location\widgets\ChangeCity;
                 <i class="fa fa-phone" aria-hidden="true"></i>
                 Обратный звонок
             </a>
-            <a href="javascript:void(0);" class="close-mobile-menu">
+            <a href="javascript:void(0);" class="close-mobile-menu js-close-mobile-menu">
                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </a>
         </div>
@@ -564,23 +512,9 @@ use frontend\modules\location\widgets\ChangeCity;
             <i class="fa fa-heart" aria-hidden="true"></i>
             Избранное
         </a>
-        <ul class="menu-list">
-            <li>
-                <a href="#">КАТАЛОГ МЕБЕЛИ</a>
-            </li>
-            <li>
-                <a href="#">ФАБРИКИ</a>
-            </li>
-            <li>
-                <a href="#">РАСПРОДАЖА</a>
-            </li>
-            <li>
-                <a href="#">О ПРОЕКТЕ</a>
-            </li>
-            <li>
-                <a href="#">КОНТАКТЫ В МОСКВЕ</a>
-            </li>
-        </ul>
+
+        <?= CatalogMenuMobile::widget([]); ?>
+
         <a href="#" class="logo-container">
             <img src="public/img/logo-odis.png" alt="">
         </a>
@@ -590,10 +524,64 @@ use frontend\modules\location\widgets\ChangeCity;
                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                     Россия | Москва
                 </div>
-                <?= ChangeCity::widget() ?>
+                <ul class="mobile-city-list js-list-container">
+                    <li><a href="http://almetevsk.myarredo.ru">Альметьевск</a></li>
+                    <li><a href="http://anapa.myarredo.ru">Анапа</a></li>
+                    <li><a href="http://barnaul.myarredo.ru">Барнаул</a></li>
+                    <li><a href="http://belgorod.myarredo.ru">Белгород</a></li>
+                    <li><a href="http://blagoveshchensk.myarredo.ru">Благовещенск</a></li>
+                    <li><a href="http://bryansk.myarredo.ru">Брянск</a></li>
+                    <li><a href="http://vladivostok.myarredo.ru">Владивосток</a></li>
+                    <li><a href="http://vladikavkaz.myarredo.ru">Владикавказ</a></li>
+                    <li><a href="http://vladimir.myarredo.ru">Владимир</a></li>
+                    <li><a href="http://volgograd.myarredo.ru">Волгоград</a></li>
+                    <li><a href="http://ekaterinburg.myarredo.ru">Екатеринбург</a></li>
+                    <li><a href="http://irkutsk.myarredo.ru">Иркутск</a></li>
+                    <li><a href="http://kazan.myarredo.ru">Казань</a></li>
+                    <li><a href="http://kaluga.myarredo.ru">Калуга</a></li>
+                    <li><a href="http://kemerovo.myarredo.ru">Кемерово</a></li>
+                    <li><a href="http://kirov.myarredo.ru">Киров</a></li>
+                    <li><a href="http://kostroma.myarredo.ru">Кострома</a></li>
+                    <li><a href="http://krasnodar.myarredo.ru">Краснодар</a></li>
+                    <li><a href="http://krasnoyarsk.myarredo.ru">Красноярск</a></li>
+                    <li><a href="http://kursk.myarredo.ru">Курск</a></li>
+                    <li><a href="http://magnitogorsk.myarredo.ru">Магнитогорск</a></li>
+                    <li><a href="http://mahachkala.myarredo.ru">Махачкала</a></li>
+                    <li class="active"><a href="http://www.myarredo.ru">Москва</a></li>
+                    <li><a href="http://murmansk.myarredo.ru">Мурманск</a></li>
+                    <li><a href="http://naberezhnye-chelny.myarredo.ru">Набережные Челны</a></li>
+                    <li><a href="http://nalchik.myarredo.ru">Нальчик</a></li>
+                    <li><a href="http://nn.myarredo.ru">Нижний Новгород</a></li>
+                    <li><a href="http://novokuznetsk.myarredo.ru">Новокузнецк</a></li>
+                    <li><a href="http://novorossiysk.myarredo.ru">Новороссийск</a></li>
+                    <li><a href="http://novosibirsk.myarredo.ru">Новосибирск</a></li>
+                    <li><a href="http://penza.myarredo.ru">Пенза</a></li>
+                    <li><a href="http://perm.myarredo.ru">Пермь</a></li>
+                    <li><a href="http://rnd.myarredo.ru">Ростов-на-Дону </a></li>
+                    <li><a href="http://ryazan.myarredo.ru">Рязань</a></li>
+                    <li><a href="http://samara.myarredo.ru">Самара</a></li>
+                    <li><a href="http://spb.myarredo.ru">Санкт-Петербург</a></li>
+                    <li><a href="http://saratov.myarredo.ru">Саратов</a></li>
+                    <li><a href="http://sevastopol.myarredo.ru">Севастополь</a></li>
+                    <li><a href="http://simferopol.myarredo.ru">Симферополь</a></li>
+                    <li><a href="http://smolensk.myarredo.ru">Смоленск</a></li>
+                    <li><a href="http://sochi.myarredo.ru">Сочи</a></li>
+                    <li><a href="http://stavropol.myarredo.ru">Ставрополь</a></li>
+                    <li><a href="http://taganrog.myarredo.ru">Таганрог</a></li>
+                    <li><a href="http://tambov.myarredo.ru">Тамбов</a></li>
+                    <li><a href="http://tolyatti.myarredo.ru">Тольятти</a></li>
+                    <li><a href="http://tula.myarredo.ru">Тула</a></li>
+                    <li><a href="http://tumen.myarredo.ru">Тюмень</a></li>
+                    <li><a href="http://ulyanovsk.myarredo.ru">Ульяновск</a></li>
+                    <li><a href="http://ufa.myarredo.ru">Уфа</a></li>
+                    <li><a href="http://khabarovsk.myarredo.ru">Хабаровск</a></li>
+                    <li><a href="http://chegem.myarredo.ru">Чегем</a></li>
+                    <li><a href="http://chelyabinsk.myarredo.ru">Челябинск</a></li>
+                    <li><a href="http://yaroslavl.myarredo.ru">Ярославль</a></li>
+                </ul>
             </div>
-            <div class="one-list-cont js-toggle-list">
-                <div class="one-list">
+            <div class="one-list-cont">
+                <div class="one-list js-toggle-list">
                     <i class="fa fa-globe" aria-hidden="true"></i>
                     Рус
                 </div>
@@ -614,4 +602,6 @@ use frontend\modules\location\widgets\ChangeCity;
             </div>
         </div>
     </div>
+
+
 </div>

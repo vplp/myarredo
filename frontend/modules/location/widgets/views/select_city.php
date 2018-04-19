@@ -11,7 +11,7 @@ use yii\helpers\{
 
 ?>
 
-<ul class="mobile-city-list js-list-container">
+<ul class="links-cont js-list-container">
     <?php foreach ($country['cities'] as $cityCountry):
         $option = ($cityCountry['id'] == $city['id']) ? ['class'=>'active'] : [];
         ?>
