@@ -326,18 +326,6 @@ $bundle = AppAsset::register($this);
 
         <?php endif; ?>
 
-
-
-<!--        <div class="factories">-->
-<!--            <div class="container large-container">-->
-<!--                <div class="row">-->
-<!--                    <div class="text">-->
-<!--                        --><?//= $this->context->SeoContent; ?>
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
         <?php if (Yii::$app->language == 'ru-RU'): ?>
             <div class="manager-request" style="display: none;">
                 <div class="title">
