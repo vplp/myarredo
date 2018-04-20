@@ -3,6 +3,8 @@
 use yii\helpers\{
     Html, Url
 };
+//
+use frontend\modules\sys\widgets\lang\LangSwitch;
 use frontend\modules\catalog\widgets\menu\CatalogMenu;
 use frontend\modules\catalog\widgets\menu_mobile\CatalogMenuMobile;
 use frontend\modules\shop\widgets\cart\Cart;
@@ -44,25 +46,9 @@ use frontend\modules\location\widgets\ChangeCity;
                             </div>
                         </div>
                         <div class="lang-selector">
-                            <a href="javascript:void(0);" class="js-select-lang">
-                                <i class="fa fa-globe" aria-hidden="true"></i>
-                                Рус
-                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                            </a>
-                            <ul class="lang-drop-down">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-globe" aria-hidden="true"></i>
-                                        Eng
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-globe" aria-hidden="true"></i>
-                                        It
-                                    </a>
-                                </li>
-                            </ul>
+
+                            <?= LangSwitch::widget() ?>
+
                         </div>
                         <a href="#" class="company-logo">
                             <img src="<?= $bundle->baseUrl ?>/img/logo-odis.png" alt="">
@@ -318,24 +304,9 @@ use frontend\modules\location\widgets\ChangeCity;
 
             </div>
             <div class="one-list-cont">
-                <div class="one-list js-toggle-list">
-                    <i class="fa fa-globe" aria-hidden="true"></i>
-                    Рус
-                </div>
-                <ul class="mobile-lang-list js-list-container">
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-globe" aria-hidden="true"></i>
-                            Eng
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-globe" aria-hidden="true"></i>
-                            It
-                        </a>
-                    </li>
-                </ul>
+
+                <?= LangSwitch::widget(['view' => 'lang_switch_mobile']) ?>
+
             </div>
         </div>
     </div>
