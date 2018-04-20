@@ -4,7 +4,7 @@ use yii\helpers\Url;
 
 ?>
 
-<a href="<?= Url::toRoute(['/shop/cart/notepad']) ?>" class="my-notebook">
+<a href="<?= Url::toRoute(['/shop/cart/notepad']) ?>" class="my-notebook wishlist">
     <span class="red-but">
         <i class="fa fa-heart" aria-hidden="true"></i>
     </span>

@@ -644,6 +644,6 @@ $(document).ready(function(){
     });
 
     $('#cartcustomerform-user_agreement').styler();
-
+    $()
 
 });

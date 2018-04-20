@@ -1,0 +1,39 @@
+.sign-in-page {
+  padding: 0;
+  .container-wrap {
+    background: #FFFFFF;
+    padding-top: 130px;
+    padding-bottom: 190px;
+  }
+  .col-md-4 {
+    border: none;
+    //border: 1px dashed #CBCAC3;
+  }
+  .square-in {
+    border: 1px solid #CBCAC3;
+    height: 400px;
+    h3 {
+      font-family: 'Palatino';
+      color: #535351;
+      font-size: 25px;
+      line-height: 29px;
+    }
+  }
+  .in-group {
+    height: 150px;
+    input[type="text"]{
+      background: #F3F2F0;
+      border-radius: 0;
+      border: none;
+    }
+    input[type="password"]{
+      box-shadow: none;
+      border: none;
+      background: #F3F2F0;
+      border-radius: 0;
+    }
+    label {
+      display: none;
+    }
+  }
+}

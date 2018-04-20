@@ -286,10 +286,7 @@ use frontend\modules\location\widgets\ChangeCity;
                         <i class="fa fa-sign-in" aria-hidden="true"></i>
                         Вход
                     </a>
-                    <a href="#" class="wishlist">
-                        <?= Cart::widget(['view' => 'short']) ?>
-                        <i class="fa fa-heart" aria-hidden="true"></i> Избранное
-                    </a>
+                    <?= Cart::widget(['view' => 'short']) ?>
                 </div>
             </div>
         </div>
