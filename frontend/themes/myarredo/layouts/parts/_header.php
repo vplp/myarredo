@@ -16,68 +16,68 @@ use frontend\modules\location\widgets\ChangeCity;
         <?php if ((Yii::$app->getUser()->isGuest)): ?>
 
             <div class="top-header">
-            <div class="container large-container">
-                <div class="left-part">
-                    <a href="#" class="phone-num">
-                        <i class="fa fa-phone" aria-hidden="true"></i>
-                        <div>
-                            <span class="phone"><?= Yii::$app->partner->getPartnerPhone() ?></span>
+                <div class="container large-container">
+                    <div class="left-part">
+                        <a href="#" class="phone-num">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            <div>
+                                <span class="phone"><?= Yii::$app->partner->getPartnerPhone() ?></span>
 
-                            <?php if (Yii::$app->city->domain == 'ru'): ?>
-                                <span class="descr">
-                                    <?= Yii::t('app','Бесплатно по всей России') ?>
+                                <?php if (Yii::$app->city->domain == 'ru'): ?>
+                                    <span class="descr">
+                                    <?= Yii::t('app', 'Бесплатно по всей России') ?>
                                 </span>
-                            <?php endif; ?>
-                        </div>
-                    </a>
-                    <a href="javascript:void(0);" class="back-call">
-                        <i class="fa fa-phone" aria-hidden="true"></i>
-                        <?= Yii::t('app', 'Feedback form') ?>
-                    </a>
-                    <div class="select-city">
-                        <a href="javscript:void(0)" class="js-select-city">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            <?= Yii::$app->city->getCountryTitle() ?> | <?= Yii::$app->city->getCitytitle() ?>
+                                <?php endif; ?>
+                            </div>
                         </a>
-                        <div class="city-list-cont">
-                            <?= ChangeCity::widget() ?>
-                        </div>
-                    </div>
-                    <div class="lang-selector">
-                        <a href="javascript:void(0);" class="js-select-lang">
-                            <i class="fa fa-globe" aria-hidden="true"></i>
-                            Рус
-                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                        <a href="javascript:void(0);" class="back-call">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            <?= Yii::t('app', 'Feedback form') ?>
                         </a>
-                        <ul class="lang-drop-down">
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-globe" aria-hidden="true"></i>
-                                    Eng
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-globe" aria-hidden="true"></i>
-                                    It
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="#" class="company-logo">
-                        <img src="<?= $bundle->baseUrl ?>/img/logo-odis.png" alt="">
-                    </a>
+                        <div class="select-city">
+                            <a href="javscript:void(0)" class="js-select-city">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <?= Yii::$app->city->getCountryTitle() ?> | <?= Yii::$app->city->getCitytitle() ?>
+                            </a>
+                            <div class="city-list-cont">
+                                <?= ChangeCity::widget() ?>
+                            </div>
+                        </div>
+                        <div class="lang-selector">
+                            <a href="javascript:void(0);" class="js-select-lang">
+                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                Рус
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </a>
+                            <ul class="lang-drop-down">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-globe" aria-hidden="true"></i>
+                                        Eng
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-globe" aria-hidden="true"></i>
+                                        It
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="#" class="company-logo">
+                            <img src="<?= $bundle->baseUrl ?>/img/logo-odis.png" alt="">
+                        </a>
 
-                </div>
-                <div class="right-part">
-                    <a href="#" class="sign-in">
-                        <i class="fa fa-sign-in" aria-hidden="true"></i>
-                        Вход
-                    </a>
-                    <?= Cart::widget(['view' => 'short']) ?>
+                    </div>
+                    <div class="right-part">
+                        <a href="#" class="sign-in">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            Вход
+                        </a>
+                        <?= Cart::widget(['view' => 'short']) ?>
+                    </div>
                 </div>
             </div>
-        </div>
 
         <?php else: ?>
 
@@ -259,16 +259,18 @@ use frontend\modules\location\widgets\ChangeCity;
 <div class="mobile-header">
     <div class="left-info-part">
         <div class="logo-num">
-            <a href="#" class="logo">
+            <a href="/" class="logo">
                 <img src="<?= $bundle->baseUrl ?>/img/logo.svg" alt="">
             </a>
             <div class="phone-container">
                 <a href="#" class="phone-num">
-                    +7 (495) 150-21-21
+                    <?= Yii::$app->partner->getPartnerPhone() ?>
                 </a>
-                <div class="after-num">
-                    Бесплатно по всей России
-                </div>
+                <?php if (Yii::$app->city->domain == 'ru'): ?>
+                    <div class="after-num">
+                        <?= Yii::t('app', 'Бесплатно по всей России') ?>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -289,7 +291,7 @@ use frontend\modules\location\widgets\ChangeCity;
             </a>
             <a href="javascript:void(0);" class="back-call">
                 <i class="fa fa-phone" aria-hidden="true"></i>
-                Обратный звонок
+                <?= Yii::t('app', 'Feedback form') ?>
             </a>
             <a href="javascript:void(0);" class="close-mobile-menu js-close-mobile-menu">
                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
@@ -302,70 +304,18 @@ use frontend\modules\location\widgets\ChangeCity;
 
         <?= CatalogMenuMobile::widget([]); ?>
 
-        <a href="#" class="logo-container">
+        <a href="/" class="logo-container">
             <img src="public/img/logo-odis.png" alt="">
         </a>
         <div class="bot-list">
             <div class="one-list-cont">
                 <div class="one-list js-toggle-list">
                     <i class="fa fa-map-marker" aria-hidden="true"></i>
-                    Россия | Москва
+                    <?= Yii::$app->city->getCountryTitle() ?> | <?= Yii::$app->city->getCitytitle() ?>
                 </div>
-                <ul class="mobile-city-list js-list-container">
-                    <li><a href="http://almetevsk.myarredo.ru">Альметьевск</a></li>
-                    <li><a href="http://anapa.myarredo.ru">Анапа</a></li>
-                    <li><a href="http://barnaul.myarredo.ru">Барнаул</a></li>
-                    <li><a href="http://belgorod.myarredo.ru">Белгород</a></li>
-                    <li><a href="http://blagoveshchensk.myarredo.ru">Благовещенск</a></li>
-                    <li><a href="http://bryansk.myarredo.ru">Брянск</a></li>
-                    <li><a href="http://vladivostok.myarredo.ru">Владивосток</a></li>
-                    <li><a href="http://vladikavkaz.myarredo.ru">Владикавказ</a></li>
-                    <li><a href="http://vladimir.myarredo.ru">Владимир</a></li>
-                    <li><a href="http://volgograd.myarredo.ru">Волгоград</a></li>
-                    <li><a href="http://ekaterinburg.myarredo.ru">Екатеринбург</a></li>
-                    <li><a href="http://irkutsk.myarredo.ru">Иркутск</a></li>
-                    <li><a href="http://kazan.myarredo.ru">Казань</a></li>
-                    <li><a href="http://kaluga.myarredo.ru">Калуга</a></li>
-                    <li><a href="http://kemerovo.myarredo.ru">Кемерово</a></li>
-                    <li><a href="http://kirov.myarredo.ru">Киров</a></li>
-                    <li><a href="http://kostroma.myarredo.ru">Кострома</a></li>
-                    <li><a href="http://krasnodar.myarredo.ru">Краснодар</a></li>
-                    <li><a href="http://krasnoyarsk.myarredo.ru">Красноярск</a></li>
-                    <li><a href="http://kursk.myarredo.ru">Курск</a></li>
-                    <li><a href="http://magnitogorsk.myarredo.ru">Магнитогорск</a></li>
-                    <li><a href="http://mahachkala.myarredo.ru">Махачкала</a></li>
-                    <li class="active"><a href="http://www.myarredo.ru">Москва</a></li>
-                    <li><a href="http://murmansk.myarredo.ru">Мурманск</a></li>
-                    <li><a href="http://naberezhnye-chelny.myarredo.ru">Набережные Челны</a></li>
-                    <li><a href="http://nalchik.myarredo.ru">Нальчик</a></li>
-                    <li><a href="http://nn.myarredo.ru">Нижний Новгород</a></li>
-                    <li><a href="http://novokuznetsk.myarredo.ru">Новокузнецк</a></li>
-                    <li><a href="http://novorossiysk.myarredo.ru">Новороссийск</a></li>
-                    <li><a href="http://novosibirsk.myarredo.ru">Новосибирск</a></li>
-                    <li><a href="http://penza.myarredo.ru">Пенза</a></li>
-                    <li><a href="http://perm.myarredo.ru">Пермь</a></li>
-                    <li><a href="http://rnd.myarredo.ru">Ростов-на-Дону </a></li>
-                    <li><a href="http://ryazan.myarredo.ru">Рязань</a></li>
-                    <li><a href="http://samara.myarredo.ru">Самара</a></li>
-                    <li><a href="http://spb.myarredo.ru">Санкт-Петербург</a></li>
-                    <li><a href="http://saratov.myarredo.ru">Саратов</a></li>
-                    <li><a href="http://sevastopol.myarredo.ru">Севастополь</a></li>
-                    <li><a href="http://simferopol.myarredo.ru">Симферополь</a></li>
-                    <li><a href="http://smolensk.myarredo.ru">Смоленск</a></li>
-                    <li><a href="http://sochi.myarredo.ru">Сочи</a></li>
-                    <li><a href="http://stavropol.myarredo.ru">Ставрополь</a></li>
-                    <li><a href="http://taganrog.myarredo.ru">Таганрог</a></li>
-                    <li><a href="http://tambov.myarredo.ru">Тамбов</a></li>
-                    <li><a href="http://tolyatti.myarredo.ru">Тольятти</a></li>
-                    <li><a href="http://tula.myarredo.ru">Тула</a></li>
-                    <li><a href="http://tumen.myarredo.ru">Тюмень</a></li>
-                    <li><a href="http://ulyanovsk.myarredo.ru">Ульяновск</a></li>
-                    <li><a href="http://ufa.myarredo.ru">Уфа</a></li>
-                    <li><a href="http://khabarovsk.myarredo.ru">Хабаровск</a></li>
-                    <li><a href="http://chegem.myarredo.ru">Чегем</a></li>
-                    <li><a href="http://chelyabinsk.myarredo.ru">Челябинск</a></li>
-                    <li><a href="http://yaroslavl.myarredo.ru">Ярославль</a></li>
-                </ul>
+
+                <?= ChangeCity::widget(['view' => 'select_city_mobile']) ?>
+
             </div>
             <div class="one-list-cont">
                 <div class="one-list js-toggle-list">
@@ -389,6 +339,4 @@ use frontend\modules\location\widgets\ChangeCity;
             </div>
         </div>
     </div>
-
-
 </div>
