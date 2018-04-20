@@ -812,7 +812,18 @@
     }
   }
 
-
+  .sign-in-page {
+    .square-in {
+      padding-top: 15px;
+      padding-left: 15px;
+      padding-right: 15px;
+      h3 {
+        font-size: 20px;
+        line-height: normal;
+        margin-bottom: 20px;
+      }
+    }
+  }
 }
 
 /*-----конец Новые стили----*/

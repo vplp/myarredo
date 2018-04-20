@@ -10,17 +10,51 @@
     //border: 1px dashed #CBCAC3;
   }
   .square-in {
-    border: 1px solid #CBCAC3;
+    border: 1px dashed #CBCAC3;
     height: 400px;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
     h3 {
       font-family: 'Palatino';
       color: #535351;
+      display: flex;
+      align-items: center;
       font-size: 25px;
       line-height: 29px;
+      font-weight: 700;
+      padding-top: 0;
+      height: 110px;
+      margin-bottom: 30px;
+    }
+    .img-cont {
+      height: 140px;
+      margin-bottom: 20px;
+      img {
+        display: block;
+        max-height: 95%;
+        max-width: 100%;
+        width: auto;
+        height: auto;
+      }
+    }
+    .btn-default {
+      background: #448339;
+      text-transform: uppercase;
+      border-radius: 0;
+      color: #FFFFFF;
+      border: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .forgot-pass {
+      color: #448339;
+      font-size: 14px;
     }
   }
   .in-group {
-    height: 150px;
+    height: 140px;
+    margin-bottom: 20px;
     input[type="text"]{
       background: #F3F2F0;
       border-radius: 0;

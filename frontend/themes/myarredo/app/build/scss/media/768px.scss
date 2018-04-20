@@ -519,4 +519,18 @@
       }
     }
   }
+  .sign-in-page {
+    padding: 0;
+    .container-wrap {
+      padding-top: 60px;
+      padding-bottom: 80px;
+    }
+    .square-in {
+      height: auto;
+      padding-bottom: 30px;
+      h3 {
+        height: auto;
+      }
+    }
+  }
 }
