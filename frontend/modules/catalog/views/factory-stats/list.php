@@ -4,7 +4,7 @@ use yii\helpers\{
     Html, Url
 };
 //
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\Factory;
 
 /**
  * @var $pages \yii\data\Pagination
@@ -31,8 +31,8 @@ $this->title = $this->context->title;
 
                         <?= Html::beginTag('a', [
                             'href' => Url::toRoute([
-                                '/catalog/product-stats/view',
-                                'id' => $model['product']['id'],
+                                '/catalog/factory-stats/view',
+                                'alias' => $model['factory']['alias'],
                                 'start_date' => Yii::$app->request->get('start_date'),
                                 'end_date' => Yii::$app->request->get('end_date'),
                             ]),
@@ -41,14 +41,14 @@ $this->title = $this->context->title;
 
                         <div class="img-cont">
 
-                            <?= Html::img(Product::getImageThumb($model['product']['image_link'])) ?>
+                            <?= Html::img(Factory::getImageThumb($model['factory']['image_link'])) ?>
 
                             <div class="brand"><?= $model['views'] ?></div>
 
                         </div>
 
                         <div class="item-infoblock">
-                            <?= Product::getStaticTitle($model['product']) ?>
+                            <?= $model['factory']['title'] ?>
                         </div>
 
                         <?= Html::endTag('a'); ?>

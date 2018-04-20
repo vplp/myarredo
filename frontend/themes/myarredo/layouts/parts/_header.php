@@ -126,8 +126,14 @@ use frontend\modules\location\widgets\ChangeCity;
                                             </li>
                                             <li>
                                                 <?= Html::a(
-                                                    Yii::t('app', 'Statistics'),
+                                                    Yii::t('app', 'Product statistics'),
                                                     ['/catalog/product-stats/list']
+                                                ); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a(
+                                                    Yii::t('app', 'Factory statistics'),
+                                                    ['/catalog/factory-stats/list']
                                                 ); ?>
                                             </li>
                                             <li role="separator" class="divider"></li>
@@ -153,8 +159,14 @@ use frontend\modules\location\widgets\ChangeCity;
                                             </li>
                                             <li>
                                                 <?= Html::a(
-                                                    Yii::t('app', 'Statistics'),
+                                                    Yii::t('app', 'Product statistics'),
                                                     ['/catalog/product-stats/list']
+                                                ); ?>
+                                            </li>
+                                            <li>
+                                                <?= Html::a(
+                                                    Yii::t('app', 'Factory statistics'),
+                                                    ['/catalog/factory-stats/list']
                                                 ); ?>
                                             </li>
                                             <li>

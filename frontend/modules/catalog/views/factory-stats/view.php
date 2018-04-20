@@ -4,9 +4,9 @@ use yii\helpers\{
     Html, Url
 };
 //
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\Factory;
 
-/** @var \frontend\modules\catalog\models\Product $model */
+/** @var \frontend\modules\catalog\models\Factory $model */
 /** @var \frontend\modules\catalog\models\ProductStatsDays $item */
 
 $this->title = $this->context->title;
@@ -35,7 +35,7 @@ $js_data = implode(',', $data);
                 <div class="product-title">
                     <?= Html::tag(
                         'h1',
-                        $model->getTitle(),
+                        $model->title,
                         ['class' => 'prod-model', 'itemprop' => 'name']
                     ); ?>
                 </div>
@@ -48,27 +48,14 @@ $js_data = implode(',', $data);
                     ]); ?>
 
                     <div>
-                        <?= Html::img(Product::getImageThumb($model['image_link'])) ?>
+                        <?= Html::img(Factory::getImageThumb($model['image_link'])) ?>
                     </div>
-
-                    <div>
-                        <?= Html::a(
-                            Yii::t('app', 'Factory statistics'),
-                            [
-                                '/catalog/factory-stats/view',
-                                'alias' => $model['factory']['alias'],
-                                'start_date' => Yii::$app->request->get('start_date'),
-                                'end_date' => Yii::$app->request->get('end_date'),
-
-                            ]
-                        ) ?>
-                    </div>
-
                     <div>
                         <?= Html::a(
                             Yii::t('app', 'Product statistics'),
                             [
                                 '/catalog/product-stats/list',
+                                'factory_id' => $model['id'],
                                 'start_date' => Yii::$app->request->get('start_date'),
                                 'end_date' => Yii::$app->request->get('end_date'),
                             ]
@@ -94,7 +81,6 @@ $js_data = implode(',', $data);
                     </table>
                     */ ?>
 
-
                     <canvas id="myChart"></canvas>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
@@ -104,11 +90,13 @@ $js_data = implode(',', $data);
                     $app_label_2 = Yii::t('app', 'Даты');
                     $app_label_3 = Yii::t('app', 'Количество');
 
+
                     $script = <<<JS
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'line',
+
     // The data for our dataset
     data: {
         labels: [$js_labels],

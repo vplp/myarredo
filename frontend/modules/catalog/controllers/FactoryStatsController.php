@@ -8,17 +8,18 @@ use yii\filters\{
 };
 use yii\web\NotFoundHttpException;
 //
+use frontend\modules\catalog\models\Factory;
 use frontend\modules\catalog\models\{
     Product, ProductStats, ProductStatsDays
 };
 use frontend\components\BaseController;
 
 /**
- * Class ProductStatsController
+ * Class FactoryStatsController
  *
  * @package frontend\modules\catalog\controllers
  */
-class ProductStatsController extends BaseController
+class FactoryStatsController extends BaseController
 {
     public $label = '';
     public $title = '';
@@ -93,9 +94,9 @@ class ProductStatsController extends BaseController
 
         $params['action'] = 'list';
 
-        $models = $model->search($params);
+        $models = $model->factorySearch($params);
 
-        $this->title = Yii::t('app', 'Product statistics');
+        $this->title = Yii::t('app', 'Factory statistics');
 
         return $this->render('list', [
             'model' => $model,
@@ -106,13 +107,13 @@ class ProductStatsController extends BaseController
     }
 
     /**
-     * @param $id
+     * @param $alias
      * @return string
      * @throws NotFoundHttpException
      */
-    public function actionView($id)
+    public function actionView($alias)
     {
-        $model = Product::findByID($id);
+        $model = Factory::findByAlias($alias);
 
         if ($model == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
@@ -122,10 +123,11 @@ class ProductStatsController extends BaseController
 
         $params = Yii::$app->request->get() ?? [];
 
-        $params['product_id'] = $model['id'];
+        $params['factory_id'] = $model['id'];
 
         $start_date = mktime(0, 0, 0, date("m"), date("d") - 30, date("Y"));
         $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
+
 
         if (!isset($params['start_date'])) {
             $params['start_date'] = date('d-m-Y', $start_date);
@@ -145,9 +147,9 @@ class ProductStatsController extends BaseController
 
         $params['action'] = 'view';
 
-        $stats = $modelProductStatsDays->search($params);
+        $stats = $modelProductStatsDays->factorySearch($params);
 
-        $this->title = Yii::t('app', 'Product statistics');
+        $this->title = Yii::t('app', 'Factory statistics');
 
         return $this->render('view', [
             'model' => $model,

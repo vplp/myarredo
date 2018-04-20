@@ -268,7 +268,7 @@ class Product extends \common\modules\catalog\models\Product
         $title = $this->lang->title;
 
         if ($this->is_composition)
-            $title = 'КОМПОЗИЦИЯ ' . $title;
+            $title = Yii::t('app', 'Композиция') . ' ' . $title;
 
         return $title;
     }
@@ -280,12 +280,12 @@ class Product extends \common\modules\catalog\models\Product
      */
     public function getStatus()
     {
-        $status = 'Снят с производства';
+        $status = Yii::t('app', 'Снят с производства');
 
         if (!$this->removed && $this->in_stock) {
-            $status = 'Товар в наличии';
+            $status = Yii::t('app', 'Товар в наличии');
         } else if (!$this->removed) {
-            $status = 'Под заказ';
+            $status = Yii::t('app', 'Под заказ');
         }
 
         return $status;
@@ -302,7 +302,7 @@ class Product extends \common\modules\catalog\models\Product
         $title = $model['lang']['title'];
 
         if ($model['is_composition'])
-            $title = 'КОМПОЗИЦИЯ ' . $title;
+            $title = Yii::t('app', 'Композиция') . ' ' . $title;
 
         return $title;
     }
