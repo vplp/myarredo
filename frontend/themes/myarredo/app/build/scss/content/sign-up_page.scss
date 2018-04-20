@@ -50,7 +50,7 @@
   .jq-checkbox {
     width: 24px;
     height: 24px;
-    background: #FFFFFF;
+    background: #F3F2F0;
     border: none;
     display: inline-flex !important;
     justify-content: center;
@@ -72,6 +72,28 @@
           transform: translate(-50%,-50%);
         }
       }
+    }
+  }
+  .btn-success {
+    background: #448339;
+    border: 1px solid #448339;
+    border-radius: 0;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .text {
+    padding: 0 50px;
+    font-size: 16px;
+    color: #535351;
+  }
+  .field-registerform-user_agreement {
+    label {
+      display: inline;
+    }
+  }
+  .field-registerform-delivery_to_other_cities {
+    label {
+      display: inline;
     }
   }
 }

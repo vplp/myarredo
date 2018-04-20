@@ -813,6 +813,7 @@
   }
 
   .sign-in-page {
+
     .square-in {
       padding-top: 15px;
       padding-left: 15px;
@@ -822,6 +823,18 @@
         line-height: normal;
         margin-bottom: 20px;
       }
+    }
+  }
+  .sign-up-page {
+    .form-block-in {
+      padding: 0;
+    }
+    .text {
+      padding: 0;
+    }
+    .g-recaptcha {
+      transform: scale(0.9);
+      transform-origin: 0 0;
     }
   }
 }

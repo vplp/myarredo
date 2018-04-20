@@ -31,14 +31,14 @@ $model->user_agreement = 1;
                     ]); ?>
                     <div class="row">
 
-                        <div class="col-md-2">
+                        <div class="col-sm-12 col-md-2">
                             <?= Html::tag('h2', $this->title); ?>
                             <div class="img-cont">
                                 <img src="<?= $bundle->baseUrl ?>/img/sign-up.svg" alt="">
                             </div>
                         </div>
 
-                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 right-border">
+                        <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5 right-border">
                             <div class="form-block-in">
                                 <?= $form->field($model, 'name_company') ?>
 
@@ -95,7 +95,7 @@ $model->user_agreement = 1;
                             </div>
 
                         </div>
-                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                        <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
                             <div class="text">
                                 <?= Yii::$app->param->getByName('USER_PARTNER_REG_TEXT') ?>
                             </div>

@@ -532,5 +532,17 @@
         height: auto;
       }
     }
+    .col-sm-12 {
+      width: 100% !important;
+    }
+  }
+  .sign-up-page {
+    h2 {
+      margin: 0 0 25px;
+      font-size: 23px;
+    }
+    .right-border {
+      border-right: none;
+    }
   }
 }
