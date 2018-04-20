@@ -15,15 +15,15 @@ use yii\helpers\{
             'action' => Url::toRoute([$route])
         ]) ?>
 
-        <div class="one-filter open">
+        <?php if (count(Yii::$app->catalogFilter->params) > 1): ?>
+            <?= Html::a(
+                Yii::t('app', 'Сбросить фильтры'),
+                Url::toRoute([$route]),
+                ['class' => 'reset']
+            ) ?>
+        <?php endif; ?>
 
-            <?php if (count(Yii::$app->catalogFilter->params) > 1): ?>
-                <?= Html::a(
-                    '<i class="fa fa-times" aria-hidden="true"></i>' . Yii::t('app', 'Сбросить фильтры'),
-                    Url::toRoute([$route]),
-                    ['class' => 'reset']
-                ) ?>
-            <?php endif; ?>
+        <div class="one-filter open">
 
             <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Category') ?></a>
 
@@ -33,7 +33,7 @@ use yii\helpers\{
                     $options = $item['checked'] ? ['class' => 'one-item selected'] : ['class' => 'one-item'];
 
                     echo Html::a(
-                        $item['title'] . ' (' . $item['count'] . ')',
+                        '<img src="">' . $item['title'] . ' <span>' . $item['count'] . '</span>',
                         $item['link'],
                         $options
                     );
@@ -53,7 +53,7 @@ use yii\helpers\{
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                        <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
+                        <div class="filter-group"><div class="my-checkbox"></div><?= $item['title'] ?> </div><span><?= $item['count'] ?></span>
                         <?= Html::endTag('a'); ?>
 
                     <?php endforeach; ?>
@@ -61,8 +61,7 @@ use yii\helpers\{
                 </div>
 
                 <?php if (count($types) > 10): ?>
-                    <a href="javascript:void(0);" class="show-all-sub show-more" data-variant="Скрыть">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    <a href="javascript:void(0);" class="show-all-sub show-more show-class" data-variant="Скрыть">
                         <span class="btn-text"><?= Yii::t('app', 'Показать все предметы') ?></span>
                     </a>
                 <?php endif; ?>
@@ -80,7 +79,7 @@ use yii\helpers\{
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                        <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
+                        <div class="filter-group"><div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
                         <?= Html::endTag('a'); ?>
 
                     <?php endforeach; ?>
@@ -99,13 +98,15 @@ use yii\helpers\{
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                        <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
+                        <div class="filter-group"><div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
                         <?= Html::endTag('a'); ?>
 
                     <?php endforeach; ?>
 
-                    <a href="#" class="show-more" data-toggle="modal" data-target="#factory-modal">
-                        <i class="fa fa-plus" aria-hidden="true"></i><?= Yii::t('app', 'Показать еще') ?>
+                    <a href="#" class="show-more show-class" data-toggle="modal" data-target="#factory-modal">
+                        <span class="btn-text">
+                            <?= Yii::t('app', 'Показать еще') ?>
+                        </span>
                     </a>
 
                     <div id="factory-modal" class="modal fade" role="dialog">

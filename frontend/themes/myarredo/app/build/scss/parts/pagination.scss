@@ -1,0 +1,57 @@
+.pagi-wrap {
+  background: #E3E0D5;
+  padding: 10px 0;
+  .pagination {
+    margin: 0;
+    display: flex;
+    li {
+      width: 25px;
+      height: 25px;
+      display: block;
+      margin: 0 8px;
+      a,span {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        border-radius: 16px;
+        .fa {
+          color: #979386 !important;
+          font-size: 15px;
+          margin: 0;
+        }
+      }
+      &.active {
+        a {
+          background: #448339;
+          color: #FFFFFF;
+          border: none;
+          border-radius: 16px;
+          overflow: hidden;
+        }
+      }
+      &.prev {
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        a,span {
+          border: none;
+          border-radius: 16px;
+          padding: 0;
+        }
+      }
+      &.next {
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        a,span {
+          border: none;
+          border-radius: 16px;
+          padding: 0;
+        }
+      }
+    }
+  }
+}

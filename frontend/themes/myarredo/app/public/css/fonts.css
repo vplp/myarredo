@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&subset=cyrillic');
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&subset=cyrillic,cyrillic-ext');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&subset=cyrillic-ext');
 @font-face {
@@ -15,5 +16,9 @@
 @font-face {
     font-family: 'HelveticaNeueCyr-Bold';
     src: url('../fonts/HelveticaNeue-CondensedBold.ttf');
+}
+@font-face {
+    font-family: 'Palatino';
+    src: url('../fonts/Palatino-Linotype.ttf');
 }
 /*font-family: 'Open Sans', sans-serif;*/

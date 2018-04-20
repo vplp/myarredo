@@ -24,7 +24,9 @@ class AppAsset extends AssetBundle
         'libs/bootstrap-select/css/bootstrap-select.min.css',
         'css/fonts.css',
         'libs/fancybox/jquery.fancybox.css',
+        'libs/formstyler/jquery.formstyler.css',
         'css/main.scss.min.css',
+        'css/template-style.min.css',
     ];
 
     public $js = [
@@ -35,8 +37,10 @@ class AppAsset extends AssetBundle
         'libs/infoBubble/infobubble.js',
         'libs/wNumb.js',
         'libs/shop.js',
+        'libs/Vibrant.min.js',
+        'libs/formstyler/jquery.formstyler.js',
         'libs/fancybox/jquery.fancybox.pack.js',
-        'js/core.min.js',
+        'js/main.js'
     ];
 
     public $depends = [

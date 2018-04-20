@@ -10,22 +10,31 @@ use yii\helpers\{
  */
 
 ?>
-
-<div class="partner-cities container large-container">
-    <div class="row">
-        <div>
-            <?= Yii::t('app', 'Этот список городов размещен здесь для вашего удобства. Найдите свой город и купите итальянскую мебель по лучшей цене.') ?>
+<div class="cities-list">
+    <div class="container large-container">
+        <h5><?= Yii::t('app', 'Этот список городов размещен здесь для вашего удобства. Найдите свой город и купите итальянскую мебель по лучшей цене.') ?></h5>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Город
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <?php foreach ($country['cities'] as $cityCountry): ?>
+                    <?= Html::a($cityCountry['lang']['title'], $cityCountry->getSubDomainUrl(),['class' => 'dropdown-item']) ?>
+                <?php endforeach; ?>
+            </div>
         </div>
-        <ul>
-
+        <div class="list-of-cities">
+            <?php $currentLetter = '' ?>
             <?php foreach ($country['cities'] as $cityCountry): ?>
-
-                <?= Html::beginTag('li') ?>
+                <?php
+                    if ($currentLetter != mb_substr ( $cityCountry['lang']['title'], 0, 1) ){
+                        $currentLetter = mb_substr ( $cityCountry['lang']['title'], 0, 1);
+                        echo Html::tag('h4', $currentLetter);
+                    }
+                ?>
                 <?= Html::a($cityCountry['lang']['title'], $cityCountry->getSubDomainUrl()) ?>
-                <?= Html::endTag('li') ?>
 
             <?php endforeach; ?>
-
-        </ul>
+        </div>
     </div>
 </div>

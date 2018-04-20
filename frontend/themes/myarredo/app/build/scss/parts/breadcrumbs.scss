@@ -1,0 +1,22 @@
+.bread-crumbs {
+  height: 78px;
+  li {
+    height: 78px;
+    display: inline-flex;
+    align-items: center;
+    a {
+      color: #b4b3a9;
+    }
+    &:after {
+      content: '\f0da';
+      font-size: 13px;
+      margin-left: 12px;
+      margin-right: 11px;
+    }
+    &:last-child {
+      a {
+        color: #535351;
+      }
+    }
+  }
+}

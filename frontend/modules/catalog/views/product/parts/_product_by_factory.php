@@ -36,7 +36,7 @@ $keys = Yii::$app->catalogFilter->keys;
 
                     <?php foreach ($models as $model): ?>
 
-                        <div class="item">
+                        <div class="item" data-dominant-color>
 
                             <?= Html::beginTag(
                                 'a',
@@ -48,6 +48,7 @@ $keys = Yii::$app->catalogFilter->keys;
 
                             <div class="img-cont">
                                 <?= Html::img(Product::getImageThumb($model['image_link'])); ?>
+                                <span class="background"></span>
                             </div>
 
                             <div class="add-item-text">

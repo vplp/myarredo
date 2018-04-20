@@ -13,8 +13,8 @@ use frontend\modules\catalog\models\Product;
     'href' => Product::getUrl($model['alias']),
     'class' => 'one-prod-tile'
 ]); ?>
-
-    <?php /*if (!$model['removed']): ?>
+    <div class="one-prod-tile-in">
+        <?php /*if (!$model['removed']): ?>
         <object>
             <div class="request-price" data-id=<?= $model['id'] ?> data-toggle="modal" data-target="#myModal">
                 Запросить цену
@@ -22,21 +22,32 @@ use frontend\modules\catalog\models\Product;
         </object>
     <?php endif;*/ ?>
 
-    <div class="img-cont">
+        <div class="img-cont" data-dominant-color>
+            <span class="background"></span>
 
-        <?= Html::img(Product::getImageThumb($model['image_link'])); ?>
+            <?= Html::img(Product::getImageThumb($model['image_link'])); ?>
 
-        <div class="brand">
-            <?= (isset($factory[$model['factory_id']]))
-                ? $factory[$model['factory_id']]['title']
-                : null;
-            ?>
         </div>
 
-    </div>
-
-    <div class="item-infoblock">
-        <?= Product::getStaticTitle($model); ?>
+        <div class="prod-infoblock">
+            <div class="tile-brand">
+                <?= (isset($factory[$model['factory_id']]))
+                    ? $factory[$model['factory_id']]['title']
+                    : null;
+                ?>
+            </div>
+            <div class="tile-prod-name">
+                <?= Product::getStaticTitle($model); ?>
+            </div>
+        </div>
+        <object class="btn-block">
+            <a href="javascrip:void(0);" class="more-info">
+                Детальнее
+            </a>
+            <a href="javascript:void(0);" class="get-price">
+                запросить цену
+            </a>
+        </object>
     </div>
 
 <?= Html::endTag('a'); ?>

@@ -12,93 +12,37 @@ use frontend\modules\catalog\models\Sale;
 
 ?>
 
-<div class="sale">
+<div class="sale-sect">
     <div class="container large-container">
-        <div class="row">
-            <div class="col-ms-12">
-                <div class="header">
-                    <h2><?= Yii::t('app', 'Sale') ?></h2>
-
-                    <?= Html::a(
-                        Yii::t('app', 'Все акционные товары'),
-                        Url::toRoute(['/catalog/sale/list']),
-                        ['class' => 'more']
-                    ); ?>
-
-                    <div id="sale-slider" class="carousel slide" data-ride="carousel" data-interval="10000">
-
-                        <div class="carousel-inner">
-
-                            <?php foreach ($models as $k => $level) { ?>
-
-                                <div class="item<?= ($k == 1) ? ' active' : '' ?>">
-                                    <div class="item-in">
-                                        <div class="left-side">
-
-                                            <?php foreach ($level as $key => $model) { ?>
-
-                                                <?php if ($key + 1 !== count($level)) { ?>
-
-                                                    <?= Html::beginTag('a', ['href' => $model->getUrl(), 'class' => 'one-tile']); ?>
-                                                        <div class="img-cont">
-                                                            <?= Html::img(Sale::getImageThumb($model['image_link']), ['class' => 'cont']); ?>
-                                                        </div>
-                                                        <div class="name">
-                                                            <?= $model->getTitle(); ?>
-                                                        </div>
-
-                                                        <?php if ($model['price'] > 0): ?>
-                                                            <div class="old-price"><?= $model['price']; ?> <?= $model['currency']; ?></div>
-                                                        <?php endif; ?>
-                                                        <div class="new-price">
-                                                            <?= $model['price_new']; ?> <?= $model['currency']; ?>
-                                                        </div>
-                                                    <?= Html::endTag('a'); ?>
-
-                                                <?php } else { ?>
-
-                                                    </div>
-                                                    <div class="right-side">
-
-                                                        <?= Html::beginTag('a', ['href' => $model->getUrl(), 'class' => 'one-tile']); ?>
-                                                            <div class="img-cont">
-                                                                <?= Html::img(Sale::getImageThumb($model['image_link']), ['class' => 'cont']); ?>
-                                                            </div>
-                                                            <div class="name">
-                                                                <?= $model->getTitle(); ?>
-                                                            </div>
-                                                            <?php if ($model['price'] > 0): ?>
-                                                                <div class="old-price"><?= $model['price']; ?> <?= $model['currency']; ?></div>
-                                                            <?php endif; ?>
-                                                            <div class="new-price">
-                                                                <?= $model['price_new']; ?> <?= $model['currency']; ?>
-                                                            </div>
-                                                        <?= Html::endTag('a'); ?>
-
-                                                <?php } ?>
-
-                                            <?php } ?>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            <?php } ?>
-
+        <div class="section-header">
+            <h3 class="section-title">
+                <?= Yii::t('app', 'Sale') ?>
+            </h3>
+            <?= Html::a(
+                Yii::t('app', 'Все акционные товары'),
+                Url::toRoute(['/catalog/sale/list']),
+                ['class' => 'sticker']
+            ); ?>
+        </div>
+        <div class="sale-wrap">
+            <?php foreach ($models as $k => $level) : ?>
+                <?php foreach ($level as $key => $model) : ?>
+                    <a href="<?= $model->getUrl() ?>" class="one-sale" data-dominant-color>
+                        <div class="img-cont">
+                            <span class="background"></span>
+                            <?= Html::img(Sale::getImageThumb($model['image_link']), ['class' => 'cont']); ?>
                         </div>
-
-                        <div class="arr-cont">
-                            <a class="left left-arr" href="#sale-slider" role="button" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <div class="indent"></div>
-                            <a class="right right-arr" href="#sale-slider" role="button" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
+                        <div class="prod-title">
+                            <?= $model->getTitle(); ?>
                         </div>
-
-                    </div>
-                </div>
-            </div>
+                        <div class="price">
+                            <span class="old-price"><?= $model['price']; ?> <?= $model['currency']; ?></span> | <span class="new-price">
+                                <?= $model['price_new']; ?></span> <?= $model['currency']; ?>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
         </div>
     </div>
+
 </div>

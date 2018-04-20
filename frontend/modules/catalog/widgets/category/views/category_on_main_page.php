@@ -11,30 +11,44 @@ use frontend\modules\catalog\models\Category;
 
 ?>
 
-<div class="italian-furn">
+
+
+<div class="categories-sect">
     <div class="container large-container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="header">
-                    <?= Html::a(
-                        Yii::t('app', 'Смотреть все категории'),
-                        Url::toRoute(['/catalog/category/list']),
-                        ['class' => 'more']
-                    ); ?>
-                </div>
-                <div class="tiles-wrap">
+        <div class="section-header">
 
-                    <?php foreach ($models as $model): ?>
-                        <div class="col-xs-6 col-sm-3 col-md-3 one-cat">
-                            <?= Html::beginTag('a', ['href' => Category::getUrl($model['alias'])]); ?>
-                            <div class="img-cont"><?= Html::img(Category::getImage($model['image_link'])); ?></div>
-                            <div class="descr"><?= $model['lang']['title']; ?></div>
-                            <?= Html::endTag('a'); ?>
+            <h1 class="section-title">
+                Итальянская мебель в Москве
+            </h1>
+
+            <?= Html::a(
+                Yii::t('app', 'Смотреть все категории'),
+                Url::toRoute(['/catalog/category/list']),
+                ['class' => 'sticker']
+            ); ?>
+        </div>
+        <div class="categories-wrap">
+            <?php foreach ($models as $model): ?>
+                <div class="one-cat">
+                    <div class="one-cat-in">
+                        <div class="cat-title">
+                            <?= $model['lang']['title']; ?>
                         </div>
-                    <?php endforeach; ?>
-
+                        <a href="<?= Category::getUrl($model['alias']) ?>" class="img-cont">
+                            <?= Html::img(Category::getImage($model['image_link'])); ?>
+                        </a>
+                        <ul class="cat-list">
+                            <li>Кухни <span>169</span></li>
+                            <li>Раковины <span>19</span></li>
+                            <li>Столы <span>34</span></li>
+                            <li>Стулья <span>158</span></li>
+                        </ul>
+                        <a href="<?= Category::getUrl($model['alias']) ?>" class="view-all">
+                            Смотреть все
+                        </a>
+                    </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
