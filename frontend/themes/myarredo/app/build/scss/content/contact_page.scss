@@ -1,0 +1,48 @@
+.concact-page {
+  padding: 0;
+  .container-wrap {
+    background: #FFFFFF;
+  }
+  h1 {
+    margin: 0;
+    color: #535351;
+    font-size: 35px;
+    font-family: 'Palatino';
+    display: flex;
+    align-items: center;
+    height: 80px;
+  }
+  .of-conts {
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  .one-cont {
+    width: calc( 25% - 16px );
+    margin-bottom: 16px;
+    margin-left: 8px;
+    margin-right: 8px;
+    border: 1px dashed #BDBCB3;
+    padding-left: 0;
+    padding-top: 30px;
+    &:before {
+      display: none;
+    }
+    h4 {
+      font-size: 21px;
+      line-height: 28px;
+      font-family: 'Palatino';
+      text-align: center;
+    }
+    .ico {
+      width: 23px;
+      height: 23px;
+      img {
+        display: block;
+        max-height: 100%;
+        max-width: 100%;
+        height: auto;
+        width: auto;
+      }
+    }
+  }
+}
