@@ -211,33 +211,6 @@
       }
     }
   }
-  body .concact-page {
-    h1 {
-      font-size: 21px;
-      margin: 17px 0;
-    }
-    .one-cont {
-      &>a {
-        font-size: 17px;
-      }
-      .adres {
-        font-size: 14px;
-      }
-    }
-    .warning {
-      font-size: 13px;
-      margin-bottom: 25px;
-    }
-    .map-cont {
-      .view-all {
-        font-size: 11px;
-      }
-      #map {
-        height: 400px;
-      }
-    }
-  }
-
 
   body .sign-in-page {
     h3 {
@@ -835,6 +808,22 @@
     .g-recaptcha {
       transform: scale(0.9);
       transform-origin: 0 0;
+    }
+  }
+  .concact-page {
+    h1 {
+      margin: 0 !important;
+      font-size: 18px;
+    }
+    .one-cont {
+      width: 100%;
+      padding: 20px 20px 30px;
+      .info-part {
+        width: 100% !important;
+      }
+    }
+    .img-part {
+      display: none;
     }
   }
 }

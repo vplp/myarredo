@@ -516,4 +516,12 @@
       font-size: 14px;
     }
   }
+  .concact-page {
+    .one-cont {
+      width: calc(33.33% - 16px);
+      &.double-cont {
+        width: calc(66.66% - 16px);
+      }
+    }
+  }
 }

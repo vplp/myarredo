@@ -657,4 +657,12 @@
       display: none;
     }
   }
+  .concact-page {
+    .one-cont {
+      width: calc(50% - 16px);
+      &.double-cont {
+        width: 100%
+      }
+    }
+  }
 }

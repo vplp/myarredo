@@ -75,21 +75,6 @@
   .factories {
     padding: 0 10px;
   }
-  .concact-page {
-    h1 {
-      font-size: 28px;
-    }
-    .one-cont {
-      width: 100%;
-      h4 {
-        font-size: 13px;
-      }
-      &>a {
-        font-size: 19px;
-      }
-    }
-  }
-
   .sign-in-page {
     padding: 15px 0;
     .col-md-4 {
@@ -543,6 +528,26 @@
     }
     .right-border {
       border-right: none;
+    }
+  }
+  .concact-page {
+    h1 {
+      font-size: 28px;
+    }
+    .one-cont {
+      width: calc(50% - 16px);
+      &.double-cont {
+        width: 100%
+      }
+      h4 {
+        font-size: 18px;
+      }
+      a {
+        font-size: 13px;
+      }
+      .adres {
+        font-size: 13px;
+      }
     }
   }
 }
