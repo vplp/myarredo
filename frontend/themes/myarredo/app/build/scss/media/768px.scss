@@ -550,4 +550,31 @@
       }
     }
   }
+  .factory-page {
+    .container-wrap {
+      padding-bottom: 0;
+    }
+    .fact-img {
+      width: 150px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .col-xs-12 {
+      width: 100%;
+    }
+    .bread-crumbs {
+      li {
+        display: inline;
+      }
+    }
+    .header-border {
+      margin-bottom: 15px;
+    }
+    .factory-det {
+      margin-bottom: 20px;
+    }
+    .one-filter {
+      margin-bottom: 25px;
+    }
+  }
 }

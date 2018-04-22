@@ -863,6 +863,39 @@
       border: 1px solid #BDBCB3;
     }
   }
+  .factory-page {
+    .factory-det {
+      h1 {
+        margin: 0;
+        font-size: 20px;
+      }
+    }
+    .nav>li>a {
+      padding: 7px 6px;
+      font-size: 11px;
+    }
+    .tab-pane {
+      .list {
+        column-count: 1;
+      }
+    }
+    .header-border {
+      margin-right: 0;
+    }
+    .catalog-wrap {
+      .one-prod-tile {
+        height: auto;
+        width: 100% !important;
+        margin-bottom: 15px;
+        .btn-block {
+          opacity: 1;
+        }
+        .tile-prod-name {
+          height: auto;
+        }
+      }
+    }
+  }
 }
 
 /*-----конец Новые стили----*/

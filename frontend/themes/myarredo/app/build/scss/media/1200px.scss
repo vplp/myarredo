@@ -550,4 +550,81 @@
       width: calc(33.33% - 16px);
     }
   }
+  .factory-page {
+    h1 {
+      font-size: 28px;
+    }
+    .fact-link {
+      a {
+        font-size: 16px;
+      }
+    }
+    .fact-assort-wrap {
+      margin-top: 10px;
+    }
+    .nav-tabs {
+      li {
+        a {
+          font-size: 12px;
+        }
+      }
+    }
+    .factory-det {
+      .descr {
+        margin-bottom: 0;
+      }
+    }
+    .text {
+      font-size: 13px;
+    }
+    .text-header {
+      font-size: 18px;
+      line-height: 29px;
+    }
+    .header-border {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+    .col-sm-4 {
+      width: 33.33333333%;
+    }
+    .col-sm-8 {
+      width: 66.66666667%;
+    }
+    .catalog-wrap {
+      .one-prod-tile {
+        width: calc( 50% - 20px ) !important;
+        height: 320px;
+        &.last {
+          height: 225px;
+          .img-cont {
+            margin-top: 0;
+            height: 100px;
+          }
+        }
+        .img-cont {
+          height: 240px;
+        }
+      }
+    }
+    .tab-pane {
+      .list {
+        column-gap: 40px;
+        line-height: 22px;
+      }
+      li {
+        padding-left: 15px;
+        a {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  .one-filter {
+    li {
+      .img-cont {
+        margin-right: 8px;
+      }
+    }
+  }
 }
