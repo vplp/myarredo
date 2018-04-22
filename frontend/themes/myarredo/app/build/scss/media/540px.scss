@@ -826,6 +826,43 @@
       display: none;
     }
   }
+  .factory-list-page {
+    h1 {
+      font-size: 17px;
+    }
+    .factory-tile {
+      width: 100%;
+    }
+    .section-header {
+      padding: 10px 0;
+    }
+    .after-title {
+      font-size: 12px;
+    }
+    .title-mark {
+      flex-direction: column;
+    }
+    .letter-nav {
+      display: flex;
+      margin-bottom: 1px;
+      .all {
+        margin-left: 6px !important;
+      }
+    }
+    .title-mark>.letter-nav .container {
+      padding: 0 3px;
+    }
+    .view-but {
+      padding: 0 !important;
+      a {
+        height: 35px !important;
+        width: 50% !important;
+      }
+    }
+    .factory-tile {
+      border: 1px solid #BDBCB3;
+    }
+  }
 }
 
 /*-----конец Новые стили----*/

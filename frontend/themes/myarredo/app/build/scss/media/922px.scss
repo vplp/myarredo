@@ -665,4 +665,29 @@
       }
     }
   }
+  .factory-list-page {
+    h1 {
+      font-size: 20px;
+    }
+    .after-title {
+      font-size: 14px;
+    }
+    .title-mark {
+      .letter-nav {
+        height: 40px;
+        .all {
+          margin-top: 7px;
+        }
+      }
+    }
+    .view-but {
+      a {
+        width: 40px;
+        min-width: 40px;
+      }
+    }
+    .factory-tile {
+      width: calc(50% - 16px);
+    }
+  }
 }

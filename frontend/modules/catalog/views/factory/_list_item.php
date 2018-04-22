@@ -19,7 +19,7 @@ $keys = Yii::$app->catalogFilter->keys;
     ]
 ); ?>
 
-    <div class="flex">
+    <div class="flex column-direction">
         <div class="logo-img">
             <?= Html::img(Factory::getImageThumb($model['image_link'])); ?>
         </div>

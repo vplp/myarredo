@@ -16,63 +16,67 @@ $this->title = $this->context->title;
 
 <main>
     <div class="page factory-list-page">
-        <div class="letter-nav">
+        <div class="container-wrap">
             <div class="container large-container">
-                <ul class="letter-select">
+                <div class="section-header">
+                    <h1 class="title-text">
+                        <?= Yii::t('app','Итальянские фабрики мебели - производители из Италии') ?>
+                    </h1>
+                    <span class="after-title">
+                        (<?= Factory::findBase()->count(); ?> <?= Yii::t('app','фабрик представлено в нашем каталоге') ?>)
+                    </span>
+                </div>
 
-                    <?php
-                    foreach (Factory::getListLetters() as $letter) {
-                        echo Html::beginTag('li') .
-                            Html::a(
-                                $letter['first_letter'],
-                                Url::toRoute(['/catalog/factory/list', 'letter' => strtolower($letter['first_letter'])])
-                            ) .
-                            Html::endTag('li');
+                <div class="title-mark">
+                    <div class="letter-nav">
+                        <div class="container large-container">
+                            <ul class="letter-select">
+
+                                <?php
+                                foreach (Factory::getListLetters() as $letter) {
+                                    echo Html::beginTag('li') .
+                                        Html::a(
+                                            $letter['first_letter'],
+                                            Url::toRoute(['/catalog/factory/list', 'letter' => strtolower($letter['first_letter'])])
+                                        ) .
+                                        Html::endTag('li');
+                                } ?>
+
+                            </ul>
+                            <?= Html::a('Все', Url::toRoute(['/catalog/factory/list']), ['class' => 'all']); ?>
+                        </div>
+                    </div>
+                    <div class="view-but">
+                        <a href="<?= Url::toRoute(['/catalog/factory/list', 'view' => 'three']); ?>" >
+                            <i class="fa fa-list-ul" aria-hidden="true"></i>
+                        </a>
+                        <a href="<?= Url::toRoute(['/catalog/factory/list']); ?>" class="active">
+                            <i class="fa fa-th-large" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="factory-tiles flex">
+
+                    <?php foreach ($models as $model) {
+                        echo $this->render(
+                            '_list_item',
+                            [
+                                'model' => $model,
+                                'categories' => $factory_categories[$model['id']] ?? []
+                            ]
+                        );
                     } ?>
 
-                </ul>
-                <?= Html::a('Все', Url::toRoute(['/catalog/factory/list']), ['class' => 'all']); ?>
-            </div>
-        </div>
-        <div class="container large-container">
-            <div class="title-mark">
-                <h1 class="title-text">
-                    <?= Yii::t('app','Итальянские фабрики мебели - производители из Италии') ?>
-                </h1>
-                <span>
-                    (<?= Factory::findBase()->count(); ?> <?= Yii::t('app','фабрик представлено в нашем каталоге') ?>)
-                </span>
-                <div class="view-but">
-                    <a href="<?= Url::toRoute(['/catalog/factory/list', 'view' => 'three']); ?>" class="tiles4 flex">
-                        <i></i><i></i><i></i><i></i>
-                        <i></i><i></i><i></i><i></i>
-                    </a>
-                    <a href="<?= Url::toRoute(['/catalog/factory/list']); ?>" class="tiles2 flex active">
-                        <i></i><i></i>
-                    </a>
                 </div>
-            </div>
 
-            <div class="factory-tiles flex">
-
-                <?php foreach ($models as $model) {
-                    echo $this->render(
-                        '_list_item',
-                        [
-                            'model' => $model,
-                            'categories' => $factory_categories[$model['id']] ?? []
-                        ]
-                    );
-                } ?>
+                <div class="pagi-wrap">
+                    <?= frontend\components\LinkPager::widget([
+                        'pagination' => $pages,
+                    ]); ?>
+                </div>
 
             </div>
-
-            <div class="pagi-wrap">
-                <?= frontend\components\LinkPager::widget([
-                    'pagination' => $pages,
-                ]); ?>
-            </div>
-
         </div>
     </div>
 </main>

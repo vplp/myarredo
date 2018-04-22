@@ -2159,31 +2159,6 @@ footer {
   .assortment {
     list-style: none;
     padding: 40px 0;
-    li {
-      font-size: 11px;
-      display: inline-block;
-      &:last-child {
-        &:after {
-          display: none;
-        }
-      }
-      &:after {
-        content: "|";
-        font-size: 15px;
-        display: inline-block;
-        margin: 0 4px 0 5px;
-      }
-      &:hover {
-        a {
-          color: #999;
-        }
-      }
-    }
-    a {
-      color: #41403e;
-      text-transform: uppercase;
-      transition: all 0.2s ease;
-    }
   }
 }
 .factory-det {
