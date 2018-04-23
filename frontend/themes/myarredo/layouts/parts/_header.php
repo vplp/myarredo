@@ -20,7 +20,7 @@ use frontend\modules\location\widgets\ChangeCity;
             <div class="top-header">
                 <div class="container large-container">
                     <div class="left-part">
-                        <a href="#" class="phone-num">
+                        <a class="phone-num">
                             <i class="fa fa-phone" aria-hidden="true"></i>
                             <div>
                                 <span class="phone"><?= Yii::$app->partner->getPartnerPhone() ?></span>
@@ -56,10 +56,14 @@ use frontend\modules\location\widgets\ChangeCity;
 
                     </div>
                     <div class="right-part">
-                        <a href="#" class="sign-in">
-                            <i class="fa fa-sign-in" aria-hidden="true"></i>
-                            Вход
-                        </a>
+                        <?= Html::a(
+                                '<i class="fa fa-sign-in" aria-hidden="true"></i>' .
+                            Yii::t('app', 'Sign In'),
+                            ['/user/login/index'],
+                            [
+                                'class' => 'sign-in'
+                            ]
+                        ); ?>
                         <?= Cart::widget(['view' => 'short']) ?>
                     </div>
                 </div>
