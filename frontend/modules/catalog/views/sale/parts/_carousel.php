@@ -15,13 +15,16 @@ use yii\helpers\Html;
 
         <?php foreach ($model->getFrontGalleryImage() as $key => $src) {
 
+            $class = 'item' . (($key == 0) ? ' active' : '');
+
             echo Html::beginTag('div', ['class' => $class, 'data-dominant-color' => '']) .
                 Html::a(
                     Html::img($src['img'], ['itemprop' => 'image']),
                     $src['img'],
                     [
                         'class' => 'img-cont fancyimage',
-                        'data-fancybox-group' => 'group'
+                        'data-fancybox-group' => 'group',
+                        'data-dominant-color' => ''
                     ]
                 ) .
                 Html::tag('span', '', ['class' => 'background']) .
@@ -37,7 +40,7 @@ use yii\helpers\Html;
     <!-- Carousel nav -->
 
     <div class="nav-cont">
-        <ol class="carousel-indicators">
+        <div class="carousel-indicators">
 
             <?php foreach ($model->getFrontGalleryImage() as $key => $src): ?>
 
@@ -48,7 +51,7 @@ use yii\helpers\Html;
 
             <?php endforeach; ?>
 
-        </ol>
+        </div>
     </div>
 
 </div>
