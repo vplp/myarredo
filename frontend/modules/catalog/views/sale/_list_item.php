@@ -11,21 +11,37 @@ use frontend\modules\catalog\models\Sale;
 ?>
 
 <?= Html::beginTag('a', [
-    'href' => $model->getUrl(), 'class' => 'one-prod-tile'
+    'href' => $model->getUrl(),
+    'class' => 'one-prod-tile'
 ]); ?>
 
-    <div class="img-cont">
+    <div class="one-prod-tile-in">
 
-        <?= Html::img(Sale::getImageThumb($model['image_link'])); ?>
-
-        <div class="brand">
-            <?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name'] ?>
+        <div class="img-cont" data-dominant-color>
+            <span class="background"></span>
+            <?= Html::img(Sale::getImageThumb($model['image_link'])); ?>
         </div>
 
-    </div>
+        <div class="item-infoblock">
+            <div class="tile-brand">
+                <?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name'] ?>
+            </div>
+            <div class="tile-prod-name">
+                <?= $model->getTitle() ?>
+            </div>
+        </div>
 
-    <div class="item-infoblock">
-        <?= $model->getTitle() ?>
+        <object class="btn-block">
+            <a class="more-info">
+                Детальнее
+            </a>
+            <!--
+            <a href="javascript:void(0);" class="get-price">
+                запросить цену
+            </a>
+            -->
+        </object>
+
     </div>
 
 <?= Html::endTag('a'); ?>
