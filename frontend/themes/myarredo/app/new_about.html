@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>myarredo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./public/libs/formstyler/jquery.formstyler.css">
+    <link rel="stylesheet" href="./public/css/fonts.css">
+    <link rel="stylesheet" href="./public/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./public/libs/slick-1.6/slick.css">
+    <link rel='stylesheet' href='./public/css/main.scss.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='./public/css/template-style.min.css' type='text/css' media='all' />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<!--[if lt IE 9]>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+<![endif]-->
+
+<div class="header">
+    <div class="container-wrap">
+        <div class="top-header">
+            <div class="container large-container">
+                <div class="left-part">
+                    <a href="#" class="phone-num">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        <div>
+                            <span class="phone">+7 (495) 150-21-21</span>
+                            <span class="descr">Бесплатно по всей России</span>
+                        </div>
+                    </a>
+                    <a href="#" class="back-call">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        Обрантый звонок
+                    </a>
+                    <div class="select-city">
+                        <a href="javscript:void(0)" class="js-select-city">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            Россия | Москва
+                        </a>
+                        <div class="city-list-cont">
+                            <ul class="links-cont">
+                                <li><a href="http://almetevsk.myarredo.ru">Альметьевск</a></li>
+                                <li><a href="http://anapa.myarredo.ru">Анапа</a></li>
+                                <li><a href="http://barnaul.myarredo.ru">Барнаул</a></li>
+                                <li><a href="http://belgorod.myarredo.ru">Белгород</a></li>
+                                <li><a href="http://blagoveshchensk.myarredo.ru">Благовещенск</a></li>
+                                <li><a href="http://bryansk.myarredo.ru">Брянск</a></li>
+                                <li><a href="http://vladivostok.myarredo.ru">Владивосток</a></li>
+                                <li><a href="http://vladikavkaz.myarredo.ru">Владикавказ</a></li>
+                                <li><a href="http://vladimir.myarredo.ru">Владимир</a></li>
+                                <li><a href="http://volgograd.myarredo.ru">Волгоград</a></li>
+                                <li><a href="http://ekaterinburg.myarredo.ru">Екатеринбург</a></li>
+                                <li><a href="http://irkutsk.myarredo.ru">Иркутск</a></li>
+                                <li><a href="http://kazan.myarredo.ru">Казань</a></li>
+                                <li><a href="http://kaluga.myarredo.ru">Калуга</a></li>
+                                <li><a href="http://kemerovo.myarredo.ru">Кемерово</a></li>
+                                <li><a href="http://kirov.myarredo.ru">Киров</a></li>
+                                <li><a href="http://kostroma.myarredo.ru">Кострома</a></li>
+                                <li><a href="http://krasnodar.myarredo.ru">Краснодар</a></li>
+                                <li><a href="http://krasnoyarsk.myarredo.ru">Красноярск</a></li>
+                                <li><a href="http://kursk.myarredo.ru">Курск</a></li>
+                                <li><a href="http://magnitogorsk.myarredo.ru">Магнитогорск</a></li>
+                                <li><a href="http://mahachkala.myarredo.ru">Махачкала</a></li>
+                                <li class="active"><a href="http://www.myarredo.ru">Москва</a></li>
+                                <li><a href="http://murmansk.myarredo.ru">Мурманск</a></li>
+                                <li><a href="http://naberezhnye-chelny.myarredo.ru">Набережные Челны</a></li>
+                                <li><a href="http://nalchik.myarredo.ru">Нальчик</a></li>
+                                <li><a href="http://nn.myarredo.ru">Нижний Новгород</a></li>
+                                <li><a href="http://novokuznetsk.myarredo.ru">Новокузнецк</a></li>
+                                <li><a href="http://novorossiysk.myarredo.ru">Новороссийск</a></li>
+                                <li><a href="http://novosibirsk.myarredo.ru">Новосибирск</a></li>
+                                <li><a href="http://penza.myarredo.ru">Пенза</a></li>
+                                <li><a href="http://perm.myarredo.ru">Пермь</a></li>
+                                <li><a href="http://rnd.myarredo.ru">Ростов-на-Дону </a></li>
+                                <li><a href="http://ryazan.myarredo.ru">Рязань</a></li>
+                                <li><a href="http://samara.myarredo.ru">Самара</a></li>
+                                <li><a href="http://spb.myarredo.ru">Санкт-Петербург</a></li>
+                                <li><a href="http://saratov.myarredo.ru">Саратов</a></li>
+                                <li><a href="http://sevastopol.myarredo.ru">Севастополь</a></li>
+                                <li><a href="http://simferopol.myarredo.ru">Симферополь</a></li>
+                                <li><a href="http://smolensk.myarredo.ru">Смоленск</a></li>
+                                <li><a href="http://sochi.myarredo.ru">Сочи</a></li>
+                                <li><a href="http://stavropol.myarredo.ru">Ставрополь</a></li>
+                                <li><a href="http://taganrog.myarredo.ru">Таганрог</a></li>
+                                <li><a href="http://tambov.myarredo.ru">Тамбов</a></li>
+                                <li><a href="http://tolyatti.myarredo.ru">Тольятти</a></li>
+                                <li><a href="http://tula.myarredo.ru">Тула</a></li>
+                                <li><a href="http://tumen.myarredo.ru">Тюмень</a></li>
+                                <li><a href="http://ulyanovsk.myarredo.ru">Ульяновск</a></li>
+                                <li><a href="http://ufa.myarredo.ru">Уфа</a></li>
+                                <li><a href="http://khabarovsk.myarredo.ru">Хабаровск</a></li>
+                                <li><a href="http://chegem.myarredo.ru">Чегем</a></li>
+                                <li><a href="http://chelyabinsk.myarredo.ru">Челябинск</a></li>
+                                <li><a href="http://yaroslavl.myarredo.ru">Ярославль</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lang-selector">
+                        <a href="javascript:void(0);" class="js-select-lang">
+                            <i class="fa fa-globe" aria-hidden="true"></i>
+                            Рус
+                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                        </a>
+                        <ul class="lang-drop-down">
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>
+                                    Eng
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>
+                                    It
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#" class="company-logo">
+                        <img src="public/img/logo-odis.png" alt="">
+                    </a>
+                </div>
+                <div class="right-part">
+                    <a href="#" class="sign-in">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i>
+                        Вход
+                    </a>
+                    <a href="#" class="wishlist">
+                        <i class="fa fa-heart" aria-hidden="true"></i> Избранное
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="bot-header">
+            <div class="container large-container">
+                <a href="#" class="logo">
+                    <img src="public/img/logo.svg" alt="">
+                </a>
+                <ul class="navigation">
+                    <li class="js-has-list has-list">
+                        <a href="#">КАТАЛОГ МЕБЕЛИ</a>
+                        <div class="list-level-wrap">
+                            <ul class="list-level">
+                                <li>
+                                    <a href="#">
+                                        <div class="img-cont">
+                                            <img src="public/img/catalog_ico/thumb1.png" alt="">
+                                        </div>
+                                        Спальни
+                                    </a>
+                                    <span class="count">488</span>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="img-cont">
+                                            <img src="public/img/catalog_ico/thumb2.png" alt="">
+                                        </div>
+                                        Кухни
+                                    </a>
+                                    <span class="count">450</span>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="img-cont">
+                                            <img src="public/img/catalog_ico/thumb1.png" alt="">
+                                        </div>
+                                        Столовые комнаты
+                                    </a>
+                                    <span class="count">111</span>
+                                </li>
+                                <li>
+                                    <a href="#">Детская мебель</a>
+                                    <span class="count">121</span>
+                                </li>
+                                <li>
+                                    <a href="#">Мягкая мебель</a>
+                                    <span class="count">300</span>
+                                </li>
+                                <li>
+                                    <a href="#">Гостиные</a>
+                                    <span class="count">751</span>
+                                </li>
+                                <li>
+                                    <a href="#">Светильники</a>
+                                    <span class="count">488</span>
+                                </li>
+                                <li>
+                                    <a href="#">Стулья</a>
+                                    <span class="count">450</span>
+                                </li>
+                                <li>
+                                    <a href="#">Кабинеты</a>
+                                    <span class="count">111</span>
+                                </li>
+                                <li>
+                                    <a href="#">Прихожие</a>
+                                    <span class="count">121</span>
+                                </li>
+                                <li>
+                                    <a href="#">Двери</a>
+                                    <span class="count">221</span>
+                                </li>
+                                <li>
+                                    <a href="#">Гардеробные</a>
+                                    <span class="count">300</span>
+                                </li>
+                                <li>
+                                    <a href="#">Ванные комнаты</a>
+                                    <span class="count">751</span>
+                                </li>
+                                <li>
+                                    <a href="#">Мебель для TV</a>
+                                    <span class="count">751</span>
+                                </li>
+                                <li>
+                                    <a href="#">Аксессуары</a>
+                                    <span class="count">751</span>
+                                </li>
+                                <li>
+                                    <a href="#">Кованая мебель</a>
+                                    <span class="count">751</span>
+                                </li>
+                                <li>
+                                    <a href="#">Мебель для ресторанов</a>
+                                    <span class="count">751</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">ФАБРИКИ</a></li>
+                    <li><a href="#">РАСПРОДАЖА</a></li>
+                    <li><a href="#">О ПРОЕКТЕ</a></li>
+                    <li><a href="#">КОНТАКТЫ В МОСКВЕ</a></li>
+                </ul>
+                <div class="search-cont">
+                    <form action="#">
+                        <div class="search-group">
+                            <input type="text" placeholder="Поиск">
+                            <button class="search-button">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mobile-header">
+    <div class="left-info-part">
+        <div class="logo-num">
+            <a href="#" class="logo">
+                <img src="public/img/logo.svg" alt="">
+            </a>
+            <div class="phone-container">
+                <a href="#" class="phone-num">
+                    +7 (495) 150-21-21
+                </a>
+                <div class="after-num">
+                    Бесплатно по всей России
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-btn-part">
+        <div class="menu-btn js-menu-btn">
+            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+        </div>
+        <div class="search-btn">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </div>
+    </div>
+
+    <div class="mobile-menu js-mobile-menu">
+        <div class="stripe">
+            <a href="javascript:void(0);" class="mobile-btn">
+                <i class="fa fa-sign-in" aria-hidden="true"></i>
+                Вход
+            </a>
+            <a href="javascript:void(0);" class="back-call">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                Обратный звонок
+            </a>
+            <a href="javascript:void(0);" class="close-mobile-menu">
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+        </div>
+        <a href="#" class="wishlist-mobile">
+            <i class="fa fa-heart" aria-hidden="true"></i>
+            Избранное
+        </a>
+        <ul class="menu-list">
+            <li>
+                <a href="#">КАТАЛОГ МЕБЕЛИ</a>
+            </li>
+            <li>
+                <a href="#">ФАБРИКИ</a>
+            </li>
+            <li>
+                <a href="#">РАСПРОДАЖА</a>
+            </li>
+            <li>
+                <a href="#">О ПРОЕКТЕ</a>
+            </li>
+            <li>
+                <a href="#">КОНТАКТЫ В МОСКВЕ</a>
+            </li>
+        </ul>
+        <a href="#" class="logo-container">
+            <img src="public/img/logo-odis.png" alt="">
+        </a>
+        <div class="bot-list">
+            <div class="one-list-cont">
+                <div class="one-list js-toggle-list">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    Россия | Москва
+                </div>
+                <ul class="mobile-city-list js-list-container">
+                    <li><a href="http://almetevsk.myarredo.ru">Альметьевск</a></li>
+                    <li><a href="http://anapa.myarredo.ru">Анапа</a></li>
+                    <li><a href="http://barnaul.myarredo.ru">Барнаул</a></li>
+                    <li><a href="http://belgorod.myarredo.ru">Белгород</a></li>
+                    <li><a href="http://blagoveshchensk.myarredo.ru">Благовещенск</a></li>
+                    <li><a href="http://bryansk.myarredo.ru">Брянск</a></li>
+                    <li><a href="http://vladivostok.myarredo.ru">Владивосток</a></li>
+                    <li><a href="http://vladikavkaz.myarredo.ru">Владикавказ</a></li>
+                    <li><a href="http://vladimir.myarredo.ru">Владимир</a></li>
+                    <li><a href="http://volgograd.myarredo.ru">Волгоград</a></li>
+                    <li><a href="http://ekaterinburg.myarredo.ru">Екатеринбург</a></li>
+                    <li><a href="http://irkutsk.myarredo.ru">Иркутск</a></li>
+                    <li><a href="http://kazan.myarredo.ru">Казань</a></li>
+                    <li><a href="http://kaluga.myarredo.ru">Калуга</a></li>
+                    <li><a href="http://kemerovo.myarredo.ru">Кемерово</a></li>
+                    <li><a href="http://kirov.myarredo.ru">Киров</a></li>
+                    <li><a href="http://kostroma.myarredo.ru">Кострома</a></li>
+                    <li><a href="http://krasnodar.myarredo.ru">Краснодар</a></li>
+                    <li><a href="http://krasnoyarsk.myarredo.ru">Красноярск</a></li>
+                    <li><a href="http://kursk.myarredo.ru">Курск</a></li>
+                    <li><a href="http://magnitogorsk.myarredo.ru">Магнитогорск</a></li>
+                    <li><a href="http://mahachkala.myarredo.ru">Махачкала</a></li>
+                    <li class="active"><a href="http://www.myarredo.ru">Москва</a></li>
+                    <li><a href="http://murmansk.myarredo.ru">Мурманск</a></li>
+                    <li><a href="http://naberezhnye-chelny.myarredo.ru">Набережные Челны</a></li>
+                    <li><a href="http://nalchik.myarredo.ru">Нальчик</a></li>
+                    <li><a href="http://nn.myarredo.ru">Нижний Новгород</a></li>
+                    <li><a href="http://novokuznetsk.myarredo.ru">Новокузнецк</a></li>
+                    <li><a href="http://novorossiysk.myarredo.ru">Новороссийск</a></li>
+                    <li><a href="http://novosibirsk.myarredo.ru">Новосибирск</a></li>
+                    <li><a href="http://penza.myarredo.ru">Пенза</a></li>
+                    <li><a href="http://perm.myarredo.ru">Пермь</a></li>
+                    <li><a href="http://rnd.myarredo.ru">Ростов-на-Дону </a></li>
+                    <li><a href="http://ryazan.myarredo.ru">Рязань</a></li>
+                    <li><a href="http://samara.myarredo.ru">Самара</a></li>
+                    <li><a href="http://spb.myarredo.ru">Санкт-Петербург</a></li>
+                    <li><a href="http://saratov.myarredo.ru">Саратов</a></li>
+                    <li><a href="http://sevastopol.myarredo.ru">Севастополь</a></li>
+                    <li><a href="http://simferopol.myarredo.ru">Симферополь</a></li>
+                    <li><a href="http://smolensk.myarredo.ru">Смоленск</a></li>
+                    <li><a href="http://sochi.myarredo.ru">Сочи</a></li>
+                    <li><a href="http://stavropol.myarredo.ru">Ставрополь</a></li>
+                    <li><a href="http://taganrog.myarredo.ru">Таганрог</a></li>
+                    <li><a href="http://tambov.myarredo.ru">Тамбов</a></li>
+                    <li><a href="http://tolyatti.myarredo.ru">Тольятти</a></li>
+                    <li><a href="http://tula.myarredo.ru">Тула</a></li>
+                    <li><a href="http://tumen.myarredo.ru">Тюмень</a></li>
+                    <li><a href="http://ulyanovsk.myarredo.ru">Ульяновск</a></li>
+                    <li><a href="http://ufa.myarredo.ru">Уфа</a></li>
+                    <li><a href="http://khabarovsk.myarredo.ru">Хабаровск</a></li>
+                    <li><a href="http://chegem.myarredo.ru">Чегем</a></li>
+                    <li><a href="http://chelyabinsk.myarredo.ru">Челябинск</a></li>
+                    <li><a href="http://yaroslavl.myarredo.ru">Ярославль</a></li>
+                </ul>
+            </div>
+            <div class="one-list-cont">
+                <div class="one-list js-toggle-list">
+                    <i class="fa fa-globe" aria-hidden="true"></i>
+                    Рус
+                </div>
+                <ul class="mobile-lang-list js-list-container">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-globe" aria-hidden="true"></i>
+                            Eng
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-globe" aria-hidden="true"></i>
+                            It
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<main>
+    <div class="about-main">
+        <div class="container-wrap">
+            <div class="about-baner" style="background-image: url('public/img/about_baner.jpg')">
+                <div class="border-header">
+                    <h1>Выбираете
+                        итальянскую
+                        мебель?
+                    </h1>
+                </div>
+            </div>
+            <div class="causes">
+                <div class="container large-container">
+                    <div class="cause-list">
+                        <div class="one-item">
+                            <div class="img-cont">
+                                <img src="public/img/about_ico1.png" alt="">
+                            </div>
+                            <div class="text-descr">
+                                Получите лучшие
+                                ценовые предложения
+                                от проверенных
+                                поставщиков
+                                итальянской мебели
+                                со всей России в один
+                                клик!
+                            </div>
+                        </div>
+                        <div class="one-item">
+                            <div class="img-cont">
+                                <img src="public/img/about_ico2.png" alt="">
+                            </div>
+                            <div class="text-descr">
+                                Салон-партнер сети
+                                MY ARREDO FAMILY - это
+                                гарантия лучшей цены
+                                и качества
+                                обслуживания!
+                            </div>
+                        </div>
+                        <div class="one-item">
+                            <div class="img-cont">
+                                <img src="public/img/about_ico3.png" alt="">
+                            </div>
+                            <div class="text-descr">
+                                В авторизованных
+                                салонах-партнерах сети
+                                MY ARREDO FAMILY
+                                помогут подобрать
+                                и купить итальянскую
+                                мебель.
+                            </div>
+                        </div>
+                        <div class="one-item">
+                            <div class="img-cont">
+                                <img src="public/img/about_ico4.png" alt="">
+                            </div>
+                            <div class="text-descr">
+                                Вам окажут
+                                максимальный
+                                спектр услуг, который
+                                поможет превратить
+                                выбор мебели в
+                                приятный творческий
+                                процесс, а результат
+                                будет радовать долгие
+                                годы.
+                            </div>
+                        </div>
+                        <div class="one-item">
+                            <div class="img-cont">
+                                <img src="public/img/about_ico5.png" alt="">
+                            </div>
+                            <div class="text-descr">
+                                Выбирая главного
+                                партнера  MY ARREDO
+                                FAMILY вы получаете
+                                гарантию
+                                ответственного
+                                поставщика.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="best-price">
+                <div class="left-part" style="background-image: url('public/img/about1.jpg')">
+                    <div class="border-title">
+                        <h3>
+                            Как мы
+                            получаем
+                            лучшие
+                            цены для
+                            Вас?
+                        </h3>
+                    </div>
+                </div>
+                <div class="right-part">
+                    <div class="one-step">
+                        <div class="num">
+                            <div class="num-in">
+                                <span class="num-sym">1</span>
+                                <div class="absolute-text">
+                                    Шаг
+                                </div>
+                            </div>
+                        </div>
+                        <div class="num-text">
+                            Ваш запрос направляется
+                            всем поставщикам,
+                            авторизованным в нашей
+                            сети MY ARREDO FAMILY.
+                        </div>
+                    </div>
+
+                    <div class="one-step">
+                        <div class="num">
+                            <div class="num-in">
+                                <span class="num-sym">2</span>
+                                <div class="absolute-text">
+                                    Шаг
+                                </div>
+                            </div>
+                        </div>
+                        <div class="num-text">
+                            Самые активные и успешные
+                            профессионалы рассчитают
+                            для вас лучшие цены.
+                        </div>
+                    </div>
+
+                    <div class="one-step">
+                        <div class="num">
+                            <div class="num-in">
+                                <span class="num-sym">3</span>
+                                <div class="absolute-text">
+                                    Шаг
+                                </div>
+                            </div>
+                        </div>
+                        <div class="num-text">
+                            Вы получите предложения
+                            и останется только выбрать
+                            лучшее по цене и условиям.
+                            Экономьте время и усилия на
+                            поиск по множеству сайтов.
+                        </div>
+                    </div>
+
+                    <div class="one-step">
+                        <div class="num">
+                            <div class="num-in">
+                                <span class="num-sym">4</span>
+                                <div class="absolute-text">
+                                    Шаг
+                                </div>
+                            </div>
+                        </div>
+                        <div class="num-text">
+                            Дополнительные скидки и бонусы
+                            от итальянских фабрик участникам
+                            сети MY ARREDO FAMILY дают
+                            возможность предоставить Вам
+                            самые привлекательные цены.
+                        </div>
+                    </div>
+
+                    <div class="one-step">
+                        <div class="num">
+                            <div class="num-in">
+                                <span class="num-sym">5</span>
+                                <div class="absolute-text">
+                                    Шаг
+                                </div>
+                            </div>
+                        </div>
+                        <div class="num-text">
+                            Всего пара кликов и лучшие
+                            поставщики итальянской
+                            мебели поборются за ваш заказ!
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="what-does">
+                <div class="container large-container">
+                    <div class="flex">
+                        <div class="border-title">
+                            <h3>Что
+                                предлагает
+                                сеть my
+                                Arredo
+                                family
+                            </h3>
+                        </div>
+                        <div class="img-cont">
+                            <img src="public/img/about2.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer style="display: none;">
+    <div class="container large-container">
+        <div class="row">
+            <div class="col-md-4 center">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#">Главная</a>
+                    </li>
+                    <li>
+                        <a href="#">О проекте</a>
+                    </li>
+                    <li>
+                        <a href="#">СТатьи</a>
+                    </li>
+                    <li>
+                        <a href="#">Фабрики</a>
+                    </li>
+                    <li>
+                        <a href="#">Отзывы</a>
+                    </li>
+                    <li>
+                        <a href="#">Карта сайта</a>
+                    </li>
+                    <li>
+                        <a href="#">Регистрация партнера</a>
+                    </li>
+                    <li>
+                        <a href="#">Как купить мебель из италии</a>
+                    </li>
+                    <li>
+                        <a href="#">Контакты</a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-4 center">
+                <div class="cons">Получить консультацию в Москве</div>
+                <div class="tel"><i class="fa fa-phone" aria-hidden="true"></i>+7 (499) 705-89-98</div>
+                <div class="stud">
+                    Студия "СТАРЫЙ РИМ"</br>
+                    Малый Харитоньевский переулок, 7с1
+                </div>
+                <a href="#" class="more">Посмотреть все офисы продаж</a>
+                <div class="social">
+                    <a href="#">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 center">
+                <a href="" class="btn btn-transparent sign-in">
+                    Вход в систему
+                </a>
+                <div class="copy">
+                    <div class="copy-slogan">
+                        2015 - 2017 (с) MyArredo, лучшая мебель из италии для вашего дома
+                    </div>
+                    <div class="fund">Программирование сайта - <a href="http://www.vipdesign.com.ua/">VipDesign</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="partner-cities container large-container">
+        <div class="row">
+            <div>
+                Этот список городов размещен здесь для вашего удобства.
+                Найдите свой город и купите итальянскую мебель по лучшей цене.
+            </div>
+            <ul>
+                <li><a href="#">Москва</a></li>
+                <li><a href="#">Санкт-Петербург</a></li>
+                <li><a href="#">Альметьевск</a></li>
+                <li><a href="#">Анапа</a></li>
+                <li><a href="#">Архангельск</a></li>
+                <li><a href="#">Барнаул</a></li>
+                <li><a href="#">Белгород</a></li>
+                <li><a href="#">Благовещенск</a></li>
+                <li><a href="http://bryansk.myarredo.ru/">Брянск</a></li>
+                <li><a href="http://vladivostok.myarredo.ru/">Владивосток</a></li>
+                <li><a href="http://vladikavkaz.myarredo.ru/">Владикавказ</a></li>
+                <li><a href="http://vladimir.myarredo.ru/">Владимир</a></li>
+                <li><a href="http://volgograd.myarredo.ru/">Волгоград</a></li>
+                <li><a href="http://voronezh.myarredo.ru/">Воронеж</a></li>
+                <li><a href="http://ekaterinburg.myarredo.ru/">Екатеринбург</a></li>
+                <li><a href="http://ivanovo.myarredo.ru/">Иваново</a></li>
+                <li><a href="http://izhevsk.myarredo.ru/">Ижевск</a></li>
+                <li><a href="http://irkutsk.myarredo.ru/">Иркутск</a></li>
+                <li><a href="http://kazan.myarredo.ru/">Казань</a></li>
+                <li><a href="http://kaliningrad.myarredo.ru/">Калининград</a></li>
+                <li><a href="http://kaluga.myarredo.ru/">Калуга</a></li>
+                <li><a href="http://kemerovo.myarredo.ru/">Кемерово</a></li>
+                <li><a href="http://kirov.myarredo.ru/">Киров</a></li>
+                <li><a href="http://kostroma.myarredo.ru/">Кострома</a></li>
+                <li><a href="http://krasnodar.myarredo.ru/">Краснодар</a></li>
+                <li><a href="http://krasnoyarsk.myarredo.ru/">Красноярск</a></li>
+                <li><a href="http://kursk.myarredo.ru/">Курск</a></li>
+                <li><a href="http://magnitogorsk.myarredo.ru/">Магнитогорск</a></li>
+                <li><a href="http://mahachkala.myarredo.ru/">Махачкала</a></li>
+                <li><a href="http://murmansk.myarredo.ru/">Мурманск</a></li>
+                <li><a href="http://naberezhnye-chelny.myarredo.ru/">Набережные Челны</a></li>
+                <li><a href="http://nalchik.myarredo.ru/">Нальчик</a></li>
+                <li><a href="http://nn.myarredo.ru/">Нижний Новгород</a></li>
+                <li><a href="http://novokuznetsk.myarredo.ru/">Новокузнецк</a></li>
+                <li><a href="http://novorossiysk.myarredo.ru/">Новороссийск</a></li>
+                <li><a href="http://novosibirsk.myarredo.ru/">Новосибирск</a></li>
+                <li><a href="http://orenburg.myarredo.ru/">Оренбург</a></li>
+                <li><a href="http://penza.myarredo.ru/">Пенза</a></li>
+                <li><a href="http://perm.myarredo.ru/">Пермь</a></li>
+                <li><a href="http://rnd.myarredo.ru/">Ростов-на-Дону </a></li>
+                <li><a href="http://ryazan.myarredo.ru/">Рязань</a></li>
+                <li><a href="http://samara.myarredo.ru/">Самара</a></li>
+                <li><a href="http://saratov.myarredo.ru/">Саратов</a></li>
+                <li><a href="http://sevastopol.myarredo.ru/">Севастополь</a></li>
+                <li><a href="http://simferopol.myarredo.ru/">Симферополь</a></li>
+                <li><a href="http://smolensk.myarredo.ru/">Смоленск</a></li>
+                <li><a href="http://sochi.myarredo.ru/">Сочи</a></li>
+                <li><a href="http://stavropol.myarredo.ru/">Ставрополь</a></li>
+                <li><a href="http://taganrog.myarredo.ru/">Таганрог</a></li>
+                <li><a href="http://tambov.myarredo.ru/">Тамбов</a></li>
+                <li><a href="http://tver.myarredo.ru/">Тверь</a></li>
+                <li><a href="http://tolyatti.myarredo.ru/">Тольятти</a></li>
+                <li><a href="http://tomsk.myarredo.ru/">Томск</a></li>
+                <li><a href="http://tula.myarredo.ru/">Тула</a></li>
+                <li><a href="http://tumen.myarredo.ru/">Тюмень</a></li>
+                <li><a href="http://ulyanovsk.myarredo.ru/">Ульяновск</a></li>
+                <li><a href="http://ufa.myarredo.ru/">Уфа</a></li>
+                <li><a href="http://khabarovsk.myarredo.ru/">Хабаровск</a></li>
+                <li><a href="http://cheboksary.myarredo.ru/">Чебоксары</a></li>
+                <li><a href="http://chelyabinsk.myarredo.ru/">Челябинск</a></li>
+                <li><a href="http://yuzhno-sakhalinsk.myarredo.ru/">Южно-Сахалинск</a></li>
+                <li><a href="http://yaroslavl.myarredo.ru/">Ярославль</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+<div class="footer">
+    <div class="container-wrap">
+        <div class="contacts">
+            <div class="cont-flex">
+                <div class="cont-info">
+                    <div class="cont-info-in">
+                        <div class="cont-info-border">
+                            <h4>Контакты</h4>
+                            <div class="ico">
+                                <img src="public/img/phone.svg">
+                            </div>
+                            <p>Получить консультацию в Москве</p>
+                            <p class="num">+7 (495) 150-21-21</p>
+                            <div class="ico">
+                                <img src="public/img/marker-map.png">
+                            </div>
+                            <p>Студия Триумф</p>
+                            <p>улица Удальцова, 1А</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont-bg"
+                     style="background-image: url(public/img/cont-photo-bg.jpg);"></div>
+            </div>
+            <div class="white-stripe">
+                <div class="icon">
+                    <img src="public/img/markers.svg" alt="">
+                </div>
+                <a href="#">Другие офисы продаж в Москве</a>
+            </div>
+            <div id="map"></div>
+            <script>
+                var styleArray = [
+                    {
+                        "featureType": "administrative",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "saturation": "-100"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative.province",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "saturation": -100
+                            },
+                            {
+                                "lightness": 65
+                            },
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "saturation": -100
+                            },
+                            {
+                                "lightness": "50"
+                            },
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "saturation": "-100"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "lightness": "30"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.local",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "lightness": "40"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "saturation": -100
+                            },
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "hue": "#ffff00"
+                            },
+                            {
+                                "lightness": -25
+                            },
+                            {
+                                "saturation": -97
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "lightness": -25
+                            },
+                            {
+                                "saturation": -100
+                            }
+                        ]
+                    }
+                ];
+
+                function initMap() {
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 5,
+                        center: new google.maps.LatLng(55.742130, 37.613583),
+                        mapTypeControl: true,
+                        scrollwheel: false,
+                        zoomControl: true,
+                        fullscreenControl: true,
+                        mapTypeId: 'roadmap',
+                        styles: styleArray
+                    });
+
+                    var infoBubble = new InfoBubble({
+                        map: map,
+                        borderRadius: 0,
+                        maxWidth: 200,
+                        maxHeight: 200,
+                        minHeight: 170,
+                        minWidth: 200,
+                        shadowStyle: 0,
+                        arrowSize: 0,
+                        borderWidth: 2,
+                        borderColor: '#E3E0D5',
+                        disableAutoPan: true,
+                        hideCloseButton: false,
+                        arrowPosition: 55,
+                        padding: 0
+                    });
+
+
+                    function addMarker(marker) {
+                        var template = `<div class="info-buble">
+                                        <h4>${marker.city}</h4>
+                                        <div>${marker.address}</div>
+                                        <div>${marker.phone}</div>
+                                        <div class="country">${marker.country}</div>
+								    </div>`;
+
+                        var marker = new google.maps.Marker({
+                            position: marker.position,
+                            map: map,
+                            content: template,
+                            icon: 'public/img/marker.png'
+                        });
+
+                        marker.addListener('click', function() {
+                            map.setCenter(new google.maps.LatLng(
+                                this.position.lat(),
+                                this.position.lng() ) );
+
+                            infoBubble.setContent(marker.content);
+                            infoBubble.open(map, marker);
+                        });
+                        return marker;
+                    }
+
+                    var markers = [
+                        {
+                            position: new google.maps.LatLng(55.670998, 37.518773),//Удальцова 1-А
+                            city: "Москва",
+                            address: "улица Удальцова, 1А",
+                            phone: "+7 (495) 150-21-21",
+                            country: "Россия"
+                        },
+                        {
+                            position: new google.maps.LatLng(55.758028, 37.553448),//Шмитовский проезд, 7/4
+                            city: "Москва",
+                            address: "Шмитовский проезд, 7/4",
+                            phone: "+7 (967) 153-33-47",
+                            country: "Россия"
+                        },
+                        {
+                            position: new google.maps.LatLng(55.756710, 37.562377), //ул.Родчельская, д.15, стр.8
+                            city: "Москва",
+                            address: "ул.Родчельская, д.15, стр.8",
+                            phone: "+7 (495) 120-35-00",
+                            country: "Россия"
+                        },
+                        {
+                            position: new google.maps.LatLng(55.765870, 37.645350), //Малый Харитоньевский переулок, 7с1
+                            city: "Москва",
+                            address: "Малый Харитоньевский переулок, 7с1",
+                            phone: "+7 (499) 705-89-98",
+                            country: "Россия"
+                        },
+                    ];
+
+                    var markings = markers.map(function(item) {
+                        return addMarker(item);
+                    });
+
+                    map.setZoom(11);
+                }
+            </script>
+            <div class="white-stripe">
+                <a href="#">Посмотреть все офисы продаж</a>
+            </div>
+        </div>
+        <div class="cities-list">
+            <div class="container large-container">
+                <h6>Этот список городов размещен здесь для вашего удобства. </h6>
+                <h5>Найдите свой город и купите итальянскую мебель по лучшей цене.</h5>
+                <div class="list-of-cities">
+                    <h4 class="initial-letter">А</h4>
+                    <a href="#">Альметьевск</a>
+                    <a href="#">Анапа</a>
+                    <a href="#">Архангельск</a>
+                    <a href="#">Астрахань</a>
+                    <h4 class="initial-letter">Б</h4>
+                    <a href="#">Барнаул</a>
+                    <a href="#">Белгород</a>
+                    <a href="#">Благовещенск</a>
+                    <a href="#">Брянск</a>
+                    <h4 class="initial-letter">В</h4>
+                    <a href="#">Владивосток</a>
+                    <a href="#">Владикавказ</a>
+                    <a href="#">Владимир</a>
+                    <a href="#">Волгоград</a>
+                    <h4 class="initial-letter">Г</h4>
+                    <a href="#">Геленджик</a>
+                    <h4 class="initial-letter">Е</h4>
+                    <a href="#">Екатеринбург</a>
+
+                    <h4 class="initial-letter">И</h4>
+                    <a href="#">Иваново</a>
+                    <a href="#">Ижевск</a>
+                    <a href="#">Иркутск</a>
+
+                    <h4 class="initial-letter">К</h4>
+                    <a href="#">Казань</a>
+                    <a href="#">Калининград</a>
+                    <a href="#">Калуга</a>
+                    <a href="#">Кемерово</a>
+                    <a href="#">Киров</a>
+
+                    <h4 class="initial-letter">К</h4>
+                    <a href="#">Казань</a>
+                    <a href="#">Калининград</a>
+                    <a href="#">Калуга</a>
+                    <a href="#">Кемерово</a>
+                    <a href="#">Киров</a>
+                    <a href="#">Кострома</a>
+                    <a href="#">Краснодар</a>
+                    <a href="#">Красноярск</a>
+                    <a href="#">Курск</a>
+                    <a href="#">Кострома</a>
+
+                    <h4 class="initial-letter">Л</h4>
+                    <a href="#">Липецк</a>
+
+                    <h4 class="initial-letter">М</h4>
+                    <a href="#">Магнитогорск</a>
+                    <a href="#">Махачкала</a>
+                    <a href="#">Москва</a>
+                    <a href="#">Мурманск</a>
+
+                    <h4 class="initial-letter">Н</h4>
+                    <a href="#">Набережные Челны</a>
+                    <a href="#">Нальчик</a>
+                    <a href="#">Нижневартовск</a>
+                    <a href="#">Нижний Новгород</a>
+                    <a href="#">Нижний Тагил</a>
+                    <a href="#">Новокузнецк</a>
+                    <a href="#">Новороссийск</a>
+                    <a href="#">Новосибирск</a>
+
+                    <h4 class="initial-letter">О</h4>
+                    <a href="#">Омск</a>
+                    <a href="#">Оренбург</a>
+                    <a href="#">Орск</a>
+
+                    <h4 class="initial-letter">П</h4>
+                    <a href="#">Пенза</a>
+                    <a href="#">Пермь</a>
+                    <a href="#">Петропавловск-Камчатский</a>
+                    <a href="#">Пятигорск</a>
+
+                    <h4 class="initial-letter">P</h4>
+                    <a href="#">Ростов-на-Дону</a>
+                    <a href="#">Рязань</a>
+
+                    <h4 class="initial-letter">С</h4>
+                    <a href="#">Самара</a>
+                    <a href="#">Санкт-Петербург</a>
+                    <a href="#">Саратов</a>
+                    <a href="#">Севастополь</a>
+                    <a href="#">Симферополь</a>
+                    <a href="#">Смоленск</a>
+                    <a href="#">Сочи</a>
+                    <a href="#">Ставрополь</a>
+                    <a href="#">Сургут</a>
+
+                    <h4 class="initial-letter">Т</h4>
+                    <a href="#">Таганрог</a>
+                    <a href="#">Тамбов</a>
+                    <a href="#">Тверь</a>
+                    <a href="#">Тольятти</a>
+                    <a href="#">Томск</a>
+                    <a href="#">Тула</a>
+                    <a href="#">Тюмень</a>
+
+                    <h4 class="initial-letter">У</h4>
+                    <a href="#">Ульяновск</a>
+                    <a href="#">Уфа</a>
+
+                    <h4 class="initial-letter">Х</h4>
+                    <a href="#">Хабаровск</a>
+                    <a href="#">Ханты-Мансийск</a>
+
+                    <h4 class="initial-letter">Ч</h4>
+                    <a href="#">Чебоксары</a>
+                    <a href="#">Челябинск</a>
+
+                    <h4 class="initial-letter">Э</h4>
+                    <a href="#">Элиста</a>
+                    <a href="#">Энгельс</a>
+
+                    <h4 class="initial-letter">Ю</h4>
+                    <a href="#">Южно-Сахалинск</a>
+
+                    <h4 class="initial-letter">Я</h4>
+                    <a href="#">Якутск</a>
+                    <a href="#">Ялта</a>
+                    <a href="#">Ярославль</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="bot-footer">
+            <div class="container large-container">
+                <div class="footer-cont">
+                    <div class="logo-reg">
+                        <a href="#" class="logo">
+                            <img src="public/img/logo.svg" alt="">
+                        </a>
+                        <a href="#" class="reg">
+                            Регистрация парнера
+                        </a>
+                    </div>
+                    <div class="menu-items">
+                        <ul class="one-column">
+                            <li><a href="#">ГЛАВНАЯ</a></li>
+                            <li><a href="#">О ПРОЕКТЕ</a></li>
+                            <li><a href="#">Каталог мебели</a></li>
+                        </ul>
+                        <div class="one-column">
+                            <li><a href="#">ФАБРИКИ</a></li>
+                            <li><a href="#">Распродажа</a></li>
+                            <li><a href="#">КОНТАКТЫ</a></li>
+                        </div>
+                    </div>
+                    <div class="soc-copy">
+                        <div class="social">
+                            <a href="#">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="copyright">
+                            2018 (с) MyArredo, лучшая мебель из италии для вашего дома </br>
+                            Программирование сайта - <a href="#">VipDesign</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./public/libs/infoBubble/infobubble.js" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI-EyYe0E1ZPA9IpCTUbP2137VDAcHJGY&callback=initMap"></script>
+<script src="./public/libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://use.fontawesome.com/35f65baac5.js"></script>
+<script src="./public/libs/slick-1.6/slick.min.js"></script>
+<script src="./public/libs/fancybox/jquery.fancybox.pack.js"></script>
+<script src="./public/libs/formstyler/jquery.formstyler.js"></script>
+<script src="./public/libs/Vibrant.min.js"></script>
+<script src="./public/js/main.js"></script>
+</body>
+</html>
