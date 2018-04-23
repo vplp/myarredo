@@ -34,7 +34,7 @@ use frontend\modules\catalog\models\Category;
                     $options = $item['checked'] ? ['class' => 'one-item selected'] : ['class' => 'one-item'];
 
                     echo Html::a(
-                        Html::img(Category::getImage($item['image_link'])) . $item['title'] . ' <span>' . $item['count'] . '</span>',
+                        Html::img(Category::getImage($item['image_link'])) . $item['title'] . '<span>' . $item['count'] . '</span>',
                         $item['link'],
                         $options
                     );
@@ -54,7 +54,7 @@ use frontend\modules\catalog\models\Category;
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                        <div class="filter-group"><div class="my-checkbox"></div><?= $item['title'] ?> </div><span><?= $item['count'] ?></span>
+                        <div class="filter-group"><div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
                         <?= Html::endTag('a'); ?>
 
                     <?php endforeach; ?>
