@@ -11,8 +11,6 @@ use frontend\modules\catalog\models\Category;
 
 ?>
 
-
-
 <div class="categories-sect">
     <div class="container large-container">
         <div class="section-header">
