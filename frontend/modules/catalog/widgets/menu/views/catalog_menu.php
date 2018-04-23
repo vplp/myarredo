@@ -22,7 +22,7 @@ use frontend\modules\catalog\models\Category;
                     <li>
                         <a href="<?= Category::getUrl($model['alias']) ?>">
                             <div class="img-cont">
-                                <img src="" alt="">
+                                <?= Html::img(Category::getImage($model['image_link'])); ?>
                             </div>
                             <?= $model['lang']['title'] ?>
                         </a>

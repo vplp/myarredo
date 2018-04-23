@@ -4,6 +4,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
+use frontend\modules\catalog\models\Category;
 
 ?>
 
@@ -33,7 +34,7 @@ use yii\helpers\{
                     $options = $item['checked'] ? ['class' => 'one-item selected'] : ['class' => 'one-item'];
 
                     echo Html::a(
-                        '<img src="">' . $item['title'] . ' <span>' . $item['count'] . '</span>',
+                        Html::img(Category::getImage($item['image_link'])) . $item['title'] . ' <span>' . $item['count'] . '</span>',
                         $item['link'],
                         $options
                     );

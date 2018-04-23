@@ -195,6 +195,7 @@ class Category extends \common\modules\catalog\models\Category
                 ->select([
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
+                    self::tableName() . '.image_link',
                     self::tableName() . '.position',
                     CategoryLang::tableName() . '.title',
                     'count(' . self::tableName() . '.id) as count'
