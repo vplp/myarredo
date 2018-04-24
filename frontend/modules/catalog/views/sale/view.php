@@ -28,17 +28,17 @@ $this->title = $this->context->title;
                         <div class="flex s-between c-align top-links">
 
                             <?php
-                            if ($model['factory']) {
-                                echo Html::a(
-                                    $model['factory']['title'],
-                                    Factory::getUrl($model['factory']['alias']),
-                                    ['class' => 'brand']
-                                );
-                            } else {
-                                $model['factory_name'];
-                            }
+                if ($model['factory']) {
+                    echo Html::a(
+                        $model['factory']['title'],
+                        Factory::getUrl($model['factory']['alias']),
+                        ['class' => 'brand']
+                    );
+                } else {
+                    $model['factory_name'];
+                }
 
-                            ?>
+                ?>
 
                         </div>
                     </div>
@@ -90,7 +90,7 @@ $this->title = $this->context->title;
                                 <div class="price economy">
                                     Экономия:
                                     <span>
-                                        630 €
+                                        <?= ($model->price - $model->price_new) . ' ' . $model->currency; ?>
                                     </span>
                                 </div>
                             </div>
@@ -162,7 +162,8 @@ $this->title = $this->context->title;
                                         <div class="ico">
                                             <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
                                         </div>
-                                        <div class="tel-num js-show-num" data-num="<?= $model['user']['profile']['phone']; ?>">
+                                        <div class="tel-num js-show-num"
+                                             data-num="<?= $model['user']['profile']['phone']; ?>">
                                             +7 (8<span>ХХ</span>) <span>ХХХ ХХ ХХ</span>
                                         </div>
                                         <a href="javascript:void(0);" class="js-show-num-btn">
@@ -272,6 +273,5 @@ $this->title = $this->context->title;
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </main>

@@ -99,8 +99,7 @@ $bundle = AppAsset::register($this);
                                     </div>
                                     <div id="all-collection" class="tab-pane fade">
                                         <ul class="list">
-                                            <?
-
+                                            <?php
                                             $FactoryCollection = Factory::getFactoryCollection($model['id']);
 
                                             foreach ($FactoryCollection as $item) {
@@ -180,13 +179,11 @@ $bundle = AppAsset::register($this);
                                                 <?= $item['title'] ?>
                                             </div>
                                             <span class="count">
-                                                12707
+                                                <?= $item['count'] ?>
                                             </span>
                                         </a>
                                     </li>
-                                    <?php
-                                }
-                                ?>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
@@ -198,8 +195,7 @@ $bundle = AppAsset::register($this);
                                     'model' => $item,
                                     'factory' => [$model->id => $model]
                                 ]);
-                            }
-                            ?>
+                            } ?>
 
                             <div class="one-prod-tile last">
                                 <div class="img-cont">
