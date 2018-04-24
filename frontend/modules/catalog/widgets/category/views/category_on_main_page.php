@@ -3,7 +3,10 @@
 use yii\helpers\{
     Html, Url
 };
-use frontend\modules\catalog\models\Category;
+//
+use frontend\modules\catalog\models\{
+    Collection, Product, Category, Factory, Types, Specification
+};
 
 /**
  * @var $model \frontend\modules\catalog\models\Category
@@ -37,10 +40,21 @@ use frontend\modules\catalog\models\Category;
                         </a>
 
                         <ul class="cat-list">
-                            <li>Кухни <span>169</span></li>
-                            <li>Раковины <span>19</span></li>
-                            <li>Столы <span>34</span></li>
-                            <li>Стулья <span>158</span></li>
+                            <?php
+                            $keys = Yii::$app->catalogFilter->keys;
+                            $params = Yii::$app->catalogFilter->params;
+
+                            $params[$keys['category']] = $model['alias'];
+
+                            $types = Types::getWithProduct($params);
+
+                            foreach ($types as $item) {
+                                $params[$keys['type']][] = $item['alias'];
+                                $link = Yii::$app->catalogFilter->createUrl($params, ['/catalog/category/list']);
+
+                                echo '<li>' . Html::a($item['lang']['title'], $link) . '<span>' . $item['count'] . '</span></li>';
+                            }
+                            ?>
                         </ul>
 
                         <a href="<?= Category::getUrl($model['alias']) ?>" class="view-all">
