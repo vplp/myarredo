@@ -659,4 +659,29 @@ $(document).ready(function(){
     $('#cartcustomerform-user_agreement').styler();
     $('input[type="checkbox"]').styler();
 
+    /*--Фиксированный хедер--*/
+    if($('.js-fixed-header').length){
+        $(window).on('scroll', function () {
+            var headerHeight = $('.js-fixed-header').outerHeight();
+            if($(window).scrollTop() > headerHeight){
+                $('body').addClass('fixed-header');
+                $('.js-main').css({
+                    'padding-top': headerHeight + 'px'
+                })
+            } else {
+                $('body').removeClass('fixed-header');
+                $('.js-main').css({
+                    'padding-top': 0 + 'px'
+                })
+            }
+        });
+    }
+
+    $(window).resize(function () {
+        $(window).scroll();
+    });
+
+    $(window).scroll();
+    /*--конец Фиксированый хедер--*/
+
 });
