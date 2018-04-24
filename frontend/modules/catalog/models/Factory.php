@@ -304,6 +304,7 @@ class Factory extends \common\modules\catalog\models\Factory
     public static function getFactoryCategory(array $ids)
     {
         $command = Yii::$app->db->createCommand("SELECT
+                COUNT(product.id) as count, 
                 factory.id AS factory_id,
                 category.id AS category_id,
                 category.alias AS alias,
