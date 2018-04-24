@@ -144,6 +144,47 @@ class Category extends \common\modules\catalog\models\Category
     }
 
     /**
+     * ImageThumb
+     *
+     * @param string $image_link
+     * @return null|string
+     */
+    public static function getImageThumb(string $image_link = '')
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getCategoryUploadPath();
+
+        $image = null;
+
+        if (YII_ENV_DEV && !empty($image_link)){
+            $image = 'http://www.myarredo.ru/uploads/images/' . $image_link;
+        } elseif (!empty($image_link) && is_file($path . '/' . $image_link)) {
+
+            $image_link_path = explode('/', $image_link);
+
+            $img_name = $image_link_path[count($image_link_path) - 1];
+
+            unset($image_link_path[count($image_link_path) - 1]);
+
+            $_image_link = $path . '/' . implode('/', $image_link_path) . '/thumb_' . $img_name;
+
+            if (is_file($_image_link)) {
+                $image = $_image_link;
+            } else {
+                $image = $path . '/' . $image_link;
+            }
+
+            // resize
+            $ImageResize = new ImageResize();
+            $image = $ImageResize->getThumb($image, 100, 100);
+        }
+
+        return $image;
+    }
+
+    /**
      * @param array $params
      * @return mixed
      */
