@@ -34,7 +34,7 @@ use frontend\modules\catalog\models\Category;
                     $options = $item['checked'] ? ['class' => 'one-item selected'] : ['class' => 'one-item'];
 
                     echo Html::a(
-                        Html::img(Category::getImage($item['image_link'])) . $item['title'] . '<span>' . $item['count'] . '</span>',
+                        Html::img(Category::getImageThumb($item['image_link'])) . $item['title'] . '<span>' . $item['count'] . '</span>',
                         $item['link'],
                         $options
                     );
