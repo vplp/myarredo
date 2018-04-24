@@ -91,6 +91,7 @@ class ProductFilter extends Widget
                 'link' => $link,
                 'title' => $obj['lang']['title'],
                 'count' => $obj['count'],
+                'image_link' => $obj['image_link'],
             );
         }
 

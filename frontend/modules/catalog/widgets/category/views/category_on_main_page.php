@@ -11,8 +11,6 @@ use frontend\modules\catalog\models\Category;
 
 ?>
 
-
-
 <div class="categories-sect">
     <div class="container large-container">
         <div class="section-header">
@@ -37,12 +35,14 @@ use frontend\modules\catalog\models\Category;
                         <a href="<?= Category::getUrl($model['alias']) ?>" class="img-cont">
                             <?= Html::img(Category::getImage($model['image_link'])); ?>
                         </a>
+                        <!--
                         <ul class="cat-list">
                             <li>Кухни <span>169</span></li>
                             <li>Раковины <span>19</span></li>
                             <li>Столы <span>34</span></li>
                             <li>Стулья <span>158</span></li>
                         </ul>
+                        -->
                         <a href="<?= Category::getUrl($model['alias']) ?>" class="view-all">
                             Смотреть все
                         </a>

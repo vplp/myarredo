@@ -14,19 +14,22 @@ use frontend\modules\catalog\models\Product;
     'class' => 'one-prod-tile'
 ]); ?>
     <div class="one-prod-tile-in">
-        <?php /*if (!$model['removed']): ?>
-        <object>
-            <div class="request-price" data-id=<?= $model['id'] ?> data-toggle="modal" data-target="#myModal">
-                Запросить цену
-            </div>
-        </object>
-    <?php endif;*/ ?>
+
+        <?php
+        /*
+        if (!$model['removed']): ?>
+                <object>
+                    <div class="request-price" data-id=<?= $model['id'] ?> data-toggle="modal" data-target="#myModal">
+                        Запросить цену
+                    </div>
+                </object>
+            <?php endif;
+        */
+        ?>
 
         <div class="img-cont" data-dominant-color>
             <span class="background"></span>
-
             <?= Html::img(Product::getImageThumb($model['image_link'])); ?>
-
         </div>
 
         <div class="prod-infoblock">
@@ -40,13 +43,16 @@ use frontend\modules\catalog\models\Product;
                 <?= Product::getStaticTitle($model); ?>
             </div>
         </div>
+
         <object class="btn-block">
-            <a href="javascrip:void(0);" class="more-info">
+            <a class="more-info">
                 Детальнее
             </a>
+            <!--
             <a href="javascript:void(0);" class="get-price">
                 запросить цену
             </a>
+            -->
         </object>
     </div>
 

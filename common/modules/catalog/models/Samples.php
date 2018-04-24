@@ -141,8 +141,9 @@ class Samples extends ActiveRecord
         $url = $module->getSamplesUploadUrl();
 
         $image = null;
-
-        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
+        if (YII_ENV_DEV && !empty($this->image_link)){
+            $image = 'http://www.myarredo.ru/uploads/images/' . $this->image_link;
+        } else if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
             $image = $url . '/' . $this->image_link;
         }
 

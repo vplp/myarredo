@@ -33,12 +33,13 @@ use yii\helpers\Html;
 
     </div>
 
-    <a href="javascript:void(0);" class="img-zoom"><?= Yii::t('app','Увеличить') ?></a>
+    <a href="javascript:void(0);" class="img-zoom">
+        <?= Yii::t('app','Увеличить') ?>
+    </a>
 
     <!-- Carousel nav -->
 
     <div class="nav-cont">
-
         <div class="carousel-indicators">
 
             <?php foreach ($model->getGalleryImage() as $key => $src): ?>
@@ -51,7 +52,6 @@ use yii\helpers\Html;
             <?php endforeach; ?>
 
         </div>
-
     </div>
 
 </div>

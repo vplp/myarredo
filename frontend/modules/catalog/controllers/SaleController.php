@@ -86,7 +86,7 @@ class SaleController extends BaseController
         Yii::$app->catalogFilter->parserUrl();
 
         if (!isset(Yii::$app->catalogFilter->params[$keys['country']])) {
-            Yii::$app->catalogFilter->setParam($keys['country'], (Yii::$app->city->domain !== 'test') ? Yii::$app->city->domain : 'ru');
+            Yii::$app->catalogFilter->setParam($keys['country'], (in_array(Yii::$app->city->domain, ['ru','ua','by'])) ? Yii::$app->city->domain : 'ru');
         }
 
         $category = Category::getWithSale(Yii::$app->catalogFilter->params);
