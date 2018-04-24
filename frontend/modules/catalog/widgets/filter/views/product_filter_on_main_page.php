@@ -60,12 +60,20 @@ use yii\helpers\{
 
 <?php
 $script = <<<JS
+$('select#filter_by_category').change(function(){
+    var id = parseInt($(this).val());
+    $.post('/location/location/get-cities/', {_csrf: $('#token').val(),types_id:id}, function(data){
+        var select = $('select#filter_by_category');
+        select.html(data.options);
+        select.trigger('refresh');
+    });
+});
 $('select#filter_by_types').change(function(){
     var id = parseInt($(this).val());
     $.post('/location/location/get-cities/', {_csrf: $('#token').val(),types_id:id}, function(data){
         var select = $('select#filter_by_types');
         select.html(data.options);
-        select.selectpicker("refresh");
+        select.trigger('refresh');
     });
 });
 JS;
