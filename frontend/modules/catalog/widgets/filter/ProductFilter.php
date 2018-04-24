@@ -30,11 +30,6 @@ class ProductFilter extends Widget
     /**
      * @var object
      */
-    public $category_counts = [];
-
-    /**
-     * @var object
-     */
     public $types = [];
 
     /**
