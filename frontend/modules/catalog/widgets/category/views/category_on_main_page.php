@@ -49,6 +49,9 @@ use frontend\modules\catalog\models\{
                             $types = Types::getWithProduct($params);
 
                             foreach ($types as $item) {
+                                $params = Yii::$app->catalogFilter->params;
+
+                                $params[$keys['category']] = $model['alias'];
                                 $params[$keys['type']][] = $item['alias'];
                                 $link = Yii::$app->catalogFilter->createUrl($params, ['/catalog/category/list']);
 
