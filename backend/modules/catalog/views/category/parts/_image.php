@@ -9,3 +9,5 @@
 ?>
 
 <?= $form->field($model, 'image_link')->imageOne($model->getImageLink()) ?>
+<?= $form->field($model, 'image_link2')->imageOne($model->getImageLink2()) ?>
+<?= $form->field($model, 'image_link3')->imageOne($model->getImageLink3()) ?>
