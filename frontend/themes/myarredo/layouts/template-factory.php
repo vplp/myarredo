@@ -26,7 +26,7 @@ $this->beginPage()
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
         <![endif]-->
     </head>
-    <body class="tomassy-page">
+    <body class="tomassy-page category-page">
     <?php $this->beginBody() ?>
 
     <?= Alert::widget() ?>

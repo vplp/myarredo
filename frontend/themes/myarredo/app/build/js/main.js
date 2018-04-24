@@ -684,4 +684,8 @@ $(document).ready(function(){
     $(window).scroll();
     /*--конец Фиксированый хедер--*/
 
+    $('.home-main .categories-sect .one-cat').on('click', function(){
+        $(this).toggleClass('opened');
+    });
+
 });
