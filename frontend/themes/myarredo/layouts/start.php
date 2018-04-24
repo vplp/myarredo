@@ -10,6 +10,7 @@ use frontend\modules\catalog\widgets\factory\FactoryOnMainPage;
 use frontend\modules\catalog\widgets\product\ProductNovelty;
 use frontend\modules\catalog\widgets\sale\SaleOnMainPage;
 use frontend\modules\user\widgets\partner\PartnerMap;
+use frontend\modules\catalog\widgets\filter\ProductFilterOnMainPage;
 
 $bundle = AppAsset::register($this);
 
@@ -24,40 +25,9 @@ $bundle = AppAsset::register($this);
                 <img src="<?= $bundle->baseUrl ?>/img/baner.jpg" alt="">
 
                 <div class="filter">
-                    <form>
-                        <div class="filter-title">
-                            Портал проверенных поставщиков
-                            итальянской мебели
-                            <div class="frosted-glass"></div>
-                        </div>
-                        <div class="filter-bot">
-                            <select class="first" data-styler>
-                                <option selected disabled hidden>Категория</option>
-                                <option>Категория 1</option>
-                                <option>Категория 2</option>
-                            </select>
-                            <select data-styler>
-                                <option selected disabled hidden>Предмет</option>
-                                <option>Предмет 1</option>
-                                <option>Предмет 2</option>
-                            </select>
-                            <select data-styler>
-                                <option selected disabled hidden>Наличие</option>
-                                <option>Категория 1</option>
-                                <option>Категория 2</option>
-                            </select>
-                            <div class="filter-price">
-                                <div class="left">
-                                    <input type="text" placeholder="от">
-                                    <input type="text" placeholder="до">
-                                    €
-                                </div>
-                                <button class="search">
-                                    Найти
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+
+                    <?= ProductFilterOnMainPage::widget(); ?>
+
                 </div>
             </div>
 
