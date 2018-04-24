@@ -896,6 +896,156 @@
       }
     }
   }
+  .about-main {
+    .about-baner {
+      height: 120px;
+      margin-bottom: 160px;
+    }
+    .border-header {
+      margin-top: 120px;
+    }
+    h1 {
+      font-size: 24px;
+    }
+    .causes {
+      .one-item {
+        padding: 0;
+        text-align: left;
+      }
+      .one-item {
+        .img-cont {
+          margin-left: 0;
+        }
+      }
+    }
+    .best-price {
+      background: #EDEBE6;
+      padding-bottom: 35px;
+      .border-title {
+        width: calc(100% - 80px);
+        h3 {
+          font-size: 24px;
+          margin: 0 0 0 -20px;
+        }
+      }
+      .right-part {
+        width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 15px 0 15px;
+      }
+      .one-step {
+        width: 100%;
+        flex-direction: column;
+        padding-left: 30px;
+        padding-right: 20px;
+        margin-bottom: 0;
+      }
+      .num-sym {
+        font-size: 76px;
+      }
+      .absolute-text {
+        font-size: 14px;
+      }
+      .num {
+        margin-bottom: 25px;
+        width: 77px;
+      }
+      .num-in {
+        height: 75px;
+      }
+      .absolute-text {
+        top: 23px;
+        left: 49px;
+      }
+    }
+    .slick-dots {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex !important;
+      justify-content: center;
+      li {
+        margin-right: 13px;
+        &:last-child {
+          margin-right: 0;
+        }
+        &.slick-active {
+          button {
+            background: #448339;
+          }
+        }
+        button {
+          font-size: 0;
+          border: none;
+          background: #E3E0D5;
+          width: 16px;
+          height: 16px;
+          border-radius: 8px;
+        }
+      }
+    }
+    .what-does {
+      padding-top: 35px;
+      padding-bottom: 35px;
+      .border-title {
+        margin-left: 20px;
+        min-width: 0;
+        width: calc(100% - 20px);
+        padding-right: 15px;
+        h3 {
+          font-size: 24px;
+          margin: 0 0 0 -20px;
+        }
+      }
+    }
+    .block-list {
+      .one-block {
+        padding-top: 250px;
+        margin-bottom: 150px;
+      }
+      .hover-contain {
+        position: static;
+        opacity: 1;
+        background: none;
+        .fa {
+          display: none;
+        }
+      }
+      .border-in {
+        padding-top: 0;
+        .text {
+          color: #545451;
+          font-size: 20px;
+        }
+      }
+    }
+    .partners-best {
+      .border-title {
+        margin-left: 20px;
+        width: calc(100% - 30px);
+        padding-right: 20px;
+        h3 {
+          font-size: 24px;
+          margin: 0 0 0 -20px;
+        }
+      }
+      .one-item {
+        .item-text {
+          width: 100%;
+        }
+      }
+      .gray-block {
+        flex-direction: column;
+        .img-wrap {
+          width: 100px;
+          height: 100px;
+          margin-right: 0;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
 }
 
 /*-----конец Новые стили----*/

@@ -699,5 +699,48 @@
         font-size: 38px;
       }
     }
+    .block-list {
+      .one-block {
+        height: 250px;
+      }
+      .border-in {
+        padding-top: 25px;
+        .fa {
+          margin-bottom: 15px;
+        }
+        .text {
+          font-size: 20px;
+          line-height: normal;
+        }
+      }
+    }
+    .partners-best {
+      background: none;
+      .border-title {
+        margin-bottom: 60px;
+        h3 {
+          font-size: 40px;
+        }
+      }
+      .one-item {
+        width: 220px;
+        .img-circle {
+          margin-bottom: 20px;
+        }
+        .item-text {
+          font-size: 15px;
+          line-height: normal;
+        }
+      }
+      .gray-block {
+        padding: 20px;
+        .img-wrap {
+          width: 80px;
+          height: 80px;
+          min-width: 90px;
+          margin-right: 25px;
+        }
+      }
+    }
   }
 }

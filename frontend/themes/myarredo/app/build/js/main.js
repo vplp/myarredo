@@ -70,6 +70,13 @@ $(document).ready(function(){
             arrows: false,
             dots: true
         });
+        $('.best-price .right-part').slick({
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            dots: true
+        });
         /*--конец Главная--*/
     }
 
@@ -79,6 +86,9 @@ $(document).ready(function(){
         if($('.js-numbers').hasClass('slick-slider')){
             $('.js-numbers').slick('unslick');
         }
+        if($('.best-price .right-part').hasClass('slick-slider')){
+            $('.best-price .right-part').slick('unslick');
+        }
     }
 
     function runDesctop() {
@@ -86,6 +96,9 @@ $(document).ready(function(){
         $('.filters .one-filter').addClass('open');
         if($('.js-numbers').hasClass('slick-slider')){
             $('.js-numbers').slick('unslick');
+        }
+        if($('.best-price .right-part').hasClass('slick-slider')){
+            $('.best-price .right-part').slick('unslick');
         }
     }
     /*--Конец определения девайса--*/
