@@ -9,7 +9,6 @@ use yii\helpers\{
 
 <?php $form = ActiveForm::begin([
     'method' => 'post',
-    'id' => 'catalog_filter',
     'action' => false
 ]) ?>
 
@@ -26,6 +25,7 @@ use yii\helpers\{
             '',
             ['' => 'Категория'] + $category,
             [
+                'id' => 'filter_by_category',
                 'class' => 'first',
                 'data-styler' => true
             ]
@@ -36,6 +36,7 @@ use yii\helpers\{
             '',
             ['' => 'Предмет'] + $types,
             [
+                'id' => 'filter_by_types',
                 'class' => false,
                 'data-styler' => true,
             ]
@@ -56,3 +57,17 @@ use yii\helpers\{
         </div>
     </div>
 <?php ActiveForm::end() ?>
+
+<?php
+$script = <<<JS
+$('select#filter_by_types').change(function(){
+    var id = parseInt($(this).val());
+    $.post('/location/location/get-cities/', {_csrf: $('#token').val(),types_id:id}, function(data){
+        var select = $('select#filter_by_types');
+        select.html(data.options);
+        select.selectpicker("refresh");
+    });
+});
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);

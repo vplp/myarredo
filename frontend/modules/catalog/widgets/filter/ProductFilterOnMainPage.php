@@ -7,6 +7,7 @@ use yii\base\Widget;
 use yii\helpers\{
     Url, ArrayHelper
 };
+//
 use frontend\modules\catalog\models\{
     Category, Types
 };
@@ -35,12 +36,11 @@ class ProductFilterOnMainPage extends Widget
 
     /**
      * @return string
+     * @throws \yii\base\ExitException
      */
     public function run()
     {
-
         $keys = Yii::$app->catalogFilter->keys;
-
 
         if (Yii::$app->getRequest()->post('filter_on_main_page')) {
             $category = Yii::$app->getRequest()->post('category');
@@ -53,7 +53,8 @@ class ProductFilterOnMainPage extends Widget
 
             $link = Yii::$app->catalogFilter->createUrl($params, ['/catalog/category/list']);
 
-            /* !!! */ echo  '<pre style="color:red;">'; print_r($link); echo '</pre>'; /* !!! */
+            Yii::$app->response->redirect($link, 301);
+            Yii::$app->end();
         }
 
         $category = ArrayHelper::map(Category::findBase()->all(), 'alias', 'lang.title');
