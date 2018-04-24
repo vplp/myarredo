@@ -12,7 +12,7 @@ use frontend\modules\location\widgets\ChangeCity;
 
 ?>
 
-<div class="header">
+<div class="header js-fixed-header">
     <div class="container-wrap">
 
         <?php if ((Yii::$app->getUser()->isGuest)): ?>
