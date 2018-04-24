@@ -205,10 +205,11 @@
       img {
         display: block;
         position: absolute;
-        left: 0;
+        left: 10px;
         top: 50%;
-        transform: translate(-50%, 0);
-
+        transform: translate(0, -50%);
+        max-height: 100%;
+        max-width: 35px;
       }
       span {
         color: #448339;
