@@ -325,6 +325,13 @@ class CatalogFilter extends Component
         }
 
         /**
+         * Price
+         */
+        if (!empty(self::$_structure['price'])) {
+            self::$_parameters[self::$keys['price']] = self::$_structure['price'];
+        }
+
+        /**
          * Country
          */
 

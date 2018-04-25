@@ -140,7 +140,7 @@ class CategoryController extends BaseController
     /**
      * @return $this
      */
-    private function seo()
+    public function seo()
     {
         $keys = Yii::$app->catalogFilter->keys;
         $params = Yii::$app->catalogFilter->params;
@@ -257,6 +257,10 @@ class CategoryController extends BaseController
                 'label' => implode(', ', $factory),
                 'url' => Yii::$app->catalogFilter->createUrl([$keys['factory'] => $params[$keys['factory']]])
             ];
+        }
+
+        if (isset($params[$keys['price']])) {
+            $noindex = 1;
         }
 
         if (count($params) > 3) {
