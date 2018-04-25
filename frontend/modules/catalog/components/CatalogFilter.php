@@ -62,7 +62,7 @@ class CatalogFilter extends Component
         'style' => '.30',
         'factory' => '.40',
         'collection' => '.50',
-        //'price' => '.60',
+        'price' => '.60',
         'country' => '.70',
         'city' => '.80',
     ];
@@ -158,7 +158,7 @@ class CatalogFilter extends Component
         }
 
         $url = '';
-
+        $res = [];
         foreach ($paramsUrl as $k => $v) {
 
             $res[$k] = '';
@@ -197,7 +197,7 @@ class CatalogFilter extends Component
             self::$keys['style'] => 's',
             self::$keys['factory'] => 'f',
             self::$keys['collection'] => 'c',
-            //self::$keys['price'] => 'price',
+            self::$keys['price'] => 'price',
             self::$keys['country'] => 'country',
             self::$keys['city'] => 'city',
         ];

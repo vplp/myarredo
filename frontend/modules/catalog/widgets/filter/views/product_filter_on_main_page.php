@@ -44,8 +44,8 @@ use yii\helpers\{
 
         <div class="filter-price">
             <div class="left">
-                <input type="text" placeholder="от">
-                <input type="text" placeholder="до">
+                <input type="text" name="price[from]" placeholder="от">
+                <input type="text" name="price[to]" placeholder="до">
                 €
             </div>
 

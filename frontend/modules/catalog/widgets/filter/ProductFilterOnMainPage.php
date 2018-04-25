@@ -45,11 +45,21 @@ class ProductFilterOnMainPage extends Widget
         if (Yii::$app->getRequest()->post('filter_on_main_page')) {
             $category = Yii::$app->getRequest()->post('category');
             $types = Yii::$app->getRequest()->post('types');
+            $price = Yii::$app->getRequest()->post('price');
 
             $params = Yii::$app->catalogFilter->params;
 
-            $params[$keys['category']] = $category;
-            $params[$keys['type']][] = $types;
+            if ($category) {
+                $params[$keys['category']] = $category;
+            }
+
+            if ($types) {
+                $params[$keys['type']][] = $types;
+            }
+
+            if (!empty($price['from']) && !empty($price['to'])) {
+                $params[$keys['price']] = $price;
+            }
 
             $link = Yii::$app->catalogFilter->createUrl($params, ['/catalog/category/list']);
 
