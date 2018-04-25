@@ -61,21 +61,29 @@ use yii\helpers\{
 <?php
 $script = <<<JS
 $('select#filter_by_category').change(function(){
-    var id = parseInt($(this).val());
-    $.post('/location/location/get-cities/', {_csrf: $('#token').val(),types_id:id}, function(data){
+    var category_alias = $(this).val();
+    
+    $.post('/catalog/category/ajax-get-types/', {_csrf: $('#token').val(),category_alias:category_alias}, function(data){
         var select = $('select#filter_by_types');
         select.html(data.options);
         select.trigger('refresh');
     });
 });
-$('select#filter_by_types').change(function(){
-    var id = parseInt($(this).val());
-    $.post('/location/location/get-cities/', {_csrf: $('#token').val(),types_id:id}, function(data){
-        var select = $('select#filter_by_category');
-        select.html(data.options);
-        select.trigger('refresh');
-    });
-});
+
+// $('select#filter_by_types').change(function(){
+//     var category_alias = $('select#filter_by_category option:selected').val();
+//     var type_alias = $(this).val();
+//      console.log(category_alias);
+//     
+//     $.post('/catalog/category/ajax-get-category/', {_csrf: $('#token').val(),type_alias:type_alias}, function(data){
+//         var select = $('select#filter_by_category');
+//         select.html(data.options);
+//         select.trigger('refresh');
+//        
+//         $('select#filter_by_category select').val(category_alias);
+//         console.log(category_alias);
+//     });
+// });
 JS;
 
 $this->registerJs($script, yii\web\View::POS_READY);

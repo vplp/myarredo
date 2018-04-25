@@ -5,6 +5,7 @@ namespace frontend\modules\catalog\controllers;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
@@ -32,6 +33,8 @@ class CategoryController extends BaseController
                 'class' => VerbFilter::class,
                 'actions' => [
                     'list' => ['get'],
+                    'ajax-get-types' => ['post'],
+                    'ajax-get-category' => ['post'],
                 ],
             ],
         ];
@@ -81,15 +84,69 @@ class CategoryController extends BaseController
     }
 
     /**
+     * @return array
+     */
+    public function actionAjaxGetTypes()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            $types = ArrayHelper::map(
+                Types::findBase()
+                    ->innerJoinWith(["category"])
+                    ->andFilterWhere([Category::tableName() . '.alias' => Yii::$app->getRequest()->post('category_alias')])
+                    ->all(),
+                'alias',
+                'lang.title'
+            );
+
+            $options = '';
+            $options .= '<option value="">Категория</option>';
+            foreach ($types as $id => $title) {
+                $options .= '<option value="' . $id . '">' . $title . '</option>';
+            }
+
+            return ['success' => 1, 'options' => $options];
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function actionAjaxGetCategory()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            $category = ArrayHelper::map(
+                Category::findBase()
+                    ->innerJoinWith(["types"])
+                    ->andFilterWhere([Types::tableName() . '.alias' => Yii::$app->getRequest()->post('type_alias')])
+                    ->all(),
+                'alias',
+                'lang.title'
+            );
+
+            $options = '';
+            $options .= '<option value="">Предмет</option>';
+            foreach ($category as $id => $title) {
+                $options .= '<option value="' . $id . '">' . $title . '</option>';
+            }
+
+            return ['success' => 1, 'options' => $options];
+        }
+    }
+
+    /**
      * @return $this
      */
-    public function seo()
+    private function seo()
     {
         $keys = Yii::$app->catalogFilter->keys;
         $params = Yii::$app->catalogFilter->params;
 
         $this->breadcrumbs[] = [
-            'label' => Yii::t('app','Каталог итальянской мебели, цены на мебель из Италии'),
+            'label' => Yii::t('app', 'Каталог итальянской мебели, цены на мебель из Италии'),
             'url' => ['/catalog/category/list']
         ];
 
@@ -146,9 +203,9 @@ class CategoryController extends BaseController
                 $style[] = $model['lang']['title'];
             }
 
-            $pageTitle[] = Yii::t('app','Стиль') . ' ' . implode(', ', $style);
+            $pageTitle[] = Yii::t('app', 'Стиль') . ' ' . implode(', ', $style);
             $pageH1[] = implode(' - ', $style);
-            $pageDescription[] = Yii::t('app','Стиль') .': '. implode(' - ', $style);
+            $pageDescription[] = Yii::t('app', 'Стиль') . ': ' . implode(' - ', $style);
 
             $this->breadcrumbs[] = [
                 'label' => implode(', ', $style),
@@ -159,12 +216,12 @@ class CategoryController extends BaseController
         if (!empty($params[$keys['collection']])) {
             $collection = Collection::findById($params[$keys['collection']][0]);
 
-            $pageTitle[] = Yii::t('app','Коллекция мебели') .' '. $collection['lang']['title'];
-            $pageH1[] = Yii::t('app','Коллекция') .' '. $collection['lang']['title'];
-            $pageDescription[] = Yii::t('app','Коллекция') .' '. $collection['lang']['title'];
+            $pageTitle[] = Yii::t('app', 'Коллекция мебели') . ' ' . $collection['lang']['title'];
+            $pageH1[] = Yii::t('app', 'Коллекция') . ' ' . $collection['lang']['title'];
+            $pageDescription[] = Yii::t('app', 'Коллекция') . ' ' . $collection['lang']['title'];
 
             $this->breadcrumbs[] = [
-                'label' => Yii::t('app','Коллекция') .' '. $collection['lang']['title'],
+                'label' => Yii::t('app', 'Коллекция') . ' ' . $collection['lang']['title'],
                 'url' => Yii::$app->catalogFilter->createUrl([$keys['collection'] => $params[$keys['collection']]])
             ];
         }
@@ -206,20 +263,20 @@ class CategoryController extends BaseController
             $noindex = 1;
         }
 
-        $pageDescription[] = Yii::t('app','из Италии');
+        $pageDescription[] = Yii::t('app', 'из Италии');
 
         /**
          * set options
          */
 
-        $pageTitle[] = Yii::t('app','Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
-        $pageDescription[] = '. '.Yii::t('app','Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo');
+        $pageTitle[] = Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
+        $pageDescription[] = '. ' . Yii::t('app', 'Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo');
 
         $this->title = Yii::$app->metatag->seo_title
             ? Yii::$app->metatag->seo_title
             : (!empty($pageTitle)
                 ? implode('. ', $pageTitle)
-                : Yii::t('app','Каталог итальянской мебели, цены на мебель из Италии'));
+                : Yii::t('app', 'Каталог итальянской мебели, цены на мебель из Италии'));
 
         if (!Yii::$app->metatag->seo_description) {
             Yii::$app->view->registerMetaTag([
