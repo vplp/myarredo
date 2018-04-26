@@ -46,8 +46,10 @@
       }
     }
     .my-notebook {
-      margin-top: 10px;
       cursor: pointer;
+      &.dropdown {
+        margin-top: 10px;
+      }
     }
     .notebook-but {
       background: #448339;
