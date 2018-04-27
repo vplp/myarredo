@@ -171,10 +171,24 @@ class RegisterController extends BaseController
                     ->setSubject('Зарегистрирована новая фабрика')
                     ->send();
 
+                Yii::$app
+                    ->mailer
+                    ->compose(
+                        'letter_about_registration',
+                        [
+                            'user' => $model,
+                            'password' => $model['password'],
+                            'text' => Yii::$app->param->getByName('MAIL_REGISTRATION_TEXT_FOR_FACTORY')
+                        ]
+                    )
+                    ->setTo($model->email)
+                    ->setSubject(\Yii::$app->name)
+                    ->send();
+
                 Yii::$app->getSession()->addFlash('success', Yii::$app->param->getByName('USER_FACTORY_REG_MESSAGE'));
 
-//                $model = new $this->model;
-//                $model->setScenario('registerFactory');
+                $model = new $this->model;
+                $model->setScenario('registerFactory');
             }
         }
 
