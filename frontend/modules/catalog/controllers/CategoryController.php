@@ -101,7 +101,7 @@ class CategoryController extends BaseController
             );
 
             $options = '';
-            $options .= '<option value="">Категория</option>';
+            $options .= '<option value="">Предмет</option>';
             foreach ($types as $id => $title) {
                 $options .= '<option value="' . $id . '">' . $title . '</option>';
             }
@@ -128,7 +128,7 @@ class CategoryController extends BaseController
             );
 
             $options = '';
-            $options .= '<option value="">Предмет</option>';
+            $options .= '<option value="">Категория</option>';
             foreach ($category as $id => $title) {
                 $options .= '<option value="' . $id . '">' . $title . '</option>';
             }
