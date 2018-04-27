@@ -33,7 +33,7 @@ $bundle = AppAsset::register($this);
                                 <div class="ico">
                                     <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
                                 </div>
-                                <a href="tel:<?= $mainPartner->profile->getPhone() ?>"><?= $mainPartner->profile->getPhone() ?></a>
+                                <a href="tel:<?= $mainPartner->profile->phone ?>"><?= $mainPartner->profile->phone ?></a>
                                 <div class="ico">
                                     <img src="<?= $bundle->baseUrl ?>/img/marker-map.png" alt="">
                                 </div>
@@ -48,7 +48,7 @@ $bundle = AppAsset::register($this);
                                 <div class="ico">
                                     <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
                                 </div>
-                                <a href="tel:<?= $partner->profile->getPhone() ?>"><?= $partner->profile->getPhone() ?></a>
+                                <a href="tel:<?= $partner->profile->phone ?>"><?= $partner->profile->phone ?></a>
                                 <div class="ico">
                                     <img src="<?= $bundle->baseUrl ?>/img/marker-map.png" alt="">
                                 </div>
