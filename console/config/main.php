@@ -106,6 +106,17 @@ return ArrayHelper::merge(
                                 'priority' => 0.5
                             ];
                         }
+                    ],
+                    [
+                        'class' => \frontend\modules\catalog\models\Factory::class,
+                        'dataClosure' => function ($model) {
+                            return [
+                                'loc' => '/factory/'. $model['alias'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.5
+                            ];
+                        }
                     ]
                 ]
             ],
