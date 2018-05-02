@@ -125,7 +125,7 @@
       top: calc( 100% + 1px );
       position: absolute;
       background: #FFFFFF;
-      z-index: 2;
+      z-index: 20;
       display: none;
     }
     .links-cont {
@@ -249,7 +249,7 @@
         display: flex;
         li {
           height: 35px;
-          width: 285px;
+          width: 275px;
           margin-right: 130px;
           display: flex;
           align-items: center;
