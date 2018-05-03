@@ -34,10 +34,11 @@ use frontend\modules\location\widgets\ChangeCity;
                             </div>
                         </a>
 
+                        <?php /*
                         <a class="back-call">
                             <i class="fa fa-phone" aria-hidden="true"></i>
                             <?= Yii::t('app', 'Feedback form') ?>
-                        </a>
+                        </a> */ ?>
 
                         <div class="select-city">
                             <a href="javscript:void(0)" class="js-select-city">
@@ -53,12 +54,15 @@ use frontend\modules\location\widgets\ChangeCity;
                             <?= LangSwitch::widget() ?>
                         </div>
 
+                        <?php /*
                         <a class="company-logo">
                             <img src="<?= $bundle->baseUrl ?>/img/logo-odis.png" alt="">
-                        </a>
+                        </a> */ ?>
+
                     </div>
 
                     <div class="right-part">
+
                         <?= Html::a(
                             '<i class="fa fa-sign-in" aria-hidden="true"></i>' .
                             Yii::t('app', 'Sign In'),
@@ -67,7 +71,9 @@ use frontend\modules\location\widgets\ChangeCity;
                                 'class' => 'sign-in'
                             ]
                         ); ?>
+
                         <?= Cart::widget(['view' => 'short']) ?>
+
                     </div>
 
                 </div>
@@ -240,6 +246,7 @@ use frontend\modules\location\widgets\ChangeCity;
 
                 <?= CatalogMenu::widget([]); ?>
 
+                <?php /*
                 <div class="search-cont">
                     <form action="#">
                         <div class="search-group">
@@ -249,7 +256,7 @@ use frontend\modules\location\widgets\ChangeCity;
                             </button>
                         </div>
                     </form>
-                </div>
+                </div> */ ?>
 
             </div>
         </div>
