@@ -311,8 +311,6 @@ class Factory extends \common\modules\catalog\models\Factory
                 categoryLang.title AS title
             FROM
                 " . self::tableName() . " factory
-            INNER JOIN " . FactoryLang::tableName() . " factoryLang 
-                ON (factoryLang.rid = factory.id) AND (factoryLang.lang = :lang)
             INNER JOIN " . Product::tableName() . " product 
                 ON (product.factory_id = factory.id) 
                 AND (product.published = :published AND product.deleted = :deleted)
