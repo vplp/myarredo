@@ -37,6 +37,7 @@ use frontend\modules\catalog\models\{
                         </div>
                         <a href="<?= Category::getUrl($model['alias']) ?>" class="img-cont">
                             <?= Html::img(Category::getImage($model['image_link'])); ?>
+                            <?= Html::img(Category::getImage($model['image_link2']), ['class' => 'is-hover']); ?>
                         </a>
 
                         <ul class="cat-list">
