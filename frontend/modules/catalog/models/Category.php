@@ -126,7 +126,7 @@ class Category extends \common\modules\catalog\models\Category
      * @param string $image_link
      * @return null|string
      */
-    public static function getImage(string $image_link = '')
+    public static function getImage($image_link = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -151,7 +151,7 @@ class Category extends \common\modules\catalog\models\Category
      * @param string $image_link
      * @return null|string
      */
-    public static function getImageThumb(string $image_link = '')
+    public static function getImageThumb($image_link = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
