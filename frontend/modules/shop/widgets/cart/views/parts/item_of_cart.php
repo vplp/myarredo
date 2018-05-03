@@ -25,7 +25,7 @@ use frontend\modules\catalog\models\Product;
                     <td><?= $product['lang']['title'] ?></td>
                 </tr>
                 <tr>
-                    <td>Фабрика</td>
+                    <td><?= Yii::t('app', 'Factory') ?></td>
                     <td><?= $product['factory']['title'] ?></td>
                 </tr>
             </table>

@@ -37,7 +37,6 @@ $bundle = AppAsset::register($this);
                         <h3 class="section-title">
                             <?= Yii::t('app', 'Как мы получаем лучшие цены для вас?') ?>
                         </h3>
-
                     </div>
                     <div class="numbers js-numbers">
                         <div class="one-number">

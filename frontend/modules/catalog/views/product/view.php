@@ -56,7 +56,8 @@ $this->title = $this->context->title;
                             ); ?>
                         </div>
                         <div class="prod-info-table">
-                            <div class="price-availability" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                            <div class="price-availability" itemprop="offers" itemscope
+                                 itemtype="http://schema.org/Offer">
                                 <div class="price-sticker">
                                     <?php if (!$model['removed'] && $model['price_from'] > 0): ?>
                                         <?= Yii::t('app', 'Цена от') ?>:
@@ -91,7 +92,7 @@ $this->title = $this->context->title;
 
                             <table class="info-table">
                                 <tr>
-                                    <td>Стиль</td>
+                                    <td><?= Yii::t('app', 'Стиль') ?></td>
                                     <td>
                                         <?php
                                         $array = [];
@@ -108,7 +109,7 @@ $this->title = $this->context->title;
 
                                 <?php if ($model['factory'] != null): ?>
                                     <tr>
-                                        <td>Фабрика</td>
+                                        <td><?= Yii::t('app', 'Factory') ?></td>
                                         <td>
                                             <meta itemprop="brand" content="<?= $model['factory']['title'] ?>">
                                             <?= Html::a(
@@ -225,109 +226,94 @@ $this->title = $this->context->title;
                     </div>
                 </div>
 
-                <?php if (Yii::$app->language == 'ru-RU'): ?>
 
-                    <div class="best-price">
-                        <div class="container large-container">
-                            <div class="section-header">
-                                <h3 class="section-title">
-                                    Как мы получаем лучшие цены для вас?
-                                </h3>
-
-                            </div>
-                            <div class="numbers js-numbers">
-                                <div class="one-number">
-                                    <div class="title">
-                                        1
-                                        <div class="img-cont">
-                                            <img src="<?= $bundle->baseUrl ?>/img/num1.svg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="descr">
-                                        Ваш запрос отправляется
-                                        всем поставщикам, авторизированным в нашей
-                                        сети MY ARREDO FAMILY.
+                <div class="best-price">
+                    <div class="container large-container">
+                        <div class="section-header">
+                            <h3 class="section-title">
+                                <?= Yii::t('app', 'Как мы получаем лучшие цены для вас?') ?>
+                            </h3>
+                        </div>
+                        <div class="numbers js-numbers">
+                            <div class="one-number">
+                                <div class="title">
+                                    1
+                                    <div class="img-cont">
+                                        <img src="<?= $bundle->baseUrl ?>/img/num1.svg" alt="">
                                     </div>
                                 </div>
-                                <div class="one-number">
-                                    <div class="title">
-                                        2
-                                        <div class="img-cont">
-                                            <img src="<?= $bundle->baseUrl ?>/img/num2.svg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="descr">
-                                        Самые активные и успешные
-                                        профессионалы рассчитают
-                                        для вас лучшие цены.
-                                    </div>
-                                </div>
-                                <div class="one-number">
-                                    <div class="title">
-                                        3
-                                        <div class="img-cont" style="margin-top: 0;">
-                                            <img src="<?= $bundle->baseUrl ?>/img/num3.svg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="descr">
-                                        Вы получите предложения
-                                        и останется только выбрать
-                                        лучшее по цене и условиям.
-                                    </div>
-                                </div>
-                                <div class="one-number">
-                                    <div class="title">
-                                        4
-                                        <div class="img-cont">
-                                            <img src="<?= $bundle->baseUrl ?>/img/num4.svg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="descr">
-                                        Партнеры сети MY ARREDO
-                                        FAMILY получают дополнительные скидки
-                                        от фабрик и предоставляют
-                                        лучшие цены Вам.
-                                    </div>
-                                </div>
-                                <div class="one-number">
-                                    <div class="title">
-                                        5
-                                        <div class="img-cont">
-                                            <img src="<?= $bundle->baseUrl ?>/img/num5.svg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="descr">
-                                        В сети MY ARREDO FAMILY
-                                        только проверенные поставщики,
-                                        которые подтвердили
-                                        свою надежность.
-                                    </div>
+                                <div class="descr">
+                                    <?= Yii::t('app', 'Ваш запрос отправляется всем поставщикам, авторизированным в нашей сети MY ARREDO FAMILY.') ?>
                                 </div>
                             </div>
-                            <div class="after-text">
-                                <div class="img-container">
-                                    <img src="<?= $bundle->baseUrl ?>/img/hand.svg" alt="">
+                            <div class="one-number">
+                                <div class="title">
+                                    2
+                                    <div class="img-cont">
+                                        <img src="<?= $bundle->baseUrl ?>/img/num2.svg" alt="">
+                                    </div>
                                 </div>
-                                <div class="text-contain">
-                                    Экономьте время и усилия на поиск по множеству сайтов.
-                                    Все лучшие и проверенные поставщики собраны в нашей сети.
+                                <div class="descr">
+                                    <?= Yii::t('app', 'Самые активные и успешные профессионалы рассчитают для вас лучшие цены.') ?>
+                                </div>
+                            </div>
+                            <div class="one-number">
+                                <div class="title">
+                                    3
+                                    <div class="img-cont" style="margin-top: 0;">
+                                        <img src="<?= $bundle->baseUrl ?>/img/num3.svg" alt="">
+                                    </div>
+                                </div>
+                                <div class="descr">
+                                    <?= Yii::t('app', 'Вы получите предложения и останется только выбрать лучшее по цене и условиям.') ?>
+                                </div>
+                            </div>
+                            <div class="one-number">
+                                <div class="title">
+                                    4
+                                    <div class="img-cont">
+                                        <img src="<?= $bundle->baseUrl ?>/img/num4.svg" alt="">
+                                    </div>
+                                </div>
+                                <div class="descr">
+                                    <?= Yii::t('app', 'Партнеры сети MY ARREDO FAMILY получают дополнительные скидки от фабрик и предоставляют лучшие цены Вам.') ?>
+                                </div>
+                            </div>
+                            <div class="one-number">
+                                <div class="title">
+                                    5
+                                    <div class="img-cont">
+                                        <img src="<?= $bundle->baseUrl ?>/img/num5.svg" alt="">
+                                    </div>
+                                </div>
+                                <div class="descr">
+                                    <?= Yii::t('app', 'В сети MY ARREDO FAMILY только проверенные поставщики, которые подтвердили свою надежность.') ?>
                                 </div>
                             </div>
                         </div>
+                        <div class="after-text">
+                            <div class="img-container">
+                                <img src="<?= $bundle->baseUrl ?>/img/hand.svg" alt="">
+                            </div>
+                            <div class="text-contain">
+                                <?= Yii::t('app', 'Экономьте время и усилия на поиск по множеству сайтов. Все лучшие и проверенные поставщики собраны в нашей сети.') ?>
+                            </div>
+                        </div>
                     </div>
-
-                <?php endif; ?>
+                </div>
 
                 <div class="row composition">
                     <div class="col-md-12">
                         <ul class="nav nav-tabs">
 
                             <?php if (!empty($elementsComposition)): ?>
-                                <li><a data-toggle="tab" href="#panel1"><?= Yii::t('app', 'Предметы композиции') ?></a></li>
+                                <li><a data-toggle="tab" href="#panel1"><?= Yii::t('app', 'Предметы композиции') ?></a>
+                                </li>
                             <?php endif; ?>
 
                             <?php if (!empty($model['samples'])): ?>
-                                <li><a data-toggle="tab" href="#panel2"><?= Yii::t('app', 'Варианты отделки') ?></a></li>
+                                <li><a data-toggle="tab" href="#panel2"><?= Yii::t('app', 'Варианты отделки') ?></a>
+                                </li>
                             <?php endif; ?>
 
                         </ul>

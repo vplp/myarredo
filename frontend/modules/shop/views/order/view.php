@@ -33,7 +33,7 @@ use frontend\modules\catalog\models\Product;
                                             <td><?= $item->product['lang']['title'] ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Фабрика</td>
+                                            <td><?= Yii::t('app', 'Factory') ?></td>
                                             <td><?= $item->product['factory']['title'] ?></td>
                                         </tr>
                                     </table>

@@ -51,7 +51,7 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                             </td>
                         </tr>
                         <tr>
-                            <td>Фабрика</td>
+                            <td><?= Yii::t('app', 'Factory') ?></td>
                             <td><?= $orderItem->product['factory']['title'] ?></td>
                         </tr>
                         <tr>
