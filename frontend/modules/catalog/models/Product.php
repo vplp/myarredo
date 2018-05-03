@@ -171,9 +171,9 @@ class Product extends \common\modules\catalog\models\Product
 
         $image = null;
 
-        if (YII_ENV_DEV && !empty($image_link)){
+        /*if (YII_ENV_DEV && !empty($image_link)){
             $image = 'http://www.myarredo.ru/uploads/images/' . $image_link;
-        } elseif (!empty($image_link) && is_file($path . '/' . $image_link)) {
+        } else*/if (!empty($image_link) && is_file($path . '/' . $image_link)) {
 
             $image_link_path = explode('/', $image_link);
 
@@ -221,13 +221,13 @@ class Product extends \common\modules\catalog\models\Product
         $imagesSources = [];
 
         foreach ($images as $image) {
-            if (YII_ENV_DEV){
+            /*if (YII_ENV_DEV){
                 $url = 'http://www.myarredo.ru/uploads/images';
                 $imagesSources[] = [
                     'img' => $url . '/' . $image,
                     'thumb' => self::getImageThumb($image)
                 ];
-            } elseif (file_exists($path . '/' . $image)) {
+            } else*/if (file_exists($path . '/' . $image)) {
                 $imagesSources[] = [
                     'img' => $url . '/' . $image,
                     'thumb' => self::getImageThumb($image)
