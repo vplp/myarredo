@@ -33,31 +33,21 @@ class LangSwitch extends Widget
     {
         parent::init();
         $langModel = new Yii::$app->languages->languageModel;
+
         $this->items = $langModel->getLanguages();
         $this->current = $langModel->getCurrent()['label'];
     }
 
     /**
      * @return string
-     * @throws \yii\base\InvalidConfigException
      */
     public function run()
     {
         $items = [];
-        $request = Yii::$app->getRequest();
-        $baseUrl = $request->getBaseUrl();
-        $url = substr($request->getUrl(), strlen($baseUrl));
 
         foreach ($this->items as $lang) {
-//            if (!$lang['by_default']) {
-//                $items[] = ['label' => $lang['label'], 'url' => $baseUrl . '/' . $lang['alias'] . $url];
-//            } else {
-//                $items[] = ['label' => $lang['label'], 'url' => $baseUrl . $url];
-//            }
+
             $path = \Yii::$app->request->pathInfo;
-            /* if (Yii::$app->controller->module->id == 'page') {
-              //   $path = '';
-             }*/
 
             if ($lang['local'] == Yii::$app->language) {
                 $this->current = [
@@ -84,6 +74,7 @@ class LangSwitch extends Widget
                 ];
             }
         }
+
         return $this->render($this->view, [
             'models' => $items,
             'current' => $this->current,

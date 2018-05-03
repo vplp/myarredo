@@ -136,14 +136,14 @@ $bundle = AppAsset::register($this);
 
                 <div class="row factory-text">
                     <div class="col-xs-12 col-sm-4 col-md-3">
-                        <div class="header-border">
+                        <!--<div class="header-border">
                             <div class="text-header">
                                 В ассортименте представлена
                                 мебель для наиболее
                                 значимых и важных зон
                                 каждого дома
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-9">
                         <div class="text">
