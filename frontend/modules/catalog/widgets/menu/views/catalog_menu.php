@@ -41,7 +41,7 @@ use frontend\modules\catalog\models\Category;
             Url::toRoute(['/catalog/sale/list'])
         ) ?></li>
     <li><?= Html::a(
-            Yii::t('app', 'Factories'),
+            Yii::t('app', 'Фабрики'),
             Url::toRoute(['/catalog/factory/list'])
         ) ?></li>
     <li><?= Html::a(
