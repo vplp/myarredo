@@ -22,32 +22,11 @@ $this->title = $this->context->title;
     <div class="page sale-page prod-card-page">
         <div class="container-wrap">
             <div class="container large-container">
-                <!--
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="flex s-between c-align top-links">
 
-                            <?php
-                if ($model['factory']) {
-                    echo Html::a(
-                        $model['factory']['title'],
-                        Factory::getUrl($model['factory']['alias']),
-                        ['class' => 'brand']
-                    );
-                } else {
-                    $model['factory_name'];
-                }
-
-                ?>
-
-                        </div>
-                    </div>
-                </div>
-                -->
                 <div class="row sale-prod">
                     <div class="col-md-12">
                         <div class="section-header">
-                            <h2>Распродажа</h2>
+                            <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
                             <?= Html::a(
                                 Yii::t('app', 'Вернуться к списку'),
                                 Url::toRoute(['/catalog/sale/list']),
@@ -82,13 +61,13 @@ $this->title = $this->context->title;
 
                             <div class="prod-price">
                                 <div class="price">
-                                    Цена:
+                                    <?= Yii::t('app', 'Цена') ?>:
                                     <span>
                                         <?= $model->price_new . ' ' . $model->currency; ?>
                                     </span>
                                 </div>
                                 <div class="price economy">
-                                    Экономия:
+                                    <?= Yii::t('app', 'Экономия') ?>:
                                     <span>
                                         <?= ($model->price - $model->price_new) . ' ' . $model->currency; ?>
                                     </span>
@@ -146,9 +125,12 @@ $this->title = $this->context->title;
                         </div>
 
                     </div>
-                    <?php if (!empty($model['user'])) { ?>
 
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+
+                        <?php /*if (!empty($model['user'])) { ?>
+
                             <div class="brand-info">
                                 <div class="white-area">
                                     <div class="image-container">
@@ -185,10 +167,14 @@ $this->title = $this->context->title;
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                    <?php } ?>
+                      <?php }*/ ?>
+
+                    </div>
+
                 </div>
+
+                <?php /*
                 <div class="row similar-prod-wrap">
                     <div class="col-md-12">
                         <div class="similar-prod">
@@ -271,6 +257,9 @@ $this->title = $this->context->title;
                         </div>
                     </div>
                 </div>
+
+                */ ?>
+                
             </div>
         </div>
     </div>

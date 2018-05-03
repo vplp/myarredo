@@ -33,7 +33,7 @@ use frontend\modules\catalog\models\Sale;
 
         <object class="btn-block">
             <a class="more-info">
-                Детальнее
+                <?= Yii::t('app', 'Детальнее') ?>
             </a>
             <!--
             <a href="javascript:void(0);" class="get-price">

@@ -44,7 +44,7 @@ $bundle = AppAsset::register($this);
                                 'h1',
                                 (($this->context->SeoH1)
                                     ? $this->context->SeoH1
-                                    : Yii::t('app','Мебель') . ' ' . $model['title'] . ' ' . Yii::t('app','в') . ' ' . Yii::$app->city->getCityTitleWhere()),
+                                    : Yii::t('app', 'Мебель') . ' ' . $model['title'] . ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere()),
                                 ['class' => 'title-text']
                             ); ?>
 
@@ -63,12 +63,12 @@ $bundle = AppAsset::register($this);
                                 <ul class="nav nav-tabs">
                                     <li class="active">
                                         <a data-toggle="tab" href="#all-product">
-                                            <?= Yii::t('app','Все предметы мебели') ?>
+                                            <?= Yii::t('app', 'Все предметы мебели') ?>
                                         </a>
                                     </li>
                                     <li>
                                         <a data-toggle="tab" href="#all-collection">
-                                            <?= Yii::t('app','Все коллекции') ?>
+                                            <?= Yii::t('app', 'Все коллекции') ?>
                                         </a>
                                     </li>
                                 </ul>
@@ -156,7 +156,7 @@ $bundle = AppAsset::register($this);
                     <div class="col-xs-12 col-sm-4 col-md-3">
                         <div class="one-filter">
                             <h4>
-                                Категории
+                                <?= Yii::t('app', 'Category') ?>
                             </h4>
                             <ul class="list">
                                 <?php
@@ -171,10 +171,11 @@ $bundle = AppAsset::register($this);
 
                                     ?>
                                     <li>
-                                        <a href="<?=Yii::$app->catalogFilter->createUrl($params)?>">
+                                        <a href="<?= Yii::$app->catalogFilter->createUrl($params) ?>">
                                             <div class="left-group">
                                                 <div class="img-cont">
-                                                    <img src="<?= $bundle->baseUrl ?>/img/catalog_ico/thumb1.png" alt="">
+                                                    <img src="<?= $bundle->baseUrl ?>/img/catalog_ico/thumb1.png"
+                                                         alt="">
                                                 </div>
                                                 <?= $item['title'] ?>
                                             </div>
@@ -202,8 +203,8 @@ $bundle = AppAsset::register($this);
                                     <img src="<?= $bundle->baseUrl ?>/img/factory.svg" alt="">
                                 </div>
                                 <a class="view-all"
-                                   href="<?=Yii::$app->catalogFilter->createUrl(Yii::$app->catalogFilter->params + [$keys['factory'] => $model['alias']])?>">
-                                    Смотреть полный каталог
+                                   href="<?= Yii::$app->catalogFilter->createUrl(Yii::$app->catalogFilter->params + [$keys['factory'] => $model['alias']]) ?>">
+                                    <?= Yii::t('app', 'Смотреть полный каталог') ?>
                                 </a>
                             </div>
 
