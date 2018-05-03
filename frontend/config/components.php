@@ -30,9 +30,6 @@ return [
             ],
         ],
     ],
-//    'i18n' => [
-//        'class' => \thread\app\base\i18n\I18N::class,
-//    ],
     'catalogFilter' => [
         'class' => \frontend\modules\catalog\components\CatalogFilter::class,
     ],
