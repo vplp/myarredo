@@ -35,7 +35,7 @@ $bundle = AppAsset::register($this);
                 <div class="container large-container">
                     <div class="section-header">
                         <h3 class="section-title">
-                            Как мы получаем лучшие цены для вас?
+                            <?= Yii::t('app', 'Как мы получаем лучшие цены для вас?') ?>
                         </h3>
 
                     </div>
@@ -48,9 +48,7 @@ $bundle = AppAsset::register($this);
                                 </div>
                             </div>
                             <div class="descr">
-                                Ваш запрос отправляется
-                                всем поставщикам, авторизрованым в нашей
-                                сети MY ARREDO FAMILY.
+                                <?= Yii::t('app', 'Ваш запрос отправляется всем поставщикам, авторизрованым в нашей сети MY ARREDO FAMILY.') ?>
                             </div>
                         </div>
                         <div class="one-number">
@@ -61,9 +59,7 @@ $bundle = AppAsset::register($this);
                                 </div>
                             </div>
                             <div class="descr">
-                                Самые активные и успешные
-                                профессионалы рассчитают
-                                для вас лучшие цены.
+<?= Yii::t('app', 'Самые активные и успешные профессионалы рассчитают для вас лучшие цены.') ?>
                             </div>
                         </div>
                         <div class="one-number">
@@ -74,9 +70,7 @@ $bundle = AppAsset::register($this);
                                 </div>
                             </div>
                             <div class="descr">
-                                Вы получите предложения
-                                и останется только выбрать
-                                лучшее по цене и условиям.
+<?= Yii::t('app', 'Вы получите предложения и останется только выбрать лучшее по цене и условиям.') ?>
                             </div>
                         </div>
                         <div class="one-number">
@@ -87,10 +81,7 @@ $bundle = AppAsset::register($this);
                                 </div>
                             </div>
                             <div class="descr">
-                                Партнеры сети MY ARREDO
-                                FAMILY получают дополнительные скидки
-                                от фабрик и предоставляют
-                                лучшие цены Вам.
+<?= Yii::t('app', 'Партнеры сети MY ARREDO FAMILY получают дополнительные скидки от фабрик и предоставляют лучшие цены Вам.') ?>
                             </div>
                         </div>
                         <div class="one-number">
@@ -101,10 +92,7 @@ $bundle = AppAsset::register($this);
                                 </div>
                             </div>
                             <div class="descr">
-                                В сети MY ARREDO FAMILY
-                                только проверенные поставщики,
-                                которые подтвердили
-                                свою надежность.
+<?= Yii::t('app', 'В сети MY ARREDO FAMILY только проверенные поставщики, которые подтвердили свою надежность.') ?>
                             </div>
                         </div>
                     </div>
@@ -113,9 +101,7 @@ $bundle = AppAsset::register($this);
                             <img src="<?= $bundle->baseUrl ?>/img/best-price.svg" alt="">
                         </div>
                         <div class="text-contain">
-                            На нашем портале ведут рекламную компанию сами фабрики.
-                            Салоны обеспечат сервис по покупки
-                            на фабрике и доставке клиенту по адресу
+<?= Yii::t('app', 'На нашем портале ведут рекламную компанию сами фабрики. Салоны обеспечат сервис по покупки на фабрике и доставке клиенту по адресу.') ?>
                         </div>
                     </div>
                 </div>

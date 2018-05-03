@@ -19,7 +19,7 @@ use frontend\modules\catalog\models\{
         <div class="section-header">
 
             <h1 class="section-title">
-                Итальянская мебель в Москве
+                <?= Yii::t('app', 'Итальянская мебель') . ' ' . Yii::t('app','в') . ' ' . Yii::$app->city->getCityTitleWhere() ?>
             </h1>
 
             <?= Html::a(

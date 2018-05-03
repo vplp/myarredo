@@ -195,7 +195,7 @@ JS;
 $this->registerJs($script, yii\web\View::POS_READY);
 
 $this->registerJsFile(
-    'https://maps.googleapis.com/maps/api/js?key=AIzaSyDI-EyYe0E1ZPA9IpCTUbP2137VDAcHJGY',
+    'https://maps.googleapis.com/maps/api/js?key=AIzaSyDI-EyYe0E1ZPA9IpCTUbP2137VDAcHJGY&language=' . substr(Yii::$app->language,0,2),
     [
         'position' => yii\web\View::POS_END,
     ]

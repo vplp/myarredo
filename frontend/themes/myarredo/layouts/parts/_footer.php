@@ -22,7 +22,7 @@ $bundle = AppAsset::register($this);
                 <div class="cont-info">
                     <div class="cont-info-in">
                         <div class="cont-info-border">
-                            <h4>Контакты</h4>
+                            <h4><?= Yii::t('app', 'Contacts') ?></h4>
 
                             <?= PartnerInfo::widget() ?>
 
