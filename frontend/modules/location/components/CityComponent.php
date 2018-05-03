@@ -80,7 +80,7 @@ class CityComponent extends Component
      */
     public function getPhoneMask()
     {
-        if (Yii::$app->language = 'it-IT') {
+        if (Yii::$app->language == 'it-IT') {
             $mask = '+39 (99) 999-99-99';
         } else if (in_array($this->domain, ['by'])) {
             $mask = '+375 (99) 999-99-99';
