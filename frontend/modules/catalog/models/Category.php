@@ -6,6 +6,8 @@ use Yii;
 use yii\helpers\{
     Url, ArrayHelper
 };
+//
+use frontend\components\ImageResize;
 
 /**
  * Class Category
