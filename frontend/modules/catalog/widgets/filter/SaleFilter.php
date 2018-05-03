@@ -104,6 +104,8 @@ class SaleFilter extends Widget
                 'title' => $obj['lang']['title'],
                 'count' => $obj['count'],
                 'image_link' => $obj['image_link'],
+                'image_link2' => $obj['image_link2'],
+                'image_link3' => $obj['image_link3'],
             );
         }
 
