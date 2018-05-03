@@ -83,14 +83,17 @@ use frontend\modules\location\widgets\ChangeCity;
 
             <div class="top-header">
                 <div class="container large-container">
-                    <div class="row">
+
+                    <div class="left-part">
+                        <div class="lang-selector">
+                            <?= LangSwitch::widget() ?>
+                        </div>
+                    </div>
+
+                    <div class="right-part">
 
                         <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'user'): ?>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li id="short_cart">
-                                    <?= Cart::widget(['view' => 'short']) ?>
-                                </li>
-                            </ul>
+                            <?= Cart::widget(['view' => 'short']) ?>
                         <?php endif; ?>
 
                         <ul class="nav navbar-nav navbar-right">
@@ -229,6 +232,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                 </div>
                             </li>
                         </ul>
+
                     </div>
 
                 </div>
