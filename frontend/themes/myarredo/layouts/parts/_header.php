@@ -41,7 +41,7 @@ use frontend\modules\location\widgets\ChangeCity;
                         </a> */ ?>
 
                         <div class="select-city">
-                            <a href="javscript:void(0)" class="js-select-city">
+                            <a href="javascript:void(0)" class="js-select-city">
                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                                 <?= Yii::$app->city->getCountryTitle() ?> | <?= Yii::$app->city->getCitytitle() ?>
                             </a>
