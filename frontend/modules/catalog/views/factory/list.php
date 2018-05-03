@@ -43,9 +43,13 @@ $this->title = $this->context->title;
                                 } ?>
 
                             </ul>
-                            <?= Html::a('Все', Url::toRoute(['/catalog/factory/list']), ['class' => 'all']); ?>
+                            <?php // Html::a('Все', Url::toRoute(['/catalog/factory/list']), ['class' => 'all']); ?>
                         </div>
                     </div>
+
+                    <?php
+                    /*
+                    ?>
                     <div class="view-but">
                         <a href="<?= Url::toRoute(['/catalog/factory/list', 'view' => 'three']); ?>" >
                             <i class="fa fa-list-ul" aria-hidden="true"></i>
@@ -54,6 +58,9 @@ $this->title = $this->context->title;
                             <i class="fa fa-th-large" aria-hidden="true"></i>
                         </a>
                     </div>
+                    */
+                    ?>
+
                 </div>
 
                 <div class="factory-tiles flex">

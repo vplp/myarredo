@@ -109,10 +109,9 @@ class Form extends \yii\bootstrap\ActiveField
     }
 
     /**
-     * Image upload widget field
-     *
-     * @param string $preview image url
+     * @param string $preview
      * @return $this
+     * @throws \Exception
      */
     public function imageOne($preview = '')
     {
@@ -167,12 +166,10 @@ class Form extends \yii\bootstrap\ActiveField
     }
 
     /**
-     * Image upload widget field
-     *
      * @param array $options
      * @param array $pluginOptions
      * @return $this
-     * @internal param string $preview image url
+     * @throws \Exception
      */
     public function imageSeveral($options = [], $pluginOptions = [])
     {
