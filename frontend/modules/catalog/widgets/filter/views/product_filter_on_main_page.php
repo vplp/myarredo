@@ -13,8 +13,7 @@ use yii\helpers\{
 ]) ?>
 
     <div class="filter-title">
-        Портал проверенных поставщиков
-        итальянской мебели
+        <?= Yii::t('app', 'Портал проверенных поставщиков итальянской мебели') ?>
         <div class="frosted-glass"></div>
     </div>
 
@@ -23,7 +22,7 @@ use yii\helpers\{
         <?= Html::dropDownList(
             'category',
             '',
-            ['' => 'Категория'] + $category,
+            ['' => Yii::t('app', 'Category')] + $category,
             [
                 'id' => 'filter_by_category',
                 'class' => 'first',
@@ -34,7 +33,7 @@ use yii\helpers\{
         <?= Html::dropDownList(
             'types',
             '',
-            ['' => 'Предмет'] + $types,
+            ['' => Yii::t('app', 'Предмет')] + $types,
             [
                 'id' => 'filter_by_types',
                 'class' => false,
@@ -44,12 +43,12 @@ use yii\helpers\{
 
         <div class="filter-price">
             <div class="left">
-                <input type="text" name="price[from]" placeholder="от">
-                <input type="text" name="price[to]" placeholder="до">
+                <input type="text" name="price[from]" placeholder="<?= Yii::t('app', 'от') ?>">
+                <input type="text" name="price[to]" placeholder="<?= Yii::t('app', 'до') ?>">
                 €
             </div>
 
-            <?= Html::submitButton('Найти', [
+            <?= Html::submitButton(Yii::t('app', 'Найти'), [
                 'class' => 'search',
                 'name' => 'filter_on_main_page',
                 'value' => 1
@@ -59,12 +58,16 @@ use yii\helpers\{
 <?php ActiveForm::end() ?>
 
 <?php
+
+$ajax_get_types = Url::to(['/catalog/category/ajax-get-types']);
+$ajax_get_category = Url::to(['/catalog/category/ajax-get-category']);
+
 $script = <<<JS
 $('select#filter_by_category').change(function(){
     var category_alias = $(this).val();
     var type_alias = $('select#filter_by_types option:selected').val();
     
-    $.post('/catalog/category/ajax-get-types/', {_csrf: $('#token').val(),category_alias:category_alias}, function(data){
+    $.post('$ajax_get_types', {_csrf: $('#token').val(),category_alias:category_alias}, function(data){
         var select = $('select#filter_by_types');
         select.html(data.options);
         $('select#filter_by_types').val(type_alias);
@@ -77,7 +80,7 @@ $('select#filter_by_types').change(function(){
     var type_alias = $(this).val();
      console.log(category_alias);
     
-    $.post('/catalog/category/ajax-get-category/', {_csrf: $('#token').val(),type_alias:type_alias}, function(data){
+    $.post('$ajax_get_category', {_csrf: $('#token').val(),type_alias:type_alias}, function(data){
         var select = $('select#filter_by_category');
         select.html(data.options);
         $('select#filter_by_category').val(category_alias);

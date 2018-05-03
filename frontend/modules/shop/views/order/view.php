@@ -29,7 +29,7 @@ use frontend\modules\catalog\models\Product;
                                     </div>
                                     <table width="100%">
                                         <tr>
-                                            <td>Предмет</td>
+                                            <td><?= Yii::t('app', 'Предмет') ?></td>
                                             <td><?= $item->product['lang']['title'] ?></td>
                                         </tr>
                                         <tr>
