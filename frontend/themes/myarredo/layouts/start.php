@@ -48,7 +48,7 @@ $bundle = AppAsset::register($this);
                                 </div>
                             </div>
                             <div class="descr">
-                                <?= Yii::t('app', 'Ваш запрос отправляется всем поставщикам, авторизрованым в нашей сети MY ARREDO FAMILY.') ?>
+                                <?= Yii::t('app', 'Ваш запрос отправляется всем поставщикам, авторизированным в нашей сети MY ARREDO FAMILY.') ?>
                             </div>
                         </div>
                         <div class="one-number">
