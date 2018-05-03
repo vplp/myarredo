@@ -239,6 +239,8 @@ class Category extends \common\modules\catalog\models\Category
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
                     self::tableName() . '.image_link',
+                    self::tableName() . '.image_link2',
+                    self::tableName() . '.image_link3',
                     self::tableName() . '.position',
                     CategoryLang::tableName() . '.title',
                     'count(' . self::tableName() . '.id) as count'
