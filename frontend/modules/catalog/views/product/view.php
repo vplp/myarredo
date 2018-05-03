@@ -73,7 +73,7 @@ $this->title = $this->context->title;
                                     <?php endif; ?>
                                 </div>
                                 <div class="availability">
-                                    Наличие:
+                                    <?= Yii::t('app', 'Наличие') ?>:
                                     <span><?= ($model['status']) ?></span>
                                     <?php if (!$model['removed'] && $model['in_stock']): ?>
                                         <meta itemprop="availability" content="InStock">
