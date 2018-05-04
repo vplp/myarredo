@@ -31,9 +31,19 @@ $bundle = AppAsset::register($this);
                             </h3>
                             <div class="in-group">
 
-                                <?= $form->field($model, $model->getUsernameAttribute())->label() ?>
-                                <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль']) ?>
-                                <?= $form->field($model, 'rememberMe')->checkbox(['placeholder' => 'Пароль']) ?>
+                                <?= $form
+                                    ->field($model, $model->getUsernameAttribute())
+                                    ->input('text', ['placeholder' => $model->getAttributeLabel($model->getUsernameAttribute())])
+                                    ->label(false) ?>
+
+                                <?= $form
+                                    ->field($model, 'password')
+                                    ->passwordInput(['placeholder' => $model->getAttributeLabel('password')])
+                                    ->label(false) ?>
+
+                                <?= $form
+                                    ->field($model, 'rememberMe')
+                                    ->checkbox() ?>
 
                             </div>
 

@@ -66,8 +66,46 @@
       background: #F3F2F0;
       border-radius: 0;
     }
+  }
+  .field-signinform-rememberme {
+    text-align: left;
+  }
+  .form-group {
     label {
-      display: none;
+      display: inline;
+      color: #535351;
+      font-size: 14px;
+      font-weight: 400;
+    }
+    a {
+      color: #448339;
+    }
+  }
+  .jq-checkbox {
+    width: 24px;
+    height: 24px;
+    background: #F3F2F0;
+    border: none;
+    display: inline-flex !important;
+    justify-content: center;
+    align-items: center;
+    &.checked {
+      .jq-checkbox__div {
+        background: none;
+        box-shadow: none;
+        margin: 0;
+        width: auto;
+        height: auto;
+        position: relative;
+        &:after {
+          content: '\f00c';
+          font-family: 'FontAwesome';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+        }
+      }
     }
   }
 }

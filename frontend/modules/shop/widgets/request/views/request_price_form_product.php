@@ -19,11 +19,13 @@ $model->user_agreement = 1;
     ->input('text', ['placeholder' => Yii::t('app', 'Email')])
     ->label(false) ?>
 
-<?= $form->field($model, 'full_name')
+<?= $form
+    ->field($model, 'full_name')
     ->input('text', ['placeholder' => Yii::t('app', 'Name')])
     ->label(false) ?>
 
-<?= $form->field($model, 'phone')
+<?= $form
+    ->field($model, 'phone')
     ->widget(\yii\widgets\MaskedInput::className(), [
         'mask' => Yii::$app->city->getPhoneMask(),
         'clientOptions' => [
@@ -33,14 +35,18 @@ $model->user_agreement = 1;
     ->input('text', ['placeholder' => Yii::t('app', 'Phone')])
     ->label(false) ?>
 
-<?= $form->field($model, 'comment')
+<?= $form
+    ->field($model, 'comment')
     ->textarea(['placeholder' => Yii::t('app', 'Comment')])
     ->label(false) ?>
 
-<?= $form->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])->checkbox([], false)
+<?= $form
+    ->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])
+    ->checkbox([], false)
     ->label('&nbsp;'.$model->getAttributeLabel('user_agreement')) ?>
 
-<?= $form->field($model, 'reCaptcha')
+<?= $form
+    ->field($model, 'reCaptcha')
     ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
     ->label(false) ?>
 
