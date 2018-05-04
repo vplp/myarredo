@@ -165,12 +165,6 @@ use frontend\modules\user\widgets\profile\Profile;
                                                     </li>
                                                     <li>
                                                         <?= Html::a(
-                                                            Yii::t('app', 'Statistics'),
-                                                            ['/catalog/product-stats/list']
-                                                        ); ?>
-                                                    </li>
-                                                    <li>
-                                                        <?= Html::a(
                                                             Yii::t('app', 'Product statistics'),
                                                             ['/catalog/product-stats/list']
                                                         ); ?>
@@ -200,12 +194,6 @@ use frontend\modules\user\widgets\profile\Profile;
                                                         <?= Html::a(
                                                             Yii::t('app', 'Orders'),
                                                             ['/shop/factory-order/list']
-                                                        ); ?>
-                                                    </li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Statistics'),
-                                                            ['/catalog/product-stats/list']
                                                         ); ?>
                                                     </li>
                                                     <li>
