@@ -34,9 +34,9 @@ $bundle = AppAsset::register($this);
             <div class="best-price">
                 <div class="container large-container">
                     <div class="section-header">
-                        <h3 class="section-title">
+                        <div class="section-title">
                             <?= Yii::t('app', 'Как мы получаем лучшие цены для вас?') ?>
-                        </h3>
+                        </div>
                     </div>
                     <div class="numbers js-numbers">
                         <div class="one-number">

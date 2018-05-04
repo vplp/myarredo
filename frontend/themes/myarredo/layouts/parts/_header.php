@@ -9,6 +9,7 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
 use frontend\modules\catalog\widgets\menu_mobile\CatalogMenuMobile;
 use frontend\modules\shop\widgets\cart\Cart;
 use frontend\modules\location\widgets\ChangeCity;
+use frontend\modules\user\widgets\profile\Profile;
 
 ?>
 
@@ -95,6 +96,18 @@ use frontend\modules\location\widgets\ChangeCity;
                         <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'user'): ?>
                             <?= Cart::widget(['view' => 'short']) ?>
                         <?php endif; ?>
+
+                        <div class="sign-in">
+                            <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') {
+                                echo Yii::$app->getUser()->getIdentity()->profile->name_company;
+                            } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'admin') {
+                                echo Yii::$app->getUser()->getIdentity()->profile->first_name;
+                            } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
+                                echo Yii::$app->getUser()->getIdentity()->profile->factory->title;
+                            } else {
+                                echo Yii::$app->getUser()->getIdentity()->profile->first_name;
+                            } ?>
+                        </div>
 
                         <ul class="nav navbar-nav navbar-right">
                             <li>
@@ -237,6 +250,7 @@ use frontend\modules\location\widgets\ChangeCity;
 
                 </div>
             </div>
+
         <?php endif; ?>
 
         <div class="bot-header">
@@ -316,10 +330,12 @@ use frontend\modules\location\widgets\ChangeCity;
 
         </div>
 
-        <!--<a class="wishlist-mobile">
+        <!--
+        <a class="wishlist-mobile">
             <i class="fa fa-heart" aria-hidden="true"></i>
             Избранное
-        </a>-->
+        </a>
+        -->
 
         <?= CatalogMenuMobile::widget([]); ?>
 
