@@ -1,11 +1,11 @@
 <?php
 
-use \backend\widgets\GridView\gridColumns\ActionColumn;
 use thread\widgets\grid\{
     ActionCheckboxColumn, GridViewFilter
 };
 //
 use backend\widgets\GridView\GridView;
+use backend\widgets\GridView\gridColumns\ActionColumn;
 use backend\modules\sys\modules\translation\models\Source;
 use backend\modules\sys\modules\translation\models\search\Source as SourceSearch;
 
@@ -20,6 +20,7 @@ echo GridView::widget(
             [
                 'attribute' => 'category',
                 'value' => 'category',
+                'label' => Yii::t('app', 'Category'),
                 'filter' => GridViewFilter::selectOne($filter, 'category', Source::listFromTo('category', 'category')),
             ],
             [
@@ -27,10 +28,15 @@ echo GridView::widget(
                 'value' => 'key',
                 'filter' => GridViewFilter::selectOne($filter, 'key', Source::listFromTo('key', 'key')),
             ],
-            'message.translation',
+            [
+                'attribute' => 'translation',
+                'value' => 'message.translation',
+                'label' => Yii::t('app', 'Translation'),
+            ],
             [
                 'class' => ActionCheckboxColumn::class,
                 'attribute' => 'published',
+                'label' => Yii::t('app', 'Published'),
                 'action' => 'published'
             ],
             [

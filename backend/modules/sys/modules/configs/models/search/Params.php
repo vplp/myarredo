@@ -17,8 +17,6 @@ use  backend\modules\sys\modules\configs\models\{
  * Class Params
  *
  * @package backend\modules\sys\modules\configs\models\search
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Params extends ParamsModel implements BaseBackendSearchModel
 {
@@ -30,7 +28,7 @@ class Params extends ParamsModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-            [['title'], 'string', 'max' => 255],
+            [['title', 'alias'], 'string', 'max' => 255],
             [['group_id'], 'integer'],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -58,11 +56,6 @@ class Params extends ParamsModel implements BaseBackendSearchModel
             'query' => $query,
             'pagination' => [
                 'defaultPageSize' => $module->itemOnPage
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_ASC
-                ]
             ]
         ]);
 
