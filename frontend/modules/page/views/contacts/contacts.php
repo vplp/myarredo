@@ -1,11 +1,10 @@
 <?php
 
-use frontend\themes\myarredo\assets\AppAsset;
 use yii\helpers\{
     Html, Url
 };
 //
-use frontend\modules\user\widgets\partner\PartnerMap;
+use frontend\themes\myarredo\assets\AppAsset;
 
 $this->title = $this->context->title;
 $bundle = AppAsset::register($this);
@@ -27,13 +26,17 @@ $bundle = AppAsset::register($this);
                             </div>
                             <div class="info-part">
                                 <div class="main-sticker">
-                                    Главный партнер
+                                    <?= Yii::t('app','Главный партнер') ?>
                                 </div>
+
                                 <?= Html::tag('h4', $mainPartner->profile->name_company); ?>
+
                                 <div class="ico">
                                     <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
                                 </div>
+
                                 <a href="tel:<?= $mainPartner->profile->phone ?>"><?= $mainPartner->profile->phone ?></a>
+
                                 <div class="ico">
                                     <img src="<?= $bundle->baseUrl ?>/img/marker-map.png" alt="">
                                 </div>
@@ -42,6 +45,7 @@ $bundle = AppAsset::register($this);
                                 </div>
                             </div>
                         </div>
+
                         <?php foreach ($partners as $partner): ?>
                             <div class="one-cont">
                                 <?= Html::tag('h4', $partner->profile->name_company); ?>

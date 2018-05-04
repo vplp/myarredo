@@ -6,6 +6,7 @@ use yii\helpers\{
 //
 use frontend\modules\user\widgets\partner\PartnerMap;
 
+$this->title = $this->context->title;
 ?>
 
 <main>
