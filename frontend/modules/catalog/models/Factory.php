@@ -307,6 +307,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 COUNT(product.id) as count, 
                 factory.id AS factory_id,
                 category.id AS category_id,
+                category.image_link3 as image_link3,
                 category.alias AS alias,
                 categoryLang.title AS title
             FROM

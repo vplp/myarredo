@@ -6,7 +6,9 @@ use yii\helpers\{
 //
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\components\Breadcrumbs;
-use frontend\modules\catalog\models\Factory;
+use frontend\modules\catalog\models\{
+    Factory, Category
+};
 
 /**
  * @var \frontend\modules\catalog\models\Factory $model
@@ -174,8 +176,7 @@ $bundle = AppAsset::register($this);
                                         <a href="<?= Yii::$app->catalogFilter->createUrl($params) ?>">
                                             <div class="left-group">
                                                 <div class="img-cont">
-                                                    <img src="<?= $bundle->baseUrl ?>/img/catalog_ico/thumb1.png"
-                                                         alt="">
+                                                    <?= Html::img(Category::getImage($item['image_link3'])) ?>
                                                 </div>
                                                 <?= $item['title'] ?>
                                             </div>
