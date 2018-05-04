@@ -18,14 +18,6 @@ class PartnerInfo extends Widget
     public $view = 'partner_info';
 
     /**
-     * Init model for run method
-     */
-    public function init()
-    {
-
-    }
-
-    /**
      * @return string
      */
     public function run()

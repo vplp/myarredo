@@ -43,7 +43,9 @@ $bundle = AppAsset::register($this);
             </div>
         </div>
 
-        <?= PartnerMap::widget(['city' => Yii::$app->city->getCity()]) ?>
+        <?php if (Yii::$app->controller->action->id != 'list-partners') {
+           echo PartnerMap::widget(['city' => Yii::$app->city->getCity()]);
+        } ?>
 
         <?= Cities::widget() ?>
 

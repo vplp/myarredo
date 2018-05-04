@@ -24,19 +24,10 @@ class PartnerMap extends Widget
     public $city = false;
 
     /**
-     * Init model for run method
-     */
-    public function init()
-    {
-
-    }
-
-    /**
      * @return string
      */
     public function run()
     {
-
         if ($this->city) {
             $partners = User::getPartners($this->city['id']);
 
