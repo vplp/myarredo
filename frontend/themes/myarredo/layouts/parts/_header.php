@@ -169,6 +169,18 @@ use frontend\modules\user\widgets\profile\Profile;
                                                             ['/catalog/product-stats/list']
                                                         ); ?>
                                                     </li>
+                                                    <li>
+                                                        <?= Html::a(
+                                                            Yii::t('app', 'Product statistics'),
+                                                            ['/catalog/product-stats/list']
+                                                        ); ?>
+                                                    </li>
+                                                    <li>
+                                                        <?= Html::a(
+                                                            Yii::t('app', 'Factory statistics'),
+                                                            ['/catalog/factory-stats/list']
+                                                        ); ?>
+                                                    </li>
                                                     <li role="separator" class="divider"></li>
                                                     <li>
                                                         <?= Html::a(
@@ -194,6 +206,18 @@ use frontend\modules\user\widgets\profile\Profile;
                                                         <?= Html::a(
                                                             Yii::t('app', 'Statistics'),
                                                             ['/catalog/product-stats/list']
+                                                        ); ?>
+                                                    </li>
+                                                    <li>
+                                                        <?= Html::a(
+                                                            Yii::t('app', 'Product statistics'),
+                                                            ['/catalog/product-stats/list']
+                                                        ); ?>
+                                                    </li>
+                                                    <li>
+                                                        <?= Html::a(
+                                                            Yii::t('app', 'Factory statistics'),
+                                                            ['/catalog/factory-stats/list']
                                                         ); ?>
                                                     </li>
                                                     <li>
