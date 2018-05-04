@@ -21,9 +21,17 @@ echo GridView::widget([
             'value' => 'group.lang.title',
             'filter' => GridViewFilter::selectOne($filter, 'group_id', Group::dropDownList())
         ],
-        'alias',
+        [
+            'attribute' => 'alias',
+            'value' => 'alias',
+            'label' => Yii::t('app', 'Alias'),
+        ],
         'lang.title',
-        'lang.content',
+        [
+            'attribute' => 'content',
+            'value' => 'lang.content',
+            'label' => Yii::t('app', 'Content'),
+        ],
         [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class
         ],

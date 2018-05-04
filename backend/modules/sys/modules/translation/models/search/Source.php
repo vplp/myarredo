@@ -5,25 +5,29 @@ namespace backend\modules\sys\modules\translation\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use thread\app\model\interfaces\search\BaseBackendSearchModel;
+//
 use backend\modules\sys\modules\translation\Translation;
+use backend\modules\sys\modules\translation\models\Message;
 use backend\modules\sys\modules\translation\models\Source as SourceModel;
+//
+use thread\app\model\interfaces\search\BaseBackendSearchModel;
 
 /**
  * Class Source
  *
- * @author Andrew Kontseba - Skinwalker <andjey.skinwalker@gmail.com>
  * @package backend\modules\sys\modules\translation\models\search
  */
 class Source extends SourceModel implements BaseBackendSearchModel
 {
+    public $translation;
+
     /**
      * @return array
      */
     public function rules()
     {
         return [
-            [['key', 'category'], 'string', 'max' => 255],
+            [['key', 'category', 'translation'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
@@ -51,11 +55,6 @@ class Source extends SourceModel implements BaseBackendSearchModel
                 'query' => $query,
                 'pagination' => [
                     'defaultPageSize' => $module->itemOnPage
-                ],
-                'sort' => [
-                    'defaultOrder' => [
-                        'id' => SORT_ASC
-                    ]
                 ]
             ]
         );
@@ -67,6 +66,7 @@ class Source extends SourceModel implements BaseBackendSearchModel
         $query->andFilterWhere(['like', 'published', $this->published]);
         $query->andFilterWhere(['like', 'key', $this->key]);
         $query->andFilterWhere(['like', 'category', $this->category]);
+        $query->andFilterWhere(['like', Message::tableName() . '.translation', $this->translation]);
 
         return $dataProvider;
     }
@@ -84,7 +84,7 @@ class Source extends SourceModel implements BaseBackendSearchModel
 
     /**
      * @param array $params
-     * @return ActiveDataProvider
+     * @return mixed|ActiveDataProvider
      */
     public function trash($params)
     {
