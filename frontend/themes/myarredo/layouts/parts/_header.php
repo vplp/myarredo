@@ -9,7 +9,6 @@ use frontend\modules\catalog\widgets\menu\CatalogMenu;
 use frontend\modules\catalog\widgets\menu_mobile\CatalogMenuMobile;
 use frontend\modules\shop\widgets\cart\Cart;
 use frontend\modules\location\widgets\ChangeCity;
-use frontend\modules\user\widgets\profile\Profile;
 
 ?>
 
@@ -69,7 +68,8 @@ use frontend\modules\user\widgets\profile\Profile;
                             Yii::t('app', 'Sign In'),
                             ['/user/login/index'],
                             [
-                                'class' => 'sign-in'
+                                'class' => 'sign-in',
+                                'rel' => 'nofollow'
                             ]
                         ); ?>
 

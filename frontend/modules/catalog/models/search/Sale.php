@@ -94,6 +94,10 @@ class Sale extends SaleModel
                 ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
         }
 
+        if (isset($params[$keys['price']])) {
+            $query->andFilterWhere(['between', self::tableName() . '.price', $params[$keys['price']][0], $params[$keys['price']][1]]);
+        }
+
         if (isset($params[$keys['country']])) {
             $query
                 ->innerJoinWith(["country"])
