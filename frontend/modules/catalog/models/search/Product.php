@@ -106,6 +106,10 @@ class Product extends ProductModel
                 ->andFilterWhere(['IN', Collection::tableName() . '.id', $params[$keys['collection']]]);
         }
 
+        if (isset($params[$keys['price']])) {
+            $query->andFilterWhere(['between', self::tableName() . '.price_from', $params[$keys['price']][0], $params[$keys['price']][1]]);
+        }
+
         $order = [];
 
         if (isset($params['sort']) && $params['sort'] == 'asc') {

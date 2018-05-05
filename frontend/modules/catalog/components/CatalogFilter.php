@@ -125,15 +125,6 @@ class CatalogFilter extends Component
             $paramsUrl = $this->getParams();
         }
 
-        $price = '';
-
-        foreach ($paramsUrl as $k => $v) {
-            if ($k == self::$keys['price']) {
-                $price = '?price=' . implode(self::AMPERSAND_2, $v);
-                unset($paramsUrl[$k]);
-            }
-        }
-
         $labelEmptyKey = $this->getLabelEmptyKey();
 
         $structure = $this->getParams();
@@ -179,12 +170,13 @@ class CatalogFilter extends Component
 
         $url = '';
         $res = [];
-
         foreach ($paramsUrl as $k => $v) {
 
             $res[$k] = '';
 
-            if (is_array($v)) {
+            if (is_array($v) && $k == self::$keys['price']) {
+                $res[$k] = 'price=' . implode(self::AMPERSAND_2, $v);
+            } elseif (is_array($v)) {
                 $res[$k] = implode(self::AMPERSAND_2, $v);
             } else {
                 $res[$k] = $v;
@@ -196,9 +188,9 @@ class CatalogFilter extends Component
         }
 
         if ($url !== '') {
-            return Url::toRoute(array_merge($route, ['filter' => $url])) . $price;
+            return Url::toRoute($route) . $url . '/';
         } else {
-            return Url::toRoute($route). $price;
+            return Url::toRoute($route);
         }
     }
 
@@ -326,8 +318,29 @@ class CatalogFilter extends Component
         /**
          * Price
          */
+
         if (!empty(self::$_structure['price'])) {
-            self::$_parameters[self::$keys['price']] = self::$_structure['price'];
+
+            $data = self::$_structure['price'];
+
+            if (strpos($data[0], 'price=') === false) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            if (count($data) != 2) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            $_data = [
+                preg_replace("/[^0-9]/", '', $data[0]),
+                preg_replace("/[^0-9]/", '', $data[1])
+            ];
+
+            if ($_data[0] >= $_data[1]) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            self::$_parameters[self::$keys['price']] = $_data;
         }
 
         /**

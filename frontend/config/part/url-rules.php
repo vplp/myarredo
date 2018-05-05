@@ -27,10 +27,10 @@ return [
     'user/login/validation' => 'user/login/validation',
 
     // Module [[Catalog]]
-    'catalog/<filter:[\;\-\w\d]+>' => 'catalog/category/list',
+    'catalog/<filter:[\=\;\-\w\d]+>' => 'catalog/category/list',
     'catalog/category/ajax-get-types' => 'catalog/category/ajax-get-types',
     'catalog/category/ajax-get-category' => 'catalog/category/ajax-get-category',
-    'sale/<filter:[\;\-\/\w\d]+>' => 'catalog/sale/list',
+    'sale/<filter:[\=\;\-\/\w\d]+>' => 'catalog/sale/list',
     'factory/<alias:(nieri|tomassi_cucine)>' => 'catalog/template-factory/factory',
     'factory/<alias:[\w\-]+>' => 'catalog/factory/view',
     'product/<alias:[\w\-]+>' => 'catalog/product/view',
@@ -47,7 +47,7 @@ return [
     'factory-stats/<alias:[\w\-]+>' => 'catalog/factory-stats/view',
 
     'factory/<alias:(nieri|tomassi_cucine)>/contacts' => 'catalog/template-factory/contacts',
-    'factory/<alias:(nieri|tomassi_cucine)>/catalog/<filter:[\;\-\w\d]+>' => 'catalog/template-factory/catalog',
+    'factory/<alias:(nieri|tomassi_cucine)>/catalog/<filter:[\=\;\-\w\d]+>' => 'catalog/template-factory/catalog',
     'factory/<alias:(nieri|tomassi_cucine)>/catalog' => 'catalog/template-factory/catalog',
     'factory/<alias:(nieri|tomassi_cucine)>/sale' => 'catalog/template-factory/sale',
     'factory/<alias:(nieri|tomassi_cucine)>/product/<product:[\w\-]+>' => 'catalog/template-factory/product',
