@@ -48,11 +48,15 @@ use yii\helpers\{
                 €
             </div>
 
-            <?= Html::submitButton(Yii::t('app', 'Найти'), [
-                'class' => 'search',
-                'name' => 'filter_on_main_page',
-                'value' => 1
-            ]) ?>
+            <?= Html::submitButton(
+                Yii::t('app', 'Найти'),
+                [
+                    'class' => 'search',
+                    'name' => 'filter_on_main_page',
+                    'value' => 1,
+                    'rel' => 'nofollow'
+                ]
+            ) ?>
         </div>
     </div>
 <?php ActiveForm::end() ?>
