@@ -106,15 +106,23 @@ $bundle = AppAsset::register($this);
                 </div>
             </div>
 
-            <div class="container large-container" style="display: none;">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <?= Html::tag('h1', $this->context->SeoH1); ?>
+            <div class="categories-sect">
+                <div class="container large-container">
+                    <div class="section-header">
+
+                        <?= Html::tag('h1', $this->context->SeoH1, ['class' => 'section-title']); ?>
+
+                        <?= Html::a(
+                            Yii::t('app', 'Смотреть все категории'),
+                            Url::toRoute(['/catalog/category/list']),
+                            ['class' => 'sticker']
+                        ); ?>
                     </div>
+
+                    <?= CategoryOnMainPage::widget(); ?>
+
                 </div>
             </div>
-
-            <?= CategoryOnMainPage::widget(); ?>
 
             <?= SaleOnMainPage::widget(); ?>
 

@@ -68,11 +68,22 @@ class CatalogFilter extends Component
     ];
 
     /**
-     * @inheritdoc
+     * Filter stubs
+     *
+     * @return array
      */
-    public function init()
+    private function getLabelEmptyKey()
     {
-        parent::init();
+        return [
+            self::$keys['category'] => 'c',
+            self::$keys['type'] => 't',
+            self::$keys['style'] => 's',
+            self::$keys['factory'] => 'f',
+            self::$keys['collection'] => 'c',
+            self::$keys['price'] => 'price',
+            self::$keys['country'] => 'country',
+            self::$keys['city'] => 'city',
+        ];
     }
 
     /**
@@ -164,10 +175,7 @@ class CatalogFilter extends Component
             $res[$k] = '';
 
             if (is_array($v)) {
-                if (isset($v['from']) && $v['from'] != '' || isset($v['to']) && $v['to'] != '')
-                    $res[$k] = implode(self::AMPERSAND_2, $v);
-                else if (!isset($v['from']) && !isset($v['to']))
-                    $res[$k] = implode(self::AMPERSAND_2, $v);
+                $res[$k] = implode(self::AMPERSAND_2, $v);
             } else {
                 $res[$k] = $v;
             }
@@ -182,25 +190,6 @@ class CatalogFilter extends Component
         } else {
             return Url::toRoute($route);
         }
-    }
-
-    /**
-     * Filter stubs
-     *
-     * @return array
-     */
-    private function getLabelEmptyKey()
-    {
-        return [
-            self::$keys['category'] => 'c',
-            self::$keys['type'] => 't',
-            self::$keys['style'] => 's',
-            self::$keys['factory'] => 'f',
-            self::$keys['collection'] => 'c',
-            self::$keys['price'] => 'price',
-            self::$keys['country'] => 'country',
-            self::$keys['city'] => 'city',
-        ];
     }
 
     /**
