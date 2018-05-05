@@ -125,6 +125,15 @@ class CatalogFilter extends Component
             $paramsUrl = $this->getParams();
         }
 
+        $price = '';
+
+        foreach ($paramsUrl as $k => $v) {
+            if ($k == self::$keys['price']) {
+                $price = '?price=' . implode(self::AMPERSAND_2, $v);
+                unset($paramsUrl[$k]);
+            }
+        }
+
         $labelEmptyKey = $this->getLabelEmptyKey();
 
         $structure = $this->getParams();
@@ -170,6 +179,7 @@ class CatalogFilter extends Component
 
         $url = '';
         $res = [];
+
         foreach ($paramsUrl as $k => $v) {
 
             $res[$k] = '';
@@ -186,9 +196,9 @@ class CatalogFilter extends Component
         }
 
         if ($url !== '') {
-            return Url::toRoute($route) . $url . '/';
+            return Url::toRoute(array_merge($route, ['filter' => $url])) . $price;
         } else {
-            return Url::toRoute($route);
+            return Url::toRoute($route). $price;
         }
     }
 
@@ -281,7 +291,7 @@ class CatalogFilter extends Component
 
         if (!empty(self::$_structure['factory'])) {
             $model = Factory::findBase()
-                ->andFilterWhere(['IN', Factory::tableName().'.alias', self::$_structure['factory']])
+                ->andFilterWhere(['IN', Factory::tableName() . '.alias', self::$_structure['factory']])
                 ->indexBy('id')
                 ->all();
 
