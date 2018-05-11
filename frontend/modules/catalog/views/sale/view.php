@@ -147,12 +147,14 @@ $this->title = $this->context->title;
                                             <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
                                         </div>
                                         <div class="tel-num js-show-num"
-                                             data-num="<?= $model['user']['profile']['phone']; ?>">
-                                            +7 (8<span>ХХ</span>) <span>ХХХ ХХ ХХ</span>
+                                             data-num="<?= $model['user']['profile']['phone'] ?>">
+                                            <?= $model['user']['profile']['phone'] ?>
                                         </div>
+                                        <!--
                                         <a href="javascript:void(0);" class="js-show-num-btn">
                                             Узнать номер
                                         </a>
+                                        -->
                                         <div class="ico">
                                             <img src="<?= $bundle->baseUrl ?>/img/marker-map.png" alt="">
                                         </div>
@@ -160,12 +162,14 @@ $this->title = $this->context->title;
                                             <?= $model['user']['profile']['city']['lang']['title']; ?>,<br>
                                             <?= $model['user']['profile']['address']; ?>
                                         </div>
+                                        <!--
                                         <div class="ico">
                                             <img src="<?= $bundle->baseUrl ?>/img/conv.svg" alt="">
                                         </div>
                                         <a href="javascript:void(0);" class="write-seller">
                                             написать продавцу
                                         </a>
+                                        -->
                                     </div>
                                 </div>
                             </div>
