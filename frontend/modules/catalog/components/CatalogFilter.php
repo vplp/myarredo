@@ -52,22 +52,6 @@ class CatalogFilter extends Component
     private static $_structure = [];
 
     /**
-     * Filter keys
-     *
-     * @var array
-     */
-    static $keys = [
-        'category' => '.10',
-        'type' => '.20',
-        'style' => '.30',
-        'factory' => '.40',
-        'collection' => '.50',
-        'price' => '.60',
-        'country' => '.70',
-        'city' => '.80',
-    ];
-
-    /**
      * Filter stubs
      *
      * @return array
@@ -80,9 +64,9 @@ class CatalogFilter extends Component
             self::$keys['style'] => 's',
             self::$keys['factory'] => 'f',
             self::$keys['collection'] => 'c',
-            self::$keys['price'] => 'price',
             self::$keys['country'] => 'country',
             self::$keys['city'] => 'city',
+            self::$keys['price'] => 'price',
         ];
     }
 
@@ -93,6 +77,22 @@ class CatalogFilter extends Component
     {
         return self::$_parameters;
     }
+
+    /**
+     * Filter keys
+     *
+     * @var array
+     */
+    static $keys = [
+        'category' => '.10',
+        'type' => '.20',
+        'style' => '.30',
+        'factory' => '.40',
+        'collection' => '.50',
+        'country' => '.60',
+        'city' => '.70',
+        'price' => '.80',
+    ];
 
     /**
      * @param $name
@@ -316,34 +316,6 @@ class CatalogFilter extends Component
         }
 
         /**
-         * Price
-         */
-
-        if (!empty(self::$_structure['price'])) {
-
-            $data = self::$_structure['price'];
-
-            if (strpos($data[0], 'price=') === false) {
-                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
-            }
-
-            if (count($data) != 2) {
-                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
-            }
-
-            $_data = [
-                preg_replace("/[^0-9]/", '', $data[0]),
-                preg_replace("/[^0-9]/", '', $data[1])
-            ];
-
-            if ($_data[0] >= $_data[1]) {
-                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
-            }
-
-            self::$_parameters[self::$keys['price']] = $_data;
-        }
-
-        /**
          * Country
          */
 
@@ -377,6 +349,34 @@ class CatalogFilter extends Component
             foreach ($model as $obj) {
                 self::$_parameters[self::$keys['city']][] = $obj['alias'];
             }
+        }
+
+        /**
+         * Price
+         */
+
+        if (!empty(self::$_structure['price'])) {
+
+            $data = self::$_structure['price'];
+
+            if (strpos($data[0], 'price=') === false) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            if (count($data) != 2) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            $_data = [
+                preg_replace("/[^0-9]/", '', $data[0]),
+                preg_replace("/[^0-9]/", '', $data[1])
+            ];
+
+            if ($_data[0] >= $_data[1]) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            self::$_parameters[self::$keys['price']] = $_data;
         }
     }
 }
