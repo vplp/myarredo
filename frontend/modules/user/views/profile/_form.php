@@ -36,7 +36,7 @@ $this->title = Yii::t('app', 'Profile');
                         <?= $form->field($model, 'last_name') ?>
                         <?= $form->field($model, 'phone')
                             ->widget(\yii\widgets\MaskedInput::className(), [
-                                'mask' => '79999999999',
+                                'mask' => Yii::$app->city->getPhoneMask(),
                                 'clientOptions' => [
                                     'clearIncomplete' => true
                                 ]
