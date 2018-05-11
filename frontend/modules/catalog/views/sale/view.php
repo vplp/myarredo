@@ -148,7 +148,7 @@ $this->title = $this->context->title;
                                         </div>
                                         <div class="tel-num js-show-num"
                                              data-num="<?= $model['user']['profile']['phone']; ?>">
-                                            +7 (8<span>ХХ</span>) <span>ХХХ ХХ ХХ</span>
+                                            <?= $model['user']['profile']['phone']; ?>
                                         </div>
                                         <a href="javascript:void(0);" class="js-show-num-btn">
                                             Узнать номер
