@@ -66,12 +66,14 @@ $this->title = $this->context->title;
                                         <?= $model->price_new . ' ' . $model->currency; ?>
                                     </span>
                                 </div>
-                                <div class="price economy">
-                                    <?= Yii::t('app', 'Экономия') ?>:
-                                    <span>
-                                        <?= ($model->price - $model->price_new) . ' ' . $model->currency; ?>
-                                    </span>
-                                </div>
+                                <?php if ($model->price > 0): ?>
+                                    <div class="price economy">
+                                        <?= Yii::t('app', 'Экономия') ?>:
+                                        <span>
+                                            <?= ($model->price - $model->price_new) . ' ' . $model->currency; ?>
+                                        </span>
+                                    </div>
+                                <?php endif; ?>
                             </div>
 
                             <?php if (!empty($array)) { ?>
@@ -129,7 +131,7 @@ $this->title = $this->context->title;
 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
 
-                        <?php /*if (!empty($model['user'])) { ?>
+                        <?php if (!empty($model['user'])) { ?>
 
                             <div class="brand-info">
                                 <div class="white-area">
@@ -168,7 +170,7 @@ $this->title = $this->context->title;
                                 </div>
                             </div>
 
-                      <?php }*/ ?>
+                      <?php } ?>
 
                     </div>
 

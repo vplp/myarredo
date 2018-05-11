@@ -171,6 +171,8 @@ class Sale extends \common\modules\catalog\models\Sale
                 : $this->gallery_image;
 
             $images = explode(',', $this->gallery_image);
+        } else {
+            $images[] = $this->image_link;
         }
 
         $imagesSources = [];
