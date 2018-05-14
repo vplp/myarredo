@@ -68,6 +68,21 @@ $this->title = $this->context->title;
                                         'contentOptions' => ['class' => 'text-center',],
                                     ],
                                     [
+                                        'label' => 'Просмотры товара',
+                                        'format' => 'raw',
+                                        'value' => function ($model) {
+                                            /** @var $model \frontend\modules\catalog\models\Sale */
+                                            return 0;
+                                        },
+                                    ],
+                                    [
+                                        'label' => 'Запрос телефона',
+                                        'value' => function ($model) {
+                                            /** @var $model \frontend\modules\catalog\models\Sale */
+                                            return 0;
+                                        },
+                                    ],
+                                    [
                                         'class' => yii\grid\ActionColumn::class,
                                         'template' => '{update} {delete}',
                                         'buttons' => [
