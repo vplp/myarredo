@@ -150,11 +150,11 @@ $this->title = $this->context->title;
                                              data-num="<?= $model['user']['profile']['phone'] ?>">
                                             <?= $model['user']['profile']['phone'] ?>
                                         </div>
-                                        <!--
+
                                         <a href="javascript:void(0);" class="js-show-num-btn">
                                             Узнать номер
                                         </a>
-                                        -->
+
                                         <div class="ico">
                                             <img src="<?= $bundle->baseUrl ?>/img/marker-map.png" alt="">
                                         </div>

@@ -351,9 +351,11 @@ use frontend\modules\location\widgets\ChangeCity;
 
         <?= CatalogMenuMobile::widget([]); ?>
 
+        <!--
         <a class="logo-container">
             <img src="<?= $bundle->baseUrl ?>/img/logo-odis.png" alt="">
         </a>
+        -->
 
         <div class="bot-list">
             <div class="one-list-cont">
