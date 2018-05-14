@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\{
     ArrayHelper, Html
 };
+use yii\web\Response;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -14,8 +15,9 @@ use frontend\components\BaseController;
 use frontend\modules\location\models\{
     Country, City
 };
+use frontend\modules\user\models\Profile;
 use frontend\modules\catalog\models\{
-    Sale, SaleLang, SaleStats, search\Sale as filterSaleModel, Category, Factory, Types, Specification
+    Sale, SaleLang, SaleStats, SalePhoneRequest, search\Sale as filterSaleModel, Category, Factory, Types, Specification
 };
 
 /**
@@ -48,6 +50,7 @@ class SaleController extends BaseController
                 'actions' => [
                     'list' => ['get'],
                     'view' => ['get'],
+                    'ajax-get-phone' => ['post'],
                 ],
             ],
             'AccessControl' => [
@@ -56,7 +59,9 @@ class SaleController extends BaseController
                     [
                         'allow' => true,
                         'actions' => [
-                            'list', 'view'
+                            'list',
+                            'view',
+                            'ajax-get-phone'
                         ],
                         'roles' => ['?', '@'],
                     ],
@@ -97,10 +102,10 @@ class SaleController extends BaseController
 
         $this->title = Yii::$app->metatag->seo_title
             ? Yii::$app->metatag->seo_title
-            : Yii::t('app','Распродажа итальянской мебели');
+            : Yii::t('app', 'Распродажа итальянской мебели');
 
         $this->breadcrumbs[] = [
-            'label' => Yii::t('app','Распродажа итальянской мебели'),
+            'label' => Yii::t('app', 'Распродажа итальянской мебели'),
             'url' => ['/catalog/sale/list']
         ];
 
@@ -133,25 +138,50 @@ class SaleController extends BaseController
         SaleStats::create($model->id);
 
         $this->breadcrumbs[] = [
-            'label' => Yii::t('app','Каталог итальянской мебели'),
+            'label' => Yii::t('app', 'Каталог итальянской мебели'),
             'url' => ['/catalog/category/list']
         ];
 
         $this->title = Yii::t('app', 'Sale') . ': ' .
             $model['lang']['title'] .
-            ' - '. $model['price_new'] . ' ' . $model['currency'] .
-            ' - '. Yii::t('app','интернет-магазин Myarredo в') . ' ' .
+            ' - ' . $model['price_new'] . ' ' . $model['currency'] .
+            ' - ' . Yii::t('app', 'интернет-магазин Myarredo в') . ' ' .
             Yii::$app->city->getCityTitleWhere();
 
         Yii::$app->view->registerMetaTag([
             'name' => 'description',
             'content' => strip_tags($model['lang']['description']) .
-                ' ' . Yii::t('app','Купить в интернет-магазине Myarredo в') . ' ' .
+                ' ' . Yii::t('app', 'Купить в интернет-магазине Myarredo в') . ' ' .
                 Yii::$app->city->getCityTitleWhere()
         ]);
 
         return $this->render('view', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * Get cities
+     */
+    public function actionAjaxGetPhone()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            $user_id = Yii::$app->getRequest()->post('user_id');
+            $sale_item_id = Yii::$app->getRequest()->post('sale_item_id');
+
+            $user = Profile::findByUserId($user_id);
+
+            if ($user != null) {
+
+                // SalePhoneRequest
+                SalePhoneRequest::create($sale_item_id);
+
+                return ['success' => 0, 'phone' => $user['phone']];
+            }
+
+            return ['success' => 0, 'phone' => null];
+        }
     }
 }

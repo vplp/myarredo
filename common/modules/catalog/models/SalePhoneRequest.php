@@ -9,7 +9,7 @@ use thread\app\base\models\ActiveRecord;
 use common\modules\catalog\Catalog;
 
 /**
- * Class SaleStats
+ * Class SalePhoneRequest
  *
  * @property integer $id
  * @property integer $user_id
@@ -24,7 +24,7 @@ use common\modules\catalog\Catalog;
  *
  * @package common\modules\catalog\models
  */
-class SaleStats extends ActiveRecord
+class SalePhoneRequest extends ActiveRecord
 {
     public $count;
 
@@ -41,7 +41,7 @@ class SaleStats extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%catalog_sale_item_stats}}';
+        return '{{%catalog_sale_item_phone_request}}';
     }
 
     /**

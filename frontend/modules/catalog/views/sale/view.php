@@ -146,9 +146,8 @@ $this->title = $this->context->title;
                                         <div class="ico">
                                             <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
                                         </div>
-                                        <div class="tel-num js-show-num"
-                                             data-num="<?= $model['user']['profile']['phone'] ?>">
-                                            <?= $model['user']['profile']['phone'] ?>
+                                        <div class="tel-num js-show-num">
+                                            (XXX) XXX-XX-XX
                                         </div>
 
                                         <a href="javascript:void(0);" class="js-show-num-btn">
@@ -270,3 +269,22 @@ $this->title = $this->context->title;
         </div>
     </div>
 </main>
+
+<?php
+$user_id = $model['user']['id'];
+$sale_item_id = $model['id'];
+$script = <<<JS
+$('.js-show-num-btn').on('click', function () {
+    $.post(
+        '/catalog/sale/ajax-get-phone/', 
+        {_csrf: $('#token').val(), user_id: $user_id, sale_item_id: $sale_item_id}, 
+        function(data){
+            $('.js-show-num').html(data.phone);
+            $('.js-show-num-btn').remove();
+        }, 
+        'json'
+    );
+});
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);

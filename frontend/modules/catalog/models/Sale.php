@@ -230,6 +230,8 @@ class Sale extends \common\modules\catalog\models\Sale
      */
     public function getCountRequestPhone()
     {
-        return 0;
+        return SalePhoneRequest::findBase()
+            ->andWhere(['sale_item_id' => $this->id])
+            ->count();
     }
 }

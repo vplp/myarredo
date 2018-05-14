@@ -39,6 +39,7 @@ return [
     'factories/<letter:[\w\-]>' => 'catalog/factory/list',
     'factories' => 'catalog/factory/list',
     'sale' => 'catalog/sale/list',
+    'catalog/sale/ajax-get-phone' => 'catalog/sale/ajax-get-phone',
 
     'product-stats' => 'catalog/product-stats/list',
     'product-stats/<id:[\d\-]+>' => 'catalog/product-stats/view',

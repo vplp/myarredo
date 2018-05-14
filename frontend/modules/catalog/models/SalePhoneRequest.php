@@ -5,11 +5,11 @@ namespace frontend\modules\catalog\models;
 use Yii;
 
 /**
- * Class SaleStats
+ * Class SalePhoneRequest
  *
  * @package frontend\modules\catalog\models
  */
-class SaleStats extends \common\modules\catalog\models\SaleStats
+class SalePhoneRequest extends \common\modules\catalog\models\SalePhoneRequest
 {
     public static function create($sale_item_id)
     {

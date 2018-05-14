@@ -5,15 +5,15 @@ use yii\db\Migration;
 use common\modules\catalog\Catalog;
 
 /**
- * Handles the creation of table `catalog_sale_stats`.
+ * Handles the creation of table `catalog_sale_phone_request`.
  */
-class m180514_091301_create_catalog_sale_stats_table extends Migration
+class m180514_131633_create_catalog_sale_phone_request_table extends Migration
 {
     /**
      * table name
      * @var string
      */
-    public $table = '{{%catalog_sale_item_stats}}';
+    public $table = '{{%catalog_sale_item_phone_request}}';
 
     /**
      * table name
@@ -54,7 +54,7 @@ class m180514_091301_create_catalog_sale_stats_table extends Migration
         $this->createIndex('idx-city_id', $this->table, 'city_id');
 
         $this->addForeignKey(
-            'fk-catalog_sale_item_stats_rel_sale_item_id_fk1',
+            'fk-catalog_sale_item_phone_request_rel_sale_item_id_fk1',
             $this->table,
             'sale_item_id',
             $this->tableSale,
@@ -69,7 +69,7 @@ class m180514_091301_create_catalog_sale_stats_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropForeignKey('fk-catalog_sale_item_stats_rel_sale_item_id_fk1', $this->table);
+        $this->dropForeignKey('fk-catalog_sale_item_phone_request_rel_sale_item_id_fk1', $this->table);
 
         $this->dropIndex('idx-user_id', $this->table);
         $this->dropIndex('idx-sale_item_id', $this->table);
