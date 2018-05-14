@@ -72,14 +72,14 @@ $this->title = $this->context->title;
                                         'format' => 'raw',
                                         'value' => function ($model) {
                                             /** @var $model \frontend\modules\catalog\models\Sale */
-                                            return 0;
+                                            return $model->getCountViews();
                                         },
                                     ],
                                     [
                                         'label' => 'Запрос телефона',
                                         'value' => function ($model) {
                                             /** @var $model \frontend\modules\catalog\models\Sale */
-                                            return 0;
+                                            return $model->getCountRequestPhone();
                                         },
                                     ],
                                     [

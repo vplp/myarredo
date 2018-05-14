@@ -15,13 +15,7 @@ use frontend\modules\location\models\{
     Country, City
 };
 use frontend\modules\catalog\models\{
-    Sale,
-    SaleLang,
-    search\Sale as filterSaleModel,
-    Category,
-    Factory,
-    Types,
-    Specification
+    Sale, SaleLang, SaleStats, search\Sale as filterSaleModel, Category, Factory, Types, Specification
 };
 
 /**
@@ -134,6 +128,9 @@ class SaleController extends BaseController
         if ($model == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
+
+        // SaleStats
+        SaleStats::create($model->id);
 
         $this->breadcrumbs[] = [
             'label' => Yii::t('app','Каталог итальянской мебели'),
