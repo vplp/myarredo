@@ -125,11 +125,6 @@
     }
 </style>
 <![endif]-->
-<div class="jivo-btn jivo-online-btn jivo-btn-light" onclick="jivo_api.open();"
-     style="font-family: Tahoma, Arial;font-size: 14px;background-color: #d63228;border-radius: 30px;-moz-border-radius: 30px;-webkit-border-radius: 30px;height: 24px;line-height: 24px;padding: 0 12px 0 12px;font-weight: normal;font-style: normal">
-    <div class="jivo-btn-icon" style="background-image: url(//static.jivosite.com/button/chat_light.png);"></div>
-    Напишите нам, мы в онлайне!
-</div>
 <div class="jivo-btn jivo-offline-btn jivo-btn-light" onclick="jivo_api.open();"
      style="font-family: Tahoma, Arial;font-size: 14px;background-color: #d63228;border-radius: 30px;-moz-border-radius: 30px;-webkit-border-radius: 30px;height: 24px;line-height: 24px;padding: 0 12px 0 12px;display: none;font-weight: normal;font-style: normal">
     <div class="jivo-btn-icon" style="background-image: url(//static.jivosite.com/button/mail_light.png);"></div>

@@ -139,53 +139,47 @@ class City extends \common\modules\location\models\City
     {
         $keys = Yii::$app->catalogFilter->keys;
 
-        $domain = (in_array(Yii::$app->city->domain, ['ru','ua','by'])) ? Yii::$app->city->domain : 'ru';
+        $query = self::findBase();
 
-        if ($domain) {
+        $query
+            ->innerJoinWith(["sale"], false)
+            ->innerJoinWith(["sale.category saleCategory"], false)
+            ->andFilterWhere([
+                Sale::tableName() . '.published' => '1',
+                Sale::tableName() . '.deleted' => '0',
+            ]);
 
-            $query = self::findBase();
-
-            $query
-                ->innerJoinWith(["sale"], false)
-                ->innerJoinWith(["sale.category saleCategory"], false)
-                ->andFilterWhere([
-                    Sale::tableName() . '.published' => '1',
-                    Sale::tableName() . '.deleted' => '0',
-                ]);
-
-            if (isset($params[$keys['category']])) {
-                $query->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
-            }
-
-            if (isset($params[$keys['style']])) {
-                $query
-                    ->innerJoinWith(["sale.specification saleSpecification"], false)
-                    ->andFilterWhere(['IN', 'saleSpecification.alias', $params[$keys['style']]]);
-            }
-
-            if (isset($params[$keys['factory']])) {
-                $query
-                    ->innerJoinWith(["sale.factory saleFactory"], false)
-                    ->andFilterWhere(['IN', 'saleFactory.alias', $params[$keys['factory']]]);
-            }
-
-            if (isset($params[$keys['country']])) {
-                $query
-                    ->innerJoinWith(["country as country"], false)
-                    ->andFilterWhere(['IN', 'country.alias', $domain]);
-            }
-
-            return $query
-                ->select([
-                    self::tableName() . '.id',
-                    self::tableName() . '.alias',
-                    CityLang::tableName() . '.title',
-                    'count(' . self::tableName() . '.id) as count'
-                ])
-                ->groupBy(self::tableName() . '.id')
-                ->all();
-        } else {
-            return [];
+        if (isset($params[$keys['category']])) {
+            $query->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
         }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["sale.specification saleSpecification"], false)
+                ->andFilterWhere(['IN', 'saleSpecification.alias', $params[$keys['style']]]);
+        }
+
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["sale.factory saleFactory"], false)
+                ->andFilterWhere(['IN', 'saleFactory.alias', $params[$keys['factory']]]);
+        }
+
+        if (isset($params[$keys['country']])) {
+            $query
+                ->innerJoinWith(["country as country"], false)
+                ->andFilterWhere(['IN', 'country.alias', $params[$keys['country']]]);
+        }
+
+        return $query
+            ->select([
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                CityLang::tableName() . '.title',
+                'count(' . self::tableName() . '.id) as count'
+            ])
+            ->groupBy(self::tableName() . '.id')
+            ->all();
+
     }
 }
