@@ -64,7 +64,7 @@ class CatalogFilter extends Component
             self::$keys['style'] => 's',
             self::$keys['factory'] => 'f',
             self::$keys['collection'] => 'c',
-            self::$keys['country'] => 'country',
+            //self::$keys['country'] => 'country',
             self::$keys['city'] => 'city',
             self::$keys['price'] => 'price',
         ];
@@ -89,7 +89,7 @@ class CatalogFilter extends Component
         'style' => '.30',
         'factory' => '.40',
         'collection' => '.50',
-        'country' => '.60',
+        //'country' => '.60',
         'city' => '.70',
         'price' => '.80',
     ];
@@ -319,6 +319,7 @@ class CatalogFilter extends Component
          * Country
          */
 
+        /*
         if (!empty(self::$_structure['country'])) {
             $model = Country::findByAlias(self::$_structure['country'][0]);
 
@@ -328,16 +329,19 @@ class CatalogFilter extends Component
 
             self::$_parameters[self::$keys['country']][0] = $model['alias'];
         }
+        */
 
         /**
          * City
          */
 
-        if (!empty(self::$_structure['city']) && !empty(self::$_structure['country'])) {
+        if (!empty(self::$_structure['city'])) {
+
+            $domain = (in_array(Yii::$app->city->domain, ['ru', 'ua', 'by'])) ? Yii::$app->city->domain : 'ru';
 
             $model = City::findBase()
                 ->innerJoinWith(["country as country"], false)
-                ->andFilterWhere(['IN', 'country.alias', self::$_structure['country']])
+                ->andFilterWhere(['IN', 'country.alias', $domain])
                 ->andFilterWhere(['IN', City::tableName() . '.alias', self::$_structure['city']])
                 ->indexBy('id')
                 ->all();
