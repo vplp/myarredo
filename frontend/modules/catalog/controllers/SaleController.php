@@ -49,7 +49,7 @@ class SaleController extends BaseController
                 'class' => VerbFilter::class,
                 'actions' => [
                     'list' => ['get'],
-                    'view' => ['get'],
+                    'view' => ['post', 'get'],
                     'ajax-get-phone' => ['post'],
                 ],
             ],

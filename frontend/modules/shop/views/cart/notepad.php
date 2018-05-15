@@ -4,6 +4,8 @@ use yii\helpers\{
     Html, Url
 };
 
+$this->title = $this->context->title;
+
 ?>
 
 <main>
