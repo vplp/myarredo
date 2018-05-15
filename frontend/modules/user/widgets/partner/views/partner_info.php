@@ -25,7 +25,7 @@ $bundle = AppAsset::register($this);
     <p class="num"><?= $email ?></p>
     <p class="num">skype: <?= Html::a('myarredo', 'skype:myarredo?chat') ?></p>
 
-<?php elseif (Yii::$app->controller->id !== 'sale'): ?>
+<?php else: ?>
 
     <div class="ico">
         <img src="<?= $bundle->baseUrl ?>/img/phone.svg">

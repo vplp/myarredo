@@ -17,34 +17,39 @@ $bundle = AppAsset::register($this);
 
 <div class="footer">
     <div class="container-wrap">
-        <div class="contacts">
-            <div class="cont-flex">
-                <div class="cont-info">
-                    <div class="cont-info-in">
-                        <div class="cont-info-border">
-                            <h4><?= Yii::t('app', 'Contacts') ?></h4>
 
-                            <?= PartnerInfo::widget() ?>
+        <?php if (Yii::$app->controller->id !== 'sale'): ?>
+            <div class="contacts">
+                <div class="cont-flex">
+                    <div class="cont-info">
+                        <div class="cont-info-in">
+                            <div class="cont-info-border">
+                                <h4><?= Yii::t('app', 'Contacts') ?></h4>
 
+                                <?= PartnerInfo::widget() ?>
+
+                            </div>
                         </div>
                     </div>
+                    <div class="cont-bg"
+                         style="background-image: url(<?= $bundle->baseUrl ?>/img/cont-photo-bg.jpg);"></div>
                 </div>
-                <div class="cont-bg" style="background-image: url(<?= $bundle->baseUrl ?>/img/cont-photo-bg.jpg);"></div>
-            </div>
-            <div class="white-stripe">
-                <div class="icon">
-                    <img src="<?= $bundle->baseUrl ?>/img/markers.svg" alt="">
-                </div>
+                <div class="white-stripe">
+                    <div class="icon">
+                        <img src="<?= $bundle->baseUrl ?>/img/markers.svg" alt="">
+                    </div>
 
-                <?= Html::a(
-                    Yii::t('app', 'View all sales offices'),
-                    Url::toRoute('/page/contacts/list-partners')
-                ); ?>
+                    <?= Html::a(
+                        Yii::t('app', 'View all sales offices'),
+                        Url::toRoute('/page/contacts/list-partners')
+                    ); ?>
+                </div>
             </div>
-        </div>
+
+        <?php endif; ?>
 
         <?php if (Yii::$app->controller->action->id != 'list-partners') {
-           echo PartnerMap::widget(['city' => Yii::$app->city->getCity()]);
+            echo PartnerMap::widget(['city' => Yii::$app->city->getCity()]);
         } ?>
 
         <?= Cities::widget() ?>
@@ -73,8 +78,10 @@ $bundle = AppAsset::register($this);
                             </a>
                         </div>
                         <div class="copyright">
-                            2013 - <?= date('Y'); ?> (с) <?= Yii::t('app','MyArredo, лучшая мебель из италии для вашего дома') ?></br>
-                            <?= Yii::t('app','Программирование сайта') ?>' - <a href="http://www.vipdesign.com.ua/" rel="nofollow">VipDesign</a>
+                            2013 - <?= date('Y'); ?>
+                            (с) <?= Yii::t('app', 'MyArredo, лучшая мебель из италии для вашего дома') ?></br>
+                            <?= Yii::t('app', 'Программирование сайта') ?>' - <a href="http://www.vipdesign.com.ua/"
+                                                                                 rel="nofollow">VipDesign</a>
                         </div>
                     </div>
                 </div>
