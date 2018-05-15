@@ -50,11 +50,13 @@ abstract class BaseController extends Controller
      */
     public function beforeAction($action)
     {
+        /*
         $searchCondition = \Yii::$app->getRequest()->get('search', null);
 
         if ($searchCondition) {
             return $this->redirect(Url::to(['/page/find/index', 'condition' => $searchCondition]));
         }
+        */
 
         return parent::beforeAction($action);
     }

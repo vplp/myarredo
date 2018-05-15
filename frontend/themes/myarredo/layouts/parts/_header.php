@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+use yii\bootstrap\ActiveForm;
 //
 use frontend\modules\sys\widgets\lang\LangSwitch;
 use frontend\modules\catalog\widgets\menu\CatalogMenu;
@@ -276,18 +277,26 @@ use frontend\modules\location\widgets\ChangeCity;
 
                 <?= CatalogMenu::widget([]); ?>
 
-                <?php /*
-                <div class="search-cont">
-                    <form action="#">
-                        <div class="search-group">
-                            <input type="text" placeholder="Поиск">
-                            <button class="search-button">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div> */ ?>
+                <?php if (YII_ENV == 'dev') { ?>
 
+                    <div class="search-cont">
+                        <?php $form = ActiveForm::begin([
+                            'action' => ['/catalog/search/list'],
+                            'method' => 'get',
+                            'options' => ['class' => 'form-inline'],
+                        ]); ?>
+
+                        <div class="search-group">
+                            <input id="search" name="search" placeholder="Поиск" class="form-control input-md" required
+                                   value="" type="text">
+                            <?= Html::submitButton('<i class="fa fa-search" aria-hidden="true"></i>', ['class' => 'search-button']) ?>
+                        </div>
+
+                        <?php ActiveForm::end(); ?>
+
+                    </div>
+
+                <?php } ?>
             </div>
         </div>
     </div>

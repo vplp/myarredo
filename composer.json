@@ -20,7 +20,7 @@
   "minimum-stability": "stable",
   "require": {
     "php": ">=5.4.0",
-    "yiisoft/yii2": ">=2.0.11",
+    "yiisoft/yii2": ">=2.1.0",
     "yiisoft/yii2-bootstrap": "*",
     "yiisoft/yii2-swiftmailer": "*",
     "yiisoft/yii2-apidoc": "*",
@@ -38,7 +38,8 @@
     "leandrogehlen/yii2-treegrid": "*",
     "himiklab/yii2-recaptcha-widget": "*",
     "sendpulse/rest-api": "^1.0",
-    "yandex/translate-api": "1.5.x"
+    "yandex/translate-api": "1.5.x",
+    "yiisoft/yii2-elasticsearch": "~2.0.0"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "*",

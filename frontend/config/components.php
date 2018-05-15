@@ -42,4 +42,12 @@ return [
     'metatag' => [
         'class' => \frontend\modules\seo\components\MetaTag::class
     ],
+    'elasticsearch' => [
+        'class' => \yii\elasticsearch\Connection::class,
+        'autodetectCluster' => false,
+        'nodes' => [
+            ['http_address' => '127.0.0.1:9200'],
+            // configure more hosts if you have a cluster
+        ],
+    ],
 ];
