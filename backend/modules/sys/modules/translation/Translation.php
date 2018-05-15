@@ -13,5 +13,5 @@ use common\modules\sys\modules\translation\Translation as CommonTranslation;
 class Translation extends CommonTranslation
 {
     // Number of items on page for dataProvider
-    public $itemOnPage = 20;
+    public $itemOnPage = 100;
 }

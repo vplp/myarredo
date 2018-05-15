@@ -14,6 +14,6 @@ class Messages extends \common\modules\sys\modules\messages\Messages
      * Number of elements in GridView
      * @var int
      */
-    public $itemOnPage = 50;
+    public $itemOnPage = 100;
 
 }

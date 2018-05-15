@@ -13,5 +13,5 @@ class Directlink extends \common\modules\seo\modules\directlink\Directlink
      * Number of elements in GridView
      * @var int
      */
-    public $itemOnPage = 99;
+    public $itemOnPage = 100;
 }

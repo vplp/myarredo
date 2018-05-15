@@ -15,5 +15,5 @@ class Configs extends \common\modules\sys\modules\configs\Configs
      * Number of elements in GridView
      * @var int
      */
-    public $itemOnPage = 20;
+    public $itemOnPage = 100;
 }

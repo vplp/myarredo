@@ -11,7 +11,7 @@ use Yii;
  */
 class Shop extends \common\modules\shop\Shop
 {
-    public $itemOnPage = 20;
+    public $itemOnPage = 100;
 
     public function getMenuItems()
     {
