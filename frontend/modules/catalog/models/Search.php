@@ -2,9 +2,7 @@
 
 namespace frontend\modules\catalog\models;
 
-use frontend\modules\catalog\models\Elastic;
 
-use yii\base\Model;
 use yii\elasticsearch\ActiveDataProvider;
 use yii\elasticsearch\Query;
 use yii\elasticsearch\QueryBuilder;
@@ -24,7 +22,7 @@ class Search extends Elastic
 
         $queryBuilder = new QueryBuilder($db);
 
-        $match = ['match' => ['article_content' => $searchs]];
+        $match = ['field' => ['alias' => 'yii']]; //['match' => ['alias' => $searchs]];
 
         $query->query = $match;
 
