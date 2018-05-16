@@ -49,18 +49,22 @@ class CategoryController extends BaseController
 
         $group = [];
 
-        if (isset(Yii::$app->catalogFilter->params['category'])) {
-            $group = Yii::$app->catalogFilter->params['category'];
-        }
+        $keys = Yii::$app->catalogFilter->keys;
 
         Yii::$app->catalogFilter->parserUrl();
 
-        $category = Category::getWithProduct(Yii::$app->catalogFilter->params);
-        $types = Types::getWithProduct(Yii::$app->catalogFilter->params);
-        $style = Specification::getWithProduct(Yii::$app->catalogFilter->params);
-        $factory = Factory::getWithProduct(Yii::$app->catalogFilter->params);
+        $queryParams = Yii::$app->catalogFilter->params;
 
-        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, Yii::$app->catalogFilter->params));
+        if (isset($queryParams[$keys['category']])) {
+            $group = $queryParams[$keys['category']];
+        }
+
+        $category = Category::getWithProduct($queryParams);
+        $types = Types::getWithProduct($queryParams);
+        $style = Specification::getWithProduct($queryParams);
+        $factory = Factory::getWithProduct($queryParams);
+
+        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         Yii::$app->metatag->render();
 

@@ -15,7 +15,7 @@ use frontend\modules\location\models\City;
 class CityComponent extends Component
 {
     /** @var integer */
-    protected $defaultCityId = 4;
+    protected $defaultCityId = 0;
 
     /** @var object */
     private $city;
@@ -80,7 +80,7 @@ class CityComponent extends Component
      */
     public function getDomain()
     {
-        return (in_array($this->domain, ['ru', 'ua', 'by'])) ? $this->domain : 'ru';
+        return $this->domain;
     }
 
     /**
@@ -117,7 +117,8 @@ class CityComponent extends Component
         // get domain name
         $exp_host = explode('myarredo.', $_SERVER["HTTP_HOST"]);
 
-        $this->domain = $exp_host[1];
+        // set domain
+        $this->domain = (in_array($exp_host[1], ['ru', 'ua', 'by'])) ? $exp_host[1] : 'ua';
 
         $exp_host = explode('.', $_SERVER['HTTP_HOST']);
 

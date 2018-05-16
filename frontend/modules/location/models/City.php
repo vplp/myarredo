@@ -165,9 +165,11 @@ class City extends \common\modules\location\models\City
                 ->andFilterWhere(['IN', 'saleFactory.alias', $params[$keys['factory']]]);
         }
 
-        $query
-            ->innerJoinWith(["country as country"], false)
-            ->andFilterWhere(['IN', 'country.alias', Yii::$app->city->domain]);
+        if (isset($params[$keys['country']])) {
+            $query
+                ->innerJoinWith(["country as country"], false)
+                ->andFilterWhere(['IN', 'country.alias', $params[$keys['country']]]);
+        }
 
         return $query
             ->select([

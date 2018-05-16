@@ -259,11 +259,11 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->andFilterWhere(['IN', 'saleSpecification.alias', $params[$keys['style']]]);
         }
 
-//        if (isset($params[$keys['country']])) {
+        if (isset($params[$keys['country']])) {
             $query
                 ->innerJoinWith(["sale.country saleCountry"], false)
-                ->andFilterWhere(['IN', 'saleCountry.alias', Yii::$app->city->domain]);
-//        }
+                ->andFilterWhere(['IN', 'saleCountry.alias', $params[$keys['country']]]);
+        }
 
         if (isset($params[$keys['city']])) {
             $query

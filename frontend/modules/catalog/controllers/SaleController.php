@@ -84,19 +84,19 @@ class SaleController extends BaseController
 
         Yii::$app->catalogFilter->parserUrl();
 
-//        if (!isset(Yii::$app->catalogFilter->params[$keys['country']])) {
-//            Yii::$app->catalogFilter->setParam($keys['country'], (in_array(Yii::$app->city->domain, ['ru','ua','by'])) ? Yii::$app->city->domain : 'ru');
-//        }
+        $queryParams = Yii::$app->catalogFilter->params;
 
-        $category = Category::getWithSale(Yii::$app->catalogFilter->params);
-        $types = Types::getWithSale(Yii::$app->catalogFilter->params);
-        $style = Specification::getWithSale(Yii::$app->catalogFilter->params);
-        $factory = Factory::getWithSale(Yii::$app->catalogFilter->params);
+        $queryParams[$keys['country']] = Yii::$app->city->domain;
 
-        $countries = Country::getWithSale(Yii::$app->catalogFilter->params);
-        $cities = City::getWithSale(Yii::$app->catalogFilter->params);
+        $category = Category::getWithSale($queryParams);
+        $types = Types::getWithSale($queryParams);
+        $style = Specification::getWithSale($queryParams);
+        $factory = Factory::getWithSale($queryParams);
 
-        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, Yii::$app->catalogFilter->params));
+        $countries = Country::getWithSale($queryParams);
+        $cities = City::getWithSale($queryParams);
+
+        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         Yii::$app->metatag->render();
 
