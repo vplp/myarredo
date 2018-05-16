@@ -80,7 +80,7 @@ class CityComponent extends Component
      */
     public function getDomain()
     {
-        return $this->domain;
+        return (in_array($this->domain, ['ru', 'ua', 'by'])) ? $this->domain : 'ru';
     }
 
     /**

@@ -98,11 +98,11 @@ class Sale extends SaleModel
             $query->andFilterWhere(['between', self::tableName() . '.price', $params[$keys['price']][0], $params[$keys['price']][1]]);
         }
 
-//        if (isset($params[$keys['country']])) {
-//            $query
-//                ->innerJoinWith(["country"])
-//                ->andFilterWhere(['IN', Country::tableName() . '.alias', $params[$keys['country']]]);
-//        }
+        //if (isset($params[$keys['country']])) {
+            $query
+                ->innerJoinWith(["country"])
+                ->andFilterWhere(['IN', Country::tableName() . '.alias', Yii::$app->city->domain]);
+        //}
 
         if (isset($params[$keys['city']])) {
             $query

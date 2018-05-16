@@ -238,9 +238,9 @@ class Specification extends \common\modules\catalog\models\Specification
         }
 
 //        if (isset($params[$keys['country']])) {
-//            $query
-//                ->innerJoinWith(["sale.country saleCountry"], false)
-//                ->andFilterWhere(['IN', 'saleCountry.alias', $params[$keys['country']]]);
+            $query
+                ->innerJoinWith(["sale.country saleCountry"], false)
+                ->andFilterWhere(['IN', 'saleCountry.alias', Yii::$app->city->domain]);
 //        }
 
         if (isset($params[$keys['city']])) {

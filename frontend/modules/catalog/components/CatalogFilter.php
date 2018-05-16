@@ -336,12 +336,9 @@ class CatalogFilter extends Component
          */
 
         if (!empty(self::$_structure['city'])) {
-
-            $domain = (in_array(Yii::$app->city->domain, ['ru', 'ua', 'by'])) ? Yii::$app->city->domain : 'ru';
-
             $model = City::findBase()
                 ->innerJoinWith(["country as country"], false)
-                ->andFilterWhere(['IN', 'country.alias', $domain])
+                ->andFilterWhere(['IN', 'country.alias', Yii::$app->city->domain])
                 ->andFilterWhere(['IN', City::tableName() . '.alias', self::$_structure['city']])
                 ->indexBy('id')
                 ->all();

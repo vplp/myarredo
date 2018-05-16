@@ -139,8 +139,6 @@ class City extends \common\modules\location\models\City
     {
         $keys = Yii::$app->catalogFilter->keys;
 
-        $domain = (in_array(Yii::$app->city->domain, ['ru', 'ua', 'by'])) ? Yii::$app->city->domain : 'ru';
-
         $query = self::findBase();
 
         $query
@@ -169,7 +167,7 @@ class City extends \common\modules\location\models\City
 
         $query
             ->innerJoinWith(["country as country"], false)
-            ->andFilterWhere(['IN', 'country.alias', $domain]);
+            ->andFilterWhere(['IN', 'country.alias', Yii::$app->city->domain]);
 
         return $query
             ->select([
