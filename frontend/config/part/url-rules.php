@@ -27,8 +27,8 @@ return [
     'user/login/validation' => 'user/login/validation',
 
     // Module [[Catalog]]
-    'catalog/elastic/search' => 'catalog/elastic/search',
-    'catalog/elastic/index' => 'catalog/elastic/index',
+    'search' => 'catalog/elastic-search/search',
+    'catalog/elastic-search/index' => 'catalog/elastic-search/index',
 
     'catalog/<filter:[\=\;\-\w\d]+>' => 'catalog/category/list',
     'catalog/category/ajax-get-types' => 'catalog/category/ajax-get-types',

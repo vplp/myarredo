@@ -281,7 +281,7 @@ use frontend\modules\location\widgets\ChangeCity;
 
                     <div class="search-cont">
                         <?php $form = ActiveForm::begin([
-                            'action' => ['/catalog/elastic/search'],
+                            'action' => ['/catalog/elastic-search/search'],
                             'method' => 'get',
                             'options' => ['class' => 'form-inline'],
                         ]); ?>
