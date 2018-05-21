@@ -17,9 +17,11 @@ use yii\helpers\Html;
 
             $class = 'item' . (($key == 0) ? ' active' : '');
 
+            $options = ($key == 0) ? ['itemprop' => 'image', 'alt' => $model->getTitle()] : ['itemprop' => 'image'];
+
             echo Html::beginTag('div', ['class' => $class, 'data-dominant-color' => '']) .
                 Html::a(
-                    Html::img($src['img'], ['itemprop' => 'image']),
+                    Html::img($src['img'], $options),
                     $src['img'],
                     [
                         'class' => 'img-cont fancyimage',
