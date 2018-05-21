@@ -189,7 +189,7 @@ class Product extends ActiveRecord implements iProduct
             'position' => ['position'],
             'setImages' => ['image_link', 'gallery_image', 'picpath'],
             'setAlias' => ['alias', 'mark'],
-            'setMark' => ['alias', 'mark'],
+            'setMark' => ['mark'],
             'backend' => [
                 'catalog_type_id',
                 'user_id',

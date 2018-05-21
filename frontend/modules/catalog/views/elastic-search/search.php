@@ -1,37 +1,66 @@
 <?php
 
 use yii\helpers\BaseStringHelper;
+use yii\helpers\Html;
+use frontend\modules\catalog\models\Product;
 
-$this->title = 'Search';
+/**
+ * @var \frontend\modules\catalog\models\ElasticSearchProduct $model
+ */
+
+$this->title = $this->context->title;
+
 ?>
-<div class="container-fluid">
-    <h1>Search Result for <?php echo "<span class='label label-success'>" . $query . "</span>" ?></h1>
-    <?php
-    $result = $dataProvider->getModels();
 
-    /* !!! */ echo  '<pre style="color:red;">'; print_r($result); echo '</pre>'; /* !!! */
+<main>
+    <div class="page category-page">
+        <div class="container-wrap">
+            <div class="container large-container">
+                <div class="row">
+                    <?= Html::tag('h1', $this->title, []); ?>
+                </div>
+                <div class="cat-content">
+                    <div class="row">
 
-    foreach ($result as $key) {
+                        <div class="col-md-12 col-lg-12">
+                            <div class="cont-area">
+                                <h3>Результат поиска
+                                    для <?php echo "<span class='label label-success'>" . $query . "</span>" ?></h3>
 
-        echo "<div class='row'>";
+                                <div class="cat-prod-wrap">
+                                    <div class="cat-prod">
 
-        echo "<div class='panel panel-default'>";
+                                        <?php foreach ($models as $model) {
 
-        foreach ($key['_source'] as $key => $value) {
+                                            $product = Product::findByID($model['_source']['id']);
 
-            if ($key == "title") {
-                echo "<div class='panel-heading'>" . $value . "</div>";
-            }
+                                            $factory = [];
+                                            $factory[$product['factory']['id']] = $product['factory'];
 
-            if ($key == "description") {
-                echo "<div class='panel-body'>" . BaseStringHelper::truncateWords($value, 50, '...', true) . "<br>";
-            }
-        }
+                                            echo $this->render('/category/_list_item', [
+                                                'model' => $product,
+                                                'factory' => $factory,
+                                            ]);
+                                        } ?>
 
-        echo "</div>";
-        echo "</div>";
+                                    </div>
+                                    <div class="pagi-wrap">
 
-    }
-    ?>
+                                        <?= frontend\components\LinkPager::widget([
+                                            'pagination' => $pages,
+                                        ]);
+                                        ?>
 
-</div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

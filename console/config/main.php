@@ -44,6 +44,13 @@ return ArrayHelper::merge(
                     'product/<alias:[\w\-]+>' => 'catalog/product/view',
                 ]
             ],
+            'elasticsearch' => [
+                'class' => \yii\elasticsearch\Connection::class,
+                'autodetectCluster' => false,
+                'nodes' => [
+                    ['http_address' => '127.0.0.1:9200'],
+                ],
+            ],
         ],
         'controllerMap' => [
             'migrate' => [
@@ -78,6 +85,9 @@ return ArrayHelper::merge(
             ],
             'stats' => [
                 'class' => \console\controllers\StatsController::class,
+            ],
+            'elastic-search' => [
+                'class' => \console\controllers\ElasticSearchController::class,
             ],
             'send-pulse' => [
                 'class' => \console\controllers\SendPulseController::class,

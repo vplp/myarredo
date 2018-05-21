@@ -297,6 +297,7 @@ use frontend\modules\location\widgets\ChangeCity;
                     </div>
 
                 <?php } ?>
+
             </div>
         </div>
     </div>

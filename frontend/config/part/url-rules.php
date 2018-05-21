@@ -28,7 +28,7 @@ return [
 
     // Module [[Catalog]]
     'search' => 'catalog/elastic-search/search',
-    'catalog/elastic-search/index' => 'catalog/elastic-search/index',
+    'search/index' => 'catalog/elastic-search/index',
 
     'catalog/<filter:[\=\;\-\w\d]+>' => 'catalog/category/list',
     'catalog/category/ajax-get-types' => 'catalog/category/ajax-get-types',

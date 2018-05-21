@@ -2,6 +2,8 @@
 
 namespace frontend\modules\catalog\models;
 
+use Yii;
+//
 use yii\elasticsearch\ActiveRecord;
 use yii\elasticsearch\Query;
 use yii\elasticsearch\ActiveDataProvider;
@@ -41,8 +43,8 @@ class ElasticSearchProduct extends ActiveRecord
             static::type() => [
                 'properties' => [
                     'id' => ['type' => 'long'],
-                    'title' => ['type' => 'string'],
-                    'description' => ['type' => 'string'],
+                    'title' => ['type' => 'text'],
+                    'description' => ['type' => 'text'],
 //                    'publisher_name' => ['type' => 'string', "index" => "not_analyzed"],
 //                    'created_at' => ['type' => 'long'],
 //                    'updated_at' => ['type' => 'long'],
@@ -122,7 +124,7 @@ class ElasticSearchProduct extends ActiveRecord
         }
     }
 
-    public static function addRecord(Product $product)
+    public static function addRecord($product)
     {
         $isExist = false;
 
@@ -171,14 +173,25 @@ class ElasticSearchProduct extends ActiveRecord
 
         $query->from(self::index(), self::type());
 
-        $filters = [];
-        $filters['match']['title'] = $params['search'];
+        $filters = [
+            'multi_match' => [
+                'query' => $params['search'],
+                'type' => 'phrase_prefix',
+                'fields' => ['title', 'description']
+            ]
+        ];
 
         $query->query($filters);
 
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => ['pageSize' => 10],
+            'pagination' => [
+                'defaultPageSize' => $module->itemOnPage,
+                'forcePageParam' => false,
+            ],
         ]);
 
         return $dataProvider;

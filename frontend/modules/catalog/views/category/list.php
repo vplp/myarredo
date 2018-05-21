@@ -100,6 +100,7 @@ $this->title = $this->context->title;
                             <?php endif; ?>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

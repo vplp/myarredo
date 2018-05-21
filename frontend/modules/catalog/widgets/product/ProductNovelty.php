@@ -27,7 +27,7 @@ class ProductNovelty extends Widget
      */
     public function init()
     {
-        $this->models = Product::findBase()
+        $this->models = Product::findBaseArray()
             ->andWhere(['onmain' => '1'])
             ->asArray()
             ->cache(7200)

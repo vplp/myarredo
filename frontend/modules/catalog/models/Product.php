@@ -47,8 +47,6 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
-     * findBase
-     *
      * @return mixed
      */
     public static function findBase()
@@ -59,8 +57,34 @@ class Product extends \common\modules\catalog\models\Product
             ->enabled()
             ->andFilterWhere([
                 Product::tableName() . '.removed' => '0',
-            ])
+            ]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function findBaseArray()
+    {
+        return self::findBase()
             ->asArray();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findByID($id)
+    {
+        return self::findBaseArray()->byID($id)->one();
+    }
+
+    /**
+     * @param $ids
+     * @return array
+     */
+    public static function findByIDs($ids): array
+    {
+        return self::findBase()->andWhere(['IN', 'id', array_unique($ids)])->all();
     }
 
     /**
