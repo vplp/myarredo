@@ -165,6 +165,10 @@ class SaleFilter extends Widget
                 $params[$keys['style']][] = $obj['alias'];
             }
 
+            // sort value
+
+            array_multisort($params[$keys['style']], SORT_ASC, $params[$keys['style']]);
+
             $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
 
             $style[$key] = array(

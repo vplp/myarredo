@@ -92,7 +92,6 @@ class ProductFilter extends Widget
             );
         }
 
-
         // TYPE LIST
 
         $types = [];
@@ -144,7 +143,9 @@ class ProductFilter extends Widget
                 $params[$keys['style']][] = $obj['alias'];
             }
 
-            //array_multisort(array_column($model, 'position'), SORT_ASC, $model);
+            // sort value
+
+            array_multisort($params[$keys['style']], SORT_ASC, $params[$keys['style']]);
 
             $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
 
