@@ -36,7 +36,7 @@ class ElasticSearchController extends BaseController
 //
 //        var_dump($model);
 
-        return $this->render('index');
+//        return $this->render('index');
     }
 
     /**

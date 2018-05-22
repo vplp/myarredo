@@ -8,7 +8,7 @@ use yii\helpers\Html;
 
 ?>
 
-<div id="prod-slider" class=" carousel-fade" >
+<div id="prod-slider" class=" carousel-fade">
 
     <!-- Carousel items -->
     <div class="carousel-inner">
