@@ -254,8 +254,18 @@ class CatalogFilter extends Component
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
+            // sort value
+
             foreach ($model as $obj) {
-                self::$_parameters[self::$keys['type']][] = $obj['alias'];
+                self::setParam(self::$keys['type'], $obj['alias']);
+            }
+
+            // check value
+
+            $result = array_diff_assoc(self::$_structure['type'], self::$_parameters[self::$keys['type']]);
+
+            if (!empty($result)) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
         }
 
@@ -273,8 +283,18 @@ class CatalogFilter extends Component
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
+            // sort value
+
             foreach ($model as $obj) {
                 self::$_parameters[self::$keys['style']][] = $obj['alias'];
+            }
+
+            // check value
+
+            $result = array_diff_assoc(self::$_structure['style'], self::$_parameters[self::$keys['style']]);
+
+            if (!empty($result)) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
         }
 
@@ -292,8 +312,18 @@ class CatalogFilter extends Component
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
+            // sort value
+
             foreach ($model as $obj) {
-                self::$_parameters[self::$keys['factory']][] = $obj['alias'];
+                self::setParam(self::$keys['factory'], $obj['alias']);
+            }
+
+            // check value
+
+            $result = array_diff_assoc(self::$_structure['factory'], self::$_parameters[self::$keys['factory']]);
+
+            if (!empty($result)) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
         }
 
@@ -346,8 +376,18 @@ class CatalogFilter extends Component
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
+            // sort value
+
             foreach ($model as $obj) {
                 self::$_parameters[self::$keys['city']][] = $obj['alias'];
+            }
+
+            // check value
+
+            $result = array_diff_assoc(self::$_structure['city'], self::$_parameters[self::$keys['city']]);
+
+            if (!empty($result)) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
         }
 

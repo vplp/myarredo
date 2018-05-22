@@ -111,6 +111,10 @@ class ProductFilter extends Widget
                 $params[$keys['type']][] = $obj['alias'];
             }
 
+            // sort value
+
+            array_multisort($params[$keys['type']], SORT_ASC, $params[$keys['type']]);
+
             $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
 
             $types[$key] = array(
@@ -139,6 +143,8 @@ class ProductFilter extends Widget
                 $checked = 0;
                 $params[$keys['style']][] = $obj['alias'];
             }
+
+            //array_multisort(array_column($model, 'position'), SORT_ASC, $model);
 
             $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
 
@@ -169,6 +175,10 @@ class ProductFilter extends Widget
                 $params[$keys['factory']][] = $obj['alias'];
             }
 
+            // sort value
+
+            array_multisort($params[$keys['factory']], SORT_ASC, $params[$keys['factory']]);
+
             $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
 
             $factory[$obj['first_letter']][] = array(
@@ -188,7 +198,7 @@ class ProductFilter extends Widget
         $factory_first_show_checked = [];
         foreach ($factory as $letter) {
             foreach ($letter as $val) {
-                if($val['checked']) {
+                if ($val['checked']) {
                     $factory_first_show_checked[] = $val;
                 } else if ($i < 5) {
                     $factory_first_show[] = $val;
@@ -196,10 +206,10 @@ class ProductFilter extends Widget
                 }
             }
         }
-        $factory_first_show = array_merge($factory_first_show_checked,$factory_first_show);
+        $factory_first_show = array_merge($factory_first_show_checked, $factory_first_show);
 
-        if(count($factory_first_show_checked)>5) {
-            $factory_first_show = array_slice($factory_first_show, 0, count($factory_first_show_checked)+1);
+        if (count($factory_first_show_checked) > 5) {
+            $factory_first_show = array_slice($factory_first_show, 0, count($factory_first_show_checked) + 1);
         } else {
             $factory_first_show = array_slice($factory_first_show, 0, 5);
         }
