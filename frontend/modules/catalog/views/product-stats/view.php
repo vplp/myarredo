@@ -35,7 +35,7 @@ $js_data = implode(',', $data);
                 <div class="product-title">
                     <?= Html::tag(
                         'h1',
-                        $model->getTitle(),
+                        '',//$model->getTitle(),
                         ['class' => 'prod-model', 'itemprop' => 'name']
                     ); ?>
                 </div>
