@@ -289,7 +289,7 @@ class Product extends \common\modules\catalog\models\Product
      */
     public function getTitle()
     {
-        $title = ($this->lang) ? $this->lang->title : '';
+        $title = isset($this->lang) ? $this->lang->title : '';
 
         if ($this->is_composition)
             $title = Yii::t('app', 'Композиция') . ' ' . $title;
