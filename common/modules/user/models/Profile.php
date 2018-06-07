@@ -320,11 +320,11 @@ class Profile extends \thread\modules\user\models\Profile
 
             preg_match_all('/<a href="(.*?)"/s', $html, $matches);
 
-            if (in_array('http://www.myarredo.ru/', $matches[1])) {
+            if (in_array('https://www.myarredo.ru/', $matches[1])) {
                 return true;
-            } elseif (in_array('http://www.myarredo.ua/', $matches[1])) {
+            } elseif (in_array('https://www.myarredo.ua/', $matches[1])) {
                 return true;
-            } elseif (in_array('http://www.myarredo.by/', $matches[1])) {
+            } elseif (in_array('https://www.myarredo.by/', $matches[1])) {
                 return true;
             }
         }

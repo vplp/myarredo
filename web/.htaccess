@@ -11,6 +11,7 @@ AddDefaultCharset UTF-8
     RewriteEngine On
 
     RewriteCond %{HTTPS} !=on
+    RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1
     RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
 
     RewriteRule ^backend(.*)$ backend/$1 [L]

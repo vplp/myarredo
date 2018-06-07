@@ -18,7 +18,7 @@ use frontend\modules\catalog\models\Product;
         <span style="padding-left: 20px; font-style: italic;">участник сети</span>
     </div>
     <div style="background:#c4c0b8; padding:15px 0; text-align: center;">
-        <img src="http://www.myarredo.ru/uploads/mailer/logo_note.png" alt="logo">
+        <img src="https://www.myarredo.ru/uploads/mailer/logo_note.png" alt="logo">
     </div>
     <div style="background-color:#fff9ea; text-align: left; padding: 10px 0 40px 30px;">
         <p style="font-size: 18px;">Здравствуйте, <?= $modelOrder->customer['full_name'] ?></p>
@@ -57,7 +57,7 @@ use frontend\modules\catalog\models\Product;
     <?php if ($modelOrder->orderAnswer->answer): ?>
         <div style="background-color:#fff; padding:20px;">
             <p style="color: #591612; font-size: 16px;">Примечание</p>
-            <p style="background: url('http://www.myarredo.ru/uploads/mailer/cloud.png') 20px 5px no-repeat; width:410px; padding-left: 80px;">
+            <p style="background: url('https://www.myarredo.ru/uploads/mailer/cloud.png') 20px 5px no-repeat; width:410px; padding-left: 80px;">
                 <?= nl2br($modelOrder->orderAnswer->answer) ?>
             </p>
         </div>
