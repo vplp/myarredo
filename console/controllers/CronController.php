@@ -300,6 +300,16 @@ class CronController extends Controller
     /**
      * Generate product title
      */
+    public function actionProductResetMark()
+    {
+        $command = Yii::$app->db->createCommand("UPDATE " . Product::tableName() . " SET `mark`='0' WHERE `mark`='1'");
+
+        return $command->queryAll();
+    }
+
+    /**
+     * Generate product title
+     */
     public function actionGenerateProductItTitle()
     {
         // UPDATE `fv_catalog_item` SET `mark`='0' WHERE `mark`='1'
