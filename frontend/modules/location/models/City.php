@@ -109,8 +109,8 @@ class City extends \common\modules\location\models\City
     public function getSubDomainUrl()
     {
         $url = (!in_array($this->id, array(4, 2, 1)))
-            ? 'http://' . $this->alias . '.myarredo.' . $this->country->alias
-            : 'http://' . 'www.myarredo.' . $this->country->alias;
+            ? 'https://' . $this->alias . '.myarredo.' . $this->country->alias
+            : 'https://' . 'www.myarredo.' . $this->country->alias;
 
         return $url;
     }

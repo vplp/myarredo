@@ -136,7 +136,7 @@ class CityComponent extends Component
             $this->city = City::findByAlias($cityAlias);
 
             if ($this->city == null || in_array($this->city['id'], [1, 2, 4])) {
-                Yii::$app->response->redirect('http://' . 'www.myarredo.' . $this->domain . Yii::$app->request->url, 301);
+                Yii::$app->response->redirect('https://' . 'www.myarredo.' . $this->domain . Yii::$app->request->url, 301);
                 Yii::$app->end();
             }
 

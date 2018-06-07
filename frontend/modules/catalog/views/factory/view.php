@@ -53,7 +53,7 @@ $bundle = AppAsset::register($this);
                             <div class="fact-link">
                                 <?= Html::a(
                                     $model['url'],
-                                    'http://' . $model['url'],
+                                    'https://' . $model['url'],
                                     [
                                         'target' => '_blank',
                                         'rel' => 'nofollow'
