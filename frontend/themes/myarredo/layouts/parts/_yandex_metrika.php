@@ -40,7 +40,6 @@
 
 <?php elseif (Yii::$app->city->domain == 'by'): ?>
 
-
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
         (function (d, w, c) {

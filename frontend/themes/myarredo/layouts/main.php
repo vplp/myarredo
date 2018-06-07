@@ -35,6 +35,8 @@ $this->beginPage();
 
     <?= $this->render('parts/_yandex_metrika', []) ?>
 
+    <?= $this->render('parts/_google_metrika', []) ?>
+
     <input type="hidden" id="token" value="<?= Yii::$app->request->getCsrfToken() ?>">
 
     <?php $this->endBody() ?>
