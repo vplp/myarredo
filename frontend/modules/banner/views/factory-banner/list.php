@@ -23,7 +23,7 @@ $this->title = $this->context->title;
 
             <div class="part-contact">
 
-                <?= Html::a('Добавить', Url::toRoute(['/banner/factory-banner/create']), ['class' => 'btn btn-default']) ?>
+                <?= Html::a(Yii::t('app', 'Create'), Url::toRoute(['/banner/factory-banner/create']), ['class' => 'btn btn-default']) ?>
 
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,

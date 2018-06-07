@@ -9,7 +9,7 @@ use yii\helpers\{
  * @var \frontend\modules\banner\models\BannerItem $model
  */
 
-$this->title = 'Баннера';
+$this->title = $this->context->title;
 
 ?>
 
@@ -21,9 +21,7 @@ $this->title = 'Баннера';
 
             <div class="part-contact">
 
-                <?php $form = ActiveForm::begin([
-                    //'action' => Url::toRoute(['/user/profile/update']),
-                ]); ?>
+                <?php $form = ActiveForm::begin([]); ?>
 
                 <div class="row">
 
@@ -53,8 +51,6 @@ $this->title = 'Баннера';
                         <?= $form->field($model, 'factory_id')
                             ->hiddenInput(['value' => Yii::$app->user->identity->profile->factory_id])
                             ->label(false); ?>
-
-
 
                     </div>
 
