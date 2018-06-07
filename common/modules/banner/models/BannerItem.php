@@ -100,7 +100,7 @@ class BannerItem extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->innerJoinWith(["lang"])->orderBy('position');
+        return self::find()->with(["lang"])->orderBy('position');
     }
 
     /**
