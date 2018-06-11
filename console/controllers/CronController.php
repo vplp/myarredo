@@ -302,9 +302,9 @@ class CronController extends Controller
      */
     public function actionProductResetMark()
     {
-        $command = Yii::$app->db->createCommand("UPDATE " . Product::tableName() . " SET `mark`='0' WHERE `mark`='1'");
-
-        return $command->queryAll();
+        Yii::$app->db->createCommand()
+            ->update(Product::tableName(), ['mark' => '0'], "`mark`='1'")
+            ->execute();
     }
 
     /**
