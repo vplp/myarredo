@@ -316,69 +316,69 @@ class CronController extends Controller
 
         $this->stdout("GenerateProductItTitle: start. \n", Console::FG_GREEN);
 
-        $models = Product::find()
-            ->where([
-                'mark' => '0',
-            ])
-            ->limit(100)
-            ->all();
-
-        foreach ($models as $model) {
-            /** @var PDO $transaction */
-            /** @var $model Product */
-            $transaction = $model::getDb()->beginTransaction();
-            try {
-
-                $model->setScenario('setMark');
-
-                $model->mark = '1';
-
-                if ($model->save()) {
-                    $transaction->commit();
-
-                    Yii::$app->language = 'ru-RU';
-
-                    $modelLangRu = ProductLang::find()
-                        ->where([
-                            'rid' => $model->id,
-                        ])
-                        ->one();
-
-                    Yii::$app->language = 'it-IT';
-
-                    $modelLangIt = ProductLang::find()
-                        ->where([
-                            'rid' => $model->id,
-                            'lang' => Yii::$app->language,
-                        ])
-                        ->one();
-
-                    if ($modelLangIt == null) {
-                        $modelLangIt = new ProductLang();
-
-                        $modelLangIt->rid = $model->id;
-                        $modelLangIt->lang = Yii::$app->language;
-                    }
-
-                    $modelLangIt->title = ($modelLangRu != null) ? $modelLangRu->title : '';
-
-                    $description = ($modelLangRu != null) ? $modelLangRu->description : '';
-
-                    $modelLangIt->description = Yii::$app->yandexTranslator->getTranslate($description, 'ru-it');
-
-                    $modelLangIt->setScenario('backend');
-
-                    $modelLangIt->save();
-
-                    $this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
-                } else {
-                    $transaction->rollBack();
-                }
-            } catch (\Exception $e) {
-                $transaction->rollBack();
-                throw new \Exception($e);
-            }
-        }
+//        $models = Product::find()
+//            ->where([
+//                'mark' => '0',
+//            ])
+//            ->limit(100)
+//            ->all();
+//
+//        foreach ($models as $model) {
+//            /** @var PDO $transaction */
+//            /** @var $model Product */
+//            $transaction = $model::getDb()->beginTransaction();
+//            try {
+//
+//                $model->setScenario('setMark');
+//
+//                $model->mark = '1';
+//
+//                if ($model->save()) {
+//                    $transaction->commit();
+//
+//                    Yii::$app->language = 'ru-RU';
+//
+//                    $modelLangRu = ProductLang::find()
+//                        ->where([
+//                            'rid' => $model->id,
+//                        ])
+//                        ->one();
+//
+//                    Yii::$app->language = 'it-IT';
+//
+//                    $modelLangIt = ProductLang::find()
+//                        ->where([
+//                            'rid' => $model->id,
+//                            'lang' => Yii::$app->language,
+//                        ])
+//                        ->one();
+//
+//                    if ($modelLangIt == null) {
+//                        $modelLangIt = new ProductLang();
+//
+//                        $modelLangIt->rid = $model->id;
+//                        $modelLangIt->lang = Yii::$app->language;
+//                    }
+//
+//                    $modelLangIt->title = ($modelLangRu != null) ? $modelLangRu->title : '';
+//
+//                    $description = ($modelLangRu != null) ? $modelLangRu->description : '';
+//
+//                    $modelLangIt->description = Yii::$app->yandexTranslator->getTranslate($description, 'ru-it');
+//
+//                    $modelLangIt->setScenario('backend');
+//
+//                    $modelLangIt->save();
+//
+//                    $this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
+//                } else {
+//                    $transaction->rollBack();
+//                }
+//            } catch (\Exception $e) {
+//                $transaction->rollBack();
+//                throw new \Exception($e);
+//            }
+//        }
 
         $this->stdout("GenerateProductItTitle: finish. \n", Console::FG_GREEN);
     }
