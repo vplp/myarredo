@@ -12,6 +12,7 @@ use yii\elasticsearch\ActiveDataProvider;
  * Class ElasticSearchProduct
  *
  * @property integer $id
+ * @property string $lang
  * @property string $title
  * @property string $description
  *
@@ -31,7 +32,7 @@ class ElasticSearchProduct extends ActiveRecord
 
     public function attributes()
     {
-        return ['id', 'title', 'description'];
+        return ['id', 'lang', 'title', 'description'];
     }
 
     /**
@@ -43,6 +44,7 @@ class ElasticSearchProduct extends ActiveRecord
             static::type() => [
                 'properties' => [
                     'id' => ['type' => 'long'],
+                    'lang' => ['type' => 'string'],
                     'title' => ['type' => 'text'],
                     'description' => ['type' => 'text'],
 //                    'publisher_name' => ['type' => 'string', "index" => "not_analyzed"],
@@ -129,16 +131,16 @@ class ElasticSearchProduct extends ActiveRecord
         $isExist = false;
 
         try {
-            $record = self::get($product->id);
+            $record = self::get($product['id']);
             if (!$record) {
                 $record = new self();
-                $record->setPrimaryKey($product->id);
+                $record->setPrimaryKey($product['id']);
             } else {
                 $isExist = true;
             }
         } catch (\Exception $e) {
             $record = new self();
-            $record->setPrimaryKey($product->id);
+            $record->setPrimaryKey($product['id']);
         }
 
 //        $suppliers = [
@@ -146,9 +148,10 @@ class ElasticSearchProduct extends ActiveRecord
 //            ['id' => '2', 'name' => 'XYZ'],
 //        ];
 
-        $record->id = $product->id;
-        $record->title = $product->lang->title;
-        $record->description = $product->lang->description;
+        $record->id = $product['id'];
+        $record->lang = $product['lang']['lang'];
+        $record->title = $product['lang']['title'];
+        $record->description = $product['lang']['description'];
 
         //$record->status = 1;
         //$record->suppliers = $suppliers;
@@ -177,11 +180,16 @@ class ElasticSearchProduct extends ActiveRecord
             'multi_match' => [
                 'query' => $params['search'],
                 'type' => 'phrase_prefix',
-                'fields' => ['title', 'description']
-            ]
+                'fields' => [
+                    'title',
+                    'description',
+                ]
+            ],
         ];
 
-        $query->query($filters);
+        if ($filters) {
+            $query->query($filters);
+        }
 
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');

@@ -24,36 +24,42 @@ $this->title = $this->context->title;
 
                         <div class="col-md-12 col-lg-12">
                             <div class="cont-area">
-                                <h3>Результат поиска
-                                    для <?php echo "<span class='label label-success'>" . $query . "</span>" ?></h3>
 
-                                <div class="cat-prod-wrap">
-                                    <div class="cat-prod">
+                                <?php if ($queryParams['search']): ?>
+                                    <h3>Результат поиска
+                                        для <?php echo "<span class='label label-success'>" . $queryParams['search'] . "</span>" ?></h3>
 
-                                        <?php foreach ($models as $model) {
+                                    <div class="cat-prod-wrap">
+                                        <div class="cat-prod">
 
-                                            $product = Product::findByID($model['_source']['id']);
+                                            <?php foreach ($models as $model) {
 
-                                            $factory = [];
-                                            $factory[$product['factory']['id']] = $product['factory'];
+                                                $product = Product::findByID($model['_source']['id']);
 
-                                            echo $this->render('/category/_list_item', [
-                                                'model' => $product,
-                                                'factory' => $factory,
-                                            ]);
-                                        } ?>
+                                                if ($product != null) {
+                                                    $factory = [];
+                                                    $factory[$product['factory']['id']] = $product['factory'];
+
+                                                    echo $this->render('/category/_list_item', [
+                                                        'model' => $product,
+                                                        'factory' => $factory,
+                                                    ]);
+                                                }
+                                            } ?>
+
+                                        </div>
+                                        <div class="pagi-wrap">
+
+                                            <?= frontend\components\LinkPager::widget([
+                                                'pagination' => $pages,
+                                            ]) ?>
+
+                                        </div>
 
                                     </div>
-                                    <div class="pagi-wrap">
+                                <?php else: ?>
 
-                                        <?= frontend\components\LinkPager::widget([
-                                            'pagination' => $pages,
-                                        ]);
-                                        ?>
-
-                                    </div>
-
-                                </div>
+                                <?php endif; ?>
 
                             </div>
 

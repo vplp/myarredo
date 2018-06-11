@@ -105,4 +105,11 @@ return [
     'param' => [
         'class' => \common\modules\sys\modules\configs\components\ConfigsParams::class,
     ],
+    'elasticsearch' => [
+        'class' => \yii\elasticsearch\Connection::class,
+        'autodetectCluster' => false,
+        'nodes' => [
+            ['http_address' => 'localhost:9200'],
+        ],
+    ],
 ];

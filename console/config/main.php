@@ -44,13 +44,6 @@ return ArrayHelper::merge(
                     'product/<alias:[\w\-]+>' => 'catalog/product/view',
                 ]
             ],
-            'elasticsearch' => [
-                'class' => \yii\elasticsearch\Connection::class,
-                'autodetectCluster' => false,
-                'nodes' => [
-                    ['http_address' => 'localhost:9200'],
-                ],
-            ],
         ],
         'controllerMap' => [
             'migrate' => [
