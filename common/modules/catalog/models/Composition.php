@@ -179,8 +179,8 @@ class Composition extends Product
     {
         $module = Yii::$app->getModule('catalog');
 
-        $path = $module->getCompositionUploadPath();
-        $url = $module->getCompositionUploadUrl();
+        $path = $module->getProductUploadPath();
+        $url = $module->getProductUploadUrl();
 
         $image = null;
 

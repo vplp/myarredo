@@ -6,10 +6,13 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\web\Response;
-
+//
+use common\actions\upload\{
+    DeleteAction, UploadAction
+};
 use thread\app\base\controllers\BackendController;
 use backend\modules\catalog\models\{
-    Collection, Category, Product, Types, Composition, CompositionLang, search\Composition as filterComposition
+    Collection, Category, Product, Composition, CompositionLang, search\Composition as filterComposition
 };
 
 /**
@@ -51,6 +54,25 @@ class CompositionsController extends BackendController
     /**
      * @return array
      */
+    public function actions()
+    {
+        return ArrayHelper::merge(parent::actions(), [
+            'fileupload' => [
+                'class' => UploadAction::class,
+                'useHashPath' => true,
+                'path' => $this->module->getProductUploadPath()
+            ],
+            'filedelete' => [
+                'class' => DeleteAction::class,
+                'useHashPath' => true,
+                'path' => $this->module->getProductUploadPath()
+            ],
+        ]);
+    }
+
+    /**
+     * @return array
+     */
     public function actionAjaxGetProducts()
     {
         $response = [];
@@ -86,7 +108,7 @@ class CompositionsController extends BackendController
             $model = array_merge($model1, $model2);
 
             $response['tovars'] = ArrayHelper::map($model, 'id', function ($item) {
-                return  '[' . $item['article'] . '] ' . $item['lang']['title'];
+                return '[' . $item['article'] . '] ' . $item['lang']['title'];
             });;
         }
 
