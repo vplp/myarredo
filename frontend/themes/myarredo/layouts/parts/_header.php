@@ -277,7 +277,7 @@ use frontend\modules\location\widgets\ChangeCity;
 
                 <?= CatalogMenu::widget([]); ?>
 
-                <?php if (YII_ENV == 'dev') { ?>
+                <?php //if (YII_ENV == 'dev') { ?>
 
                     <div class="search-cont">
                         <?php $form = ActiveForm::begin([
@@ -296,7 +296,7 @@ use frontend\modules\location\widgets\ChangeCity;
 
                     </div>
 
-                <?php } ?>
+                <?php //} ?>
 
             </div>
         </div>
