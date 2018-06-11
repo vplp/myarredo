@@ -45,5 +45,8 @@ return [
     'elasticsearch' => [
         'class' => \yii\elasticsearch\Connection::class,
         'autodetectCluster' => false,
+        'nodes' => [
+            ['http_address' => 'localhost:9200'],
+        ],
     ],
 ];
