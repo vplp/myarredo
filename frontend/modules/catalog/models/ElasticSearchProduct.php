@@ -20,16 +20,25 @@ use yii\elasticsearch\ActiveDataProvider;
  */
 class ElasticSearchProduct extends ActiveRecord
 {
+    /**
+     * @return string
+     */
     public static function index()
     {
         return 'c1myarredo';
     }
 
+    /**
+     * @return string
+     */
     public static function type()
     {
         return "catalog_item";
     }
 
+    /**
+     * @return array|string[]
+     */
     public function attributes()
     {
         return ['id', 'lang', 'title', 'description'];
@@ -99,6 +108,11 @@ class ElasticSearchProduct extends ActiveRecord
         $command->deleteIndex(static::index(), static::type());
     }
 
+    /**
+     * @param $product_id
+     * @param $columns
+     * @return bool|int
+     */
     public static function updateRecord($product_id, $columns)
     {
         try {
@@ -114,6 +128,10 @@ class ElasticSearchProduct extends ActiveRecord
         }
     }
 
+    /**
+     * @param $product_id
+     * @return bool|int
+     */
     public static function deleteRecord($product_id)
     {
         try {
@@ -126,6 +144,10 @@ class ElasticSearchProduct extends ActiveRecord
         }
     }
 
+    /**
+     * @param $product
+     * @return bool|int
+     */
     public static function addRecord($product)
     {
         $isExist = false;
@@ -170,6 +192,10 @@ class ElasticSearchProduct extends ActiveRecord
         return $result;
     }
 
+    /**
+     * @param $params
+     * @return ActiveDataProvider
+     */
     public function search($params)
     {
         $query = new Query();
@@ -178,8 +204,9 @@ class ElasticSearchProduct extends ActiveRecord
 
         $filters = [
             'multi_match' => [
+                //"operator" => "AND",
+                "type" => "best_fields",
                 'query' => $params['search'],
-                'type' => 'phrase_prefix',
                 'fields' => [
                     'title',
                     'description',
@@ -187,9 +214,7 @@ class ElasticSearchProduct extends ActiveRecord
             ],
         ];
 
-        if ($filters) {
-            $query->query($filters);
-        }
+        $query->query($filters);
 
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
