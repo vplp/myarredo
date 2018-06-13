@@ -13,7 +13,7 @@ use frontend\modules\catalog\models\Category;
 
 
 <ul class="navigation">
-    <li class="js-has-list has-list">
+    <li<?= (Yii::$app->controller->id == 'category') ? ' class="js-has-list has-list"': ' class="js-has-list"' ?>>
         <?= Html::a(Yii::t('app', 'Catalog of furniture'), ['/catalog/category/list']); ?>
         <div class="list-level-wrap">
             <ul class="list-level">
@@ -36,19 +36,19 @@ use frontend\modules\catalog\models\Category;
             </ul>
         </div>
     </li>
-    <li><?= Html::a(
+    <li<?= (Yii::$app->controller->id == 'sale' ) ? ' class="has-list"': '' ?>><?= Html::a(
             Yii::t('app', 'Sale'),
             Url::toRoute(['/catalog/sale/list'])
         ) ?></li>
-    <li><?= Html::a(
+    <li<?= (Yii::$app->controller->id == 'factory' ) ? ' class="has-list"': '' ?>><?= Html::a(
             Yii::t('app', 'Фабрики'),
             Url::toRoute(['/catalog/factory/list'])
         ) ?></li>
-    <li><?= Html::a(
+    <li<?= (Yii::$app->controller->id == 'page' && Yii::$app->request->get('alias') == 'about') ? ' class="has-list"': '' ?>><?= Html::a(
             Yii::t('app', 'About the project'),
             Url::toRoute(['/page/page/view', 'alias' => 'about'])
         ) ?></li>
-    <li><?= Html::a(
+    <li<?= (Yii::$app->controller->id == 'contacts') ? ' class="has-list"': '' ?>><?= Html::a(
             Yii::t('app', 'Contacts in') . ' ' . Yii::$app->city->getCityTitleWhere(),
             Url::toRoute(['/page/page/view', 'alias' => 'contacts'])
         ) ?></li>
