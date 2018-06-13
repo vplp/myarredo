@@ -12,9 +12,10 @@ use yii\elasticsearch\ActiveDataProvider;
  * Class ElasticSearchProduct
  *
  * @property integer $id
- * @property string $lang
- * @property string $title
- * @property string $description
+ * @property string $title_ru
+ * @property string $title_it
+ * @property string $description_ru
+ * @property string $description_it
  *
  * @package frontend\modules\catalog\models
  */
@@ -41,7 +42,7 @@ class ElasticSearchProduct extends ActiveRecord
      */
     public function attributes()
     {
-        return ['id', 'lang', 'title', 'description'];
+        return ['id', 'title_ru', 'title_it', 'description_ru', 'description_it'];
     }
 
     /**
@@ -53,20 +54,10 @@ class ElasticSearchProduct extends ActiveRecord
             static::type() => [
                 'properties' => [
                     'id' => ['type' => 'long'],
-                    'lang' => ['type' => 'string'],
-                    'title' => ['type' => 'text'],
-                    'description' => ['type' => 'text'],
-//                    'publisher_name' => ['type' => 'string', "index" => "not_analyzed"],
-//                    'created_at' => ['type' => 'long'],
-//                    'updated_at' => ['type' => 'long'],
-//                    'status' => ['type' => 'long'],
-//                    'suppliers' => [
-//                        'type' => 'nested',
-//                        'properties' => [
-//                            'id' => ['type' => 'long'],
-//                            'name' => ['type' => 'string', 'index' => 'not_analyzed'],
-//                        ]
-//                    ]
+                    'title_ru' => ['type' => 'text'],
+                    'title_it' => ['type' => 'text'],
+                    'description_ru' => ['type' => 'text'],
+                    'description_it' => ['type' => 'text'],
                 ]
             ],
         ];
@@ -165,18 +156,15 @@ class ElasticSearchProduct extends ActiveRecord
             $record->setPrimaryKey($product['id']);
         }
 
-//        $suppliers = [
-//            ['id' => '1', 'name' => 'ABC'],
-//            ['id' => '2', 'name' => 'XYZ'],
-//        ];
+        $lang = substr($product['lang']['lang'], 0, 2);
+
+        $title = 'title_' . $lang;
+        $description = 'description_' . $lang;
 
         $record->id = $product['id'];
-        $record->lang = $product['lang']['lang'];
-        $record->title = $product['lang']['title'];
-        $record->description = $product['lang']['description'];
 
-        //$record->status = 1;
-        //$record->suppliers = $suppliers;
+        $record->$title = $product['lang']['title'];
+        $record->$description = $product['lang']['description'];
 
         try {
             if (!$isExist) {
@@ -198,20 +186,42 @@ class ElasticSearchProduct extends ActiveRecord
      */
     public function search($params)
     {
+        $lang = substr(Yii::$app->language, 0, 2);
+
         $query = new Query();
 
         $query->from(self::index(), self::type());
 
         $filters = [
             'multi_match' => [
-                //"operator" => "AND",
-                "type" => "best_fields",
+                "type" => "most_fields",
                 'query' => $params['search'],
                 'fields' => [
-                    'title',
-                    'description',
-                ]
+                    'title_' . $lang,
+                    'description_' . $lang,
+                ],
             ],
+//            'bool' => [
+//                'must' => [
+//                    'match' => [
+//                        'title_' . $lang => $params['search'],
+//                        'type' => 'most_fields',
+//                        'minimum_should_match' => '75%',
+//                    ],
+////                    'multi_match' => [
+////                        //"operator" => "OR",
+////                        //"type" => "best_fields",
+////                        'query' => $params['search'],
+////                        'fields' => [
+////                            'languages.title',
+////                            'languages.description',
+////                        ]
+////                    ],
+//                ],
+////                'filter' => [
+////                    'term' => ['languages.lang' => substr(Yii::$app->language, 0, 2)]
+////                ]
+//            ]
         ];
 
         $query->query($filters);

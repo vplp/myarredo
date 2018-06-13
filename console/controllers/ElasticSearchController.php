@@ -3,7 +3,6 @@
 namespace console\controllers;
 
 use Yii;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Console;
 use yii\console\Controller;
 //
@@ -26,15 +25,21 @@ class ElasticSearchController extends Controller
         $this->stdout("ElasticSearch: finish. \n", Console::FG_GREEN);
     }
 
-    public function actionAdd()
+    /**
+     * @param string $lang
+     * @throws \yii\db\Exception
+     */
+    public function actionAdd($lang = 'ru-RU')
     {
         // UPDATE `fv_catalog_item` SET `mark`='0' WHERE `mark`='1'
 
         $this->stdout("ElasticSearch: start. \n", Console::FG_GREEN);
 
+        Yii::$app->language = $lang;
+
         $models = Product::find()
             ->innerJoinWith(['lang', 'factory', 'types'])
-            ->orderBy(Product::tableName() . '.updated_at DESC')
+            ->orderBy(Product::tableName() . '.id DESC')
             ->enabled()
             ->andFilterWhere([
                 Product::tableName() . '.removed' => '0',
@@ -48,7 +53,6 @@ class ElasticSearchController extends Controller
             /** @var $product Product */
             $transaction = $product::getDb()->beginTransaction();
             try {
-
                 $product->setScenario('setMark');
 
                 $product->mark = '1';
@@ -57,7 +61,6 @@ class ElasticSearchController extends Controller
 
                 if ($product->save() && $save) {
                     $transaction->commit();
-
                     $this->stdout("save: ID=" . $product->id . " \n", Console::FG_GREEN);
                 } else {
                     $transaction->rollBack();
