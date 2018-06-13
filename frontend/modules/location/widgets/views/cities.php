@@ -26,13 +26,15 @@ use yii\helpers\{
         <div class="list-of-cities">
             <?php $currentLetter = '' ?>
             <?php foreach ($country['cities'] as $cityCountry): ?>
+
                 <?php
                     if ($currentLetter != mb_substr ( $cityCountry['lang']['title'], 0, 1) ){
                         $currentLetter = mb_substr ( $cityCountry['lang']['title'], 0, 1);
                         echo Html::tag('h4', $currentLetter);
                     }
                 ?>
-                <?= Html::a($cityCountry['lang']['title'], $cityCountry->getSubDomainUrl()) ?>
+
+                <?= Html::a($cityCountry['lang']['title'], $cityCountry->getSubDomainUrl(), ['rel' => 'nofollow']) ?>
 
             <?php endforeach; ?>
         </div>
