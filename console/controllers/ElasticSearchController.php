@@ -18,11 +18,14 @@ use common\modules\catalog\models\{
  */
 class ElasticSearchController extends Controller
 {
-    public function actionDelete()
+    /**
+     * Generate product title
+     */
+    public function actionResetMark()
     {
-        $this->stdout("ElasticSearch: start. \n", Console::FG_GREEN);
-
-        $this->stdout("ElasticSearch: finish. \n", Console::FG_GREEN);
+        Yii::$app->db->createCommand()
+            ->update(Product::tableName(), ['mark' => '0'], "`mark`='1'")
+            ->execute();
     }
 
     /**

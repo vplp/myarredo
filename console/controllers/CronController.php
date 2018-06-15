@@ -316,6 +316,8 @@ class CronController extends Controller
 
         $this->stdout("GenerateProductItTitle: start. \n", Console::FG_GREEN);
 
+        die;
+
         $models = Product::find()
             ->where([
                 'mark' => '0',
