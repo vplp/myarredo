@@ -3,6 +3,7 @@
 namespace console\controllers;
 
 use Yii;
+use yii\log\Logger;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Console;
 use yii\console\Controller;
@@ -320,7 +321,7 @@ class CronController extends Controller
             ->andFilterWhere([
                 'mark' => '0',
             ])
-            ->limit(500)
+            ->limit(10)
             ->orderBy(Product::tableName() . '.id DESC')
             ->all();
 
@@ -365,19 +366,40 @@ class CronController extends Controller
 
                     $description = ($modelLangRu != null) ? $modelLangRu->description : '';
 
-                    $modelLangIt->description = Yii::$app->yandexTranslator->getTranslate($description, 'ru-it');
-
+                    $description = Yii::$app->yandexTranslator->getTranslate($description, 'ru-it');
+                    /* !!! */ echo  '<pre style="color:red;">'; print_r($description); echo '</pre>'; /* !!! */
+                    //$modelLangIt->description
                     $modelLangIt->setScenario('backend');
 
-                    if($modelLangIt->save()) {
-                        $this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
-                    }
+                    $transaction1 = $model::getDb()->beginTransaction();
+                    try {
 
+
+                        if ($modelLangIt->save()) {
+                            $this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
+                            $transaction->commit();
+                        } else {
+                            $transaction1->rollBack();
+                            foreach ($modelLangIt->getErrors() as $key => $error) {
+                                $modelLangIt->addError($key, $error[0]);
+                            }
+                            Yii::getLogger()->log($error[0], Logger::LEVEL_WARNING);
+                        }
+                    } catch (\Exception $e1) {
+                        $transaction1->rollBack();
+                        Yii::getLogger()->log($e1->getMessage(), Logger::LEVEL_WARNING);
+                        throw new \Exception($e1);
+                    }
                 } else {
                     $transaction->rollBack();
+                    foreach ($model->getErrors() as $key => $error) {
+                        $model->addError($key, $error[0]);
+                    }
+                    Yii::getLogger()->log($error[0], Logger::LEVEL_WARNING);
                 }
             } catch (\Exception $e) {
                 $transaction->rollBack();
+                Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_WARNING);
                 throw new \Exception($e);
             }
         }
