@@ -147,6 +147,11 @@ class ProductController extends BaseController
             'content' => implode('. ', $pageDescription),
         ]);
 
+        Yii::$app->view->registerLinkTag([
+            'rel' => 'canonical',
+            'href' => Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo
+        ]);
+
         return $this->render('view', [
             'model' => $model,
         ]);
