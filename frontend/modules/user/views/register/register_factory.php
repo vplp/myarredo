@@ -60,7 +60,7 @@ $model->user_agreement = 1;
 
                             <?= $form->field($model, 'phone')
                                 ->widget(\yii\widgets\MaskedInput::className(), [
-                                    'mask' => Yii::$app->city->getPhoneMask(),
+                                    'mask' => '+39 (99) 999-99-99',
                                     'clientOptions' => [
                                         'clearIncomplete' => true
                                     ]
