@@ -42,13 +42,13 @@ class ElasticSearchController extends Controller
 
         $models = Product::find()
             ->innerJoinWith(['lang', 'factory', 'types'])
-            ->orderBy(Product::tableName() . '.id DESC')
-            ->enabled()
             ->andFilterWhere([
                 Product::tableName() . '.removed' => '0',
                 'mark' => '0',
             ])
             ->limit(500)
+            ->orderBy(Product::tableName() . '.id DESC')
+            ->enabled()
             ->all();
 
         foreach ($models as $product) {

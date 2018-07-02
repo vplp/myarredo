@@ -317,11 +317,11 @@ class CronController extends Controller
         $this->stdout("GenerateProductItTitle: start. \n", Console::FG_GREEN);
 
         $models = Product::find()
-            ->where([
+            ->andFilterWhere([
                 'mark' => '0',
             ])
-            ->orderBy(Product::tableName() . '.id DESC')
             ->limit(500)
+            ->orderBy(Product::tableName() . '.id DESC')
             ->all();
 
         foreach ($models as $model) {
