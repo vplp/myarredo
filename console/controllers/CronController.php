@@ -321,7 +321,7 @@ class CronController extends Controller
             ->andFilterWhere([
                 'mark' => '0',
             ])
-            ->limit(10)
+            ->limit(500)
             ->orderBy(Product::tableName() . '.id DESC')
             ->all();
 
@@ -362,44 +362,27 @@ class CronController extends Controller
                         $modelLangIt->lang = Yii::$app->language;
                     }
 
-                    $modelLangIt->title = ($modelLangRu != null) ? $modelLangRu->title : '';
+                    $modelLangIt->title = '';
 
                     $description = ($modelLangRu != null) ? $modelLangRu->description : '';
 
-                    $description = Yii::$app->yandexTranslator->getTranslate($description, 'ru-it');
-                    Yii::getLogger()->log($description, Logger::LEVEL_INFO);
-                    if ($description) {
-                        $modelLangIt->description = $description;
+                    $translate = Yii::$app->yandexTranslator->getTranslate($description, 'ru-it');
+
+                    if ($translate != '') {
+                        $modelLangIt->description = $translate;
                     }
+
                     $modelLangIt->setScenario('backend');
 
-                    $transaction1 = $model::getDb()->beginTransaction();
-                    try {
-                        if ($modelLangIt->save()) {
-                            $this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
-                            $transaction1->commit();
-                        } else {
-                            $transaction1->rollBack();
-                            foreach ($modelLangIt->getErrors() as $key => $error) {
-                                $modelLangIt->addError($key, $error[0]);
-                            }
-                            Yii::getLogger()->log($error[0], Logger::LEVEL_WARNING);
-                        }
-                    } catch (\Exception $e1) {
-                        $transaction1->rollBack();
-                        Yii::getLogger()->log($e1->getMessage(), Logger::LEVEL_WARNING);
-                        throw new \Exception($e1);
+                    if ($modelLangIt->save()) {
+                        $this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
                     }
+
                 } else {
                     $transaction->rollBack();
-                    foreach ($model->getErrors() as $key => $error) {
-                        $model->addError($key, $error[0]);
-                    }
-                    Yii::getLogger()->log($error[0], Logger::LEVEL_WARNING);
                 }
             } catch (\Exception $e) {
                 $transaction->rollBack();
-                Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_WARNING);
                 throw new \Exception($e);
             }
         }
