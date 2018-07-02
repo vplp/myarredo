@@ -274,7 +274,7 @@ class CategoryController extends BaseController
         $pageDescription[] = Yii::t('app', 'из Италии');
 
 
-        if (!empty($params[$keys['factory']]) && count($params[$keys['factory']]) == 1 && !empty($params[$keys['collection']])) {
+        if (count($params) == 2 && !empty($params[$keys['factory']]) && count($params[$keys['factory']]) == 1 && !empty($params[$keys['collection']])) {
 
             $models = Factory::findAllByAlias($params[$keys['factory']]);
 
