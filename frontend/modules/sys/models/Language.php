@@ -14,4 +14,14 @@ class Language extends CommonLanguageModel
     {
         return self::findBase()->enabled()->asArray()->all();
     }
+
+    /**
+     * @return mixed
+     */
+    public static function getAllByLocate()
+    {
+        if ($data = self::findBase()->where(['published' => '1', 'deleted' => '0'])->indexBy('local')->asArray()->all()) {
+            return $data;
+        }
+    }
 }

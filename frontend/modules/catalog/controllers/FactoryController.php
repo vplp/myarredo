@@ -161,7 +161,6 @@ class FactoryController extends BaseController
             ]);
         }
 
-
         return $this->render('view', [
             'model' => $model,
             'product' => $product->getModels(),
