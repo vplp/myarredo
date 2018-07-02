@@ -35,13 +35,13 @@ $this->beginPage();
             echo Html::tag('link', '', [
                 'rel' => 'alternate',
                 'href' =>  $current_link['href'],
-                'hreflang' => $current_link['lang'] . '-' . 'ru'
+                'hreflang' => $current_link['lang']
             ]);
             foreach ($alternatePages as $page) {
                 echo Html::tag('link', '', [
                     'rel' => 'alternate',
                     'href' => $page['href'],
-                    'hreflang' => $page['lang'] . '-' . 'ru'
+                    'hreflang' => $page['lang']
                 ]);
             }
             unset($current_link, $alternatePages);
