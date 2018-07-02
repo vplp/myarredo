@@ -367,17 +367,17 @@ class CronController extends Controller
                     $description = ($modelLangRu != null) ? $modelLangRu->description : '';
 
                     $description = Yii::$app->yandexTranslator->getTranslate($description, 'ru-it');
-                    /* !!! */ echo  '<pre style="color:red;">'; print_r($description); echo '</pre>'; /* !!! */
-                    //$modelLangIt->description
+                    Yii::getLogger()->log($description, Logger::LEVEL_INFO);
+                    if ($description) {
+                        $modelLangIt->description = $description;
+                    }
                     $modelLangIt->setScenario('backend');
 
                     $transaction1 = $model::getDb()->beginTransaction();
                     try {
-
-
                         if ($modelLangIt->save()) {
                             $this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
-                            $transaction->commit();
+                            $transaction1->commit();
                         } else {
                             $transaction1->rollBack();
                             foreach ($modelLangIt->getErrors() as $key => $error) {
