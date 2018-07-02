@@ -321,7 +321,7 @@ class CronController extends Controller
             ->andFilterWhere([
                 'mark' => '0',
             ])
-            ->limit(500)
+            ->limit(10)
             ->orderBy(Product::tableName() . '.id DESC')
             ->all();
 
@@ -367,6 +367,8 @@ class CronController extends Controller
                     $description = ($modelLangRu != null) ? $modelLangRu->description : '';
 
                     $translate = Yii::$app->yandexTranslator->getTranslate($description, 'ru-it');
+
+                    var_dump($translate);
 
                     if ($translate != '') {
                         $modelLangIt->description = $translate;
