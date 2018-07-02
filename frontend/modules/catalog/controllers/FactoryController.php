@@ -49,20 +49,20 @@ class FactoryController extends BaseController
 
         $params = [];
 
-        $pageTitle[] = Yii::t('app','Итальянские фабрики мебели - производители из Италии');
-        $pageDescription[] = Yii::t('app','Каталог итальянских производителей мебели - продукция лучших фабрик из Италии: кухни, гостиные, мягкая мебель. Заказать мебель итальянских фабрик');
+        $pageTitle[] = Yii::t('app', 'Итальянские фабрики мебели - производители из Италии');
+        $pageDescription[] = Yii::t('app', 'Каталог итальянских производителей мебели - продукция лучших фабрик из Италии: кухни, гостиные, мягкая мебель. Заказать мебель итальянских фабрик');
 
         $models = $model->search(ArrayHelper::merge($params, Yii::$app->request->queryParams));
 
         $view = Yii::$app->request->get('view');
 
         if (Yii::$app->request->get('letter')) {
-            $pageTitle[] = Yii::t('app','на букву') .' '. strtoupper(Yii::$app->request->get('letter'));
-            $pageDescription[] = Yii::t('app','название на букву') .' '. strtoupper(Yii::$app->request->get('letter'));
+            $pageTitle[] = Yii::t('app', 'на букву') . ' ' . strtoupper(Yii::$app->request->get('letter'));
+            $pageDescription[] = Yii::t('app', 'название на букву') . ' ' . strtoupper(Yii::$app->request->get('letter'));
         }
 
-        $pageTitle[] = Yii::t('app','в') . ' ' . Yii::$app->city->getCityTitleWhere();
-        $pageDescription[] = Yii::t('app','в') . ' ' . Yii::$app->city->getCityTitleWhere();
+        $pageTitle[] = Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
+        $pageDescription[] = Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
 
         if ($view && $view !== 'three') {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
@@ -135,12 +135,12 @@ class FactoryController extends BaseController
         ]);
 
         $this->breadcrumbs[] = [
-            'label' => Yii::t('app','Итальянские фабрики мебели'),
+            'label' => Yii::t('app', 'Итальянские фабрики мебели'),
             'url' => ['/catalog/factory/list']
         ];
 
         $this->breadcrumbs[] = [
-            'label' => $model['title'] . ' ' . Yii::t('app','в') . ' ' . Yii::$app->city->getCityTitleWhere(),
+            'label' => $model['title'] . ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere(),
             'url' => ['/catalog/factory/view', 'alias' => $model['alias']]
         ];
 
@@ -149,14 +149,14 @@ class FactoryController extends BaseController
         $this->title = Yii::$app->metatag->seo_title
             ? Yii::$app->metatag->seo_title
             : $model['title'] .
-            ' - ' . Yii::t('app','мебели из Италии в') . ' ' .
+            ' - ' . Yii::t('app', 'мебели из Италии в') . ' ' .
             Yii::$app->city->getCityTitleWhere();
 
         if (!Yii::$app->metatag->seo_description) {
             Yii::$app->view->registerMetaTag([
                 'name' => 'description',
-                'content' => Yii::t('app','Каталог итальянской мебели от фабрики') . ' ' . $model['title']
-                    . ' ' . Yii::t('app','в интернет-магазине Myarredo. Заказать мебель из Италии в')
+                'content' => Yii::t('app', 'Каталог итальянской мебели от фабрики') . ' ' . $model['title']
+                    . ' ' . Yii::t('app', 'в интернет-магазине Myarredo. Заказать мебель из Италии в')
                     . ' ' . Yii::$app->city->getCityTitleWhere(),
             ]);
         }

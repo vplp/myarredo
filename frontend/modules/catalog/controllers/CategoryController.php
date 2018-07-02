@@ -273,6 +273,22 @@ class CategoryController extends BaseController
 
         $pageDescription[] = Yii::t('app', 'из Италии');
 
+
+        if (!empty($params[$keys['factory']]) && count($params[$keys['factory']]) == 1 && !empty($params[$keys['collection']])) {
+
+            $models = Factory::findAllByAlias($params[$keys['factory']]);
+
+            $factory = [];
+            foreach ($models as $model) {
+                $factory[] = $model['title'];
+            }
+
+            $collection = Collection::findById($params[$keys['collection']][0]);
+
+            $pageH1 = [];
+            $pageH1[] = Yii::t('app', 'Итальянская мебель фабрики') . ' ' . implode(', ', $factory) . ' — ' . mb_strtolower(Yii::t('app', 'Коллекция')) . ' ' . $collection['lang']['title'];
+        }
+
         /**
          * set options
          */

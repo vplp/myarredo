@@ -13,7 +13,7 @@ $bundle = AppAsset::register($this);
 $this->beginPage();
 ?>
     <!DOCTYPE html>
-    <html lang="<?= substr(Yii::$app->language,0,2) ?>">
+    <html lang="<?= substr(Yii::$app->language, 0, 2) ?>">
     <head>
         <base href="<?= Yii::$app->request->hostInfo ?>">
 
@@ -34,7 +34,7 @@ $this->beginPage();
             unset($alternatePages[Yii::$app->language]);
             echo Html::tag('link', '', [
                 'rel' => 'alternate',
-                'href' =>  $current_link['href'],
+                'href' => $current_link['href'],
                 'hreflang' => $current_link['lang']
             ]);
             foreach ($alternatePages as $page) {

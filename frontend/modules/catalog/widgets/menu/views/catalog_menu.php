@@ -49,7 +49,7 @@ use frontend\modules\catalog\models\Category;
             Url::toRoute(['/page/page/view', 'alias' => 'about'])
         ) ?></li>
     <li<?= (Yii::$app->controller->id == 'contacts') ? ' class="has-list"': '' ?>><?= Html::a(
-            Yii::t('app', 'Contacts in') . ' ' . Yii::$app->city->getCityTitleWhere(),
+            Yii::t('app', 'Contacts') /*. ' ' . Yii::$app->city->getCityTitleWhere()*/,
             Url::toRoute(['/page/page/view', 'alias' => 'contacts'])
         ) ?></li>
 </ul>
