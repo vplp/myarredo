@@ -8,9 +8,10 @@ $bundle = AppAsset::register($this);
 $this->beginPage();
 ?>
     <!DOCTYPE html>
-    <html lang="<?= Yii::$app->language ?>">
+    <html lang="<?= substr(Yii::$app->language,0,2) ?>">
     <head>
-        <base href="<?= Yii::$app->getUrlManager()->getBaseUrl() ?>">
+        <base href="<?= Yii::$app->request->hostInfo ?>">
+        <link href="<?= Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo ?>" hreflang="<?= substr(Yii::$app->language,0,2) ?>" rel="alternate">
         <meta charset="<?= Yii::$app->charset ?>"/>
         <title><?= $this->title ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
