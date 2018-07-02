@@ -371,11 +371,8 @@ class CronController extends Controller
 
                     if($modelLangIt->save()) {
                         $this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
-                    } else {
-                        $modelLangIt->getFirstError();
                     }
 
-                    //$this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
                 } else {
                     $transaction->rollBack();
                 }
