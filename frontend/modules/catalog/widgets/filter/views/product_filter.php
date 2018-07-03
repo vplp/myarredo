@@ -17,17 +17,6 @@ use frontend\modules\catalog\models\Category;
             'action' => Url::toRoute([$route])
         ]) ?>
 
-        <?php if (count(Yii::$app->catalogFilter->params) >= 1): ?>
-            <?= Html::a(
-                Yii::t('app', 'Сбросить фильтры'),
-                Url::toRoute([$route]),
-                [
-                    'class' => 'reset',
-                    'rel' => 'nofollow'
-                ]
-            ) ?>
-        <?php endif; ?>
-
         <div class="one-filter open">
 
             <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Category') ?></a>
@@ -190,6 +179,17 @@ use frontend\modules\catalog\models\Category;
 
         <?= Html::hiddenInput('sort', Yii::$app->request->get('sort') ?? null) ?>
         <?= Html::hiddenInput('object', Yii::$app->request->get('object') ?? null) ?>
+
+        <?php if (count(Yii::$app->catalogFilter->params) >= 1): ?>
+            <?= Html::a(
+                Yii::t('app', 'Сбросить фильтры'),
+                Url::toRoute([$route]),
+                [
+                    'class' => 'reset',
+                    'rel' => 'nofollow'
+                ]
+            ) ?>
+        <?php endif; ?>
 
         <?php ActiveForm::end() ?>
 
