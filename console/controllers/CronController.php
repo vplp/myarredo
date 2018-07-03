@@ -321,7 +321,7 @@ class CronController extends Controller
             ->andFilterWhere([
                 'mark' => '0',
             ])
-            ->limit(10)
+            ->limit(100)
             ->orderBy(Product::tableName() . '.id DESC')
             ->all();
 
@@ -369,7 +369,7 @@ class CronController extends Controller
                 if ($model->save() && $translate != '') {
                     $transaction->commit();
 
-                    var_dump($translate);
+                    //var_dump($translate);
 
                     if ($translate != '') {
                         $modelLangIt->description = $translate;
