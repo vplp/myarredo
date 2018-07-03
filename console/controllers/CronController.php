@@ -335,38 +335,39 @@ class CronController extends Controller
 
                 $model->mark = '1';
 
-                if ($model->save()) {
+
+                Yii::$app->language = 'ru-RU';
+
+                $modelLangRu = ProductLang::find()
+                    ->where([
+                        'rid' => $model->id,
+                    ])
+                    ->one();
+
+                Yii::$app->language = 'it-IT';
+
+                $modelLangIt = ProductLang::find()
+                    ->where([
+                        'rid' => $model->id,
+                        'lang' => Yii::$app->language,
+                    ])
+                    ->one();
+
+                if ($modelLangIt == null) {
+                    $modelLangIt = new ProductLang();
+
+                    $modelLangIt->rid = $model->id;
+                    $modelLangIt->lang = Yii::$app->language;
+                }
+
+                $modelLangIt->title = '';
+
+                $description = ($modelLangRu != null) ? $modelLangRu->description : '';
+
+                $translate = Yii::$app->yandexTranslator->getTranslate($description, 'ru-it');
+
+                if ($model->save() && $translate != '') {
                     $transaction->commit();
-
-                    Yii::$app->language = 'ru-RU';
-
-                    $modelLangRu = ProductLang::find()
-                        ->where([
-                            'rid' => $model->id,
-                        ])
-                        ->one();
-
-                    Yii::$app->language = 'it-IT';
-
-                    $modelLangIt = ProductLang::find()
-                        ->where([
-                            'rid' => $model->id,
-                            'lang' => Yii::$app->language,
-                        ])
-                        ->one();
-
-                    if ($modelLangIt == null) {
-                        $modelLangIt = new ProductLang();
-
-                        $modelLangIt->rid = $model->id;
-                        $modelLangIt->lang = Yii::$app->language;
-                    }
-
-                    $modelLangIt->title = '';
-
-                    $description = ($modelLangRu != null) ? $modelLangRu->description : '';
-
-                    $translate = Yii::$app->yandexTranslator->getTranslate($description, 'ru-it');
 
                     var_dump($translate);
 
