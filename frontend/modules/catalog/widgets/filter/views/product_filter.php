@@ -17,11 +17,14 @@ use frontend\modules\catalog\models\Category;
             'action' => Url::toRoute([$route])
         ]) ?>
 
-        <?php if (count(Yii::$app->catalogFilter->params) > 1): ?>
+        <?php if (count(Yii::$app->catalogFilter->params) >= 1): ?>
             <?= Html::a(
                 Yii::t('app', 'Сбросить фильтры'),
                 Url::toRoute([$route]),
-                ['class' => 'reset']
+                [
+                    'class' => 'reset',
+                    'rel' => 'nofollow'
+                ]
             ) ?>
         <?php endif; ?>
 
@@ -55,7 +58,8 @@ use frontend\modules\catalog\models\Category;
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                        <div class="filter-group"><div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
+                        <div class="filter-group">
+                            <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
                         <?= Html::endTag('a'); ?>
 
                     <?php endforeach; ?>
@@ -81,7 +85,8 @@ use frontend\modules\catalog\models\Category;
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                        <div class="filter-group"><div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
+                        <div class="filter-group">
+                            <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
                         <?= Html::endTag('a'); ?>
 
                     <?php endforeach; ?>
@@ -100,7 +105,8 @@ use frontend\modules\catalog\models\Category;
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                        <div class="filter-group"><div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
+                        <div class="filter-group">
+                            <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
                         <?= Html::endTag('a'); ?>
 
                     <?php endforeach; ?>
