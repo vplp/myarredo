@@ -190,7 +190,12 @@ use frontend\modules\location\widgets\ChangeCity;
                                                         ); ?>
                                                     </li>
                                                 <?php elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory'): ?>
-
+                                                    <li>
+                                                        <?= Html::a(
+                                                            Yii::t('app', 'My goods'),
+                                                            ['/catalog/factory-product/list']
+                                                        ); ?>
+                                                    </li>
                                                     <li>
                                                         <?= Html::a(
                                                             Yii::t('app', 'Orders'),

@@ -241,6 +241,7 @@ class Sale extends ActiveRecord
     /**
      * @param bool $insert
      * @return bool
+     * @throws \Throwable
      */
     public function beforeSave($insert)
     {

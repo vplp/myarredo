@@ -290,6 +290,10 @@ class Product extends ActiveRecord implements iProduct
             }
         }
 
+        if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
+            $this->user_id = Yii::$app->getUser()->id;
+        }
+
         return parent::beforeSave($insert);
     }
 

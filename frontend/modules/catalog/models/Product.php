@@ -14,50 +14,64 @@ use frontend\components\ImageResize;
  */
 class Product extends \common\modules\catalog\models\Product
 {
-    /**
-     * @return array
-     */
-    public function behaviors()
-    {
-        return [];
-    }
-
-    /**
-     * @return array
-     */
-    public function scenarios()
-    {
-        return [];
-    }
-
-    /**
-     * @return array
-     */
-    public function attributeLabels()
-    {
-        return [];
-    }
-
-    /**
-     * @return array
-     */
-    public function rules()
-    {
-        return [];
-    }
+//    /**
+//     * @return array
+//     */
+//    public function behaviors()
+//    {
+//        return [];
+//    }
+//
+//    /**
+//     * @return array
+//     */
+//    public function scenarios()
+//    {
+//        return [
+//            'frontendFactory' => [
+//                'category_ids',
+//            ]
+//        ];
+//    }
+//
+//    /**
+//     * @return array
+//     */
+//    public function attributeLabels()
+//    {
+//        return [];
+//    }
+//
+//    /**
+//     * @return array
+//     */
+//    public function rules()
+//    {
+//        return [];
+//    }
 
     /**
      * @return mixed
      */
     public static function findBase()
     {
-        return self::find()
-            ->innerJoinWith(['lang', 'factory', 'types'])
-            ->orderBy(self::tableName() . '.updated_at DESC')
-            ->enabled()
-            ->andFilterWhere([
-                Product::tableName() . '.removed' => '0',
-            ]);
+        $query = self::find();
+
+        if (Yii::$app->controller->id == 'factory-product') {
+            $query
+                ->andWhere(['user_id' => Yii::$app->user->identity->id])
+                ->innerJoinWith(['lang', 'factory']);
+        } else {
+            $query
+                ->innerJoinWith(['lang', 'factory'])
+                ->orderBy(self::tableName() . '.updated_at DESC')
+                ->enabled()
+                ->andFilterWhere([
+                    Product::tableName() . '.removed' => '0',
+                ]);
+        }
+
+        return $query;
     }
 
     /**
@@ -195,7 +209,7 @@ class Product extends \common\modules\catalog\models\Product
 
         $image = null;
 
-        if (YII_ENV_DEV && !empty($image_link)){
+        if (YII_ENV_DEV && !empty($image_link)) {
             $image = 'https://www.myarredo.ru/uploads/images/' . $image_link;
         } elseif (!empty($image_link) && is_file($path . '/' . $image_link)) {
 
@@ -245,7 +259,7 @@ class Product extends \common\modules\catalog\models\Product
         $imagesSources = [];
 
         foreach ($images as $image) {
-            if (YII_ENV_DEV){
+            if (YII_ENV_DEV) {
                 $url = 'https://www.myarredo.ru/uploads/images';
                 $imagesSources[] = [
                     'img' => $url . '/' . $image,
@@ -362,14 +376,14 @@ class Product extends \common\modules\catalog\models\Product
     public static function getProductByFactory($factory_id, $catalog_type_id)
     {
         $result = self::getDb()->cache(function ($db) use ($factory_id, $catalog_type_id) {
-        return parent::findBase()
-            ->enabled()
-            ->andWhere([
-                'factory_id' => $factory_id,
-                'catalog_type_id' => $catalog_type_id
-            ])
-            ->limit(12)
-            ->all();
+            return parent::findBase()
+                ->enabled()
+                ->andWhere([
+                    'factory_id' => $factory_id,
+                    'catalog_type_id' => $catalog_type_id
+                ])
+                ->limit(12)
+                ->all();
         });
 
         return $result;
