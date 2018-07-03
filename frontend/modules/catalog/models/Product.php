@@ -115,7 +115,7 @@ class Product extends \common\modules\catalog\models\Product
     {
         $result = self::getDb()->cache(function ($db) use ($alias) {
             return self::find()
-                ->innerJoinWith(['lang', 'factory', 'types'])
+                ->innerJoinWith(['lang', 'factory'])
                 ->orderBy('position DESC')
                 ->enabled()
                 ->byAlias($alias)
