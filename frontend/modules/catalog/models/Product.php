@@ -426,10 +426,7 @@ class Product extends \common\modules\catalog\models\Product
 
                 $model = self::findByID($id_compos);
 
-                /** @var $model Product */
-                //* !!! */ echo  '<pre style="color:red;">'; print_r($model->elementsComposition); echo '</pre>'; /* !!! */
-
-                if ($model != null) {
+                if ($model != null && !empty($model->elementsComposition)) {
                     return $model->elementsComposition;
                 }
             }
