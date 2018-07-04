@@ -1,8 +1,6 @@
 <?php
 
-//use backend\themes\defaults\widgets\forms\ActiveForm;
 use backend\app\bootstrap\ActiveForm;
-//use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
@@ -21,7 +19,7 @@ use frontend\modules\location\models\{
  * @var \frontend\modules\catalog\models\Specification $Specification
  */
 
-$this->title = ($model->isNewRecord) ? 'Добавить товар в распродажу' : 'Редактировать товар распродажи';
+$this->title = ($model->isNewRecord) ? Yii::t('app','Add') : Yii::t('app','Edit');
 
 ?>
 

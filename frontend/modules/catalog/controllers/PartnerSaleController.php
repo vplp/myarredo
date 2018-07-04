@@ -26,7 +26,7 @@ use common\actions\upload\{
  */
 class PartnerSaleController extends BaseController
 {
-    public $title = "PartnerSale";
+    public $title = "Partner Sale";
 
     public $defaultAction = 'list';
 

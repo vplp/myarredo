@@ -2,6 +2,8 @@
 
 namespace frontend\modules\catalog\models;
 
+use yii\helpers\ArrayHelper;
+
 /**
  * Class Collection
  *
@@ -77,5 +79,24 @@ class Collection extends \common\modules\catalog\models\Collection
     {
         return self::findBase()
             ->all();
+    }
+
+    /**
+     * Backend form drop down list
+     *
+     * @param array $option
+     * @return array
+     */
+    public static function dropDownList($option = [])
+    {
+        $query = self::findBase();
+
+        if (isset($option['factory_id'])) {
+            $query->andFilterWhere(['factory_id' => $option['factory_id']]);
+        }
+
+        $data = $query->undeleted()->all();
+
+        return ArrayHelper::map($data, 'id', 'lang.title');
     }
 }

@@ -276,6 +276,7 @@ class Product extends ActiveRecord implements iProduct
     /**
      * @param bool $insert
      * @return bool
+     * @throws \Throwable
      */
     public function beforeSave($insert)
     {
@@ -290,8 +291,9 @@ class Product extends ActiveRecord implements iProduct
             }
         }
 
-        if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
-            $this->user_id = Yii::$app->getUser()->id;
+        if (Yii::$app->user->identity->group->role == 'factory') {
+            $this->user_id = Yii::$app->user->identity->id;
+            $this->factory_id = Yii::$app->user->identity->profile->factory_id;
         }
 
         return parent::beforeSave($insert);

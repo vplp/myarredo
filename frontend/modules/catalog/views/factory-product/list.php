@@ -7,15 +7,16 @@ use yii\grid\GridView;
 use frontend\components\Breadcrumbs;
 //
 use frontend\modules\catalog\models\{
-    Category, Factory
+    Category, Factory, Product
 };
 //
 use thread\widgets\grid\{
     ActionStatusColumn, GridViewFilter
 };
+
 /**
  * @var \yii\data\Pagination $pages
- * @var $model \frontend\modules\catalog\models\Sale
+ * @var $model \frontend\modules\catalog\models\FactoryProduct
  */
 
 $dataProvider = $model->search(Yii::$app->request->queryParams);
@@ -32,7 +33,7 @@ $this->title = $this->context->title;
 
                 <?= Html::tag('h1', $this->context->title); ?>
 
-                <?= Html::a('Добавить', Url::toRoute(['/catalog/factory-product/create']), ['class' => 'btn btn-default']) ?>
+                <?= Html::a(Yii::t('app', 'Add'), Url::toRoute(['/catalog/factory-product/create']), ['class' => 'btn btn-default']) ?>
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
@@ -58,13 +59,13 @@ $this->title = $this->context->title;
                                             return implode(', ', $result);
                                         },
                                         'label' => Yii::t('app', 'Category'),
-                                        //'filter' => GridViewFilter::selectOne($filter, 'category', Category::dropDownList()),
                                     ],
+                                    'article',
                                     [
                                         'attribute' => 'image_link',
                                         'value' => function ($model) {
-                                            /** @var \backend\modules\catalog\models\Product $model */
-                                            return Html::img($model->getImageLink(), ['width' => 50]);
+                                            /** @var \frontend\modules\catalog\models\FactoryProduct $model */
+                                            return Html::img(Product::getImageThumb($model['image_link']), ['width' => 50]);
                                         },
                                         'label' => Yii::t('app', 'Image'),
                                         'format' => 'raw',
@@ -74,14 +75,14 @@ $this->title = $this->context->title;
                                         'attribute' => 'lang.title',
                                         'format' => 'raw',
                                         'value' => function ($model) {
-                                            /** @var $model \frontend\modules\catalog\models\Product */
+                                            /** @var $model \frontend\modules\catalog\models\FactoryProduct */
                                             return $model->getTitle();
                                         },
                                     ],
                                     [
                                         'attribute' => 'updated_at',
                                         'value' => function ($model) {
-                                            return date('d.n.Y H:i', $model->updated_at);
+                                            return date('j.m.Y', $model->updated_at);
                                         },
                                         'format' => 'raw',
                                         'filter' => false
@@ -90,7 +91,7 @@ $this->title = $this->context->title;
 //                                        'attribute' => 'published',
 //                                        'format' => 'raw',
 //                                        'value' => function ($model) {
-//                                            /** @var $model \frontend\modules\catalog\models\Product */
+//                                            /** @var $model \frontend\modules\catalog\models\FactoryProduct */
 //                                            return ($model->published) ? 1 : 0;
 //                                        },
 //                                        'headerOptions' => ['class' => 'col-sm-1',],
@@ -103,28 +104,39 @@ $this->title = $this->context->title;
                                     ],
                                     [
                                         'class' => yii\grid\ActionColumn::class,
-                                        'template' => '{update} {delete}',
+                                        'template' => '{view} {update} {delete}',
                                         'buttons' => [
-                                            'update' => function ($url, $model) {
-                                                /** @var $model \frontend\modules\catalog\models\Product */
+                                            'view' => function ($url, $model) {
+                                                /** @var $model \frontend\modules\catalog\models\FactoryProduct */
                                                 return Html::a(
+                                                    '<span class="glyphicon glyphicon-eye-open"></span>',
+                                                    Product::getUrl($model['alias']),
+                                                    [
+                                                        'class' => 'btn btn-default btn-xs',
+                                                        'target' => '_blank'
+                                                    ]
+                                                );
+                                            },
+                                            'update' => function ($url, $model) {
+                                                /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                                return Yii::$app->user->identity->id == $model->user_id ? Html::a(
                                                     '<span class="glyphicon glyphicon-pencil"></span>',
                                                     Url::toRoute(['/catalog/factory-product/update', 'id' => $model->id]),
                                                     [
                                                         'class' => 'btn btn-default btn-xs'
                                                     ]
-                                                );
+                                                ) : '';
                                             },
                                             'delete' => function ($url, $model) {
-                                                /** @var $model \frontend\modules\catalog\models\Product */
-                                                return Html::a(
+                                                /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                                return Yii::$app->user->identity->id == $model->user_id ? Html::a(
                                                     '<span class="glyphicon glyphicon-trash"></span>',
                                                     Url::toRoute(['/catalog/factory-product/intrash', 'id' => $model->id]),
                                                     [
                                                         'class' => 'btn btn-default btn-xs',
                                                         'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
                                                     ]
-                                                );
+                                                ) : '';
                                             },
                                         ],
                                         'buttonOptions' => ['class' => 'btn btn-default btn-xs'],

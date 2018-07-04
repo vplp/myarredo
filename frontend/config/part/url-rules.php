@@ -59,6 +59,7 @@ return [
 
     'factory-product' => 'catalog/factory-product/list',
     'factory-product/create' => 'catalog/factory-product/create',
+    'catalog/factory-product/ajax-get-category' => 'catalog/factory-product/ajax-get-category',
     'factory-product/update/<id:[\d\-]+>' => 'catalog/factory-product/update',
     'factory-product/intrash/<id:[\d\-]+>' => 'catalog/factory-product/intrash',
     'catalog/factory-product/fileupload' => 'catalog/factory-product/fileupload',

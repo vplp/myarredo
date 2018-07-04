@@ -25,7 +25,7 @@ $this->title = $this->context->title;
 
                 <?= Html::tag('h1', $this->context->title); ?>
 
-                <?= Html::a('Добавить товар распродажи', Url::toRoute(['/partner/sale/create']), ['class' => 'btn btn-default']) ?>
+                <?= Html::a(Yii::t('app', 'Add'), Url::toRoute(['/partner/sale/create']), ['class' => 'btn btn-default']) ?>
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,

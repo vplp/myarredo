@@ -9,174 +9,129 @@ use yii\helpers\{
 use kartik\widgets\Select2;
 //
 use frontend\modules\catalog\models\{
-    Category, Factory, Types, Specification
+    Category, Factory, Types, Specification, Collection
 };
 use frontend\modules\location\models\{
     Country, City
 };
 
 /**
- * @var \frontend\modules\catalog\models\Product $model
- * @var \frontend\modules\catalog\models\ProductLang $modelLang
+ * @var \frontend\modules\catalog\models\FactoryProduct $model
+ * @var \frontend\modules\catalog\models\FactoryProductLang $modelLang
  * @var \frontend\modules\catalog\models\Specification $Specification
  */
 
-$this->title = ($model->isNewRecord) ? 'Добавить товар в распродажу' : 'Редактировать товар распродажи';
+$this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edit');
 
 ?>
 
-<main>
-    <div class="page create-sale">
-        <div class="container large-container">
+    <main>
+        <div class="page create-sale">
+            <div class="container large-container">
 
-            <?= Html::tag('h1', $this->title); ?>
+                <?= Html::tag('h1', $this->title); ?>
 
-            <div class="column-center">
-                <div class="form-horizontal">
+                <div class="column-center">
+                    <div class="form-horizontal">
 
-                    <?php $form = ActiveForm::begin([
-                        'action' => ($model->isNewRecord)
-                            ? Url::toRoute(['/catalog/factory-product/create'])
-                            : Url::toRoute(['/catalog/factory-product/update', 'id' => $model->id]),
-                        'fieldConfig' => [
-                            'template' => "{label}<div class=\"col-sm-9\">{input}</div>\n{hint}\n{error}",
-                            'labelOptions' => ['class' => 'col-sm-3 col-form-label'],
-                        ],
-                    ]); ?>
+                        <?php $form = ActiveForm::begin([
+                            'action' => ($model->isNewRecord)
+                                ? Url::toRoute(['/catalog/factory-product/create'])
+                                : Url::toRoute(['/catalog/factory-product/update', 'id' => $model->id]),
+//                        'fieldConfig' => [
+//                            'template' => "{label}<div class=\"col-sm-9\">{input}</div>\n{hint}\n{error}",
+//                            'labelOptions' => ['class' => 'col-sm-3 col-form-label'],
+//                        ],
+                        ]); ?>
 
-                    <?php if ($model->isNewRecord): ?>
+                        <?php if ($model->isNewRecord): ?>
 
-                        <div class="alert alert-warning">
-                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                            Для загрузки изображений - сначала создайте товар
-                        </div>
-
-                    <?php else: ?>
-
-                        <?= $form->field($model, 'image_link')->imageOne($model->getImageLink()) ?>
-
-                        <?= $form->field($model, 'gallery_image')->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
-
-                    <?php endif; ?>
-
-                    <?= $form->field($modelLang, 'title') ?>
-
-                    <?= $form
-                        ->field($model, 'category_ids')
-                        ->widget(Select2::classname(), [
-                            'data' => Category::dropDownList(),
-                            'options' => [
-                                'placeholder' => Yii::t('app', 'Select option'),
-                                'multiple' => true
-                            ],
-                        ]) ?>
-
-                    <?= $form
-                        ->field($model, 'catalog_type_id')
-                        ->widget(Select2::classname(), [
-                            'data' => Types::dropDownList(),
-                            'options' => ['placeholder' => Yii::t('app', 'Select option')],
-                        ]) ?>
-
-                    <?= $form
-                        ->field($model, 'factory_id')
-                        ->widget(Select2::classname(), [
-                            'data' => Factory::dropDownList(),
-                            'options' => ['placeholder' => Yii::t('app', 'Select option')],
-                        ]) ?>
-
-                    <?= $form->field($modelLang, 'description')->textarea() ?>
-
-                    <?php
-                    /*$specification_value = $model->getSpecificationValueBySpecification();
-                    foreach (Specification::findBase()->all() as $Specification): ?>
-
-                        <?php if ($Specification['type'] === '1' && !in_array($Specification['id'], [39, 47])): ?>
-
-                            <div class="form-group row">
-                                <?= Html::label($Specification['lang']['title'], null, ['class' => 'col-sm-3 col-form-label']) ?>
-                                <div class="col-sm-2">
-                                    <?= Html::input(
-                                        'text',
-                                        'SpecificationValue[' . $Specification['id'] . ']',
-                                        !empty($specification_value[$Specification['id']]) ? $specification_value[$Specification['id']] : null,
-                                        ['class' => 'form-control']
-                                    ) ?>
-                                </div>
+                            <div class="alert alert-warning">
+                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                Для загрузки изображений - сначала создайте товар
                             </div>
 
-                        <?php elseif (in_array($Specification['id'], [2, 9])): ?>
-                            <div class="form-group row">
-                                <?= Html::label($Specification['lang']['title'], null, ['class' => 'col-sm-3 col-form-label']) ?>
-                                <div class="col-sm-9">
-                                    <?= Select2::widget([
-                                        'name' => 'SpecificationValue[' . $Specification['id'] . ']',
-                                        'value' => !empty($specification_value[$Specification['id']]) ? $specification_value[$Specification['id']] : null,
-                                        'data' => $Specification->getChildrenDropDownList(),
-                                        'options' => ['placeholder' => Yii::t('app', 'Select option')]
-                                    ]) ?>
-                                </div>
-                            </div>
+                        <?php else: ?>
+
+                            <?= $form->field($model, 'image_link')->imageOne($model->getImageLink()) ?>
+
+                            <?= $form->field($model, 'gallery_image')->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
+
                         <?php endif; ?>
 
-                    <?php endforeach;*/ ?>
+                        <?= $form->text_line($model, 'alias') ?>
 
-                    <?= $form->field(
-                        $model,
-                        'volume',
-                        ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
-                    ) ?>
+                        <?= $form->text_line($model, 'article') ?>
 
-                    <?= $form
-                        ->field(
-                            $model,
-                            'price',
-                            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
-                        ) ?>
+                        <?= $form->text_line_lang($modelLang, 'title') ?>
 
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Статус</label>
-                        <div class="col-sm-9">
-                            <div class="checkbox checkbox-primary">
-                                <?= $form
-                                    ->field(
-                                        $model,
-                                        'published',
-                                        [
-                                            'template' => '{input}{label}{error}{hint}',
-                                            'options' => [
-                                                'class' => '',
-                                            ]
-                                        ]
-                                    )
-                                    ->checkbox([], false)
-                                    ->label() ?>
+                        <?= $form
+                            ->field($model, 'collections_id')
+                            ->widget(Select2::classname(), [
+                                'data' => Collection::dropDownList(['factory_id' => Yii::$app->user->identity->profile->factory_id]),
+                                'options' => ['placeholder' => Yii::t('app', 'Select option')],
+                            ]) ?>
+
+                        <?= $form
+                            ->field($model, 'catalog_type_id')
+                            ->widget(Select2::classname(), [
+                                'data' => Types::dropDownList(),
+                                'options' => ['placeholder' => Yii::t('app', 'Select option')],
+                            ]) ?>
+
+                        <p>
+                            Категории напрямую зависит от выбранного типа предмета.<br>
+                            Если по выбраному типу предмета отсутсвует необходимая категория, зайдите в редактирование
+                            категории и добавте зависимость с предметом.
+                        </p>
+
+                        <?= $form
+                            ->field($model, 'category_ids')
+                            ->widget(Select2::classname(), [
+                                'data' => Category::dropDownList(['type_id' => $model->isNewRecord ? 0 : $model['catalog_type_id']]),
+                                'options' => [
+                                    'placeholder' => Yii::t('app', 'Select option'),
+                                    'multiple' => true
+                                ],
+                            ]) ?>
+
+                        <div class="row control-group">
+                            <div class="col-md-3">
+                                <?= $form->text_line($model, 'factory_price') ?>
+                            </div>
+                            <div class="col-md-3">
+                                <?= $form->text_line($model, 'price_from') ?>
                             </div>
                         </div>
+
+                        <div class="buttons-cont">
+                            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary btn-lg']) ?>
+                            <?= Html::a(Yii::t('app', 'Cancel'), ['/catalog/factory-product/list'], ['class' => 'btn btn-primary btn-lg']) ?>
+                        </div>
+
+                        <?php ActiveForm::end(); ?>
+
                     </div>
-
-                    <div class="buttons-cont">
-                        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary btn-lg']) ?>
-                        <?= Html::a(Yii::t('app', 'Cancel'), ['/catalog/factory-product/list'], ['class' => 'btn btn-primary btn-lg']) ?>
-                    </div>
-
-                    <?php ActiveForm::end(); ?>
-
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 
 <?php
-
+$url = \yii\helpers\Url::toRoute('/catalog/factory-product/ajax-get-category');
 $script = <<<JS
-$('select#registerform-country_id').change(function(){
-    var country_id = parseInt($(this).val());
-    $.post('/location/location/get-cities/', {_csrf: $('#token').val(),country_id:country_id}, function(data){
-        var select = $('select#registerform-city_id');
-        select.html(data.options);
-        select.selectpicker("refresh");
+$('#factoryproduct-catalog_type_id').on('change', function () {
+    $.post('$url',
+        {
+            _csrf: $('#token').val(),
+            type_id: $(this).find('option:selected').val()
+        }
+    ).done(function (data) {
+        var category = '';
+        $.each(data.category, function( key, value ) {
+           category += '<option value="'+ key +'">' + value + '</option>';
+        });
+        $('#factoryproduct-category_ids').html(category);
     });
 });
 JS;

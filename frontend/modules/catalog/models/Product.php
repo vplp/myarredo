@@ -14,64 +14,50 @@ use frontend\components\ImageResize;
  */
 class Product extends \common\modules\catalog\models\Product
 {
-//    /**
-//     * @return array
-//     */
-//    public function behaviors()
-//    {
-//        return [];
-//    }
-//
-//    /**
-//     * @return array
-//     */
-//    public function scenarios()
-//    {
-//        return [
-//            'frontendFactory' => [
-//                'category_ids',
-//            ]
-//        ];
-//    }
-//
-//    /**
-//     * @return array
-//     */
-//    public function attributeLabels()
-//    {
-//        return [];
-//    }
-//
-//    /**
-//     * @return array
-//     */
-//    public function rules()
-//    {
-//        return [];
-//    }
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function scenarios()
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function attributeLabels()
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function rules()
+    {
+        return [];
+    }
 
     /**
      * @return mixed
      */
     public static function findBase()
     {
-        $query = self::find();
-
-        if (Yii::$app->controller->id == 'factory-product') {
-            $query
-                ->andWhere(['user_id' => Yii::$app->user->identity->id])
-                ->innerJoinWith(['lang', 'factory']);
-        } else {
-            $query
-                ->innerJoinWith(['lang', 'factory'])
-                ->orderBy(self::tableName() . '.updated_at DESC')
-                ->enabled()
-                ->andFilterWhere([
-                    Product::tableName() . '.removed' => '0',
-                ]);
-        }
-
-        return $query;
+        return self::find()
+            ->innerJoinWith(['lang', 'factory'])
+            ->orderBy(self::tableName() . '.updated_at DESC')
+            ->enabled()
+            ->andFilterWhere([
+                Product::tableName() . '.removed' => '0',
+            ]);
     }
 
     /**
@@ -303,7 +289,7 @@ class Product extends \common\modules\catalog\models\Product
      */
     public function getTitle()
     {
-        $title = $this->lang->title;
+        $title = $this->lang->title ?? '{}';
 
         if ($this->is_composition)
             $title = Yii::t('app', 'Композиция') . ' ' . $title;

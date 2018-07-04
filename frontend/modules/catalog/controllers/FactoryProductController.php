@@ -2,18 +2,19 @@
 
 namespace frontend\modules\catalog\controllers;
 
+use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
+use yii\web\Response;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Product, ProductLang, search\Product as filterProductModel
+    Category, Collection, FactoryProduct, FactoryProductLang, search\FactoryProduct as filterFactoryProductModel
 };
 //
 use thread\actions\{
     CreateWithLang, ListModel, AttributeSwitch, UpdateWithLang
 };
-//use frontend\actions\UpdateWithLang;
 //
 use common\actions\upload\{
     DeleteAction, UploadAction
@@ -26,13 +27,13 @@ use common\actions\upload\{
  */
 class FactoryProductController extends BaseController
 {
-    public $title = "FactoryProduct";
+    public $title = "Factory Product";
 
     public $defaultAction = 'list';
 
-    protected $model = Product::class;
-    protected $modelLang = ProductLang::class;
-    protected $filterModel = filterProductModel::class;
+    protected $model = FactoryProduct::class;
+    protected $modelLang = FactoryProductLang::class;
+    protected $filterModel = filterFactoryProductModel::class;
 
     /**
      * @return array
@@ -72,6 +73,7 @@ class FactoryProductController extends BaseController
                     'class' => CreateWithLang::class,
                     'modelClass' => $this->model,
                     'modelClassLang' => $this->modelLang,
+                    'scenario' => 'frontend',
                     'redirect' => function () {
                         return ['update', 'id' => $this->action->getModel()->id];
                     }
@@ -80,6 +82,7 @@ class FactoryProductController extends BaseController
                     'class' => UpdateWithLang::class,
                     'modelClass' => $this->model,
                     'modelClassLang' => $this->modelLang,
+                    'scenario' => 'frontend',
                     'redirect' => function () {
                         return ['update', 'id' => $this->action->getModel()->id];
                     }
@@ -102,5 +105,35 @@ class FactoryProductController extends BaseController
                 ],
             ]
         );
+    }
+
+    /**
+     * @return array
+     */
+    public function actionAjaxGetCollection()
+    {
+        $response = [];
+        Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+        if (Yii::$app->request->isAjax && $factory_id = Yii::$app->request->post('factory_id')) {
+            $response['collection'] = Collection::dropDownList(['factory_id' => $factory_id]);
+        }
+
+        return $response;
+    }
+
+    /**
+     * @return array
+     */
+    public function actionAjaxGetCategory()
+    {
+        $response = [];
+        Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+        if (Yii::$app->request->isAjax && $type_id = Yii::$app->request->post('type_id')) {
+            $response['category'] = Category::dropDownList(['type_id' => $type_id]);
+        }
+
+        return $response;
     }
 }
