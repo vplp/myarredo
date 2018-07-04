@@ -25,6 +25,16 @@ class FactoryProduct extends Product
     /**
      * @return array
      */
+    public function rules()
+    {
+        return ArrayHelper::merge(CommonProduct::rules(), [
+            [['factory_id', 'catalog_type_id'], 'required', 'on' => 'frontend'],
+        ]);
+    }
+
+    /**
+     * @return array
+     */
     public function scenarios()
     {
         return ArrayHelper::merge(CommonProduct::scenarios(), [
@@ -77,20 +87,12 @@ class FactoryProduct extends Product
     }
 
     /**
-     * @return array
-     */
-    public function rules()
-    {
-        return ArrayHelper::merge(CommonProduct::rules(), []);
-    }
-
-    /**
      * @return mixed
      */
     public static function findBase()
     {
         return self::find()
-            ->innerJoinWith(['lang', 'factory'])
+            //->innerJoinWith(['lang', 'factory'])
             ->andWhere(['factory_id' => Yii::$app->user->identity->profile->factory_id])
             ->orderBy(self::tableName() . '.updated_at DESC');
     }

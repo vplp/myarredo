@@ -108,14 +108,14 @@ $this->title = $this->context->title;
                                         'buttons' => [
                                             'view' => function ($url, $model) {
                                                 /** @var $model \frontend\modules\catalog\models\FactoryProduct */
-                                                return Html::a(
+                                                return ($model->published && !$model->deleted) ? Html::a(
                                                     '<span class="glyphicon glyphicon-eye-open"></span>',
                                                     Product::getUrl($model['alias']),
                                                     [
                                                         'class' => 'btn btn-default btn-xs',
                                                         'target' => '_blank'
                                                     ]
-                                                );
+                                                ) : '';
                                             },
                                             'update' => function ($url, $model) {
                                                 /** @var $model \frontend\modules\catalog\models\FactoryProduct */

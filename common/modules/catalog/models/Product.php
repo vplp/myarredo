@@ -280,7 +280,7 @@ class Product extends ActiveRecord implements iProduct
      */
     public function beforeSave($insert)
     {
-        if ($this->alias == '' && in_array($this->scenario, ['backend', 'setAlias'])) {
+        if ($this->alias == '' && in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
             $this->alias = (!empty($this->types) ? $this->types->alias : '')
                 . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
                 . (!empty($this->collection->lang) ? ' ' . $this->collection->lang->title : '')

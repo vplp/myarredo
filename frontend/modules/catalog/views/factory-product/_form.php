@@ -14,7 +14,12 @@ use frontend\modules\catalog\models\{
 use frontend\modules\location\models\{
     Country, City
 };
-
+use frontend\modules\catalog\models\{
+    ProductRelSpecification
+};
+use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;
+//
+use backend\themes\defaults\widgets\TreeGrid;
 /**
  * @var \frontend\modules\catalog\models\FactoryProduct $model
  * @var \frontend\modules\catalog\models\FactoryProductLang $modelLang
@@ -95,14 +100,41 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
                                 ],
                             ]) ?>
 
-                        <div class="row control-group">
-                            <div class="col-md-3">
-                                <?= $form->text_line($model, 'factory_price') ?>
-                            </div>
-                            <div class="col-md-3">
-                                <?= $form->text_line($model, 'price_from') ?>
-                            </div>
-                        </div>
+                        <?= $form->field($modelLang, 'description')->textarea() ?>
+
+                        <?= $form->field($modelLang, 'comment')->textarea() ?>
+
+                        <?= $form->text_line($model, 'volume') ?>
+
+                        <?php if (!$model->isNewRecord): ?>
+
+                            <?= TreeGrid::widget([
+                                'dataProvider' => (new Specification())->search(Yii::$app->request->queryParams),
+                                'keyColumnName' => 'id',
+                                'parentColumnName' => 'parent_id',
+                                'options' => ['class' => 'table table-striped table-bordered'],
+                                'columns' => [
+                                    [
+                                        'attribute' => 'title',
+                                        'value' => 'lang.title',
+                                        'label' => Yii::t('app', 'Title'),
+                                    ],
+                                    [
+                                        'attribute' => 'val',
+                                        'class' => ManyToManySpecificationValueDataColumn::class,
+                                        'primaryKeyFirstTable' => 'specification_id',
+                                        'attributeRow' => 'val',
+                                        'primaryKeySecondTable' => 'catalog_item_id',
+                                        'valueSecondTable' => Yii::$app->getRequest()->get('id'),
+                                        'namespace' => ProductRelSpecification::class,
+                                    ],
+                                ]
+                            ]); ?>
+
+                        <?php endif; ?>
+                        <?= $form->text_line($model, 'factory_price') ?>
+
+                        <?= $form->text_line($model, 'price_from') ?>
 
                         <div class="buttons-cont">
                             <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary btn-lg']) ?>
