@@ -94,7 +94,8 @@ class FactoryProduct extends Product
         return self::find()
             //->innerJoinWith(['lang', 'factory'])
             ->andWhere(['factory_id' => Yii::$app->user->identity->profile->factory_id])
-            ->orderBy(self::tableName() . '.updated_at DESC');
+            ->orderBy(self::tableName() . '.updated_at DESC')
+            ->undeleted();
     }
 
     /**
