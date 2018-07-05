@@ -250,11 +250,10 @@ class Form extends \yii\bootstrap\ActiveField
     }
 
     /**
-     * DatePicker form field widget
-     *
      * @param $value
      * @param string $format
      * @return $this
+     * @throws \Exception
      */
     public function datePicker($value, $format = 'dd.mm.yyyy')
     {

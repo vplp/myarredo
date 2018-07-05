@@ -295,6 +295,26 @@ class Product extends ActiveRecord implements iProduct
             $this->factory_id = Yii::$app->user->identity->profile->factory_id;
         }
 
+        if (YII_ENV_PROD) {
+            /** @var Catalog $module */
+            $module = Yii::$app->getModule('catalog');
+
+            $path = $module->getProductUploadPath();
+            $url = $module->getProductUploadUrl();
+
+            $images = explode(',', $this->gallery_image);
+
+            $imagesSources = [];
+
+            foreach ($images as $image) {
+                if (file_exists($path . '/' . $image)) {
+                    $imagesSources[] = $image;
+                }
+            }
+
+            $this->gallery_image = implode(',', $imagesSources);
+        }
+
         return parent::beforeSave($insert);
     }
 
