@@ -48,6 +48,8 @@ $this->title = $this->context->title;
 
                             <?= GridView::widget([
                                 'dataProvider' => $dataProvider,
+                                'filterModel' => $filter,
+                                'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
                                 'columns' => [
                                     [
                                         'attribute' => 'category',
@@ -59,8 +61,13 @@ $this->title = $this->context->title;
                                             return implode(', ', $result);
                                         },
                                         'label' => Yii::t('app', 'Category'),
+                                        'filter' => GridViewFilter::selectOne($filter, 'category', Category::dropDownList()),
                                     ],
-                                    'article',
+                                    [
+                                        'attribute' => 'article',
+                                        'value' => 'article',
+                                        'label' => Yii::t('app', 'Article'),
+                                    ],
                                     [
                                         'attribute' => 'image_link',
                                         'value' => function ($model) {
@@ -72,12 +79,9 @@ $this->title = $this->context->title;
                                         'filter' => false
                                     ],
                                     [
-                                        'attribute' => 'lang.title',
-                                        'format' => 'raw',
-                                        'value' => function ($model) {
-                                            /** @var $model \frontend\modules\catalog\models\FactoryProduct */
-                                            return $model->getTitle();
-                                        },
+                                        'attribute' => 'title',
+                                        'value' => 'lang.title',
+                                        'label' => Yii::t('app', 'Title'),
                                     ],
                                     [
                                         'attribute' => 'updated_at',

@@ -27,7 +27,7 @@ use common\actions\upload\{
  */
 class FactoryProductController extends BaseController
 {
-    public $title = "Factory Product";
+    public $title = '';
 
     public $defaultAction = 'list';
 
@@ -61,6 +61,8 @@ class FactoryProductController extends BaseController
      */
     public function actions()
     {
+        $this->title = Yii::t('app', 'My goods');
+
         return ArrayHelper::merge(
             parent::actions(),
             [

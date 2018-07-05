@@ -92,10 +92,9 @@ class FactoryProduct extends Product
     public static function findBase()
     {
         return self::find()
-            //->innerJoinWith(['lang', 'factory'])
+            ->innerJoinWith(['lang', 'factory'])
             ->andWhere(['factory_id' => Yii::$app->user->identity->profile->factory_id])
-            ->orderBy(self::tableName() . '.updated_at DESC')
-            ->undeleted();
+            ->orderBy(self::tableName() . '.updated_at DESC');
     }
 
     /**

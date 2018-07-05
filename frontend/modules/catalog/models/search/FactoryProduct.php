@@ -6,12 +6,16 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 //
+use thread\app\model\interfaces\search\BaseBackendSearchModel;
+//
 use frontend\modules\catalog\models\{
     Category,
     Types,
     Factory,
     FactoryProduct as FactoryProductModel,
-    Specification
+    FactoryProductLang,
+    Specification,
+    ProductRelCategory
 };
 use frontend\modules\catalog\Catalog;
 
@@ -22,9 +26,10 @@ use frontend\modules\catalog\Catalog;
  *
  * @package frontend\modules\catalog\models\search
  */
-class FactoryProduct extends FactoryProductModel
+class FactoryProduct extends FactoryProductModel implements BaseBackendSearchModel
 {
     public $title;
+    public $category;
 
     /**
      * @return array
@@ -32,9 +37,9 @@ class FactoryProduct extends FactoryProductModel
     public function rules()
     {
         return [
-            [['id', 'category_id', 'factory_id'], 'integer'],
-            [['alias', 'title'], 'string', 'max' => 255],
-            [['published', 'removed'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [['id', 'category', 'factory_id'], 'integer'],
+            [['alias', 'article', 'title', 'image_link'], 'string', 'max' => 255],
+            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
 
@@ -58,8 +63,6 @@ class FactoryProduct extends FactoryProductModel
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
 
-        $keys = Yii::$app->catalogFilter->keys;
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
@@ -68,69 +71,28 @@ class FactoryProduct extends FactoryProductModel
             ],
         ]);
 
-        if (!($this->load($params, ''))) {
+        $query->andFilterWhere([
+            'is_composition' => '0'
+        ]);
+
+        if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
 
+
+
         $query->andFilterWhere([
-            self::tableName() . '.id' => $this->id,
+            'id' => $this->id,
+            'factory_id' => $this->factory_id,
         ]);
 
-        if (isset($params[$keys['category']])) {
-            $query
-                ->innerJoinWith(["category"])
-                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params[$keys['category']]]);
-        }
+        $query
+            ->andFilterWhere(['like', FactoryProductLang::tableName() . '.title', $this->title])
+            ->andFilterWhere(['like', FactoryProduct::tableName() . '.article', $this->article]);
 
-        if (isset($params[$keys['type']])) {
-            $query
-                ->innerJoinWith(["types"])
-                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
-        }
-
-        if (isset($params[$keys['style']])) {
-            $query
-                ->innerJoinWith(["specification"])
-                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params[$keys['style']]]);
-        }
-
-        if (isset($params[$keys['factory']])) {
-            $query
-                ->innerJoinWith(["factory"])
-                ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
-        }
-
-        if (isset($params[$keys['collection']])) {
-            $query
-                ->innerJoinWith(["collection"])
-                ->andFilterWhere(['IN', Collection::tableName() . '.id', $params[$keys['collection']]]);
-        }
-
-        if (isset($params[$keys['price']])) {
-            $query->andFilterWhere(['between', self::tableName() . '.price_from', $params[$keys['price']][0], $params[$keys['price']][1]]);
-        }
-
-        $order = [];
-
-        if (isset($params['sort']) && $params['sort'] == 'asc') {
-            $order[] = self::tableName() . '.factory_price ASC';
-        } else if (isset($params['sort']) && $params['sort'] == 'desc') {
-            $order[] = self::tableName() . '.factory_price DESC';
-        }
-
-        if (isset($params['object']) && $params['object'] == 'composition') {
-            $order[] = self::tableName() . '.is_composition DESC';
-        }
-
-        if (isset($params['show']) && $params['show'] == 'in_stock') {
-            $query->andWhere([
-                self::tableName() . '.in_stock' => '1'
-            ]);
-        }
-
-        $order[] = self::tableName() . '.updated_at DESC';
-
-        $query->orderBy(implode(',', $order));
+        $query
+            ->innerJoinWith(["category"])
+            ->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $this->category]);
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();
@@ -139,53 +101,6 @@ class FactoryProduct extends FactoryProductModel
         return $dataProvider;
     }
 
-//    /**
-//     * @param $params
-//     * @return mixed
-//     */
-//    public function getSubQuery($params)
-//    {
-//        $keys = Yii::$app->catalogFilter->keys;
-//
-//        $query = FactoryProductModel::findBase();
-//
-//        $query->andWhere([
-//            FactoryProductModel::tableName() . '.removed' => '0'
-//        ]);
-//
-//        $query->andFilterWhere([
-//            'id' => $this->id,
-//        ]);
-//
-//        if (isset($params[$keys['category']])) {
-//            $query
-//                ->innerJoinWith(["category"])
-//                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params[$keys['category']]]);
-//        }
-//
-//        if (isset($params[$keys['types']])) {
-//            $query
-//                ->innerJoinWith(["types"])
-//                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['types']]]);
-//        }
-//
-//        if (isset($params[$keys['style']])) {
-//            $query
-//                ->innerJoinWith(["specification"])
-//                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params[$keys['style']]]);
-//        }
-//
-//        if (isset($params[$keys['factory']])) {
-//            $query
-//                ->innerJoinWith(["factory"])
-//                ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
-//        }
-//
-//        $query->select(FactoryProductModel::tableName() . '.id');
-//
-//        return $query;
-//    }
-
     /**
      * @param $params
      * @return ActiveDataProvider
@@ -193,7 +108,18 @@ class FactoryProduct extends FactoryProductModel
      */
     public function search($params)
     {
-        $query = FactoryProductModel::findBase();
+        $query = FactoryProductModel::findBase()->undeleted();
+        return $this->baseSearch($query, $params);
+    }
+
+    /**
+     * @param $params
+     * @return mixed|ActiveDataProvider
+     * @throws \Throwable
+     */
+    public function trash($params)
+    {
+        $query = FactoryProductModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }
