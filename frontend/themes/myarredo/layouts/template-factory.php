@@ -35,12 +35,15 @@ $this->beginPage()
         <div class="container large-container">
             <div class="top-topm-header flex">
                 <div class="logo-cont">
-                    <?= Html::img(Factory::getImage($this->context->factory['image_link'])); ?>
+                    <?= Html::a(
+                        Html::img(Factory::getImage($this->context->factory['image_link'])),
+                        Url::toRoute('/home/home/index')
+                    ) ?>
                 </div>
 
                 <?= Html::tag(
                     'h3',
-                    $this->context->factory['lang']['h1'] . '. '.Yii::t('app','Купить в') . ' ' . Yii::$app->city->getCityTitleWhere()
+                    $this->context->factory['lang']['h1'] . '. ' . Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere()
                 ); ?>
 
             </div>
@@ -70,7 +73,7 @@ $this->beginPage()
                     2015 - <?= date('Y'); ?> (С) <a href="/">MYARREDO</a>, ЛУЧШАЯ МЕБЕЛЬ ИЗ ИТАЛИИ ДЛЯ ВАШЕГО ДОМА
                 </div>
                 <div>
-                    <?= $this->context->factory['lang']['h1'] . '. ' .Yii::t('app','Купить в'). ' ' . Yii::$app->city->getCityTitleWhere() ?>
+                    <?= $this->context->factory['lang']['h1'] . '. ' . Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere() ?>
                 </div>
             </div>
         </div>
