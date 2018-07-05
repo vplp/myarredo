@@ -17,10 +17,9 @@ use kartik\file\FileInput;
 class ActiveField extends \thread\app\bootstrap\ActiveField
 {
     /**
-     * Image upload widget field
-     *
-     * @param string $preview image url
-     * @return $this
+     * @param string $preview
+     * @return $this|\thread\app\bootstrap\ActiveField
+     * @throws \Exception
      */
     public function imageOne($preview = '')
     {
@@ -81,12 +80,10 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
     }
 
     /**
-     * Image upload widget field
-     *
      * @param array $options
      * @param array $pluginOptions
      * @return $this
-     * @internal param string $preview image url
+     * @throws \Exception
      */
     public function imageSeveral($options = [], $pluginOptions = [])
     {
@@ -166,9 +163,9 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
     }
 
     /**
-     * Загрузка любых файлов, можно допилить проверку типов файлов
      * @param string $preview
      * @return $this
+     * @throws \Exception
      */
     public function fileInputWidget($preview = '')
     {
