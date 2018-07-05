@@ -26,17 +26,13 @@ use common\modules\catalog\Catalog;
  * @property string $user
  * @property integer $factory_id
  * @property integer $collections_id
- * @property integer $gallery_id
- * @property integer $picpath
  * @property integer $is_composition
  * @property string $alias
- * @property string $alias_old
  * @property string $article
  * @property float $price
  * @property float $volume
  * @property float $factory_price
  * @property float $price_from
- * @property float $retail_price
  * @property string $default_title
  * @property integer $popular
  * @property integer $novelty
@@ -124,18 +120,16 @@ class Product extends ActiveRecord implements iProduct
                     'user_id',
                     'factory_id',
                     'collections_id',
-                    'gallery_id',
                     'created_at',
                     'updated_at',
                     'position'
                 ],
                 'integer'
             ],
-            [['price', 'volume', 'factory_price', 'price_from', 'retail_price'], 'double'],
-            [['price', 'volume', 'factory_price', 'price_from', 'retail_price'], 'default', 'value' => 0.00],
+            [['price', 'volume', 'factory_price', 'price_from'], 'double'],
+            [['price', 'volume', 'factory_price', 'price_from'], 'default', 'value' => 0.00],
             [
                 [
-                    'picpath',
                     'is_composition',
                     'popular',
                     'novelty',
@@ -151,13 +145,13 @@ class Product extends ActiveRecord implements iProduct
                 'in',
                 'range' => array_keys(static::statusKeyRange())
             ],
-            [['country_code', 'user', 'alias', 'alias_old', 'default_title', 'image_link'], 'string', 'max' => 255],
+            [['country_code', 'user', 'alias', 'default_title', 'image_link'], 'string', 'max' => 255],
             [['gallery_image'], 'string', 'max' => 1024],
             [['article'], 'string', 'max' => 100],
             [['alias'], 'unique'],
             [['catalog_type_id', 'collections_id', 'position'], 'default', 'value' => '0'],
             [['country_code'], 'default', 'value' => '//'],
-            [['article', 'alias_old'], 'default', 'value' => ''],
+            [['article'], 'default', 'value' => ''],
             [
                 [
                     'category_ids',
@@ -187,7 +181,7 @@ class Product extends ActiveRecord implements iProduct
             'removed' => ['removed'],
             'in_stock' => ['in_stock'],
             'position' => ['position'],
-            'setImages' => ['image_link', 'gallery_image', 'picpath'],
+            'setImages' => ['image_link', 'gallery_image'],
             'setAlias' => ['alias', 'mark'],
             'setMark' => ['mark'],
             'backend' => [
@@ -195,7 +189,6 @@ class Product extends ActiveRecord implements iProduct
                 'user_id',
                 'factory_id',
                 'collections_id',
-                'gallery_id',
                 'image_link',
                 'gallery_image',
                 'created_at',
@@ -205,7 +198,6 @@ class Product extends ActiveRecord implements iProduct
                 'volume',
                 'factory_price',
                 'price_from',
-                'retail_price',
                 'is_composition',
                 'popular',
                 'novelty',
@@ -219,7 +211,6 @@ class Product extends ActiveRecord implements iProduct
                 'country_code',
                 'user',
                 'alias',
-                'alias_old',
                 'default_title',
                 'article',
                 'category_ids',
@@ -251,7 +242,6 @@ class Product extends ActiveRecord implements iProduct
             'catalog_type_id' => 'Тип предмета',
             'popular' => 'Популярное',
             'user' => 'Кто изменил',
-            'picpath' => 'picpath',
             'image_link' => Yii::t('app', 'Image link'),
             'gallery_image' => Yii::t('app', 'Gallery image'),
             'novelty' => 'Новинка',
