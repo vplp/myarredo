@@ -272,7 +272,6 @@ class Product extends ActiveRecord implements iProduct
         ];
     }
 
-
     /**
      * @param bool $insert
      * @return bool

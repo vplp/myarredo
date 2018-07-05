@@ -79,7 +79,12 @@ class Composition extends Product
             [['catalog_type_id', 'collections_id', 'position'], 'default', 'value' => '0'],
             [['country_code'], 'default', 'value' => '//'],
             [['article', 'alias_old'], 'default', 'value' => ''],
-            [['category_ids', 'product_ids'], 'each', 'rule' => ['integer']],
+            [
+                ['category_ids', 'product_ids'],
+                'each',
+                'rule' => ['integer']
+            ],
+            [['category_ids'], 'required'],
         ];
     }
 
