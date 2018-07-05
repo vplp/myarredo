@@ -622,7 +622,7 @@ $(document).ready(function(){
     });
 
     $('.js-filter-btn').on('click', function(){
-       $('.js-filter-modal').fadeIn();
+       $('.js-filter-modal').slideToggle(100);
     });
 
 
