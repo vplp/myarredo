@@ -224,7 +224,7 @@ class Product extends \common\modules\catalog\models\Product
     /**
      * @return array
      */
-    public function getGalleryImage()
+    public function getGalleryImageThumb()
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');

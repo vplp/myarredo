@@ -31,8 +31,6 @@ use common\modules\user\models\User;
  * @property string $factory_name
  * @property integer $catalog_type_id
  * @property integer $factory_id
- * @property integer $gallery_id
- * @property integer $picpath
  * @property string $alias
  * @property string $article
  * @property double $price
@@ -116,7 +114,6 @@ class Sale extends ActiveRecord
                     'user_city_id',
                     'catalog_type_id',
                     'factory_id',
-                    'gallery_id',
                     'created_at',
                     'updated_at',
                     'position'
@@ -127,7 +124,6 @@ class Sale extends ActiveRecord
             [['price', 'volume', 'price_new'], 'default', 'value' => 0.00],
             [
                 [
-                    'picpath',
                     'on_main',
                     'published',
                     'deleted',
@@ -174,7 +170,7 @@ class Sale extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'on_main' => ['on_main'],
-            'setImages' => ['image_link', 'gallery_image', 'picpath'],
+            'setImages' => ['image_link', 'gallery_image'],
             'backend' => [
                 'country_id',
                 'city_id',
@@ -184,10 +180,8 @@ class Sale extends ActiveRecord
                 'factory_name',
                 'catalog_type_id',
                 'factory_id',
-                'gallery_id',
                 'image_link',
                 'gallery_image',
-                'picpath',
                 'alias',
                 'article',
                 'price',
@@ -218,10 +212,8 @@ class Sale extends ActiveRecord
             'catalog_type_id' => 'Предмет',
             'factory_id' => Yii::t('app', 'Factory'),
             'factory_name' => 'Фабрика (если нет в списке)',
-            'gallery_id' => 'Gallery',
             'image_link' => Yii::t('app', 'Image link'),
             'gallery_image' => Yii::t('app', 'Gallery image'),
-            'picpath' => 'picpath',
             'alias' => Yii::t('app', 'Alias'),
             'article' => 'Артикул',
             'price' => 'Цена',

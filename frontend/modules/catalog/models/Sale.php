@@ -155,7 +155,7 @@ class Sale extends \common\modules\catalog\models\Sale
     /**
      * @return array
      */
-    public function getFrontGalleryImage()
+    public function getGalleryImageThumb()
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');

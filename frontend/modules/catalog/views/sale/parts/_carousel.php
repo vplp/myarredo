@@ -13,7 +13,7 @@ use yii\helpers\Html;
     <!-- Carousel items -->
     <div class="carousel-inner">
 
-        <?php foreach ($model->getFrontGalleryImage() as $key => $src) {
+        <?php foreach ($model->getGalleryImageThumb() as $key => $src) {
 
             $class = 'item' . (($key == 0) ? ' active' : '');
 
@@ -44,7 +44,7 @@ use yii\helpers\Html;
     <div class="nav-cont">
         <div class="carousel-indicators">
 
-            <?php foreach ($model->getFrontGalleryImage() as $key => $src): ?>
+            <?php foreach ($model->getGalleryImageThumb() as $key => $src): ?>
 
                 <div class="thumb-item" data-dominant-color>
                     <span class="background"></span>
