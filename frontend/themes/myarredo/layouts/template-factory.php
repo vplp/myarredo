@@ -37,7 +37,7 @@ $this->beginPage()
                 <div class="logo-cont">
                     <?= Html::a(
                         Html::img(Factory::getImage($this->context->factory['image_link'])),
-                        Url::toRoute('/home/home/index')
+                        ['/catalog/factory/view', 'alias' => $this->context->factory['alias']]
                     ) ?>
                 </div>
 
