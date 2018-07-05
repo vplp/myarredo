@@ -403,6 +403,9 @@ class Factory extends \common\modules\catalog\models\Factory
         return $command->queryAll();
     }
 
+    /**
+     * @return int
+     */
     public function getFactoryTotalCountSale()
     {
         $model = new Sale();
