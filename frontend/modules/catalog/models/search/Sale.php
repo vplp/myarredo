@@ -112,6 +112,10 @@ class Sale extends SaleModel
 
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);
 
+        self::getDb()->cache(function ($db) use ($dataProvider) {
+            $dataProvider->prepare();
+        });
+
         return $dataProvider;
     }
 

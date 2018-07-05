@@ -402,4 +402,18 @@ class Factory extends \common\modules\catalog\models\Factory
 
         return $command->queryAll();
     }
+
+    public function getFactoryTotalCountSale()
+    {
+        $model = new Sale();
+
+        $keys = Yii::$app->catalogFilter->keys;
+        $params = Yii::$app->catalogFilter->params;
+
+        $params[$keys['factory']] = [$this->alias];
+
+        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
+
+        return $models->totalCount;
+    }
 }

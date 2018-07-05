@@ -132,9 +132,9 @@ class FactoryProduct extends FactoryProductModel
 
         $query->orderBy(implode(',', $order));
 
-//        self::getDb()->cache(function ($db) use ($dataProvider) {
-//            $dataProvider->prepare();
-//        });
+        self::getDb()->cache(function ($db) use ($dataProvider) {
+            $dataProvider->prepare();
+        });
 
         return $dataProvider;
     }

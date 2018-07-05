@@ -43,7 +43,9 @@ $this->beginPage()
 
                 <?= Html::tag(
                     'h3',
-                    $this->context->factory['lang']['h1'] . '. ' . Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere()
+                    $this->context->factory['lang']['h1'] . '. ' .
+                    Yii::t('app', 'Купить в') . ' ' .
+                    Yii::$app->city->getCityTitleWhere()
                 ); ?>
 
             </div>
@@ -51,10 +53,29 @@ $this->beginPage()
                 <?= Yii::$app->partner->getPartnerPhone() ?>
             </a>
             <nav class="nav">
-                <?= Html::a(Yii::t('app', 'Main'), ['/catalog/factory/view', 'alias' => $this->context->factory['alias']]); ?>
-                <?= Html::a(Yii::t('app', 'Catalog of furniture'), ['/catalog/template-factory/catalog', 'alias' => $this->context->factory['alias']]); ?>
-                <?= Html::a(Yii::t('app', 'Sale'), ['/catalog/template-factory/sale', 'alias' => $this->context->factory['alias']]); ?>
-                <?= Html::a(Yii::t('app', 'Contacts'), ['/catalog/template-factory/contacts', 'alias' => $this->context->factory['alias']]); ?>
+
+                <?= Html::a(
+                    Yii::t('app', 'Main'),
+                    ['/catalog/factory/view', 'alias' => $this->context->factory['alias']]
+                ) ?>
+
+                <?= Html::a(
+                    Yii::t('app', 'Catalog of furniture'),
+                    ['/catalog/template-factory/catalog', 'alias' => $this->context->factory['alias']]
+                ) ?>
+
+                <?php if ($this->context->factory->getFactoryTotalCountSale()) {
+                    echo Html::a(
+                        Yii::t('app', 'Sale'),
+                        ['/catalog/template-factory/sale', 'alias' => $this->context->factory['alias']]
+                    );
+                } ?>
+
+                <?= Html::a(
+                    Yii::t('app', 'Contacts'),
+                    ['/catalog/template-factory/contacts', 'alias' => $this->context->factory['alias']]
+                ) ?>
+
             </nav>
         </div>
     </div>
@@ -73,7 +94,9 @@ $this->beginPage()
                     2015 - <?= date('Y'); ?> (С) <a href="/">MYARREDO</a>, ЛУЧШАЯ МЕБЕЛЬ ИЗ ИТАЛИИ ДЛЯ ВАШЕГО ДОМА
                 </div>
                 <div>
-                    <?= $this->context->factory['lang']['h1'] . '. ' . Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere() ?>
+                    <?= $this->context->factory['lang']['h1'] . '. ' .
+                    Yii::t('app', 'Купить в') . ' ' .
+                    Yii::$app->city->getCityTitleWhere() ?>
                 </div>
             </div>
         </div>
