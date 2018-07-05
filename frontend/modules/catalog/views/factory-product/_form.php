@@ -64,8 +64,6 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
 
                         <?php endif; ?>
 
-                        <?= $form->text_line($model, 'alias') ?>
-
                         <?= $form->text_line($model, 'article') ?>
 
                         <?= $form->text_line_lang($modelLang, 'title') ?>
@@ -132,6 +130,7 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
                             ]); ?>
 
                         <?php endif; ?>
+
                         <?= $form->text_line($model, 'factory_price') ?>
 
                         <?= $form->text_line($model, 'price_from') ?>

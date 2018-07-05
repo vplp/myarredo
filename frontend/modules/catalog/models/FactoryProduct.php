@@ -28,7 +28,7 @@ class FactoryProduct extends Product
     public function rules()
     {
         return ArrayHelper::merge(CommonProduct::rules(), [
-            [['factory_id', 'catalog_type_id'], 'required', 'on' => 'frontend'],
+            [['catalog_type_id'], 'required', 'on' => 'frontend'],
         ]);
     }
 
