@@ -29,7 +29,7 @@ $this->title = $this->context->title;
 <main>
     <div class="page category-page">
         <div class="container large-container">
-            <div class="row">
+            <div class="row title-cont">
 
                 <?= Html::tag('h1', $this->context->title); ?>
 

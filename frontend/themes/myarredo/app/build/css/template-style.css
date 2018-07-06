@@ -1,7 +1,10 @@
 @charset "UTF-8";
 body {
   font-family: 'Open Sans', sans-serif; }
-
+h1 {
+  font-family: "Palatino", "Open Sans", sans-serif;
+  font-weight: bold;
+}
 .page {
   background: #F3F2F0; }
 
