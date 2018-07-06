@@ -95,21 +95,21 @@ $this->title = $this->context->title;
                                         'format' => 'raw',
                                         'filter' => false
                                     ],
-//                                    [
-//                                        'attribute' => 'published',
-//                                        'format' => 'raw',
-//                                        'value' => function ($model) {
-//                                            /** @var $model \frontend\modules\catalog\models\FactoryProduct */
-//                                            return ($model->published) ? 1 : 0;
-//                                        },
-//                                        'headerOptions' => ['class' => 'col-sm-1',],
-//                                        'contentOptions' => ['class' => 'text-center',],
-//                                    ],
                                     [
+                                        'attribute' => 'published',
+                                        'format' => 'raw',
+                                        'value' => function ($model) {
+                                            /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                            return Html::checkbox(false, $model->published, ['disabled'=>true]);
+                                        },
+                                        'headerOptions' => ['class' => 'col-sm-1',],
+                                        'contentOptions' => ['class' => 'text-center',],
+                                    ],
+                                    /*[
                                         'class' => ActionStatusColumn::class,
                                         'attribute' => 'published',
                                         'action' => 'published'
-                                    ],
+                                    ],*/
                                     [
                                         'class' => yii\grid\ActionColumn::class,
                                         'template' => '{view} {update} {delete}',
