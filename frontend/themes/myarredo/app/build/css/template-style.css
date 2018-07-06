@@ -1689,7 +1689,7 @@ h1 {
     border: 1px solid #BDBCB3; }
   .category-page .title-cont {
     padding-left: 15px;
-    padding-bottom: 15px;
+    margin-bottom: 20px;
   }
   .btn-goods {
     background-color: #448339;
@@ -1709,6 +1709,37 @@ h1 {
     font-size: 11px;
     text-transform: uppercase;
   }
+  .cont-goods .table thead tr td {
+    position: relative;
+  }
+  .cont-goods .table thead tr td:nth-child(2)::after,
+  .cont-goods .table thead tr td:nth-child(4)::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-image: url("../img/search.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    right: 16px;
+    top: 18px;
+  }
+  .cont-goods .table tbody tr td {
+    color: #535351;
+  }
+  .cont-goods .table tbody tr td:first-child {
+    text-align: center;
+  }
+  .cont-goods .table tbody tr td:last-child .btn-default {
+    color: #448339;
+    border-color: #448339;
+    padding: 2px 6px;
+  }
+  .cont-goods .table tbody tr td:nth-child(3) img {
+    width: 90px;
+  }
   .cont-goods .select2-container--krajee .select2-selection--single .select2-selection__arrow {
     border-left: none;
   }
@@ -1719,17 +1750,41 @@ h1 {
     padding: 3px;
     transform: rotate(45deg);
     margin-top: -5px;
+    margin-left: -12px;
   }
   .select2-container--krajee.select2-container--open .select2-selection,
   .select2-container--krajee .select2-selection:focus,
   .select2-container--krajee .select2-dropdown,
-  .cont-goods #factoryproduct-published:focus {
+  .cont-goods .table thead tr td input[type="text"]:focus {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px rgba(68, 131, 57, 0.6);
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     border-color: #448339;
   }
   .select2-container--krajee .select2-results__option--highlighted[aria-selected] {
     background-color: #448339;
+  }
+  .cont-goods .jq-checkbox {
+    width: 25px;
+    height: 23px;
+    cursor: not-allowed;
+  }
+  .cont-goods .jq-checkbox.checked .jq-checkbox__div {
+    width: 14px;
+    height: 9px;
+    margin: 4px 0 0 3px;
+    border-bottom: 2px solid #000000;
+    border-left: 2px solid #000000;
+    -webkit-transform: rotate(-50deg);
+    transform: rotate(-50deg);
+    background-color: transparent;
+    box-shadow: none;
+  }
+  .cont-goods .summary {
+    text-align: right;
+    margin-bottom: 15px;
+    position: absolute;
+    right: 15px;
+    top: -40px;
   }
 
 .prod-card-page .container-wrap {
