@@ -67,7 +67,11 @@ $this->title = $this->context->title;
                                         },
                                         'format' => 'raw',
                                         'label' => Yii::t('app', 'Category'),
-                                        'filter' => GridViewFilter::selectOne($filter, 'category', Category::dropDownList()),
+                                        'filter' => GridViewFilter::selectOne(
+                                            $filter,
+                                            'category',
+                                            Category::dropDownList()
+                                        ),
                                     ],
                                     [
                                         'attribute' => 'article',
@@ -95,20 +99,23 @@ $this->title = $this->context->title;
                                         'format' => 'raw',
                                         'filter' => false
                                     ],
-//                                    [
-//                                        'attribute' => 'published',
-//                                        'format' => 'raw',
-//                                        'value' => function ($model) {
-//                                            /** @var $model \frontend\modules\catalog\models\FactoryProduct */
-//                                            return ($model->published) ? 1 : 0;
-//                                        },
-//                                        'headerOptions' => ['class' => 'col-sm-1',],
-//                                        'contentOptions' => ['class' => 'text-center',],
-//                                    ],
                                     [
-                                        'class' => ActionStatusColumn::class,
                                         'attribute' => 'published',
-                                        'action' => 'published'
+                                        'format' => 'raw',
+                                        'value' => function ($model) {
+                                            /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                            return Html::checkbox(false, $model->published, ['disabled' => true]);
+                                        },
+                                        'headerOptions' => ['class' => 'col-sm-1',],
+                                        'contentOptions' => ['class' => 'text-center',],
+                                        'filter' => GridViewFilter::selectOne(
+                                            $filter,
+                                            'published',
+                                            [
+                                                0 => 'On',
+                                                1 => 'Off'
+                                            ]
+                                        ),
                                     ],
                                     [
                                         'class' => yii\grid\ActionColumn::class,
