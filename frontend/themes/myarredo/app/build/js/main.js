@@ -264,13 +264,17 @@ $(document).ready(function(){
         $(this).remove();
     });
 
-    $(".notebook-page .read-more").mouseenter(function(){
-       var item = $(this).closest('.basket-item-info');
-       item.addClass("read-more");
-    });
 
-    $(".basket-item-info").mouseleave(function () {
-        $(this).removeClass("read-more");
+    $('.notebook-page').find('.basket-item-info').on('mouseenter', '.read-more', function(e) {
+        var item = $('.notebook-page').find('.basket-item-info');
+        item.addClass("read-more");
+    });
+    $('.notebook-page').find('.basket-item-info').on('mouseleave', function(e) {
+        var item = $('.notebook-page').find('.basket-item-info');
+        var cartbutton = $('.notebook-page').find('.basket-item-info').find('.read-more');
+        if (!cartbutton.is(e.target)) {
+            item.removeClass("read-more");
+        }
     });
 
     /*--конец Блокнот--*/

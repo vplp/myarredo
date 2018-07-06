@@ -1695,6 +1695,8 @@ h1 {
     background-color: #448339;
     color: #ffffff;
     border-radius: 0;
+    text-transform: uppercase;
+    font-size: 13px;
     transition: all 0.4s;
   }
   .btn-goods:hover,
@@ -1711,6 +1713,9 @@ h1 {
   }
   .cont-goods .table thead tr td {
     position: relative;
+  }
+  .cont-goods .table thead tr td input[type="text"] {
+    padding-right: 22px;
   }
   .cont-goods .table thead tr td:nth-child(2)::after,
   .cont-goods .table thead tr td:nth-child(4)::after {
@@ -3570,6 +3575,9 @@ h1 {
 
 .notebook-page {
   padding-bottom: 70px; }
+  .notebook-page .basket-item-info {
+    min-height: 320px;
+  }
 
 /*--media--*/
 @media (max-width: 1300px) {
@@ -3659,7 +3667,9 @@ h1 {
   header .dropdown-item a {
     padding: 0 !important; }
   .notebook-page .basket-item-info {
-    width: 48%; }
+    width: 48%;
+    min-height: 320px;
+   }
   .city-partner h1 {
     font-size: 30px; }
   .tomassy-page .cat-container .cat-prod .one-prod-tile {
