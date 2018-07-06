@@ -246,7 +246,7 @@ class CatalogFilter extends Component
         if (!empty(self::$_structure['type'])) {
 
             $model = Types::findBase()
-                ->andWhere(['IN', self::tableName() . '.alias', self::$_structure['type']])
+                ->andWhere(['IN', Types::tableName() . '.alias', self::$_structure['type']])
                 ->indexBy('id')
                 ->orderBy(Types::tableName() . '.alias')
                 ->all();
