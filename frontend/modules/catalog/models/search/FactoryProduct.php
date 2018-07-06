@@ -39,7 +39,7 @@ class FactoryProduct extends FactoryProductModel implements BaseBackendSearchMod
         return [
             [['id', 'category', 'factory_id'], 'integer'],
             [['alias', 'article', 'title', 'image_link'], 'string', 'max' => 255],
-            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [['published', 'removed'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
 
@@ -87,6 +87,7 @@ class FactoryProduct extends FactoryProductModel implements BaseBackendSearchMod
         ]);
 
         $query
+            ->andFilterWhere(['like', self::tableName() . '.published', $this->published])
             ->andFilterWhere(['like', FactoryProductLang::tableName() . '.title', $this->title])
             ->andFilterWhere(['like', FactoryProduct::tableName() . '.article', $this->article]);
 
