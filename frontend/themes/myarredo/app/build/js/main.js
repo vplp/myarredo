@@ -568,7 +568,6 @@ $(document).ready(function(){
             $('.lang-selector').removeClass('opened');
         }
     });
-
 });
 /*--------------------------------------------------------*/
 $(document).ready(function(){

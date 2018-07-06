@@ -4,6 +4,8 @@ body {
 h1 {
   font-family: "Palatino", "Open Sans", sans-serif;
   font-weight: bold;
+  text-transform: uppercase;
+  font-size: 35px;
 }
 .page {
   background: #F3F2F0; }
@@ -1491,7 +1493,7 @@ h1 {
     align-items: center;
     height: 35px;
     position: relative;
-    padding-left: 64px;
+    padding-left: 40px;
     padding-right: 18px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -1685,6 +1687,50 @@ h1 {
     background: transparent;
     color: #535351;
     border: 1px solid #BDBCB3; }
+  .category-page .title-cont {
+    padding-left: 15px;
+    padding-bottom: 15px;
+  }
+  .btn-goods {
+    background-color: #448339;
+    color: #ffffff;
+    border-radius: 0;
+    transition: all 0.4s;
+  }
+  .btn-goods:hover,
+  .btn-goods:focus {
+    color: #ffffff;
+    background-color: #449436;
+    border-radius: 2px;
+  }
+  .cont-goods .table thead tr:first-child th {
+    border-bottom: 1px solid transparent;
+    color: #535351;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  .cont-goods .select2-container--krajee .select2-selection--single .select2-selection__arrow {
+    border-left: none;
+  }
+  .cont-goods .select2-container--krajee .select2-selection--single .select2-selection__arrow b {
+    border: solid #448339;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    margin-top: -5px;
+  }
+  .select2-container--krajee.select2-container--open .select2-selection,
+  .select2-container--krajee .select2-selection:focus,
+  .select2-container--krajee .select2-dropdown,
+  .cont-goods #factoryproduct-published:focus {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px rgba(68, 131, 57, 0.6);
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    border-color: #448339;
+  }
+  .select2-container--krajee .select2-results__option--highlighted[aria-selected] {
+    background-color: #448339;
+  }
 
 .prod-card-page .container-wrap {
   background: #FFFFFF; }

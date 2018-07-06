@@ -33,7 +33,7 @@ $this->title = $this->context->title;
 
                 <?= Html::tag('h1', $this->context->title); ?>
 
-                <?= Html::a(Yii::t('app', 'Add'), Url::toRoute(['/catalog/factory-product/create']), ['class' => 'btn btn-default']) ?>
+                <?= Html::a(Yii::t('app', 'Add'), Url::toRoute(['/catalog/factory-product/create']), ['class' => 'btn btn-goods']) ?>
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
@@ -44,7 +44,7 @@ $this->title = $this->context->title;
                 <div class="row">
 
                     <div class="col-md-12 col-lg-12">
-                        <div class="cont-area">
+                        <div class="cont-area cont-goods">
 
                             <?= GridView::widget([
                                 'dataProvider' => $dataProvider,
