@@ -105,6 +105,12 @@ class FactoryProductController extends BaseController
                     'useHashPath' => true,
                     'path' => $this->module->getProductUploadPath()
                 ],
+                'promotion' => [
+                    'class' => AttributeSwitch::class,
+                    'modelClass' => $this->model,
+                    'attribute' => 'promotion',
+                    'redirect' => $this->defaultAction,
+                ],
             ]
         );
     }

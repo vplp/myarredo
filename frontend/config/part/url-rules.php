@@ -64,6 +64,7 @@ return [
     'factory-product/intrash/<id:[\d\-]+>' => 'catalog/factory-product/intrash',
     'catalog/factory-product/fileupload' => 'catalog/factory-product/fileupload',
     'catalog/factory-product/filedelete' => 'catalog/factory-product/filedelete',
+    'catalog/factory-product/promotion' => 'catalog/factory-product/promotion',
 
     'partner/sale' => 'catalog/partner-sale/list',
     'partner/sale/create' => 'catalog/partner-sale/create',

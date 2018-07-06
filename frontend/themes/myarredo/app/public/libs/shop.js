@@ -197,3 +197,29 @@ function refresh_full_cart() {
 function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
+
+// Ajax status switcher
+$('.ajax-status-switcher').on('click', function () {
+
+    var obj = this;
+
+    jQuery.ajax({
+        'url': $(obj).data('url'),
+        'cache': false,
+        'data': {
+            id: $(obj).data('id'),
+        },
+        success: function (data) {
+            var switches = $(obj).parent().find('.ajax-status-switcher');
+            //console.log($(obj).parent(), switches);
+            switches.each(function () {
+                var style = $(this).css('display');
+                //console.log(style);
+                $(this).css('display', style == 'inline' ? 'none' : 'inline');
+            });
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+});
