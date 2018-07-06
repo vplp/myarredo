@@ -622,7 +622,7 @@ $(document).ready(function(){
     });
 
     $('.js-filter-btn').on('click', function(){
-       $('.js-filter-modal').slideToggle(100);
+       $('.js-filter-modal').slideToggle(200);
     });
 
 
@@ -667,12 +667,12 @@ $(document).ready(function(){
                 $('body').addClass('fixed-header');
                 $('.js-main').css({
                     'padding-top': headerHeight + 'px'
-                })
+                });
             } else {
                 $('body').removeClass('fixed-header');
                 $('.js-main').css({
                     'padding-top': 0 + 'px'
-                })
+                });
             }
         });
     }
