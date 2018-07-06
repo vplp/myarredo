@@ -56,17 +56,22 @@ $this->title = $this->context->title;
                                         'value' => function ($model) {
                                             $result = [];
                                             foreach ($model->category as $category) {
-                                                $result[] = ($category->lang) ? $category->lang->title : '(не задано)';
+                                                $result[] = Html::img(
+                                                    Category::getImage($category['image_link3']),
+                                                    [
+                                                        'alt' => $category->lang->title,
+                                                        'title' => $category->lang->title
+                                                    ]);
                                             }
                                             return implode(', ', $result);
                                         },
+                                        'format' => 'raw',
                                         'label' => Yii::t('app', 'Category'),
                                         'filter' => GridViewFilter::selectOne($filter, 'category', Category::dropDownList()),
                                     ],
                                     [
                                         'attribute' => 'article',
                                         'value' => 'article',
-                                        'label' => Yii::t('app', 'Article'),
                                     ],
                                     [
                                         'attribute' => 'image_link',
@@ -74,7 +79,6 @@ $this->title = $this->context->title;
                                             /** @var \frontend\modules\catalog\models\FactoryProduct $model */
                                             return Html::img(Product::getImageThumb($model['image_link']), ['width' => 50]);
                                         },
-                                        'label' => Yii::t('app', 'Image'),
                                         'format' => 'raw',
                                         'filter' => false
                                     ],

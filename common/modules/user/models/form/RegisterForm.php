@@ -11,9 +11,14 @@ use thread\app\base\models\ActiveRecord;
 use common\modules\user\models\{
     Group, Profile, User
 };
+use common\modules\location\models\{
+    City, Country
+};
 
 /**
  * Class RegisterForm
+ *
+ * @property City $city
  *
  * @package common\modules\user\models\form
  */
@@ -154,6 +159,14 @@ class RegisterForm extends CommonForm
                 'factory_package'
             ],
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCity()
+    {
+        return $this->hasOne(City::class, ['id' => 'city_id']);
     }
 
     /**
