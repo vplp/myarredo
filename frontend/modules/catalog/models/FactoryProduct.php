@@ -31,6 +31,13 @@ class FactoryProduct extends Product
     {
         return ArrayHelper::merge(CommonProduct::rules(), [
             [['catalog_type_id'], 'required', 'on' => 'frontend'],
+            [
+                [
+                    'promotion'
+                ],
+                'in',
+                'range' => array_keys(static::statusKeyRange())
+            ],
         ]);
     }
 
@@ -40,6 +47,7 @@ class FactoryProduct extends Product
     public function scenarios()
     {
         return ArrayHelper::merge(CommonProduct::scenarios(), [
+            'promotion' => ['promotion'],
             'frontend' => [
                 'catalog_type_id',
                 'user_id',
@@ -64,15 +72,15 @@ class FactoryProduct extends Product
                 //'removed',
                 //'in_stock',
                 //'moderation',
-                'country_code',
-                'user',
+                //'country_code',
+                //'user',
                 'alias',
                 'default_title',
                 'article',
                 'category_ids',
                 'samples_ids',
-                'factory_catalogs_files_ids',
-                'factory_prices_files_ids',
+                //'factory_catalogs_files_ids',
+                //'factory_prices_files_ids',
             ]
         ]);
     }
