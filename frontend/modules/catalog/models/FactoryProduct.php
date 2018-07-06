@@ -14,6 +14,8 @@ use common\modules\catalog\models\Product as CommonProduct;
  */
 class FactoryProduct extends Product
 {
+    public $promotion;
+
     /**
      * @return array
      */

@@ -34,6 +34,7 @@ $this->title = $this->context->title;
                 <?= Html::tag('h1', $this->context->title); ?>
 
                 <?= Html::a(Yii::t('app', 'Add'), Url::toRoute(['/catalog/factory-product/create']), ['class' => 'btn btn-goods']) ?>
+                <?= Html::a('promotion', Url::toRoute(['/catalog/factory-product/create']), ['class' => 'btn btn-goods']) ?>
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
@@ -67,6 +68,8 @@ $this->title = $this->context->title;
                                         },
                                         'format' => 'raw',
                                         'label' => Yii::t('app', 'Category'),
+                                        'headerOptions' => ['class' => 'col-sm-1'],
+                                        'contentOptions' => ['class' => 'text-center'],
                                         'filter' => GridViewFilter::selectOne(
                                             $filter,
                                             'category',
@@ -76,6 +79,8 @@ $this->title = $this->context->title;
                                     [
                                         'attribute' => 'article',
                                         'value' => 'article',
+                                        'headerOptions' => ['class' => 'col-sm-1'],
+                                        'contentOptions' => ['class' => 'text-center'],
                                     ],
                                     [
                                         'attribute' => 'image_link',
@@ -83,6 +88,8 @@ $this->title = $this->context->title;
                                             /** @var \frontend\modules\catalog\models\FactoryProduct $model */
                                             return Html::img(Product::getImageThumb($model['image_link']), ['width' => 50]);
                                         },
+                                        'headerOptions' => ['class' => 'col-sm-1'],
+                                        'contentOptions' => ['class' => 'text-center'],
                                         'format' => 'raw',
                                         'filter' => false
                                     ],
@@ -97,7 +104,22 @@ $this->title = $this->context->title;
                                             return date('j.m.Y', $model->updated_at);
                                         },
                                         'format' => 'raw',
+                                        'headerOptions' => ['class' => 'col-sm-1'],
+                                        'contentOptions' => ['class' => 'text-center'],
                                         'filter' => false
+                                    ],
+                                    [
+                                        'class' => ActionStatusColumn::class,
+                                        'attribute' => 'promotion',
+                                        'action' => 'promotion',
+                                        'filter' => GridViewFilter::selectOne(
+                                            $filter,
+                                            'promotion',
+                                            [
+                                                0 => 'On',
+                                                1 => 'Off'
+                                            ]
+                                        ),
                                     ],
                                     [
                                         'attribute' => 'published',
@@ -106,8 +128,8 @@ $this->title = $this->context->title;
                                             /** @var $model \frontend\modules\catalog\models\FactoryProduct */
                                             return Html::checkbox(false, $model->published, ['disabled' => true]);
                                         },
-                                        'headerOptions' => ['class' => 'col-sm-1',],
-                                        'contentOptions' => ['class' => 'text-center',],
+                                        'headerOptions' => ['class' => 'col-sm-1'],
+                                        'contentOptions' => ['class' => 'text-center'],
                                         'filter' => GridViewFilter::selectOne(
                                             $filter,
                                             'published',
