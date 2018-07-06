@@ -56,7 +56,12 @@ $this->title = $this->context->title;
                                         'value' => function ($model) {
                                             $result = [];
                                             foreach ($model->category as $category) {
-                                                $result[] = Html::img(Category::getImage($category['image_link3']), ['alt' => ($category->lang) ? $category->lang->title : '(не задано)']);
+                                                $result[] = Html::img(
+                                                    Category::getImage($category['image_link3']),
+                                                    [
+                                                        'alt' => $category->lang->title,
+                                                        'title' => $category->lang->title
+                                                    ]);
                                             }
                                             return implode(', ', $result);
                                         },
