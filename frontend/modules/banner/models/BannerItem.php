@@ -20,7 +20,7 @@ class BannerItem extends \common\modules\banner\models\BannerItem
 
         if (Yii::$app->controller->id == 'factory-banner') {
             $query
-                ->andWhere(['user_id' => Yii::$app->user->identity->id])
+                ->andWhere([self::tableName() . '.user_id' => Yii::$app->user->identity->id])
                 ->undeleted();
         } else {
             $query

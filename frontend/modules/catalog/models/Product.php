@@ -84,7 +84,7 @@ class Product extends \common\modules\catalog\models\Product
      */
     public static function findByIDs($ids): array
     {
-        return self::findBase()->andWhere(['IN', 'id', array_unique($ids)])->all();
+        return self::findBase()->andWhere(['IN', self::tableName() . '.id', array_unique($ids)])->all();
     }
 
     /**
@@ -343,7 +343,7 @@ class Product extends \common\modules\catalog\models\Product
             return parent::findBase()
                 ->enabled()
                 ->andWhere([
-                    'collections_id' => $collections_id,
+                    self::tableName() . '.collections_id' => $collections_id,
                 ])
                 ->limit(12)
                 ->all();
@@ -365,8 +365,8 @@ class Product extends \common\modules\catalog\models\Product
             return parent::findBase()
                 ->enabled()
                 ->andWhere([
-                    'factory_id' => $factory_id,
-                    'catalog_type_id' => $catalog_type_id
+                    self::tableName() . '.factory_id' => $factory_id,
+                    self::tableName() . '.catalog_type_id' => $catalog_type_id
                 ])
                 ->limit(12)
                 ->all();

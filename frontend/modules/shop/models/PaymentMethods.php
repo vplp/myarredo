@@ -43,7 +43,7 @@ class PaymentMethods extends \common\modules\shop\models\PaymentMethods
      */
     public static function findByID($id)
     {
-        return self::findBase()->andWhere(['id' => $id])->one();
+        return self::findBase()->andWhere([self::tableName() . '.id' => $id])->one();
     }
 
     /**
