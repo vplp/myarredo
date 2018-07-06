@@ -34,7 +34,7 @@ $this->title = $this->context->title;
                 <?= Html::tag('h1', $this->context->title); ?>
 
                 <?= Html::a('<i class="fa fa-plus"></i> ' . Yii::t('app', 'Add'), Url::toRoute(['/catalog/factory-product/create']), ['class' => 'btn btn-goods']) ?>
-                <?= Html::a('promotion', Url::toRoute(['/catalog/factory-product/create']), ['class' => 'btn btn-goods']) ?>
+                <?= Html::a('Promotion', false, ['class' => 'btn btn-goods']) ?>
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,

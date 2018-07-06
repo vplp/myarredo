@@ -215,8 +215,8 @@ $this->title = ($model->isNewRecord) ? Yii::t('app','Add') : Yii::t('app','Edit'
                     </div>
 
                     <div class="buttons-cont">
-                        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary btn-lg']) ?>
-                        <?= Html::a(Yii::t('app', 'Cancel'), ['/catalog/partner-sale/list'], ['class' => 'btn btn-primary btn-lg']) ?>
+                        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+                        <?= Html::a(Yii::t('app', 'Вернуться к списку'), ['/catalog/partner-sale/list'], ['class' => 'btn btn-primary']) ?>
                     </div>
 
                     <?php ActiveForm::end(); ?>
