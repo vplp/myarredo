@@ -266,16 +266,19 @@ $(document).ready(function(){
 
 
     $('.notebook-page').find('.basket-item-info').on('mouseenter', '.read-more', function(e) {
-        var item = $('.notebook-page').find('.basket-item-info');
+        var item = $(this).closest('.basket-item-info');
+        var itemHeight = item.outerHeight();
         item.addClass("read-more");
+        item.css('min-height', itemHeight + 'px');
     });
     $('.notebook-page').find('.basket-item-info').on('mouseleave', function(e) {
-        var item = $('.notebook-page').find('.basket-item-info');
+        var item = $(this);
         var cartbutton = $('.notebook-page').find('.basket-item-info').find('.read-more');
         if (!cartbutton.is(e.target)) {
             item.removeClass("read-more");
         }
     });
+
 
     /*--конец Блокнот--*/
 
