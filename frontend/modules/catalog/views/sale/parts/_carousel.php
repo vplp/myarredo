@@ -22,7 +22,7 @@ use yii\helpers\Html;
             echo Html::beginTag('div', ['class' => $class, 'data-dominant-color' => '']) .
                 Html::a(
                     Html::img($src['img'], $options),
-                    $src['img'],
+                    $src['thumb'],
                     [
                         'class' => 'img-cont fancyimage',
                         'data-fancybox-group' => 'group',
