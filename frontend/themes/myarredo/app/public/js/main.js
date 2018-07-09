@@ -630,6 +630,14 @@ $(document).ready(function(){
     $('.js-filter-btn').on('click', function(){
        $('.js-filter-modal').slideToggle(200);
     });
+    function checkMenuDisplay() {
+        var winWidth = $(document).width();
+        if (winWidth > 992) {
+            $('.js-filter-modal').show();
+        }
+      }
+      
+      $(window).on('resize', checkMenuDisplay);
 
 
     $('#prod-slider .carousel-inner').slick({
