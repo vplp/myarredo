@@ -119,11 +119,6 @@ class Product extends \common\modules\catalog\models\Product
                 ->orderBy('position DESC')
                 ->enabled()
                 ->byAlias($alias)
-                ->innerJoinWith([
-                        'category' => function ($q) {
-                            $q->with(['lang']);
-                        }]
-                )
                 ->one();
         });
 
@@ -181,9 +176,9 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
-     * ImageThumb
-     *
      * @param string $image_link
+     * @param int $width
+     * @param int $height
      * @return null|string
      */
     public static function getImageThumb($image_link = '', $width = 340, $height = 340)

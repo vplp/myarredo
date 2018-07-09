@@ -115,9 +115,11 @@ class Sale extends \common\modules\catalog\models\Sale
 
     /**
      * @param string $image_link
+     * @param int $width
+     * @param int $height
      * @return null|string
      */
-    public static function getImageThumb($image_link = '')
+    public static function getImageThumb($image_link = '', $width = 340, $height = 340)
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -146,7 +148,7 @@ class Sale extends \common\modules\catalog\models\Sale
 
             // resize
             $ImageResize = new ImageResize();
-            $image = $ImageResize->getThumb($image, 340, 340);
+            $image = $ImageResize->getThumb($image, $width, $height);
         }
 
         return $image;
@@ -187,7 +189,7 @@ class Sale extends \common\modules\catalog\models\Sale
             } elseif (file_exists($path . '/' . $image)) {
                 $imagesSources[] = [
                     'img' => $url . '/' . $image,
-                    'thumb' => self::getImageThumb($image)
+                    'thumb' => self::getImageThumb($image, 600, 600)
                 ];
             }
         }
