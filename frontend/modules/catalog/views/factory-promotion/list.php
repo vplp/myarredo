@@ -95,23 +95,29 @@ $this->title = $this->context->title;
                                         'filter' => false
                                     ],
                                     [
-                                        'attribute' => 'published',
-                                        'format' => 'raw',
-                                        'value' => function ($model) {
-                                            /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
-                                            return Html::checkbox(false, $model->published);
-                                        },
+                                        'attribute' => 'cost',
+                                        'value' => 'cost',
                                         'headerOptions' => ['class' => 'col-sm-1'],
                                         'contentOptions' => ['class' => 'text-center'],
-                                        'filter' => GridViewFilter::selectOne(
-                                            $filter,
-                                            'published',
-                                            [
-                                                0 => 'On',
-                                                1 => 'Off'
-                                            ]
-                                        ),
                                     ],
+//                                    [
+//                                        'attribute' => 'published',
+//                                        'format' => 'raw',
+//                                        'value' => function ($model) {
+//                                            /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
+//                                            return Html::checkbox(false, $model->published);
+//                                        },
+//                                        'headerOptions' => ['class' => 'col-sm-1'],
+//                                        'contentOptions' => ['class' => 'text-center'],
+//                                        'filter' => GridViewFilter::selectOne(
+//                                            $filter,
+//                                            'published',
+//                                            [
+//                                                0 => 'On',
+//                                                1 => 'Off'
+//                                            ]
+//                                        ),
+//                                    ],
                                     [
                                         'class' => yii\grid\ActionColumn::class,
                                         'template' => '{view} {update} {delete}',
