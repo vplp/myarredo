@@ -3779,6 +3779,28 @@ h1 {
     background-color: #448339;
     padding: 5px 12px;
   }
+  .cart-modal .modal-body {
+    text-align: center;
+    padding: 80px 20px 30px;
+  }
+  .cart-modal .modal-body p {
+    color: #535351;
+    font-size: 14px;
+    font-family: 'OpenSans';
+    position: relative;
+  }
+  .cart-modal .modal-body p::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 55px;
+    background-image: url(../../public/img/catalog_ico/heart_fon.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    position: absolute;
+    top: 100%;
+  }
 /*-- -----------------------------------------------------------Новые стили------------------------------------------------------------------------------ --*/
 @media screen and (max-width: 1200px) {
   .header .top-header .phone {
