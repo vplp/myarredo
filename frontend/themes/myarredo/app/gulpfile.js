@@ -95,10 +95,11 @@ gulp.task('watch', function () {
     gulp.watch(dev_patches['less'], ['less']);
     gulp.watch(dev_patches['font'], ['font']);
 });
+gulp.task('watchnum2', function () {
+    gulp.watch(dev_patches['js'], ['scripts']);
+    gulp.watch(dev_patches['css'], ['minify-css']);
+});
 
-// The default task (called when you run `gulp` from cli)
-gulp.task('default', ['watch', 'scss', 'less', 'scripts', 'images', 'minify-css']);
-//'webserver', 'livereload', 'base64'
 //------------------------------------------------------------------------
 
 //Копіювання файлів у тему
@@ -316,3 +317,8 @@ gulp.task('lintHTML', function () {
 });
 
 //------------------------------------------------------------------------
+
+// The default task (called when you run `gulp` from cli)
+// gulp.task('default', ['watch', 'scss', 'less', 'scripts', 'images', 'minify-css']);
+gulp.task('default', ['watchnum2', 'scripts', 'minify-css']);
+//'webserver', 'livereload', 'base64'

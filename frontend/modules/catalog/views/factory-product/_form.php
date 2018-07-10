@@ -136,8 +136,8 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
                         <?= $form->text_line($model, 'price_from') ?>
 
                         <div class="buttons-cont">
-                            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
-                            <?= Html::a(Yii::t('app', 'Вернуться к списку'), ['/catalog/factory-product/list'], ['class' => 'btn btn-primary']) ?>
+                            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-goods']) ?>
+                            <?= Html::a(Yii::t('app', 'Вернуться к списку'), ['/catalog/factory-product/list'], ['class' => 'btn btn-cancel']) ?>
                         </div>
 
                         <?php ActiveForm::end(); ?>
