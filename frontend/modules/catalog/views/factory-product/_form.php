@@ -43,10 +43,6 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
                             'action' => ($model->isNewRecord)
                                 ? Url::toRoute(['/catalog/factory-product/create'])
                                 : Url::toRoute(['/catalog/factory-product/update', 'id' => $model->id]),
-//                        'fieldConfig' => [
-//                            'template' => "{label}<div class=\"col-sm-9\">{input}</div>\n{hint}\n{error}",
-//                            'labelOptions' => ['class' => 'col-sm-3 col-form-label'],
-//                        ],
                         ]); ?>
 
                         <?php if ($model->isNewRecord): ?>

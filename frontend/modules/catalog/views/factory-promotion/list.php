@@ -84,22 +84,6 @@ $this->title = $this->context->title;
                                         'headerOptions' => ['class' => 'col-sm-1'],
                                         'contentOptions' => ['class' => 'text-center'],
                                     ],
-//                                    [
-//                                        'attribute' => 'image_link',
-//                                        'value' => function ($model) {
-//                                            /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
-//                                            return Html::img(Product::getImageThumb($model['image_link']), ['width' => 50]);
-//                                        },
-//                                        'headerOptions' => ['class' => 'col-sm-1'],
-//                                        'contentOptions' => ['class' => 'text-center'],
-//                                        'format' => 'raw',
-//                                        'filter' => false
-//                                    ],
-//                                    [
-//                                        'attribute' => 'title',
-//                                        'value' => 'lang.title',
-//                                        'label' => Yii::t('app', 'Title'),
-//                                    ],
                                     [
                                         'attribute' => 'updated_at',
                                         'value' => function ($model) {
@@ -110,25 +94,12 @@ $this->title = $this->context->title;
                                         'contentOptions' => ['class' => 'text-center'],
                                         'filter' => false
                                     ],
-//                                    [
-//                                        'class' => ActionStatusColumn::class,
-//                                        'attribute' => 'promotion',
-//                                        'action' => 'promotion',
-//                                        'filter' => GridViewFilter::selectOne(
-//                                            $filter,
-//                                            'promotion',
-//                                            [
-//                                                0 => 'On',
-//                                                1 => 'Off'
-//                                            ]
-//                                        ),
-//                                    ],
                                     [
                                         'attribute' => 'published',
                                         'format' => 'raw',
                                         'value' => function ($model) {
                                             /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
-                                            return Html::checkbox(false, $model->published, ['disabled' => true]);
+                                            return Html::checkbox(false, $model->published);
                                         },
                                         'headerOptions' => ['class' => 'col-sm-1'],
                                         'contentOptions' => ['class' => 'text-center'],

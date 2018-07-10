@@ -19,7 +19,7 @@ class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled();
+        return parent::findBase();
     }
 
     /**

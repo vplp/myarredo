@@ -42,10 +42,9 @@ $this->title = Yii::t('app', 'Рекламировать');
                         'action' => ($model->isNewRecord)
                             ? Url::toRoute(['/catalog/factory-promotion/create'])
                             : Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]),
-                    ]);
-                    /* !!! */ echo  '<pre style="color:red;">'; print_r($form->errorSummary($model)); echo '</pre>'; /* !!! */
-                    /* !!! */ echo  '<pre style="color:red;">'; print_r($model->firstErrors); echo '</pre>'; /* !!! */
-                    ?>
+                    ]); ?>
+
+                    <?= $form->text_line($model, 'user_id') ?>
 
                     <div class="buttons-cont">
                         <?= Html::submitButton(
