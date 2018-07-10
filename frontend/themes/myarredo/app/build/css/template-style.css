@@ -3794,12 +3794,25 @@ h1 {
     display: block;
     width: 55px;
     height: 55px;
-    background-image: url(../../public/img/catalog_ico/heart_fon.png);
+    background-image: url(../img/catalog_ico/heart_fon.png);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
     position: absolute;
-    top: 100%;
+    top: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .cart-modal .modal-footer {
+    border-top: none;
+  }
+  .cart-modal .modal-header .close span {
+    color: #448339;
+    opacity: 1;
+    font-size: 28px;
+  }
+  .modal-cart {
+    max-width: 405px;
   }
 /*-- -----------------------------------------------------------Новые стили------------------------------------------------------------------------------ --*/
 @media screen and (max-width: 1200px) {

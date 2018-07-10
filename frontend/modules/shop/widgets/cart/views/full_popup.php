@@ -6,13 +6,12 @@ use yii\helpers\{
 
 ?>
 
-<div class="modal-dialog" role="document">
+<div class="modal-dialog modal-cart" role="document">
     <div class="modal-content cart-modal">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
         </div>
-        <p>Предмет добавлен в блокнот</p>
         <div class="modal-body">
             <p> Предмет добавлен в мои желания </p>
         </div>
