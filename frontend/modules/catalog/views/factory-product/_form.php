@@ -31,7 +31,7 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
 ?>
 
     <main>
-        <div class="page create-sale">
+        <div class="page create-sale factory-product">
             <div class="container large-container">
 
                 <?= Html::tag('h1', $this->title); ?>

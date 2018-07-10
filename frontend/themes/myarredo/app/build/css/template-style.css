@@ -8,7 +8,7 @@ h1 {
   font-size: 35px;
 }
 .page {
-  background: #ffffff; }
+  background: #F3F2F0; }
 
 .container-wrap {
   max-width: 1600px;
@@ -3803,8 +3803,14 @@ h1 {
     left: 50%;
     transform: translateX(-50%);
   }
+  .cart-modal {
+    border-radius: 0;
+  }
   .cart-modal .modal-footer {
     border-top: none;
+  }
+  .cart-modal .modal-header .close {
+    opacity: 1;
   }
   .cart-modal .modal-header .close span {
     color: #448339;
@@ -3813,6 +3819,9 @@ h1 {
   }
   .modal-cart {
     max-width: 405px;
+  }
+  .factory-product {
+    background-color: #ffffff;
   }
 /*-- -----------------------------------------------------------Новые стили------------------------------------------------------------------------------ --*/
 @media screen and (max-width: 1200px) {
