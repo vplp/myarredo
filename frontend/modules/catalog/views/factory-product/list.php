@@ -118,18 +118,30 @@ $this->title = $this->context->title;
                                         'filter' => false
                                     ],
                                     [
-                                        'class' => ActionStatusColumn::class,
-                                        'attribute' => 'promotion',
-                                        'action' => 'promotion',
-                                        'filter' => GridViewFilter::selectOne(
-                                            $filter,
-                                            'promotion',
-                                            [
-                                                0 => 'On',
-                                                1 => 'Off'
-                                            ]
-                                        ),
+                                        'format' => 'raw',
+                                        'value' => function ($model) {
+                                            return Html::a(
+                                                Yii::t('app', 'Рекламировать'),
+                                                Url::toRoute(['/catalog/factory-promotion/create']),
+                                                ['class' => 'btn btn-goods']
+                                            );
+                                        },
+                                        'label' => Yii::t('app', 'Рекламировать'),
+                                        'filter' => false
                                     ],
+//                                    [
+//                                        'class' => ActionStatusColumn::class,
+//                                        'attribute' => 'promotion',
+//                                        'action' => 'promotion',
+//                                        'filter' => GridViewFilter::selectOne(
+//                                            $filter,
+//                                            'promotion',
+//                                            [
+//                                                0 => 'On',
+//                                                1 => 'Off'
+//                                            ]
+//                                        ),
+//                                    ],
                                     [
                                         'attribute' => 'published',
                                         'format' => 'raw',

@@ -25,7 +25,7 @@ use backend\themes\defaults\widgets\TreeGrid;
  * @var \frontend\modules\catalog\models\FactoryPromotion $model
  */
 
-$this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edit');
+$this->title = Yii::t('app', 'Рекламировать');
 
 ?>
 
@@ -42,7 +42,10 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
                         'action' => ($model->isNewRecord)
                             ? Url::toRoute(['/catalog/factory-promotion/create'])
                             : Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]),
-                    ]); ?>
+                    ]);
+                    /* !!! */ echo  '<pre style="color:red;">'; print_r($form->errorSummary($model)); echo '</pre>'; /* !!! */
+                    /* !!! */ echo  '<pre style="color:red;">'; print_r($model->firstErrors); echo '</pre>'; /* !!! */
+                    ?>
 
                     <div class="buttons-cont">
                         <?= Html::submitButton(
