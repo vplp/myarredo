@@ -57,6 +57,7 @@ return [
     'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/product/<product:[\w\-]+>' => 'catalog/template-factory/product',
     'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/sale-product/<product:[\w\-]+>' => 'catalog/template-factory/sale-product',
 
+    // Factory product
     'factory-product' => 'catalog/factory-product/list',
     'factory-product/create' => 'catalog/factory-product/create',
     'catalog/factory-product/ajax-get-category' => 'catalog/factory-product/ajax-get-category',
@@ -66,6 +67,13 @@ return [
     'catalog/factory-product/filedelete' => 'catalog/factory-product/filedelete',
     'catalog/factory-product/promotion' => 'catalog/factory-product/promotion',
 
+    // Factory promotion
+    'factory-promotion' => 'catalog/factory-promotion/list',
+    'factory-promotion/create' => 'catalog/factory-promotion/create',
+    'factory-promotion/update/<id:[\d\-]+>' => 'catalog/factory-promotion/update',
+    'factory-promotion/intrash/<id:[\d\-]+>' => 'catalog/factory-promotion/intrash',
+
+    // Partner sale
     'partner/sale' => 'catalog/partner-sale/list',
     'partner/sale/create' => 'catalog/partner-sale/create',
     'partner/sale/update/<id:[\d\-]+>' => 'catalog/partner-sale/update',

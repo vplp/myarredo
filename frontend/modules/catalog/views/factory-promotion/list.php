@@ -16,11 +16,10 @@ use thread\widgets\grid\{
 
 /**
  * @var \yii\data\Pagination $pages
- * @var $model \frontend\modules\catalog\models\FactoryProduct
+ * @var $model \frontend\modules\catalog\models\FactoryPromotion
  */
 
 $dataProvider = $model->search(Yii::$app->request->queryParams);
-$dataProvider->sort = false;
 
 $this->title = $this->context->title;
 
@@ -35,13 +34,7 @@ $this->title = $this->context->title;
 
                 <?= Html::a(
                     '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Add'),
-                    Url::toRoute(['/catalog/factory-product/create']),
-                    ['class' => 'btn btn-goods']
-                ) ?>
-
-                <?= Html::a(
-                    Yii::t('app', 'Рекламные компании'),
-                    Url::toRoute(['/catalog/factory-promotion/list']),
+                    Url::toRoute(['/catalog/factory-promotion/create']),
                     ['class' => 'btn btn-goods']
                 ) ?>
 
@@ -61,52 +54,52 @@ $this->title = $this->context->title;
                                 'filterModel' => $filter,
                                 'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
                                 'columns' => [
+//                                    [
+//                                        'attribute' => 'category',
+//                                        'value' => function ($model) {
+//                                            $result = [];
+//                                            foreach ($model->category as $category) {
+//                                                $result[] = Html::img(
+//                                                    Category::getImage($category['image_link3']),
+//                                                    [
+//                                                        'alt' => $category->lang->title,
+//                                                        'title' => $category->lang->title
+//                                                    ]);
+//                                            }
+//                                            return implode(', ', $result);
+//                                        },
+//                                        'format' => 'raw',
+//                                        'label' => Yii::t('app', 'Category'),
+//                                        'headerOptions' => ['class' => 'col-sm-1'],
+//                                        'contentOptions' => ['class' => 'text-center'],
+//                                        'filter' => GridViewFilter::selectOne(
+//                                            $filter,
+//                                            'category',
+//                                            Category::dropDownList()
+//                                        ),
+//                                    ],
                                     [
-                                        'attribute' => 'category',
-                                        'value' => function ($model) {
-                                            $result = [];
-                                            foreach ($model->category as $category) {
-                                                $result[] = Html::img(
-                                                    Category::getImage($category['image_link3']),
-                                                    [
-                                                        'alt' => $category->lang->title,
-                                                        'title' => $category->lang->title
-                                                    ]);
-                                            }
-                                            return implode(', ', $result);
-                                        },
-                                        'format' => 'raw',
-                                        'label' => Yii::t('app', 'Category'),
+                                        'attribute' => 'id',
+                                        'value' => 'id',
                                         'headerOptions' => ['class' => 'col-sm-1'],
                                         'contentOptions' => ['class' => 'text-center'],
-                                        'filter' => GridViewFilter::selectOne(
-                                            $filter,
-                                            'category',
-                                            Category::dropDownList()
-                                        ),
                                     ],
-                                    [
-                                        'attribute' => 'article',
-                                        'value' => 'article',
-                                        'headerOptions' => ['class' => 'col-sm-1'],
-                                        'contentOptions' => ['class' => 'text-center'],
-                                    ],
-                                    [
-                                        'attribute' => 'image_link',
-                                        'value' => function ($model) {
-                                            /** @var \frontend\modules\catalog\models\FactoryProduct $model */
-                                            return Html::img(Product::getImageThumb($model['image_link']), ['width' => 50]);
-                                        },
-                                        'headerOptions' => ['class' => 'col-sm-1'],
-                                        'contentOptions' => ['class' => 'text-center'],
-                                        'format' => 'raw',
-                                        'filter' => false
-                                    ],
-                                    [
-                                        'attribute' => 'title',
-                                        'value' => 'lang.title',
-                                        'label' => Yii::t('app', 'Title'),
-                                    ],
+//                                    [
+//                                        'attribute' => 'image_link',
+//                                        'value' => function ($model) {
+//                                            /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
+//                                            return Html::img(Product::getImageThumb($model['image_link']), ['width' => 50]);
+//                                        },
+//                                        'headerOptions' => ['class' => 'col-sm-1'],
+//                                        'contentOptions' => ['class' => 'text-center'],
+//                                        'format' => 'raw',
+//                                        'filter' => false
+//                                    ],
+//                                    [
+//                                        'attribute' => 'title',
+//                                        'value' => 'lang.title',
+//                                        'label' => Yii::t('app', 'Title'),
+//                                    ],
                                     [
                                         'attribute' => 'updated_at',
                                         'value' => function ($model) {
@@ -117,24 +110,24 @@ $this->title = $this->context->title;
                                         'contentOptions' => ['class' => 'text-center'],
                                         'filter' => false
                                     ],
-                                    [
-                                        'class' => ActionStatusColumn::class,
-                                        'attribute' => 'promotion',
-                                        'action' => 'promotion',
-                                        'filter' => GridViewFilter::selectOne(
-                                            $filter,
-                                            'promotion',
-                                            [
-                                                0 => 'On',
-                                                1 => 'Off'
-                                            ]
-                                        ),
-                                    ],
+//                                    [
+//                                        'class' => ActionStatusColumn::class,
+//                                        'attribute' => 'promotion',
+//                                        'action' => 'promotion',
+//                                        'filter' => GridViewFilter::selectOne(
+//                                            $filter,
+//                                            'promotion',
+//                                            [
+//                                                0 => 'On',
+//                                                1 => 'Off'
+//                                            ]
+//                                        ),
+//                                    ],
                                     [
                                         'attribute' => 'published',
                                         'format' => 'raw',
                                         'value' => function ($model) {
-                                            /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                            /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
                                             return Html::checkbox(false, $model->published, ['disabled' => true]);
                                         },
                                         'headerOptions' => ['class' => 'col-sm-1'],
@@ -153,7 +146,7 @@ $this->title = $this->context->title;
                                         'template' => '{view} {update} {delete}',
                                         'buttons' => [
                                             'view' => function ($url, $model) {
-                                                /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                                /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
                                                 return ($model->published && !$model->deleted) ? Html::a(
                                                     '<span class="glyphicon glyphicon-eye-open"></span>',
                                                     Product::getUrl($model['alias']),
@@ -164,20 +157,20 @@ $this->title = $this->context->title;
                                                 ) : '';
                                             },
                                             'update' => function ($url, $model) {
-                                                /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                                /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
                                                 return Yii::$app->user->identity->id == $model->user_id ? Html::a(
                                                     '<span class="glyphicon glyphicon-pencil"></span>',
-                                                    Url::toRoute(['/catalog/factory-product/update', 'id' => $model->id]),
+                                                    Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]),
                                                     [
                                                         'class' => 'btn btn-default btn-xs'
                                                     ]
                                                 ) : '';
                                             },
                                             'delete' => function ($url, $model) {
-                                                /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                                /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
                                                 return Yii::$app->user->identity->id == $model->user_id ? Html::a(
                                                     '<span class="glyphicon glyphicon-trash"></span>',
-                                                    Url::toRoute(['/catalog/factory-product/intrash', 'id' => $model->id]),
+                                                    Url::toRoute(['/catalog/factory-promotion/intrash', 'id' => $model->id]),
                                                     [
                                                         'class' => 'btn btn-default btn-xs',
                                                         'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
