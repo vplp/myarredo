@@ -65,6 +65,7 @@ class FactoryPromotion extends ActiveRecord
             [['user_id', 'count_of_months', 'daily_budget', 'created_at', 'updated_at', 'position'], 'integer'],
             [['cost'], 'double'],
             [['status', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
+            [['count_of_months', 'daily_budget', 'cost'], 'default', 'value' => '0']
         ];
     }
 

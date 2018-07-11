@@ -46,43 +46,43 @@ $this->title = Yii::t('app', 'Рекламировать');
 
                     <?= $form
                         ->field($model, 'count_of_months')
-                        //->radioList(FactoryPromotion::getCountOfMonthsRange(), [])
-                        ->radioList(
-                            FactoryPromotion::getCountOfMonthsRange(),
-                            [
-                                'item' => function ($index, $label, $name, $checked, $value) {
-                                    return
-                                        '<div class="radio-e">' .
-                                        Html::radio($name, $checked, ['value' => $value]) .
-                                        Html::label('<span></span>' . $label) .
-                                        '</div>';
-                                },
-                            ]
-                        )
+                        ->radioList(FactoryPromotion::getCountOfMonthsRange(), [])
+//                        ->radioList(
+//                            FactoryPromotion::getCountOfMonthsRange(),
+//                            [
+//                                'item' => function ($index, $label, $name, $checked, $value) {
+//                                    return
+//                                        '<div class="radio-e">' .
+//                                        Html::radio($name, $checked, ['value' => $value]) .
+//                                        Html::label('<span></span>' . $label) .
+//                                        '</div>';
+//                                },
+//                            ]
+//                        )
                     ?>
 
                     <?= $form
                         ->field($model, 'daily_budget')
-                        //->radioList(FactoryPromotion::getDailyBudgetRange(), [])
-                        ->radioList(
-                            FactoryPromotion::getDailyBudgetRange(),
-                            [
-                                'item' => function ($index, $label, $name, $checked, $value) {
-                                    return
-                                        '<div class="radio-e">' .
-                                        Html::radio($name, $checked, ['value' => $value]) .
-                                        Html::label('<span></span>' . $label) .
-                                        '</div>';
-                                },
-                            ]
-                        )
+                        ->radioList(FactoryPromotion::getDailyBudgetRange(), [])
+//                        ->radioList(
+//                            FactoryPromotion::getDailyBudgetRange(),
+//                            [
+//                                'item' => function ($index, $label, $name, $checked, $value) {
+//                                    return
+//                                        '<div class="radio-e">' .
+//                                        Html::radio($name, $checked, ['value' => $value]) .
+//                                        Html::label('<span></span>' . $label) .
+//                                        '</div>';
+//                                },
+//                            ]
+//                        )
                     ?>
 
                     <?= $form->field($model, 'cost') ?>
 
                     <div class="buttons-cont">
                         <?= Html::submitButton(
-                            Yii::t('app', 'Save'),
+                            Yii::t('app', 'Оплатить'),
                             ['class' => 'btn btn-goods']
                         ) ?>
 

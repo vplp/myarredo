@@ -3,7 +3,9 @@
 namespace frontend\modules\catalog\controllers;
 
 use Yii;
-use yii\helpers\ArrayHelper;
+use yii\helpers\{
+    ArrayHelper, Url
+};
 use yii\filters\AccessControl;
 //
 use frontend\components\BaseController;
@@ -100,20 +102,34 @@ class FactoryPromotionController extends BaseController
      */
     public function actionCreate()
     {
+        /** @var $model FactoryPromotion */
         $model = new $this->model;
 
         $model->scenario = 'frontend';
 
-        $transaction = $model::getDb()->beginTransaction();
-        try {
-            if ($model->load(Yii::$app->getRequest()->post()) && $model->validate() && $model->save()) {
-                $transaction->commit();
-            } else {
+        if ($model->isNewRecord) {
+            $model->count_of_months = 1;
+            $model->daily_budget = 500;
+        }
+
+        if ($model->load(Yii::$app->getRequest()->post())) {
+            $transaction = $model::getDb()->beginTransaction();
+            try {
+
+                $model->user_id = Yii::$app->user->identity->id;
+
+                $save = $model->save();
+
+                if ($save) {
+                    $transaction->commit();
+
+                    return $this->redirect(Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]));
+                } else {
+                    $transaction->rollBack();
+                }
+            } catch (Exception $e) {
                 $transaction->rollBack();
             }
-        } catch (Exception $e) {
-            Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
-            $transaction->rollBack();
         }
 
         return $this->render('_form', [
