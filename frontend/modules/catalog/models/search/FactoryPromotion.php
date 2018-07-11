@@ -9,27 +9,17 @@ use yii\data\ActiveDataProvider;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use frontend\modules\catalog\models\{
-    Category,
-    Types,
-    Factory,
-    FactoryProduct as FactoryProductModel,
-    FactoryProductLang,
-    Specification,
-    ProductRelCategory
+    FactoryPromotion as FactoryPromotionModel
 };
-use frontend\modules\catalog\Catalog;
 
 /**
- * Class FactoryProduct
- *
- * @property integer $category_id
+ * Class FactoryPromotion
  *
  * @package frontend\modules\catalog\models\search
  */
-class FactoryProduct extends FactoryProductModel implements BaseBackendSearchModel
+class FactoryPromotion extends FactoryPromotionModel implements BaseBackendSearchModel
 {
     public $title;
-    public $category;
 
     /**
      * @return array
@@ -37,9 +27,7 @@ class FactoryProduct extends FactoryProductModel implements BaseBackendSearchMod
     public function rules()
     {
         return [
-            [['id', 'category', 'factory_id'], 'integer'],
-            [['alias', 'article', 'title', 'image_link'], 'string', 'max' => 255],
-            [['published', 'removed'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [['id', 'user_id'], 'integer']
         ];
     }
 
@@ -55,8 +43,6 @@ class FactoryProduct extends FactoryProductModel implements BaseBackendSearchMod
      * @param $query
      * @param $params
      * @return ActiveDataProvider
-     * @throws \Exception
-     * @throws \Throwable
      */
     public function baseSearch($query, $params)
     {
@@ -71,27 +57,14 @@ class FactoryProduct extends FactoryProductModel implements BaseBackendSearchMod
             ],
         ]);
 
-        $query->andFilterWhere([
-            'is_composition' => '0'
-        ]);
-
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'factory_id' => $this->factory_id,
+            self::tableName() . '.id' => $this->id,
+            self::tableName() . '.user_id' => $this->user_id
         ]);
-
-        $query
-            ->andFilterWhere(['like', self::tableName() . '.published', $this->published])
-            ->andFilterWhere(['like', FactoryProductLang::tableName() . '.title', $this->title])
-            ->andFilterWhere(['like', FactoryProduct::tableName() . '.article', $this->article]);
-
-        $query
-            ->innerJoinWith(["category"])
-            ->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $this->category]);
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();
@@ -101,24 +74,22 @@ class FactoryProduct extends FactoryProductModel implements BaseBackendSearchMod
     }
 
     /**
-     * @param $params
+     * @param array $params
      * @return ActiveDataProvider
-     * @throws \Throwable
      */
     public function search($params)
     {
-        $query = FactoryProductModel::findBase()->undeleted();
+        $query = FactoryPromotionModel::findBase();
         return $this->baseSearch($query, $params);
     }
 
     /**
-     * @param $params
-     * @return mixed|ActiveDataProvider
-     * @throws \Throwable
+     * @param array $params
+     * @return ActiveDataProvider
      */
     public function trash($params)
     {
-        $query = FactoryProductModel::findBase()->deleted();
+        $query = FactoryPromotionModel::findBase();
         return $this->baseSearch($query, $params);
     }
 }
