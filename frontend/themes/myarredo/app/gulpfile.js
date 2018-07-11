@@ -41,6 +41,8 @@ var jshint = require('gulp-jshint'), //Перевірка JS
     scssLint = require('gulp-scss-lint'); //Перевірка SCSS
 //gem install scss-lint  !!ОБОВЯЗКОВО
 
+// Добавление вендорных префиксов
+var autoprefixer = require('gulp-autoprefixer');
 
 //Джерела
 var dev_patches = {
@@ -223,6 +225,10 @@ gulp.task('minify-css', function () {
     //.pipe(cssBase64())
         .pipe(rename({
             'suffix': '.min'
+        }))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
         }))
         .pipe(minifyCss())
         .on('error', console.log)
