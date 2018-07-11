@@ -2,10 +2,12 @@
 
 namespace common\modules\catalog\models;
 
+use common\modules\location\models\City;
 use Yii;
 use yii\helpers\{
     ArrayHelper
 };
+use voskobovich\behaviors\ManyToManyBehavior;
 //
 use thread\app\base\models\ActiveRecord;
 //
@@ -25,7 +27,7 @@ use common\modules\catalog\Catalog;
  * @property boolean $published
  * @property boolean $deleted
  *
- * @property TypesLang $lang
+ * @property FactoryPromotionRelCity[] $cities
  *
  * @package common\modules\catalog\models
  */
@@ -52,7 +54,14 @@ class FactoryPromotion extends ActiveRecord
      */
     public function behaviors()
     {
-        return ArrayHelper::merge(parent::behaviors(), []);
+        return ArrayHelper::merge(parent::behaviors(), [
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'city_ids' => 'cities',
+                ],
+            ],
+        ]);
     }
 
     /**
@@ -65,7 +74,8 @@ class FactoryPromotion extends ActiveRecord
             [['user_id', 'count_of_months', 'daily_budget', 'created_at', 'updated_at', 'position'], 'integer'],
             [['cost'], 'double'],
             [['status', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['count_of_months', 'daily_budget', 'cost'], 'default', 'value' => '0']
+            [['count_of_months', 'daily_budget', 'cost'], 'default', 'value' => '0'],
+            [['city_ids'], 'each', 'rule' => ['integer']],
         ];
     }
 
@@ -85,7 +95,8 @@ class FactoryPromotion extends ActiveRecord
                 'cost',
                 'status',
                 'published',
-                'deleted'
+                'deleted',
+                'city_ids'
             ],
             'frontend' => [
                 'user_id',
@@ -94,7 +105,8 @@ class FactoryPromotion extends ActiveRecord
                 'cost',
                 'status',
                 'published',
-                'deleted'
+                'deleted',
+                'city_ids'
             ],
         ];
     }
@@ -114,22 +126,19 @@ class FactoryPromotion extends ActiveRecord
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
-            'deleted' => Yii::t('app', 'Deleted')
+            'deleted' => Yii::t('app', 'Deleted'),
+            'city_ids' => Yii::t('app', 'Cities'),
         ];
     }
 
     /**
-     * @param bool $insert
-     * @return bool
-     * @throws \Throwable
+     * @return \yii\db\ActiveQuery
      */
-    public function beforeSave($insert)
+    public function getCities()
     {
-        if (Yii::$app->user->identity->group->role == 'factory') {
-            $this->user_id = Yii::$app->user->identity->id;
-        }
-
-        return parent::beforeSave($insert);
+        return $this
+            ->hasMany(City::class, ['id' => 'city_id'])
+            ->viaTable(FactoryPromotionRelCity::tableName(), ['promotion_id' => 'id']);
     }
 
     /**

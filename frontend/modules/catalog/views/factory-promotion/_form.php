@@ -45,6 +45,18 @@ $this->title = Yii::t('app', 'Рекламировать');
                     ]); ?>
 
                     <?= $form
+                        ->field($model, 'city_ids')
+                        ->checkboxList(City::dropDownList())
+//                        ->widget(Select2::classname(), [
+//                            'data' => Types::dropDownList(),
+//                            'options' => [
+//                                'placeholder' => Yii::t('app', 'Select option'),
+//                                'multiple' => true
+//                            ],
+//                        ])
+                    ?>
+
+                    <?= $form
                         ->field($model, 'count_of_months')
                         ->radioList(FactoryPromotion::getCountOfMonthsRange(), [])
 //                        ->radioList(
