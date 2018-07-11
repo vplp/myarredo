@@ -1,7 +1,7 @@
 <?php
 
 //use backend\themes\defaults\widgets\forms\ActiveForm;
-use backend\app\bootstrap\ActiveForm;
+use yii\widgets\ActiveForm;
 //use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
@@ -15,7 +15,7 @@ use frontend\modules\location\models\{
     Country, City
 };
 use frontend\modules\catalog\models\{
-    ProductRelSpecification
+    FactoryPromotion
 };
 use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;
 //
@@ -44,7 +44,41 @@ $this->title = Yii::t('app', 'Рекламировать');
                             : Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]),
                     ]); ?>
 
-                    <?= $form->text_line($model, 'user_id') ?>
+                    <?= $form
+                        ->field($model, 'count_of_months')
+                        //->radioList(FactoryPromotion::getCountOfMonthsRange(), [])
+                        ->radioList(
+                            FactoryPromotion::getCountOfMonthsRange(),
+                            [
+                                'item' => function ($index, $label, $name, $checked, $value) {
+                                    return
+                                        '<div class="radio-e">' .
+                                        Html::radio($name, $checked, ['value' => $value]) .
+                                        Html::label('<span></span>' . $label) .
+                                        '</div>';
+                                },
+                            ]
+                        )
+                    ?>
+
+                    <?= $form
+                        ->field($model, 'daily_budget')
+                        //->radioList(FactoryPromotion::getDailyBudgetRange(), [])
+                        ->radioList(
+                            FactoryPromotion::getDailyBudgetRange(),
+                            [
+                                'item' => function ($index, $label, $name, $checked, $value) {
+                                    return
+                                        '<div class="radio-e">' .
+                                        Html::radio($name, $checked, ['value' => $value]) .
+                                        Html::label('<span></span>' . $label) .
+                                        '</div>';
+                                },
+                            ]
+                        )
+                    ?>
+
+                    <?= $form->field($model, 'cost') ?>
 
                     <div class="buttons-cont">
                         <?= Html::submitButton(
