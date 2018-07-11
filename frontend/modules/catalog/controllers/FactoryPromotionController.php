@@ -11,6 +11,7 @@ use yii\filters\AccessControl;
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
     FactoryPromotion,
+    FactoryProduct,
     search\FactoryPromotion as filterFactoryPromotionModel
 };
 //
@@ -20,6 +21,7 @@ use thread\actions\{
     AttributeSwitch,
     Update
 };
+use yii\web\NotFoundHttpException;
 
 /**
  * Class FactoryPromotionController
@@ -79,14 +81,14 @@ class FactoryPromotionController extends BaseController
 //                        return ['update', 'id' => $this->action->getModel()->id];
 //                    }
 //                ],
-                'update' => [
-                    'class' => Update::class,
-                    'modelClass' => $this->model,
-                    'scenario' => 'frontend',
-                    'redirect' => function () {
-                        return ['update', 'id' => $this->action->getModel()->id];
-                    }
-                ],
+//                'update' => [
+//                    'class' => Update::class,
+//                    'modelClass' => $this->model,
+//                    'scenario' => 'frontend',
+//                    'redirect' => function () {
+//                        return ['update', 'id' => $this->action->getModel()->id];
+//                    }
+//                ],
                 'intrash' => [
                     'class' => AttributeSwitch::class,
                     'modelClass' => $this->model,
@@ -102,8 +104,8 @@ class FactoryPromotionController extends BaseController
      */
     public function actionCreate()
     {
-        /** @var $model FactoryPromotion */
-        $model = new $this->model;
+        $model = new FactoryPromotion();
+        $modelProduct = new FactoryProduct();
 
         $model->scenario = 'frontend';
 
@@ -133,7 +135,47 @@ class FactoryPromotionController extends BaseController
         }
 
         return $this->render('_form', [
-            'model' => $model
+            'model' => $model,
+            'modelProduct' => $modelProduct
+        ]);
+    }
+
+    /**
+     *
+     */
+    public function actionUpdate($id)
+    {
+        $model = FactoryPromotion::findById($id);
+
+        /** @var $model FactoryPromotion */
+
+        if ($model == null) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        }
+
+        $modelProduct = new FactoryProduct();
+
+        $model->scenario = 'frontend';
+
+        if ($model->load(Yii::$app->getRequest()->post())) {
+            $transaction = $model::getDb()->beginTransaction();
+            try {
+
+                $save = $model->save();
+
+                if ($save) {
+                    $transaction->commit();
+                } else {
+                    $transaction->rollBack();
+                }
+            } catch (Exception $e) {
+                $transaction->rollBack();
+            }
+        }
+
+        return $this->render('_form', [
+            'model' => $model,
+            'modelProduct' => $modelProduct
         ]);
     }
 }

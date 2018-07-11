@@ -28,6 +28,7 @@ use common\modules\catalog\Catalog;
  * @property boolean $deleted
  *
  * @property FactoryPromotionRelCity[] $cities
+ * @property FactoryPromotionRelProduct[] $products
  *
  * @package common\modules\catalog\models
  */
@@ -61,6 +62,12 @@ class FactoryPromotion extends ActiveRecord
                     'city_ids' => 'cities',
                 ],
             ],
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'product_ids' => 'products',
+                ],
+            ],
         ]);
     }
 
@@ -75,7 +82,7 @@ class FactoryPromotion extends ActiveRecord
             [['cost'], 'double'],
             [['status', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['count_of_months', 'daily_budget', 'cost'], 'default', 'value' => '0'],
-            [['city_ids'], 'each', 'rule' => ['integer']],
+            [['city_ids', 'product_ids'], 'each', 'rule' => ['integer']],
         ];
     }
 
@@ -96,7 +103,8 @@ class FactoryPromotion extends ActiveRecord
                 'status',
                 'published',
                 'deleted',
-                'city_ids'
+                'city_ids',
+                'product_ids'
             ],
             'frontend' => [
                 'user_id',
@@ -106,7 +114,8 @@ class FactoryPromotion extends ActiveRecord
                 'status',
                 'published',
                 'deleted',
-                'city_ids'
+                'city_ids',
+                'product_ids'
             ],
         ];
     }
@@ -128,6 +137,7 @@ class FactoryPromotion extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
             'city_ids' => Yii::t('app', 'Cities'),
+            'product_ids' => Yii::t('app', 'Products'),
         ];
     }
 
@@ -139,6 +149,16 @@ class FactoryPromotion extends ActiveRecord
         return $this
             ->hasMany(City::class, ['id' => 'city_id'])
             ->viaTable(FactoryPromotionRelCity::tableName(), ['promotion_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProducts()
+    {
+        return $this
+            ->hasMany(Product::class, ['id' => 'catalog_item_id'])
+            ->viaTable(FactoryPromotionRelProduct::tableName(), ['promotion_id' => 'id']);
     }
 
     /**

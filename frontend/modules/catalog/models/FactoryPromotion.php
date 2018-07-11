@@ -23,6 +23,15 @@ class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
     }
 
     /**
+     * @param int $id
+     * @return mixed
+     */
+    public static function findById($id)
+    {
+        return self::findBase()->byId($id)->one();
+    }
+
+    /**
      * Search
      *
      * @param $params
