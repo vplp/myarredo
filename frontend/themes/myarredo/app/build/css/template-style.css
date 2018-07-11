@@ -3781,12 +3781,11 @@ h1 {
   }
   .cart-modal .modal-body {
     text-align: center;
-    padding: 80px 20px 30px;
+    padding: 112px 20px 56px;
   }
   .cart-modal .modal-body p {
     color: #535351;
     font-size: 14px;
-    font-family: 'OpenSans';
     position: relative;
   }
   .cart-modal .modal-body p::after {
@@ -3805,9 +3804,14 @@ h1 {
   }
   .cart-modal {
     border-radius: 0;
+    box-shadow: none;
   }
   .cart-modal .modal-footer {
     border-top: none;
+    padding: 15px 15px 25px 15px;
+  }
+  .cart-modal .modal-header {
+    padding: 9px 15px;
   }
   .cart-modal .modal-header .close {
     opacity: 1;
@@ -3818,7 +3822,9 @@ h1 {
     font-size: 28px;
   }
   .modal-cart {
+    width: 90%;
     max-width: 405px;
+    margin: 8% auto;
   }
   .factory-product {
     background-color: #ffffff;
@@ -5805,3 +5811,13 @@ h1 {
       margin-bottom: 10px; } }
 
 /*-----конец Новые стили----*/
+
+@media screen and (max-width: 480px) {
+  .cart-modal .modal-footer .btn {
+    display: block;
+    margin: 0 auto 10px;
+  }
+  .cart-modal .modal-footer .btn-goods {
+    max-width: 194px;
+  }
+}
