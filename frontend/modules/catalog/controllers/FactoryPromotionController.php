@@ -31,7 +31,6 @@ class FactoryPromotionController extends BaseController
     public $defaultAction = 'list';
 
     protected $model = FactoryPromotion::class;
-    protected $modelLang = FactoryPromotionLang::class;
     protected $filterModel = filterFactoryPromotionModel::class;
 
     /**
@@ -70,14 +69,14 @@ class FactoryPromotionController extends BaseController
                     'modelClass' => $this->model,
                     'filterModel' => $this->filterModel,
                 ],
-                'create' => [
-                    'class' => Create::class,
-                    'modelClass' => $this->model,
-                    'scenario' => 'frontend',
-                    'redirect' => function () {
-                        return ['update', 'id' => $this->action->getModel()->id];
-                    }
-                ],
+//                'create' => [
+//                    'class' => Create::class,
+//                    'modelClass' => $this->model,
+//                    'scenario' => 'frontend',
+//                    'redirect' => function () {
+//                        return ['update', 'id' => $this->action->getModel()->id];
+//                    }
+//                ],
                 'update' => [
                     'class' => Update::class,
                     'modelClass' => $this->model,
@@ -94,5 +93,31 @@ class FactoryPromotionController extends BaseController
                 ],
             ]
         );
+    }
+
+    /**
+     *
+     */
+    public function actionCreate()
+    {
+        $model = new $this->model;
+
+        $model->scenario = 'frontend';
+
+        $transaction = $model::getDb()->beginTransaction();
+        try {
+            if ($model->load(Yii::$app->getRequest()->post()) && $model->validate() && $model->save()) {
+                $transaction->commit();
+            } else {
+                $transaction->rollBack();
+            }
+        } catch (Exception $e) {
+            Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
+            $transaction->rollBack();
+        }
+
+        return $this->render('_form', [
+            'model' => $model
+        ]);
     }
 }
