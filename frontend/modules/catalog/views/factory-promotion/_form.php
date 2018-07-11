@@ -100,3 +100,27 @@ $this->title = Yii::t('app', 'Рекламировать');
         </div>
     </div>
 </main>
+
+<?php
+
+$script = <<<JS
+function cost() {
+    
+    var cost,
+    count_of_months = $('input[name="FactoryPromotion[count_of_months]"]:checked').val(),
+    daily_budget = $('input[name="FactoryPromotion[daily_budget]"]:checked').val();
+    
+    cost = count_of_months * 30 * daily_budget;
+
+    $('input[name="FactoryPromotion[cost]"]').val(cost);
+}
+
+cost();
+
+$('input[type=radio]').on('change', function() {
+     cost();
+});
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);
+?>
