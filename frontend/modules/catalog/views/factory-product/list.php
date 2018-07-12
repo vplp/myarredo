@@ -57,7 +57,7 @@ $this->title = $this->context->title;
                     <div class="col-md-12 col-lg-12">
                         <div class="cont-area cont-goods">
 
-                            <?php Pjax::begin(['id' => 'promotion']); ?>
+                            <?php Pjax::begin(['id' => 'factory-product']); ?>
 
                             <?= GridView::widget([
                                 'dataProvider' => $dataProvider,

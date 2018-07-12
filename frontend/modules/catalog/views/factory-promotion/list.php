@@ -52,7 +52,7 @@ $this->title = $this->context->title;
                     <div class="col-md-12 col-lg-12">
                         <div class="cont-area cont-goods">
 
-                            <?php Pjax::begin(['id' => 'promotion']); ?>
+                            <?php Pjax::begin(['id' => 'factory-promotion']); ?>
 
                             <?= GridView::widget([
                                 'dataProvider' => $dataProvider,
@@ -122,19 +122,8 @@ $this->title = $this->context->title;
                                     ],
                                     [
                                         'class' => yii\grid\ActionColumn::class,
-                                        'template' => '{view} {update} {delete}',
+                                        'template' => '{update} {delete}',
                                         'buttons' => [
-                                            'view' => function ($url, $model) {
-                                                /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
-                                                return ($model->published && !$model->deleted) ? Html::a(
-                                                    '<span class="glyphicon glyphicon-eye-open"></span>',
-                                                    Product::getUrl($model['alias']),
-                                                    [
-                                                        'class' => 'btn btn-default btn-xs',
-                                                        'target' => '_blank'
-                                                    ]
-                                                ) : '';
-                                            },
                                             'update' => function ($url, $model) {
                                                 /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
                                                 return Yii::$app->user->identity->id == $model->user_id ? Html::a(

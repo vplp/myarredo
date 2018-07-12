@@ -4,8 +4,9 @@
 use yii\widgets\ActiveForm;
 //use yii\widgets\ActiveForm;
 use yii\helpers\{
-    Html, Url
+    Html, Url, ArrayHelper
 };
+use yii\widgets\Pjax;
 use kartik\grid\GridView;
 use kartik\widgets\Select2;
 //
@@ -16,7 +17,7 @@ use frontend\modules\location\models\{
     Country, City
 };
 use frontend\modules\catalog\models\{
-    FactoryPromotion, Product, FactoryProduct
+    FactoryPromotion, Product, FactoryProduct, FactoryPromotionRelProduct
 };
 use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;
 //
@@ -27,6 +28,7 @@ use thread\widgets\grid\{
 
 /**
  * @var \frontend\modules\catalog\models\FactoryPromotion $model
+ * @var \frontend\modules\catalog\models\FactoryProduct $modelProduct
  */
 
 $this->title = Yii::t('app', 'Рекламировать');
@@ -77,10 +79,16 @@ $this->title = Yii::t('app', 'Рекламировать');
                             </div>
                         </div>
 
-                        <?= GridView::widget([
-                            'dataProvider' => $modelProduct->search(Yii::$app->request->queryParams),
-                            'filterModel' => $modelProduct->load(Yii::$app->getRequest()->queryParams),
-                            'pjax' => true,
+                        <?php Pjax::begin(['id' => 'factory-promotion-form']); ?>
+
+                        <?php
+
+                        $dataProvider = $modelProduct->search(ArrayHelper::merge(Yii::$app->request->queryParams, ['pagination' => false]));
+                        $dataProvider->sort = false;
+
+                        echo GridView::widget([
+                            'dataProvider' => $dataProvider,
+                            'filterModel' => $modelProduct,
                             'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
                             'columns' => [
                                 [
@@ -97,8 +105,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                     },
                                     'headerOptions' => ['class' => 'col-sm-1'],
                                     'contentOptions' => ['class' => 'text-center'],
-                                    'format' => 'raw',
-                                    'filter' => false
+                                    'format' => 'raw'
                                 ],
                                 [
                                     'attribute' => 'title',
@@ -109,11 +116,21 @@ $this->title = Yii::t('app', 'Рекламировать');
                                     'format' => 'raw',
                                     'value' => function ($model) {
                                         /** @var \frontend\modules\catalog\models\FactoryProduct $model */
-                                        return Html::checkbox( 'FactoryPromotion[product_ids][]', false, ['value' => $model->id]);
+
+                                        $checked = FactoryPromotionRelProduct::findBase()
+                                            ->where([
+                                                'promotion_id' => Yii::$app->request->get('id'),
+                                                'catalog_item_id' => $model->id,
+                                            ])
+                                            ->one();
+
+                                        return Html::checkbox('FactoryPromotion[product_ids][]', $checked, ['value' => $model->id]);
                                     },
-                                ]
+                                ],
                             ],
                         ]) ?>
+
+                        <?php Pjax::end(); ?>
 
                         <?= $form
                             ->field($model, 'city_ids')
@@ -191,9 +208,10 @@ function cost() {
     
     var cost,
     count_of_months = $('input[name="FactoryPromotion[count_of_months]"]:checked').val(),
-    daily_budget = $('input[name="FactoryPromotion[daily_budget]"]:checked').val();
-    
-    cost = count_of_months * 30 * daily_budget;
+    daily_budget = $('input[name="FactoryPromotion[daily_budget]"]:checked').val(),
+    count_products = $('input[name="FactoryPromotion[product_ids][]"]:checked').length;
+  
+    cost = count_products * 1000 + count_of_months * 30 * daily_budget;
 
     $('input[name="FactoryPromotion[cost]"]').val(cost);
 }
