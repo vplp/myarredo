@@ -119,6 +119,7 @@ class FactoryPromotionController extends BaseController
             try {
 
                 $model->user_id = Yii::$app->user->identity->id;
+                $model->status = 1;
 
                 $save = $model->save();
 

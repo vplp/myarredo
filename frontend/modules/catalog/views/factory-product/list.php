@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+use yii\widgets\Pjax;
 use yii\grid\GridView;
 use frontend\components\Breadcrumbs;
 //
@@ -56,12 +57,15 @@ $this->title = $this->context->title;
                     <div class="col-md-12 col-lg-12">
                         <div class="cont-area cont-goods">
 
+                            <?php Pjax::begin(['id' => 'promotion']); ?>
+
                             <?= GridView::widget([
                                 'dataProvider' => $dataProvider,
                                 'filterModel' => $filter,
                                 'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
                                 'columns' => [
                                     [
+                                        'format' => 'raw',
                                         'attribute' => 'category',
                                         'value' => function ($model) {
                                             $result = [];
@@ -75,7 +79,6 @@ $this->title = $this->context->title;
                                             }
                                             return implode(', ', $result);
                                         },
-                                        'format' => 'raw',
                                         'label' => Yii::t('app', 'Category'),
                                         'headerOptions' => ['class' => 'col-sm-1'],
                                         'contentOptions' => ['class' => 'text-center'],
@@ -92,6 +95,7 @@ $this->title = $this->context->title;
                                         'contentOptions' => ['class' => 'text-center'],
                                     ],
                                     [
+                                        'format' => 'raw',
                                         'attribute' => 'image_link',
                                         'value' => function ($model) {
                                             /** @var \frontend\modules\catalog\models\FactoryProduct $model */
@@ -99,7 +103,6 @@ $this->title = $this->context->title;
                                         },
                                         'headerOptions' => ['class' => 'col-sm-1'],
                                         'contentOptions' => ['class' => 'text-center'],
-                                        'format' => 'raw',
                                         'filter' => false
                                     ],
                                     [
@@ -108,11 +111,12 @@ $this->title = $this->context->title;
                                         'label' => Yii::t('app', 'Title'),
                                     ],
                                     [
+                                        'format' => 'raw',
                                         'attribute' => 'updated_at',
+                                        'label' => Yii::t('app', 'Дата'),
                                         'value' => function ($model) {
                                             return date('j.m.Y', $model->updated_at);
                                         },
-                                        'format' => 'raw',
                                         'headerOptions' => ['class' => 'col-sm-1'],
                                         'contentOptions' => ['class' => 'text-center'],
                                         'filter' => false
@@ -143,8 +147,8 @@ $this->title = $this->context->title;
 //                                        ),
 //                                    ],
                                     [
-                                        'attribute' => 'published',
                                         'format' => 'raw',
+                                        'attribute' => 'published',
                                         'value' => function ($model) {
                                             /** @var $model \frontend\modules\catalog\models\FactoryProduct */
                                             return Html::checkbox(false, $model->published, ['disabled' => true]);
@@ -202,6 +206,8 @@ $this->title = $this->context->title;
                                     ],
                                 ],
                             ]); ?>
+
+                            <?php Pjax::end(); ?>
 
                         </div>
                     </div>

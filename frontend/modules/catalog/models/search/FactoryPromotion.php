@@ -27,7 +27,8 @@ class FactoryPromotion extends FactoryPromotionModel implements BaseBackendSearc
     public function rules()
     {
         return [
-            [['id', 'user_id'], 'integer']
+            [['id', 'user_id'], 'integer'],
+            [['status'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
 
@@ -61,9 +62,11 @@ class FactoryPromotion extends FactoryPromotionModel implements BaseBackendSearc
             return $dataProvider;
         }
 
+
         $query->andFilterWhere([
             self::tableName() . '.id' => $this->id,
-            self::tableName() . '.user_id' => $this->user_id
+            self::tableName() . '.user_id' => $this->user_id,
+            self::tableName() . '.status' => $this->status
         ]);
 
         self::getDb()->cache(function ($db) use ($dataProvider) {

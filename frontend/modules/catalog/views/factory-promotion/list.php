@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+use yii\widgets\Pjax;
 use yii\grid\GridView;
 use frontend\components\Breadcrumbs;
 //
@@ -14,12 +15,14 @@ use thread\widgets\grid\{
     ActionStatusColumn, GridViewFilter
 };
 
+
 /**
  * @var \yii\data\Pagination $pages
  * @var $model \frontend\modules\catalog\models\FactoryPromotion
  */
 
 $dataProvider = $model->search(Yii::$app->request->queryParams);
+$dataProvider->sort = false;
 
 $this->title = $this->context->title;
 
@@ -49,35 +52,13 @@ $this->title = $this->context->title;
                     <div class="col-md-12 col-lg-12">
                         <div class="cont-area cont-goods">
 
+                            <?php Pjax::begin(['id' => 'promotion']); ?>
+
                             <?= GridView::widget([
                                 'dataProvider' => $dataProvider,
                                 'filterModel' => $filter,
                                 'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
                                 'columns' => [
-//                                    [
-//                                        'attribute' => 'category',
-//                                        'value' => function ($model) {
-//                                            $result = [];
-//                                            foreach ($model->category as $category) {
-//                                                $result[] = Html::img(
-//                                                    Category::getImage($category['image_link3']),
-//                                                    [
-//                                                        'alt' => $category->lang->title,
-//                                                        'title' => $category->lang->title
-//                                                    ]);
-//                                            }
-//                                            return implode(', ', $result);
-//                                        },
-//                                        'format' => 'raw',
-//                                        'label' => Yii::t('app', 'Category'),
-//                                        'headerOptions' => ['class' => 'col-sm-1'],
-//                                        'contentOptions' => ['class' => 'text-center'],
-//                                        'filter' => GridViewFilter::selectOne(
-//                                            $filter,
-//                                            'category',
-//                                            Category::dropDownList()
-//                                        ),
-//                                    ],
                                     [
                                         'attribute' => 'id',
                                         'value' => 'id',
@@ -85,39 +66,60 @@ $this->title = $this->context->title;
                                         'contentOptions' => ['class' => 'text-center'],
                                     ],
                                     [
+                                        'format' => 'raw',
                                         'attribute' => 'updated_at',
+                                        'label' => Yii::t('app', 'Дата'),
                                         'value' => function ($model) {
                                             return date('j.m.Y', $model->updated_at);
                                         },
-                                        'format' => 'raw',
                                         'headerOptions' => ['class' => 'col-sm-1'],
                                         'contentOptions' => ['class' => 'text-center'],
                                         'filter' => false
                                     ],
                                     [
+                                        'format' => 'raw',
+                                        'label' => Yii::t('app', 'Список товаров'),
+                                        'value' => function ($model) {
+                                            /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
+                                            $result = [];
+                                            foreach ($model->products as $product) {
+                                                $result[] = $product->lang->title;
+                                            }
+                                            return implode(' | ', $result);
+                                        },
+                                    ],
+                                    [
+                                        'format' => 'raw',
+                                        'label' => Yii::t('app', 'Кол-во городов'),
+                                        'value' => function ($model) {
+                                            /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
+                                            return count($model->cities);
+                                        },
+                                    ],
+                                    [
                                         'attribute' => 'cost',
                                         'value' => 'cost',
+                                        'label' => Yii::t('app', 'Бюджет'),
                                         'headerOptions' => ['class' => 'col-sm-1'],
                                         'contentOptions' => ['class' => 'text-center'],
                                     ],
-//                                    [
-//                                        'attribute' => 'published',
-//                                        'format' => 'raw',
-//                                        'value' => function ($model) {
-//                                            /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
-//                                            return Html::checkbox(false, $model->published);
-//                                        },
-//                                        'headerOptions' => ['class' => 'col-sm-1'],
-//                                        'contentOptions' => ['class' => 'text-center'],
-//                                        'filter' => GridViewFilter::selectOne(
-//                                            $filter,
-//                                            'published',
-//                                            [
-//                                                0 => 'On',
-//                                                1 => 'Off'
-//                                            ]
-//                                        ),
-//                                    ],
+                                    [
+                                        'attribute' => 'status',
+                                        'value' => function ($model) {
+                                            /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
+                                            return $model->status ? 'Активная' : 'Завершена';
+                                        },
+                                        'headerOptions' => ['class' => 'col-sm-1'],
+                                        'contentOptions' => ['class' => 'text-center'],
+                                        'filter' => GridViewFilter::selectOne(
+                                            $filter,
+                                            'status',
+                                            [
+                                                0 => 'On',
+                                                1 => 'Off'
+                                            ]
+                                        ),
+                                    ],
                                     [
                                         'class' => yii\grid\ActionColumn::class,
                                         'template' => '{view} {update} {delete}',
@@ -160,6 +162,8 @@ $this->title = $this->context->title;
                                     ],
                                 ],
                             ]); ?>
+
+                            <?php Pjax::end(); ?>
 
                         </div>
                     </div>
