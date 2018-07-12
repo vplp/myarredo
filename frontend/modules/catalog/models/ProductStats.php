@@ -19,7 +19,7 @@ class ProductStats extends \common\modules\catalog\models\ProductStats
         /** @var \frontend\modules\catalog\Catalog $module */
         $module = Yii::$app->getModule('catalog');
 
-        if (!$module->isBot2()) {
+        if (!$module->isBot1() && !$module->isBot2()) {
             $model = new self();
 
             $model->setScenario('frontend');
