@@ -11,6 +11,9 @@ use Yii;
  */
 class SalePhoneRequest extends \common\modules\catalog\models\SalePhoneRequest
 {
+    /**
+     * @param $sale_item_id
+     */
     public static function create($sale_item_id)
     {
         /** @var \frontend\modules\catalog\Catalog $module */
