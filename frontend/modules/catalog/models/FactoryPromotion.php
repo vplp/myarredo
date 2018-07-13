@@ -2,10 +2,7 @@
 
 namespace frontend\modules\catalog\models;
 
-use Yii;
-use yii\helpers\{
-    Url, ArrayHelper
-};
+use yii\helpers\Url;
 
 /**
  * Class Factory
