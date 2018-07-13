@@ -182,6 +182,11 @@ $this->title = Yii::t('app', 'Рекламировать');
 
                         <div class="buttons-cont">
                             <?= Html::submitButton(
+                                Yii::t('app', 'Сохранить компанию'),
+                                ['class' => 'btn btn-goods']
+                            ) ?>
+
+                            <?= Html::submitButton(
                                 Yii::t('app', 'Оплатить'),
                                 ['class' => 'btn btn-goods']
                             ) ?>
