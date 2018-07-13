@@ -77,7 +77,7 @@ class FactoryPromotion extends ActiveRecord
     public function rules()
     {
         return [
-            [['user_id'], 'required'],
+            [['user_id', 'city_ids', 'product_ids'], 'required'],
             [['user_id', 'count_of_months', 'daily_budget', 'created_at', 'updated_at', 'position'], 'integer'],
             [['cost'], 'double'],
             [['status', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
