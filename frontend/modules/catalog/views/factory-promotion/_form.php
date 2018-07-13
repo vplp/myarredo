@@ -182,11 +182,13 @@ $this->title = Yii::t('app', 'Рекламировать');
                         //                        )
                         ?>
 
+                        <div>
+                            <?= Yii::t('app', 'Стоимость рекламной компании') ?> <span id="cost"></span>
+                        </div>
+
                         <?= $form->field($model, 'cost')
-                            ->label(Yii::t('app', 'Стоимость рекламной компании'))
-                            ->input('text', [
-                                'disabled' => true
-                            ]) ?>
+                            ->label(false)
+                            ->input('hidden') ?>
 
                         <div class="buttons-cont">
                             <?= Html::submitButton(
@@ -225,7 +227,8 @@ function newCost() {
   
     cost = count_products * 1000 + count_of_months * 30 * daily_budget;
 
-    $('input[name="FactoryPromotion[cost]"]').val(cost);
+    $('input[name="FactoryPromotion[cost]"],#cost').val(cost);
+    $('#cost').html(cost);
     $('#count-products').html(count_products);
 }
 
