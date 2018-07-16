@@ -1,24 +1,27 @@
 <?php
 
-namespace frontend\modules\catalog\models\search;
+namespace backend\modules\catalog\models\search;
 
 use Yii;
-use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use yii\base\Model;
 //
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
-use frontend\modules\catalog\models\{
+use backend\modules\catalog\Catalog;
+use backend\modules\catalog\models\{
     FactoryPromotion as FactoryPromotionModel
 };
 
 /**
  * Class FactoryPromotion
  *
- * @package frontend\modules\catalog\models\search
+ * @package backend\modules\catalog\models\search
  */
 class FactoryPromotion extends FactoryPromotionModel implements BaseBackendSearchModel
 {
+    public $title;
+
     /**
      * @return array
      */
@@ -26,7 +29,7 @@ class FactoryPromotion extends FactoryPromotionModel implements BaseBackendSearc
     {
         return [
             [['id', 'user_id'], 'integer'],
-            [['status'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [['status', 'published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
 
@@ -47,12 +50,10 @@ class FactoryPromotion extends FactoryPromotionModel implements BaseBackendSearc
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'defaultPageSize' => $module->itemOnPage,
-                'forcePageParam' => false,
+                'defaultPageSize' => $module->itemOnPage
             ],
         ]);
 
@@ -63,33 +64,30 @@ class FactoryPromotion extends FactoryPromotionModel implements BaseBackendSearc
         $query->andFilterWhere([
             self::tableName() . '.id' => $this->id,
             self::tableName() . '.user_id' => $this->user_id,
-            self::tableName() . '.status' => $this->status
+            self::tableName() . '.status' => $this->status,
+            self::tableName() . '.published' => $this->published
         ]);
-
-        self::getDb()->cache(function ($db) use ($dataProvider) {
-            $dataProvider->prepare();
-        });
 
         return $dataProvider;
     }
 
     /**
-     * @param array $params
+     * @param $params
      * @return ActiveDataProvider
      */
     public function search($params)
     {
-        $query = FactoryPromotionModel::findBase();
+        $query = FactoryPromotionModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
     /**
-     * @param array $params
+     * @param $params
      * @return ActiveDataProvider
      */
     public function trash($params)
     {
-        $query = FactoryPromotionModel::findBase();
+        $query = FactoryPromotionModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }

@@ -166,7 +166,8 @@ class FactoryPromotion extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find();
+        return self::find()
+            ->orderBy(self::tableName() . '.updated_at DESC');
     }
 
     /**
