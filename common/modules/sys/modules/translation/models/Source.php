@@ -12,5 +12,11 @@ use thread\modules\sys\modules\translation\models\Source as ThreadSource;
  */
 class Source extends ThreadSource
 {
-
+    /**
+     * @return mixed
+     */
+    public static function findBase()
+    {
+        return self::find()->joinWith(['message'])->orderBy(self::tableName() . '.id DESC');
+    }
 }
