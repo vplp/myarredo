@@ -1,18 +1,13 @@
 <?php
 
-//use backend\themes\defaults\widgets\forms\ActiveForm;
 use backend\app\bootstrap\ActiveForm;
-//use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
 use kartik\widgets\Select2;
 //
 use frontend\modules\catalog\models\{
-    Category, Factory, Types, Specification, Collection
-};
-use frontend\modules\location\models\{
-    Country, City
+    Category, Types, Specification, Collection
 };
 use frontend\modules\catalog\models\{
     ProductRelSpecification
@@ -45,14 +40,7 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
                                 : Url::toRoute(['/catalog/factory-product/update', 'id' => $model->id]),
                         ]); ?>
 
-                        <?php if ($model->isNewRecord): ?>
-
-                            <div class="alert alert-warning">
-                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                                Для загрузки изображений - сначала создайте товар
-                            </div>
-
-                        <?php else: ?>
+                        <?php if (!$model->isNewRecord): ?>
 
                             <?= $form->field($model, 'image_link')->imageOne($model->getImageLink()) ?>
 
@@ -77,12 +65,6 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
                                 'data' => Types::dropDownList(),
                                 'options' => ['placeholder' => Yii::t('app', 'Select option')],
                             ]) ?>
-
-                        <p>
-                            Категории напрямую зависит от выбранного типа предмета.<br>
-                            Если по выбраному типу предмета отсутсвует необходимая категория, зайдите в редактирование
-                            категории и добавте зависимость с предметом.
-                        </p>
 
                         <?= $form
                             ->field($model, 'category_ids')
