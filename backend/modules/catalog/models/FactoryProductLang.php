@@ -1,11 +1,11 @@
 <?php
 
-namespace frontend\modules\catalog\models;
+namespace backend\modules\catalog\models;
 
 /**
  * Class FactoryProductLang
  *
- * @package frontend\modules\catalog\models
+ * @package backend\modules\catalog\models
  */
 class FactoryProductLang extends \common\modules\catalog\models\ProductLang
 {

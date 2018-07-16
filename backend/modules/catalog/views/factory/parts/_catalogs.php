@@ -28,7 +28,7 @@ echo GridView::widget([
         [
             'attribute' => 'updated_at',
             'value' => function ($model) {
-                return date('d.n.Y H:i', $model->updated_at);
+                return date('j.m.Y H:i', $model->updated_at);
             },
             'format' => 'raw',
             'filter' => false

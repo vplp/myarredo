@@ -15,6 +15,9 @@ use thread\modules\shop\interfaces\Product as iProduct;
 //
 use common\helpers\Inflector;
 use common\modules\catalog\Catalog;
+use common\modules\user\models\{
+    Group as UserGroup, User
+};
 
 /**
  * Class Product
@@ -529,5 +532,14 @@ class Product extends ActiveRecord implements iProduct
     {
         return $this
             ->hasMany(ProductRelSpecification::class, ['catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserGroup()
+    {
+        return $this->hasOne(UserGroup::class, ['id' => 'group_id'])
+            ->viaTable(User::tableName(), ['id' => 'user_id']);
     }
 }

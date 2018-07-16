@@ -59,6 +59,7 @@ class ProductLang extends ActiveRecordLang
     {
         return [
             'backend' => ['title', 'description', 'content', 'comment'],
+            'frontend' => ['title', 'description', 'content', 'comment'],
         ];
     }
 
