@@ -60,20 +60,12 @@ $this->title = $this->context->title;
                                 'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
                                 'columns' => [
                                     [
-                                        'attribute' => 'id',
-                                        'value' => 'id',
-                                        'headerOptions' => ['class' => 'col-sm-1'],
-                                        'contentOptions' => ['class' => 'text-center'],
-                                    ],
-                                    [
                                         'format' => 'raw',
                                         'attribute' => 'updated_at',
                                         'label' => Yii::t('app', 'Дата'),
                                         'value' => function ($model) {
                                             return date('j.m.Y', $model->updated_at);
                                         },
-                                        'headerOptions' => ['class' => 'col-sm-1'],
-                                        'contentOptions' => ['class' => 'text-center'],
                                         'filter' => false
                                     ],
                                     [
@@ -100,8 +92,6 @@ $this->title = $this->context->title;
                                         'attribute' => 'cost',
                                         'value' => 'cost',
                                         'label' => Yii::t('app', 'Бюджет'),
-                                        'headerOptions' => ['class' => 'col-sm-1'],
-                                        'contentOptions' => ['class' => 'text-center'],
                                     ],
                                     [
                                         'attribute' => 'status',
@@ -109,8 +99,6 @@ $this->title = $this->context->title;
                                             /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
                                             return $model->status ? 'Активная' : 'Завершена';
                                         },
-                                        'headerOptions' => ['class' => 'col-sm-1'],
-                                        'contentOptions' => ['class' => 'text-center'],
                                         'filter' => GridViewFilter::selectOne(
                                             $filter,
                                             'status',
