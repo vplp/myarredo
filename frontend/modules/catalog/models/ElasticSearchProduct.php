@@ -198,7 +198,7 @@ class ElasticSearchProduct extends ActiveRecord
                 'query' => $params['search'],
                 'fields' => [
                     'title_' . $lang,
-                    'description_' . $lang,
+                    //'description_' . $lang,
                 ],
             ],
 //            'bool' => [
