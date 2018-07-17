@@ -3706,7 +3706,10 @@ h1 {
     width: 33%;
     min-width: 33%; }
   .novelties .item-in .left, .novelties .item-in .right {
-    height: 385px; } }
+    height: 385px; }
+}
+
+/* ----------------------------------------------------My add style------------------------------------------------------------------- */
   .has-success .form-control {
     border-color: transparent;
   }
@@ -3941,6 +3944,55 @@ h1 {
   #factorypromotion-count_of_months>label {
     margin-bottom: 10px;
   }
+  .reclamation-radio {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .reclamation-radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.checkmark-radio {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+.reclamation-radio:hover input ~ .checkmark-radio {
+  background-color: #ccc;
+}
+.reclamation-radio input:checked ~ .checkmark-radio {
+  background-color: #f3f2f0;
+}
+.checkmark-radio:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.reclamation-radio input:checked ~ .checkmark-radio:after {
+  display: block;
+}
+.reclamation-radio .checkmark-radio:after {
+  top: 5px;
+  left: 5px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #448339;
+}
 /*-- -----------------------------------------------------------Новые стили------------------------------------------------------------------------------ --*/
 @media screen and (max-width: 1200px) {
   .header .top-header .phone {
