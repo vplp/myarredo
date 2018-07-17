@@ -24,8 +24,8 @@ $this->title = Yii::t('app', 'Рекламировать');
 ?>
 
     <main>
-        <div class="page create-sale">
-            <div class="container large-container">
+        <div class="page create-sale page-reclamations">
+            <div class="largex-container">
 
                 <?= Html::tag('h1', $this->title); ?>
 
@@ -38,12 +38,12 @@ $this->title = Yii::t('app', 'Рекламировать');
                                 : Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]),
                         ]) ?>
 
-                        <p>Для проведения рекламной компании вы выбрали <span id="count-products">0</span> товаров</p>
+                        <p class="reclamation-p">Для проведения рекламной компании вы выбрали <span id="count-products"> 0 </span> <span class="for-green"> товаров </span></p>
                         <?php echo Html::a(
                             Yii::t('app', 'Добавыть товары'),
                             'javascript:void(0);',
                             [
-                                'class' => 'btn btn-default big',
+                                'class' => 'btn btn-goods big',
                                 'data-toggle' => 'modal',
                                 'data-target' => '#myModal'
                             ]
@@ -243,6 +243,7 @@ function showProduct() {
         $(this).data('title') + 
         $(this).data('article') + 
         '<img src="'+ $(this).data('image') + '" width="100">' +
+        '<span class="close"> <i class="fa fa-times"></i> </span>' +
         '</div>';
     });
     

@@ -3838,6 +3838,109 @@ h1 {
     margin-top: 0;
     padding-top: 20px;
   }
+  .largex-container h1 {
+    margin-top: 0;
+    padding-top: 20px;
+    text-align: left;
+  }
+  .page-reclamations .largex-container h1 {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .create-sale .btn-goods {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .create-sale .column-center {
+    margin-bottom: 0;
+    padding-bottom: 25px;
+  }
+  .reclamation-p {
+    max-width: 445px;
+    display: inline-block;
+    margin-right: 15px;
+    color: #535351;
+  }
+  #count-products, .for-green {
+    color: #448339;
+    font-weight: 600;
+  }
+  .page-reclamations #list-product {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+  .page-reclamations #list-product>div {
+    width: 49%;
+    border: 1px solid #bdbcb3;
+    padding: 8px 5px;
+    text-align: left;
+    margin-bottom: 15px;
+  }
+  .page-reclamations #list-product>div>img {
+    float: left;
+    margin-right: 15px;
+    border-right: 1px solid #bdbcb3;
+    transform: scale(1, 1.2);
+  }
+  .page-reclamations .close {
+    opacity: 0.6;
+    color: #448339;
+    font-size: 18px;
+  }
+  .page-reclamations .close:hover {
+    opacity: 1;
+  }
+  .field-factorypromotion-city_ids .control-label {
+    color: #535351;
+    font-weight: 600;
+  }
+  #factorypromotion-city_ids .jq-checkbox {
+    border-radius: 0;
+    background: none;
+    background-color: #f3f2f0;
+    box-shadow: none;
+    width: 22px;
+    height: 23px;
+    border: 1px solid #f3f2f0;
+  }
+  #factorypromotion-city_ids .jq-checkbox.checked .jq-checkbox__div {
+    width: 11px;
+    height: 9px;
+    margin: 4px 0 0 5px;
+    border-bottom: 3px solid #535351;
+    border-left: 3px solid #535351;
+    transform: rotate(-50deg);
+    background-color: transparent;
+    box-shadow: none;
+  }
+  #factorypromotion-city_ids {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 25px;
+  }
+  #factorypromotion-city_ids>label {
+    width: 195px;
+    margin: 10px 0;
+    font-size: 14px;
+    color: #535351;
+    font-weight: normal;
+  }
+  .field-factorypromotion-count_of_months>label {
+    color: #535351;
+    font-weight: 600;
+  }
+  #factorypromotion-count_of_months {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+  }
+  #factorypromotion-count_of_months>label {
+    margin-bottom: 10px;
+  }
 /*-- -----------------------------------------------------------Новые стили------------------------------------------------------------------------------ --*/
 @media screen and (max-width: 1200px) {
   .header .top-header .phone {
