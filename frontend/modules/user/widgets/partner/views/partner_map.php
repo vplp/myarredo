@@ -1,3 +1,10 @@
+<?php
+
+use frontend\themes\myarredo\assets\AppAsset;
+
+$bundle = AppAsset::register($this);
+
+?>
 <div id="map"></div>
 
 <?php
@@ -168,7 +175,7 @@ function initMap() {
             position: new google.maps.LatLng(marker.lat, marker.lng),
             map: map,
             content: template,
-            //icon: '/img/marker.png'
+            icon:  '$bundle->baseUrl/img/marker.png'
         });
 
         marker.addListener('click', function() {
@@ -195,7 +202,7 @@ JS;
 $this->registerJs($script, yii\web\View::POS_READY);
 
 $this->registerJsFile(
-    'https://maps.googleapis.com/maps/api/js?key=AIzaSyDI-EyYe0E1ZPA9IpCTUbP2137VDAcHJGY&language=' . substr(Yii::$app->language,0,2),
+    'https://maps.googleapis.com/maps/api/js?key=AIzaSyDI-EyYe0E1ZPA9IpCTUbP2137VDAcHJGY&language=' . substr(Yii::$app->language, 0, 2),
     [
         'position' => yii\web\View::POS_END,
     ]
