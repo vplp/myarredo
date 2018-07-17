@@ -155,7 +155,7 @@ function initMap() {
         map: map,
         borderRadius: 0,
         maxWidth: 200,
-        maxHeight: 200,
+        maxHeight: 170,
         minHeight: 170,
         minWidth: 200,
         shadowStyle: 0,
@@ -169,8 +169,8 @@ function initMap() {
     });
 
     function addMarker(marker) {
-            template = $template;
-console.log(marker.image);
+        var template = $template;
+
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(marker.lat, marker.lng),
             map: map,
