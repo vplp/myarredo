@@ -51,6 +51,7 @@ class PartnerMap extends Widget
             $dataJS[$k]['city'] = isset($obj->profile->city) ? $obj->profile->city->lang->title : '';
             $dataJS[$k]['country'] = isset($obj->profile->country) ? $obj->profile->country->lang->title : '';
             $dataJS[$k]['phone'] = $obj->profile->getPhone();
+            $dataJS[$k]['image'] = $obj->profile->partner_in_city ? '/img/marker-main.png' : '/img/marker.png';
         }
 
         $dataJS = json_encode($dataJS);

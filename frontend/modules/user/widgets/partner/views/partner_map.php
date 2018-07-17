@@ -170,12 +170,12 @@ function initMap() {
 
     function addMarker(marker) {
             template = $template;
-
+console.log(marker.image);
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(marker.lat, marker.lng),
             map: map,
             content: template,
-            icon:  '$bundle->baseUrl/img/marker.png'
+            icon: '$bundle->baseUrl' + marker.image
         });
 
         marker.addListener('click', function() {
