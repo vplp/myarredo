@@ -3849,18 +3849,23 @@ h1 {
     margin: 0 auto;
   }
   .page-reclamations .largex-container h1 {
-    max-width: 960px;
+    max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
+    padding: 20px 15px 20px;
   }
   .create-sale .btn-goods {
     max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .create-sale .column-center {
-    margin-bottom: 0;
-    padding-bottom: 25px;
+  .create-sale .largex-container .column-center {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 30px 25px;
+  }
+  .create-sale .largex-container .form-horizontal {
+    width: auto;
   }
   .reclamation-p {
     max-width: 445px;
@@ -3928,7 +3933,7 @@ h1 {
     margin-top: 25px;
   }
   #factorypromotion-city_ids>label {
-    width: 195px;
+    width: 220px;
     margin: 10px 0;
     font-size: 14px;
     color: #535351;
