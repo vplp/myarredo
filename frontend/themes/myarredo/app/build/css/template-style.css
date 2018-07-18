@@ -3845,6 +3845,8 @@ h1 {
     margin-top: 0;
     padding-top: 20px;
     text-align: left;
+    max-width: 1400px;
+    margin: 0 auto;
   }
   .page-reclamations .largex-container h1 {
     max-width: 960px;
@@ -3992,6 +3994,14 @@ h1 {
   height: 15px;
   border-radius: 50%;
   background: #448339;
+}
+.adding-product-page #form-stats {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.adding-product-page .manager-history {
+  max-width: 1400px;
+  margin: 0 auto;
 }
 /*-- -----------------------------------------------------------Новые стили------------------------------------------------------------------------------ --*/
 @media screen and (max-width: 1200px) {
