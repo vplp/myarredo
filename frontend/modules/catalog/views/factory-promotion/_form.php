@@ -38,7 +38,8 @@ $this->title = Yii::t('app', 'Рекламировать');
                                 : Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]),
                         ]) ?>
 
-                        <p class="reclamation-p">Для проведения рекламной компании вы выбрали <span id="count-products"> 0 </span> <span class="for-green"> товаров </span></p>
+                        <p class="reclamation-p">Для проведения рекламной компании вы выбрали <span id="count-products"> 0 </span>
+                            <span class="for-green"> товаров </span></p>
                         <?php echo Html::a(
                             Yii::t('app', 'Добавыть товары'),
                             'javascript:void(0);',
@@ -133,23 +134,20 @@ $this->title = Yii::t('app', 'Рекламировать');
 
                         <div id="list-product"></div>
 
+
                         <?= $form
                             ->field($model, 'city_ids')
                             ->label(Yii::t('app', 'Выберите города в которых хотите провести рекламную компанию'))
-                            ->checkboxList(City::dropDownList())
-                        //                        ->widget(Select2::classname(), [
-                        //                            'data' => Types::dropDownList(),
-                        //                            'options' => [
-                        //                                'placeholder' => Yii::t('app', 'Select option'),
-                        //                                'multiple' => true
-                        //                            ],
-                        //                        ])
+                            ->checkboxList(City::dropDownList()) .
+                        Html::checkbox(null, false, [
+                            'label' => 'Выбрать все города',
+                            'class' => 'check-all',
+                        ]);
                         ?>
 
                         <?= $form
                             ->field($model, 'count_of_months')
                             ->label(Yii::t('app', 'Выберите количество месяцев'))
-                            //->radioList(FactoryPromotion::getCountOfMonthsRange(), [])
                             ->radioList(
                                 FactoryPromotion::getCountOfMonthsRange(),
                                 [
@@ -168,7 +166,6 @@ $this->title = Yii::t('app', 'Рекламировать');
                         <?= $form
                             ->field($model, 'daily_budget')
                             ->label(Yii::t('app', 'Выберите дневной бюджет'))
-                            //->radioList(FactoryPromotion::getDailyBudgetRange(), [])
                             ->radioList(
                                 FactoryPromotion::getDailyBudgetRange(),
                                 [
@@ -185,7 +182,9 @@ $this->title = Yii::t('app', 'Рекламировать');
                         ?>
 
                         <div class="promotion-title-label">
-                            <?= Yii::t('app', 'Стоимость рекламной компании') ?> <span id="cost"></span> <span class="current-item"> руб </span>
+                            <?= Yii::t('app', 'Стоимость рекламной компании') ?>
+                            <span id="cost"></span>
+                            <span class="current-item"> руб </span>
                         </div>
 
                         <?= $form->field($model, 'cost')
@@ -263,6 +262,18 @@ $('input[name="FactoryPromotion[product_ids][]"], ' +
 
 $('#add-product').on('click', function() {
      showProduct();
+});
+
+$(".check-all").on('click', function() {
+    if ($(this).checked) {
+        $('#factorypromotion-city_ids input:checkbox').each(function() {
+            $(this).prop('checked',true);
+        });
+    } else {
+        $('#factorypromotion-city_ids input:checkbox').each(function() {
+            $(this).prop('checked',false);
+        });
+    }
 });
 
 JS;

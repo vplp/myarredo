@@ -73,22 +73,6 @@ class FactoryPromotionController extends BaseController
                     'modelClass' => $this->model,
                     'filterModel' => $this->filterModel,
                 ],
-//                'create' => [
-//                    'class' => Create::class,
-//                    'modelClass' => $this->model,
-//                    'scenario' => 'frontend',
-//                    'redirect' => function () {
-//                        return ['update', 'id' => $this->action->getModel()->id];
-//                    }
-//                ],
-//                'update' => [
-//                    'class' => Update::class,
-//                    'modelClass' => $this->model,
-//                    'scenario' => 'frontend',
-//                    'redirect' => function () {
-//                        return ['update', 'id' => $this->action->getModel()->id];
-//                    }
-//                ],
                 'intrash' => [
                     'class' => AttributeSwitch::class,
                     'modelClass' => $this->model,
@@ -100,7 +84,7 @@ class FactoryPromotionController extends BaseController
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public function actionCreate()
     {
@@ -143,7 +127,7 @@ class FactoryPromotionController extends BaseController
     }
 
     /**
-     *
+     * @inheritdoc
      */
     public function actionUpdate($id)
     {
@@ -167,6 +151,7 @@ class FactoryPromotionController extends BaseController
 
                 if ($save) {
                     $transaction->commit();
+                    return $this->redirect(Url::toRoute(['/catalog/factory-promotion/list']));
                 } else {
                     $transaction->rollBack();
                 }
