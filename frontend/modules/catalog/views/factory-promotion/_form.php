@@ -182,8 +182,8 @@ $this->title = Yii::t('app', 'Рекламировать');
                         //                        )
                         ?>
 
-                        <div>
-                            <?= Yii::t('app', 'Стоимость рекламной компании') ?> <span id="cost"></span>
+                        <div class="promotion-title-label">
+                            <?= Yii::t('app', 'Стоимость рекламной компании') ?> <span id="cost"></span> <span class="current-item"> руб </span>
                         </div>
 
                         <?= $form->field($model, 'cost')
