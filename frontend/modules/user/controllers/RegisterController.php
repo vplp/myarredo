@@ -118,6 +118,24 @@ class RegisterController extends BaseController
                     ->setTo(Yii::$app->params['mailer']['setTo'])
                     ->setSubject('Зарегистрирован новый партнер')
                     ->send();
+
+                Yii::$app
+                    ->mailer
+                    ->compose(
+                        'letter_about_registration',
+                        [
+                            'user' => $model,
+                            'password' => $model['password'],
+                            'text' => Yii::$app->param->getByName('MAIL_REGISTRATION_TEXT_FOR_PARTNER')
+                        ]
+                    )
+                    ->setTo($model->email)
+                    ->setSubject(\Yii::$app->name)
+                    ->send();
+
+                Yii::$app->getSession()->addFlash('success', Yii::$app->param->getByName('USER_FACTORY_REG_MESSAGE'));
+
+
             }
 
             if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
