@@ -149,37 +149,39 @@ $this->title = Yii::t('app', 'Рекламировать');
                         <?= $form
                             ->field($model, 'count_of_months')
                             ->label(Yii::t('app', 'Выберите количество месяцев'))
-                            ->radioList(FactoryPromotion::getCountOfMonthsRange(), [])
-                        //                        ->radioList(
-                        //                            FactoryPromotion::getCountOfMonthsRange(),
-                        //                            [
-                        //                                'item' => function ($index, $label, $name, $checked, $value) {
-                        //                                    return
-                        //                                        '<div class="radio-e">' .
-                        //                                        Html::radio($name, $checked, ['value' => $value]) .
-                        //                                        Html::label('<span></span>' . $label) .
-                        //                                        '</div>';
-                        //                                },
-                        //                            ]
-                        //                        )
+                            //->radioList(FactoryPromotion::getCountOfMonthsRange(), [])
+                            ->radioList(
+                                FactoryPromotion::getCountOfMonthsRange(),
+                                [
+                                    'item' => function ($index, $label, $name, $checked, $value) {
+                                        return
+                                            '<label class="reclamation-radio">' .
+                                            Html::radio($name, $checked, ['value' => $value]) .
+                                            $label .
+                                            '<span class="checkmark-radio"></span>' .
+                                            '</label>';
+                                    },
+                                ]
+                            )
                         ?>
 
                         <?= $form
                             ->field($model, 'daily_budget')
                             ->label(Yii::t('app', 'Выберите дневной бюджет'))
-                            ->radioList(FactoryPromotion::getDailyBudgetRange(), [])
-                        //                        ->radioList(
-                        //                            FactoryPromotion::getDailyBudgetRange(),
-                        //                            [
-                        //                                'item' => function ($index, $label, $name, $checked, $value) {
-                        //                                    return
-                        //                                        '<div class="radio-e">' .
-                        //                                        Html::radio($name, $checked, ['value' => $value]) .
-                        //                                        Html::label('<span></span>' . $label) .
-                        //                                        '</div>';
-                        //                                },
-                        //                            ]
-                        //                        )
+                            //->radioList(FactoryPromotion::getDailyBudgetRange(), [])
+                            ->radioList(
+                                FactoryPromotion::getDailyBudgetRange(),
+                                [
+                                    'item' => function ($index, $label, $name, $checked, $value) {
+                                        return
+                                            '<label class="reclamation-radio">' .
+                                            Html::radio($name, $checked, ['value' => $value]) .
+                                            $label .
+                                            '<span class="checkmark-radio"></span>' .
+                                            '</label>';
+                                    },
+                                ]
+                            )
                         ?>
 
                         <div class="promotion-title-label">
