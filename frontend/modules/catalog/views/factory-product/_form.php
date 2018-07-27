@@ -1,6 +1,5 @@
 <?php
 
-use backend\app\bootstrap\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
@@ -12,9 +11,10 @@ use frontend\modules\catalog\models\{
 use frontend\modules\catalog\models\{
     ProductRelSpecification
 };
-use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;
-//
+use backend\app\bootstrap\ActiveForm;
 use backend\themes\defaults\widgets\TreeGrid;
+use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;
+
 /**
  * @var \frontend\modules\catalog\models\FactoryProduct $model
  * @var \frontend\modules\catalog\models\FactoryProductLang $modelLang

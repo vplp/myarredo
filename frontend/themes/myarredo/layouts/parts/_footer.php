@@ -80,7 +80,7 @@ $bundle = AppAsset::register($this);
                             <div class="copyright">
                                 2013 - <?= date('Y'); ?>
                                 (с) <?= Yii::t('app', 'MyArredo, лучшая мебель из италии для вашего дома') ?></br>
-                                <?= Yii::t('app', 'Программирование сайта') ?>' - <a href="http://www.vipdesign.com.ua/"
+                                <?= Yii::t('app', 'Программирование сайта') ?> - <a href="http://www.vipdesign.com.ua/"
                                                                                      rel="nofollow">VipDesign</a>
                             </div>
                         </div>

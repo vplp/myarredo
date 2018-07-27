@@ -3,8 +3,17 @@
 use yii\helpers\{
     Html, Url
 };
+use yii\widgets\Pjax;
 use yii\grid\GridView;
 use frontend\components\Breadcrumbs;
+//
+use frontend\modules\catalog\models\{
+    Category, Factory, Product
+};
+//
+use thread\widgets\grid\{
+    ActionStatusColumn, GridViewFilter
+};
 
 /**
  * @var \yii\data\Pagination $pages
@@ -21,11 +30,15 @@ $this->title = $this->context->title;
 <main>
     <div class="page category-page">
         <div class="container large-container">
-            <div class="row">
+            <div class="row title-cont">
 
                 <?= Html::tag('h1', $this->context->title); ?>
 
-                <?= Html::a(Yii::t('app', 'Add'), Url::toRoute(['/partner/sale/create']), ['class' => 'btn btn-default']) ?>
+                <?= Html::a(
+                    '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Add'),
+                    Url::toRoute(['/partner/sale/create']),
+                    ['class' => 'btn btn-goods']
+                ) ?>
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
@@ -36,10 +49,13 @@ $this->title = $this->context->title;
                 <div class="row">
 
                     <div class="col-md-12 col-lg-12">
-                        <div class="cont-area">
+                        <div class="cont-area cont-goods">
+
+                            <?php Pjax::begin(['id' => 'factory-product']); ?>
 
                             <?= GridView::widget([
                                 'dataProvider' => $dataProvider,
+                                'filterModel' => $filter,
                                 'columns' => [
                                     [
                                         'attribute' => 'lang.title',
@@ -58,14 +74,15 @@ $this->title = $this->context->title;
                                         },
                                     ],
                                     [
-                                        'attribute' => 'published',
                                         'format' => 'raw',
+                                        'attribute' => 'published',
                                         'value' => function ($model) {
-                                            /** @var $model \frontend\modules\catalog\models\Sale */
-                                            return ($model->published) ? 1 : 0;
+                                            /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                            return Html::checkbox(false, $model->published, ['disabled' => true]);
                                         },
-                                        'headerOptions' => ['class' => 'col-sm-1',],
-                                        'contentOptions' => ['class' => 'text-center',],
+                                        'headerOptions' => ['class' => 'col-sm-1'],
+                                        'contentOptions' => ['class' => 'text-center'],
+
                                     ],
                                     [
                                         'label' => 'Просмотры товара',
