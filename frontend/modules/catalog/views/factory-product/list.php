@@ -55,7 +55,7 @@ $this->title = $this->context->title;
                 <div class="row">
 
                     <div class="col-md-12 col-lg-12">
-                        <div class="cont-area cont-goods">
+                        <div id="cont_goods" class="cont-area cont-goods">
 
                             <?php Pjax::begin(['id' => 'factory-product']); ?>
 

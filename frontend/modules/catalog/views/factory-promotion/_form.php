@@ -265,16 +265,22 @@ $('#add-product').on('click', function() {
 });
 
 $(".check-all").on('click', function() {
-    if ($(this).checked) {
-        $('#factorypromotion-city_ids input:checkbox').each(function() {
-            $(this).prop('checked',true);
-        });
+    var allCheckboxs = $('#factorypromotion-city_ids').find('input[type="checkbox"]');
+    if ($(this).children('input[type="checkbox"]').prop('checked')) {
+        allCheckboxs.prop({checked: true });
+        allCheckboxs.parent('.jq-checkbox').addClass('checked');
     } else {
-        $('#factorypromotion-city_ids input:checkbox').each(function() {
-            $(this).prop('checked',false);
-        });
+        allCheckboxs.prop({checked: false });
+        allCheckboxs.parent('.jq-checkbox').removeClass('checked');
     }
 });
+function watchForCheckbox() {
+    if($('#factorypromotion-city_ids').find('input[type="checkbox"]').prop("checked")) {
+        $('.check-all').addClass('checked');
+        $('.check-all').children('input[type="checkbox"]').prop({checked: true })
+    }
+} 
+watchForCheckbox();
 
 JS;
 

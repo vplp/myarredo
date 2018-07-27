@@ -1734,9 +1734,10 @@ h1 {
   }
   .cont-goods .table thead tr td input[type="text"] {
     padding-right: 22px;
+    background-color: #ffffff;
   }
-  .cont-goods .table thead tr td:nth-child(2)::after,
-  .cont-goods .table thead tr td:nth-child(4)::after {
+  #cont_goods .table thead tr td:nth-child(2)::after,
+  #cont_goods .table thead tr td:nth-child(4)::after {
     content: "";
     display: block;
     position: absolute;
@@ -3908,7 +3909,8 @@ h1 {
     color: #535351;
     font-weight: normal;
   }
-  #factorypromotion-city_ids .jq-checkbox {
+  #factorypromotion-city_ids .jq-checkbox,
+  .check-all {
     border-radius: 0;
     background: none;
     background-color: #f3f2f0;
@@ -3917,7 +3919,8 @@ h1 {
     height: 23px;
     border: 1px solid #f3f2f0;
   }
-  #factorypromotion-city_ids .jq-checkbox.checked .jq-checkbox__div {
+  #factorypromotion-city_ids .jq-checkbox.checked .jq-checkbox__div,
+  .check-all.jq-checkbox.checked .jq-checkbox__div  {
     width: 11px;
     height: 9px;
     margin: 4px 0 0 5px;
@@ -4062,6 +4065,12 @@ h1 {
   transform: rotate(-50deg);
   background-color: transparent;
   box-shadow: none;
+}
+#checkout-form .form-control {
+  background-color: #ffffff;
+}
+#checkout-form .form-control:focus {
+  border: 1px solid #bdbcb3;
 }
 /*-- -----------------------------------------------------------Новые стили------------------------------------------------------------------------------ --*/
 @media screen and (max-width: 1200px) {
