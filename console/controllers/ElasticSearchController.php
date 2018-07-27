@@ -19,7 +19,7 @@ use common\modules\catalog\models\{
 class ElasticSearchController extends Controller
 {
     /**
-     * Generate product title
+     * @throws \yii\db\Exception
      */
     public function actionResetMark()
     {
@@ -34,21 +34,20 @@ class ElasticSearchController extends Controller
      */
     public function actionAdd($lang = 'ru-RU')
     {
-        // UPDATE `fv_catalog_item` SET `mark`='0' WHERE `mark`='1'
-
         $this->stdout("ElasticSearch: start. \n", Console::FG_GREEN);
 
         Yii::$app->language = $lang;
 
         $models = Product::find()
-            ->innerJoinWith(['lang', 'factory', 'types'])
+            ->innerJoinWith(['lang', 'factory'])
             ->andFilterWhere([
                 Product::tableName() . '.removed' => '0',
+                'is_composition' => '1',
                 'mark' => '0',
             ])
-            ->limit(500)
-            ->orderBy(Product::tableName() . '.id DESC')
             ->enabled()
+            ->orderBy(Product::tableName() . '.id DESC')
+            ->limit(500)
             ->all();
 
         foreach ($models as $product) {

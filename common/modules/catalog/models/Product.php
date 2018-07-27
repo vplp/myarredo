@@ -283,11 +283,6 @@ class Product extends ActiveRecord implements iProduct
             }
         }
 
-        if (Yii::$app->user->identity->group->role == 'factory') {
-            $this->user_id = Yii::$app->user->identity->id;
-            $this->factory_id = Yii::$app->user->identity->profile->factory_id;
-        }
-
         if (YII_ENV_PROD) {
             /** @var Catalog $module */
             $module = Yii::$app->getModule('catalog');

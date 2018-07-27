@@ -286,8 +286,18 @@ class Product extends \common\modules\catalog\models\Product
     {
         $title = $this->lang->title ?? '{}';
 
-        if ($this->is_composition)
-            $title = Yii::t('app', 'Композиция') . ' ' . $title;
+        return $title;
+    }
+
+    /**
+     * Static title
+     *
+     * @param $model
+     * @return string
+     */
+    public static function getStaticTitle($model)
+    {
+        $title = $model['lang']['title'] ?? '{}';
 
         return $title;
     }
@@ -308,22 +318,6 @@ class Product extends \common\modules\catalog\models\Product
         }
 
         return $status;
-    }
-
-    /**
-     * Static title
-     *
-     * @param $model
-     * @return string
-     */
-    public static function getStaticTitle($model)
-    {
-        $title = $model['lang']['title'];
-
-        if ($model['is_composition'])
-            $title = Yii::t('app', 'Композиция') . ' ' . $title;
-
-        return $title;
     }
 
     /**

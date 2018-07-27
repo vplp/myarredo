@@ -42,6 +42,21 @@ class FactoryProduct extends Product
     }
 
     /**
+     * @param bool $insert
+     * @return bool
+     * @throws \Throwable
+     */
+    public function beforeSave($insert)
+    {
+        if (Yii::$app->user->identity->group->role == 'factory') {
+            $this->user_id = Yii::$app->user->identity->id;
+            $this->factory_id = Yii::$app->user->identity->profile->factory_id;
+        }
+
+        return parent::beforeSave($insert);
+    }
+
+    /**
      * @return array
      */
     public function scenarios()

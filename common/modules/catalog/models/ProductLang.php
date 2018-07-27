@@ -89,6 +89,10 @@ class ProductLang extends ActiveRecordLang
                 . (($this->parent->article && $this->parent->is_composition == '0') ? ' ' . $this->parent->article : '');
         }
 
+        if ($this->parent->is_composition) {
+            $this->title = Yii::t('app', 'Композиция') . ' ' . $this->title;
+        }
+
         return parent::beforeSave($insert);
     }
 
