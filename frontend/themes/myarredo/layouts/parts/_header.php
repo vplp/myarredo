@@ -29,7 +29,7 @@ use frontend\modules\location\widgets\ChangeCity;
 
                                 <?php if (Yii::$app->city->domain == 'ru'): ?>
                                     <span class="descr">
-                                    <?= Yii::t('app', 'Бесплатно по всей России') ?>
+                                    <?= Yii::t('app', 'Бесплатно в вашем городе') ?>
                                 </span>
                                 <?php endif; ?>
                             </div>
@@ -319,7 +319,7 @@ use frontend\modules\location\widgets\ChangeCity;
                 </a>
                 <?php if (Yii::$app->city->domain == 'ru'): ?>
                     <div class="after-num">
-                        <?= Yii::t('app', 'Бесплатно по всей России') ?>
+                        <?= Yii::t('app', 'Бесплатно в вашем городе') ?>
                     </div>
                 <?php endif; ?>
             </div>
