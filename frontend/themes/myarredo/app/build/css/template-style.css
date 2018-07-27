@@ -3849,6 +3849,10 @@ h1 {
     max-width: 1400px;
     margin: 0 auto;
   }
+  .adding-product-page #form-stats {
+    background-color: #ffffff;
+    margin-bottom: 15px;
+  }
   .page-reclamations .largex-container h1 {
     max-width: 1400px;
     margin-left: auto;
