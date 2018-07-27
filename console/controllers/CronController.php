@@ -30,12 +30,66 @@ class CronController extends Controller
     }
 
     /**
-     * Generate product title
+     * Generate product ru title
+     */
+    public function actionGenerateProductRuTitle()
+    {
+        $this->stdout("GenerateProductRuTitle: start. \n", Console::FG_GREEN);
+
+        $models = Product::find()
+            ->andFilterWhere([
+                'is_composition' => '1',
+                'mark' => '0',
+            ])
+            ->limit(100)
+            ->orderBy(Product::tableName() . '.id DESC')
+            ->all();
+
+        foreach ($models as $model) {
+            /** @var PDO $transaction */
+            /** @var $model Product */
+            $transaction = $model::getDb()->beginTransaction();
+            try {
+
+                $model->setScenario('setMark');
+
+                $model->mark = '1';
+
+                Yii::$app->language = 'ru-RU';
+
+                $modelLangRu = ProductLang::find()
+                    ->where([
+                        'rid' => $model->id,
+                    ])
+                    ->one();
+
+                $modelLangRu->title = '';
+                $modelLangRu->setScenario('backend');
+
+                if ($model->save()) {
+                    $transaction->commit();
+
+                    if ($modelLangRu->save()) {
+                        $this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
+                    }
+
+                } else {
+                    $transaction->rollBack();
+                }
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                throw new \Exception($e);
+            }
+        }
+
+        $this->stdout("GenerateProductRuTitle: finish. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * Generate product it title
      */
     public function actionGenerateProductItTitle()
     {
-        // UPDATE `fv_catalog_item` SET `mark`='0' WHERE `mark`='1'
-
         $this->stdout("GenerateProductItTitle: start. \n", Console::FG_GREEN);
 
         $models = Product::find()
@@ -55,7 +109,6 @@ class CronController extends Controller
                 $model->setScenario('setMark');
 
                 $model->mark = '1';
-
 
                 Yii::$app->language = 'ru-RU';
 
