@@ -3851,7 +3851,8 @@ h1 {
   }
   .adding-product-page #form-stats {
     background-color: #ffffff;
-    margin-bottom: 15px;
+    margin-bottom: 15px !important;
+    padding: 10px 0;
   }
   .page-reclamations .largex-container h1 {
     max-width: 1400px;
