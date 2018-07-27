@@ -42,7 +42,6 @@ class ElasticSearchController extends Controller
             ->innerJoinWith(['lang', 'factory'])
             ->andFilterWhere([
                 Product::tableName() . '.removed' => '0',
-                'is_composition' => '1',
                 'mark' => '0',
             ])
             ->enabled()
