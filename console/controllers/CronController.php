@@ -38,7 +38,6 @@ class CronController extends Controller
 
         $models = Product::find()
             ->andFilterWhere([
-                'is_composition' => '1',
                 'mark' => '0',
             ])
             ->limit(100)
