@@ -59,7 +59,6 @@ class ElasticSearchController extends Controller
                 $product->mark1 = '1';
 
                 $save = ElasticSearchProduct::addRecord($product);
-
                 if ($product->save() && $save) {
                     $transaction->commit();
                     $this->stdout("save: ID=" . $product->id . " \n", Console::FG_GREEN);

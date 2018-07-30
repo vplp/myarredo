@@ -5,7 +5,7 @@ use yii\helpers\{
     Html, Url, ArrayHelper
 };
 use yii\widgets\Pjax;
-use kartik\grid\GridView;
+use yii\grid\GridView;
 //
 use frontend\modules\location\models\{
     Country, City
@@ -62,14 +62,9 @@ $this->title = Yii::t('app', 'Рекламировать');
 
                                         <?php Pjax::begin(['id' => 'factory-promotion-form']); ?>
 
-                                        <?php
-
-                                        $dataProvider = $modelProduct->search(ArrayHelper::merge(Yii::$app->request->queryParams, ['pagination' => false]));
-                                        $dataProvider->sort = false;
-
-                                        echo GridView::widget([
-                                            'dataProvider' => $dataProvider,
-                                            'filterModel' => $modelProduct,
+                                        <?= GridView::widget([
+                                            'dataProvider' => $dataProviderFactoryProduct,
+                                            'filterModel' => $filterModelFactoryProduct,
                                             'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
                                             'columns' => [
                                                 [
@@ -121,6 +116,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                         ]) ?>
 
                                         <?php Pjax::end(); ?>
+
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button"
@@ -133,7 +129,6 @@ $this->title = Yii::t('app', 'Рекламировать');
                         </div>
 
                         <div id="list-product"></div>
-
 
                         <?= $form
                             ->field($model, 'city_ids')

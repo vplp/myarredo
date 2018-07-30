@@ -15,7 +15,6 @@ use thread\widgets\grid\{
     ActionStatusColumn, GridViewFilter
 };
 
-
 /**
  * @var \yii\data\Pagination $pages
  * @var $model \frontend\modules\catalog\models\FactoryPromotion
@@ -75,7 +74,7 @@ $this->title = $this->context->title;
                                             /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
                                             $result = [];
                                             foreach ($model->products as $product) {
-                                                $result[] = $product['lang']['title'];
+                                                $result[] = $product->lang->title;
                                             }
                                             return implode(' | ', $result);
                                         },

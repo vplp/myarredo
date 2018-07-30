@@ -122,7 +122,8 @@ class FactoryPromotionController extends BaseController
 
         return $this->render('_form', [
             'model' => $model,
-            'modelProduct' => $modelProduct
+            'modelProduct' => $modelProduct,
+            'filterProduct' => $this->filterModel,
         ]);
     }
 
@@ -139,7 +140,10 @@ class FactoryPromotionController extends BaseController
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
-        $modelProduct = new FactoryProduct();
+        $modelFactoryProduct = new FactoryProduct();
+
+        $dataProviderFactoryProduct = $modelFactoryProduct->search(ArrayHelper::merge(Yii::$app->request->queryParams, ['pagination' => false]));
+        $dataProviderFactoryProduct->sort = false;
 
         $model->scenario = 'frontend';
 
@@ -151,7 +155,7 @@ class FactoryPromotionController extends BaseController
 
                 if ($save) {
                     $transaction->commit();
-                    return $this->redirect(Url::toRoute(['/catalog/factory-promotion/list']));
+                    //return $this->redirect(Url::toRoute(['/catalog/factory-promotion/list']));
                 } else {
                     $transaction->rollBack();
                 }
@@ -162,7 +166,8 @@ class FactoryPromotionController extends BaseController
 
         return $this->render('_form', [
             'model' => $model,
-            'modelProduct' => $modelProduct
+            'dataProviderFactoryProduct' => $dataProviderFactoryProduct,
+            'filterModelFactoryProduct' => $modelFactoryProduct,
         ]);
     }
 }

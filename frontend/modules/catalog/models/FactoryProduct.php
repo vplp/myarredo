@@ -12,7 +12,7 @@ use common\modules\catalog\models\Product as CommonProduct;
  *
  * @package frontend\modules\catalog\models
  */
-class FactoryProduct extends Product
+class FactoryProduct extends \common\modules\catalog\models\Product
 {
     public $promotion;
 
