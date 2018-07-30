@@ -24,7 +24,7 @@ class ElasticSearchController extends Controller
     public function actionResetMark()
     {
         Yii::$app->db->createCommand()
-            ->update(Product::tableName(), ['mark' => '0'], "`mark`='1'")
+            ->update(Product::tableName(), ['mark1' => '0'], "`mark1`='1'")
             ->execute();
     }
 
@@ -42,7 +42,7 @@ class ElasticSearchController extends Controller
             ->innerJoinWith(['lang', 'factory'])
             ->andFilterWhere([
                 Product::tableName() . '.removed' => '0',
-                'mark' => '0',
+                'mark1' => '0',
             ])
             ->enabled()
             ->orderBy(Product::tableName() . '.id DESC')
@@ -54,9 +54,9 @@ class ElasticSearchController extends Controller
             /** @var $product Product */
             $transaction = $product::getDb()->beginTransaction();
             try {
-                $product->setScenario('setMark');
+                $product->setScenario('setMark1');
 
-                $product->mark = '1';
+                $product->mark1 = '1';
 
                 $save = ElasticSearchProduct::addRecord($product);
 

@@ -51,6 +51,7 @@ use common\modules\user\models\{
  * @property string $image_link
  * @property string $gallery_image
  * @property integer $mark
+ * @property integer $mark1
  * @property integer $in_stock
  *
  * @property ProductLang $lang
@@ -143,6 +144,7 @@ class Product extends ActiveRecord implements iProduct
                     'removed',
                     'moderation',
                     'mark',
+                    'mark1',
                     'in_stock'
                 ],
                 'in',
@@ -187,6 +189,7 @@ class Product extends ActiveRecord implements iProduct
             'setImages' => ['image_link', 'gallery_image'],
             'setAlias' => ['alias', 'mark'],
             'setMark' => ['mark'],
+            'setMark1' => ['mark1'],
             'backend' => [
                 'catalog_type_id',
                 'user_id',
@@ -262,6 +265,7 @@ class Product extends ActiveRecord implements iProduct
             'factory_prices_files_ids' => Yii::t('app', 'Factory prices files'),
             'specification_value_ids',
             'mark' => 'Mark',
+            'mark1' => 'Mark1',
         ];
     }
 
