@@ -10,7 +10,8 @@ use yii\filters\AccessControl;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    FactoryPromotion, FactoryProduct, search\FactoryProduct as filterFactoryProductModel
+    FactoryPromotion, search\FactoryPromotion as filterFactoryPromotionModel,
+    FactoryProduct, search\FactoryProduct as filterFactoryProductModel
 };
 //
 use thread\actions\{
