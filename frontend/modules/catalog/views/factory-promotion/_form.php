@@ -38,8 +38,11 @@ $this->title = Yii::t('app', 'Рекламировать');
                                 : Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]),
                         ]) ?>
 
-                        <p class="reclamation-p">Для проведения рекламной компании вы выбрали <span id="count-products"> 0 </span>
-                            <span class="for-green"> товаров </span></p>
+                        <p class="reclamation-p">
+                            Для проведения рекламной компании вы выбрали <span id="count-products"> 0 </span>
+                            <span class="for-green"> товаров </span>
+                        </p>
+
                         <?php echo Html::a(
                             Yii::t('app', 'Добавыть товары'),
                             'javascript:void(0);',
@@ -60,7 +63,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                     </div>
                                     <div class="modal-body">
 
-                                        <?php Pjax::begin(['id' => 'factory-promotion-form']); ?>
+                                        <?php Pjax::begin(['id' => 'factory-product']); ?>
 
                                         <?= GridView::widget([
                                             'dataProvider' => $dataProviderFactoryProduct,

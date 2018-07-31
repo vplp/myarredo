@@ -133,19 +133,6 @@ $this->title = $this->context->title;
                                         'label' => Yii::t('app', 'Рекламировать'),
                                         'filter' => false
                                     ],
-//                                    [
-//                                        'class' => ActionStatusColumn::class,
-//                                        'attribute' => 'promotion',
-//                                        'action' => 'promotion',
-//                                        'filter' => GridViewFilter::selectOne(
-//                                            $filter,
-//                                            'promotion',
-//                                            [
-//                                                0 => 'On',
-//                                                1 => 'Off'
-//                                            ]
-//                                        ),
-//                                    ],
                                     [
                                         'format' => 'raw',
                                         'attribute' => 'published',

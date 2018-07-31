@@ -12,7 +12,7 @@ use common\modules\catalog\models\Product as CommonProduct;
  *
  * @package frontend\modules\catalog\models
  */
-class FactoryProduct extends \common\modules\catalog\models\Product
+class FactoryProduct extends CommonProduct
 {
     public $promotion;
 
@@ -105,7 +105,9 @@ class FactoryProduct extends \common\modules\catalog\models\Product
      */
     public function attributeLabels()
     {
-        return ArrayHelper::merge(CommonProduct::attributeLabels(), []);
+        return ArrayHelper::merge(CommonProduct::attributeLabels(), [
+            'title'
+        ]);
     }
 
     /**

@@ -10,16 +10,12 @@ use yii\filters\AccessControl;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    FactoryPromotion,
-    FactoryProduct,
-    search\FactoryPromotion as filterFactoryPromotionModel
+    FactoryPromotion, FactoryProduct, search\FactoryProduct as filterFactoryProductModel
 };
 //
 use thread\actions\{
-    Create,
     ListModel,
-    AttributeSwitch,
-    Update
+    AttributeSwitch
 };
 use yii\web\NotFoundHttpException;
 
@@ -89,7 +85,14 @@ class FactoryPromotionController extends BaseController
     public function actionCreate()
     {
         $model = new FactoryPromotion();
-        $modelProduct = new FactoryProduct();
+
+        $modelFactoryProduct = new FactoryProduct();
+        $filterModelFactoryProduct = new filterFactoryProductModel();
+
+        $filterModelFactoryProduct->load(Yii::$app->getRequest()->post());
+
+        $dataProviderFactoryProduct = $modelFactoryProduct->search(ArrayHelper::merge(Yii::$app->getRequest()->post(), ['pagination' => false]));
+        $dataProviderFactoryProduct->sort = false;
 
         $model->scenario = 'frontend';
 
@@ -122,8 +125,8 @@ class FactoryPromotionController extends BaseController
 
         return $this->render('_form', [
             'model' => $model,
-            'modelProduct' => $modelProduct,
-            'filterProduct' => $this->filterModel,
+            'dataProviderFactoryProduct' => $dataProviderFactoryProduct,
+            'filterModelFactoryProduct' => $filterModelFactoryProduct,
         ]);
     }
 
@@ -141,8 +144,11 @@ class FactoryPromotionController extends BaseController
         }
 
         $modelFactoryProduct = new FactoryProduct();
+        $filterModelFactoryProduct = new filterFactoryProductModel();
 
-        $dataProviderFactoryProduct = $modelFactoryProduct->search(ArrayHelper::merge(Yii::$app->request->queryParams, ['pagination' => false]));
+        $filterModelFactoryProduct->load(Yii::$app->getRequest()->post());
+
+        $dataProviderFactoryProduct = $modelFactoryProduct->search(ArrayHelper::merge(Yii::$app->getRequest()->post(), ['pagination' => false]));
         $dataProviderFactoryProduct->sort = false;
 
         $model->scenario = 'frontend';
@@ -167,7 +173,7 @@ class FactoryPromotionController extends BaseController
         return $this->render('_form', [
             'model' => $model,
             'dataProviderFactoryProduct' => $dataProviderFactoryProduct,
-            'filterModelFactoryProduct' => $modelFactoryProduct,
+            'filterModelFactoryProduct' => $filterModelFactoryProduct,
         ]);
     }
 }

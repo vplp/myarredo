@@ -9,12 +9,8 @@ use yii\data\ActiveDataProvider;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use frontend\modules\catalog\models\{
-    Category,
-    Types,
-    Factory,
     FactoryProduct as FactoryProductModel,
     FactoryProductLang,
-    Specification,
     ProductRelCategory
 };
 use frontend\modules\catalog\Catalog;
