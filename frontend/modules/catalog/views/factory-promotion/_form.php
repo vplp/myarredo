@@ -122,16 +122,34 @@ $this->title = Yii::t('app', 'Рекламировать');
 
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button"
-                                                id="add-product"
-                                                class="btn btn-cancel"
-                                                data-dismiss="modal"><?= Yii::t('app', 'Add') ?></button>
+
+                                        <?= Html::submitButton(
+                                            Yii::t('app', 'Add'),
+                                            ['class' => 'btn btn-cancel']
+                                        ) ?>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="list-product"></div>
+                        <div id="list-product">
+                            <?php foreach ($model->products as $product) {
+                                echo '<div>' .
+                                    $product->lang->title .
+                                    $product->article .
+                                    Html::img(Product::getImageThumb($product['image_link']), ['width' => 50]) .
+                                    Html::a(
+                                        '<i class="fa fa-times"></i></a>',
+                                        null,
+                                        [
+                                            'id' => 'del-product',
+                                            'class' => 'close',
+                                            'data-id' =>  $product->id
+                                        ]) .
+                                    '</div>';
+                            } ?>
+                        </div>
 
                         <?= $form
                             ->field($model, 'city_ids')
@@ -231,25 +249,6 @@ function newCost() {
     $('#count-products').html(count_products);
 }
 
-function showProduct() {
-    var str = '';
-    
-    $('#list-product').html('');
-    
-    $('input[name="FactoryPromotion[product_ids][]"]:checked').each(function () {
-        console.log($(this).val());
-        str += '<div>' + 
-        $(this).data('title') + 
-        $(this).data('article') + 
-        '<img src="'+ $(this).data('image') + '" width="100">' +
-        '<span class="close"> <i class="fa fa-times"></i> </span>' +
-        '</div>';
-    });
-    
-    $('#list-product').append(str);
-}
-
-showProduct();
 newCost();
 
 $('input[name="FactoryPromotion[product_ids][]"], ' +
@@ -258,8 +257,14 @@ $('input[name="FactoryPromotion[product_ids][]"], ' +
      newCost();
 });
 
-$('#add-product').on('click', function() {
-     showProduct();
+$('a#del-product').on('click', function() {
+    var id = $(this).data('id');
+    
+    var allCheckboxs = $('input[value="'+id+'"');
+    allCheckboxs.prop({checked: false });
+    allCheckboxs.parent('.jq-checkbox').removeClass('checked');
+        
+    $(this).closest('div').remove();
 });
 
 $(".check-all").on('click', function() {
