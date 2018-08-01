@@ -4,8 +4,13 @@ use yii\helpers\{
     Html, Url
 };
 use yii\widgets\ActiveForm;
+//
+use frontend\modules\location\models\City;
+
+/** @var $model \frontend\modules\shop\models\CartCustomerForm */
 
 $model->user_agreement = 1;
+$model->city_id = Yii::$app->city->getCityId();
 
 ?>
 
@@ -17,8 +22,9 @@ $model->user_agreement = 1;
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel"><?= Yii::t('app','Заполните форму - получите лучшую цену на этот товар') ?></h4>
+                    aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"
+            id="myModalLabel"><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h4>
     </div>
     <div class="modal-body">
 
@@ -41,12 +47,16 @@ $model->user_agreement = 1;
             ->input('text', ['placeholder' => Yii::t('app', 'Phone')])
             ->label(false) ?>
 
+        <?= $form->field($model, 'city_id')
+            ->dropDownList(City::dropDownList(Yii::$app->city->getCountryId()))
+            ->label(false) ?>
+
         <?= $form->field($model, 'comment')
             ->textarea(['placeholder' => Yii::t('app', 'Comment')])
             ->label(false) ?>
 
         <?= $form->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])->checkbox([], false)
-            ->label('&nbsp;'.$model->getAttributeLabel('user_agreement')) ?>
+            ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
 
         <?= $form->field($model, 'reCaptcha')
             ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
@@ -54,7 +64,7 @@ $model->user_agreement = 1;
 
     </div>
     <div class="modal-footer">
-        <?= Html::submitButton(Yii::t('app','Получить лучшую цену'), ['class' => 'btn btn-success big']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Получить лучшую цену'), ['class' => 'btn btn-success big']) ?>
     </div>
 
 <?php ActiveForm::end(); ?>
