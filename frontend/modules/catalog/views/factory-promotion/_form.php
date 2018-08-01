@@ -32,27 +32,6 @@ $this->title = Yii::t('app', 'Рекламировать');
                 <div class="column-center">
                     <div class="form-horizontal">
 
-                        <?php $form = ActiveForm::begin([
-                            'action' => ($model->isNewRecord)
-                                ? Url::toRoute(['/catalog/factory-promotion/create'])
-                                : Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]),
-                        ]) ?>
-
-                        <p class="reclamation-p">
-                            Для проведения рекламной компании вы выбрали <span id="count-products"> 0 </span>
-                            <span class="for-green"> товаров </span>
-                        </p>
-
-                        <?php echo Html::a(
-                            Yii::t('app', 'Добавыть товары'),
-                            'javascript:void(0);',
-                            [
-                                'class' => 'btn btn-goods big',
-                                'data-toggle' => 'modal',
-                                'data-target' => '#myModal'
-                            ]
-                        ) ?>
-
                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
@@ -104,7 +83,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                                             ->one();
 
                                                         return Html::checkbox(
-                                                            'FactoryPromotion[product_ids][]',
+                                                            'product_ids[]',
                                                             $checked,
                                                             [
                                                                 'value' => $model->id,
@@ -123,9 +102,13 @@ $this->title = Yii::t('app', 'Рекламировать');
                                     </div>
                                     <div class="modal-footer">
 
-                                        <?= Html::submitButton(
+                                        <?= Html::button(
                                             Yii::t('app', 'Add'),
-                                            ['class' => 'btn btn-cancel']
+                                            [
+                                                'id' => 'add-product',
+                                                'class' => 'btn btn-cancel',
+                                                'data-dismiss' => 'modal'
+                                            ]
                                         ) ?>
 
                                     </div>
@@ -133,11 +116,37 @@ $this->title = Yii::t('app', 'Рекламировать');
                             </div>
                         </div>
 
+                        <?php $form = ActiveForm::begin([
+                            'id' => 'factory-promotion',
+                            'action' => ($model->isNewRecord)
+                                ? Url::toRoute(['/catalog/factory-promotion/create'])
+                                : Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id])
+                        ]) ?>
+
+                        <p class="reclamation-p">
+                            Для проведения рекламной компании вы выбрали <span id="count-products"> 0 </span>
+                            <span class="for-green"> товаров </span>
+                        </p>
+
+                        <?php echo Html::a(
+                            Yii::t('app', 'Добавыть товары'),
+                            'javascript:void(0);',
+                            [
+                                'class' => 'btn btn-goods big',
+                                'data-toggle' => 'modal',
+                                'data-target' => '#myModal'
+                            ]
+                        ) ?>
+
                         <div id="list-product">
                             <?php foreach ($model->products as $product) {
                                 echo '<div>' .
                                     $product->lang->title .
-                                    $product->article .
+                                    Html::input(
+                                        'hidden',
+                                        'FactoryPromotion[product_ids][]',
+                                        $product->id
+                                    ) .
                                     Html::img(Product::getImageThumb($product['image_link']), ['width' => 50]) .
                                     Html::a(
                                         '<i class="fa fa-times"></i></a>',
@@ -145,7 +154,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                         [
                                             'id' => 'del-product',
                                             'class' => 'close',
-                                            'data-id' =>  $product->id
+                                            'data-id' => $product->id
                                         ]) .
                                     '</div>';
                             } ?>
@@ -257,15 +266,35 @@ $('input[name="FactoryPromotion[product_ids][]"], ' +
      newCost();
 });
 
-$('a#del-product').on('click', function() {
-    var id = $(this).data('id');
+$('#add-product').on('click', function() {
+    var str = '';
     
-    var allCheckboxs = $('input[value="'+id+'"');
-    allCheckboxs.prop({checked: false });
-    allCheckboxs.parent('.jq-checkbox').removeClass('checked');
-        
-    $(this).closest('div').remove();
+    $('#list-product').html('');
+    
+    $('input[name="product_ids[]"]:checked').each(function () {
+        str += '<div>' + 
+        $(this).data('title') + 
+        '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + $(this).val() + '">' +
+        '<img src="' + $(this).data('image') + '" width="50">' +
+        '<a class="close"><i class="fa fa-times"></i></a>' +
+        '</div>';
+    });
+    
+    $('#list-product').append(str);
 });
+
+$('a#del-product').on('click', function() {
+    
+    // var id = $(this).data('id');
+    //
+    // var allCheckboxs = $('input[value="'+id+'"');
+    // allCheckboxs.prop({checked: false });
+    // allCheckboxs.parent('.jq-checkbox').removeClass('checked');
+       
+    $(this).closest('div').remove();
+    $("#factory-promotion").submit();
+});
+
 
 $(".check-all").on('click', function() {
     var allCheckboxs = $('#factorypromotion-city_ids').find('input[type="checkbox"]');

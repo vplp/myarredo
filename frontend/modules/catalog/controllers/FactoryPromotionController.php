@@ -90,9 +90,9 @@ class FactoryPromotionController extends BaseController
         $modelFactoryProduct = new FactoryProduct();
         $filterModelFactoryProduct = new filterFactoryProductModel();
 
-        $filterModelFactoryProduct->load(Yii::$app->getRequest()->post());
+        $filterModelFactoryProduct->load(Yii::$app->getRequest()->get());
 
-        $dataProviderFactoryProduct = $modelFactoryProduct->search(ArrayHelper::merge(Yii::$app->getRequest()->post(), ['pagination' => false]));
+        $dataProviderFactoryProduct = $modelFactoryProduct->search(ArrayHelper::merge(Yii::$app->getRequest()->get(), ['pagination' => false]));
         $dataProviderFactoryProduct->sort = false;
 
         $model->scenario = 'frontend';
@@ -147,9 +147,9 @@ class FactoryPromotionController extends BaseController
         $modelFactoryProduct = new FactoryProduct();
         $filterModelFactoryProduct = new filterFactoryProductModel();
 
-        $filterModelFactoryProduct->load(Yii::$app->getRequest()->post());
+        $filterModelFactoryProduct->load(Yii::$app->getRequest()->get());
 
-        $dataProviderFactoryProduct = $modelFactoryProduct->search(ArrayHelper::merge(Yii::$app->getRequest()->post(), ['pagination' => false]));
+        $dataProviderFactoryProduct = $modelFactoryProduct->search(ArrayHelper::merge(Yii::$app->getRequest()->get(), ['pagination' => false]));
         $dataProviderFactoryProduct->sort = false;
 
         $model->scenario = 'frontend';
