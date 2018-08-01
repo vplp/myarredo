@@ -50,6 +50,7 @@ $bundle = AppAsset::register($this);
         <meta itemprop="addressLocality" content="<?= $city['country']['lang']['title'] ?> <?= $city['lang']['title'] ?>"/>
         <meta itemprop="streetAddress" content="<?= $partner['profile']['address'] ?></"/>
         <p><?= $partner['profile']['address'] ?></p>
+        <p><?= $partner['profile']['phone'] ?></p>
     </div>
 
 <?php endif; ?>
