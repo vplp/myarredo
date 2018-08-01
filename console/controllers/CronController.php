@@ -62,6 +62,13 @@ class CronController extends Controller
                     ])
                     ->one();
 
+                if ($modelLangRu == null) {
+                    $modelLangRu = new ProductLang();
+
+                    $modelLangRu->rid = $model->id;
+                    $modelLangRu->lang = Yii::$app->language;
+                }
+
                 $modelLangRu->title = '';
                 $modelLangRu->setScenario('backend');
 
