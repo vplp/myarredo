@@ -670,7 +670,10 @@ h1 {
     font-size: 16px; }
   .footer .num {
     font-size: 21px;
-    margin-bottom: 30px; }
+    margin-bottom: 5px; }
+  .footer .num + p {
+    font-size: 12px;
+  }
     .footer .num a {
       color: #FFFFFF; }
   .footer .white-stripe {
