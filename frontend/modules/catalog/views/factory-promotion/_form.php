@@ -100,7 +100,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                         <?php Pjax::end(); ?>
 
                                     </div>
-                                    <div class="modal-footer">
+                                    <!--<div class="modal-footer">
 
                                         <?= Html::button(
                                             Yii::t('app', 'Add'),
@@ -111,7 +111,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                             ]
                                         ) ?>
 
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -139,6 +139,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                         ) ?>
 
                         <div id="list-product">
+
                             <?php foreach ($model->products as $product) {
                                 echo '<div>' .
                                     $product->lang->title .
@@ -244,12 +245,18 @@ $this->title = Yii::t('app', 'Рекламировать');
 
 <?php
 
+$promotion_id = Yii::$app->request->get('id');
+
 $script = <<<JS
+
+/**
+ * Calculate
+ */
 function newCost() {
     var cost,
     count_of_months = $('input[name="FactoryPromotion[count_of_months]"]:checked').val(),
     daily_budget = $('input[name="FactoryPromotion[daily_budget]"]:checked').val(),
-    count_products = $('input[name="FactoryPromotion[product_ids][]"]:checked').length;
+    count_products = $('input[name="product_ids[]"]:checked').length;
   
     cost = count_products * 1000 + count_of_months * 30 * daily_budget;
 
@@ -260,42 +267,71 @@ function newCost() {
 
 newCost();
 
-$('input[name="FactoryPromotion[product_ids][]"], ' +
+/**
+ * Watch
+ */
+$('input[name="product_ids[]"], ' +
  'input[name="FactoryPromotion[daily_budget]"], ' +
   'input[name="FactoryPromotion[count_of_months]"]').on('change', function() {
      newCost();
 });
 
-$('#add-product').on('click', function() {
-    var str = '';
+/**
+ * Add
+ */
+$('input[name="product_ids[]"]').on('change', function() {
     
-    $('#list-product').html('');
+    var product = $(this);
     
-    $('input[name="product_ids[]"]:checked').each(function () {
-        str += '<div>' + 
-        $(this).data('title') + 
-        '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + $(this).val() + '">' +
-        '<img src="' + $(this).data('image') + '" width="50">' +
-        '<a class="close"><i class="fa fa-times"></i></a>' +
-        '</div>';
+    $.post('/catalog/factory-promotion/ajax-add-product/',
+        {
+            _csrf: $('#token').val(),
+            promotion_id: $promotion_id,
+            catalog_item_id: $(this).val(),
+        }
+    ).done(function (data) {
+        if (data == true) {
+            
+            var str = '<div>' + 
+            product.data('title') + 
+            '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
+            '<img src="' + product.data('image') + '" width="50">' +
+            '<a class="close"><i class="fa fa-times"></i></a>' +
+            '</div>';
+            
+            $('#list-product').append(str);
+        }
     });
-    
-    $('#list-product').append(str);
 });
 
+/**
+ * Delete
+ */
 $('a#del-product').on('click', function() {
     
-    // var id = $(this).data('id');
-    //
-    // var allCheckboxs = $('input[value="'+id+'"');
-    // allCheckboxs.prop({checked: false });
-    // allCheckboxs.parent('.jq-checkbox').removeClass('checked');
-       
-    $(this).closest('div').remove();
-    $("#factory-promotion").submit();
+    var product = $(this);
+    
+    $.post('/catalog/factory-promotion/ajax-del-product/',
+        {
+            _csrf: $('#token').val(),
+            promotion_id: $promotion_id,
+            catalog_item_id: product.data('id'),
+        }
+    ).done(function (data) {
+        if (data == true) {
+            
+            var allCheckboxs = $('input[value="'+product.data('id')+'"');
+            allCheckboxs.prop({checked: false });
+            allCheckboxs.parent('.jq-checkbox').removeClass('checked');
+               
+            product.closest('div').remove();
+        }
+    });
 });
 
-
+/**
+ * Check all
+ */
 $(".check-all").on('click', function() {
     var allCheckboxs = $('#factorypromotion-city_ids').find('input[type="checkbox"]');
     if ($(this).children('input[type="checkbox"]').prop('checked')) {
@@ -306,12 +342,14 @@ $(".check-all").on('click', function() {
         allCheckboxs.parent('.jq-checkbox').removeClass('checked');
     }
 });
+
 function watchForCheckbox() {
     if($('#factorypromotion-city_ids').find('input[type="checkbox"]').prop("checked")) {
         $('.check-all').addClass('checked');
         $('.check-all').children('input[type="checkbox"]').prop({checked: true })
     }
 } 
+
 watchForCheckbox();
 
 JS;

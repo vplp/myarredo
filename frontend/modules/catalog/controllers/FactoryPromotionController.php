@@ -6,19 +6,23 @@ use Yii;
 use yii\helpers\{
     ArrayHelper, Url
 };
+use yii\web\Response;
+use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    FactoryPromotion, search\FactoryPromotion as filterFactoryPromotionModel,
-    FactoryProduct, search\FactoryProduct as filterFactoryProductModel
+    FactoryPromotion,
+    search\FactoryPromotion as filterFactoryPromotionModel,
+    FactoryProduct,
+    search\FactoryProduct as filterFactoryProductModel,
+    FactoryPromotionRelProduct
 };
 //
 use thread\actions\{
     ListModel,
     AttributeSwitch
 };
-use yii\web\NotFoundHttpException;
 
 /**
  * Class FactoryPromotionController
@@ -176,5 +180,57 @@ class FactoryPromotionController extends BaseController
             'dataProviderFactoryProduct' => $dataProviderFactoryProduct,
             'filterModelFactoryProduct' => $filterModelFactoryProduct,
         ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function actionAjaxAddProduct()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            $promotion_id = Yii::$app->getRequest()->post('promotion_id');
+            $catalog_item_id = Yii::$app->getRequest()->post('catalog_item_id');
+
+            $model = new FactoryPromotionRelProduct();
+
+            $model->setScenario('backend');
+
+            $model->promotion_id = $promotion_id;
+            $model->catalog_item_id = $catalog_item_id;
+
+            if ($model->save()) {
+                return true;
+            }
+
+            return false;
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function actionAjaxDelProduct()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            $promotion_id = Yii::$app->getRequest()->post('promotion_id');
+            $catalog_item_id = Yii::$app->getRequest()->post('catalog_item_id');
+
+            $model = FactoryPromotionRelProduct::findBase()
+                ->where([
+                    'promotion_id' => $promotion_id,
+                    'catalog_item_id' => $catalog_item_id,
+                ])
+                ->one();
+
+            if ($model != null && $model->delete()) {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
