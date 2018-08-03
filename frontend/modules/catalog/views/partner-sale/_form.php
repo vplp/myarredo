@@ -25,7 +25,7 @@ $this->title = ($model->isNewRecord) ? Yii::t('app','Add') : Yii::t('app','Edit'
 
 <main>
     <div class="page create-sale">
-        <div class="container large-container">
+        <div class="largex-container forcusttitle">
 
             <?= Html::tag('h1', $this->title); ?>
 
