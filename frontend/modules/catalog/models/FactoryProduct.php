@@ -122,6 +122,16 @@ class FactoryProduct extends CommonProduct
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactoryPromotionRelProduct()
+    {
+        return $this
+            ->hasOne(FactoryPromotion::class, ['id' => 'promotion_id'])
+            ->viaTable(FactoryPromotionRelProduct::tableName(), ['catalog_item_id' => 'id']);
+    }
+
+    /**
      * @param $params
      * @return \yii\data\ActiveDataProvider
      * @throws \Throwable

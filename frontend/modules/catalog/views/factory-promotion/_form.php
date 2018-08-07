@@ -100,7 +100,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                         <?php Pjax::end(); ?>
 
                                     </div>
-                                    <!--<div class="modal-footer">
+                                    <div class="modal-footer">
 
                                         <?= Html::button(
                                             Yii::t('app', 'Add'),
@@ -111,7 +111,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                             ]
                                         ) ?>
 
-                                    </div>-->
+                                    </div>
                                 </div>
                             </div>
                         </div>

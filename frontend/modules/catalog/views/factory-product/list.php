@@ -124,11 +124,14 @@ $this->title = $this->context->title;
                                     [
                                         'format' => 'raw',
                                         'value' => function ($model) {
-                                            return Html::a(
-                                                Yii::t('app', 'Рекламировать'),
-                                                Url::toRoute(['/catalog/factory-promotion/create']),
-                                                ['class' => 'btn btn-goods']
-                                            );
+                                            /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                            return (!empty($model->factoryPromotionRelProduct))
+                                                ? 'Рекламируется'
+                                                : Html::a(
+                                                    Yii::t('app', 'Рекламировать'),
+                                                    Url::toRoute(['/catalog/factory-promotion/create']),
+                                                    ['class' => 'btn btn-goods']
+                                                );
                                         },
                                         'label' => Yii::t('app', 'Рекламировать'),
                                         'filter' => false
