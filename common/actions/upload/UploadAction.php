@@ -61,11 +61,11 @@ class UploadAction extends Action
     public $useHashPath = false;
 
     /**
-     * @throws InvalidCallException
+     * @throws \yii\base\Exception
      */
     public function init()
     {
-        //default path
+        // default path
         if ($this->path === null) {
             $this->path = Yii::getAlias('@temp');
         }
@@ -76,12 +76,11 @@ class UploadAction extends Action
             throw new InvalidCallException("Directory specified in 'path' attribute doesn't exist or cannot be created.");
         }
 
-        //set validator model type
+        // set validator model type
         if ($this->uploadOnlyImage !== true) {
             $this->_validator = 'file';
         }
     }
-
 
     /**
      * @return array
