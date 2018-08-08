@@ -40,7 +40,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">×</span></button>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="modal-body factory-prom">
 
                                         <?php Pjax::begin(['id' => 'factory-product']); ?>
 
