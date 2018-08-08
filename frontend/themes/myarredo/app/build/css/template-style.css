@@ -3928,6 +3928,10 @@ h1 {
     height: 23px;
     border: 1px solid #f3f2f0;
   }
+  .factory-prom .table .jq-checkbox {
+    background-color: #ffffff;
+    border: 1px solid #C6C6C2;
+  }
   #factorypromotion-city_ids .jq-checkbox.checked .jq-checkbox__div,
   .check-all.jq-checkbox.checked .jq-checkbox__div,
   .factory-prom .table .jq-checkbox.checked .jq-checkbox__div  {
@@ -3998,9 +4002,20 @@ h1 {
     right: 16px;
     top: 18px;
   }
+  .factory-prom .table thead tr:last-child td input {
+    background-color: #ffffff;
+  }
   .factory-prom .table thead tr:last-child td:first-child input,
   .factory-prom .table thead tr:last-child td:nth-child(3) input {
     padding-right: 22px;
+  }
+  .factory-prom .table thead tr:first-child th {
+    border-bottom: 0;
+    background-color: #F6F6F4;
+  }
+  .factory-prom .table thead tr:last-child td  {
+    border-top: 0;
+    background-color: #F6F6F4;
   }
   .reclamation-radio {
     display: block;
