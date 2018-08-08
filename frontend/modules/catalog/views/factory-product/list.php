@@ -126,7 +126,7 @@ $this->title = $this->context->title;
                                         'value' => function ($model) {
                                             /** @var $model \frontend\modules\catalog\models\FactoryProduct */
                                             return (!empty($model->factoryPromotionRelProduct))
-                                                ? 'Рекламируется'
+                                                ? Yii::t('app', 'Рекламируется')
                                                 : Html::a(
                                                     Yii::t('app', 'Рекламировать'),
                                                     Url::toRoute(['/catalog/factory-promotion/create']),
