@@ -3993,14 +3993,23 @@ h1 {
     content: "";
     display: block;
     position: absolute;
-    width: 14px;
-    height: 14px;
+    width: 25px;
+    height: 30px;
+    padding: 5px;
     background-image: url(../img/search.svg);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center center;
-    right: 16px;
-    top: 18px;
+    background-origin: content-box;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    transition: all 0.5s;
+    border-radius: 2px;
+  }
+  .factory-prom .table thead tr:last-child td:first-child:hover::after,
+  .factory-prom .table thead tr:last-child td:nth-child(3):hover::after {
+    background-color: #F6F6F4;
   }
   .factory-prom .table thead tr:last-child td input {
     background-color: #ffffff;
