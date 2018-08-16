@@ -36,7 +36,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        Выберите товары которые хотите рекламировать
+                                        <?= Yii::t('app','Выберите товары которые хотите рекламировать') ?>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">×</span></button>
                                     </div>
@@ -124,8 +124,8 @@ $this->title = Yii::t('app', 'Рекламировать');
                         ]) ?>
 
                         <p class="reclamation-p">
-                            Для проведения рекламной компании вы выбрали <span id="count-products"> 0 </span>
-                            <span class="for-green"> товаров </span>
+                            <?= Yii::t('app','Для проведения рекламной компании вы выбрали') ?> <span id="count-products"> 0 </span>
+                            <span class="for-green"> <?= Yii::t('app','товаров') ?> </span>
                         </p>
 
                         <?php echo Html::a(
@@ -220,7 +220,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                     <div class="promotion-title-label">
                         <?= Yii::t('app', 'Стоимость рекламной компании') ?>
                         <span id="cost"></span>
-                        <span class="current-item"> руб </span>
+                        <span class="current-item"> <?= Yii::t('app','руб') ?> </span>
                     </div>
 
                     <?= $form->field($model, 'cost')

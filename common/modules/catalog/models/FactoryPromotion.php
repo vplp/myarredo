@@ -193,11 +193,11 @@ class FactoryPromotion extends ActiveRecord
     public static function getCountOfMonthsRange()
     {
         return [
-            1 => '1 мес',
-            2 => '2 мес',
-            3 => '3 мес',
-            4 => '4 мес',
-            5 => '5 мес',
+            1 => Yii::t('app','1 мес'),
+            2 => Yii::t('app','2 мес'),
+            3 => Yii::t('app','3 мес'),
+            4 => Yii::t('app','4 мес'),
+            5 => Yii::t('app','5 мес'),
         ];
     }
 
@@ -207,11 +207,11 @@ class FactoryPromotion extends ActiveRecord
     public static function getDailyBudgetRange()
     {
         return [
-            500 => '500 руб/день',
-            800 => '800 руб/день',
-            1000 => '1000 руб/день',
-            1500 => '1500 руб/день',
-            2000 => '2000 руб/день',
+            500 => Yii::t('app','500 руб/день'),
+            800 => Yii::t('app','800 руб/день'),
+            1000 => Yii::t('app','1000 руб/день'),
+            1500 => Yii::t('app','1500 руб/день'),
+            2000 => Yii::t('app','2000 руб/день'),
         ];
     }
 }
