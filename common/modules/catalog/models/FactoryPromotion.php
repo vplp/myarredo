@@ -26,6 +26,8 @@ use common\modules\catalog\Catalog;
  * @property integer $updated_at
  * @property boolean $published
  * @property boolean $deleted
+ * @property array $city_ids
+ * @property array $product_ids
  *
  * @property FactoryPromotionRelCity[] $cities
  * @property FactoryPromotionRelProduct[] $products
@@ -118,6 +120,21 @@ class FactoryPromotion extends ActiveRecord
                 'product_ids'
             ],
         ];
+    }
+
+    /**
+     * @return bool
+     */
+    public function beforeValidate()
+    {
+        $cities = [];
+        foreach ($this->city_ids as $country) {
+            $cities = ArrayHelper::merge($cities, $country);
+        }
+
+        $this->city_ids = $cities;
+
+        return parent::beforeValidate();
     }
 
     /**

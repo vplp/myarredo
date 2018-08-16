@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\controllers;
 
+use frontend\modules\location\models\City;
 use Yii;
 use yii\helpers\{
     ArrayHelper, Url
@@ -174,6 +175,14 @@ class FactoryPromotionController extends BaseController
                 $transaction->rollBack();
             }
         }
+
+        $cities = [];
+        foreach ($model->city_ids as $city_id) {
+            $city = City::findById($city_id);
+
+            $cities[$city->country_id][] = $city_id;
+        }
+        $model->city_ids = $cities;
 
         return $this->render('_form', [
             'model' => $model,

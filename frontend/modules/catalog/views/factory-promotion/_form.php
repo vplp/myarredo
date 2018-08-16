@@ -161,34 +161,21 @@ $this->title = Yii::t('app', 'Рекламировать');
                             } ?>
                         </div>
 
-                        <?php
-                        echo $form
-                            ->field($model, 'city_ids')
-                            ->label(Yii::t('app', 'Выберите города в которых хотите провести рекламную компанию'))
-                            ->checkboxList(
-                                ArrayHelper::map(Country::findBase()->byId([2, 3])->all(), 'id', 'lang.title'),
-                                [
-                                    'item' => function ($index, $label, $name, $checked, $value) {
+                        <div id="factorypromotion-city_ids">
+                            <?php
+                            $countries = Country::findBase()->byId([2, 3])->all();
+                            foreach ($countries as $country) {
+                                echo '<p>' . $country['lang']['title'] . '</p>';
+                                echo $form
+                                    ->field($model, 'city_ids[' . $country['id'] . ']')->label(false)
+                                    ->checkboxList(yii\helpers\ArrayHelper::map($country['cities'], 'id', 'lang.title'),
+                                        []);
+                            }
+                            ?>
+                        </div>
 
-                                        $cities = City::findAll(['country_id' => $value]);
-
-                                        $html = '<div>' . $label . '</div>';
-
-                                        foreach ($cities as $city) {
-                                            $html .=
-                                                '<label>' .
-                                                Html::checkbox($name, $checked, ['value' => $city['id']]) .
-                                                $city['lang']['title'] .
-                                                '</label>';
-                                        }
-
-                                        return $html;
-                                    },
-                                ]
-                            );
-
-                        echo Html::checkbox(null, false, [
-                            'label' => 'Выбрать все города',
+                        <?= Html::checkbox(null, false, [
+                            'label' => Yii::t('app', 'Выбрать все города'),
                             'class' => 'check-all',
                         ]);
                         ?>
