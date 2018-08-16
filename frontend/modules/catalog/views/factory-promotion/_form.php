@@ -5,7 +5,7 @@ use yii\helpers\{
     Html, Url, ArrayHelper
 };
 use yii\widgets\Pjax;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 //
 use frontend\modules\location\models\{
     Country, City
@@ -36,18 +36,25 @@ $this->title = Yii::t('app', 'Рекламировать');
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <?= Yii::t('app','Выберите товары которые хотите рекламировать') ?>
+                                        <?= Yii::t('app', 'Выберите товары которые хотите рекламировать') ?>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">×</span></button>
                                     </div>
                                     <div class="modal-body factory-prom">
 
-                                        <?php Pjax::begin(['id' => 'factory-product']); ?>
+                                        <?php //Pjax::begin(['id' => 'factory-product']); ?>
 
                                         <?= GridView::widget([
                                             'dataProvider' => $dataProviderFactoryProduct,
                                             'filterModel' => $filterModelFactoryProduct,
                                             'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
+                                            'filterUrl' => Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]),
+                                            'pjax' => true,
+                                            'pjaxSettings' => [
+                                                'options' => [
+                                                    'enablePushState' => false,
+                                                ]
+                                            ],
                                             'columns' => [
                                                 [
                                                     'attribute' => 'article',
@@ -97,7 +104,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                             ],
                                         ]) ?>
 
-                                        <?php Pjax::end(); ?>
+                                        <?php //Pjax::end(); ?>
 
                                     </div>
                                     <div class="modal-footer">
@@ -124,8 +131,9 @@ $this->title = Yii::t('app', 'Рекламировать');
                         ]) ?>
 
                         <p class="reclamation-p">
-                            <?= Yii::t('app','Для проведения рекламной компании вы выбрали') ?> <span id="count-products"> 0 </span>
-                            <span class="for-green"> <?= Yii::t('app','товаров') ?> </span>
+                            <?= Yii::t('app', 'Для проведения рекламной компании вы выбрали') ?> <span
+                                    id="count-products"> 0 </span>
+                            <span class="for-green"> <?= Yii::t('app', 'товаров') ?> </span>
                         </p>
 
                         <?php echo Html::a(
@@ -220,7 +228,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                     <div class="promotion-title-label">
                         <?= Yii::t('app', 'Стоимость рекламной компании') ?>
                         <span id="cost"></span>
-                        <span class="current-item"> <?= Yii::t('app','руб') ?> </span>
+                        <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
                     </div>
 
                     <?= $form->field($model, 'cost')
