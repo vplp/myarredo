@@ -78,10 +78,27 @@ $bundle = AppAsset::register($this);
                                 </a>
                             </div>
                             <div class="copyright">
-                                2013 - <?= date('Y'); ?>
-                                (с) <?= Yii::t('app', 'MyArredo, лучшая мебель из италии для вашего дома') ?></br>
-                                <?= Yii::t('app', 'Программирование сайта') ?> - <a href="http://www.vipdesign.com.ua/"
-                                                                                     rel="nofollow">VipDesign</a>
+
+                                <?php if (Yii::$app->city->domain == 'by'): ?>
+
+                                    2013 - <?= date('Y'); ?> (с)
+                                    <?= strip_tags(Yii::$app->param->getByName('FOOTER_COPYRIGHT_BY')) ?></br>
+
+                                <?php elseif (Yii::$app->city->domain == 'ua'): ?>
+
+                                    2013 - <?= date('Y'); ?> (с)
+                                    <?= strip_tags(Yii::$app->param->getByName('FOOTER_COPYRIGHT_UA')) ?></br>
+
+                                <?php else: ?>
+
+                                    2013 - <?= date('Y'); ?> (с)
+                                    <?= Yii::t('app', 'MyArredo, лучшая мебель из италии для вашего дома') ?></br>
+
+                                <?php endif; ?>
+
+                                <?= Yii::t('app', 'Программирование сайта') ?> -
+                                <a href="http://www.vipdesign.com.ua/" rel="nofollow">VipDesign</a>
+
                             </div>
                         </div>
                     </div>
