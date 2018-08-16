@@ -161,85 +161,108 @@ $this->title = Yii::t('app', 'Рекламировать');
                             } ?>
                         </div>
 
-                        <?= $form
+                        <?php
+                        echo $form
                             ->field($model, 'city_ids')
                             ->label(Yii::t('app', 'Выберите города в которых хотите провести рекламную компанию'))
-                            ->checkboxList(City::dropDownList()) .
-                        Html::checkbox(null, false, [
+                            ->checkboxList(
+                                ArrayHelper::map(Country::findBase()->byId([2, 3])->all(), 'id', 'lang.title'),
+                                [
+                                    'item' => function ($index, $label, $name, $checked, $value) {
+
+                                        $cities = City::findAll(['country_id' => $value]);
+
+                                        $html = '<div>' . $label . '</div>';
+
+                                        foreach ($cities as $city) {
+                                            $html .=
+                                                '<label>' .
+                                                Html::checkbox($name, $checked, ['value' => $city['id']]) .
+                                                $city['lang']['title'] .
+                                                '</label>';
+                                        }
+
+                                        return $html;
+                                    },
+                                ]
+                            );
+
+                        echo Html::checkbox(null, false, [
                             'label' => 'Выбрать все города',
                             'class' => 'check-all',
                         ]);
                         ?>
-
-                        <?= $form
-                            ->field($model, 'count_of_months')
-                            ->label(Yii::t('app', 'Выберите количество месяцев'))
-                            ->radioList(
-                                FactoryPromotion::getCountOfMonthsRange(),
-                                [
-                                    'item' => function ($index, $label, $name, $checked, $value) {
-                                        return
-                                            '<label class="reclamation-radio">' .
-                                            Html::radio($name, $checked, ['value' => $value]) .
-                                            $label .
-                                            '<span class="checkmark-radio"></span>' .
-                                            '</label>';
-                                    },
-                                ]
-                            )
-                        ?>
-
-                        <?= $form
-                            ->field($model, 'daily_budget')
-                            ->label(Yii::t('app', 'Выберите дневной бюджет'))
-                            ->radioList(
-                                FactoryPromotion::getDailyBudgetRange(),
-                                [
-                                    'item' => function ($index, $label, $name, $checked, $value) {
-                                        return
-                                            '<label class="reclamation-radio">' .
-                                            Html::radio($name, $checked, ['value' => $value]) .
-                                            $label .
-                                            '<span class="checkmark-radio"></span>' .
-                                            '</label>';
-                                    },
-                                ]
-                            )
-                        ?>
-
-                        <div class="promotion-title-label">
-                            <?= Yii::t('app', 'Стоимость рекламной компании') ?>
-                            <span id="cost"></span>
-                            <span class="current-item"> руб </span>
-                        </div>
-
-                        <?= $form->field($model, 'cost')
-                            ->label(false)
-                            ->input('hidden') ?>
-
-                        <div class="buttons-cont">
-                            <?= Html::submitButton(
-                                Yii::t('app', 'Сохранить компанию'),
-                                ['class' => 'btn btn-goods']
-                            ) ?>
-
-                            <?= Html::submitButton(
-                                Yii::t('app', 'Оплатить'),
-                                ['class' => 'btn btn-goods']
-                            ) ?>
-
-                            <?= Html::a(
-                                Yii::t('app', 'Вернуться к списку'),
-                                ['/catalog/factory-promotion/list'],
-                                ['class' => 'btn btn-cancel']
-                            ) ?>
-                        </div>
-
-                        <?php ActiveForm::end(); ?>
-
                     </div>
+
+                    <?= $form
+                        ->field($model, 'count_of_months')
+                        ->label(Yii::t('app', 'Выберите количество месяцев'))
+                        ->radioList(
+                            FactoryPromotion::getCountOfMonthsRange(),
+                            [
+                                'item' => function ($index, $label, $name, $checked, $value) {
+                                    return
+                                        '<label class="reclamation-radio">' .
+                                        Html::radio($name, $checked, ['value' => $value]) .
+                                        $label .
+                                        '<span class="checkmark-radio"></span>' .
+                                        '</label>';
+                                },
+                            ]
+                        )
+                    ?>
+
+                    <?= $form
+                        ->field($model, 'daily_budget')
+                        ->label(Yii::t('app', 'Выберите дневной бюджет'))
+                        ->radioList(
+                            FactoryPromotion::getDailyBudgetRange(),
+                            [
+                                'item' => function ($index, $label, $name, $checked, $value) {
+                                    return
+                                        '<label class="reclamation-radio">' .
+                                        Html::radio($name, $checked, ['value' => $value]) .
+                                        $label .
+                                        '<span class="checkmark-radio"></span>' .
+                                        '</label>';
+                                },
+                            ]
+                        )
+                    ?>
+
+                    <div class="promotion-title-label">
+                        <?= Yii::t('app', 'Стоимость рекламной компании') ?>
+                        <span id="cost"></span>
+                        <span class="current-item"> руб </span>
+                    </div>
+
+                    <?= $form->field($model, 'cost')
+                        ->label(false)
+                        ->input('hidden') ?>
+
+                    <div class="buttons-cont">
+                        <?= Html::submitButton(
+                            Yii::t('app', 'Сохранить компанию'),
+                            ['class' => 'btn btn-goods']
+                        ) ?>
+
+                        <?= Html::submitButton(
+                            Yii::t('app', 'Оплатить'),
+                            ['class' => 'btn btn-goods']
+                        ) ?>
+
+                        <?= Html::a(
+                            Yii::t('app', 'Вернуться к списку'),
+                            ['/catalog/factory-promotion/list'],
+                            ['class' => 'btn btn-cancel']
+                        ) ?>
+                    </div>
+
+                    <?php ActiveForm::end(); ?>
+
                 </div>
             </div>
+        </div>
         </div>
     </main>
 
