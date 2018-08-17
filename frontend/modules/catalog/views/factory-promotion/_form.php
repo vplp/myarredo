@@ -4,7 +4,6 @@ use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url, ArrayHelper
 };
-use yii\widgets\Pjax;
 use kartik\grid\GridView;
 //
 use frontend\modules\location\models\{
@@ -41,8 +40,6 @@ $this->title = Yii::t('app', 'Рекламировать');
                                             <span aria-hidden="true">×</span></button>
                                     </div>
                                     <div class="modal-body factory-prom">
-
-                                        <?php //Pjax::begin(['id' => 'factory-product']); ?>
 
                                         <?= GridView::widget([
                                             'dataProvider' => $dataProviderFactoryProduct,
@@ -103,8 +100,6 @@ $this->title = Yii::t('app', 'Рекламировать');
                                                 ],
                                             ],
                                         ]) ?>
-
-                                        <?php //Pjax::end(); ?>
 
                                     </div>
                                     <div class="modal-footer">
@@ -226,7 +221,17 @@ $this->title = Yii::t('app', 'Рекламировать');
                     ?>
 
                     <div class="promotion-title-label">
-                        <?= Yii::t('app', 'Стоимость рекламной компании') ?>
+                        <?= Yii::t('app', 'Стоимость размещения товара в рекламе') ?>
+                        <span id="cost_products"></span>
+                        <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
+                    </div>
+                    <div class="promotion-title-label">
+                        <?= Yii::t('app', 'Стоимость размещения рекламы в поиске') ?>
+                        <span id="cost_of_month"></span>
+                        <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
+                    </div>
+                    <div class="promotion-title-label">
+                        <?= Yii::t('app', 'Общая стоимость рекламной компании') ?>
                         <span id="cost"></span>
                         <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
                     </div>
@@ -271,15 +276,19 @@ $script = <<<JS
  * Calculate
  */
 function newCost() {
-    var cost,
+    var cost, cost_of_month, cost_products,
     count_of_months = $('input[name="FactoryPromotion[count_of_months]"]:checked').val(),
     daily_budget = $('input[name="FactoryPromotion[daily_budget]"]:checked').val(),
     count_products = $('input[name="product_ids[]"]:checked').length;
   
-    cost = count_products * 1000 + count_of_months * 30 * daily_budget;
+    cost_products = count_products * 1000;
+    cost_of_month = count_of_months * 30 * daily_budget;
+    cost = cost_products + cost_of_month;
 
     $('input[name="FactoryPromotion[cost]"],#cost').val(cost);
     $('#cost').html(cost);
+    $('#cost_of_month').html(cost_of_month);
+    $('#cost_products').html(cost_products);
     $('#count-products').html(count_products);
 }
 
