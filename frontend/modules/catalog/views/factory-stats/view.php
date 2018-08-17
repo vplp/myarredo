@@ -26,6 +26,12 @@ foreach ($labels as $val) {
 
 $js_labels = implode(',', $_js_labels);
 $js_data = implode(',', $data);
+
+$total_views = 0;
+foreach ($data as $val) {
+    $total_views += $val;
+}
+
 ?>
 
 <main>
@@ -86,7 +92,7 @@ $js_data = implode(',', $data);
 
                     <?php
 
-                    $app_label_1 = Yii::t('app', 'Количество просмотров');
+                    $app_label_1 = Yii::t('app', 'Количество просмотров: {0}', $total_views);
                     $app_label_2 = Yii::t('app', 'Даты');
                     $app_label_3 = Yii::t('app', 'Количество');
 
