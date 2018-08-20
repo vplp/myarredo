@@ -10,6 +10,7 @@ use frontend\modules\location\widgets\Cities;
 use frontend\modules\user\widgets\topBarInfo\topBarInfo;
 use frontend\modules\user\widgets\partner\PartnerInfo;
 use frontend\modules\user\widgets\partner\PartnerMap;
+use frontend\modules\forms\widgets\FormFeedback;
 
 $bundle = AppAsset::register($this);
 
@@ -63,6 +64,8 @@ $bundle = AppAsset::register($this);
                             </a>
 
                             <?= topBarInfo::widget() ?>
+
+                            <?= FormFeedback::widget() ?>
 
                         </div>
                         <div class="menu-items">

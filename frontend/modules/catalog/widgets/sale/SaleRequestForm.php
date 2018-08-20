@@ -72,7 +72,7 @@ class SaleRequestForm extends Widget
                     // message
                     Yii::$app->getSession()->setFlash(
                         'success',
-                        'Отправлено'
+                        Yii::t('app', 'Отправлено')
                     );
 
                     $model = new SaleRequest;
