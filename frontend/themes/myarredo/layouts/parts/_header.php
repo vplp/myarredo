@@ -292,7 +292,7 @@ use frontend\modules\location\widgets\ChangeCity;
                         ]); ?>
 
                         <div class="search-group">
-                            <input id="search" name="search" placeholder="Поиск" class="form-control input-md" required
+                            <input id="search" name="search" placeholder="<?= Yii::t('app','Поиск') ?>" class="form-control input-md" required
                                    value="" type="text">
                             <?= Html::submitButton('<i class="fa fa-search" aria-hidden="true"></i>', ['class' => 'search-button']) ?>
                         </div>
