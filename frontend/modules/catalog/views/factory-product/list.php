@@ -3,16 +3,15 @@
 use yii\helpers\{
     Html, Url
 };
-use yii\widgets\Pjax;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use frontend\components\Breadcrumbs;
 //
 use frontend\modules\catalog\models\{
-    Category, Factory, Product
+    Category, Product
 };
 //
 use thread\widgets\grid\{
-    ActionStatusColumn, GridViewFilter
+    GridViewFilter
 };
 
 /**
@@ -57,12 +56,11 @@ $this->title = $this->context->title;
                     <div class="col-md-12 col-lg-12">
                         <div id="cont_goods" class="cont-area cont-goods">
 
-                            <?php Pjax::begin(['id' => 'factory-product']); ?>
-
                             <?= GridView::widget([
                                 'dataProvider' => $dataProvider,
                                 'filterModel' => $filter,
                                 'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
+                                'filterUrl' => Url::toRoute(['/catalog/factory-product/list']),
                                 'columns' => [
                                     [
                                         'format' => 'raw',
@@ -129,7 +127,7 @@ $this->title = $this->context->title;
                                                 ? Yii::t('app', 'Рекламируется')
                                                 : Html::a(
                                                     Yii::t('app', 'Рекламировать'),
-                                                    Url::toRoute(['/catalog/factory-promotion/create']),
+                                                    Url::toRoute(['/catalog/factory-promotion/create', 'catalog_item_id' => $model->id]),
                                                     ['class' => 'btn btn-goods']
                                                 );
                                         },
@@ -196,8 +194,6 @@ $this->title = $this->context->title;
                                     ],
                                 ],
                             ]); ?>
-
-                            <?php Pjax::end(); ?>
 
                         </div>
                     </div>

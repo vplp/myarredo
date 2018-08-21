@@ -3,16 +3,10 @@
 use yii\helpers\{
     Html, Url
 };
-use yii\widgets\Pjax;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use frontend\components\Breadcrumbs;
-//
-use frontend\modules\catalog\models\{
-    Category, Factory, Product
-};
-//
 use thread\widgets\grid\{
-    ActionStatusColumn, GridViewFilter
+    GridViewFilter
 };
 
 /**
@@ -51,12 +45,11 @@ $this->title = $this->context->title;
                     <div class="col-md-12 col-lg-12">
                         <div class="cont-area cont-goods">
 
-                            <?php Pjax::begin(['id' => 'factory-promotion']); ?>
-
                             <?= GridView::widget([
                                 'dataProvider' => $dataProvider,
                                 'filterModel' => $filter,
                                 'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
+                                'filterUrl' => Url::toRoute(['/catalog/factory-promotion/list']),
                                 'columns' => [
                                     [
                                         'format' => 'raw',
@@ -138,8 +131,6 @@ $this->title = $this->context->title;
                                     ],
                                 ],
                             ]); ?>
-
-                            <?php Pjax::end(); ?>
 
                         </div>
                     </div>

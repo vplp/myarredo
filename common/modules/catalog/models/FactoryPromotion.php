@@ -129,7 +129,9 @@ class FactoryPromotion extends ActiveRecord
     {
         $cities = [];
         foreach ($this->city_ids as $country) {
-            $cities = ArrayHelper::merge($cities, $country);
+            if ($country) {
+                $cities = ArrayHelper::merge($cities, $country);
+            }
         }
 
         $this->city_ids = $cities;
