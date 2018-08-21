@@ -272,6 +272,29 @@ $promotion_id = Yii::$app->request->get('id') ?? 0;
 
 $script = <<<JS
 
+$.urlParam = function(name){
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	return results[1] || 0;
+}
+var product_id = parseInt($.urlParam('product_id'));
+if (product_id) {
+    $('input[name="product_ids[]"][value='+product_id+']').prop("checked",true);
+    
+    var product = $('input[name="product_ids[]"][value='+product_id+']');
+
+    product.prop({checked: true });
+    product.parent('.jq-checkbox').addClass('checked');
+    
+    var str = '<div>' + 
+            product.data('title') + 
+            '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
+            '<img src="' + product.data('image') + '" width="50">' +
+            '<a id="del-product" class="close" href="javascript:void(0);" data-id="' + product.val() + '"><i class="fa fa-times"></i></a>' +
+            '</div>';
+    
+    $('#list-product').html(str);
+}
+
 /**
  * Calculate
  */
@@ -307,6 +330,7 @@ $('input[name="product_ids[]"], ' +
  * Add
  */
 $("body").on("click", "#add-product", function() { 
+ 
     var str = '';
     
     $('input[name="product_ids[]"]:checkbox:checked').each(function () {
