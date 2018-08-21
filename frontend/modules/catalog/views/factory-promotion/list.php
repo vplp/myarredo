@@ -89,7 +89,9 @@ $this->title = $this->context->title;
                                         'attribute' => 'status',
                                         'value' => function ($model) {
                                             /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
-                                            return $model->status ? 'Активная' : 'Завершена';
+                                            return $model->status
+                                                ? Yii::t('app', 'Активная')
+                                                : Yii::t('app', 'Завершена');
                                         },
                                         'filter' => GridViewFilter::selectOne(
                                             $filter,

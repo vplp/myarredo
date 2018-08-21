@@ -127,7 +127,7 @@ $this->title = $this->context->title;
                                                 ? Yii::t('app', 'Рекламируется')
                                                 : Html::a(
                                                     Yii::t('app', 'Рекламировать'),
-                                                    Url::toRoute(['/catalog/factory-promotion/create', 'catalog_item_id' => $model->id]),
+                                                    Url::toRoute(['/catalog/factory-promotion/create', 'product_id' => $model->id]),
                                                     ['class' => 'btn btn-goods']
                                                 );
                                         },

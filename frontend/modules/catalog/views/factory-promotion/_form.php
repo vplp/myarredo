@@ -154,7 +154,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                     Html::img(Product::getImageThumb($product['image_link']), ['width' => 50]) .
                                     Html::a(
                                         '<i class="fa fa-times"></i></a>',
-                                        null,
+                                        "javascript:void(0);",
                                         [
                                             'id' => 'del-product',
                                             'class' => 'close',
@@ -268,7 +268,7 @@ $this->title = Yii::t('app', 'Рекламировать');
 
 <?php
 
-$promotion_id = Yii::$app->request->get('id');
+$promotion_id = Yii::$app->request->get('id') ?? 0;
 
 $script = <<<JS
 
@@ -306,60 +306,78 @@ $('input[name="product_ids[]"], ' +
 /**
  * Add
  */
-$('input[name="product_ids[]"]').on('change', function() {
+$("body").on("click", "#add-product", function() { 
+    var str = '';
     
-    var product = $(this);
-    
-    $.post('/catalog/factory-promotion/ajax-add-product/',
-        {
-            _csrf: $('#token').val(),
-            promotion_id: $promotion_id,
-            catalog_item_id: $(this).val(),
-        }
-    ).done(function (data) {
-        if (data == true) {
-            
-            var str = '<div>' + 
+    $('input[name="product_ids[]"]:checkbox:checked').each(function () {
+        var product = $(this);
+
+        str += '<div>' + 
             product.data('title') + 
             '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
             '<img src="' + product.data('image') + '" width="50">' +
-            '<a class="close"><i class="fa fa-times"></i></a>' +
+            '<a id="del-product" class="close" href="javascript:void(0);" data-id="' + product.val() + '"><i class="fa fa-times"></i></a>' +
             '</div>';
-            
-            $('#list-product').append(str);
-        }
     });
+    
+    $('#list-product').html(str);
+            
+//    $.post('/catalog/factory-promotion/ajax-add-product/',
+//        {
+//            _csrf: $('#token').val(),
+//            promotion_id: $promotion_id,
+//            catalog_item_id: $(this).val(),
+//        }
+//    ).done(function (data) {
+//        if (data == true) {
+//            
+//            var str = '<div>' + 
+//            product.data('title') + 
+//            '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
+//            '<img src="' + product.data('image') + '" width="50">' +
+//            '<a class="close"><i class="fa fa-times"></i></a>' +
+//            '</div>';
+//            
+//            $('#list-product').append(str);
+//        }
+//    });
 });
 
 /**
  * Delete
  */
-$('a#del-product').on('click', function() {
+$("body").on("click", "#del-product", function() {
     
     var product = $(this);
+  
+    var allCheckboxs = $('input[value="'+product.data('id')+'"');
+    allCheckboxs.prop({checked: false });
+    allCheckboxs.parent('.jq-checkbox').removeClass('checked');
+      
+    product.closest('div').remove();    
     
-    $.post('/catalog/factory-promotion/ajax-del-product/',
-        {
-            _csrf: $('#token').val(),
-            promotion_id: $promotion_id,
-            catalog_item_id: product.data('id'),
-        }
-    ).done(function (data) {
-        if (data == true) {
-            
-            var allCheckboxs = $('input[value="'+product.data('id')+'"');
-            allCheckboxs.prop({checked: false });
-            allCheckboxs.parent('.jq-checkbox').removeClass('checked');
-               
-            product.closest('div').remove();
-        }
-    });
+//    $.post('/catalog/factory-promotion/ajax-del-product/',
+//        {
+//            _csrf: $('#token').val(),
+//            promotion_id: $promotion_id,
+//            catalog_item_id: product.data('id'),
+//        }
+//    ).done(function (data) {
+//        if (data == true) {
+//            
+//            var allCheckboxs = $('input[value="'+product.data('id')+'"');
+//            allCheckboxs.prop({checked: false });
+//            allCheckboxs.parent('.jq-checkbox').removeClass('checked');
+//               
+//            product.closest('div').remove();
+//        }
+//    });
 });
 
 /**
  * Check all
  */
-$(".check-all").on('click', function() {
+$("body").on("click", ".check-all", function() {
     var allCheckboxs = $('#factorypromotion-city_ids').find('input[type="checkbox"]');
     if ($(this).children('input[type="checkbox"]').prop('checked')) {
         allCheckboxs.prop({checked: true });

@@ -139,6 +139,15 @@ class FactoryPromotion extends ActiveRecord
         return parent::beforeValidate();
     }
 
+    public function beforeSave($insert)
+    {
+        if ($this->product_ids && $this->id) {
+            FactoryPromotionRelProduct::deleteAll('promotion_id = :id', [':id' => $this->id]);
+        }
+
+        return parent::beforeSave($insert);
+    }
+
     /**
      * @return array
      */
