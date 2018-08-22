@@ -324,6 +324,8 @@ gulp.task('lintHTML', function () {
 
 //------------------------------------------------------------------------
 
+// СООБЩЕНИЕ ФРОНТЕНДЩИКУ - SCSS ФАЙЛЫ УСТАРЕВШИЕ, НЕ ЗАПУСКАТЬ КОМПИЛЯЦИЮ SCSS!!!!
+
 // The default task (called when you run `gulp` from cli)
 // gulp.task('default', ['watch', 'scss', 'less', 'scripts', 'images', 'minify-css']);
 gulp.task('default', ['watchnum2', 'scripts', 'minify-css']);
