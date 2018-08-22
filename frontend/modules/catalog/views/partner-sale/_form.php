@@ -188,7 +188,7 @@ $this->title = ($model->isNewRecord) ? Yii::t('app','Add') : Yii::t('app','Edit'
                                 ]
                             ])
                             ->dropDownList(
-                                [null => '--']/* + City::dropDownList($model->country_id)*/,
+                                [null => '--'] + ($model->country_id ? City::dropDownList($model->country_id) : []),
                                 ['class' => 'selectpicker']
                             ); ?>
                     </div>
