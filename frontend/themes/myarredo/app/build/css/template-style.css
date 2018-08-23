@@ -3954,11 +3954,15 @@ h1 {
     box-shadow: none;
   }
   #factorypromotion-city_ids {
-    display: flex;
-    flex-wrap: wrap;
     margin-top: 25px;
   }
-  #factorypromotion-city_ids>label {
+  #factorypromotion-city_ids #factorypromotion-city_ids-2,
+  #factorypromotion-city_ids #factorypromotion-city_ids-3 {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #factorypromotion-city_ids #factorypromotion-city_ids-2>label,
+  #factorypromotion-city_ids #factorypromotion-city_ids-3>label {
     width: 220px;
     margin: 10px 0;
     font-size: 14px;
