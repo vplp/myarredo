@@ -3997,6 +3997,18 @@ h1 {
   #factorypromotion-daily_budget>label {
     margin-bottom: 10px;
   }
+  #myModal .modal-content {
+    margin-top: 6%;
+  }
+  #myModal .btn-bigcenter {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+  }
+  .factory-prom {
+    max-height: 500px;
+    overflow: auto;
+  }
   .factory-prom .table thead tr:last-child td:first-child,
   .factory-prom .table thead tr:last-child td:nth-child(3) {
     position: relative;

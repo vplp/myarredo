@@ -108,7 +108,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                             Yii::t('app', 'Add'),
                                             [
                                                 'id' => 'add-product',
-                                                'class' => 'btn btn-cancel',
+                                                'class' => 'btn btn-goods btn-bigcenter',
                                                 'data-dismiss' => 'modal'
                                             ]
                                         ) ?>
@@ -272,6 +272,12 @@ $this->title = Yii::t('app', 'Рекламировать');
 $promotion_id = Yii::$app->request->get('id') ?? 0;
 
 $script = <<<JS
+
+$('.factory-prom').on('blur', 'input[type="text"]', function() {
+    setTimeout(function() {
+        $('.factory-prom').find('input[type="checkbox"]').styler();
+    },1000);
+});
 /**
  * Calculate
  */
