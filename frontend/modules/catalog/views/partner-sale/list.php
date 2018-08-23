@@ -4,15 +4,15 @@ use yii\helpers\{
     Html, Url
 };
 use yii\widgets\Pjax;
-use yii\grid\GridView;
-use frontend\components\Breadcrumbs;
+use kartik\grid\GridView;
 //
+use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
-    Category, Factory, Product
+    Sale, Factory
 };
 //
 use thread\widgets\grid\{
-    ActionStatusColumn, GridViewFilter
+    GridViewFilter
 };
 
 /**
@@ -56,14 +56,23 @@ $this->title = $this->context->title;
                             <?= GridView::widget([
                                 'dataProvider' => $dataProvider,
                                 'filterModel' => $filter,
+                                'filterUrl' => Url::toRoute(['/catalog/partner-sale/list']),
                                 'columns' => [
                                     [
-                                        'attribute' => 'lang.title',
                                         'format' => 'raw',
+                                        'attribute' => 'image_link',
                                         'value' => function ($model) {
-                                            /** @var $model \frontend\modules\catalog\models\Sale */
-                                            return $model->getTitle();
+                                            /** @var \frontend\modules\catalog\models\Sale $model */
+                                            return Html::img(Sale::getImageThumb($model['image_link']), ['width' => 50]);
                                         },
+                                        'headerOptions' => ['class' => 'col-sm-1'],
+                                        'contentOptions' => ['class' => 'text-center'],
+                                        'filter' => false
+                                    ],
+                                    [
+                                        'attribute' => 'title',
+                                        'value' => 'lang.title',
+                                        'label' => Yii::t('app', 'Title'),
                                     ],
                                     [
                                         'attribute' => 'factory_id',
@@ -72,6 +81,11 @@ $this->title = $this->context->title;
                                             /** @var $model \frontend\modules\catalog\models\Sale */
                                             return ($model['factory']) ? $model['factory']['title'] : $model['factory_name'];
                                         },
+                                        'filter' => GridViewFilter::selectOne(
+                                            $filter,
+                                            'factory_id',
+                                            Factory::dropDownList()
+                                        ),
                                     ],
                                     [
                                         'format' => 'raw',
@@ -82,7 +96,14 @@ $this->title = $this->context->title;
                                         },
                                         'headerOptions' => ['class' => 'col-sm-1'],
                                         'contentOptions' => ['class' => 'text-center'],
-
+                                        'filter' => GridViewFilter::selectOne(
+                                            $filter,
+                                            'published',
+                                            [
+                                                0 => 'On',
+                                                1 => 'Off'
+                                            ]
+                                        ),
                                     ],
                                     [
                                         'label' => 'Просмотры товара',

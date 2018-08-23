@@ -12,13 +12,16 @@ use frontend\modules\catalog\models\{
 use frontend\modules\location\models\{
     Country, City
 };
+//
+use thread\app\model\interfaces\search\BaseBackendSearchModel;
+use yii\helpers\Html;
 
 /**
  * Class Sale
  *
  * @package frontend\modules\catalog\models\search
  */
-class Sale extends SaleModel
+class Sale extends SaleModel implements BaseBackendSearchModel
 {
     public $title;
 
@@ -61,9 +64,18 @@ class Sale extends SaleModel
             ],
         ]);
 
+        if (isset($params['Sale'])) {
+            $params = array_merge($params, $params['Sale']) ;
+        }
+
         if (!($this->load($params, ''))) {
             return $dataProvider;
         }
+
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'factory_id' => $this->factory_id,
+        ]);
 
         $query->andFilterWhere([
             self::tableName() . '.id' => $this->id,
