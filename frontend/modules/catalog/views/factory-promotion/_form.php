@@ -164,16 +164,24 @@ $this->title = Yii::t('app', 'Рекламировать');
                         </div>
 
                         <div id="factorypromotion-city_ids">
+
+                            <?= $form->field($model, 'country_id')
+                                ->dropDownList(
+                                    Country::dropDownList([2, 3]),
+                                    ['class' => 'selectpicker']
+                                ) ?>
+
                             <?php
                             $countries = Country::findBase()->byId([2, 3])->all();
                             foreach ($countries as $country) {
-                                echo '<p>' . $country['lang']['title'] . '</p>';
+                                echo '<div class="tab-country-' . $country['id'] . '">';
                                 echo $form
                                     ->field($model, 'city_ids[' . $country['id'] . ']')->label(false)
                                     ->checkboxList(
                                         yii\helpers\ArrayHelper::map($country['cities'], 'id', 'lang.title'),
                                         []
                                     );
+                                echo '</div>';
                             }
                             ?>
                         </div>
@@ -183,84 +191,106 @@ $this->title = Yii::t('app', 'Рекламировать');
                             'class' => 'check-all',
                         ]);
                         ?>
+
+                        <?= $form
+                            ->field($model, 'views')
+                            ->label('Сколько показов Ваших товаров вы хотите получить')
+                            ->radioList(
+                                FactoryPromotion::getCountOfViews(),
+                                [
+                                    'item' => function ($index, $label, $name, $checked, $value) {
+                                        return
+                                            '<label class="reclamation-radio">' .
+                                            Html::radio($name, $checked, [
+                                                'value' => $value,
+                                                'data-country2' => $label[2],
+                                                'data-country3' => $label[3],
+                                            ]) .
+                                            $value .
+                                            '<span class="checkmark-radio"></span>' .
+                                            '</label>';
+                                    },
+                                ]
+                            )
+                        ?>
+
+                        <?php /*$form
+                            ->field($model, 'count_of_months')
+                            ->label(Yii::t('app', 'Выберите количество месяцев'))
+                            ->radioList(
+                                FactoryPromotion::getCountOfMonthsRange(),
+                                [
+                                    'item' => function ($index, $label, $name, $checked, $value) {
+                                        return
+                                            '<label class="reclamation-radio">' .
+                                            Html::radio($name, $checked, ['value' => $value]) .
+                                            $label .
+                                            '<span class="checkmark-radio"></span>' .
+                                            '</label>';
+                                    },
+                                ]
+                            )*/
+                        ?>
+
+                        <?php /* $form
+                            ->field($model, 'daily_budget')
+                            ->label(Yii::t('app', 'Выберите дневной бюджет'))
+                            ->radioList(
+                                FactoryPromotion::getDailyBudgetRange(),
+                                [
+                                    'item' => function ($index, $label, $name, $checked, $value) {
+                                        return
+                                            '<label class="reclamation-radio">' .
+                                            Html::radio($name, $checked, ['value' => $value]) .
+                                            $label .
+                                            '<span class="checkmark-radio"></span>' .
+                                            '</label>';
+                                    },
+                                ]
+                            )*/
+                        ?>
+
+                        <div class="promotion-title-label">
+                            <?= Yii::t('app', 'Стоимость размещения товара в рекламе') ?>
+                            <span id="cost_products">0</span>
+                            <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
+                        </div>
+                        <div class="promotion-title-label">
+                            <?= Yii::t('app', 'Стоимость размещения рекламы в поиске') ?>
+                            <span id="cost_of_month">0</span>
+                            <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
+                        </div>
+                        <div class="promotion-title-label">
+                            <?= Yii::t('app', 'Общая стоимость рекламной компании') ?>
+                            <span id="cost">0</span>
+                            <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
+                        </div>
+
+                        <?= $form->field($model, 'cost')
+                            ->label(false)
+                            ->input('hidden') ?>
+
+                        <div class="buttons-cont">
+                            <?= Html::submitButton(
+                                Yii::t('app', 'Сохранить компанию'),
+                                ['class' => 'btn btn-goods']
+                            ) ?>
+
+                            <?= Html::submitButton(
+                                Yii::t('app', 'Оплатить'),
+                                ['class' => 'btn btn-goods']
+                            ) ?>
+
+                            <?= Html::a(
+                                Yii::t('app', 'Вернуться к списку'),
+                                ['/catalog/factory-promotion/list'],
+                                ['class' => 'btn btn-cancel']
+                            ) ?>
+                        </div>
+
+                        <?php ActiveForm::end(); ?>
+
                     </div>
-
-                    <?= $form
-                        ->field($model, 'count_of_months')
-                        ->label(Yii::t('app', 'Выберите количество месяцев'))
-                        ->radioList(
-                            FactoryPromotion::getCountOfMonthsRange(),
-                            [
-                                'item' => function ($index, $label, $name, $checked, $value) {
-                                    return
-                                        '<label class="reclamation-radio">' .
-                                        Html::radio($name, $checked, ['value' => $value]) .
-                                        $label .
-                                        '<span class="checkmark-radio"></span>' .
-                                        '</label>';
-                                },
-                            ]
-                        )
-                    ?>
-
-                    <?= $form
-                        ->field($model, 'daily_budget')
-                        ->label(Yii::t('app', 'Выберите дневной бюджет'))
-                        ->radioList(
-                            FactoryPromotion::getDailyBudgetRange(),
-                            [
-                                'item' => function ($index, $label, $name, $checked, $value) {
-                                    return
-                                        '<label class="reclamation-radio">' .
-                                        Html::radio($name, $checked, ['value' => $value]) .
-                                        $label .
-                                        '<span class="checkmark-radio"></span>' .
-                                        '</label>';
-                                },
-                            ]
-                        )
-                    ?>
-
-                    <div class="promotion-title-label">
-                        <?= Yii::t('app', 'Стоимость размещения товара в рекламе') ?>
-                        <span id="cost_products">0</span>
-                        <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
-                    </div>
-                    <div class="promotion-title-label">
-                        <?= Yii::t('app', 'Стоимость размещения рекламы в поиске') ?>
-                        <span id="cost_of_month">0</span>
-                        <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
-                    </div>
-                    <div class="promotion-title-label">
-                        <?= Yii::t('app', 'Общая стоимость рекламной компании') ?>
-                        <span id="cost">0</span>
-                        <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
-                    </div>
-
-                    <?= $form->field($model, 'cost')
-                        ->label(false)
-                        ->input('hidden') ?>
-
-                    <div class="buttons-cont">
-                        <?= Html::submitButton(
-                            Yii::t('app', 'Сохранить компанию'),
-                            ['class' => 'btn btn-goods']
-                        ) ?>
-
-                        <?= Html::submitButton(
-                            Yii::t('app', 'Оплатить'),
-                            ['class' => 'btn btn-goods']
-                        ) ?>
-
-                        <?= Html::a(
-                            Yii::t('app', 'Вернуться к списку'),
-                            ['/catalog/factory-promotion/list'],
-                            ['class' => 'btn btn-cancel']
-                        ) ?>
-                    </div>
-
-                    <?php ActiveForm::end(); ?>
-
                 </div>
             </div>
         </div>
@@ -273,162 +303,125 @@ $promotion_id = Yii::$app->request->get('id') ?? 0;
 
 $script = <<<JS
 
-$('.factory-prom').on('blur', 'input[type="text"]', function() {
-    setTimeout(function() {
-        $('.factory-prom').find('input[type="checkbox"]').styler();
-    },1000);
-});
-/**
- * Calculate
- */
-function newCost() {
-    var cost, cost_of_month, cost_products,
-    count_of_months = $('input[name="FactoryPromotion[count_of_months]"]:checked').val(),
-    daily_budget = $('input[name="FactoryPromotion[daily_budget]"]:checked').val(),
-    count_products = $('input[name="product_ids[]"]:checked').length;
-  
-    cost_products = count_products * 1000;
-    cost_of_month = count_of_months * 30 * daily_budget;
-    cost = cost_products + cost_of_month;
-
-    $('input[name="FactoryPromotion[cost]"],#cost').val(cost);
-    $('#cost').html(cost);
-    $('#cost_of_month').html(cost_of_month);
-    $('#cost_products').html(cost_products);
-    $('#count-products').html(count_products);
-}
-
-newCost();
-
-/**
- * Watch
- */
-$('input[name="product_ids[]"], ' +
- 'input[name="FactoryPromotion[daily_budget]"], ' +
-  'input[name="FactoryPromotion[count_of_months]"]').on('change', function() {
-     newCost();
-});
-
-/**
- * Add
- */
-$("body").on("click", "#add-product", function() { 
- 
-    var str = '';
-    
-    $('input[name="product_ids[]"]:checkbox:checked').each(function () {
-        var product = $(this);
-
-        str += '<div>' + 
-            product.data('title') + 
-            '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
-            '<img src="' + product.data('image') + '" width="50">' +
-            '<a id="del-product" class="close" href="javascript:void(0);" data-id="' + product.val() + '"><i class="fa fa-times"></i></a>' +
-            '</div>';
-    });
-    
-    $('#list-product').html(str);
-            
-//    $.post('/catalog/factory-promotion/ajax-add-product/',
-//        {
-//            _csrf: $('#token').val(),
-//            promotion_id: $promotion_id,
-//            catalog_item_id: $(this).val(),
-//        }
-//    ).done(function (data) {
-//        if (data == true) {
-//            
-//            var str = '<div>' + 
-//            product.data('title') + 
-//            '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
-//            '<img src="' + product.data('image') + '" width="50">' +
-//            '<a class="close"><i class="fa fa-times"></i></a>' +
-//            '</div>';
-//            
-//            $('#list-product').append(str);
-//        }
-//    });
-});
-
-/**
- * Delete
- */
-$("body").on("click", "#del-product", function() {
-    
-    var product = $(this);
-  
-    var allCheckboxs = $('input[value="'+product.data('id')+'"');
-    allCheckboxs.prop({checked: false });
-    allCheckboxs.parent('.jq-checkbox').removeClass('checked');
-      
-    product.closest('div').remove();    
-    
-//    $.post('/catalog/factory-promotion/ajax-del-product/',
-//        {
-//            _csrf: $('#token').val(),
-//            promotion_id: $promotion_id,
-//            catalog_item_id: product.data('id'),
-//        }
-//    ).done(function (data) {
-//        if (data == true) {
-//            
-//            var allCheckboxs = $('input[value="'+product.data('id')+'"');
-//            allCheckboxs.prop({checked: false });
-//            allCheckboxs.parent('.jq-checkbox').removeClass('checked');
-//               
-//            product.closest('div').remove();
-//        }
-//    });
-});
-
-/**
- * Check all
- */
-$("body").on("click", ".check-all", function() {
-    var allCheckboxs = $('#factorypromotion-city_ids').find('input[type="checkbox"]');
-    if ($(this).children('input[type="checkbox"]').prop('checked')) {
-        allCheckboxs.prop({checked: true });
-        allCheckboxs.parent('.jq-checkbox').addClass('checked');
-    } else {
-        allCheckboxs.prop({checked: false });
-        allCheckboxs.parent('.jq-checkbox').removeClass('checked');
-    }
-});
-
-function watchForCheckbox() {
-    if($('#factorypromotion-city_ids').find('input[type="checkbox"]').prop("checked")) {
-        $('.check-all').addClass('checked');
-        $('.check-all').children('input[type="checkbox"]').prop({checked: true })
-    }
-} 
-
-watchForCheckbox();
-
-function urlParam(name) {
-	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-	return results[1] || 0;
-}
-var product_id = parseInt(urlParam('product_id'));
-
-if (product_id) {
-    $('input[name="product_ids[]"][value='+product_id+']').prop("checked",true);
-    
-    var product = $('input[name="product_ids[]"][value='+product_id+']');
-
-    product.prop({checked: true });
-    product.parent('.jq-checkbox').addClass('checked');
-    
-    var str = '<div>' + 
-            product.data('title') + 
-            '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
-            '<img src="' + product.data('image') + '" width="50">' +
-            '<a id="del-product" class="close" href="javascript:void(0);" data-id="' + product.val() + '"><i class="fa fa-times"></i></a>' +
-            '</div>';
-    
-    $('#list-product').html(str);
-    
-    newCost();
-}
+// $('.factory-prom').on('blur', 'input[type="text"]', function() {
+//     setTimeout(function() {
+//         $('.factory-prom').find('input[type="checkbox"]').styler();
+//     },1000);
+// });
+// /**
+//  * Calculate
+//  */
+// function newCost() {
+//     var cost, cost_of_month, cost_products,
+//     count_of_months = $('input[name="FactoryPromotion[count_of_months]"]:checked').val(),
+//     daily_budget = $('input[name="FactoryPromotion[daily_budget]"]:checked').val(),
+//     count_products = $('input[name="product_ids[]"]:checked').length;
+//  
+//     cost_products = count_products * 1000;
+//     cost_of_month = count_of_months * 30 * daily_budget;
+//     cost = cost_products + cost_of_month;
+//
+//     $('input[name="FactoryPromotion[cost]"],#cost').val(cost);
+//     $('#cost').html(cost);
+//     $('#cost_of_month').html(cost_of_month);
+//     $('#cost_products').html(cost_products);
+//     $('#count-products').html(count_products);
+// }
+//
+// newCost();
+//
+// /**
+//  * Watch
+//  */
+// $('input[name="product_ids[]"], ' +
+//  'input[name="FactoryPromotion[daily_budget]"], ' +
+//   'input[name="FactoryPromotion[count_of_months]"]').on('change', function() {
+//      newCost();
+// });
+//
+// /**
+//  * Add
+//  */
+// $("body").on("click", "#add-product", function() { 
+// 
+//     var str = '';
+//    
+//     $('input[name="product_ids[]"]:checkbox:checked').each(function () {
+//         var product = $(this);
+//
+//         str += '<div>' + 
+//             product.data('title') + 
+//             '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
+//             '<img src="' + product.data('image') + '" width="50">' +
+//             '<a id="del-product" class="close" href="javascript:void(0);" data-id="' + product.val() + '"><i class="fa fa-times"></i></a>' +
+//             '</div>';
+//     });
+//    
+//     $('#list-product').html(str);
+// });
+//
+// /**
+//  * Delete
+//  */
+// $("body").on("click", "#del-product", function() {
+//    
+//     var product = $(this);
+//  
+//     var allCheckboxs = $('input[value="'+product.data('id')+'"');
+//     allCheckboxs.prop({checked: false });
+//     allCheckboxs.parent('.jq-checkbox').removeClass('checked');
+//      
+//     product.closest('div').remove();
+// });
+//
+// /**
+//  * Check all
+//  */
+// $("body").on("click", ".check-all", function() {
+//     var allCheckboxs = $('#factorypromotion-city_ids').find('input[type="checkbox"]');
+//     if ($(this).children('input[type="checkbox"]').prop('checked')) {
+//         allCheckboxs.prop({checked: true });
+//         allCheckboxs.parent('.jq-checkbox').addClass('checked');
+//     } else {
+//         allCheckboxs.prop({checked: false });
+//         allCheckboxs.parent('.jq-checkbox').removeClass('checked');
+//     }
+// });
+//
+// function watchForCheckbox() {
+//     if($('#factorypromotion-city_ids').find('input[type="checkbox"]').prop("checked")) {
+//         $('.check-all').addClass('checked');
+//         $('.check-all').children('input[type="checkbox"]').prop({checked: true })
+//     }
+// } 
+//
+// watchForCheckbox();
+//
+// function urlParam(name) {
+// 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+// 	return results[1] || 0;
+// }
+// var product_id = parseInt(urlParam('product_id'));
+//
+// if (product_id) {
+//     $('input[name="product_ids[]"][value='+product_id+']').prop("checked",true);
+//    
+//     var product = $('input[name="product_ids[]"][value='+product_id+']');
+//
+//     product.prop({checked: true });
+//     product.parent('.jq-checkbox').addClass('checked');
+//    
+//     var str = '<div>' + 
+//             product.data('title') + 
+//             '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
+//             '<img src="' + product.data('image') + '" width="50">' +
+//             '<a id="del-product" class="close" href="javascript:void(0);" data-id="' + product.val() + '"><i class="fa fa-times"></i></a>' +
+//             '</div>';
+//    
+//     $('#list-product').html(str);
+//    
+//     newCost();
+// }
 
 JS;
 

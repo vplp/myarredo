@@ -18,6 +18,8 @@ use common\modules\catalog\Catalog;
  *
  * @property integer $id
  * @property integer $user_id
+ * @property integer $country_id
+ * @property integer $views
  * @property integer $count_of_months
  * @property double $daily_budget
  * @property double $cost
@@ -80,7 +82,7 @@ class FactoryPromotion extends ActiveRecord
     {
         return [
             [['user_id'], 'required'],
-            [['user_id', 'count_of_months', 'daily_budget', 'created_at', 'updated_at', 'position'], 'integer'],
+            [['user_id', 'country_id', 'views', 'count_of_months', 'daily_budget', 'created_at', 'updated_at', 'position'], 'integer'],
             [['cost'], 'double'],
             [['status', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['count_of_months', 'daily_budget', 'cost'], 'default', 'value' => '0'],
@@ -99,6 +101,8 @@ class FactoryPromotion extends ActiveRecord
             'position' => ['position'],
             'backend' => [
                 'user_id',
+                'country_id',
+                'views',
                 'count_of_months',
                 'daily_budget',
                 'cost',
@@ -110,6 +114,8 @@ class FactoryPromotion extends ActiveRecord
             ],
             'frontend' => [
                 'user_id',
+                'country_id',
+                'views',
                 'count_of_months',
                 'daily_budget',
                 'cost',
@@ -156,6 +162,8 @@ class FactoryPromotion extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User'),
+            'country_id' => Yii::t('app', 'Country'),
+            'views' => Yii::t('app', 'Count of views'),
             'count_of_months' => 'Кол-во месяцев',
             'daily_budget' => 'Дневной бюджет',
             'cost' => Yii::t('app', 'Cost'),
@@ -204,11 +212,28 @@ class FactoryPromotion extends ActiveRecord
     public static function getCountOfMonthsRange()
     {
         return [
-            1 => 1 . ' ' . Yii::t('app','мес.'),
-            2 => 2 . ' ' . Yii::t('app','мес.'),
-            3 => 3 . ' ' . Yii::t('app','мес.'),
-            4 => 4 . ' ' . Yii::t('app','мес.'),
-            5 => 5 . ' ' . Yii::t('app','мес.'),
+            1 => 1 . ' ' . Yii::t('app', 'мес.'),
+            2 => 2 . ' ' . Yii::t('app', 'мес.'),
+            3 => 3 . ' ' . Yii::t('app', 'мес.'),
+            4 => 4 . ' ' . Yii::t('app', 'мес.'),
+            5 => 5 . ' ' . Yii::t('app', 'мес.'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getCountOfViews()
+    {
+        return [
+            1000 => [2 => 24000, 3 => 20400],
+            1400 => [2 => 32000, 3 => 27200],
+            1900 => [2 => 40000, 3 => 34000],
+            2500 => [2 => 48000, 3 => 40800],
+            3100 => [2 => 56000, 3 => 47600],
+            3600 => [2 => 64000, 3 => 54400],
+            4200 => [2 => 72000, 3 => 61200],
+            5000 => [2 => 80000, 3 => 68000],
         ];
     }
 
@@ -218,11 +243,11 @@ class FactoryPromotion extends ActiveRecord
     public static function getDailyBudgetRange()
     {
         return [
-            500 => 500 . ' ' . Yii::t('app','руб/день'),
-            800 => 800 . ' ' . Yii::t('app','руб/день'),
-            1000 => 1000 . ' ' . Yii::t('app','руб/день'),
-            1500 => 1500 . ' ' . Yii::t('app','руб/день'),
-            2000 => 2000 . ' ' . Yii::t('app','руб/день'),
+            500 => 500 . ' ' . Yii::t('app', 'руб/день'),
+            800 => 800 . ' ' . Yii::t('app', 'руб/день'),
+            1000 => 1000 . ' ' . Yii::t('app', 'руб/день'),
+            1500 => 1500 . ' ' . Yii::t('app', 'руб/день'),
+            2000 => 2000 . ' ' . Yii::t('app', 'руб/день'),
         ];
     }
 }
