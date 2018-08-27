@@ -140,6 +140,11 @@ class CityComponent extends Component
                 Yii::$app->end();
             }
 
+            if ($this->city['country']['alias'] != $this->domain) {
+                Yii::$app->response->redirect('https://' . $this->city['alias'] . '.myarredo.' . $this->city['country']['alias'] . Yii::$app->request->url, 301);
+                Yii::$app->end();
+            }
+
         } else {
             $this->city = City::findById($this->getDefaultCityId());
         }

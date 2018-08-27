@@ -13,6 +13,7 @@ class Menu extends \thread\modules\menu\models\Menu
 {
     /**
      * @param $id
+     * @return mixed
      */
     public static function getById($id)
     {
