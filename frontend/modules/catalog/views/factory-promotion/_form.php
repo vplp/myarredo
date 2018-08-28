@@ -221,7 +221,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                         </div>
                         <div class="promotion-title-label">
                             <?= Yii::t('app', 'Стоимость размещения рекламы в поиске') ?>
-                            <span id="cost_of_month">0</span>
+                            <span id="cost_of_views">0</span>
                             <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
                         </div>
                         <div class="promotion-title-label">
@@ -317,18 +317,19 @@ watchForCheckbox();
  * Calculate
  */
 function newCost() {
-    var cost, cost_of_month, cost_products,
-    count_of_months = $('input[name="FactoryPromotion[count_of_months]"]:checked').val(),
-    daily_budget = $('input[name="FactoryPromotion[daily_budget]"]:checked').val(),
+    var country_id = $('input[name="FactoryPromotion[country_id]"]').filter(":selected").val();
+    console.log('country_id = '+ country_id);
+    
+    var cost, cost_of_views, cost_products,
+    cost_of_views = parseInt($('input[name="FactoryPromotion[views]"]:checked').val()),
     count_products = $('input[name="product_ids[]"]:checked').length;
  
     cost_products = count_products * 1000;
-    cost_of_month = count_of_months * 30 * daily_budget;
-    cost = cost_products + cost_of_month;
+    cost = cost_products + cost_of_views;
 
     $('input[name="FactoryPromotion[amount]"],#cost').val(cost);
     $('#cost').html(cost);
-    $('#cost_of_month').html(cost_of_month);
+    $('#cost_of_views').html(cost_of_views);
     $('#cost_products').html(cost_products);
     $('#count-products').html(count_products);
 }
@@ -338,9 +339,7 @@ newCost();
 /**
  * Watch
  */
-$('input[name="product_ids[]"], ' +
- 'input[name="FactoryPromotion[daily_budget]"], ' +
-  'input[name="FactoryPromotion[count_of_months]"]').on('change', function() {
+$('input[name="FactoryPromotion[views]"]').on('change', function() {
      newCost();
 });
 
@@ -363,6 +362,8 @@ $("body").on("click", "#add-product", function() {
     });
    
     $('#list-product').html(str);
+    
+     newCost();
 });
 
 /**
@@ -377,6 +378,8 @@ $("body").on("click", "#del-product", function() {
     allCheckboxs.parent('.jq-checkbox').removeClass('checked');
      
     product.closest('div').remove();
+    
+     newCost();
 });
 
 /**
