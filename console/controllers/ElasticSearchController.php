@@ -19,12 +19,12 @@ use common\modules\catalog\models\{
 class ElasticSearchController extends Controller
 {
     /**
-     * Generate product title
+     * @throws \yii\db\Exception
      */
     public function actionResetMark()
     {
         Yii::$app->db->createCommand()
-            ->update(Product::tableName(), ['mark' => '0'], "`mark`='1'")
+            ->update(Product::tableName(), ['mark1' => '0'], "`mark1`='1'")
             ->execute();
     }
 
@@ -34,21 +34,19 @@ class ElasticSearchController extends Controller
      */
     public function actionAdd($lang = 'ru-RU')
     {
-        // UPDATE `fv_catalog_item` SET `mark`='0' WHERE `mark`='1'
-
         $this->stdout("ElasticSearch: start. \n", Console::FG_GREEN);
 
         Yii::$app->language = $lang;
 
         $models = Product::find()
-            ->innerJoinWith(['lang', 'factory', 'types'])
+            ->innerJoinWith(['lang', 'factory'])
             ->andFilterWhere([
                 Product::tableName() . '.removed' => '0',
-                'mark' => '0',
+                Product::tableName() . '.mark1' => '0',
             ])
-            ->limit(500)
-            ->orderBy(Product::tableName() . '.id DESC')
             ->enabled()
+            ->orderBy(Product::tableName() . '.id DESC')
+            ->limit(500)
             ->all();
 
         foreach ($models as $product) {
@@ -56,12 +54,11 @@ class ElasticSearchController extends Controller
             /** @var $product Product */
             $transaction = $product::getDb()->beginTransaction();
             try {
-                $product->setScenario('setMark');
+                $product->setScenario('setMark1');
 
-                $product->mark = '1';
+                $product->mark1 = '1';
 
                 $save = ElasticSearchProduct::addRecord($product);
-
                 if ($product->save() && $save) {
                     $transaction->commit();
                     $this->stdout("save: ID=" . $product->id . " \n", Console::FG_GREEN);

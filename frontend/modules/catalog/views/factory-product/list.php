@@ -3,15 +3,15 @@
 use yii\helpers\{
     Html, Url
 };
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use frontend\components\Breadcrumbs;
 //
 use frontend\modules\catalog\models\{
-    Category, Factory, Product
+    Category, Product
 };
 //
 use thread\widgets\grid\{
-    ActionStatusColumn, GridViewFilter
+    GridViewFilter
 };
 
 /**
@@ -54,14 +54,16 @@ $this->title = $this->context->title;
                 <div class="row">
 
                     <div class="col-md-12 col-lg-12">
-                        <div class="cont-area cont-goods">
+                        <div id="cont_goods" class="cont-area cont-goods">
 
                             <?= GridView::widget([
                                 'dataProvider' => $dataProvider,
                                 'filterModel' => $filter,
                                 'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
+                                'filterUrl' => Url::toRoute(['/catalog/factory-product/list']),
                                 'columns' => [
                                     [
+                                        'format' => 'raw',
                                         'attribute' => 'category',
                                         'value' => function ($model) {
                                             $result = [];
@@ -75,7 +77,6 @@ $this->title = $this->context->title;
                                             }
                                             return implode(', ', $result);
                                         },
-                                        'format' => 'raw',
                                         'label' => Yii::t('app', 'Category'),
                                         'headerOptions' => ['class' => 'col-sm-1'],
                                         'contentOptions' => ['class' => 'text-center'],
@@ -92,6 +93,7 @@ $this->title = $this->context->title;
                                         'contentOptions' => ['class' => 'text-center'],
                                     ],
                                     [
+                                        'format' => 'raw',
                                         'attribute' => 'image_link',
                                         'value' => function ($model) {
                                             /** @var \frontend\modules\catalog\models\FactoryProduct $model */
@@ -99,7 +101,6 @@ $this->title = $this->context->title;
                                         },
                                         'headerOptions' => ['class' => 'col-sm-1'],
                                         'contentOptions' => ['class' => 'text-center'],
-                                        'format' => 'raw',
                                         'filter' => false
                                     ],
                                     [
@@ -108,11 +109,12 @@ $this->title = $this->context->title;
                                         'label' => Yii::t('app', 'Title'),
                                     ],
                                     [
+                                        'format' => 'raw',
                                         'attribute' => 'updated_at',
+                                        'label' => Yii::t('app', 'Дата'),
                                         'value' => function ($model) {
                                             return date('j.m.Y', $model->updated_at);
                                         },
-                                        'format' => 'raw',
                                         'headerOptions' => ['class' => 'col-sm-1'],
                                         'contentOptions' => ['class' => 'text-center'],
                                         'filter' => false
@@ -120,31 +122,21 @@ $this->title = $this->context->title;
                                     [
                                         'format' => 'raw',
                                         'value' => function ($model) {
-                                            return Html::a(
-                                                Yii::t('app', 'Рекламировать'),
-                                                Url::toRoute(['/catalog/factory-promotion/create']),
-                                                ['class' => 'btn btn-goods']
-                                            );
+                                            /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                            return (!empty($model->factoryPromotionRelProduct))
+                                                ? Yii::t('app', 'Рекламируется')
+                                                : Html::a(
+                                                    Yii::t('app', 'Рекламировать'),
+                                                    Url::toRoute(['/catalog/factory-promotion/create', 'product_id' => $model->id]),
+                                                    ['class' => 'btn btn-goods']
+                                                );
                                         },
                                         'label' => Yii::t('app', 'Рекламировать'),
                                         'filter' => false
                                     ],
-//                                    [
-//                                        'class' => ActionStatusColumn::class,
-//                                        'attribute' => 'promotion',
-//                                        'action' => 'promotion',
-//                                        'filter' => GridViewFilter::selectOne(
-//                                            $filter,
-//                                            'promotion',
-//                                            [
-//                                                0 => 'On',
-//                                                1 => 'Off'
-//                                            ]
-//                                        ),
-//                                    ],
                                     [
-                                        'attribute' => 'published',
                                         'format' => 'raw',
+                                        'attribute' => 'published',
                                         'value' => function ($model) {
                                             /** @var $model \frontend\modules\catalog\models\FactoryProduct */
                                             return Html::checkbox(false, $model->published, ['disabled' => true]);

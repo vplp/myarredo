@@ -3,8 +3,17 @@
 use yii\helpers\{
     Html, Url
 };
-use yii\grid\GridView;
+use yii\widgets\Pjax;
+use kartik\grid\GridView;
+//
 use frontend\components\Breadcrumbs;
+use frontend\modules\catalog\models\{
+    Sale, Factory
+};
+//
+use thread\widgets\grid\{
+    GridViewFilter
+};
 
 /**
  * @var \yii\data\Pagination $pages
@@ -21,11 +30,15 @@ $this->title = $this->context->title;
 <main>
     <div class="page category-page">
         <div class="container large-container">
-            <div class="row">
+            <div class="row title-cont">
 
                 <?= Html::tag('h1', $this->context->title); ?>
 
-                <?= Html::a(Yii::t('app', 'Add'), Url::toRoute(['/partner/sale/create']), ['class' => 'btn btn-default']) ?>
+                <?= Html::a(
+                    '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Add'),
+                    Url::toRoute(['/partner/sale/create']),
+                    ['class' => 'btn btn-goods']
+                ) ?>
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
@@ -36,18 +49,30 @@ $this->title = $this->context->title;
                 <div class="row">
 
                     <div class="col-md-12 col-lg-12">
-                        <div class="cont-area">
+                        <div class="cont-area cont-goods">
+
+                            <?php Pjax::begin(['id' => 'factory-product']); ?>
 
                             <?= GridView::widget([
                                 'dataProvider' => $dataProvider,
+                                'filterModel' => $filter,
+                                'filterUrl' => Url::toRoute(['/catalog/partner-sale/list']),
                                 'columns' => [
                                     [
-                                        'attribute' => 'lang.title',
                                         'format' => 'raw',
+                                        'attribute' => 'image_link',
                                         'value' => function ($model) {
-                                            /** @var $model \frontend\modules\catalog\models\Sale */
-                                            return $model->getTitle();
+                                            /** @var \frontend\modules\catalog\models\Sale $model */
+                                            return Html::img(Sale::getImageThumb($model['image_link']), ['width' => 50]);
                                         },
+                                        'headerOptions' => ['class' => 'col-sm-1'],
+                                        'contentOptions' => ['class' => 'text-center'],
+                                        'filter' => false
+                                    ],
+                                    [
+                                        'attribute' => 'title',
+                                        'value' => 'lang.title',
+                                        'label' => Yii::t('app', 'Title'),
                                     ],
                                     [
                                         'attribute' => 'factory_id',
@@ -56,16 +81,29 @@ $this->title = $this->context->title;
                                             /** @var $model \frontend\modules\catalog\models\Sale */
                                             return ($model['factory']) ? $model['factory']['title'] : $model['factory_name'];
                                         },
+                                        'filter' => GridViewFilter::selectOne(
+                                            $filter,
+                                            'factory_id',
+                                            Factory::dropDownList()
+                                        ),
                                     ],
                                     [
-                                        'attribute' => 'published',
                                         'format' => 'raw',
+                                        'attribute' => 'published',
                                         'value' => function ($model) {
-                                            /** @var $model \frontend\modules\catalog\models\Sale */
-                                            return ($model->published) ? 1 : 0;
+                                            /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                            return Html::checkbox(false, $model->published, ['disabled' => true]);
                                         },
-                                        'headerOptions' => ['class' => 'col-sm-1',],
-                                        'contentOptions' => ['class' => 'text-center',],
+                                        'headerOptions' => ['class' => 'col-sm-1'],
+                                        'contentOptions' => ['class' => 'text-center'],
+                                        'filter' => GridViewFilter::selectOne(
+                                            $filter,
+                                            'published',
+                                            [
+                                                0 => 'On',
+                                                1 => 'Off'
+                                            ]
+                                        ),
                                     ],
                                     [
                                         'label' => 'Просмотры товара',

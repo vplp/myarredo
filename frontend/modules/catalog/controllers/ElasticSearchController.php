@@ -24,25 +24,6 @@ class ElasticSearchController extends BaseController
     /**
      * @inheritdoc
      */
-    public function actionIndex()
-    {
-        //ElasticSearchProduct::updateMapping();
-
-        //$product = ElasticSearchProduct::deleteRecord(82111);
-        //$product = Product::findByAlias('pismennyj_stol_bakokko_palazzo_ducale_art_5036');
-//
-//        ElasticSearchProduct::addRecord($product);
-//
-//        $model = ElasticSearchProduct::find()->all();
-//
-//        var_dump($model);
-
-//        return $this->render('index');
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function actionSearch()
     {
         $model = new ElasticSearchProduct();

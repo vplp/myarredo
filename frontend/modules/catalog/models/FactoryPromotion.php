@@ -2,10 +2,7 @@
 
 namespace frontend\modules\catalog\models;
 
-use Yii;
-use yii\helpers\{
-    Url, ArrayHelper
-};
+use yii\helpers\Url;
 
 /**
  * Class Factory
@@ -19,7 +16,16 @@ class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
      */
     public static function findBase()
     {
-        return parent::findBase();
+        return parent::findBase()->enabled();
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public static function findById($id)
+    {
+        return self::findBase()->byId($id)->one();
     }
 
     /**

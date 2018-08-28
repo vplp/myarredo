@@ -9,12 +9,8 @@ use yii\data\ActiveDataProvider;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use frontend\modules\catalog\models\{
-    Category,
-    Types,
-    Factory,
     FactoryProduct as FactoryProductModel,
     FactoryProductLang,
-    Specification,
     ProductRelCategory
 };
 use frontend\modules\catalog\Catalog;
@@ -38,7 +34,7 @@ class FactoryProduct extends FactoryProductModel implements BaseBackendSearchMod
     {
         return [
             [['id', 'category', 'factory_id'], 'integer'],
-            [['alias', 'article', 'title', 'image_link'], 'string', 'max' => 255],
+            [['article', 'title'], 'string', 'max' => 255],
             [['published', 'removed'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
@@ -65,7 +61,7 @@ class FactoryProduct extends FactoryProductModel implements BaseBackendSearchMod
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
+            'pagination' => isset($params['pagination']) ? $params['pagination'] : [
                 'defaultPageSize' => $module->itemOnPage,
                 'forcePageParam' => false,
             ],

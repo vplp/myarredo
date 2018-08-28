@@ -12,7 +12,7 @@ use common\modules\catalog\models\Product as CommonProduct;
  *
  * @package frontend\modules\catalog\models
  */
-class FactoryProduct extends Product
+class FactoryProduct extends CommonProduct
 {
     public $promotion;
 
@@ -39,6 +39,21 @@ class FactoryProduct extends Product
                 'range' => array_keys(static::statusKeyRange())
             ],
         ]);
+    }
+
+    /**
+     * @param bool $insert
+     * @return bool
+     * @throws \Throwable
+     */
+    public function beforeSave($insert)
+    {
+        if (Yii::$app->user->identity->group->role == 'factory') {
+            $this->user_id = Yii::$app->user->identity->id;
+            $this->factory_id = Yii::$app->user->identity->profile->factory_id;
+        }
+
+        return parent::beforeSave($insert);
     }
 
     /**
@@ -90,7 +105,9 @@ class FactoryProduct extends Product
      */
     public function attributeLabels()
     {
-        return ArrayHelper::merge(CommonProduct::attributeLabels(), []);
+        return ArrayHelper::merge(CommonProduct::attributeLabels(), [
+            'title'
+        ]);
     }
 
     /**
@@ -102,6 +119,16 @@ class FactoryProduct extends Product
             ->innerJoinWith(['lang', 'factory'])
             ->andWhere([self::tableName() . '.factory_id' => Yii::$app->user->identity->profile->factory_id])
             ->orderBy(self::tableName() . '.updated_at DESC');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactoryPromotionRelProduct()
+    {
+        return $this
+            ->hasOne(FactoryPromotion::class, ['id' => 'promotion_id'])
+            ->viaTable(FactoryPromotionRelProduct::tableName(), ['catalog_item_id' => 'id']);
     }
 
     /**

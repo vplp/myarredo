@@ -92,7 +92,7 @@ class RegisterForm extends CommonForm
                 'required',
                 'on' => ['registerPartner', 'registerFactory'],
                 'requiredValue' => 1,
-                'message' => 'Вы должны ознакомиться и согласиться'
+                'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
             ],
             [['delivery_to_other_cities', 'user_agreement'], 'in', 'range' => [0, 1]],
             [['country_id', 'city_id'], 'integer'],
@@ -252,7 +252,7 @@ class RegisterForm extends CommonForm
             'scenario' => 'userCreate',
             'username' => $this->email,
             'email' => $this->email,
-            'published' => ActiveRecord::STATUS_KEY_ON,
+            'published' => ActiveRecord::STATUS_KEY_OFF,
             'group_id' => Group::PARTNER,
         ]);
 

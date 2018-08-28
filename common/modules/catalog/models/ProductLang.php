@@ -59,6 +59,7 @@ class ProductLang extends ActiveRecordLang
     {
         return [
             'backend' => ['title', 'description', 'content', 'comment'],
+            'frontend' => ['title', 'description', 'content', 'comment'],
         ];
     }
 
@@ -86,6 +87,10 @@ class ProductLang extends ActiveRecordLang
                 . (!empty($this->parent->factory) ? ' ' . $this->parent->factory->title : '')
                 . (!empty($this->parent->collection->lang) ? ' ' . $this->parent->collection->lang->title : '')
                 . (($this->parent->article && $this->parent->is_composition == '0') ? ' ' . $this->parent->article : '');
+        }
+
+        if ($this->parent->is_composition) {
+            $this->title = Yii::t('app', 'Композиция') . ' ' . $this->title;
         }
 
         return parent::beforeSave($insert);

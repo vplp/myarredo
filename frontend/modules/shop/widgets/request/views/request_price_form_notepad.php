@@ -4,13 +4,13 @@ use yii\helpers\{
     Html, Url
 };
 use yii\widgets\ActiveForm;
+//
+use frontend\modules\location\models\City;
 
-/**
- * @var \frontend\modules\shop\models\CartCustomerForm $model
- */
-
+/** @var $model \frontend\modules\shop\models\CartCustomerForm */
 
 $model->user_agreement = 1;
+$model->city_id = Yii::$app->city->getCityId();
 
 ?>
 
@@ -39,17 +39,21 @@ $model->user_agreement = 1;
     ->input('text', ['placeholder' => Yii::t('app', 'Phone')])
     ->label(false) ?>
 
+<?= $form->field($model, 'city_id')
+    ->dropDownList(City::dropDownList(Yii::$app->city->getCountryId()))
+    ->label(false) ?>
+
 <?= $form->field($model, 'comment')
     ->textarea(['placeholder' => Yii::t('app', 'Comment')])
     ->label(false) ?>
 
 <?= $form->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])->checkbox([], false)
-    ->label('&nbsp;'.$model->getAttributeLabel('user_agreement')) ?>
+    ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
 
 <?= $form->field($model, 'reCaptcha')
     ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
     ->label(false) ?>
 
-<?= Html::submitButton(Yii::t('app','Получить лучшую цену'), ['class' => 'btn btn-success big']) ?>
+<?= Html::submitButton(Yii::t('app', 'Получить лучшую цену'), ['class' => 'btn btn-success big']) ?>
 
 <?php ActiveForm::end(); ?>

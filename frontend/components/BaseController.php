@@ -3,8 +3,6 @@
 namespace frontend\components;
 
 use Yii;
-//
-use yii\helpers\Url;
 use yii\web\Controller;
 //
 use frontend\modules\seo\modules\{
@@ -41,24 +39,6 @@ abstract class BaseController extends Controller
         $this->directLink = Directlink::findByUrl();
 
         parent::init();
-    }
-
-    /**
-     * @param $action
-     * @return bool|\yii\web\Response
-     * @throws \yii\web\BadRequestHttpException
-     */
-    public function beforeAction($action)
-    {
-        /*
-        $searchCondition = \Yii::$app->getRequest()->get('search', null);
-
-        if ($searchCondition) {
-            return $this->redirect(Url::to(['/page/find/index', 'condition' => $searchCondition]));
-        }
-        */
-
-        return parent::beforeAction($action);
     }
 
     /**

@@ -75,42 +75,35 @@ endif;
 <?php ActiveForm::end(); ?>
 
 <?php
-$this->registerJs("
-    $('#menuitem-link_type').on('change', function(){
-        var val = this.value;
+$script = <<<JS
+$(document).on('change', '#menuitem-link_type', function () {
+    var val = this.value;
 
-        if(this.value == 'permanent'){
-            $('.menuitem-link_type_permanent').show();
-            $('.menuitem-link_type_external').hide();
-            $('.menuitem-link_type_internal').hide();
-        }else if(this.value == 'internal'){
-            $('.menuitem-link_type_internal').show();
-            $('.menuitem-link_type_external').hide();
-            $('.menuitem-link_type_permanent').hide();
-        }else{
-            $('.menuitem-link_type_internal').hide();
-            $('.menuitem-link_type_external').show();
-            $('.menuitem-link_type_permanent').hide(); 
-        }
-        console.log(val);
-    });
-    $('#menuitem-internal_source').on('change', function(){
-        var val = this.value;
-        $('.internal_sources').hide();
-        $('.'+val).show();
-        console.log(val);
-    });
+    if(this.value == 'permanent'){
+        $('.menuitem-link_type_permanent').show();
+        $('.menuitem-link_type_external').hide();
+        $('.menuitem-link_type_internal').hide();
+    }else if(this.value == 'internal'){
+        $('.menuitem-link_type_internal').show();
+        $('.menuitem-link_type_external').hide();
+        $('.menuitem-link_type_permanent').hide();
+    }else{
+        $('.menuitem-link_type_internal').hide();
+        $('.menuitem-link_type_external').show();
+        $('.menuitem-link_type_permanent').hide(); 
+    }
+});
 
-    $('#menuitem-internal_source_id').on('change', function(){
-        var val = this.value;
-        $('.internal_source_id_hidden').val(val);
-    });
-    
-//    $('#link_type_external').keypress(function(){
-//        $('#model_link').val($('#link_type_external').val());
-//    })
-//    
-//    $('#link_type_permanent').keypress(function(){
-//        $('#model_link').val($('#link_type_permanent').val());
-//    })
-");
+$(document).on('change', '#menuitem-internal_source', function () {
+    var val = this.value;
+    $('.internal_sources').hide();
+    $('.'+val).show();
+});
+
+$(document).on('change', '#menuitem-internal_source_id', function () {
+    var val = this.value;
+    $('.internal_source_id_hidden').val(val);
+});
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);

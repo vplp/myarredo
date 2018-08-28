@@ -98,4 +98,23 @@ class City extends \thread\modules\location\models\City
     {
         return self::findBase()->byId($id)->one();
     }
+
+    /**
+     * Drop down list
+     *
+     * @param int $country_id
+     * @return mixed
+     */
+    public static function dropDownList($country_id = 0)
+    {
+        $query = self::findBase();
+
+        if ($country_id) {
+            $query->andFilterWhere(['country_id' => $country_id]);
+        }
+
+        $data = $query->all();
+
+        return ArrayHelper::map($data, 'id', 'lang.title');
+    }
 }

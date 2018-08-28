@@ -25,7 +25,7 @@ $this->title = ($model->isNewRecord) ? Yii::t('app','Add') : Yii::t('app','Edit'
 
 <main>
     <div class="page create-sale">
-        <div class="container large-container">
+        <div class="largex-container forcusttitle">
 
             <?= Html::tag('h1', $this->title); ?>
 
@@ -188,7 +188,7 @@ $this->title = ($model->isNewRecord) ? Yii::t('app','Add') : Yii::t('app','Edit'
                                 ]
                             ])
                             ->dropDownList(
-                                [null => '--'] + City::dropDownList($model->country_id),
+                                [null => '--'] + ($model->country_id ? City::dropDownList($model->country_id) : []),
                                 ['class' => 'selectpicker']
                             ); ?>
                     </div>
@@ -230,10 +230,10 @@ $this->title = ($model->isNewRecord) ? Yii::t('app','Add') : Yii::t('app','Edit'
 <?php
 
 $script = <<<JS
-$('select#registerform-country_id').change(function(){
+$('select#sale-country_id').change(function(){
     var country_id = parseInt($(this).val());
     $.post('/location/location/get-cities/', {_csrf: $('#token').val(),country_id:country_id}, function(data){
-        var select = $('select#registerform-city_id');
+        var select = $('select#sale-city_id');
         select.html(data.options);
         select.selectpicker("refresh");
     });

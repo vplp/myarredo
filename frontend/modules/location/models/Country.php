@@ -98,11 +98,16 @@ class Country extends \common\modules\location\models\Country
     /**
      * Drop down list
      *
-     * @return mixed
+     * @param array $IDs
+     * @return array
      */
-    public static function dropDownList()
+    public static function dropDownList($IDs = [])
     {
         $query = self::findBase();
+
+        if ($IDs) {
+            $query->byId($IDs);
+        }
 
         $data = $query->all();
 

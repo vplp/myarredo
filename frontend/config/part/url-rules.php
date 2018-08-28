@@ -72,6 +72,8 @@ return [
     'factory-promotion/create' => 'catalog/factory-promotion/create',
     'factory-promotion/update/<id:[\d\-]+>' => 'catalog/factory-promotion/update',
     'factory-promotion/intrash/<id:[\d\-]+>' => 'catalog/factory-promotion/intrash',
+    'catalog/factory-promotion/ajax-add-product' => 'catalog/factory-promotion/ajax-add-product',
+    'catalog/factory-promotion/ajax-del-product' => 'catalog/factory-promotion/ajax-del-product',
 
     // Partner sale
     'partner/sale' => 'catalog/partner-sale/list',

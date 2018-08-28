@@ -32,14 +32,16 @@ class Catalog extends \common\modules\catalog\Catalog
             'liveinternet.ru', 'xml-sitemaps.com', 'agama', 'metadatalabs.com', 'h1.hrn.ru',
             'googlealert.com', 'seo-rus.com', 'yaDirectBot', 'yandeG', 'yandex',
             'yandexSomething', 'Copyscape.com', 'AdsBot-Google', 'domaintools.com',
-            'Nigma.ru', 'bing.com', 'dotnetdotcom'
+            'Nigma.ru', 'bing.com', 'dotnetdotcom', 'exensa.com', 'ia_archiver', 'ltx71.com'
         );
+
         foreach ($bots as $bot) {
             if (stripos($_SERVER['HTTP_USER_AGENT'], $bot) !== false) {
                 $bot_name = $bot;
                 return $bot_name;
             }
         }
+
         return false;
     }
 

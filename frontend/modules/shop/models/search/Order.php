@@ -128,7 +128,6 @@ class Order extends OrderModel
         // переносим все атрибуты из заполненой формы в заказ
         $order->setAttributes($customerForm->getAttributes());
         $order->customer_id = $customer_id;
-        $order->city_id = Yii::$app->city->getCityId();
 
         $order->generateToken();
         /** @var PDO $transaction */

@@ -3,15 +3,10 @@
 use yii\helpers\{
     Html, Url
 };
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use frontend\components\Breadcrumbs;
-//
-use frontend\modules\catalog\models\{
-    Category, Factory, Product
-};
-//
 use thread\widgets\grid\{
-    ActionStatusColumn, GridViewFilter
+    GridViewFilter
 };
 
 /**
@@ -20,6 +15,7 @@ use thread\widgets\grid\{
  */
 
 $dataProvider = $model->search(Yii::$app->request->queryParams);
+$dataProvider->sort = false;
 
 $this->title = $this->context->title;
 
@@ -53,59 +49,53 @@ $this->title = $this->context->title;
                                 'dataProvider' => $dataProvider,
                                 'filterModel' => $filter,
                                 'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
+                                'filterUrl' => Url::toRoute(['/catalog/factory-promotion/list']),
                                 'columns' => [
-//                                    [
-//                                        'attribute' => 'category',
-//                                        'value' => function ($model) {
-//                                            $result = [];
-//                                            foreach ($model->category as $category) {
-//                                                $result[] = Html::img(
-//                                                    Category::getImage($category['image_link3']),
-//                                                    [
-//                                                        'alt' => $category->lang->title,
-//                                                        'title' => $category->lang->title
-//                                                    ]);
-//                                            }
-//                                            return implode(', ', $result);
-//                                        },
-//                                        'format' => 'raw',
-//                                        'label' => Yii::t('app', 'Category'),
-//                                        'headerOptions' => ['class' => 'col-sm-1'],
-//                                        'contentOptions' => ['class' => 'text-center'],
-//                                        'filter' => GridViewFilter::selectOne(
-//                                            $filter,
-//                                            'category',
-//                                            Category::dropDownList()
-//                                        ),
-//                                    ],
                                     [
-                                        'attribute' => 'id',
-                                        'value' => 'id',
-                                        'headerOptions' => ['class' => 'col-sm-1'],
-                                        'contentOptions' => ['class' => 'text-center'],
-                                    ],
-                                    [
+                                        'format' => 'raw',
                                         'attribute' => 'updated_at',
+                                        'label' => Yii::t('app', 'Дата'),
                                         'value' => function ($model) {
                                             return date('j.m.Y', $model->updated_at);
                                         },
-                                        'format' => 'raw',
-                                        'headerOptions' => ['class' => 'col-sm-1'],
-                                        'contentOptions' => ['class' => 'text-center'],
                                         'filter' => false
                                     ],
                                     [
-                                        'attribute' => 'published',
                                         'format' => 'raw',
+                                        'label' => Yii::t('app', 'Список товаров'),
                                         'value' => function ($model) {
-                                            /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
-                                            return Html::checkbox(false, $model->published);
+                                            /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
+                                            $result = [];
+                                            foreach ($model->products as $product) {
+                                                $result[] = $product->lang->title;
+                                            }
+                                            return implode(' | ', $result);
                                         },
-                                        'headerOptions' => ['class' => 'col-sm-1'],
-                                        'contentOptions' => ['class' => 'text-center'],
+                                    ],
+                                    [
+                                        'format' => 'raw',
+                                        'label' => Yii::t('app', 'Кол-во городов'),
+                                        'value' => function ($model) {
+                                            /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
+                                            return count($model->cities);
+                                        },
+                                    ],
+                                    [
+                                        'attribute' => 'cost',
+                                        'value' => 'cost',
+                                        'label' => Yii::t('app', 'Бюджет'),
+                                    ],
+                                    [
+                                        'attribute' => 'status',
+                                        'value' => function ($model) {
+                                            /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
+                                            return $model->status
+                                                ? Yii::t('app', 'Активная')
+                                                : Yii::t('app', 'Завершена');
+                                        },
                                         'filter' => GridViewFilter::selectOne(
                                             $filter,
-                                            'published',
+                                            'status',
                                             [
                                                 0 => 'On',
                                                 1 => 'Off'
@@ -114,19 +104,8 @@ $this->title = $this->context->title;
                                     ],
                                     [
                                         'class' => yii\grid\ActionColumn::class,
-                                        'template' => '{view} {update} {delete}',
+                                        'template' => '{update} {delete}',
                                         'buttons' => [
-                                            'view' => function ($url, $model) {
-                                                /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
-                                                return ($model->published && !$model->deleted) ? Html::a(
-                                                    '<span class="glyphicon glyphicon-eye-open"></span>',
-                                                    Product::getUrl($model['alias']),
-                                                    [
-                                                        'class' => 'btn btn-default btn-xs',
-                                                        'target' => '_blank'
-                                                    ]
-                                                ) : '';
-                                            },
                                             'update' => function ($url, $model) {
                                                 /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
                                                 return Yii::$app->user->identity->id == $model->user_id ? Html::a(

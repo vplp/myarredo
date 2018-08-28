@@ -45,12 +45,14 @@ class PartnerMap extends Widget
         $dataJS = [];
 
         foreach ($partners as $k => $obj) {
+            /** @var $obj User */
             $dataJS[$k]['lat'] = (float)$obj->profile->latitude;
             $dataJS[$k]['lng'] = (float)$obj->profile->longitude;
             $dataJS[$k]['address'] = $obj->profile->address;
             $dataJS[$k]['city'] = isset($obj->profile->city) ? $obj->profile->city->lang->title : '';
             $dataJS[$k]['country'] = isset($obj->profile->country) ? $obj->profile->country->lang->title : '';
-            $dataJS[$k]['phone'] = $obj->profile->getPhone();
+            $dataJS[$k]['phone'] = $obj->profile->phone;
+            $dataJS[$k]['image'] = $obj->profile->partner_in_city ? '/img/marker-main.png' : '/img/marker.png';
         }
 
         $dataJS = json_encode($dataJS);

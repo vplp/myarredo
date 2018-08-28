@@ -118,7 +118,7 @@ class CityComponent extends Component
         $exp_host = explode('myarredo.', $_SERVER["HTTP_HOST"]);
 
         // set domain
-        $this->domain = (in_array($exp_host[1], ['ru', 'ua', 'by'])) ? $exp_host[1] : 'ua';
+        $this->domain = (in_array($exp_host[1], ['ru', 'ua', 'by'])) ? $exp_host[1] : 'ru';
 
         $exp_host = explode('.', $_SERVER['HTTP_HOST']);
 
@@ -137,6 +137,11 @@ class CityComponent extends Component
 
             if ($this->city == null || in_array($this->city['id'], [1, 2, 4])) {
                 Yii::$app->response->redirect('https://' . 'www.myarredo.' . $this->domain . Yii::$app->request->url, 301);
+                Yii::$app->end();
+            }
+
+            if ($this->city['country']['alias'] != $this->domain) {
+                Yii::$app->response->redirect('https://' . $this->city['alias'] . '.myarredo.' . $this->city['country']['alias'] . Yii::$app->request->url, 301);
                 Yii::$app->end();
             }
 

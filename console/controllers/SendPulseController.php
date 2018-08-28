@@ -42,11 +42,17 @@ class SendPulseController extends Controller
             $bookId = $country['bookId'];
             $emails = [];
 
+            $emails[] = [
+                'email' => strip_tags(Yii::$app->param->getByName('MAIL_SPECIAL_EMAIL')),
+                'variables' => [
+                    'name' => 'SPECIAL_EMAIL',
+                ],
+            ];
+
             foreach ($modelUser as $user) {
                 $emails[] = [
                     'email' => $user['email'],
                     'variables' => [
-                        //'phone' => $user['profile']['phone'],
                         'name' => $user['profile']['fullName'],
                     ],
                 ];
@@ -95,7 +101,6 @@ class SendPulseController extends Controller
         $this->stdout("SendPulse: end remove emails. \n", Console::FG_GREEN);
     }
 
-
     /**
      * SendPulse: send partner campaign campaign
      */
@@ -125,7 +130,7 @@ class SendPulseController extends Controller
 
             var_dump($response);
 
-            if(!isset($response['is_error'])) {
+            if (!isset($response['is_error'])) {
 
                 //$this->sendNewRequestForFactory($modelOrder);
 

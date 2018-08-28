@@ -77,7 +77,7 @@ class Source extends SourceModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = SourceModel::find()->joinWith(['message'])->undeleted();
+        $query = SourceModel::findBase()->undeleted();
 
         return $this->baseSearch($query, $params);
     }
@@ -88,7 +88,7 @@ class Source extends SourceModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = SourceModel::find()->joinWith(['message'])->deleted();
+        $query = SourceModel::findBase()->deleted();
 
         return $this->baseSearch($query, $params);
     }

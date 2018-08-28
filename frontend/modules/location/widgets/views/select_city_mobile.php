@@ -17,7 +17,7 @@ use yii\helpers\{
         ?>
 
         <?= Html::beginTag('li', $option) ?>
-        <?= Html::a($cityCountry['lang']['title'], $cityCountry->getSubDomainUrl()) ?>
+        <?= Html::a($cityCountry['lang']['title'], $cityCountry->getSubDomainUrl(), ['rel' => 'nofollow']) ?>
         <?= Html::endTag('li') ?>
 
     <?php endforeach; ?>

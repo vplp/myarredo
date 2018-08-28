@@ -14,7 +14,7 @@ $this->title = $this->context->title;
 
 <main>
     <div class="page adding-product-page">
-        <div class="container large-container">
+        <div class="largex-container">
 
             <?= Html::tag('h1', $this->context->title); ?>
 

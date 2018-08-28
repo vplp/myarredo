@@ -15,6 +15,9 @@ use thread\modules\shop\interfaces\Product as iProduct;
 //
 use common\helpers\Inflector;
 use common\modules\catalog\Catalog;
+use common\modules\user\models\{
+    Group as UserGroup, User
+};
 
 /**
  * Class Product
@@ -48,6 +51,7 @@ use common\modules\catalog\Catalog;
  * @property string $image_link
  * @property string $gallery_image
  * @property integer $mark
+ * @property integer $mark1
  * @property integer $in_stock
  *
  * @property ProductLang $lang
@@ -140,6 +144,7 @@ class Product extends ActiveRecord implements iProduct
                     'removed',
                     'moderation',
                     'mark',
+                    'mark1',
                     'in_stock'
                 ],
                 'in',
@@ -184,6 +189,7 @@ class Product extends ActiveRecord implements iProduct
             'setImages' => ['image_link', 'gallery_image'],
             'setAlias' => ['alias', 'mark'],
             'setMark' => ['mark'],
+            'setMark1' => ['mark1'],
             'backend' => [
                 'catalog_type_id',
                 'user_id',
@@ -259,6 +265,7 @@ class Product extends ActiveRecord implements iProduct
             'factory_prices_files_ids' => Yii::t('app', 'Factory prices files'),
             'specification_value_ids',
             'mark' => 'Mark',
+            'mark1' => 'Mark1',
         ];
     }
 
@@ -278,11 +285,6 @@ class Product extends ActiveRecord implements iProduct
             if ($this->id) {
                 $this->alias = $this->id . ' ' . $this->alias;
             }
-        }
-
-        if (Yii::$app->user->identity->group->role == 'factory') {
-            $this->user_id = Yii::$app->user->identity->id;
-            $this->factory_id = Yii::$app->user->identity->profile->factory_id;
         }
 
         if (YII_ENV_PROD) {
@@ -529,5 +531,14 @@ class Product extends ActiveRecord implements iProduct
     {
         return $this
             ->hasMany(ProductRelSpecification::class, ['catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserGroup()
+    {
+        return $this->hasOne(UserGroup::class, ['id' => 'group_id'])
+            ->viaTable(User::tableName(), ['id' => 'user_id']);
     }
 }

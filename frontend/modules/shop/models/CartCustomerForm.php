@@ -13,6 +13,7 @@ use yii\base\Model;
  * @property string $phone
  * @property string $comment
  * @property int $user_agreement
+ * @property integer $city_id
  *
  * @package frontend\modules\shop\models
  */
@@ -26,6 +27,7 @@ Class CartCustomerForm extends Model
     public $delivery;
     public $pay;
     public $user_agreement;
+    public $city_id;
 
     /**
      * @return array
@@ -33,7 +35,7 @@ Class CartCustomerForm extends Model
     public function rules()
     {
         return [
-            [['full_name', 'email', 'phone', 'reCaptcha'], 'required'],
+            [['full_name', 'email', 'phone', 'reCaptcha', 'city_id'], 'required'],
             [['delivery'], 'in', 'range' => array_keys(DeliveryMethods::dropDownList())],
             [['pay'], 'in', 'range' => array_keys(PaymentMethods::dropDownList())],
             [['comment'], 'string', 'max' => 2048],
@@ -43,12 +45,13 @@ Class CartCustomerForm extends Model
             [['delivery', 'pay'], 'default', 'value' => 0],
             [['user_agreement'], 'in', 'range' => [0, 1]],
             [['comment'], 'default', 'value' => ''],
+            [['city_id'], 'integer'],
             [
                 ['user_agreement'],
                 'required',
                 'on' => ['frontend'],
                 'requiredValue' => 1,
-                'message' => 'Вы должны ознакомиться и согласиться'
+                'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
             ],
             [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className()]
         ];
@@ -60,7 +63,17 @@ Class CartCustomerForm extends Model
     public function scenarios()
     {
         return [
-            'frontend' => ['full_name', 'email', 'phone', 'comment', 'delivery', 'pay', 'user_agreement', 'reCaptcha'],
+            'frontend' => [
+                'full_name',
+                'email',
+                'phone',
+                'comment',
+                'delivery',
+                'pay',
+                'user_agreement',
+                'city_id',
+                'reCaptcha'
+            ],
         ];
     }
 
@@ -77,6 +90,7 @@ Class CartCustomerForm extends Model
             'delivery' => Yii::t('app', 'Delivery method'),
             'pay' => Yii::t('app', 'Payment method'),
             'user_agreement' => Yii::t('app', 'Подтверждаю <a href="/terms-of-use/" target="_blank">пользовательское соглашение</a>'),
+            'city_id' => Yii::t('app', 'City'),
         ];
     }
 }

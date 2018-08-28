@@ -11,12 +11,15 @@ use Yii;
  */
 class SalePhoneRequest extends \common\modules\catalog\models\SalePhoneRequest
 {
+    /**
+     * @param $sale_item_id
+     */
     public static function create($sale_item_id)
     {
         /** @var \frontend\modules\catalog\Catalog $module */
         $module = Yii::$app->getModule('catalog');
 
-        if (!$module->isBot2()) {
+        if (!$module->isBot1() && !$module->isBot2()) {
             $model = new self();
 
             $model->setScenario('frontend');

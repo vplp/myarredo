@@ -82,7 +82,7 @@ class SaleRequest extends ActiveRecord
                 'required',
                 'on' => ['frontend'],
                 'requiredValue' => 1,
-                'message' => 'Вы должны ознакомиться и согласиться'
+                'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
             ],
             [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className()]
         ];
