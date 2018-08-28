@@ -6,7 +6,7 @@ use yii\base\Action;
 use yii\web\HttpException;
 //
 use common\components\YandexKassaAPI\YandexKassaAPI;
-use common\components\YandexKassaAPI\interfaces\PaymentInterface;
+use common\components\YandexKassaAPI\interfaces\OrderInterface;
 
 /**
  * Class ConfirmPaymentAction
@@ -49,15 +49,15 @@ class ConfirmPaymentAction extends Action
 
         $orderModel = \Yii::createObject($this->orderClass);
 
-        if (!$orderModel instanceof PaymentInterface) {
-            throw new HttpException(500, "Модель должна реализовывать интерфейс PaymentInterface");
+        if (!$orderModel instanceof OrderInterface) {
+            throw new HttpException(500, "Модель должна реализовывать интерфейс OrderInterface");
+        }
+
+        if (!isset($request->object->paid) || !$request->object->paid) {
+            throw new HttpException(500, "Произошла ошибка исполнения платежа");
         }
 
         $order = $orderModel->findByInvoiceId($request->object->id)->one();
-
-        if (!$request->object->paid) {
-            return false;
-        }
 
         if ($this->beforeConfirm && call_user_func_array($this->beforeConfirm, [$request, $order])) {
             $this->getComponent()->confirmPayment($request->object->id, $order);

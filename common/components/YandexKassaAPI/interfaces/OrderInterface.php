@@ -5,11 +5,11 @@ namespace common\components\YandexKassaAPI\interfaces;
 use yii\db\ActiveRecordInterface;
 
 /**
- * Interface PaymentInterface
+ * Interface OrderInterface
  *
  * @package common\components\YandexKassaAPI\interfaces
  */
-interface PaymentInterface extends ActiveRecordInterface
+interface OrderInterface extends ActiveRecordInterface
 {
     /**
      * @param $invoiceId string
@@ -28,7 +28,7 @@ interface PaymentInterface extends ActiveRecordInterface
 
     /**
      * @param $invoiceId
-     * @return PaymentInterface
+     * @return OrderInterface
      */
     public function findByInvoiceId($invoiceId);
 }

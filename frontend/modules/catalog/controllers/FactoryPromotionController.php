@@ -52,6 +52,11 @@ class FactoryPromotionController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
+                        'actions' => ['notify'],
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
                         'roles' => ['factory'],
                     ],
                     [

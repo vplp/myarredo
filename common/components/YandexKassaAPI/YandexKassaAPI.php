@@ -4,7 +4,7 @@ namespace common\components\YandexKassaAPI;
 
 use yii\base\Component;
 use YandexCheckout\Client;
-use common\components\YandexKassaAPI\interfaces\PaymentInterface;
+use common\components\YandexKassaAPI\interfaces\OrderInterface;
 
 /**
  * Class YandexKassaAPI
@@ -30,10 +30,10 @@ class YandexKassaAPI extends Component
     }
 
     /**
-     * @param PaymentInterface $order
+     * @param OrderInterface $order
      * @return mixed
      */
-    public function createPayment(PaymentInterface $order)
+    public function createPayment(OrderInterface $order)
     {
         $payment = $this->client->createPayment(
             array(
@@ -68,10 +68,10 @@ class YandexKassaAPI extends Component
 
     /**
      * @param $invoiceId
-     * @param PaymentInterface $order
+     * @param OrderInterface $order
      * @return bool
      */
-    public function confirmPayment($invoiceId, PaymentInterface $order)
+    public function confirmPayment($invoiceId, OrderInterface $order)
     {
         $payment = $this->getPayment($invoiceId);
 

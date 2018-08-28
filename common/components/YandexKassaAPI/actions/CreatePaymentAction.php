@@ -6,7 +6,7 @@ use yii\base\Action;
 use yii\web\HttpException;
 //
 use common\components\YandexKassaAPI\YandexKassaAPI;
-use common\components\YandexKassaAPI\interfaces\PaymentInterface;
+use common\components\YandexKassaAPI\interfaces\OrderInterface;
 
 /**
  * Class CreatePaymentAction
@@ -39,8 +39,8 @@ class CreatePaymentAction extends Action
     {
         $orderModel = \Yii::createObject($this->orderClass);
 
-        if (!$orderModel instanceof PaymentInterface) {
-            throw new HttpException(500, "Модель должна реализовывать интерфейс PaymentInterface");
+        if (!$orderModel instanceof OrderInterface) {
+            throw new HttpException(500, "Модель должна реализовывать интерфейс OrderInterface");
         }
 
         $order = $orderModel::findOne($id);

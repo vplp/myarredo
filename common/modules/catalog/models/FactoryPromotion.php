@@ -12,7 +12,7 @@ use voskobovich\behaviors\ManyToManyBehavior;
 use thread\app\base\models\ActiveRecord;
 //
 use common\modules\catalog\Catalog;
-use common\components\YandexKassaAPI\interfaces\PaymentInterface;
+use common\components\YandexKassaAPI\interfaces\OrderInterface;
 
 /**
  * Class FactoryPromotion
@@ -39,7 +39,7 @@ use common\components\YandexKassaAPI\interfaces\PaymentInterface;
  *
  * @package common\modules\catalog\models
  */
-class FactoryPromotion extends ActiveRecord implements PaymentInterface
+class FactoryPromotion extends ActiveRecord implements OrderInterface
 {
     const PAYMENT_STATUS_NEW = 'new';
     const PAYMENT_STATUS_PAID = 'paid';
@@ -278,7 +278,7 @@ class FactoryPromotion extends ActiveRecord implements PaymentInterface
 
     /**
      * @param $invoiceId
-     * @return PaymentInterface
+     * @return OrderInterface
      */
     public function findByInvoiceId($invoiceId)
     {
