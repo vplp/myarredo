@@ -7,7 +7,6 @@ use Yii;
 use yii\helpers\{
     ArrayHelper, Url
 };
-use yii\web\Response;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 //
@@ -17,8 +16,11 @@ use frontend\modules\catalog\models\{
     search\FactoryPromotion as filterFactoryPromotionModel,
     FactoryProduct,
     search\FactoryProduct as filterFactoryProductModel,
-    FactoryPromotionRelProduct
+    FactoryPromotionPayment
 };
+//
+use common\components\YandexKassaAPI\actions\ConfirmPaymentAction;
+use common\components\YandexKassaAPI\actions\CreatePaymentAction;
 //
 use thread\actions\{
     ListModel,
@@ -81,6 +83,22 @@ class FactoryPromotionController extends BaseController
                     'attribute' => 'deleted',
                     'redirect' => $this->defaultAction,
                 ],
+                'create-payment' => [
+                    'class' => CreatePaymentAction::class,
+                    'orderClass' => FactoryPromotion::className(),
+                    'beforePayment' => function ($order) {
+                        return $order->payment_status == FactoryPromotion::PAYMENT_STATUS_NEW;
+                    }
+                ],
+                'notify' => [
+                    'class' => ConfirmPaymentAction::class,
+                    'orderClass' => FactoryPromotion::className(),
+                    'beforeConfirm' => function ($payment, $order) {
+                        $order->payment_status = FactoryPromotion::PAYMENT_STATUS_PAID;
+                        $order->setScenario('setPaymentStatus');
+                        return $order->save();
+                    }
+                ]
             ]
         );
     }
@@ -189,56 +207,4 @@ class FactoryPromotionController extends BaseController
             'filterModelFactoryProduct' => $filterModelFactoryProduct,
         ]);
     }
-
-//    /**
-//     * @inheritdoc
-//     */
-//    public function actionAjaxAddProduct()
-//    {
-//        if (Yii::$app->request->isAjax) {
-//            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
-//
-//            $promotion_id = Yii::$app->getRequest()->post('promotion_id');
-//            $catalog_item_id = Yii::$app->getRequest()->post('catalog_item_id');
-//
-//            $model = new FactoryPromotionRelProduct();
-//
-//            $model->setScenario('backend');
-//
-//            $model->promotion_id = $promotion_id;
-//            $model->catalog_item_id = $catalog_item_id;
-//
-//            if ($model->save()) {
-//                return true;
-//            }
-//
-//            return false;
-//        }
-//    }
-
-//    /**
-//     * @inheritdoc
-//     */
-//    public function actionAjaxDelProduct()
-//    {
-//        if (Yii::$app->request->isAjax) {
-//            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
-//
-//            $promotion_id = Yii::$app->getRequest()->post('promotion_id');
-//            $catalog_item_id = Yii::$app->getRequest()->post('catalog_item_id');
-//
-//            $model = FactoryPromotionRelProduct::findBase()
-//                ->where([
-//                    'promotion_id' => $promotion_id,
-//                    'catalog_item_id' => $catalog_item_id,
-//                ])
-//                ->one();
-//
-//            if ($model != null && $model->delete()) {
-//                return true;
-//            }
-//
-//            return false;
-//        }
-//    }
 }

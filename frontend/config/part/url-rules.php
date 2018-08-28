@@ -70,10 +70,10 @@ return [
     // Factory promotion
     'factory-promotion' => 'catalog/factory-promotion/list',
     'factory-promotion/create' => 'catalog/factory-promotion/create',
+    'factory-promotion/create-payment/<id:[\d\-]+>' => 'catalog/factory-promotion/create-payment',
+    'factory-promotion/notify' => 'catalog/factory-promotion/notify',
     'factory-promotion/update/<id:[\d\-]+>' => 'catalog/factory-promotion/update',
     'factory-promotion/intrash/<id:[\d\-]+>' => 'catalog/factory-promotion/intrash',
-    'catalog/factory-promotion/ajax-add-product' => 'catalog/factory-promotion/ajax-add-product',
-    'catalog/factory-promotion/ajax-del-product' => 'catalog/factory-promotion/ajax-del-product',
 
     // Partner sale
     'partner/sale' => 'catalog/partner-sale/list',

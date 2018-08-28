@@ -266,7 +266,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                             <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
                         </div>
 
-                        <?= $form->field($model, 'cost')
+                        <?= $form->field($model, 'amount')
                             ->label(false)
                             ->input('hidden') ?>
 
@@ -276,10 +276,13 @@ $this->title = Yii::t('app', 'Рекламировать');
                                 ['class' => 'btn btn-goods']
                             ) ?>
 
-                            <?= Html::submitButton(
-                                Yii::t('app', 'Оплатить'),
-                                ['class' => 'btn btn-goods']
-                            ) ?>
+                            <?php if (!$model->isNewRecord): ?>
+                                <?= Html::a(
+                                    Yii::t('app', 'Оплатить'),
+                                    ['/catalog/factory-promotion/create-payment', 'id' => $model->id],
+                                    ['class' => 'btn btn-goods']
+                                ) ?>
+                            <?php endif; ?>
 
                             <?= Html::a(
                                 Yii::t('app', 'Вернуться к списку'),

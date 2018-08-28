@@ -28,6 +28,7 @@ class m180827_140924_update_catalog_factory_promotion_table extends Migration
             'views',
             $this->integer(11)->unsigned()->notNull()->defaultValue(0)->after('user_id')
         );
+
         $this->addColumn(
             $this->table,
             'country_id',

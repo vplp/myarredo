@@ -81,8 +81,8 @@ $this->title = $this->context->title;
                                         },
                                     ],
                                     [
-                                        'attribute' => 'cost',
-                                        'value' => 'cost',
+                                        'attribute' => 'amount',
+                                        'value' => 'amount',
                                         'label' => Yii::t('app', 'Бюджет'),
                                     ],
                                     [

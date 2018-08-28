@@ -8,9 +8,9 @@ use Yandex\Translate\Translator;
 use Yandex\Translate\Exception;
 
 /**
- * Class SendPulse REST API
+ * Class YandexTranslator
  *
- * @package common\components\sendpulse
+ * @package common\components
  */
 class YandexTranslator extends Component
 {
