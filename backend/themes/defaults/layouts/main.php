@@ -16,8 +16,10 @@ $navMiniStatus = isset($_COOKIE['navbar-minimalize']) ? intval($_COOKIE['navbar-
  */
 $bundle = AppAsset::register($this);
 
-$this->beginPage()
+$this->beginPage();
+
 ?>
+
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
@@ -30,9 +32,11 @@ $this->beginPage()
     <input type="hidden" id="token" value="<?= Yii::$app->request->getCsrfToken() ?>">
 </head>
 <body class="html <?= $navMiniStatus == 1 ? 'mini-navbar' : '' ?>">
+
 <?php $this->beginBody() ?>
 
 <?= Alert::widget(); ?>
+
 <div id="wrapper">
 
     <?= NavBar::widget(['bundle' => $bundle]); ?>
@@ -65,6 +69,8 @@ $this->beginPage()
 </div>
 
 <?php $this->endBody() ?>
+
 </body>
 </html>
+
 <?php $this->endPage() ?>
