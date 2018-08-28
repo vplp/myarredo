@@ -312,100 +312,101 @@ function watchForCheckbox() {
     }
 } 
 watchForCheckbox();
+
 /**
  * Calculate
  */
-// function newCost() {
-//     var cost, cost_of_month, cost_products,
-//     count_of_months = $('input[name="FactoryPromotion[count_of_months]"]:checked').val(),
-//     daily_budget = $('input[name="FactoryPromotion[daily_budget]"]:checked').val(),
-//     count_products = $('input[name="product_ids[]"]:checked').length;
+function newCost() {
+    var cost, cost_of_month, cost_products,
+    count_of_months = $('input[name="FactoryPromotion[count_of_months]"]:checked').val(),
+    daily_budget = $('input[name="FactoryPromotion[daily_budget]"]:checked').val(),
+    count_products = $('input[name="product_ids[]"]:checked').length;
  
-//     cost_products = count_products * 1000;
-//     cost_of_month = count_of_months * 30 * daily_budget;
-//     cost = cost_products + cost_of_month;
+    cost_products = count_products * 1000;
+    cost_of_month = count_of_months * 30 * daily_budget;
+    cost = cost_products + cost_of_month;
 
-//     $('input[name="FactoryPromotion[cost]"],#cost').val(cost);
-//     $('#cost').html(cost);
-//     $('#cost_of_month').html(cost_of_month);
-//     $('#cost_products').html(cost_products);
-//     $('#count-products').html(count_products);
-// }
+    $('input[name="FactoryPromotion[amount]"],#cost').val(cost);
+    $('#cost').html(cost);
+    $('#cost_of_month').html(cost_of_month);
+    $('#cost_products').html(cost_products);
+    $('#count-products').html(count_products);
+}
 
-// newCost();
-//
-// /**
-//  * Watch
-//  */
-// $('input[name="product_ids[]"], ' +
-//  'input[name="FactoryPromotion[daily_budget]"], ' +
-//   'input[name="FactoryPromotion[count_of_months]"]').on('change', function() {
-//      newCost();
-// });
-//
-// /**
-//  * Add
-//  */
-// $("body").on("click", "#add-product", function() { 
-// 
-//     var str = '';
-//    
-//     $('input[name="product_ids[]"]:checkbox:checked').each(function () {
-//         var product = $(this);
-//
-//         str += '<div>' + 
-//             product.data('title') + 
-//             '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
-//             '<img src="' + product.data('image') + '" width="50">' +
-//             '<a id="del-product" class="close" href="javascript:void(0);" data-id="' + product.val() + '"><i class="fa fa-times"></i></a>' +
-//             '</div>';
-//     });
-//    
-//     $('#list-product').html(str);
-// });
-//
-// /**
-//  * Delete
-//  */
-// $("body").on("click", "#del-product", function() {
-//    
-//     var product = $(this);
-//  
-//     var allCheckboxs = $('input[value="'+product.data('id')+'"');
-//     allCheckboxs.prop({checked: false });
-//     allCheckboxs.parent('.jq-checkbox').removeClass('checked');
-//      
-//     product.closest('div').remove();
-// });
-//
-// /**
-//  * Check all
-//  */
-// function urlParam(name) {
-// 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-// 	return results[1] || 0;
-// }
-// var product_id = parseInt(urlParam('product_id'));
-//
-// if (product_id) {
-//     $('input[name="product_ids[]"][value='+product_id+']').prop("checked",true);
-//    
-//     var product = $('input[name="product_ids[]"][value='+product_id+']');
-//
-//     product.prop({checked: true });
-//     product.parent('.jq-checkbox').addClass('checked');
-//    
-//     var str = '<div>' + 
-//             product.data('title') + 
-//             '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
-//             '<img src="' + product.data('image') + '" width="50">' +
-//             '<a id="del-product" class="close" href="javascript:void(0);" data-id="' + product.val() + '"><i class="fa fa-times"></i></a>' +
-//             '</div>';
-//    
-//     $('#list-product').html(str);
-//    
-//     newCost();
-// }
+newCost();
+
+/**
+ * Watch
+ */
+$('input[name="product_ids[]"], ' +
+ 'input[name="FactoryPromotion[daily_budget]"], ' +
+  'input[name="FactoryPromotion[count_of_months]"]').on('change', function() {
+     newCost();
+});
+
+/**
+ * Add
+ */
+$("body").on("click", "#add-product", function() { 
+
+    var str = '';
+   
+    $('input[name="product_ids[]"]:checkbox:checked').each(function () {
+        var product = $(this);
+
+        str += '<div>' + 
+            product.data('title') + 
+            '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
+            '<img src="' + product.data('image') + '" width="50">' +
+            '<a id="del-product" class="close" href="javascript:void(0);" data-id="' + product.val() + '"><i class="fa fa-times"></i></a>' +
+            '</div>';
+    });
+   
+    $('#list-product').html(str);
+});
+
+/**
+ * Delete
+ */
+$("body").on("click", "#del-product", function() {
+   
+    var product = $(this);
+ 
+    var allCheckboxs = $('input[value="'+product.data('id')+'"');
+    allCheckboxs.prop({checked: false });
+    allCheckboxs.parent('.jq-checkbox').removeClass('checked');
+     
+    product.closest('div').remove();
+});
+
+/**
+ * Check all
+ */
+function urlParam(name) {
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	return results[1] || 0;
+}
+var product_id = parseInt(urlParam('product_id'));
+
+if (product_id) {
+    $('input[name="product_ids[]"][value='+product_id+']').prop("checked",true);
+   
+    var product = $('input[name="product_ids[]"][value='+product_id+']');
+
+    product.prop({checked: true });
+    product.parent('.jq-checkbox').addClass('checked');
+   
+    var str = '<div>' + 
+            product.data('title') + 
+            '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
+            '<img src="' + product.data('image') + '" width="50">' +
+            '<a id="del-product" class="close" href="javascript:void(0);" data-id="' + product.val() + '"><i class="fa fa-times"></i></a>' +
+            '</div>';
+   
+    $('#list-product').html(str);
+   
+    newCost();
+}
 
 JS;
 
