@@ -214,42 +214,6 @@ $this->title = Yii::t('app', 'Рекламировать');
                             )
                         ?>
 
-                        <?php /*$form
-                            ->field($model, 'count_of_months')
-                            ->label(Yii::t('app', 'Выберите количество месяцев'))
-                            ->radioList(
-                                FactoryPromotion::getCountOfMonthsRange(),
-                                [
-                                    'item' => function ($index, $label, $name, $checked, $value) {
-                                        return
-                                            '<label class="reclamation-radio">' .
-                                            Html::radio($name, $checked, ['value' => $value]) .
-                                            $label .
-                                            '<span class="checkmark-radio"></span>' .
-                                            '</label>';
-                                    },
-                                ]
-                            )*/
-                        ?>
-
-                        <?php /* $form
-                            ->field($model, 'daily_budget')
-                            ->label(Yii::t('app', 'Выберите дневной бюджет'))
-                            ->radioList(
-                                FactoryPromotion::getDailyBudgetRange(),
-                                [
-                                    'item' => function ($index, $label, $name, $checked, $value) {
-                                        return
-                                            '<label class="reclamation-radio">' .
-                                            Html::radio($name, $checked, ['value' => $value]) .
-                                            $label .
-                                            '<span class="checkmark-radio"></span>' .
-                                            '</label>';
-                                    },
-                                ]
-                            )*/
-                        ?>
-
                         <div class="promotion-title-label">
                             <?= Yii::t('app', 'Стоимость размещения товара в рекламе') ?>
                             <span id="cost_products">0</span>
