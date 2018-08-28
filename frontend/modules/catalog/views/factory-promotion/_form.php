@@ -305,32 +305,69 @@ $this->title = Yii::t('app', 'Рекламировать');
 $promotion_id = Yii::$app->request->get('id') ?? 0;
 
 $script = <<<JS
-
-// $('.factory-prom').on('blur', 'input[type="text"]', function() {
-//     setTimeout(function() {
-//         $('.factory-prom').find('input[type="checkbox"]').styler();
-//     },1000);
-// });
-// /**
-//  * Calculate
-//  */
+// js for display cities when change select
+$('#factorypromotion-city_ids').find('#factorypromotion-country_id').on('change', function(etg) {
+    var rusBoxTab = $(this).closest('#factorypromotion-city_ids').children('.tab-country-2');
+    var belBoxTab = $(this).closest('#factorypromotion-city_ids').children('.tab-country-3');
+    if ($(this).val() === "2") {
+        rusBoxTab.find('input[type="checkbox"]').prop('checked', false).parent('.jq-checkbox').removeClass('checked');
+        belBoxTab.find('input[type="checkbox"]').prop('checked', false).parent('.jq-checkbox').removeClass('checked');
+        rusBoxTab.css('display', 'block');
+        belBoxTab.css('display', 'none');
+        $('.check-all').removeClass('checked').children('input[type="checkbox"]').prop('checked', false);
+    }
+    else if ($(this).val() === "3") {
+        rusBoxTab.find('input[type="checkbox"]').prop('checked', false).parent('.jq-checkbox').removeClass('checked');
+        belBoxTab.find('input[type="checkbox"]').prop('checked', false).parent('.jq-checkbox').removeClass('checked');
+        rusBoxTab.css('display', 'none');
+        belBoxTab.css('display', 'block');
+        $('.check-all').removeClass('checked').children('input[type="checkbox"]').prop('checked', false);
+    }
+});
+// js for reinit plugin styler when used search in popup
+$('.factory-prom').on('blur', 'input[type="text"]', function() {
+    setTimeout(function() {
+        $('.factory-prom').find('input[type="checkbox"]').styler();
+    },1000);
+});
+// js for functional for checkbox checked all 
+$("body").on("change", ".check-all", function() {
+    var allCheckboxs = $('#factorypromotion-city_ids').find('input[type="checkbox"]');
+    if ($(this).children('input[type="checkbox"]').prop('checked')) {
+        allCheckboxs.prop({checked: true });
+        allCheckboxs.parent('.jq-checkbox').addClass('checked');
+    } else {
+        allCheckboxs.prop({checked: false });
+        allCheckboxs.parent('.jq-checkbox').removeClass('checked');
+    }
+});
+function watchForCheckbox() {
+    if($('#factorypromotion-city_ids').find('input[type="checkbox"]').prop("checked")) {
+        $('.check-all').addClass('checked');
+        $('.check-all').children('input[type="checkbox"]').prop({checked: true })
+    }
+} 
+watchForCheckbox();
+/**
+ * Calculate
+ */
 // function newCost() {
 //     var cost, cost_of_month, cost_products,
 //     count_of_months = $('input[name="FactoryPromotion[count_of_months]"]:checked').val(),
 //     daily_budget = $('input[name="FactoryPromotion[daily_budget]"]:checked').val(),
 //     count_products = $('input[name="product_ids[]"]:checked').length;
-//  
+ 
 //     cost_products = count_products * 1000;
 //     cost_of_month = count_of_months * 30 * daily_budget;
 //     cost = cost_products + cost_of_month;
-//
+
 //     $('input[name="FactoryPromotion[cost]"],#cost').val(cost);
 //     $('#cost').html(cost);
 //     $('#cost_of_month').html(cost_of_month);
 //     $('#cost_products').html(cost_products);
 //     $('#count-products').html(count_products);
 // }
-//
+
 // newCost();
 //
 // /**
@@ -380,26 +417,6 @@ $script = <<<JS
 // /**
 //  * Check all
 //  */
-// $("body").on("click", ".check-all", function() {
-//     var allCheckboxs = $('#factorypromotion-city_ids').find('input[type="checkbox"]');
-//     if ($(this).children('input[type="checkbox"]').prop('checked')) {
-//         allCheckboxs.prop({checked: true });
-//         allCheckboxs.parent('.jq-checkbox').addClass('checked');
-//     } else {
-//         allCheckboxs.prop({checked: false });
-//         allCheckboxs.parent('.jq-checkbox').removeClass('checked');
-//     }
-// });
-//
-// function watchForCheckbox() {
-//     if($('#factorypromotion-city_ids').find('input[type="checkbox"]').prop("checked")) {
-//         $('.check-all').addClass('checked');
-//         $('.check-all').children('input[type="checkbox"]').prop({checked: true })
-//     }
-// } 
-//
-// watchForCheckbox();
-//
 // function urlParam(name) {
 // 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
 // 	return results[1] || 0;
