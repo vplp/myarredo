@@ -22,8 +22,6 @@ use common\components\YandexKassaAPI\interfaces\OrderInterface;
  * @property string $invoice_id
  * @property integer $country_id
  * @property integer $views
- * @property integer $count_of_months
- * @property double $daily_budget
  * @property double $amount
  * @property boolean $status
  * @property string $payment_status
@@ -88,12 +86,12 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
     {
         return [
             [['user_id'], 'required'],
-            [['user_id', 'country_id', 'views', 'count_of_months', 'daily_budget', 'created_at', 'updated_at'], 'integer'],
+            [['user_id', 'country_id', 'views', 'created_at', 'updated_at'], 'integer'],
             [['invoice_id'], 'string', 'max' => 255],
             [['amount'], 'double'],
             [['status', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['payment_status'], 'in', 'range' => array_keys(static::paymentStatusKeyRange())],
-            [['count_of_months', 'daily_budget', 'amount'], 'default', 'value' => '0'],
+            [['amount'], 'default', 'value' => '0'],
             [['city_ids', 'product_ids'], 'each', 'rule' => ['integer']],
         ];
     }
@@ -112,8 +110,6 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
                 'user_id',
                 'country_id',
                 'views',
-                'count_of_months',
-                'daily_budget',
                 'amount',
                 'status',
                 'published',
@@ -123,8 +119,6 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
                 'user_id',
                 'country_id',
                 'views',
-                'count_of_months',
-                'daily_budget',
                 'amount',
                 'status',
                 'published',
@@ -191,8 +185,6 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
             'invoice_id',
             'country_id' => Yii::t('app', 'Country'),
             'views' => Yii::t('app', 'Count of views'),
-            'count_of_months' => 'Кол-во месяцев',
-            'daily_budget' => 'Дневной бюджет',
             'amount' => Yii::t('app', 'Cost'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Create time'),

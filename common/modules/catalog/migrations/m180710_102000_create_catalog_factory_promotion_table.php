@@ -34,7 +34,6 @@ class m180710_102000_create_catalog_factory_promotion_table extends Migration
             'user_id' => $this->integer(11)->unsigned()->notNull()->defaultValue(0),
             'count_of_months' => $this->integer(11)->unsigned()->notNull()->defaultValue(0),
             'daily_budget' => $this->integer(11)->unsigned()->notNull()->defaultValue(0),
-            //'daily_budget' => "decimal(10,2) NOT NULL DEFAULT '0.00'",
             'cost' => "decimal(10,2) NOT NULL DEFAULT '0.00'",
             'status' => "enum('0','1') NOT NULL DEFAULT '0'",
             'created_at' => $this->integer(11)->unsigned()->notNull()->defaultValue(0),

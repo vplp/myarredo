@@ -37,20 +37,8 @@ use backend\modules\location\models\{
     </div>
 </div>
 <div class="form-group">
-    <?= Html::label($model->getAttributeLabel('count_of_months')) ?>
+    <?= Html::label($model->getAttributeLabel('amount')) ?>
     <div class="input-group">
-        <?= $model->count_of_months ?>
-    </div>
-</div>
-<div class="form-group">
-    <?= Html::label($model->getAttributeLabel('daily_budget')) ?>
-    <div class="input-group">
-       <?= $model->daily_budget ?>
-    </div>
-</div>
-<div class="form-group">
-    <?= Html::label($model->getAttributeLabel('cost')) ?>
-    <div class="input-group">
-        <?= $model->cost ?>
+        <?= $model->amount ?>
     </div>
 </div>

@@ -125,11 +125,6 @@ class FactoryPromotionController extends BaseController
 
         $model->scenario = 'frontend';
 
-        if ($model->isNewRecord) {
-            $model->count_of_months = 1;
-            $model->daily_budget = 500;
-        }
-
         if ($model->load(Yii::$app->getRequest()->post())) {
             $transaction = $model::getDb()->beginTransaction();
             try {
