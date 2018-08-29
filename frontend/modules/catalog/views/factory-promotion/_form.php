@@ -287,7 +287,22 @@ $('#factorypromotion-city_ids').find('#factorypromotion-country_id').on('change'
         belBoxTab.css('display', 'block');
         $('.check-all').removeClass('checked').children('input[type="checkbox"]').prop('checked', false);
     }
+    newCost();
 });
+function watchForSelect() {
+    var ourVal = $('#factorypromotion-city_ids').find('#factorypromotion-country_id');
+    var rusBoxTab = $('#factorypromotion-city_ids').children('.tab-country-2');
+    var belBoxTab = $('#factorypromotion-city_ids').children('.tab-country-3');
+    if (ourVal.val() === "2") {
+        rusBoxTab.css('display', 'block');
+        belBoxTab.css('display', 'none');
+    }
+    else if (ourVal.val() === "3") {
+        rusBoxTab.css('display', 'none');
+        belBoxTab.css('display', 'block');
+    }
+}
+watchForSelect();
 // js for reinit plugin styler when used search in popup
 $('.factory-prom').on('blur', 'input[type="text"]', function() {
     setTimeout(function() {
@@ -317,13 +332,73 @@ watchForCheckbox();
  * Calculate
  */
 function newCost() {
-    var country_id = $('input[name="FactoryPromotion[country_id]"]').filter(":selected").val();
-    console.log('country_id = '+ country_id);
-    
-    var cost, cost_of_views, cost_products,
-    cost_of_views = parseInt($('input[name="FactoryPromotion[views]"]:checked').val()),
+    var selectedCountry = $('#factorypromotion-city_ids').find('#factorypromotion-country_id').val();   
+    var cost, 
+    cost_of_views = 0, numberViews, cost_products,
+    numberViews = parseInt($('input[name="FactoryPromotion[views]"]:checked').val()),
     count_products = $('input[name="product_ids[]"]:checked').length;
- 
+
+    if (selectedCountry === "2") {
+        switch (numberViews) {
+            case 1000:
+            cost_of_views = 24000;
+            break;
+            case 1400:
+            cost_of_views = 32000;
+            break;
+            case 1900:
+            cost_of_views = 40000;
+            break;
+            case 2500:
+            cost_of_views = 48000;
+            break;
+            case 3100:
+            cost_of_views = 56000;
+            break;
+            case 3600:
+            cost_of_views = 64000;
+            break;
+            case 4200:
+            cost_of_views = 72000;
+            break;
+            case 5000:
+            cost_of_views = 80000;
+            break;
+            default:
+            cost_of_views = 0;
+        }  
+    }
+    else if (selectedCountry === "3") {
+        switch (numberViews) {
+            case 1000:
+            cost_of_views = 20400;
+            break;
+            case 1400:
+            cost_of_views = 27200;
+            break;
+            case 1900:
+            cost_of_views = 34000;
+            break;
+            case 2500:
+            cost_of_views = 40800;
+            break;
+            case 3100:
+            cost_of_views = 47600;
+            break;
+            case 3600:
+            cost_of_views = 54400;
+            break;
+            case 4200:
+            cost_of_views = 61200;
+            break;
+            case 5000:
+            cost_of_views = 68000;
+            break;
+            default:
+            cost_of_views = 0;
+        }
+    }
+
     cost_products = count_products * 1000;
     cost = cost_products + cost_of_views;
 
