@@ -72,11 +72,10 @@ abstract class BaseController extends Controller
         return [
             [
                 'class' => 'yii\filters\HttpCache',
-                'only' => ['index'],
                 'lastModified' => function ($action, $params) {
-                    //$q = new \yii\db\Query();
-                    return time() + 3600;//$q->from('post')->max('updated_at');
+                    return time();
                 },
+                'sessionCacheLimiter' => 'public',
             ],
         ];
     }
