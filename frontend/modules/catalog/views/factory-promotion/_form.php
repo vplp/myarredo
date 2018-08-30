@@ -194,7 +194,7 @@ $this->title = Yii::t('app', 'Рекламировать');
 
                         <?= $form
                             ->field($model, 'views')
-                            ->label('Сколько показов Ваших товаров вы хотите получить')
+                            ->label(Yii::t('app', 'Сколько показов Ваших товаров вы хотите получить'))
                             ->radioList(
                                 FactoryPromotion::getCountOfViews(),
                                 [
