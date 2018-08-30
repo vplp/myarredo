@@ -189,12 +189,11 @@ $this->title = Yii::t('app', 'Рекламировать');
                         <?= Html::checkbox(null, false, [
                             'label' => Yii::t('app', 'Выбрать все города'),
                             'class' => 'check-all',
-                        ]);
-                        ?>
+                        ]) ?>
 
                         <?= $form
                             ->field($model, 'views')
-                            ->label(Yii::t('app', 'Сколько показов Ваших товаров вы хотите получить'))
+                            ->label($model->getAttributeLabel('views'))
                             ->radioList(
                                 FactoryPromotion::getCountOfViews(),
                                 [
@@ -240,13 +239,10 @@ $this->title = Yii::t('app', 'Рекламировать');
                                 ['class' => 'btn btn-goods']
                             ) ?>
 
-                            <?php if (!$model->isNewRecord): ?>
-                                <?= Html::a(
-                                    Yii::t('app', 'Оплатить'),
-                                    ['/catalog/factory-promotion/create-payment', 'id' => $model->id],
-                                    ['class' => 'btn btn-goods']
-                                ) ?>
-                            <?php endif; ?>
+                            <?= Html::submitButton(
+                                Yii::t('app', 'Оплатить'),
+                                ['class' => 'btn btn-goods', 'name' => 'payment', 'value' => 1]
+                            ) ?>
 
                             <?= Html::a(
                                 Yii::t('app', 'Вернуться к списку'),
@@ -260,7 +256,6 @@ $this->title = Yii::t('app', 'Рекламировать');
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </main>
 

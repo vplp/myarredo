@@ -85,13 +85,13 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
     public function rules()
     {
         return [
-            [['user_id'], 'required'],
+            [['user_id', 'views'], 'required'],
             [['user_id', 'country_id', 'views', 'created_at', 'updated_at'], 'integer'],
             [['invoice_id'], 'string', 'max' => 255],
             [['amount'], 'double'],
             [['status', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['payment_status'], 'in', 'range' => array_keys(static::paymentStatusKeyRange())],
-            [['amount'], 'default', 'value' => '0'],
+            [['amount', 'views'], 'default', 'value' => '0'],
             [['city_ids', 'product_ids'], 'each', 'rule' => ['integer']],
         ];
     }
@@ -184,7 +184,7 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
             'user_id' => Yii::t('app', 'User'),
             'invoice_id',
             'country_id' => Yii::t('app', 'Country'),
-            'views' => Yii::t('app', 'Count of views'),
+            'views' => Yii::t('app', 'Сколько показов Ваших товаров вы хотите получить'),
             'amount' => Yii::t('app', 'Cost'),
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Create time'),

@@ -138,7 +138,11 @@ class FactoryPromotionController extends BaseController
                 if ($save) {
                     $transaction->commit();
 
-                    return $this->redirect(Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]));
+                    if (Yii::$app->getRequest()->post('payment')) {
+                        return $this->redirect(Url::toRoute(['/catalog/factory-promotion/create-payment', 'id' => $model->id]));
+                    } else {
+                        return $this->redirect(Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]));
+                    }
                 } else {
                     $transaction->rollBack();
                 }
@@ -185,6 +189,10 @@ class FactoryPromotionController extends BaseController
 
                 if ($save) {
                     $transaction->commit();
+
+                    if (Yii::$app->getRequest()->post('payment')) {
+                        return $this->redirect(Url::toRoute(['/catalog/factory-promotion/create-payment', 'id' => $model->id]));
+                    }
                 } else {
                     $transaction->rollBack();
                 }
