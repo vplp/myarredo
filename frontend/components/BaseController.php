@@ -40,31 +40,6 @@ abstract class BaseController extends Controller
     }
 
     /**
-     * @return array
-     */
-    public function behaviors()
-    {
-        return [
-//            [
-//                'class' => 'yii\filters\HttpCache',
-//                'only' => ['index'],
-//                'lastModified' => function ($action, $params) {
-//                    $q = new \yii\db\Query();
-//                    return $q->from('post')->max('updated_at');
-//                },
-//            ],
-            [
-                'class' => 'yii\filters\HttpCache',
-                'lastModified' => function ($action, $params) {
-                    return time() - 3800;
-                },
-                'sessionCacheLimiter' => 'public',
-                //'cacheControlHeader' => 'public, max-age=3600', // not needed since it is the default value
-            ],
-        ];
-    }
-
-    /**
      * @return string
      */
     public function getSeoH1()
