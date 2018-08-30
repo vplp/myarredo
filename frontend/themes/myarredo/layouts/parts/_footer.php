@@ -95,7 +95,7 @@ $bundle = AppAsset::register($this);
                                 <?php else: ?>
 
                                     2013 - <?= date('Y'); ?> (с)
-                                    <?= Yii::t('app', 'MyArredo, лучшая мебель из италии для вашего дома') ?></br>
+                                    <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_RU')); ?></br>
 
                                 <?php endif; ?>
 
