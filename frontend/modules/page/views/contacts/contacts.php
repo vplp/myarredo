@@ -41,6 +41,7 @@ $bundle = AppAsset::register($this);
                                     <img src="<?= $bundle->baseUrl ?>/img/marker-map.png" alt="">
                                 </div>
                                 <div class="adres">
+                                    <?= isset($partner->profile->city) ? $partner->profile->city->lang->title . '<br>' : '' ?>
                                     <?= $mainPartner->profile->address ?>
                                 </div>
                             </div>
@@ -57,6 +58,7 @@ $bundle = AppAsset::register($this);
                                     <img src="<?= $bundle->baseUrl ?>/img/marker-map.png" alt="">
                                 </div>
                                 <div class="adres">
+                                    <?= isset($partner->profile->city) ? $partner->profile->city->lang->title . '<br>' : '' ?>
                                     <?= $partner->profile->address ?>
                                 </div>
                             </div>
