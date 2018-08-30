@@ -48,6 +48,7 @@ $bundle = AppAsset::register($this);
     <div class="stud" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
         <p><?= Html::encode($partner['profile']['name_company']) ?></p>
         <meta itemprop="addressLocality" content="<?= $city['country']['lang']['title'] ?> <?= $city['lang']['title'] ?>"/>
+        <p><?= $city['lang']['title'] ?></p>
         <meta itemprop="streetAddress" content="<?= $partner['profile']['address'] ?></"/>
         <p><?= $partner['profile']['address'] ?></p>
         <p><?= $partner['profile']['phone'] ?></p>
