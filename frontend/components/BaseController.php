@@ -5,9 +5,7 @@ namespace frontend\components;
 use Yii;
 use yii\web\Controller;
 //
-use frontend\modules\seo\modules\{
-    directlink\models\Directlink
-};
+use frontend\modules\seo\modules\directlink\models\Directlink;
 
 /**
  * Class BaseController
@@ -65,18 +63,5 @@ abstract class BaseController extends Controller
         }
 
         return $content;
-    }
-
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => 'yii\filters\HttpCache',
-                'lastModified' => function ($action, $params) {
-                    return time() - 3600;
-                },
-                'sessionCacheLimiter' => 'public',
-            ],
-        ];
     }
 }

@@ -4,13 +4,13 @@ use yii\helpers\ArrayHelper;
 
 $main = require(dirname(__DIR__, 2) . '/common/config/main.php');
 
-foreach ($main['bootstrap'] as $itemkey => $item) {
+foreach ($main['bootstrap'] as $itemKey => $item) {
     if ($item == 'languages') {
-        unset($main['bootstrap'][$itemkey]);
+        unset($main['bootstrap'][$itemKey]);
         break;
     }
 }
-unset($itemkey, $item, $main['components']['request']);
+unset($itemKey, $item, $main['components']['request']);
 
 $rootDir = dirname(__DIR__, 2);
 
@@ -92,7 +92,7 @@ return ArrayHelper::merge(
                         'class' => \frontend\modules\catalog\models\Category::class,
                         'dataClosure' => function ($model) {
                             return [
-                                'loc' => '/catalog/'. $model['alias'] . '/',
+                                'loc' => '/catalog/' . $model['alias'] . '/',
                                 'lastmod' => date('c', $model['updated_at']),
                                 'changefreq' => 'daily',
                                 'priority' => 0.8
@@ -103,7 +103,7 @@ return ArrayHelper::merge(
                         'class' => \frontend\modules\catalog\models\Product::class,
                         'dataClosure' => function ($model) {
                             return [
-                                'loc' => '/product/'. $model['alias'] . '/',
+                                'loc' => '/product/' . $model['alias'] . '/',
                                 'lastmod' => date('c', $model['updated_at']),
                                 'changefreq' => 'daily',
                                 'priority' => 0.5
@@ -114,13 +114,33 @@ return ArrayHelper::merge(
                         'class' => \frontend\modules\catalog\models\Factory::class,
                         'dataClosure' => function ($model) {
                             return [
-                                'loc' => '/factory/'. $model['alias'] . '/',
+                                'loc' => '/factory/' . $model['alias'] . '/',
                                 'lastmod' => date('c', $model['updated_at']),
                                 'changefreq' => 'daily',
                                 'priority' => 0.5
                             ];
                         }
                     ]
+                ],
+                'urls' => [
+                    [
+                        'loc' => '/contacts/',
+                        'lastmod' => date('c', time()),
+                        'changefreq' => 'daily',
+                        'priority' => 0.5
+                    ],
+                    [
+                        'loc' => '/sale/',
+                        'lastmod' => date('c', time()),
+                        'changefreq' => 'daily',
+                        'priority' => 0.5
+                    ],
+                    [
+                        'loc' => '/factories/',
+                        'lastmod' => date('c', time()),
+                        'changefreq' => 'daily',
+                        'priority' => 0.5
+                    ],
                 ]
             ],
         ],
