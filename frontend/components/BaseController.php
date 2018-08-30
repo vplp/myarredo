@@ -73,7 +73,7 @@ abstract class BaseController extends Controller
             [
                 'class' => 'yii\filters\HttpCache',
                 'lastModified' => function ($action, $params) {
-                    return time();
+                    return time() - 3600;
                 },
                 'sessionCacheLimiter' => 'public',
             ],
