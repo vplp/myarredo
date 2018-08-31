@@ -44,6 +44,8 @@ class CategoryController extends BaseController
                     $q = new \yii\db\Query();
                     return $q->from(Product::tableName())->max('updated_at');
                 },
+                'sessionCacheLimiter' => 'public',
+                'cacheControlHeader' => 'public, max-age=3600',
             ],
         ];
     }
