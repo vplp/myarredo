@@ -232,7 +232,7 @@ class FactoryPromotionController extends BaseController
         }
         $model->city_ids = $cities;
 
-        return $this->render('_form', [
+        return $this->render($model->payment_status == FactoryPromotion::PAYMENT_STATUS_PAID ? 'view' : '_form', [
             'model' => $model,
             'dataProviderFactoryProduct' => $dataProviderFactoryProduct,
             'filterModelFactoryProduct' => $filterModelFactoryProduct,

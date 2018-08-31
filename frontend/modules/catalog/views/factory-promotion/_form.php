@@ -142,7 +142,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                         ) ?>
 
                         <div id="list-product">
-                            <?php foreach ($model->products as $product) {
+                            <?php foreach ($model->products as $product) :
                                 echo '<div>' .
                                     $product->lang->title .
                                     Html::input(
@@ -158,9 +158,10 @@ $this->title = Yii::t('app', 'Рекламировать');
                                             'id' => 'del-product',
                                             'class' => 'close',
                                             'data-id' => $product->id
-                                        ]) .
+                                        ]
+                                    ) .
                                     '</div>';
-                            } ?>
+                            endforeach; ?>
                         </div>
 
                         <div id="factorypromotion-city_ids">
@@ -232,25 +233,24 @@ $this->title = Yii::t('app', 'Рекламировать');
                             ->label(false)
                             ->input('hidden') ?>
 
-                        <?php if ($model->payment_status != FactoryPromotion::PAYMENT_STATUS_PAID) { ?>
-                            <div class="buttons-cont">
-                                <?= Html::submitButton(
-                                    Yii::t('app', 'Сохранить компанию'),
-                                    ['class' => 'btn btn-goods']
-                                ) ?>
+                        <div class="buttons-cont">
+                            <?= Html::submitButton(
+                                Yii::t('app', 'Сохранить компанию'),
+                                ['class' => 'btn btn-goods']
+                            ) ?>
 
-                                <?= Html::submitButton(
-                                    Yii::t('app', 'Оплатить'),
-                                    ['class' => 'btn btn-goods', 'name' => 'payment', 'value' => 1]
-                                ) ?>
+                            <?= Html::submitButton(
+                                Yii::t('app', 'Оплатить'),
+                                ['class' => 'btn btn-goods', 'name' => 'payment', 'value' => 1]
+                            ) ?>
 
-                                <?= Html::a(
-                                    Yii::t('app', 'Вернуться к списку'),
-                                    ['/catalog/factory-promotion/list'],
-                                    ['class' => 'btn btn-cancel']
-                                ) ?>
-                            </div>
-                        <?php } ?>
+                            <?= Html::a(
+                                Yii::t('app', 'Вернуться к списку'),
+                                ['/catalog/factory-promotion/list'],
+                                ['class' => 'btn btn-cancel']
+                            ) ?>
+                        </div>
+
 
                         <?php ActiveForm::end(); ?>
 

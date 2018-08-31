@@ -14,6 +14,7 @@ echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
+        'id',
         [
             'format' => 'raw',
             'attribute' => 'updated_at',

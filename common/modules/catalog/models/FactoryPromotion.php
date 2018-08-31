@@ -2,7 +2,6 @@
 
 namespace common\modules\catalog\models;
 
-use common\modules\location\models\City;
 use Yii;
 use yii\helpers\{
     ArrayHelper
@@ -13,6 +12,9 @@ use thread\app\base\models\ActiveRecord;
 //
 use common\modules\catalog\Catalog;
 use common\components\YandexKassaAPI\interfaces\OrderInterface;
+use common\modules\location\models\{
+    Country, City
+};
 
 /**
  * Class FactoryPromotion
@@ -216,6 +218,14 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
     public function getPaymentStatusTitle()
     {
         return Yii::t('app', ucfirst($this->payment_status));
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCountry()
+    {
+        return $this->hasOne(Country::class, ['id' => 'country_id']);
     }
 
     /**

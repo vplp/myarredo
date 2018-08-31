@@ -8,6 +8,7 @@ use frontend\components\Breadcrumbs;
 use thread\widgets\grid\{
     GridViewFilter
 };
+use frontend\modules\catalog\models\FactoryPromotion;
 
 /**
  * @var \yii\data\Pagination $pages
@@ -131,7 +132,9 @@ $this->title = $this->context->title;
                                             },
                                             'delete' => function ($url, $model) {
                                                 /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
-                                                return Yii::$app->user->identity->id == $model->user_id ? Html::a(
+                                                return (
+                                                        Yii::$app->user->identity->id == $model->user_id &&
+                                                        $model->payment_status != FactoryPromotion::PAYMENT_STATUS_PAID) ? Html::a(
                                                     '<span class="glyphicon glyphicon-trash"></span>',
                                                     Url::toRoute([
                                                         '/catalog/factory-promotion/intrash',
