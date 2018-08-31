@@ -25,6 +25,7 @@ use common\components\YandexKassaAPI\interfaces\OrderInterface;
  * @property double $amount
  * @property boolean $status
  * @property string $payment_status
+ * @property string $payment_object
  * @property integer $created_at
  * @property integer $updated_at
  * @property boolean $published
@@ -88,10 +89,12 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
             [['user_id', 'views'], 'required'],
             [['user_id', 'country_id', 'views', 'created_at', 'updated_at'], 'integer'],
             [['invoice_id'], 'string', 'max' => 255],
+            [['payment_object'], 'string'],
             [['amount'], 'double'],
             [['status', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['payment_status'], 'in', 'range' => array_keys(static::paymentStatusKeyRange())],
             [['amount', 'views'], 'default', 'value' => '0'],
+            [['payment_object'], 'default', 'value' => ''],
             [['city_ids', 'product_ids'], 'each', 'rule' => ['integer']],
         ];
     }
@@ -105,7 +108,7 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
             'published' => ['published'],
             'deleted' => ['deleted'],
             'setInvoiceId' => ['invoice_id'],
-            'setPaymentStatus' => ['payment_status'],
+            'setPaymentStatus' => ['payment_status', 'payment_object'],
             'backend' => [
                 'user_id',
                 'country_id',

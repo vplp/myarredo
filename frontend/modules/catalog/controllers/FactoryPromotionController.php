@@ -99,8 +99,14 @@ class FactoryPromotionController extends BaseController
                     'class' => ConfirmPaymentAction::class,
                     'orderClass' => FactoryPromotion::className(),
                     'beforeConfirm' => function ($payment, $order) {
-                        $order->payment_status = FactoryPromotion::PAYMENT_STATUS_PAID;
+                        $order->payment_status = $payment->object->paid
+                            ? FactoryPromotion::PAYMENT_STATUS_PAID
+                            : FactoryPromotion::PAYMENT_STATUS_NEW;
+
+                        $order->payment_object = json_encode($payment);
+
                         $order->setScenario('setPaymentStatus');
+
                         return $order->save();
                     }
                 ]

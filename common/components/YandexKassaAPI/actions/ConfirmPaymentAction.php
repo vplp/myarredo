@@ -45,24 +45,20 @@ class ConfirmPaymentAction extends Action
     {
         $request = json_decode(file_get_contents('php://input'));
 
-        var_dump($request);
+        $orderModel = \Yii::createObject($this->orderClass);
 
-        if ($request) {
-            $orderModel = \Yii::createObject($this->orderClass);
+        if (!$orderModel instanceof OrderInterface) {
+            throw new HttpException(500, "Модель должна реализовывать интерфейс OrderInterface");
+        }
 
-            if (!$orderModel instanceof OrderInterface) {
-                throw new HttpException(500, "Модель должна реализовывать интерфейс OrderInterface");
-            }
+        if (!isset($request->object->paid) || !$request->object->paid) {
+            throw new HttpException(500, "Произошла ошибка исполнения платежа");
+        }
 
-            if (!isset($request->object->paid) || !$request->object->paid) {
-                throw new HttpException(500, "Произошла ошибка исполнения платежа");
-            }
+        $order = $orderModel->findByInvoiceId($request->object->id)->one();
 
-            $order = $orderModel->findByInvoiceId($request->object->id)->one();
-
-            if ($this->beforeConfirm && call_user_func_array($this->beforeConfirm, [$request, $order])) {
-                $this->getComponent()->confirmPayment($request->object->id, $order);
-            }
+        if ($this->beforeConfirm && call_user_func_array($this->beforeConfirm, [$request, $order])) {
+            $this->getComponent()->confirmPayment($request->object->id, $order);
         }
     }
 
