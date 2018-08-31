@@ -38,7 +38,7 @@ class CategoryController extends BaseController
                 ],
             ],
             [
-                'class' => yii\filters\HttpCache::class,
+                'class' => \yii\filters\HttpCache::class,
                 //'only' => ['list'],
                 'lastModified' => function ($action, $params) {
                     $q = new \yii\db\Query();
