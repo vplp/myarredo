@@ -1,5 +1,9 @@
 AddDefaultCharset UTF-8
 
+# If-Modified-Since (if php is not installed as cgi then comment lines below)
+RewriteRule .* - [E=HTTP_IF_MODIFIED_SINCE:%{HTTP:If-Modified-Since}]
+RewriteRule .* - [E=HTTP_IF_NONE_MATCH:%{HTTP:If-None-Match}]
+
 # mod_autoindex
 <IfModule mod_autoindex.c>
     Options -Indexes
