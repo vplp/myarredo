@@ -128,7 +128,6 @@ class FactoryPromotionController extends BaseController
         if ($model->load(Yii::$app->getRequest()->post())) {
             $transaction = $model::getDb()->beginTransaction();
             try {
-
                 $model->user_id = Yii::$app->user->identity->id;
                 $model->status = 1;
                 $model->published = 1;
@@ -184,7 +183,6 @@ class FactoryPromotionController extends BaseController
         if ($model->load(Yii::$app->getRequest()->post())) {
             $transaction = $model::getDb()->beginTransaction();
             try {
-
                 $save = $model->save();
 
                 if ($save) {
