@@ -20,13 +20,13 @@ RewriteRule .* - [E=HTTP_IF_NONE_MATCH:%{HTTP:If-None-Match}]
 
     RewriteRule ^backend(.*)$ backend/$1 [L]
 
-#    # Переадресацыя на www
-#    RewriteCond %{HTTP_HOST} ^myarredo.ru [NC]
-#    RewriteRule ^(.*)$ https://www.myarredo.ru/$1 [R=permanent,L]
-#
-#    # Поддоменн без www
-#    RewriteCond %{HTTP_HOST} ^www\.([A-Za-z0-9_-]*)\.myarredo\.ru
-#    RewriteRule ^(.*)$ https://%1.myarredo.ru/$1 [R=permanent,L]
+    # Переадресацыя на www
+    RewriteCond %{HTTP_HOST} ^myarredo.ru [NC]
+    RewriteRule ^(.*)$ https://www.myarredo.ru/$1 [R=permanent,L]
+
+    # Поддоменн без www
+    RewriteCond %{HTTP_HOST} ^www\.([A-Za-z0-9_-]*)\.myarredo\.ru
+    RewriteRule ^(.*)$ https://%1.myarredo.ru/$1 [R=permanent,L]
 
     # убираем index.php
     RewriteCond %{THE_REQUEST} ^.*/index.php
