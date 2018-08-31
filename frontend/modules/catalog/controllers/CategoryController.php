@@ -37,6 +37,14 @@ class CategoryController extends BaseController
                     'ajax-get-category' => ['post'],
                 ],
             ],
+            [
+                'class' => 'yii\filters\HttpCache',
+                'only' => ['list'],
+                'lastModified' => function ($action, $params) {
+                    $q = new \yii\db\Query();
+                    return $q->from(Product::tableName())->max('updated_at');
+                },
+            ],
         ];
     }
 
@@ -322,5 +330,5 @@ class CategoryController extends BaseController
 
         return $this;
     }
-
 }
+
