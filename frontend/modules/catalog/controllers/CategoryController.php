@@ -39,13 +39,11 @@ class CategoryController extends BaseController
             ],
             [
                 'class' => 'yii\filters\HttpCache',
-                'only' => ['list'],
+                //'only' => ['list'],
                 'lastModified' => function ($action, $params) {
                     $q = new \yii\db\Query();
                     return $q->from(Product::tableName())->max('updated_at');
-                },
-                'sessionCacheLimiter' => 'public',
-                'cacheControlHeader' => 'public, max-age=3600',
+                }
             ],
         ];
     }
