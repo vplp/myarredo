@@ -107,7 +107,7 @@ return [
     ],
     'yandexKassa' => [
         'class' => \common\components\YandexKassaAPI\YandexKassaAPI::class,
-        'returnUrl' => 'https://www.myarredo.ru/',
+        'returnUrl' => Yii::$app->request->hostName,
         'shopId' => '519736',
         'key' => 'test_PHsoZmISCHfA5FjC6bcUPWyxDSCBS-s6YgQrKMV7TYA',
     ],
