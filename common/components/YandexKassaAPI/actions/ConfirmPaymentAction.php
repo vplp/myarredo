@@ -43,7 +43,7 @@ class ConfirmPaymentAction extends Action
      */
     public function run()
     {
-        $request = yii\helpers\Json::decode(file_get_contents('php://input'));
+        $request = json_decode(file_get_contents('php://input'));
 
         $orderModel = \Yii::createObject($this->orderClass);
 

@@ -105,7 +105,7 @@ class FactoryPromotionController extends BaseController
                             ? FactoryPromotion::PAYMENT_STATUS_PAID
                             : FactoryPromotion::PAYMENT_STATUS_NEW;
 
-                        $order->payment_object = yii\helpers\Json::encode($payment);
+                        $order->payment_object = json_encode($payment);
 
                         $order->setScenario('setPaymentStatus');
 
