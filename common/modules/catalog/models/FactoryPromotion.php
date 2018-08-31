@@ -190,6 +190,7 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
             'views' => Yii::t('app', 'Сколько показов Ваших товаров вы хотите получить'),
             'amount' => Yii::t('app', 'Cost'),
             'status' => Yii::t('app', 'Status'),
+            'payment_status' => Yii::t('app', 'Payment status'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
@@ -197,6 +198,24 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
             'city_ids' => Yii::t('app', 'Cities'),
             'product_ids' => Yii::t('app', 'Products'),
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status
+            ? Yii::t('app', 'Активная')
+            : Yii::t('app', 'Завершена');
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentStatus()
+    {
+        return Yii::t('app', ucfirst($this->payment_status));
     }
 
     /**

@@ -210,8 +210,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                             '</label>';
                                     },
                                 ]
-                            )
-                        ?>
+                            ); ?>
 
                         <div class="promotion-title-label">
                             <?= Yii::t('app', 'Стоимость размещения товара в рекламе') ?>
@@ -233,23 +232,25 @@ $this->title = Yii::t('app', 'Рекламировать');
                             ->label(false)
                             ->input('hidden') ?>
 
-                        <div class="buttons-cont">
-                            <?= Html::submitButton(
-                                Yii::t('app', 'Сохранить компанию'),
-                                ['class' => 'btn btn-goods']
-                            ) ?>
+                        <?php if ($model->payment_status != FactoryPromotion::PAYMENT_STATUS_PAID) { ?>
+                            <div class="buttons-cont">
+                                <?= Html::submitButton(
+                                    Yii::t('app', 'Сохранить компанию'),
+                                    ['class' => 'btn btn-goods']
+                                ) ?>
 
-                            <?= Html::submitButton(
-                                Yii::t('app', 'Оплатить'),
-                                ['class' => 'btn btn-goods', 'name' => 'payment', 'value' => 1]
-                            ) ?>
+                                <?= Html::submitButton(
+                                    Yii::t('app', 'Оплатить'),
+                                    ['class' => 'btn btn-goods', 'name' => 'payment', 'value' => 1]
+                                ) ?>
 
-                            <?= Html::a(
-                                Yii::t('app', 'Вернуться к списку'),
-                                ['/catalog/factory-promotion/list'],
-                                ['class' => 'btn btn-cancel']
-                            ) ?>
-                        </div>
+                                <?= Html::a(
+                                    Yii::t('app', 'Вернуться к списку'),
+                                    ['/catalog/factory-promotion/list'],
+                                    ['class' => 'btn btn-cancel']
+                                ) ?>
+                            </div>
+                        <?php } ?>
 
                         <?php ActiveForm::end(); ?>
 

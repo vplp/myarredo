@@ -86,19 +86,29 @@ $this->title = $this->context->title;
                                         'label' => Yii::t('app', 'Бюджет'),
                                     ],
                                     [
+                                        'attribute' => 'payment_status',
+                                        'value' => function ($model) {
+                                            /** @var \backend\modules\catalog\models\FactoryPromotion $model */
+                                            return $model->getPaymentStatus();
+                                        },
+                                        'filter' => GridViewFilter::selectOne(
+                                            $filter,
+                                            'payment_status',
+                                            $model::paymentStatusKeyRange()
+                                        ),
+                                    ],
+                                    [
                                         'attribute' => 'status',
                                         'value' => function ($model) {
                                             /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
-                                            return $model->status
-                                                ? Yii::t('app', 'Активная')
-                                                : Yii::t('app', 'Завершена');
+                                            return $model->getStatus();
                                         },
                                         'filter' => GridViewFilter::selectOne(
                                             $filter,
                                             'status',
                                             [
-                                                0 => 'On',
-                                                1 => 'Off'
+                                                0 => Yii::t('app', 'Завершена'),
+                                                1 => Yii::t('app', 'Активная')
                                             ]
                                         ),
                                     ],
@@ -110,7 +120,10 @@ $this->title = $this->context->title;
                                                 /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
                                                 return Yii::$app->user->identity->id == $model->user_id ? Html::a(
                                                     '<span class="glyphicon glyphicon-pencil"></span>',
-                                                    Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]),
+                                                    Url::toRoute([
+                                                        '/catalog/factory-promotion/update',
+                                                        'id' => $model->id
+                                                    ]),
                                                     [
                                                         'class' => 'btn btn-default btn-xs'
                                                     ]
@@ -120,10 +133,16 @@ $this->title = $this->context->title;
                                                 /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
                                                 return Yii::$app->user->identity->id == $model->user_id ? Html::a(
                                                     '<span class="glyphicon glyphicon-trash"></span>',
-                                                    Url::toRoute(['/catalog/factory-promotion/intrash', 'id' => $model->id]),
+                                                    Url::toRoute([
+                                                        '/catalog/factory-promotion/intrash',
+                                                        'id' => $model->id
+                                                    ]),
                                                     [
                                                         'class' => 'btn btn-default btn-xs',
-                                                        'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                                        'data-confirm' => Yii::t(
+                                                            'yii',
+                                                            'Are you sure you want to delete this item?'
+                                                        ),
                                                     ]
                                                 ) : '';
                                             },
