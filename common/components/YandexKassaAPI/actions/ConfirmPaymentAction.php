@@ -45,7 +45,7 @@ class ConfirmPaymentAction extends Action
     {
         $request = json_decode(file_get_contents('php://input'));
 
-        var_dump(var_dump());
+        var_dump($request);
 
         if ($request) {
             $orderModel = \Yii::createObject($this->orderClass);
