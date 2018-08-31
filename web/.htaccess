@@ -50,23 +50,23 @@ AddDefaultCharset UTF-8
 </FilesMatch>
 
 # кеширование в браузере на стороне пользователя
-#<IfModule mod_expires.c>
-#    ExpiresActive On
-#    <FilesMatch "\.(ogg|ogv|svg|svgz|eot|otf|woff|mp4|ttf|rss|atom|jpg|jpeg|gif|png|ico|zip|tgz|gz|rar|bz2|doc|xls|exe|ppt|tar|mid|midi|wav|bmp|rtf)$">
-#        Header set Cache-Control "max-age=2592000, must-revalidate"
-#    </FilesMatch>
-#</IfModule>
-#
-## Удалить заголовок ETag (иначе есть проблемы с кешированием при включенном сжатии)
-#<IfModule mod_headers.c>
-#    Header unset ETag
-#</IfModule>
-#
-#FileETag None
-#
-##Сжимаем элементы с помощью mod_deflate
-#<IfModule mod_deflate.c="">
-#    <filesmatch .(js|css|jpg|gif|png|tiff|ico|svg)$="">
-#        SetOutputFilter DEFLATE
-#    </filesmatch>
-#</IfModule>
+<IfModule mod_expires.c>
+    ExpiresActive On
+    <FilesMatch "\.(ogg|ogv|svg|svgz|eot|otf|woff|mp4|ttf|rss|atom|jpg|jpeg|gif|png|ico|zip|tgz|gz|rar|bz2|doc|xls|exe|ppt|tar|mid|midi|wav|bmp|rtf)$">
+        Header set Cache-Control "max-age=2592000, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+# Удалить заголовок ETag (иначе есть проблемы с кешированием при включенном сжатии)
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+
+FileETag None
+
+#Сжимаем элементы с помощью mod_deflate
+<IfModule mod_deflate.c="">
+    <filesmatch .(js|css|jpg|gif|png|tiff|ico|svg)$="">
+        SetOutputFilter DEFLATE
+    </filesmatch>
+</IfModule>
