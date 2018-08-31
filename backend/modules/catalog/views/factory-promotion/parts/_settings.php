@@ -45,12 +45,12 @@ use backend\modules\location\models\{
 <div class="form-group">
     <?= Html::label($model->getAttributeLabel('payment_status')) ?>
     <div class="input-group">
-        <?= $model->getPaymentStatus() ?>
+        <?= $model->getPaymentStatusTitle() ?>
     </div>
 </div>
 <div class="form-group">
     <?= Html::label($model->getAttributeLabel('status')) ?>
     <div class="input-group">
-        <?= $model->getStatus() ?>
+        <?= $model->getStatusTitle() ?>
     </div>
 </div>

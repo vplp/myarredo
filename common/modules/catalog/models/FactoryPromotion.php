@@ -203,7 +203,7 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
     /**
      * @return string
      */
-    public function getStatus()
+    public function getStatusTitle()
     {
         return $this->status
             ? Yii::t('app', 'Активная')
@@ -213,7 +213,7 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
     /**
      * @return string
      */
-    public function getPaymentStatus()
+    public function getPaymentStatusTitle()
     {
         return Yii::t('app', ucfirst($this->payment_status));
     }

@@ -50,7 +50,7 @@ echo GridView::widget([
             'attribute' => 'payment_status',
             'value' => function ($model) {
                 /** @var \backend\modules\catalog\models\FactoryPromotion $model */
-                return $model->getPaymentStatus();
+                return $model->getPaymentStatusTitle();
             },
             'filter' => GridViewFilter::selectOne(
                 $filter,
@@ -62,7 +62,7 @@ echo GridView::widget([
             'attribute' => 'status',
             'value' => function ($model) {
                 /** @var \backend\modules\catalog\models\FactoryPromotion $model */
-                return $model->getStatus();
+                return $model->getStatusTitle();
             },
             'filter' => GridViewFilter::selectOne(
                 $filter,
