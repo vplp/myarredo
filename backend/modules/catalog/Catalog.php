@@ -19,7 +19,7 @@ class Catalog extends \common\modules\catalog\Catalog
 
     public function getMenuItems()
     {
-        $menuItems = [1];
+        $menuItems = [];
 
         if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin', 'catalogEditor'])) {
             $menuItems = [

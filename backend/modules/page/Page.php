@@ -17,7 +17,7 @@ class Page extends \common\modules\page\Page
     {
         $menuItems = [];
 
-        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin'])) {
+        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin', 'seo'])) {
             $menuItems = [
                 'name' => 'Pages',
                 'icon' => 'fa fa-sitemap',
