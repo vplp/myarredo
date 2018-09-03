@@ -258,11 +258,13 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
     }
 
     /**
+     * @param int $views
+     * @param int $country
      * @return array
      */
-    public static function getCountOfViews()
+    public static function getCountOfViews($views = 0, $country = 0)
     {
-        return [
+        $array = [
             1000 => [2 => 24000, 3 => 20400],
             1400 => [2 => 32000, 3 => 27200],
             1900 => [2 => 40000, 3 => 34000],
@@ -272,6 +274,12 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
             4200 => [2 => 72000, 3 => 61200],
             5000 => [2 => 80000, 3 => 68000],
         ];
+
+        if ($country && $views) {
+            return  $array[$views][$country];
+        }
+
+        return $array;
     }
 
     /**
