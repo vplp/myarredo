@@ -55,7 +55,7 @@ class ProductController extends BaseController
         ProductStats::create($model->id);
 
         $this->breadcrumbs[] = [
-            'label' => Yii::t('app','Каталог итальянской мебели'),
+            'label' => Yii::t('app', 'Каталог итальянской мебели'),
             'url' => ['/catalog/category/list']
         ];
 
@@ -96,7 +96,7 @@ class ProductController extends BaseController
 
         if ($model['collections_id']) {
             $pageTitle[] = $model['collection']['lang']['title'];
-            $pageDescription[] = Yii::t('app','Коллекция') .': '. $model['collection']['lang']['title'];
+            $pageDescription[] = Yii::t('app', 'Коллекция') . ': ' . $model['collection']['lang']['title'];
         }
 
         $array = [];
@@ -121,7 +121,7 @@ class ProductController extends BaseController
         }
 
         if (!empty($array)) {
-            $pageDescription[] = Yii::t('app','Материал') .': '. implode(', ', $array);
+            $pageDescription[] = Yii::t('app', 'Материал') . ': ' . implode(', ', $array);
         }
 
         $array = [];
@@ -129,7 +129,7 @@ class ProductController extends BaseController
             if ($item['specification']['parent_id'] == 4) {
                 $array[] = $item['specification']['lang']['title'] .
                     ': ' .
-                    $item['val'] . Yii::t('app','см');
+                    $item['val'] . Yii::t('app', 'см');
             }
         }
 
@@ -137,8 +137,8 @@ class ProductController extends BaseController
             $pageDescription[] = implode(', ', $array) . '. ';
         }
 
-        $pageTitle[] = Yii::t('app','Купить в') .' '. Yii::$app->city->getCityTitleWhere();
-        $pageDescription[] = Yii::t('app','Купить в интернет-магазине Myarredo в') .' '. Yii::$app->city->getCityTitleWhere();
+        $pageTitle[] = Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
+        $pageDescription[] = Yii::t('app', 'Купить в интернет-магазине Myarredo в') . ' ' . Yii::$app->city->getCityTitleWhere();
 
         $this->title = implode('. ', $pageTitle);
 
@@ -147,9 +147,11 @@ class ProductController extends BaseController
             'content' => implode('. ', $pageDescription),
         ]);
 
+        $lang = substr(Yii::$app->language, 0, 2);
+
         Yii::$app->view->registerLinkTag([
             'rel' => 'canonical',
-            'href' => Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo
+            'href' => Yii::$app->request->hostInfo . '/' . ($lang != 'ru' ? $lang . '/' : '') . Yii::$app->request->pathInfo
         ]);
 
         return $this->render('view', [
