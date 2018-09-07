@@ -1,12 +1,14 @@
 <?php
 
 use common\modules\seo\modules\directlink\models\Directlink;
-
+use yii\helpers\{
+    Url, Html, ArrayHelper
+};
 ?>
 
 <?= $form->text_line($model, 'url') ?>
 <?= $form->text_line($modelLang, 'title') ?>
-<?= $form->text_line($modelLang, 'description') ?>
+<?= $form->field($modelLang, 'description')->textarea(['rows' => '5']); ?>
 <?= $form->text_line($modelLang, 'keywords') ?>
 
 <?= $form->text_line($model, 'image_url') ?>
