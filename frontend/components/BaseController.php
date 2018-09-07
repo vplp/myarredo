@@ -34,7 +34,7 @@ abstract class BaseController extends Controller
 
     public function init()
     {
-        $this->directLink = Directlink::findByUrl();
+        $this->directLink = Directlink::getInfo();
 
         parent::init();
     }
