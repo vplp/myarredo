@@ -110,7 +110,7 @@ class ProductController extends BaseController
             if ($model['is_composition']) {
                 $pageTitle[] = implode(', ', $array);
             }
-            $pageDescription[] = 'Стиль: ' . implode(', ', $array);
+            $pageDescription[] = Yii::t('app', 'Стиль') . ': ' . implode(', ', $array);
         }
 
         $array = [];
@@ -134,11 +134,12 @@ class ProductController extends BaseController
         }
 
         if (!empty($array)) {
-            $pageDescription[] = implode(', ', $array) . '. ';
+            $pageDescription[] = implode(', ', $array);
         }
 
         $pageTitle[] = Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
-        $pageDescription[] = Yii::t('app', 'Купить в интернет-магазине Myarredo в') . ' ' . Yii::$app->city->getCityTitleWhere();
+        $pageDescription[] = Yii::t('app', 'Купить в интернет-магазине Myarredo в') .
+            ' ' . Yii::$app->city->getCityTitleWhere();
 
         $this->title = implode('. ', $pageTitle);
 
@@ -151,7 +152,9 @@ class ProductController extends BaseController
 
         Yii::$app->view->registerLinkTag([
             'rel' => 'canonical',
-            'href' => Yii::$app->request->hostInfo . '/' . ($lang != 'ru' ? $lang . '/' : '') . Yii::$app->request->pathInfo
+            'href' => Yii::$app->request->hostInfo . '/' .
+                ($lang != 'ru' ? $lang . '/' : '') .
+                Yii::$app->request->pathInfo
         ]);
 
         return $this->render('view', [
