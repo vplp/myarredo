@@ -18,25 +18,20 @@ $this->beginPage();
         <base href="<?= Yii::$app->request->hostInfo ?>">
 
         <?php
-        $langs = Language::getAllByLocate();
+        $languages = Language::getAllByLocate();
         $current_url = Url::current();
 
-        foreach ($langs as $alternate) {
-            $alternatePages[$alternate['local']] = [
-                'href' => Yii::$app->request->hostInfo . ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') . str_replace('/' . $langs[Yii::$app->language]['alias'], '', $current_url),
-                'lang' => substr($alternate['local'], 0, 2),
-                'current' => (Yii::$app->language == $alternate['local']) ? true : false
-            ];
+        foreach ($languages as $alternate) {
+            if (Yii::$app->language != $alternate['local']) {
+                $alternatePages[$alternate['local']] = [
+                    'href' => Yii::$app->request->hostInfo . ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') . str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
+                    'lang' => substr($alternate['local'], 0, 2),
+                    'current' => (Yii::$app->language == $alternate['local']) ? true : false
+                ];
+            }
         }
 
         if (!empty($alternatePages)) {
-            $current_link = $alternatePages[Yii::$app->language];
-            unset($alternatePages[Yii::$app->language]);
-            echo Html::tag('link', '', [
-                'rel' => 'alternate',
-                'href' => $current_link['href'],
-                'hreflang' => $current_link['lang']
-            ]);
             foreach ($alternatePages as $page) {
                 echo Html::tag('link', '', [
                     'rel' => 'alternate',
@@ -44,7 +39,7 @@ $this->beginPage();
                     'hreflang' => $page['lang']
                 ]);
             }
-            unset($current_link, $alternatePages);
+            unset($alternatePages);
         }
         ?>
 

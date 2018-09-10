@@ -85,17 +85,17 @@ $bundle = AppAsset::register($this);
                                 <?php if (Yii::$app->city->domain == 'by'): ?>
 
                                     2013 - <?= date('Y'); ?> (с)
-                                    <?= strip_tags(Yii::$app->param->getByName('FOOTER_COPYRIGHT_BY')) ?></br>
+                                    <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_BY')); ?></br>
 
                                 <?php elseif (Yii::$app->city->domain == 'ua'): ?>
 
                                     2013 - <?= date('Y'); ?> (с)
-                                    <?= strip_tags(Yii::$app->param->getByName('FOOTER_COPYRIGHT_UA')) ?></br>
+                                    <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_UA')); ?></br>
 
                                 <?php else: ?>
 
                                     2013 - <?= date('Y'); ?> (с)
-                                    <?= Yii::t('app', 'MyArredo, лучшая мебель из италии для вашего дома') ?></br>
+                                    <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_RU')); ?></br>
 
                                 <?php endif; ?>
 

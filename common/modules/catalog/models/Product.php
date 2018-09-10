@@ -317,7 +317,6 @@ class Product extends ActiveRecord implements iProduct
     public function afterSave($insert, $changedAttributes)
     {
         if ($this->scenario == 'backend') {
-
             // delete relation ProductRelSpecification
             ProductRelSpecification::deleteAll(['catalog_item_id' => $this->id]);
 

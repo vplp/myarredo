@@ -17,7 +17,7 @@ use frontend\modules\location\models\City;
  */
 class SitemapController extends Controller
 {
-    public $filepath = '@root/web/sitemap';
+    public $filePath = '@root/web/sitemap';
 
     /**
      * Количество URL в Sitemap (не более 50 000)
@@ -42,7 +42,7 @@ class SitemapController extends Controller
         set_time_limit(0);
 
         // delete files
-        array_map('unlink', glob(Yii::getAlias($this->filepath) . '/*.xml'));
+        array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
 
         // list of cities
         $cities = City::findBase()->all();
@@ -51,7 +51,6 @@ class SitemapController extends Controller
         $urls = $this->urls;
 
         foreach ($this->models as $modelName) {
-
             if (is_array($modelName)) {
                 $model = new $modelName['class'];
                 if (isset($modelName['behaviors'])) {
@@ -80,8 +79,7 @@ class SitemapController extends Controller
             // create multiple sitemap files
 
             for ($i = 0; $i < $count_files; $i++) {
-
-                $filePath = Yii::getAlias($this->filepath . '/sitemap_' . $city['alias'] . '_' . $i . '.xml');
+                $filePath = Yii::getAlias($this->filePath . '/sitemap_' . $city['alias'] . '_' . $i . '.xml');
 
                 $handle = fopen($filePath, "w");
 
@@ -104,7 +102,6 @@ class SitemapController extends Controller
 
                 for ($j = $i * $this->countUrlInSitemap; $j < ($i + 1) * $this->countUrlInSitemap; $j++) {
                     if (isset($urls[$j])) {
-
                         $url = $urls[$j];
 
                         $str = "\t<url>" . PHP_EOL .
@@ -126,7 +123,7 @@ class SitemapController extends Controller
 
             // create the main sitemap file
 
-            $filePath = Yii::getAlias($this->filepath . '/sitemap_' . $city['alias'] . '.xml');
+            $filePath = Yii::getAlias($this->filePath . '/sitemap_' . $city['alias'] . '.xml');
             $handle = fopen($filePath, "w");
 
             fwrite(

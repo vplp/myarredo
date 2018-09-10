@@ -27,7 +27,7 @@ $items = [
         'content' => $this->render('parts/_cities', [
             'form' => $form,
             'model' => $model,
-             'modelLang' => $modelLang
+            'modelLang' => $modelLang
         ])
     ]
 ]; ?>
@@ -39,4 +39,5 @@ $items = [
 ]); ?>
 
 <?= $form->submit($model, $this) ?>
-<?php ActiveForm::end(); ?>
+
+<?php ActiveForm::end();

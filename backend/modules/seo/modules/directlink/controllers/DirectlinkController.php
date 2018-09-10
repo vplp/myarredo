@@ -2,6 +2,7 @@
 
 namespace backend\modules\seo\modules\directlink\controllers;
 
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 //
 use thread\app\base\controllers\BackendController;
@@ -23,6 +24,32 @@ class DirectlinkController extends BackendController
     public $filterModel = filterModel::class;
     public $title = 'Directlink';
     public $name = 'directlink';
+
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin', 'seo'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
 
     /**
      * @return array

@@ -2,7 +2,6 @@
 
 namespace common\modules\catalog\models;
 
-use common\modules\location\models\City;
 use Yii;
 use yii\helpers\{
     ArrayHelper
@@ -13,6 +12,9 @@ use thread\app\base\models\ActiveRecord;
 //
 use common\modules\catalog\Catalog;
 use common\components\YandexKassaAPI\interfaces\OrderInterface;
+use common\modules\location\models\{
+    Country, City
+};
 
 /**
  * Class FactoryPromotion
@@ -25,6 +27,7 @@ use common\components\YandexKassaAPI\interfaces\OrderInterface;
  * @property double $amount
  * @property boolean $status
  * @property string $payment_status
+ * @property string $payment_object
  * @property integer $created_at
  * @property integer $updated_at
  * @property boolean $published
@@ -85,13 +88,15 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
     public function rules()
     {
         return [
-            [['user_id'], 'required'],
+            [['user_id', 'views'], 'required'],
             [['user_id', 'country_id', 'views', 'created_at', 'updated_at'], 'integer'],
             [['invoice_id'], 'string', 'max' => 255],
+            [['payment_object'], 'string'],
             [['amount'], 'double'],
             [['status', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['payment_status'], 'in', 'range' => array_keys(static::paymentStatusKeyRange())],
-            [['amount'], 'default', 'value' => '0'],
+            [['amount', 'views'], 'default', 'value' => '0'],
+            [['payment_object'], 'default', 'value' => ''],
             [['city_ids', 'product_ids'], 'each', 'rule' => ['integer']],
         ];
     }
@@ -105,7 +110,7 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
             'published' => ['published'],
             'deleted' => ['deleted'],
             'setInvoiceId' => ['invoice_id'],
-            'setPaymentStatus' => ['payment_status'],
+            'setPaymentStatus' => ['payment_status', 'payment_object'],
             'backend' => [
                 'user_id',
                 'country_id',
@@ -184,9 +189,10 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
             'user_id' => Yii::t('app', 'User'),
             'invoice_id',
             'country_id' => Yii::t('app', 'Country'),
-            'views' => Yii::t('app', 'Count of views'),
+            'views' => Yii::t('app', 'Сколько показов Ваших товаров вы хотите получить'),
             'amount' => Yii::t('app', 'Cost'),
             'status' => Yii::t('app', 'Status'),
+            'payment_status' => Yii::t('app', 'Payment status'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
@@ -194,6 +200,32 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
             'city_ids' => Yii::t('app', 'Cities'),
             'product_ids' => Yii::t('app', 'Products'),
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatusTitle()
+    {
+        return $this->status
+            ? Yii::t('app', 'Активная')
+            : Yii::t('app', 'Завершена');
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentStatusTitle()
+    {
+        return Yii::t('app', ucfirst($this->payment_status));
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCountry()
+    {
+        return $this->hasOne(Country::class, ['id' => 'country_id']);
     }
 
     /**
@@ -226,11 +258,13 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
     }
 
     /**
+     * @param int $views
+     * @param int $country
      * @return array
      */
-    public static function getCountOfViews()
+    public static function getCountOfViews($views = 0, $country = 0)
     {
-        return [
+        $array = [
             1000 => [2 => 24000, 3 => 20400],
             1400 => [2 => 32000, 3 => 27200],
             1900 => [2 => 40000, 3 => 34000],
@@ -240,6 +274,12 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
             4200 => [2 => 72000, 3 => 61200],
             5000 => [2 => 80000, 3 => 68000],
         ];
+
+        if ($country && $views) {
+            return  $array[$views][$country];
+        }
+
+        return $array;
     }
 
     /**

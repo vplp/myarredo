@@ -14,7 +14,6 @@ use frontend\modules\catalog\models\{
 
 ?>
 
-
 <div class="categories-wrap">
     <?php foreach ($models as $model): ?>
         <div class="one-cat">

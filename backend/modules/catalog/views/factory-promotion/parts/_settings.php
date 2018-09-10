@@ -42,3 +42,15 @@ use backend\modules\location\models\{
         <?= $model->amount ?>
     </div>
 </div>
+<div class="form-group">
+    <?= Html::label($model->getAttributeLabel('payment_status')) ?>
+    <div class="input-group">
+        <?= $model->getPaymentStatusTitle() ?>
+    </div>
+</div>
+<div class="form-group">
+    <?= Html::label($model->getAttributeLabel('status')) ?>
+    <div class="input-group">
+        <?= $model->getStatusTitle() ?>
+    </div>
+</div>

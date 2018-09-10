@@ -4,6 +4,8 @@ namespace frontend\modules\catalog\controllers;
 
 use frontend\modules\location\models\City;
 use Yii;
+use yii\db\Exception;
+use yii\db\Transaction;
 use yii\helpers\{
     ArrayHelper, Url
 };
@@ -99,8 +101,14 @@ class FactoryPromotionController extends BaseController
                     'class' => ConfirmPaymentAction::class,
                     'orderClass' => FactoryPromotion::className(),
                     'beforeConfirm' => function ($payment, $order) {
-                        $order->payment_status = FactoryPromotion::PAYMENT_STATUS_PAID;
+                        $order->payment_status = $payment->object->paid
+                            ? FactoryPromotion::PAYMENT_STATUS_PAID
+                            : FactoryPromotion::PAYMENT_STATUS_NEW;
+
+                        $order->payment_object = json_encode($payment);
+
                         $order->setScenario('setPaymentStatus');
+
                         return $order->save();
                     }
                 ]
@@ -120,15 +128,18 @@ class FactoryPromotionController extends BaseController
 
         $filterModelFactoryProduct->load(Yii::$app->getRequest()->get());
 
-        $dataProviderFactoryProduct = $modelFactoryProduct->search(ArrayHelper::merge(Yii::$app->getRequest()->get(), ['pagination' => false]));
+        $dataProviderFactoryProduct = $modelFactoryProduct->search(
+            ArrayHelper::merge(Yii::$app->getRequest()->get(), ['pagination' => false])
+        );
+
         $dataProviderFactoryProduct->sort = false;
 
         $model->scenario = 'frontend';
 
         if ($model->load(Yii::$app->getRequest()->post())) {
+            /** @var Transaction $transaction */
             $transaction = $model::getDb()->beginTransaction();
             try {
-
                 $model->user_id = Yii::$app->user->identity->id;
                 $model->status = 1;
                 $model->published = 1;
@@ -138,7 +149,17 @@ class FactoryPromotionController extends BaseController
                 if ($save) {
                     $transaction->commit();
 
-                    return $this->redirect(Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]));
+                    if (Yii::$app->getRequest()->post('payment')) {
+                        return $this->redirect(Url::toRoute([
+                            '/catalog/factory-promotion/create-payment',
+                            'id' => $model->id
+                        ]));
+                    } else {
+                        return $this->redirect(Url::toRoute([
+                            '/catalog/factory-promotion/update',
+                            'id' => $model->id
+                        ]));
+                    }
                 } else {
                     $transaction->rollBack();
                 }
@@ -172,19 +193,29 @@ class FactoryPromotionController extends BaseController
 
         $filterModelFactoryProduct->load(Yii::$app->getRequest()->get());
 
-        $dataProviderFactoryProduct = $modelFactoryProduct->search(ArrayHelper::merge(Yii::$app->getRequest()->get(), ['pagination' => false]));
+        $dataProviderFactoryProduct = $modelFactoryProduct->search(
+            ArrayHelper::merge(Yii::$app->getRequest()->get(), ['pagination' => false])
+        );
+
         $dataProviderFactoryProduct->sort = false;
 
         $model->scenario = 'frontend';
 
         if ($model->load(Yii::$app->getRequest()->post())) {
+            /** @var Transaction $transaction */
             $transaction = $model::getDb()->beginTransaction();
             try {
-
                 $save = $model->save();
 
                 if ($save) {
                     $transaction->commit();
+
+                    if (Yii::$app->getRequest()->post('payment')) {
+                        return $this->redirect(Url::toRoute([
+                            '/catalog/factory-promotion/create-payment',
+                            'id' => $model->id
+                        ]));
+                    }
                 } else {
                     $transaction->rollBack();
                 }
@@ -201,7 +232,7 @@ class FactoryPromotionController extends BaseController
         }
         $model->city_ids = $cities;
 
-        return $this->render('_form', [
+        return $this->render($model->payment_status == FactoryPromotion::PAYMENT_STATUS_PAID ? 'view' : '_form', [
             'model' => $model,
             'dataProviderFactoryProduct' => $dataProviderFactoryProduct,
             'filterModelFactoryProduct' => $filterModelFactoryProduct,

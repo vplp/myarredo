@@ -36,10 +36,7 @@ class Directlink extends \thread\modules\seo\modules\directlink\models\Directlin
      */
     public function rules()
     {
-        return ArrayHelper::merge(parent::rules(), [
-            [['image_url'], 'default', 'value' => ''],
-            [['city_ids'], 'each', 'rule' => ['integer']],
-        ]);
+        return parent::rules();
     }
 
     /**

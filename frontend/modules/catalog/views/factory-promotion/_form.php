@@ -142,7 +142,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                         ) ?>
 
                         <div id="list-product">
-                            <?php foreach ($model->products as $product) {
+                            <?php foreach ($model->products as $product) :
                                 echo '<div>' .
                                     $product->lang->title .
                                     Html::input(
@@ -158,9 +158,10 @@ $this->title = Yii::t('app', 'Рекламировать');
                                             'id' => 'del-product',
                                             'class' => 'close',
                                             'data-id' => $product->id
-                                        ]) .
+                                        ]
+                                    ) .
                                     '</div>';
-                            } ?>
+                            endforeach; ?>
                         </div>
 
                         <div id="factorypromotion-city_ids">
@@ -189,12 +190,11 @@ $this->title = Yii::t('app', 'Рекламировать');
                         <?= Html::checkbox(null, false, [
                             'label' => Yii::t('app', 'Выбрать все города'),
                             'class' => 'check-all',
-                        ]);
-                        ?>
+                        ]) ?>
 
                         <?= $form
                             ->field($model, 'views')
-                            ->label('Сколько показов Ваших товаров вы хотите получить')
+                            ->label($model->getAttributeLabel('views'))
                             ->radioList(
                                 FactoryPromotion::getCountOfViews(),
                                 [
@@ -211,8 +211,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                             '</label>';
                                     },
                                 ]
-                            )
-                        ?>
+                            ); ?>
 
                         <div class="promotion-title-label">
                             <?= Yii::t('app', 'Стоимость размещения товара в рекламе') ?>
@@ -240,13 +239,10 @@ $this->title = Yii::t('app', 'Рекламировать');
                                 ['class' => 'btn btn-goods']
                             ) ?>
 
-                            <?php if (!$model->isNewRecord): ?>
-                                <?= Html::a(
-                                    Yii::t('app', 'Оплатить'),
-                                    ['/catalog/factory-promotion/create-payment', 'id' => $model->id],
-                                    ['class' => 'btn btn-goods']
-                                ) ?>
-                            <?php endif; ?>
+                            <?= Html::submitButton(
+                                Yii::t('app', 'Оплатить'),
+                                ['class' => 'btn btn-goods', 'name' => 'payment', 'value' => 1]
+                            ) ?>
 
                             <?= Html::a(
                                 Yii::t('app', 'Вернуться к списку'),
@@ -255,12 +251,12 @@ $this->title = Yii::t('app', 'Рекламировать');
                             ) ?>
                         </div>
 
+
                         <?php ActiveForm::end(); ?>
 
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </main>
 

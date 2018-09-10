@@ -30,6 +30,7 @@ class FactoryPromotion extends FactoryPromotionModel implements BaseBackendSearc
         return [
             [['id', 'user_id'], 'integer'],
             [['status', 'published'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [['payment_status'], 'in', 'range' => array_keys(static::paymentStatusKeyRange())],
         ];
     }
 
@@ -65,6 +66,7 @@ class FactoryPromotion extends FactoryPromotionModel implements BaseBackendSearc
             self::tableName() . '.id' => $this->id,
             self::tableName() . '.user_id' => $this->user_id,
             self::tableName() . '.status' => $this->status,
+            self::tableName() . '.payment_status' => $this->payment_status,
             self::tableName() . '.published' => $this->published
         ]);
 

@@ -84,7 +84,6 @@ class NavBar extends \yii\bootstrap\NavBar
             $moduleClass = Yii::$app->getModule($moduleName);
 
             if (method_exists($moduleClass, 'getMenuItems')) {
-
                 $MenuItems = $moduleClass->getMenuItems();
 
                 // get item 1st level menu
@@ -137,12 +136,15 @@ class NavBar extends \yii\bootstrap\NavBar
         $array = [];
 
         $icon = $item['icon'] ?? '';
+
         $name = Yii::t('navbar', $item['name']);
 
         $array['label'] = '<i class="fa ' . $icon . '"></i><span class="nav-label">' . $name . '</span>';
+
         if (isset($item['url'])) {
             $array['url'] = $item['url'];
         }
+
         $array['position'] = $item['position'] ?? 0;
 
         return $array;

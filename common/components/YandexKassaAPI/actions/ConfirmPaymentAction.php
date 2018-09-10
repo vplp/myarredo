@@ -5,7 +5,6 @@ namespace common\components\YandexKassaAPI\actions;
 use yii\base\Action;
 use yii\web\HttpException;
 //
-use common\components\YandexKassaAPI\YandexKassaAPI;
 use common\components\YandexKassaAPI\interfaces\OrderInterface;
 
 /**
@@ -39,7 +38,6 @@ class ConfirmPaymentAction extends Action
     }
 
     /**
-     * @return bool
      * @throws HttpException
      * @throws \yii\base\InvalidConfigException
      */
