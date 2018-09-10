@@ -2491,7 +2491,8 @@ h1 {
       .sale-page .infotable tr .size {
         font-style: normal; }
     .sale-page .infotable .size-group span {
-      margin-right: 5px; }
+      margin-right: 5px;
+    display: inline-block; }
   .sale-page .prod-shortstory {
     color: #535351; }
   .sale-page .top-content-row {
@@ -5897,7 +5898,7 @@ h1 {
   .sale-page h2 {
     font-size: 20px; }
   .sale-page .section-header {
-    height: 60px; }
+    height: auto; }
     .sale-page .section-header .back {
       padding-left: 15px;
       padding-right: 15px;
