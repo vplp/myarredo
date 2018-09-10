@@ -244,6 +244,10 @@ $this->title = Yii::t('app', 'Рекламировать');
                             ->label(false)
                             ->input('hidden') ?>
 
+                        <?= $form->field($model, 'amount_with_vat')
+                            ->label(false)
+                            ->input('hidden') ?>
+
                         <div class="buttons-cont">
                             <?= Html::submitButton(
                                 Yii::t('app', 'Сохранить компанию'),
@@ -261,7 +265,6 @@ $this->title = Yii::t('app', 'Рекламировать');
                                 ['class' => 'btn btn-cancel']
                             ) ?>
                         </div>
-
 
                         <?php ActiveForm::end(); ?>
 
@@ -420,6 +423,7 @@ function newCost() {
     $('#count-products').html(count_products);
     $('#nds_count').html(nds);
     $('#total_nds').html(totalNds);
+    $('input[name="FactoryPromotion[amount_with_vat]"]').val(totalNds);
 }
 
 newCost();
