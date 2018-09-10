@@ -227,6 +227,17 @@ $this->title = Yii::t('app', 'Рекламировать');
                             <?= Yii::t('app', 'Общая стоимость рекламной компании') ?>
                             <span id="cost">0</span>
                             <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
+                            <span class="for-nds">(* цены указаны без НДС)</span>
+                        </div>
+                        <div class="promotion-title-label">
+                            <?= Yii::t('app', 'НДС 19%') ?>
+                            <span id="nds_count">0</span>
+                            <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
+                        </div>
+                        <div class="promotion-title-label">
+                            <?= Yii::t('app', 'Стоимость рекламной компании с НДС') ?>
+                            <span id="total_nds">0</span>
+                            <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
                         </div>
 
                         <?= $form->field($model, 'amount')
@@ -333,6 +344,8 @@ function newCost() {
     cost_of_views = 0, numberViews, cost_products,
     numberViews = parseInt($('input[name="FactoryPromotion[views]"]:checked').val()),
     count_products = $('input[name="product_ids[]"]:checked').length;
+    var nds = 0;
+    var totalNds = 0;
 
     if (selectedCountry === "2") {
         switch (numberViews) {
@@ -397,12 +410,16 @@ function newCost() {
 
     cost_products = count_products * 1000;
     cost = cost_products + cost_of_views;
+    nds = (cost * 19) / 100;
+    totalNds = cost + nds;
 
     $('input[name="FactoryPromotion[amount]"],#cost').val(cost);
     $('#cost').html(cost);
     $('#cost_of_views').html(cost_of_views);
     $('#cost_products').html(cost_products);
     $('#count-products').html(count_products);
+    $('#nds_count').html(nds);
+    $('#total_nds').html(totalNds);
 }
 
 newCost();

@@ -3987,6 +3987,11 @@ h1 {
     font-weight: bold;
     color: #448339;
     margin-left: 5px;
+  }
+  .promotion-title-label .for-nds {
+    font-weight: 600;
+    font-size: 12px;
+    font-style: italic;
   } 
   #factorypromotion-count_of_months,
   #factorypromotion-daily_budget {
