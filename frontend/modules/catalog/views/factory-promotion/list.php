@@ -82,8 +82,8 @@ $this->title = $this->context->title;
                                         },
                                     ],
                                     [
-                                        'attribute' => 'amount',
-                                        'value' => 'amount',
+                                        'attribute' => 'amount_with_vat',
+                                        'value' => 'amount_with_vat',
                                         'label' => Yii::t('app', 'Бюджет'),
                                     ],
                                     [
@@ -133,21 +133,23 @@ $this->title = $this->context->title;
                                             'delete' => function ($url, $model) {
                                                 /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
                                                 return (
-                                                        Yii::$app->user->identity->id == $model->user_id &&
-                                                        $model->payment_status != FactoryPromotion::PAYMENT_STATUS_PAID) ? Html::a(
-                                                    '<span class="glyphicon glyphicon-trash"></span>',
-                                                    Url::toRoute([
-                                                        '/catalog/factory-promotion/intrash',
-                                                        'id' => $model->id
-                                                    ]),
-                                                    [
-                                                        'class' => 'btn btn-default btn-xs',
-                                                        'data-confirm' => Yii::t(
-                                                            'yii',
-                                                            'Are you sure you want to delete this item?'
-                                                        ),
-                                                    ]
-                                                ) : '';
+                                                    Yii::$app->user->identity->id == $model->user_id &&
+                                                    $model->payment_status != FactoryPromotion::PAYMENT_STATUS_PAID)
+                                                    ? Html::a(
+                                                        '<span class="glyphicon glyphicon-trash"></span>',
+                                                        Url::toRoute([
+                                                            '/catalog/factory-promotion/intrash',
+                                                            'id' => $model->id
+                                                        ]),
+                                                        [
+                                                            'class' => 'btn btn-default btn-xs',
+                                                            'data-confirm' => Yii::t(
+                                                                'yii',
+                                                                'Are you sure you want to delete this item?'
+                                                            ),
+                                                        ]
+                                                    )
+                                                    : '';
                                             },
                                         ],
                                         'buttonOptions' => ['class' => 'btn btn-default btn-xs'],
