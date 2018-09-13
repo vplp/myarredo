@@ -12,7 +12,7 @@ use yii\helpers\Html;
 <div>Зарегистрирован новый партнер</div>
 
 <div><?= $model->getAttributeLabel('name_company') ?>: <?= $model->name_company ?></div>
-<div><?= $model->getAttributeLabel('city_id') ?>: <?= $model->city->lang->title ?></div>
+<div><?= $model->getAttributeLabel('city_id') ?>: <?= !empty($model->city) ? $model->city->lang->title : '-'  ?></div>
 <div><?= $model->getAttributeLabel('phone') ?>: <?= $model->phone ?></div>
 <div><?= $model->getAttributeLabel('email') ?>: <?= $model->email ?></div>
 <div><?= $model->getAttributeLabel('first_name') ?>: <?= $model->first_name ?></div>
