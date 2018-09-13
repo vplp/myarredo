@@ -249,6 +249,16 @@ $(document).ready(function(){
     })();
     /*--конец Открыть\закрыть категорию в каталоге--*/
 
+    // js for default close filters for mobile and tablets
+    function closeFilter() {
+        if ($(window).width() < 992) {
+            setTimeout(function() {
+                $('#catalog_filter').children('.one-filter').removeClass('open');
+            },1000);
+        }
+    }
+    closeFilter();
+
     $('.factory-page .view-all').click(function(){
        $(this).parent('.all-list').find('.post-list').slideToggle();
     });
