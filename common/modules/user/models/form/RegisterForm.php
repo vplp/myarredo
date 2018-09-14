@@ -69,7 +69,7 @@ class RegisterForm extends CommonForm
                     'country_id',
                     'city_id',
                     'user_agreement',
-                    'factory_package',
+                    //'factory_package',
                 ],
                 'required',
                 'on' => 'registerFactory'
@@ -156,7 +156,7 @@ class RegisterForm extends CommonForm
                 'country_id',
                 'city_id',
                 'user_agreement',
-                'factory_package'
+                //'factory_package'
             ],
         ];
     }
@@ -377,7 +377,7 @@ class RegisterForm extends CommonForm
             'website' => $this->website,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
-            'factory_package' => $this->factory_package,
+            //'factory_package' => $this->factory_package,
             'preferred_language' => Yii::$app->language,
         ]);
         if ($model->validate()) {
