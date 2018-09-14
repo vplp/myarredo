@@ -61,11 +61,10 @@ class RegisterController extends BaseController
         }
 
         /** @var RegisterForm $model */
-        $model = new $this->model;
+        $model = new $this->model();
         $model->setScenario('register');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
-
             $status = $model->addUser();
 
             if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
@@ -94,15 +93,13 @@ class RegisterController extends BaseController
         }
 
         /** @var RegisterForm $model */
-        $model = new $this->model;
+        $model = new $this->model();
         $model->setScenario('registerPartner');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
-
             $status = $model->addPartner();
 
             if ($status === true) {
-
                 $modelUser = User::findByEmail($model->email);
 
                 Yii::$app
@@ -164,15 +161,13 @@ class RegisterController extends BaseController
         }
 
         /** @var RegisterForm $model */
-        $model = new $this->model;
+        $model = new $this->model();
         $model->setScenario('registerFactory');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
-
             $status = $model->addFactory();
 
             if ($status === true) {
-
                 $modelUser = User::findByEmail($model->email);
 
                 Yii::$app
@@ -205,7 +200,7 @@ class RegisterController extends BaseController
 
                 Yii::$app->getSession()->addFlash('success', Yii::$app->param->getByName('USER_FACTORY_REG_MESSAGE'));
 
-                $model = new $this->model;
+                $model = new $this->model();
                 $model->setScenario('registerFactory');
             }
         }
