@@ -19,7 +19,7 @@ $bundle = AppAsset::register($this);
     <div class="footer">
         <div class="container-wrap">
 
-            <?php if (Yii::$app->controller->id !== 'sale'): ?>
+            <?php if (Yii::$app->controller->id !== 'sale') { ?>
                 <div class="contacts">
                     <div class="cont-flex">
                         <div class="cont-info">
@@ -47,7 +47,7 @@ $bundle = AppAsset::register($this);
                     </div>
                 </div>
 
-            <?php endif; ?>
+            <?php } ?>
 
             <?php if (Yii::$app->controller->action->id != 'list-partners') {
                 echo PartnerMap::widget(['city' => Yii::$app->city->getCity()]);
@@ -116,10 +116,12 @@ $bundle = AppAsset::register($this);
 /**
  * сервис заказа обратного звонка
  */
-if (Yii::$app->getUser()->isGuest && Yii::$app->city->domain == 'ru'): ?>
+if (Yii::$app->getUser()->isGuest && Yii::$app->city->domain == 'ru' &&
+    !in_array(Yii::$app->controller->action->id, ['sale', 'sale-product'])
+) { ?>
     <script type="text/javascript">
         var __cs = __cs || [];
         __cs.push(["setCsAccount", "KNKIlw22peShQSsYcaBCDumFwgrDNrWx"]);
     </script>
     <script type="text/javascript" async src="//app.comagic.ru/static/cs.min.js"></script>
-<?php endif; ?>
+<?php } ?>
