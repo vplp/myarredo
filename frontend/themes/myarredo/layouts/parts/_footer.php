@@ -116,8 +116,8 @@ $bundle = AppAsset::register($this);
 /**
  * сервис заказа обратного звонка
  */
-if (Yii::$app->getUser()->isGuest && Yii::$app->city->domain == 'ru' &&
-    !in_array(Yii::$app->controller->action->id, ['sale', 'sale-product'])
+if (Yii::$app->getUser()->isGuest && Yii::$app->city->domain == 'test' &&
+    !in_array(Yii::$app->controller->id, ['sale'])
 ) { ?>
     <script type="text/javascript">
         var __cs = __cs || [];
