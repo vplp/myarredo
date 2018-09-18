@@ -22,18 +22,19 @@ use frontend\modules\location\widgets\ChangeCity;
                 <div class="container large-container">
 
                     <div class="left-part">
-                        <a class="phone-num">
-                            <i class="fa fa-phone" aria-hidden="true"></i>
-                            <div>
-                                <span class="phone"><?= Yii::$app->partner->getPartnerPhone() ?></span>
-
-                                <?php if (Yii::$app->city->domain == 'ru'): ?>
-                                    <span class="descr">
-                                    <?= Yii::t('app', 'Бесплатно в вашем городе') ?>
-                                </span>
-                                <?php endif; ?>
-                            </div>
-                        </a>
+                        <?php if (!in_array(Yii::$app->controller->id, ['sale'])) { ?>
+                            <a class="phone-num">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <div>
+                                    <span class="phone"><?= Yii::$app->partner->getPartnerPhone() ?></span>
+                                    <?php if (Yii::$app->city->domain == 'ru') { ?>
+                                        <span class="descr">
+                                            <?= Yii::t('app', 'Бесплатно в вашем городе') ?>
+                                        </span>
+                                    <?php } ?>
+                                </div>
+                            </a>
+                        <?php } ?>
 
                         <?php /*
                         <a class="back-call">
@@ -284,22 +285,23 @@ use frontend\modules\location\widgets\ChangeCity;
 
                 <?php //if (YII_ENV == 'dev') { ?>
 
-                    <div class="search-cont">
-                        <?php $form = ActiveForm::begin([
-                            'action' => ['/catalog/elastic-search/search'],
-                            'method' => 'get',
-                            'options' => ['class' => 'form-inline'],
-                        ]); ?>
+                <div class="search-cont">
+                    <?php $form = ActiveForm::begin([
+                        'action' => ['/catalog/elastic-search/search'],
+                        'method' => 'get',
+                        'options' => ['class' => 'form-inline'],
+                    ]); ?>
 
-                        <div class="search-group">
-                            <input id="search" name="search" placeholder="<?= Yii::t('app','Поиск') ?>" class="form-control input-md" required
-                                   value="" type="text">
-                            <?= Html::submitButton('<i class="fa fa-search" aria-hidden="true"></i>', ['class' => 'search-button']) ?>
-                        </div>
-
-                        <?php ActiveForm::end(); ?>
-
+                    <div class="search-group">
+                        <input id="search" name="search" placeholder="<?= Yii::t('app', 'Поиск') ?>"
+                               class="form-control input-md" required
+                               value="" type="text">
+                        <?= Html::submitButton('<i class="fa fa-search" aria-hidden="true"></i>', ['class' => 'search-button']) ?>
                     </div>
+
+                    <?php ActiveForm::end(); ?>
+
+                </div>
 
                 <?php //} ?>
 
