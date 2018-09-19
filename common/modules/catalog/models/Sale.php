@@ -371,21 +371,23 @@ class Sale extends ActiveRecord
 
         $style = $material = [];
         foreach ($specification as $obj) {
-            if ($obj->parent_id === '9')
+            if ($obj->parent_id === '9') {
                 $style[] = $obj->id;
-
-            if ($obj->parent_id === '2')
+            }
+            if ($obj->parent_id === '2') {
                 $material[] = $obj->id;
+            }
         }
 
         foreach ($this->specificationValue as $v) {
             $mas[$v['specification_id']] = $v['val'];
 
-            if (in_array($v['specification_id'], $style))
+            if (in_array($v['specification_id'], $style)) {
                 $mas['style'] = $v['spec_id'];
-
-            if (in_array($v['specification_id'], $material))
+            }
+            if (in_array($v['specification_id'], $material)) {
                 $mas['material'] = $v['spec_id'];
+            }
         }
 
         return (!empty($mas)) ? $mas : array();
@@ -443,5 +445,25 @@ class Sale extends ActiveRecord
         }
 
         return $imagesSources;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountViews()
+    {
+        return SaleStats::findBase()
+            ->andWhere(['sale_item_id' => $this->id])
+            ->count();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountRequestPhone()
+    {
+        return SalePhoneRequest::findBase()
+            ->andWhere(['sale_item_id' => $this->id])
+            ->count();
     }
 }
