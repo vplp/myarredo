@@ -5,6 +5,10 @@ use backend\widgets\GridView\GridView;
 use backend\modules\catalog\models\{
     Category, Factory
 };
+use backend\modules\location\models\{
+    City
+};
+use backend\modules\user\models\User;
 //
 use thread\widgets\grid\{
     ActionStatusColumn, GridViewFilter
@@ -40,9 +44,21 @@ echo GridView::widget([
             'filter' => GridViewFilter::selectOne($filter, 'factory_id', Factory::dropDownList()),
         ],
         [
-            'class' => ActionStatusColumn::class,
-            'attribute' => 'on_main',
-            'action' => 'on_main'
+            'value' => function ($model) {
+                return $model->user->profile->name_company;
+            },
+            'filter' => GridViewFilter::selectOne(
+                $filter,
+                'user_id',
+                User::dropDownListPartner()
+            ),
+        ],
+        [
+            'value' => function ($model) {
+                return ($model->city) ? $model->city->lang->title : '-';
+            },
+            'label' => Yii::t('app', 'City'),
+            'filter' => GridViewFilter::selectOne($filter, 'city_id', City::dropDownList()),
         ],
         [
             'class' => ActionStatusColumn::class,

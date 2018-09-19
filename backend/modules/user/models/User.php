@@ -24,6 +24,20 @@ class User extends \common\modules\user\models\User implements BaseBackendModel
     }
 
     /**
+     * Backend form drop down list
+     * @return array
+     */
+    public static function dropDownListPartner()
+    {
+        $query = self::findBase()
+            ->andWhere(Group::tableName() . ".role = 'partner'")
+            ->enabled()
+            ->all();
+
+        return ArrayHelper::map($query, 'id', 'profile.name_company');
+    }
+
+    /**
      * @param array $params
      * @return ActiveDataProvider
      */
