@@ -33,7 +33,10 @@ echo GridView::widget([
         ],
         [
             'attribute' => Yii::t('app', 'Factory'),
-            'value' => 'factory.title',
+            'value' => function ($model) {
+                /** @var $model \frontend\modules\catalog\models\Sale */
+                return ($model['factory']) ? $model['factory']['title'] : $model['factory_name'];
+            },
             'filter' => GridViewFilter::selectOne($filter, 'factory_id', Factory::dropDownList()),
         ],
         [
@@ -45,6 +48,21 @@ echo GridView::widget([
             'class' => ActionStatusColumn::class,
             'attribute' => 'published',
             'action' => 'published'
+        ],
+        [
+            'label' => 'Просмотры товара',
+            'format' => 'raw',
+            'value' => function ($model) {
+                /** @var $model \frontend\modules\catalog\models\Sale */
+                return $model->getCountViews();
+            },
+        ],
+        [
+            'label' => 'Запрос телефона',
+            'value' => function ($model) {
+                /** @var $model \frontend\modules\catalog\models\Sale */
+                return $model->getCountRequestPhone();
+            },
         ],
         [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class
