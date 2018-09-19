@@ -45,6 +45,14 @@ $this->title = $this->context->title;
                     ['class' => 'btn btn-goods']
                 ) ?>
 
+                <?php
+                echo Html::tag('span', '?', [
+                        'title' => Yii::$app->param->getByName('FACTORY_PROMOTION_TOOLTIP1'),
+                        'data-toggle' => 'tooltip',
+                        'data-placement' => 'bottom'
+                    ]);
+                ?>
+
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
                 ]) ?>
@@ -73,7 +81,8 @@ $this->title = $this->context->title;
                                                     [
                                                         'alt' => $category->lang->title,
                                                         'title' => $category->lang->title
-                                                    ]);
+                                                    ]
+                                                );
                                             }
                                             return implode(', ', $result);
                                         },
@@ -203,3 +212,12 @@ $this->title = $this->context->title;
         </div>
     </div>
 </main>
+
+<?php
+$script = <<<JS
+$("[data-toggle='tooltip']").tooltip({html:true}); 
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);
+?>
+

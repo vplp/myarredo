@@ -78,7 +78,6 @@ class FactoryController extends BaseController
         Yii::$app->metatag->render();
 
         if ($view == 'three') {
-
             foreach ($models->getModels() as $obj) {
                 $_models[$obj['first_letter']][] = $obj;
             }
@@ -88,7 +87,6 @@ class FactoryController extends BaseController
                 'pages' => $models->getPagination(),
             ]);
         } else {
-
             $factory_ids = [];
             foreach ($models->getModels() as $obj) {
                 $factory_ids[] = $obj['id'];
