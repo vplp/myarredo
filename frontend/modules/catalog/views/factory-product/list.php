@@ -46,10 +46,11 @@ $this->title = $this->context->title;
                 ) ?>
 
                 <?php
-                echo Html::tag('span', '?', [
+                echo Html::tag('span', '<i class="fa fa-question-circle"></i>', [
                         'title' => Yii::$app->param->getByName('FACTORY_PROMOTION_TOOLTIP1'),
                         'data-toggle' => 'tooltip',
-                        'data-placement' => 'bottom'
+                        'data-placement' => 'bottom',
+                        'class' => 'tooltip-info'
                     ]);
                 ?>
 

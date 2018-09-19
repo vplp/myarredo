@@ -6158,3 +6158,12 @@ h1 {
     max-width: 194px;
   }
 }
+.tooltip-info {
+  margin-left: 5px;
+  cursor: pointer;
+}
+.tooltip-info .fa {
+  font-size: 16px;
+  vertical-align: middle;
+  color: #448339;
+}
