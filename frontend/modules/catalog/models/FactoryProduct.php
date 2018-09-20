@@ -4,15 +4,13 @@ namespace frontend\modules\catalog\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-//
-use common\modules\catalog\models\Product as CommonProduct;
 
 /**
  * Class FactoryProduct
  *
  * @package frontend\modules\catalog\models
  */
-class FactoryProduct extends CommonProduct
+class FactoryProduct extends \common\modules\catalog\models\Product
 {
     public $promotion;
 
@@ -21,7 +19,7 @@ class FactoryProduct extends CommonProduct
      */
     public function behaviors()
     {
-        return ArrayHelper::merge(CommonProduct::behaviors(), []);
+        return ArrayHelper::merge(self::behaviors(), []);
     }
 
     /**
@@ -29,7 +27,7 @@ class FactoryProduct extends CommonProduct
      */
     public function rules()
     {
-        return ArrayHelper::merge(CommonProduct::rules(), [
+        return ArrayHelper::merge(self::rules(), [
             [['catalog_type_id'], 'required', 'on' => 'frontend'],
             [
                 [
@@ -105,7 +103,7 @@ class FactoryProduct extends CommonProduct
      */
     public function attributeLabels()
     {
-        return ArrayHelper::merge(CommonProduct::attributeLabels(), [
+        return ArrayHelper::merge(self::attributeLabels(), [
             'title'
         ]);
     }

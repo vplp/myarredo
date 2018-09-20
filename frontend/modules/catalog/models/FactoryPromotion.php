@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\models;
 
+use Yii;
 use yii\helpers\Url;
 
 /**
@@ -16,7 +17,9 @@ class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled();
+        return parent::findBase()
+            ->andWhere([self::tableName() . '.user_id' => Yii::$app->user->identity->profile->user_id])
+            ->enabled();
     }
 
     /**
