@@ -16,8 +16,7 @@ use frontend\modules\location\widgets\ChangeCity;
 <div class="header js-fixed-header">
     <div class="container-wrap">
 
-        <?php if ((Yii::$app->getUser()->isGuest)): ?>
-
+        <?php if ((Yii::$app->getUser()->isGuest)) { ?>
             <div class="top-header">
                 <div class="container large-container">
 
@@ -55,14 +54,7 @@ use frontend\modules\location\widgets\ChangeCity;
                         <div class="lang-selector">
                             <?= LangSwitch::widget() ?>
                         </div>
-
-                        <?php /*
-                        <a class="company-logo">
-                            <img src="<?= $bundle->baseUrl ?>/img/logo-odis.png" alt="">
-                        </a> */ ?>
-
                     </div>
-
                     <div class="right-part">
 
                         <?= Html::a(
@@ -78,12 +70,9 @@ use frontend\modules\location\widgets\ChangeCity;
                         <?= Cart::widget(['view' => 'short']) ?>
 
                     </div>
-
                 </div>
             </div>
-
-        <?php else: ?>
-
+        <?php } else { ?>
             <div class="top-header">
                 <div class="container large-container">
 
@@ -95,16 +84,18 @@ use frontend\modules\location\widgets\ChangeCity;
 
                     <div class="right-part">
 
-                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'user'): ?>
+                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'user') { ?>
                             <?= Cart::widget(['view' => 'short']) ?>
-                        <?php endif; ?>
+                        <?php } ?>
 
                         <div class="sign-in">
-                            <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') {
+                            <?php
+                            $role = Yii::$app->getUser()->getIdentity()->group->role;
+                            if ($role == 'partner') {
                                 echo Yii::$app->getUser()->getIdentity()->profile->name_company;
-                            } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'admin') {
+                            } elseif ($role == 'admin') {
                                 echo Yii::$app->getUser()->getIdentity()->profile->first_name;
-                            } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
+                            } elseif ($role == 'factory') {
                                 echo Yii::$app->getUser()->getIdentity()->profile->factory->title;
                             } else {
                                 echo Yii::$app->getUser()->getIdentity()->profile->first_name;
@@ -120,7 +111,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                         <object>
                                             <ul class="dropdown-menu">
 
-                                                <?php if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner'])): ?>
+                                                <?php if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner'])) { ?>
                                                     <li>
                                                         <?= Html::a(
                                                             Yii::t('app', 'Orders'),
@@ -158,7 +149,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                                             ['/user/logout/index']
                                                         ); ?>
                                                     </li>
-                                                <?php elseif (Yii::$app->getUser()->getIdentity()->group->role == 'admin'): ?>
+                                                <?php } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'admin') { ?>
                                                     <li>
                                                         <?= Html::a(
                                                             Yii::t('app', 'Orders'),
@@ -190,11 +181,17 @@ use frontend\modules\location\widgets\ChangeCity;
                                                             ['/user/logout/index']
                                                         ); ?>
                                                     </li>
-                                                <?php elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory'): ?>
+                                                <?php } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
                                                     <li>
                                                         <?= Html::a(
                                                             Yii::t('app', 'My goods'),
                                                             ['/catalog/factory-product/list']
+                                                        ); ?>
+                                                    </li>
+                                                    <li>
+                                                        <?= Html::a(
+                                                            Yii::t('app', 'Рекламные компании'),
+                                                            ['/catalog/factory-promotion/list']
                                                         ); ?>
                                                     </li>
                                                     <li>
@@ -234,9 +231,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                                             ['/user/logout/index']
                                                         ); ?>
                                                     </li>
-
-                                                <?php else: ?>
-
+                                                <?php } else { ?>
                                                     <li>
                                                         <?= Html::a(
                                                             Yii::t('app', 'Orders'),
@@ -256,8 +251,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                                             ['/user/logout/index']
                                                         ); ?>
                                                     </li>
-
-                                                <?php endif; ?>
+                                                <?php } ?>
                                             </ul>
                                         </object>
                                     </span>
@@ -270,7 +264,7 @@ use frontend\modules\location\widgets\ChangeCity;
                 </div>
             </div>
 
-        <?php endif; ?>
+        <?php } ?>
 
         <div class="bot-header">
             <div class="container large-container">
@@ -282,8 +276,6 @@ use frontend\modules\location\widgets\ChangeCity;
                 ) ?>
 
                 <?= CatalogMenu::widget([]); ?>
-
-                <?php //if (YII_ENV == 'dev') { ?>
 
                 <div class="search-cont">
                     <?php $form = ActiveForm::begin([
@@ -303,8 +295,6 @@ use frontend\modules\location\widgets\ChangeCity;
 
                 </div>
 
-                <?php //} ?>
-
             </div>
         </div>
     </div>
@@ -319,11 +309,11 @@ use frontend\modules\location\widgets\ChangeCity;
                 <a class="phone-num">
                     <?= Yii::$app->partner->getPartnerPhone() ?>
                 </a>
-                <?php if (Yii::$app->city->domain == 'ru'): ?>
+                <?php if (Yii::$app->city->domain == 'ru') { ?>
                     <div class="after-num">
                         <?= Yii::t('app', 'Бесплатно в вашем городе') ?>
                     </div>
-                <?php endif; ?>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -346,7 +336,7 @@ use frontend\modules\location\widgets\ChangeCity;
                 [
                     'class' => 'mobile-btn'
                 ]
-            ); ?>
+            ) ?>
 
             <a class="back-call">
                 <i class="fa fa-phone" aria-hidden="true"></i>

@@ -8,6 +8,7 @@
  *
  * @copyright (c), Thread
  */
+
 use yii\helpers\Html;
 
 ?>
@@ -23,8 +24,14 @@ use yii\helpers\Html;
     </div>
     <div class="col-md-2">
         <h2 class="btn-group" role="group">
-            <?= Html::a('<i class="fa fa-trash"></i> ', ['trash'],
-                ['class' => 'btn btn-default', 'title' => Yii::t('app', 'Trash')]) ?>
+            <?= Html::a(
+                '<i class="fa fa-trash"></i>',
+                ['trash'],
+                [
+                    'class' => 'btn btn-default',
+                    'title' => Yii::t('app', 'Trash')
+                ]
+            ) ?>
         </h2>
     </div>
 </div>
