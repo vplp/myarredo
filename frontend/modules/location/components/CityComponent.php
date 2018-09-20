@@ -90,9 +90,9 @@ class CityComponent extends Component
     {
         if (Yii::$app->language == 'it-IT') {
             $mask = '+39 (99) 999-99-99';
-        } else if (in_array($this->domain, ['by'])) {
+        } elseif (in_array($this->domain, ['by'])) {
             $mask = '+375 (99) 999-99-99';
-        } else if (in_array($this->domain, ['ua'])) {
+        } elseif (in_array($this->domain, ['ua'])) {
             $mask = '+380 (99) 999-99-99';
         } else {
             $mask = '+7 (999) 999-99-99';
@@ -158,7 +158,7 @@ class CityComponent extends Component
         if (in_array($this->domain, ['by'])) {
             // minsk
             $this->defaultCityId = 2;
-        } else if (in_array($this->domain, ['ua'])) {
+        } elseif (in_array($this->domain, ['ua'])) {
             // kiev
             $this->defaultCityId = 1;
         } else {

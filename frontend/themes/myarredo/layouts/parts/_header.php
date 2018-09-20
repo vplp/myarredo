@@ -190,7 +190,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                                     </li>
                                                     <li>
                                                         <?= Html::a(
-                                                            Yii::t('app', 'Рекламные компании'),
+                                                            Yii::t('app', 'Рекламные кампании'),
                                                             ['/catalog/factory-promotion/list']
                                                         ); ?>
                                                     </li>

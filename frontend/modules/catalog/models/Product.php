@@ -313,7 +313,7 @@ class Product extends \common\modules\catalog\models\Product
 
         if (!$this->removed && $this->in_stock) {
             $status = Yii::t('app', 'Товар в наличии');
-        } else if (!$this->removed) {
+        } elseif (!$this->removed) {
             $status = Yii::t('app', 'Под заказ');
         }
 

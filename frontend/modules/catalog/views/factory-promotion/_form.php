@@ -126,7 +126,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                         ]) ?>
 
                         <p class="reclamation-p">
-                            <?= Yii::t('app', 'Для проведения рекламной компании вы выбрали') ?> <span
+                            <?= Yii::t('app', 'Для проведения рекламной кампании вы выбрали') ?> <span
                                     id="count-products"> 0 </span>
                             <span class="for-green"> <?= Yii::t('app', 'товаров') ?> </span>
                         </p>
@@ -224,7 +224,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                             <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
                         </div>
                         <div class="promotion-title-label">
-                            <?= Yii::t('app', 'Общая стоимость рекламной компании') ?>
+                            <?= Yii::t('app', 'Общая стоимость рекламной кампании') ?>
                             <span id="cost">0</span>
                             <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
                             <span class="for-nds">(* цены указаны без НДС)</span>
@@ -235,7 +235,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                             <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
                         </div>
                         <div class="promotion-title-label for-hide">
-                            <?= Yii::t('app', 'Стоимость рекламной компании с НДС') ?>
+                            <?= Yii::t('app', 'Стоимость рекламной кампании с НДС') ?>
                             <span id="total_nds">0</span>
                             <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
                         </div>
@@ -250,7 +250,7 @@ $this->title = Yii::t('app', 'Рекламировать');
 
                         <div class="buttons-cont">
                             <?= Html::submitButton(
-                                Yii::t('app', 'Сохранить компанию'),
+                                Yii::t('app', 'Сохранить кампанию'),
                                 ['class' => 'btn btn-goods']
                             ) ?>
 
@@ -290,7 +290,7 @@ $('#factorypromotion-city_ids').find('#factorypromotion-country_id').on('change'
         belBoxTab.css('display', 'none');
         $('.check-all').removeClass('checked').children('input[type="checkbox"]').prop('checked', false);
     }
-    else if ($(this).val() === "3") {
+    elseif ($(this).val() === "3") {
         rusBoxTab.find('input[type="checkbox"]').prop('checked', false).parent('.jq-checkbox').removeClass('checked');
         belBoxTab.find('input[type="checkbox"]').prop('checked', false).parent('.jq-checkbox').removeClass('checked');
         rusBoxTab.css('display', 'none');
@@ -307,7 +307,7 @@ function watchForSelect() {
         rusBoxTab.css('display', 'block');
         belBoxTab.css('display', 'none');
     }
-    else if (ourVal.val() === "3") {
+    elseif (ourVal.val() === "3") {
         rusBoxTab.css('display', 'none');
         belBoxTab.css('display', 'block');
     }
@@ -380,7 +380,7 @@ function newCost() {
             cost_of_views = 0;
         }  
     }
-    else if (selectedCountry === "3") {
+    elseif (selectedCountry === "3") {
         switch (numberViews) {
             case 1000:
             cost_of_views = 20400;

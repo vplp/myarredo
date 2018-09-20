@@ -176,7 +176,7 @@ class SendPulseController extends Controller
                     ->setSubject('Новый запрос на товар')
                     ->send();
 
-            } else if ($item->product['factory_id']) {
+            } elseif ($item->product['factory_id']) {
 
                 // use user factory email
 

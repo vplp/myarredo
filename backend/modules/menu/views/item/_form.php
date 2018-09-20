@@ -83,7 +83,7 @@ $(document).on('change', '#menuitem-link_type', function () {
         $('.menuitem-link_type_permanent').show();
         $('.menuitem-link_type_external').hide();
         $('.menuitem-link_type_internal').hide();
-    }else if(this.value == 'internal'){
+    }elseif(this.value == 'internal'){
         $('.menuitem-link_type_internal').show();
         $('.menuitem-link_type_external').hide();
         $('.menuitem-link_type_permanent').hide();

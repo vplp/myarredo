@@ -74,7 +74,7 @@ class Order extends OrderModel
         if (isset($params['city_id']) && is_array($params['city_id'])) {
             $query
                 ->andFilterWhere(['IN', self::tableName() . '.city_id', $params['city_id']]);
-        } else if (isset($params['city_id']) && $params['city_id'] > 0) {
+        } elseif (isset($params['city_id']) && $params['city_id'] > 0) {
             $query
                 ->andFilterWhere([
                     self::tableName() . '.city_id' => $params['city_id'],

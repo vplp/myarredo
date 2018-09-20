@@ -40,7 +40,7 @@ $this->title = $this->context->title;
                 ) ?>
 
                 <?= Html::a(
-                    Yii::t('app', 'Рекламные компании'),
+                    Yii::t('app', 'Рекламные кампании'),
                     Url::toRoute(['/catalog/factory-promotion/list']),
                     ['class' => 'btn btn-goods']
                 ) ?>

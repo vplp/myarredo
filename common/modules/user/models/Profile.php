@@ -312,7 +312,7 @@ class Profile extends \thread\modules\user\models\Profile
     {
         if (Yii::$app->getUser()->getIdentity()->profile->possibility_to_answer) {
             return true;
-        } else if (Yii::$app->getUser()->getIdentity()->profile->website) {
+        } elseif (Yii::$app->getUser()->getIdentity()->profile->website) {
 
             $html = $this->get_data(Yii::$app->getUser()->getIdentity()->profile->website);
 

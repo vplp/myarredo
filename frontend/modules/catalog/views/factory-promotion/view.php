@@ -32,7 +32,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                 <div class="form-horizontal">
 
                     <p class="reclamation-p">
-                        <?= Yii::t('app', 'Для проведения рекламной компании вы выбрали') ?> <span
+                        <?= Yii::t('app', 'Для проведения рекламной кампании вы выбрали') ?> <span
                                 id="count-products"> <?= count($model->products) ?> </span>
                         <span class="for-green"> <?= Yii::t('app', 'товаров') ?> </span>
                     </p>
@@ -84,7 +84,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                         <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
                     </div>
                     <div class="promotion-title-label">
-                        <?= Yii::t('app', 'Общая стоимость рекламной компании') ?>
+                        <?= Yii::t('app', 'Общая стоимость рекламной кампании') ?>
                         <span id="cost"><?= $model->amount ?></span>
                         <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
                     </div>

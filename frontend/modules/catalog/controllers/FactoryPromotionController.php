@@ -74,7 +74,7 @@ class FactoryPromotionController extends BaseController
      */
     public function actions()
     {
-        $this->title = Yii::t('app', 'Рекламная компания');
+        $this->title = Yii::t('app', 'Рекламная кампания');
 
         return ArrayHelper::merge(
             parent::actions(),

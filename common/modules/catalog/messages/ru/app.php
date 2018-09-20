@@ -13,5 +13,5 @@ return [
     'Collection' => 'Коллекции',
     'Sale' => 'Распродажа',
     'Factory product' => 'Товары фабрики',
-    'Factory promotion' => 'Рекламные компании'
+    'Factory promotion' => 'Рекламные кампании'
 ];

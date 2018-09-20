@@ -227,7 +227,7 @@ class SaleFilter extends Widget
             foreach ($letter as $val) {
                 if ($val['checked']) {
                     $factory_first_show_checked[] = $val;
-                } else if ($i < 5) {
+                } elseif ($i < 5) {
                     $factory_first_show[] = $val;
                     ++$i;
                 }
