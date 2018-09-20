@@ -528,6 +528,7 @@ $(document).ready(function(){
         $(".text-col").closest(".text-description").remove();
     }
 
+    $("[data-toggle='tooltip']").tooltip({html:true});
 });
 (function(){
     var loaderTemplate =

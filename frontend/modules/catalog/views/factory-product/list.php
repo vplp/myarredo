@@ -213,12 +213,3 @@ $this->title = $this->context->title;
         </div>
     </div>
 </main>
-
-<?php
-$script = <<<JS
-$("[data-toggle='tooltip']").tooltip({html:true}); 
-JS;
-
-$this->registerJs($script, yii\web\View::POS_READY);
-?>
-
