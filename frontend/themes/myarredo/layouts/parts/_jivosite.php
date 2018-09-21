@@ -1,6 +1,7 @@
 <?php
 if (Yii::$app->getUser()->isGuest && Yii::$app->city->domain == 'ru' &&
-    !in_array(Yii::$app->controller->id, ['sale'])
+    !in_array(Yii::$app->controller->id, ['sale']) &&
+    !in_array(Yii::$app->module->id, ['user'])
 ) { ?>
     <!-- BEGIN JIVOSITE CODE {literal} -->
     <script type='text/javascript'>
