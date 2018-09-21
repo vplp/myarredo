@@ -106,7 +106,8 @@ class FactoryProduct extends CommonProduct
     public function attributeLabels()
     {
         return ArrayHelper::merge(CommonProduct::attributeLabels(), [
-            'title'
+            'title',
+            'factory_price' => Yii::t('app', 'Цена в розницу от'),
         ]);
     }
 

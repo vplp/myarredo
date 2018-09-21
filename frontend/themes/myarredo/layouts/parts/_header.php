@@ -214,12 +214,17 @@ use frontend\modules\location\widgets\ChangeCity;
                                                             ['/catalog/factory-stats/list']
                                                         ); ?>
                                                     </li>
+                                                    <?php
+                                                    /*
+
                                                     <li>
                                                         <?= Html::a(
                                                             Yii::t('app', 'Banners'),
                                                             ['/banner/factory-banner/list']
                                                         ); ?>
                                                     </li>
+                                                    */
+                                                    ?>
                                                     <li role="separator" class="divider"></li>
                                                     <li>
                                                         <?= Html::a(

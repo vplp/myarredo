@@ -40,17 +40,14 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
                                 : Url::toRoute(['/catalog/factory-product/update', 'id' => $model->id]),
                         ]); ?>
 
-                        <?php if (!$model->isNewRecord): ?>
-
+                        <?php if (!$model->isNewRecord) { ?>
                             <?= $form->field($model, 'image_link')->imageOne($model->getImageLink()) ?>
-
                             <?= $form->field($model, 'gallery_image')->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
-
-                        <?php endif; ?>
+                        <?php } ?>
 
                         <?= $form->text_line($model, 'article') ?>
 
-                        <?= $form->text_line_lang($modelLang, 'title') ?>
+                        <?= $form->text_line($modelLang, 'title') ?>
 
                         <?= $form
                             ->field($model, 'collections_id')
@@ -82,8 +79,7 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
 
                         <?= $form->text_line($model, 'volume') ?>
 
-                        <?php if (!$model->isNewRecord): ?>
-
+                        <?php if (!$model->isNewRecord) { ?>
                             <?= TreeGrid::widget([
                                 'dataProvider' => (new Specification())->search(Yii::$app->request->queryParams),
                                 'keyColumnName' => 'id',
@@ -107,11 +103,9 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
                                 ]
                             ]); ?>
 
-                        <?php endif; ?>
+                        <?php } ?>
 
                         <?= $form->text_line($model, 'factory_price') ?>
-
-                        <?= $form->text_line($model, 'price_from') ?>
 
                         <div class="buttons-cont">
                             <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-goods']) ?>

@@ -37,11 +37,12 @@ class FactoryBannerController extends BaseController
 
     /**
      * @return array
+     * @throws ForbiddenHttpException
+     * @throws \Throwable
      */
     public function behaviors()
     {
-        if (Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
-            !Yii::$app->getUser()->getIdentity()->profile->factory_id) {
+        if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
             throw new ForbiddenHttpException(Yii::t('app', 'Access denied without factory id.'));
         }
 
