@@ -49,11 +49,20 @@ $bundle = AppAsset::register($this);
 
             <?php } ?>
 
-            <?php if (Yii::$app->controller->action->id != 'list-partners') {
+            <?php
+            if ((!Yii::$app->getUser()->isGuest &&
+                Yii::$app->getUser()->getIdentity()->group->role != 'factory') &&
+                Yii::$app->controller->action->id != 'list-partners'
+            ) {
                 echo PartnerMap::widget(['city' => Yii::$app->city->getCity()]);
             } ?>
 
-            <?= Cities::widget() ?>
+            <?php
+            if (!Yii::$app->getUser()->isGuest &&
+                Yii::$app->getUser()->getIdentity()->group->role != 'factory'
+            ) { ?>
+                <?= Cities::widget() ?>
+            <?php } ?>
 
             <div class="bot-footer">
                 <div class="container large-container">
@@ -82,22 +91,16 @@ $bundle = AppAsset::register($this);
                             </div>
                             <div class="copyright">
 
-                                <?php if (Yii::$app->city->domain == 'by'): ?>
-
+                                <?php if (Yii::$app->city->domain == 'by') { ?>
                                     2013 - <?= date('Y'); ?> (с)
                                     <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_BY')); ?></br>
-
-                                <?php elseif (Yii::$app->city->domain == 'ua'): ?>
-
+                                <?php } elseif (Yii::$app->city->domain == 'ua') { ?>
                                     2013 - <?= date('Y'); ?> (с)
                                     <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_UA')); ?></br>
-
-                                <?php else: ?>
-
+                                <?php } else { ?>
                                     2013 - <?= date('Y'); ?> (с)
                                     <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_RU')); ?></br>
-
-                                <?php endif; ?>
+                                <?php } ?>
 
                                 <?= Yii::t('app', 'Программирование сайта') ?> -
                                 <a href="http://www.vipdesign.com.ua/" rel="nofollow">VipDesign</a>

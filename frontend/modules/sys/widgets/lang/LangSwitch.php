@@ -32,6 +32,7 @@ class LangSwitch extends Widget
     public function init()
     {
         parent::init();
+
         $langModel = new Yii::$app->languages->languageModel;
 
         $this->items = $langModel->getLanguages();
@@ -46,7 +47,6 @@ class LangSwitch extends Widget
         $items = [];
 
         foreach ($this->items as $lang) {
-
             $path = \Yii::$app->request->pathInfo;
 
             if ($lang['local'] == Yii::$app->language) {
