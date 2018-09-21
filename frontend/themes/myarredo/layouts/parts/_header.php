@@ -226,6 +226,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                                     */
                                                     ?>
 
+
                                                     <li role="separator" class="divider"></li>
                                                     <li>
                                                         <?= Html::a(
@@ -285,8 +286,9 @@ use frontend\modules\location\widgets\ChangeCity;
 
                 <?php
                 if (!Yii::$app->getUser()->isGuest &&
-                    Yii::$app->getUser()->getIdentity()->group->role != 'factory'
-                ) { ?>
+                    Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+                ) {
+                } else { ?>
                     <?= CatalogMenu::widget([]); ?>
 
                     <div class="search-cont">

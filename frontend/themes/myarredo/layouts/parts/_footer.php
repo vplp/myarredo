@@ -50,17 +50,19 @@ $bundle = AppAsset::register($this);
             <?php } ?>
 
             <?php
-            if ((!Yii::$app->getUser()->isGuest &&
-                Yii::$app->getUser()->getIdentity()->group->role != 'factory') &&
+            if (!Yii::$app->getUser()->isGuest &&
+                Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
                 Yii::$app->controller->action->id != 'list-partners'
             ) {
+            } else {
                 echo PartnerMap::widget(['city' => Yii::$app->city->getCity()]);
             } ?>
 
             <?php
             if (!Yii::$app->getUser()->isGuest &&
-                Yii::$app->getUser()->getIdentity()->group->role != 'factory'
-            ) { ?>
+                Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+            ) {
+            } else { ?>
                 <?= Cities::widget() ?>
             <?php } ?>
 
