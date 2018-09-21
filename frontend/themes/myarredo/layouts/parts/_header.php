@@ -225,6 +225,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                                     </li>
                                                     */
                                                     ?>
+
                                                     <li role="separator" class="divider"></li>
                                                     <li>
                                                         <?= Html::a(
@@ -282,26 +283,29 @@ use frontend\modules\location\widgets\ChangeCity;
                     ['class' => 'logo']
                 ) ?>
 
-                <?= CatalogMenu::widget([]); ?>
+                <?php
+                if (!Yii::$app->getUser()->isGuest &&
+                    Yii::$app->getUser()->getIdentity()->group->role != 'factory'
+                ) { ?>
+                    <?= CatalogMenu::widget([]); ?>
 
-                <div class="search-cont">
-                    <?php $form = ActiveForm::begin([
-                        'action' => ['/catalog/elastic-search/search'],
-                        'method' => 'get',
-                        'options' => ['class' => 'form-inline'],
-                    ]); ?>
+                    <div class="search-cont">
+                        <?php $form = ActiveForm::begin([
+                            'action' => ['/catalog/elastic-search/search'],
+                            'method' => 'get',
+                            'options' => ['class' => 'form-inline'],
+                        ]); ?>
 
-                    <div class="search-group">
-                        <input id="search" name="search" placeholder="<?= Yii::t('app', 'Поиск') ?>"
-                               class="form-control input-md" required
-                               value="" type="text">
-                        <?= Html::submitButton('<i class="fa fa-search" aria-hidden="true"></i>', ['class' => 'search-button']) ?>
+                        <div class="search-group">
+                            <input id="search" name="search" placeholder="<?= Yii::t('app', 'Поиск') ?>"
+                                   class="form-control input-md" required
+                                   value="" type="text">
+                            <?= Html::submitButton('<i class="fa fa-search" aria-hidden="true"></i>', ['class' => 'search-button']) ?>
+                        </div>
+
+                        <?php ActiveForm::end(); ?>
                     </div>
-
-                    <?php ActiveForm::end(); ?>
-
-                </div>
-
+                <?php } ?>
             </div>
         </div>
     </div>
