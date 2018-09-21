@@ -37,10 +37,9 @@ $this->title = $this->context->title;
                 </div>
                 <div class="manager-history-list">
 
-                    <?php if (!empty($models)): ?>
-
-                        <?php foreach ($models as $modelOrder): ?>
-
+                    <?php
+                    if (!empty($models)) {
+                        foreach ($models as $modelOrder) { ?>
                             <div class="item" data-hash="<?= $modelOrder->id; ?>">
 
                                 <ul class="orders-title-block flex">
@@ -67,16 +66,18 @@ $this->title = $this->context->title;
 
                             </div>
 
-                        <?php endforeach; ?>
-
-                    <?php endif; ?>
+                        <?php }
+                    } else { ?>
+                        <div class="text-center">
+                            <?= Yii::t('app', 'По продукции Вашей фабрики запросы отсутствуют!'); ?>
+                        </div>
+                    <?php } ?>
 
                 </div>
 
                 <?= frontend\components\LinkPager::widget([
                     'pagination' => $pages,
-                ]);
-                ?>
+                ]) ?>
 
             </div>
         </div>
