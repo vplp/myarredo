@@ -9,6 +9,7 @@ use yii\db\Transaction;
 use yii\helpers\{
     ArrayHelper, Url
 };
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 //
@@ -45,9 +46,15 @@ class FactoryPromotionController extends BaseController
 
     /**
      * @return array
+     * @throws \Throwable
      */
     public function behaviors()
     {
+        if (Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
+            !Yii::$app->getUser()->getIdentity()->profile->factory_id) {
+            throw new ForbiddenHttpException(Yii::t('app', 'Access denied without factory id.'));
+        }
+
         return [
             'AccessControl' => [
                 'class' => AccessControl::class,

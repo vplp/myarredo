@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\{
     VerbFilter, AccessControl
 };
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 //
 use frontend\modules\catalog\models\Factory;
@@ -28,9 +29,16 @@ class FactoryStatsController extends BaseController
 
     /**
      * @return array
+     * @throws ForbiddenHttpException
+     * @throws \Throwable
      */
     public function behaviors()
     {
+        if (Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
+            !Yii::$app->getUser()->getIdentity()->profile->factory_id) {
+            throw new ForbiddenHttpException(Yii::t('app', 'Access denied without factory id.'));
+        }
+
         return [
             'verbs' => [
                 'class' => VerbFilter::class,

@@ -7,6 +7,8 @@ use yii\helpers\ArrayHelper;
 use yii\filters\{
     VerbFilter, AccessControl
 };
+use yii\web\ForbiddenHttpException;
+//
 use frontend\components\BaseController;
 use frontend\modules\shop\models\{
     Order
@@ -25,9 +27,16 @@ class FactoryOrderController extends BaseController
 
     /**
      * @return array
+     * @throws ForbiddenHttpException
+     * @throws \Throwable
      */
     public function behaviors()
     {
+        if (Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
+            !Yii::$app->getUser()->getIdentity()->profile->factory_id) {
+            throw new ForbiddenHttpException(Yii::t('app', 'Access denied without factory id.'));
+        }
+
         return [
             'verbs' => [
                 'class' => VerbFilter::class,

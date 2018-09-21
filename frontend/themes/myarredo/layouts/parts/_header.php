@@ -96,7 +96,9 @@ use frontend\modules\location\widgets\ChangeCity;
                             } elseif ($role == 'admin') {
                                 echo Yii::$app->getUser()->getIdentity()->profile->first_name;
                             } elseif ($role == 'factory') {
-                                echo Yii::$app->getUser()->getIdentity()->profile->factory->title;
+                                echo Yii::$app->getUser()->getIdentity()->profile->factory
+                                    ? Yii::$app->getUser()->getIdentity()->profile->factory->title
+                                    : '';
                             } else {
                                 echo Yii::$app->getUser()->getIdentity()->profile->first_name;
                             } ?>

@@ -2,8 +2,10 @@
 
 namespace frontend\modules\banner\controllers;
 
+use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 //
 use common\actions\upload\{
     DeleteAction, UploadAction
@@ -38,6 +40,11 @@ class FactoryBannerController extends BaseController
      */
     public function behaviors()
     {
+        if (Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
+            !Yii::$app->getUser()->getIdentity()->profile->factory_id) {
+            throw new ForbiddenHttpException(Yii::t('app', 'Access denied without factory id.'));
+        }
+
         return [
             'AccessControl' => [
                 'class' => AccessControl::class,
