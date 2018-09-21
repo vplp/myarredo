@@ -131,8 +131,6 @@ class RegisterController extends BaseController
                     ->send();
 
                 Yii::$app->getSession()->addFlash('success', Yii::$app->param->getByName('USER_FACTORY_REG_MESSAGE'));
-
-
             }
 
             if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
@@ -200,8 +198,14 @@ class RegisterController extends BaseController
 
                 Yii::$app->getSession()->addFlash('success', Yii::$app->param->getByName('USER_FACTORY_REG_MESSAGE'));
 
-                $model = new $this->model();
-                $model->setScenario('registerFactory');
+                if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
+                    return $this->redirect(Url::toRoute('/user/profile/index'));
+                }
+
+                if ($status === true) {
+                    Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
+                    return $this->redirect(Url::toRoute('/user/login/index'));
+                }
             }
         }
 
