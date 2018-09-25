@@ -35,16 +35,24 @@ $bundle = AppAsset::register($this);
                         <div class="cont-bg"
                              style="background-image: url(<?= $bundle->baseUrl ?>/img/cont-photo-bg.jpg);"></div>
                     </div>
-                    <div class="white-stripe">
-                        <div class="icon">
-                            <img src="<?= $bundle->baseUrl ?>/img/markers.svg" alt="">
-                        </div>
 
-                        <?= Html::a(
-                            Yii::t('app', 'View all sales offices'),
-                            Url::toRoute('/page/contacts/list-partners')
-                        ); ?>
-                    </div>
+                    <?php
+                    if (!Yii::$app->getUser()->isGuest &&
+                        Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+                    ) {
+                    } else { ?>
+                        <div class="white-stripe">
+                            <div class="icon">
+                                <img src="<?= $bundle->baseUrl ?>/img/markers.svg" alt="">
+                            </div>
+
+                            <?= Html::a(
+                                Yii::t('app', 'View all sales offices'),
+                                Url::toRoute('/page/contacts/list-partners')
+                            ); ?>
+                        </div>
+                    <?php } ?>
+
                 </div>
 
             <?php } ?>
@@ -80,7 +88,15 @@ $bundle = AppAsset::register($this);
 
                         </div>
                         <div class="menu-items">
-                            <?= Menu::widget(['alias' => 'footer']) ?>
+
+                            <?php
+                            if (!Yii::$app->getUser()->isGuest &&
+                                Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+                            ) {
+                            } else { ?>
+                                <?= Menu::widget(['alias' => 'footer']) ?>
+                            <?php } ?>
+
                         </div>
                         <div class="soc-copy">
                             <div class="social">
