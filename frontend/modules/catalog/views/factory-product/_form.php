@@ -21,7 +21,9 @@ use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;
  * @var \frontend\modules\catalog\models\Specification $Specification
  */
 
-$this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edit');
+$this->title = ($model->isNewRecord)
+    ? Yii::t('app', 'Add')
+    : Yii::t('app', 'Edit');
 
 ?>
 
@@ -41,18 +43,22 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
                         ]); ?>
 
                         <?php if (!$model->isNewRecord) { ?>
-                            <?= $form->field($model, 'image_link')->imageOne($model->getImageLink()) ?>
-                            <?= $form->field($model, 'gallery_image')->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
+                            <?= $form
+                                ->field($model, 'image_link')
+                                ->imageOne($model->getImageLink()) ?>
+                            <?= $form
+                                ->field($model, 'gallery_image')
+                                ->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
                         <?php } ?>
 
                         <?= $form->text_line($model, 'article') ?>
 
-                        <?= $form->text_line($modelLang, 'title') ?>
-
                         <?= $form
                             ->field($model, 'collections_id')
                             ->widget(Select2::classname(), [
-                                'data' => Collection::dropDownList(['factory_id' => Yii::$app->user->identity->profile->factory_id]),
+                                'data' => Collection::dropDownList([
+                                    //'factory_id' => Yii::$app->user->identity->profile->factory_id
+                                ]),
                                 'options' => ['placeholder' => Yii::t('app', 'Select option')],
                             ]) ?>
 
@@ -66,7 +72,9 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
                         <?= $form
                             ->field($model, 'category_ids')
                             ->widget(Select2::classname(), [
-                                'data' => Category::dropDownList(['type_id' => $model->isNewRecord ? 0 : $model['catalog_type_id']]),
+                                'data' => Category::dropDownList([
+                                    'type_id' => $model->isNewRecord ? 0 : $model['catalog_type_id']
+                                ]),
                                 'options' => [
                                     'placeholder' => Yii::t('app', 'Select option'),
                                     'multiple' => true
@@ -79,8 +87,9 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
 
                         <?= $form->text_line($model, 'volume') ?>
 
-                        <?php if (!$model->isNewRecord) { ?>
-                            <?= TreeGrid::widget([
+                        <?php
+                        if (!$model->isNewRecord) {
+                            echo TreeGrid::widget([
                                 'dataProvider' => (new Specification())->search(Yii::$app->request->queryParams),
                                 'keyColumnName' => 'id',
                                 'parentColumnName' => 'parent_id',
@@ -89,10 +98,11 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
                                     [
                                         'attribute' => 'title',
                                         'value' => 'lang.title',
-                                        'label' => Yii::t('app', 'Title'),
+                                        'label' => false,
                                     ],
                                     [
                                         'attribute' => 'val',
+                                        'label' => Yii::t('app', 'Select'),
                                         'class' => ManyToManySpecificationValueDataColumn::class,
                                         'primaryKeyFirstTable' => 'specification_id',
                                         'attributeRow' => 'val',
@@ -101,15 +111,22 @@ $this->title = ($model->isNewRecord) ? Yii::t('app', 'Add') : Yii::t('app', 'Edi
                                         'namespace' => ProductRelSpecification::class,
                                     ],
                                 ]
-                            ]); ?>
-
-                        <?php } ?>
+                            ]);
+                        } ?>
 
                         <?= $form->text_line($model, 'factory_price') ?>
 
                         <div class="buttons-cont">
-                            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-goods']) ?>
-                            <?= Html::a(Yii::t('app', 'Вернуться к списку'), ['/catalog/factory-product/list'], ['class' => 'btn btn-cancel']) ?>
+                            <?= Html::submitButton(
+                                Yii::t('app', 'Save'),
+                                ['class' => 'btn btn-goods']
+                            ) ?>
+
+                            <?= Html::a(
+                                Yii::t('app', 'Вернуться к списку'),
+                                ['/catalog/factory-product/list'],
+                                ['class' => 'btn btn-cancel']
+                            ) ?>
                         </div>
 
                         <?php ActiveForm::end(); ?>
@@ -130,14 +147,13 @@ $('#factoryproduct-catalog_type_id').on('change', function () {
             type_id: $(this).find('option:selected').val()
         }
     ).done(function (data) {
-        var category = '';
+        var html = '';
         $.each(data.category, function( key, value ) {
-           category += '<option value="'+ key +'">' + value + '</option>';
+           html += '<option value="'+ key +'">' + value + '</option>';
         });
-        $('#factoryproduct-category_ids').html(category);
+        $('#factoryproduct-category_ids').html(html);
     });
 });
 JS;
 
 $this->registerJs($script, yii\web\View::POS_READY);
-?>

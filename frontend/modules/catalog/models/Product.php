@@ -117,8 +117,8 @@ class Product extends \common\modules\catalog\models\Product
             return self::find()
                 ->innerJoinWith(['lang', 'factory'])
                 ->orderBy('position DESC')
-                ->enabled()
                 ->byAlias($alias)
+                ->enabled()
                 ->one();
         });
 
@@ -190,10 +190,7 @@ class Product extends \common\modules\catalog\models\Product
 
         $image = null;
 
-        /*if (YII_ENV_DEV && !empty($image_link)) {
-            $image = 'https://www.myarredo.ru/uploads/images/' . $image_link;
-        } else*/if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image_link_path = explode('/', $image_link);
 
             $img_name = $image_link_path[count($image_link_path) - 1];
@@ -240,13 +237,7 @@ class Product extends \common\modules\catalog\models\Product
         $imagesSources = [];
 
         foreach ($images as $image) {
-            /*if (YII_ENV_DEV) {
-                $url = 'https://www.myarredo.ru/uploads/images';
-                $imagesSources[] = [
-                    'img' => $url . '/' . $image,
-                    'thumb' => self::getImageThumb($image)
-                ];
-            } else*/if (file_exists($path . '/' . $image)) {
+            if (file_exists($path . '/' . $image)) {
                 $imagesSources[] = [
                     'img' => $url . '/' . $image,
                     'thumb' => self::getImageThumb($image, 600, 600)
@@ -261,7 +252,7 @@ class Product extends \common\modules\catalog\models\Product
      * @param string $alias
      * @return string
      */
-    public static function getUrl(string $alias)
+    public static function getUrl($alias)
     {
         if (isset(Yii::$app->controller->factory)) {
             return Url::toRoute([

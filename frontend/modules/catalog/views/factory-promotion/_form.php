@@ -283,42 +283,47 @@ $script = <<<JS
 $('#factorypromotion-city_ids').find('#factorypromotion-country_id').on('change', function(etg) {
     var rusBoxTab = $(this).closest('#factorypromotion-city_ids').children('.tab-country-2');
     var belBoxTab = $(this).closest('#factorypromotion-city_ids').children('.tab-country-3');
+    
     if ($(this).val() === "2") {
         rusBoxTab.find('input[type="checkbox"]').prop('checked', false).parent('.jq-checkbox').removeClass('checked');
         belBoxTab.find('input[type="checkbox"]').prop('checked', false).parent('.jq-checkbox').removeClass('checked');
         rusBoxTab.css('display', 'block');
         belBoxTab.css('display', 'none');
         $('.check-all').removeClass('checked').children('input[type="checkbox"]').prop('checked', false);
-    }
-    elseif ($(this).val() === "3") {
+    } else if ($(this).val() === "3") {
         rusBoxTab.find('input[type="checkbox"]').prop('checked', false).parent('.jq-checkbox').removeClass('checked');
         belBoxTab.find('input[type="checkbox"]').prop('checked', false).parent('.jq-checkbox').removeClass('checked');
         rusBoxTab.css('display', 'none');
         belBoxTab.css('display', 'block');
         $('.check-all').removeClass('checked').children('input[type="checkbox"]').prop('checked', false);
     }
+    
     newCost();
 });
+
 function watchForSelect() {
     var ourVal = $('#factorypromotion-city_ids').find('#factorypromotion-country_id');
     var rusBoxTab = $('#factorypromotion-city_ids').children('.tab-country-2');
     var belBoxTab = $('#factorypromotion-city_ids').children('.tab-country-3');
+    
     if (ourVal.val() === "2") {
         rusBoxTab.css('display', 'block');
         belBoxTab.css('display', 'none');
-    }
-    elseif (ourVal.val() === "3") {
+    } else if (ourVal.val() === "3") {
         rusBoxTab.css('display', 'none');
         belBoxTab.css('display', 'block');
     }
 }
+
 watchForSelect();
+
 // js for reinit plugin styler when used search in popup
 $('.factory-prom').on('blur', 'input[type="text"]', function() {
     setTimeout(function() {
         $('.factory-prom').find('input[type="checkbox"]').styler();
     },1000);
 });
+
 // js for functional for checkbox checked all 
 $("body").on("change", ".check-all", function() {
     var allCheckboxs = $('#factorypromotion-city_ids').find('input[type="checkbox"]');
@@ -330,12 +335,14 @@ $("body").on("change", ".check-all", function() {
         allCheckboxs.parent('.jq-checkbox').removeClass('checked');
     }
 });
+
 function watchForCheckbox() {
     if($('#factorypromotion-city_ids').find('input[type="checkbox"]').prop("checked")) {
         $('.check-all').addClass('checked');
         $('.check-all').children('input[type="checkbox"]').prop({checked: true })
     }
-} 
+}
+
 watchForCheckbox();
 
 /**
@@ -379,8 +386,7 @@ function newCost() {
             default:
             cost_of_views = 0;
         }  
-    }
-    elseif (selectedCountry === "3") {
+    } else if (selectedCountry === "3") {
         switch (numberViews) {
             case 1000:
             cost_of_views = 20400;
@@ -438,8 +444,7 @@ $('input[name="FactoryPromotion[views]"]').on('change', function() {
 /**
  * Add
  */
-$("body").on("click", "#add-product", function() { 
-
+$("body").on("click", "#add-product", function() {
     var str = '';
    
     $('input[name="product_ids[]"]:checkbox:checked').each(function () {
@@ -455,14 +460,13 @@ $("body").on("click", "#add-product", function() {
    
     $('#list-product').html(str);
     
-     newCost();
+    newCost();
 });
 
 /**
  * Delete
  */
 $("body").on("click", "#del-product", function() {
-   
     var product = $(this);
  
     var allCheckboxs = $('input[value="'+product.data('id')+'"');
@@ -481,6 +485,7 @@ function urlParam(name) {
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
 	return results[1] || 0;
 }
+
 var product_id = parseInt(urlParam('product_id'));
 
 if (product_id) {
@@ -502,7 +507,6 @@ if (product_id) {
    
     newCost();
 }
-
 JS;
 
 $this->registerJs($script, yii\web\View::POS_READY);
