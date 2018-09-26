@@ -134,6 +134,15 @@ class Collection extends ActiveRecord
     }
 
     /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findById($id)
+    {
+        return self::findBase()->byId($id)->one();
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getFactory()

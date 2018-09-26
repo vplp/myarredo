@@ -53,22 +53,12 @@ $this->title = $this->context->title;
                                         'label' => Yii::t('app', 'Title'),
                                     ],
                                     [
-                                        'format' => 'raw',
-                                        'attribute' => 'published',
-                                        'value' => function ($model) {
-                                            /** @var $model \frontend\modules\catalog\models\Collection */
-                                            return Html::checkbox(false, $model['published'], ['disabled' => true]);
-                                        },
-                                        'headerOptions' => ['class' => 'col-sm-1'],
-                                        'contentOptions' => ['class' => 'text-center']
-                                    ],
-                                    [
                                         'class' => yii\grid\ActionColumn::class,
                                         'template' => '{update}',
                                         'buttons' => [
                                             'update' => function ($url, $model) {
                                                 /** @var $model \frontend\modules\catalog\models\Collection */
-                                                return Yii::$app->user->identity->profile->factory_id == $model['factory_id']
+                                                return (Yii::$app->user->identity->id == $model['user_id'])
                                                     ? Html::a(
                                                         '<span class="glyphicon glyphicon-pencil"></span>',
                                                         Url::toRoute([

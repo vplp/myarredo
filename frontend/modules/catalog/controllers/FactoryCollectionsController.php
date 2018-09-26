@@ -94,4 +94,32 @@ class FactoryCollectionsController extends BaseController
             ]
         );
     }
+
+    /**
+     * @param $action
+     * @return bool
+     * @throws ForbiddenHttpException
+     * @throws \yii\web\BadRequestHttpException
+     * @throws \yii\web\NotFoundHttpException
+     */
+    public function beforeAction($action)
+    {
+        $id = Yii::$app->request->get('id', null);
+
+        if (in_array($action->id, ['update'])) {
+            if ($id === null) {
+                throw new \yii\web\NotFoundHttpException();
+            }
+        }
+
+        if ($id !== null) {
+            $model = FactoryCollection::findById($id);
+
+            if ($model != null && $model['user_id'] != Yii::$app->user->identity->id) {
+                throw new ForbiddenHttpException('Access denied');
+            }
+        }
+
+        return parent::beforeAction($action);
+    }
 }
