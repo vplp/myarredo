@@ -57,7 +57,7 @@ $this->title = ($model->isNewRecord)
                             ->field($model, 'collections_id')
                             ->widget(Select2::classname(), [
                                 'data' => Collection::dropDownList([
-                                    //'factory_id' => Yii::$app->user->identity->profile->factory_id
+                                    'factory_id' => Yii::$app->user->identity->profile->factory_id
                                 ]),
                                 'options' => ['placeholder' => Yii::t('app', 'Select option')],
                             ]) ?>

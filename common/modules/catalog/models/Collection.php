@@ -59,7 +59,7 @@ class Collection extends ActiveRecord
     public function rules()
     {
         return [
-            [['factory_id', 'first_letter'], 'required'],
+            [['factory_id', 'first_letter'], 'required', 'on' => 'backend'],
             [['factory_id', 'created_at', 'updated_at', 'position'], 'integer'],
             [['published', 'deleted', 'moderation'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['first_letter'], 'string', 'max' => 1],

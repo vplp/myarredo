@@ -192,6 +192,12 @@ use frontend\modules\location\widgets\ChangeCity;
                                                     </li>
                                                     <li>
                                                         <?= Html::a(
+                                                            Yii::t('app', 'Collections'),
+                                                            ['/catalog/factory-collections/list']
+                                                        ); ?>
+                                                    </li>
+                                                    <li>
+                                                        <?= Html::a(
                                                             Yii::t('app', 'Рекламные кампании'),
                                                             ['/catalog/factory-promotion/list']
                                                         ); ?>
@@ -225,6 +231,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                                     </li>
                                                     */
                                                     ?>
+
 
 
                                                     <li role="separator" class="divider"></li>
@@ -302,7 +309,10 @@ use frontend\modules\location\widgets\ChangeCity;
                             <input id="search" name="search" placeholder="<?= Yii::t('app', 'Поиск') ?>"
                                    class="form-control input-md" required
                                    value="" type="text">
-                            <?= Html::submitButton('<i class="fa fa-search" aria-hidden="true"></i>', ['class' => 'search-button']) ?>
+                            <?= Html::submitButton(
+                                '<i class="fa fa-search" aria-hidden="true"></i>',
+                                ['class' => 'search-button']
+                            ) ?>
                         </div>
 
                         <?php ActiveForm::end(); ?>

@@ -53,6 +53,7 @@ class CollectionLang extends ActiveRecordLang
     {
         return [
             'backend' => ['title'],
+            'frontend' => ['title'],
         ];
     }
 

@@ -58,6 +58,11 @@ return [
     'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/sale-product/<product:[\w\-]+>' => 'catalog/template-factory/sale-product',
 
     // Factory product
+    'factory-collections' => 'catalog/factory-collections/list',
+    'factory-collections/create' => 'catalog/factory-collections/create',
+    'factory-collections/update/<id:[\d\-]+>' => 'catalog/factory-collections/update',
+
+    // Factory product
     'factory-product' => 'catalog/factory-product/list',
     'factory-product/create' => 'catalog/factory-product/create',
     'catalog/factory-product/ajax-get-category' => 'catalog/factory-product/ajax-get-category',
