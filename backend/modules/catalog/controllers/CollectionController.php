@@ -7,10 +7,14 @@ use yii\filters\AccessControl;
 use yii\helpers\{
     ArrayHelper, Url
 };
+use yii\web\NotFoundHttpException;
 //
+use thread\actions\{
+    Create, Update
+};
 use thread\app\base\controllers\BackendController;
 use backend\modules\catalog\models\{
-    Collection, CollectionLang, Factory, search\Collection as filterCollection
+    Collection, Factory, search\Collection as filterCollection
 };
 
 /**
@@ -21,7 +25,6 @@ use backend\modules\catalog\models\{
 class CollectionController extends BackendController
 {
     public $model = Collection::class;
-    public $modelLang = CollectionLang::class;
     public $filterModel = filterCollection::class;
     public $title = 'Collection';
     public $name = 'collection';
@@ -73,6 +76,7 @@ class CollectionController extends BackendController
                 'redirect' => $link
             ],
             'create' => [
+                'class' => Create::class,
                 'redirect' => function () {
                     return ($_POST['save_and_exit'])
                         ? [
@@ -87,6 +91,7 @@ class CollectionController extends BackendController
                 }
             ],
             'update' => [
+                'class' => Update::class,
                 'redirect' => function () {
                     return ($_POST['save_and_exit'])
                         ? [
@@ -123,7 +128,7 @@ class CollectionController extends BackendController
 
         if (in_array($action->id, ['list', 'create', 'update', 'trash'])) {
             if ($factory_id === null) {
-                throw new \yii\web\NotFoundHttpException;
+                throw new NotFoundHttpException();
             }
         }
 

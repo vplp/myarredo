@@ -65,6 +65,6 @@ class Collection extends \common\modules\catalog\models\Collection
 
         $data = $query->undeleted()->all();
 
-        return ArrayHelper::map($data, 'id', 'lang.title');
+        return ArrayHelper::map($data, 'id', 'title');
     }
 }

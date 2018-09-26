@@ -57,7 +57,7 @@ $this->title = $this->context->title;
                                 'columns' => [
                                     [
                                         'attribute' => 'title',
-                                        'value' => 'lang.title',
+                                        'value' => 'title',
                                         'label' => Yii::t('app', 'Title'),
                                     ],
                                     [

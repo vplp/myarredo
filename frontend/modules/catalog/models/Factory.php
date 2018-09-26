@@ -379,11 +379,9 @@ class Factory extends \common\modules\catalog\models\Factory
         $command = Yii::$app->db->createCommand("SELECT
                 COUNT(collection.id) as count, 
                 collection.id,
-                collectionLang.title AS title
+                collection.title
             FROM
                 " . Collection::tableName() . " collection
-            INNER JOIN " . CollectionLang::tableName() . " collectionLang 
-                ON (collectionLang.rid = collection.id) AND (collectionLang.lang = :lang)
             INNER JOIN " . Product::tableName() . " product 
                 ON (product.collections_id = collection.id) 
                 AND (product.published = :published AND product.deleted = :deleted AND product.removed = :removed)
@@ -391,13 +389,12 @@ class Factory extends \common\modules\catalog\models\Factory
                 product.factory_id = :id
             GROUP BY 
                 collection.id
-            ORDER BY collectionLang.title")
+            ORDER BY collection.title")
             ->bindValues([
                 ':published' => '1',
                 ':deleted' => '0',
                 ':removed' => '0',
                 ':id' => $id,
-                ':lang' => Yii::$app->language,
             ]);
 
         return $command->queryAll();

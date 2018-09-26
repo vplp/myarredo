@@ -38,6 +38,7 @@ class FactoryCollection extends CommonCollection
     public function beforeSave($insert)
     {
         if (Yii::$app->user->identity->group->role == 'factory') {
+            $this->user_id = Yii::$app->user->identity->id;
             $this->factory_id = Yii::$app->user->identity->profile->factory_id;
         }
 
@@ -50,7 +51,7 @@ class FactoryCollection extends CommonCollection
     public function scenarios()
     {
         return ArrayHelper::merge(CommonCollection::scenarios(), [
-            'frontend' => ['factory_id', 'first_letter', 'published', 'deleted'],
+            'frontend' => ['factory_id', 'user_id', 'title', 'first_letter', 'published', 'deleted'],
         ]);
     }
 
@@ -68,7 +69,6 @@ class FactoryCollection extends CommonCollection
     public static function findBase()
     {
         return self::find()
-            ->innerJoinWith(['lang'])
             ->andWhere([self::tableName() . '.factory_id' => Yii::$app->user->identity->profile->factory_id])
             ->orderBy(self::tableName() . '.updated_at DESC');
     }

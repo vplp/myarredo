@@ -9,11 +9,12 @@ use yii\web\ForbiddenHttpException;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    FactoryCollection, CollectionLang, search\Collection as filterCollectionModel
+    FactoryCollection, search\Collection as filterCollectionModel
 };
 //
+//
 use thread\actions\{
-    CreateWithLang, ListModel, UpdateWithLang
+    Create, Update, ListModel
 };
 
 /**
@@ -28,7 +29,6 @@ class FactoryCollectionsController extends BaseController
     public $defaultAction = 'list';
 
     protected $model = FactoryCollection::class;
-    protected $modelLang = CollectionLang::class;
     protected $filterModel = filterCollectionModel::class;
 
     /**
@@ -76,18 +76,16 @@ class FactoryCollectionsController extends BaseController
                     'filterModel' => $this->filterModel,
                 ],
                 'create' => [
-                    'class' => CreateWithLang::class,
+                    'class' => Create::class,
                     'modelClass' => $this->model,
-                    'modelClassLang' => $this->modelLang,
                     'scenario' => 'frontend',
                     'redirect' => function () {
                         return ['update', 'id' => $this->action->getModel()->id];
                     }
                 ],
                 'update' => [
-                    'class' => UpdateWithLang::class,
+                    'class' => Update::class,
                     'modelClass' => $this->model,
-                    'modelClassLang' => $this->modelLang,
                     'scenario' => 'frontend',
                     'redirect' => function () {
                         return ['update', 'id' => $this->action->getModel()->id];

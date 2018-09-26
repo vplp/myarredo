@@ -85,7 +85,7 @@ class ProductLang extends ActiveRecordLang
         if ($this->title == '') {
             $this->title = (!empty($this->parent->types->lang) ? $this->parent->types->lang->title : '')
                 . (!empty($this->parent->factory) ? ' ' . $this->parent->factory->title : '')
-                . (!empty($this->parent->collection->lang) ? ' ' . $this->parent->collection->lang->title : '')
+                . (!empty($this->parent->collection) ? ' ' . $this->parent->collection->title : '')
                 . (($this->parent->article && $this->parent->is_composition == '0') ? ' ' . $this->parent->article : '');
         }
 

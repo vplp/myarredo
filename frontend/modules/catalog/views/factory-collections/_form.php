@@ -7,7 +7,6 @@ use backend\app\bootstrap\ActiveForm;
 
 /**
  * @var \frontend\modules\catalog\models\Collection $model
- * @var \frontend\modules\catalog\models\CollectionLang $modelLang
  */
 
 $this->title = ($model->isNewRecord)
@@ -43,7 +42,7 @@ $this->title = ($model->isNewRecord)
                         ->input('hidden')
                         ->label(false) ?>
 
-                    <?= $form->field($modelLang, 'title') ?>
+                    <?= $form->field($model, 'title') ?>
 
                     <div class="buttons-cont">
                         <?= Html::submitButton(

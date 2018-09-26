@@ -9,7 +9,7 @@ use yii\base\Model;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use backend\modules\catalog\models\{
-    Collection as CollectionModel, CollectionLang
+    Collection as CollectionModel
 };
 
 /**
@@ -19,8 +19,6 @@ use backend\modules\catalog\models\{
  */
 class Collection extends CollectionModel implements BaseBackendSearchModel
 {
-    public $title;
-
     /**
      * @return array
      */
@@ -68,7 +66,7 @@ class Collection extends CollectionModel implements BaseBackendSearchModel
 
         $query->andFilterWhere(['like', 'published', $this->published]);
 
-        $query->andFilterWhere(['like', CollectionLang::tableName() . '.title', $this->title]);
+        $query->andFilterWhere(['like', self::tableName() . '.title', $this->title]);
 
         return $dataProvider;
     }

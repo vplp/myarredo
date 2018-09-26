@@ -7,7 +7,7 @@ use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
 use frontend\modules\catalog\models\{
-    Collection as CollectionModel, CollectionLang
+    Collection as CollectionModel
 };
 
 /**
@@ -60,7 +60,7 @@ class Collection extends CollectionModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', CollectionLang::tableName() . '.title', $this->title]);
+        $query->andFilterWhere(['like', self::tableName() . '.title', $this->title]);
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();

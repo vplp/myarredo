@@ -9,8 +9,7 @@ use yii\data\ActiveDataProvider;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use frontend\modules\catalog\models\{
-    FactoryCollection as FactoryCollectionModel,
-    FactoryCollectionLang
+    FactoryCollection as FactoryCollectionModel
 };
 use frontend\modules\catalog\Catalog;
 
@@ -75,7 +74,7 @@ class FactoryCollection extends FactoryCollectionModel implements BaseBackendSea
 
         $query
             ->andFilterWhere(['like', self::tableName() . '.published', $this->published])
-            ->andFilterWhere(['like', FactoryCollectionLang::tableName() . '.title', $this->title]);
+            ->andFilterWhere(['like', self::tableName() . '.title', $this->title]);
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();
