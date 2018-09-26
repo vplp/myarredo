@@ -5,14 +5,6 @@ use yii\helpers\{
 };
 use kartik\grid\GridView;
 use frontend\components\Breadcrumbs;
-//
-use frontend\modules\catalog\models\{
-    Category, Product
-};
-//
-use thread\widgets\grid\{
-    GridViewFilter
-};
 
 /**
  * @var \yii\data\Pagination $pages
@@ -76,13 +68,18 @@ $this->title = $this->context->title;
                                         'buttons' => [
                                             'update' => function ($url, $model) {
                                                 /** @var $model \frontend\modules\catalog\models\Collection */
-                                                return Yii::$app->user->identity->profile->factory_id == $model['factory_id'] ? Html::a(
-                                                    '<span class="glyphicon glyphicon-pencil"></span>',
-                                                    Url::toRoute(['/catalog/factory-collections/update', 'id' => $model['id']]),
-                                                    [
-                                                        'class' => 'btn btn-default btn-xs'
-                                                    ]
-                                                ) : '';
+                                                return Yii::$app->user->identity->profile->factory_id == $model['factory_id']
+                                                    ? Html::a(
+                                                        '<span class="glyphicon glyphicon-pencil"></span>',
+                                                        Url::toRoute([
+                                                            '/catalog/factory-collections/update',
+                                                            'id' => $model['id']
+                                                        ]),
+                                                        [
+                                                            'class' => 'btn btn-default btn-xs'
+                                                        ]
+                                                    )
+                                                    : '';
                                             },
                                         ],
                                         'buttonOptions' => ['class' => 'btn btn-default btn-xs'],

@@ -62,6 +62,12 @@ $this->title = ($model->isNewRecord)
                                 'options' => ['placeholder' => Yii::t('app', 'Select option')],
                             ]) ?>
 
+                        <?= Html::a(
+                            '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Create collection'),
+                            Url::toRoute(['/catalog/factory-collections/create']),
+                            ['class' => 'btn btn-goods', 'target' => '_blank']
+                        ) ?>
+
                         <?= $form
                             ->field($model, 'catalog_type_id')
                             ->widget(Select2::classname(), [
