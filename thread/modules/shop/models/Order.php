@@ -13,7 +13,6 @@ use thread\modules\shop\models\query\OrderQuery;
  *
  * @property integer $id
  * @property integer $customer_id
- * @property integer $manager_id
  * @property integer $delivery_method_id
  * @property float $delivery_price
  * @property integer $payment_method_id
@@ -127,7 +126,6 @@ class Order extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'customer_id' => Yii::t('shop', 'Customer'),
-            'manager_id' => Yii::t('shop', 'Manager'),
             'comment' => Yii::t('app', 'Comment'),
             'items_count' => Yii::t('shop', 'Count of items'),
             'items_total_count' => Yii::t('shop', 'Summ of items count'),
