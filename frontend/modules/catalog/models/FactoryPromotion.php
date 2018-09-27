@@ -13,12 +13,27 @@ use yii\helpers\Url;
 class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
 {
     /**
+     * @param bool $insert
+     * @return bool
+     * @throws \Throwable
+     */
+    public function beforeSave($insert)
+    {
+        if (Yii::$app->user->identity->group->role == 'factory') {
+            $this->user_id = Yii::$app->user->identity->id;
+            $this->factory_id = Yii::$app->user->identity->profile->factory_id;
+        }
+
+        return parent::beforeSave($insert);
+    }
+
+    /**
      * @return mixed
      */
     public static function findBase()
     {
         return parent::findBase()
-            ->andWhere([self::tableName() . '.user_id' => Yii::$app->user->identity->profile->user_id])
+            ->andWhere([self::tableName() . '.factory_id' => Yii::$app->user->identity->profile->factory_id])
             ->enabled();
     }
 

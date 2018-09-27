@@ -11,15 +11,17 @@ use voskobovich\behaviors\ManyToManyBehavior;
 use thread\app\base\models\ActiveRecord;
 //
 use common\modules\catalog\Catalog;
-use common\components\YandexKassaAPI\interfaces\OrderInterface;
+use common\modules\user\models\User;
 use common\modules\location\models\{
     Country, City
 };
+use common\components\YandexKassaAPI\interfaces\OrderInterface;
 
 /**
  * Class FactoryPromotion
  *
  * @property integer $id
+ * @property integer $factory_id
  * @property integer $user_id
  * @property string $invoice_id
  * @property integer $country_id
@@ -89,8 +91,8 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
     public function rules()
     {
         return [
-            [['user_id', 'views'], 'required'],
-            [['user_id', 'country_id', 'views', 'created_at', 'updated_at'], 'integer'],
+            [['factory_id', 'user_id', 'views'], 'required'],
+            [['factory_id', 'user_id', 'country_id', 'views', 'created_at', 'updated_at'], 'integer'],
             [['invoice_id'], 'string', 'max' => 255],
             [['payment_object'], 'string'],
             [['amount', 'amount_with_vat'], 'double'],
@@ -113,6 +115,7 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
             'setInvoiceId' => ['invoice_id'],
             'setPaymentStatus' => ['payment_status', 'payment_object'],
             'backend' => [
+                'factory_id',
                 'user_id',
                 'country_id',
                 'views',
@@ -123,6 +126,7 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
                 'deleted',
             ],
             'frontend' => [
+                'factory_id',
                 'user_id',
                 'country_id',
                 'views',
@@ -134,6 +138,31 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
                 'city_ids',
                 'product_ids'
             ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'factory_id' => Yii::t('app', 'Factory'),
+            'user_id' => Yii::t('app', 'User'),
+            'invoice_id',
+            'country_id' => Yii::t('app', 'Country'),
+            'views' => Yii::t('app', 'Сколько показов Ваших товаров вы хотите получить'),
+            'amount' => Yii::t('app', 'Cost'),
+            'amount_with_vat' => Yii::t('app', 'Cost with vat'),
+            'status' => Yii::t('app', 'Status'),
+            'payment_status' => Yii::t('app', 'Payment status'),
+            'created_at' => Yii::t('app', 'Create time'),
+            'updated_at' => Yii::t('app', 'Update time'),
+            'published' => Yii::t('app', 'Published'),
+            'deleted' => Yii::t('app', 'Deleted'),
+            'city_ids' => Yii::t('app', 'Cities'),
+            'product_ids' => Yii::t('app', 'Products'),
         ];
     }
 
@@ -183,30 +212,6 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
     }
 
     /**
-     * @return array
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User'),
-            'invoice_id',
-            'country_id' => Yii::t('app', 'Country'),
-            'views' => Yii::t('app', 'Сколько показов Ваших товаров вы хотите получить'),
-            'amount' => Yii::t('app', 'Cost'),
-            'amount_with_vat' => Yii::t('app', 'Cost with vat'),
-            'status' => Yii::t('app', 'Status'),
-            'payment_status' => Yii::t('app', 'Payment status'),
-            'created_at' => Yii::t('app', 'Create time'),
-            'updated_at' => Yii::t('app', 'Update time'),
-            'published' => Yii::t('app', 'Published'),
-            'deleted' => Yii::t('app', 'Deleted'),
-            'city_ids' => Yii::t('app', 'Cities'),
-            'product_ids' => Yii::t('app', 'Products'),
-        ];
-    }
-
-    /**
      * @return string
      */
     public function getStatusTitle()
@@ -240,6 +245,23 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
         return $this
             ->hasMany(City::class, ['id' => 'city_id'])
             ->viaTable(FactoryPromotionRelCity::tableName(), ['promotion_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this
+            ->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactory()
+    {
+        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
     }
 
     /**

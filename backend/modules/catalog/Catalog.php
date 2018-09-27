@@ -38,11 +38,6 @@ class Catalog extends \common\modules\catalog\Catalog
                         'url' => ['/catalog/factory-product/list'],
                     ],
                     [
-                        'name' => 'Factory promotion',
-                        'position' => 1,
-                        'url' => ['/catalog/factory-promotion/list'],
-                    ],
-                    [
                         'name' => 'Compositions',
                         'position' => 2,
                         'url' => ['/catalog/compositions/list'],

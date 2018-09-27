@@ -1,9 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use backend\modules\location\models\{
-    Country, City
-};
 
 /**
  * @var \backend\modules\catalog\models\FactoryPromotion $model

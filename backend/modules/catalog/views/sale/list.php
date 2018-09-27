@@ -1,7 +1,6 @@
 <?php
 
 use backend\widgets\GridView\GridView;
-
 use backend\modules\catalog\models\{
     Category, Factory
 };

@@ -1,6 +1,10 @@
 <?php
 
 use backend\widgets\GridView\GridView;
+use backend\modules\catalog\models\{
+    Factory
+};
+//
 use thread\widgets\grid\{
     ActionStatusColumn, GridViewFilter
 };
@@ -22,6 +26,14 @@ echo GridView::widget([
             'value' => function ($model) {
                 return date('j.m.Y', $model->updated_at);
             }
+        ],
+        [
+            'attribute' => Yii::t('app', 'Factory'),
+            'value' => function ($model) {
+                /** @var $model \backend\modules\catalog\models\Sale */
+                return ($model['factory']) ? $model['factory']['title'] : '';
+            },
+            'filter' => GridViewFilter::selectOne($filter, 'factory_id', Factory::dropDownList()),
         ],
         [
             'format' => 'raw',

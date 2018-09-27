@@ -148,7 +148,6 @@ class FactoryPromotionController extends BaseController
             /** @var Transaction $transaction */
             $transaction = $model::getDb()->beginTransaction();
             try {
-                $model->user_id = Yii::$app->user->identity->id;
                 $model->status = 1;
                 $model->published = 1;
 
