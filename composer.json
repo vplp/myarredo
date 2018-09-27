@@ -43,7 +43,7 @@
     "yandex-money/yandex-checkout-sdk-php": "^1.0"
   },
   "require-dev": {
-    "yiisoft/yii2-debug": "*",
+    "yiisoft/yii2-debug": "~2.0.0",
     "yiisoft/yii2-gii": "*",
     "yiisoft/yii2-faker": "*",
     "cedx/yii2-mustache": "^0.5.2"

@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'gii' => 'gii',
+    '<_m:debug>/<_c:\w+>/<_a:\w+>/' => '<_m>/<_c>/<_a>',
     [
         'pattern' => 'robots',
         'route' => 'seo/robots/index',

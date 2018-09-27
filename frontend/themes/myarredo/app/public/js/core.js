@@ -40,16 +40,16 @@ $(document).ready(function(){
 
     $(window).getDevice(768);
 
-    console.log(state.device);
+    //console.log(state.device);
 
 
     function mobInit(){
-        console.log('mobile');
+        //console.log('mobile');
         $('.filters .one-filter').removeClass('open');
     }
 
     function descInit() {
-        console.log("desctp");
+        //console.log("desctp");
         $('.filters .one-filter').addClass('open');
     }
     /*--Конец определения девайса--*/
@@ -91,7 +91,7 @@ $(document).ready(function(){
         var next = $(this).next();
         if (!next.length) {
             next = $(this).siblings(':first');
-            console.log(next);
+           //console.log(next);
         }
 
         next.children(':first-child').clone().appendTo($(this));
@@ -494,10 +494,10 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $('.js-has-list').hover(function(){
-        console.log('hover2');
+       //console.log('hover2');
         $(this).find('.list-level-wrap').fadeIn(100);
     }, function(){
-        console.log('hover');
+       //console.log('hover');
         $(this).find('.list-level-wrap').fadeOut(80);
     });
 
