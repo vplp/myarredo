@@ -74,7 +74,7 @@ class ProductFilterOnMainPage extends Widget
         }
 
         $category = ArrayHelper::map(Category::findBase()->all(), 'alias', 'lang.title');
-        $types = ArrayHelper::map(Types::findBase()->all(), 'alias', 'lang.title');
+        $types = ArrayHelper::map(Types::getWithProduct([]), 'alias', 'lang.title');
 
         return $this->render($this->view, [
             'category' => $category,

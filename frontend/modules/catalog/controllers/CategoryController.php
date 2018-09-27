@@ -104,8 +104,13 @@ class CategoryController extends BaseController
         if (Yii::$app->request->isAjax) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
+            $keys = Yii::$app->catalogFilter->keys;
+            $params = Yii::$app->catalogFilter->params;
+
+            $params[$keys['category']] = Yii::$app->getRequest()->post('category_alias');
+
             $types = ArrayHelper::map(
-                Types::findByCategoryAlias(Yii::$app->getRequest()->post('category_alias')),
+                Types::getWithProduct($params),
                 'alias',
                 'lang.title'
             );
