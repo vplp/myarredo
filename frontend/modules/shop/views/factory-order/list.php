@@ -19,29 +19,28 @@ $this->title = $this->context->title;
             <?= Html::tag('h1', $this->context->title); ?>
 
             <div class="manager-history">
-                <div class="manager-history-header">
-                    <ul class="orders-title-block flex">
-                        <li class="order-id">
-                            <span>№</span>
-                        </li>
-                        <li class="application-date">
-                            <span><?= Yii::t('app', 'Request Date') ?></span>
-                        </li>
-                        <li>
-                            <span><?= Yii::t('app', 'City') ?></span>
-                        </li>
-                        <li>
-                            <span><?= Yii::t('app', 'Status') ?></span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="manager-history-list">
 
-                    <?php
-                    if (!empty($models)) {
-                        foreach ($models as $modelOrder) { ?>
+                <?php if (!empty($models)) { ?>
+                    <div class="manager-history-header">
+                        <ul class="orders-title-block flex">
+                            <li class="order-id">
+                                <span>№</span>
+                            </li>
+                            <li class="application-date">
+                                <span><?= Yii::t('app', 'Request Date') ?></span>
+                            </li>
+                            <li>
+                                <span><?= Yii::t('app', 'City') ?></span>
+                            </li>
+                            <li>
+                                <span><?= Yii::t('app', 'Status') ?></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="manager-history-list">
+
+                        <?php foreach ($models as $modelOrder) { ?>
                             <div class="item" data-hash="<?= $modelOrder->id; ?>">
-
                                 <ul class="orders-title-block flex">
                                     <li class="order-id">
                                         <span>
@@ -63,23 +62,22 @@ $this->title = $this->context->title;
                                         'modelOrder' => $modelOrder,
                                     ]) ?>
                                 </div>
-
                             </div>
+                        <?php } ?>
 
-                        <?php }
-                    } else { ?>
-                        <div class="text-center">
-                            <?= Yii::t('app', 'По продукции Вашей фабрики запросы отсутствуют!'); ?>
-                        </div>
-                    <?php } ?>
-
-                </div>
-
-                <?= frontend\components\LinkPager::widget([
-                    'pagination' => $pages,
-                ]) ?>
+                    </div>
+                <?php } else { ?>
+                    <div class="text-center">
+                        <?= Yii::t('yii', 'No results found.'); ?>
+                    </div>
+                <?php } ?>
 
             </div>
+
+            <?= frontend\components\LinkPager::widget([
+                'pagination' => $pages,
+            ]) ?>
+
         </div>
     </div>
 </main>

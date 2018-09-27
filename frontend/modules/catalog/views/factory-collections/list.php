@@ -41,43 +41,48 @@ $this->title = $this->context->title;
                     <div class="col-md-12 col-lg-12">
                         <div id="cont_goods" class="cont-area cont-goods">
 
-                            <?= GridView::widget([
-                                'dataProvider' => $dataProvider,
-                                'filterModel' => $filter,
-                                'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
-                                'filterUrl' => Url::toRoute(['/catalog/factory-collections/list']),
-                                'columns' => [
-                                    [
-                                        'attribute' => 'title',
-                                        'value' => 'title',
-                                        'label' => Yii::t('app', 'Title'),
-                                    ],
-                                    [
-                                        'class' => yii\grid\ActionColumn::class,
-                                        'template' => '{update}',
-                                        'buttons' => [
-                                            'update' => function ($url, $model) {
-                                                /** @var $model \frontend\modules\catalog\models\Collection */
-                                                return (Yii::$app->user->identity->id == $model['user_id'])
-                                                    ? Html::a(
-                                                        '<span class="glyphicon glyphicon-pencil"></span>',
-                                                        Url::toRoute([
-                                                            '/catalog/factory-collections/update',
-                                                            'id' => $model['id']
-                                                        ]),
-                                                        [
-                                                            'class' => 'btn btn-default btn-xs'
-                                                        ]
-                                                    )
-                                                    : '';
-                                            },
+                            <?php if (!empty($dataProvider->models)) { ?>
+                                <?= GridView::widget([
+                                    'dataProvider' => $dataProvider,
+                                    'filterModel' => $filter,
+                                    'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
+                                    'filterUrl' => Url::toRoute(['/catalog/factory-collections/list']),
+                                    'columns' => [
+                                        [
+                                            'attribute' => 'title',
+                                            'value' => 'title',
+                                            'label' => Yii::t('app', 'Title'),
                                         ],
-                                        'buttonOptions' => ['class' => 'btn btn-default btn-xs'],
-                                        'headerOptions' => ['class' => 'col-sm-1',],
+                                        [
+                                            'class' => yii\grid\ActionColumn::class,
+                                            'template' => '{update}',
+                                            'buttons' => [
+                                                'update' => function ($url, $model) {
+                                                    /** @var $model \frontend\modules\catalog\models\Collection */
+                                                    return (Yii::$app->user->identity->id == $model['user_id'])
+                                                        ? Html::a(
+                                                            '<span class="glyphicon glyphicon-pencil"></span>',
+                                                            Url::toRoute([
+                                                                '/catalog/factory-collections/update',
+                                                                'id' => $model['id']
+                                                            ]),
+                                                            [
+                                                                'class' => 'btn btn-default btn-xs'
+                                                            ]
+                                                        )
+                                                        : '';
+                                                },
+                                            ],
+                                            'buttonOptions' => ['class' => 'btn btn-default btn-xs'],
+                                            'headerOptions' => ['class' => 'col-sm-1',],
+                                        ],
                                     ],
-                                ],
-                            ]); ?>
-
+                                ]) ?>
+                            <?php } else { ?>
+                                <div class="text-center">
+                                    <?= Yii::t('yii', 'No results found.'); ?>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

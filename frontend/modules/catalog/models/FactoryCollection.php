@@ -5,7 +5,7 @@ namespace frontend\modules\catalog\models;
 use Yii;
 use yii\helpers\ArrayHelper;
 //
-use common\modules\catalog\models\Collection as CommonCollection;
+use frontend\modules\catalog\models\Collection as CommonCollection;
 
 /**
  * Class FactoryCollection
@@ -83,4 +83,3 @@ class FactoryCollection extends CommonCollection
         return (new search\FactoryCollection())->search($params);
     }
 }
- 

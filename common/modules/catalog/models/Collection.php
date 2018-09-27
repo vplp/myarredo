@@ -28,7 +28,7 @@ use common\modules\catalog\Catalog;
 class Collection extends ActiveRecord
 {
     /**
-     * @return string
+     * @return null|object|string|\yii\db\Connection
      */
     public static function getDb()
     {
@@ -131,15 +131,6 @@ class Collection extends ActiveRecord
     public static function findBase()
     {
         return self::find()->orderBy(self::tableName() . '.title');
-    }
-
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public static function findById($id)
-    {
-        return self::findBase()->byId($id)->one();
     }
 
     /**
