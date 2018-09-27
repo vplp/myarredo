@@ -45,14 +45,12 @@ $this->title = $this->context->title;
                     ['class' => 'btn btn-goods']
                 ) ?>
 
-                <?php
-                echo Html::tag('span', '<i class="fa fa-question-circle"></i>', [
+                <?= Html::tag('span', '<i class="fa fa-question-circle"></i>', [
                     'title' => Yii::$app->param->getByName('FACTORY_PROMOTION_TOOLTIP1'),
                     'data-toggle' => 'tooltip',
                     'data-placement' => 'bottom',
                     'class' => 'tooltip-info'
-                ]);
-                ?>
+                ]) ?>
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
@@ -204,7 +202,7 @@ $this->title = $this->context->title;
                                             'headerOptions' => ['class' => 'col-sm-1',],
                                         ],
                                     ],
-                                ]); ?>
+                                ]) ?>
                             <?php } else { ?>
                                 <div class="text-center">
                                     <?= Yii::t('yii', 'No results found.'); ?>

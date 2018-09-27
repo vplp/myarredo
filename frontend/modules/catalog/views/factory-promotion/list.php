@@ -35,14 +35,12 @@ $this->title = $this->context->title;
                     ['class' => 'btn btn-goods']
                 ) ?>
 
-                <?php
-                echo Html::tag('span', '<i class="fa fa-question-circle"></i>', [
+                <?= Html::tag('span', '<i class="fa fa-question-circle"></i>', [
                     'title' => Yii::$app->param->getByName('FACTORY_PROMOTION_TOOLTIP1'),
                     'data-toggle' => 'tooltip',
                     'data-placement' => 'bottom',
                     'class' => 'tooltip-info'
-                ]);
-                ?>
+                ]) ?>
 
                 <?= Breadcrumbs::widget([
                     'links' => $this->context->breadcrumbs,
@@ -54,119 +52,123 @@ $this->title = $this->context->title;
 
                     <div class="col-md-12 col-lg-12">
                         <div class="cont-area cont-goods">
-
-                            <?= GridView::widget([
-                                'dataProvider' => $dataProvider,
-                                'filterModel' => $filter,
-                                'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
-                                'filterUrl' => Url::toRoute(['/catalog/factory-promotion/list']),
-                                'columns' => [
-                                    [
-                                        'format' => 'raw',
-                                        'attribute' => 'updated_at',
-                                        'label' => Yii::t('app', 'Дата'),
-                                        'value' => function ($model) {
-                                            return date('j.m.Y', $model->updated_at);
-                                        },
-                                        'filter' => false
-                                    ],
-                                    [
-                                        'format' => 'raw',
-                                        'label' => Yii::t('app', 'Список товаров'),
-                                        'value' => function ($model) {
-                                            /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
-                                            $result = [];
-                                            foreach ($model->products as $product) {
-                                                $result[] = $product->lang->title;
-                                            }
-                                            return implode(' | ', $result);
-                                        },
-                                    ],
-                                    [
-                                        'format' => 'raw',
-                                        'label' => Yii::t('app', 'Кол-во городов'),
-                                        'value' => function ($model) {
-                                            /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
-                                            return count($model->cities);
-                                        },
-                                    ],
-                                    [
-                                        'attribute' => 'amount_with_vat',
-                                        'value' => 'amount_with_vat',
-                                        'label' => Yii::t('app', 'Бюджет'),
-                                    ],
-                                    [
-                                        'attribute' => 'payment_status',
-                                        'value' => function ($model) {
-                                            /** @var \backend\modules\catalog\models\FactoryPromotion $model */
-                                            return $model->getPaymentStatusTitle();
-                                        },
-                                        'filter' => GridViewFilter::selectOne(
-                                            $filter,
-                                            'payment_status',
-                                            $model::paymentStatusKeyRange()
-                                        ),
-                                    ],
-                                    [
-                                        'attribute' => 'status',
-                                        'value' => function ($model) {
-                                            /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
-                                            return $model->getStatusTitle();
-                                        },
-                                        'filter' => GridViewFilter::selectOne(
-                                            $filter,
-                                            'status',
-                                            [
-                                                0 => Yii::t('app', 'Завершена'),
-                                                1 => Yii::t('app', 'Активная')
-                                            ]
-                                        ),
-                                    ],
-                                    [
-                                        'class' => yii\grid\ActionColumn::class,
-                                        'template' => '{update} {delete}',
-                                        'buttons' => [
-                                            'update' => function ($url, $model) {
-                                                /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
-                                                return Yii::$app->user->identity->id == $model->user_id ? Html::a(
-                                                    '<span class="glyphicon glyphicon-pencil"></span>',
-                                                    Url::toRoute([
-                                                        '/catalog/factory-promotion/update',
-                                                        'id' => $model->id
-                                                    ]),
-                                                    [
-                                                        'class' => 'btn btn-default btn-xs'
-                                                    ]
-                                                ) : '';
+                            <?php if (!empty($dataProvider->models)) { ?>
+                                <?= GridView::widget([
+                                    'dataProvider' => $dataProvider,
+                                    'filterModel' => $filter,
+                                    'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
+                                    'filterUrl' => Url::toRoute(['/catalog/factory-promotion/list']),
+                                    'columns' => [
+                                        [
+                                            'format' => 'raw',
+                                            'attribute' => 'updated_at',
+                                            'label' => Yii::t('app', 'Дата'),
+                                            'value' => function ($model) {
+                                                return date('j.m.Y', $model->updated_at);
                                             },
-                                            'delete' => function ($url, $model) {
-                                                /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
-                                                return (
-                                                    Yii::$app->user->identity->id == $model->user_id &&
-                                                    $model->payment_status != FactoryPromotion::PAYMENT_STATUS_PAID)
-                                                    ? Html::a(
-                                                        '<span class="glyphicon glyphicon-trash"></span>',
+                                            'filter' => false
+                                        ],
+                                        [
+                                            'format' => 'raw',
+                                            'label' => Yii::t('app', 'Список товаров'),
+                                            'value' => function ($model) {
+                                                /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
+                                                $result = [];
+                                                foreach ($model->products as $product) {
+                                                    $result[] = $product->lang->title;
+                                                }
+                                                return implode(' | ', $result);
+                                            },
+                                        ],
+                                        [
+                                            'format' => 'raw',
+                                            'label' => Yii::t('app', 'Кол-во городов'),
+                                            'value' => function ($model) {
+                                                /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
+                                                return count($model->cities);
+                                            },
+                                        ],
+                                        [
+                                            'attribute' => 'amount_with_vat',
+                                            'value' => 'amount_with_vat',
+                                            'label' => Yii::t('app', 'Бюджет'),
+                                        ],
+                                        [
+                                            'attribute' => 'payment_status',
+                                            'value' => function ($model) {
+                                                /** @var \backend\modules\catalog\models\FactoryPromotion $model */
+                                                return $model->getPaymentStatusTitle();
+                                            },
+                                            'filter' => GridViewFilter::selectOne(
+                                                $filter,
+                                                'payment_status',
+                                                $model::paymentStatusKeyRange()
+                                            ),
+                                        ],
+                                        [
+                                            'attribute' => 'status',
+                                            'value' => function ($model) {
+                                                /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
+                                                return $model->getStatusTitle();
+                                            },
+                                            'filter' => GridViewFilter::selectOne(
+                                                $filter,
+                                                'status',
+                                                [
+                                                    0 => Yii::t('app', 'Завершена'),
+                                                    1 => Yii::t('app', 'Активная')
+                                                ]
+                                            ),
+                                        ],
+                                        [
+                                            'class' => yii\grid\ActionColumn::class,
+                                            'template' => '{update} {delete}',
+                                            'buttons' => [
+                                                'update' => function ($url, $model) {
+                                                    /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
+                                                    return Yii::$app->user->identity->id == $model->user_id ? Html::a(
+                                                        '<span class="glyphicon glyphicon-pencil"></span>',
                                                         Url::toRoute([
-                                                            '/catalog/factory-promotion/intrash',
+                                                            '/catalog/factory-promotion/update',
                                                             'id' => $model->id
                                                         ]),
                                                         [
-                                                            'class' => 'btn btn-default btn-xs',
-                                                            'data-confirm' => Yii::t(
-                                                                'yii',
-                                                                'Are you sure you want to delete this item?'
-                                                            ),
+                                                            'class' => 'btn btn-default btn-xs'
                                                         ]
-                                                    )
-                                                    : '';
-                                            },
+                                                    ) : '';
+                                                },
+                                                'delete' => function ($url, $model) {
+                                                    /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
+                                                    return (
+                                                        Yii::$app->user->identity->id == $model->user_id &&
+                                                        $model->payment_status != FactoryPromotion::PAYMENT_STATUS_PAID)
+                                                        ? Html::a(
+                                                            '<span class="glyphicon glyphicon-trash"></span>',
+                                                            Url::toRoute([
+                                                                '/catalog/factory-promotion/intrash',
+                                                                'id' => $model->id
+                                                            ]),
+                                                            [
+                                                                'class' => 'btn btn-default btn-xs',
+                                                                'data-confirm' => Yii::t(
+                                                                    'yii',
+                                                                    'Are you sure you want to delete this item?'
+                                                                ),
+                                                            ]
+                                                        )
+                                                        : '';
+                                                },
+                                            ],
+                                            'buttonOptions' => ['class' => 'btn btn-default btn-xs'],
+                                            'headerOptions' => ['class' => 'col-sm-1',],
                                         ],
-                                        'buttonOptions' => ['class' => 'btn btn-default btn-xs'],
-                                        'headerOptions' => ['class' => 'col-sm-1',],
                                     ],
-                                ],
-                            ]); ?>
-
+                                ]) ?>
+                            <?php } else { ?>
+                                <div class="text-center">
+                                    <?= Yii::t('yii', 'No results found.'); ?>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

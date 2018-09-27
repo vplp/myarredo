@@ -5,7 +5,9 @@ namespace frontend\modules\catalog\controllers;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use yii\web\ForbiddenHttpException;
+use yii\web\{
+    ForbiddenHttpException, NotFoundHttpException
+};
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
@@ -108,7 +110,7 @@ class FactoryCollectionsController extends BaseController
 
         if (in_array($action->id, ['update'])) {
             if ($id === null) {
-                throw new \yii\web\NotFoundHttpException();
+                throw new NotFoundHttpException();
             }
         }
 
