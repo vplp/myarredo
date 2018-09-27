@@ -80,7 +80,7 @@ $this->title = $this->context->title;
                                 ]) ?>
                             <?php } else { ?>
                                 <div class="text-center">
-                                    <?= Yii::t('yii', 'No results found.'); ?>
+                                    <?= Yii::t('app', 'Добавьте коллекции мебели Вашей фабрики.'); ?>
                                 </div>
                             <?php } ?>
                         </div>
