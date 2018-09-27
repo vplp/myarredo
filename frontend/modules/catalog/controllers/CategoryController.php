@@ -50,6 +50,7 @@ class CategoryController extends BaseController
 
     /**
      * @return string
+     * @throws \Throwable
      */
     public function actionList()
     {
@@ -104,10 +105,7 @@ class CategoryController extends BaseController
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
             $types = ArrayHelper::map(
-                Types::findBase()
-                    ->innerJoinWith(["category"])
-                    ->andFilterWhere([Category::tableName() . '.alias' => Yii::$app->getRequest()->post('category_alias')])
-                    ->all(),
+                Types::findByCategoryAlias(Yii::$app->getRequest()->post('category_alias')),
                 'alias',
                 'lang.title'
             );
@@ -282,8 +280,10 @@ class CategoryController extends BaseController
         $pageDescription[] = Yii::t('app', 'из Италии');
 
 
-        if (count($params) == 2 && !empty($params[$keys['factory']]) && count($params[$keys['factory']]) == 1 && !empty($params[$keys['collection']])) {
-
+        if (count($params) == 2 && !empty($params[$keys['factory']]) &&
+            count($params[$keys['factory']]) == 1 &&
+            !empty($params[$keys['collection']])
+        ) {
             $models = Factory::findAllByAlias($params[$keys['factory']]);
 
             $factory = [];
@@ -294,7 +294,10 @@ class CategoryController extends BaseController
             $collection = Collection::findById($params[$keys['collection']][0]);
 
             $pageH1 = [];
-            $pageH1[] = Yii::t('app', 'Итальянская мебель фабрики') . ' ' . implode(', ', $factory) . ' — ' . mb_strtolower(Yii::t('app', 'Коллекция')) . ' ' . $collection['title'];
+            $pageH1[] = Yii::t('app', 'Итальянская мебель фабрики') .
+                ' ' .
+                implode(', ', $factory) . ' — ' .
+                mb_strtolower(Yii::t('app', 'Коллекция')) . ' ' . $collection['title'];
         }
 
         /**
@@ -302,7 +305,11 @@ class CategoryController extends BaseController
          */
 
         $pageTitle[] = Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
-        $pageDescription[] = '. ' . Yii::t('app', 'Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo');
+        $pageDescription[] = '. ' .
+            Yii::t(
+                'app',
+                'Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo'
+            );
 
         $this->title = Yii::$app->metatag->seo_title
             ? Yii::$app->metatag->seo_title
@@ -331,4 +338,3 @@ class CategoryController extends BaseController
         return $this;
     }
 }
-

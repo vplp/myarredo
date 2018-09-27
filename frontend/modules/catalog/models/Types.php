@@ -55,6 +55,27 @@ class Types extends \common\modules\catalog\models\Types
     }
 
     /**
+     * @param string $category_alias
+     * @return array
+     */
+    public static function findByCategoryAlias($category_alias)
+    {
+        $query = self::findBase();
+
+        if ($category_alias != '') {
+            $query
+                ->innerJoinWith(["category"])
+                ->andFilterWhere([
+                    Category::tableName() . '.alias' => $category_alias
+                ]);
+        }
+
+        $data = $query->all();
+
+        return $data;
+    }
+
+    /**
      * @return mixed
      */
     public static function dropDownList()

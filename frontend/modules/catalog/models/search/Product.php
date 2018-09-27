@@ -187,8 +187,9 @@ class Product extends ProductModel
     }
 
     /**
-     * @param array $params
+     * @param $params
      * @return ActiveDataProvider
+     * @throws \Throwable
      */
     public function search($params)
     {

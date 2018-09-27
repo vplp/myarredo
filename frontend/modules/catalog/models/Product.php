@@ -126,10 +126,9 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
-     * Search
-     *
      * @param $params
      * @return \yii\data\ActiveDataProvider
+     * @throws \Throwable
      */
     public function search($params)
     {

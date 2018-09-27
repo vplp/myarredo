@@ -172,7 +172,6 @@ class CatalogFilter extends Component
         $res = [];
 
         foreach ($paramsUrl as $k => $v) {
-
             $res[$k] = '';
 
             if (is_array($v) && $k == self::$keys['price']) {
@@ -397,7 +396,6 @@ class CatalogFilter extends Component
          */
 
         if (!empty(self::$_structure['price'])) {
-
             $data = self::$_structure['price'];
 
             if (strpos($data[0], 'price=') === false) {
