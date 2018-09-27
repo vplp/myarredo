@@ -6170,3 +6170,13 @@ h1 {
 .for-hide {
   display: none;
 }
+.price-diap {
+  max-width: 105px;
+  background-color: #e3e0d5;
+  border: 0;
+  padding: 10px;
+  margin-right: 3px; 
+}
+.price-diap:focus {
+  background-color: #ffffff;
+}

@@ -43,8 +43,8 @@ use yii\helpers\{
 
         <div class="filter-price">
             <div class="left">
-                <input type="number" name="price[from]" placeholder="<?= Yii::t('app', 'от') ?>">
-                <input type="number" name="price[to]" placeholder="<?= Yii::t('app', 'до') ?>">€
+                <input type="number" name="price[from]" class="price-diap" placeholder="<?= Yii::t('app', 'от') ?>">
+                <input type="number" name="price[to]" class="price-diap" placeholder="<?= Yii::t('app', 'до') ?>">€
             </div>
 
             <?= Html::submitButton(
