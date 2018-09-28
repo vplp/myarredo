@@ -29,7 +29,7 @@ class Collection extends CommonCollectionModel implements BaseBackendModel
 
         $data = $query->undeleted()->all();
 
-        return ArrayHelper::map($data, 'id', 'lang.title');
+        return ArrayHelper::map($data, 'id', 'title');
     }
 
     /**
