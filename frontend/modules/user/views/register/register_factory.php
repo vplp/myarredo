@@ -10,6 +10,7 @@ use frontend\modules\location\models\{
     Country, City
 };
 use frontend\modules\user\models\Profile;
+
 $bundle = AppAsset::register($this);
 
 /**
@@ -61,7 +62,11 @@ $model->user_agreement = 1;
                             <?= $form->field($model, 'phone')
                                 //+39 (99) 999-99-99
                                 ->widget(\yii\widgets\MaskedInput::className(), [
-                                    'mask' => ['+39 (9999) 99999', '+39 (9999) 999-9999'],
+                                    'mask' => [
+                                        '+39 (9999) 99999',
+                                        '+39 (9999) 999-999',
+                                        '+39 (9999) 999-9999'
+                                    ],
                                     'clientOptions' => [
                                         'clearIncomplete' => true
                                     ]
