@@ -115,6 +115,7 @@ class Collection extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'factory_id' => Yii::t('app', 'Factory'),
             'user_id' => Yii::t('app', 'User'),
+            'title' => Yii::t('app', 'Title'),
             'first_letter',
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
