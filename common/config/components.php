@@ -108,7 +108,7 @@ return [
     'yandexKassa' => [
         'class' => \common\components\YandexKassaAPI\YandexKassaAPI::class,
         'returnUrl' => 'https://www.myarredo.ru/',
-        'shopId' => '519736',
-        'key' => 'test_PHsoZmISCHfA5FjC6bcUPWyxDSCBS-s6YgQrKMV7TYA',
+        'shopId' => '518473', //'519736',
+        'key' => 'live_LFY41_Fv20kbUCvAYMS66r3q6aS4r78MX3u2NU7C8To', //'test_PHsoZmISCHfA5FjC6bcUPWyxDSCBS-s6YgQrKMV7TYA',
     ],
 ];
