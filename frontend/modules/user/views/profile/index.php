@@ -1,6 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use frontend\themes\myarredo\assets\AppAsset;
+
+$bundle = AppAsset::register($this);
 
 /**
  * @var \frontend\modules\user\models\Profile $model
@@ -68,26 +71,24 @@ $this->title = Yii::t('app', 'Profile');
                     </div>
                 </div>
                 <div class="part-contact-right">
-                    <div class="welcome-box">
-                        <div class="welcome-left">
-                            <img src="http://www.myarredo.test/assets/20c53c30/img/thank_register.png" alt="welcome">
+
+                    <?php
+                    if (Yii::$app->session->has("newUserFactory")) {
+                        Yii::$app->session->remove("newUserFactory");
+                        ?>
+
+                        <div class="welcome-box">
+                            <div class="welcome-left">
+                                <img src="<?= $bundle->baseUrl ?>/img/thank_register.png" alt="welcome">
+                            </div>
+                            <div class="welcome-right">
+                                <?= Yii::$app->param->getByName('USER_FACTORY_REG_CONGRATULATIONS') ?>
+                            </div>
                         </div>
-                        <div class="welcome-right">
-                            <span class="welcome-tittle">
-                                Поздравляем!
-                            </span>
-                            <span class="welcome-tittle">
-                                Регистрация завершена успешно.
-                            </span>
-                            <span class="welcome-subtitle">
-                                В ближайшее время с Вами свяжется наш менеджер.
-                            </span>
-                            <span class="welcome-desc">
-                                С уважением <br/>
-                                Команда MY ARREDO FAMILY
-                            </span>
-                        </div>
-                    </div>
+
+                        <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
