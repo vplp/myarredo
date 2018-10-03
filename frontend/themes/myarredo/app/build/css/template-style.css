@@ -5664,6 +5664,8 @@ h1 {
     font-size: 30px;
     text-align: left; }
   .factory-profile .part-contact {
+    background-color: #ffffff;
+    border: 0;
     padding: 25px 20px; }
   .factory-profile textarea {
     height: 90px; }
@@ -6179,4 +6181,104 @@ h1 {
 }
 .price-diap:focus {
   background-color: #ffffff;
+}
+.factory-profile .part-contact {
+  background-color: #ffffff;
+  border: 0;
+  display: flex;
+  justify-content: space-between; 
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 45px 0;
+}
+.part-contact-left {
+  width: 40%;
+}
+.part-contact-right {
+  width: 60%;
+}
+.welcome-box {
+  padding: 20px;
+  background-color: #f3f2f0;
+  display: flex;
+  justify-content: space-between;
+}
+.welcome-left {
+  width: 28%;
+  padding-top: 8px;
+}
+.welcome-left img {
+  max-width: 175px;
+  max-height: 175px;
+}
+.welcome-right {
+  width: 71%;
+}
+.welcome-tittle {
+  display: block;
+  font-family: "Palatino", "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 28px;
+  color: #535351;
+  max-height: 34px;
+}
+.welcome-subtitle {
+  display: block;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: #535351;
+  margin: 10px 0 46px;
+}
+.welcome-desc {
+  display: block;
+  font-family: "Open Sans", sans-serif;
+  font-style: italic;
+  font-size: 13px;
+  color: #535351;
+}
+@media (max-width: 1460px) {
+  .largex-container {
+    padding: 0 20px;
+  }
+}
+@media (max-width: 1220px) {
+  .welcome-tittle {
+    font-size: 26px;
+  }
+}
+@media (max-width: 1199px) {
+  .largex-container {
+    max-width: 970px;
+  }
+  .factory-profile {
+    background-color: #ffffff;
+  }
+  .factory-profile .part-contact {
+    flex-wrap: wrap;
+  }
+  .part-contact-left,
+  .part-contact-right {
+    width: 100%;
+  }
+}
+@media (max-width: 760px) {
+  .welcome-box {
+    flex-wrap: wrap;
+  }
+  .welcome-left,
+  .welcome-right {
+    width: 100%;
+  }
+}
+@media (max-width: 991px) {
+  .largex-container {
+    max-width: 750px;
+  }
+}
+@media (max-width: 530px) {
+  .welcome-tittle {
+    font-size: 24px;
+    max-height: 100%;
+  }
 }
