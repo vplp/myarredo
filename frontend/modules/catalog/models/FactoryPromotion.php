@@ -13,18 +13,16 @@ use yii\helpers\Url;
 class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
 {
     /**
-     * @param bool $insert
      * @return bool
-     * @throws \Throwable
      */
-    public function beforeSave($insert)
+    public function beforeValidate()
     {
         if (Yii::$app->user->identity->group->role == 'factory') {
             $this->user_id = Yii::$app->user->identity->id;
             $this->factory_id = Yii::$app->user->identity->profile->factory_id;
         }
 
-        return parent::beforeSave($insert);
+        return parent::beforeValidate();
     }
 
     /**
