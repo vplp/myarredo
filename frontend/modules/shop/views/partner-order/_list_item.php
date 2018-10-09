@@ -121,7 +121,7 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
 
     <?php if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null) {
         if ((!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0)) {
-            echo Html::submitButton('Сохранить', [
+            echo Html::submitButton(Yii::t('app', 'Save'), [
                 'class' => 'btn btn-success action-save-answer',
                 'name' => 'action-save-answer',
                 'value' => 1

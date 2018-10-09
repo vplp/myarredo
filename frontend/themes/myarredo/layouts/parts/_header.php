@@ -128,13 +128,13 @@ use frontend\modules\location\widgets\ChangeCity;
                                                     </li>
                                                     <li>
                                                         <?= Html::a(
-                                                            'Размещение кода',
+                                                            Yii::t('app', 'Размещение кода'),
                                                             ['/page/page/view', 'alias' => 'razmeshchenie-koda']
                                                         ); ?>
                                                     </li>
                                                     <li>
                                                         <?= Html::a(
-                                                            'Инструкция партнерам',
+                                                            Yii::t('app', 'Инструкция партнерам'),
                                                             ['/page/page/view', 'alias' => 'instructions']
                                                         ); ?>
                                                     </li>
@@ -222,7 +222,6 @@ use frontend\modules\location\widgets\ChangeCity;
                                                     </li>
                                                     <?php
                                                     /*
-
                                                     <li>
                                                         <?= Html::a(
                                                             Yii::t('app', 'Banners'),
@@ -231,8 +230,6 @@ use frontend\modules\location\widgets\ChangeCity;
                                                     </li>
                                                     */
                                                     ?>
-
-
 
                                                     <li role="separator" class="divider"></li>
                                                     <li>

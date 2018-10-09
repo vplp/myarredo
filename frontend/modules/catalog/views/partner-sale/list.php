@@ -106,7 +106,7 @@ $this->title = $this->context->title;
                                         ),
                                     ],
                                     [
-                                        'label' => 'Просмотры товара',
+                                        'label' => Yii::t('app', 'Просмотры товара'),
                                         'format' => 'raw',
                                         'value' => function ($model) {
                                             /** @var $model \frontend\modules\catalog\models\Sale */
@@ -114,7 +114,7 @@ $this->title = $this->context->title;
                                         },
                                     ],
                                     [
-                                        'label' => 'Запрос телефона',
+                                        'label' => Yii::t('app', 'Запрос телефона'),
                                         'value' => function ($model) {
                                             /** @var $model \frontend\modules\catalog\models\Sale */
                                             return $model->getCountRequestPhone();

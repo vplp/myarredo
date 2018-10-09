@@ -9,7 +9,7 @@ use yii\helpers\{
  * @var \frontend\modules\user\models\form\ChangePassword $model
  */
 
-$this->title = 'Изменить пароль';
+$this->title = Yii::t('app', 'Change password');
 
 ?>
 
@@ -29,8 +29,7 @@ $this->title = 'Изменить пароль';
 
                     <div class="col-sm-4 col-md-4 col-lg-4 one-row">
 
-                        <?php if (!empty($model->getFlash())) : ?>
-
+                        <?php if (!empty($model->getFlash())) { ?>
                             <div class="row">
                                 <div class="col-lg-5"><?= implode(',', ($model->getFlash())) ?></div>
                             </div>
@@ -40,8 +39,7 @@ $this->title = 'Изменить пароль';
                             $model->password = '';
                             $model->password_confirmation = '';
                             ?>
-
-                        <?php endif; ?>
+                        <?php } ?>
 
                         <?= $form->field($model, 'password_old')->passwordInput() ?>
                         <?= $form->field($model, 'password')->passwordInput() ?>

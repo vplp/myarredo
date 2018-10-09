@@ -71,7 +71,7 @@ use yii\widgets\ActiveForm;
                         </div>
                     </div>
 
-                    <?= Html::submitButton('Сохранить', [
+                    <?= Html::submitButton(Yii::t('app', 'Save'), [
                         'class' => 'btn btn-success',
                         'name' => 'action-save-answer',
                         'value' => 1
