@@ -174,8 +174,8 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
     public static function paymentStatusKeyRange()
     {
         return [
-            static::PAYMENT_STATUS_NEW => static::PAYMENT_STATUS_NEW,
-            static::PAYMENT_STATUS_PAID => static::PAYMENT_STATUS_PAID
+            static::PAYMENT_STATUS_NEW => Yii::t('app', 'New'),
+            static::PAYMENT_STATUS_PAID => Yii::t('app', 'Paid'),
         ];
     }
 
