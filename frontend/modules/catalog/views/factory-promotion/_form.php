@@ -227,7 +227,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                             <?= Yii::t('app', 'Общая стоимость рекламной кампании') ?>
                             <span id="cost">0</span>
                             <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
-                            <span class="for-nds">(* цены указаны без НДС)</span>
+                            <span class="for-nds">(* <?= Yii::t('app', 'цены указаны без НДС') ?>)</span>
                         </div>
                         <div class="promotion-title-label for-hide">
                             <?= Yii::t('app', 'НДС 19%') ?>
