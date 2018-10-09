@@ -2,6 +2,7 @@
 
 namespace common\modules\catalog\models;
 
+use YandexCheckout\Helpers\Random;
 use Yii;
 use yii\helpers\{
     ArrayHelper
@@ -38,6 +39,7 @@ use common\components\YandexKassaAPI\interfaces\OrderInterface;
  * @property array $city_ids
  * @property array $product_ids
  *
+ * @property User $user
  * @property FactoryPromotionRelCity[] $cities
  * @property FactoryPromotionRelProduct[] $products
  *
@@ -302,7 +304,7 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
         ];
 
         if ($country && $views) {
-            return  $array[$views][$country];
+            return $array[$views][$country];
         }
 
         return $array;
@@ -332,6 +334,33 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
     public function getPaymentAmount()
     {
         return $this->amount_with_vat;
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function getEmail()
+    {
+        return $this->user->email;
+    }
+
+    /**
+     * @return array|int
+     * @throws \Exception
+     */
+    public function getItems()
+    {
+        return [
+            [
+                'description' => 'promotion',
+                'quantity' => 1,
+                'amount' => [
+                    'value' => $this->getPaymentAmount(),
+                    'currency' => "RUB",
+                ],
+                'vat_code' => Random::int(1, 6),
+            ]
+        ];
     }
 
     /**

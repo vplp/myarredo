@@ -36,17 +36,21 @@ class YandexKassaAPI extends Component
     public function createPayment(OrderInterface $order)
     {
         $payment = $this->client->createPayment(
-            array(
-                'amount' => array(
+            [
+                'amount' => [
                     'value' => $order->getPaymentAmount(),
                     'currency' => $this->currency
-                ),
-                'confirmation' => array(
+                ],
+                'receipt' => [
+                    'items' => $order->getItems(),
+                    'email' => $order->getEmail(),
+                ],
+                'confirmation' => [
                     'type' => 'redirect',
                     'return_url' => $this->returnUrl,
-                ),
-                'description' => 'Заказ №' . $order->id,
-            ),
+                ],
+                'description' => '№' . $order->id,
+            ],
             $this->generateIdempotent()
         );
 

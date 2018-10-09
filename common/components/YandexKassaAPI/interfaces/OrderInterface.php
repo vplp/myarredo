@@ -27,6 +27,16 @@ interface OrderInterface extends ActiveRecordInterface
     public function getPaymentAmount();
 
     /**
+     * @return integer
+     */
+    public function getEmail();
+
+    /**
+     * @return integer
+     */
+    public function getItems();
+
+    /**
      * @param $invoiceId
      * @return OrderInterface
      */
