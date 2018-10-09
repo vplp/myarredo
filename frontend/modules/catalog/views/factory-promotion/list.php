@@ -91,7 +91,12 @@ $this->title = $this->context->title;
                                         [
                                             'attribute' => 'amount_with_vat',
                                             'value' => 'amount_with_vat',
-                                            'label' => Yii::t('app', 'Бюджет'),
+                                            //'label' => Yii::t('app', 'Бюджет'),
+                                        ],
+                                        [
+                                            'attribute' => 'amount',
+                                            'value' => 'amount',
+                                            //'label' => Yii::t('app', 'Бюджет'),
                                         ],
                                         [
                                             'attribute' => 'payment_status',
