@@ -101,7 +101,7 @@ $this->title = ($model->isNewRecord)
                                     ) ?>
                                     <div class="col-sm-2">
                                         <?= Html::input(
-                                            'text',
+                                            'number',
                                             'SpecificationValue[' . $Specification['id'] . ']',
                                             !empty($specification_value[$Specification['id']])
                                                 ? $specification_value[$Specification['id']]
