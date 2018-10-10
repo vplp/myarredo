@@ -254,7 +254,36 @@ class Sale extends ActiveRecord
      */
     public function afterSave($insert, $changedAttributes)
     {
-        if ($this->scenario == 'backend') {
+        if ($this->scenario == 'backend' &&
+            Yii::$app->user->identity->group->role == 'partner'
+        ) {
+            // delete relation SaleRelSpecification
+            SaleRelSpecification::deleteAll(['sale_catalog_item_id' => $this->id]);
+
+            // save relation SaleRelSpecification
+            if (Yii::$app->request->getBodyParam('SpecificationValue')) {
+                foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
+                    if (in_array($specification_id, [2, 9])) {
+                        $model = new SaleRelSpecification();
+
+                        $model->setScenario('backend');
+                        $model->sale_catalog_item_id = $this->id;
+                        $model->specification_id = $val;
+                        $model->val = 1;
+                        $model->save();
+                    } elseif ($specification_id && $val) {
+                        $model = new SaleRelSpecification();
+
+                        $model->setScenario('backend');
+                        $model->sale_catalog_item_id = $this->id;
+                        $model->specification_id = $specification_id;
+                        $model->val = $val;
+
+                        $model->save();
+                    }
+                }
+            }
+        } else if ($this->scenario == 'backend') {
             // delete relation SaleRelSpecification
             SaleRelSpecification::deleteAll(['sale_catalog_item_id' => $this->id]);
 
@@ -272,6 +301,7 @@ class Sale extends ActiveRecord
                 }
             }
         }
+
         parent::afterSave($insert, $changedAttributes);
     }
 

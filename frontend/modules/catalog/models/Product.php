@@ -390,11 +390,9 @@ class Product extends \common\modules\catalog\models\Product
         if ($this->is_composition) {
             return $this->getProductsByCompositionId();
         } else {
-
             $composition = $this->getCompositionByProductId()->all();
 
             if (!empty($composition)) {
-
                 $aliasC = preg_replace('%^.+/%iu', '', trim(Yii::$app->request->url, '/'));
 
                 if ($aliasC && !empty($composition[$aliasC])) {
