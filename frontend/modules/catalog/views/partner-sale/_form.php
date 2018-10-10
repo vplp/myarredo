@@ -44,20 +44,20 @@ $this->title = ($model->isNewRecord)
                             ],
                         ]); ?>
 
-                        <?php if ($model->isNewRecord): ?>
-
+                        <?php if ($model->isNewRecord) { ?>
                             <div class="alert alert-warning">
                                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                 Для загрузки изображений - сначала создайте товар
                             </div>
+                        <?php } else { ?>
+                            <?= $form
+                                ->field($model, 'image_link')
+                                ->imageOne($model->getImageLink()) ?>
 
-                        <?php else: ?>
-
-                            <?= $form->field($model, 'image_link')->imageOne($model->getImageLink()) ?>
-
-                            <?= $form->field($model, 'gallery_image')->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
-
-                        <?php endif; ?>
+                            <?= $form
+                                ->field($model, 'gallery_image')
+                                ->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
+                        <?php } ?>
 
                         <?= $form->field($modelLang, 'title') ?>
 
@@ -91,37 +91,52 @@ $this->title = ($model->isNewRecord)
 
                         <?php
                         $specification_value = $model->getSpecificationValueBySpecification();
-                        foreach (Specification::findBase()->all() as $Specification): ?>
-
-                            <?php if ($Specification['type'] === '1' && !in_array($Specification['id'], [39, 47])): ?>
-
+                        foreach (Specification::findBase()->all() as $Specification) {
+                            if ($Specification['type'] === '1' && !in_array($Specification['id'], [39, 47])) { ?>
                                 <div class="form-group row">
-                                    <?= Html::label($Specification['lang']['title'], null, ['class' => 'col-sm-3 col-form-label']) ?>
+                                    <?= Html::label(
+                                        $Specification['lang']['title'],
+                                        null,
+                                        ['class' => 'col-sm-3 col-form-label']
+                                    ) ?>
                                     <div class="col-sm-2">
                                         <?= Html::input(
                                             'text',
                                             'SpecificationValue[' . $Specification['id'] . ']',
-                                            !empty($specification_value[$Specification['id']]) ? $specification_value[$Specification['id']] : null,
+                                            !empty($specification_value[$Specification['id']])
+                                                ? $specification_value[$Specification['id']]
+                                                : null,
                                             ['class' => 'form-control']
                                         ) ?>
                                     </div>
                                 </div>
-
-                            <?php elseif (in_array($Specification['id'], [2, 9])): ?>
+                            <?php } elseif (in_array($Specification['id'], [2, 9])) {
+                                $value = null;
+                                foreach ($specification_value as $k => $v) {
+                                    if ($v == $Specification['id']) {
+                                        $value = $k;
+                                    }
+                                }
+                                ?>
                                 <div class="form-group row">
-                                    <?= Html::label($Specification['lang']['title'], null, ['class' => 'col-sm-3 col-form-label']) ?>
+                                    <?= Html::label(
+                                        $Specification['lang']['title'],
+                                        null,
+                                        ['class' => 'col-sm-3 col-form-label']
+                                    ) ?>
                                     <div class="col-sm-9">
                                         <?= Select2::widget([
                                             'name' => 'SpecificationValue[' . $Specification['id'] . ']',
-                                            'value' => !empty($specification_value[$Specification['id']]) ? $specification_value[$Specification['id']] : null,
+                                            'value' => $value,
                                             'data' => $Specification->getChildrenDropDownList(),
-                                            'options' => ['placeholder' => Yii::t('app', 'Select option')]
+                                            'options' => [
+                                                'placeholder' => Yii::t('app', 'Select option')
+                                            ]
                                         ]) ?>
                                     </div>
                                 </div>
-                            <?php endif; ?>
-
-                        <?php endforeach; ?>
+                            <?php } ?>
+                        <?php } ?>
 
                         <?= $form->field(
                             $model,
@@ -165,30 +180,34 @@ $this->title = ($model->isNewRecord)
 
                         </div>
                         <div class="form-group row">
-                            <?= $form->field(
-                                $model,
-                                'country_id',
-                                [
-                                    'template' => "{label}<div class=\"col-sm-4\">{input}</div>\n{hint}\n{error}",
-                                    'options' => [
-                                        'class' => '',
+                            <?= $form
+                                ->field(
+                                    $model,
+                                    'country_id',
+                                    [
+                                        'template' => "{label}<div class=\"col-sm-4\">{input}</div>\n{hint}\n{error}",
+                                        'options' => [
+                                            'class' => '',
+                                        ]
                                     ]
-                                ])
+                                )
                                 ->dropDownList(
                                     [null => '--'] + Country::dropDownList(),
                                     ['class' => 'selectpicker']
                                 ); ?>
                         </div>
                         <div class="form-group row">
-                            <?= $form->field(
-                                $model,
-                                'city_id',
-                                [
-                                    'template' => "{label}<div class=\"col-sm-4\">{input}</div>\n{hint}\n{error}",
-                                    'options' => [
-                                        'class' => '',
+                            <?= $form
+                                ->field(
+                                    $model,
+                                    'city_id',
+                                    [
+                                        'template' => "{label}<div class=\"col-sm-4\">{input}</div>\n{hint}\n{error}",
+                                        'options' => [
+                                            'class' => '',
+                                        ]
                                     ]
-                                ])
+                                )
                                 ->dropDownList(
                                     [null => '--'] + ($model->country_id ? City::dropDownList($model->country_id) : []),
                                     ['class' => 'selectpicker']
@@ -218,7 +237,11 @@ $this->title = ($model->isNewRecord)
 
                         <div class="buttons-cont">
                             <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
-                            <?= Html::a(Yii::t('app', 'Вернуться к списку'), ['/catalog/partner-sale/list'], ['class' => 'btn btn-primary']) ?>
+                            <?= Html::a(
+                                Yii::t('app', 'Вернуться к списку'),
+                                ['/catalog/partner-sale/list'],
+                                ['class' => 'btn btn-primary']
+                            ) ?>
                         </div>
 
                         <?php ActiveForm::end(); ?>
@@ -243,4 +266,3 @@ $('select#sale-country_id').change(function(){
 JS;
 
 $this->registerJs($script, yii\web\View::POS_READY);
-?>

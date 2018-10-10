@@ -72,6 +72,7 @@ class PartnerSaleController extends BaseController
                     'class' => CreateWithLang::class,
                     'modelClass' => $this->model,
                     'modelClassLang' => $this->modelLang,
+                    'scenario' => 'frontend',
                     'redirect' => function () {
                         return ['update', 'id' => $this->action->getModel()->id];
                     }
@@ -80,6 +81,7 @@ class PartnerSaleController extends BaseController
                     'class' => UpdateWithLang::class,
                     'modelClass' => $this->model,
                     'modelClassLang' => $this->modelLang,
+                    'scenario' => 'frontend',
                     'redirect' => function () {
                         return ['update', 'id' => $this->action->getModel()->id];
                     }

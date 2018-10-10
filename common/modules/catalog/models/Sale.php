@@ -193,6 +193,29 @@ class Sale extends ActiveRecord
                 'position',
                 'on_main',
                 'category_ids',
+            ],
+            'frontend' => [
+                'country_id',
+                'city_id',
+                'country_code',
+                'user_id',
+                'user_city_id',
+                'factory_name',
+                'catalog_type_id',
+                'factory_id',
+                'image_link',
+                'gallery_image',
+                'alias',
+                'article',
+                'price',
+                'price_new',
+                'currency',
+                'volume',
+                'published',
+                'deleted',
+                'position',
+                'on_main',
+                'category_ids',
             ]
         ];
     }
@@ -254,22 +277,20 @@ class Sale extends ActiveRecord
      */
     public function afterSave($insert, $changedAttributes)
     {
-        if ($this->scenario == 'backend' &&
-            Yii::$app->user->identity->group->role == 'partner'
-        ) {
+        if ($this->scenario == 'frontend') {
             // delete relation SaleRelSpecification
             SaleRelSpecification::deleteAll(['sale_catalog_item_id' => $this->id]);
 
             // save relation SaleRelSpecification
             if (Yii::$app->request->getBodyParam('SpecificationValue')) {
                 foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
-                    if (in_array($specification_id, [2, 9])) {
+                    if (in_array($specification_id, [2, 9]) && $val) {
                         $model = new SaleRelSpecification();
 
                         $model->setScenario('backend');
                         $model->sale_catalog_item_id = $this->id;
                         $model->specification_id = $val;
-                        $model->val = 1;
+                        $model->val = $specification_id;
                         $model->save();
                     } elseif ($specification_id && $val) {
                         $model = new SaleRelSpecification();
