@@ -6191,6 +6191,9 @@ h1 {
   margin: 0 auto;
   padding: 45px 0;
 }
+.factory-profile .part-contact-update .user-update-form {
+  width: 100%;
+}
 .part-contact-left {
   width: 40%;
 }
