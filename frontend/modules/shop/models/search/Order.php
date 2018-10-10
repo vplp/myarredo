@@ -47,6 +47,7 @@ class Order extends OrderModel
      * @param $query
      * @param $params
      * @return ActiveDataProvider
+     * @throws \Throwable
      */
     public function baseSearch($query, $params)
     {
@@ -86,16 +87,17 @@ class Order extends OrderModel
 
         if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
             $query
-                ->innerJoinWith(["items.product.factory productFactory"], false)
-                ->andFilterWhere(['IN', 'productFactory.id', $this->factory_id]);
+                ->innerJoinWith(["items.product product"], false)
+                ->andFilterWhere(['IN', 'product.factory_id', $this->factory_id]);
         }
 
         return $dataProvider;
     }
 
     /**
-     * @param array $params
+     * @param $params
      * @return ActiveDataProvider
+     * @throws \Throwable
      */
     public function search($params)
     {
@@ -176,7 +178,6 @@ class Order extends OrderModel
         $customer = Customer::find()->andWhere(['email' => $customerForm['email']])->one();
 
         if ($customer == null) {
-
             $customer = new Customer();
 
             $customer->scenario = 'addNewCustomer';
