@@ -36,7 +36,7 @@ HTML;
     ]
 ]); ?>
 
-<?php if (Yii::$app->getUser()->getIdentity()->group->role == 'admin' && isset($params['factory_id'])): ?>
+<?php if (Yii::$app->getUser()->getIdentity()->group->role == 'admin' && isset($params['factory_id'])) { ?>
     <div class="form-group">
         <?= Select2::widget([
             'name' => 'factory_id',
@@ -49,7 +49,7 @@ HTML;
             ]
         ]); ?>
     </div>
-<?php endif; ?>
+<?php } ?>
 
     <div class="form-group">
         <?= Select2::widget([
