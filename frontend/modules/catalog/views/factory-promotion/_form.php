@@ -45,7 +45,9 @@ $this->title = Yii::t('app', 'Рекламировать');
                                             'dataProvider' => $dataProviderFactoryProduct,
                                             'filterModel' => $filterModelFactoryProduct,
                                             'layout' => "{summary}\n{items}\n<div class=\"pagi-wrap\">{pager}</div>",
-                                            'filterUrl' => Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]),
+                                            'filterUrl' => ($model->isNewRecord)
+                                                ? Url::toRoute(['/catalog/factory-promotion/create'])
+                                                : Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]),
                                             'pjax' => true,
                                             'pjaxSettings' => [
                                                 'options' => [
