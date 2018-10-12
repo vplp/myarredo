@@ -37,6 +37,23 @@ class Order extends \common\modules\shop\models\Order
     }
 
     /**
+     * @return mixed|\yii\db\ActiveQuery
+     * @throws \Throwable
+     */
+    public function getItems()
+    {
+        $query = $this->hasMany(OrderItem::class, ['order_id' => 'id']);
+
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
+            $query
+                ->innerJoinWith(["product product"], false)
+                ->andFilterWhere(['IN', 'product.factory_id', Yii::$app->user->identity->profile->factory_id]);
+        }
+
+        return $query;
+    }
+
+    /**
      * @return mixed
      */
     public static function findBase()
