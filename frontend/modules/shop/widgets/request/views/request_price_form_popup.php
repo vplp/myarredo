@@ -47,8 +47,14 @@ $model->city_id = Yii::$app->city->getCityId();
             ->input('text', ['placeholder' => Yii::t('app', 'Phone')])
             ->label(false) ?>
 
+        <?php
+//        $form->field($model, 'city_id')
+//            ->dropDownList(City::dropDownList(Yii::$app->city->getCountryId()))
+//            ->label(false)
+        ?>
+
         <?= $form->field($model, 'city_id')
-            ->dropDownList(City::dropDownList(Yii::$app->city->getCountryId()))
+            ->input('hidden', ['value' => $model->city_id])
             ->label(false) ?>
 
         <?= $form->field($model, 'comment')
