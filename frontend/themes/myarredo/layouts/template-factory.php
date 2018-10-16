@@ -4,7 +4,7 @@ use yii\helpers\{
     Url, Html
 };
 use frontend\themes\myarredo\assets\TemplateFactoryAsset;
-use frontend\themes\myarredo\widgets\Alert;
+use frontend\widgets\Alert;
 use frontend\modules\catalog\models\Factory;
 use frontend\modules\user\widgets\partner\PartnerInfo;
 
