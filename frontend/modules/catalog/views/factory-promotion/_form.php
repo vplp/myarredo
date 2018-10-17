@@ -445,20 +445,32 @@ $('input[name="FactoryPromotion[views]"]').on('change', function() {
  * Add
  */
 $("body").on("click", "#add-product", function() {
-    var str = '';
+    var str = "";
+    var product = "";
+    var issetProduct = [];
    
     $('input[name="product_ids[]"]:checkbox:checked').each(function () {
-        var product = $(this);
-
-        str += '<div>' + 
-            product.data('title') + 
-            '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
-            '<img src="' + product.data('image') + '" width="50">' +
-            '<a id="del-product" class="close" href="javascript:void(0);" data-id="' + product.val() + '"><i class="fa fa-times"></i></a>' +
-            '</div>';
+        var indicator = "no";
+        product = $(this);
+        $('#factory-promotion').find('#list-product').find('.close').each(function(i, elem) {
+            issetProduct.push($(elem).attr('data-id'));
+        });
+        for (var i = 0; i < issetProduct.length; i++) {
+            if (product.val() === issetProduct[i]) {
+                indicator = "yes";
+            }
+        }
+        if (indicator !== "yes") {
+            str += '<div>' + 
+                    product.data('title') + 
+                    '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
+                    '<img src="' + product.data('image') + '" width="50">' +
+                    '<a id="del-product" class="close" href="javascript:void(0);" data-id="' + product.val() + '"><i class="fa fa-times"></i></a>' +
+                    '</div>';
+        }
     });
    
-    $('#list-product').html(str);
+    $('#list-product').append(str);
     
     newCost();
 });

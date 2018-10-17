@@ -1485,7 +1485,8 @@ h1 {
 .category-page .filters .subject-filter .list-item {
   max-height: 365px; }
   .category-page .filters .subject-filter .list-item.show {
-    max-height: 2000px; }
+    height: auto;
+    max-height: 100%; }
 
 .category-page .list-item {
   padding-bottom: 15px; }
@@ -6231,7 +6232,7 @@ h1 {
   font-weight: 600;
   font-size: 13px;
   color: #535351;
-  margin: 10px 0 46px;
+  margin: 10px 0 52px;
 }
 .welcome-desc {
   display: block;
