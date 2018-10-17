@@ -230,7 +230,6 @@ use frontend\modules\location\widgets\ChangeCity;
                                                     </li>
                                                     */
                                                     ?>
-
                                                     <li role="separator" class="divider"></li>
                                                     <li>
                                                         <?= Html::a(
@@ -349,14 +348,26 @@ use frontend\modules\location\widgets\ChangeCity;
     <div class="mobile-menu js-mobile-menu">
         <div class="stripe">
 
-            <?= Html::a(
-                '<i class="fa fa-sign-in" aria-hidden="true"></i>' .
-                Yii::t('app', 'Sign In'),
-                ['/user/login/index'],
-                [
-                    'class' => 'mobile-btn'
-                ]
-            ) ?>
+            <?php if ((Yii::$app->getUser()->isGuest)) { ?>
+                <?= Html::a(
+                    '<i class="fa fa-sign-in" aria-hidden="true"></i>' .
+                    Yii::t('app', 'Sign In'),
+                    ['/user/login/index'],
+                    [
+                        'class' => 'mobile-btn',
+                        'rel' => 'nofollow'
+                    ]
+                ) ?>
+            <?php } else { ?>
+                <?= Html::a(
+                    Yii::t('app', 'Sign Up'),
+                    ['/user/logout/index'],
+                    [
+                        'class' => 'mobile-btn',
+                        'rel' => 'nofollow'
+                    ]
+                ) ?>
+            <?php } ?>
 
             <a class="back-call">
                 <i class="fa fa-phone" aria-hidden="true"></i>
@@ -369,20 +380,7 @@ use frontend\modules\location\widgets\ChangeCity;
 
         </div>
 
-        <!--
-        <a class="wishlist-mobile">
-            <i class="fa fa-heart" aria-hidden="true"></i>
-            Избранное
-        </a>
-        -->
-
         <?= CatalogMenuMobile::widget([]); ?>
-
-        <!--
-        <a class="logo-container">
-            <img src="<?= $bundle->baseUrl ?>/img/logo-odis.png" alt="">
-        </a>
-        -->
 
         <div class="bot-list">
             <div class="one-list-cont">

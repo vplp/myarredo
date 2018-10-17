@@ -5,7 +5,7 @@ use yii\helpers\{
 };
 //
 use frontend\themes\myarredo\assets\AppAsset;
-use frontend\themes\myarredo\widgets\Alert;
+use frontend\widgets\Alert;
 use frontend\modules\sys\models\Language;
 
 $bundle = AppAsset::register($this);

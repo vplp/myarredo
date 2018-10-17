@@ -1,5 +1,6 @@
 <?php
-namespace frontend\themes\myarredo\widgets;
+
+namespace frontend\widgets;
 
 /**
  * Alert widget renders a message from session flash. All flash messages are displayed

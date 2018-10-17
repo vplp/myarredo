@@ -73,7 +73,7 @@ class FactoryStatsController extends BaseController
 
         $params = Yii::$app->request->get() ?? [];
 
-        if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
             $params['factory_id'] = Yii::$app->getUser()->getIdentity()->profile->factory_id;
         }
 
