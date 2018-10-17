@@ -3,6 +3,7 @@
 use yii\helpers\{
     Url, Html
 };
+//
 use frontend\modules\catalog\models\Factory;
 use frontend\modules\banner\widgets\banner\FactoryBanner;
 
@@ -37,7 +38,9 @@ $this->title = $this->context->title;
 
             <?= Html::tag(
                 'h3',
-                $model['title'] . ' | '. Yii::t('app','Купить в') .' '. Yii::$app->city->getCityTitleWhere()
+                $model['title'] . ' | ' .
+                Yii::t('app', 'Купить в') . ' ' .
+                Yii::$app->city->getCityTitleWhere()
             ); ?>
 
             <div class="submenu">
@@ -61,7 +64,8 @@ $this->title = $this->context->title;
             </div>
             <div class="cat-prod">
 
-                <?php foreach ($product as $item) {
+                <?php
+                foreach ($product as $item) {
                     echo $this->render('/category/_list_item', [
                         'model' => $item,
                         'factory' => [$model->id => $model]

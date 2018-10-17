@@ -79,6 +79,10 @@ class Factory extends \common\modules\catalog\models\Factory
         return $result;
     }
 
+    /**
+     * @param $alias
+     * @return mixed
+     */
     public static function findAllByAlias($alias)
     {
         $result = self::getDb()->cache(function ($db) use ($alias) {
@@ -114,7 +118,7 @@ class Factory extends \common\modules\catalog\models\Factory
      * @param string $image_link
      * @return null|string
      */
-    public static function getImage($image_link  = '')
+    public static function getImage($image_link = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -126,7 +130,8 @@ class Factory extends \common\modules\catalog\models\Factory
 
         /*if (YII_ENV_DEV){
             $image = 'https://www.myarredo.ru/uploads/factory/' . $image_link;
-        } else*/if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+        } else*/
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image = $url . '/' . $image_link;
         }
 
@@ -137,7 +142,7 @@ class Factory extends \common\modules\catalog\models\Factory
      * @param string $image_link
      * @return null|string
      */
-    public static function getImageThumb($image_link  = '')
+    public static function getImageThumb($image_link = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -146,9 +151,7 @@ class Factory extends \common\modules\catalog\models\Factory
 
         $image = null;
 
-        /*if (YII_ENV_DEV && !empty($image_link)){
-            $image = 'https://www.myarredo.ru/uploads/factory/' . $image_link;
-        } else*/if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image = $path . '/' . $image_link;
 
             // resize
@@ -282,7 +285,6 @@ class Factory extends \common\modules\catalog\models\Factory
             ->groupBy(self::tableName() . '.id')
             ->asArray()
             ->all();
-
     }
 
     /**
@@ -291,15 +293,17 @@ class Factory extends \common\modules\catalog\models\Factory
     public static function getListLetters()
     {
         return parent::findBase()
-            ->enabled()
             ->select([self::tableName() . '.first_letter'])
             ->groupBy(self::tableName() . '.first_letter')
             ->orderBy(self::tableName() . '.first_letter')
+            ->enabled()
             ->all();
     }
 
     /**
-     * Get Factory Categories
+     * @param array $ids
+     * @return array
+     * @throws \yii\db\Exception
      */
     public static function getFactoryCategory(array $ids)
     {
@@ -410,6 +414,7 @@ class Factory extends \common\modules\catalog\models\Factory
         $keys = Yii::$app->catalogFilter->keys;
         $params = Yii::$app->catalogFilter->params;
 
+        $params[$keys['country']] = Yii::$app->city->domain;
         $params[$keys['factory']] = [$this->alias];
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));

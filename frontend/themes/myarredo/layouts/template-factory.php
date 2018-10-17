@@ -64,7 +64,8 @@ $this->beginPage()
                     ['/catalog/template-factory/catalog', 'alias' => $this->context->factory['alias']]
                 ) ?>
 
-                <?php if ($this->context->factory->getFactoryTotalCountSale()) {
+                <?php
+                if ($this->context->factory->getFactoryTotalCountSale()) {
                     echo Html::a(
                         Yii::t('app', 'Sale'),
                         ['/catalog/template-factory/sale', 'alias' => $this->context->factory['alias']]
