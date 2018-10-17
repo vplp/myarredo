@@ -1,5 +1,5 @@
 <?php
-namespace backend\themes\defaults\widgets\forms;
+namespace backend\widgets\forms;
 
 /**
  * @author Roman Gonchar <roman.gonchar92@gmail.com>

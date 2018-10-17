@@ -1,5 +1,5 @@
 <?php
-namespace backend\themes\defaults\widgets;
+namespace backend\widgets;
 
 use Yii;
 use yii\helpers\{

@@ -4,7 +4,7 @@ use yii\helpers\{
     Html
 };
 use backend\app\bootstrap\ActiveForm;
-use backend\themes\defaults\widgets\Tabs;
+use backend\widgets\Tabs;
 
 /**
  * @var \backend\app\bootstrap\ActiveForm $form

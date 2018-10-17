@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\themes\defaults\widgets\navbar;
+namespace backend\widgets\navbar;
 
 use Yii;
 use yii\helpers\{
@@ -8,12 +8,12 @@ use yii\helpers\{
 };
 use yii\i18n\PhpMessageSource;
 //
-use backend\themes\defaults\widgets\menu\Menu;
+use backend\widgets\menu\Menu;
 
 /**
  * Class NavBar
  *
- * @package backend\themes\defaults\widgets\navbar
+ * @package backend\widgets\navbar
  */
 class NavBar extends \yii\bootstrap\NavBar
 {

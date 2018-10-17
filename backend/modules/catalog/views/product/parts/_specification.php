@@ -5,7 +5,7 @@ use backend\modules\catalog\models\{
 };
 use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;
 //
-use backend\themes\defaults\widgets\TreeGrid;
+use backend\widgets\TreeGrid;
 
 /**
  * @var \backend\modules\catalog\models\Product $model

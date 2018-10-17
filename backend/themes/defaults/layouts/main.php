@@ -3,10 +3,10 @@
 use yii\helpers\Html;
 //
 use backend\widgets\LangSwitch\LangSwitch;
-use backend\themes\defaults\widgets\navbar\NavBar;
+use backend\widgets\navbar\NavBar;
 use backend\themes\defaults\assets\AppAsset;
 
-use backend\themes\defaults\widgets\Alert;
+use backend\widgets\Alert;
 
 $navMiniStatus = isset($_COOKIE['navbar-minimalize']) ? intval($_COOKIE['navbar-minimalize']) : 0;
 
