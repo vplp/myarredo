@@ -71,22 +71,22 @@ $this->title = $this->context->title;
                             </div>
 
                             <table class="info-table" width="100%">
-                                <?php if (!empty($model['specificationValue'])) { ?>
-                                    <tr>
-                                        <td><?= Yii::t('app', 'Стиль') ?></td>
-                                        <td>
-                                            <?php
-                                            $array = [];
-                                            foreach ($model['specificationValue'] as $item) {
-                                                if ($item['specification']['parent_id'] == 9) {
-                                                    $array[] = $item['specification']['lang']['title'];
-                                                }
-                                            }
+                                <?php if (!empty($model['specificationValue'])) {
+                                    $array = [];
+                                    foreach ($model['specificationValue'] as $item) {
+                                        if ($item['specification']['parent_id'] == 9) {
+                                            $array[] = $item['specification']['lang']['title'];
+                                        }
+                                    }
+                                    if (!empty($array)) { ?>
+                                        <tr>
+                                            <td><?= Yii::t('app', 'Стиль') ?></td>
+                                            <td>
+                                                <?= implode('; ', $array) ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
 
-                                            echo implode('; ', $array);
-                                            ?>
-                                        </td>
-                                    </tr>
                                     <tr>
                                         <td><?= Yii::t('app', 'Размеры') ?></td>
                                         <td class="product-size">
@@ -102,20 +102,22 @@ $this->title = $this->context->title;
                                             } ?>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td><?= Yii::t('app', 'Материал') ?></td>
-                                        <td>
-                                            <?php
-                                            $array = [];
-                                            foreach ($model['specificationValue'] as $item) {
-                                                if ($item['specification']['parent_id'] == 2) {
-                                                    $array[] = $item['specification']['lang']['title'];
-                                                }
-                                            }
-                                            echo implode('; ', $array);
-                                            ?>
-                                        </td>
-                                    </tr>
+
+                                    <?php
+                                    $array = [];
+                                    foreach ($model['specificationValue'] as $item) {
+                                        if ($item['specification']['parent_id'] == 2) {
+                                            $array[] = $item['specification']['lang']['title'];
+                                        }
+                                    }
+                                    if (!empty($array)) { ?>
+                                        <tr>
+                                            <td><?= Yii::t('app', 'Материал') ?></td>
+                                            <td>
+                                                <?= implode('; ', $array) ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 <?php } ?>
                             </table>
 
