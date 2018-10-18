@@ -113,7 +113,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         if (Yii::$app->city->getCountryId()) {
             $query
                 ->innerJoinWith(["country"])
-                ->andFilterWhere(['IN', Country::tableName() . '.alias', Yii::$app->city->getCountryId()]);
+                ->andFilterWhere(['IN', Country::tableName() . '.id', Yii::$app->city->getCountryId()]);
         }
 
         if (Yii::$app->city->getCityAlias()) {
