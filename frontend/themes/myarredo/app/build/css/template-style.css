@@ -6241,6 +6241,12 @@ h1 {
   font-size: 13px;
   color: #535351;
 }
+.passchange-form form {
+  width: 100%;
+}
+.filter-bot .jq-selectbox {
+  min-width: 27%;
+}
 @media (max-width: 1460px) {
   .largex-container {
     padding: 0 20px;
