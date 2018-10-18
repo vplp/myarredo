@@ -100,14 +100,7 @@ class SaleController extends BaseController
 
         Yii::$app->metatag->render();
 
-        $this->title = Yii::$app->metatag->seo_title
-            ? Yii::$app->metatag->seo_title
-            : Yii::t('app', 'Распродажа итальянской мебели');
-
-        $this->breadcrumbs[] = [
-            'label' => Yii::t('app', 'Распродажа итальянской мебели'),
-            'url' => ['/catalog/sale/list']
-        ];
+        $this->listSeo();
 
         return $this->render('list', [
             'category' => $category,
@@ -142,17 +135,61 @@ class SaleController extends BaseController
             'url' => ['/catalog/category/list']
         ];
 
-        $this->title = Yii::t('app', 'Sale') . ': ' .
-            $model['lang']['title'] .
-            ' - ' . $model['price_new'] . ' ' . $model['currency'] .
-            ' - ' . Yii::t('app', 'интернет-магазин Myarredo в') . ' ' .
-            Yii::$app->city->getCityTitleWhere();
+        $pageTitle[] = Yii::t('app', 'Sale') . ' ' .
+            $model['lang']['title'] . ' ' .
+            Yii::t('app', 'в наличии') . ' ' .
+            Yii::$app->city->getCityTitle() . ' MyArredo';
+
+        $pageDescription[] = Yii::t('app', 'Купить') . ' ' .
+            $model['lang']['title'] . ' ' .
+            Yii::t('app', 'со скидкой на распродаже') . ' ' .
+            Yii::$app->city->getCityTitle() . ' MyArredo';
+
+
+        // [Товар из ХК]
+        $array = [];
+        foreach ($model['specificationValue'] as $item) {
+            if ($item['specification']['parent_id'] == 2) {
+                $array[] = $item['specification']['lang']['title'];
+            }
+        }
+
+        foreach ($model['specificationValue'] as $item) {
+            if ($item['specification']['parent_id'] == 4) {
+                $array[] = $item['specification']['lang']['title'] .
+                    ': ' .
+                    $item['val'] . Yii::t('app', 'см');
+            }
+        }
+
+        if (!empty($array)) {
+            $pageTitle[] = implode(', ', $array);
+
+            $pageDescription[] = Yii::t('app', 'Воспользуйтесь возможностью приобрести') . ' ' .
+                implode(', ', $array) . ', ' .
+                Yii::t('app', 'из Италии с экспозиции в салонах-партнерах MyArredo - 
+                портал проверенных поставщиков итальянской мебели');
+        }
+
+        // Стиль
+        $array = [];
+        foreach ($model['specificationValue'] as $item) {
+            if ($item['specification']['parent_id'] == 9) {
+                $array[] = $item['specification']['lang']['title'];
+            }
+        }
+
+        if (!empty($array)) {
+            $pageTitle[] = Yii::t('app', 'Стиль') . ': ' .
+                implode(', ', $array) . ' ' .
+                Yii::t('app', 'из Италии со скидкой');
+        }
+
+        $this->title = implode('. ', $pageTitle);
 
         Yii::$app->view->registerMetaTag([
             'name' => 'description',
-            'content' => strip_tags($model['lang']['description']) .
-                ' ' . Yii::t('app', 'Купить в интернет-магазине Myarredo в') . ' ' .
-                Yii::$app->city->getCityTitleWhere()
+            'content' => implode('. ', $pageDescription),
         ]);
 
         return $this->render('view', [
@@ -174,7 +211,6 @@ class SaleController extends BaseController
             $user = Profile::findByUserId($user_id);
 
             if ($user != null) {
-
                 // SalePhoneRequest
                 SalePhoneRequest::create($sale_item_id);
 
@@ -183,5 +219,117 @@ class SaleController extends BaseController
 
             return ['success' => 0, 'phone' => null];
         }
+    }
+
+    /**
+     * @return $this
+     */
+    public function listSeo()
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+        $params = Yii::$app->catalogFilter->params;
+
+        $this->breadcrumbs[] = [
+            'label' => Yii::t('app', 'Распродажа итальянской мебели'),
+            'url' => ['/catalog/sale/list']
+        ];
+
+        $noIndex = 0;
+        $pageTitle = $pageH1 = $pageDescription = [];
+
+        /**
+         * query
+         */
+        $pageH1[] = Yii::t('app', 'Распродажа');
+        $pageTitle[] = Yii::t('app', 'Распродажа мебели');
+        $pageDescription[] = Yii::t('app', 'Распродажа');
+
+        if (!empty($params[$keys['category']])) {
+            $model = Category::findByAlias($params[$keys['category']][0]);
+
+            $pageH1[] = $model['lang']['title'];
+            $pageTitle[] = $model['lang']['title'];
+            $pageDescription[] = $model['lang']['title'];
+
+            $this->breadcrumbs[] = [
+                'label' => $model['lang']['title'],
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['category'] => $params[$keys['category']]])
+            ];
+        } else {
+            $pageH1[] = Yii::t('app', 'мебели');
+            $pageDescription[] = Yii::t('app', 'мебели');
+
+        }
+
+        if (!empty($params[$keys['factory']])) {
+            $models = Factory::findAllByAlias($params[$keys['factory']]);
+
+            $factory = [];
+            foreach ($models as $model) {
+                $factory[] = $model['title'];
+            }
+
+            if (count($params[$keys['factory']]) > 1) {
+                $noIndex = 1;
+            }
+
+            if (count($params) == 1 && count($params[$keys['factory']]) == 1) {
+                $noIndex = 1;
+            }
+
+            $pageTitle[] = implode(', ', $factory);
+            $pageH1[] = implode(', ', $factory);
+            $pageDescription[] = implode(', ', $factory);
+
+            $this->breadcrumbs[] = [
+                'label' => implode(', ', $factory),
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['factory'] => $params[$keys['factory']]])
+            ];
+        }
+
+        if (count($params) > 3) {
+            $noIndex = 1;
+        }
+
+        /**
+         * set options
+         */
+
+        $pageTitle[] = Yii::t('app', 'из Италии в наличии') . ' ' .
+            Yii::$app->city->getCityTitle() . ' | ' .
+            Yii::t('app', 'MyArredo итальянская мебель со скидками');
+
+        $pageDescription[] = Yii::t('app', 'со скидкой') . ' ' .
+            Yii::$app->city->getCityTitle() . '. ' .
+            Yii::t(
+                'app',
+                'Воспользуйтесь возможностью приобрести мебель из Италии с экспозиции в салонах-партнерах Myarredo - портал проверенных поставщиков итальянской мебели.'
+            );
+
+        $this->title = Yii::$app->metatag->seo_title
+            ? Yii::$app->metatag->seo_title
+            : (!empty($pageTitle)
+                ? implode('. ', $pageTitle)
+                : Yii::t('app', 'Распродажа итальянской мебели'));
+
+        if (!Yii::$app->metatag->seo_description) {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'description',
+                'content' => implode(' ', $pageDescription),
+            ]);
+        }
+
+        if ($noIndex) {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'robots',
+                'content' => 'noindex, follow',
+            ]);
+        }
+
+        $this->pageH1 = ($this->pageH1 != '')
+            ? $this->pageH1
+            : implode(' ', $pageH1);
+
+        return $this;
     }
 }

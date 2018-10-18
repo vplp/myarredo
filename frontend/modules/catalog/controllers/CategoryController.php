@@ -77,7 +77,7 @@ class CategoryController extends BaseController
 
         Yii::$app->metatag->render();
 
-        $this->seo();
+        $this->listSeo();
 
         if (empty($models->getModels())) {
             Yii::$app->view->registerMetaTag([
@@ -85,6 +85,7 @@ class CategoryController extends BaseController
                 'content' => 'noindex, nofollow',
             ]);
         }
+
         return $this->render('list', [
             'group' => $group,
             'category' => $category,
@@ -155,7 +156,7 @@ class CategoryController extends BaseController
     /**
      * @return $this
      */
-    public function seo()
+    public function listSeo()
     {
         $keys = Yii::$app->catalogFilter->keys;
         $params = Yii::$app->catalogFilter->params;
@@ -165,7 +166,7 @@ class CategoryController extends BaseController
             'url' => ['/catalog/category/list']
         ];
 
-        $noindex = 0;
+        $noIndex = 0;
         $pageTitle = $pageH1 = $pageDescription = [];
 
         /**
@@ -188,7 +189,7 @@ class CategoryController extends BaseController
             $models = Types::findByAlias($params[$keys['type']]);
 
             if (count($params[$keys['type']]) > 1) {
-                $noindex = 1;
+                $noIndex = 1;
             }
 
             $type = [];
@@ -210,7 +211,7 @@ class CategoryController extends BaseController
             $models = Specification::findByAlias($params[$keys['style']]);
 
             if (count($params[$keys['style']]) > 1) {
-                $noindex = 1;
+                $noIndex = 1;
             }
 
             $style = [];
@@ -257,11 +258,11 @@ class CategoryController extends BaseController
             }
 
             if (count($params[$keys['factory']]) > 1) {
-                $noindex = 1;
+                $noIndex = 1;
             }
 
             if (count($params) == 1 && count($params[$keys['factory']]) == 1) {
-                $noindex = 1;
+                $noIndex = 1;
             }
 
             $pageTitle[] = implode(', ', $factory);
@@ -275,11 +276,11 @@ class CategoryController extends BaseController
         }
 
         if (isset($params[$keys['price']])) {
-            $noindex = 1;
+            $noIndex = 1;
         }
 
         if (count($params) > 3) {
-            $noindex = 1;
+            $noIndex = 1;
         }
 
         $pageDescription[] = Yii::t('app', 'из Италии');
@@ -329,7 +330,7 @@ class CategoryController extends BaseController
             ]);
         }
 
-        if ($noindex) {
+        if ($noIndex) {
             Yii::$app->view->registerMetaTag([
                 'name' => 'robots',
                 'content' => 'noindex, follow',
