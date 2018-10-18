@@ -47,7 +47,7 @@ $this->title = ($model->isNewRecord)
                         <?php if ($model->isNewRecord) { ?>
                             <div class="alert alert-warning">
                                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                                Для загрузки изображений - сначала создайте товар
+                                <?= Yii::t('app', 'Для загрузки изображений - сначала создайте товар') ?>
                             </div>
                         <?php } else { ?>
                             <?= $form
