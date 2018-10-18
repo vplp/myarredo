@@ -85,8 +85,7 @@ class SaleFilter extends Widget
         foreach ($this->category as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (
-                !empty($params[$keys['category']]) &&
+            if (!empty($params[$keys['category']]) &&
                 in_array($obj['alias'], $params[$keys['category']])
             ) {
                 $checked = 1;
@@ -119,8 +118,7 @@ class SaleFilter extends Widget
         foreach ($this->types as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (
-                !empty($params[$keys['type']]) &&
+            if (!empty($params[$keys['type']]) &&
                 in_array($obj['alias'], $params[$keys['type']])
             ) {
                 $checked = 1;
@@ -154,8 +152,7 @@ class SaleFilter extends Widget
         foreach ($this->style as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (
-                !empty($params[$keys['style']]) &&
+            if (!empty($params[$keys['style']]) &&
                 in_array($obj['alias'], $params[$keys['style']])
             ) {
                 $checked = 1;
@@ -189,8 +186,7 @@ class SaleFilter extends Widget
         foreach ($this->factory as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (
-                !empty($params[$keys['factory']]) &&
+            if (!empty($params[$keys['factory']]) &&
                 in_array($obj['alias'], $params[$keys['factory']])
             ) {
                 $checked = 1;
@@ -284,8 +280,7 @@ class SaleFilter extends Widget
         foreach ($this->cities as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (
-                !empty($params[$keys['city']]) &&
+            if (!empty($params[$keys['city']]) &&
                 in_array($obj['alias'], $params[$keys['city']])
             ) {
                 $checked = 1;

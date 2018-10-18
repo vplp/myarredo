@@ -8,7 +8,7 @@ use backend\app\bootstrap\ActiveForm;
  */
 ?>
 
-<?= \backend\themes\defaults\widgets\Alert::widget() ?>
+<?= \backend\widgets\Alert::widget() ?>
 
 <?php $form = ActiveForm::begin([
     'id' => 'login-form',

@@ -1,5 +1,5 @@
 <?php
-namespace backend\themes\defaults\widgets\gridColumns;
+namespace backend\widgets\gridColumns;
 
 use yii\grid\Column;
 use yii\helpers\Html;

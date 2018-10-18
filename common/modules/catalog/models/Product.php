@@ -243,7 +243,7 @@ class Product extends ActiveRecord implements iProduct
             'price_from' => Yii::t('app', 'Price from'),
             'removed' => 'Снят с производства',
             'in_stock' => 'Под заказ | В наличии',
-            'factory_id' => Yii::t('app','Factory'),
+            'factory_id' => Yii::t('app', 'Factory'),
             'collections_id' => Yii::t('app', 'Collections'),
             'catalog_type_id' => Yii::t('app', 'Catalog type'),
             'popular' => 'Популярное',

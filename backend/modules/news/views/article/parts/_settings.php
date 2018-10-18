@@ -5,7 +5,7 @@ use backend\modules\news\models\Group;
  * @author Roman Gonchar <roman.gonchar92@gmail.com>
  * @var \backend\modules\news\models\Article $model
  * @var \backend\modules\news\models\ArticleLang $modelLang
- * @var \backend\themes\defaults\widgets\forms\ActiveForm $form
+ * @var \backend\widgets\forms\ActiveForm $form
  */
 ?>
 <?= $form->field($model, 'group_id')->hiddenInput(['value' => 1])->label(false) ?>

@@ -91,7 +91,7 @@ class Customer extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
             'full_name' => Yii::t('shop', 'Full name'),
-            'user_id' => Yii::t('shop', 'User id'),
+            'user_id' => Yii::t('shop', 'User'),
 
         ];
     }

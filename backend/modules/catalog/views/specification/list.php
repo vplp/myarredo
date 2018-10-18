@@ -2,7 +2,7 @@
 
 use thread\widgets\grid\ActionStatusColumn;
 //
-use backend\themes\defaults\widgets\TreeGrid;
+use backend\widgets\TreeGrid;
 
 echo TreeGrid::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
@@ -22,7 +22,7 @@ echo TreeGrid::widget([
             'action' => 'published'
         ],
         [
-            'class' => \backend\themes\defaults\widgets\gridColumns\ActionColumn::class
+            'class' => \backend\widgets\gridColumns\ActionColumn::class
         ],
     ]
 ]);

@@ -1,5 +1,5 @@
 <?php
-namespace backend\themes\defaults\widgets\menu;
+namespace backend\widgets\menu;
 
 use Yii;
 use yii\helpers\{
@@ -8,7 +8,7 @@ use yii\helpers\{
 
 /**
  * Class Menu
- * @package backend\themes\defaults\widgets\menu
+ * @package backend\widgets\menu
  */
 class Menu extends \yii\widgets\Menu
 {

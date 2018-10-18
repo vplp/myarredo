@@ -3,7 +3,7 @@
 use backend\app\bootstrap\{
     ActiveForm
 };
-use backend\themes\defaults\widgets\Tabs;
+use backend\widgets\Tabs;
 //
 use backend\modules\page\models\{
     Page, PageLang

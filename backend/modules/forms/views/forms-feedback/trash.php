@@ -1,6 +1,6 @@
 <?php
 
-use backend\themes\defaults\widgets\GridView;
+use backend\widgets\GridView;
 use thread\widgets\grid\ActionDeleteColumn;
 use thread\widgets\grid\ActionRestoreColumn;
 

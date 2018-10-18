@@ -7,6 +7,7 @@ use yii\helpers\{
 use frontend\modules\catalog\models\{
     Product, Category, Factory
 };
+
 ?>
 
     <div class="filters">
@@ -17,13 +18,13 @@ use frontend\modules\catalog\models\{
             'action' => Url::toRoute([$route])
         ]) ?>
 
-        <?php if (count(Yii::$app->catalogFilter->params) > 1): ?>
+        <?php if (count(Yii::$app->catalogFilter->params) > 1) { ?>
             <?= Html::a(
                 Yii::t('app', 'Сбросить фильтры'),
                 Url::toRoute([$route]),
                 ['class' => 'reset']
             ) ?>
-        <?php endif; ?>
+        <?php } ?>
 
         <div class="one-filter open">
 
@@ -31,16 +32,17 @@ use frontend\modules\catalog\models\{
 
             <div class="list-item">
 
-                <?php foreach ($category as $item):
+                <?php
+                foreach ($category as $item) {
                     $options = $item['checked'] ? ['class' => 'one-item selected'] : ['class' => 'one-item'];
 
                     echo Html::a(
-                        Html::img(Category::getImage($item['image_link3'])) . $item['title'] . '<span>' . $item['count'] . '</span>',
+                        Html::img(Category::getImage($item['image_link3'])) .
+                        $item['title'] . '<span>' . $item['count'] . '</span>',
                         $item['link'],
                         $options
                     );
-
-                endforeach; ?>
+                } ?>
 
             </div>
         </div>
@@ -50,15 +52,14 @@ use frontend\modules\catalog\models\{
                 <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Предмет') ?></a>
                 <div class="list-item">
 
-                    <?php foreach ($types as $item): ?>
-
+                    <?php foreach ($types as $item) { ?>
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                        <div class="filter-group"><div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
+                        <div class="filter-group">
+                            <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
                         <?= Html::endTag('a'); ?>
-
-                    <?php endforeach; ?>
+                    <?php } ?>
 
                 </div>
 
@@ -81,7 +82,8 @@ use frontend\modules\catalog\models\{
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                        <div class="filter-group"><div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
+                        <div class="filter-group">
+                            <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
                         <?= Html::endTag('a'); ?>
 
                     <?php endforeach; ?>
@@ -100,7 +102,8 @@ use frontend\modules\catalog\models\{
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                        <div class="filter-group"><div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
+                        <div class="filter-group">
+                            <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
                         <?= Html::endTag('a'); ?>
 
                     <?php endforeach; ?>
@@ -187,7 +190,7 @@ use frontend\modules\catalog\models\{
 
         <?php if ($cities): ?>
             <div class="one-filter open subject-filter">
-                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app','City') ?></a>
+                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'City') ?></a>
                 <div class="list-item">
 
                     <?php foreach ($cities as $item): ?>
@@ -195,7 +198,8 @@ use frontend\modules\catalog\models\{
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
                         <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                        <div class="filter-group"><div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
+                        <div class="filter-group">
+                            <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
                         <?= Html::endTag('a'); ?>
 
 
@@ -206,7 +210,7 @@ use frontend\modules\catalog\models\{
                 <?php if (count($cities) > 10): ?>
                     <a href="javascript:void(0);" class="show-all-sub show-more" data-variant="Скрыть">
                         <i class="fa fa-plus" aria-hidden="true"></i>
-                        <span class="btn-text"><?= Yii::t('app','Показать все города') ?></span>
+                        <span class="btn-text"><?= Yii::t('app', 'Показать все города') ?></span>
                     </a>
                 <?php endif; ?>
 

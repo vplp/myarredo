@@ -215,7 +215,7 @@ $this->title = ($model->isNewRecord)
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Статус</label>
+                            <label class="col-sm-3 col-form-label"><?= Yii::t('app', 'Status') ?></label>
                             <div class="col-sm-9">
                                 <div class="checkbox checkbox-primary">
                                     <?= $form

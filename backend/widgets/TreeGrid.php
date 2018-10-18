@@ -1,13 +1,13 @@
 <?php
 
-namespace backend\themes\defaults\widgets;
+namespace backend\widgets;
 
 use yii\helpers\Html;
 
 /**
  * Class TreeGrid
  *
- * @package backend\themes\defaults\widgets
+ * @package backend\widgets
  */
 class TreeGrid extends \leandrogehlen\treegrid\TreeGrid
 {

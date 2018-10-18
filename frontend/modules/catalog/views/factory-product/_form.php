@@ -12,7 +12,7 @@ use frontend\modules\catalog\models\{
     ProductRelSpecification
 };
 use backend\app\bootstrap\ActiveForm;
-use backend\themes\defaults\widgets\TreeGrid;
+use backend\widgets\TreeGrid;
 use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;
 
 /**

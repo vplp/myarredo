@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\themes\defaults\widgets\forms;
+namespace backend\widgets\forms;
 
 use Yii;
 use yii\helpers\{

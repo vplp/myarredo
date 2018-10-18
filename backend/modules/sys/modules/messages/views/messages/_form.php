@@ -1,5 +1,5 @@
 <?php
-use backend\themes\defaults\widgets\forms\ActiveForm;
+use backend\widgets\forms\ActiveForm;
 
 /**
  *
@@ -13,5 +13,5 @@ echo $form->field($model, 'arraykey')->hiddenInput()->label(false);
     </div>
 <?php
 echo $form->field($modelLang, 'title')->textInput();
-echo \backend\themes\defaults\widgets\forms\Form::submit($model, $this, 'left');
+echo \backend\widgets\forms\Form::submit($model, $this, 'left');
 ActiveForm::end();
