@@ -89,8 +89,8 @@ $this->title = $this->context->title;
                                             },
                                         ],
                                         [
-                                            'attribute' => 'amount_with_vat',
-                                            'value' => 'amount_with_vat',
+                                            'attribute' => 'amount',
+                                            'value' => 'amount',
                                         ],
                                         [
                                             'attribute' => 'payment_status',
