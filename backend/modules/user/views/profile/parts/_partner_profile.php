@@ -12,8 +12,8 @@ use backend\modules\location\models\{
 
 ?>
 
-<?php if (in_array($model['user']['group_id'], [4])):
-
+<?php
+if (in_array($model['user']['group_id'], [4])) {
     echo $form->text_line($model, 'additional_phone');
 
     echo $form->text_line($model, 'name_company');
@@ -50,9 +50,8 @@ use backend\modules\location\models\{
 
     echo $form->switcher($model, 'show_contacts');
 
-endif; ?>
+}
 
-<?php
 $url = \yii\helpers\Url::toRoute('/location/city/get-cities');
 
 $script = <<<JS
