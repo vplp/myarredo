@@ -283,9 +283,7 @@ class SaleFilter extends Widget
         foreach ($this->cities as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (!empty($params[$keys['city']]) &&
-                in_array($obj['alias'], $params[$keys['city']])
-            ) {
+            if ($obj['alias'] == Yii::$app->city->getCityAlias()) {
                 $checked = 1;
                 //$params[$keys['city']] = array_diff($params[$keys['city']], [$obj['alias']]);
             } else {

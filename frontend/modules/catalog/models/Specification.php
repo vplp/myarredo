@@ -238,16 +238,16 @@ class Specification extends \common\modules\catalog\models\Specification
                 ->andFilterWhere(['IN', 'saleFactory.alias', $params[$keys['factory']]]);
         }
 
-        if (isset($params[$keys['country']])) {
+        if (Yii::$app->city->getCountryId()) {
             $query
                 ->innerJoinWith(["sale.country saleCountry"], false)
-                ->andFilterWhere(['IN', 'saleCountry.alias', $params[$keys['country']]]);
+                ->andFilterWhere(['IN', 'saleCountry.id', Yii::$app->city->getCountryId()]);
         }
 
-        if (isset($params[$keys['city']])) {
+        if (Yii::$app->city->getCityAlias()) {
             $query
                 ->innerJoinWith(["sale.city saleCity"], false)
-                ->andFilterWhere(['IN', 'saleCity.alias', $params[$keys['city']]]);
+                ->andFilterWhere(['IN', 'saleCity.alias', Yii::$app->city->getCityAlias()]);
         }
 
         return $query

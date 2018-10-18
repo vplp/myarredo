@@ -262,16 +262,16 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->andFilterWhere(['IN', 'saleSpecification.alias', $params[$keys['style']]]);
         }
 
-        if (isset($params[$keys['country']])) {
+        if (Yii::$app->city->getCountryId()) {
             $query
                 ->innerJoinWith(["sale.country saleCountry"], false)
-                ->andFilterWhere(['IN', 'saleCountry.alias', $params[$keys['country']]]);
+                ->andFilterWhere(['IN', 'saleCountry.id', Yii::$app->city->getCountryId()]);
         }
 
-        if (isset($params[$keys['city']])) {
+        if (Yii::$app->city->getCityAlias()) {
             $query
                 ->innerJoinWith(["sale.city saleCity"], false)
-                ->andFilterWhere(['IN', 'saleCity.alias', $params[$keys['city']]]);
+                ->andFilterWhere(['IN', 'saleCity.alias', Yii::$app->city->getCityAlias()]);
         }
 
         return $query
@@ -414,7 +414,7 @@ class Factory extends \common\modules\catalog\models\Factory
         $keys = Yii::$app->catalogFilter->keys;
         $params = Yii::$app->catalogFilter->params;
 
-        $params[$keys['country']] = Yii::$app->city->domain;
+        //$params[$keys['country']] = Yii::$app->city->domain;
         $params[$keys['factory']] = [$this->alias];
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
