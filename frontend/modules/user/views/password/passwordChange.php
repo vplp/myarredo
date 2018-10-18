@@ -15,11 +15,11 @@ $this->title = Yii::t('app', 'Change password');
 
 <main>
     <div class="page factory-profile">
-        <div class="container large-container">
+        <div class="largex-container">
 
             <?= Html::tag('h1', $this->title); ?>
 
-            <div class="part-contact">
+            <div class="part-contact passchange-form">
 
                 <?php $form = ActiveForm::begin([
                     'action' => Url::toRoute(['/user/password/change']),
