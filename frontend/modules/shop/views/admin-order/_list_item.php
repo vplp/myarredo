@@ -60,7 +60,7 @@ use frontend\modules\catalog\models\Product;
                 <div class="downloads">
 
                     <?php if (!empty($orderItem->product['factoryPricesFiles'])): ?>
-                        <p class="title-small">Посмотреть прайс листы</p>
+                        <p class="title-small"><?= Yii::t('app','Посмотреть прайс листы') ?></p>
                         <ul>
                             <?php foreach ($orderItem->product['factoryPricesFiles'] as $priceFile): ?>
                                 <?php if ($fileLink = $priceFile->getFileLink()): ?>

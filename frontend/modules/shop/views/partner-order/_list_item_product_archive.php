@@ -39,7 +39,7 @@ use frontend\modules\catalog\models\Product;
             <td><?= $orderItem->product['factory']['title'] ?></td>
         </tr>
         <tr>
-            <td>ЦЕНА для клиента</td>
+            <td><?= Yii::t('app', 'Цена для клиента') ?></td>
             <td>
                 <?= $orderItem->orderItemPrice['price'] ?>
             </td>
