@@ -4,6 +4,8 @@ namespace frontend\modules\catalog\widgets\filter;
 
 use Yii;
 use yii\base\Widget;
+//
+use frontend\modules\location\models\City;
 
 /**
  * Class SaleFilter
@@ -71,6 +73,7 @@ class SaleFilter extends Widget
 
     /**
      * @return string
+     * @throws \Throwable
      */
     public function run()
     {
@@ -284,17 +287,29 @@ class SaleFilter extends Widget
                 in_array($obj['alias'], $params[$keys['city']])
             ) {
                 $checked = 1;
-                $params[$keys['city']] = array_diff($params[$keys['city']], [$obj['alias']]);
+                //$params[$keys['city']] = array_diff($params[$keys['city']], [$obj['alias']]);
             } else {
                 $checked = 0;
-                $params[$keys['city']][] = $obj['alias'];
+                //$params[$keys['city']][] = $obj['alias'];
             }
 
             // sort value
 
-            array_multisort($params[$keys['city']], SORT_ASC, $params[$keys['city']]);
+            //array_multisort($params[$keys['city']], SORT_ASC, $params[$keys['city']]);
 
-            $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
+            $city = City::findByAlias($obj['alias']);
+
+            if ($city == null || in_array($city['id'], [1, 2, 4])) {
+                $baseUrl = 'https://' . 'www.myarredo.' . Yii::$app->city->domain;
+            } else {
+                $baseUrl = 'https://' . $city['alias'] . '.myarredo.' . Yii::$app->city->domain;
+            }
+
+            if ($city['country']['alias'] != Yii::$app->city->domain) {
+                $baseUrl = 'https://' . $city['alias'] . '.myarredo.' . $this->city['country']['alias'];
+            }
+
+            $link = $baseUrl . Yii::$app->catalogFilter->createUrl($params, [$this->route]);
 
             $cities[$key] = array(
                 'checked' => $checked,

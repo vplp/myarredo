@@ -182,6 +182,5 @@ class City extends \common\modules\location\models\City
             ])
             ->groupBy(self::tableName() . '.id')
             ->all();
-
     }
 }

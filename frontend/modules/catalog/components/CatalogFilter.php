@@ -147,14 +147,12 @@ class CatalogFilter extends Component
             }
         }
 
-        {
-            $count = count($paramsUrl) - 1;
-            for (; $count >= 0; $count--) {
-                if (end($paramsUrl)) {
-                    break;
-                } else {
-                    unset($paramsUrl[key($paramsUrl)]);
-                }
+        $count = count($paramsUrl) - 1;
+        for (; $count >= 0; $count--) {
+            if (end($paramsUrl)) {
+                break;
+            } else {
+                unset($paramsUrl[key($paramsUrl)]);
             }
         }
 
@@ -243,7 +241,6 @@ class CatalogFilter extends Component
          */
 
         if (!empty(self::$_structure['type'])) {
-
             $model = Types::findBase()
                 ->andWhere(['IN', Types::tableName() . '.alias', self::$_structure['type']])
                 ->indexBy('id')

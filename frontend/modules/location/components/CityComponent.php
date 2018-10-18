@@ -60,6 +60,14 @@ class CityComponent extends Component
     }
 
     /**
+     * @return integer
+     */
+    public function getCityAlias()
+    {
+        return $this->city['alias'];
+    }
+
+    /**
      * @return string
      */
     public function getCityTitle()
