@@ -72,7 +72,8 @@ class ProfileController extends BaseController
     public function actionIndex()
     {
         /** @var Profile $model */
-        $model = new $this->model;
+        $model = new $this->model();
+
         $model->setScenario('frontend');
         $user = $model::findByUserId(Yii::$app->getUser()->id);
 
@@ -87,7 +88,8 @@ class ProfileController extends BaseController
     public function actionUpdate()
     {
         /** @var Profile $model */
-        $model = new $this->model;
+        $model = new $this->model();
+
         $model->setScenario('ownEdit');
 
         $profile = $model::findByUserId(Yii::$app->getUser()->id);
