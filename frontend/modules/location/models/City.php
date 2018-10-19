@@ -59,7 +59,6 @@ class City extends \common\modules\location\models\City
     /**
      * @param string $alias
      * @return mixed
-     * @throws \Exception
      * @throws \Throwable
      */
     public static function findByAlias($alias)
@@ -74,7 +73,6 @@ class City extends \common\modules\location\models\City
     /**
      * @param int $id
      * @return mixed
-     * @throws \Exception
      * @throws \Throwable
      */
     public static function findById($id)

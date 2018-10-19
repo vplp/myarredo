@@ -12,13 +12,16 @@ use yii\helpers\{
 ?>
 
 <ul class="links-cont js-list-container">
-    <?php foreach ($country['cities'] as $cityCountry):
-        $option = ($cityCountry['id'] == $city['id']) ? ['class'=>'active'] : [];
-        ?>
+    <?php
+    foreach ($country['cities'] as $cityCountry) {
+        $option = ($cityCountry['id'] == $city['id']) ? ['class' => 'active'] : [];
 
-        <?= Html::beginTag('li', $option) ?>
-        <?= Html::a($cityCountry['lang']['title'], $cityCountry->getSubDomainUrl(), ['rel' => 'nofollow']) ?>
-        <?= Html::endTag('li') ?>
-
-    <?php endforeach; ?>
+        echo Html::beginTag('li', $option);
+        echo Html::a(
+            $cityCountry['lang']['title'],
+            $cityCountry->getSubDomainUrl() . '/' . Yii::$app->request->pathInfo,
+            ['rel' => 'nofollow']
+        );
+        echo Html::endTag('li');
+    } ?>
 </ul>
