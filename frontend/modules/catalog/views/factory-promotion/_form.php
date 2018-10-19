@@ -145,7 +145,7 @@ $this->title = Yii::t('app', 'Рекламировать');
 
                         <div id="list-product">
                             <?php foreach ($model->products as $product) :
-                                echo '<div>' .
+                                echo '<div class="list-product-item">' .
                                     $product->lang->title .
                                     Html::input(
                                         'hidden',
@@ -302,7 +302,7 @@ $('#factorypromotion-city_ids').find('#factorypromotion-country_id').on('change'
     
     newCost();
 });
-
+// js for detect selected country
 function watchForSelect() {
     var ourVal = $('#factorypromotion-city_ids').find('#factorypromotion-country_id');
     var rusBoxTab = $('#factorypromotion-city_ids').children('.tab-country-2');
@@ -316,14 +316,23 @@ function watchForSelect() {
         belBoxTab.css('display', 'block');
     }
 }
-
 watchForSelect();
 
-// js for reinit plugin styler when used search in popup
-$('.factory-prom').on('blur', 'input[type="text"]', function() {
+// js for reinit plugin styler when used search in popup and add prop checked when isset selected product
+$('.factory-prom').on('pjax:success', function(etg) {
     setTimeout(function() {
         $('.factory-prom').find('input[type="checkbox"]').styler();
     },1000);
+    $('.factory-prom').find('input[type="checkbox"]').each(function(n, item) {
+        $('#factory-promotion').find('#list-product').find('.close').each(function(i, elem) {
+            if ($(item).val() === $(elem).attr('data-id')) {
+                $(item).prop('checked', 'true');
+                setTimeout(function() {
+                    $(item).parent('.jq-checkbox').addClass('checked');
+                }, 1500);
+            }
+        });
+    });
 });
 
 // js for functional for checkbox checked all 
@@ -442,18 +451,15 @@ newCost();
 $('input[name="FactoryPromotion[views]"]').on('change', function() {
      newCost();
 });
-
 /**
  * Add
  */
-$("body").on("click", "#add-product", function() {
+$('.factory-prom').on('change', 'input[type="checkbox"][name="product_ids[]"]', function(etg) {
     var str = "";
-    var product = "";
+    var product = $(this);
     var issetProduct = [];
-   
-    $('input[name="product_ids[]"]:checkbox:checked').each(function () {
-        var indicator = "no";
-        product = $(this);
+    var indicator = "no";
+    if (product.prop('checked') === true) {
         $('#factory-promotion').find('#list-product').find('.close').each(function(i, elem) {
             issetProduct.push($(elem).attr('data-id'));
         });
@@ -463,17 +469,22 @@ $("body").on("click", "#add-product", function() {
             }
         }
         if (indicator !== "yes") {
-            str += '<div>' + 
+            str += '<div class="list-product-item">' + 
                     product.data('title') + 
                     '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
                     '<img src="' + product.data('image') + '" width="50">' +
                     '<a id="del-product" class="close" href="javascript:void(0);" data-id="' + product.val() + '"><i class="fa fa-times"></i></a>' +
                     '</div>';
         }
-    });
-   
+    }
+    else if (product.prop('checked') === false) {
+        $('#factory-promotion').find('#list-product').find('.close').each(function(i, elem) {
+            if ($(elem).attr('data-id') === product.val()) {
+                $(elem).closest('.list-product-item').remove();
+            }
+        });  
+    }
     $('#list-product').append(str);
-    
     newCost();
 });
 
