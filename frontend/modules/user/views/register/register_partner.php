@@ -9,6 +9,7 @@ use yii\helpers\{
 use frontend\modules\location\models\{
     Country, City
 };
+
 $bundle = AppAsset::register($this);
 
 /**
@@ -83,7 +84,7 @@ $model->user_agreement = 1;
                                 <?= $form
                                     ->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])
                                     ->checkbox([], false)
-                                    ->label('&nbsp;'.$model->getAttributeLabel('user_agreement')) ?>
+                                    ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
 
                                 <?= $form->field($model, 'reCaptcha')
                                     ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())

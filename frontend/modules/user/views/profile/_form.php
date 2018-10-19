@@ -42,10 +42,14 @@ $this->title = Yii::t('app', 'Profile');
                                     'clearIncomplete' => true
                                 ]
                             ]) ?>
-                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
-                            <?= $form->field($model, 'email_company') ?>
-                        <?php } ?>
                     </div>
+                    <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
+                        <div class="col-md-4 col-lg-4 one-row">
+                            <?= $form->field($model, 'email_company') ?>
+                            <?= $form->field($model, 'address') ?>
+                            <?= $form->field($model, 'website') ?>
+                        </div>
+                    <?php } ?>
 
                     <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') { ?>
                         <div class="col-md-4 col-lg-4 one-row">
@@ -68,7 +72,6 @@ $this->title = Yii::t('app', 'Profile');
 
                             <?= $form->field($model, 'address') ?>
                         </div>
-
                     <?php } ?>
 
 

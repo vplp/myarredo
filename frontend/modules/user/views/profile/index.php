@@ -38,6 +38,17 @@ $this->title = Yii::t('app', 'Profile');
                         <?= $model['user']['email'] ?>
                     </div>
 
+                    <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
+                        <div class="form-group">
+                            <?= Html::activeLabel($model, 'address') ?>
+                            <?= $model['address'] ?>
+                        </div>
+                        <div class="form-group">
+                            <?= Html::activeLabel($model, 'website') ?>
+                            <?= $model['website'] ?>
+                        </div>
+                    <?php } ?>
+
                     <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') { ?>
                         <div class="form-group">
                             <?= Html::activeLabel($model, 'name_company') ?>
