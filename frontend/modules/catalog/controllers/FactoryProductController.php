@@ -144,7 +144,7 @@ class FactoryProductController extends BaseController
         if ($id !== null) {
             $model = FactoryProduct::findById($id);
 
-            if ($model != null && $model['user_id'] != Yii::$app->user->identity->id) {
+            if (!Yii::$app->getUser()->isGuest && $model != null && $model['user_id'] != Yii::$app->user->identity->id) {
                 throw new ForbiddenHttpException('Access denied');
             }
         }

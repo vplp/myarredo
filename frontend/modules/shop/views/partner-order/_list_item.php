@@ -13,7 +13,6 @@ use frontend\modules\catalog\models\Product;
 /* @var $orderItem \frontend\modules\shop\models\OrderItem */
 
 if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
-
     <?php $form = ActiveForm::begin([
         'id' => 'OrderAnswerForm',
         'options' => ['data' => ['pjax' => true]],
@@ -25,7 +24,6 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
 
             <?php
             foreach ($modelOrder->items as $orderItem) { ?>
-
                 <div class="basket-item-info">
 
                     <div class="img-cont">

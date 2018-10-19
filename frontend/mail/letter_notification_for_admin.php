@@ -7,5 +7,5 @@ use yii\helpers\Html;
 ?>
 
 <div><?= $message ?></div>
-
-<div>ID = <?= $id ?></div>
+<div><?= $title ?></div>
+<div><?= $url ?></div>

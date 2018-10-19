@@ -54,6 +54,7 @@ use common\modules\user\models\{
  * @property integer $mark1
  * @property integer $in_stock
  *
+ * @property ProductLang $title
  * @property ProductLang $lang
  * @property ProductRelCategory[] $category
  * @property ProductRelSamples[] $samples
@@ -367,6 +368,18 @@ class Product extends ActiveRecord implements iProduct
     public static function findByIDs($ids): array
     {
         return self::findBase()->andWhere(['IN', 'id', array_unique($ids)])->all();
+    }
+
+    /**
+     * Title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        $title = $this->lang->title ?? '{}';
+
+        return $title;
     }
 
     /**

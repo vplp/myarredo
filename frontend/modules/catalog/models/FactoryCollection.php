@@ -37,7 +37,7 @@ class FactoryCollection extends CommonCollection
      */
     public function beforeSave($insert)
     {
-        if (Yii::$app->user->identity->group->role == 'factory') {
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
             $this->user_id = Yii::$app->user->identity->id;
             $this->factory_id = Yii::$app->user->identity->profile->factory_id;
         }

@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 //
 use common\modules\catalog\models\Product as CommonProduct;
+use yii\helpers\Url;
 
 /**
  * Class FactoryProduct
@@ -20,7 +21,7 @@ class FactoryProduct extends CommonProduct
     {
         parent::init();
 
-        if (Yii::$app->user->identity->group->role == 'factory') {
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
             $this->on(self::EVENT_AFTER_INSERT, [$this, 'sendLetterNotificationNewProductForAdmin']);
         }
     }
@@ -57,7 +58,7 @@ class FactoryProduct extends CommonProduct
      */
     public function beforeSave($insert)
     {
-        if (Yii::$app->user->identity->group->role == 'factory') {
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
             $this->user_id = Yii::$app->user->identity->id;
             $this->factory_id = Yii::$app->user->identity->profile->factory_id;
         }
@@ -126,7 +127,7 @@ class FactoryProduct extends CommonProduct
     public static function findBase()
     {
         return self::find()
-            ->innerJoinWith(['lang', 'factory'])
+            ->innerJoinWith(['factory'])
             ->andWhere([self::tableName() . '.factory_id' => Yii::$app->user->identity->profile->factory_id])
             ->orderBy(self::tableName() . '.updated_at DESC');
     }
@@ -166,7 +167,8 @@ class FactoryProduct extends CommonProduct
                 'letter_notification_for_admin',
                 [
                     'message' => $message,
-                    'id' => $this->id,
+                    'title' => Yii::$app->user->identity->profile->factory->title . ': ' . $this->title,
+                    'url' => Url::home(true) . 'backend/catalog/product/update?id=' . $this->id,
                 ]
             )
             ->setTo(Yii::$app->params['mailer']['setTo'])

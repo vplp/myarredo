@@ -3,8 +3,7 @@
 return [
     'mailer' => [
         'setFrom' => 'info@myarredo.ru',
-        //'setTo' => 'myarredo@myarredo.ru'
-        'setTo' => 'zndron@gmail.com'
+        'setTo' => 'myarredo@myarredo.ru'
     ],
     'form_feedback' => [
         'setFrom' => 'info@myarredo.ru',

@@ -16,7 +16,7 @@ class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
     {
         parent::init();
 
-        if (Yii::$app->user->identity->group->role == 'factory') {
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
             $this->on(self::EVENT_AFTER_INSERT, [$this, 'sendLetterNotificationNewPromotionForAdmin']);
             $this->on(self::EVENT_AFTER_UPDATE, [$this, 'sendLetterNotificationPaidPromotionForAdmin']);
         }
@@ -27,7 +27,7 @@ class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
      */
     public function beforeValidate()
     {
-        if (Yii::$app->user->identity->group->role == 'factory') {
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
             $this->user_id = Yii::$app->user->identity->id;
             $this->factory_id = Yii::$app->user->identity->profile->factory_id;
         }
@@ -88,7 +88,8 @@ class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
                 'letter_notification_for_admin',
                 [
                     'message' => $message,
-                    'id' => $this->id,
+                    'title' => Yii::$app->user->identity->profile->factory->title,
+                    'url' => Url::home(true) . 'backend/catalog/factory-promotion/update?id=' . $this->id,
                 ]
             )
             ->setTo(Yii::$app->params['mailer']['setTo'])
@@ -112,7 +113,8 @@ class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
                     'letter_notification_for_admin',
                     [
                         'message' => $message,
-                        'id' => $this->id,
+                        'title' => Yii::$app->user->identity->profile->factory->title . ': ' . $this->amount_with_vat,
+                        'url' => Url::home(true) . 'backend/catalog/factory-promotion/update?id=' . $this->id,
                     ]
                 )
                 ->setTo(Yii::$app->params['mailer']['setTo'])
