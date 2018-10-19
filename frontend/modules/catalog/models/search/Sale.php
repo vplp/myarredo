@@ -110,16 +110,16 @@ class Sale extends SaleModel implements BaseBackendSearchModel
             $query->andFilterWhere(['between', self::tableName() . '.price', $params[$keys['price']][0], $params[$keys['price']][1]]);
         }
 
-        if (Yii::$app->city->getCountryId()) {
+        if (isset($params['country'])) {
             $query
                 ->innerJoinWith(["country"])
-                ->andFilterWhere(['IN', Country::tableName() . '.id', Yii::$app->city->getCountryId()]);
+                ->andFilterWhere(['IN', Country::tableName() . '.id', $params['country']]);
         }
 
-        if (Yii::$app->city->getCityAlias()) {
+        if ($params['city']) {
             $query
                 ->innerJoinWith(["city"])
-                ->andFilterWhere(['IN', City::tableName() . '.alias', Yii::$app->city->getCityAlias()]);
+                ->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
         }
 
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);

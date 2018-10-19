@@ -283,17 +283,11 @@ class SaleFilter extends Widget
         foreach ($this->cities as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if ($obj['alias'] == Yii::$app->city->getCityAlias()) {
+            if ($obj['id'] == Yii::$app->city->getCityId()) {
                 $checked = 1;
-                //$params[$keys['city']] = array_diff($params[$keys['city']], [$obj['alias']]);
             } else {
                 $checked = 0;
-                //$params[$keys['city']][] = $obj['alias'];
             }
-
-            // sort value
-
-            //array_multisort($params[$keys['city']], SORT_ASC, $params[$keys['city']]);
 
             $city = City::findByAlias($obj['alias']);
 

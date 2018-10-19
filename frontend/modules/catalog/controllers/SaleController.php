@@ -80,15 +80,12 @@ class SaleController extends BaseController
     {
         $model = new Sale();
 
-        $keys = Yii::$app->catalogFilter->keys;
-
         Yii::$app->catalogFilter->parserUrl();
 
         $queryParams = Yii::$app->catalogFilter->params;
 
-        //$queryParams[$keys['country']] = Yii::$app->city->domain;
-
-        //$queryParams[$keys['city']] = Yii::$app->city->getCityAlias();
+        $queryParams['country'] = Yii::$app->city->getCountryId();
+        $queryParams['city'] = Yii::$app->city->getCityId();
 
         $category = Category::getWithSale($queryParams);
         $types = Types::getWithSale($queryParams);
