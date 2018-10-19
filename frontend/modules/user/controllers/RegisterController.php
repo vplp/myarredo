@@ -168,6 +168,7 @@ class RegisterController extends BaseController
             if ($status === true) {
                 $modelUser = User::findByEmail($model->email);
 
+                /** send mail to admin */
                 Yii::$app
                     ->mailer
                     ->compose(
@@ -195,8 +196,6 @@ class RegisterController extends BaseController
                     ->setTo($model->email)
                     ->setSubject(Yii::$app->name)
                     ->send();
-
-                //Yii::$app->getSession()->addFlash('success', Yii::$app->param->getByName('USER_FACTORY_REG_MESSAGE'));
 
                 if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
                     if (!Yii::$app->session->has("newUserFactory")) {

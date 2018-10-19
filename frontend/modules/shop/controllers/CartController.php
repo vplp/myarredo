@@ -47,7 +47,6 @@ class CartController extends BaseController
             $new_order = SearchOrder::addNewOrder(Yii::$app->shop_cart->cart, $model);
 
             if ($new_order) {
-
                 $order = Order::findById($new_order['id']);
 
                 // send user letter
