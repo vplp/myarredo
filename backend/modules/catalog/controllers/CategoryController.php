@@ -44,7 +44,7 @@ class CategoryController extends BackendController
                     ],
                     [
                         'allow' => true,
-                        'roles' => ['admin', 'catalogEditor'],
+                        'roles' => ['catalogEditor'],
                     ],
                     [
                         'allow' => false,

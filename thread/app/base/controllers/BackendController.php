@@ -22,11 +22,8 @@ use backend\modules\sys\modules\logbook\behaviors\LogbookControllerBehavior;
 
 /**
  * Class BackendController
- * Uses for base configuration of backend. All backend controllers methods should extends this one.
  *
  * @package thread\app\base\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 abstract class BackendController extends Controller
 {
@@ -66,11 +63,11 @@ abstract class BackendController extends Controller
     }
 
     /**
-     *
+     * @throws Exception
+     * @throws \Throwable
      */
     public function init()
     {
-
         if (empty($this->name)) {
             throw new Exception(Yii::t('app', 'attribute name must be set in Controller'));
         }
@@ -87,7 +84,6 @@ abstract class BackendController extends Controller
     }
 
     /**
-     * Базові налаштування доступу до адміністративної частини
      * @return array
      */
     public function behaviors()
@@ -103,7 +99,7 @@ abstract class BackendController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'roles' => ['admin'],
+                        'roles' => [],
                     ],
                     [
                         'allow' => false,
@@ -165,7 +161,6 @@ abstract class BackendController extends Controller
     protected $filterModel = '';
 
     /**
-     * Перелік підключених Дій
      * @return array
      */
     public function actions()
@@ -248,8 +243,11 @@ abstract class BackendController extends Controller
      */
     public function beforeAction($action)
     {
-        $this->actionListLinkStatus = Yii::$app->getSession()->get($this->module->id . "_" . $this->id . "_list",
-            'list');
+        $this->actionListLinkStatus = Yii::$app->getSession()->get(
+            $this->module->id . "_" . $this->id . "_list",
+            'list'
+        );
+
         return parent::beforeAction($action);
     }
 
@@ -274,15 +272,22 @@ abstract class BackendController extends Controller
         $models = [];
         $id = (isset($_GET['id'])) ? $_GET['id'] : 0;
         /** @var Model $model */
-        $model = ($id > 0) ? $this->findModel($id) : new $this->model;
+        $model = ($id > 0)
+            ? $this->findModel($id)
+            : new $this->model();
         $model->setScenario('backend');
         $model->load(Yii::$app->getRequest()->post());
         $models[] = $model;
 
         /** @var Model $modelLang */
-        $modelLang = (class_exists($this->modelLang)) ? ($id) ? $this->findModelLang($id) : new $this->modelLang : null;
+        $modelLang = (class_exists($this->modelLang))
+            ? ($id)
+                ? $this->findModelLang($id)
+                : new $this->modelLang()
+            : null;
+
         if ($modelLang !== null) {
-            $modelLang = new $this->modelLang;
+            $modelLang = new $this->modelLang();
             $modelLang->setScenario('backend');
             $modelLang->load(Yii::$app->getRequest()->post());
             $modelLang->rid = $model->id;
@@ -331,7 +336,8 @@ abstract class BackendController extends Controller
         }
         $model = null;
         /** @var ActiveRecord $m */
-        $m = new $this->modelLang;
+        $m = new $this->modelLang();
+
         if ($id) {
             $model = $m->find()->andWhere(['rid' => $id])->one();
         }
