@@ -16,6 +16,15 @@ class FactoryProduct extends CommonProduct
 {
     public $promotion;
 
+    public function init()
+    {
+        parent::init();
+
+        if (Yii::$app->user->identity->group->role == 'factory') {
+            $this->on(self::EVENT_AFTER_INSERT, [$this, 'sendLetterNotificationNewProductForAdmin']);
+        }
+    }
+
     /**
      * @return array
      */
@@ -140,5 +149,28 @@ class FactoryProduct extends CommonProduct
     public function search($params)
     {
         return (new search\FactoryProduct())->search($params);
+    }
+
+    /**
+     * sendLetterNotificationNewProductForAdmin
+     */
+    public function sendLetterNotificationNewProductForAdmin()
+    {
+        /** send mail to admin */
+
+        $message = 'Добавление фабрикой нового товара';
+
+        Yii::$app
+            ->mailer
+            ->compose(
+                'letter_notification_for_admin',
+                [
+                    'message' => $message,
+                    'id' => $this->id,
+                ]
+            )
+            ->setTo(Yii::$app->params['mailer']['setTo'])
+            ->setSubject($message)
+            ->send();
     }
 }

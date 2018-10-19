@@ -38,7 +38,6 @@ class FormFeedback extends Widget
                 $save ? $transaction->commit() : $transaction->rollBack();
 
                 if ($save) {
-
                     // message
                     Yii::$app->session->setFlash(
                         'success',
