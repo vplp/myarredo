@@ -99,7 +99,7 @@ abstract class BackendController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'roles' => [],
+                        'roles' => ['admin'],
                     ],
                     [
                         'allow' => false,
