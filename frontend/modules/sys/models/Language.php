@@ -13,7 +13,7 @@ class Language extends CommonLanguageModel
     public function getLanguages(): array
     {
         return self::findBase()
-            //->andFilterWhere(['IN', 'id', [3, 4]])
+            ->andFilterWhere(['IN', 'id', [3, 4]])
             ->enabled()
             ->asArray()
             ->all();
