@@ -142,6 +142,22 @@ class CommonForm extends Model
                 'filter',
                 'filter' => 'trim'
             ],
+            [
+                [
+                    'username',
+                    'email',
+                    'password',
+                    'password_confirmation',
+                    'first_name',
+                    'last_name',
+                    'phone',
+                    'address',
+                    'name_company',
+                    'website',
+                ],
+                'filter',
+                'filter' => 'strip_tags'
+            ],
         ];
     }
 
