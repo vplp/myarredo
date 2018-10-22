@@ -17,9 +17,16 @@ use yii\helpers\{
         $option = ($cityCountry['id'] == $city['id']) ? ['class' => 'active'] : [];
 
         echo Html::beginTag('li', $option);
+
+        if (!in_array(Yii::$app->controller->action->id, ['sale', 'sale-product'])) {
+            $url = $cityCountry->getSubDomainUrl();
+        } else {
+            $url = $cityCountry->getSubDomainUrl() . '/' . Yii::$app->request->pathInfo;
+        }
+
         echo Html::a(
             $cityCountry['lang']['title'],
-            $cityCountry->getSubDomainUrl() . '/' . Yii::$app->request->pathInfo,
+            $url,
             ['rel' => 'nofollow']
         );
         echo Html::endTag('li');
