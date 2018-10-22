@@ -416,11 +416,10 @@ class Factory extends \common\modules\catalog\models\Factory
         $keys = Yii::$app->catalogFilter->keys;
         $params = Yii::$app->catalogFilter->params;
 
-        //$params[$keys['country']] = Yii::$app->city->domain;
         $params[$keys['factory']] = [$this->alias];
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
 
-        return $models->totalCount;
+        return $models->totalCount > 1 ? $models->totalCount : 0;
     }
 }
