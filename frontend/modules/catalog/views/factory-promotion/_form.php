@@ -364,7 +364,7 @@ function newCost() {
     var cost, 
     cost_of_views = 0, numberViews, cost_products,
     numberViews = parseInt($('input[name="FactoryPromotion[views]"]:checked').val()),
-    count_products = $('input[name="product_ids[]"]:checked').length;
+    count_products = $('#list-product').children('.list-product-item').length;
     var nds = 0;
     var totalNds = 0;
 
