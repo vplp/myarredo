@@ -133,18 +133,19 @@ class RegisterController extends BaseController
                     ->setTo($model->email)
                     ->setSubject(Yii::$app->name)
                     ->send();
-
-                //Yii::$app->getSession()->addFlash('success', Yii::$app->param->getByName('USER_FACTORY_REG_MESSAGE'));
             }
 
-            if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
-                return $this->redirect(Url::toRoute('/user/profile/index'));
-            }
+//            if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
+//                return $this->redirect(Url::toRoute('/user/profile/index'));
+//            }
+//
+//            if ($status === true) {
+//                Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
+//                return $this->redirect(Url::toRoute('/user/login/index'));
+//            }
 
-            if ($status === true) {
-                Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
-                return $this->redirect(Url::toRoute('/user/login/index'));
-            }
+            Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
+            return $this->redirect(Url::toRoute('/user/login/index'));
         }
 
         return $this->render('register_partner', [
