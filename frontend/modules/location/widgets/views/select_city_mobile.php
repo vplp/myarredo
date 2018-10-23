@@ -18,7 +18,7 @@ use yii\helpers\{
 
         echo Html::beginTag('li', $option);
 
-        if (in_array(Yii::$app->controller->action->id, ['sale', 'sale-product'])) {
+        if (in_array(Yii::$app->controller->id, ['sale'])) {
             $url = $cityCountry->getSubDomainUrl();
         } else {
             $url = $cityCountry->getSubDomainUrl() . '/' . Yii::$app->request->pathInfo;
