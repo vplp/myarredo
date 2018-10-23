@@ -87,7 +87,7 @@ class RegisterForm extends CommonForm
                 'string',
                 'max' => 255
             ],
-            [['website'],'url', 'defaultScheme' => ''],
+            [['website'], 'url', 'defaultScheme' => ''],
 //            [
 //                [
 //                    'address',

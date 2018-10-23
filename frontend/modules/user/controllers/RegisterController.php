@@ -100,20 +100,24 @@ class RegisterController extends BaseController
             $status = $model->addPartner();
 
             if ($status === true) {
-                $modelUser = User::findByEmail($model->email);
+                $modelUser = User::find()->email($model->email)->one();
+
+                /** send mail to admin */
+
+                $message = 'Зарегистрирован новый партнер';
 
                 Yii::$app
                     ->mailer
                     ->compose(
-                        'letter_new_partner',
+                        'letter_notification_for_admin',
                         [
-                            'message' => 'Зарегистрирован новый партнер',
-                            'model' => $model,
-                            'modelUser' => $modelUser,
+                            'message' => $message,
+                            'title' => $modelUser->profile->name_company,
+                            'url' => Url::home(true) . 'backend/user/user/update?id=' . $modelUser->id,
                         ]
                     )
                     ->setTo(Yii::$app->params['mailer']['setTo'])
-                    ->setSubject('Зарегистрирован новый партнер')
+                    ->setSubject($message)
                     ->send();
 
                 Yii::$app
