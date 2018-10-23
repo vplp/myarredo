@@ -144,7 +144,7 @@ class RegisterController extends BaseController
 //                return $this->redirect(Url::toRoute('/user/login/index'));
 //            }
 
-            Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
+            Yii::$app->getSession()->addFlash('success', Yii::t('user', 'add new members'));
 
             return $this->redirect(Url::toRoute('/user/login/index'));
         }
@@ -215,7 +215,7 @@ class RegisterController extends BaseController
                 }
 
                 if ($status === true) {
-                    Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
+                    Yii::$app->getSession()->addFlash('success', Yii::t('user', 'add new members'));
                     return $this->redirect(Url::toRoute('/user/login/index'));
                 }
             }
