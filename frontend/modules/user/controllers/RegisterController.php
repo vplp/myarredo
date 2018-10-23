@@ -145,6 +145,7 @@ class RegisterController extends BaseController
 //            }
 
             Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
+
             return $this->redirect(Url::toRoute('/user/login/index'));
         }
 

@@ -71,6 +71,12 @@ $this->title = $this->context->title;
                             </div>
 
                             <table class="info-table" width="100%">
+                                <tr>
+                                    <td><?= Yii::t('app', 'Factory') ?></td>
+                                    <td>
+                                        <?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name'] ?>
+                                    </td>
+                                </tr>
                                 <?php if (!empty($model['specificationValue'])) {
                                     $array = [];
                                     foreach ($model['specificationValue'] as $item) {

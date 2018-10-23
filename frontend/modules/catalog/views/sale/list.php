@@ -64,8 +64,7 @@ $this->title = $this->context->title;
 
                                         <?= frontend\components\LinkPager::widget([
                                             'pagination' => $pages,
-                                        ]);
-                                        ?>
+                                        ]) ?>
 
                                     </div>
                                 </div>
