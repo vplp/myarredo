@@ -49,7 +49,6 @@ class CronController extends Controller
             /** @var $model Product */
             $transaction = $model::getDb()->beginTransaction();
             try {
-
                 $model->setScenario('setMark');
 
                 $model->mark = '1';
@@ -111,7 +110,6 @@ class CronController extends Controller
             /** @var $model Product */
             $transaction = $model::getDb()->beginTransaction();
             try {
-
                 $model->setScenario('setMark');
 
                 $model->mark = '1';
@@ -171,5 +169,86 @@ class CronController extends Controller
         }
 
         $this->stdout("GenerateProductItTitle: finish. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * Generate product it title
+     */
+    public function actionGenerateProductEnTitle()
+    {
+        $this->stdout("GenerateProductEnTitle: start. \n", Console::FG_GREEN);
+
+        $models = Product::find()
+            ->andFilterWhere([
+                'mark' => '0',
+            ])
+            ->limit(100)
+            ->orderBy(Product::tableName() . '.id DESC')
+            ->all();
+
+        foreach ($models as $model) {
+            /** @var PDO $transaction */
+            /** @var $model Product */
+            $transaction = $model::getDb()->beginTransaction();
+            try {
+                $model->setScenario('setMark');
+
+                $model->mark = '1';
+
+                Yii::$app->language = 'ru-RU';
+
+                $modelLangRu = ProductLang::find()
+                    ->where([
+                        'rid' => $model->id,
+                    ])
+                    ->one();
+
+                Yii::$app->language = 'en-EN';
+
+                $modelLangEn = ProductLang::find()
+                    ->where([
+                        'rid' => $model->id,
+                        'lang' => Yii::$app->language,
+                    ])
+                    ->one();
+
+                if ($modelLangEn == null) {
+                    $modelLangEn = new ProductLang();
+
+                    $modelLangEn->rid = $model->id;
+                    $modelLangEn->lang = Yii::$app->language;
+                }
+
+                $modelLangEn->title = '';
+
+                $description = ($modelLangRu != null) ? $modelLangRu->description : '';
+
+                $translate = Yii::$app->yandexTranslator->getTranslate($description, 'ru-en');
+
+                if ($model->save() && $translate != '') {
+                    $transaction->commit();
+
+                    //var_dump($translate);
+
+                    if ($translate != '') {
+                        $modelLangEn->description = $translate;
+                    }
+
+                    $modelLangEn->setScenario('backend');
+
+                    if ($modelLangEn->save()) {
+                        $this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
+                    }
+
+                } else {
+                    $transaction->rollBack();
+                }
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                throw new \Exception($e);
+            }
+        }
+
+        $this->stdout("GenerateProductEnTitle: finish. \n", Console::FG_GREEN);
     }
 }
