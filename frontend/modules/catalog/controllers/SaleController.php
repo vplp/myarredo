@@ -134,6 +134,28 @@ class SaleController extends BaseController
             'url' => ['/catalog/category/list']
         ];
 
+        $keys = Yii::$app->catalogFilter->keys;
+
+        if (isset($model['category'][0])) {
+            $params = Yii::$app->catalogFilter->params;
+            $params[$keys['category']] = $model['category'][0]['alias'];
+
+            $this->breadcrumbs[] = [
+                'label' => $model['category'][0]['lang']['title'],
+                'url' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale/list')
+            ];
+        }
+
+        if (isset($model['types'])) {
+            $params = Yii::$app->catalogFilter->params;
+            $params[$keys['type']] = $model['types']['alias'];
+
+            $this->breadcrumbs[] = [
+                'label' => $model['types']['lang']['title'],
+                'url' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale/list')
+            ];
+        }
+
         $pageTitle[] = Yii::t('app', 'Sale') . ' ' .
             $model['lang']['title'] . ' ' .
             Yii::t('app', 'в наличии') . ' ' .
@@ -143,7 +165,6 @@ class SaleController extends BaseController
             $model['lang']['title'] . ' ' .
             Yii::t('app', 'со скидкой на распродаже') . ' ' .
             Yii::$app->city->getCityTitle() . ' MyArredo';
-
 
         // [Товар из ХК]
         $array = [];

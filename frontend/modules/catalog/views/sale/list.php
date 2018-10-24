@@ -1,8 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+//
 use frontend\components\Breadcrumbs;
-
 use frontend\modules\catalog\widgets\filter\SaleFilter;
 
 /**

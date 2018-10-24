@@ -4,6 +4,7 @@ use yii\helpers\{
     Html, Url
 };
 //
+use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
     Factory, Sale
 };
@@ -23,7 +24,13 @@ $this->title = $this->context->title;
         <div class="page sale-page prod-card-page">
             <div class="container-wrap">
                 <div class="container large-container">
+                    <div class="row">
 
+                        <?= Breadcrumbs::widget([
+                            'links' => $this->context->breadcrumbs,
+                        ]) ?>
+
+                    </div>
                     <div class="row sale-prod">
                         <div class="col-md-12">
                             <div class="section-header">
