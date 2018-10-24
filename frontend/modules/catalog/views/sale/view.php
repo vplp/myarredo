@@ -101,7 +101,8 @@ $this->title = $this->context->title;
                                                 if ($item['specification']['parent_id'] == 4) {
                                                     echo Html::beginTag('span') .
                                                         $item['specification']['lang']['title'] .
-                                                        ':' .
+                                                        ' (' . Yii::t('app', 'см') . ')'  .
+                                                        ': ' .
                                                         $item['val'] .
                                                         Html::endTag('span');
                                                 }

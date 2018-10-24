@@ -17,8 +17,6 @@ use backend\modules\sys\models\{
  * Class Language
  *
  * @package backend\modules\sys\models\search
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Language extends LanguageModel implements BaseBackendSearchModel
 {

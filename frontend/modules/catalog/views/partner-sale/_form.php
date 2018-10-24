@@ -95,7 +95,7 @@ $this->title = ($model->isNewRecord)
                             if ($Specification['type'] === '1' && !in_array($Specification['id'], [39, 47])) { ?>
                                 <div class="form-group row">
                                     <?= Html::label(
-                                        $Specification['lang']['title'],
+                                        $Specification['lang']['title'] . ' (' . Yii::t('app', 'см') . ')',
                                         null,
                                         ['class' => 'col-sm-3 col-form-label']
                                     ) ?>

@@ -39,8 +39,9 @@ class Language extends CommonLanguageModel
     }
 
     /**
-     * @param $insert
-     * @return mixed
+     * @param bool $insert
+     * @return bool
+     * @throws \yii\base\InvalidConfigException
      * @throws \yii\db\Exception
      */
     public function beforeSave($insert)

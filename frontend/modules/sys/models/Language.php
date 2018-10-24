@@ -7,13 +7,12 @@ use common\modules\sys\models\Language as CommonLanguageModel;
 class Language extends CommonLanguageModel
 {
     /**
-     * @return mixed
-     * выводим только те языки, которые опубликованы
+     * @return array
      */
     public function getLanguages(): array
     {
         return self::findBase()
-            ->andFilterWhere(['IN', 'id', [3, 4]])
+            //->andFilterWhere(['IN', 'id', [3, 4]])
             ->enabled()
             ->asArray()
             ->all();
