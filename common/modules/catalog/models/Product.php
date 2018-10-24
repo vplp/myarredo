@@ -131,8 +131,8 @@ class Product extends ActiveRecord implements iProduct
                 ],
                 'integer'
             ],
-            [['price', 'volume', 'factory_price', 'price_from'], 'double'],
-            [['price', 'volume', 'factory_price', 'price_from'], 'default', 'value' => 0.00],
+            [[/*'price',*/ 'volume', 'factory_price', 'price_from'], 'double'],
+            [[/*'price',*/ 'volume', 'factory_price', 'price_from'], 'default', 'value' => 0.00],
             [
                 [
                     'is_composition',
@@ -201,7 +201,7 @@ class Product extends ActiveRecord implements iProduct
                 'created_at',
                 'updated_at',
                 'position',
-                'price',
+                //'price',
                 'volume',
                 'factory_price',
                 'price_from',
@@ -238,7 +238,7 @@ class Product extends ActiveRecord implements iProduct
             'alias' => Yii::t('app', 'Alias'),
             'country_code' => 'Показывать для страны',
             'article' => Yii::t('app', 'Vendor code'),
-            'price' => Yii::t('app', 'Price'),
+            //'price' => Yii::t('app', 'Price'),
             'volume' => Yii::t('app', 'Volume'),
             'factory_price' => Yii::t('app', 'Factory price'),
             'price_from' => Yii::t('app', 'Price from'),
