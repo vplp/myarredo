@@ -230,6 +230,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                                     </li>
                                                     */
                                                     ?>
+
                                                     <li role="separator" class="divider"></li>
                                                     <li>
                                                         <?= Html::a(
@@ -314,6 +315,7 @@ use frontend\modules\location\widgets\ChangeCity;
                         <?php ActiveForm::end(); ?>
                     </div>
                 <?php } ?>
+
             </div>
         </div>
     </div>
@@ -380,7 +382,13 @@ use frontend\modules\location\widgets\ChangeCity;
 
         </div>
 
-        <?= CatalogMenuMobile::widget([]); ?>
+        <?php
+        if (!Yii::$app->getUser()->isGuest &&
+            Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+        ) {
+        } else { ?>
+            <?= CatalogMenuMobile::widget([]); ?>
+        <?php } ?>
 
         <div class="bot-list">
             <div class="one-list-cont">
