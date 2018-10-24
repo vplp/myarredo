@@ -83,7 +83,7 @@ class FactoryProduct extends CommonProduct
                 'created_at',
                 'updated_at',
                 'position',
-                'price',
+                //'price',
                 'volume',
                 'factory_price',
                 'price_from',
