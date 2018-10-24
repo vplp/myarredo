@@ -87,24 +87,6 @@ class RegisterForm extends CommonForm
                 'string',
                 'max' => 255
             ],
-            [['website'], 'url', 'defaultScheme' => ''],
-//            [
-//                [
-//                    'address',
-//                    'name_company',
-//                ],
-//                'match',
-//                'not' => true,
-//                'pattern' => '/[^a-zA-Z0-9\\-,\\s]\w*$/i'
-//            ],
-//            [
-//                [
-//                    'first_name',
-//                    'last_name',
-//                ],
-//                'match',
-//                'pattern' => '/^\w+$/'
-//            ],
             [
                 ['user_agreement'],
                 'required',
