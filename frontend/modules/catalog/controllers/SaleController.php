@@ -131,7 +131,7 @@ class SaleController extends BaseController
 
         $this->breadcrumbs[] = [
             'label' => Yii::t('app', 'Каталог итальянской мебели'),
-            'url' => ['/catalog/category/list']
+            'url' => ['/catalog/sale/list']
         ];
 
         $keys = Yii::$app->catalogFilter->keys;
