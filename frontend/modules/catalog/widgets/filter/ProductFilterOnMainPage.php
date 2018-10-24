@@ -60,7 +60,7 @@ class ProductFilterOnMainPage extends Widget
             if (!empty($price['from']) && !empty($price['to'])) {
                 $params[$keys['price']] = $price;
             } elseif (empty($price['from']) && !empty($price['to'])) {
-                $price['from'] = number_format(Product::findBase()->min('price_from'), 0, '.', '');
+                $price['from'] = number_format(1, 0, '.', '');
                 $params[$keys['price']] = $price;
             } elseif (!empty($price['from']) && empty($price['to'])) {
                 $price['to'] = number_format(Product::findBase()->max('price_from'), 0, '.', '');
