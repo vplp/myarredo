@@ -130,7 +130,7 @@ class SaleController extends BaseController
         SaleStats::create($model->id);
 
         $this->breadcrumbs[] = [
-            'label' => Yii::t('app', 'Каталог итальянской мебели'),
+            'label' => Yii::t('app', 'Распродажа итальянской мебели'),
             'url' => ['/catalog/sale/list']
         ];
 
