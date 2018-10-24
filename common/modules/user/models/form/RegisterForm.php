@@ -97,6 +97,17 @@ class RegisterForm extends CommonForm
             [['delivery_to_other_cities', 'user_agreement'], 'in', 'range' => [0, 1]],
             [['country_id', 'city_id'], 'integer'],
             [['country_id', 'city_id', 'delivery_to_other_cities'], 'default', 'value' => 0],
+            [
+                ['password_confirmation'],
+                'compare',
+                'compareAttribute' => 'password',
+                'on' => [
+                    'adminPasswordChange',
+                    'register',
+                    'registerPartner',
+                    'registerFactory'
+                ]
+            ],
         ];
 
         if ($this->_username_attribute === 'email') {
