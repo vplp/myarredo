@@ -433,15 +433,15 @@ function newCost() {
     nds = (cost * 19) / 100;
     totalNds = cost + nds;
 
-    // $('input[name="FactoryPromotion[amount]"],#cost').val(cost);
-    $('input[name="FactoryPromotion[amount]"],#cost').val('20.00');
+    $('input[name="FactoryPromotion[amount]"],#cost').val(cost);
     $('#cost').html(cost);
     $('#cost_of_views').html(cost_of_views);
     $('#cost_products').html(cost_products);
     $('#count-products').html(count_products);
     $('#nds_count').html(nds);
     $('#total_nds').html(totalNds);
-    $('input[name="FactoryPromotion[amount_with_vat]"]').val(totalNds);
+    // $('input[name="FactoryPromotion[amount_with_vat]"]').val(totalNds);
+    $('input[name="FactoryPromotion[amount_with_vat]"]').val('20.00');
 }
 
 newCost();
