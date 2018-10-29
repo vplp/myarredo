@@ -440,7 +440,8 @@ function newCost() {
     $('#count-products').html(count_products);
     $('#nds_count').html(nds);
     $('#total_nds').html(totalNds);
-    $('input[name="FactoryPromotion[amount_with_vat]"]').val(totalNds);
+    // $('input[name="FactoryPromotion[amount_with_vat]"]').val(totalNds);
+    $('input[name="FactoryPromotion[amount_with_vat]"]').val('20.00');
 }
 
 newCost();
