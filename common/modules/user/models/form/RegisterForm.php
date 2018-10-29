@@ -24,6 +24,8 @@ use common\modules\location\models\{
  */
 class RegisterForm extends CommonForm
 {
+    public $reCaptcha;
+
     /**
      * @return array
      */
@@ -33,7 +35,7 @@ class RegisterForm extends CommonForm
             [
                 [
                     'password',
-                    'password_confirmation'
+                    'password_confirmation',
                 ],
                 'required'
             ],
@@ -56,6 +58,7 @@ class RegisterForm extends CommonForm
                     'country_id',
                     'city_id',
                     'user_agreement',
+                    'reCaptcha'
                 ],
                 'required',
                 'on' => 'registerPartner'
@@ -70,6 +73,7 @@ class RegisterForm extends CommonForm
                     'city_id',
                     'user_agreement',
                     //'factory_package',
+                    'reCaptcha'
                 ],
                 'required',
                 'on' => 'registerFactory'
@@ -108,6 +112,7 @@ class RegisterForm extends CommonForm
                     'registerFactory'
                 ]
             ],
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className()]
         ];
 
         if ($this->_username_attribute === 'email') {
@@ -152,6 +157,7 @@ class RegisterForm extends CommonForm
                 'city_id',
                 'delivery_to_other_cities',
                 'user_agreement',
+                'reCaptcha'
             ],
             'registerFactory' => [
                 'username',
@@ -168,6 +174,7 @@ class RegisterForm extends CommonForm
                 'city_id',
                 'user_agreement',
                 //'factory_package'
+                'reCaptcha'
             ],
         ];
     }

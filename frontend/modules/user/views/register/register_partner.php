@@ -86,7 +86,8 @@ $model->user_agreement = 1;
                                     ->checkbox([], false)
                                     ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
 
-                                <?= $form->field($model, 'reCaptcha')
+                                <?= $form
+                                    ->field($model, 'reCaptcha')
                                     ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
                                     ->label(false) ?>
 
