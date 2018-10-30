@@ -136,9 +136,7 @@ class Category extends \common\modules\catalog\models\Category
 
         $image = null;
 
-        /*if (YII_ENV_DEV && !empty($image_link)){
-            $image = 'https://www.myarredo.ru/uploads/images/' . $image_link;
-        } else*/if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image = $url . '/' . $image_link;
         }
 
@@ -160,10 +158,7 @@ class Category extends \common\modules\catalog\models\Category
 
         $image = null;
 
-        /*if (YII_ENV_DEV && !empty($image_link)){
-            $image = 'https://www.myarredo.ru/uploads/images/' . $image_link;
-        } else*/if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image_link_path = explode('/', $image_link);
 
             $img_name = $image_link_path[count($image_link_path) - 1];

@@ -298,7 +298,7 @@ class SaleFilter extends Widget
             }
 
             if ($city['country']['alias'] != Yii::$app->city->domain) {
-                $baseUrl = 'https://' . $city['alias'] . '.myarredo.' . $this->city['country']['alias'];
+                $baseUrl = 'https://' . $city['alias'] . '.myarredo.' . $city['country']['alias'];
             }
 
             $link = $baseUrl . Yii::$app->catalogFilter->createUrl($params, [$this->route]);

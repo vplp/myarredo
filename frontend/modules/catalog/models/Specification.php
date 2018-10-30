@@ -216,14 +216,15 @@ class Specification extends \common\modules\catalog\models\Specification
 
         $query
             ->innerJoinWith(["sale"], false)
-            ->innerJoinWith(["sale.category saleCategory"], false)
             ->andFilterWhere([
                 Sale::tableName() . '.published' => '1',
                 Sale::tableName() . '.deleted' => '0',
             ]);
 
         if (isset($params[$keys['category']])) {
-            $query->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
+            $query
+                ->innerJoinWith(["sale.category saleCategory"], false)
+                ->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
         }
 
         if (isset($params[$keys['type']])) {

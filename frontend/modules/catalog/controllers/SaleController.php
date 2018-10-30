@@ -84,7 +84,7 @@ class SaleController extends BaseController
 
         $queryParams = Yii::$app->catalogFilter->params;
 
-        $queryParams['country'] = Yii::$app->city->getCountryId();
+        //$queryParams['country'] = Yii::$app->city->getCountryId();
         $queryParams['city'] = Yii::$app->city->getCityId();
 
         $category = Category::getWithSale($queryParams);
