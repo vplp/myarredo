@@ -32,16 +32,6 @@ $this->title = $this->context->title;
 
                     </div>
                     <div class="row sale-prod">
-                        <div class="col-md-12">
-                            <div class="section-header">
-                                <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
-                                <?= Html::a(
-                                    Yii::t('app', 'Вернуться к списку'),
-                                    Url::toRoute(['/catalog/sale/list']),
-                                    ['class' => 'back']
-                                ); ?>
-                            </div>
-                        </div>
                         <div class="col-sm-6 col-md-6 col-lg-5">
 
                             <?= $this->render('parts/_carousel', [
@@ -138,9 +128,7 @@ $this->title = $this->context->title;
                             <div class="prod-shortstory">
                                 <?= $model['lang']['description']; ?>
                             </div>
-
                         </div>
-
 
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
 
@@ -190,6 +178,18 @@ $this->title = $this->context->title;
 
                             <?php } ?>
 
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div class="section-header">
+                                <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
+                                <?= Html::a(
+                                    Yii::t('app', 'Вернуться к списку'),
+                                    Url::toRoute(['/catalog/sale/list']),
+                                    ['class' => 'back']
+                                ); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
