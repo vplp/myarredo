@@ -16,26 +16,26 @@ use frontend\modules\catalog\models\{
 
 ?>
 
-<div><?= $message ?></div>
-<div><?= $title ?></div>
-<div><?= $url ?></div>
-<div>
+<p><?= $message ?></p>
+<p><?= $title ?></p>
+<p><?= $url ?></p>
+<p>
     <!-- Название фабрики, Ссылку на страницу фабрики -->
     Название фабрики: <?= Html::a($model->factory['title'], Factory::getUrl($model->factory['alias'])) ?>
-</div>
-<div>
+</p>
+<p>
     <!-- Список рекламируемых товаров в формате списка (в строке название товара и ссылка на товар) -->
     Список рекламируемых товаров:<br>
     <?php
     foreach ($model->products as $product) {
         echo Html::a($product->lang->title, Product::getUrl($product['alias'])) . '<br>';
     } ?>
-</div>
-<div>
+</p>
+<p>
     <!-- Страна рекламной компании -->
     Страна рекламной компании: <?= $model->country->lang->title ?>
-</div>
-<div>
+</p>
+<p>
     <!-- Города рекламной компании -->
     Города рекламной компании:<br>
     <?php
@@ -43,11 +43,11 @@ use frontend\modules\catalog\models\{
         echo $city->lang->title . '<br>';
     }
     ?>
-</div>
+</p>
 
 <!-- Количество просмотров рекламной компании -->
 
-<div>
+<p>
     <!-- Дата оплаты рекламной компании -->
     Дата оплаты рекламной компании: <?= date('j.m.Y', $model->updated_at) ?>
-</div>
+</p>
