@@ -144,7 +144,8 @@ $this->title = Yii::t('app', 'Рекламировать');
                         ) ?>
 
                         <div id="list-product">
-                            <?php foreach ($model->products as $product) :
+                            <?php
+                            foreach ($model->products as $product) {
                                 echo '<div class="list-product-item">' .
                                     $product->lang->title .
                                     Html::input(
@@ -163,7 +164,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                         ]
                                     ) .
                                     '</div>';
-                            endforeach; ?>
+                            } ?>
                         </div>
 
                         <div id="factorypromotion-city_ids">

@@ -29,8 +29,8 @@ $keys = Yii::$app->catalogFilter->keys;
 
     <object>
         <ul class="assortment">
-            <?php foreach ($categories as $item) {
-
+            <?php
+            foreach ($categories as $item) {
                 echo Html::beginTag('li') .
                     Html::a(
                         $item['title'],
@@ -42,7 +42,6 @@ $keys = Yii::$app->catalogFilter->keys;
                     ) .
                     Html::endTag('li');
             } ?>
-
         </ul>
     </object>
 

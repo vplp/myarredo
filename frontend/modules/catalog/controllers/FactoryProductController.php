@@ -144,7 +144,8 @@ class FactoryProductController extends BaseController
         if ($id !== null) {
             $model = FactoryProduct::findById($id);
 
-            if (!Yii::$app->getUser()->isGuest && $model != null && $model['user_id'] != Yii::$app->user->identity->id) {
+            if (!Yii::$app->getUser()->isGuest &&
+                $model != null && $model['user_id'] != Yii::$app->user->identity->id) {
                 throw new ForbiddenHttpException('Access denied');
             }
         }
@@ -160,7 +161,8 @@ class FactoryProductController extends BaseController
         $response = [];
         Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
-        if (Yii::$app->request->isAjax && $factory_id = Yii::$app->request->post('factory_id')) {
+        if (Yii::$app->request->isAjax &&
+            $factory_id = Yii::$app->request->post('factory_id')) {
             $response['collection'] = Collection::dropDownList(['factory_id' => $factory_id]);
         }
 
@@ -175,7 +177,8 @@ class FactoryProductController extends BaseController
         $response = [];
         Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
-        if (Yii::$app->request->isAjax && $type_id = Yii::$app->request->post('type_id')) {
+        if (Yii::$app->request->isAjax &&
+            $type_id = Yii::$app->request->post('type_id')) {
             $response['category'] = Category::dropDownList(['type_id' => $type_id]);
         }
 

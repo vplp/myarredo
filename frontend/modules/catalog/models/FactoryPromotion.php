@@ -104,22 +104,24 @@ class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
     {
         /** send mail to admin */
 
-        if ($this->payment_status == 'paid') {
+        //if ($this->payment_status == 'paid') {
             $message = 'Оплата фабрикой рекламной компании';
 
             Yii::$app
                 ->mailer
                 ->compose(
-                    'letter_notification_for_admin',
+                    'letter_notification2_for_admin',
                     [
                         'message' => $message,
                         'title' => Yii::$app->user->identity->profile->factory->title . ': ' . $this->amount_with_vat,
                         'url' => Url::home(true) . 'backend/catalog/factory-promotion/update?id=' . $this->id,
+                        'model' => $this,
                     ]
                 )
-                ->setTo(Yii::$app->params['mailer']['setTo'])
+                //->setTo(Yii::$app->params['mailer']['setTo'])
+                ->setTo('zndron@gmail.com')
                 ->setSubject($message)
                 ->send();
-        }
+        //}
     }
 }

@@ -40,6 +40,8 @@ use common\components\YandexKassaAPI\interfaces\OrderInterface;
  * @property array $product_ids
  *
  * @property User $user
+ * @property Factory $factory
+ * @property Country $country
  * @property FactoryPromotionRelCity[] $cities
  * @property FactoryPromotionRelProduct[] $products
  *
