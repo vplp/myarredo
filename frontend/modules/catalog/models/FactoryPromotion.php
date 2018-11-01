@@ -104,7 +104,7 @@ class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
     {
         /** send mail to admin */
 
-        //if ($this->payment_status == 'paid') {
+        if ($this->payment_status == 'paid') {
             $message = 'Оплата фабрикой рекламной компании';
 
             Yii::$app
@@ -118,10 +118,9 @@ class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
                         'model' => $this,
                     ]
                 )
-                //->setTo(Yii::$app->params['mailer']['setTo'])
-                ->setTo('zndron@gmail.com')
+                ->setTo(Yii::$app->params['mailer']['setTo'])
                 ->setSubject($message)
                 ->send();
-        //}
+        }
     }
 }
