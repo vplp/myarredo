@@ -132,7 +132,7 @@ class Specification extends \common\modules\catalog\models\Specification
      */
     public static function getUrl($alias)
     {
-        return Url::toRoute(['/catalog/specification/view', 'alias' => $alias]);
+        return Url::toRoute(['/catalog/specification/view', 'alias' => $alias], true);
     }
 
     /**

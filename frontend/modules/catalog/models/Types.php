@@ -119,7 +119,7 @@ class Types extends \common\modules\catalog\models\Types
      */
     public static function getUrl($alias)
     {
-        return Url::toRoute(['/catalog/types/view', 'alias' => $alias]);
+        return Url::toRoute(['/catalog/types/view', 'alias' => $alias], true);
     }
 
     /**

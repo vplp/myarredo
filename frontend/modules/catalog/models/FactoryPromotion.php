@@ -70,7 +70,7 @@ class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
      */
     public function getUrl()
     {
-        return Url::toRoute(['/catalog/factory-promotion/update', 'alias' => $this->id]);
+        return Url::toRoute(['/catalog/factory-promotion/update', 'alias' => $this->id], true);
     }
 
     /**
