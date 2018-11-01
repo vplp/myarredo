@@ -19,13 +19,13 @@ use frontend\modules\catalog\models\{
 <div><?= $message ?></div>
 <div><?= $title ?></div>
 <div><?= $url ?></div>
-<div>&nbsp;</div>
 <div>
     <!-- Название фабрики, Ссылку на страницу фабрики -->
-    <?= Html::a($model->factory['title'], Factory::getUrl($model->factory['alias'])) ?>
+    Название фабрики: <?= Html::a($model->factory['title'], Factory::getUrl($model->factory['alias'])) ?>
 </div>
 <div>
     <!-- Список рекламируемых товаров в формате списка (в строке название товара и ссылка на товар) -->
+    Список рекламируемых товаров:<br>
     <?php
     foreach ($model->products as $product) {
         echo Html::a($product->lang->title, Product::getUrl($product['alias'])) . '<br>';
@@ -33,10 +33,11 @@ use frontend\modules\catalog\models\{
 </div>
 <div>
     <!-- Страна рекламной компании -->
-    <?= $model->country->lang->title ?>
+    Страна рекламной компании: <?= $model->country->lang->title ?>
 </div>
 <div>
     <!-- Города рекламной компании -->
+    Города рекламной компании:<br>
     <?php
     foreach ($model->cities as $city) {
         echo $city->lang->title . '<br>';
@@ -48,5 +49,5 @@ use frontend\modules\catalog\models\{
 
 <div>
     <!-- Дата оплаты рекламной компании -->
-    <?= date('j.m.Y', $model->updated_at) ?>
+    Дата оплаты рекламной компании: <?= date('j.m.Y', $model->updated_at) ?>
 </div>
