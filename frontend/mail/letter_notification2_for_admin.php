@@ -20,34 +20,31 @@ use frontend\modules\catalog\models\{
 <p><?= $title ?></p>
 <p><?= $url ?></p>
 <p>
-    <!-- Название фабрики, Ссылку на страницу фабрики -->
-    Название фабрики: <?= Html::a($model->factory['title'], Factory::getUrl($model->factory['alias'])) ?>
+    Фабрика: <?= Html::a($model->factory['title'], Factory::getUrl($model->factory['alias'])) ?>
 </p>
 <p>
-    <!-- Список рекламируемых товаров в формате списка (в строке название товара и ссылка на товар) -->
-    Список рекламируемых товаров:<br>
+    Товары:<br>
     <?php
+    $result = [];
     foreach ($model->products as $product) {
-        echo Html::a($product->lang->title, Product::getUrl($product['alias'])) . '<br>';
-    } ?>
-</p>
-<p>
-    <!-- Страна рекламной компании -->
-    Страна рекламной компании: <?= $model->country->lang->title ?>
-</p>
-<p>
-    <!-- Города рекламной компании -->
-    Города рекламной компании:<br>
-    <?php
-    foreach ($model->cities as $city) {
-        echo $city->lang->title . '<br>';
+        $result[] = Html::a($product->lang->title, Product::getUrl($product['alias']))
     }
+    echo implode(', ', $result);
     ?>
 </p>
-
-<!-- Количество просмотров рекламной компании -->
-
 <p>
-    <!-- Дата оплаты рекламной компании -->
-    Дата оплаты рекламной компании: <?= date('j.m.Y', $model->updated_at) ?>
+    Страна: <?= $model->country->lang->title ?>
+</p>
+<p>
+    Города:
+    <?php
+    $result = [];
+    foreach ($model->cities as $city) {
+        $result[] = $city->lang->title;
+    }
+    echo implode(', ', $result);
+    ?>
+</p>
+<p>
+    Дата оплаты: <?= date('j.m.Y', $model->updated_at) ?>
 </p>
