@@ -31,6 +31,8 @@ use common\components\YandexKassaAPI\interfaces\OrderInterface;
  * @property double $amount_with_vat
  * @property boolean $status
  * @property string $payment_status
+ * @property integer $start_date_promotion
+ * @property integer $end_date_promotion
  * @property string $payment_object
  * @property integer $created_at
  * @property integer $updated_at
@@ -96,7 +98,19 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
     {
         return [
             [['factory_id', 'user_id', 'views'], 'required'],
-            [['factory_id', 'user_id', 'country_id', 'views', 'created_at', 'updated_at'], 'integer'],
+            [
+                [
+                    'factory_id',
+                    'user_id',
+                    'country_id',
+                    'views',
+                    'created_at',
+                    'updated_at',
+                    'start_date_promotion',
+                    'end_date_promotion'
+                ],
+                'integer'
+            ],
             [['invoice_id'], 'string', 'max' => 255],
             [['payment_object'], 'string'],
             [['amount', 'amount_with_vat'], 'double'],
@@ -117,7 +131,12 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
             'published' => ['published'],
             'deleted' => ['deleted'],
             'setInvoiceId' => ['invoice_id'],
-            'setPaymentStatus' => ['payment_status', 'payment_object'],
+            'setPaymentStatus' => [
+                'payment_status',
+                'payment_object',
+                'start_date_promotion',
+                'end_date_promotion'
+            ],
             'backend' => [
                 'factory_id',
                 'user_id',
@@ -161,6 +180,8 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
             'amount_with_vat' => Yii::t('app', 'Cost with vat'),
             'status' => Yii::t('app', 'Status'),
             'payment_status' => Yii::t('app', 'Payment status'),
+            'start_date_promotion' => Yii::t('app', 'Start date promotion'),
+            'end_date_promotion' => Yii::t('app', 'End date promotion'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
@@ -209,6 +230,16 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
         if (in_array($this->scenario, ['frontend'])) {
             if ($this->product_ids && $this->id) {
                 FactoryPromotionRelProduct::deleteAll('promotion_id = :id', [':id' => $this->id]);
+            }
+        }
+
+        if (in_array($this->scenario, ['setPaymentStatus'])) {
+            if ($this->payment_status == 'paid') {
+                $start_date = mktime(date("H"), date("i"), 0, date("m"), date("d"), date("Y"));
+                $end_date = mktime(date("H"), date("i"), 0, date("m"), date("d") + 3, date("Y"));
+
+                $this->start_date_promotion = $start_date;
+                $this->end_date_promotion = $end_date;
             }
         }
 
