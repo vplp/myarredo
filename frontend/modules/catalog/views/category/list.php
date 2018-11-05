@@ -82,8 +82,7 @@ $this->title = $this->context->title;
 
                                         <?= frontend\components\LinkPager::widget([
                                             'pagination' => $pages,
-                                        ]);
-                                        ?>
+                                        ]) ?>
 
                                     </div>
                                 </div>
@@ -95,9 +94,9 @@ $this->title = $this->context->title;
                     <div class="row">
                         <div class="comp-advanteges">
 
-                            <?php if (!Yii::$app->request->get('page')): ?>
+                            <?php if (!Yii::$app->request->get('page')) { ?>
                                 <?= $this->context->SeoContent ?>
-                            <?php endif; ?>
+                            <?php } ?>
                         </div>
                     </div>
 
