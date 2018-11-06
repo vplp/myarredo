@@ -26,6 +26,33 @@ use frontend\modules\catalog\models\{
             ) ?>
         <?php } ?>
 
+        <?php
+        if ($cities) { ?>
+            <div class="one-filter open subject-filter">
+                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'City') ?></a>
+                <div class="list-item">
+
+                    <?php foreach ($cities as $item) { ?>
+                        <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
+
+                        <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
+                        <div class="filter-group">
+                            <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
+                        <?= Html::endTag('a'); ?>
+                    <?php } ?>
+
+                </div>
+
+                <?php if (count($cities) > 10) { ?>
+                    <a href="javascript:void(0);" class="show-all-sub show-more" data-variant="Скрыть">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        <span class="btn-text"><?= Yii::t('app', 'Показать все города') ?></span>
+                    </a>
+                <?php } ?>
+
+            </div>
+        <?php } ?>
+
         <div class="one-filter open">
 
             <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Category') ?></a>
@@ -186,33 +213,6 @@ use frontend\modules\catalog\models\{
 
             </div>
         <?php endif;*/ ?>
-
-        <?php
-        if ($cities) { ?>
-            <div class="one-filter open subject-filter">
-                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'City') ?></a>
-                <div class="list-item">
-
-                    <?php foreach ($cities as $item) { ?>
-                        <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
-
-                        <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                        <div class="filter-group">
-                            <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
-                        <?= Html::endTag('a'); ?>
-                    <?php } ?>
-
-                </div>
-
-                <?php if (count($cities) > 10) { ?>
-                    <a href="javascript:void(0);" class="show-all-sub show-more" data-variant="Скрыть">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        <span class="btn-text"><?= Yii::t('app', 'Показать все города') ?></span>
-                    </a>
-                <?php } ?>
-
-            </div>
-        <?php } ?>
 
         <?= Html::hiddenInput('sort', Yii::$app->request->get('sort') ?? null) ?>
         <?= Html::hiddenInput('object', Yii::$app->request->get('object') ?? null) ?>
