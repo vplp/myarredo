@@ -158,15 +158,6 @@ return ArrayHelper::merge(
                             ];
                         }
                     ],
-                    [
-                        'class' => Factory::class,
-                        'dataClosure' => function ($model) {
-                            return [
-                                'loc' => '/factory/' . $model['alias'] . '/',
-                                'image_link' => Factory::getImage($model['image_link'])
-                            ];
-                        }
-                    ]
                 ],
                 'urls' => []
             ],

@@ -60,7 +60,7 @@ class SitemapImageController extends Controller
                 $model = new $modelName();
             }
 
-            $query = $model::findBase();
+            $query = $model::findBaseArray();
 
             foreach ($query->batch(1000) as $models) {
                 foreach ($models as $model) {
