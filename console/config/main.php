@@ -1,6 +1,9 @@
 <?php
 
 use yii\helpers\ArrayHelper;
+use frontend\modules\catalog\models\{
+    Category, Product, Factory
+};
 
 $main = require(dirname(__DIR__, 2) . '/common/config/main.php');
 
@@ -89,7 +92,7 @@ return ArrayHelper::merge(
                 'class' => \console\controllers\SitemapController::class,
                 'models' => [
                     [
-                        'class' => \frontend\modules\catalog\models\Category::class,
+                        'class' => Category::class,
                         'dataClosure' => function ($model) {
                             return [
                                 'loc' => '/catalog/' . $model['alias'] . '/',
@@ -100,7 +103,7 @@ return ArrayHelper::merge(
                         }
                     ],
                     [
-                        'class' => \frontend\modules\catalog\models\Product::class,
+                        'class' => Product::class,
                         'dataClosure' => function ($model) {
                             return [
                                 'loc' => '/product/' . $model['alias'] . '/',
@@ -111,7 +114,7 @@ return ArrayHelper::merge(
                         }
                     ],
                     [
-                        'class' => \frontend\modules\catalog\models\Factory::class,
+                        'class' => Factory::class,
                         'dataClosure' => function ($model) {
                             return [
                                 'loc' => '/factory/' . $model['alias'] . '/',
@@ -142,6 +145,30 @@ return ArrayHelper::merge(
                         'priority' => 0.5
                     ],
                 ]
+            ],
+            'sitemap-image' => [
+                'class' => \console\controllers\SitemapImageController::class,
+                'models' => [
+                    [
+                        'class' => Product::class,
+                        'dataClosure' => function ($model) {
+                            return [
+                                'loc' => '/product/' . $model['alias'] . '/',
+                                'image_link' => Product::getImage($model['image_link']),
+                            ];
+                        }
+                    ],
+                    [
+                        'class' => Factory::class,
+                        'dataClosure' => function ($model) {
+                            return [
+                                'loc' => '/factory/' . $model['alias'] . '/',
+                                'image_link' => Factory::getImage($model['image_link'])
+                            ];
+                        }
+                    ]
+                ],
+                'urls' => []
             ],
         ],
         'params' => [],
