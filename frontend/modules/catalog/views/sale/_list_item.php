@@ -19,7 +19,7 @@ use frontend\modules\catalog\models\Sale;
 
         <div class="img-cont" data-dominant-color>
             <span class="background"></span>
-            <?= Html::img(Sale::getImageThumb($model['image_link'])); ?>
+            <?= Html::img(Sale::getImageThumb($model['image_link']), ['alt' => $model->getTitle()]); ?>
         </div>
 
         <div class="item-infoblock">

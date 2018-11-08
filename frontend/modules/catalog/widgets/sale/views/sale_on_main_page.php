@@ -30,14 +30,18 @@ use frontend\modules\catalog\models\Sale;
                     <a href="<?= $model->getUrl() ?>" class="one-sale" data-dominant-color>
                         <div class="img-cont">
                             <span class="background"></span>
-                            <?= Html::img(Sale::getImageThumb($model['image_link']), ['class' => 'cont']); ?>
+                            <?= Html::img(
+                                Sale::getImageThumb($model['image_link']),
+                                ['class' => 'cont', 'alt' => $model->getTitle()]
+                            ) ?>
                         </div>
                         <div class="prod-title">
-                            <?= $model->getTitle(); ?>
+                            <?= $model->getTitle() ?>
                         </div>
                         <div class="price">
-                            <span class="old-price"><?= $model['price']; ?> <?= $model['currency']; ?></span> | <span class="new-price">
-                                <?= $model['price_new']; ?></span> <?= $model['currency']; ?>
+                            <span class="old-price">
+                                <?= $model['price'] ?> <?= $model['currency'] ?></span> | <span class="new-price">
+                                <?= $model['price_new'] ?></span> <?= $model['currency'] ?>
                         </div>
                     </a>
                 <?php endforeach; ?>

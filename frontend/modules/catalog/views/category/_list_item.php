@@ -29,7 +29,7 @@ use frontend\modules\catalog\models\Product;
 
         <div class="img-cont" data-dominant-color>
             <span class="background"></span>
-            <?= Html::img(Product::getImageThumb($model['image_link'])); ?>
+            <?= Html::img(Product::getImageThumb($model['image_link']), ['alt' => Product::getStaticTitle($model)]); ?>
         </div>
 
         <div class="prod-infoblock">
