@@ -152,9 +152,12 @@ return ArrayHelper::merge(
                     [
                         'class' => Product::class,
                         'dataClosure' => function ($model) {
+                            $module = Yii::$app->getModule('catalog');
+                            $url = $module->getProductUploadUrl();
+
                             return [
                                 'loc' => '/product/' . $model['alias'] . '/',
-                                'image_link' => Product::getImage($model['image_link']),
+                                'image_link' => $url . '/' . $model['image_link'],
                             ];
                         }
                     ],

@@ -62,7 +62,7 @@ class SitemapImageController extends Controller
 
             $query = $model::findBaseArray();
 
-            foreach ($query->batch(1000) as $models) {
+            foreach ($query->batch(100) as $models) {
                 foreach ($models as $model) {
                     $urls[] = call_user_func($modelName['dataClosure'], $model);
                 }
