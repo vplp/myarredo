@@ -25,17 +25,23 @@ use frontend\modules\catalog\models\Sale;
             ); ?>
         </div>
         <div class="sale-wrap">
-            <?php foreach ($models as $k => $level) : ?>
-                <?php foreach ($level as $key => $model) : ?>
-                    <a href="<?= $model->getUrl() ?>" class="one-sale" data-dominant-color>
+            <?php
+            foreach ($models as $k => $level) {
+                foreach ($level as $key => $model) { ?>
+                    <a href="<?= $model->getUrl() ?>" class="one-sale" data-dominant-color itemscope
+                       itemtype="http://schema.org/ImageObject">
                         <div class="img-cont">
                             <span class="background"></span>
                             <?= Html::img(
                                 Sale::getImageThumb($model['image_link']),
-                                ['class' => 'cont', 'alt' => $model->getTitle()]
+                                [
+                                    'class' => 'cont',
+                                    'alt' => $model->getTitle(),
+                                    'itemprop' => 'contentUrl'
+                                ]
                             ) ?>
                         </div>
-                        <div class="prod-title">
+                        <div class="prod-title" itemprop="name">
                             <?= $model->getTitle() ?>
                         </div>
                         <div class="price">
@@ -44,8 +50,8 @@ use frontend\modules\catalog\models\Sale;
                                 <?= $model['price_new'] ?></span> <?= $model['currency'] ?>
                         </div>
                     </a>
-                <?php endforeach; ?>
-            <?php endforeach; ?>
+                <?php }
+            } ?>
         </div>
     </div>
 

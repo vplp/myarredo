@@ -313,14 +313,15 @@ class UploadBehavior extends Behavior
      *          $height - thumbnail height
      * @var array Attributes array
      */
-    public function beforeUpdate() {
+    public function beforeUpdate()
+    {
 
         foreach ($this->attributes as $attribute => $config) {
             if ($this->owner->isAttributeChanged($attribute)) {
                 $files = explode(',', $this->owner->$attribute);
 
                 foreach ($files as $file) {
-                    if($file !== '') {
+                    if ($file !== '') {
                         $this->saveFile($attribute, $file);
 
                         // Create Resize
