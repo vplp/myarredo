@@ -33,7 +33,7 @@ use yii\helpers\Url;
 
     echo Yii::t('app', 'из') . ' ' . $pages->getPageCount();
 
-    if ($pageArray['page'] <= $pages->getPageCount()) {
+    if ($pageArray['page'] < $pages->getPageCount()) {
         $route = $pageArray;
         $route['page'] = $route['page'] + 1;
 
