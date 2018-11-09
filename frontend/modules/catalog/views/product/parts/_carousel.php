@@ -28,7 +28,8 @@ use yii\helpers\Html;
                     [
                         'class' => 'img-cont fancyimage',
                         'data-fancybox-group' => 'group',
-                        'data-dominant-color' => ''
+                        'data-dominant-color' => '',
+                        'data-alt' => $model->getTitle()
                     ]
                 ) .
                 Html::tag('span', '', ['class' => 'background']) .
