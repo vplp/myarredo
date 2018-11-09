@@ -184,7 +184,7 @@ class CategoryController extends BaseController
             ];
         }
 
-        $pageDescription[] = Yii::$app->city->getCityTitle() . ': Заказать';
+        $pageDescription[] = Yii::$app->city->getCityTitle() . ': ' . Yii::t('app', 'Заказать');
 
         if (!empty($params[$keys['type']])) {
             $models = Types::findByAlias($params[$keys['type']]);

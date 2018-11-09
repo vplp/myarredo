@@ -5,55 +5,49 @@ use yii\helpers\Url;
 
 ?>
 
-    <div class="this-page">
+<div class="this-page">
 
-        <?= Html::beginForm() ?>
+    <?php
+    echo Html::beginForm();
 
-        <span class="label">
-            <?= Yii::t('app', 'Page') ?>
-        </span>
+    echo '<span class="label">' . Yii::t('app', 'Page') . '</span>';
 
-        <?php
+    if ($pageArray['page'] > 1) {
+        $route = $pageArray;
+        $route['page'] = $route['page'] - 1;
 
-//        echo Html::submitButton(
-//            '<i class="fa fa-chevron-left" aria-hidden="true"></i>',
-//            [
-//                'class' => 'pageChanger',
-//                'data-url' => Url::toRoute(['/catalog/category/list'] + $pageArray)
-//            ]
-//        );
-
-        echo Html::textInput('page', $pageArray['page'] ?? 1, ['class' => 'pageInput']);
-
-        $pageArray['page'] = 'newPage';
-        $data = Url::toRoute(['/catalog/category/list'] + $pageArray);
-
-        if ($pages->getPageCount() > 1) {
-            echo Yii::t('app', 'из') . ' ' .
-                $pages->getPageCount() .
-                Html::submitButton(
-                    '<i class="fa fa-chevron-right" aria-hidden="true"></i>',
-                    [
-                        'class' => 'pageChanger',
-                        'data-url' => $data
-                    ]
-                );
+        if ($route['page'] == 1) {
+            unset($route['page']);
         }
-        ?>
 
-        <?= Html::endForm(); ?>
+        echo Html::a(
+            '<i class="fa fa-chevron-left" aria-hidden="true"></i>',
+            Url::toRoute(['/catalog/category/list'] + $route),
+            [
+                'class' => 'pageChanger',
+            ]
+        );
+    }
 
-    </div>
+    echo Html::textInput('page', $pageArray['page'] ?? 1, ['class' => 'pageInput']);
 
-<?php
-$script = <<<JS
-$(document).on('click', '.pageChanger', function (e) {
-    e.preventDefault();
-    var str = $(this).attr('data-url');
-    var newPage = parseInt($('.pageInput').val()) + 1;
-    var res = str.replace("newPage", newPage);
-    window.location.href = res;
-    return false;
-});
-JS;
-$this->registerJs($script, yii\web\View::POS_END);
+    echo Yii::t('app', 'из') . ' ' . $pages->getPageCount();
+
+    if ($pageArray['page'] <= $pages->getPageCount()) {
+        $route = $pageArray;
+        $route['page'] = $route['page'] + 1;
+
+        echo Html::a(
+            '<i class="fa fa-chevron-right" aria-hidden="true"></i>',
+            Url::toRoute(['/catalog/category/list'] + $route),
+            [
+                'class' => 'pageChanger',
+                'disabled' => true
+            ]
+        );
+    }
+    echo Html::endForm();
+
+    ?>
+
+</div>
