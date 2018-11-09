@@ -101,6 +101,13 @@ class SaleController extends BaseController
 
         $this->listSeo();
 
+        if (empty($models->getModels())) {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'robots',
+                'content' => 'noindex, follow',
+            ]);
+        }
+
         return $this->render('list', [
             'category' => $category,
             'types' => $types,
