@@ -13,15 +13,31 @@ use yii\helpers\Url;
             <?= Yii::t('app', 'Page') ?>
         </span>
 
-        <?= Html::textInput('page', $pageArray['page'] ?? 1, ['class' => 'pageInput']) ?>
-
         <?php
+
+//        echo Html::submitButton(
+//            '<i class="fa fa-chevron-left" aria-hidden="true"></i>',
+//            [
+//                'class' => 'pageChanger',
+//                'data-url' => Url::toRoute(['/catalog/category/list'] + $pageArray)
+//            ]
+//        );
+
+        echo Html::textInput('page', $pageArray['page'] ?? 1, ['class' => 'pageInput']);
+
         $pageArray['page'] = 'newPage';
         $data = Url::toRoute(['/catalog/category/list'] + $pageArray);
 
         if ($pages->getPageCount() > 1) {
-            echo Yii::t('app', 'из') . ' ' . $pages->getPageCount() .
-                Html::submitButton('<i class="fa fa-chevron-right" aria-hidden="true"></i>', ['class' => 'pageChanger', 'data-url' => $data]);
+            echo Yii::t('app', 'из') . ' ' .
+                $pages->getPageCount() .
+                Html::submitButton(
+                    '<i class="fa fa-chevron-right" aria-hidden="true"></i>',
+                    [
+                        'class' => 'pageChanger',
+                        'data-url' => $data
+                    ]
+                );
         }
         ?>
 

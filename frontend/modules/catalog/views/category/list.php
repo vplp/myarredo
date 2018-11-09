@@ -53,11 +53,11 @@ $this->title = $this->context->title;
 
                                 <div class="top-bar flex">
 
-                                    <?= ProductSorting::widget(); ?>
+                                    <?= ProductSorting::widget() ?>
 
                                     <?= PageChanger::widget([
                                         'pages' => $pages
-                                    ]); ?>
+                                    ]) ?>
 
                                 </div>
 

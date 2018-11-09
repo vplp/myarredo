@@ -21,7 +21,9 @@ class PageChanger extends Widget
     {
         $pageArray = Yii::$app->request->get();
 
-        return $this->render('pageChanger', [
+        return $this->render(
+            'pageChanger',
+            [
                 'pages' => $this->pages,
                 'pageArray' => $pageArray
             ]
