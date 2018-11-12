@@ -22,7 +22,7 @@ $bundle = AppAsset::register($this);
     <div class="home-main">
         <div class="container-wrap">
             <div class="top-home-img">
-                <img src="<?= $bundle->baseUrl ?>/img/baner.jpg" alt="">
+                <img src="<?= $bundle->baseUrl ?>/img/baner1.jpg" alt="">
 
                 <div class="filter">
 
