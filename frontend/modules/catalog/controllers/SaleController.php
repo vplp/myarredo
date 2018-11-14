@@ -277,7 +277,6 @@ class SaleController extends BaseController
         } else {
             $pageH1[] = Yii::t('app', 'мебели');
             $pageDescription[] = Yii::t('app', 'мебели');
-
         }
 
         if (!empty($params[$keys['factory']])) {
@@ -328,7 +327,7 @@ class SaleController extends BaseController
         $this->title = Yii::$app->metatag->seo_title
             ? Yii::$app->metatag->seo_title
             : (!empty($pageTitle)
-                ? implode('. ', $pageTitle)
+                ? implode(' ', $pageTitle)
                 : Yii::t('app', 'Распродажа итальянской мебели'));
 
         if (!Yii::$app->metatag->seo_description) {
