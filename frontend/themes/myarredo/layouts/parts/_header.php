@@ -21,7 +21,7 @@ use frontend\modules\location\widgets\ChangeCity;
                 <div class="container large-container">
 
                     <div class="left-part">
-                        <?php if (!in_array(Yii::$app->controller->id, ['sale'])) { ?>
+                        <?php /*if (!in_array(Yii::$app->controller->id, ['sale'])) { ?>
                             <a class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
@@ -33,7 +33,7 @@ use frontend\modules\location\widgets\ChangeCity;
                                     <?php } ?>
                                 </div>
                             </a>
-                        <?php } ?>
+                        <?php }*/ ?>
 
                         <?php /*
                         <a class="back-call">
