@@ -71,21 +71,43 @@ $this->title = $this->context->title;
                                 <tr>
                                     <td><?= Yii::t('app', 'Factory') ?></td>
                                     <td>
-                                        <?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name'] ?>
+                                        <?= ($model['factory'])
+                                            ? Html::a(
+                                                $model['factory']['title'],
+                                                Factory::getUrl($model['factory']['alias'])
+                                            )
+                                            : $model['factory_name'] ?>
                                     </td>
                                 </tr>
                                 <?php if (!empty($model['specificationValue'])) {
                                     $array = [];
                                     foreach ($model['specificationValue'] as $item) {
                                         if ($item['specification']['parent_id'] == 9) {
-                                            $array[] = $item['specification']['lang']['title'];
+                                            $keys = Yii::$app->catalogFilter->keys;
+                                            $params = Yii::$app->catalogFilter->params;
+                                            $params[$keys['style']] = $item['specification']['alias'];
+
+                                            ($model['factory']) ? $params[$keys['factory']] = $model['factory']['alias'] : null;
+
+                                            $array[] = [
+                                                'title' => $item['specification']['lang']['title'],
+                                                'url' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale/list')
+                                            ];
                                         }
                                     }
                                     if (!empty($array)) { ?>
                                         <tr>
                                             <td><?= Yii::t('app', 'Стиль') ?></td>
                                             <td>
-                                                <?= implode('; ', $array) ?>
+                                                <?php
+                                                foreach ($array as $item) {
+                                                    echo Html::a(
+                                                        $item['title'],
+                                                        $item['url']
+                                                    );
+                                                }
+
+                                                ?>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -98,7 +120,7 @@ $this->title = $this->context->title;
                                                 if ($item['specification']['parent_id'] == 4) {
                                                     echo Html::beginTag('span') .
                                                         $item['specification']['lang']['title'] .
-                                                        ' (' . Yii::t('app', 'см') . ')'  .
+                                                        ' (' . Yii::t('app', 'см') . ')' .
                                                         ': ' .
                                                         $item['val'] .
                                                         Html::endTag('span');
