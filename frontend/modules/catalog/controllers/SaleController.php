@@ -101,13 +101,6 @@ class SaleController extends BaseController
 
         $this->listSeo();
 
-        if (empty($models->getModels())) {
-            Yii::$app->view->registerMetaTag([
-                'name' => 'robots',
-                'content' => 'noindex, follow',
-            ]);
-        }
-
         return $this->render('list', [
             'category' => $category,
             'types' => $types,
@@ -260,7 +253,7 @@ class SaleController extends BaseController
             'url' => ['/catalog/sale/list']
         ];
 
-        $noIndex = 0;
+        $noIndexFollow = $indexFollow = 0;
         $pageTitle = $pageH1 = $pageDescription = [];
 
         /**
@@ -296,11 +289,11 @@ class SaleController extends BaseController
             }
 
             if (count($params[$keys['factory']]) > 1) {
-                $noIndex = 1;
+                $noIndexFollow = 1;
             }
 
             if (count($params) == 1 && count($params[$keys['factory']]) == 1) {
-                $noIndex = 1;
+                $indexFollow = 1;
             }
 
             $pageTitle[] = implode(', ', $factory);
@@ -314,7 +307,7 @@ class SaleController extends BaseController
         }
 
         if (count($params) > 3) {
-            $noIndex = 1;
+            $noIndexFollow = 1;
         }
 
         /**
@@ -345,10 +338,15 @@ class SaleController extends BaseController
             ]);
         }
 
-        if ($noIndex) {
+        if ($noIndexFollow) {
             Yii::$app->view->registerMetaTag([
                 'name' => 'robots',
                 'content' => 'noindex, follow',
+            ]);
+        } elseif ($indexFollow) {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'robots',
+                'content' => 'index, follow',
             ]);
         }
 
