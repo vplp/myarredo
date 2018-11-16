@@ -3,10 +3,7 @@ use frontend\themes\defaults\assets\AppAsset;
 use yii\helpers\Html;
 
 $bundle = AppAsset::register($this);
-/**
- * @author Andrii Bondarchuk
- * @copyright (c) 2016
- */
+
 ?>
 
 <script type="application/ld+json">

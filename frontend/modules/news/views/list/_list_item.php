@@ -2,10 +2,6 @@
 
 use yii\helpers\Html;
 
-/**
- * @author Andrii Bondarchuk
- * @copyright (c) 2016
- */
 ?>
 
 <div class="news">

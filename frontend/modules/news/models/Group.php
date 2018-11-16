@@ -2,22 +2,16 @@
 
 namespace frontend\modules\news\models;
 
-use Yii;
 use yii\helpers\Url;
-//
-use thread\app\model\interfaces\BaseFrontModel;
 
 /**
  * Class Group
  *
  * @package frontend\modules\news\models
- * @author Andrii Bondarchuk
- * @copyright (c) 2016
  */
-class Group extends \backend\modules\news\models\Group implements BaseFrontModel
+class Group extends \common\modules\news\models\Group
 {
     /**
-     *
      * @return array
      */
     public function behaviors()
@@ -26,7 +20,6 @@ class Group extends \backend\modules\news\models\Group implements BaseFrontModel
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()
@@ -35,7 +28,6 @@ class Group extends \backend\modules\news\models\Group implements BaseFrontModel
     }
 
     /**
-     *
      * @return array
      */
     public function attributeLabels()
@@ -44,7 +36,6 @@ class Group extends \backend\modules\news\models\Group implements BaseFrontModel
     }
 
     /**
-     *
      * @return array
      */
     public function rules()

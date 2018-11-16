@@ -17,8 +17,6 @@ use frontend\modules\news\models\{
  * Class ListController
  *
  * @package frontend\modules\news\controllers
- * @author Andrii Bondarchuk
- * @copyright (c) 2016
  */
 class ListController extends BaseController
 {
@@ -43,18 +41,17 @@ class ListController extends BaseController
 
     /**
      * @return array
-     * @throws NotFoundHttpException
      */
     public function actions()
     {
-
         $g = function () {
             $r = 0;
             if (Yii::$app->request->get('alias')) {
                 $item = Group::findByAlias(Yii::$app->request->get('alias'));
 
-                if ($item == null)
+                if ($item == null) {
                     throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+                }
 
                 $r = $item['id'];
 
@@ -74,13 +71,12 @@ class ListController extends BaseController
     }
 
     /**
-     *
-     * @param string $action
-     * @return boollean
+     * @param $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
      */
     public function beforeAction($action)
     {
-
         $item = (isset($_GET['alias']))
             ? Group::findByAlias($_GET['alias'])
             : null;

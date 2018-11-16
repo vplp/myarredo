@@ -2,9 +2,7 @@
 
 namespace backend\modules\news\models;
 
-use Yii;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
 //
 use thread\app\model\interfaces\BaseBackendModel;
 //
@@ -16,8 +14,6 @@ use backend\modules\sys\modules\logbook\behaviors\LogbookBehavior;
  * Class Article
  *
  * @package backend\modules\news\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Article extends CommonArticleModel implements BaseBackendModel
 {
@@ -53,7 +49,10 @@ class Article extends CommonArticleModel implements BaseBackendModel
                     'class' => LogbookBehavior::class,
                     'category' => 'Новости',
                     'updateMessage' => function () {
-                        return "<a href='/core-cms/web/backend/news/article/update?id=" . $this->owner->id . "'>Обновлена новость " . $this->owner->lang->title . "</a>";
+                        return "<a href='/core-cms/web/backend/news/article/update?id=" . $this->owner->id .
+                            "'>Обновлена новость " .
+                            $this->owner->lang->title .
+                            "</a>";
                     }
                 ]
             ]

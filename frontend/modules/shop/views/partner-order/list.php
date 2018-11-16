@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+use frontend\modules\news\widgets\news\NewsListForPartners;
 
 /**
  * @var \frontend\modules\shop\models\Order $modelOrder
@@ -99,6 +100,8 @@ $this->title = $this->context->title;
                     </div>
                 </form>
                 -->
+
+                <?= NewsListForPartners::widget([]) ?>
 
                 <?php if (!Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                     <div style="color:red; font-size: 24px;">

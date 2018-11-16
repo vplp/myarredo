@@ -28,14 +28,12 @@ use thread\modules\news\News as NewsModule;
  * @property ArticleLang $lang
  *
  * @package thread\modules\news\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @author Roman Gonchar <roman.gonchar92@gmail.com>
- * @copyright (c) 2016, VipDesign
  */
 class Article extends ActiveRecord
 {
     /**
-     * @return null|object|string
+     * @return null|object|\yii\db\Connection
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

@@ -1,25 +1,34 @@
 <?php
+
 namespace backend\modules\news;
+
+use Yii;
 
 /**
  * Class News
  *
  * @package backend\modules\news
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class News extends \common\modules\news\News
 {
     /**
-     * Number of elements in GridView
      * @var int
      */
     public $itemOnPage = 20;
 
-    public $menuItems = [
-        'name' => 'News',
-        'icon' => 'fa-file-text',
-        'url' => ['/news/article/list'],
-        'position' => 2,
-    ];
+    public function getMenuItems()
+    {
+        $menuItems = [];
+
+        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin', 'catalogEditor'])) {
+            $menuItems = [
+                'name' => 'Information for partners',
+                'icon' => 'fa-file-text',
+                'position' => 2,
+                'url' => ['/news/article-for-partners/list'],
+            ];
+        }
+
+        return $menuItems;
+    }
 }

@@ -94,6 +94,7 @@ return [
     'news/<alias:[\w\-]+>' => 'news/list/index',
     'news' => 'news/list/index',
     'news/article/<alias:[\w\-]+>' => 'news/article/index',
+    'news/article-for-partners/<id:[\d\-]+>' => 'news/article-for-partners/index',
 
     // Module [[Feedback]]
     'page/contact' => 'feedback/feedback/index',

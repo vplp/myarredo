@@ -35,12 +35,12 @@ class Shop extends \common\modules\shop\Shop
 //            ],
                     [
                         'name' => 'Factory promotion',
-                        'position' => 2,
+                        'position' => 1,
                         'url' => ['/catalog/factory-promotion/list'],
                     ],
                     [
                         'name' => 'Orders',
-                        'position' => 1,
+                        'position' => 2,
                         'url' => ['/shop/order/list'],
                     ]
                 ]

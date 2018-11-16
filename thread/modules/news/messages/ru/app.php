@@ -16,4 +16,6 @@ return [
     'Image' => 'Изображение',
     'Date from' => 'Дата от',
     'Date to' => 'Дата по',
+    'Information for partners' => 'Информация для партнеров',
+    'Show all' => 'Показать всем',
 ];

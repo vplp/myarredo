@@ -18,14 +18,12 @@ use thread\app\base\models\ActiveRecordLang;
  * @property string $content
  *
  * @package thread\modules\news\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @author Roma Gonchar <roman.gonchar92@gmail.com>
- * @copyright (c) 2016, VipDesign
  */
 class ArticleLang extends ActiveRecordLang
 {
     /**
-     * @return string
+     * @return null|object|\yii\db\Connection
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

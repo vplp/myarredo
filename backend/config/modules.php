@@ -32,9 +32,9 @@ return [
     'page' => [
         'class' => \backend\modules\page\Page::class,
     ],
-//    'news' => [
-//        'class' => \backend\modules\news\News::class,
-//    ],
+    'news' => [
+        'class' => \backend\modules\news\News::class,
+    ],
     'seo' => [
         'class' => \backend\modules\seo\Seo::class,
     ],

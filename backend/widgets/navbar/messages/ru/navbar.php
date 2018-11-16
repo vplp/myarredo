@@ -47,5 +47,6 @@ return [
     'Direct Link' => 'SEO ссылки',
     'Banner' => 'Баннер',
     'Factory product' => 'Товары фабрики',
-    'Factory promotion' => 'Рекламные кампании'
+    'Factory promotion' => 'Рекламные кампании',
+    'Information for partners' => 'Информация для партнеров'
 ];
