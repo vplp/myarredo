@@ -7,12 +7,15 @@ use yii\helpers\{
     ArrayHelper
 };
 //
+use voskobovich\behaviors\ManyToManyBehavior;
+//
+use common\modules\location\models\City;
 use common\modules\news\News as NewsModule;
 //
 use thread\app\base\models\ActiveRecord;
 
 /**
- * Class Article
+ * Class ArticleForPartners
  *
  * @property integer id
  * @property integer position
@@ -20,7 +23,9 @@ use thread\app\base\models\ActiveRecord;
  * @property integer updated_at
  * @property boolean published
  * @property boolean deleted
+ * @property array $city_ids
  *
+ * @property ArticleForPartnersRelCity[] $cities
  * @property ArticleForPartnersLang $lang
  *
  * @package common\modules\news\models
@@ -49,7 +54,14 @@ class ArticleForPartners extends ActiveRecord
      */
     public function behaviors()
     {
-        return ArrayHelper::merge(parent::behaviors(), []);
+        return ArrayHelper::merge(parent::behaviors(), [
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'city_ids' => 'cities',
+                ],
+            ],
+        ]);
     }
 
     /**
@@ -61,6 +73,7 @@ class ArticleForPartners extends ActiveRecord
             [['position', 'create_time', 'update_time'], 'integer'],
             [['show_all', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['position'], 'default', 'value' => '0'],
+            [['city_ids'], 'each', 'rule' => ['integer']],
         ];
     }
 
@@ -73,7 +86,7 @@ class ArticleForPartners extends ActiveRecord
             'show_all' => ['show_all'],
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['position', 'show_all', 'published', 'deleted'],
+            'backend' => ['position', 'show_all', 'published', 'deleted', 'city_ids'],
         ];
     }
 
@@ -90,6 +103,7 @@ class ArticleForPartners extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'city_ids' => Yii::t('app', 'Cities'),
         ];
     }
 
@@ -98,7 +112,9 @@ class ArticleForPartners extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->joinWith(['lang'])->orderBy(self::tableName() . '.position');
+        return self::find()
+            ->innerJoinWith(['lang'])
+            ->orderBy(self::tableName() . '.position');
     }
 
     /**
@@ -107,5 +123,15 @@ class ArticleForPartners extends ActiveRecord
     public function getLang()
     {
         return $this->hasOne(ArticleForPartnersLang::class, ['rid' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCities()
+    {
+        return $this
+            ->hasMany(City::class, ['id' => 'city_id'])
+            ->viaTable(ArticleForPartnersRelCity::tableName(), ['article_id' => 'id']);
     }
 }

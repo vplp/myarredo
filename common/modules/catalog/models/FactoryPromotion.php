@@ -55,7 +55,8 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
     const PAYMENT_STATUS_PAID = 'paid';
 
     /**
-     * @return string
+     * @return mixed|null|object|string|\yii\db\Connection
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

@@ -47,17 +47,16 @@ class ArticleForPartners extends \common\modules\news\models\ArticleForPartners
     /**
      * @return mixed
      */
-    public static function find()
-    {
-        return parent::find()->enabled();
-    }
-
-    /**
-     * @return mixed
-     */
     public static function findBase()
     {
-        return parent::findBase()->enabled();
+        $query = parent::findBase()->enabled();
+
+        $query->andFilterWhere([
+            'or',
+            [self::tableName() . '.show_all' => '1'],
+        ]);
+
+        return $query;
     }
 
     /**
