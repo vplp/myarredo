@@ -166,8 +166,7 @@ class MetaTag extends Component
 
             $model = $this->direct_model;
 
-            if (
-                $model->cities != null
+            if ($model->cities != null
                 && !in_array(Yii::$app->city->getCityId(), ArrayHelper::map($model->cities, 'id', 'id'))
             ) {
                 return $this;

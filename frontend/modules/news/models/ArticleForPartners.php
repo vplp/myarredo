@@ -2,6 +2,7 @@
 
 namespace frontend\modules\news\models;
 
+use Yii;
 use yii\helpers\Url;
 
 /**
@@ -49,11 +50,21 @@ class ArticleForPartners extends \common\modules\news\models\ArticleForPartners
      */
     public static function findBase()
     {
+        $subQueryUser = ArticleForPartnersRelUser::find()
+            ->select('article_id')
+            ->andWhere([ArticleForPartnersRelUser::tableName() . '.user_id' => Yii::$app->user->identity->id]);
+
+        $subQueryCity = ArticleForPartnersRelCity::find()
+            ->select('article_id')
+            ->andWhere([ArticleForPartnersRelCity::tableName() . '.city_id' => Yii::$app->city->getCityId()]);
+
         $query = parent::findBase()->enabled();
 
         $query->andFilterWhere([
             'or',
             [self::tableName() . '.show_all' => '1'],
+            ['in', self::tableName() . '.id', $subQueryUser],
+            ['in', self::tableName() . '.id', $subQueryCity]
         ]);
 
         return $query;

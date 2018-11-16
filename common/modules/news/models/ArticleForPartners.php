@@ -10,6 +10,7 @@ use yii\helpers\{
 use voskobovich\behaviors\ManyToManyBehavior;
 //
 use common\modules\location\models\City;
+use common\modules\user\models\User;
 use common\modules\news\News as NewsModule;
 //
 use thread\app\base\models\ActiveRecord;
@@ -24,8 +25,10 @@ use thread\app\base\models\ActiveRecord;
  * @property boolean published
  * @property boolean deleted
  * @property array $city_ids
+ * @property array $user_ids
  *
  * @property ArticleForPartnersRelCity[] $cities
+ * @property ArticleForPartnersRelUser[] $users
  * @property ArticleForPartnersLang $lang
  *
  * @package common\modules\news\models
@@ -61,6 +64,12 @@ class ArticleForPartners extends ActiveRecord
                     'city_ids' => 'cities',
                 ],
             ],
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'user_ids' => 'users',
+                ],
+            ],
         ]);
     }
 
@@ -73,7 +82,7 @@ class ArticleForPartners extends ActiveRecord
             [['position', 'create_time', 'update_time'], 'integer'],
             [['show_all', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['position'], 'default', 'value' => '0'],
-            [['city_ids'], 'each', 'rule' => ['integer']],
+            [['city_ids', 'user_ids'], 'each', 'rule' => ['integer']],
         ];
     }
 
@@ -86,7 +95,7 @@ class ArticleForPartners extends ActiveRecord
             'show_all' => ['show_all'],
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['position', 'show_all', 'published', 'deleted', 'city_ids'],
+            'backend' => ['position', 'show_all', 'published', 'deleted', 'city_ids', 'user_ids'],
         ];
     }
 
@@ -104,6 +113,7 @@ class ArticleForPartners extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
             'city_ids' => Yii::t('app', 'Cities'),
+            'user_ids' => Yii::t('app', 'Users'),
         ];
     }
 
@@ -133,5 +143,15 @@ class ArticleForPartners extends ActiveRecord
         return $this
             ->hasMany(City::class, ['id' => 'city_id'])
             ->viaTable(ArticleForPartnersRelCity::tableName(), ['article_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this
+            ->hasMany(User::class, ['id' => 'user_id'])
+            ->viaTable(ArticleForPartnersRelUser::tableName(), ['article_id' => 'id']);
     }
 }

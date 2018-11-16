@@ -5,17 +5,17 @@ namespace common\modules\news\models;
 use thread\app\base\models\ActiveRecord;
 //
 use common\modules\news\News as NewsModule;
-use common\modules\location\models\City;
+use common\modules\user\models\User;
 
 /**
- * Class ArticleForPartnersRelCity
+ * Class ArticleForPartnersRelUser
  *
  * @property string $article_id
- * @property string $city_id
+ * @property string $user_id
  *
  * @package common\modules\news\models
  */
-class ArticleForPartnersRelCity extends ActiveRecord
+class ArticleForPartnersRelUser extends ActiveRecord
 {
     /**
      * @return null|object|string|\yii\db\Connection
@@ -31,7 +31,7 @@ class ArticleForPartnersRelCity extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%news_article_for_partners_rel_city}}';
+        return '{{%news_article_for_partners_rel_user}}';
     }
 
     /**
@@ -49,7 +49,7 @@ class ArticleForPartnersRelCity extends ActiveRecord
     {
         return [
             ['article_id', 'exist', 'targetClass' => ArticleForPartners::class, 'targetAttribute' => 'id'],
-            ['city_id', 'exist', 'targetClass' => City::class, 'targetAttribute' => 'id'],
+            ['user_id', 'exist', 'targetClass' => User::class, 'targetAttribute' => 'id'],
         ];
     }
 
@@ -61,7 +61,7 @@ class ArticleForPartnersRelCity extends ActiveRecord
         return [
             'backend' => [
                 'article_id',
-                'city_id',
+                'user_id',
             ],
         ];
     }
@@ -73,7 +73,7 @@ class ArticleForPartnersRelCity extends ActiveRecord
     {
         return [
             'article_id',
-            'city_id',
+            'user_id',
         ];
     }
 }

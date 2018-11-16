@@ -43,7 +43,7 @@ class User extends \common\modules\user\models\User implements BaseBackendModel
      */
     public function search($params)
     {
-        return (new search\User)->search($params);
+        return (new search\User())->search($params);
     }
 
     /**
@@ -53,6 +53,6 @@ class User extends \common\modules\user\models\User implements BaseBackendModel
      */
     public function trash($params)
     {
-        return (new search\User)->trash($params);
+        return (new search\User())->trash($params);
     }
 }
