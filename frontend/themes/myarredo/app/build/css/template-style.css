@@ -3841,6 +3841,7 @@ h1 {
   .adding-product-page .largex-container h1 {
     margin-top: 0;
     padding-top: 20px;
+    padding-left: 10px;
   }
   .largex-container h1 {
     margin-top: 0;
@@ -4109,6 +4110,37 @@ h1 {
 .adding-product-page .manager-history {
   max-width: 1400px;
   margin: 0 auto;
+}
+.ordersbox .manager-history .manager-history-header ul {
+  background-color: #F6F6F5;
+}
+.ordersbox .manager-history .manager-history-list ul {
+  background-color: #ffffff;
+}
+.ordersbox .orders-news-box {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px;
+}
+.news-tittleh3 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: normal;
+  font-size: 18px;
+  color: #545451;
+  margin-bottom: 8px;
+}
+.news-tittleh3::before {
+  font-family: FontAwesome;
+  content: "\f005";
+  font-size: 16px;
+  margin-right: 8px;
+}
+.newsbox-item {
+  display: flex;
+  padding: 15px 0;
+  margin-bottom: 20px;
+  border-top: 1px solid #bdbcb3;
 }
 .modal-body #factory-promotion-form .kv-grid-table.table-striped thead tr th {
   font-size: 11px;

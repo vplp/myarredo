@@ -1,7 +1,7 @@
 <?php if (!empty($articles)) { ?>
     <section class="last-news">
-        <div class="container cf">
-            <h3><?= Yii::t('app', 'Information for partners') ?></h3>
+        <div class="orders-news-box">
+            <h3 class="news-tittleh3"><?= Yii::t('app', 'Information for partners') ?></h3>
 
             <div class="last-news_cnt cf">
 
