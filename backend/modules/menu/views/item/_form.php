@@ -79,15 +79,15 @@ $script = <<<JS
 $(document).on('change', '#menuitem-link_type', function () {
     var val = this.value;
 
-    if(this.value == 'permanent'){
+    if (this.value == 'permanent') {
         $('.menuitem-link_type_permanent').show();
         $('.menuitem-link_type_external').hide();
         $('.menuitem-link_type_internal').hide();
-    }elseif(this.value == 'internal'){
+    } else if(this.value == 'internal') {
         $('.menuitem-link_type_internal').show();
         $('.menuitem-link_type_external').hide();
         $('.menuitem-link_type_permanent').hide();
-    }else{
+    } else {
         $('.menuitem-link_type_internal').hide();
         $('.menuitem-link_type_external').show();
         $('.menuitem-link_type_permanent').hide(); 
