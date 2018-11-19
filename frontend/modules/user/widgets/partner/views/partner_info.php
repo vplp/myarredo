@@ -41,9 +41,9 @@ if (!Yii::$app->getUser()->isGuest &&
 
     <p class="num" itemprop="telephone"><?= Yii::$app->partner->getPartnerPhone() ?></p>
 
-    <?php if (Yii::$app->city->domain == 'ru') { ?>
+    <?php /*if (Yii::$app->city->domain == 'ru') { ?>
         <p><?= Yii::t('app', 'Бесплатно в вашем городе') ?></p>
-    <?php } ?>
+    <?php }*/ ?>
 
     <div class="ico">
         <img src="<?= $bundle->baseUrl ?>/img/marker-map.png">

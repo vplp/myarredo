@@ -21,19 +21,19 @@ use frontend\modules\location\widgets\ChangeCity;
                 <div class="container large-container">
 
                     <div class="left-part">
-                        <?php /*if (!in_array(Yii::$app->controller->id, ['sale'])) { ?>
+                        <?php if (!in_array(Yii::$app->controller->id, ['sale'])) { ?>
                             <a class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
                                     <span class="phone"><?= Yii::$app->partner->getPartnerPhone() ?></span>
-                                    <?php if (Yii::$app->city->domain == 'ru') { ?>
+                                    <?php /*if (Yii::$app->city->domain == 'ru') { ?>
                                         <span class="descr">
                                             <?= Yii::t('app', 'Бесплатно в вашем городе') ?>
                                         </span>
-                                    <?php } ?>
+                                    <?php }*/ ?>
                                 </div>
                             </a>
-                        <?php }*/ ?>
+                        <?php } ?>
 
                         <?php /*
                         <a class="back-call">
@@ -330,11 +330,11 @@ use frontend\modules\location\widgets\ChangeCity;
                 <a class="phone-num">
                     <?= Yii::$app->partner->getPartnerPhone() ?>
                 </a>
-                <?php if (Yii::$app->city->domain == 'ru') { ?>
+                <?php /*if (Yii::$app->city->domain == 'ru') { ?>
                     <div class="after-num">
                         <?= Yii::t('app', 'Бесплатно в вашем городе') ?>
                     </div>
-                <?php } ?>
+                <?php }*/ ?>
             </div>
         </div>
     </div>
