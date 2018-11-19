@@ -46,14 +46,16 @@ $bundle = AppAsset::register($this);
                                 'h1',
                                 (($this->context->SeoH1)
                                     ? $this->context->SeoH1
-                                    : Yii::t('app', 'Мебель') . ' ' . $model['title'] . ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere()),
+                                    : Yii::t('app', 'Мебель') . ' ' .
+                                    $model['title'] . ' ' . Yii::t('app', 'в') . ' ' .
+                                    Yii::$app->city->getCityTitleWhere()),
                                 ['class' => 'title-text']
                             ); ?>
 
                             <div class="fact-link">
                                 <?= Html::a(
                                     $model['url'],
-                                    'https://' . $model['url'],
+                                    'http://' . $model['url'],
                                     [
                                         'target' => '_blank',
                                         'rel' => 'nofollow'
@@ -73,6 +75,23 @@ $bundle = AppAsset::register($this);
                                             <?= Yii::t('app', 'Все коллекции') ?>
                                         </a>
                                     </li>
+
+                                    <?php
+                                    if ($model->getFactoryTotalCountSale()) {
+                                        echo Html::tag(
+                                            'li',
+                                            Html::a(
+                                                Yii::t('app', 'Sale'),
+                                                Yii::$app->catalogFilter->createUrl(
+                                                    Yii::$app->catalogFilter->params +
+                                                    [$keys['factory'] => $model['alias']],
+                                                    '/catalog/sale/list'
+                                                ),
+                                                ['class' => 'view-all']
+                                            )
+                                        );
+                                    } ?>
+
                                 </ul>
 
                                 <div class="tab-content">
@@ -82,7 +101,6 @@ $bundle = AppAsset::register($this);
                                             $FactoryTypes = Factory::getFactoryTypes($model['id']);
 
                                             foreach ($FactoryTypes as $item) {
-
                                                 $params = Yii::$app->catalogFilter->params;
 
                                                 $params[$keys['factory']][] = $model['alias'];
@@ -105,7 +123,6 @@ $bundle = AppAsset::register($this);
                                             $FactoryCollection = Factory::getFactoryCollection($model['id']);
 
                                             foreach ($FactoryCollection as $item) {
-
                                                 $params = Yii::$app->catalogFilter->params;
 
                                                 $params[$keys['factory']][] = $model['alias'];
@@ -191,8 +208,8 @@ $bundle = AppAsset::register($this);
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-9">
                         <div class="cat-prod catalog-wrap">
-
-                            <?php foreach ($product as $item) {
+                            <?php
+                            foreach ($product as $item) {
                                 echo $this->render('/category/_list_item', [
                                     'model' => $item,
                                     'factory' => [$model->id => $model]
@@ -203,12 +220,16 @@ $bundle = AppAsset::register($this);
                                 <div class="img-cont">
                                     <img src="<?= $bundle->baseUrl ?>/img/factory.svg" alt="">
                                 </div>
-                                <a class="view-all"
-                                   href="<?= Yii::$app->catalogFilter->createUrl(Yii::$app->catalogFilter->params + [$keys['factory'] => $model['alias']]) ?>">
-                                    <?= Yii::t('app', 'Смотреть полный каталог') ?>
-                                </a>
-                            </div>
 
+                                <?= Html::a(
+                                    Yii::t('app', 'Смотреть полный каталог'),
+                                    Yii::$app->catalogFilter->createUrl(
+                                        Yii::$app->catalogFilter->params +
+                                        [$keys['factory'] => $model['alias']]
+                                    ),
+                                    ['class' => 'view-all']
+                                ) ?>
+                            </div>
                         </div>
                     </div>
                 </div>

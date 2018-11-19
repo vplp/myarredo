@@ -54,6 +54,7 @@ use common\modules\user\models\{
  * @property integer $mark1
  * @property integer $in_stock
  *
+ * @property ProductLang $title
  * @property ProductLang $lang
  * @property ProductRelCategory[] $category
  * @property ProductRelSamples[] $samples
@@ -130,8 +131,8 @@ class Product extends ActiveRecord implements iProduct
                 ],
                 'integer'
             ],
-            [['price', 'volume', 'factory_price', 'price_from'], 'double'],
-            [['price', 'volume', 'factory_price', 'price_from'], 'default', 'value' => 0.00],
+            [[/*'price',*/ 'volume', 'factory_price', 'price_from'], 'double'],
+            [[/*'price',*/ 'volume', 'factory_price', 'price_from'], 'default', 'value' => 0.00],
             [
                 [
                     'is_composition',
@@ -200,7 +201,7 @@ class Product extends ActiveRecord implements iProduct
                 'created_at',
                 'updated_at',
                 'position',
-                'price',
+                //'price',
                 'volume',
                 'factory_price',
                 'price_from',
@@ -237,13 +238,13 @@ class Product extends ActiveRecord implements iProduct
             'alias' => Yii::t('app', 'Alias'),
             'country_code' => 'Показывать для страны',
             'article' => Yii::t('app', 'Vendor code'),
-            'price' => Yii::t('app', 'Price'),
+            //'price' => Yii::t('app', 'Price'),
             'volume' => Yii::t('app', 'Volume'),
             'factory_price' => Yii::t('app', 'Factory price'),
             'price_from' => Yii::t('app', 'Price from'),
             'removed' => 'Снят с производства',
             'in_stock' => 'Под заказ | В наличии',
-            'factory_id' => Yii::t('app','Factory'),
+            'factory_id' => Yii::t('app', 'Factory'),
             'collections_id' => Yii::t('app', 'Collections'),
             'catalog_type_id' => Yii::t('app', 'Catalog type'),
             'popular' => 'Популярное',
@@ -279,7 +280,7 @@ class Product extends ActiveRecord implements iProduct
         if ($this->alias == '' && in_array($this->scenario, ['backend', 'setAlias', 'frontend'])) {
             $this->alias = (!empty($this->types) ? $this->types->alias : '')
                 . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
-                . (!empty($this->collection->lang) ? ' ' . $this->collection->lang->title : '')
+                . (!empty($this->collection) ? ' ' . $this->collection->title : '')
                 . (($this->article) ? ' ' . $this->article : '');
 
             if ($this->id) {
@@ -317,7 +318,6 @@ class Product extends ActiveRecord implements iProduct
     public function afterSave($insert, $changedAttributes)
     {
         if ($this->scenario == 'backend') {
-
             // delete relation ProductRelSpecification
             ProductRelSpecification::deleteAll(['catalog_item_id' => $this->id]);
 
@@ -368,6 +368,18 @@ class Product extends ActiveRecord implements iProduct
     public static function findByIDs($ids): array
     {
         return self::findBase()->andWhere(['IN', 'id', array_unique($ids)])->all();
+    }
+
+    /**
+     * Title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        $title = $this->lang->title ?? '{}';
+
+        return $title;
     }
 
     /**

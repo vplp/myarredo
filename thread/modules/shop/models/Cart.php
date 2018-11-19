@@ -117,7 +117,7 @@ class Cart extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('shop', 'User id'),
+            'user_id' => Yii::t('shop', 'User'),
             'php_session_id' => Yii::t('shop', 'php_session_id'),
             'items_count' => Yii::t('shop', 'Count of items'),
             'items_total_count' => Yii::t('shop', 'Summ of item_count'),

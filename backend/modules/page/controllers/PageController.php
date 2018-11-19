@@ -2,6 +2,7 @@
 
 namespace backend\modules\page\controllers;
 
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 //
 use thread\actions\EditableAttributeSaveLang;
@@ -23,6 +24,32 @@ class PageController extends BackendController
     public $filterModel = filterPageModel::class;
     public $title = 'Pages';
     public $name = 'page';
+
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin', 'seo'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
 
     /**
      * @return array

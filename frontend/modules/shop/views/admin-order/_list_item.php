@@ -34,7 +34,7 @@ use frontend\modules\catalog\models\Product;
                         </td>
                     </tr>
                     <tr>
-                        <td>Артикул</td>
+                        <td><?= Yii::t('app', 'Article') ?></td>
                         <td>
                             <?= $orderItem->product['article'] ?>
                         </td>
@@ -44,7 +44,7 @@ use frontend\modules\catalog\models\Product;
                         <td><?= $orderItem->product['factory']['title'] ?></td>
                     </tr>
                     <tr>
-                        <td>ЦЕНА для клиента</td>
+                        <td><?= Yii::t('app', 'Цена для клиента') ?></td>
                         <td>
                             <?php
                             foreach ($orderItem->orderItemPrices as $price) {
@@ -60,7 +60,7 @@ use frontend\modules\catalog\models\Product;
                 <div class="downloads">
 
                     <?php if (!empty($orderItem->product['factoryPricesFiles'])): ?>
-                        <p class="title-small">Посмотреть прайс листы</p>
+                        <p class="title-small"><?= Yii::t('app','Посмотреть прайс листы') ?></p>
                         <ul>
                             <?php foreach ($orderItem->product['factoryPricesFiles'] as $priceFile): ?>
                                 <?php if ($fileLink = $priceFile->getFileLink()): ?>
@@ -81,25 +81,27 @@ use frontend\modules\catalog\models\Product;
     <div class="form-wrap">
 
         <div class="form-group">
-
             <?php
             echo Html::label($modelOrder->getAttributeLabel('comment')) .
                 Html::textarea(
                     null,
-                    $modelOrder->comment, [
-                    'class' => 'form-control',
-                    'rows' => 5,
-                    'disabled' => true
-                ]);
+                    $modelOrder->comment,
+                    [
+                        'class' => 'form-control',
+                        'rows' => 5,
+                        'disabled' => true
+                    ]
+                );
             ?>
 
-            <?php foreach ($modelOrder->orderAnswers as $answer) {
+            <?php
+            foreach ($modelOrder->orderAnswers as $answer) {
                 echo '<div><strong>' . $answer['user']['profile']['name_company'] . '</strong></div>' .
                     '<div>' . $answer['user']['email'] . '</div>' .
                     '<div>' . $answer->getAnswerTime() . '</div>' .
                     '<div>' . $answer['answer'] . '</div><br>';
-            } ?>
-
+            }
+            ?>
         </div>
 
     </div>

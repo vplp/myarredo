@@ -13,6 +13,7 @@ echo GridView::widget([
     'dataProvider' => $model->trash(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
+        'id',
         [
             'attribute' => 'title',
             'value' => 'lang.title',

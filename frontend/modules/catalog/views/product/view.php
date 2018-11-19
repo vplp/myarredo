@@ -34,11 +34,11 @@ $this->title = $this->context->title;
             <div class="container large-container">
                 <div class="row" itemscope itemtype="http://schema.org/Product">
 
-                    <?php if (!isset($this->context->factory)): ?>
+                    <?php if (!isset($this->context->factory)) { ?>
                         <?= Breadcrumbs::widget([
                             'links' => $this->context->breadcrumbs,
                         ]) ?>
-                    <?php endif; ?>
+                    <?php } ?>
 
                     <div class="col-sm-6 col-md-6 col-lg-5">
 
@@ -59,38 +59,44 @@ $this->title = $this->context->title;
                             <div class="price-availability" itemprop="offers" itemscope
                                  itemtype="http://schema.org/Offer">
 
-                                <?php if (!$model['removed'] && $model['price_from'] > 0): ?>
+                                <?php if (!$model['removed'] && $model['price_from'] > 0) { ?>
                                     <div class="price-sticker">
                                         <?= Yii::t('app', 'Цена от') ?>:
                                         <span>
                                         <?= $model['price_from']; ?>&nbsp;<span class="currency">€</span>
-                                            <meta itemprop="price-sticker"
+                                            <meta itemprop="price"
                                                   content="<?= number_format($model['price_from'], 0, '', '') ?>">
                                             <meta itemprop="priceCurrency" content="EUR"/>
                                     </span>
                                     </div>
-                                <?php else: ?>
+                                <?php } else { ?>
                                     <meta itemprop="price" content="0"/>
                                     <meta itemprop="priceCurrency" content="EUR"/>
-                                <?php endif; ?>
+                                <?php } ?>
 
                                 <div class="availability">
                                     <?= Yii::t('app', 'Наличие') ?>:
                                     <span><?= ($model['status']) ?></span>
-                                    <?php if (!$model['removed'] && $model['in_stock']): ?>
+                                    <?php if (!$model['removed'] && $model['in_stock']) { ?>
                                         <meta itemprop="availability" content="InStock">
-                                    <?php elseif (!$model['removed']): ?>
+                                    <?php } elseif (!$model['removed']) { ?>
                                         <meta itemprop="availability" content="PreOrder">
-                                    <?php endif; ?>
+                                    <?php } ?>
                                 </div>
                             </div>
 
-                            <?php if (!Yii::$app->getUser()->isGuest && $model['factory']['new_price']): ?>
+                            <div class="alert" role="alert">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                <?= Yii::t('app', 'Окончательная цена согласовывается с продавцом.') ?>
+                            </div>
+
+
+                            <?php if (!Yii::$app->getUser()->isGuest && $model['factory']['new_price']) { ?>
                                 <div class="alert alert-danger" role="alert">
                                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                     <?= Yii::t('app', 'Цена требует проверки, есть новый прайс') ?>
                                 </div>
-                            <?php endif; ?>
+                            <?php } ?>
 
                             <table class="info-table">
                                 <tr>
@@ -109,7 +115,7 @@ $this->title = $this->context->title;
                                     </td>
                                 </tr>
 
-                                <?php if ($model['factory'] != null): ?>
+                                <?php if ($model['factory'] != null) { ?>
                                     <tr>
                                         <td><?= Yii::t('app', 'Factory') ?></td>
                                         <td>
@@ -120,14 +126,14 @@ $this->title = $this->context->title;
                                             ); ?>
                                         </td>
                                     </tr>
-                                <?php endif; ?>
+                                <?php } ?>
 
-                                <?php if ($model['collections_id']): ?>
+                                <?php if ($model['collections_id']) { ?>
                                     <tr>
                                         <td><?= Yii::t('app', 'Коллекция') ?></td>
                                         <td>
                                             <?= Html::a(
-                                                $model['collection']['lang']['title'],
+                                                $model['collection']['title'],
                                                 Yii::$app->catalogFilter->createUrl(
                                                     Yii::$app->catalogFilter->params +
                                                     [$keys['factory'] => $model['factory']['alias']] +
@@ -136,15 +142,15 @@ $this->title = $this->context->title;
                                             ); ?>
                                         </td>
                                     </tr>
-                                <?php endif; ?>
+                                <?php } ?>
 
-                                <?php if (!$model['is_composition']): ?>
+                                <?php if (!$model['is_composition']) { ?>
                                     <tr>
                                         <td><?= Yii::t('app', 'Артикул') ?></td>
                                         <td><?= $model['article']; ?></td>
                                     </tr>
 
-                                    <?php if (!empty($model['specificationValue'])): ?>
+                                    <?php if (!empty($model['specificationValue'])) { ?>
                                         <tr>
                                             <td><?= Yii::t('app', 'Размеры') ?></td>
                                             <td class="product-size">
@@ -153,7 +159,8 @@ $this->title = $this->context->title;
                                                     if ($item['specification']['parent_id'] == 4) {
                                                         echo Html::beginTag('span') .
                                                             $item['specification']['lang']['title'] .
-                                                            ':' .
+                                                            ' (' . Yii::t('app', 'см') . ')' .
+                                                            ': ' .
                                                             $item['val'] .
                                                             Html::endTag('span');
                                                     }
@@ -174,8 +181,8 @@ $this->title = $this->context->title;
                                                 ?>
                                             </td>
                                         </tr>
-                                    <?php endif; ?>
-                                <?php endif; ?>
+                                    <?php } ?>
+                                <?php } ?>
 
                             </table>
 
@@ -222,7 +229,10 @@ $this->title = $this->context->title;
                             </div>
 
                         <?php } else { ?>
-                            <?= Yii::t('app', 'Данный товар снят с протзводства. Но мы можем предложить альтернативную модель.') ?>'
+                            <?= Yii::t(
+                                'app',
+                                'Данный товар снят с протзводства. Но мы можем предложить альтернативную модель.'
+                            ) ?>
                         <?php } ?>
 
                     </div>
@@ -245,7 +255,10 @@ $this->title = $this->context->title;
                                     </div>
                                 </div>
                                 <div class="descr">
-                                    <?= Yii::t('app', 'Ваш запрос отправляется всем поставщикам, авторизированным в нашей сети MY ARREDO FAMILY.') ?>
+                                    <?= Yii::t(
+                                        'app',
+                                        'Ваш запрос отправляется всем поставщикам, авторизированным в нашей сети MY ARREDO FAMILY.'
+                                    ) ?>
                                 </div>
                             </div>
                             <div class="one-number">
@@ -256,7 +269,10 @@ $this->title = $this->context->title;
                                     </div>
                                 </div>
                                 <div class="descr">
-                                    <?= Yii::t('app', 'Самые активные и успешные профессионалы рассчитают для вас лучшие цены.') ?>
+                                    <?= Yii::t(
+                                        'app',
+                                        'Самые активные и успешные профессионалы рассчитают для вас лучшие цены.'
+                                    ) ?>
                                 </div>
                             </div>
                             <div class="one-number">
@@ -307,36 +323,35 @@ $this->title = $this->context->title;
                 <div class="row composition">
                     <div class="col-md-12">
                         <ul class="nav nav-tabs">
-
-                            <?php if (!empty($elementsComposition)): ?>
-                                <li><a data-toggle="tab" href="#panel1"><?= Yii::t('app', 'Предметы композиции') ?></a>
+                            <?php if (!empty($elementsComposition)) { ?>
+                                <li>
+                                    <a data-toggle="tab" href="#panel1"><?= Yii::t('app', 'Предметы композиции') ?></a>
                                 </li>
-                            <?php endif; ?>
-
-                            <?php if (!empty($model['samples'])): ?>
-                                <li><a data-toggle="tab" href="#panel2"><?= Yii::t('app', 'Варианты отделки') ?></a>
+                            <?php } ?>
+                            <?php if (!empty($model['samples'])) { ?>
+                                <li>
+                                    <a data-toggle="tab" href="#panel2"><?= Yii::t('app', 'Варианты отделки') ?></a>
                                 </li>
-                            <?php endif; ?>
-
+                            <?php } ?>
                         </ul>
 
                         <div class="tab-content">
 
-                            <?php if (!empty($elementsComposition)): ?>
+                            <?php if (!empty($elementsComposition)) { ?>
                                 <div id="panel1" class="tab-pane fade">
                                     <?= $this->render('parts/_product_by_composition', [
                                         'models' => $elementsComposition
                                     ]); ?>
                                 </div>
-                            <?php endif; ?>
+                            <?php } ?>
 
-                            <?php if (!empty($model['samples'])): ?>
+                            <?php if (!empty($model['samples'])) { ?>
                                 <div id="panel2" class="tab-pane fade">
                                     <?= $this->render('parts/_samples', [
                                         'samples' => $model['samples']
                                     ]); ?>
                                 </div>
-                            <?php endif; ?>
+                            <?php } ?>
 
                         </div>
                     </div>
@@ -383,14 +398,16 @@ $this->title = $this->context->title;
 
             <?php endif; */ ?>
 
-                <?php if ($model['collections_id']) {
+                <?php
+                if ($model['collections_id']) {
                     echo $this->render('parts/_product_by_collection', [
                         'collection' => $model['collection'],
                         'models' => $model->getProductByCollection($model['collections_id'], $model['catalog_type_id'])
                     ]);
                 } ?>
 
-                <?php if ($model['collections_id']) {
+                <?php
+                if ($model['collections_id']) {
                     echo $this->render('parts/_product_by_factory', [
                         'factory' => $model['factory'],
                         'types' => $model['types'],

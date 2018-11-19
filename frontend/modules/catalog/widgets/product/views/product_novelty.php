@@ -19,44 +19,41 @@ use frontend\modules\catalog\models\Product;
                 </div>
 
                 <div id="novelties-slider" class="carousel slide" data-ride="carousel">
-
                     <div class="carousel-inner">
 
                         <?php foreach ($models as $k => $level) { ?>
-
                             <div class="item<?= ($k == 1) ? ' active' : '' ?>">
 
                                 <div class="item-in">
-
                                     <div class="left">
 
                                         <?php foreach ($level as $key => $model) { ?>
-
                                             <?php if ($key == 0) { ?>
                                                 <a href="<?= Product::getUrl($model['alias']) ?>" class="large">
-                                                    <?= Html::img(Product::getImageThumb($model['image_link'])); ?>
+                                                    <?= Html::img(
+                                                        Product::getImageThumb($model['image_link']),
+                                                        ['alt' => Product::getStaticTitle($model)]
+                                                    ); ?>
                                                 </a>
                                             <?php } ?>
-
                                         <?php } ?>
 
                                     </div>
-
                                     <div class="right">
 
                                         <?php foreach ($level as $key => $model) { ?>
-
                                             <?php if ($key > 0) { ?>
                                                 <a href="<?= Product::getUrl($model['alias']) ?>" class="smaller">
-                                                    <?= Html::img(Product::getImageThumb($model['image_link'])); ?>
+                                                    <?= Html::img(
+                                                        Product::getImageThumb($model['image_link']),
+                                                        ['alt' => Product::getStaticTitle($model)]
+                                                    ); ?>
                                                 </a>
                                             <?php } ?>
-
                                         <?php } ?>
 
                                     </div>
                                 </div>
-
                             </div>
 
                         <?php } ?>

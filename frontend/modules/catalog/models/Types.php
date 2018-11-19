@@ -55,6 +55,27 @@ class Types extends \common\modules\catalog\models\Types
     }
 
     /**
+     * @param string $category_alias
+     * @return array
+     */
+    public static function findByCategoryAlias($category_alias)
+    {
+        $query = self::findBase();
+
+        if ($category_alias != '') {
+            $query
+                ->innerJoinWith(["category"])
+                ->andFilterWhere([
+                    Category::tableName() . '.alias' => $category_alias
+                ]);
+        }
+
+        $data = $query->all();
+
+        return $data;
+    }
+
+    /**
      * @return mixed
      */
     public static function dropDownList()
@@ -98,7 +119,7 @@ class Types extends \common\modules\catalog\models\Types
      */
     public static function getUrl($alias)
     {
-        return Url::toRoute(['/catalog/types/view', 'alias' => $alias]);
+        return Url::toRoute(['/catalog/types/view', 'alias' => $alias], true);
     }
 
     /**
@@ -177,14 +198,15 @@ class Types extends \common\modules\catalog\models\Types
 
         $query
             ->innerJoinWith(["sale"], false)
-            ->innerJoinWith(["sale.category saleCategory"], false)
             ->andFilterWhere([
                 Sale::tableName() . '.published' => '1',
                 Sale::tableName() . '.deleted' => '0',
             ]);
 
         if (isset($params[$keys['category']])) {
-            $query->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
+            $query
+                ->innerJoinWith(["sale.category saleCategory"], false)
+                ->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
         }
 
         if (isset($params[$keys['style']])) {
@@ -199,16 +221,16 @@ class Types extends \common\modules\catalog\models\Types
                 ->andFilterWhere(['IN', 'saleFactory.alias', $params[$keys['factory']]]);
         }
 
-        if (isset($params[$keys['country']])) {
+        if (isset($params['country'])) {
             $query
                 ->innerJoinWith(["sale.country saleCountry"], false)
-                ->andFilterWhere(['IN', 'saleCountry.alias', $params[$keys['country']]]);
+                ->andFilterWhere(['IN', 'saleCountry.id', $params['country']]);
         }
 
-        if (isset($params[$keys['city']])) {
+        if (isset($params['city'])) {
             $query
                 ->innerJoinWith(["sale.city saleCity"], false)
-                ->andFilterWhere(['IN', 'saleCity.alias', $params[$keys['city']]]);
+                ->andFilterWhere(['IN', 'saleCity.id', $params['city']]);
         }
 
         return $query

@@ -219,7 +219,7 @@ $('.ajax-status-switcher').on('click', function () {
             });
         },
         error: function (err) {
-            console.log(err);
+           //console.log(err);
         }
     });
 });

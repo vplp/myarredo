@@ -14,10 +14,12 @@ $this->context->actionListLinkStatus = Url::to(
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
+
 <?= $form->submit($model, $this) ?>
 <?= Html::activeHiddenInput($model, 'factory_id', ['value' => $this->context->factory->id]) ?>
 <?= Html::activeHiddenInput($model, 'first_letter') ?>
-<?= $form->text_line_lang($modelLang, 'title') ?>
+<?= $form->text_line_lang($model, 'title') ?>
 <?= $form->switcher($model, 'published') ?>
 <?= $form->submit($model, $this) ?>
-<?php ActiveForm::end(); ?>
+
+<?php ActiveForm::end();

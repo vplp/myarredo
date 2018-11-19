@@ -9,7 +9,7 @@ use yii\helpers\{
 };
 //
 use frontend\modules\catalog\models\{
-    Category, Types
+    Category, Types, Product
 };
 
 /**
@@ -59,6 +59,12 @@ class ProductFilterOnMainPage extends Widget
 
             if (!empty($price['from']) && !empty($price['to'])) {
                 $params[$keys['price']] = $price;
+            } elseif (empty($price['from']) && !empty($price['to'])) {
+                $price['from'] = number_format(1, 0, '.', '');
+                $params[$keys['price']] = $price;
+            } elseif (!empty($price['from']) && empty($price['to'])) {
+                $price['to'] = number_format(Product::findBase()->max('price_from'), 0, '.', '');
+                $params[$keys['price']] = $price;
             }
 
             $link = Yii::$app->catalogFilter->createUrl($params, ['/catalog/category/list']);
@@ -68,7 +74,7 @@ class ProductFilterOnMainPage extends Widget
         }
 
         $category = ArrayHelper::map(Category::findBase()->all(), 'alias', 'lang.title');
-        $types = ArrayHelper::map(Types::findBase()->all(), 'alias', 'lang.title');
+        $types = ArrayHelper::map(Types::getWithProduct([]), 'alias', 'lang.title');
 
         return $this->render($this->view, [
             'category' => $category,

@@ -21,7 +21,13 @@ class PageChanger extends Widget
     {
         $pageArray = Yii::$app->request->get();
 
-        return $this->render('pageChanger', [
+        if (!isset($pageArray['page'])) {
+            $pageArray['page'] = 1;
+        }
+
+        return $this->render(
+            'pageChanger',
+            [
                 'pages' => $this->pages,
                 'pageArray' => $pageArray
             ]

@@ -25,7 +25,6 @@ class GroupController extends BackendController
 
     public function actions()
     {
-
         return ArrayHelper::merge(parent::actions(), [
             'list' => [
                 'layout' => 'list-group',

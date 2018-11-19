@@ -143,7 +143,7 @@ class Samples extends ActiveRecord
         $image = null;
         if (YII_ENV_DEV && !empty($this->image_link)){
             $image = 'https://www.myarredo.ru/uploads/images/' . $this->image_link;
-        } else if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
+        } elseif (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
             $image = $url . '/' . $this->image_link;
         }
 

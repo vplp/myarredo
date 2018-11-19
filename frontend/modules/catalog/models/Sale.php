@@ -104,9 +104,7 @@ class Sale extends \common\modules\catalog\models\Sale
 
         $image = null;
 
-        /*if (YII_ENV_DEV && !empty($image_link)) {
-            $image = 'https://www.myarredo.ru/uploads/images/' . $image_link;
-        } else*/if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image = $url . '/' . $image_link;
         }
 
@@ -128,10 +126,7 @@ class Sale extends \common\modules\catalog\models\Sale
 
         $image = null;
 
-        /*if (YII_ENV_DEV && !empty($image_link)) {
-            $image = 'https://www.myarredo.ru/uploads/images/' . $image_link;
-        } else*/if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image_link_path = explode('/', $image_link);
 
             $img_name = $image_link_path[count($image_link_path) - 1];
@@ -180,13 +175,7 @@ class Sale extends \common\modules\catalog\models\Sale
         $imagesSources = [];
 
         foreach ($images as $image) {
-            /*if (YII_ENV_DEV) {
-                $url = 'https://www.myarredo.ru/uploads/images';
-                $imagesSources[] = [
-                    'img' => $url . '/' . $image,
-                    'thumb' => self::getImageThumb($image)
-                ];
-            } else*/if (file_exists($path . '/' . $image)) {
+            if (file_exists($path . '/' . $image)) {
                 $imagesSources[] = [
                     'img' => $url . '/' . $image,
                     'thumb' => self::getImageThumb($image, 600, 600)
@@ -215,25 +204,5 @@ class Sale extends \common\modules\catalog\models\Sale
         $title .= ' ' . !empty($this->factory_name) ? $this->factory_name : '';
 
         return $title;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCountViews()
-    {
-        return SaleStats::findBase()
-            ->andWhere(['sale_item_id' => $this->id])
-            ->count();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCountRequestPhone()
-    {
-        return SalePhoneRequest::findBase()
-            ->andWhere(['sale_item_id' => $this->id])
-            ->count();
     }
 }

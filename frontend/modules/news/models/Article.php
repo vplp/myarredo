@@ -2,23 +2,16 @@
 
 namespace frontend\modules\news\models;
 
-use Yii;
 use yii\helpers\Url;
-//
-use thread\app\model\interfaces\BaseFrontModel;
-
 /**
  * Class Article
  *
  * @package frontend\modules\news\models
- * @author Andrii Bondarchuk
- * @copyright (c) 2016
  */
-class Article extends \backend\modules\news\models\Article implements BaseFrontModel
+class Article extends \common\modules\news\models\Article
 {
 
     /**
-     *
      * @return array
      */
     public function behaviors()
@@ -27,7 +20,6 @@ class Article extends \backend\modules\news\models\Article implements BaseFrontM
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()
@@ -36,7 +28,6 @@ class Article extends \backend\modules\news\models\Article implements BaseFrontM
     }
 
     /**
-     *
      * @return array
      */
     public function attributeLabels()
@@ -45,7 +36,6 @@ class Article extends \backend\modules\news\models\Article implements BaseFrontM
     }
 
     /**
-     *
      * @return array
      */
     public function rules()
@@ -70,9 +60,8 @@ class Article extends \backend\modules\news\models\Article implements BaseFrontM
     }
 
     /**
-     *
-     * @param integer $id
-     * @return ActiveRecord|null
+     * @param $id
+     * @return mixed
      */
     public static function findById($id)
     {
@@ -80,9 +69,8 @@ class Article extends \backend\modules\news\models\Article implements BaseFrontM
     }
 
     /**
-     *
-     * @param integer $group_id
-     * @return ActiveRecord|null
+     * @param string $group
+     * @return mixed
      */
     public static function findByGroupId($group = '')
     {
@@ -90,9 +78,8 @@ class Article extends \backend\modules\news\models\Article implements BaseFrontM
     }
 
     /**
-     *
-     * @param string $alias
-     * @return ActiveRecord|null
+     * @param $alias
+     * @return mixed
      */
     public static function findByAlias($alias)
     {
@@ -100,12 +87,11 @@ class Article extends \backend\modules\news\models\Article implements BaseFrontM
     }
 
     /**
-     *
+     * @param bool $scheme
      * @return string
      */
     public function getUrl($scheme = false)
     {
         return Url::toRoute(['/news/article/index', 'alias' => $this->alias], $scheme);
     }
-
 }

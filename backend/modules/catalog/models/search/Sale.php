@@ -28,7 +28,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-            [['category', 'factory_id'], 'integer'],
+            [['category', 'factory_id', 'city_id', 'user_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -64,7 +64,9 @@ class Sale extends SaleModel implements BaseBackendSearchModel
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'factory_id' => $this->factory_id
+            'factory_id' => $this->factory_id,
+            'city_id' => $this->city_id,
+            'user_id' => $this->user_id
         ]);
         //
         $query->andFilterWhere(['like', 'alias', $this->alias])

@@ -25,7 +25,7 @@ class Collection extends CollectionModel
     public function rules()
     {
         return [
-            [['alias', 'title'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 255],
         ];
     }
 
@@ -60,9 +60,7 @@ class Collection extends CollectionModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'alias', $this->alias]);
-        //
-        $query->andFilterWhere(['like', CollectionLang::tableName() . '.title', $this->title]);
+        $query->andFilterWhere(['like', self::tableName() . '.title', $this->title]);
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();

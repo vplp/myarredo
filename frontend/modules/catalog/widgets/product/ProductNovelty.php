@@ -37,8 +37,9 @@ class ProductNovelty extends Widget
         $_models = [];
 
         foreach ($this->models as $key => $model) {
-            if ($key % 5 == 0)
+            if ($key % 5 == 0) {
                 $i++;
+            }
             $_models[$i][] = $model;
         }
 

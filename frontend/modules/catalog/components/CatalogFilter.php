@@ -52,6 +52,22 @@ class CatalogFilter extends Component
     private static $_structure = [];
 
     /**
+     * Filter keys
+     *
+     * @var array
+     */
+    static $keys = [
+        'category' => '.10',
+        'type' => '.20',
+        'style' => '.30',
+        'factory' => '.40',
+        'collection' => '.50',
+        'price' => '.80',
+        //'country' => '.60',
+        //'city' => '.70',
+    ];
+
+    /**
      * Filter stubs
      *
      * @return array
@@ -64,9 +80,9 @@ class CatalogFilter extends Component
             self::$keys['style'] => 's',
             self::$keys['factory'] => 'f',
             self::$keys['collection'] => 'c',
-            self::$keys['country'] => 'country',
-            self::$keys['city'] => 'city',
             self::$keys['price'] => 'price',
+            //self::$keys['city'] => 'city',
+            //self::$keys['country'] => 'country',
         ];
     }
 
@@ -77,22 +93,6 @@ class CatalogFilter extends Component
     {
         return self::$_parameters;
     }
-
-    /**
-     * Filter keys
-     *
-     * @var array
-     */
-    static $keys = [
-        'category' => '.10',
-        'type' => '.20',
-        'style' => '.30',
-        'factory' => '.40',
-        'collection' => '.50',
-        'country' => '.60',
-        'city' => '.70',
-        'price' => '.80',
-    ];
 
     /**
      * @param $name
@@ -147,14 +147,12 @@ class CatalogFilter extends Component
             }
         }
 
-        {
-            $count = count($paramsUrl) - 1;
-            for (; $count >= 0; $count--) {
-                if (end($paramsUrl)) {
-                    break;
-                } else {
-                    unset($paramsUrl[key($paramsUrl)]);
-                }
+        $count = count($paramsUrl) - 1;
+        for (; $count >= 0; $count--) {
+            if (end($paramsUrl)) {
+                break;
+            } else {
+                unset($paramsUrl[key($paramsUrl)]);
             }
         }
 
@@ -172,7 +170,6 @@ class CatalogFilter extends Component
         $res = [];
 
         foreach ($paramsUrl as $k => $v) {
-
             $res[$k] = '';
 
             if (is_array($v) && $k == self::$keys['price']) {
@@ -244,7 +241,6 @@ class CatalogFilter extends Component
          */
 
         if (!empty(self::$_structure['type'])) {
-
             $model = Types::findBase()
                 ->andWhere(['IN', Types::tableName() . '.alias', self::$_structure['type']])
                 ->indexBy('id')
@@ -351,6 +347,7 @@ class CatalogFilter extends Component
          * Country
          */
 
+        /*
         if (!empty(self::$_structure['country'])) {
             $model = Country::findByAlias(self::$_structure['country'][0]);
 
@@ -360,11 +357,13 @@ class CatalogFilter extends Component
 
             self::$_parameters[self::$keys['country']][0] = $model['alias'];
         }
+        */
 
         /**
          * City
          */
 
+        /*
         if (!empty(self::$_structure['city'])) {
             $model = City::findBase()
                 ->innerJoinWith(["country as country"], false)
@@ -391,13 +390,13 @@ class CatalogFilter extends Component
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
         }
+        */
 
         /**
          * Price
          */
 
         if (!empty(self::$_structure['price'])) {
-
             $data = self::$_structure['price'];
 
             if (strpos($data[0], 'price=') === false) {

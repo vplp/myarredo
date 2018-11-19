@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\VerbFilter;
 use yii\web\Response;
+use yii\web\NotFoundHttpException;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
@@ -37,11 +38,20 @@ class CategoryController extends BaseController
                     'ajax-get-category' => ['post'],
                 ],
             ],
+            [
+                'class' => \yii\filters\HttpCache::class,
+                //'only' => ['list'],
+                'lastModified' => function ($action, $params) {
+                    $q = new \yii\db\Query();
+                    return $q->from(Product::tableName())->max('updated_at');
+                }
+            ],
         ];
     }
 
     /**
      * @return string
+     * @throws \Throwable
      */
     public function actionList()
     {
@@ -68,7 +78,7 @@ class CategoryController extends BaseController
 
         Yii::$app->metatag->render();
 
-        $this->seo();
+        $this->listSeo();
 
         if (empty($models->getModels())) {
             Yii::$app->view->registerMetaTag([
@@ -76,6 +86,7 @@ class CategoryController extends BaseController
                 'content' => 'noindex, nofollow',
             ]);
         }
+
         return $this->render('list', [
             'group' => $group,
             'category' => $category,
@@ -95,11 +106,13 @@ class CategoryController extends BaseController
         if (Yii::$app->request->isAjax) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
+            $keys = Yii::$app->catalogFilter->keys;
+            $params = Yii::$app->catalogFilter->params;
+
+            $params[$keys['category']] = Yii::$app->getRequest()->post('category_alias');
+
             $types = ArrayHelper::map(
-                Types::findBase()
-                    ->innerJoinWith(["category"])
-                    ->andFilterWhere([Category::tableName() . '.alias' => Yii::$app->getRequest()->post('category_alias')])
-                    ->all(),
+                Types::getWithProduct($params),
                 'alias',
                 'lang.title'
             );
@@ -144,7 +157,7 @@ class CategoryController extends BaseController
     /**
      * @return $this
      */
-    public function seo()
+    public function listSeo()
     {
         $keys = Yii::$app->catalogFilter->keys;
         $params = Yii::$app->catalogFilter->params;
@@ -154,7 +167,7 @@ class CategoryController extends BaseController
             'url' => ['/catalog/category/list']
         ];
 
-        $noindex = 0;
+        $noIndex = 0;
         $pageTitle = $pageH1 = $pageDescription = [];
 
         /**
@@ -171,13 +184,13 @@ class CategoryController extends BaseController
             ];
         }
 
-        $pageDescription[] = Yii::$app->city->getCityTitle() . ': Заказать';
+        $pageDescription[] = Yii::$app->city->getCityTitle() . ': ' . Yii::t('app', 'Заказать');
 
         if (!empty($params[$keys['type']])) {
             $models = Types::findByAlias($params[$keys['type']]);
 
             if (count($params[$keys['type']]) > 1) {
-                $noindex = 1;
+                $noIndex = 1;
             }
 
             $type = [];
@@ -199,7 +212,7 @@ class CategoryController extends BaseController
             $models = Specification::findByAlias($params[$keys['style']]);
 
             if (count($params[$keys['style']]) > 1) {
-                $noindex = 1;
+                $noIndex = 1;
             }
 
             $style = [];
@@ -220,12 +233,12 @@ class CategoryController extends BaseController
         if (!empty($params[$keys['collection']])) {
             $collection = Collection::findById($params[$keys['collection']][0]);
 
-            $pageTitle[] = Yii::t('app', 'Коллекция мебели') . ' ' . $collection['lang']['title'];
-            $pageH1[] = Yii::t('app', 'Коллекция') . ' ' . $collection['lang']['title'];
-            $pageDescription[] = Yii::t('app', 'Коллекция') . ' ' . $collection['lang']['title'];
+            $pageTitle[] = Yii::t('app', 'Коллекция мебели') . ' ' . $collection['title'];
+            $pageH1[] = Yii::t('app', 'Коллекция') . ' ' . $collection['title'];
+            $pageDescription[] = Yii::t('app', 'Коллекция') . ' ' . $collection['title'];
 
             $this->breadcrumbs[] = [
-                'label' => Yii::t('app', 'Коллекция') . ' ' . $collection['lang']['title'],
+                'label' => Yii::t('app', 'Коллекция') . ' ' . $collection['title'],
                 'url' => Yii::$app->catalogFilter->createUrl([$keys['collection'] => $params[$keys['collection']]])
             ];
         }
@@ -246,11 +259,11 @@ class CategoryController extends BaseController
             }
 
             if (count($params[$keys['factory']]) > 1) {
-                $noindex = 1;
+                $noIndex = 1;
             }
 
             if (count($params) == 1 && count($params[$keys['factory']]) == 1) {
-                $noindex = 1;
+                $noIndex = 1;
             }
 
             $pageTitle[] = implode(', ', $factory);
@@ -264,18 +277,20 @@ class CategoryController extends BaseController
         }
 
         if (isset($params[$keys['price']])) {
-            $noindex = 1;
+            $noIndex = 1;
         }
 
         if (count($params) > 3) {
-            $noindex = 1;
+            $noIndex = 1;
         }
 
         $pageDescription[] = Yii::t('app', 'из Италии');
 
 
-        if (count($params) == 2 && !empty($params[$keys['factory']]) && count($params[$keys['factory']]) == 1 && !empty($params[$keys['collection']])) {
-
+        if (count($params) == 2 && !empty($params[$keys['factory']]) &&
+            count($params[$keys['factory']]) == 1 &&
+            !empty($params[$keys['collection']])
+        ) {
             $models = Factory::findAllByAlias($params[$keys['factory']]);
 
             $factory = [];
@@ -286,7 +301,10 @@ class CategoryController extends BaseController
             $collection = Collection::findById($params[$keys['collection']][0]);
 
             $pageH1 = [];
-            $pageH1[] = Yii::t('app', 'Итальянская мебель фабрики') . ' ' . implode(', ', $factory) . ' — ' . mb_strtolower(Yii::t('app', 'Коллекция')) . ' ' . $collection['lang']['title'];
+            $pageH1[] = Yii::t('app', 'Итальянская мебель фабрики') .
+                ' ' .
+                implode(', ', $factory) . ' — ' .
+                mb_strtolower(Yii::t('app', 'Коллекция')) . ' ' . $collection['title'];
         }
 
         /**
@@ -294,7 +312,11 @@ class CategoryController extends BaseController
          */
 
         $pageTitle[] = Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
-        $pageDescription[] = '. ' . Yii::t('app', 'Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo');
+        $pageDescription[] = '. ' .
+            Yii::t(
+                'app',
+                'Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo'
+            );
 
         $this->title = Yii::$app->metatag->seo_title
             ? Yii::$app->metatag->seo_title
@@ -309,7 +331,7 @@ class CategoryController extends BaseController
             ]);
         }
 
-        if ($noindex) {
+        if ($noIndex) {
             Yii::$app->view->registerMetaTag([
                 'name' => 'robots',
                 'content' => 'noindex, follow',
@@ -322,5 +344,4 @@ class CategoryController extends BaseController
 
         return $this;
     }
-
 }

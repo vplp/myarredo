@@ -4,6 +4,7 @@ use yii\helpers\{
     Html, Url
 };
 //
+use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
     Factory, Sale
 };
@@ -23,18 +24,14 @@ $this->title = $this->context->title;
         <div class="page sale-page prod-card-page">
             <div class="container-wrap">
                 <div class="container large-container">
+                    <div class="row">
 
+                        <?= Breadcrumbs::widget([
+                            'links' => $this->context->breadcrumbs,
+                        ]) ?>
+
+                    </div>
                     <div class="row sale-prod">
-                        <div class="col-md-12">
-                            <div class="section-header">
-                                <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
-                                <?= Html::a(
-                                    Yii::t('app', 'Вернуться к списку'),
-                                    Url::toRoute(['/catalog/sale/list']),
-                                    ['class' => 'back']
-                                ); ?>
-                            </div>
-                        </div>
                         <div class="col-sm-6 col-md-6 col-lg-5">
 
                             <?= $this->render('parts/_carousel', [
@@ -45,20 +42,12 @@ $this->title = $this->context->title;
                         <div class="col-sm-6 col-md-6 col-lg-4">
                             <div class="prod-info">
                                 <?= Html::tag('h1', $model->getTitle()); ?>
-                                <?php
-                                $array = [];
-                                foreach ($model['specificationValue'] as $item) {
-                                    if ($item['specification']['parent_id'] == 9) {
-                                        $array[] = $item['specification']['lang']['title'];
-                                    }
-                                }
-                                ?>
 
-                                <?php if ($model->price > 0): ?>
+                                <?php if ($model->price > 0) { ?>
                                     <div class="old-price">
                                         <?= $model->price . ' ' . $model->currency; ?>
                                     </div>
-                                <?php endif; ?>
+                                <?php } ?>
 
                                 <div class="prod-price">
                                     <div class="price">
@@ -67,73 +56,105 @@ $this->title = $this->context->title;
                                         <?= $model->price_new . ' ' . $model->currency; ?>
                                     </span>
                                     </div>
-                                    <?php if ($model->price > 0): ?>
+                                    <?php if ($model->price > 0) { ?>
                                         <div class="price economy">
                                             <?= Yii::t('app', 'Экономия') ?>:
                                             <span>
                                             <?= ($model->price - $model->price_new) . ' ' . $model->currency; ?>
                                         </span>
                                         </div>
-                                    <?php endif; ?>
+                                    <?php } ?>
                                 </div>
-
-                                <?php if (!empty($array)) { ?>
-                                    <div class="prod-style">
-                                        <span><?= Yii::t('app', 'Стиль') ?> : </span>
-                                        <?= implode('; ', $array) ?>
-                                    </div>
-                                <?php }
-                                ?>
-
                             </div>
 
-                            <table class="infotable" width="100%">
-                                <?php if (!empty($model['specificationValue'])): ?>
+                            <table class="info-table" width="100%">
+                                <tr>
+                                    <td><?= Yii::t('app', 'Factory') ?></td>
+                                    <td>
+                                        <?= ($model['factory'])
+                                            ? Html::a(
+                                                $model['factory']['title'],
+                                                Factory::getUrl($model['factory']['alias'])
+                                            )
+                                            : $model['factory_name'] ?>
+                                    </td>
+                                </tr>
+                                <?php if (!empty($model['specificationValue'])) {
+                                    $array = [];
+                                    foreach ($model['specificationValue'] as $item) {
+                                        if ($item['specification']['parent_id'] == 9) {
+                                            $keys = Yii::$app->catalogFilter->keys;
+                                            $params = Yii::$app->catalogFilter->params;
+                                            $params[$keys['style']] = $item['specification']['alias'];
+
+                                            ($model['factory']) ? $params[$keys['factory']] = $model['factory']['alias'] : null;
+
+                                            $array[] = [
+                                                'title' => $item['specification']['lang']['title'],
+                                                'url' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale/list')
+                                            ];
+                                        }
+                                    }
+                                    if (!empty($array)) { ?>
+                                        <tr>
+                                            <td><?= Yii::t('app', 'Стиль') ?></td>
+                                            <td>
+                                                <?php
+                                                foreach ($array as $item) {
+                                                    echo Html::a(
+                                                        $item['title'],
+                                                        $item['url']
+                                                    );
+                                                }
+
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+
                                     <tr>
                                         <td><?= Yii::t('app', 'Размеры') ?></td>
-                                        <td>
-                                            <div class="size-group">
-                                                <?php
-                                                foreach ($model['specificationValue'] as $item) {
-                                                    if ($item['specification']['parent_id'] == 4) {
-                                                        echo Html::beginTag('span') .
-                                                            $item['specification']['lang']['title'] .
-                                                            ':' .
-                                                            $item['val'] .
-                                                            Html::endTag('span');
-                                                    }
-                                                } ?>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><?= Yii::t('app', 'Материал') ?></td>
-                                        <td>
+                                        <td class="product-size">
                                             <?php
-                                            $array = [];
                                             foreach ($model['specificationValue'] as $item) {
-                                                if ($item['specification']['parent_id'] == 2) {
-                                                    $array[] = $item['specification']['lang']['title'];
+                                                if ($item['specification']['parent_id'] == 4) {
+                                                    echo Html::beginTag('span') .
+                                                        $item['specification']['lang']['title'] .
+                                                        ' (' . Yii::t('app', 'см') . ')' .
+                                                        ': ' .
+                                                        $item['val'] .
+                                                        Html::endTag('span');
                                                 }
-                                            }
-                                            echo implode('; ', $array);
-                                            ?>
+                                            } ?>
                                         </td>
                                     </tr>
-                                <?php endif; ?>
+
+                                    <?php
+                                    $array = [];
+                                    foreach ($model['specificationValue'] as $item) {
+                                        if ($item['specification']['parent_id'] == 2) {
+                                            $array[] = $item['specification']['lang']['title'];
+                                        }
+                                    }
+                                    if (!empty($array)) { ?>
+                                        <tr>
+                                            <td><?= Yii::t('app', 'Материал') ?></td>
+                                            <td>
+                                                <?= implode('; ', $array) ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                <?php } ?>
                             </table>
 
                             <div class="prod-shortstory">
                                 <?= $model['lang']['description']; ?>
                             </div>
-
                         </div>
-
 
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
 
                             <?php if (!empty($model['user'])) { ?>
-
                                 <div class="brand-info">
                                     <div class="white-area">
                                         <div class="image-container">
@@ -143,7 +164,9 @@ $this->title = $this->context->title;
                                             <p class="text-center">
                                                 <?= Yii::t('app', 'Контакты продавца') ?>
                                             </p>
-                                            <h4 class="text-center"><?= $model['user']['profile']['name_company']; ?></h4>
+                                            <h4 class="text-center">
+                                                <?= $model['user']['profile']['name_company']; ?>
+                                            </h4>
                                             <div class="ico">
                                                 <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
                                             </div>
@@ -179,94 +202,18 @@ $this->title = $this->context->title;
 
                         </div>
 
-                    </div>
 
-                    <?php /*
-                <div class="row similar-prod-wrap">
-                    <div class="col-md-12">
-                        <div class="similar-prod">
-                            <h3>похожие объявления</h3>
-                            <div class="similar-prod-grid">
-                                <a href="#" class="item" data-dominant-color>
-                                    <div class="img-cont">
-                                        <img src="<?= $bundle->baseUrl ?>/img/pictures/rec2.png" alt="">
-                                        <span class="background"></span>
-                                    </div>
-                                    <div class="add-item-text">
-                                        Кресло CREAZIONI (BY
-                                        SILIK) La fantasia e mobile...
-                                    </div>
-                                </a>
-                                <a href="#" class="item" data-dominant-color>
-                                    <div class="img-cont">
-                                        <img src="<?= $bundle->baseUrl ?>/img/pictures/rec1.jpg" alt="">
-                                        <span class="background"></span>
-                                    </div>
-                                    <div class="add-item-text">
-                                        Кресло CREAZIONI (BY
-                                        SILIK) La fantasia e mobile...
-                                    </div>
-                                </a>
-                                <a href="#" class="item" data-dominant-color>
-                                    <div class="img-cont">
-                                        <img src="<?= $bundle->baseUrl ?>/img/pictures/rec2.png" alt="">
-                                        <span class="background"></span>
-                                    </div>
-                                    <div class="add-item-text">
-                                        Кресло CREAZIONI (BY
-                                        SILIK) La fantasia e mobile...
-                                    </div>
-                                </a>
-                                <a href="#" class="item" data-dominant-color>
-                                    <div class="img-cont">
-                                        <img src="<?= $bundle->baseUrl ?>/img/pictures/rec1.jpg" alt="">
-                                        <span class="background"></span>
-                                    </div>
-                                    <div class="add-item-text">
-                                        Кресло CREAZIONI (BY
-                                        SILIK) La fantasia e mobile...
-                                    </div>
-                                </a>
-                                <a href="#" class="item" data-dominant-color>
-                                    <div class="img-cont">
-                                        <img src="<?= $bundle->baseUrl ?>/img/pictures/rec1.jpg" alt="">
-                                        <span class="background"></span>
-                                    </div>
-                                    <div class="add-item-text">
-                                        Кресло CREAZIONI (BY
-                                        SILIK) La fantasia e mobile...
-                                    </div>
-                                </a>
-                                <a href="#" class="item" data-dominant-color>
-                                    <div class="img-cont">
-                                        <img src="<?= $bundle->baseUrl ?>/img/pictures/rec2.png" alt="">
-                                        <span class="background"></span>
-                                    </div>
-                                    <div class="add-item-text">
-                                        Кресло CREAZIONI (BY
-                                        SILIK) La fantasia e mobile...
-                                    </div>
-                                </a>
-                                <a href="#" class="item" data-dominant-color>
-                                    <div class="img-cont">
-                                        <img src="<?= $bundle->baseUrl ?>/img/pictures/rec1.jpg" alt="">
-                                        <span class="background"></span>
-                                    </div>
-                                    <div class="add-item-text">
-                                        Кресло CREAZIONI (BY
-                                        SILIK) La fantasia e mobile...
-                                    </div>
-                                </a>
+                        <div class="col-md-12">
+                            <div class="section-header">
+                                <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
+                                <?= Html::a(
+                                    Yii::t('app', 'Вернуться к списку'),
+                                    Url::toRoute(['/catalog/sale/list']),
+                                    ['class' => 'back']
+                                ); ?>
                             </div>
-                            <a href="javascript:void(0);" class="more-posts">
-                                Еще объявления
-                            </a>
                         </div>
                     </div>
-                </div>
-
-                */ ?>
-
                 </div>
             </div>
         </div>

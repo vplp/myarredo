@@ -12,8 +12,6 @@ use thread\app\base\controllers\BackendController;
  * Class HomeController
  *
  * @package backend\modules\home\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class HomeController extends BackendController
 {
@@ -21,7 +19,6 @@ class HomeController extends BackendController
     public $name = 'home';
 
     /**
-     *
      * @return array
      */
     public function actions()
@@ -34,18 +31,16 @@ class HomeController extends BackendController
     }
 
     /**
-     *
-     * @return string
+     * @return \yii\web\Response
      */
     public function actionIndex()
     {
-//        return $this->render('index');
         return $this->redirect(Url::toRoute(['/page/page/list']));
     }
 
     /**
      * @param $action
-     * @return mixed
+     * @return bool
      */
     public function beforeAction($action)
     {
@@ -55,5 +50,4 @@ class HomeController extends BackendController
 
         return parent::beforeAction($action);
     }
-
 }

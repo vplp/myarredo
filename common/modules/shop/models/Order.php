@@ -121,12 +121,12 @@ class Order extends \thread\modules\shop\models\Order
     }
 
     /**
-     * @return mixed
+     * @return mixed|\yii\db\ActiveQuery
+     * @throws \Throwable
      */
     public function getItems()
     {
-        return $this
-            ->hasMany(OrderItem::class, ['order_id' => 'id']);
+        return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
     }
 
     /**

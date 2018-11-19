@@ -57,6 +57,7 @@ class PasswordController extends BaseController
 
     /**
      * @return string
+     * @throws \Throwable
      * @throws \yii\base\Exception
      */
     public function actionChange()
@@ -81,7 +82,7 @@ class PasswordController extends BaseController
                     $save = $user->save();
                     if ($save) {
                         $transaction->commit();
-                        $model->addFlash('Пароль изменен');
+                        $model->addFlash(Yii::t('app', 'Password changed'));
                     } else {
                         $transaction->rollBack();
                     }
@@ -135,7 +136,7 @@ class PasswordController extends BaseController
         $model->setScenario('setPassword');
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->setPassword()) {
-            Yii::$app->session->setFlash('success', 'Новый пароль был сохранен.');
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Password changed'));
             return $this->goHome();
         }
 

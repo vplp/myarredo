@@ -10,7 +10,8 @@ use thread\app\base\module\abstracts\Module as aModule;
  *
  * @package common\modules\catalog
  */
-class Catalog extends aModule {
+class Catalog extends aModule
+{
 
     public $name = 'catalog';
     public $configPath = __DIR__ . '/config.php';
@@ -18,6 +19,7 @@ class Catalog extends aModule {
 
     /**
      * @return null|object|string
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

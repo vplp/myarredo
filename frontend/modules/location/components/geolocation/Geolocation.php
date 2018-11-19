@@ -10,10 +10,8 @@ use frontend\modules\configs\models\Language;
 
 /**
  * Class Geolocation
- * @package frontend\modules\location\components\geolocation
  *
- * @author Andrii Bondarchuk
- * @copyright (c) 2016
+ * @package frontend\modules\location\components\geolocation
  */
 class Geolocation extends Component
 {

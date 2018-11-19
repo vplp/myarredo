@@ -19,7 +19,7 @@ $bundle = AppAsset::register($this);
     <div class="footer">
         <div class="container-wrap">
 
-            <?php if (Yii::$app->controller->id !== 'sale'): ?>
+            <?php if (Yii::$app->controller->id !== 'sale') { ?>
                 <div class="contacts">
                     <div class="cont-flex">
                         <div class="cont-info">
@@ -35,25 +35,44 @@ $bundle = AppAsset::register($this);
                         <div class="cont-bg"
                              style="background-image: url(<?= $bundle->baseUrl ?>/img/cont-photo-bg.jpg);"></div>
                     </div>
-                    <div class="white-stripe">
-                        <div class="icon">
-                            <img src="<?= $bundle->baseUrl ?>/img/markers.svg" alt="">
-                        </div>
 
-                        <?= Html::a(
-                            Yii::t('app', 'View all sales offices'),
-                            Url::toRoute('/page/contacts/list-partners')
-                        ); ?>
-                    </div>
+                    <?php
+                    if (!Yii::$app->getUser()->isGuest &&
+                        Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+                    ) {
+                    } else { ?>
+                        <div class="white-stripe">
+                            <div class="icon">
+                                <img src="<?= $bundle->baseUrl ?>/img/markers.svg" alt="">
+                            </div>
+
+                            <?= Html::a(
+                                Yii::t('app', 'View all sales offices'),
+                                Url::toRoute('/page/contacts/list-partners')
+                            ); ?>
+                        </div>
+                    <?php } ?>
+
                 </div>
 
-            <?php endif; ?>
+            <?php } ?>
 
-            <?php if (Yii::$app->controller->action->id != 'list-partners') {
-                echo PartnerMap::widget(['city' => Yii::$app->city->getCity()]);
+            <?php
+            if (!Yii::$app->getUser()->isGuest &&
+                Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
+                Yii::$app->controller->action->id != 'list-partners'
+            ) {
+            } else {
+                //echo PartnerMap::widget(['city' => Yii::$app->city->getCity()]);
             } ?>
 
-            <?= Cities::widget() ?>
+            <?php
+            if (!Yii::$app->getUser()->isGuest &&
+                Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+            ) {
+            } else { ?>
+                <?= Cities::widget() ?>
+            <?php } ?>
 
             <div class="bot-footer">
                 <div class="container large-container">
@@ -69,7 +88,15 @@ $bundle = AppAsset::register($this);
 
                         </div>
                         <div class="menu-items">
-                            <?= Menu::widget(['alias' => 'footer']) ?>
+
+                            <?php
+                            if (!Yii::$app->getUser()->isGuest &&
+                                Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+                            ) {
+                            } else { ?>
+                                <?= Menu::widget(['alias' => 'footer']) ?>
+                            <?php } ?>
+
                         </div>
                         <div class="soc-copy">
                             <div class="social">
@@ -82,22 +109,16 @@ $bundle = AppAsset::register($this);
                             </div>
                             <div class="copyright">
 
-                                <?php if (Yii::$app->city->domain == 'by'): ?>
-
+                                <?php if (Yii::$app->city->domain == 'by') { ?>
                                     2013 - <?= date('Y'); ?> (с)
-                                    <?= strip_tags(Yii::$app->param->getByName('FOOTER_COPYRIGHT_BY')) ?></br>
-
-                                <?php elseif (Yii::$app->city->domain == 'ua'): ?>
-
+                                    <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_BY')); ?></br>
+                                <?php } elseif (Yii::$app->city->domain == 'ua') { ?>
                                     2013 - <?= date('Y'); ?> (с)
-                                    <?= strip_tags(Yii::$app->param->getByName('FOOTER_COPYRIGHT_UA')) ?></br>
-
-                                <?php else: ?>
-
+                                    <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_UA')); ?></br>
+                                <?php } else { ?>
                                     2013 - <?= date('Y'); ?> (с)
-                                    <?= Yii::t('app', 'MyArredo, лучшая мебель из италии для вашего дома') ?></br>
-
-                                <?php endif; ?>
+                                    <?= str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), Yii::$app->param->getByName('FOOTER_COPYRIGHT_RU')); ?></br>
+                                <?php } ?>
 
                                 <?= Yii::t('app', 'Программирование сайта') ?> -
                                 <a href="http://www.vipdesign.com.ua/" rel="nofollow">VipDesign</a>
@@ -116,10 +137,12 @@ $bundle = AppAsset::register($this);
 /**
  * сервис заказа обратного звонка
  */
-if (Yii::$app->getUser()->isGuest && Yii::$app->city->domain == 'ru'): ?>
+if (Yii::$app->getUser()->isGuest && Yii::$app->city->domain == 'ru' &&
+    !in_array(Yii::$app->controller->id, ['sale'])
+) { ?>
     <script type="text/javascript">
         var __cs = __cs || [];
         __cs.push(["setCsAccount", "KNKIlw22peShQSsYcaBCDumFwgrDNrWx"]);
     </script>
     <script type="text/javascript" async src="//app.comagic.ru/static/cs.min.js"></script>
-<?php endif; ?>
+<?php } ?>

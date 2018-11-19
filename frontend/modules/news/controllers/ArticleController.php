@@ -12,14 +12,11 @@ use frontend\modules\news\models\Article;
  * Class ArticleController
  *
  * @package frontend\modules\news\controllers
- * @author Andrii Bondarchuk
- * @copyright (c) 2016
  */
 class ArticleController extends \frontend\components\BaseController
 {
 
     public $title = "Article";
-    public $layout = "@app/layouts/column1";
     public $defaultAction = 'index';
 
     /**
@@ -52,5 +49,4 @@ class ArticleController extends \frontend\components\BaseController
             ],
         ];
     }
-
 }

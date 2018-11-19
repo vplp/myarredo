@@ -48,7 +48,7 @@ $this->title = $this->context->title;
                             <span>Город</span>
                         </li>
                         <li>
-                            <span>Статус</span>
+                            <span><?= Yii::t('app', 'Status') ?></span>
                         </li>
                     </ul>
                 </div>

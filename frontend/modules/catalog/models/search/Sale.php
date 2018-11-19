@@ -110,16 +110,16 @@ class Sale extends SaleModel implements BaseBackendSearchModel
             $query->andFilterWhere(['between', self::tableName() . '.price', $params[$keys['price']][0], $params[$keys['price']][1]]);
         }
 
-        if (isset($params[$keys['country']])) {
+        if (isset($params['country'])) {
             $query
                 ->innerJoinWith(["country"])
-                ->andFilterWhere(['IN', Country::tableName() . '.alias', $params[$keys['country']]]);
+                ->andFilterWhere(['IN', Country::tableName() . '.id', $params['country']]);
         }
 
-        if (isset($params[$keys['city']])) {
+        if (isset($params['city'])) {
             $query
                 ->innerJoinWith(["city"])
-                ->andFilterWhere(['IN', City::tableName() . '.alias', $params[$keys['city']]]);
+                ->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
         }
 
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);

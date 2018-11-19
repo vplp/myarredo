@@ -3,11 +3,6 @@
 use frontend\modules\news\models\Group;
 use yii\helpers\Url;
 
-/**
- * @author Andrii Bondarchuk
- * @copyright (c) 2016
- */
-
 $page = Yii::$app->getRequest()->get('page', null);
 
 $title = $this->context->label;

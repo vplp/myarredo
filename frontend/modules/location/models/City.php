@@ -59,7 +59,6 @@ class City extends \common\modules\location\models\City
     /**
      * @param string $alias
      * @return mixed
-     * @throws \Exception
      * @throws \Throwable
      */
     public static function findByAlias($alias)
@@ -74,7 +73,6 @@ class City extends \common\modules\location\models\City
     /**
      * @param int $id
      * @return mixed
-     * @throws \Exception
      * @throws \Throwable
      */
     public static function findById($id)
@@ -145,14 +143,15 @@ class City extends \common\modules\location\models\City
 
         $query
             ->innerJoinWith(["sale"], false)
-            ->innerJoinWith(["sale.category saleCategory"], false)
             ->andFilterWhere([
                 Sale::tableName() . '.published' => '1',
                 Sale::tableName() . '.deleted' => '0',
             ]);
 
         if (isset($params[$keys['category']])) {
-            $query->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
+            $query
+                ->innerJoinWith(["sale.category saleCategory"], false)
+                ->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
         }
 
         if (isset($params[$keys['style']])) {
@@ -167,10 +166,10 @@ class City extends \common\modules\location\models\City
                 ->andFilterWhere(['IN', 'saleFactory.alias', $params[$keys['factory']]]);
         }
 
-        if (isset($params[$keys['country']])) {
+        if (isset($params['country'])) {
             $query
                 ->innerJoinWith(["country as country"], false)
-                ->andFilterWhere(['IN', 'country.alias', $params[$keys['country']]]);
+                ->andFilterWhere(['IN', 'country.id', $params['country']]);
         }
 
         return $query
@@ -182,6 +181,5 @@ class City extends \common\modules\location\models\City
             ])
             ->groupBy(self::tableName() . '.id')
             ->all();
-
     }
 }

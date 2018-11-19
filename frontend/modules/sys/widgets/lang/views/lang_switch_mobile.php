@@ -3,8 +3,9 @@
     <?= $current['label'] ?>
 </div>
 <ul class="mobile-lang-list js-list-container">
-    <?php foreach ($models as $model) : ?>
-        <?php if ($model['alias'] == $current['alias']) {
+    <?php
+    foreach ($models as $model) {
+        if ($model['alias'] == $current['alias']) {
             continue;
         } ?>
         <li>
@@ -13,5 +14,5 @@
                 <?= $model['label'] ?>
             </a>
         </li>
-    <?php endforeach; ?>
+    <?php } ?>
 </ul>

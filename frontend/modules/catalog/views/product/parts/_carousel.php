@@ -13,11 +13,13 @@ use yii\helpers\Html;
     <!-- Carousel items -->
     <div class="carousel-inner">
 
-        <?php foreach ($model->getGalleryImageThumb() as $key => $src) {
-
+        <?php
+        foreach ($model->getGalleryImageThumb() as $key => $src) {
             $class = 'item' . (($key == 0) ? ' active' : '');
 
-            $options = ($key == 0) ? ['itemprop' => 'image', 'alt' => $model->getTitle()] : ['itemprop' => 'image'];
+            $options = ($key == 0)
+                ? ['itemprop' => 'image', 'alt' => $model->getTitle()]
+                : ['itemprop' => 'image'];
 
             echo Html::beginTag('div', ['class' => $class, 'data-dominant-color' => '']) .
                 Html::a(
@@ -26,7 +28,8 @@ use yii\helpers\Html;
                     [
                         'class' => 'img-cont fancyimage',
                         'data-fancybox-group' => 'group',
-                        'data-dominant-color' => ''
+                        'data-dominant-color' => '',
+                        'data-alt' => $model->getTitle()
                     ]
                 ) .
                 Html::tag('span', '', ['class' => 'background']) .
@@ -36,7 +39,7 @@ use yii\helpers\Html;
     </div>
 
     <a href="javascript:void(0);" class="img-zoom">
-        <?= Yii::t('app','Увеличить') ?>
+        <?= Yii::t('app', 'Увеличить') ?>
     </a>
 
     <!-- Carousel nav -->
@@ -44,14 +47,12 @@ use yii\helpers\Html;
     <div class="nav-cont">
         <div class="carousel-indicators">
 
-            <?php foreach ($model->getGalleryImageThumb() as $key => $src): ?>
-
+            <?php foreach ($model->getGalleryImageThumb() as $key => $src) { ?>
                 <div class="thumb-item" data-dominant-color>
                     <span class="background"></span>
-                    <?= Html::img($src['thumb']); ?>
+                    <?= Html::img($src['thumb'], ['alt' => $model->getTitle()]); ?>
                 </div>
-
-            <?php endforeach; ?>
+            <?php } ?>
 
         </div>
     </div>

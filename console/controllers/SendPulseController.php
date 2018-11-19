@@ -10,7 +10,7 @@ use frontend\modules\location\models\Country;
 use frontend\modules\user\models\{
     User, Group, Profile
 };
-use frontend\modules\shop\models\Order;
+use common\modules\shop\models\Order;
 
 /**
  * Class SendPulseController
@@ -74,7 +74,6 @@ class SendPulseController extends Controller
         $modelCountry = Country::findBase()->all();
 
         foreach ($modelCountry as $country) {
-
             $bookId = $country['bookId'];
             $emails = [];
 
@@ -112,6 +111,7 @@ class SendPulseController extends Controller
 
         $modelOrder = Order::findBase()
             ->andWhere(['create_campaign' => '0'])
+            ->enabled()
             ->one();
 
         if ($modelOrder !== null) {
@@ -131,9 +131,7 @@ class SendPulseController extends Controller
             var_dump($response);
 
             if (!isset($response['is_error'])) {
-
                 //$this->sendNewRequestForFactory($modelOrder);
-
                 $modelOrder->setScenario('create_campaign');
                 $modelOrder->create_campaign = '1';
                 $modelOrder->save();
@@ -176,7 +174,7 @@ class SendPulseController extends Controller
                     ->setSubject('Новый запрос на товар')
                     ->send();
 
-            } else if ($item->product['factory_id']) {
+            } elseif ($item->product['factory_id']) {
 
                 // use user factory email
 

@@ -2,7 +2,6 @@
 
 namespace backend\modules\news\controllers;
 
-use Yii;
 use yii\helpers\ArrayHelper;
 //
 use thread\actions\fileapi\{
@@ -58,7 +57,7 @@ class ArticleController extends BackendController
                     'modelClass' => $this->model,
                     'attribute' => 'group_id',
                     'returnValue' => function ($model) {
-                        return $model['group']['lang']['title']??'---';
+                        return $model['group']['lang']['title'] ?? '---';
                     }
                 ]
             ]

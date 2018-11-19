@@ -20,26 +20,28 @@ use frontend\modules\catalog\models\Product;
     </div>
     <table class="char" width="100%">
         <tr>
-            <td><?= Yii::t('app', 'Предмет') ?></td>
-            <td>
+            <!-- <td><?= Yii::t('app', 'Предмет') ?></td> -->
+            <td colspan="2">
                 <?= Html::a(
                     $orderItem->product['lang']['title'],
-                    Product::getUrl($orderItem->product['alias'])
+                    Product::getUrl($orderItem->product['alias']),['class' => 'productlink']
                 ); ?>
             </td>
         </tr>
         <tr>
-            <td>Артикул</td>
+            <td><span class="for-ordertable"><?= Yii::t('app', 'Артикул') ?></span></td>
             <td>
+                <span class="for-ordertable-descr">
                 <?= $orderItem->product['article'] ?>
+                </span>
             </td>
         </tr>
         <tr>
-            <td><?= Yii::t('app', 'Factory') ?></td>
-            <td><?= $orderItem->product['factory']['title'] ?></td>
+            <td><span class="for-ordertable"><?= Yii::t('app', 'Factory') ?></span></td>
+            <td><span class="for-ordertable-descr"><?= $orderItem->product['factory']['title'] ?></span></td>
         </tr>
         <tr>
-            <td>ЦЕНА для клиента</td>
+            <td><span class="for-ordertable"><?= Yii::t('app', 'Цена для клиента') ?></span></td>
             <td>
                 <?= $orderItem->orderItemPrice['price'] ?>
             </td>

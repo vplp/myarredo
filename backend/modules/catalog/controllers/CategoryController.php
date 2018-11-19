@@ -28,6 +28,9 @@ class CategoryController extends BackendController
     public $title = 'Category';
     public $name = 'category';
 
+    /**
+     * @return array
+     */
     public function behaviors()
     {
         return [

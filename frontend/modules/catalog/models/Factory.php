@@ -79,6 +79,10 @@ class Factory extends \common\modules\catalog\models\Factory
         return $result;
     }
 
+    /**
+     * @param $alias
+     * @return mixed
+     */
     public static function findAllByAlias($alias)
     {
         $result = self::getDb()->cache(function ($db) use ($alias) {
@@ -107,14 +111,14 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public static function getUrl(string $alias)
     {
-        return Url::toRoute(['/catalog/factory/view', 'alias' => $alias]);
+        return Url::toRoute(['/catalog/factory/view', 'alias' => $alias], true);
     }
 
     /**
      * @param string $image_link
      * @return null|string
      */
-    public static function getImage($image_link  = '')
+    public static function getImage($image_link = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -124,9 +128,7 @@ class Factory extends \common\modules\catalog\models\Factory
 
         $image = null;
 
-        /*if (YII_ENV_DEV){
-            $image = 'https://www.myarredo.ru/uploads/factory/' . $image_link;
-        } else*/if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image = $url . '/' . $image_link;
         }
 
@@ -137,7 +139,7 @@ class Factory extends \common\modules\catalog\models\Factory
      * @param string $image_link
      * @return null|string
      */
-    public static function getImageThumb($image_link  = '')
+    public static function getImageThumb($image_link = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -146,9 +148,7 @@ class Factory extends \common\modules\catalog\models\Factory
 
         $image = null;
 
-        /*if (YII_ENV_DEV && !empty($image_link)){
-            $image = 'https://www.myarredo.ru/uploads/factory/' . $image_link;
-        } else*/if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image = $path . '/' . $image_link;
 
             // resize
@@ -237,14 +237,15 @@ class Factory extends \common\modules\catalog\models\Factory
 
         $query
             ->innerJoinWith(["sale"], false)
-            ->innerJoinWith(["sale.category saleCategory"], false)
             ->andFilterWhere([
                 Sale::tableName() . '.published' => '1',
                 Sale::tableName() . '.deleted' => '0',
             ]);
 
         if (isset($params[$keys['category']])) {
-            $query->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
+            $query
+                ->innerJoinWith(["sale.category saleCategory"], false)
+                ->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
         }
 
         if (isset($params[$keys['type']])) {
@@ -259,16 +260,16 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->andFilterWhere(['IN', 'saleSpecification.alias', $params[$keys['style']]]);
         }
 
-        if (isset($params[$keys['country']])) {
+        if (isset($params['country'])) {
             $query
                 ->innerJoinWith(["sale.country saleCountry"], false)
-                ->andFilterWhere(['IN', 'saleCountry.alias', $params[$keys['country']]]);
+                ->andFilterWhere(['IN', 'saleCountry.id', $params['country']]);
         }
 
-        if (isset($params[$keys['city']])) {
+        if (isset($params['city'])) {
             $query
                 ->innerJoinWith(["sale.city saleCity"], false)
-                ->andFilterWhere(['IN', 'saleCity.alias', $params[$keys['city']]]);
+                ->andFilterWhere(['IN', 'saleCity.id', $params['city']]);
         }
 
         return $query
@@ -282,7 +283,6 @@ class Factory extends \common\modules\catalog\models\Factory
             ->groupBy(self::tableName() . '.id')
             ->asArray()
             ->all();
-
     }
 
     /**
@@ -291,15 +291,17 @@ class Factory extends \common\modules\catalog\models\Factory
     public static function getListLetters()
     {
         return parent::findBase()
-            ->enabled()
             ->select([self::tableName() . '.first_letter'])
             ->groupBy(self::tableName() . '.first_letter')
             ->orderBy(self::tableName() . '.first_letter')
+            ->enabled()
             ->all();
     }
 
     /**
-     * Get Factory Categories
+     * @param array $ids
+     * @return array
+     * @throws \yii\db\Exception
      */
     public static function getFactoryCategory(array $ids)
     {
@@ -314,7 +316,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 " . self::tableName() . " factory
             INNER JOIN " . Product::tableName() . " product 
                 ON (product.factory_id = factory.id) 
-                AND (product.published = :published AND product.deleted = :deleted)
+                AND (product.published = :published AND product.deleted = :deleted AND product.removed = :removed)
             INNER JOIN " . ProductRelCategory::tableName() . " ProductRelCategory 
                 ON (product.id = ProductRelCategory.catalog_item_id)
             INNER JOIN " . Category::tableName() . " category 
@@ -329,6 +331,7 @@ class Factory extends \common\modules\catalog\models\Factory
             ->bindValues([
                 ':published' => '1',
                 ':deleted' => '0',
+                ':removed' => '0',
                 ':lang' => Yii::$app->language,
             ]);
 
@@ -353,7 +356,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 ON (typesLang.rid = types.id) AND (typesLang.lang = :lang)
             INNER JOIN " . Product::tableName() . " product 
                 ON (product.catalog_type_id = types.id) 
-                AND (product.published = :published AND product.deleted = :deleted)
+                AND (product.published = :published AND product.deleted = :deleted AND product.removed = :removed)
             WHERE
                 product.factory_id = :id
             GROUP BY 
@@ -362,6 +365,7 @@ class Factory extends \common\modules\catalog\models\Factory
             ->bindValues([
                 ':published' => '1',
                 ':deleted' => '0',
+                ':removed' => '0',
                 ':id' => $id,
                 ':lang' => Yii::$app->language,
             ]);
@@ -379,11 +383,9 @@ class Factory extends \common\modules\catalog\models\Factory
         $command = Yii::$app->db->createCommand("SELECT
                 COUNT(collection.id) as count, 
                 collection.id,
-                collectionLang.title AS title
+                collection.title
             FROM
                 " . Collection::tableName() . " collection
-            INNER JOIN " . CollectionLang::tableName() . " collectionLang 
-                ON (collectionLang.rid = collection.id) AND (collectionLang.lang = :lang)
             INNER JOIN " . Product::tableName() . " product 
                 ON (product.collections_id = collection.id) 
                 AND (product.published = :published AND product.deleted = :deleted AND product.removed = :removed)
@@ -391,13 +393,12 @@ class Factory extends \common\modules\catalog\models\Factory
                 product.factory_id = :id
             GROUP BY 
                 collection.id
-            ORDER BY collectionLang.title")
+            ORDER BY collection.title")
             ->bindValues([
                 ':published' => '1',
                 ':deleted' => '0',
                 ':removed' => '0',
                 ':id' => $id,
-                ':lang' => Yii::$app->language,
             ]);
 
         return $command->queryAll();
@@ -417,6 +418,6 @@ class Factory extends \common\modules\catalog\models\Factory
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
 
-        return $models->totalCount;
+        return $models->totalCount > 1 ? $models->totalCount : 0;
     }
 }

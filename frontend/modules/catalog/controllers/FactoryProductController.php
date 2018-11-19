@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
 use yii\web\Response;
+use yii\web\ForbiddenHttpException;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
@@ -37,9 +38,17 @@ class FactoryProductController extends BaseController
 
     /**
      * @return array
+     * @throws ForbiddenHttpException
+     * @throws \Throwable
      */
     public function behaviors()
     {
+        if (!Yii::$app->getUser()->isGuest &&
+            Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
+            !Yii::$app->getUser()->getIdentity()->profile->factory_id) {
+            throw new ForbiddenHttpException(Yii::t('app', 'Access denied without factory id.'));
+        }
+
         return [
             'AccessControl' => [
                 'class' => AccessControl::class,
@@ -116,6 +125,35 @@ class FactoryProductController extends BaseController
     }
 
     /**
+     * @param $action
+     * @return bool
+     * @throws ForbiddenHttpException
+     * @throws \yii\web\BadRequestHttpException
+     * @throws \yii\web\NotFoundHttpException
+     */
+    public function beforeAction($action)
+    {
+        $id = Yii::$app->request->get('id', null);
+
+        if (in_array($action->id, ['update', 'intrash'])) {
+            if ($id === null) {
+                throw new \yii\web\NotFoundHttpException();
+            }
+        }
+
+        if ($id !== null) {
+            $model = FactoryProduct::findById($id);
+
+            if (!Yii::$app->getUser()->isGuest &&
+                $model != null && $model['user_id'] != Yii::$app->user->identity->id) {
+                throw new ForbiddenHttpException('Access denied');
+            }
+        }
+
+        return parent::beforeAction($action);
+    }
+
+    /**
      * @return array
      */
     public function actionAjaxGetCollection()
@@ -123,7 +161,8 @@ class FactoryProductController extends BaseController
         $response = [];
         Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
-        if (Yii::$app->request->isAjax && $factory_id = Yii::$app->request->post('factory_id')) {
+        if (Yii::$app->request->isAjax &&
+            $factory_id = Yii::$app->request->post('factory_id')) {
             $response['collection'] = Collection::dropDownList(['factory_id' => $factory_id]);
         }
 
@@ -138,7 +177,8 @@ class FactoryProductController extends BaseController
         $response = [];
         Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
-        if (Yii::$app->request->isAjax && $type_id = Yii::$app->request->post('type_id')) {
+        if (Yii::$app->request->isAjax &&
+            $type_id = Yii::$app->request->post('type_id')) {
             $response['category'] = Category::dropDownList(['type_id' => $type_id]);
         }
 

@@ -56,16 +56,15 @@ class RegisterController extends BaseController
      */
     public function actionUser()
     {
-        if (!\Yii::$app->getUser()->getIsGuest()) {
+        if (!Yii::$app->getUser()->getIsGuest()) {
             return $this->redirect(Url::toRoute('/home/home/index'));
         }
 
         /** @var RegisterForm $model */
-        $model = new $this->model;
+        $model = new $this->model();
         $model->setScenario('register');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
-
             $status = $model->addUser();
 
             if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
@@ -89,34 +88,36 @@ class RegisterController extends BaseController
      */
     public function actionPartner()
     {
-        if (!\Yii::$app->getUser()->getIsGuest()) {
+        if (!Yii::$app->getUser()->getIsGuest()) {
             return $this->redirect(Url::toRoute('/home/home/index'));
         }
 
         /** @var RegisterForm $model */
-        $model = new $this->model;
+        $model = new $this->model();
         $model->setScenario('registerPartner');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
-
             $status = $model->addPartner();
 
             if ($status === true) {
+                $modelUser = User::find()->email($model->email)->one();
 
-                $modelUser = User::findByEmail($model->email);
+                /** send mail to admin */
+
+                $message = 'Зарегистрирован новый партнер';
 
                 Yii::$app
                     ->mailer
                     ->compose(
-                        'letter_new_partner',
+                        'letter_notification_for_admin',
                         [
-                            'message' => 'Зарегистрирован новый партнер',
-                            'model' => $model,
-                            'modelUser' => $modelUser,
+                            'message' => $message,
+                            'title' => $modelUser->profile->name_company,
+                            'url' => Url::home(true) . 'backend/user/user/update?id=' . $modelUser->id,
                         ]
                     )
                     ->setTo(Yii::$app->params['mailer']['setTo'])
-                    ->setSubject('Зарегистрирован новый партнер')
+                    ->setSubject($message)
                     ->send();
 
                 Yii::$app
@@ -130,22 +131,22 @@ class RegisterController extends BaseController
                         ]
                     )
                     ->setTo($model->email)
-                    ->setSubject(\Yii::$app->name)
+                    ->setSubject(Yii::$app->name)
                     ->send();
-
-                Yii::$app->getSession()->addFlash('success', Yii::$app->param->getByName('USER_FACTORY_REG_MESSAGE'));
-
-
             }
 
-            if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
-                return $this->redirect(Url::toRoute('/user/profile/index'));
-            }
+//            if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
+//                return $this->redirect(Url::toRoute('/user/profile/index'));
+//            }
+//
+//            if ($status === true) {
+//                Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
+//                return $this->redirect(Url::toRoute('/user/login/index'));
+//            }
 
-            if ($status === true) {
-                Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
-                return $this->redirect(Url::toRoute('/user/login/index'));
-            }
+            //Yii::$app->getSession()->addFlash('success', Yii::t('user', 'add new members'));
+
+            return $this->redirect(Url::toRoute('/user/login/index'));
         }
 
         return $this->render('register_partner', [
@@ -159,34 +160,36 @@ class RegisterController extends BaseController
      */
     public function actionFactory()
     {
-        if (!\Yii::$app->getUser()->getIsGuest()) {
+        if (!Yii::$app->getUser()->getIsGuest()) {
             return $this->redirect(Url::toRoute('/home/home/index'));
         }
 
         /** @var RegisterForm $model */
-        $model = new $this->model;
+        $model = new $this->model();
         $model->setScenario('registerFactory');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
-
             $status = $model->addFactory();
 
             if ($status === true) {
-
                 $modelUser = User::findByEmail($model->email);
+
+                /** send mail to admin */
+
+                $message = 'Зарегистрирована новая фабрика';
 
                 Yii::$app
                     ->mailer
                     ->compose(
-                        'letter_new_factory',
+                        'letter_notification_for_admin',
                         [
-                            'message' => 'Зарегистрирована новая фабрика',
-                            'model' => $model,
-                            'modelUser' => $modelUser,
+                            'message' => $message,
+                            'title' => $modelUser->profile->name_company,
+                            'url' => Url::home(true) . 'backend/user/user/update?id=' . $modelUser->id,
                         ]
                     )
                     ->setTo(Yii::$app->params['mailer']['setTo'])
-                    ->setSubject('Зарегистрирована новая фабрика')
+                    ->setSubject($message)
                     ->send();
 
                 Yii::$app
@@ -200,13 +203,21 @@ class RegisterController extends BaseController
                         ]
                     )
                     ->setTo($model->email)
-                    ->setSubject(\Yii::$app->name)
+                    ->setSubject(Yii::$app->name)
                     ->send();
 
-                Yii::$app->getSession()->addFlash('success', Yii::$app->param->getByName('USER_FACTORY_REG_MESSAGE'));
+                if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
+                    if (!Yii::$app->session->has("newUserFactory")) {
+                        Yii::$app->session->set("newUserFactory", true);
+                    }
 
-                $model = new $this->model;
-                $model->setScenario('registerFactory');
+                    return $this->redirect(Url::toRoute('/user/profile/index'));
+                }
+
+                if ($status === true) {
+                    //Yii::$app->getSession()->addFlash('success', Yii::t('user', 'add new members'));
+                    return $this->redirect(Url::toRoute('/user/login/index'));
+                }
             }
         }
 

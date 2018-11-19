@@ -12,19 +12,17 @@ use thread\modules\seo\modules\directlink\Directlink as ParentModule;
  * Class Directlink
  *
  * @package thread\modules\seo\modules\directlink\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Directlink extends ActiveRecord
 {
-
     /**
      * @var
      */
     public static $commonQuery = query\ActiveQuery::class;
 
     /**
-     * @return string
+     * @return null|object|\yii\db\Connection
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -47,7 +45,11 @@ class Directlink extends ActiveRecord
         return [
             [['url'], 'required'],
             [['created_at', 'updated_at'], 'integer'],
-            [['published', 'deleted', 'add_to_sitemap', 'dissallow_in_robotstxt'], 'in', 'range' => array_keys(static::statusKeyRange())],
+            [
+                ['published', 'deleted', 'add_to_sitemap', 'dissallow_in_robotstxt'],
+                'in',
+                'range' => array_keys(static::statusKeyRange())
+            ],
             [['meta_robots'], 'in', 'range' => array_keys(static::statusMetaRobotsRange())],
             [['url', 'title', 'description', 'keywords', 'image_url'], 'string', 'max' => 255],
             [['url'], 'unique']
@@ -64,7 +66,18 @@ class Directlink extends ActiveRecord
             'deleted' => ['deleted'],
             'add_to_sitemap' => ['add_to_sitemap'],
             'dissallow_in_robotstxt' => ['dissallow_in_robotstxt'],
-            'backend' => ['url', 'published', 'deleted', 'add_to_sitemap', 'dissallow_in_robotstxt', 'meta_robots', 'title', 'description', 'keywords', 'image_url'],
+            'backend' => [
+                'url',
+                'published',
+                'deleted',
+                'add_to_sitemap',
+                'dissallow_in_robotstxt',
+                'meta_robots',
+                'title',
+                'description',
+                'keywords',
+                'image_url'
+            ],
         ];
     }
 

@@ -5,11 +5,9 @@ namespace frontend\modules\menu\models;
 use thread\app\model\interfaces\BaseFrontModel;
 
 /**
- * Class Item
+ * Class MenuItem
  *
  * @package frontend\modules\menu\models
- * @author Andrii Bondarchuk
- * @copyright (c) 2016
  */
 final class MenuItem extends \common\modules\menu\models\MenuItem implements BaseFrontModel
 {
@@ -99,5 +97,4 @@ final class MenuItem extends \common\modules\menu\models\MenuItem implements Bas
     {
         // TODO: Implement getUrl() method.
     }
-
 }

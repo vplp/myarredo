@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+use frontend\modules\news\widgets\news\NewsListForPartners;
 
 /**
  * @var \frontend\modules\shop\models\Order $modelOrder
@@ -12,8 +13,8 @@ $this->title = $this->context->title;
 ?>
 
     <main>
-        <div class="page adding-product-page">
-            <div class="container large-container">
+        <div class="page adding-product-page ordersbox">
+            <div class="largex-container">
 
                 <?= Html::tag('h1', $this->context->title); ?>
 
@@ -100,13 +101,21 @@ $this->title = $this->context->title;
                 </form>
                 -->
 
-                <?php if (!Yii::$app->user->identity->profile->possibilityToAnswer): ?>
+                <?= NewsListForPartners::widget([]) ?>
+
+                <?php if (!Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                     <div style="color:red; font-size: 24px;">
                         Вы сможете ответить на Заявки покупателей после размещения
                         небольшого кода на Вашем сайте.
-                        <u><?= Html::a('Подробнее..', Url::toRoute(['/page/page/view', 'alias' => 'razmeshchenie-koda']), ['style' => 'color:red; font-size: 24px;']); ?></u>
+                        <u>
+                            <?= Html::a(
+                                'Подробнее..',
+                                Url::toRoute(['/page/page/view', 'alias' => 'razmeshchenie-koda']),
+                                ['style' => 'color:red; font-size: 24px;']
+                            ) ?>
+                        </u>
                     </div>
-                <?php endif; ?>
+                <?php } ?>
 
                 <div class="manager-history">
                     <div class="manager-history-header">
@@ -127,7 +136,7 @@ $this->title = $this->context->title;
                                 <span><?= Yii::t('app', 'Email') ?></span>
                             </li>
                             <li>
-                                <span>Дата ответа</span>
+                                <span><?= Yii::t('app', 'Дата ответа') ?></span>
                             </li>
                             <li>
                                 <span><?= Yii::t('app', 'City') ?></span>
@@ -140,9 +149,7 @@ $this->title = $this->context->title;
                     <div class="manager-history-list">
 
                         <?php if (!empty($models)): ?>
-
                             <?php foreach ($models as $modelOrder): ?>
-
                                 <div class="item" data-hash="<?= $modelOrder->id; ?>">
 
                                     <ul class="orders-title-block flex">

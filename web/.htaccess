@@ -10,19 +10,19 @@ AddDefaultCharset UTF-8
     Options +FollowSymlinks
     RewriteEngine On
 
-    RewriteCond %{HTTPS} !=on
-    RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1
-    RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+#    RewriteCond %{HTTPS} !=on
+#    RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1
+#    RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
 
     RewriteRule ^backend(.*)$ backend/$1 [L]
 
-#    # Переадресацыя на www
-#    RewriteCond %{HTTP_HOST} ^myarredo.ru [NC]
-#    RewriteRule ^(.*)$ https://www.myarredo.ru/$1 [R=permanent,L]
-#
-#    # Поддоменн без www
-#    RewriteCond %{HTTP_HOST} ^www\.([A-Za-z0-9_-]*)\.myarredo\.ru
-#    RewriteRule ^(.*)$ https://%1.myarredo.ru/$1 [R=permanent,L]
+    # Переадресацыя на www
+    RewriteCond %{HTTP_HOST} ^myarredo.ru [NC]
+    RewriteRule ^(.*)$ https://www.myarredo.ru/$1 [R=301,L]
+
+    # Поддоменн без www
+    RewriteCond %{HTTP_HOST} ^www\.([A-Za-z0-9_-]*)\.myarredo\.ru
+    RewriteRule ^(.*)$ https://%1.myarredo.ru/$1 [R=301,L]
 
     # убираем index.php
     RewriteCond %{THE_REQUEST} ^.*/index.php

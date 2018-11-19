@@ -85,7 +85,7 @@ class OrderItemPrice extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'order_id' => Yii::t('app', 'Order id'),
-            'user_id' => Yii::t('app', 'User id'),
+            'user_id' => Yii::t('app', 'User'),
             'product_id' => Yii::t('app', 'Product id'),
             'price' => Yii::t('app', 'Price'),
             'created_at' => Yii::t('app', 'Create time'),

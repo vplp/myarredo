@@ -93,7 +93,7 @@ class OrderAnswer extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'order_id' => Yii::t('app', 'Order id'),
-            'user_id' => Yii::t('app', 'User id'),
+            'user_id' => Yii::t('app', 'User'),
             'answer' => Yii::t('app', 'Answer'),
             'answer_time' => Yii::t('app', 'Answer time'),
             'results' => Yii::t('app', 'Results'),

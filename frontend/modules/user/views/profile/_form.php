@@ -19,19 +19,20 @@ $this->title = Yii::t('app', 'Profile');
 
 <main>
     <div class="page factory-profile">
-        <div class="container large-container">
+        <div class="largex-container">
 
             <?= Html::tag('h1', $this->title); ?>
 
-            <div class="part-contact">
+            <div class="part-contact part-contact-update">
 
                 <?php $form = ActiveForm::begin([
                     'action' => Url::toRoute(['/user/profile/update']),
+                    'options' => ['class' => 'user-update-form']
                 ]); ?>
 
                 <div class="row">
 
-                    <div class="col-sm-4 col-md-4 col-lg-4 one-row">
+                    <div class="col-md-4 col-lg-4 one-row">
                         <?= $form->field($model, 'first_name') ?>
                         <?= $form->field($model, 'last_name') ?>
                         <?= $form->field($model, 'phone')
@@ -41,18 +42,22 @@ $this->title = Yii::t('app', 'Profile');
                                     'clearIncomplete' => true
                                 ]
                             ]) ?>
-                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
-                            <?= $form->field($model, 'email_company') ?>
-                        <?php } ?>
                     </div>
+                    <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
+                        <div class="col-md-4 col-lg-4 one-row">
+                            <?= $form->field($model, 'email_company') ?>
+                            <?= $form->field($model, 'address') ?>
+                            <?= $form->field($model, 'website') ?>
+                        </div>
+                    <?php } ?>
 
                     <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') { ?>
-                        <div class="col-sm-4 col-md-4 col-lg-4 one-row">
+                        <div class="col-md-4 col-lg-4 one-row">
                             <?= $form->field($model, 'name_company') ?>
                             <?= $form->field($model, 'website') ?>
                         </div>
 
-                        <div class="col-sm-4 col-md-4 col-lg-4 one-row">
+                        <div class="col-md-4 col-lg-4 one-row">
                             <?= $form->field($model, 'country_id')
                                 ->dropDownList(
                                     [null => '--'] + Country::dropDownList(),
@@ -67,7 +72,6 @@ $this->title = Yii::t('app', 'Profile');
 
                             <?= $form->field($model, 'address') ?>
                         </div>
-
                     <?php } ?>
 
 

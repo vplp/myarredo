@@ -91,7 +91,7 @@ class ManyToManySpecificationValueDataColumn extends DataColumn
 
         if ($model->parent_id == 0) {
             return null;
-        } else if ($model->type == 1) {
+        } elseif ($model->type == 1) {
             return Html::input('text', 'SpecificationValue['.$model->id.']', (isset($relationModel)) ? $relationModel->{$this->attributeRow} : '', $dataAttributes);
         } else {
             return Html::checkbox('SpecificationValue['.$model->id.']', (isset($relationModel)) ? $relationModel->{$this->attributeRow} : '', $dataAttributes);

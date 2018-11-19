@@ -4,8 +4,9 @@
     <i class="fa fa-chevron-down" aria-hidden="true"></i>
 </a>
 <ul class="lang-drop-down">
-    <?php foreach ($models as $model) : ?>
-        <?php if ($model['alias'] == $current['alias']) {
+    <?php
+    foreach ($models as $model) {
+        if ($model['alias'] == $current['alias']) {
             continue;
         } ?>
         <li>
@@ -14,5 +15,5 @@
                 <?= $model['label'] ?>
             </a>
         </li>
-    <?php endforeach; ?>
+    <?php } ?>
 </ul>

@@ -22,6 +22,7 @@ $this->title = $this->context->title;
                         <div class="one-cont">
                             <?= Html::tag('h4', $partner->profile->name_company); ?>
                             <div class="adres">
+                                <?= isset($partner->profile->city) ? $partner->profile->city->lang->title . '<br>' : '' ?>
                                 <?= $partner->profile->address ?>
                             </div>
                             <a href="tel:<?= $partner->profile->getPhone() ?>"><?= $partner->profile->getPhone() ?></a>

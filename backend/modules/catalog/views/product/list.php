@@ -20,6 +20,7 @@ echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
+        'id',
         [
             'attribute' => 'image_link',
             'value' => function ($model) {

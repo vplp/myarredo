@@ -119,7 +119,7 @@ class Category extends \common\modules\catalog\models\Category
      */
     public static function getUrl(string $alias)
     {
-        return Url::toRoute(['/catalog/category/list', 'filter' => $alias]);
+        return Url::toRoute(['/catalog/category/list', 'filter' => $alias], true);
     }
 
     /**
@@ -136,9 +136,7 @@ class Category extends \common\modules\catalog\models\Category
 
         $image = null;
 
-        /*if (YII_ENV_DEV && !empty($image_link)){
-            $image = 'https://www.myarredo.ru/uploads/images/' . $image_link;
-        } else*/if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image = $url . '/' . $image_link;
         }
 
@@ -160,10 +158,7 @@ class Category extends \common\modules\catalog\models\Category
 
         $image = null;
 
-        /*if (YII_ENV_DEV && !empty($image_link)){
-            $image = 'https://www.myarredo.ru/uploads/images/' . $image_link;
-        } else*/if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image_link_path = explode('/', $image_link);
 
             $img_name = $image_link_path[count($image_link_path) - 1];
@@ -280,16 +275,16 @@ class Category extends \common\modules\catalog\models\Category
                 ->andFilterWhere(['IN', 'saleFactory.alias', $params[$keys['factory']]]);
         }
 
-        if (isset($params[$keys['country']])) {
+        if (isset($params['country'])) {
             $query
                 ->innerJoinWith(["sale.country saleCountry"], false)
-                ->andFilterWhere(['IN', 'saleCountry.alias', $params[$keys['country']]]);
+                ->andFilterWhere(['IN', 'saleCountry.id', $params['country']]);
         }
 
-        if (isset($params[$keys['city']])) {
+        if (isset($params['city'])) {
             $query
                 ->innerJoinWith(["sale.city saleCity"], false)
-                ->andFilterWhere(['IN', 'saleCity.alias', $params[$keys['city']]]);
+                ->andFilterWhere(['IN', 'saleCity.id', $params['city']]);
         }
 
         return $query

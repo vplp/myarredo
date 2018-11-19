@@ -4,6 +4,8 @@ namespace frontend\modules\catalog\widgets\filter;
 
 use Yii;
 use yii\base\Widget;
+//
+use frontend\modules\location\models\City;
 
 /**
  * Class SaleFilter
@@ -71,6 +73,7 @@ class SaleFilter extends Widget
 
     /**
      * @return string
+     * @throws \Throwable
      */
     public function run()
     {
@@ -85,8 +88,7 @@ class SaleFilter extends Widget
         foreach ($this->category as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (
-                !empty($params[$keys['category']]) &&
+            if (!empty($params[$keys['category']]) &&
                 in_array($obj['alias'], $params[$keys['category']])
             ) {
                 $checked = 1;
@@ -119,8 +121,7 @@ class SaleFilter extends Widget
         foreach ($this->types as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (
-                !empty($params[$keys['type']]) &&
+            if (!empty($params[$keys['type']]) &&
                 in_array($obj['alias'], $params[$keys['type']])
             ) {
                 $checked = 1;
@@ -154,8 +155,7 @@ class SaleFilter extends Widget
         foreach ($this->style as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (
-                !empty($params[$keys['style']]) &&
+            if (!empty($params[$keys['style']]) &&
                 in_array($obj['alias'], $params[$keys['style']])
             ) {
                 $checked = 1;
@@ -189,8 +189,7 @@ class SaleFilter extends Widget
         foreach ($this->factory as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (
-                !empty($params[$keys['factory']]) &&
+            if (!empty($params[$keys['factory']]) &&
                 in_array($obj['alias'], $params[$keys['factory']])
             ) {
                 $checked = 1;
@@ -227,7 +226,7 @@ class SaleFilter extends Widget
             foreach ($letter as $val) {
                 if ($val['checked']) {
                     $factory_first_show_checked[] = $val;
-                } else if ($i < 5) {
+                } elseif ($i < 5) {
                     $factory_first_show[] = $val;
                     ++$i;
                 }
@@ -284,22 +283,25 @@ class SaleFilter extends Widget
         foreach ($this->cities as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (
-                !empty($params[$keys['city']]) &&
-                in_array($obj['alias'], $params[$keys['city']])
-            ) {
+            if ($obj['id'] == Yii::$app->city->getCityId()) {
                 $checked = 1;
-                $params[$keys['city']] = array_diff($params[$keys['city']], [$obj['alias']]);
             } else {
                 $checked = 0;
-                $params[$keys['city']][] = $obj['alias'];
             }
 
-            // sort value
+            $city = City::findByAlias($obj['alias']);
 
-            array_multisort($params[$keys['city']], SORT_ASC, $params[$keys['city']]);
+            if ($city == null || in_array($city['id'], [1, 2, 4])) {
+                $baseUrl = 'https://' . 'www.myarredo.' . Yii::$app->city->domain;
+            } else {
+                $baseUrl = 'https://' . $city['alias'] . '.myarredo.' . Yii::$app->city->domain;
+            }
 
-            $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
+            if ($city['country']['alias'] != Yii::$app->city->domain) {
+                $baseUrl = 'https://' . $city['alias'] . '.myarredo.' . $city['country']['alias'];
+            }
+
+            $link = $baseUrl . Yii::$app->catalogFilter->createUrl($params, [$this->route]);
 
             $cities[$key] = array(
                 'checked' => $checked,

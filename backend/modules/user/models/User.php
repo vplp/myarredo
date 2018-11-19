@@ -24,12 +24,26 @@ class User extends \common\modules\user\models\User implements BaseBackendModel
     }
 
     /**
+     * Backend form drop down list
+     * @return array
+     */
+    public static function dropDownListPartner()
+    {
+        $query = self::findBase()
+            ->andWhere(Group::tableName() . ".role = 'partner'")
+            ->enabled()
+            ->all();
+
+        return ArrayHelper::map($query, 'id', 'profile.name_company');
+    }
+
+    /**
      * @param array $params
      * @return ActiveDataProvider
      */
     public function search($params)
     {
-        return (new search\User)->search($params);
+        return (new search\User())->search($params);
     }
 
     /**
@@ -39,6 +53,6 @@ class User extends \common\modules\user\models\User implements BaseBackendModel
      */
     public function trash($params)
     {
-        return (new search\User)->trash($params);
+        return (new search\User())->trash($params);
     }
 }

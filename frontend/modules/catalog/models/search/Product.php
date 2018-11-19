@@ -114,7 +114,7 @@ class Product extends ProductModel
 
         if (isset($params['sort']) && $params['sort'] == 'asc') {
             $order[] = self::tableName() . '.factory_price ASC';
-        } else if (isset($params['sort']) && $params['sort'] == 'desc') {
+        } elseif (isset($params['sort']) && $params['sort'] == 'desc') {
             $order[] = self::tableName() . '.factory_price DESC';
         }
 
@@ -187,8 +187,9 @@ class Product extends ProductModel
     }
 
     /**
-     * @param array $params
+     * @param $params
      * @return ActiveDataProvider
+     * @throws \Throwable
      */
     public function search($params)
     {

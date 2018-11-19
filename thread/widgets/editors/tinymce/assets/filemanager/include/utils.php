@@ -148,7 +148,7 @@ function check_files_extensions_on_phar( $phar, &$files, $basepath, $ext ) {
                 $files[] = $basepath.$file->getFileName( );
             }
         }
-        else if( $file->isDir() )
+        elseif( $file->isDir() )
         {
             $iterator = new DirectoryIterator( $file );
             check_files_extensions_on_phar($iterator, $files, $basepath.$file->getFileName().'/', $ext);

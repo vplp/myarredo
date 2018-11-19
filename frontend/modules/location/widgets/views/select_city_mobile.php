@@ -12,13 +12,24 @@ use yii\helpers\{
 ?>
 
 <ul class="mobile-city-list js-list-container">
-    <?php foreach ($country['cities'] as $cityCountry):
-        $option = ($cityCountry['id'] == $city['id']) ? ['class'=>'active'] : [];
-        ?>
+    <?php
+    foreach ($country['cities'] as $cityCountry) {
+        $option = ($cityCountry['id'] == $city['id']) ? ['class' => 'active'] : [];
 
-        <?= Html::beginTag('li', $option) ?>
-        <?= Html::a($cityCountry['lang']['title'], $cityCountry->getSubDomainUrl(), ['rel' => 'nofollow']) ?>
-        <?= Html::endTag('li') ?>
+        echo Html::beginTag('li', $option);
 
-    <?php endforeach; ?>
+        if (in_array(Yii::$app->controller->id, ['sale'])) {
+            $url = $cityCountry->getSubDomainUrl();
+        } else {
+            $url = $cityCountry->getSubDomainUrl() . '/' . Yii::$app->request->pathInfo;
+        }
+
+        echo Html::a(
+            $cityCountry['lang']['title'],
+            $url,
+            ['rel' => 'nofollow']
+        );
+
+        echo Html::endTag('li');
+    } ?>
 </ul>

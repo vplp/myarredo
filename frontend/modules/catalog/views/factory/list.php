@@ -20,10 +20,11 @@ $this->title = $this->context->title;
             <div class="container large-container">
                 <div class="section-header">
                     <h1 class="title-text">
-                        <?= Yii::t('app','Итальянские фабрики мебели - производители из Италии') ?>
+                        <?= Yii::t('app', 'Итальянские фабрики мебели - производители из Италии') ?>
                     </h1>
                     <span class="after-title">
-                        (<?= Factory::findBase()->count(); ?> <?= Yii::t('app','фабрик представлено в нашем каталоге') ?>)
+                        (<?= Factory::findBase()->count(); ?> <?= Yii::t('app', 'фабрик представлено в нашем каталоге') ?>
+                        )
                     </span>
                 </div>
 
@@ -37,7 +38,10 @@ $this->title = $this->context->title;
                                     echo Html::beginTag('li') .
                                         Html::a(
                                             $letter['first_letter'],
-                                            Url::toRoute(['/catalog/factory/list', 'letter' => strtolower($letter['first_letter'])])
+                                            Url::toRoute([
+                                                '/catalog/factory/list',
+                                                'letter' => strtolower($letter['first_letter'])
+                                            ])
                                         ) .
                                         Html::endTag('li');
                                 } ?>
@@ -65,7 +69,8 @@ $this->title = $this->context->title;
 
                 <div class="factory-tiles flex">
 
-                    <?php foreach ($models as $model) {
+                    <?php
+                    foreach ($models as $model) {
                         echo $this->render(
                             '_list_item',
                             [

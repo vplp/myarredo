@@ -13,7 +13,7 @@ use frontend\modules\catalog\models\Product;
     'href' => Product::getUrl($model['alias']),
     'class' => 'one-prod-tile'
 ]); ?>
-    <div class="one-prod-tile-in">
+    <div class="one-prod-tile-in" itemscope itemtype="http://schema.org/ImageObject">
 
         <?php
         /*
@@ -29,7 +29,13 @@ use frontend\modules\catalog\models\Product;
 
         <div class="img-cont" data-dominant-color>
             <span class="background"></span>
-            <?= Html::img(Product::getImageThumb($model['image_link'])); ?>
+            <?= Html::img(
+                Product::getImageThumb($model['image_link']),
+                [
+                    'alt' => Product::getStaticTitle($model),
+                    'itemprop' => 'contentUrl'
+                ]
+            ) ?>
         </div>
 
         <div class="prod-infoblock">
@@ -39,7 +45,7 @@ use frontend\modules\catalog\models\Product;
                     : null;
                 ?>
             </div>
-            <div class="tile-prod-name">
+            <div class="tile-prod-name" itemprop="name">
                 <?= Product::getStaticTitle($model); ?>
             </div>
         </div>
@@ -48,6 +54,7 @@ use frontend\modules\catalog\models\Product;
             <a class="more-info">
                 <?= Yii::t('app', 'Подробнее') ?>
             </a>
+            
             <!--
             <a href="javascript:void(0);" class="get-price">
                 запросить цену

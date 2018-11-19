@@ -58,10 +58,10 @@ $(document).ready(function(){
 
     $(window).getDevice(540,768);
 
-    console.log(state.device);
+   //console.log(state.device);
 
     function runMobile(){
-        console.log('mobile');
+       //console.log('mobile');
         //Слайдер с номерками
         $('.js-numbers').slick({
             infinite: true,
@@ -81,7 +81,7 @@ $(document).ready(function(){
     }
 
     function runTablet(){
-        console.log('tablet');
+       //console.log('tablet');
         //$('.filters .one-filter').removeClass('open');
         if($('.js-numbers').hasClass('slick-slider')){
             $('.js-numbers').slick('unslick');
@@ -92,7 +92,7 @@ $(document).ready(function(){
     }
 
     function runDesctop() {
-        console.log("desctp");
+       //console.log("desctp");
         $('.filters .one-filter').addClass('open');
         if($('.js-numbers').hasClass('slick-slider')){
             $('.js-numbers').slick('unslick');
@@ -140,7 +140,7 @@ $(document).ready(function(){
         var next = $(this).next();
         if (!next.length) {
             next = $(this).siblings(':first');
-            console.log(next);
+           //console.log(next);
         }
 
         next.children(':first-child').clone().appendTo($(this));
@@ -248,6 +248,16 @@ $(document).ready(function(){
         });
     })();
     /*--конец Открыть\закрыть категорию в каталоге--*/
+
+    // js for default close filters for mobile and tablets
+    function closeFilter() {
+        if ($(window).width() < 992) {
+            setTimeout(function() {
+                $('#catalog_filter').children('.one-filter').removeClass('open');
+            },1000);
+        }
+    }
+    closeFilter();
 
     $('.factory-page .view-all').click(function(){
        $(this).parent('.all-list').find('.post-list').slideToggle();
@@ -518,6 +528,7 @@ $(document).ready(function(){
         $(".text-col").closest(".text-description").remove();
     }
 
+    $("[data-toggle='tooltip']").tooltip({html:true});
 });
 (function(){
     var loaderTemplate =

@@ -53,7 +53,8 @@ class DirectlinkLang extends ActiveRecordLang
                 [['title'], 'required'],
                 ['rid', 'exist', 'targetClass' => Directlink::class, 'targetAttribute' => 'id'],
                 ['content', 'string'],
-                [['title', 'h1', 'description', 'keywords'], 'string', 'max' => 255],
+                [['title', 'h1',  'keywords'], 'string', 'max' => 255],
+                [['description'], 'string', 'max' => 500],
                 [['description', 'keywords', 'h1', 'content'], 'default', 'value' => ''],
             ]
         );

@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 //
 use common\modules\catalog\models\Product as CommonProduct;
+use yii\helpers\Url;
 
 /**
  * Class FactoryProduct
@@ -15,6 +16,15 @@ use common\modules\catalog\models\Product as CommonProduct;
 class FactoryProduct extends CommonProduct
 {
     public $promotion;
+
+    public function init()
+    {
+        parent::init();
+
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
+            $this->on(self::EVENT_AFTER_INSERT, [$this, 'sendLetterNotificationNewProductForAdmin']);
+        }
+    }
 
     /**
      * @return array
@@ -48,7 +58,7 @@ class FactoryProduct extends CommonProduct
      */
     public function beforeSave($insert)
     {
-        if (Yii::$app->user->identity->group->role == 'factory') {
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
             $this->user_id = Yii::$app->user->identity->id;
             $this->factory_id = Yii::$app->user->identity->profile->factory_id;
         }
@@ -73,7 +83,7 @@ class FactoryProduct extends CommonProduct
                 'created_at',
                 'updated_at',
                 'position',
-                'price',
+                //'price',
                 'volume',
                 'factory_price',
                 'price_from',
@@ -106,7 +116,8 @@ class FactoryProduct extends CommonProduct
     public function attributeLabels()
     {
         return ArrayHelper::merge(CommonProduct::attributeLabels(), [
-            'title'
+            'title',
+            'factory_price' => Yii::t('app', 'Цена в розницу от'),
         ]);
     }
 
@@ -116,7 +127,7 @@ class FactoryProduct extends CommonProduct
     public static function findBase()
     {
         return self::find()
-            ->innerJoinWith(['lang', 'factory'])
+            ->innerJoinWith(['factory'])
             ->andWhere([self::tableName() . '.factory_id' => Yii::$app->user->identity->profile->factory_id])
             ->orderBy(self::tableName() . '.updated_at DESC');
     }
@@ -139,5 +150,29 @@ class FactoryProduct extends CommonProduct
     public function search($params)
     {
         return (new search\FactoryProduct())->search($params);
+    }
+
+    /**
+     * sendLetterNotificationNewProductForAdmin
+     */
+    public function sendLetterNotificationNewProductForAdmin()
+    {
+        /** send mail to admin */
+
+        $message = 'Добавление фабрикой нового товара';
+
+        Yii::$app
+            ->mailer
+            ->compose(
+                'letter_notification_for_admin',
+                [
+                    'message' => $message,
+                    'title' => Yii::$app->user->identity->profile->factory->title . ': ' . $this->title,
+                    'url' => Url::home(true) . 'backend/catalog/product/update?id=' . $this->id,
+                ]
+            )
+            ->setTo(Yii::$app->params['mailer']['setTo'])
+            ->setSubject($message)
+            ->send();
     }
 }

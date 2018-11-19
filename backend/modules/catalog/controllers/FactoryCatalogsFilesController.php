@@ -141,7 +141,7 @@ class FactoryCatalogsFilesController extends BackendController
 
         if (in_array($action->id, ['list', 'create', 'update', 'trash'])) {
             if ($factory_id === null) {
-                throw new \yii\web\NotFoundHttpException;
+                throw new \yii\web\NotFoundHttpException();
             }
         }
 

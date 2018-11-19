@@ -7,9 +7,6 @@ use thread\widgets\grid\{
 };
 use backend\modules\catalog\models\search\Group;
 
-/**
- * @var Group $model
- */
 echo GridView::widget([
     'dataProvider' => $model->trash(Yii::$app->request->queryParams),
     'filterModel' => $filter,

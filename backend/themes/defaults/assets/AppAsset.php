@@ -8,15 +8,14 @@ use yii\web\AssetBundle;
  * Class AppAsset
  *
  * @package backend\themes\defaults\assets
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class AppAsset extends AssetBundle
 {
     /**
      * @var string
      */
-    public $sourcePath = '@backend/themes/defaults/web';
+    public $sourcePath = '@backend/themes/defaults/app';
+
     /**
      * @var array
      */
@@ -30,6 +29,7 @@ class AppAsset extends AssetBundle
         'css/style.min.css',
         'css/backend.min.css',
     ];
+
     /**
      * @var array
      */
@@ -60,6 +60,7 @@ class AppAsset extends AssetBundle
         'js/backend.js',
         'js/script.js',
     ];
+
     /**
      * @var array
      */

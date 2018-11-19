@@ -27,14 +27,14 @@ $this->title = $this->context->title;
 
                     <div class="col-sm-4 col-md-4 col-lg-4 one-row">
 
-                        <?php if ($model->isNewRecord): ?>
+                        <?php if ($model->isNewRecord) { ?>
                             <div class="alert alert-warning">
                                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                                Для загрузки изображений - сначала создайте
+                                <?= Yii::t('app', 'Для загрузки изображений - сначала создайте') ?>
                             </div>
-                        <?php else: ?>
+                        <?php } else { ?>
                             <?= $form->field($model, 'image_link')->imageOne($model->getImageLink()) ?>
-                        <?php endif; ?>
+                        <?php } ?>
 
                         <?= $form->field($modelLang, 'title') ?>
 

@@ -27,12 +27,13 @@ class LangSwitch extends Widget
     protected $items = null;
 
     /**
-     *
+     * @inheritdoc
      */
     public function init()
     {
         parent::init();
-        $langModel = new Yii::$app->languages->languageModel;
+
+        $langModel = new Yii::$app->languages->languageModel();
 
         $this->items = $langModel->getLanguages();
         $this->current = $langModel->getCurrent()['label'];
@@ -46,7 +47,6 @@ class LangSwitch extends Widget
         $items = [];
 
         foreach ($this->items as $lang) {
-
             $path = \Yii::$app->request->pathInfo;
 
             if ($lang['local'] == Yii::$app->language) {

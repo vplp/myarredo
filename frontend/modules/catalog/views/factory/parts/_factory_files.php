@@ -34,7 +34,7 @@ use yii\helpers\Html;
         <?php endif; ?>
 
         <?php if (!empty($model->pricesFiles)): ?>
-            <p class="title-small">Посмотреть прайс листы</p>
+            <p class="title-small"><?= Yii::t('app','Посмотреть прайс листы') ?></p>
             <ul>
 
                 <?php

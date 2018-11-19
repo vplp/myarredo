@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\modules\news\models\search;
 
 use Yii;
@@ -17,12 +18,12 @@ use backend\modules\news\models\{
  * Class Article
  *
  * @package backend\modules\news\models\search
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Article extends ArticleModel implements BaseBackendSearchModel
 {
-    public $title, $date_from, $date_to;
+    public $title;
+    public $date_from;
+    public $date_to;
 
     /**
      * @return array

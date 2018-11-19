@@ -37,11 +37,30 @@ class Order extends \common\modules\shop\models\Order
     }
 
     /**
+     * @return mixed|\yii\db\ActiveQuery
+     * @throws \Throwable
+     */
+    public function getItems()
+    {
+        $query = $this->hasMany(OrderItem::class, ['order_id' => 'id']);
+
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
+            $query
+                ->innerJoinWith(["product product"], false)
+                ->andFilterWhere(['IN', 'product.factory_id', Yii::$app->user->identity->profile->factory_id]);
+        }
+
+        return $query;
+    }
+
+    /**
      * @return mixed
      */
     public static function findBase()
     {
-        return parent::findBase()->innerJoinWith(['items'])->enabled();
+        return parent::findBase()
+            ->innerJoinWith(['items'])
+            ->enabled();
     }
 
     /**
@@ -58,7 +77,9 @@ class Order extends \common\modules\shop\models\Order
      */
     public static function findById($id)
     {
-        return self::findBase()->byId($id)->one();
+        return self::findBase()
+            ->byId($id)
+            ->one();
     }
 
     /**
@@ -67,7 +88,9 @@ class Order extends \common\modules\shop\models\Order
      */
     public static function findByCustomerId($customer_id)
     {
-        return self::findBase()->customer($customer_id)->all();
+        return self::findBase()
+            ->customer($customer_id)
+            ->all();
     }
 
     /**
@@ -88,7 +111,9 @@ class Order extends \common\modules\shop\models\Order
      */
     public static function findByLink($token)
     {
-        return self::findBase()->token($token)->one();
+        return self::findBase()
+            ->token($token)
+            ->one();
     }
 
     /**
@@ -106,7 +131,10 @@ class Order extends \common\modules\shop\models\Order
      */
     public static function findByIdCustomerId($id, $customer_id)
     {
-        return self::findBase()->byId($id)->customer($customer_id)->one();
+        return self::findBase()
+            ->byId($id)
+            ->customer($customer_id)
+            ->one();
     }
 
     /**
@@ -150,6 +178,7 @@ class Order extends \common\modules\shop\models\Order
     /**
      * @param $params
      * @return \yii\data\ActiveDataProvider
+     * @throws \Throwable
      */
     public function search($params)
     {

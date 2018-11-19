@@ -1,9 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use backend\modules\location\models\{
-    Country, City
-};
 
 /**
  * @var \backend\modules\catalog\models\FactoryPromotion $model
@@ -37,20 +34,20 @@ use backend\modules\location\models\{
     </div>
 </div>
 <div class="form-group">
-    <?= Html::label($model->getAttributeLabel('count_of_months')) ?>
+    <?= Html::label($model->getAttributeLabel('amount')) ?>
     <div class="input-group">
-        <?= $model->count_of_months ?>
+        <?= $model->amount ?>
     </div>
 </div>
 <div class="form-group">
-    <?= Html::label($model->getAttributeLabel('daily_budget')) ?>
+    <?= Html::label($model->getAttributeLabel('payment_status')) ?>
     <div class="input-group">
-       <?= $model->daily_budget ?>
+        <?= $model->getPaymentStatusTitle() ?>
     </div>
 </div>
 <div class="form-group">
-    <?= Html::label($model->getAttributeLabel('cost')) ?>
+    <?= Html::label($model->getAttributeLabel('status')) ?>
     <div class="input-group">
-        <?= $model->cost ?>
+        <?= $model->getStatusTitle() ?>
     </div>
 </div>

@@ -23,9 +23,9 @@ return ArrayHelper::merge(
                 } elseif ($_SERVER['REQUEST_URI'] == '/it') {
                     Yii::$app->response->redirect('/it/', 301)->send();
                     die;
-                } elseif (
-                    !empty($pathInfo) &&
+                } elseif (!empty($pathInfo) &&
                     Yii::$app->request->isGet &&
+                    strpos($pathInfo, 'debug/default') === false &&
                     substr($pathInfo, -1) !== '/'
                 ) {
                     Yii::$app->response->redirect('/' . rtrim($pathInfo) . '/', 301)->send();

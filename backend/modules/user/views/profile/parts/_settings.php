@@ -18,4 +18,10 @@ use yii\helpers\Html;
 
 <?php //$form->field($model, 'avatar')->imageOne($model->getAvatarImage()) ?>
 
-<?= Html::a(Yii::t('user', 'Change password'), ['/user/password/change', 'id' => $model['id']], ['class' => 'btn btn-info']); ?>
+<?php
+
+echo Html::a(
+    Yii::t('user', 'Change password'),
+    ['/user/password/change', 'id' => $model['id']],
+    ['class' => 'btn btn-info']
+);

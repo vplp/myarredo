@@ -38,11 +38,12 @@
     "leandrogehlen/yii2-treegrid": "*",
     "himiklab/yii2-recaptcha-widget": "*",
     "sendpulse/rest-api": "^1.0",
+    "yiisoft/yii2-elasticsearch": "~2.0.0",
     "yandex/translate-api": "1.5.x",
-    "yiisoft/yii2-elasticsearch": "~2.0.0"
+    "yandex-money/yandex-checkout-sdk-php": "^1.0"
   },
   "require-dev": {
-    "yiisoft/yii2-debug": "*",
+    "yiisoft/yii2-debug": "~2.0.0",
     "yiisoft/yii2-gii": "*",
     "yiisoft/yii2-faker": "*",
     "cedx/yii2-mustache": "^0.5.2"

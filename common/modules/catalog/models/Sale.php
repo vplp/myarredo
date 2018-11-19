@@ -193,6 +193,29 @@ class Sale extends ActiveRecord
                 'position',
                 'on_main',
                 'category_ids',
+            ],
+            'frontend' => [
+                'country_id',
+                'city_id',
+                'country_code',
+                'user_id',
+                'user_city_id',
+                'factory_name',
+                'catalog_type_id',
+                'factory_id',
+                'image_link',
+                'gallery_image',
+                'alias',
+                'article',
+                'price',
+                'price_new',
+                'currency',
+                'volume',
+                'published',
+                'deleted',
+                'position',
+                'on_main',
+                'category_ids',
             ]
         ];
     }
@@ -207,19 +230,19 @@ class Sale extends ActiveRecord
             'country_id' => Yii::t('app', 'Country'),
             'city_id' => Yii::t('app', 'City'),
             'country_code' => 'Показывать для страны',
-            'user_id' => 'User',
-            'user_city_id' => 'User city id',
-            'catalog_type_id' => 'Предмет',
+            'user_id' => Yii::t('app', 'User'),
+            'user_city_id' => Yii::t('app', 'City'),
+            'catalog_type_id' => Yii::t('app', 'Catalog type'),
             'factory_id' => Yii::t('app', 'Factory'),
-            'factory_name' => 'Фабрика (если нет в списке)',
+            'factory_name' => Yii::t('app', 'Фабрика (если нет в списке)'),
             'image_link' => Yii::t('app', 'Image link'),
             'gallery_image' => Yii::t('app', 'Gallery image'),
             'alias' => Yii::t('app', 'Alias'),
-            'article' => 'Артикул',
-            'price' => 'Цена',
-            'price_new' => 'Новая цена',
-            'currency' => 'Валюта',
-            'volume' => 'Объем',
+            'article' => Yii::t('app', 'Артикул'),
+            'price' => Yii::t('app', 'Price'),
+            'price_new' => Yii::t('app', 'New price'),
+            'currency' => Yii::t('app', 'Currency'),
+            'volume' => Yii::t('app', 'Volume'),
             'on_main' => 'На главную',
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
@@ -254,7 +277,34 @@ class Sale extends ActiveRecord
      */
     public function afterSave($insert, $changedAttributes)
     {
-        if ($this->scenario == 'backend') {
+        if ($this->scenario == 'frontend') {
+            // delete relation SaleRelSpecification
+            SaleRelSpecification::deleteAll(['sale_catalog_item_id' => $this->id]);
+
+            // save relation SaleRelSpecification
+            if (Yii::$app->request->getBodyParam('SpecificationValue')) {
+                foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
+                    if (in_array($specification_id, [2, 9]) && $val) {
+                        $model = new SaleRelSpecification();
+
+                        $model->setScenario('backend');
+                        $model->sale_catalog_item_id = $this->id;
+                        $model->specification_id = $val;
+                        $model->val = $specification_id;
+                        $model->save();
+                    } elseif ($specification_id && $val) {
+                        $model = new SaleRelSpecification();
+
+                        $model->setScenario('backend');
+                        $model->sale_catalog_item_id = $this->id;
+                        $model->specification_id = $specification_id;
+                        $model->val = $val;
+
+                        $model->save();
+                    }
+                }
+            }
+        } else if ($this->scenario == 'backend') {
             // delete relation SaleRelSpecification
             SaleRelSpecification::deleteAll(['sale_catalog_item_id' => $this->id]);
 
@@ -272,6 +322,7 @@ class Sale extends ActiveRecord
                 }
             }
         }
+
         parent::afterSave($insert, $changedAttributes);
     }
 
@@ -371,21 +422,23 @@ class Sale extends ActiveRecord
 
         $style = $material = [];
         foreach ($specification as $obj) {
-            if ($obj->parent_id === '9')
+            if ($obj->parent_id === '9') {
                 $style[] = $obj->id;
-
-            if ($obj->parent_id === '2')
+            }
+            if ($obj->parent_id === '2') {
                 $material[] = $obj->id;
+            }
         }
 
         foreach ($this->specificationValue as $v) {
             $mas[$v['specification_id']] = $v['val'];
 
-            if (in_array($v['specification_id'], $style))
+            if (in_array($v['specification_id'], $style)) {
                 $mas['style'] = $v['spec_id'];
-
-            if (in_array($v['specification_id'], $material))
+            }
+            if (in_array($v['specification_id'], $material)) {
                 $mas['material'] = $v['spec_id'];
+            }
         }
 
         return (!empty($mas)) ? $mas : array();
@@ -443,5 +496,25 @@ class Sale extends ActiveRecord
         }
 
         return $imagesSources;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountViews()
+    {
+        return SaleStats::findBase()
+            ->andWhere(['sale_item_id' => $this->id])
+            ->count();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountRequestPhone()
+    {
+        return SalePhoneRequest::findBase()
+            ->andWhere(['sale_item_id' => $this->id])
+            ->count();
     }
 }

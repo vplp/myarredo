@@ -1,12 +1,12 @@
 <?php
 
 use backend\app\bootstrap\ActiveForm;
-use backend\themes\defaults\widgets\Tabs;
+use backend\widgets\Tabs;
 use yii\helpers\Url;
 /**
  * @var $model \backend\modules\location\models\City
  * @var $modelLang \backend\modules\location\models\CityLang
- * @var $form \backend\themes\defaults\widgets\forms\ActiveForm
+ * @var $form \backend\widgets\forms\ActiveForm
  */
 
 $this->context->actionListLinkStatus = Url::to(['/location/city/list',]);

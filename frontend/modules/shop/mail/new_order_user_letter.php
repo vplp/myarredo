@@ -26,29 +26,29 @@ use frontend\modules\catalog\models\Product;
     <div style="background-color:#fff; padding:20px; clear: both; display: block;">
         <p style="color: #591612; font-size: 15px;">Запрошенные товары</p>
 
-        <?php foreach ($order->items as $item): ?>
+        <?php foreach ($order->items as $item) { ?>
             <div style="clear: both; height: 100px;">
                 <div style="float: left;">
 
                     <?= Html::img(
                         'https://www.myarredo.' . $order->city->country->alias . Product::getImageThumb($item->product['image_link']),
                         ['class' => 'width: 140px; max-height: 100px;']
-                    ); ?>
+                    ) ?>
 
                 </div>
                 <div style="float: left; margin: 10px 30px;">
 
                     <?= Html::a(
                         $item->product['lang']['title'],
-                        'https://www.myarredo.' . $order->city->country->alias . Product::getUrl($item->product['alias']),
+                        Product::getUrl($item->product['alias']),
                         ['style' => 'font-weight:bold; color: #000; text-transform: uppercase; text-decoration: underline;']
-                    ); ?>
+                    ) ?>
 
                     <br>
                     <span style="color:#9f8b80; font-size: 14px;"><?= $item->product['factory']['title']; ?></span>
                 </div>
             </div>
-        <?php endforeach; ?>
+        <?php } ?>
 
     </div>
 

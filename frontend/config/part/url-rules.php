@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'gii' => 'gii',
+    '<_m:debug>/<_c:\w+>/<_a:\w+>/' => '<_m>/<_c>/<_a>',
     [
         'pattern' => 'robots',
         'route' => 'seo/robots/index',
@@ -58,6 +60,11 @@ return [
     'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>/sale-product/<product:[\w\-]+>' => 'catalog/template-factory/sale-product',
 
     // Factory product
+    'factory-collections' => 'catalog/factory-collections/list',
+    'factory-collections/create' => 'catalog/factory-collections/create',
+    'factory-collections/update/<id:[\d\-]+>' => 'catalog/factory-collections/update',
+
+    // Factory product
     'factory-product' => 'catalog/factory-product/list',
     'factory-product/create' => 'catalog/factory-product/create',
     'catalog/factory-product/ajax-get-category' => 'catalog/factory-product/ajax-get-category',
@@ -70,10 +77,10 @@ return [
     // Factory promotion
     'factory-promotion' => 'catalog/factory-promotion/list',
     'factory-promotion/create' => 'catalog/factory-promotion/create',
+    'factory-promotion/create-payment/<id:[\d\-]+>' => 'catalog/factory-promotion/create-payment',
+    'factory-promotion/notify' => 'catalog/factory-promotion/notify',
     'factory-promotion/update/<id:[\d\-]+>' => 'catalog/factory-promotion/update',
     'factory-promotion/intrash/<id:[\d\-]+>' => 'catalog/factory-promotion/intrash',
-    'catalog/factory-promotion/ajax-add-product' => 'catalog/factory-promotion/ajax-add-product',
-    'catalog/factory-promotion/ajax-del-product' => 'catalog/factory-promotion/ajax-del-product',
 
     // Partner sale
     'partner/sale' => 'catalog/partner-sale/list',
@@ -87,6 +94,7 @@ return [
     'news/<alias:[\w\-]+>' => 'news/list/index',
     'news' => 'news/list/index',
     'news/article/<alias:[\w\-]+>' => 'news/article/index',
+    'news/article-for-partners/<id:[\d\-]+>' => 'news/article-for-partners/index',
 
     // Module [[Feedback]]
     'page/contact' => 'feedback/feedback/index',

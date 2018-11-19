@@ -10,6 +10,7 @@ use frontend\modules\location\models\{
     Country, City
 };
 use frontend\modules\user\models\Profile;
+
 $bundle = AppAsset::register($this);
 
 /**
@@ -40,11 +41,11 @@ $model->user_agreement = 1;
 
                     <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5 right-border">
                         <div class="form-block-in">
-                            <?= $form->field($model, 'factory_package')
+                            <?php /*$form->field($model, 'factory_package')
                                 ->dropDownList(
                                     Profile::factoryPackageKeyRange(),
                                     ['class' => 'selectpicker']
-                                ) ?>
+                                )*/ ?>
 
                             <?= $form->field($model, 'name_company') ?>
 
@@ -59,8 +60,13 @@ $model->user_agreement = 1;
                                 ->label(false) ?>
 
                             <?= $form->field($model, 'phone')
+                                //+39 (99) 999-99-99
                                 ->widget(\yii\widgets\MaskedInput::className(), [
-                                    'mask' => '+39 (99) 999-99-99',
+                                    'mask' => [
+                                        '+39 (9999) 99999',
+                                        '+39 (9999) 999-999',
+                                        '+39 (9999) 999-9999'
+                                    ],
                                     'clientOptions' => [
                                         'clearIncomplete' => true
                                     ]
@@ -78,10 +84,13 @@ $model->user_agreement = 1;
 
                             <?= $form->field($model, 'password_confirmation')->passwordInput() ?>
 
-                            <?= $form->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])->checkbox([], false)
+                            <?= $form
+                                ->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])
+                                ->checkbox([], false)
                                 ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
 
-                            <?= $form->field($model, 'reCaptcha')
+                            <?= $form
+                                ->field($model, 'reCaptcha')
                                 ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
                                 ->label(false) ?>
 
@@ -95,7 +104,7 @@ $model->user_agreement = 1;
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
                         <div class="text">
-                            <?= Yii::$app->param->getByName('USER_FACTORY_REG_TEXT') ?>
+                            <?php //Yii::$app->param->getByName('USER_FACTORY_REG_TEXT') ?>
                         </div>
                     </div>
                 </div>

@@ -1,11 +1,3 @@
-<?php
-
-/**
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
- */
-?>
-
 <?php $this->beginContent('@app/layouts/main.php'); ?>
 
 <div class="row border-bottom white-bg page-heading">

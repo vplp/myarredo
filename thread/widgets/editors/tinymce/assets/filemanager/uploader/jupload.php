@@ -718,7 +718,7 @@ private function page_start() {
 	if ($_SERVER['REQUEST_METHOD'] == 'HEAD') {
 		// Nothing to do
 
-	} else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+	} elseif ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		// A GET request means: return upload page
 		$this->logDebug('page_start', 'Entering GET management');
 
@@ -752,7 +752,7 @@ private function page_start() {
 			ob_start(array(& $this, 'interceptBeforeUpload'));
 		}
 
-	} else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	} elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// If we got a POST request, this is the real work.
 		if (isset($_GET['errormail'])) {
 			//Hum, an error occurs on server side. Let's manage the debug log, that we just received.

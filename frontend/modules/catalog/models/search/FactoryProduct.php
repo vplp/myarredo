@@ -80,6 +80,8 @@ class FactoryProduct extends FactoryProductModel implements BaseBackendSearchMod
             'factory_id' => $this->factory_id,
         ]);
 
+        $query->innerJoinWith(['lang']);
+
         $query
             ->andFilterWhere(['like', self::tableName() . '.published', $this->published])
             ->andFilterWhere(['like', FactoryProductLang::tableName() . '.title', $this->title])

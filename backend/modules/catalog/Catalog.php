@@ -19,7 +19,7 @@ class Catalog extends \common\modules\catalog\Catalog
 
     public function getMenuItems()
     {
-        $menuItems = [1];
+        $menuItems = [];
 
         if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin', 'catalogEditor'])) {
             $menuItems = [
@@ -36,11 +36,6 @@ class Catalog extends \common\modules\catalog\Catalog
                         'name' => 'Factory product',
                         'position' => 1,
                         'url' => ['/catalog/factory-product/list'],
-                    ],
-                    [
-                        'name' => 'Factory promotion',
-                        'position' => 1,
-                        'url' => ['/catalog/factory-promotion/list'],
                     ],
                     [
                         'name' => 'Compositions',

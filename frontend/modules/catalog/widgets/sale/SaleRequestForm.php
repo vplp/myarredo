@@ -34,14 +34,13 @@ class SaleRequestForm extends Widget
      */
     public function run()
     {
-        $model = new SaleRequest;
+        $model = new SaleRequest();
 
         $model->setScenario('frontend');
 
         $modelSale = Sale::findById($this->sale_item_id);
 
         if ($modelSale != null && $model->load(Yii::$app->getRequest()->post())) {
-
             $model->user_id = Yii::$app->getUser()->id ?? 0;
             $model->sale_item_id = $this->sale_item_id;
             $model->country_id = Yii::$app->city->getCountryId();
@@ -75,7 +74,7 @@ class SaleRequestForm extends Widget
                         Yii::t('app', 'Отправлено')
                     );
 
-                    $model = new SaleRequest;
+                    $model = new SaleRequest();
 
                 } else {
                     $transaction->rollBack();

@@ -4,10 +4,12 @@ namespace frontend\modules\catalog\controllers;
 
 use frontend\modules\location\models\City;
 use Yii;
+use yii\db\Exception;
+use yii\db\Transaction;
 use yii\helpers\{
     ArrayHelper, Url
 };
-use yii\web\Response;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 //
@@ -17,8 +19,11 @@ use frontend\modules\catalog\models\{
     search\FactoryPromotion as filterFactoryPromotionModel,
     FactoryProduct,
     search\FactoryProduct as filterFactoryProductModel,
-    FactoryPromotionRelProduct
+    FactoryPromotionPayment
 };
+//
+use common\components\YandexKassaAPI\actions\ConfirmPaymentAction;
+use common\components\YandexKassaAPI\actions\CreatePaymentAction;
 //
 use thread\actions\{
     ListModel,
@@ -41,13 +46,25 @@ class FactoryPromotionController extends BaseController
 
     /**
      * @return array
+     * @throws \Throwable
      */
     public function behaviors()
     {
+        if (!Yii::$app->getUser()->isGuest &&
+            Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
+            !Yii::$app->getUser()->getIdentity()->profile->factory_id) {
+            throw new ForbiddenHttpException(Yii::t('app', 'Access denied without factory id.'));
+        }
+
         return [
             'AccessControl' => [
                 'class' => AccessControl::class,
                 'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['notify'],
+                        'roles' => ['?'],
+                    ],
                     [
                         'allow' => true,
                         'roles' => ['factory'],
@@ -65,7 +82,7 @@ class FactoryPromotionController extends BaseController
      */
     public function actions()
     {
-        $this->title = Yii::t('app', 'Рекламная компания');
+        $this->title = Yii::t('app', 'Рекламная кампания');
 
         return ArrayHelper::merge(
             parent::actions(),
@@ -81,6 +98,28 @@ class FactoryPromotionController extends BaseController
                     'attribute' => 'deleted',
                     'redirect' => $this->defaultAction,
                 ],
+                'create-payment' => [
+                    'class' => CreatePaymentAction::class,
+                    'orderClass' => FactoryPromotion::className(),
+                    'beforePayment' => function ($order) {
+                        return $order->payment_status == FactoryPromotion::PAYMENT_STATUS_NEW;
+                    }
+                ],
+                'notify' => [
+                    'class' => ConfirmPaymentAction::class,
+                    'orderClass' => FactoryPromotion::className(),
+                    'beforeConfirm' => function ($payment, $order) {
+                        $order->payment_status = $payment->object->paid
+                            ? FactoryPromotion::PAYMENT_STATUS_PAID
+                            : FactoryPromotion::PAYMENT_STATUS_NEW;
+
+                        $order->payment_object = json_encode($payment);
+
+                        $order->setScenario('setPaymentStatus');
+
+                        return $order->save();
+                    }
+                ]
             ]
         );
     }
@@ -97,21 +136,18 @@ class FactoryPromotionController extends BaseController
 
         $filterModelFactoryProduct->load(Yii::$app->getRequest()->get());
 
-        $dataProviderFactoryProduct = $modelFactoryProduct->search(ArrayHelper::merge(Yii::$app->getRequest()->get(), ['pagination' => false]));
+        $dataProviderFactoryProduct = $modelFactoryProduct->search(
+            ArrayHelper::merge(Yii::$app->getRequest()->get(), ['pagination' => false])
+        );
+
         $dataProviderFactoryProduct->sort = false;
 
         $model->scenario = 'frontend';
 
-        if ($model->isNewRecord) {
-            $model->count_of_months = 1;
-            $model->daily_budget = 500;
-        }
-
         if ($model->load(Yii::$app->getRequest()->post())) {
+            /** @var Transaction $transaction */
             $transaction = $model::getDb()->beginTransaction();
             try {
-
-                $model->user_id = Yii::$app->user->identity->id;
                 $model->status = 1;
                 $model->published = 1;
 
@@ -120,7 +156,17 @@ class FactoryPromotionController extends BaseController
                 if ($save) {
                     $transaction->commit();
 
-                    return $this->redirect(Url::toRoute(['/catalog/factory-promotion/update', 'id' => $model->id]));
+                    if (Yii::$app->getRequest()->post('payment')) {
+                        return $this->redirect(Url::toRoute([
+                            '/catalog/factory-promotion/create-payment',
+                            'id' => $model->id
+                        ]));
+                    } else {
+                        return $this->redirect(Url::toRoute([
+                            '/catalog/factory-promotion/update',
+                            'id' => $model->id
+                        ]));
+                    }
                 } else {
                     $transaction->rollBack();
                 }
@@ -154,19 +200,29 @@ class FactoryPromotionController extends BaseController
 
         $filterModelFactoryProduct->load(Yii::$app->getRequest()->get());
 
-        $dataProviderFactoryProduct = $modelFactoryProduct->search(ArrayHelper::merge(Yii::$app->getRequest()->get(), ['pagination' => false]));
+        $dataProviderFactoryProduct = $modelFactoryProduct->search(
+            ArrayHelper::merge(Yii::$app->getRequest()->get(), ['pagination' => false])
+        );
+
         $dataProviderFactoryProduct->sort = false;
 
         $model->scenario = 'frontend';
 
         if ($model->load(Yii::$app->getRequest()->post())) {
+            /** @var Transaction $transaction */
             $transaction = $model::getDb()->beginTransaction();
             try {
-
                 $save = $model->save();
 
                 if ($save) {
                     $transaction->commit();
+
+                    if (Yii::$app->getRequest()->post('payment')) {
+                        return $this->redirect(Url::toRoute([
+                            '/catalog/factory-promotion/create-payment',
+                            'id' => $model->id
+                        ]));
+                    }
                 } else {
                     $transaction->rollBack();
                 }
@@ -183,62 +239,10 @@ class FactoryPromotionController extends BaseController
         }
         $model->city_ids = $cities;
 
-        return $this->render('_form', [
+        return $this->render($model->payment_status == FactoryPromotion::PAYMENT_STATUS_PAID ? 'view' : '_form', [
             'model' => $model,
             'dataProviderFactoryProduct' => $dataProviderFactoryProduct,
             'filterModelFactoryProduct' => $filterModelFactoryProduct,
         ]);
     }
-
-//    /**
-//     * @inheritdoc
-//     */
-//    public function actionAjaxAddProduct()
-//    {
-//        if (Yii::$app->request->isAjax) {
-//            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
-//
-//            $promotion_id = Yii::$app->getRequest()->post('promotion_id');
-//            $catalog_item_id = Yii::$app->getRequest()->post('catalog_item_id');
-//
-//            $model = new FactoryPromotionRelProduct();
-//
-//            $model->setScenario('backend');
-//
-//            $model->promotion_id = $promotion_id;
-//            $model->catalog_item_id = $catalog_item_id;
-//
-//            if ($model->save()) {
-//                return true;
-//            }
-//
-//            return false;
-//        }
-//    }
-
-//    /**
-//     * @inheritdoc
-//     */
-//    public function actionAjaxDelProduct()
-//    {
-//        if (Yii::$app->request->isAjax) {
-//            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
-//
-//            $promotion_id = Yii::$app->getRequest()->post('promotion_id');
-//            $catalog_item_id = Yii::$app->getRequest()->post('catalog_item_id');
-//
-//            $model = FactoryPromotionRelProduct::findBase()
-//                ->where([
-//                    'promotion_id' => $promotion_id,
-//                    'catalog_item_id' => $catalog_item_id,
-//                ])
-//                ->one();
-//
-//            if ($model != null && $model->delete()) {
-//                return true;
-//            }
-//
-//            return false;
-//        }
-//    }
 }

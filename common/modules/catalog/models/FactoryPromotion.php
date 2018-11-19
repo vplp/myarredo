@@ -2,7 +2,7 @@
 
 namespace common\modules\catalog\models;
 
-use common\modules\location\models\City;
+use YandexCheckout\Helpers\Random;
 use Yii;
 use yii\helpers\{
     ArrayHelper
@@ -12,18 +12,28 @@ use voskobovich\behaviors\ManyToManyBehavior;
 use thread\app\base\models\ActiveRecord;
 //
 use common\modules\catalog\Catalog;
+use common\modules\user\models\User;
+use common\modules\location\models\{
+    Country, City
+};
+use common\components\YandexKassaAPI\interfaces\OrderInterface;
 
 /**
  * Class FactoryPromotion
  *
  * @property integer $id
+ * @property integer $factory_id
  * @property integer $user_id
+ * @property string $invoice_id
  * @property integer $country_id
  * @property integer $views
- * @property integer $count_of_months
- * @property double $daily_budget
- * @property double $cost
+ * @property double $amount
+ * @property double $amount_with_vat
  * @property boolean $status
+ * @property string $payment_status
+ * @property integer $start_date_promotion
+ * @property integer $end_date_promotion
+ * @property string $payment_object
  * @property integer $created_at
  * @property integer $updated_at
  * @property boolean $published
@@ -31,15 +41,22 @@ use common\modules\catalog\Catalog;
  * @property array $city_ids
  * @property array $product_ids
  *
+ * @property User $user
+ * @property Factory $factory
+ * @property Country $country
  * @property FactoryPromotionRelCity[] $cities
  * @property FactoryPromotionRelProduct[] $products
  *
  * @package common\modules\catalog\models
  */
-class FactoryPromotion extends ActiveRecord
+class FactoryPromotion extends ActiveRecord implements OrderInterface
 {
+    const PAYMENT_STATUS_NEW = 'new';
+    const PAYMENT_STATUS_PAID = 'paid';
+
     /**
-     * @return string
+     * @return mixed|null|object|string|\yii\db\Connection
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -81,11 +98,27 @@ class FactoryPromotion extends ActiveRecord
     public function rules()
     {
         return [
-            [['user_id'], 'required'],
-            [['user_id', 'country_id', 'views', 'count_of_months', 'daily_budget', 'created_at', 'updated_at', 'position'], 'integer'],
-            [['cost'], 'double'],
+            [['factory_id', 'user_id', 'views'], 'required'],
+            [
+                [
+                    'factory_id',
+                    'user_id',
+                    'country_id',
+                    'views',
+                    'created_at',
+                    'updated_at',
+                    'start_date_promotion',
+                    'end_date_promotion'
+                ],
+                'integer'
+            ],
+            [['invoice_id'], 'string', 'max' => 255],
+            [['payment_object'], 'string'],
+            [['amount', 'amount_with_vat'], 'double'],
             [['status', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['count_of_months', 'daily_budget', 'cost'], 'default', 'value' => '0'],
+            [['payment_status'], 'in', 'range' => array_keys(static::paymentStatusKeyRange())],
+            [['amount', 'amount_with_vat', 'views'], 'default', 'value' => '0'],
+            [['payment_object'], 'default', 'value' => ''],
             [['city_ids', 'product_ids'], 'each', 'rule' => ['integer']],
         ];
     }
@@ -98,27 +131,31 @@ class FactoryPromotion extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'position' => ['position'],
+            'setInvoiceId' => ['invoice_id'],
+            'setPaymentStatus' => [
+                'payment_status',
+                'payment_object',
+                'start_date_promotion',
+                'end_date_promotion'
+            ],
             'backend' => [
+                'factory_id',
                 'user_id',
                 'country_id',
                 'views',
-                'count_of_months',
-                'daily_budget',
-                'cost',
+                'amount',
+                'amount_with_vat',
                 'status',
                 'published',
                 'deleted',
-                'city_ids',
-                'product_ids'
             ],
             'frontend' => [
+                'factory_id',
                 'user_id',
                 'country_id',
                 'views',
-                'count_of_months',
-                'daily_budget',
-                'cost',
+                'amount',
+                'amount_with_vat',
                 'status',
                 'published',
                 'deleted',
@@ -129,45 +166,23 @@ class FactoryPromotion extends ActiveRecord
     }
 
     /**
-     * @return bool
-     */
-    public function beforeValidate()
-    {
-        $cities = [];
-        foreach ($this->city_ids as $country) {
-            if ($country) {
-                $cities = ArrayHelper::merge($cities, $country);
-            }
-        }
-
-        $this->city_ids = $cities;
-
-        return parent::beforeValidate();
-    }
-
-    public function beforeSave($insert)
-    {
-        if ($this->product_ids && $this->id) {
-            FactoryPromotionRelProduct::deleteAll('promotion_id = :id', [':id' => $this->id]);
-        }
-
-        return parent::beforeSave($insert);
-    }
-
-    /**
      * @return array
      */
     public function attributeLabels()
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'factory_id' => Yii::t('app', 'Factory'),
             'user_id' => Yii::t('app', 'User'),
+            'invoice_id',
             'country_id' => Yii::t('app', 'Country'),
-            'views' => Yii::t('app', 'Count of views'),
-            'count_of_months' => 'Кол-во месяцев',
-            'daily_budget' => 'Дневной бюджет',
-            'cost' => Yii::t('app', 'Cost'),
+            'views' => Yii::t('app', 'Сколько показов Ваших товаров вы хотите получить'),
+            'amount' => Yii::t('app', 'Cost'),
+            'amount_with_vat' => Yii::t('app', 'Cost with vat'),
             'status' => Yii::t('app', 'Status'),
+            'payment_status' => Yii::t('app', 'Payment status'),
+            'start_date_promotion' => Yii::t('app', 'Start date promotion'),
+            'end_date_promotion' => Yii::t('app', 'End date promotion'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
@@ -178,6 +193,87 @@ class FactoryPromotion extends ActiveRecord
     }
 
     /**
+     * @return array
+     */
+    public static function paymentStatusKeyRange()
+    {
+        return [
+            static::PAYMENT_STATUS_NEW => Yii::t('app', 'New'),
+            static::PAYMENT_STATUS_PAID => Yii::t('app', 'Paid'),
+        ];
+    }
+
+    /**
+     * @return bool
+     */
+    public function beforeValidate()
+    {
+        if (in_array($this->scenario, ['frontend'])) {
+            $cities = [];
+            foreach ($this->city_ids as $country) {
+                if ($country) {
+                    $cities = ArrayHelper::merge($cities, $country);
+                }
+            }
+
+            $this->city_ids = $cities;
+        }
+
+        return parent::beforeValidate();
+    }
+
+    /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        if (in_array($this->scenario, ['frontend'])) {
+            if ($this->product_ids && $this->id) {
+                FactoryPromotionRelProduct::deleteAll('promotion_id = :id', [':id' => $this->id]);
+            }
+        }
+
+        if (in_array($this->scenario, ['setPaymentStatus'])) {
+            if ($this->payment_status == 'paid') {
+                $start_date = mktime(date("H"), date("i"), 0, date("m"), date("d"), date("Y"));
+                $end_date = mktime(date("H"), date("i"), 0, date("m"), date("d") + 3, date("Y"));
+
+                $this->start_date_promotion = $start_date;
+                $this->end_date_promotion = $end_date;
+            }
+        }
+
+        return parent::beforeSave($insert);
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatusTitle()
+    {
+        return $this->status
+            ? Yii::t('app', 'Активная')
+            : Yii::t('app', 'Завершена');
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentStatusTitle()
+    {
+        return Yii::t('app', ucfirst($this->payment_status));
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCountry()
+    {
+        return $this->hasOne(Country::class, ['id' => 'country_id']);
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getCities()
@@ -185,6 +281,23 @@ class FactoryPromotion extends ActiveRecord
         return $this
             ->hasMany(City::class, ['id' => 'city_id'])
             ->viaTable(FactoryPromotionRelCity::tableName(), ['promotion_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this
+            ->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactory()
+    {
+        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
     }
 
     /**
@@ -207,25 +320,13 @@ class FactoryPromotion extends ActiveRecord
     }
 
     /**
+     * @param int $views
+     * @param int $country
      * @return array
      */
-    public static function getCountOfMonthsRange()
+    public static function getCountOfViews($views = 0, $country = 0)
     {
-        return [
-            1 => 1 . ' ' . Yii::t('app', 'мес.'),
-            2 => 2 . ' ' . Yii::t('app', 'мес.'),
-            3 => 3 . ' ' . Yii::t('app', 'мес.'),
-            4 => 4 . ' ' . Yii::t('app', 'мес.'),
-            5 => 5 . ' ' . Yii::t('app', 'мес.'),
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public static function getCountOfViews()
-    {
-        return [
+        $array = [
             1000 => [2 => 24000, 3 => 20400],
             1400 => [2 => 32000, 3 => 27200],
             1900 => [2 => 40000, 3 => 34000],
@@ -235,19 +336,73 @@ class FactoryPromotion extends ActiveRecord
             4200 => [2 => 72000, 3 => 61200],
             5000 => [2 => 80000, 3 => 68000],
         ];
+
+        if ($country && $views) {
+            return $array[$views][$country];
+        }
+
+        return $array;
     }
 
     /**
-     * @return array
+     * @param string $invoiceId
      */
-    public static function getDailyBudgetRange()
+    public function setInvoiceId($invoiceId)
+    {
+        $this->setScenario('setInvoiceId');
+
+        $this->invoice_id = $invoiceId;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getInvoiceId()
+    {
+        return $this->invoice_id;
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function getPaymentAmount()
+    {
+        return $this->amount_with_vat;
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function getEmail()
+    {
+        return $this->user->email;
+    }
+
+    /**
+     * @return array|int
+     * @throws \Exception
+     */
+    public function getItems()
     {
         return [
-            500 => 500 . ' ' . Yii::t('app', 'руб/день'),
-            800 => 800 . ' ' . Yii::t('app', 'руб/день'),
-            1000 => 1000 . ' ' . Yii::t('app', 'руб/день'),
-            1500 => 1500 . ' ' . Yii::t('app', 'руб/день'),
-            2000 => 2000 . ' ' . Yii::t('app', 'руб/день'),
+            [
+                'description' => 'promotion',
+                'quantity' => 1,
+                'amount' => [
+                    'value' => $this->getPaymentAmount(),
+                    'currency' => "RUB",
+                ],
+                'vat_code' => Random::int(1, 6),
+            ]
         ];
+    }
+
+    /**
+     * @param $invoiceId
+     * @return OrderInterface
+     */
+    public function findByInvoiceId($invoiceId)
+    {
+        return self::find()->where(['invoice_id' => $invoiceId]);
     }
 }

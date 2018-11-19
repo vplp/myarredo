@@ -2,18 +2,13 @@
 
 use yii\helpers\Html;
 
-/**
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
- */
-//$this->title = $name;
+$this->title = $name;
+
 ?>
-<div class="site-error">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<h1><?= $exception->statusCode ?></h1>
+<h3 class="font-bold"><?= Html::encode($this->title) ?></h3>
 
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
-    </div>
-
+<div class="error-desc">
+    <?= nl2br(Html::encode($message)) ?>
 </div>

@@ -57,29 +57,44 @@ class LinkPager extends \yii\widgets\LinkPager
         }
         $buttons = [];
         $currentPage = $this->pagination->getPage();
+
         // first page
         if ($this->firstPageLabel !== false) {
-            $buttons[] = $this->renderPageButton($this->firstPageLabel, 0, $this->firstPageCssClass, $currentPage <= 0,
-                false);
+            $buttons[] = $this->renderPageButton(
+                $this->firstPageLabel,
+                0,
+                $this->firstPageCssClass,
+                $currentPage <= 0,
+                false
+            );
         }
+
         // prev page
         if ($this->prevPageLabel !== false) {
             if (($page = $currentPage - 1) < 0) {
                 $page = 0;
             }
-            $buttons[] = $this->renderPageButton($this->prevPageLabel, $page, $this->prevPageCssClass,
-                $currentPage <= 0, false);
+            $buttons[] = $this->renderPageButton(
+                $this->prevPageLabel,
+                $page,
+                $this->prevPageCssClass,
+                $currentPage <= 0,
+                false
+            );
         }
+
         // page calculations
         list($beginPage, $endPage) = $this->getPageRange();
         $startSeparator = false;
         $endSeparator = false;
         $beginPage++;
         $endPage--;
+
         if ($beginPage != 1) {
             $startSeparator = true;
             $beginPage++;
         }
+
         if ($endPage + 1 != $pageCount - 1) {
             $endSeparator = true;
             $endPage--;
@@ -101,20 +116,35 @@ class LinkPager extends \yii\widgets\LinkPager
             $buttons[] = $this->renderPageButton($this->separator, null, null, true, false);
         }
         // largest page
-        $buttons[] = $this->renderPageButton($pageCount, $pageCount - 1, null, false,
-            $pageCount - 1 == $currentPage);
+        $buttons[] = $this->renderPageButton(
+            $pageCount,
+            $pageCount - 1,
+            null,
+            false,
+            $pageCount - 1 == $currentPage
+        );
         // next page
         if ($this->nextPageLabel !== false) {
             if (($page = $currentPage + 1) >= $pageCount - 1) {
                 $page = $pageCount - 1;
             }
-            $buttons[] = $this->renderPageButton($this->nextPageLabel, $page, $this->nextPageCssClass,
-                $currentPage >= $pageCount - 1, false);
+            $buttons[] = $this->renderPageButton(
+                $this->nextPageLabel,
+                $page,
+                $this->nextPageCssClass,
+                $currentPage >= $pageCount - 1,
+                false
+            );
         }
         // last page
         if ($this->lastPageLabel !== false) {
-            $buttons[] = $this->renderPageButton($this->lastPageLabel, $pageCount - 1, $this->lastPageCssClass,
-                $currentPage >= $pageCount - 1, false);
+            $buttons[] = $this->renderPageButton(
+                $this->lastPageLabel,
+                $pageCount - 1,
+                $this->lastPageCssClass,
+                $currentPage >= $pageCount - 1,
+                false
+            );
         }
         return Html::tag('ul', implode("\n", $buttons), $this->options);
     }

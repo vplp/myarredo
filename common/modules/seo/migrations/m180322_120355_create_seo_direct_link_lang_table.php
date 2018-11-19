@@ -64,7 +64,6 @@ class m180322_120355_create_seo_direct_link_lang_table extends Migration
             ->all();
 
         foreach ($rows as $row) {
-
             $connection = Yii::$app->db;
 
             $connection->createCommand()
@@ -82,7 +81,6 @@ class m180322_120355_create_seo_direct_link_lang_table extends Migration
                 )
                 ->execute();
         }
-
     }
 
     /**

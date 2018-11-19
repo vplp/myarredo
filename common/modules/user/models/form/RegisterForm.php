@@ -24,6 +24,8 @@ use common\modules\location\models\{
  */
 class RegisterForm extends CommonForm
 {
+    public $reCaptcha;
+
     /**
      * @return array
      */
@@ -33,7 +35,7 @@ class RegisterForm extends CommonForm
             [
                 [
                     'password',
-                    'password_confirmation'
+                    'password_confirmation',
                 ],
                 'required'
             ],
@@ -56,6 +58,7 @@ class RegisterForm extends CommonForm
                     'country_id',
                     'city_id',
                     'user_agreement',
+                    'reCaptcha'
                 ],
                 'required',
                 'on' => 'registerPartner'
@@ -69,7 +72,8 @@ class RegisterForm extends CommonForm
                     'country_id',
                     'city_id',
                     'user_agreement',
-                    'factory_package',
+                    //'factory_package',
+                    'reCaptcha'
                 ],
                 'required',
                 'on' => 'registerFactory'
@@ -97,6 +101,18 @@ class RegisterForm extends CommonForm
             [['delivery_to_other_cities', 'user_agreement'], 'in', 'range' => [0, 1]],
             [['country_id', 'city_id'], 'integer'],
             [['country_id', 'city_id', 'delivery_to_other_cities'], 'default', 'value' => 0],
+            [
+                ['password_confirmation'],
+                'compare',
+                'compareAttribute' => 'password',
+                'on' => [
+                    'adminPasswordChange',
+                    'register',
+                    'registerPartner',
+                    'registerFactory'
+                ]
+            ],
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className()]
         ];
 
         if ($this->_username_attribute === 'email') {
@@ -141,6 +157,7 @@ class RegisterForm extends CommonForm
                 'city_id',
                 'delivery_to_other_cities',
                 'user_agreement',
+                'reCaptcha'
             ],
             'registerFactory' => [
                 'username',
@@ -156,7 +173,8 @@ class RegisterForm extends CommonForm
                 'country_id',
                 'city_id',
                 'user_agreement',
-                'factory_package'
+                //'factory_package'
+                'reCaptcha'
             ],
         ];
     }
@@ -329,7 +347,7 @@ class RegisterForm extends CommonForm
             'scenario' => 'userCreate',
             'username' => $this->email,
             'email' => $this->email,
-            'published' => ActiveRecord::STATUS_KEY_OFF,
+            'published' => ActiveRecord::STATUS_KEY_ON,
             'group_id' => Group::FACTORY,
         ]);
 
@@ -377,7 +395,7 @@ class RegisterForm extends CommonForm
             'website' => $this->website,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
-            'factory_package' => $this->factory_package,
+            //'factory_package' => $this->factory_package,
             'preferred_language' => Yii::$app->language,
         ]);
         if ($model->validate()) {

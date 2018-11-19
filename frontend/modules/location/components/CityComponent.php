@@ -90,9 +90,9 @@ class CityComponent extends Component
     {
         if (Yii::$app->language == 'it-IT') {
             $mask = '+39 (99) 999-99-99';
-        } else if (in_array($this->domain, ['by'])) {
+        } elseif (in_array($this->domain, ['by'])) {
             $mask = '+375 (99) 999-99-99';
-        } else if (in_array($this->domain, ['ua'])) {
+        } elseif (in_array($this->domain, ['ua'])) {
             $mask = '+380 (99) 999-99-99';
         } else {
             $mask = '+7 (999) 999-99-99';
@@ -136,12 +136,19 @@ class CityComponent extends Component
             $this->city = City::findByAlias($cityAlias);
 
             if ($this->city == null || in_array($this->city['id'], [1, 2, 4])) {
-                Yii::$app->response->redirect('https://' . 'www.myarredo.' . $this->domain . Yii::$app->request->url, 301);
+                Yii::$app->response->redirect(
+                    'https://' . 'www.myarredo.' . $this->domain . Yii::$app->request->url,
+                    301
+                );
                 Yii::$app->end();
             }
 
             if ($this->city['country']['alias'] != $this->domain) {
-                Yii::$app->response->redirect('https://' . $this->city['alias'] . '.myarredo.' . $this->city['country']['alias'] . Yii::$app->request->url, 301);
+                Yii::$app->response->redirect(
+                    'https://' . $this->city['alias'] . '.myarredo.' .
+                    $this->city['country']['alias'] . Yii::$app->request->url,
+                    301
+                );
                 Yii::$app->end();
             }
 
@@ -158,7 +165,7 @@ class CityComponent extends Component
         if (in_array($this->domain, ['by'])) {
             // minsk
             $this->defaultCityId = 2;
-        } else if (in_array($this->domain, ['ua'])) {
+        } elseif (in_array($this->domain, ['ua'])) {
             // kiev
             $this->defaultCityId = 1;
         } else {

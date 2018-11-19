@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\{
     VerbFilter, AccessControl
 };
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 //
 use frontend\modules\catalog\models\{
@@ -27,9 +28,19 @@ class ProductStatsController extends BaseController
 
     /**
      * @return array
+     * @throws ForbiddenHttpException
+     * @throws \Throwable
      */
     public function behaviors()
     {
+        if (!Yii::$app->getUser()->isGuest &&
+            Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
+            !Yii::$app->getUser()->getIdentity()->profile->factory_id) {
+            throw new ForbiddenHttpException(
+                Yii::t('app', 'Access denied without factory id.')
+            );
+        }
+
         return [
             'verbs' => [
                 'class' => VerbFilter::class,
@@ -63,13 +74,12 @@ class ProductStatsController extends BaseController
 
         $params = Yii::$app->request->get() ?? [];
 
-        if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
             $params['factory_id'] = Yii::$app->getUser()->getIdentity()->profile->factory_id;
         }
 
         $start_date = mktime(0, 0, 0, date("m"), date("d") - 30, date("Y"));
         $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
-
 
         if (!isset($params['start_date'])) {
             $params['start_date'] = date('d-m-Y', $start_date);

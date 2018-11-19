@@ -1,7 +1,7 @@
 <?php
 
 use backend\app\bootstrap\ActiveForm;
-use backend\themes\defaults\widgets\Tabs;
+use backend\widgets\Tabs;
 
 /**
  * @var \backend\modules\catalog\models\Factory $model

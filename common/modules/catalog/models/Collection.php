@@ -14,6 +14,8 @@ use common\modules\catalog\Catalog;
  *
  * @property integer $id
  * @property integer $factory_id
+ * @property integer $user_id
+ * @property string $title
  * @property string $first_letter
  * @property integer $created_at
  * @property integer $updated_at
@@ -21,14 +23,12 @@ use common\modules\catalog\Catalog;
  * @property integer $deleted
  * @property integer $moderation
  *
- * @property CollectionLang $lang
- *
  * @package common\modules\catalog\models
  */
 class Collection extends ActiveRecord
 {
     /**
-     * @return string
+     * @return null|object|string|\yii\db\Connection
      */
     public static function getDb()
     {
@@ -59,11 +59,21 @@ class Collection extends ActiveRecord
     public function rules()
     {
         return [
-            [['factory_id', 'first_letter'], 'required'],
-            [['factory_id', 'created_at', 'updated_at', 'position'], 'integer'],
+            [['factory_id', 'first_letter'], 'required', 'on' => 'backend'],
+            [['factory_id', 'user_id', 'created_at', 'updated_at', 'position'], 'integer'],
             [['published', 'deleted', 'moderation'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['first_letter'], 'string', 'max' => 1],
         ];
+    }
+
+    /**
+     * @param bool $insert
+     * @return bool
+     * @throws \Throwable
+     */
+    public function beforeSave($insert)
+    {
+        return parent::beforeSave($insert);
     }
 
     /**
@@ -71,8 +81,7 @@ class Collection extends ActiveRecord
      */
     public function beforeValidate()
     {
-        $title = (Yii::$app->request->post('CollectionLang'))['title'];
-        $this->first_letter = mb_strtoupper(mb_substr(trim($title), 0, 1, 'UTF-8'), 'UTF-8');
+        $this->first_letter = mb_strtoupper(mb_substr(trim($this->title), 0, 1, 'UTF-8'), 'UTF-8');
 
         return parent::beforeValidate();
     }
@@ -85,7 +94,15 @@ class Collection extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['factory_id', 'first_letter', 'published', 'deleted', 'moderation'],
+            'backend' => [
+                'factory_id',
+                'user_id',
+                'title',
+                'first_letter',
+                'published',
+                'deleted',
+                'moderation'
+            ],
         ];
     }
 
@@ -97,6 +114,8 @@ class Collection extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'factory_id' => Yii::t('app', 'Factory'),
+            'user_id' => Yii::t('app', 'User'),
+            'title' => Yii::t('app', 'Title'),
             'first_letter',
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
@@ -112,15 +131,7 @@ class Collection extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->joinWith(['lang'])->orderBy(CollectionLang::tableName() . '.title');
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLang()
-    {
-        return $this->hasOne(CollectionLang::class, ['rid' => 'id']);
+        return self::find()->orderBy(self::tableName() . '.title');
     }
 
     /**

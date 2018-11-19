@@ -47,6 +47,7 @@ class Order extends OrderModel
      * @param $query
      * @param $params
      * @return ActiveDataProvider
+     * @throws \Throwable
      */
     public function baseSearch($query, $params)
     {
@@ -74,7 +75,7 @@ class Order extends OrderModel
         if (isset($params['city_id']) && is_array($params['city_id'])) {
             $query
                 ->andFilterWhere(['IN', self::tableName() . '.city_id', $params['city_id']]);
-        } else if (isset($params['city_id']) && $params['city_id'] > 0) {
+        } elseif (isset($params['city_id']) && $params['city_id'] > 0) {
             $query
                 ->andFilterWhere([
                     self::tableName() . '.city_id' => $params['city_id'],
@@ -86,16 +87,17 @@ class Order extends OrderModel
 
         if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
             $query
-                ->innerJoinWith(["items.product.factory productFactory"], false)
-                ->andFilterWhere(['IN', 'productFactory.id', $this->factory_id]);
+                ->innerJoinWith(["items.product product"], false)
+                ->andFilterWhere(['IN', 'product.factory_id', $this->factory_id]);
         }
 
         return $dataProvider;
     }
 
     /**
-     * @param array $params
+     * @param $params
      * @return ActiveDataProvider
+     * @throws \Throwable
      */
     public function search($params)
     {
@@ -176,7 +178,6 @@ class Order extends OrderModel
         $customer = Customer::find()->andWhere(['email' => $customerForm['email']])->one();
 
         if ($customer == null) {
-
             $customer = new Customer();
 
             $customer->scenario = 'addNewCustomer';

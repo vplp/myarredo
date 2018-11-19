@@ -110,7 +110,6 @@ class CommonForm extends Model
                 'compareAttribute' => 'password',
                 'on' => ['adminPasswordChange']
             ],
-            // new rules
             [
                 [
                     'first_name',
@@ -127,6 +126,38 @@ class CommonForm extends Model
             [['delivery_to_other_cities, user_agreement'], 'in', 'range' => [0, 1]],
             [['factory_package'], 'in', 'range' => [0, 1, 2]],
             [['country_id', 'city_id'], 'integer'],
+            [
+                [
+                    'username',
+                    'email',
+                    'password',
+                    'password_confirmation',
+                    'first_name',
+                    'last_name',
+                    'phone',
+                    'address',
+                    'name_company',
+                    'website',
+                ],
+                'filter',
+                'filter' => 'trim'
+            ],
+            [
+                [
+                    'username',
+                    'email',
+                    'password',
+                    'password_confirmation',
+                    'first_name',
+                    'last_name',
+                    'phone',
+                    'address',
+                    'name_company',
+                    'website',
+                ],
+                'filter',
+                'filter' => 'strip_tags'
+            ],
         ];
     }
 
@@ -148,15 +179,15 @@ class CommonForm extends Model
             'first_name' => Yii::t('app', 'First name'),
             'last_name' => Yii::t('app', 'Last name'),
             'phone' => Yii::t('app', 'Phone'),
-            'address' => Yii::t('app','Address'),
-            'name_company' => Yii::t('app','Название компании'),
-            'website' => Yii::t('app','Адресс сайта'),
-            'exp_with_italian' => Yii::t('app','Опыт работы с итальянской мебелью, лет'),
-            'country_id' => Yii::t('app','Country'),
-            'city_id' => Yii::t('app','City'),
-            'delivery_to_other_cities' => Yii::t('app','Готов к поставкам мебели в другие города'),
-            'user_agreement' => Yii::t('app','Подтверждаю <a href="/terms-of-use/" target="_blank">пользовательское соглашение</a>'),
-            'factory_package' => Yii::t('app','Package'),
+            'address' => Yii::t('app', 'Address'),
+            'name_company' => Yii::t('app', 'Название компании'),
+            'website' => Yii::t('app', 'Адресс сайта'),
+            'exp_with_italian' => Yii::t('app', 'Опыт работы с итальянской мебелью, лет'),
+            'country_id' => Yii::t('app', 'Country'),
+            'city_id' => Yii::t('app', 'City'),
+            'delivery_to_other_cities' => Yii::t('app', 'Готов к поставкам мебели в другие города'),
+            'user_agreement' => Yii::t('app', 'Подтверждаю <a href="/terms-of-use/" target="_blank">пользовательское соглашение</a>'),
+            'factory_package' => Yii::t('app', 'Package'),
         ];
     }
 

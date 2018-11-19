@@ -1,8 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+//
 use frontend\components\Breadcrumbs;
-
 use frontend\modules\catalog\widgets\filter\SaleFilter;
 
 /**
@@ -64,8 +64,7 @@ $this->title = $this->context->title;
 
                                         <?= frontend\components\LinkPager::widget([
                                             'pagination' => $pages,
-                                        ]);
-                                        ?>
+                                        ]) ?>
 
                                     </div>
                                 </div>

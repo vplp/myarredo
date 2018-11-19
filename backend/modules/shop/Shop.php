@@ -34,8 +34,13 @@ class Shop extends \common\modules\shop\Shop
 //                'url' => ['/shop/payment-methods/list'],
 //            ],
                     [
+                        'name' => 'Factory promotion',
+                        'position' => 1,
+                        'url' => ['/catalog/factory-promotion/list'],
+                    ],
+                    [
                         'name' => 'Orders',
-                        'icon' => 'fa-tasks',
+                        'position' => 2,
                         'url' => ['/shop/order/list'],
                     ]
                 ]
