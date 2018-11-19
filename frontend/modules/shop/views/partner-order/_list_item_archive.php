@@ -9,17 +9,8 @@ use yii\helpers\{
 
 ?>
 
-<div class="hidden-order-in">
-    <div class="flex-product">
+<div class="hidden-order-in ordersanswer-box">
 
-        <?php
-        foreach ($modelOrder->items as $orderItem) {
-            echo $this->render('_list_item_product_archive', [
-                'orderItem' => $orderItem,
-            ]);
-        } ?>
-
-    </div>
     <div class="form-wrap">
 
         <div class="form-group">
@@ -45,6 +36,17 @@ use yii\helpers\{
             echo '<div>' . ($key+1) . ') '.$answer->getAnswerTime() . '</div>';
         } ?>
         </div>
+
+    </div>
+
+    <div class="flex-product orderanswer-cont">
+
+        <?php
+        foreach ($modelOrder->items as $orderItem) {
+            echo $this->render('_list_item_product_archive', [
+                'orderItem' => $orderItem,
+            ]);
+        } ?>
 
     </div>
 </div>
