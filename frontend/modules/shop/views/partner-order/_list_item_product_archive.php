@@ -20,11 +20,11 @@ use frontend\modules\catalog\models\Product;
     </div>
     <table class="char" width="100%">
         <tr>
-            <!-- <td><?= Yii::t('app', 'Предмет') ?></td> -->
             <td colspan="2">
                 <?= Html::a(
                     $orderItem->product['lang']['title'],
-                    Product::getUrl($orderItem->product['alias']),['class' => 'productlink']
+                    Product::getUrl($orderItem->product['alias']),
+                    ['class' => 'productlink']
                 ); ?>
             </td>
         </tr>

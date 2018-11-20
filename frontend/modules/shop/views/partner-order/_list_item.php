@@ -19,40 +19,8 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
         'action' => $modelOrder->getPartnerOrderOnListUrl(),
     ]); ?>
 
-    <div class="hidden-order-in ordersanswer-box">
-        <div class="form-wrap ordersanswer-formcont">
-
-            <?= $form->field($modelOrder, 'comment')
-                ->textarea(['rows' => 6, 'disabled' => true]) ?>
-
-            <?= $form
-                ->field($modelOrderAnswer, 'answer')
-                ->textarea(['rows' => 11, 'disabled' => (!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0) ? false : true]) ?>
-
-            <?= $form
-                ->field($modelOrderAnswer, 'id')
-                ->input('hidden')
-                ->label(false) ?>
-
-            <?= $form
-                ->field($modelOrderAnswer, 'order_id')
-                ->input('hidden', ['value' => $modelOrder->id])
-                ->label(false) ?>
-
-                <?php if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null) {
-                    if ((!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0)) {
-                        echo Html::submitButton(Yii::t('app', 'Save'), [
-                            'class' => 'btn-descr action-save-answer',
-                            'name' => 'action-save-answer',
-                            'value' => 1
-                        ]);
-                    }
-                } else {
-                    echo '<p>Оплатите возможность отвечать на заявки из этого города!</p>';
-                } ?>
-
-            </div>
-        <div class="flex-product orderanswer-cont">
+    <div class="hidden-order-in">
+        <div class="flex-product">
 
             <?php
             foreach ($modelOrder->items as $orderItem) { ?>
@@ -66,37 +34,32 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                     </div>
                     <table class="char" width="100%">
                         <tr>
-                            <!-- <td><?= Yii::t('app', 'Предмет') ?></td> -->
-                            <td colspan="2">
+                            <td><?= Yii::t('app', 'Предмет') ?></td>
+                            <td>
                                 <?= Html::a(
                                     $orderItem->product['lang']['title'],
-                                    Product::getUrl($orderItem->product['alias']),['class' => 'productlink']
+                                    Product::getUrl($orderItem->product['alias'])
                                 ); ?>
                             </td>
                         </tr>
                         <tr>
-                            <td><span class="for-ordertable"><?= Yii::t('app', 'Артикул') ?></span></td>
+                            <td><?= Yii::t('app', 'Артикул') ?></td>
                             <td>
-                                <span class="for-ordertable-descr">
                                 <?= $orderItem->product['article'] ?>
-                                </span>
                             </td>
                         </tr>
                         <tr>
-                            <td><span class="for-ordertable"><?= Yii::t('app', 'Factory') ?></span></td>
-                            <td><span class="for-ordertable-descr"><?= $orderItem->product['factory']['title'] ?></span></td>
-                        </tr>
-                        <tr class="noborder">
-                            <td colspan="2"><span class="for-ordertable"><?= Yii::t('app', 'Цена для клиента') ?></span></td>
+                            <td><?= Yii::t('app', 'Factory') ?></td>
+                            <td><?= $orderItem->product['factory']['title'] ?></td>
                         </tr>
                         <tr>
-                            <td colspan="2">
+                            <td><?= Yii::t('app', 'Цена для клиента') ?></td>
+                            <td>
                                 <?= $form
                                     ->field($orderItem->orderItemPrice, 'price')
                                     ->input('text', [
                                         'name' => 'OrderItemPrice[' . $orderItem->product_id . ']',
-                                        'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true,
-                                        'class' => 'price-input'
+                                        'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true
                                     ])
                                     ->label(false);
                                 ?>
@@ -132,7 +95,39 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
             <?php } ?>
 
         </div>
+        <div class="form-wrap">
+
+            <?= $form->field($modelOrder, 'comment')
+                ->textarea(['rows' => 5, 'disabled' => true]) ?>
+
+            <?= $form
+                ->field($modelOrderAnswer, 'answer')
+                ->textarea(['rows' => 5, 'disabled' => (!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0) ? false : true]) ?>
+
+            <?= $form
+                ->field($modelOrderAnswer, 'id')
+                ->input('hidden')
+                ->label(false) ?>
+
+            <?= $form
+                ->field($modelOrderAnswer, 'order_id')
+                ->input('hidden', ['value' => $modelOrder->id])
+                ->label(false) ?>
+
+        </div>
     </div>
+
+    <?php if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null) {
+        if ((!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0)) {
+            echo Html::submitButton(Yii::t('app', 'Save'), [
+                'class' => 'btn btn-success action-save-answer',
+                'name' => 'action-save-answer',
+                'value' => 1
+            ]);
+        }
+    } else {
+        echo '<p>Оплатите возможность отвечать на заявки из этого города!</p>';
+    } ?>
 
     <?php ActiveForm::end(); ?>
 
@@ -186,4 +181,3 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
     </div>
 
 <?php } ?>
-
