@@ -32,17 +32,25 @@ use frontend\modules\catalog\models\Product;
             <td><span class="for-ordertable"><?= Yii::t('app', 'Артикул') ?></span></td>
             <td>
                 <span class="for-ordertable-descr">
-                <?= $orderItem->product['article'] ?>
+                    <?= $orderItem->product['article'] ?>
                 </span>
             </td>
         </tr>
-        <tr>
-            <td><span class="for-ordertable"><?= Yii::t('app', 'Factory') ?></span></td>
-            <td><span class="for-ordertable-descr"><?= $orderItem->product['factory']['title'] ?></span></td>
+        <tr class="noborder">
+            <td colspan="2" class="spec-pad">
+                <span class="for-ordertable"><?= Yii::t('app', 'Factory') ?></span>
+            </td>
         </tr>
         <tr>
-            <td><span class="for-ordertable"><?= Yii::t('app', 'Цена для клиента') ?></span></td>
-            <td>
+            <td colspan="2" class="spec-pad2">
+                <span class="for-ordertable-descr"><?= $orderItem->product['factory']['title'] ?></span>
+            </td>
+        </tr>
+        <tr class="noborder">
+            <td colspan="2"><span class="for-ordertable"><?= Yii::t('app', 'Цена для клиента') ?></span></td>
+        </tr>
+        <tr>
+            <td colspan="2">
                 <?= $orderItem->orderItemPrice['price'] ?>
             </td>
         </tr>

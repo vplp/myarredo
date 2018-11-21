@@ -19,8 +19,8 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
         'action' => $modelOrder->getPartnerOrderOnListUrl(),
     ]); ?>
 
-    <div class="hidden-order-in">
-        <div class="flex-product">
+    <div class="hidden-order-in ordersanswer-box">
+        <div class="flex-product orderanswer-cont">
 
             <?php
             foreach ($modelOrder->items as $orderItem) { ?>
@@ -34,27 +34,46 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                     </div>
                     <table class="char" width="100%">
                         <tr>
-                            <td><?= Yii::t('app', 'Предмет') ?></td>
-                            <td>
+                            <!-- <td><?= Yii::t('app', 'Предмет') ?></td> -->
+                            <td colspan="2">
                                 <?= Html::a(
                                     $orderItem->product['lang']['title'],
-                                    Product::getUrl($orderItem->product['alias'])
+                                    Product::getUrl($orderItem->product['alias']),
+                                    ['class' => 'productlink']
                                 ); ?>
                             </td>
                         </tr>
                         <tr>
-                            <td><?= Yii::t('app', 'Артикул') ?></td>
+                            <td>
+                                <span class="for-ordertable">
+                                    <?= Yii::t('app', 'Артикул') ?>
+                                </span>
+                            </td>
                             <td>
                                 <?= $orderItem->product['article'] ?>
                             </td>
                         </tr>
-                        <tr>
-                            <td><?= Yii::t('app', 'Factory') ?></td>
-                            <td><?= $orderItem->product['factory']['title'] ?></td>
+                        <tr class="noborder">
+                            <td colspan="2" class="spec-pad">
+                                <span class="for-ordertable">
+                                    <?= Yii::t('app', 'Factory') ?>
+                                </span>
+                            </td>
                         </tr>
                         <tr>
-                            <td><?= Yii::t('app', 'Цена для клиента') ?></td>
-                            <td>
+                            <td colspan="2" class="spec-pad2">
+                                <?= $orderItem->product['factory']['title'] ?>
+                            </td>
+                        </tr>
+                        <tr class="noborder">
+                        <td colspan="2" class="spec-pad">
+                            <span class="for-ordertable">
+                                <?= Yii::t('app', 'Цена для клиента') ?>
+                            </span>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
                                 <?= $form
                                     ->field($orderItem->orderItemPrice, 'price')
                                     ->input('text', [
@@ -165,7 +184,7 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
 <?php } else { ?>
 
     <div class="hidden-order-in">
-        <div class="flex-product">
+        <div class="flex-product orderanswer-cont">
 
             <?php
             foreach ($modelOrder->items as $orderItem) {
