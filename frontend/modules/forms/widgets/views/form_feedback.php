@@ -20,8 +20,6 @@ use yii\helpers\Url;
     ]
 ) ?>
 
-
-
 <div class="modal fade" id="formFeedbackModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
