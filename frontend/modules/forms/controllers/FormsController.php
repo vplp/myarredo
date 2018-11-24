@@ -62,23 +62,23 @@ class FormsController extends BaseController
                         'success',
                         Yii::t('app', 'Отправлено')
                     );
+//
+//                    /**
+//                     * send letter
+//                     */
+//                    Yii::$app
+//                        ->mailer
+//                        ->compose(
+//                            '@app/modules/catalog/mail/form_feedback_letter.php',
+//                            [
+//                                'model' => $model,
+//                            ]
+//                        )
+//                        ->setTo(Yii::$app->params['form_feedback']['setTo'])
+//                        ->setSubject('Связаться с оператором сайта')
+//                        ->send();
 
-                    /**
-                     * send letter
-                     */
-                    Yii::$app
-                        ->mailer
-                        ->compose(
-                            '@app/modules/catalog/mail/form_feedback_letter.php',
-                            [
-                                'model' => $model,
-                            ]
-                        )
-                        ->setTo(Yii::$app->params['form_feedback']['setTo'])
-                        ->setSubject('Связаться с оператором сайта')
-                        ->send();
-
-                    return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
+                    return $this->redirect(Yii::$app->request->referrer ? Yii::$app->request->referrer : Yii::$app->homeUrl);
                 }
             } catch (Exception $e) {
                 Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
