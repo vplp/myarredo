@@ -9,7 +9,7 @@ use yii\helpers\HtmlPurifier;
  *
  * @package frontend\modules\forms\models\form
  */
-Class FormsFeedback extends \common\modules\forms\models\FormsFeedback
+class FormsFeedback extends \common\modules\forms\models\FormsFeedback
 {
     /**
      * @param bool $insert
@@ -17,14 +17,14 @@ Class FormsFeedback extends \common\modules\forms\models\FormsFeedback
      */
     public function beforeSave($insert)
     {
-        $this->HtmlPurifier(['first_name', 'email', 'phone', 'comment']);
+        $this->htmlPurifier(['name', 'email', 'phone', 'comment']);
         return parent::beforeSave($insert);
     }
 
     /**
      * @param array $attributes
      */
-    public function HtmlPurifier(array $attributes)
+    public function htmlPurifier(array $attributes)
     {
         foreach ($attributes as $attribute) {
             $this->{$attribute} = HtmlPurifier::process($this->{$attribute});

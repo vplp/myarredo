@@ -60,7 +60,6 @@ class FormsFeedback extends ActiveRecord
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()

@@ -105,8 +105,7 @@ return [
     'find/<condition:[\w\-]+>' => 'page/find/index',
 
     // Module [[Forms]]
-    'forms/feedbackform/captcha' => 'forms/feedbackform/captcha',
-    'forms/feedbackform/add' => 'forms/feedbackform/add',
+    'forms/feedback' => 'forms/forms/feedback',
 
     // Module [[SEO]]
     'page/sitemap' => 'seo/sitemaphtml/index',

@@ -45,5 +45,8 @@ return [
     'banner' => [
         'class' => \frontend\modules\banner\Banner::class,
     ],
+    'forms' => [
+        'class' => \frontend\modules\forms\Forms::class,
+    ],
     'gridview' => ['class' => 'kartik\grid\Module']
 ];
