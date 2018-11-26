@@ -42,13 +42,17 @@ use yii\helpers\Html;
 <div class="form-group">
     <?= Html::label($model->getAttributeLabel('start_date_promotion')) ?>
     <div class="input-group">
-        <?= date('j.m.Y H:i', $model->start_date_promotion) ?>
+        <?= $model->payment_status == 'paid'
+            ? date('j.m.Y H:i', $model->start_date_promotion)
+            : '-'; ?>
     </div>
 </div>
 <div class="form-group">
     <?= Html::label($model->getAttributeLabel('end_date_promotion')) ?>
     <div class="input-group">
-        <?= date('j.m.Y H:i', $model->end_date_promotion) ?>
+        <?= $model->payment_status == 'paid'
+            ? date('j.m.Y H:i', $model->end_date_promotion)
+            : '-'; ?>
     </div>
 </div>
 <div class="form-group">
