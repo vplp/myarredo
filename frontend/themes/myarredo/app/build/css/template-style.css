@@ -1398,6 +1398,15 @@ h1 {
   .category-page .pageChanger .fa {
     color: #45833A; }
 
+.category-page .this-page .pageChanger {
+  background-color: transparent;
+  margin: 0 5px;
+  transition: 0.3s;
+}
+.category-page .this-page .pageChanger:hover i.fa {
+  color: #469137;
+}
+
 .category-page .filters .one-filter {
   padding: 0;
   border: 1px solid #BDBCB3;
@@ -1448,6 +1457,9 @@ h1 {
     display: flex;
     width: 100%;
     text-decoration: none; }
+    .category-page .filters .one-filter .show-more i.fa.fa-plus {
+      display: none;
+    }
     .category-page .filters .one-filter .show-more.show-class .btn-text:after {
       content: '\f067';
       color: #448339;
