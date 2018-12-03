@@ -82,6 +82,11 @@ return [
     'factory-promotion/update/<id:[\d\-]+>' => 'catalog/factory-promotion/update',
     'factory-promotion/intrash/<id:[\d\-]+>' => 'catalog/factory-promotion/intrash',
 
+    'factory-promotion-payment/invoice' => 'catalog/factory-promotion-payment/invoice',
+    'factory-promotion-payment/result' => 'catalog/factory-promotion-payment/result',
+    'factory-promotion-payment/success' => 'catalog/factory-promotion-payment/success',
+    'factory-promotion-payment/fail' => 'catalog/factory-promotion-payment/fail',
+
     // Partner sale
     'partner/sale' => 'catalog/partner-sale/list',
     'partner/sale/create' => 'catalog/partner-sale/create',

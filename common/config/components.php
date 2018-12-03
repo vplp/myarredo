@@ -109,6 +109,15 @@ return [
         'class' => \common\components\YandexKassaAPI\YandexKassaAPI::class,
         'returnUrl' => 'https://www.myarredo.ru/',
         'shopId' => '518473', //'519736',
-        'key' => 'live_LFY41_Fv20kbUCvAYMS66r3q6aS4r78MX3u2NU7C8To', //'test_PHsoZmISCHfA5FjC6bcUPWyxDSCBS-s6YgQrKMV7TYA',
+        'key' => 'live_LFY41_Fv20kbUCvAYMS66r3q6aS4r78MX3u2NU7C8To',
+        //'key' => 'test_PHsoZmISCHfA5FjC6bcUPWyxDSCBS-s6YgQrKMV7TYA',
     ],
+    'robokassa' => [
+        'class' => \common\components\robokassa\Merchant::class,
+        'baseUrl' => 'https://auth.robokassa.ru/Merchant/Index.aspx',
+        'sMerchantLogin' => 'MYARREDOFAMILY',
+        'sMerchantPass1' => 'o3RIgyHzCzV9Y4rdR5k2',
+        'sMerchantPass2' => 'R69VO6fXmuhfmPfQ5V6Y',
+        'isTest' => true,
+    ]
 ];
