@@ -49,7 +49,7 @@ use common\components\YandexKassaAPI\interfaces\OrderInterface;
  *
  * @package common\modules\catalog\models
  */
-class FactoryPromotion extends ActiveRecord implements OrderInterface
+class FactoryPromotion extends ActiveRecord// implements OrderInterface
 {
     const PAYMENT_STATUS_NEW = 'new';
     const PAYMENT_STATUS_PAID = 'paid';

@@ -45,21 +45,55 @@ class FactoryPromotionPaymentController extends BaseController
     protected $model = FactoryPromotion::class;
 
     /**
+     * @return array
+     * @throws \Throwable
+     */
+    public function behaviors()
+    {
+        if (!Yii::$app->getUser()->isGuest &&
+            Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
+            !Yii::$app->getUser()->getIdentity()->profile->factory_id) {
+            throw new ForbiddenHttpException(Yii::t('app', 'Access denied without factory id.'));
+        }
+
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['result', 'success', 'fail'],
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['factory'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @param $id
      * @return string
      * @throws \yii\base\InvalidConfigException
      */
-    public function actionInvoice()
+    public function actionInvoice($id)
     {
-        $model = new Invoice();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            /** @var \robokassa\Merchant $merchant */
-            $merchant = Yii::$app->get('robokassa');
-            return $merchant->payment($model->sum, $model->id, 'Пополнение счета', null, Yii::$app->user->identity->email);
-        } else {
-            return $this->render('invoice', [
-                'model' => $model,
-            ]);
+        $model = FactoryPromotion::findOne($id);
+
+        if ($model == null) {
+            throw new HttpException(500, "Произошла ошибка исполнения платежа");
         }
+
+        /** @var \robokassa\Merchant $merchant */
+        $merchant = Yii::$app->get('robokassa');
+
+        return $merchant->payment($model->amount, $model->id, 'Оплата рекламной компании', null, Yii::$app->user->identity->email);
     }
 
     /**
@@ -92,7 +126,7 @@ class FactoryPromotionPaymentController extends BaseController
      */
     public function successCallback($merchant, $nInvId, $nOutSum, $shp)
     {
-        $this->loadModel($nInvId)->updateAttributes(['status' => Invoice::STATUS_ACCEPTED]);
+        $this->loadModel($nInvId)->updateAttributes(['status' => FactoryPromotion::STATUS_ACCEPTED]);
         return $this->goBack();
     }
 
@@ -105,7 +139,7 @@ class FactoryPromotionPaymentController extends BaseController
      */
     public function resultCallback($merchant, $nInvId, $nOutSum, $shp)
     {
-        $this->loadModel($nInvId)->updateAttributes(['status' => Invoice::STATUS_SUCCESS]);
+        $this->loadModel($nInvId)->updateAttributes(['status' => FactoryPromotion::STATUS_SUCCESS]);
         return 'OK' . $nInvId;
     }
 
@@ -119,8 +153,8 @@ class FactoryPromotionPaymentController extends BaseController
     public function failCallback($merchant, $nInvId, $nOutSum, $shp)
     {
         $model = $this->loadModel($nInvId);
-        if ($model->status == Invoice::STATUS_PENDING) {
-            $model->updateAttributes(['status' => Invoice::STATUS_FAIL]);
+        if ($model->status == FactoryPromotion::STATUS_PENDING) {
+            $model->updateAttributes(['status' => FactoryPromotion::STATUS_FAIL]);
             return 'Ok';
         } else {
             return 'Status has not changed';
@@ -133,7 +167,7 @@ class FactoryPromotionPaymentController extends BaseController
      */
     protected function loadModel($id)
     {
-        $model = Invoice::find($id);
+        $model = FactoryPromotion::find($id);
         if ($model === null) {
             throw new BadRequestHttpException();
         }
