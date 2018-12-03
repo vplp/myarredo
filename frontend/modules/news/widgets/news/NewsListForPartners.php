@@ -28,7 +28,7 @@ class NewsListForPartners extends Widget
      */
     public function init()
     {
-        $this->model = ArticleForPartners::findBase()->limit(3)->all();
+        $this->model = ArticleForPartners::findListForPartners();
     }
 
     /**

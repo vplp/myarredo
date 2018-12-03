@@ -48,7 +48,7 @@ class ArticleForPartners extends \common\modules\news\models\ArticleForPartners
     /**
      * @return mixed
      */
-    public static function findBase()
+    public static function findListForPartners()
     {
         $subQueryUser = ArticleForPartnersRelUser::find()
             ->select('article_id')
@@ -58,16 +58,25 @@ class ArticleForPartners extends \common\modules\news\models\ArticleForPartners
             ->select('article_id')
             ->andWhere([ArticleForPartnersRelCity::tableName() . '.city_id' => Yii::$app->city->getCityId()]);
 
-        $query = parent::findBase()->enabled();
-
-        $query->andFilterWhere([
-            'or',
-            [self::tableName() . '.show_all' => '1'],
-            ['in', self::tableName() . '.id', $subQueryUser],
-            ['in', self::tableName() . '.id', $subQueryCity]
-        ]);
+        $query = self::findBase()
+            ->andFilterWhere([
+                'or',
+                [self::tableName() . '.show_all' => '1'],
+                ['in', self::tableName() . '.id', $subQueryUser],
+                ['in', self::tableName() . '.id', $subQueryCity]
+            ])
+            ->limit(3)
+            ->all();
 
         return $query;
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function findBase()
+    {
+        return parent::findBase()->enabled();
     }
 
     /**
