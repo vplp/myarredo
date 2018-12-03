@@ -40,6 +40,7 @@ class SaleOnMainPage extends Widget
             ->andWhere([
                 'or',
                 Sale::tableName() . '.on_main = \'1\'',
+                Sale::tableName() . '.on_main = \'0\'',
 //                City::tableName() . '.id = ' . Yii::$app->city->getCityId(),
 //                Country::tableName() . '.id = ' . Yii::$app->city->getCountryId(),
             ])
