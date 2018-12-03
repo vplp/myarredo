@@ -22,6 +22,8 @@ class UserMenu extends Widget
      */
     public function run()
     {
-        return $this->render($this->view, []);
+        if (!Yii::$app->getUser()->isGuest) {
+            return $this->render($this->view, []);
+        }
     }
 }
