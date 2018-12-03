@@ -106,11 +106,21 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
                     'country_id',
                     'views',
                     'created_at',
-                    'updated_at',
-                    'start_date_promotion',
-                    'end_date_promotion'
+                    'updated_at'
                 ],
                 'integer'
+            ],
+            [
+                ['start_date_promotion'],
+                'date',
+                'format' => 'php:' . CatalogModule::getFormatDate(),
+                'timestampAttribute' => 'start_date_promotion'
+            ],
+            [
+                ['end_date_promotion'],
+                'date',
+                'format' => 'php:' . CatalogModule::getFormatDate(),
+                'timestampAttribute' => 'end_date_promotion'
             ],
             [['invoice_id'], 'string', 'max' => 255],
             [['payment_object'], 'string'],
@@ -146,6 +156,9 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
                 'amount',
                 'amount_with_vat',
                 'status',
+                'payment_status',
+                'start_date_promotion',
+                'end_date_promotion',
                 'published',
                 'deleted',
             ],
