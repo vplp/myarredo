@@ -66,6 +66,11 @@ echo GridView::widget([
             'action' => 'published'
         ],
         [
+            'class' => ActionStatusColumn::class,
+            'attribute' => 'on_main',
+            'action' => 'on_main'
+        ],
+        [
             'label' => 'Просмотры товара',
             'format' => 'raw',
             'value' => function ($model) {
