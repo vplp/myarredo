@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 
+use backend\modules\catalog\models\FactoryPromotion;
+
 /**
  * @var \backend\modules\catalog\models\FactoryPromotion $model
  * @var \backend\app\bootstrap\ActiveForm $form
@@ -20,6 +22,7 @@ use yii\helpers\Html;
         ?>
     </div>
 </div>
+
 <div class="form-group">
     <?= Html::label($model->getAttributeLabel('city_ids')) ?>
     <div class="input-group">
@@ -33,37 +36,29 @@ use yii\helpers\Html;
         ?>
     </div>
 </div>
+
 <div class="form-group">
     <?= Html::label($model->getAttributeLabel('amount')) ?>
     <div class="input-group">
         <?= $model->amount ?>
     </div>
 </div>
-<div class="form-group">
-    <?= Html::label($model->getAttributeLabel('start_date_promotion')) ?>
-    <div class="input-group">
-        <?= $model->payment_status == 'paid'
-            ? date('j.m.Y H:i', $model->start_date_promotion)
-            : '-'; ?>
+
+<div class="row control-group">
+    <div class="col-md-6">
+        <?= $form->field($model, 'start_date_promotion')->datePicker($model->getStartDatePromotionTime()) ?>
+    </div>
+    <div class="col-md-6">
+        <?= $form->field($model, 'end_date_promotion')->datePicker($model->getEndDatePromotionTime()) ?>
     </div>
 </div>
-<div class="form-group">
-    <?= Html::label($model->getAttributeLabel('end_date_promotion')) ?>
-    <div class="input-group">
-        <?= $model->payment_status == 'paid'
-            ? date('j.m.Y H:i', $model->end_date_promotion)
-            : '-'; ?>
+
+<div class="row control-group">
+    <div class="col-md-6">
+        <?= $form->field($model, 'status')->dropDownList(FactoryPromotion::statusKeyRange()) ?>
+    </div>
+    <div class="col-md-6">
+        <?= $form->field($model, 'payment_status')->dropDownList(FactoryPromotion::paymentStatusKeyRange()) ?>
     </div>
 </div>
-<div class="form-group">
-    <?= Html::label($model->getAttributeLabel('payment_status')) ?>
-    <div class="input-group">
-        <?= $model->getPaymentStatusTitle() ?>
-    </div>
-</div>
-<div class="form-group">
-    <?= Html::label($model->getAttributeLabel('status')) ?>
-    <div class="input-group">
-        <?= $model->getStatusTitle() ?>
-    </div>
-</div>
+

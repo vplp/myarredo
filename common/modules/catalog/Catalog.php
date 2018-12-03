@@ -191,4 +191,12 @@ class Catalog extends aModule
     {
         return '/uploads';
     }
+
+    /**
+     * @return mixed
+     */
+    public static function getFormatDate()
+    {
+        return Yii::$app->getModule('news')->params['format']['date'];
+    }
 }

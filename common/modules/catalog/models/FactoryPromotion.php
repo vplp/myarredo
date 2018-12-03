@@ -11,7 +11,7 @@ use voskobovich\behaviors\ManyToManyBehavior;
 //
 use thread\app\base\models\ActiveRecord;
 //
-use common\modules\catalog\Catalog;
+use common\modules\catalog\Catalog as CatalogModule;
 use common\modules\user\models\User;
 use common\modules\location\models\{
     Country, City
@@ -60,7 +60,7 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
      */
     public static function getDb()
     {
-        return Catalog::getDb();
+        return CatalogModule::getDb();
     }
 
     /**
@@ -189,6 +189,14 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
             'deleted' => Yii::t('app', 'Deleted'),
             'city_ids' => Yii::t('app', 'Cities'),
             'product_ids' => Yii::t('app', 'Products'),
+        ];
+    }
+
+    public static function statusKeyRange()
+    {
+        return [
+            static::STATUS_KEY_ON => Yii::t('app', 'Активная'),
+            static::STATUS_KEY_OFF => Yii::t('app', 'Завершена')
         ];
     }
 
@@ -404,5 +412,23 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
     public function findByInvoiceId($invoiceId)
     {
         return self::find()->where(['invoice_id' => $invoiceId]);
+    }
+
+    /**
+     * @return string
+     */
+    public function getStartDatePromotionTime()
+    {
+        $format = CatalogModule::getFormatDate();
+        return $this->start_date_promotion == 0 ? date($format) : date($format, $this->start_date_promotion);
+    }
+
+    /**
+     * @return string
+     */
+    public function getEndDatePromotionTime()
+    {
+        $format = CatalogModule::getFormatDate();
+        return $this->end_date_promotion == 0 ? date($format) : date($format, $this->end_date_promotion);
     }
 }
