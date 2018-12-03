@@ -43,7 +43,7 @@ class SaleOnMainPage extends Widget
 //                City::tableName() . '.id = ' . Yii::$app->city->getCityId(),
 //                Country::tableName() . '.id = ' . Yii::$app->city->getCountryId(),
             ])
-            ->cache(7200)
+            //->cache(7200)
             ->limit(12)
             ->all();
 
