@@ -116,8 +116,8 @@ return [
         'class' => \common\components\robokassa\Merchant::class,
         'baseUrl' => 'https://auth.robokassa.ru/Merchant/Index.aspx',
         'sMerchantLogin' => 'MYARREDOFAMILY',
-        'sMerchantPass1' => 'o3RIgyHzCzV9Y4rdR5k2',
-        'sMerchantPass2' => 'R69VO6fXmuhfmPfQ5V6Y',
-        'isTest' => true,
+        'sMerchantPass1' => YII_DEBUG ? 'testE8Sl6Pwc1EOqVO2QJh7T' : 'o3RIgyHzCzV9Y4rdR5k2',
+        'sMerchantPass2' => YII_DEBUG ? 'testXfgDyHnd1P6bfxB91QO5' : 'R69VO6fXmuhfmPfQ5V6Y',
+        'isTest' => YII_DEBUG,
     ]
 ];
