@@ -132,7 +132,7 @@ class FactoryPromotionPaymentController extends BaseController
         $model->payment_status = FactoryPromotion::PAYMENT_STATUS_ACCEPTED;
         $model->save();
 
-        return $this->goBack();
+        return 'Operation of payment is successfully completed'; //$this->goBack();
     }
 
     /**

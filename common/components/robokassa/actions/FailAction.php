@@ -18,7 +18,7 @@ class FailAction extends BaseAction
     public function run()
     {
         if (!isset($_REQUEST['OutSum'], $_REQUEST['InvId'])) {
-            throw new BadRequestHttpException();
+            throw new BadRequestHttpException('bad request');
         }
 
         /** @var \robokassa\Merchant $merchant */

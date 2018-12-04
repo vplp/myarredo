@@ -18,7 +18,7 @@ class ResultAction extends BaseAction
     public function run()
     {
         if (!isset($_REQUEST['OutSum'], $_REQUEST['InvId'], $_REQUEST['SignatureValue'])) {
-            throw new BadRequestHttpException();
+            throw new BadRequestHttpException('bad request');
         }
 
         /** @var \robokassa\Merchant $merchant */
@@ -35,6 +35,6 @@ class ResultAction extends BaseAction
             return $this->callback($merchant, $_REQUEST['InvId'], $_REQUEST['OutSum'], $shp);
         }
 
-        throw new BadRequestHttpException();
+        throw new BadRequestHttpException('bad signature');
     }
 }
