@@ -89,6 +89,10 @@ class FactoryPromotionPaymentController extends BaseController
             throw new HttpException(500, "Произошла ошибка исполнения платежа");
         }
 
+        $model->setScenario('setPaymentStatus');
+        $model->payment_status = FactoryPromotion::PAYMENT_STATUS_PENDING;
+        $model->save();
+
         /** @var \robokassa\Merchant $merchant */
         $merchant = Yii::$app->get('robokassa');
 
@@ -132,7 +136,11 @@ class FactoryPromotionPaymentController extends BaseController
         $model->payment_status = FactoryPromotion::PAYMENT_STATUS_SUCCESS;
         $model->save();
 
-        return 'Operation of payment is successfully completed'; //$this->goBack();
+        return $this->render('success', [
+            'messages' => 'Operation of payment is successfully completed',
+        ]);
+
+        //return 'Operation of payment is successfully completed'; //$this->goBack();
     }
 
     /**
@@ -164,16 +172,21 @@ class FactoryPromotionPaymentController extends BaseController
     public function failCallback($merchant, $nInvId, $nOutSum, $shp)
     {
         $model = $this->loadModel($nInvId);
-        if ($model->payment_status == FactoryPromotion::STATUS_PENDING) {
+
+        if ($model->payment_status == FactoryPromotion::PAYMENT_STATUS_PENDING) {
             //$model->updateAttributes(['payment_status' => FactoryPromotion::PAYMENT_STATUS_FAIL]);
             $model->setScenario('setPaymentStatus');
             $model->payment_status = FactoryPromotion::PAYMENT_STATUS_FAIL;
             $model->save();
 
-            return 'Ok';
+            $messages = 'Ok';
         } else {
-            return 'Status has not changed';
+            $messages = 'Status has not changed';
         }
+
+        return $this->render('fail', [
+            'messages' => $messages,
+        ]);
     }
 
     /**
@@ -182,7 +195,7 @@ class FactoryPromotionPaymentController extends BaseController
      */
     protected function loadModel($id)
     {
-        $model = FactoryPromotion::find()->byId($id)->one();
+        $model = FactoryPromotion::findOne($id);
 
         if ($model === null) {
             throw new BadRequestHttpException();
