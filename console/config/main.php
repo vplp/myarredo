@@ -158,6 +158,7 @@ return ArrayHelper::merge(
                             return [
                                 'loc' => '/product/' . $model['alias'] . '/',
                                 'image_link' => $url . '/' . $model['image_link'],
+                                'title' => $model['lang']['title'],
                             ];
                         }
                     ],

@@ -99,6 +99,7 @@ class SitemapImageController extends Controller
                             "\t\t<loc>" . $city->getSubDomainUrl() . $url['loc'] . "</loc>" . PHP_EOL .
                             "\t\t<image:image>" . PHP_EOL .
                             "\t\t\t<image:loc>" . $city->getSubDomainUrl() . $url['image_link'] . "</image:loc>" . PHP_EOL .
+                            "\t\t\t<image:title>" . $city->getSubDomainUrl() . $url['title'] . "</image:title>" . PHP_EOL .
                             "\t\t</image:image>" . PHP_EOL .
                             "\t</url>" . PHP_EOL;
 
