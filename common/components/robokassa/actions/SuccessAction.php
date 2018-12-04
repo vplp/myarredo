@@ -35,6 +35,6 @@ class SuccessAction extends BaseAction
             return $this->callback($merchant, $_REQUEST['InvId'], $_REQUEST['OutSum'], $shp);
         }
 
-        throw new BadRequestHttpException();
+        throw new BadRequestHttpException('bad signature');
     }
 }
