@@ -125,7 +125,13 @@ class FactoryPromotionPaymentController extends BaseController
      */
     public function successCallback($merchant, $nInvId, $nOutSum, $shp)
     {
-        $this->loadModel($nInvId)->updateAttributes(['status' => FactoryPromotion::PAYMENT_STATUS_ACCEPTED]);
+        //$this->loadModel($nInvId)->updateAttributes(['payment_status' => FactoryPromotion::PAYMENT_STATUS_ACCEPTED]);
+
+        $model = $this->loadModel($nInvId);
+        $model->setScenario('setPaymentStatus');
+        $model->payment_status = FactoryPromotion::PAYMENT_STATUS_ACCEPTED;
+        $model->save();
+
         return $this->goBack();
     }
 
@@ -138,7 +144,13 @@ class FactoryPromotionPaymentController extends BaseController
      */
     public function resultCallback($merchant, $nInvId, $nOutSum, $shp)
     {
-        $this->loadModel($nInvId)->updateAttributes(['status' => FactoryPromotion::PAYMENT_STATUS_SUCCESS]);
+        //$this->loadModel($nInvId)->updateAttributes(['payment_status' => FactoryPromotion::PAYMENT_STATUS_SUCCESS]);
+
+        $model = $this->loadModel($nInvId);
+        $model->setScenario('setPaymentStatus');
+        $model->payment_status = FactoryPromotion::PAYMENT_STATUS_SUCCESS;
+        $model->save();
+
         return 'OK' . $nInvId;
     }
 
@@ -152,8 +164,12 @@ class FactoryPromotionPaymentController extends BaseController
     public function failCallback($merchant, $nInvId, $nOutSum, $shp)
     {
         $model = $this->loadModel($nInvId);
-        if ($model->status == FactoryPromotion::STATUS_PENDING) {
-            $model->updateAttributes(['status' => FactoryPromotion::PAYMENT_STATUS_FAIL]);
+        if ($model->payment_status == FactoryPromotion::STATUS_PENDING) {
+            //$model->updateAttributes(['payment_status' => FactoryPromotion::PAYMENT_STATUS_FAIL]);
+            $model->setScenario('setPaymentStatus');
+            $model->payment_status = FactoryPromotion::PAYMENT_STATUS_FAIL;
+            $model->save();
+
             return 'Ok';
         } else {
             return 'Status has not changed';
@@ -166,10 +182,12 @@ class FactoryPromotionPaymentController extends BaseController
      */
     protected function loadModel($id)
     {
-        $model = FactoryPromotion::find($id);
+        $model = FactoryPromotion::find()->byId($id)->one();
+
         if ($model === null) {
             throw new BadRequestHttpException();
         }
+
         return $model;
     }
 }
