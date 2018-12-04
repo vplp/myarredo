@@ -92,7 +92,7 @@ class FactoryPromotionPaymentController extends BaseController
         /** @var \robokassa\Merchant $merchant */
         $merchant = Yii::$app->get('robokassa');
 
-        return $merchant->payment(/*$model->amount*/100, $model->id, 'Оплата рекламной компании', null, Yii::$app->user->identity->email);
+        return $merchant->payment($model->amount, $model->id, 'Оплата рекламной компании', null, Yii::$app->user->identity->email);
     }
 
     /**
