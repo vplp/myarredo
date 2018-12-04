@@ -129,7 +129,7 @@ class FactoryPromotionPaymentController extends BaseController
 
         $model = $this->loadModel($nInvId);
         $model->setScenario('setPaymentStatus');
-        $model->payment_status = FactoryPromotion::PAYMENT_STATUS_ACCEPTED;
+        $model->payment_status = FactoryPromotion::PAYMENT_STATUS_SUCCESS;
         $model->save();
 
         return 'Operation of payment is successfully completed'; //$this->goBack();
