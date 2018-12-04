@@ -56,20 +56,12 @@ class FormsController extends BaseController
 
                 if ($save) {
                     /**
-                     * message
-                     */
-                    Yii::$app->session->setFlash(
-                        'success',
-                        Yii::t('app', 'Отправлено')
-                    );
-
-                    /**
                      * send letter
                      */
                     Yii::$app
                         ->mailer
                         ->compose(
-                            '@app/modules/catalog/mail/form_feedback_letter.php',
+                            '@app/modules/forms/mail/form_feedback_letter.php',
                             [
                                 'model' => $model,
                             ]
@@ -77,6 +69,14 @@ class FormsController extends BaseController
                         ->setTo(Yii::$app->params['form_feedback']['setTo'])
                         ->setSubject('Связаться с оператором сайта')
                         ->send();
+
+                    /**
+                     * message
+                     */
+                    Yii::$app->session->setFlash(
+                        'success',
+                        Yii::t('app', 'Отправлено')
+                    );
 
                     return $this->redirect(Yii::$app->request->referrer);
                 }

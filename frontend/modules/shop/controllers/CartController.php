@@ -29,17 +29,16 @@ class CartController extends BaseController
      */
     public function actionNotepad()
     {
-        $this->title = Yii::t('app','Мой блокнот');
+        $this->title = Yii::t('app', 'Мой блокнот');
 
-        $model = new CartCustomerForm;
+        $model = new CartCustomerForm();
         $model->setScenario('frontend');
 
         if (Yii::$app->getRequest()->get('order') && Yii::$app->getRequest()->get('order') == 'good') {
             return $this->render('order_success');
         }
 
-        if (
-            $model->load(Yii::$app->getRequest()->post(), 'CartCustomerForm') &&
+        if ($model->load(Yii::$app->getRequest()->post(), 'CartCustomerForm') &&
             $model->validate() &&
             !empty(Yii::$app->shop_cart->items)
         ) {
