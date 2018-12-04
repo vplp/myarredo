@@ -155,11 +155,13 @@ return ArrayHelper::merge(
                             $module = Yii::$app->getModule('catalog');
                             $url = $module->getProductUploadUrl();
 
-                            return [
-                                'loc' => '/product/' . $model['alias'] . '/',
-                                'image_link' => $url . '/' . $model['image_link'],
-                                'title' => $model['lang']['title'],
-                            ];
+                            if ($model['image_link']) {
+                                return [
+                                    'loc' => '/product/' . $model['alias'] . '/',
+                                    'image_link' => $url . '/' . $model['image_link'],
+                                    'title' => $model['lang']['title'],
+                                ];
+                            }
                         }
                     ],
                 ],
