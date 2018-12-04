@@ -18,8 +18,7 @@ use frontend\modules\catalog\models\{
     FactoryPromotion,
     search\FactoryPromotion as filterFactoryPromotionModel,
     FactoryProduct,
-    search\FactoryProduct as filterFactoryProductModel,
-    FactoryPromotionPayment
+    search\FactoryProduct as filterFactoryProductModel
 };
 //
 use common\components\YandexKassaAPI\actions\ConfirmPaymentAction;
@@ -102,7 +101,7 @@ class FactoryPromotionController extends BaseController
                     'class' => CreatePaymentAction::class,
                     'orderClass' => FactoryPromotion::className(),
                     'beforePayment' => function ($order) {
-                        return $order->payment_status == FactoryPromotion::PAYMENT_STATUS_NEW;
+                        return $order->payment_status == FactoryPromotion::PAYMENT_STATUS_PENDING;
                     }
                 ],
                 'notify' => [
@@ -110,8 +109,8 @@ class FactoryPromotionController extends BaseController
                     'orderClass' => FactoryPromotion::className(),
                     'beforeConfirm' => function ($payment, $order) {
                         $order->payment_status = $payment->object->paid
-                            ? FactoryPromotion::PAYMENT_STATUS_PAID
-                            : FactoryPromotion::PAYMENT_STATUS_NEW;
+                            ? FactoryPromotion::PAYMENT_STATUS_SUCCESS
+                            : FactoryPromotion::PAYMENT_STATUS_PENDING;
 
                         $order->payment_object = json_encode($payment);
 
@@ -247,7 +246,7 @@ class FactoryPromotionController extends BaseController
         }
         $model->city_ids = $cities;
 
-        return $this->render($model->payment_status == FactoryPromotion::PAYMENT_STATUS_PAID ? 'view' : '_form', [
+        return $this->render($model->payment_status == FactoryPromotion::PAYMENT_STATUS_SUCCESS ? 'view' : '_form', [
             'model' => $model,
             'dataProviderFactoryProduct' => $dataProviderFactoryProduct,
             'filterModelFactoryProduct' => $filterModelFactoryProduct,

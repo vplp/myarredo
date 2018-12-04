@@ -2,7 +2,7 @@
 
 namespace frontend\modules\catalog\controllers;
 
-use common\components\robokassa\{
+use common\components\robokassa\actions\{
     ResultAction, SuccessAction, FailAction
 };
 use frontend\modules\location\models\City;
@@ -21,8 +21,7 @@ use frontend\modules\catalog\models\{
     FactoryPromotion,
     search\FactoryPromotion as filterFactoryPromotionModel,
     FactoryProduct,
-    search\FactoryProduct as filterFactoryProductModel,
-    FactoryPromotionPayment
+    search\FactoryProduct as filterFactoryProductModel
 };
 //
 use common\components\YandexKassaAPI\actions\ConfirmPaymentAction;
@@ -93,7 +92,7 @@ class FactoryPromotionPaymentController extends BaseController
         /** @var \robokassa\Merchant $merchant */
         $merchant = Yii::$app->get('robokassa');
 
-        return $merchant->payment($model->amount, $model->id, 'Оплата рекламной компании', null, Yii::$app->user->identity->email);
+        return $merchant->payment(/*$model->amount*/1, $model->id, 'Оплата рекламной компании', null, Yii::$app->user->identity->email);
     }
 
     /**
@@ -126,7 +125,7 @@ class FactoryPromotionPaymentController extends BaseController
      */
     public function successCallback($merchant, $nInvId, $nOutSum, $shp)
     {
-        $this->loadModel($nInvId)->updateAttributes(['status' => FactoryPromotion::STATUS_ACCEPTED]);
+        $this->loadModel($nInvId)->updateAttributes(['status' => FactoryPromotion::PAYMENT_STATUS_ACCEPTED]);
         return $this->goBack();
     }
 
@@ -139,7 +138,7 @@ class FactoryPromotionPaymentController extends BaseController
      */
     public function resultCallback($merchant, $nInvId, $nOutSum, $shp)
     {
-        $this->loadModel($nInvId)->updateAttributes(['status' => FactoryPromotion::STATUS_SUCCESS]);
+        $this->loadModel($nInvId)->updateAttributes(['status' => FactoryPromotion::PAYMENT_STATUS_SUCCESS]);
         return 'OK' . $nInvId;
     }
 
@@ -154,7 +153,7 @@ class FactoryPromotionPaymentController extends BaseController
     {
         $model = $this->loadModel($nInvId);
         if ($model->status == FactoryPromotion::STATUS_PENDING) {
-            $model->updateAttributes(['status' => FactoryPromotion::STATUS_FAIL]);
+            $model->updateAttributes(['status' => FactoryPromotion::PAYMENT_STATUS_FAIL]);
             return 'Ok';
         } else {
             return 'Status has not changed';

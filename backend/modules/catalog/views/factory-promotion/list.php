@@ -62,7 +62,7 @@ echo GridView::widget([
         [
             'attribute' => 'start_date_promotion',
             'value' => function ($model) {
-                return $model->payment_status == 'paid'
+                return $model->payment_status == 'success'
                     ? date('j.m.Y H:i', $model->start_date_promotion)
                     : '-';
             },
@@ -72,7 +72,7 @@ echo GridView::widget([
         [
             'attribute' => 'end_date_promotion',
             'value' => function ($model) {
-                return $model->payment_status == 'paid'
+                return $model->payment_status == 'success'
                     ? date('j.m.Y H:i', $model->end_date_promotion)
                     : '-';
             },

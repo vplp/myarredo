@@ -1,6 +1,6 @@
 <?php
 
-namespace common\components\robokassa;
+namespace common\components\robokassa\actions;
 
 use Yii;
 use yii\web\BadRequestHttpException;
@@ -8,11 +8,10 @@ use yii\web\BadRequestHttpException;
 /**
  * Class FailAction
  *
- * @package common\components\robokassa
+ * @package common\components\robokassa\actions
  */
 class FailAction extends BaseAction
 {
-
     /**
      * Runs the action.
      */

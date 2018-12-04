@@ -51,8 +51,10 @@ use common\components\YandexKassaAPI\interfaces\OrderInterface;
  */
 class FactoryPromotion extends ActiveRecord// implements OrderInterface
 {
-    const PAYMENT_STATUS_NEW = 'new';
-    const PAYMENT_STATUS_PAID = 'paid';
+    const PAYMENT_STATUS_PENDING = 'pending';
+    const PAYMENT_STATUS_ACCEPTED = 'accepted';
+    const PAYMENT_STATUS_SUCCESS = 'success';
+    const PAYMENT_STATUS_FAIL = 'fail';
 
     /**
      * @return mixed|null|object|string|\yii\db\Connection
@@ -219,8 +221,10 @@ class FactoryPromotion extends ActiveRecord// implements OrderInterface
     public static function paymentStatusKeyRange()
     {
         return [
-            static::PAYMENT_STATUS_NEW => Yii::t('app', 'New'),
-            static::PAYMENT_STATUS_PAID => Yii::t('app', 'Paid'),
+            static::PAYMENT_STATUS_PENDING => 'pending',
+            static::PAYMENT_STATUS_ACCEPTED => 'accepted',
+            static::PAYMENT_STATUS_SUCCESS => 'success',
+            static::PAYMENT_STATUS_FAIL => 'fail',
         ];
     }
 
@@ -256,7 +260,7 @@ class FactoryPromotion extends ActiveRecord// implements OrderInterface
         }
 
         if (in_array($this->scenario, ['setPaymentStatus'])) {
-            if ($this->payment_status == 'paid') {
+            if ($this->payment_status == 'success') {
                 $start_date = mktime(date("H"), date("i"), 0, date("m"), date("d"), date("Y"));
                 $end_date = mktime(date("H"), date("i"), 0, date("m"), date("d") + 3, date("Y"));
 
