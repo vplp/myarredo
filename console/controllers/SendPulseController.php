@@ -122,8 +122,9 @@ class SendPulseController extends Controller
             $body = $this->renderPartial('letter_new_order_for_partner', ['order' => $modelOrder]);
             $name = 'Новая заявка №' . $modelOrder['id'];
 
-            // send partner campaign
-
+            /**
+             * send partner campaign
+             */
             $response = Yii::$app->sendPulse->createCampaign($senderName, $senderEmail, $subject, $body, $bookId, $name);
 
             $response = (array)$response;
@@ -131,7 +132,10 @@ class SendPulseController extends Controller
             var_dump($response);
 
             if (!isset($response['is_error'])) {
-                //$this->sendNewRequestForFactory($modelOrder);
+                /**
+                 * send factory campaign
+                 */
+                $this->sendNewRequestForFactory($modelOrder);
                 $modelOrder->setScenario('create_campaign');
                 $modelOrder->create_campaign = '1';
                 $modelOrder->save();
@@ -148,13 +152,9 @@ class SendPulseController extends Controller
     private function sendNewRequestForFactory($modelOrder)
     {
         foreach ($modelOrder->items as $item) {
-
-            if (
-                $item->product['factory_id'] &&
+            if ($item->product['factory_id'] &&
                 $item->product['factory'] &&
-                $item->product['factory']['email'] != ''
-            ) {
-
+                $item->product['factory']['email'] != '') {
                 // use factory email
 
                 $senderEmail = $item->product['factory']['email'];
@@ -175,7 +175,6 @@ class SendPulseController extends Controller
                     ->send();
 
             } elseif ($item->product['factory_id']) {
-
                 // use user factory email
 
                 $modelUser = User::findBase()
@@ -186,7 +185,6 @@ class SendPulseController extends Controller
                     ->one();
 
                 if ($modelUser !== null) {
-
                     $senderEmail = $modelUser['email'];
 
                     $this->stdout("Send to factory: " . $senderEmail . " \n", Console::FG_GREEN);
