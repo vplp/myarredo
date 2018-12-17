@@ -53,7 +53,11 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled();
+        return parent::findBase()
+            ->andFilterWhere([
+                self::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
+            ])
+            ->enabled();
     }
 
     /**
@@ -65,10 +69,10 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
-     * Get by alias
-     *
-     * @param string $alias
-     * @return ActiveRecord|null
+     * @param $alias
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findByAlias($alias)
     {
@@ -82,6 +86,8 @@ class Factory extends \common\modules\catalog\models\Factory
     /**
      * @param $alias
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findAllByAlias($alias)
     {
@@ -95,8 +101,6 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
-     * Search
-     *
      * @param $params
      * @return \yii\data\ActiveDataProvider
      */
@@ -162,6 +166,8 @@ class Factory extends \common\modules\catalog\models\Factory
     /**
      * @param array $params
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getWithProduct($params = [])
     {
@@ -290,11 +296,10 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public static function getListLetters()
     {
-        return parent::findBase()
+        return self::findBase()
             ->select([self::tableName() . '.first_letter'])
             ->groupBy(self::tableName() . '.first_letter')
             ->orderBy(self::tableName() . '.first_letter')
-            ->enabled()
             ->all();
     }
 

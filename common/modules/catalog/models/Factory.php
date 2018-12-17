@@ -23,13 +23,13 @@ use common\helpers\Inflector;
  * @property string $first_letter
  * @property string $url
  * @property string $email
- * @property integer $popular
- * @property integer $popular_by
- * @property integer $popular_ua
+ * @property boolean $popular
+ * @property boolean $popular_by
+ * @property boolean $popular_ua
  * @property integer $created_at
  * @property integer $updated_at
- * @property integer $published
- * @property integer $deleted
+ * @property boolean $published
+ * @property boolean $deleted
  * @property integer $novelty
  * @property string $novelty_url
  * @property string $image_link
@@ -37,6 +37,9 @@ use common\helpers\Inflector;
  * @property integer $partner_id
  * @property integer $alternative
  * @property integer $new_price
+ * @property boolean $show_for_ru
+ * @property boolean $show_for_by
+ * @property boolean $show_for_ua
  *
  * @property FactoryLang $lang
  * @property Collection $collection
@@ -49,7 +52,8 @@ use common\helpers\Inflector;
 class Factory extends ActiveRecord
 {
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -92,7 +96,19 @@ class Factory extends ActiveRecord
             [['alias', 'title'], 'required'],
             [['created_at', 'updated_at', 'position', 'partner_id'], 'integer'],
             [
-                ['published', 'deleted', 'position', 'popular_ua', 'popular_by', 'novelty', 'alternative', 'new_price'],
+                [
+                    'published',
+                    'deleted',
+                    'position',
+                    'popular_ua',
+                    'popular_by',
+                    'novelty',
+                    'alternative',
+                    'new_price',
+                    'show_for_ru',
+                    'show_for_by',
+                    'show_for_ua'
+                ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
             ],
@@ -138,7 +154,10 @@ class Factory extends ActiveRecord
                 'alternative',
                 'position',
                 'partner_id',
-                'new_price'
+                'new_price',
+                'show_for_ru',
+                'show_for_by',
+                'show_for_ua'
             ],
         ];
     }
@@ -169,6 +188,9 @@ class Factory extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
             'new_price' => 'Цена требует проверки, есть новый прайс',
+            'show_for_ru' => 'Показывать на ru',
+            'show_for_by' => 'Показывать на by',
+            'show_for_ua' => 'Показывать на ua',
         ];
     }
 

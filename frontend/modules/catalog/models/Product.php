@@ -57,6 +57,7 @@ class Product extends \common\modules\catalog\models\Product
             ->enabled()
             ->andFilterWhere([
                 Product::tableName() . '.removed' => '0',
+                Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
             ]);
     }
 

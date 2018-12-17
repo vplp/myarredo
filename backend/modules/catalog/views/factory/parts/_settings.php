@@ -50,3 +50,14 @@
         <?= $form->switcher($model, 'popular_ua') ?>
     </div>
 </div>
+<div class="row control-group">
+    <div class="col-md-3">
+        <?= $form->switcher($model, 'show_for_ru') ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->switcher($model, 'show_for_by') ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->switcher($model, 'show_for_ua') ?>
+    </div>
+</div>

@@ -225,10 +225,12 @@ class Category extends \common\modules\catalog\models\Category
             return $query
                 ->innerJoinWith(["product"], false)
                 ->innerJoinWith(["product.lang"], false)
+                ->innerJoinWith(["product.factory"], false)
                 ->andFilterWhere([
                     Product::tableName() . '.published' => '1',
                     Product::tableName() . '.deleted' => '0',
                     Product::tableName() . '.removed' => '0',
+                    Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
                 ])
                 ->select([
                     self::tableName() . '.id',
