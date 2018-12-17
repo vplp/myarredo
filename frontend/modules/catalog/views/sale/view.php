@@ -106,7 +106,6 @@ $this->title = $this->context->title;
                                                         $item['url']
                                                     );
                                                 }
-
                                                 ?>
                                             </td>
                                         </tr>
@@ -231,7 +230,7 @@ $('.js-show-num-btn').on('click', function () {
         '/catalog/sale/ajax-get-phone/', 
         {_csrf: $('#token').val(), user_id: $user_id, sale_item_id: $sale_item_id}, 
         function(data){
-            $('.js-show-num').html(data.phone);
+            $('.js-show-num').html('<a href="tel:'+data.phone+'">'+data.phone+'</a>');
             $('.js-show-num-btn').remove();
         }, 
         'json'
