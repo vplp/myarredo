@@ -24,7 +24,9 @@ $this->beginPage();
         foreach ($languages as $alternate) {
             if (Yii::$app->language != $alternate['local']) {
                 $alternatePages[$alternate['local']] = [
-                    'href' => Yii::$app->request->hostInfo . ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') . str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
+                    'href' => Yii::$app->request->hostInfo .
+                        ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') .  '/' .
+                        str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
                     'lang' => substr($alternate['local'], 0, 2),
                     'current' => (Yii::$app->language == $alternate['local']) ? true : false
                 ];
