@@ -19,7 +19,7 @@ $this->beginPage();
 
         <?php
         $languages = Language::getAllByLocate();
-        $current_url = Url::current();
+        $current_url = Yii::$app->request->pathInfo;
 
         foreach ($languages as $alternate) {
             if (Yii::$app->language != $alternate['local']) {
