@@ -220,6 +220,10 @@ class MetaTag extends Component
                 'name' => 'robots',
                 'content' => $this->seo_robots,
             ]);
+            $view->registerLinkTag([
+                'rel' => 'canonical',
+                'href' => Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo
+            ]);
         } elseif (Yii::$app->getRequest()->get('page')) {
             $view->registerMetaTag([
                 'name' => 'robots',
