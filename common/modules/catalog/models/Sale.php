@@ -45,6 +45,7 @@ use common\modules\user\models\User;
  * @property integer $on_main
  * @property string $image_link
  * @property string $gallery_image
+ * @property integer $mark
  *
  * @property SaleLang $lang
  * @property SaleRelCategory[] $category
@@ -59,7 +60,8 @@ use common\modules\user\models\User;
 class Sale extends ActiveRecord
 {
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -127,6 +129,7 @@ class Sale extends ActiveRecord
                     'on_main',
                     'published',
                     'deleted',
+                    'mark',
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
@@ -171,6 +174,7 @@ class Sale extends ActiveRecord
             'deleted' => ['deleted'],
             'on_main' => ['on_main'],
             'setImages' => ['image_link', 'gallery_image'],
+            'setMark' => ['mark'],
             'backend' => [
                 'country_id',
                 'city_id',
@@ -250,6 +254,7 @@ class Sale extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
             'category_ids' => Yii::t('app', 'Category'),
+            'mark' => 'Mark',
         ];
     }
 
@@ -260,10 +265,6 @@ class Sale extends ActiveRecord
      */
     public function beforeSave($insert)
     {
-        if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') {
-            $this->user_id = Yii::$app->getUser()->id;
-        }
-
         if ($this->alias == '') {
             $this->alias = time();
         }

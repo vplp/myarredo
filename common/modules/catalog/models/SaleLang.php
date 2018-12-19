@@ -21,7 +21,8 @@ use common\modules\catalog\Catalog;
 class SaleLang extends ActiveRecordLang
 {
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

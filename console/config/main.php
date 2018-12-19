@@ -79,6 +79,9 @@ return ArrayHelper::merge(
             'cron' => [
                 'class' => \console\controllers\CronController::class,
             ],
+            'catalog-sale' => [
+                'class' => \console\controllers\CatalogSaleController::class,
+            ],
             'stats' => [
                 'class' => \console\controllers\StatsController::class,
             ],

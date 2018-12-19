@@ -15,6 +15,20 @@ use frontend\components\ImageResize;
 class Sale extends \common\modules\catalog\models\Sale
 {
     /**
+     * @param bool $insert
+     * @return bool
+     * @throws \Throwable
+     */
+    public function beforeSave($insert)
+    {
+        if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') {
+            $this->user_id = Yii::$app->getUser()->id;
+        }
+
+        return parent::beforeSave($insert);
+    }
+
+    /**
      * @return mixed
      */
     public static function findBase()

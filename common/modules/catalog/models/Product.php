@@ -69,7 +69,8 @@ use common\modules\user\models\{
 class Product extends ActiveRecord implements iProduct
 {
     /**
-     * @return null|object|string|\yii\db\Connection
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
