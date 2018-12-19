@@ -38,6 +38,9 @@ class RobotsController extends Controller
         echo 'Disallow: *=bestseller*' . PHP_EOL;
         echo 'Disallow: /catalog/*?' . PHP_EOL;
         echo 'Disallow: *price=*' . PHP_EOL;
+        echo 'Disallow: /user/' . PHP_EOL;
+        echo 'Disallow: /shop/' . PHP_EOL;
+        echo 'Allow: /catalog/*?page=*' . PHP_EOL;
 
         echo PHP_EOL . 'Host: https://' . Yii::$app->request->serverName . PHP_EOL;
 
