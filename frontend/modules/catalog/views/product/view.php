@@ -238,6 +238,20 @@ $this->title = $this->context->title;
                     </div>
                 </div>
 
+
+                <div class="best-price">
+                    <div class="container large-container">
+                        <div class="after-text">
+                            <div class="img-container">
+                                <img src="<?= $bundle->baseUrl ?>/img/hand.svg" alt="">
+                            </div>
+                            <div class="text-contain">
+                                <?= Yii::t('app', 'Экономьте время и усилия на поиск по множеству сайтов. Все лучшие и проверенные поставщики собраны в нашей сети.') ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row composition">
                     <div class="col-md-12">
                         <ul class="nav nav-tabs">
@@ -401,14 +415,6 @@ $this->title = $this->context->title;
                                 <div class="descr">
                                     <?= Yii::t('app', 'В сети MY ARREDO FAMILY только проверенные поставщики, которые подтвердили свою надежность.') ?>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="after-text">
-                            <div class="img-container">
-                                <img src="<?= $bundle->baseUrl ?>/img/hand.svg" alt="">
-                            </div>
-                            <div class="text-contain">
-                                <?= Yii::t('app', 'Экономьте время и усилия на поиск по множеству сайтов. Все лучшие и проверенные поставщики собраны в нашей сети.') ?>
                             </div>
                         </div>
                     </div>
