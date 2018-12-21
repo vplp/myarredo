@@ -193,6 +193,9 @@ class MetaTag extends Component
         $this->getDirectModel()->analyze();
         $view = Yii::$app->getView();
 
+        $lang = substr(Yii::$app->language, 0, 2);
+        $lang = $lang != 'ru' ? $lang . '/' : '';
+
         // title_register
         if ($this->seo_title) {
             $view->title = $this->seo_title;
@@ -220,18 +223,20 @@ class MetaTag extends Component
                 'name' => 'robots',
                 'content' => $this->seo_robots,
             ]);
+
             $view->registerLinkTag([
                 'rel' => 'canonical',
-                'href' => Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo
+                'href' => Yii::$app->request->hostInfo . '/' . $lang . Yii::$app->request->pathInfo
             ]);
         } elseif (Yii::$app->getRequest()->get('page')) {
             $view->registerMetaTag([
                 'name' => 'robots',
                 'content' => 'noindex, follow',
             ]);
+
             $view->registerLinkTag([
                 'rel' => 'canonical',
-                'href' => Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo
+                'href' => Yii::$app->request->hostInfo . '/' . $lang . Yii::$app->request->pathInfo
             ]);
         }
 
