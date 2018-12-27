@@ -2,9 +2,11 @@
 
 use yii\helpers\ArrayHelper;
 use frontend\modules\catalog\models\{
-    Category, Product, Factory
+    Category
 };
-
+use console\models\{
+    Product, Factory
+};
 $main = require(dirname(__DIR__, 2) . '/common/config/main.php');
 
 foreach ($main['bootstrap'] as $itemKey => $item) {
