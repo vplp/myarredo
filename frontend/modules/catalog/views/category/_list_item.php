@@ -50,11 +50,18 @@ use frontend\modules\catalog\models\Product;
             </div>
         </div>
 
+        <?php if (!$model['removed'] && $model['price_from'] > 0) { ?>
+            <div class="">
+                <?= Yii::t('app', 'Цена от') ?>:
+                <span><?= $model['price_from']; ?> <span class="currency">€</span></span>
+            </div>
+        <?php } ?>
+
         <object class="btn-block">
             <a class="more-info">
                 <?= Yii::t('app', 'Подробнее') ?>
             </a>
-            
+
             <!--
             <a href="javascript:void(0);" class="get-price">
                 запросить цену
