@@ -6498,10 +6498,14 @@ h1 {
 }
 .prod-pricebox {
   font-size: 14px;
-  font-weight: bold;
   text-align: center;
-  color: #4d8438;
+  color: #535351;
+  font-weight: 600;
   margin-top: -5px;
+}
+.prod-pricebox .for-green {
+  color: #4d8438;
+  font-weight: bold;
 }
 .category-page .cat-prod .one-prod-tile:hover .prod-pricebox {
   margin-top: 5px;
