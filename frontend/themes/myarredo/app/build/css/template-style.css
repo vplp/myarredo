@@ -1616,7 +1616,8 @@ h1 {
     overflow: visible;
     z-index: 5; }
     .category-page .cat-prod .one-prod-tile:hover .tile-prod-name {
-      height: auto; }
+      height: auto;
+     }
     .category-page .cat-prod .one-prod-tile:hover .one-prod-tile-in {
       border-color: #BDBCB3;
       position: relative;
@@ -6500,6 +6501,10 @@ h1 {
   font-weight: bold;
   text-align: center;
   color: #4d8438;
+  margin-top: -5px;
+}
+.category-page .cat-prod .one-prod-tile:hover .prod-pricebox {
+  margin-top: 5px;
 }
 @media (max-width: 1460px) {
   .largex-container {
