@@ -336,6 +336,11 @@ class CategoryController extends BaseController
                 'name' => 'robots',
                 'content' => 'noindex, follow',
             ]);
+        } elseif (Yii::$app->getRequest()->get('page')) {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'robots',
+                'content' => 'index, follow',
+            ]);
         }
 
         $this->pageH1 = ($this->pageH1 != '')

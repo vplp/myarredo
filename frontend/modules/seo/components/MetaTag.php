@@ -228,10 +228,10 @@ class MetaTag extends Component
                 'rel' => 'canonical',
                 'href' => Yii::$app->request->hostInfo . '/' . $lang . Yii::$app->request->pathInfo
             ]);
-        } elseif (Yii::$app->getRequest()->get('page')) {
+        } elseif (Yii::$app->getRequest()->get('page') && !in_array(Yii::$app->controller->id, ['sale', 'category'])) {
             $view->registerMetaTag([
                 'name' => 'robots',
-                'content' => 'noindex, follow',
+                'content' => 'index, follow',
             ]);
 
             $view->registerLinkTag([
