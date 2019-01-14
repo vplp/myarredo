@@ -219,7 +219,10 @@ h1 {
         position: absolute;
         z-index: 5;
         left: 0;
-        right: 0; }
+        right: 0;
+        border-right: 1px solid #BDBCB3;
+        border-bottom: 1px solid #BDBCB3;
+        border-left: 1px solid #BDBCB3; }
       .header .bot-header .navigation .list-level {
         background: #FFFFFF;
         left: 15px;
@@ -1945,7 +1948,8 @@ h1 {
     .prod-card-page .best-price-form .form-control::placeholder {
       color: #535351;
       font-size: 14px; }
-  .prod-card-page .best-price-form .jq-checkbox {
+  .prod-card-page .best-price-form .jq-checkbox,
+  .field-salerequest-user_agreement .jq-checkbox {
     width: 24px;
     height: 24px;
     background: #FFFFFF;
@@ -1953,14 +1957,19 @@ h1 {
     display: inline-flex !important;
     justify-content: center;
     align-items: center; }
-    .prod-card-page .best-price-form .jq-checkbox.checked .jq-checkbox__div {
+    .field-salerequest-user_agreement .jq-checkbox {
+      border: 1px solid #ccc;
+    }
+    .prod-card-page .best-price-form .jq-checkbox.checked .jq-checkbox__div,
+    .field-salerequest-user_agreement .jq-checkbox.checked .jq-checkbox__div {
       background: none;
       box-shadow: none;
       margin: 0;
       width: auto;
       height: auto;
       position: relative; }
-      .prod-card-page .best-price-form .jq-checkbox.checked .jq-checkbox__div:after {
+      .prod-card-page .best-price-form .jq-checkbox.checked .jq-checkbox__div:after,
+      .field-salerequest-user_agreement .jq-checkbox.checked .jq-checkbox__div:after {
         content: '\f00c';
         font-family: 'FontAwesome';
         position: absolute;
@@ -6486,9 +6495,20 @@ h1 {
   margin-top: 35px;
   max-width: 370px;
 }
+.prod-pricebox {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: #4d8438;
+}
 @media (max-width: 1460px) {
   .largex-container {
     padding: 0 20px;
+  }
+}
+@media (max-width: 1200px) {
+  .prod-pricebox {
+    font-size: 12px;
   }
 }
 @media (max-width: 1220px) {
@@ -6532,6 +6552,20 @@ h1 {
   }
   .error-img {
     margin: 0 auto;
+  }
+}
+@media (max-width: 540px) {
+  .factory-list-page .title-mark .letter-nav {
+    height: auto;
+  }
+  .letter-nav>.container .letter-select {
+    flex-wrap: wrap;
+  }
+  .letter-nav>.container .letter-select li {
+    margin-right: 8px;
+  }
+  .factory-list-page .title-mark .letter-nav>.container .letter-select a {
+    font-size: 20px;
   }
 }
 @media (max-width: 530px) {

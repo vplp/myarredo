@@ -44,7 +44,7 @@ use frontend\modules\catalog\models\{
                 </div>
 
                 <?php if (count($cities) > 10) { ?>
-                    <a href="javascript:void(0);" class="show-all-sub show-more" data-variant="Скрыть">
+                    <a href="javascript:void(0);" class="show-all-sub show-more show-class" data-variant="Скрыть">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                         <span class="btn-text"><?= Yii::t('app', 'Показать все города') ?></span>
                     </a>
