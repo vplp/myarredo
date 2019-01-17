@@ -65,11 +65,11 @@ class DeleteAction extends Action
                 );
                 $hashFile = $hash . '/' . $file;
                 $filename = FileHelper::normalizePath($this->path . '/' . $hashFile);
+
+                chmod($this->path . '/' . $file, 0755);
             }
 
             $result['$filename'] = $filename;
-
-            chmod($filename, 0755);
 
             if (is_file($filename) && unlink($filename)) {
                 $result['success'] = 1;
