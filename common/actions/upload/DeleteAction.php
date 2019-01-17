@@ -64,9 +64,11 @@ class DeleteAction extends Action
                     md5($file)
                 );
                 $hashFile = $hash . '/' . $file;
+                $result['path'] = $this->path . '/' . $hashFile;
                 $filename = FileHelper::normalizePath($this->path . '/' . $hashFile);
             }
 
+            $result['$file'] = $file;
             $result['$filename'] = $filename;
 
             if (is_file($filename) && unlink($filename)) {
