@@ -65,8 +65,6 @@ class DeleteAction extends Action
                 );
                 $hashFile = $hash . '/' . $file;
                 $filename = FileHelper::normalizePath($this->path . '/' . $hashFile);
-
-                chmod($this->path . '/' . $file, 0755);
             }
 
             $result['$filename'] = $filename;
