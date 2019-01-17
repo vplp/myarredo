@@ -58,13 +58,10 @@ class DeleteAction extends Action
             $filename = FileHelper::normalizePath($this->path . '/' . $file);
 
             if ($this->useHashPath) {
-                $path_parts = pathinfo($file);
-                $result['$path_parts'] = $path_parts;
-
                 $hash = preg_replace(
                     "%^(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})%ius",
                     "$1/$2/$3/$4/$5/$6/$7",
-                    md5($path_parts['filename'])
+                    md5($file)
                 );
                 $hashFile = $hash . '/' . $file;
                 $filename = FileHelper::normalizePath($this->path . '/' . $hashFile);

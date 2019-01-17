@@ -98,6 +98,8 @@ class UploadAction extends Action
 
             $model->addRule('file', $this->_validator, $this->validatorOptions);
 
+            $result = [];
+
             if ($model->validate()) {
                 if ($this->unique === true) {
                     $model->file->name = uniqid() .
@@ -107,6 +109,7 @@ class UploadAction extends Action
                 }
 
                 if ($this->useHashPath) {
+                    $result['name'] = $model->file->name;
                     $hash = preg_replace(
                         "%^(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})%ius",
                         "$1/$2/$3/$4/$5/$6/$7",
@@ -122,18 +125,15 @@ class UploadAction extends Action
                 }
 
                 if ($model->file->saveAs($this->path . $model->file->name)) {
-                    $result = [
-                        'key' => $model->file->name,
-                        'caption' => $model->file->name,
-                        'name' => $model->file->name
-                    ];
-
+                    $result['key'] = $model->file->name;
+                    $result['caption'] = $model->file->name;
+                    $result['name'] = $model->file->name;
                 } else {
-                    $result = ['error' => 'Can\'t upload file'];
+                    $result['error'] = 'Can\'t upload file';
                 }
 
             } else {
-                $result = ['error' => $model->getErrors()];
+                $result['error'] = $model->getErrors();
             }
 
             if (\Yii::$app->getRequest()->isAjax) {
