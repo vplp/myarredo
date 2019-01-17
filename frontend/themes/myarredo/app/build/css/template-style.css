@@ -1591,7 +1591,8 @@ h1 {
     background-size: 400%;
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(60px); }
+    filter: blur(60px);
+    opacity: 0.2; }
   .category-page .cat-prod .one-prod-tile .prod-infoblock {
     background: #FFFFFF;
     width: 80%;
@@ -1609,7 +1610,7 @@ h1 {
     color: #535351;
     font-size: 14px;
     font-weight: 600;
-    height: 90px; }
+    height: 70px; }
   .category-page .cat-prod .one-prod-tile:hover {
     border: none;
     box-shadow: none;
@@ -1873,7 +1874,8 @@ h1 {
       position: absolute;
       z-index: -1;
       opacity: 0.7;
-      filter: blur(60px); }
+      filter: blur(60px);
+      opacity: 0.2; }
     .prod-card-page #prod-slider .nav-cont .thumb-item img {
       display: block;
       max-width: 100%;
