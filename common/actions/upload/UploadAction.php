@@ -89,7 +89,6 @@ class UploadAction extends Action
     public function run()
     {
         if (Yii::$app->request->isPost) {
-
             if (!empty($this->getParamName) && Yii::$app->getRequest()->get($this->getParamName)) {
                 $this->paramName = Yii::$app->getRequest()->get($this->getParamName);
             }
@@ -123,7 +122,6 @@ class UploadAction extends Action
                 }
 
                 if ($model->file->saveAs($this->path . $model->file->name)) {
-
                     $result = [
                         'key' => $model->file->name,
                         'caption' => $model->file->name,
