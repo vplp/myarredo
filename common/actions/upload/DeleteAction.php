@@ -59,7 +59,7 @@ class DeleteAction extends Action
 
             if ($this->useHashPath) {
                 $path_parts = pathinfo($file);
-                $result['$filename'] = $path_parts;
+                $result['$path_parts'] = $path_parts;
 
                 $hash = preg_replace(
                     "%^(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})%ius",
