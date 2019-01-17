@@ -55,13 +55,17 @@ class DeleteAction extends Action
         $result = ['success' => 0];
 
         if (($file = Yii::$app->getRequest()->post($this->paramName))) {
-
             $filename = FileHelper::normalizePath($this->path . '/' . $file);
 
             if ($this->useHashPath) {
-                $hash = preg_replace("%^(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})%ius", "$1/$2/$3/$4/$5/$6/$7", md5($file));
+                $hash = preg_replace(
+                    "%^(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})%ius",
+                    "$1/$2/$3/$4/$5/$6/$7",
+                    md5($file)
+                );
                 $hashFile = $hash . '/' . $file;
                 $filename = FileHelper::normalizePath($this->path . '/' . $hashFile);
+                $result['$filename'] = $filename;
             }
 
             if (is_file($filename) && unlink($filename)) {
