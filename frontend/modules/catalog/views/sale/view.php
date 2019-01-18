@@ -213,11 +213,12 @@ $this->title = $this->context->title;
                         </div>
                     </div>
 
-                    <?= $this->render('parts/_product_by_factory', [
+                    <?= $this->render('@app/modules/catalog/views/product/parts/_product_by_factory', [
                         'factory' => $model['factory'],
                         'types' => $model['types'],
                         'models' => Product::getProductByFactory($model['factory_id'], $model['catalog_type_id'])
                     ]) ?>
+
                 </div>
             </div>
         </div>
