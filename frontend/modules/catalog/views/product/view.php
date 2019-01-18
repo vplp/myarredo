@@ -238,7 +238,6 @@ $this->title = $this->context->title;
                     </div>
                 </div>
 
-
                 <div class="best-price">
                     <div class="container large-container">
                         <div class="after-text">

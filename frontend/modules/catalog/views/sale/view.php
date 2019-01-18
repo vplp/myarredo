@@ -6,7 +6,7 @@ use yii\helpers\{
 //
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
-    Factory, Sale
+    Factory, Sale, Product
 };
 use frontend\modules\catalog\widgets\sale\SaleRequestForm;
 use frontend\themes\myarredo\assets\AppAsset;
@@ -201,7 +201,6 @@ $this->title = $this->context->title;
 
                         </div>
 
-
                         <div class="col-md-12">
                             <div class="section-header">
                                 <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
@@ -213,6 +212,12 @@ $this->title = $this->context->title;
                             </div>
                         </div>
                     </div>
+
+                    <?= $this->render('parts/_product_by_factory', [
+                        'factory' => $model['factory'],
+                        'types' => $model['types'],
+                        'models' => Product::getProductByFactory($model['factory_id'], $model['catalog_type_id'])
+                    ]) ?>
                 </div>
             </div>
         </div>
