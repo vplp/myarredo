@@ -7,6 +7,7 @@ use frontend\modules\catalog\models\{
 use console\models\{
     Product, Factory, Sale
 };
+
 $main = require(dirname(__DIR__, 2) . '/common/config/main.php');
 
 foreach ($main['bootstrap'] as $itemKey => $item) {
@@ -153,18 +154,16 @@ return ArrayHelper::merge(
             ],
             'sitemap-sale' => [
                 'class' => \console\controllers\SitemapSaleController::class,
-                'models' => [
-                    [
-                        'class' => Sale::class,
-                        'dataClosure' => function ($model) {
-                            return [
-                                'loc' => '/sale-product/' . $model['alias'] . '/',
-                                'lastmod' => date('c', $model['updated_at']),
-                                'changefreq' => 'daily',
-                                'priority' => 0.5
-                            ];
-                        }
-                    ],
+                'modelName' => [
+                    'class' => Sale::class,
+                    'dataClosure' => function ($model) {
+                        return [
+                            'loc' => '/sale-product/' . $model['alias'] . '/',
+                            'lastmod' => date('c', $model['updated_at']),
+                            'changefreq' => 'daily',
+                            'priority' => 0.5
+                        ];
+                    }
                 ],
             ],
             'sitemap-image' => [

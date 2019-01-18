@@ -26,10 +26,10 @@ class SitemapSaleController extends Controller
     public $countUrlInSitemap = 25000;
 
     /** @var array */
-    public $models = [];
+    public $modelName;
 
     /** @var array */
-    public $urls = [];
+    private $urls = [];
 
     /**
      * Create
@@ -51,81 +51,34 @@ class SitemapSaleController extends Controller
         // list of cities
         $cities = City::findBase()->all();
 
-        // urls
-        $urls = $this->urls;
 
-        foreach ($this->models as $modelName) {
-            if (is_array($modelName)) {
-                $model = new $modelName['class']();
-                if (isset($modelName['behaviors'])) {
-                    $model->attachBehaviors($modelName['behaviors']);
-                }
-            } else {
-                $model = new $modelName();
+        if (is_array($this->modelName)) {
+            $model = new $this->modelName['class']();
+            if (isset($this->modelName['behaviors'])) {
+                $model->attachBehaviors($this->modelName['behaviors']);
             }
+        } else {
+            $model = new $this->modelName();
+        }
 
-            $query = $model::findBase();
+//        $count = count($urls);
+//        $count_files = ceil($count / $this->countUrlInSitemap);
+
+        /** @var $city \frontend\modules\location\models\City */
+
+        foreach ($cities as $city) {
+            // urls
+            $urls = [];
+
+            $query = $model::findBase()->andWhere(['city_id' => $city['id']]);
 
             foreach ($query->batch(1000) as $models) {
                 foreach ($models as $model) {
-                    $urls[] = call_user_func($modelName['dataClosure'], $model);
+                    $urls[] = call_user_func($this->modelName['dataClosure'], $model);
                 }
             }
-        }
 
-        $count = count($urls);
-        $count_files = ceil($count / $this->countUrlInSitemap);
-
-        foreach ($cities as $city) {
-
-            /** @var $city \frontend\modules\location\models\City */
-
-            // create multiple sitemap files
-
-            for ($i = 0; $i < $count_files; $i++) {
-                $filePath = Yii::getAlias($this->filePath . '/sitemap_sale_' . $city['alias'] . '_' . $i . '.xml');
-
-                $handle = fopen($filePath, "w");
-
-                fwrite(
-                    $handle,
-                    '<?xml version="1.0" encoding="UTF-8"?>' .
-                    PHP_EOL .
-                    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL
-                );
-
-                // add domain site
-                $str = "\t<url>" . PHP_EOL .
-                    "\t\t<loc>" . $city->getSubDomainUrl() . "</loc>" . PHP_EOL .
-                    "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>" . PHP_EOL .
-                    "\t\t<changefreq>always</changefreq>" . PHP_EOL .
-                    "\t\t<priority>1</priority>" . PHP_EOL .
-                    "\t</url>" . PHP_EOL;
-
-                fwrite($handle, $str);
-
-                for ($j = $i * $this->countUrlInSitemap; $j < ($i + 1) * $this->countUrlInSitemap; $j++) {
-                    if (isset($urls[$j])) {
-                        $url = $urls[$j];
-
-                        $str = "\t<url>" . PHP_EOL .
-                            "\t\t<loc>" . $city->getSubDomainUrl() . $url['loc'] . "</loc>" . PHP_EOL .
-                            "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
-                            "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
-                            "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
-                            "\t</url>" . PHP_EOL;
-
-                        fwrite($handle, $str);
-                    }
-                }
-
-                fwrite($handle, PHP_EOL . '</urlset>');
-                fclose($handle);
-                chmod($filePath, 0777);
-            }
-
-
-            // create the main sitemap file
+            // create the sitemap sale file
 
             $filePath = Yii::getAlias($this->filePath . '/sitemap_sale_' . $city['alias'] . '.xml');
             $handle = fopen($filePath, "w");
@@ -137,12 +90,16 @@ class SitemapSaleController extends Controller
                 '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
             );
 
-            for ($i = 0; $i < $count_files; $i++) {
-                $link = '/sitemap/sale/sitemap_sale_' . $city['alias'] . '_' . $i . '.xml';
-                $str = PHP_EOL . "\t<sitemap>"
-                    . PHP_EOL . "\t\t<loc>" . $city->getSubDomainUrl() . $link . "</loc>"
-                    . PHP_EOL . "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>"
-                    . PHP_EOL . "\t</sitemap>";
+            for ($i = 0; $i < count($urls); $i++) {
+                $url = $urls[$i];
+
+                $str = PHP_EOL . "\t<url>" . PHP_EOL .
+                    "\t\t<loc>" . $city->getSubDomainUrl() . $url['loc'] . "</loc>" . PHP_EOL .
+                    "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
+                    "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
+                    "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
+                    "\t</url>";
+
                 fwrite($handle, $str);
             }
 
