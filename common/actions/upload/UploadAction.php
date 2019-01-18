@@ -109,7 +109,6 @@ class UploadAction extends Action
                 }
 
                 if ($this->useHashPath) {
-                    $result['_name'] = $model->file->name;
                     $hash = preg_replace(
                         "%^(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})%ius",
                         "$1/$2/$3/$4/$5/$6/$7",

@@ -42,8 +42,9 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
         /** @var Model $model */
         foreach ($models as $model) {
             $model->validate($attributes);
-            foreach ($model->getErrors() as $attribute => $errors)
+            foreach ($model->getErrors() as $attribute => $errors) {
                 $result[Html::getInputId($model, $attribute)] = $errors;
+            }
         }
 
         return $result;

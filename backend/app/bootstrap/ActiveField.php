@@ -98,7 +98,8 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
             foreach ($options['initialPreview'] as $key => $image) {
                 $initImage[] = $image;
                 $initImageConfig[] = "{
-                   key: '" . basename($image) . "',
+                    name: '" . basename($image) . "',
+                    key: '" . $image . "',
                     url: '" . Url::toRoute(['filedelete', 'id' => $this->model->id]) . "'
                 }";
             }
@@ -151,12 +152,12 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
                             console.log(val, aval);
                         $("input[name=\'' . $inputName . '\']").val(aval.join(\',\'));
                 }',
-                /*'filedeleted' => 'function(event, key){
+                'filedeleted' => 'function(event, key){
                     console.log(key);
                  }',
                 'fileclear' => 'function(event){
                     $("input[name=\'' . $inputName . '\']").val("");
-                }',*/
+                }',
             ]
         ]);
         return $this;

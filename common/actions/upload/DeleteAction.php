@@ -58,18 +58,21 @@ class DeleteAction extends Action
             $filename = FileHelper::normalizePath($this->path . '/' . $file);
 
             if ($this->useHashPath) {
-                $hash = preg_replace(
-                    "%^(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})%ius",
-                    "$1/$2/$3/$4/$5/$6/$7",
-                    md5($file)
-                );
-                $hashFile = $hash . '/' . $file;
+//                $hash = preg_replace(
+//                    "%^(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})(.{4})%ius",
+//                    "$1/$2/$3/$4/$5/$6/$7",
+//                    md5($file)
+//                );
+//                $hashFile = $hash . '/' . $file;
+
+                $hashFile = str_replace('uploads/images', '', $file);
+
                 $filename = FileHelper::normalizePath($this->path . '/' . $hashFile);
             }
 
             $result['$filename'] = $filename;
 
-            if (is_file($filename) && unlink($filename)) {
+            if (is_file($filename) /*&& unlink($filename)*/) {
                 $result['success'] = 1;
             } else {
                 $result['error'] = 'Can not delete file';
