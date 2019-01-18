@@ -72,7 +72,7 @@ class DeleteAction extends Action
 
             $result['$filename'] = $filename;
 
-            if (is_file($filename) /*&& unlink($filename)*/) {
+            if (is_file($filename) && unlink($filename)) {
                 $result['success'] = 1;
             } else {
                 $result['error'] = 'Can not delete file';
