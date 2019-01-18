@@ -138,7 +138,7 @@ class SitemapSaleController extends Controller
             );
 
             for ($i = 0; $i < $count_files; $i++) {
-                $link = '/sitemap/sitemap_sale_' . $city['alias'] . '_' . $i . '.xml';
+                $link = '/sitemap/sale/sitemap_sale_' . $city['alias'] . '_' . $i . '.xml';
                 $str = PHP_EOL . "\t<sitemap>"
                     . PHP_EOL . "\t\t<loc>" . $city->getSubDomainUrl() . $link . "</loc>"
                     . PHP_EOL . "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>"
