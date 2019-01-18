@@ -78,7 +78,14 @@ class CategoryController extends BaseController
 
         Yii::$app->metatag->render();
 
-        $this->listSeo();
+        if (!empty($models->getModels())) {
+            $this->listSeo();
+        } else {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'robots',
+                'content' => 'noindex, follow',
+            ]);
+        }
 
         if (empty($models->getModels())) {
             Yii::$app->view->registerMetaTag([
@@ -155,7 +162,7 @@ class CategoryController extends BaseController
     }
 
     /**
-     * @return $this
+     * @inheritdoc
      */
     public function listSeo()
     {

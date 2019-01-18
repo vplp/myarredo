@@ -99,7 +99,14 @@ class SaleController extends BaseController
 
         Yii::$app->metatag->render();
 
-        $this->listSeo();
+        if (!empty($models->getModels())) {
+            $this->listSeo();
+        } else {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'robots',
+                'content' => 'noindex, follow',
+            ]);
+        }
 
         return $this->render('list', [
             'category' => $category,
@@ -241,7 +248,7 @@ class SaleController extends BaseController
     }
 
     /**
-     * @return $this
+     * @inheritdoc
      */
     public function listSeo()
     {
