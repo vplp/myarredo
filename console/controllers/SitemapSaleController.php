@@ -9,15 +9,15 @@ use yii\console\Controller;
 use frontend\modules\location\models\City;
 
 /**
- * Class SitemapController
+ * Class SitemapSaleController
  *
  * @property int $countUrlInSitemap
  *
  * @package console\controllers
  */
-class SitemapController extends Controller
+class SitemapSaleController extends Controller
 {
-    public $filePath = '@root/web/sitemap';
+    public $filePath = '@root/web/sitemap/sale';
 
     /**
      * Количество URL в Sitemap (не более 50 000)
@@ -36,10 +36,14 @@ class SitemapController extends Controller
      */
     public function actionCreate()
     {
-        $this->stdout("Sitemap: start create. \n", Console::FG_GREEN);
+        $this->stdout("SitemapSale: start create. \n", Console::FG_GREEN);
 
         ini_set("memory_limit", "-1");
         set_time_limit(0);
+
+        if (!is_dir(Yii::getAlias($this->filePath))) {
+            mkdir(Yii::getAlias($this->filePath), 0777, true);
+        }
 
         // delete files
         array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
@@ -79,7 +83,7 @@ class SitemapController extends Controller
             // create multiple sitemap files
 
             for ($i = 0; $i < $count_files; $i++) {
-                $filePath = Yii::getAlias($this->filePath . '/sitemap_' . $city['alias'] . '_' . $i . '.xml');
+                $filePath = Yii::getAlias($this->filePath . '/sitemap_sale_' . $city['alias'] . '_' . $i . '.xml');
 
                 $handle = fopen($filePath, "w");
 
@@ -123,7 +127,7 @@ class SitemapController extends Controller
 
             // create the main sitemap file
 
-            $filePath = Yii::getAlias($this->filePath . '/sitemap_' . $city['alias'] . '.xml');
+            $filePath = Yii::getAlias($this->filePath . '/sitemap_sale_' . $city['alias'] . '.xml');
             $handle = fopen($filePath, "w");
 
             fwrite(
@@ -134,7 +138,7 @@ class SitemapController extends Controller
             );
 
             for ($i = 0; $i < $count_files; $i++) {
-                $link = '/sitemap/sitemap_' . $city['alias'] . '_' . $i . '.xml';
+                $link = '/sitemap/sitemap_sale_' . $city['alias'] . '_' . $i . '.xml';
                 $str = PHP_EOL . "\t<sitemap>"
                     . PHP_EOL . "\t\t<loc>" . $city->getSubDomainUrl() . $link . "</loc>"
                     . PHP_EOL . "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>"
@@ -142,19 +146,11 @@ class SitemapController extends Controller
                 fwrite($handle, $str);
             }
 
-            // Add sale file
-            $link = '/sitemap/sale/sitemap_sale_' . $city['alias'] . '.xml';
-            $str = PHP_EOL . "\t<sitemap>"
-                . PHP_EOL . "\t\t<loc>" . $city->getSubDomainUrl() . $link . "</loc>"
-                . PHP_EOL . "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>"
-                . PHP_EOL . "\t</sitemap>";
-            fwrite($handle, $str);
-
             fwrite($handle, PHP_EOL . '</sitemapindex>');
             fclose($handle);
             chmod($filePath, 0777);
         }
 
-        $this->stdout("Sitemap: end create. \n", Console::FG_GREEN);
+        $this->stdout("SitemapSale: end create. \n", Console::FG_GREEN);
     }
 }

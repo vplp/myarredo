@@ -5,7 +5,7 @@ use frontend\modules\catalog\models\{
     Category
 };
 use console\models\{
-    Product, Factory
+    Product, Factory, Sale
 };
 $main = require(dirname(__DIR__, 2) . '/common/config/main.php');
 
@@ -150,6 +150,22 @@ return ArrayHelper::merge(
                         'priority' => 0.5
                     ],
                 ]
+            ],
+            'sitemap-sale' => [
+                'class' => \console\controllers\SitemapSaleController::class,
+                'models' => [
+                    [
+                        'class' => Sale::class,
+                        'dataClosure' => function ($model) {
+                            return [
+                                'loc' => '/sale-product/' . $model['alias'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.5
+                            ];
+                        }
+                    ],
+                ],
             ],
             'sitemap-image' => [
                 'class' => \console\controllers\SitemapImageController::class,
