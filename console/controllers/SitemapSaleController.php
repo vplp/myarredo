@@ -87,7 +87,7 @@ class SitemapSaleController extends Controller
                 $handle,
                 '<?xml version="1.0" encoding="UTF-8"?>' .
                 PHP_EOL .
-                '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL
             );
 
             for ($i = 0; $i < count($urls); $i++) {
@@ -103,7 +103,7 @@ class SitemapSaleController extends Controller
                 fwrite($handle, $str);
             }
 
-            fwrite($handle, PHP_EOL . '</sitemapindex>');
+            fwrite($handle, PHP_EOL . '</urlset>');
             fclose($handle);
             chmod($filePath, 0777);
         }
