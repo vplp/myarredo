@@ -179,8 +179,16 @@ class MetaTag extends Component
             $this->seo_image_url = (!empty($model['image_url'])) ? $model['image_url'] : $this->seo_image_url;
         }
 
-        $this->seo_title = str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), $this->seo_title);
-        $this->seo_description = str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), $this->seo_description);
+        $this->seo_title = str_replace(
+            ['#городе#', '#nella citta#', '#телефон#'],
+            [Yii::$app->city->getCityTitleWhere(), Yii::$app->city->getCityTitleWhere(), Yii::$app->partner->getPartnerPhone()],
+            $this->seo_title
+        );
+        $this->seo_description = str_replace(
+            ['#городе#', '#nella citta#', '#телефон#'],
+            [Yii::$app->city->getCityTitleWhere(), Yii::$app->city->getCityTitleWhere(), Yii::$app->partner->getPartnerPhone()],
+            $this->seo_description
+        );
 
         return $this;
     }

@@ -46,8 +46,8 @@ abstract class BaseController extends Controller
     {
         if (isset($this->directLink['lang']) && $this->directLink['lang']['h1']) {
             $this->pageH1 = str_replace(
-                ['#городе#', '#nella citta#'],
-                Yii::$app->city->getCityTitleWhere(),
+                ['#городе#', '#nella citta#', '#телефон#'],
+                [Yii::$app->city->getCityTitleWhere(), Yii::$app->city->getCityTitleWhere(), Yii::$app->partner->getPartnerPhone()],
                 $this->directLink['lang']['h1']
             );
         }
@@ -64,8 +64,8 @@ abstract class BaseController extends Controller
 
         if (isset($this->directLink['lang']) && $this->directLink['lang']['content']) {
             $content = str_replace(
-                ['#городе#', '#nella citta#'],
-                Yii::$app->city->getCityTitleWhere(),
+                ['#городе#', '#nella citta#', '#телефон#'],
+                [Yii::$app->city->getCityTitleWhere(), Yii::$app->city->getCityTitleWhere(), Yii::$app->partner->getPartnerPhone()],
                 $this->directLink['lang']['content']
             );
         }
