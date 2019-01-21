@@ -1092,7 +1092,7 @@ h1 {
     font-size: 24px;
     line-height: 36px;
     display: flex;
-    margin-top: 90px; }
+    margin-top: 100px; }
   .home-main .best-price .img-container {
     position: relative;
     min-width: 350px;
@@ -1610,7 +1610,8 @@ h1 {
     color: #535351;
     font-size: 14px;
     font-weight: 600;
-    height: 70px; }
+    height: 70px;
+    overflow: hidden; }
   .category-page .cat-prod .one-prod-tile:hover {
     border: none;
     box-shadow: none;
@@ -3869,7 +3870,7 @@ h1 {
   }
   .largex-container h1 {
     margin-top: 0;
-    padding-top: 20px;
+    padding: 20px 15px 0;
     text-align: left;
     max-width: 1400px;
     margin: 0 auto;
@@ -6511,6 +6512,28 @@ h1 {
 }
 .category-page .cat-prod .one-prod-tile:hover .prod-pricebox {
   margin-top: 5px;
+}
+.comp-advanteges p {
+  text-indent: 0;
+}
+.passreset-box {
+  max-width: 1400px;
+  margin: 20px auto -20px;
+  padding: 0 15px 40px;
+}
+.passreset-box #request-password-reset-form {
+  max-width: 300px;
+}
+.btn-green {
+  color: #ffffff;
+  border-color: #448339;
+  background-color: #448339;
+  transition: 0.3s;
+}
+.btn-green:hover, .btn-green:focus {
+  color: #ffffff;
+  border-color: #459338;
+  background-color: #459338;
 }
 @media (max-width: 1460px) {
   .largex-container {

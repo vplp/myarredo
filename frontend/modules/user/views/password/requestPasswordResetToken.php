@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <main>
     <div class="page factory-profile">
-        <div class="container large-container">
+        <div class="largex-container">
 
             <?= Html::tag('h1', $this->title); ?>
 
-            <div class="part-contact">
+            <div class="passreset-box">
 
                 <p>Пожалуйста, заполните свой адрес электронной почты. Здесь будет отправлена ссылка на сброс пароля.</p>
 
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ->label(false) ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
+                    <?= Html::submitButton('Отправить', ['class' => 'btn btn-green']) ?>
                 </div>
 
                 <?php ActiveForm::end(); ?>
