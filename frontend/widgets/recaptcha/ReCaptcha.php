@@ -8,33 +8,13 @@ use yii\helpers\Html;
 use yii\widgets\InputWidget;
 
 /**
- * Yii2 Google reCAPTCHA widget.
+ * Class ReCaptcha
  *
- * For example:
- *
- * ```php
- * <?= $form->field($model, 'reCaptcha')->widget(
- *  ReCaptcha::className(),
- *  ['siteKey' => 'your siteKey']
- * ) ?>
- * ```
- *
- * or
- *
- * ```php
- * <?= ReCaptcha::widget([
- *  'name' => 'reCaptcha',
- *  'siteKey' => 'your siteKey',
- *  'widgetOptions' => ['class' => 'col-sm-offset-3']
- * ]) ?>
- * ```
- *
- * @see https://developers.google.com/recaptcha
  * @package frontend\widgets\recaptcha
  */
 class ReCaptcha extends InputWidget
 {
-    const JS_API_URL = '//www.google.com/recaptcha/api.js';
+    const JS_API_URL = 'https://www.google.com/recaptcha/api.js';
 
     const THEME_LIGHT = 'light';
     const THEME_DARK = 'dark';
@@ -98,16 +78,20 @@ class ReCaptcha extends InputWidget
         $arguments = \http_build_query([
             'render' => $this->siteKey,
             'hl' => $this->getLanguageSuffix(),
-            'render' => 'explicit',
             'onload' => 'recaptchaOnloadCallback',
         ]);
 
         $view->registerJsFile(
             self::JS_API_URL . '?' . $arguments,
-            ['position' => $view::POS_END, 'async' => true, 'defer' => true]
+            ['position' => $view::POS_END]
         );
-        $view->registerJs(
-            <<<'JS'
+
+        $script = <<<JS
+grecaptcha.ready(function() {
+  grecaptcha.execute('$this->siteKey', {action: 'homepage'}).then(function(token) {
+  document.getElementById('.g-recaptcha').value=token;
+  });
+});
 function recaptchaOnloadCallback() {
     "use strict";
     jQuery(".g-recaptcha").each(function () {
@@ -146,8 +130,9 @@ function recaptchaOnloadCallback() {
         }
     });
 }
-JS
-            , $view::POS_END);
+JS;
+
+        $view->registerJs($script, $view::POS_END);
 
         if (Yii::$app->request->isAjax) {
             $view->registerJs(<<<'JS'

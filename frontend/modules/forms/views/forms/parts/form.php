@@ -48,7 +48,7 @@ use yii\widgets\ActiveForm;
 
 <?= $form
     ->field($model, 'reCaptcha')
-    ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
+    ->widget(\frontend\widgets\recaptcha3\RecaptchaV3Widget::className())
     ->label(false) ?>
 
 <?= Html::submitButton(Yii::t('app', 'Отправить'), ['class' => 'btn btn-success big']) ?>

@@ -112,7 +112,8 @@ class RegisterForm extends CommonForm
                     'registerFactory'
                 ]
             ],
-            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className()]
+            [['reCaptcha'], \frontend\widgets\recaptcha3\RecaptchaV3Validator::className(), 'acceptance_score' => 0.5]
+            //[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className()]
         ];
 
         if ($this->_username_attribute === 'email') {

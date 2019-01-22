@@ -80,11 +80,22 @@ return [
             'database' => 1,
         ]
     ],
-    'reCaptcha' => [
-        'name' => 'reCaptcha',
-        'class' => \himiklab\yii2\recaptcha\ReCaptcha::class,
-        'siteKey' => '6LehPRkUAAAAAB1TVTLbwB1GYua9tI4aC1cHYSTU',
-        'secret' => '6LehPRkUAAAAADUIdKWBJx1tPKLztXMoVcsrHVrl',
+//    'reCaptcha' => [
+//        'name' => 'reCaptcha',
+//        'class' => \himiklab\yii2\recaptcha\ReCaptcha::class,
+//        'siteKey' => '6LehPRkUAAAAAB1TVTLbwB1GYua9tI4aC1cHYSTU',
+//        'secret' => '6LehPRkUAAAAADUIdKWBJx1tPKLztXMoVcsrHVrl',
+//    ],
+//    'reCaptcha' => [
+//        'name' => 'reCaptcha',
+//        'class' => \frontend\widgets\recaptcha\ReCaptcha::class,
+//        'siteKey' => '6LehRIoUAAAAALWGhlNNdb7hmXiK8NTju_tl2LXl',
+//        'secret' => '6LehRIoUAAAAAKfN2eFDO7nR7xmLE8bCJQMRlPyk',
+//    ],
+    'recaptchaV3' => [
+        'class' => \frontend\widgets\recaptcha3\RecaptchaV3::class,
+        'site_key' => '6LehRIoUAAAAALWGhlNNdb7hmXiK8NTju_tl2LXl',
+        'secret_key' => '6LehRIoUAAAAAKfN2eFDO7nR7xmLE8bCJQMRlPyk',
     ],
     'sendPulse' => [
         'class' => \common\components\sendpulse\SendPulse::class,

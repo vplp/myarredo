@@ -1,6 +1,6 @@
 Google reCAPTCHA widget for Yii2
 ================================
-Based on reCaptcha API 2.0.
+Based on reCaptcha API 3.0.
 
 
 * [Sign up for an reCAPTCHA API keys](https://www.google.com/recaptcha/admin#createsite).
@@ -27,10 +27,15 @@ public $reCaptcha;
 
 public function rules()
 {
-  return [
-      // ...
-      [['reCaptcha'], \recaptcha\ReCaptchaValidator::className(), 'secret' => 'your secret key', 'uncheckedMessage' => 'Please confirm that you are not a bot.']
-  ];
+    return [
+        // ...
+        [
+            ['reCaptcha'], 
+            \recaptcha\ReCaptchaValidator::className(), 
+            'secret' => 'your secret key', 
+            'uncheckedMessage' => 'Please confirm that you are not a bot.'
+        ]
+    ];
 }
 ```
 
@@ -39,10 +44,10 @@ or just
 ```php
 public function rules()
 {
-  return [
-      // ...
-      [[], \recaptcha\ReCaptchaValidator::className(), 'secret' => 'your secret key']
-  ];
+    return [
+        // ...
+        [[], \recaptcha\ReCaptchaValidator::className(), 'secret' => 'your secret key']
+    ];
 }
 ```
 
@@ -51,10 +56,10 @@ or simply
 ```php
 public function rules()
 {
-  return [
-      // ...
-      [[], \recaptcha\ReCaptchaValidator::className()]
-  ];
+    return [
+        // ...
+        [[], \recaptcha\ReCaptchaValidator::className()]
+    ];
 }
 ```
 

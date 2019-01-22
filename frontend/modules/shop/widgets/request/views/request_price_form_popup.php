@@ -65,7 +65,7 @@ $model->city_id = Yii::$app->city->getCityId();
             ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
 
         <?= $form->field($model, 'reCaptcha')
-            ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
+            ->widget(\frontend\widgets\recaptcha3\RecaptchaV3Widget::className())
             ->label(false) ?>
 
     </div>

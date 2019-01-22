@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
 
                 <?= $form->field($model, 'reCaptcha')
-                    ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
+                    ->widget(\frontend\widgets\recaptcha3\RecaptchaV3Widget::className())
                     ->label(false) ?>
 
                 <div class="form-group">
