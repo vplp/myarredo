@@ -30,7 +30,7 @@ public $code;
  public function rules(){
  	return [
  		...
- 		 [['code'],RecaptchaV3Validator::className(),'acceptance_score'=>null]
+ 		 [['code'], RecaptchaV3Validator::className(), 'acceptance_score' => null]
  	];
     }
 ```

@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
+
 /* @var $model \frontend\modules\user\models\form\PasswordResetRequestForm */
 
 use yii\widgets\ActiveForm;
@@ -21,7 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="passreset-box">
 
-                <p>Пожалуйста, заполните свой адрес электронной почты. Здесь будет отправлена ссылка на сброс пароля.</p>
+                <p>Пожалуйста, заполните свой адрес электронной почты. Здесь будет отправлена ссылка на сброс
+                    пароля.</p>
 
                 <?php $form = ActiveForm::begin([
                     'id' => 'request-password-reset-form',
@@ -31,7 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
 
                 <?= $form->field($model, 'reCaptcha')
-                    ->widget(\frontend\widgets\recaptcha3\RecaptchaV3Widget::className())
+                    ->widget(
+                        \frontend\widgets\recaptcha3\RecaptchaV3Widget::className(),
+                        ['actionName' => 'request_password']
+                    )
                     ->label(false) ?>
 
                 <div class="form-group">

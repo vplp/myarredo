@@ -88,7 +88,10 @@ $model->user_agreement = 1;
 
                                 <?= $form
                                     ->field($model, 'reCaptcha')
-                                    ->widget(\frontend\widgets\recaptcha3\RecaptchaV3Widget::className())
+                                    ->widget(
+                                        \frontend\widgets\recaptcha3\RecaptchaV3Widget::className(),
+                                        ['actionName' => 'register_partner']
+                                    )
                                     ->label(false) ?>
 
                                 <div class="a-warning">

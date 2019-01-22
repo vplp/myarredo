@@ -14,9 +14,7 @@ use yii\validators\Validator;
  */
 class RecaptchaV3Validator extends Validator
 {
-    /**
-     * @var bool
-     */
+    /** @var bool */
     public $skipOnEmpty = false;
 
     /**
@@ -31,9 +29,7 @@ class RecaptchaV3Validator extends Validator
      */
     public $acceptance_score = null;
 
-    /**
-     * @var RecaptchaV3
-     */
+    /** @var RecaptchaV3 */
     private $_component = null;
 
     /** @var boolean */

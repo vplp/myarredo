@@ -48,9 +48,9 @@ $model->city_id = Yii::$app->city->getCityId();
             ->label(false) ?>
 
         <?php
-//        $form->field($model, 'city_id')
-//            ->dropDownList(City::dropDownList(Yii::$app->city->getCountryId()))
-//            ->label(false)
+        //        $form->field($model, 'city_id')
+        //            ->dropDownList(City::dropDownList(Yii::$app->city->getCountryId()))
+        //            ->label(false)
         ?>
 
         <?= $form->field($model, 'city_id')
@@ -65,7 +65,10 @@ $model->city_id = Yii::$app->city->getCityId();
             ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
 
         <?= $form->field($model, 'reCaptcha')
-            ->widget(\frontend\widgets\recaptcha3\RecaptchaV3Widget::className())
+            ->widget(
+                \frontend\widgets\recaptcha3\RecaptchaV3Widget::className(),
+                ['actionName' => 'request_price_popup']
+            )
             ->label(false) ?>
 
     </div>

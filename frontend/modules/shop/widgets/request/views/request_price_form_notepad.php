@@ -57,7 +57,10 @@ $model->city_id = Yii::$app->city->getCityId();
     ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
 
 <?= $form->field($model, 'reCaptcha')
-    ->widget(\frontend\widgets\recaptcha3\RecaptchaV3Widget::className())
+    ->widget(
+        \frontend\widgets\recaptcha3\RecaptchaV3Widget::className(),
+        ['actionName' => 'request_price_notepad']
+    )
     ->label(false) ?>
 
 <?= Html::submitButton(Yii::t('app', 'Получить лучшую цену'), ['class' => 'btn btn-success big']) ?>

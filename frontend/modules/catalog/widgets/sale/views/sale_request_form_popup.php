@@ -54,7 +54,10 @@ $model->user_agreement = 1;
                     ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
 
                 <?= $form->field($model, 'reCaptcha')
-                    ->widget(\frontend\widgets\recaptcha3\RecaptchaV3Widget::className())
+                    ->widget(
+                        \frontend\widgets\recaptcha3\RecaptchaV3Widget::className(),
+                        ['actionName' => 'sale_request_popup']
+                    )
                     ->label(false) ?>
 
                 <?= Html::submitButton(Yii::t('app', 'Отправить'), ['class' => 'btn btn-success big']) ?>

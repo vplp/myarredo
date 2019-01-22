@@ -14,10 +14,13 @@ use yii\web\View;
  */
 class RecaptchaV3 extends Component
 {
+    /** @var string */
     public $site_key = null;
 
+    /** @var string */
     public $secret_key = null;
 
+    /** @var string */
     private $verify_endpoint = 'https://www.google.com/recaptcha/api/siteverify';
 
     /**

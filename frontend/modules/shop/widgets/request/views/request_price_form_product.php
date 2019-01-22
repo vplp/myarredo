@@ -63,7 +63,10 @@ $model->city_id = Yii::$app->city->getCityId();
 
 <?= $form
     ->field($model, 'reCaptcha')
-    ->widget(\frontend\widgets\recaptcha3\RecaptchaV3Widget::className())
+    ->widget(
+        \frontend\widgets\recaptcha3\RecaptchaV3Widget::className(),
+        ['actionName' => 'request_price_product']
+    )
     ->label(false) ?>
 
 <?= Html::submitButton(Yii::t('app', 'Получить лучшую цену'), ['class' => 'add-to-notepad-product btn btn-success big', 'data-id' => $product_id,]) ?>
