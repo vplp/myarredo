@@ -21,7 +21,10 @@ class RecaptchaV3 extends Component
     public $secret_key = null;
 
     /** @var string */
-    private $verify_endpoint = 'https://www.google.com/recaptcha/api/siteverify';
+    public $apiJs = 'https://www.google.com/recaptcha/api.js';
+
+    /** @var string */
+    private $apiRequestUrl = 'https://www.google.com/recaptcha/api/siteverify';
 
     /**
      * @throws \Exception
@@ -45,7 +48,7 @@ class RecaptchaV3 extends Component
     {
         /** @var View $view */
         $view->registerJsFile(
-            'https://www.google.com/recaptcha/api.js?render=' . $this->site_key,
+            $this->apiJs . '?render=' . $this->site_key,
             [
                 'position' => $view::POS_HEAD,
             ],
@@ -82,7 +85,7 @@ class RecaptchaV3 extends Component
     {
         $curl = curl_init();
 
-        curl_setopt($curl, CURLOPT_URL, $this->verify_endpoint);
+        curl_setopt($curl, CURLOPT_URL, $this->apiRequestUrl);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
