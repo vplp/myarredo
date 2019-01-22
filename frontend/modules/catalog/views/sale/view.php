@@ -151,7 +151,7 @@ $this->title = $this->context->title;
                             </div>
                         </div>
 
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 sellout-cont">
 
                             <?php if (!empty($model['user'])) { ?>
                                 <div class="brand-info">
@@ -201,7 +201,7 @@ $this->title = $this->context->title;
 
                         </div>
 
-                        <div class="col-md-12">
+                        <div class="col-md-12 sellout-box">
                             <div class="section-header">
                                 <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
                                 <?= Html::a(

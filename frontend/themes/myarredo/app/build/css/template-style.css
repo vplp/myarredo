@@ -2376,8 +2376,8 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
     font-size: 13px;
     text-transform: uppercase;
     font-weight: 700;
@@ -6586,6 +6586,19 @@ h1 {
   }
   .error-img {
     margin: 0 auto;
+  }
+  .sellout-box .section-header {
+    display: block;
+  }
+  .sellout-cont {
+    margin-bottom: 20px;
+  }
+  .sellout-box .section-header .back {
+    max-width: 220px;
+    margin: 15px auto 0;
+  }
+  .sellout-box .section-header h2 {
+    text-align: center;
   }
 }
 @media (max-width: 540px) {
