@@ -7,7 +7,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 //
 use frontend\modules\catalog\models\{
-    Sale as SaleModel, SaleLang
+    ItalianProduct as ItalianProductModel, ItalianProductLang
 };
 use frontend\modules\location\models\{
     Country, City
@@ -16,11 +16,11 @@ use frontend\modules\location\models\{
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 
 /**
- * Class Sale
+ * Class ItalianProduct
  *
  * @package frontend\modules\catalog\models\search
  */
-class Sale extends SaleModel implements BaseBackendSearchModel
+class ItalianProduct extends ItalianProductModel implements BaseBackendSearchModel
 {
     public $title;
 
@@ -65,8 +65,8 @@ class Sale extends SaleModel implements BaseBackendSearchModel
             ],
         ]);
 
-        if (isset($params['Sale'])) {
-            $params = array_merge($params, $params['Sale']) ;
+        if (isset($params['ItalianProduct'])) {
+            $params = array_merge($params, $params['ItalianProduct']) ;
         }
 
         if (!($this->load($params, ''))) {
@@ -123,7 +123,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
                 ->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
         }
 
-        $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);
+        $query->andFilterWhere(['like', ItalianProductLang::tableName() . '.title', $this->title]);
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();
@@ -140,7 +140,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = SaleModel::findBase();
+        $query = ItalianProductModel::findBase();
         return $this->baseSearch($query, $params);
     }
 
@@ -152,7 +152,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = SaleModel::findBase();
+        $query = ItalianProductModel::findBase();
         return $this->baseSearch($query, $params);
     }
 }

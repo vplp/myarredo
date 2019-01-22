@@ -20,35 +20,30 @@ use common\modules\catalog\Catalog;
 use common\modules\user\models\User;
 
 /**
- * Class Sale
+ * Class ItalianProduct
  *
  * @property integer $id
+ * @property string $alias
  * @property integer $country_id
  * @property integer $city_id
- * @property string $country_code
  * @property integer $user_id
- * @property integer $user_city_id
- * @property string $factory_name
  * @property integer $catalog_type_id
  * @property integer $factory_id
- * @property string $alias
- * @property string $article
+ * @property string $image_link
+ * @property string $gallery_image
  * @property double $price
  * @property double $price_new
  * @property string $currency
  * @property string $volume
+ * @property integer $position
+ * @property integer $on_main
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $published
  * @property integer $deleted
- * @property integer $position
- * @property integer $on_main
- * @property string $image_link
- * @property string $gallery_image
- * @property integer $mark
  *
- * @property SaleLang $lang
- * @property SaleRelCategory[] $category
+ * @property ItalianProductLang $lang
+ * @property ItalianProductRelCategory[] $category
  * @property Factory $factory
  * @property User $user
  * @property Country $country
@@ -57,7 +52,7 @@ use common\modules\user\models\User;
  *
  * @package common\modules\catalog\models
  */
-class Sale extends ActiveRecord
+class ItalianProduct extends ActiveRecord
 {
     /**
      * @return object|string|\yii\db\Connection|null
@@ -73,7 +68,7 @@ class Sale extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%catalog_sale_item}}';
+        return '{{%catalog_italian_item}}';
     }
 
     /**
@@ -113,7 +108,6 @@ class Sale extends ActiveRecord
                     'country_id',
                     'city_id',
                     'user_id',
-                    'user_city_id',
                     'catalog_type_id',
                     'factory_id',
                     'created_at',
@@ -129,20 +123,16 @@ class Sale extends ActiveRecord
                     'on_main',
                     'published',
                     'deleted',
-                    'mark',
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
             ],
             [['currency'], 'in', 'range' => array_keys(static::currencyRange())],
-            [['country_code', 'alias', 'factory_name', 'image_link'], 'string', 'max' => 255],
+            [['alias', 'image_link'], 'string', 'max' => 255],
             [['gallery_image'], 'string', 'max' => 1024],
-            [['article'], 'string', 'max' => 100],
             [['alias'], 'unique'],
             [['position'], 'default', 'value' => '0'],
             [['currency'], 'default', 'value' => 'EUR'],
-            [['country_code'], 'default', 'value' => '//'],
-            [['article'], 'default', 'value' => ''],
             [
                 [
                     'category_ids',
@@ -174,20 +164,15 @@ class Sale extends ActiveRecord
             'deleted' => ['deleted'],
             'on_main' => ['on_main'],
             'setImages' => ['image_link', 'gallery_image'],
-            'setMark' => ['mark'],
             'backend' => [
                 'country_id',
                 'city_id',
-                'country_code',
                 'user_id',
-                'user_city_id',
-                'factory_name',
                 'catalog_type_id',
                 'factory_id',
                 'image_link',
                 'gallery_image',
                 'alias',
-                'article',
                 'price',
                 'price_new',
                 'currency',
@@ -201,16 +186,12 @@ class Sale extends ActiveRecord
             'frontend' => [
                 'country_id',
                 'city_id',
-                'country_code',
                 'user_id',
-                'user_city_id',
-                'factory_name',
                 'catalog_type_id',
                 'factory_id',
                 'image_link',
                 'gallery_image',
                 'alias',
-                'article',
                 'price',
                 'price_new',
                 'currency',
@@ -233,16 +214,12 @@ class Sale extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'country_id' => Yii::t('app', 'Country'),
             'city_id' => Yii::t('app', 'City'),
-            'country_code' => 'Показывать для страны',
             'user_id' => Yii::t('app', 'User'),
-            'user_city_id' => Yii::t('app', 'City'),
             'catalog_type_id' => Yii::t('app', 'Catalog type'),
             'factory_id' => Yii::t('app', 'Factory'),
-            'factory_name' => Yii::t('app', 'Фабрика (если нет в списке)'),
             'image_link' => Yii::t('app', 'Image link'),
             'gallery_image' => Yii::t('app', 'Gallery image'),
             'alias' => Yii::t('app', 'Alias'),
-            'article' => Yii::t('app', 'Артикул'),
             'price' => Yii::t('app', 'Price'),
             'price_new' => Yii::t('app', 'New price'),
             'currency' => Yii::t('app', 'Currency'),
@@ -254,7 +231,6 @@ class Sale extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
             'category_ids' => Yii::t('app', 'Category'),
-            'mark' => 'Mark',
         ];
     }
 
@@ -276,56 +252,56 @@ class Sale extends ActiveRecord
      * @param bool $insert
      * @param array $changedAttributes
      */
-    public function afterSave($insert, $changedAttributes)
-    {
-        if ($this->scenario == 'frontend') {
-            // delete relation SaleRelSpecification
-            SaleRelSpecification::deleteAll(['sale_catalog_item_id' => $this->id]);
-
-            // save relation SaleRelSpecification
-            if (Yii::$app->request->getBodyParam('SpecificationValue')) {
-                foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
-                    if (in_array($specification_id, [2, 9]) && $val) {
-                        $model = new SaleRelSpecification();
-
-                        $model->setScenario('backend');
-                        $model->sale_catalog_item_id = $this->id;
-                        $model->specification_id = $val;
-                        $model->val = $specification_id;
-                        $model->save();
-                    } elseif ($specification_id && $val) {
-                        $model = new SaleRelSpecification();
-
-                        $model->setScenario('backend');
-                        $model->sale_catalog_item_id = $this->id;
-                        $model->specification_id = $specification_id;
-                        $model->val = $val;
-
-                        $model->save();
-                    }
-                }
-            }
-        } else if ($this->scenario == 'backend') {
-            // delete relation SaleRelSpecification
-            SaleRelSpecification::deleteAll(['sale_catalog_item_id' => $this->id]);
-
-            // save relation SaleRelSpecification
-            if (Yii::$app->request->getBodyParam('SpecificationValue')) {
-                foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
-                    if ($val) {
-                        $model = new SaleRelSpecification();
-                        $model->setScenario('backend');
-                        $model->sale_catalog_item_id = $this->id;
-                        $model->specification_id = $specification_id;
-                        $model->val = $val;
-                        $model->save();
-                    }
-                }
-            }
-        }
-
-        parent::afterSave($insert, $changedAttributes);
-    }
+//    public function afterSave($insert, $changedAttributes)
+//    {
+//        if ($this->scenario == 'frontend') {
+//            // delete relation SaleRelSpecification
+//            SaleRelSpecification::deleteAll(['sale_catalog_item_id' => $this->id]);
+//
+//            // save relation SaleRelSpecification
+//            if (Yii::$app->request->getBodyParam('SpecificationValue')) {
+//                foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
+//                    if (in_array($specification_id, [2, 9]) && $val) {
+//                        $model = new SaleRelSpecification();
+//
+//                        $model->setScenario('backend');
+//                        $model->sale_catalog_item_id = $this->id;
+//                        $model->specification_id = $val;
+//                        $model->val = $specification_id;
+//                        $model->save();
+//                    } elseif ($specification_id && $val) {
+//                        $model = new SaleRelSpecification();
+//
+//                        $model->setScenario('backend');
+//                        $model->sale_catalog_item_id = $this->id;
+//                        $model->specification_id = $specification_id;
+//                        $model->val = $val;
+//
+//                        $model->save();
+//                    }
+//                }
+//            }
+//        } else if ($this->scenario == 'backend') {
+//            // delete relation SaleRelSpecification
+//            SaleRelSpecification::deleteAll(['sale_catalog_item_id' => $this->id]);
+//
+//            // save relation SaleRelSpecification
+//            if (Yii::$app->request->getBodyParam('SpecificationValue')) {
+//                foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
+//                    if ($val) {
+//                        $model = new SaleRelSpecification();
+//                        $model->setScenario('backend');
+//                        $model->sale_catalog_item_id = $this->id;
+//                        $model->specification_id = $specification_id;
+//                        $model->val = $val;
+//                        $model->save();
+//                    }
+//                }
+//            }
+//        }
+//
+//        parent::afterSave($insert, $changedAttributes);
+//    }
 
     /**
      * @return mixed
@@ -342,7 +318,7 @@ class Sale extends ActiveRecord
      */
     public function getLang()
     {
-        return $this->hasOne(SaleLang::class, ['rid' => 'id']);
+        return $this->hasOne(ItalianProductLang::class, ['rid' => 'id']);
     }
 
     /**
@@ -352,7 +328,7 @@ class Sale extends ActiveRecord
     {
         return $this
             ->hasMany(Category::class, ['id' => 'group_id'])
-            ->viaTable(SaleRelCategory::tableName(), ['sale_item_id' => 'id']);
+            ->viaTable(ItalianProductRelCategory::tableName(), ['item_id' => 'id']);
     }
 
     /**
@@ -402,7 +378,7 @@ class Sale extends ActiveRecord
     {
         return $this
             ->hasMany(Specification::class, ['id' => 'specification_id'])
-            ->viaTable(SaleRelSpecification::tableName(), ['sale_catalog_item_id' => 'id']);
+            ->viaTable(ItalianProductRelSpecification::tableName(), ['item_id' => 'id']);
     }
 
     /**
@@ -411,7 +387,7 @@ class Sale extends ActiveRecord
     public function getSpecificationValue()
     {
         return $this
-            ->hasMany(SaleRelSpecification::class, ['sale_catalog_item_id' => 'id']);
+            ->hasMany(ItalianProductRelSpecification::class, ['item_id' => 'id']);
     }
 
     /**
@@ -497,25 +473,5 @@ class Sale extends ActiveRecord
         }
 
         return $imagesSources;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCountViews()
-    {
-        return SaleStats::findBase()
-            ->andWhere(['sale_item_id' => $this->id])
-            ->count();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCountRequestPhone()
-    {
-        return SalePhoneRequest::findBase()
-            ->andWhere(['sale_item_id' => $this->id])
-            ->count();
     }
 }

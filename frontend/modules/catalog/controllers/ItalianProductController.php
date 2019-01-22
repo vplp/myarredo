@@ -7,7 +7,7 @@ use yii\filters\AccessControl;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Sale, SaleLang, search\Sale as filterSaleModel
+    ItalianProduct, ItalianProductLang, search\ItalianProduct as filterItalianProductModel
 };
 //
 use thread\actions\{
@@ -20,19 +20,19 @@ use common\actions\upload\{
 };
 
 /**
- * Class PartnerSaleController
+ * Class ItalianProductController
  *
  * @package frontend\modules\catalog\controllers
  */
-class PartnerSaleController extends BaseController
+class ItalianProductController extends BaseController
 {
-    public $title = "Partner Sale";
+    public $title = "Italian Product";
 
     public $defaultAction = 'list';
 
-    protected $model = Sale::class;
-    protected $modelLang = SaleLang::class;
-    protected $filterModel = filterSaleModel::class;
+    protected $model = ItalianProduct::class;
+    protected $modelLang = ItalianProductLang::class;
+    protected $filterModel = filterItalianProductModel::class;
 
     /**
      * @return array
@@ -45,7 +45,7 @@ class PartnerSaleController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['partner'],
+                        'roles' => ['partner', 'factory'],
                     ],
                     [
                         'allow' => false,

@@ -74,6 +74,14 @@ return [
     'catalog/factory-product/filedelete' => 'catalog/factory-product/filedelete',
     'catalog/factory-product/promotion' => 'catalog/factory-product/promotion',
 
+    // Italian product
+    'italian-product' => 'catalog/italian-product/list',
+    'italian-product/create' => 'catalog/italian-product/create',
+    'italian-product/update/<id:[\d\-]+>' => 'catalog/italian-product/update',
+    'italian-product/intrash/<id:[\d\-]+>' => 'catalog/italian-product/intrash',
+    'catalog/italian-product/fileupload' => 'catalog/italian-product/fileupload',
+    'catalog/italian-product/filedelete' => 'catalog/italian-product/filedelete',
+
     // Factory promotion
     'factory-promotion' => 'catalog/factory-promotion/list',
     'factory-promotion/create' => 'catalog/factory-promotion/create',
