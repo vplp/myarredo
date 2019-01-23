@@ -144,8 +144,6 @@ use yii\helpers\{
                             */
                             ?>
 
-
-
                             <li role="separator" class="divider"></li>
                             <li>
                                 <?= Html::a(
