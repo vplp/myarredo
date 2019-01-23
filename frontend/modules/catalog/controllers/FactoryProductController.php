@@ -58,6 +58,11 @@ class FactoryProductController extends BaseController
                         'roles' => ['factory'],
                     ],
                     [
+                        'allow' => true,
+                        'actions' => ['ajax-get-category'],
+                        'roles' => ['factory', 'partner'],
+                    ],
+                    [
                         'allow' => false,
                     ],
                 ],

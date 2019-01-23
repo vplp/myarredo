@@ -62,21 +62,24 @@ $this->title = (($model->isNewRecord)
 
                         <?= $form->field($modelLang, 'title') ?>
 
-                        <?= $form
-                            ->field($model, 'category_ids')
-                            ->widget(Select2::classname(), [
-                                'data' => Category::dropDownList(),
-                                'options' => [
-                                    'placeholder' => Yii::t('app', 'Select option'),
-                                    'multiple' => true
-                                ],
-                            ]) ?>
 
                         <?= $form
                             ->field($model, 'catalog_type_id')
                             ->widget(Select2::classname(), [
                                 'data' => Types::dropDownList(),
                                 'options' => ['placeholder' => Yii::t('app', 'Select option')],
+                            ]) ?>
+
+                        <?= $form
+                            ->field($model, 'category_ids')
+                            ->widget(Select2::classname(), [
+                                'data' => Category::dropDownList([
+                                    'type_id' => $model->isNewRecord ? 0 : $model['catalog_type_id']
+                                ]),
+                                'options' => [
+                                    'placeholder' => Yii::t('app', 'Select option'),
+                                    'multiple' => true
+                                ],
                             ]) ?>
 
                         <?php
@@ -282,7 +285,22 @@ $this->title = (($model->isNewRecord)
 
 <?php
 
+$url = \yii\helpers\Url::toRoute('/catalog/factory-product/ajax-get-category');
 $script = <<<JS
+$('#italianproduct-catalog_type_id').on('change', function () {
+    $.post('$url',
+        {
+            _csrf: $('#token').val(),
+            type_id: $(this).find('option:selected').val()
+        }
+    ).done(function (data) {
+        var html = '';
+        $.each(data.category, function( key, value ) {
+           html += '<option value="'+ key +'">' + value + '</option>';
+        });
+        $('#italianproduct-category_ids').html(html);
+    });
+});
 $('select#italianproduct-country_id').change(function(){
     var country_id = parseInt($(this).val());
     $.post('/location/location/get-cities/', {_csrf: $('#token').val(),country_id:country_id}, function(data){

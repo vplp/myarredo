@@ -44,6 +44,7 @@ return [
     'Specification' => 'Характеристики',
     'Factory' => 'Фабрики',
     'Sale' => 'Распродажа',
+    'Sale in Italy' => 'Распродажа в Италии',
     'Direct Link' => 'SEO ссылки',
     'Banner' => 'Баннер',
     'Factory product' => 'Товары фабрики',
