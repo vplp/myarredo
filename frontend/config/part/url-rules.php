@@ -75,6 +75,7 @@ return [
     'catalog/factory-product/promotion' => 'catalog/factory-product/promotion',
 
     // Italian product
+    'italian-sale/<filter:[\=\;\-\/\w\d]+>' => 'catalog/italian-product-sale/list',
     'italian-sale' => 'catalog/italian-product-sale/list',
     'italian-sale-product/<alias:[\w\-]+>' => 'catalog/italian-product-sale/view',
     //

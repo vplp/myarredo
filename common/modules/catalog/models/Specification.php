@@ -30,7 +30,8 @@ use common\modules\catalog\Catalog;
 class Specification extends ActiveRecord
 {
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -154,5 +155,15 @@ class Specification extends ActiveRecord
         return $this
             ->hasMany(Sale::class, ['id' => 'sale_catalog_item_id'])
             ->viaTable(SaleRelSpecification::tableName(), ['specification_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItalianProduct()
+    {
+        return $this
+            ->hasMany(ItalianProduct::class, ['id' => 'item_id'])
+            ->viaTable(ItalianProductRelSpecification::tableName(), ['specification_id' => 'id']);
     }
 }

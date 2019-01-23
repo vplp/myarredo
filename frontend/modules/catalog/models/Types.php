@@ -245,4 +245,50 @@ class Types extends \common\modules\catalog\models\Types
             ->groupBy(self::tableName() . '.id')
             ->all();
     }
+
+    /**
+     * @param array $params
+     * @return mixed
+     */
+    public static function getWithItalianProduct($params = [])
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = self::findBase();
+
+        $query
+            ->innerJoinWith(["italianProduct"], false)
+            ->andFilterWhere([
+                ItalianProduct::tableName() . '.published' => '1',
+                ItalianProduct::tableName() . '.deleted' => '0',
+            ]);
+
+        if (isset($params[$keys['category']])) {
+            $query
+                ->innerJoinWith(["italianProduct.category italianProductCategory"], false)
+                ->andFilterWhere(['IN', 'italianProductCategory.alias', $params[$keys['category']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["italianProduct.specification italianProductSpecification"], false)
+                ->andFilterWhere(['IN', 'italianProductSpecification.alias', $params[$keys['style']]]);
+        }
+
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["italianProduct.factory italianProductFactory"], false)
+                ->andFilterWhere(['IN', 'italianProductFactory.alias', $params[$keys['factory']]]);
+        }
+
+        return $query
+            ->select([
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                TypesLang::tableName() . '.title',
+                'count(' . self::tableName() . '.id) as count'
+            ])
+            ->groupBy(self::tableName() . '.id')
+            ->all();
+    }
 }

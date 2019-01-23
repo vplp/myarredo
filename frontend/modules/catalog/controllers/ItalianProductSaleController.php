@@ -89,10 +89,10 @@ class ItalianProductSaleController extends BaseController
 
         $queryParams = Yii::$app->catalogFilter->params;
 
-        $category = Category::getWithSale($queryParams);
-        $types = Types::getWithSale($queryParams);
-        $style = Specification::getWithSale($queryParams);
-        $factory = Factory::getWithSale($queryParams);
+        $category = Category::getWithItalianProduct($queryParams);
+        $types = Types::getWithItalianProduct($queryParams);
+        $style = Specification::getWithItalianProduct($queryParams);
+        $factory = Factory::getWithItalianProduct($queryParams);
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
