@@ -26,7 +26,7 @@ use common\actions\upload\{
  */
 class ItalianProductController extends BaseController
 {
-    public $title = "Italian Product";
+    public $title = "Furniture in Italy";
 
     public $defaultAction = 'list';
 

@@ -23,7 +23,7 @@ use thread\widgets\grid\{
 $dataProvider = $model->search(Yii::$app->request->queryParams);
 $dataProvider->sort = false;
 
-$this->title = $this->context->title;
+$this->title = Yii::t('app', 'Furniture in Italy');
 
 ?>
 
@@ -32,7 +32,7 @@ $this->title = $this->context->title;
         <div class="container large-container">
             <div class="row title-cont">
 
-                <?= Html::tag('h1', $this->context->title); ?>
+                <?= Html::tag('h1', Yii::t('app', 'Furniture in Italy')); ?>
 
                 <?= Html::a(
                     '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Add'),

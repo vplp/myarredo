@@ -1,0 +1,247 @@
+<?php
+
+use yii\helpers\{
+    Html, Url
+};
+//
+use frontend\components\Breadcrumbs;
+use frontend\modules\catalog\models\{
+    Factory, Sale, Product
+};
+use frontend\modules\catalog\widgets\sale\SaleRequestForm;
+use frontend\themes\myarredo\assets\AppAsset;
+
+$bundle = AppAsset::register($this);
+/**
+ * @var \frontend\modules\catalog\models\Sale $model
+ */
+
+$this->title = $this->context->title;
+
+?>
+
+    <main>
+        <div class="page sale-page prod-card-page">
+            <div class="container-wrap">
+                <div class="container large-container">
+                    <div class="row">
+
+                        <?= Breadcrumbs::widget([
+                            'links' => $this->context->breadcrumbs,
+                        ]) ?>
+
+                    </div>
+                    <div class="row sale-prod">
+                        <div class="col-sm-6 col-md-6 col-lg-5">
+
+                            <?= $this->render('parts/_carousel', [
+                                'model' => $model
+                            ]); ?>
+
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="prod-info">
+                                <?= Html::tag('h1', $model->getTitle()); ?>
+
+                                <?php if ($model->price > 0) { ?>
+                                    <div class="old-price">
+                                        <?= $model->price . ' ' . $model->currency; ?>
+                                    </div>
+                                <?php } ?>
+
+                                <div class="prod-price">
+                                    <div class="price">
+                                        <?= Yii::t('app', 'Цена') ?>:
+                                        <span>
+                                        <?= $model->price_new . ' ' . $model->currency; ?>
+                                    </span>
+                                    </div>
+                                    <?php if ($model->price > 0) { ?>
+                                        <div class="price economy">
+                                            <?= Yii::t('app', 'Экономия') ?>:
+                                            <span>
+                                            <?= ($model->price - $model->price_new) . ' ' . $model->currency; ?>
+                                        </span>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+
+                            <table class="info-table" width="100%">
+                                <tr>
+                                    <td><?= Yii::t('app', 'Factory') ?></td>
+                                    <td>
+                                        <?= ($model['factory'])
+                                            ? Html::a(
+                                                $model['factory']['title'],
+                                                Factory::getUrl($model['factory']['alias'])
+                                            )
+                                            : $model['factory_name'] ?>
+                                    </td>
+                                </tr>
+                                <?php if (!empty($model['specificationValue'])) {
+                                    $array = [];
+                                    foreach ($model['specificationValue'] as $item) {
+                                        if ($item['specification']['parent_id'] == 9) {
+                                            $keys = Yii::$app->catalogFilter->keys;
+                                            $params = Yii::$app->catalogFilter->params;
+                                            $params[$keys['style']] = $item['specification']['alias'];
+
+                                            ($model['factory']) ? $params[$keys['factory']] = $model['factory']['alias'] : null;
+
+                                            $array[] = [
+                                                'title' => $item['specification']['lang']['title'],
+                                                'url' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale/list')
+                                            ];
+                                        }
+                                    }
+                                    if (!empty($array)) { ?>
+                                        <tr>
+                                            <td><?= Yii::t('app', 'Стиль') ?></td>
+                                            <td>
+                                                <?php
+                                                foreach ($array as $item) {
+                                                    echo Html::a(
+                                                        $item['title'],
+                                                        $item['url']
+                                                    );
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+
+                                    <tr>
+                                        <td><?= Yii::t('app', 'Размеры') ?></td>
+                                        <td class="product-size">
+                                            <?php
+                                            foreach ($model['specificationValue'] as $item) {
+                                                if ($item['specification']['parent_id'] == 4) {
+                                                    echo Html::beginTag('span') .
+                                                        $item['specification']['lang']['title'] .
+                                                        ' (' . Yii::t('app', 'см') . ')' .
+                                                        ': ' .
+                                                        $item['val'] .
+                                                        Html::endTag('span');
+                                                }
+                                            } ?>
+                                        </td>
+                                    </tr>
+
+                                    <?php
+                                    $array = [];
+                                    foreach ($model['specificationValue'] as $item) {
+                                        if ($item['specification']['parent_id'] == 2) {
+                                            $array[] = $item['specification']['lang']['title'];
+                                        }
+                                    }
+                                    if (!empty($array)) { ?>
+                                        <tr>
+                                            <td><?= Yii::t('app', 'Материал') ?></td>
+                                            <td>
+                                                <?= implode('; ', $array) ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                <?php } ?>
+                            </table>
+
+                            <div class="prod-shortstory">
+                                <?= $model['lang']['description']; ?>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 sellout-cont">
+
+                            <?php if (!empty($model['user'])) { ?>
+                                <div class="brand-info">
+                                    <div class="white-area">
+                                        <div class="image-container">
+                                            <img src="<?= $bundle->baseUrl ?>/img/brand.png" alt="">
+                                        </div>
+                                        <div class="brand-info">
+                                            <p class="text-center">
+                                                <?= Yii::t('app', 'Контакты продавца') ?>
+                                            </p>
+                                            <h4 class="text-center">
+                                                <?= $model['user']['profile']['name_company']; ?>
+                                            </h4>
+                                            <div class="ico">
+                                                <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
+                                            </div>
+                                            <div class="tel-num js-show-num">
+                                                (XXX) XXX-XX-XX
+                                            </div>
+
+                                            <a href="javascript:void(0);" class="js-show-num-btn">
+                                                Узнать номер
+                                            </a>
+
+                                            <div class="ico">
+                                                <img src="<?= $bundle->baseUrl ?>/img/marker-map.png" alt="">
+                                            </div>
+                                            <div class="text-center adress">
+                                                <?= $model['user']['profile']['city']['lang']['title']; ?>,<br>
+                                                <?= $model['user']['profile']['address']; ?>
+                                            </div>
+
+                                            <div class="ico">
+                                                <img src="<?= $bundle->baseUrl ?>/img/conv.svg" alt="">
+                                            </div>
+                                            <a href="javascript:void(0);" class="write-seller" data-toggle="modal"
+                                               data-target="#myModal">
+                                                написать продавцу
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <?php } ?>
+
+                        </div>
+
+                        <div class="col-md-12 sellout-box">
+                            <div class="section-header">
+                                <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
+                                <?= Html::a(
+                                    Yii::t('app', 'Вернуться к списку'),
+                                    Url::toRoute(['/catalog/sale/list']),
+                                    ['class' => 'back']
+                                ); ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?= $this->render('@app/modules/catalog/views/product/parts/_product_by_factory', [
+                        'factory' => $model['factory'],
+                        'types' => $model['types'],
+                        'models' => Product::getProductByFactory($model['factory_id'], $model['catalog_type_id'])
+                    ]) ?>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+<?= SaleRequestForm::widget(['sale_item_id' => $model['id']]) ?>
+
+
+<?php
+$user_id = $model['user']['id'];
+$sale_item_id = $model['id'];
+$script = <<<JS
+$('.js-show-num-btn').on('click', function () {
+    $.post(
+        '/catalog/sale/ajax-get-phone/', 
+        {_csrf: $('#token').val(), user_id: $user_id, sale_item_id: $sale_item_id}, 
+        function(data){
+            $('.js-show-num').html('<a href="tel:'+data.phone+'">'+data.phone+'</a>');
+            $('.js-show-num-btn').remove();
+        }, 
+        'json'
+    );
+});
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);

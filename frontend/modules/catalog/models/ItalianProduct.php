@@ -21,7 +21,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
      */
     public function beforeSave($insert)
     {
-        if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') {
+        if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['factory', 'partner'])) {
             $this->user_id = Yii::$app->getUser()->id;
         }
 
@@ -35,7 +35,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
     {
         $query = parent::findBase();
 
-        if (Yii::$app->controller->id == 'partner-sale') {
+        if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['factory', 'partner'])) {
             $query
                 ->andWhere(['user_id' => Yii::$app->user->identity->id])
                 ->undeleted();
