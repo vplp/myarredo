@@ -179,7 +179,7 @@ class Factory extends ActiveRecord
             'email' => 'E-Mail',
             'novelty_url' => 'Новинки url',
             'image_link' => 'Изображение',
-            'video' => Yii::t('app', 'Video'),
+            'video' => Yii::t('app', 'Youtube embed video url'),
             'novelty' => 'Новинки',
             'popular' => 'Популярный Ru',
             'popular_by' => 'Популярный By',

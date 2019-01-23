@@ -167,7 +167,7 @@ $bundle = AppAsset::register($this);
                     <div class="col-xs-12 col-sm-8 col-md-9">
                         <div class="text">
                             <?= $model['lang']['content']; ?>
-                            <?= $model['video']; ?>
+                            <?= $model->getVideo(); ?>
                         </div>
                     </div>
                 </div>

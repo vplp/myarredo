@@ -163,6 +163,15 @@ class Factory extends \common\modules\catalog\models\Factory
         return $image;
     }
 
+    public function getVideo()
+    {
+        if ($this->video) {
+            return '<iframe width="560" height="315" src="' . $this->video . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        } else {
+            return false;
+        }
+    }
+
     /**
      * @param array $params
      * @return mixed
