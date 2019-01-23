@@ -15,70 +15,77 @@ $this->title = Yii::t('app', 'Profile');
 
 <main>
     <div class="page factory-profile">
-        <div class="largex-container">
+        <div class="largex-container profile-gencont">
 
-            <?= Html::tag('h1', $this->title); ?>
+            <?= Html::tag('h1', $this->title, ['class' => 'title-h1-profile']); ?>
 
             <div class="part-contact">
                 <div class="part-contact-left">
-                    <div class="form-group">
-                        <?= Html::activeLabel($model, 'phone') ?>
-                        <?= $model['phone'] ?>
+                    <div class="part-contact-left-imgbox">
+                        <div class="profile-imgbox-img">
+                            <img src="<?= $bundle->baseUrl ?>/img/profile_user_img.jpg" alt="Профиль">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <?= Html::activeLabel($model, 'first_name') ?>
-                        <?= $model['first_name'] ?>
-                    </div>
-                    <div class="form-group">
-                        <?= Html::activeLabel($model, 'last_name') ?>
-                        <?= $model['last_name'] ?>
-                    </div>
-                    <div class="form-group">
-                        <?= Html::activeLabel($model, 'email') ?>
-                        <?= $model['user']['email'] ?>
-                    </div>
+                    <div class="part-contact-left-formbox">
+                        <div class="form-group">
+                            <?= Html::activeLabel($model, 'phone') ?>
+                            <span class="for-profile-form"><?= $model['phone'] ?></span>
+                        </div>
+                        <div class="form-group">
+                            <?= Html::activeLabel($model, 'first_name') ?>
+                            <span class="for-profile-form"><?= $model['first_name'] ?></span>
+                        </div>
+                        <div class="form-group">
+                            <?= Html::activeLabel($model, 'last_name') ?>
+                            <span class="for-profile-form"><?= $model['last_name'] ?></span>
+                        </div>
+                        <div class="form-group">
+                            <?= Html::activeLabel($model, 'email') ?>
+                            <span class="for-profile-form"><?= $model['user']['email'] ?></span>
+                        </div>
 
-                    <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
-                        <div class="form-group">
-                            <?= Html::activeLabel($model, 'address') ?>
-                            <?= $model['address'] ?>
-                        </div>
-                        <div class="form-group">
-                            <?= Html::activeLabel($model, 'website') ?>
-                            <?= $model['website'] ?>
-                        </div>
-                    <?php } ?>
+                        <!-- <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
+                            <div class="form-group">
+                                <?= Html::activeLabel($model, 'address') ?>
+                                <?= $model['address'] ?>
+                            </div>
+                            <div class="form-group">
+                                <?= Html::activeLabel($model, 'website') ?>
+                                <?= $model['website'] ?>
+                            </div>
+                        <?php } ?> -->
 
-                    <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') { ?>
-                        <div class="form-group">
-                            <?= Html::activeLabel($model, 'name_company') ?>
-                            <?= $model['name_company'] ?>
-                        </div>
-                        <div class="form-group">
-                            <?= Html::activeLabel($model, 'website') ?>
-                            <?= $model['website'] ?>
-                        </div>
-                        <div class="form-group">
-                            <?= Html::activeLabel($model, 'address') ?>
-                            <?= $model['address'] ?>
-                        </div>
-                        <div class="form-group">
-                            <?= Html::activeLabel($model, 'country_id') ?>
-                            <?= $model['country']['lang']['title'] ?>
-                        </div>
-                        <div class="form-group">
-                            <?= Html::activeLabel($model, 'city_id') ?>
-                            <?= $model['city']['lang']['title'] ?>
-                        </div>
-                    <?php } ?>
+                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') { ?>
+                            <div class="form-group">
+                                <?= Html::activeLabel($model, 'name_company') ?>
+                                <?= $model['name_company'] ?>
+                            </div>
+                            <div class="form-group">
+                                <?= Html::activeLabel($model, 'website') ?>
+                                <?= $model['website'] ?>
+                            </div>
+                            <div class="form-group">
+                                <?= Html::activeLabel($model, 'address') ?>
+                                <?= $model['address'] ?>
+                            </div>
+                            <div class="form-group">
+                                <?= Html::activeLabel($model, 'country_id') ?>
+                                <?= $model['country']['lang']['title'] ?>
+                            </div>
+                            <div class="form-group">
+                                <?= Html::activeLabel($model, 'city_id') ?>
+                                <?= $model['city']['lang']['title'] ?>
+                            </div>
+                        <?php } ?>
 
-                    <div class="form-group">
-                        <?= Html::a(Yii::t('app', 'Edit'), ['/user/profile/update'], [
-                            'class' => 'btn btn-info'
-                        ]) ?>
-                        <?= Html::a(Yii::t('user', 'Change password'), ['/user/password/change'], [
-                            'class' => 'btn btn-success'
-                        ]) ?>
+                        <div class="panel-btn-profile">
+                            <?= Html::a(Yii::t('app', 'Edit'), ['/user/profile/update'], [
+                                'class' => 'btn btn-green first'
+                            ]) ?>
+                            <?= Html::a(Yii::t('user', 'Change password'), ['/user/password/change'], [
+                                'class' => 'btn btn-green'
+                            ]) ?>
+                        </div>
                     </div>
                 </div>
                 <div class="part-contact-right">
@@ -100,6 +107,68 @@ $this->title = Yii::t('app', 'Profile');
                         <?php
                     }
                     ?>
+
+                    <div class="profile-box">
+                        <a href="#" class="profile-quadrlink">
+                            <div class="profile-quadrlink-img">
+                                <img src="<?= $bundle->baseUrl ?>/img/my_products.png" alt="Мои товары">
+                            </div>
+                            <div class="profile-quadrlink-text">
+                                Мои товары
+                            </div>
+                        </a>
+                        <a href="#" class="profile-quadrlink">
+                            <div class="profile-quadrlink-img">
+                                <img src="<?= $bundle->baseUrl ?>/img/collections.png" alt="Коллекция">
+                            </div>
+                            <div class="profile-quadrlink-text">
+                                Коллекции
+                            </div>
+                        </a>
+                        <a href="#" class="profile-quadrlink">
+                            <div class="profile-quadrlink-img">
+                                <img src="<?= $bundle->baseUrl ?>/img/reclams_campany.png" alt="Рекламные кампании">
+                            </div>
+                            <div class="profile-quadrlink-text">
+                                Рекламные
+                                кампании
+                            </div>
+                        </a>
+                        <a href="#" class="profile-quadrlink">
+                            <div class="profile-quadrlink-img">
+                                <img src="<?= $bundle->baseUrl ?>/img/requests.png" alt="Заявки">
+                            </div>
+                            <div class="profile-quadrlink-text">
+                                Заявки
+                            </div>
+                        </a>
+                        <a href="#" class="profile-quadrlink">
+                            <div class="profile-quadrlink-img">
+                                <img src="<?= $bundle->baseUrl ?>/img/statistics_prods.png" alt="Статистика товаров">
+                            </div>
+                            <div class="profile-quadrlink-text">
+                                Статистика
+                                по товарам
+                            </div>
+                        </a>
+                        <a href="#" class="profile-quadrlink">
+                            <div class="profile-quadrlink-img">
+                                <img src="<?= $bundle->baseUrl ?>/img/statistics_factorys.png" alt="Статистика фабрик">
+                            </div>
+                            <div class="profile-quadrlink-text">
+                                Статистика по фабрикам
+                            </div>
+                        </a>
+                        <a href="#" class="profile-quadrlink">
+                            <div class="profile-quadrlink-img">
+                                <img src="<?= $bundle->baseUrl ?>/img/come_out.png" alt="Коллекция">
+                            </div>
+                            <div class="profile-quadrlink-text">
+                                Выйти
+                            </div>
+                        </a>
+                        <div class="profile-quadrlink"></div>
+                    </div>
                 </div>
             </div>
         </div>
