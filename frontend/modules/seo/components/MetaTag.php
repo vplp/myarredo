@@ -231,22 +231,17 @@ class MetaTag extends Component
                 'name' => 'robots',
                 'content' => $this->seo_robots,
             ]);
-
-            $view->registerLinkTag([
-                'rel' => 'canonical',
-                'href' => Yii::$app->request->hostInfo . '/' . $lang . Yii::$app->request->pathInfo
-            ]);
         } elseif (Yii::$app->getRequest()->get('page') && !in_array(Yii::$app->controller->id, ['sale', 'category'])) {
             $view->registerMetaTag([
                 'name' => 'robots',
                 'content' => 'index, follow',
             ]);
-
-            $view->registerLinkTag([
-                'rel' => 'canonical',
-                'href' => Yii::$app->request->hostInfo . '/' . $lang . Yii::$app->request->pathInfo
-            ]);
         }
+
+        $view->registerLinkTag([
+            'rel' => 'canonical',
+            'href' => Yii::$app->request->hostInfo . '/' . $lang . Yii::$app->request->pathInfo
+        ]);
 
         return $this;
     }

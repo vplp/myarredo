@@ -8,11 +8,11 @@ use yii\helpers\Url;
 use frontend\components\ImageResize;
 
 /**
- * Class Sale
+ * Class ItalianProduct
  *
  * @package frontend\modules\catalog\models
  */
-class Sale extends \common\modules\catalog\models\Sale
+class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
 {
     /**
      * @param bool $insert
@@ -69,20 +69,24 @@ class Sale extends \common\modules\catalog\models\Sale
 
     /**
      * @param $params
-     * @return \yii\data\ActiveDataProvider
+     * @return mixed|\yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function search($params)
     {
-        return (new search\Sale())->search($params);
+        return (new search\ItalianProduct())->search($params);
     }
 
     /**
      * @param $params
-     * @return \yii\data\ActiveDataProvider
+     * @return mixed|\yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function trash($params)
     {
-        return (new search\Sale())->trash($params);
+        return (new search\ItalianProduct())->trash($params);
     }
 
     /**
@@ -90,18 +94,10 @@ class Sale extends \common\modules\catalog\models\Sale
      */
     public function getUrl()
     {
-        if (isset(Yii::$app->controller->factory)) {
-            return Url::toRoute([
-                '/catalog/template-factory/sale-product',
-                'alias' => Yii::$app->controller->factory->alias,
-                'product' => $this->alias
-            ], true);
-        } else {
-            return Url::toRoute([
-                '/catalog/sale/view',
+        return Url::toRoute([
+                '/catalog/italian-product/view',
                 'alias' => $this->alias
             ], true);
-        }
     }
 
     /**
@@ -200,23 +196,11 @@ class Sale extends \common\modules\catalog\models\Sale
         return $imagesSources;
     }
 
-
     /**
      * @return string
      */
     public function getTitle()
     {
         return (isset($this->lang->title)) ? $this->lang->title : "{{-}}";
-    }
-
-    /**
-     * @return string
-     */
-    public function getFactoryTitle()
-    {
-        $title = !empty($this->factory) ? $this->factory->title : '';
-        $title .= ' ' . !empty($this->factory_name) ? $this->factory_name : '';
-
-        return $title;
     }
 }

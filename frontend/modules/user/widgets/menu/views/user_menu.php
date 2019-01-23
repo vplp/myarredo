@@ -15,6 +15,12 @@ use yii\helpers\{
                     <ul class="dropdown-menu">
 
                         <?php if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner'])) { ?>
+<!--                            <li>-->
+<!--                                --><?//= Html::a(
+//                                    'Мебель в Италии',
+//                                    ['/catalog/italian-product/list']
+//                                ); ?>
+<!--                            </li>-->
                             <li>
                                 <?= Html::a(
                                     Yii::t('app', 'Orders'),
@@ -85,6 +91,12 @@ use yii\helpers\{
                                 ); ?>
                             </li>
                         <?php } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
+<!--                            <li>-->
+<!--                                --><?//= Html::a(
+//                                    'Мебель в Италии',
+//                                    ['/catalog/italian-product/list']
+//                                ); ?>
+<!--                            </li>-->
                             <li>
                                 <?= Html::a(
                                     Yii::t('app', 'My goods'),

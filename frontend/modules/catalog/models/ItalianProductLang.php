@@ -3,11 +3,11 @@
 namespace frontend\modules\catalog\models;
 
 /**
- * Class SaleLang
+ * Class ItalianProductLang
  *
  * @package frontend\modules\catalog\models
  */
-class SaleLang extends \common\modules\catalog\models\SaleLang
+class ItalianProductLang extends \common\modules\catalog\models\ItalianProductLang
 {
     /**
      * @return array
