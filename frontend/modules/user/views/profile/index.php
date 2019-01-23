@@ -46,7 +46,7 @@ $this->title = Yii::t('app', 'Profile');
                             <span class="for-profile-form"><?= $model['user']['email'] ?></span>
                         </div>
 
-                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
+                        <?php /*if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
                             <div class="form-group">
                                 <?= Html::activeLabel($model, 'address') ?>
                                 <?= $model['address'] ?>
@@ -55,9 +55,9 @@ $this->title = Yii::t('app', 'Profile');
                                 <?= Html::activeLabel($model, 'website') ?>
                                 <?= $model['website'] ?>
                             </div>
-                        <?php } ?>
+                        <?php }*/ ?>
 
-                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') { ?>
+                        <?php /*if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') { ?>
                             <div class="form-group">
                                 <?= Html::activeLabel($model, 'name_company') ?>
                                 <?= $model['name_company'] ?>
@@ -78,7 +78,7 @@ $this->title = Yii::t('app', 'Profile');
                                 <?= Html::activeLabel($model, 'city_id') ?>
                                 <?= $model['city']['lang']['title'] ?>
                             </div>
-                        <?php } ?>
+                        <?php }*/ ?>
 
                         <div class="panel-btn-profile">
                             <?= Html::a(Yii::t('app', 'Edit'), ['/user/profile/update'], [
