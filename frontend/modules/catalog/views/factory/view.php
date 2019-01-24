@@ -63,92 +63,14 @@ $bundle = AppAsset::register($this);
                                 ); ?>
                             </div>
 
+
                             <div class="fact-assort-wrap">
-                                <ul class="nav nav-tabs">
-                                    <li class="active">
-                                        <a data-toggle="tab" href="#all-product">
-                                            <?= Yii::t('app', 'Все предметы мебели') ?>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a data-toggle="tab" href="#all-collection">
-                                            <?= Yii::t('app', 'Все коллекции') ?>
-                                        </a>
-                                    </li>
 
-                                    <?php
-                                    if ($model->getFactoryTotalCountSale()) {
-                                        echo Html::tag(
-                                            'li',
-                                            Html::a(
-                                                Yii::t('app', 'Sale'),
-                                                Yii::$app->catalogFilter->createUrl(
-                                                    Yii::$app->catalogFilter->params +
-                                                    [$keys['factory'] => $model['alias']],
-                                                    '/catalog/sale/list'
-                                                ),
-                                                ['class' => 'view-all']
-                                            )
-                                        );
-                                    } ?>
-
-                                </ul>
-
-                                <div class="tab-content">
-                                    <div id="all-product" class="tab-pane fade in active">
-                                        <ul class="list">
-                                            <?php
-                                            $FactoryTypes = Factory::getFactoryTypes($model['id']);
-
-                                            foreach ($FactoryTypes as $item) {
-                                                $params = Yii::$app->catalogFilter->params;
-
-                                                $params[$keys['factory']][] = $model['alias'];
-                                                $params[$keys['type']][] = $item['alias'];
-
-                                                echo Html::beginTag('li') .
-                                                    Html::a(
-                                                        $item['title'] . ' <span>' . $item['count'] . '</span>',
-                                                        Yii::$app->catalogFilter->createUrl($params)
-                                                    ) .
-                                                    Html::endTag('li');
-
-                                            }
-                                            ?>
-                                        </ul>
-                                    </div>
-                                    <div id="all-collection" class="tab-pane fade">
-                                        <ul class="list">
-                                            <?php
-                                            $FactoryCollection = Factory::getFactoryCollection($model['id']);
-
-                                            foreach ($FactoryCollection as $item) {
-                                                $params = Yii::$app->catalogFilter->params;
-
-                                                $params[$keys['factory']][] = $model['alias'];
-                                                $params[$keys['collection']][] = $item['id'];
-
-                                                echo Html::beginTag('li') .
-                                                    Html::a(
-                                                        $item['title'] . ' <span>' . $item['count'] . '</span>',
-                                                        Yii::$app->catalogFilter->createUrl($params)
-                                                    ) .
-                                                    Html::endTag('li');
-
-                                            }
-                                            ?>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <?= $this->render(
-                                'parts/_factory_files',
-                                [
+                                <?= $this->render('parts/_tabs', [
                                     'model' => $model
-                                ]
-                            ); ?>
+                                ]) ?>
 
+                            </div>
                         </div>
                     </div>
                 </div>
