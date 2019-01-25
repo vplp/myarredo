@@ -79,8 +79,8 @@ return ArrayHelper::merge(
                     "$rootDir/temp",
                 ],
             ],
-            'cron' => [
-                'class' => \console\controllers\CronController::class,
+            'catalog-product' => [
+                'class' => \console\controllers\CatalogProductController::class,
             ],
             'catalog-sale' => [
                 'class' => \console\controllers\CatalogSaleController::class,

@@ -3,8 +3,6 @@
 namespace console\controllers;
 
 use Yii;
-use yii\log\Logger;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Console;
 use yii\console\Controller;
 //
@@ -20,21 +18,30 @@ use common\modules\catalog\models\{
 class CatalogSaleController extends Controller
 {
     /**
-     * Generate product title
+     * Reset mark
+     *
+     * @throws \yii\db\Exception
      */
     public function actionResetMark()
     {
+        $this->stdout("ResetMark: start. \n", Console::FG_GREEN);
+
         Yii::$app->db->createCommand()
             ->update(Sale::tableName(), ['mark' => '0'], "`mark`='1'")
             ->execute();
+
+        $this->stdout("ResetMark: finish. \n", Console::FG_GREEN);
     }
 
     /**
-     * Generate product it title
+     * Translate
+     *
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yii\db\Exception
      */
-    public function actionTranslateTitle()
+    public function actionTranslate()
     {
-        $this->stdout("TranslateTitle: start. \n", Console::FG_GREEN);
+        $this->stdout("Translate: start. \n", Console::FG_GREEN);
 
         $models = Sale::find()
             ->andFilterWhere([
@@ -82,8 +89,11 @@ class CatalogSaleController extends Controller
                     $modelLangIt->lang = Yii::$app->language;
                 }
 
-                $translateTitle = Yii::$app->yandexTranslator->getTranslate($modelLangRu->title, 'ru-it');
-                $translateDescription = Yii::$app->yandexTranslator->getTranslate(strip_tags($modelLangRu->description), 'ru-it');
+                $translateTitle = Yii::$app->yandexTranslator
+                    ->getTranslate($modelLangRu->title, 'ru-it');
+
+                $translateDescription = Yii::$app->yandexTranslator
+                    ->getTranslate(strip_tags($modelLangRu->description), 'ru-it');
 
                 if ($translateTitle != '' && $translateDescription != '') {
                     $modelLangIt->title = $translateTitle;
@@ -116,8 +126,11 @@ class CatalogSaleController extends Controller
                     $modelLangEn->lang = Yii::$app->language;
                 }
 
-                $translateTitle = Yii::$app->yandexTranslator->getTranslate($modelLangRu->title, 'ru-en');
-                $translateDescription = Yii::$app->yandexTranslator->getTranslate(strip_tags($modelLangRu->description), 'ru-en');
+                $translateTitle = Yii::$app->yandexTranslator
+                    ->getTranslate($modelLangRu->title, 'ru-en');
+
+                $translateDescription = Yii::$app->yandexTranslator
+                    ->getTranslate(strip_tags($modelLangRu->description), 'ru-en');
 
                 if ($translateTitle != '' && $translateDescription != '') {
                     $modelLangEn->title = $translateTitle;
@@ -128,7 +141,6 @@ class CatalogSaleController extends Controller
                     if ($modelLangEn->save()) {
                         $this->stdout("save en: ID=" . $model->id . " \n", Console::FG_GREEN);
                     }
-
                 }
 
                 if ($model->save()) {
@@ -142,6 +154,6 @@ class CatalogSaleController extends Controller
             }
         }
 
-        $this->stdout("TranslateTitle: finish. \n", Console::FG_GREEN);
+        $this->stdout("Translate: finish. \n", Console::FG_GREEN);
     }
 }
