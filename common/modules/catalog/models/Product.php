@@ -202,7 +202,6 @@ class Product extends ActiveRecord implements iProduct
                 'created_at',
                 'updated_at',
                 'position',
-                //'price',
                 'volume',
                 'factory_price',
                 'price_from',
@@ -225,6 +224,7 @@ class Product extends ActiveRecord implements iProduct
                 'samples_ids',
                 'factory_catalogs_files_ids',
                 'factory_prices_files_ids',
+                'mark'
             ],
         ];
     }
@@ -288,6 +288,8 @@ class Product extends ActiveRecord implements iProduct
                 $this->alias = $this->id . ' ' . $this->alias;
             }
         }
+
+        $this->mark = '0';
 
         if (YII_ENV_PROD) {
             /** @var Catalog $module */
