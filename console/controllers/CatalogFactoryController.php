@@ -38,16 +38,17 @@ class CatalogFactoryController extends Controller
         $imageData = new Imagick($pdfFile);
 
         $size = $imageData->getImageSize();
-        var_dump(is_file($size));
+        var_dump($size);
 
         //$imageData->setResolution(200, 200);
 
         $imageData->setImageFormat('jpg');
 
-        $imageData->setbackgroundcolor('rgb(64, 64, 64)');
+        //$imageData->setbackgroundcolor('rgb(64, 64, 64)');
+        $imageData->resizeImage(200, 200, imagick::FILTER_LANCZOS, 1, true);
         //$imagick->thumbnailImage(100, 100, true, true);
         //header("Content-Type: image/jpg");
-        echo $imageData->getImageBlob();
+        //echo $imageData->getImageBlob();
 
         file_put_contents($pathToImage . '/test.jpg', $imageData->getImageBlob());
 
