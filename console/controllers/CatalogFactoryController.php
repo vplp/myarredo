@@ -36,9 +36,20 @@ class CatalogFactoryController extends Controller
         var_dump(is_file($pdfFile));
 
         $imageData = new Imagick($pdfFile);
-        $imageData->setResolution(200, 200);
+
+        $size = $imageData->getImageSize();
+        var_dump(is_file($size));
+
+        //$imageData->setResolution(200, 200);
+
         $imageData->setImageFormat('jpg');
-        file_put_contents($pathToImage . '/test.jpg', $imageData);
+
+        $imageData->setbackgroundcolor('rgb(64, 64, 64)');
+        //$imagick->thumbnailImage(100, 100, true, true);
+        //header("Content-Type: image/jpg");
+        echo $imageData->getImageBlob();
+
+        file_put_contents($pathToImage . '/test.jpg', $imageData->getImageBlob());
 
 
 //        $models = FactoryFile::find()
