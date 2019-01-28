@@ -37,7 +37,7 @@ class CatalogFactoryController extends Controller
             ->andFilterWhere([
                 'image_link' => '',
             ])
-            ->limit(25)
+            ->limit(5)
             ->all();
 
         foreach ($models as $model) {
