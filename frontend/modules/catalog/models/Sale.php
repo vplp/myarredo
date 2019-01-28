@@ -69,7 +69,9 @@ class Sale extends \common\modules\catalog\models\Sale
 
     /**
      * @param $params
-     * @return \yii\data\ActiveDataProvider
+     * @return mixed|\yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function search($params)
     {
@@ -78,7 +80,9 @@ class Sale extends \common\modules\catalog\models\Sale
 
     /**
      * @param $params
-     * @return \yii\data\ActiveDataProvider
+     * @return mixed|\yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function trash($params)
     {

@@ -125,6 +125,14 @@ class Sale extends SaleModel implements BaseBackendSearchModel
 
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);
 
+        $order = [];
+
+
+        $order[] = self::tableName() . '.on_main DESC';
+        $order[] = self::tableName() . '.updated_at DESC';
+
+        $query->orderBy(implode(',', $order));
+
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();
         });
