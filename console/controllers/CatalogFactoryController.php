@@ -50,8 +50,12 @@ class CatalogFactoryController extends Controller
 
                 if ($model->file_type == 1) {
                     $path = $module->getFactoryCatalogsFilesUploadPath();
-                } elseif ($model->file_type == 2) {
+                } else {
                     $path = $module->getFactoryPricesFilesUploadPath();
+                }
+
+                if (!is_dir($path . '/thumb')) {
+                    mkdir($path . '/thumb', 0777, true);
                 }
 
                 if (!empty($model->file_link) && is_file($path . '/' . $model->file_link)) {
