@@ -129,6 +129,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
 
 
         $order[] = self::tableName() . '.on_main DESC';
+
         $order[] = self::tableName() . '.updated_at DESC';
 
         $query->orderBy(implode(',', $order));
