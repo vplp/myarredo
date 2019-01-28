@@ -27,11 +27,11 @@ class CatalogFactoryController extends Controller
     {
         $this->stdout("TranslateTitle: start. \n", Console::FG_GREEN);
 
-        //$pathToImage = Yii::getAlias('@uploads') . '/factoryFileCatalog/thumb';
-
-        if (!is_dir($pathToImage)) {
-            mkdir($pathToImage, 0777, true);
-        }
+//        $pathToImage = Yii::getAlias('@uploads') . '/factoryFileCatalog/thumb';
+//
+//        if (!is_dir($pathToImage)) {
+//            mkdir($pathToImage, 0777, true);
+//        }
 
         $models = FactoryCatalogsFiles::findBase()
             ->andFilterWhere([
