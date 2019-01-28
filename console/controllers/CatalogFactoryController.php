@@ -37,7 +37,7 @@ class CatalogFactoryController extends Controller
 
         $imagick = new Imagick($file);
         $imagick->setImageFormat('jpg');
-        file_put_contents($pathToImage, $imagick);
+        file_put_contents($pathToImage . 'test.jpg', $imagick);
 
 
 //        $models = FactoryFile::find()
