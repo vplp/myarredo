@@ -77,7 +77,7 @@ class CatalogFactoryController extends Controller
                     /**
                      * save
                      */
-                    $model->setScenario('setMark');
+                    $model->setScenario('setImage');
 
                     $model->image_link = $image_link;
 

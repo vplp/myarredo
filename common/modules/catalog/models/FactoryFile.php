@@ -80,6 +80,7 @@ class FactoryFile extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'position' => ['position'],
+            'setImage' => [ 'file_type'],
             'backend' => [
                 'factory_id',
                 'discount',
