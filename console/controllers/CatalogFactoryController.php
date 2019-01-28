@@ -67,7 +67,7 @@ class CatalogFactoryController extends Controller
                         true
                     );
 
-                    $image_link = md5_file($model->file_link);
+                    $image_link = md5($model->file_link);
 
                     file_put_contents(
                         $path . '/thumb/' . $image_link . '.jpg',
