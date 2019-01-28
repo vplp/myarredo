@@ -25,8 +25,13 @@ class CatalogFactoryController extends Controller
     {
         $this->stdout("TranslateTitle: start. \n", Console::FG_GREEN);
 
-        $file = Yii::getAlias('@uploads') . '/factoryFileCatalog/bootcamp_2_.pdf[0]';
-        $pathToImage = Yii::getAlias('@uploads') . '/factoryFileCatalog';
+        $file = Yii::getAlias('@uploads') . '/factoryFileCatalog/02_day_pdf.pdf[0]';
+
+        $pathToImage = Yii::getAlias('@uploads') . '/factoryFileCatalog/img';
+
+        if (!is_dir($pathToImage)) {
+            mkdir($pathToImage, 0777, true);
+        }
 
         var_dump(is_file($file));
 
