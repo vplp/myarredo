@@ -25,7 +25,7 @@ class CatalogFactoryController extends Controller
     {
         $this->stdout("TranslateTitle: start. \n", Console::FG_GREEN);
 
-        $file = Yii::getAlias('@uploads') . '/factoryFileCatalog/02_day_pdf.pdf[0]';
+        $pdfFile = Yii::getAlias('@uploads') . '/factoryFileCatalog/02_day_pdf.pdf[0]';
 
         $pathToImage = Yii::getAlias('@uploads') . '/factoryFileCatalog/img';
 
@@ -33,11 +33,12 @@ class CatalogFactoryController extends Controller
             mkdir($pathToImage, 0777, true);
         }
 
-        var_dump(is_file($file));
+        var_dump(is_file($pdfFile));
 
-        $imagick = new Imagick($file);
-        $imagick->setImageFormat('jpg');
-        file_put_contents($pathToImage . 'test.jpg', $imagick);
+        $imageData = new Imagick($pdfFile);
+        $imageData->setResolution(200, 200);
+        $imageData->setImageFormat('jpg');
+        file_put_contents($pathToImage . '/test.jpg', $imageData);
 
 
 //        $models = FactoryFile::find()
