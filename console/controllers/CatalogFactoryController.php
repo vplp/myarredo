@@ -33,7 +33,7 @@ class CatalogFactoryController extends Controller
 //            mkdir($pathToImage, 0777, true);
 //        }
 
-        $models = FactoryCatalogsFiles::findBase()
+        $models = FactoryFile::findBase()
             ->andFilterWhere([
                 'image_link' => '',
             ])
@@ -48,7 +48,11 @@ class CatalogFactoryController extends Controller
                 /** @var Catalog $module */
                 $module = Yii::$app->getModule('catalog');
 
-                $path = $module->getFactoryCatalogsFilesUploadPath();
+                if ($model->file_type == 1) {
+                    $path = $module->getFactoryCatalogsFilesUploadPath();
+                } elseif ($model->file_type == 2) {
+                    $path = $module->getFactoryPricesFilesUploadPath();
+                }
 
                 if (!empty($model->file_link) && is_file($path . '/' . $model->file_link)) {
                     /**
@@ -67,10 +71,10 @@ class CatalogFactoryController extends Controller
                         true
                     );
 
-                    $image_link = md5($model->file_link);
+                    $image_link = md5($model->file_link) . '.jpg';
 
                     file_put_contents(
-                        $path . '/thumb/' . $image_link . '.jpg',
+                        $path . '/thumb/' . $image_link,
                         $imageData->getImageBlob()
                     );
 
