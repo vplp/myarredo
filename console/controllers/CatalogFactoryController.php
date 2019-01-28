@@ -45,8 +45,6 @@ class CatalogFactoryController extends Controller
             /** @var $model FactoryFile */
             $transaction = $model::getDb()->beginTransaction();
             try {
-                $this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
-
                 /** @var Catalog $module */
                 $module = Yii::$app->getModule('catalog');
 
@@ -92,6 +90,7 @@ class CatalogFactoryController extends Controller
                     $model->image_link = $image_link;
 
                     if ($model->save()) {
+                        $this->stdout("ID=" . $model->id . " \n", Console::FG_GREEN);
                         $transaction->commit();
                     } else {
                         $transaction->rollBack();
