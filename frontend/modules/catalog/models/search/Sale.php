@@ -66,7 +66,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         ]);
 
         if (isset($params['Sale'])) {
-            $params = array_merge($params, $params['Sale']) ;
+            $params = array_merge($params, $params['Sale']);
         }
 
         if (!($this->load($params, ''))) {
@@ -125,14 +125,26 @@ class Sale extends SaleModel implements BaseBackendSearchModel
 
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);
 
+        /**
+         * orderBy
+         */
+
         $order = [];
 
-
         $order[] = self::tableName() . '.on_main DESC';
+
+        $partner = Yii::$app->partner->getPartner();
+        if ($partner->id) {
+            $order[] = '(CASE WHEN user_id=' . $partner->id . ' THEN 0 ELSE 1 END), position DESC';
+        }
 
         $order[] = self::tableName() . '.updated_at DESC';
 
         $query->orderBy(implode(',', $order));
+
+        /**
+         * cache
+         */
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();

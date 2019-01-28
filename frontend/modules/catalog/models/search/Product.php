@@ -110,6 +110,10 @@ class Product extends ProductModel
             $query->andFilterWhere(['between', self::tableName() . '.price_from', $params[$keys['price']][0], $params[$keys['price']][1]]);
         }
 
+        /**
+         * orderBy
+         */
+
         $order = [];
 
         if (isset($params['sort']) && $params['sort'] == 'asc') {
@@ -131,6 +135,10 @@ class Product extends ProductModel
         $order[] = self::tableName() . '.updated_at DESC';
 
         $query->orderBy(implode(',', $order));
+
+        /**
+         * cache
+         */
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();
