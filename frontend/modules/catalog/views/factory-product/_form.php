@@ -144,7 +144,7 @@ $this->title = ($model->isNewRecord)
     </main>
 
 <?php
-$url = \yii\helpers\Url::toRoute('/catalog/factory-product/ajax-get-category');
+$url = Url::toRoute('/catalog/factory-product/ajax-get-category');
 $script = <<<JS
 $('#factoryproduct-catalog_type_id').on('change', function () {
     $.post('$url',

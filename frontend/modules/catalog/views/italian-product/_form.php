@@ -263,7 +263,9 @@ $this->title = (($model->isNewRecord)
 
 <?php
 
-$url = \yii\helpers\Url::toRoute('/catalog/factory-product/ajax-get-category');
+$url = Url::toRoute('/catalog/factory-product/ajax-get-category');
+$urlGetCities = Url::toRoute('/location/location/get-cities');
+
 $script = <<<JS
 $('#italianproduct-catalog_type_id').on('change', function () {
     $.post('$url',
@@ -281,7 +283,7 @@ $('#italianproduct-catalog_type_id').on('change', function () {
 });
 $('select#italianproduct-country_id').change(function(){
     var country_id = parseInt($(this).val());
-    $.post('/location/location/get-cities/', {_csrf: $('#token').val(),country_id:country_id}, function(data){
+    $.post('$urlGetCities', {_csrf: $('#token').val(),country_id:country_id}, function(data){
         var select = $('select#italianproduct-city_id');
         select.html(data.options);
         select.selectpicker("refresh");
