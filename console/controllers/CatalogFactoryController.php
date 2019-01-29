@@ -4,13 +4,12 @@ namespace console\controllers;
 
 use Yii;
 use Imagick;
-use yii\log\Logger;
-use yii\helpers\ArrayHelper;
+//
 use yii\helpers\Console;
 use yii\console\Controller;
 //
 use common\modules\catalog\models\{
-    Factory, FactoryFile, FactoryCatalogsFiles, FactoryPricesFiles
+    FactoryFile
 };
 
 /**
@@ -35,7 +34,6 @@ class CatalogFactoryController extends Controller
             ->all();
 
         foreach ($models as $model) {
-            $this->stdout("ID=" . $model->id . " \n", Console::FG_GREEN);
             /** @var $model FactoryFile */
 
             /** @var Catalog $module */
