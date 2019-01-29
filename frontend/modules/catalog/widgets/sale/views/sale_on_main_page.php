@@ -15,9 +15,9 @@ use frontend\modules\catalog\models\Sale;
 <div class="sale-sect">
     <div class="container large-container">
         <div class="section-header">
-            <h3 class="section-title">
+            <h2 class="section-title">
                 <?= Yii::t('app', 'Sale') ?>
-            </h3>
+            </h2>
             <?= Html::a(
                 Yii::t('app', 'Все акционные товары'),
                 Url::toRoute(['/catalog/sale/list']),

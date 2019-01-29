@@ -10,9 +10,9 @@ use frontend\modules\catalog\models\Product;
         <div class="row">
             <div class="col-sm-12 col-md-12">
                 <div class="section-header">
-                    <h3 class="section-title">
+                    <h2 class="section-title">
                         <?= Yii::t('app', 'Новинки') ?>
-                    </h3>
+                    </h2>
                     <a href="#" class="sticker">
                         <?= Yii::t('app', 'Смотреть все категории') ?>
                     </a>

@@ -30,7 +30,7 @@ $bundle = AppAsset::register($this);
                                         <?= Yii::t('app', 'Главный партнер') ?>
                                     </div>
 
-                                    <?= Html::tag('h4', $mainPartner->profile->name_company); ?>
+                                    <?= Html::tag('h2', $mainPartner->profile->name_company); ?>
 
                                     <div class="ico">
                                         <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
@@ -51,7 +51,7 @@ $bundle = AppAsset::register($this);
 
                         <?php foreach ($partners as $partner) { ?>
                             <div class="one-cont">
-                                <?= Html::tag('h4', $partner->profile->name_company); ?>
+                                <?= Html::tag('h2', $partner->profile->name_company); ?>
                                 <div class="ico">
                                     <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
                                 </div>

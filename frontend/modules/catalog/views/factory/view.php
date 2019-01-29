@@ -97,9 +97,9 @@ $bundle = AppAsset::register($this);
                 <div class="row">
                     <div class="col-xs-12 col-sm-4 col-md-3">
                         <div class="one-filter">
-                            <h4>
+                            <div class="">
                                 <?= Yii::t('app', 'Category') ?>
-                            </h4>
+                            </div>
                             <ul class="list">
                                 <?php
                                 $key = 1;

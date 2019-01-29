@@ -25,15 +25,14 @@ $bundle = AppAsset::register($this);
                         <div class="cont-info">
                             <div class="cont-info-in">
                                 <div class="cont-info-border">
-                                    <h4><?= Yii::t('app', 'Contacts') ?></h4>
+                                    <div class=""><?= Yii::t('app', 'Contacts') ?></div>
 
                                     <?= PartnerInfo::widget() ?>
 
                                 </div>
                             </div>
                         </div>
-                        <div class="cont-bg"
-                             style="background-image: url(<?= $bundle->baseUrl ?>/img/cont-photo-bg.jpg);"></div>
+                        <div class="cont-bg" style="background-image: url(<?= $bundle->baseUrl ?>/img/cont-photo-bg.jpg);"></div>
                     </div>
 
                     <?php
