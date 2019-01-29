@@ -28,14 +28,14 @@ class CatalogFactoryController extends Controller
         $this->stdout("TranslateTitle: start. \n", Console::FG_GREEN);
 
         $models = FactoryFile::findBase()
-            ->andFilterWhere([
-                'image_link' => '',
+            ->where([
+                'image_link' => null,
             ])
             ->limit(10)
             ->all();
 
         foreach ($models as $model) {
-
+            $this->stdout("ID=" . $model->id . " \n", Console::FG_GREEN);
             /** @var $model FactoryFile */
 
             /** @var Catalog $module */
