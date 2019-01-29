@@ -39,7 +39,8 @@ use common\modules\user\models\User;
  * @property double $price
  * @property double $price_new
  * @property string $currency
- * @property string $volume
+ * @property float $volume
+ * @property float $weight
  * @property integer $position
  * @property integer $on_main
  * @property integer $created_at
@@ -122,8 +123,8 @@ class ItalianProduct extends ActiveRecord
                 ],
                 'integer'
             ],
-            [['price', 'volume', 'price_new'], 'double'],
-            [['price', 'volume', 'price_new'], 'default', 'value' => 0.00],
+            [['price', 'volume', 'weight', 'price_new'], 'double'],
+            [['price', 'volume', 'weight', 'price_new'], 'default', 'value' => 0.00],
             [
                 [
                     'on_main',
@@ -197,6 +198,7 @@ class ItalianProduct extends ActiveRecord
                 'price_new',
                 'currency',
                 'volume',
+                'weight',
                 'published',
                 'deleted',
                 'position',
@@ -221,6 +223,7 @@ class ItalianProduct extends ActiveRecord
                 'price_new',
                 'currency',
                 'volume',
+                'weight',
                 'published',
                 'deleted',
                 'position',
@@ -254,6 +257,7 @@ class ItalianProduct extends ActiveRecord
             'price_new' => Yii::t('app', 'New price'),
             'currency' => Yii::t('app', 'Currency'),
             'volume' => Yii::t('app', 'Volume'),
+            'weight' => Yii::t('app', 'Weight'),
             'on_main' => 'На главную',
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
@@ -274,6 +278,9 @@ class ItalianProduct extends ActiveRecord
         if ($this->alias == '') {
             $this->alias = time();
         }
+
+        $this->country_id = 4;
+        $this->city_id = 159;
 
         return parent::beforeSave($insert);
     }

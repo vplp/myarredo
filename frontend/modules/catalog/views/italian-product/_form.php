@@ -161,6 +161,12 @@ $this->title = (($model->isNewRecord)
 
                         <?= $form->field(
                             $model,
+                            'weight',
+                            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+                        ) ?>
+
+                        <?= $form->field(
+                            $model,
                             'region',
                             ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
                         ) ?>
@@ -215,34 +221,6 @@ $this->title = (($model->isNewRecord)
                                 ->dropDownList($model::currencyRange())
                                 ->label(false) ?>
 
-                        </div>
-                        <div class="form-group row">
-                            <?php
-                            /**
-                             * Choose country and city
-                             */
-                            $model->country_id = 4;
-
-                            echo $form->field($model, 'country_id')
-                                ->label(false)
-                                ->input('hidden');
-
-                            echo $form
-                                ->field(
-                                    $model,
-                                    'city_id',
-                                    [
-                                        'template' => "{label}<div class=\"col-sm-4\">{input}</div>\n{hint}\n{error}",
-                                        'options' => [
-                                            'class' => '',
-                                        ]
-                                    ]
-                                )
-                                ->dropDownList(
-                                    [null => '--'] + ($model->country_id ? City::dropDownList($model->country_id) : []),
-                                    ['class' => 'selectpicker']
-                                );
-                            ?>
                         </div>
 
                         <div class="form-group row">
