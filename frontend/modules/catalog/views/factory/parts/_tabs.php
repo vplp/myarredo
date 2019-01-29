@@ -120,7 +120,15 @@ $keys = Yii::$app->catalogFilter->keys;
                 foreach ($model->catalogsFiles as $catalogFile) {
                     if ($fileLink = $catalogFile->getFileLink()) {
                         echo Html::beginTag('li') .
-                            Html::a($catalogFile->title, $fileLink, ['target' => '_blank']) .
+                            Html::a(
+                                ($catalogFile->image_link
+                                    ? Html::img($catalogFile->getImageLink())
+                                    : ''
+                                ) .
+                                $catalogFile->title,
+                                $fileLink,
+                                ['target' => '_blank']
+                            ) .
                             Html::endTag('li');
                     }
                 } ?>
@@ -138,7 +146,15 @@ $keys = Yii::$app->catalogFilter->keys;
                 foreach ($model->pricesFiles as $priceFile) {
                     if ($fileLink = $priceFile->getFileLink()) {
                         echo Html::beginTag('li') .
-                            Html::a($priceFile->title, $fileLink, ['target' => '_blank']) .
+                            Html::a(
+                                ($priceFile->image_link
+                                    ? Html::img($catalogFile->getImageLink())
+                                    : ''
+                                ) .
+                                $catalogFile->title,
+                                $fileLink,
+                                ['target' => '_blank']
+                            ) .
                             Html::endTag('li');
                     }
                 } ?>

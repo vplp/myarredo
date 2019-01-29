@@ -99,4 +99,24 @@ class FactoryCatalogsFiles extends FactoryFile
 
         return $file_size;
     }
+
+    /**
+     * @return null|string
+     */
+    public function getImageLink()
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getFactoryCatalogsFilesUploadPath();
+        $url = $module->getFactoryCatalogsFilesUploadUrl();
+
+        $image = null;
+
+        if (!empty($this->image_link) && is_file($path . '/thumb/' . $this->image_link)) {
+            $image = $url . '/thumb/' . $this->image_link;
+        }
+
+        return $image;
+    }
 }
