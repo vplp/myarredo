@@ -126,23 +126,6 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);
 
         /**
-         * orderBy
-         */
-
-        $order = [];
-
-        $order[] = self::tableName() . '.on_main DESC';
-
-        $partner = Yii::$app->partner->getPartner();
-        if ($partner != null && $partner->id) {
-            $order[] = '(CASE WHEN user_id=' . $partner->id . ' THEN 0 ELSE 1 END), position DESC';
-        }
-
-        $order[] = self::tableName() . '.updated_at DESC';
-
-        $query->orderBy(implode(',', $order));
-
-        /**
          * cache
          */
 

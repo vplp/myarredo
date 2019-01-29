@@ -42,7 +42,7 @@ class SaleOnMainPage extends Widget
                 Sale::tableName() . '.on_main = \'0\'',
             ])
             ->cache(7200)
-            ->limit(12)
+            ->limit(8)
             ->all();
 
         $_models = [];

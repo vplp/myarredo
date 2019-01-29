@@ -332,9 +332,7 @@ class Sale extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()
-            ->joinWith(['lang'])
-            ->orderBy(self::tableName() . '.updated_at DESC');
+        return self::find()->joinWith(['lang']);
     }
 
     /**
