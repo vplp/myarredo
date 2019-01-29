@@ -27,17 +27,11 @@ class CatalogFactoryController extends Controller
     {
         $this->stdout("TranslateTitle: start. \n", Console::FG_GREEN);
 
-//        $pathToImage = Yii::getAlias('@uploads') . '/factoryFileCatalog/thumb';
-//
-//        if (!is_dir($pathToImage)) {
-//            mkdir($pathToImage, 0777, true);
-//        }
-
         $models = FactoryFile::findBase()
             ->andFilterWhere([
                 'image_link' => '',
             ])
-            ->limit(5)
+            ->limit(10)
             ->all();
 
         foreach ($models as $model) {
@@ -75,7 +69,7 @@ class CatalogFactoryController extends Controller
                         true
                     );
 
-                    $image_link = md5($model->file_link) . '.jpg';
+                    $image_link = $model->id . '.jpg';
 
                     file_put_contents(
                         $path . '/thumb/' . $image_link,
