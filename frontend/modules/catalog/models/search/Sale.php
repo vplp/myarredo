@@ -134,7 +134,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         $order[] = self::tableName() . '.on_main DESC';
 
         $partner = Yii::$app->partner->getPartner();
-        if ($partner->id) {
+        if ($partner != null && $partner->id) {
             $order[] = '(CASE WHEN user_id=' . $partner->id . ' THEN 0 ELSE 1 END), position DESC';
         }
 
