@@ -15,7 +15,7 @@ $this->beginPage();
     <!DOCTYPE html>
     <html lang="<?= substr(Yii::$app->language, 0, 2) ?>">
     <head>
-        <base href="<?= Yii::$app->request->hostInfo ?>">
+        <base href="<?= Yii::$app->getRequest()->hostInfo . Url::toRoute(['/']) ?>">
 
         <?php
         $languages = Language::getAllByLocate();
