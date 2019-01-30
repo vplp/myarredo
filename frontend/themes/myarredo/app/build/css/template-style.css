@@ -717,6 +717,10 @@ h1 {
       margin: 0 0 50px 0; }
     .footer .cities-list .list-of-cities {
       column-count: 7; }
+    .footer .cities-list .list-of-cities>span {
+      font-size: 18px;
+      font-weight: 500;
+    }
     .footer .cities-list .initial-letter {
       color: #535351;
       font-size: 30px;
@@ -1053,7 +1057,8 @@ h1 {
     line-height: 27px;
     font-family: 'Palatino';
     font-weight: 700;
-    margin: 0 15px 0 0; }
+    margin: 0 15px 0 0;
+    text-transform: none;}
   .home-main .numbers {
     display: flex;
     justify-content: space-between; }
@@ -2829,12 +2834,14 @@ h1 {
       margin-left: auto;
       margin-right: auto;
       font-weight: 700; }
-    .concact-page .one-cont h4 {
+    .concact-page .one-cont h4,
+    .concact-page .one-cont h2 {
       font-size: 21px;
       line-height: 28px;
       font-family: 'Palatino';
       text-align: center;
-      min-height: 45px; }
+      min-height: 45px;
+      margin: 0; }
     .concact-page .one-cont .ico {
       width: 31px;
       height: 23px;
@@ -2982,7 +2989,8 @@ h1 {
       color: #a8a8a8 !important; }
       .factory-list-page .factory-tile a:hover {
         color: #448339 !important; }
-    .factory-list-page .factory-tile h3 {
+    .factory-list-page .factory-tile h3,
+    .factory-list-page .factory-tile h2 {
       text-align: center;
       font-family: 'Palatino';
       font-size: 18px;
@@ -3110,7 +3118,8 @@ h1 {
 
 .factory-page .one-filter {
   border: 1px solid #BDBCB3; }
-  .factory-page .one-filter h4 {
+  .factory-page .one-filter h4,
+  .factory-page .one-filter>div {
     margin: 0;
     color: #535351;
     font-size: 13px;
@@ -5631,7 +5640,8 @@ h1 {
     width: calc(50% - 16px); }
     .concact-page .one-cont.double-cont {
       width: 100%; }
-    .concact-page .one-cont h4 {
+    .concact-page .one-cont h4,
+    .concact-page .one-cont h2 {
       font-size: 18px; }
     .concact-page .one-cont a {
       font-size: 13px; }
