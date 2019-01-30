@@ -150,9 +150,9 @@ $keys = Yii::$app->catalogFilter->keys;
                             ) .
                             Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
                             $catalogFile->title,
-                            $priceFile->getFileLink(),
+                            null, //$priceFile->getFileLink(),
                             ['target' => '_blank']
-                        ) .
+                        ) . $priceFile->getFileLink() .
                         Html::endTag('li');
                 } ?>
             </ul>
