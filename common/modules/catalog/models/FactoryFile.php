@@ -14,6 +14,7 @@ use common\modules\catalog\Catalog;
  * @property integer $discount
  * @property integer $title
  * @property integer $file_link
+ * @property integer $image_link
  * @property integer $file_type
  * @property integer $file_size
  * @property integer $position
@@ -27,7 +28,8 @@ use common\modules\catalog\Catalog;
 class FactoryFile extends ActiveRecord
 {
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -52,7 +54,7 @@ class FactoryFile extends ActiveRecord
             [['factory_id', 'file_size', 'position', 'created_at', 'updated_at'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['file_type'], 'in', 'range' => [1, 2]],
-            [['title', 'file_link'], 'string', 'max' => 255],
+            [['title', 'file_link', 'image_link'], 'string', 'max' => 255],
             ['position', 'default', 'value' => '0'],
             [['discount'], 'double'],
             ['discount', 'default', 'value' => 0.00],
@@ -78,11 +80,13 @@ class FactoryFile extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'position' => ['position'],
+            'setImage' => ['image_link'],
             'backend' => [
                 'factory_id',
                 'discount',
                 'title',
                 'file_link',
+                'image_link',
                 'file_type',
                 'file_size',
                 'position',
@@ -103,6 +107,7 @@ class FactoryFile extends ActiveRecord
             'discount' => Yii::t('app', 'Discount'),
             'title' => Yii::t('app', 'Title'),
             'file_link',
+            'image_link',
             'file_type',
             'file_size',
             'position' => Yii::t('app', 'Position'),

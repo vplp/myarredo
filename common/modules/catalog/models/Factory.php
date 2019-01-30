@@ -33,6 +33,7 @@ use common\helpers\Inflector;
  * @property integer $novelty
  * @property string $novelty_url
  * @property string $image_link
+ * @property string $video
  * @property integer $position
  * @property integer $partner_id
  * @property integer $alternative
@@ -117,6 +118,7 @@ class Factory extends ActiveRecord
                 'string',
                 'max' => 255
             ],
+            ['video', 'string', 'max' => 1024],
             [['first_letter'], 'string', 'max' => 2],
             [['alias'], 'unique'],
             [['position', 'partner_id'], 'default', 'value' => '0'],
@@ -144,6 +146,7 @@ class Factory extends ActiveRecord
                 'email',
                 'novelty_url',
                 'image_link',
+                'video',
                 'first_letter',
                 'published',
                 'deleted',
@@ -176,6 +179,7 @@ class Factory extends ActiveRecord
             'email' => 'E-Mail',
             'novelty_url' => 'Новинки url',
             'image_link' => 'Изображение',
+            'video' => Yii::t('app', 'Youtube embed video url'),
             'novelty' => 'Новинки',
             'popular' => 'Популярный Ru',
             'popular_by' => 'Популярный By',
@@ -224,6 +228,14 @@ class Factory extends ActiveRecord
     public function getSale()
     {
         return $this->hasMany(Sale::class, ['factory_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItalianProduct()
+    {
+        return $this->hasMany(ItalianProduct::class, ['factory_id' => 'id']);
     }
 
     /**

@@ -1,9 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+//
 use frontend\themes\myarredo\assets\AppAsset;
 
 $this->title = $name;
+
 $bundle = AppAsset::register($this);
 ?>
 
@@ -20,7 +22,13 @@ $bundle = AppAsset::register($this);
                     <?php Html::tag('h1', Html::encode($this->title), []); ?>
                     <div class="text errtext-box">
                         <p class="notfound-text"><?= nl2br(Html::encode($message)) ?></p>
-                        <p class="gohome"><a href="/" class="gohome-link">Перейти на главную</a></p>
+                        <p class="gohome">
+                            <?= Html::a(
+                                Yii::t('app', 'Перейти на главную'),
+                                '/',
+                                ['class' => 'gohome-link']
+                            ) ?>
+                        </p>
                     </div>
                 </div>
             </div>

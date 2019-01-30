@@ -35,7 +35,7 @@ use yii\helpers\{
             foreach ($country['cities'] as $cityCountry) {
                 if ($currentLetter != mb_substr($cityCountry['lang']['title'], 0, 1)) {
                     $currentLetter = mb_substr($cityCountry['lang']['title'], 0, 1);
-                    echo Html::tag('h4', $currentLetter);
+                    echo Html::tag('span', $currentLetter);
                 }
                 echo Html::a(
                     $cityCountry['lang']['title'],

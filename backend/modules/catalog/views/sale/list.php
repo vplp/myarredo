@@ -13,6 +13,8 @@ use thread\widgets\grid\{
     ActionStatusColumn, GridViewFilter
 };
 
+/** @var $model \backend\modules\catalog\models\Sale */
+
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
@@ -84,6 +86,18 @@ echo GridView::widget([
                 /** @var $model \backend\modules\catalog\models\Sale */
                 return $model->getCountRequestPhone();
             },
+        ],
+        [
+            'attribute' => 'created_at',
+            'value' => function ($model) {
+                return date('d.m.Y H:i', $model['created_at']);
+            }
+        ],
+        [
+            'attribute' => 'updated_at',
+            'value' => function ($model) {
+                return date('d.m.Y H:i', $model['updated_at']);
+            }
         ],
         [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class

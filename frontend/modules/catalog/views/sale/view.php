@@ -230,10 +230,11 @@ $this->title = $this->context->title;
 <?php
 $user_id = $model['user']['id'];
 $sale_item_id = $model['id'];
+$url = Url::toRoute(['//catalog/sale/ajax-get-phone']);
 $script = <<<JS
 $('.js-show-num-btn').on('click', function () {
     $.post(
-        '/catalog/sale/ajax-get-phone/', 
+        '$url', 
         {_csrf: $('#token').val(), user_id: $user_id, sale_item_id: $sale_item_id}, 
         function(data){
             $('.js-show-num').html('<a href="tel:'+data.phone+'">'+data.phone+'</a>');

@@ -66,7 +66,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         ]);
 
         if (isset($params['Sale'])) {
-            $params = array_merge($params, $params['Sale']) ;
+            $params = array_merge($params, $params['Sale']);
         }
 
         if (!($this->load($params, ''))) {
@@ -124,6 +124,10 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         }
 
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);
+
+        /**
+         * cache
+         */
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();

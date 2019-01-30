@@ -115,11 +115,11 @@ $model->user_agreement = 1;
     </main>
 
 <?php
-
+$url = Url::toRoute(['/location/location/get-cities']);
 $script = <<<JS
 $('select#registerform-country_id').change(function(){
     var country_id = parseInt($(this).val());
-    $.post('/location/location/get-cities/', {_csrf: $('#token').val(),country_id:country_id}, function(data){
+    $.post('$url', {_csrf: $('#token').val(),country_id:country_id}, function(data){
         var select = $('select#registerform-city_id');
         select.html(data.options);
         select.selectpicker("refresh");

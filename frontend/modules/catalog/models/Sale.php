@@ -44,6 +44,25 @@ class Sale extends \common\modules\catalog\models\Sale
                 ->enabled();
         }
 
+        /**
+         * orderBy
+         */
+
+        $order = [];
+
+        $order[] = self::tableName() . '.on_main DESC';
+
+        $partner = Yii::$app->partner->getPartner();
+        if ($partner != null && $partner->id) {
+            $order[] = '(CASE WHEN user_id=' . $partner->id . ' THEN 0 ELSE 1 END), position DESC';
+        }
+
+        $order[] = self::tableName() . '.updated_at DESC';
+
+        $query->orderBy(implode(',', $order));
+
+        //$query->orderBy(self::tableName() . '.updated_at DESC');
+
         return $query;
     }
 
@@ -69,7 +88,9 @@ class Sale extends \common\modules\catalog\models\Sale
 
     /**
      * @param $params
-     * @return \yii\data\ActiveDataProvider
+     * @return mixed|\yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function search($params)
     {
@@ -78,7 +99,9 @@ class Sale extends \common\modules\catalog\models\Sale
 
     /**
      * @param $params
-     * @return \yii\data\ActiveDataProvider
+     * @return mixed|\yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function trash($params)
     {

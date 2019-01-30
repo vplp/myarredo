@@ -91,7 +91,6 @@ class SaleController extends BaseController
         $types = Types::getWithSale($queryParams);
         $style = Specification::getWithSale($queryParams);
         $factory = Factory::getWithSale($queryParams);
-
         $countries = Country::getWithSale($queryParams);
         $cities = City::getWithSale($queryParams);
 

@@ -36,7 +36,6 @@
     "yii2tech/crontab": "*",
     "voskobovich/yii2-many-many-behavior": "^3.0",
     "leandrogehlen/yii2-treegrid": "*",
-    "himiklab/yii2-recaptcha-widget": "*",
     "sendpulse/rest-api": "^1.0",
     "yiisoft/yii2-elasticsearch": "~2.0.0",
     "yandex/translate-api": "1.5.x",

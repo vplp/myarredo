@@ -15,7 +15,7 @@ $this->beginPage();
     <!DOCTYPE html>
     <html lang="<?= substr(Yii::$app->language, 0, 2) ?>">
     <head>
-        <base href="<?= Yii::$app->request->hostInfo ?>">
+        <base href="<?= Yii::$app->getRequest()->hostInfo . Url::toRoute(['/']) ?>">
 
         <?php
         $languages = Language::getAllByLocate();
@@ -25,7 +25,7 @@ $this->beginPage();
             if (Yii::$app->language != $alternate['local']) {
                 $alternatePages[$alternate['local']] = [
                     'href' => Yii::$app->request->hostInfo .
-                        ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') .  '/' .
+                        ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') . '/' .
                         str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
                     'lang' => substr($alternate['local'], 0, 2),
                     'current' => (Yii::$app->language == $alternate['local']) ? true : false
@@ -48,6 +48,7 @@ $this->beginPage();
         <meta charset="<?= Yii::$app->charset ?>"/>
         <title><?= $this->title ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noyaca"/>
         <?php $this->head(); ?>
         <!--[if lt IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js" type="text/javascript"

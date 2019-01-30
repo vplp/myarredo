@@ -18,6 +18,8 @@
 
 <?= $form->text_line($model, 'partner_id') ?>
 
+<?= $form->text_line($model, 'video') ?>
+
 <div class="row control-group">
     <div class="col-md-3">
         <?= $form->switcher($model, 'published') ?>

@@ -1,6 +1,8 @@
 <?php
 
-use yii\helpers\Html;
+use yii\helpers\{
+    Html, Url
+};
 use frontend\themes\myarredo\assets\AppAsset;
 
 $bundle = AppAsset::register($this);
@@ -44,7 +46,7 @@ $this->title = Yii::t('app', 'Profile');
                             <span class="for-profile-form"><?= $model['user']['email'] ?></span>
                         </div>
 
-                        <!-- <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
+                        <?php /*if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
                             <div class="form-group">
                                 <?= Html::activeLabel($model, 'address') ?>
                                 <?= $model['address'] ?>
@@ -53,9 +55,9 @@ $this->title = Yii::t('app', 'Profile');
                                 <?= Html::activeLabel($model, 'website') ?>
                                 <?= $model['website'] ?>
                             </div>
-                        <?php } ?> -->
+                        <?php }*/ ?>
 
-                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') { ?>
+                        <?php /*if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') { ?>
                             <div class="form-group">
                                 <?= Html::activeLabel($model, 'name_company') ?>
                                 <?= $model['name_company'] ?>
@@ -76,7 +78,7 @@ $this->title = Yii::t('app', 'Profile');
                                 <?= Html::activeLabel($model, 'city_id') ?>
                                 <?= $model['city']['lang']['title'] ?>
                             </div>
-                        <?php } ?>
+                        <?php }*/ ?>
 
                         <div class="panel-btn-profile">
                             <?= Html::a(Yii::t('app', 'Edit'), ['/user/profile/update'], [
@@ -109,66 +111,112 @@ $this->title = Yii::t('app', 'Profile');
                     ?>
 
                     <div class="profile-box">
-                        <a href="#" class="profile-quadrlink">
-                            <div class="profile-quadrlink-img">
-                                <img src="<?= $bundle->baseUrl ?>/img/my_products.png" alt="Мои товары">
-                            </div>
-                            <div class="profile-quadrlink-text">
-                                Мои товары
-                            </div>
-                        </a>
-                        <a href="#" class="profile-quadrlink">
-                            <div class="profile-quadrlink-img">
-                                <img src="<?= $bundle->baseUrl ?>/img/collections.png" alt="Коллекция">
-                            </div>
-                            <div class="profile-quadrlink-text">
-                                Коллекции
-                            </div>
-                        </a>
-                        <a href="#" class="profile-quadrlink">
-                            <div class="profile-quadrlink-img">
-                                <img src="<?= $bundle->baseUrl ?>/img/reclams_campany.png" alt="Рекламные кампании">
-                            </div>
-                            <div class="profile-quadrlink-text">
-                                Рекламные
-                                кампании
-                            </div>
-                        </a>
-                        <a href="#" class="profile-quadrlink">
-                            <div class="profile-quadrlink-img">
-                                <img src="<?= $bundle->baseUrl ?>/img/requests.png" alt="Заявки">
-                            </div>
-                            <div class="profile-quadrlink-text">
-                                Заявки
-                            </div>
-                        </a>
-                        <a href="#" class="profile-quadrlink">
-                            <div class="profile-quadrlink-img">
-                                <img src="<?= $bundle->baseUrl ?>/img/statistics_prods.png" alt="Статистика товаров">
-                            </div>
-                            <div class="profile-quadrlink-text">
-                                Статистика
-                                по товарам
-                            </div>
-                        </a>
-                        <a href="#" class="profile-quadrlink">
-                            <div class="profile-quadrlink-img">
-                                <img src="<?= $bundle->baseUrl ?>/img/statistics_factorys.png" alt="Статистика фабрик">
-                            </div>
-                            <div class="profile-quadrlink-text">
-                                Статистика по фабрикам
-                            </div>
-                        </a>
-                        <a href="#" class="profile-quadrlink">
+
+                        <?php if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner'])) { ?>
+                            <a href="<?= Url::toRoute(['/shop/partner-order/list'], true) ?>" class="profile-quadrlink">
+                                <div class="profile-quadrlink-img">
+                                    <img src="<?= $bundle->baseUrl ?>/img/requests.png" alt="">
+                                </div>
+                                <div class="profile-quadrlink-text">
+                                    <?= Yii::t('app', 'Orders') ?>
+                                </div>
+                            </a>
+                            <a href="<?= Url::toRoute(['/catalog/partner-sale/list'], true) ?>" class="profile-quadrlink">
+                                <div class="profile-quadrlink-img">
+                                    <img src="<?= $bundle->baseUrl ?>/img/my_products.png" alt="">
+                                </div>
+                                <div class="profile-quadrlink-text">
+                                    <?= Yii::t('app', 'Sale') ?>
+                                </div>
+                            </a>
+                        <?php } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'admin') { ?>
+                            <a href="<?= Url::toRoute(['/shop/admin-order/list'], true) ?>" class="profile-quadrlink">
+                                <div class="profile-quadrlink-img">
+                                    <img src="<?= $bundle->baseUrl ?>/img/requests.png" alt="">
+                                </div>
+                                <div class="profile-quadrlink-text">
+                                    <?= Yii::t('app', 'Orders') ?>
+                                </div>
+                            </a>
+                            <a href="<?= Url::toRoute(['/catalog/product-stats/list'], true) ?>" class="profile-quadrlink">
+                                <div class="profile-quadrlink-img">
+                                    <img src="<?= $bundle->baseUrl ?>/img/statistics_prods.png" alt="">
+                                </div>
+                                <div class="profile-quadrlink-text">
+                                    <?= Yii::t('app', 'Product statistics') ?>
+                                </div>
+                            </a>
+                            <a href="<?= Url::toRoute(['/catalog/factory-stats/list'], true) ?>" class="profile-quadrlink">
+                                <div class="profile-quadrlink-img">
+                                    <img src="<?= $bundle->baseUrl ?>/img/statistics_factorys.png" alt="">
+                                </div>
+                                <div class="profile-quadrlink-text">
+                                    <?= Yii::t('app', 'Factory statistics') ?>
+                                </div>
+                            </a>
+                        <?php } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
+                            <a href="<?= Url::toRoute(['/catalog/factory-product/list'], true) ?>" class="profile-quadrlink">
+                                <div class="profile-quadrlink-img">
+                                    <img src="<?= $bundle->baseUrl ?>/img/my_products.png" alt="">
+                                </div>
+                                <div class="profile-quadrlink-text">
+                                    <?= Yii::t('app', 'My goods') ?>
+                                </div>
+                            </a>
+                            <a href="<?= Url::toRoute(['/catalog/factory-collections/list'], true) ?>" class="profile-quadrlink">
+                                <div class="profile-quadrlink-img">
+                                    <img src="<?= $bundle->baseUrl ?>/img/collections.png" alt="">
+                                </div>
+                                <div class="profile-quadrlink-text">
+                                    <?= Yii::t('app', 'Collections') ?>
+                                </div>
+                            </a>
+                            <a href="<?= Url::toRoute(['/catalog/factory-promotion/list'], true) ?>" class="profile-quadrlink">
+                                <div class="profile-quadrlink-img">
+                                    <img src="<?= $bundle->baseUrl ?>/img/reclams_campany.png" alt="">
+                                </div>
+                                <div class="profile-quadrlink-text">
+                                    <?= Yii::t('app', 'Рекламные кампании') ?>
+                                </div>
+                            </a>
+                            <a href="<?= Url::toRoute(['/shop/factory-order/list'], true) ?>" class="profile-quadrlink">
+                                <div class="profile-quadrlink-img">
+                                    <img src="<?= $bundle->baseUrl ?>/img/requests.png" alt="">
+                                </div>
+                                <div class="profile-quadrlink-text">
+                                    <?= Yii::t('app', 'Orders') ?>
+                                </div>
+                            </a>
+                            <a href="<?= Url::toRoute(['/catalog/product-stats/list'], true) ?>" class="profile-quadrlink">
+                                <div class="profile-quadrlink-img">
+                                    <img src="<?= $bundle->baseUrl ?>/img/statistics_prods.png" alt="">
+                                </div>
+                                <div class="profile-quadrlink-text">
+                                    <?= Yii::t('app', 'Product statistics') ?>
+                                </div>
+                            </a>
+                            <a href="<?= Url::toRoute(['/catalog/factory-stats/list'], true) ?>" class="profile-quadrlink">
+                                <div class="profile-quadrlink-img">
+                                    <img src="<?= $bundle->baseUrl ?>/img/statistics_factorys.png" alt="">
+                                </div>
+                                <div class="profile-quadrlink-text">
+                                    <?= Yii::t('app', 'Factory statistics') ?>
+                                </div>
+                            </a>
+                        <?php } ?>
+
+                        <a href="<?= Url::toRoute(['/user/logout/index'], true) ?>" class="profile-quadrlink">
                             <div class="profile-quadrlink-img">
                                 <img src="<?= $bundle->baseUrl ?>/img/come_out.png" alt="Коллекция">
                             </div>
                             <div class="profile-quadrlink-text">
-                                Выйти
+                                <?= Yii::t('app', 'Sign Up') ?>
                             </div>
                         </a>
+
                         <div class="profile-quadrlink"></div>
                     </div>
+
                 </div>
             </div>
         </div>

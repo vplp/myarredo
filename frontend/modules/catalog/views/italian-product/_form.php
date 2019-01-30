@@ -14,14 +14,15 @@ use frontend\modules\location\models\{
 };
 
 /**
- * @var \frontend\modules\catalog\models\Sale $model
- * @var \frontend\modules\catalog\models\SaleLang $modelLang
+ * @var \frontend\modules\catalog\models\ItalianProduct $model
+ * @var \frontend\modules\catalog\models\ItalianProductLang $modelLang
  * @var \frontend\modules\catalog\models\Specification $Specification
  */
 
-$this->title = ($model->isNewRecord)
-    ? Yii::t('app', 'Add')
-    : Yii::t('app', 'Edit');
+$this->title = (($model->isNewRecord)
+        ? Yii::t('app', 'Add')
+        : Yii::t('app', 'Edit')) .
+    ' ' . Yii::t('app', 'Furniture in Italy');
 
 ?>
 
@@ -36,8 +37,8 @@ $this->title = ($model->isNewRecord)
 
                         <?php $form = ActiveForm::begin([
                             'action' => ($model->isNewRecord)
-                                ? Url::toRoute(['/catalog/partner-sale/create'])
-                                : Url::toRoute(['/catalog/partner-sale/update', 'id' => $model->id]),
+                                ? Url::toRoute(['/catalog/italian-product/create'])
+                                : Url::toRoute(['/catalog/italian-product/update', 'id' => $model->id]),
                             'fieldConfig' => [
                                 'template' => "{label}<div class=\"col-sm-9\">{input}</div>\n{hint}\n{error}",
                                 'labelOptions' => ['class' => 'col-sm-3 col-form-label'],
@@ -61,15 +62,6 @@ $this->title = ($model->isNewRecord)
 
                         <?= $form->field($modelLang, 'title') ?>
 
-                        <?= $form
-                            ->field($model, 'category_ids')
-                            ->widget(Select2::classname(), [
-                                'data' => Category::dropDownList(),
-                                'options' => [
-                                    'placeholder' => Yii::t('app', 'Select option'),
-                                    'multiple' => true
-                                ],
-                            ]) ?>
 
                         <?= $form
                             ->field($model, 'catalog_type_id')
@@ -79,13 +71,36 @@ $this->title = ($model->isNewRecord)
                             ]) ?>
 
                         <?= $form
-                            ->field($model, 'factory_id')
+                            ->field($model, 'category_ids')
                             ->widget(Select2::classname(), [
-                                'data' => Factory::dropDownList(),
-                                'options' => ['placeholder' => Yii::t('app', 'Select option')],
+                                'data' => Category::dropDownList([
+                                    'type_id' => $model->isNewRecord ? 0 : $model['catalog_type_id']
+                                ]),
+                                'options' => [
+                                    'placeholder' => Yii::t('app', 'Select option'),
+                                    'multiple' => true
+                                ],
                             ]) ?>
 
-                        <?= $form->field($model, 'factory_name') ?>
+                        <?php
+                        /**
+                         * Choose Factory
+                         */
+                        if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['factory'])) {
+                            $model->factory_id = Yii::$app->user->identity->profile->factory_id;
+
+                            echo $form->field($model, 'factory_id')
+                                ->label(false)
+                                ->input('hidden');
+                        } else {
+                            echo $form
+                                ->field($model, 'factory_id')
+                                ->widget(Select2::classname(), [
+                                    'data' => Factory::dropDownList(),
+                                    'options' => ['placeholder' => Yii::t('app', 'Select option')],
+                                ]);
+                            echo $form->field($model, 'factory_name');
+                        } ?>
 
                         <?= $form->field($modelLang, 'description')->textarea() ?>
 
@@ -144,6 +159,34 @@ $this->title = ($model->isNewRecord)
                             ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
                         ) ?>
 
+                        <?= $form->field(
+                            $model,
+                            'weight',
+                            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+                        ) ?>
+
+                        <?= $form->field(
+                            $model,
+                            'region',
+                            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+                        ) ?>
+
+                        <?php
+                        $model->phone = $model->isNewRecord ? Yii::$app->user->identity->profile->phone : '';
+                        echo $form->field(
+                            $model,
+                            'phone',
+                            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+                        ) ?>
+
+                        <?php
+                        $model->email = $model->isNewRecord ? Yii::$app->user->identity->email : '';
+                        echo $form->field(
+                            $model,
+                            'email',
+                            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+                        ) ?>
+
                         <?= $form
                             ->field(
                                 $model,
@@ -179,40 +222,6 @@ $this->title = ($model->isNewRecord)
                                 ->label(false) ?>
 
                         </div>
-                        <div class="form-group row">
-                            <?= $form
-                                ->field(
-                                    $model,
-                                    'country_id',
-                                    [
-                                        'template' => "{label}<div class=\"col-sm-4\">{input}</div>\n{hint}\n{error}",
-                                        'options' => [
-                                            'class' => '',
-                                        ]
-                                    ]
-                                )
-                                ->dropDownList(
-                                    [null => '--'] + Country::dropDownList(),
-                                    ['class' => 'selectpicker']
-                                ); ?>
-                        </div>
-                        <div class="form-group row">
-                            <?= $form
-                                ->field(
-                                    $model,
-                                    'city_id',
-                                    [
-                                        'template' => "{label}<div class=\"col-sm-4\">{input}</div>\n{hint}\n{error}",
-                                        'options' => [
-                                            'class' => '',
-                                        ]
-                                    ]
-                                )
-                                ->dropDownList(
-                                    [null => '--'] + ($model->country_id ? City::dropDownList($model->country_id) : []),
-                                    ['class' => 'selectpicker']
-                                ); ?>
-                        </div>
 
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label"><?= Yii::t('app', 'Status') ?></label>
@@ -239,7 +248,7 @@ $this->title = ($model->isNewRecord)
                             <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
                             <?= Html::a(
                                 Yii::t('app', 'Вернуться к списку'),
-                                ['/catalog/partner-sale/list'],
+                                ['/catalog/italian-product/list'],
                                 ['class' => 'btn btn-primary']
                             ) ?>
                         </div>
@@ -254,11 +263,28 @@ $this->title = ($model->isNewRecord)
 
 <?php
 
+$url = Url::toRoute('/catalog/factory-product/ajax-get-category');
+$urlGetCities = Url::toRoute('/location/location/get-cities');
+
 $script = <<<JS
-$('select#sale-country_id').change(function(){
+$('#italianproduct-catalog_type_id').on('change', function () {
+    $.post('$url',
+        {
+            _csrf: $('#token').val(),
+            type_id: $(this).find('option:selected').val()
+        }
+    ).done(function (data) {
+        var html = '';
+        $.each(data.category, function( key, value ) {
+           html += '<option value="'+ key +'">' + value + '</option>';
+        });
+        $('#italianproduct-category_ids').html(html);
+    });
+});
+$('select#italianproduct-country_id').change(function(){
     var country_id = parseInt($(this).val());
-    $.post('/location/location/get-cities/', {_csrf: $('#token').val(),country_id:country_id}, function(data){
-        var select = $('select#sale-city_id');
+    $.post('$urlGetCities', {_csrf: $('#token').val(),country_id:country_id}, function(data){
+        var select = $('select#italianproduct-city_id');
         select.html(data.options);
         select.selectpicker("refresh");
     });

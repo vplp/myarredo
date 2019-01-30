@@ -308,4 +308,52 @@ class Category extends \common\modules\catalog\models\Category
             ->groupBy(self::tableName() . '.id')
             ->all();
     }
+
+    /**
+     * @param array $params
+     * @return mixed
+     */
+    public static function getWithItalianProduct($params = [])
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = self::findBase();
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["italianProduct.types italianProductTypes"], false)
+                ->andFilterWhere(['IN', 'italianProductTypes.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["italianProduct.specification italianProductSpecification"], false)
+                ->andFilterWhere(['IN', 'italianProductSpecification.alias', $params[$keys['style']]]);
+        }
+
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["italianProduct.factory italianProductFactory"], false)
+                ->andFilterWhere(['IN', 'italianProductFactory.alias', $params[$keys['factory']]]);
+        }
+
+        return $query
+            ->innerJoinWith(["italianProduct"], false)
+            ->andFilterWhere([
+                ItalianProduct::tableName() . '.published' => '1',
+                ItalianProduct::tableName() . '.deleted' => '0',
+            ])
+            ->select([
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                self::tableName() . '.position',
+                self::tableName() . '.image_link',
+                self::tableName() . '.image_link2',
+                self::tableName() . '.image_link3',
+                CategoryLang::tableName() . '.title',
+                'count(' . self::tableName() . '.id) as count'
+            ])
+            ->groupBy(self::tableName() . '.id')
+            ->all();
+    }
 }

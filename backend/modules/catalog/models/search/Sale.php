@@ -28,7 +28,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-            [['category', 'factory_id', 'city_id', 'user_id'], 'integer'],
+            [['id', 'category', 'factory_id', 'city_id', 'user_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -85,7 +85,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = SaleModel::findBase()->undeleted();
+        $query = SaleModel::find()->joinWith(['lang'])->undeleted();
         return $this->baseSearch($query, $params);
     }
 

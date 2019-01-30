@@ -52,7 +52,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
                 'uploadAsync' => true,
                 'showCaption' => false,
                 'showRemove' => false,
-                'showUpload' => false,
+                'showUpload' => true,
                 'overwriteInitial' => false,
                 'initialPreview' => [$preview],
                 'initialPreviewConfig' => new JsExpression('[' . $initImageConfig . ']'),
@@ -63,7 +63,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
             ],
             'pluginEvents' => [
                 'filebatchselected' => 'function(event, files) {
-                    $(".kv-file-upload").click();
+                    //$(".kv-file-upload").click();
                 }',
                 'filebatchuploadsuccess' => 'function(event, data, previewId, index){
                     var response = data.response;
@@ -122,7 +122,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
                     '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
                 ],
                 'uploadAsync' => true,
-                'showUpload' => false,
+                'showUpload' => true,
                 'showCaption' => false,
                 'showRemove' => false,
                 'overwriteInitial' => false,
@@ -134,7 +134,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
             ], $pluginOptions),
             'pluginEvents' => [
                 'filebatchselected' => 'function(event, files) {
-                $(".kv-file-upload").click();
+                    //$(".kv-file-upload").click();
                 }',
                 'filebatchuploadsuccess' => 'function(event, data, previewId, index){
                         var response = data.response;

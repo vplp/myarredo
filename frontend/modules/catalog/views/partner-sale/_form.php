@@ -62,20 +62,22 @@ $this->title = ($model->isNewRecord)
                         <?= $form->field($modelLang, 'title') ?>
 
                         <?= $form
-                            ->field($model, 'category_ids')
-                            ->widget(Select2::classname(), [
-                                'data' => Category::dropDownList(),
-                                'options' => [
-                                    'placeholder' => Yii::t('app', 'Select option'),
-                                    'multiple' => true
-                                ],
-                            ]) ?>
-
-                        <?= $form
                             ->field($model, 'catalog_type_id')
                             ->widget(Select2::classname(), [
                                 'data' => Types::dropDownList(),
                                 'options' => ['placeholder' => Yii::t('app', 'Select option')],
+                            ]) ?>
+
+                        <?= $form
+                            ->field($model, 'category_ids')
+                            ->widget(Select2::classname(), [
+                                'data' => Category::dropDownList([
+                                    'type_id' => $model->isNewRecord ? 0 : $model['catalog_type_id']
+                                ]),
+                                'options' => [
+                                    'placeholder' => Yii::t('app', 'Select option'),
+                                    'multiple' => true
+                                ],
                             ]) ?>
 
                         <?= $form
@@ -254,10 +256,26 @@ $this->title = ($model->isNewRecord)
 
 <?php
 
+$url = Url::toRoute('/catalog/factory-product/ajax-get-category');
+$urlGetCities = Url::toRoute('/location/location/get-cities');
 $script = <<<JS
+$('#sale-catalog_type_id').on('change', function () {
+    $.post('$url',
+        {
+            _csrf: $('#token').val(),
+            type_id: $(this).find('option:selected').val()
+        }
+    ).done(function (data) {
+        var html = '';
+        $.each(data.category, function( key, value ) {
+           html += '<option value="'+ key +'">' + value + '</option>';
+        });
+        $('#sale-category_ids').html(html);
+    });
+});
 $('select#sale-country_id').change(function(){
     var country_id = parseInt($(this).val());
-    $.post('/location/location/get-cities/', {_csrf: $('#token').val(),country_id:country_id}, function(data){
+    $.post('$urlGetCities', {_csrf: $('#token').val(),country_id:country_id}, function(data){
         var select = $('select#sale-city_id');
         select.html(data.options);
         select.selectpicker("refresh");

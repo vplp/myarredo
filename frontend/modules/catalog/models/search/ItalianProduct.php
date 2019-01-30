@@ -9,9 +9,6 @@ use yii\data\ActiveDataProvider;
 use frontend\modules\catalog\models\{
     ItalianProduct as ItalianProductModel, ItalianProductLang
 };
-use frontend\modules\location\models\{
-    Country, City
-};
 //
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 
@@ -109,18 +106,6 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
 
         if (isset($params[$keys['price']])) {
             $query->andFilterWhere(['between', self::tableName() . '.price', $params[$keys['price']][0], $params[$keys['price']][1]]);
-        }
-
-        if (isset($params['country'])) {
-            $query
-                ->innerJoinWith(["country"])
-                ->andFilterWhere(['IN', Country::tableName() . '.id', $params['country']]);
-        }
-
-        if (isset($params['city'])) {
-            $query
-                ->innerJoinWith(["city"])
-                ->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
         }
 
         $query->andFilterWhere(['like', ItalianProductLang::tableName() . '.title', $this->title]);
