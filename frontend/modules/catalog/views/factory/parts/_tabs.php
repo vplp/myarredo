@@ -125,7 +125,7 @@ $keys = Yii::$app->catalogFilter->keys;
                                     ? Html::img($catalogFile->getImageLink())
                                     : ''
                                 ) .
-                                $catalogFile->title,
+                                Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
                                 $fileLink,
                                 ['target' => '_blank']
                             ) .
@@ -151,6 +151,7 @@ $keys = Yii::$app->catalogFilter->keys;
                                     ? Html::img($catalogFile->getImageLink())
                                     : ''
                                 ) .
+                                Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
                                 $catalogFile->title,
                                 $fileLink,
                                 ['target' => '_blank']
