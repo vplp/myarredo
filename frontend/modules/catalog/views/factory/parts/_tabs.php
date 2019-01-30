@@ -125,9 +125,9 @@ $keys = Yii::$app->catalogFilter->keys;
                                 : ''
                             ) .
                             Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
-                            $catalogFile->getFileLink(),
+                            null, //$catalogFile->getFileLink(),
                             ['target' => '_blank']
-                        ) .
+                        ) . $catalogFile->getFileLink() .
                         Html::endTag('li');
                 } ?>
             </ul>
