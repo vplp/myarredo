@@ -118,19 +118,17 @@ $keys = Yii::$app->catalogFilter->keys;
             <ul class="list">
                 <?php
                 foreach ($model->catalogsFiles as $catalogFile) {
-                    if ($fileLink = $catalogFile->getFileLink()) {
-                        echo Html::beginTag('li') .
-                            Html::a(
-                                ($catalogFile->image_link
-                                    ? Html::img($catalogFile->getImageLink())
-                                    : ''
-                                ) .
-                                Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
-                                $fileLink,
-                                ['target' => '_blank']
+                    echo Html::beginTag('li') .
+                        Html::a(
+                            ($catalogFile->image_link
+                                ? Html::img($catalogFile->getImageLink())
+                                : ''
                             ) .
-                            Html::endTag('li');
-                    }
+                            Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
+                            $catalogFile->getFileLink(),
+                            ['target' => '_blank']
+                        ) .
+                        Html::endTag('li');
                 } ?>
             </ul>
         </div>
@@ -144,20 +142,18 @@ $keys = Yii::$app->catalogFilter->keys;
             <ul class="list">
                 <?php
                 foreach ($model->pricesFiles as $priceFile) {
-                    if ($fileLink = $priceFile->getFileLink()) {
-                        echo Html::beginTag('li') .
-                            Html::a(
-                                ($priceFile->image_link
-                                    ? Html::img($catalogFile->getImageLink())
-                                    : ''
-                                ) .
-                                Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
-                                $catalogFile->title,
-                                $fileLink,
-                                ['target' => '_blank']
+                    echo Html::beginTag('li') .
+                        Html::a(
+                            ($priceFile->image_link
+                                ? Html::img($catalogFile->getImageLink())
+                                : ''
                             ) .
-                            Html::endTag('li');
-                    }
+                            Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
+                            $catalogFile->title,
+                            $priceFile->getFileLink(),
+                            ['target' => '_blank']
+                        ) .
+                        Html::endTag('li');
                 } ?>
             </ul>
         </div>
