@@ -1941,7 +1941,9 @@ h1 {
   right: -60px;
   z-index: -1;
   opacity: 0.6;
-  filter: blur(60px); }
+  filter: blur(60px);
+  opacity: 0.2;
+}
 
 .prod-card-page .best-price-form {
   background: #F3F2F0;
@@ -3071,24 +3073,22 @@ h1 {
     padding: 10px 0;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     line-height: 25px; }
   .factory-page .tab-pane li {
     list-style: none;
     padding-left: 25px;
     position: relative; }
-    .factory-page .tab-pane li:before {
-      content: '\f0da';
-      position: absolute;
-      top: 0;
-      left: 0;
-      font-family: 'FontAwesome';
-      color: #535351; }
       .factory-page .tab-pane .list li {
         max-width: 300px;
         margin: 0 10px 10px;
         overflow: hidden;
         word-break: break-all;
+        border: 1px solid transparent;
         transition: 0.3s;
+      }
+      .factory-page .tab-pane .list li:hover {
+        border-color: #F3F2F0;
       }
     .factory-page .tab-pane li a {
       color: #535351;
@@ -3106,6 +3106,16 @@ h1 {
         display: block;
         width: 100%;
         padding: 5px 8px;
+        font-size: 14px;
+        position: relative;
+      }
+      .factory-page .tab-pane li a .for-catalog-list:before {
+        content: '\f0da';
+        position: absolute;
+        top: 6px;
+        left: 0;
+        font-family: 'FontAwesome';
+        color: #535351; 
       }
       .factory-page .tab-pane li a img {
         width: 100%;
@@ -3250,7 +3260,8 @@ h1 {
     background-size: 400%;
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(60px); }
+    filter: blur(60px);
+    opacity: 0.2; }
   .factory-page .one-prod-tile .prod-infoblock {
     background: #FFFFFF;
     width: 80%;
@@ -3268,14 +3279,16 @@ h1 {
     color: #535351;
     font-size: 14px;
     font-weight: 600;
-    height: 90px; }
+    height: 90px;
+    overflow: hidden; }
   .factory-page .one-prod-tile:hover {
     border: none;
     box-shadow: none;
     overflow: visible;
     z-index: 5; }
     .factory-page .one-prod-tile:hover .tile-prod-name {
-      height: auto; }
+      height: auto;
+      min-height: 60px; }
     .factory-page .one-prod-tile:hover .one-prod-tile-in {
       border-color: #BDBCB3;
       position: relative;
@@ -6450,6 +6463,9 @@ h1 {
   background-color: #f3f2f0;
   display: flex;
   justify-content: space-between;
+  height: 100%;
+  max-height: 290px;
+  margin: 0 auto;
 }
 .welcome-left {
   width: 28%;
@@ -6459,8 +6475,15 @@ h1 {
   max-width: 175px;
   max-height: 175px;
 }
+.welcome-left>i.fa {
+  font-size: 190px;
+  color: #448339;
+  margin-top: -22px;
+}
 .welcome-right {
-  width: 71%;
+  width: 100%;
+  padding-top: 7px;
+  padding-left: 22px;
 }
 .welcome-tittle {
   display: block;
@@ -6468,7 +6491,6 @@ h1 {
   font-weight: bold;
   font-size: 28px;
   color: #535351;
-  max-height: 34px;
 }
 .welcome-subtitle {
   display: block;
@@ -6560,14 +6582,14 @@ h1 {
   background-color: #459338;
 }
 .profile-box {
-  max-width: 670px;
+  width: 100%;
   max-height: 295px;
   display: flex;
   flex-wrap: wrap;
 }
 .profile-quadrlink {
   display: block;
-  width: 165px;
+  width: 25%;
   height: 145px;
   padding: 30px 10px 10px;
   background-color: #f3f2f0;
@@ -6650,6 +6672,9 @@ h1 {
   max-height: 210px;
   object-fit: contain;
 }
+.factory-profile .profile-gencont .part-contact {
+  padding: 45px 0px 45px 15px;
+}
 @media (min-width: 1200px) and (max-width: 1300px) {
   .profile-quadrlink {
     width: 150px;
@@ -6686,7 +6711,8 @@ h1 {
   .profile-gencont .part-contact-right .profile-box {
     margin: 0 auto;
   }
-  .profile-box {
+  .profile-box,
+  .welcome-box {
     max-width: 665px;
   }
   .largex-container h1.title-h1-profile {
@@ -6758,7 +6784,7 @@ h1 {
 }
 @media (min-width: 599px) and (max-width: 699px) {
   .profile-quadrlink {
-    width: 23vw;
+    width: 25%;
   }
   .profile-gencont .part-contact-left {
     padding: 40px 20px;
@@ -6818,6 +6844,9 @@ h1 {
     max-width: 333px;
     padding: 20px;
   }
+  .profile-quadrlink {
+    width: 50%;
+  }
 }
 @media (max-width: 530px) {
   .welcome-tittle {
@@ -6831,8 +6860,5 @@ h1 {
   }
   .profile-gencont .btn-green {
     font-size: 13px;
-  }
-  .profile-quadrlink {
-    width: 43.5vw;
   }
 }

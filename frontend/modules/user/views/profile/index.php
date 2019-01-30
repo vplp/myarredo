@@ -93,14 +93,11 @@ $this->title = Yii::t('app', 'Profile');
                 <div class="part-contact-right">
 
                     <?php
-                    if (Yii::$app->session->has("newUserFactory")) {
+                    if (1 > 0) {
                         Yii::$app->session->remove("newUserFactory");
                         ?>
 
                         <div class="welcome-box">
-                            <div class="welcome-left">
-                                <img src="<?= $bundle->baseUrl ?>/img/thank_register.png" alt="welcome">
-                            </div>
                             <div class="welcome-right">
                                 <?= Yii::$app->param->getByName('USER_FACTORY_REG_CONGRATULATIONS') ?>
                             </div>
