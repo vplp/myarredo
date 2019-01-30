@@ -125,9 +125,9 @@ $keys = Yii::$app->catalogFilter->keys;
                                 : ''
                             ) .
                             Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
-                            null, //$catalogFile->getFileLink(),
+                            $catalogFile->getFileLink(),
                             ['target' => '_blank']
-                        ) . $catalogFile->getFileLink() .
+                        ) .
                         Html::endTag('li');
                 } ?>
             </ul>
@@ -149,10 +149,9 @@ $keys = Yii::$app->catalogFilter->keys;
                                 : ''
                             ) .
                             Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
-                            $catalogFile->title,
-                            null, //$priceFile->getFileLink(),
+                            $priceFile->getFileLink(),
                             ['target' => '_blank']
-                        ) . $priceFile->getFileLink() .
+                        ) .
                         Html::endTag('li');
                 } ?>
             </ul>
