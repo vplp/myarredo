@@ -11,7 +11,11 @@ use backend\widgets\TreeGrid;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model backend\modules\catalog\models\Product */
 
+
 echo $form->text_line($model, 'volume');
+echo $form->text_line($model, 'weight');
+echo $form->text_line($model, 'production_year');
+echo $form->text_line($modelLang, 'material');
 
 if (!$model->isNewRecord) {
     echo TreeGrid::widget([

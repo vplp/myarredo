@@ -82,6 +82,10 @@ $this->title = (($model->isNewRecord)
                                 ],
                             ]) ?>
 
+                        <?= $form->field($modelLang, 'description')->textarea() ?>
+
+                        <?= $form->field($modelLang, 'defects')->textarea() ?>
+
                         <?php
                         /**
                          * Choose Factory
@@ -102,7 +106,12 @@ $this->title = (($model->isNewRecord)
                             echo $form->field($model, 'factory_name');
                         } ?>
 
-                        <?= $form->field($modelLang, 'description')->textarea() ?>
+
+                        <?= $form->field(
+                            $modelLang,
+                            'material',
+                            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+                        ) ?>
 
                         <?php
                         $specification_value = $model->getSpecificationValueBySpecification();
@@ -162,6 +171,12 @@ $this->title = (($model->isNewRecord)
                         <?= $form->field(
                             $model,
                             'weight',
+                            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+                        ) ?>
+
+                        <?= $form->field(
+                            $model,
+                            'production_year',
                             ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
                         ) ?>
 

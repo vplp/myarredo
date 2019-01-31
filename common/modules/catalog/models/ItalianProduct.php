@@ -41,6 +41,7 @@ use common\modules\user\models\User;
  * @property string $currency
  * @property float $volume
  * @property float $weight
+ * @property float $production_year
  * @property integer $position
  * @property integer $on_main
  * @property integer $created_at
@@ -140,7 +141,7 @@ class ItalianProduct extends ActiveRecord
                 'range' => array_keys(static::currencyRange())
             ],
             [
-                ['region', 'phone', 'email', 'alias', 'factory_name', 'article', 'image_link'],
+                ['region', 'phone', 'email', 'alias', 'factory_name', 'article', 'image_link', 'production_year'],
                 'string',
                 'max' => 255
             ],
@@ -199,6 +200,7 @@ class ItalianProduct extends ActiveRecord
                 'currency',
                 'volume',
                 'weight',
+                'production_year',
                 'published',
                 'deleted',
                 'position',
@@ -224,6 +226,7 @@ class ItalianProduct extends ActiveRecord
                 'currency',
                 'volume',
                 'weight',
+                'production_year',
                 'published',
                 'deleted',
                 'position',
@@ -258,7 +261,8 @@ class ItalianProduct extends ActiveRecord
             'currency' => Yii::t('app', 'Currency'),
             'volume' => Yii::t('app', 'Volume'),
             'weight' => Yii::t('app', 'Weight'),
-            'on_main' => 'На главную',
+            'production_year' => Yii::t('app', 'Production year'),
+            'on_main' => Yii::t('app', 'On main'),
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
