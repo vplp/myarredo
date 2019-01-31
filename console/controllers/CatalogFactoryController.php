@@ -38,7 +38,7 @@ class CatalogFactoryController extends Controller
 
         foreach ($models as $model) {
             /** @var $model FactoryFile */
-            $this->stdout($model->id . " \n", Console::FG_GREEN);
+            //$this->stdout($model->id . " \n", Console::FG_GREEN);
             /** @var Catalog $module */
             $module = Yii::$app->getModule('catalog');
 
