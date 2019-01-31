@@ -28,12 +28,6 @@ class CatalogFactoryController extends Controller
 
         $models = FactoryFile::findBase()
             ->where(['image_link' => null])
-            //->filterWhere(['image_link' => null])
-            //->where(['image_link' => true, 'image_link' => ''])
-            //->andWhere(['is', ['image_link' => null]])
-            //
-            //->andFilterWhere(['in', FactoryFile::tableName() . '.image_link', ['null', '']])
-            //->andFilterWhere(['is', 'image_link', new \yii\db\Expression('null')])
             ->limit(10)
             ->enabled()
             ->all();

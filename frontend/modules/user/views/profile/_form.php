@@ -43,7 +43,12 @@ $this->title = Yii::t('app', 'Profile');
                                 ]
                             ]) ?>
                     </div>
-                    <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
+
+                    <?php
+                    /**
+                     * for factory
+                     */
+                    if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
                         <div class="col-md-4 col-lg-4 one-row">
                             <?= $form->field($model, 'email_company') ?>
                             <?= $form->field($model, 'address') ?>
@@ -51,7 +56,11 @@ $this->title = Yii::t('app', 'Profile');
                         </div>
                     <?php } ?>
 
-                    <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') { ?>
+                    <?php
+                    /**
+                     * for partner
+                     */
+                    if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') { ?>
                         <div class="col-md-4 col-lg-4 one-row">
                             <?= $form->field($model, 'name_company') ?>
                             <?= $form->field($model, 'website') ?>
@@ -74,10 +83,7 @@ $this->title = Yii::t('app', 'Profile');
                         </div>
                     <?php } ?>
 
-
                 </div>
-
-                <?php //\thread\widgets\HtmlForm::imageOne($model, 'avatar', ['image_url' => $model->getAvatarImage()]) ?>
 
                 <div class="row form-group">
                     <div class="col-sm-4">
