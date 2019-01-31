@@ -26,7 +26,7 @@ class CatalogFactoryController extends Controller
     {
         $this->stdout("TranslateTitle: start. \n", Console::FG_GREEN);
 
-        $models = FactoryFile::find()
+        $models = FactoryFile::findBase()
             ->where(['image_link' => null])
             //->filterWhere(['image_link' => null])
             //->where(['image_link' => true, 'image_link' => ''])
@@ -35,6 +35,7 @@ class CatalogFactoryController extends Controller
             //->andFilterWhere(['in', FactoryFile::tableName() . '.image_link', ['null', '']])
             //->andFilterWhere(['is', 'image_link', new \yii\db\Expression('null')])
             ->limit(20)
+            ->enabled()
             ->all();
 
         foreach ($models as $model) {

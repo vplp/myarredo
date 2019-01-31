@@ -119,6 +119,24 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCatalogsFiles()
+    {
+        return $this->hasMany(FactoryCatalogsFiles::class, ['factory_id' => 'id'])
+            ->andWhere(['file_type' => 1])->enabled();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPricesFiles()
+    {
+        return $this->hasMany(FactoryPricesFiles::class, ['factory_id' => 'id'])
+            ->andWhere(['file_type' => 2])->enabled();
+    }
+
+    /**
      * @param string $image_link
      * @return null|string
      */
