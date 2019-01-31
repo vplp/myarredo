@@ -70,7 +70,7 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
         ]);
         //
         $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published]);
+            ->andFilterWhere(['=', 'published', $this->published]);
         //
         $query->andFilterWhere(['like', ItalianProductLang::tableName() . '.title', $this->title]);
         //

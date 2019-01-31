@@ -70,7 +70,7 @@ class Group extends GroupModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'published', $this->published]);
+        $query->andFilterWhere(['=', 'published', $this->published]);
         //
         $query->andFilterWhere(['like', GroupLang::tableName() . '.title', $this->title]);
 

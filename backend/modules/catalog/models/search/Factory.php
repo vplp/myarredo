@@ -63,7 +63,7 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
         }
 
         $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published]);
+            ->andFilterWhere(['=', 'published', $this->published]);
 
         $query->andFilterWhere(['like', 'title', $this->title]);
 

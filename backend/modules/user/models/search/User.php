@@ -69,7 +69,7 @@ class User extends UserModel implements BaseBackendSearchModel
 
         $query->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'published', $this->published]);
+            ->andFilterWhere(['=', 'published', $this->published]);
 
         return $dataProvider;
     }

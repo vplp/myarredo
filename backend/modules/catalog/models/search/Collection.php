@@ -64,7 +64,7 @@ class Collection extends CollectionModel implements BaseBackendSearchModel
             'factory_id' => $this->factory_id
         ]);
 
-        $query->andFilterWhere(['like', 'published', $this->published]);
+        $query->andFilterWhere(['=', 'published', $this->published]);
 
         $query->andFilterWhere(['like', self::tableName() . '.title', $this->title]);
 

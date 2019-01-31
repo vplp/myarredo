@@ -64,7 +64,7 @@ class Directlink extends ParentModel implements BaseBackendSearchModel
         }
 
         $query->andFilterWhere(['like', 'url', $this->url])
-            ->andFilterWhere(['like', 'published', $this->published]);
+            ->andFilterWhere(['=', 'published', $this->published]);
 
         return $dataProvider;
     }

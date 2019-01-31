@@ -70,7 +70,7 @@ class Language extends LanguageModel implements BaseBackendSearchModel
         $query->andFilterWhere(['like', 'alias', $this->alias])
             ->andFilterWhere(['like', 'local', $this->alias])
             ->andFilterWhere(['like', 'label', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published]);
+            ->andFilterWhere(['=', 'published', $this->published]);
 
         return $dataProvider;
     }

@@ -68,13 +68,17 @@ class Sale extends SaleModel implements BaseBackendSearchModel
             'city_id' => $this->city_id,
             'user_id' => $this->user_id
         ]);
-        //
-        $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published]);
-        //
+
+        $query
+            ->andFilterWhere(['like', 'alias', $this->alias])
+            ->andFilterWhere(['=', 'published', $this->published]);
+
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);
-        //
-        $query->innerJoinWith(["category"])->andFilterWhere([SaleRelCategory::tableName() . '.group_id' => $this->category]);
+
+        if ($this->category) {
+            $query->innerJoinWith(["category"])
+                ->andFilterWhere([SaleRelCategory::tableName() . '.group_id' => $this->category]);
+        }
 
         return $dataProvider;
     }
@@ -85,7 +89,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = SaleModel::find()->joinWith(['lang'])->undeleted();
+        $query = SaleModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 

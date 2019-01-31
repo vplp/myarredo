@@ -77,7 +77,7 @@ class Currency extends CurrencyModel implements BaseBackendSearchModel
         );
 
         $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published]);
+            ->andFilterWhere(['=', 'published', $this->published]);
         //
         $query->andFilterWhere(['like', CurrencyLang::tableName() . '.title', $this->title]);
 

@@ -67,7 +67,7 @@ class BannerItem extends BannerItemModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'published', $this->published]);
+        $query->andFilterWhere(['=', 'published', $this->published]);
         //
         $query->andFilterWhere(['like', BannerItemLang::tableName() . '.title', $this->title]);
 

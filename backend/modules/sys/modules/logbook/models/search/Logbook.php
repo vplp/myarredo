@@ -67,7 +67,7 @@ class Logbook extends ParentModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'published', $this->published]);
+        $query->andFilterWhere(['=', 'published', $this->published]);
 
         return $dataProvider;
     }

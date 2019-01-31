@@ -105,7 +105,7 @@ class Poll extends PollModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'published', $this->published])
+        $query->andFilterWhere(['=', 'published', $this->published])
             ->andFilterWhere(['like', 'published_time', $this->start_time])
             ->andFilterWhere(['like', 'published_time', $this->finish_time]);
         //

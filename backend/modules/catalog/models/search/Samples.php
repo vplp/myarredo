@@ -67,7 +67,7 @@ class Samples extends SamplesModel implements BaseBackendSearchModel
             'factory_id' => $this->factory_id
         ]);
 
-        $query->andFilterWhere(['like', 'published', $this->published]);
+        $query->andFilterWhere(['=', 'published', $this->published]);
 
         $query->andFilterWhere(['like', SamplesLang::tableName() . '.title', $this->title]);
 

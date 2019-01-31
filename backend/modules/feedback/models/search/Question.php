@@ -71,7 +71,7 @@ class Question extends QuestionModel implements BaseBackendSearchModel
 
         $query->with(['group', 'group.lang']);
 
-        $query->andFilterWhere(['like', 'published', $this->published])
+        $query->andFilterWhere(['=', 'published', $this->published])
             ->andFilterWhere(['like', 'group_id', $this->group_id]);
 
         return $dataProvider;
