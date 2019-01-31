@@ -27,7 +27,7 @@ class CatalogFactoryController extends Controller
         $this->stdout("TranslateTitle: start. \n", Console::FG_GREEN);
 
         $models = FactoryFile::findBase()
-            ->where(['image_link' => null])
+            ->where(['image_link' => null, 'file_type' => '1'])
             ->limit(10)
             ->enabled()
             ->all();
@@ -48,6 +48,21 @@ class CatalogFactoryController extends Controller
             }
 
             if (!empty($model->file_link) && is_file($path . '/' . $model->file_link)) {
+                $image_link = $model->id . '.jpg';
+
+                /**
+                 * save
+                 */
+                $model->setScenario('setImage');
+
+                $model->image_link = $image_link;
+
+                if ($model->save()) {
+                    $this->stdout("ID=" . $model->id . " \n", Console::FG_GREEN);
+                } else {
+                    var_dump($model->errors);
+                }
+
                 /**
                  * thumb
                  */
@@ -64,25 +79,10 @@ class CatalogFactoryController extends Controller
                     true
                 );
 
-                $image_link = $model->id . '.jpg';
-
                 file_put_contents(
                     $path . '/thumb/' . $image_link,
                     $imageData->getImageBlob()
                 );
-
-                /**
-                 * save
-                 */
-                $model->setScenario('setImage');
-
-                $model->image_link = $image_link;
-
-                if ($model->save()) {
-                    $this->stdout("ID=" . $model->id . " \n", Console::FG_GREEN);
-                } else {
-                    var_dump($model->errors);
-                }
             } else {
                 $this->stdout("test ID=" . $model->id . " \n", Console::FG_GREEN);
                 $model->setScenario('setImage');
