@@ -34,7 +34,7 @@ class CatalogFactoryController extends Controller
             //
             //->andFilterWhere(['in', FactoryFile::tableName() . '.image_link', ['null', '']])
             //->andFilterWhere(['is', 'image_link', new \yii\db\Expression('null')])
-            ->limit(20)
+            ->limit(10)
             ->enabled()
             ->all();
 
@@ -91,9 +91,9 @@ class CatalogFactoryController extends Controller
                 }
             } else {
                 $this->stdout("test ID=" . $model->id . " \n", Console::FG_GREEN);
-//                $model->setScenario('setImage');
-//                $model->image_link = 'test.jpg';
-//                $model->save();
+                $model->setScenario('setImage');
+                $model->image_link = 'test.jpg';
+                $model->save();
             }
         }
 
