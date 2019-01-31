@@ -26,14 +26,19 @@ class CatalogFactoryController extends Controller
     {
         $this->stdout("TranslateTitle: start. \n", Console::FG_GREEN);
 
-        $models = FactoryFile::findBase()
-            ->andWhere(['is', ['image_link' => null]])
+        $models = FactoryFile::find()
+            ->filterWhere(['image_link' => null])
+            //->where(['image_link' => true, 'image_link' => ''])
+            //->andWhere(['is', ['image_link' => null]])
+            //
+            //->andFilterWhere(['in', FactoryFile::tableName() . '.image_link', ['null', '']])
+            //->andFilterWhere(['is', 'image_link', new \yii\db\Expression('null')])
             ->limit(10)
             ->all();
 
         foreach ($models as $model) {
             /** @var $model FactoryFile */
-
+            $this->stdout($model->id . " \n", Console::FG_GREEN);
             /** @var Catalog $module */
             $module = Yii::$app->getModule('catalog');
 
