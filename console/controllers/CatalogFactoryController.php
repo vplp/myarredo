@@ -27,18 +27,18 @@ class CatalogFactoryController extends Controller
         $this->stdout("TranslateTitle: start. \n", Console::FG_GREEN);
 
         $models = FactoryFile::find()
-            ->filterWhere(['image_link' => null])
+            ->where(['image_link' => null])
+            //->filterWhere(['image_link' => null])
             //->where(['image_link' => true, 'image_link' => ''])
             //->andWhere(['is', ['image_link' => null]])
             //
             //->andFilterWhere(['in', FactoryFile::tableName() . '.image_link', ['null', '']])
             //->andFilterWhere(['is', 'image_link', new \yii\db\Expression('null')])
-            ->limit(10)
+            ->limit(20)
             ->all();
 
         foreach ($models as $model) {
             /** @var $model FactoryFile */
-            //$this->stdout($model->id . " \n", Console::FG_GREEN);
             /** @var Catalog $module */
             $module = Yii::$app->getModule('catalog');
 
@@ -88,6 +88,11 @@ class CatalogFactoryController extends Controller
                 } else {
                     var_dump($model->errors);
                 }
+            } else {
+                $this->stdout("test ID=" . $model->id . " \n", Console::FG_GREEN);
+//                $model->setScenario('setImage');
+//                $model->image_link = 'test.jpg';
+//                $model->save();
             }
         }
 
