@@ -124,6 +124,7 @@ $('select#registerform-country_id').change(function(){
         select.html(data.options);
         select.selectpicker("refresh");
     });
+    // if selected Italy
     if (country_id === 4) {
         $('.field-registerform-city_id').css('display', 'none');
         $('.field-registerform-delivery_to_other_cities').css('display', 'none');

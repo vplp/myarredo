@@ -383,7 +383,8 @@ h1 {
       width: auto; }
 
 .mobile-header {
-  height: 80px;
+  height: auto;
+  min-height: 80px;
   display: none;
   position: relative; }
   .mobile-header .left-info-part {
@@ -5493,7 +5494,8 @@ h1 {
   .header {
     display: none; }
   .mobile-header {
-    display: flex; }
+    display: flex;
+    flex-wrap: wrap; }
   .home-main .section-header {
     height: 100px; }
   .home-main .filter {
@@ -6714,6 +6716,33 @@ h1 {
   font-family: FontAwesome;
   color: #535351;
 }
+.mobsearch-box {
+  display: none;
+  width: 100%;
+  padding: 10px;
+  background-color: #535351;
+}
+.mobsearch-group {
+  display: flex;
+  align-items: center;
+}
+.btn-mobsearch {
+  display: inline-block;
+  font-family: "Palatino", "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 5px 20px;
+  background-color: #448339;
+  color: #ffffff;
+  border: 1px solid #448339;
+
+}
+.btn-mobsearch:focus {
+  text-decoration: none;
+  border-color: #448339;
+}
+/* ---------------------------------------new media queries-------------------------------------- */
+
 @media (min-width: 1200px) and (max-width: 1300px) {
   .profile-quadrlink {
     width: 150px;
