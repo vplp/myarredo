@@ -80,7 +80,7 @@ $keys = Yii::$app->catalogFilter->keys;
 
                 echo Html::beginTag('li') .
                     Html::a(
-                        $item['title'] . ' <span>' . $item['count'] . '</span>',
+                        '<span class="for-allprod">'. $item['title']. '</span>' . ' <span>' . $item['count'] . '</span>',
                         Yii::$app->catalogFilter->createUrl($params)
                     ) .
                     Html::endTag('li');
@@ -103,7 +103,7 @@ $keys = Yii::$app->catalogFilter->keys;
 
                 echo Html::beginTag('li') .
                     Html::a(
-                        $item['title'] . ' <span>' . $item['count'] . '</span>',
+                        '<span class="for-allprod">' .$item['title']. '</span>' . ' <span>' . $item['count'] . '</span>',
                         Yii::$app->catalogFilter->createUrl($params)
                     ) .
                     Html::endTag('li');

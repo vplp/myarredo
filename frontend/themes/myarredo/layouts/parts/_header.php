@@ -182,6 +182,15 @@ use frontend\modules\user\widgets\menu\UserMenu;
         </div>
     </div>
 
+    <div class="mobsearch-box">
+        <form action="" class="mobsearch-form">
+            <div class="mobsearch-group">
+                <input placeholder="Введите значение" class="form-control mobsearch-fld" type="text">
+                <button type="submit" class="btn-mobsearch">Поиск</button>
+            </div>
+        </form>
+    </div>
+
     <div class="mobile-menu js-mobile-menu">
         <div class="stripe">
 

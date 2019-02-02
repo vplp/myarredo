@@ -713,4 +713,11 @@ $(document).ready(function(){
         $(this).toggleClass('opened');
     });
 
+    // for open/close mobile search
+    if ($('.mobile-header').length > 0) {
+        $('.mobile-header').find('.search-btn').on('click', function() {
+            $('.mobsearch-box').slideToggle();
+        });
+    }
+
 });
