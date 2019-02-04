@@ -23,9 +23,13 @@ class ElasticSearchController extends Controller
      */
     public function actionResetMark()
     {
+        $this->stdout("ResetMark: start. \n", Console::FG_GREEN);
+
         Yii::$app->db->createCommand()
             ->update(Product::tableName(), ['mark1' => '0'], "`mark1`='1'")
             ->execute();
+
+        $this->stdout("ResetMark: finish. \n", Console::FG_GREEN);
     }
 
     /**
@@ -39,11 +43,14 @@ class ElasticSearchController extends Controller
         Yii::$app->language = $lang;
 
         $models = Product::find()
-            ->innerJoinWith(['lang', 'factory'])
             ->andFilterWhere([
-                Product::tableName() . '.removed' => '0',
-                Product::tableName() . '.mark1' => '0',
+                'mark1' => '0',
             ])
+//            ->innerJoinWith(['lang', 'factory'])
+//            ->andFilterWhere([
+//                Product::tableName() . '.removed' => '0',
+//                Product::tableName() . '.mark1' => '0',
+//            ])
             ->enabled()
             ->orderBy(Product::tableName() . '.id DESC')
             ->limit(100)
