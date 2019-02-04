@@ -82,6 +82,7 @@ class Directlink extends \thread\modules\seo\modules\directlink\models\Directlin
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getCities()
     {
