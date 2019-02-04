@@ -42,7 +42,7 @@ class ElasticSearchProduct extends ActiveRecord
      */
     public function attributes()
     {
-        return ['id', 'title_ru', 'title_it', 'description_ru', 'description_it'];
+        return ['id', 'title_ru', 'title_it', /*'description_ru', 'description_it'*/];
     }
 
     /**
@@ -56,8 +56,8 @@ class ElasticSearchProduct extends ActiveRecord
                     'id' => ['type' => 'long'],
                     'title_ru' => ['type' => 'text'],
                     'title_it' => ['type' => 'text'],
-                    'description_ru' => ['type' => 'text'],
-                    'description_it' => ['type' => 'text'],
+                    //'description_ru' => ['type' => 'text'],
+                    //'description_it' => ['type' => 'text'],
                 ]
             ],
         ];
@@ -159,12 +159,12 @@ class ElasticSearchProduct extends ActiveRecord
         $lang = substr($product['lang']['lang'], 0, 2);
 
         $title = 'title_' . $lang;
-        $description = 'description_' . $lang;
+        //$description = 'description_' . $lang;
 
         $record->id = $product['id'];
 
         $record->$title = $product['lang']['title'];
-        $record->$description = $product['lang']['description'];
+        //$record->$description = $product['lang']['description'];
 
         try {
             if (!$isExist) {

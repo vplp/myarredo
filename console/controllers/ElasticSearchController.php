@@ -30,7 +30,7 @@ class ElasticSearchController extends Controller
 
     /**
      * @param string $lang
-     * @throws \yii\db\Exception
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionAdd($lang = 'ru-RU')
     {
@@ -46,7 +46,7 @@ class ElasticSearchController extends Controller
             ])
             ->enabled()
             ->orderBy(Product::tableName() . '.id DESC')
-            ->limit(500)
+            ->limit(100)
             ->all();
 
         foreach ($models as $product) {

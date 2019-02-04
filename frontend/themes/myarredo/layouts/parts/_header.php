@@ -27,11 +27,6 @@ use frontend\modules\user\widgets\menu\UserMenu;
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
                                     <span class="phone"><?= Yii::$app->partner->getPartnerPhone() ?></span>
-                                    <?php /*if (Yii::$app->city->domain == 'ru') { ?>
-                                        <span class="descr">
-                                            <?= Yii::t('app', 'Бесплатно в вашем городе') ?>
-                                        </span>
-                                    <?php }*/ ?>
                                 </div>
                             </a>
                         <?php } ?>
@@ -138,9 +133,16 @@ use frontend\modules\user\widgets\menu\UserMenu;
                         ]); ?>
 
                         <div class="search-group">
-                            <input id="search" name="search" placeholder="<?= Yii::t('app', 'Поиск') ?>"
-                                   class="form-control input-md" required
-                                   value="" type="text">
+                            <?= Html::input(
+                                'text',
+                                'search',
+                                null,
+                                [
+                                    'id' => 'search',
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => Yii::t('app', 'Поиск'),
+                                ]
+                            ) ?>
                             <?= Html::submitButton(
                                 '<i class="fa fa-search" aria-hidden="true"></i>',
                                 ['class' => 'search-button']
@@ -165,11 +167,6 @@ use frontend\modules\user\widgets\menu\UserMenu;
                 <a class="phone-num">
                     <?= Yii::$app->partner->getPartnerPhone() ?>
                 </a>
-                <?php /*if (Yii::$app->city->domain == 'ru') { ?>
-                    <div class="after-num">
-                        <?= Yii::t('app', 'Бесплатно в вашем городе') ?>
-                    </div>
-                <?php }*/ ?>
             </div>
         </div>
     </div>
@@ -183,19 +180,39 @@ use frontend\modules\user\widgets\menu\UserMenu;
     </div>
 
     <div class="mobsearch-box">
-        <form action="" class="mobsearch-form">
-            <div class="mobsearch-group">
-                <input placeholder="Введите значение" class="form-control mobsearch-fld" type="text">
-                <button type="submit" class="btn-mobsearch">Поиск</button>
-            </div>
-        </form>
+        <?php $form = ActiveForm::begin([
+            'action' => ['/catalog/elastic-search/search'],
+            'method' => 'get',
+            'options' => ['class' => 'mobsearch-form'],
+        ]); ?>
+
+        <div class="mobsearch-group">
+            <?= Html::input(
+                'text',
+                'search',
+                null,
+                [
+                    'id' => 'search',
+                    'class' => 'form-control mobsearch-fld',
+                    'placeholder' => Yii::t('app', 'Поиск'),
+                ]
+            ) ?>
+            <?= Html::submitButton(
+                'Поиск',
+                ['class' => 'btn-mobsearch']
+            ) ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
+
     </div>
 
     <div class="mobile-menu js-mobile-menu">
         <div class="stripe">
 
-            <?php if ((Yii::$app->getUser()->isGuest)) { ?>
-                <?= Html::a(
+            <?php
+            if ((Yii::$app->getUser()->isGuest)) {
+                echo Html::a(
                     '<i class="fa fa-sign-in" aria-hidden="true"></i>' .
                     Yii::t('app', 'Sign In'),
                     ['/user/login/index'],
@@ -203,17 +220,17 @@ use frontend\modules\user\widgets\menu\UserMenu;
                         'class' => 'mobile-btn',
                         'rel' => 'nofollow'
                     ]
-                ) ?>
-            <?php } else { ?>
-                <?= Html::a(
+                );
+            } else {
+                echo Html::a(
                     Yii::t('app', 'Sign Up'),
                     ['/user/logout/index'],
                     [
                         'class' => 'mobile-btn',
                         'rel' => 'nofollow'
                     ]
-                ) ?>
-            <?php } ?>
+                );
+            } ?>
 
             <a class="back-call">
                 <i class="fa fa-phone" aria-hidden="true"></i>
