@@ -58,12 +58,13 @@ class LangSwitch extends Widget
         $url = substr($request->getUrl(), strlen($baseUrl));
 
         foreach ($this->items as $lang) {
-            if (!$lang['by_default']) {
+            if (!$lang['by_default'] && $lang['local'] != Yii::$app->language) {
                 $items[] = ['label' => $lang['label'], 'url' => $baseUrl . '/' . $lang['alias'] . $url];
-            } else {
+            } else if ($lang['local'] != Yii::$app->language) {
                 $items[] = ['label' => $lang['label'], 'url' => $baseUrl . $url];
             }
         }
+
         return $this->render($this->view, [
             'models' => $items,
             'current' => $this->current,
