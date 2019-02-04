@@ -21,6 +21,7 @@ class LangSwitch extends Widget
      * @var string
      */
     public $current = '';
+
     /**
      * @var null
      */
