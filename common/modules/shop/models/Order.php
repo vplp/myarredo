@@ -11,6 +11,7 @@ use common\modules\location\models\City;
  * Class Order
  *
  * @property integer $id
+ * @property string $lang
  * @property integer $customer_id
  * @property integer $city_id
  * @property string $order_status
@@ -41,6 +42,7 @@ class Order extends \thread\modules\shop\models\Order
     public function rules()
     {
         return [
+            ['lang', 'string', 'min' => 5, 'max' => 5],
             [['customer_id', 'city_id'], 'required'],
             [['comment'], 'string', 'max' => 512],
             [['token'], 'string', 'max' => 255],
@@ -86,6 +88,7 @@ class Order extends \thread\modules\shop\models\Order
     public function attributeLabels()
     {
         $attributeLabels = [
+            'lang' => Yii::t('app', 'lang'),
             'comment' => Yii::t('app', 'Comment client'),
         ];
 

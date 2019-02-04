@@ -21,6 +21,7 @@ class Order extends \common\modules\shop\models\Order
     {
         return ArrayHelper::merge(parent::scenarios(), [
             'addNewOrder' => [
+                'lang',
                 'delivery_method_id',
                 'payment_method_id',
                 'order_status',

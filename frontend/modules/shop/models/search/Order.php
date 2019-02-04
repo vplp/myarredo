@@ -129,6 +129,7 @@ class Order extends OrderModel
 
         // переносим все атрибуты из заполненой формы в заказ
         $order->setAttributes($customerForm->getAttributes());
+        $order->lang = Yii::$app->language;
         $order->customer_id = $customer_id;
 
         $order->generateToken();
