@@ -138,7 +138,6 @@ use frontend\modules\user\widgets\menu\UserMenu;
                                 'search',
                                 null,
                                 [
-                                    'id' => 'search',
                                     'class' => 'form-control input-md',
                                     'placeholder' => Yii::t('app', 'Поиск'),
                                 ]
@@ -192,7 +191,6 @@ use frontend\modules\user\widgets\menu\UserMenu;
                 'search',
                 null,
                 [
-                    'id' => 'search',
                     'class' => 'form-control mobsearch-fld',
                     'placeholder' => Yii::t('app', 'Поиск'),
                 ]

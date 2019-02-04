@@ -45,17 +45,32 @@ $model->user_agreement = 1;
 
                                 <?= $form->field($model, 'address') ?>
 
-                                <?= $form->field($model, 'country_id')
-                                    ->dropDownList(
-                                        [null => '--'] + Country::dropDownList(),
-                                        ['class' => 'selectpicker']
-                                    ); ?>
+                                <?php
+                                if (Yii::$app->language == 'it-IT') {
+                                    echo $form->field($model, 'country_id')
+                                        ->input('hidden', ['value' => 4])
+                                        ->label(false);
 
-                                <?= $form->field($model, 'city_id')
-                                    ->dropDownList(
-                                        [null => '--'] + City::dropDownList(),
-                                        ['class' => 'selectpicker']
-                                    ); ?>
+                                    echo $form->field($model, 'city_id')
+                                        ->input('hidden', ['value' => 159])
+                                        ->label(false);
+                                } else {
+                                    echo $form->field($model, 'country_id')
+                                        ->dropDownList(
+                                            [null => '--'] + Country::dropDownList(),
+                                            ['class' => 'selectpicker']
+                                        );
+
+                                    echo $form->field($model, 'city_id')
+                                        ->dropDownList(
+                                            [null => '--'],
+                                            ['class' => 'selectpicker']
+                                        );
+                                }
+
+                                echo $form->field($model, 'cape_index');
+
+                                ?>
 
                                 <?= $form->field($model, 'phone')
                                     ->widget(\yii\widgets\MaskedInput::className(), [
@@ -77,9 +92,11 @@ $model->user_agreement = 1;
 
                                 <?= $form->field($model, 'password_confirmation')->passwordInput() ?>
 
-                                <?= $form->field($model, 'exp_with_italian') ?>
-
-                                <?= $form->field($model, 'delivery_to_other_cities')->checkbox() ?>
+                                <?php
+                                if (Yii::$app->language != 'it-IT') {
+                                    echo $form->field($model, 'exp_with_italian') .
+                                        $form->field($model, 'delivery_to_other_cities')->checkbox();
+                                } ?>
 
                                 <?= $form
                                     ->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])
@@ -124,19 +141,6 @@ $('select#registerform-country_id').change(function(){
         select.html(data.options);
         select.selectpicker("refresh");
     });
-    // if selected Italy
-    if (country_id === 4) {
-        $('.field-registerform-city_id').css('display', 'none');
-        $('.field-registerform-delivery_to_other_cities').css('display', 'none');
-        setTimeout(function() {
-            var romeOption = $('select#registerform-city_id').children('option')[1];
-            $(romeOption).prop('selected', true);
-        },300);
-    }
-    else {
-        $('.field-registerform-city_id').css('display', 'block');
-        $('.field-registerform-delivery_to_other_cities').css('display', 'block');
-    }
 });
 JS;
 

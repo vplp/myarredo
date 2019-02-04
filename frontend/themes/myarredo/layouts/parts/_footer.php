@@ -32,7 +32,7 @@ $bundle = AppAsset::register($this);
                                 </div>
                             </div>
                         </div>
-                        <div class="cont-bg"></div>
+                        <div class="cont-bg" style="background-image: url(<?= $bundle->baseUrl ?>/img/cont-photo-bg.jpg);"></div>
                     </div>
 
                     <?php

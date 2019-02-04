@@ -4,7 +4,7 @@ use yii\db\Migration;
 //
 use common\modules\user\User as UserModule;
 
-class m180329_105331_update_user_profile_table extends Migration
+class m190204_143704_update_user_profile_table extends Migration
 {
     /**
      * table name
@@ -20,13 +20,12 @@ class m180329_105331_update_user_profile_table extends Migration
         $this->db = UserModule::getDb();
         parent::init();
     }
-
     /**
      * @inheritdoc
      */
     public function safeUp()
     {
-        $this->addColumn($this->table, 'factory_package', "enum('0','1','2') NOT NULL DEFAULT '0'");
+        $this->addColumn($this->table, 'cape_index', $this->string(255)->defaultValue(null));
     }
 
     /**
@@ -34,6 +33,6 @@ class m180329_105331_update_user_profile_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropColumn($this->table, 'factory_package');
+        $this->dropColumn($this->table, 'cape_index');
     }
 }

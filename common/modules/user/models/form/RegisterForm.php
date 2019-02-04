@@ -64,6 +64,17 @@ class RegisterForm extends CommonForm
                 'on' => 'registerPartner'
             ],
             [
+                ['cape_index'],
+                'required',
+                'on' => 'registerPartner',
+                'when' => function ($model) {
+                    return $model->country_id === 4;
+                },
+                'whenClient' => "function (attribute, value) {
+                    return $('input[name=\"RegisterForm[country_id]\"]').val() == 4;
+                }"
+            ],
+            [
                 [
                     'last_name',
                     'phone',
@@ -86,7 +97,8 @@ class RegisterForm extends CommonForm
                     'address',
                     'name_company',
                     'website',
-                    'exp_with_italian'
+                    'exp_with_italian',
+                    'cape_index'
                 ],
                 'string',
                 'max' => 255
@@ -157,7 +169,8 @@ class RegisterForm extends CommonForm
                 'city_id',
                 'delivery_to_other_cities',
                 'user_agreement',
-                'reCaptcha'
+                'reCaptcha',
+                'cape_index'
             ],
             'registerFactory' => [
                 'username',
@@ -320,6 +333,7 @@ class RegisterForm extends CommonForm
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
             'delivery_to_other_cities' => $this->delivery_to_other_cities,
+            'cape_index' => $this->cape_index,
         ]);
         if ($model->validate()) {
             /** @var PDO $transaction */
