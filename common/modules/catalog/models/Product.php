@@ -456,9 +456,11 @@ class Product extends ActiveRecord implements iProduct
 
         $imagesSources = [];
 
-        foreach ($images as $image) {
+        foreach ($images as $key => $image) {
             if (file_exists($path . '/' . $image)) {
                 $imagesSources[] = $url . '/' . $image;
+            } else {
+                unset($images[$key]);
             }
         }
 

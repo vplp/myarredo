@@ -205,14 +205,20 @@ class Sale extends \common\modules\catalog\models\Sale
                 : $this->gallery_image;
 
             $images = explode(',', $this->gallery_image);
-        } else {
-            $images[] = $this->image_link;
+
+            foreach ($images as $key => $image) {
+                if (!file_exists($path . '/' . $image)) {
+                    unset($images[$key]);
+                }
+            }
         }
+
+        $images = !empty($images) ? $images : [$this->image_link];
 
         $imagesSources = [];
 
         foreach ($images as $image) {
-            if (is_file($path . '/' . $image)) {
+            if (file_exists($path . '/' . $image)) {
                 $imagesSources[] = [
                     'img' => $url . '/' . $image,
                     'thumb' => self::getImageThumb($image, 600, 600)
