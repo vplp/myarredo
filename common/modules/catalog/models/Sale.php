@@ -345,6 +345,7 @@ class Sale extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getCategory()
     {
@@ -395,6 +396,7 @@ class Sale extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getSpecification()
     {
@@ -488,11 +490,15 @@ class Sale extends ActiveRecord
 
         $imagesSources = [];
 
-        foreach ($images as $image) {
+        foreach ($images as $key => $image) {
             if (file_exists($path . '/' . $image)) {
                 $imagesSources[] = $url . '/' . $image;
+            } else {
+                unset($images[$key]);
             }
         }
+
+        $this->gallery_image = implode(',', $images);
 
         return $imagesSources;
     }
