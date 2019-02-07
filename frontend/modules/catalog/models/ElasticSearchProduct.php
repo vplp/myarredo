@@ -7,6 +7,8 @@ use Yii;
 use yii\elasticsearch\ActiveRecord;
 use yii\elasticsearch\Query;
 use yii\elasticsearch\ActiveDataProvider;
+use yii\elasticsearch\QueryBuilder;
+use \yii\data\ArrayDataProvider;
 
 /**
  * Class ElasticSearchProduct
@@ -182,59 +184,50 @@ class ElasticSearchProduct extends ActiveRecord
 
     /**
      * @param $params
-     * @return ActiveDataProvider
+     * @return ArrayDataProvider
      */
     public function search($params)
     {
         $lang = substr(Yii::$app->language, 0, 2);
 
-        $query = new Query();
+        $query = self::find();
 
-        $query->from(self::index(), self::type());
-
-        $filters = [
-            'multi_match' => [
-                "type" => "most_fields",
-                'query' => $params['search'],
-                'fields' => [
-                    'title_' . $lang,
-                    //'description_' . $lang,
+        $queryBool = [
+            'should' => [
+                [
+                    'multi_match' => [
+                        'fields' => ['title_' . $lang . '^20'],
+                        "query" => $params['search'],
+                        "type" => "best_fields",
+                        'fuzziness' => 'AUTO',
+                        "minimum_should_match" => "70%",
+                        'boost' => 10
+                    ],
                 ],
+                [
+                    'query_string' => [
+                        'fields' => ['title_' . $lang . '^20'],
+                        "query" => '*' . $params['search'] . '*',
+                        'fuzziness' => 'AUTO',
+                        "minimum_should_match" => "70%",
+                        'boost' => 5
+                    ],
+                ]
             ],
-//            'bool' => [
-//                'must' => [
-//                    'match' => [
-//                        'title_' . $lang => $params['search'],
-//                        'type' => 'most_fields',
-//                        'minimum_should_match' => '75%',
-//                    ],
-////                    'multi_match' => [
-////                        //"operator" => "OR",
-////                        //"type" => "best_fields",
-////                        'query' => $params['search'],
-////                        'fields' => [
-////                            'languages.title',
-////                            'languages.description',
-////                        ]
-////                    ],
-//                ],
-////                'filter' => [
-////                    'term' => ['languages.lang' => substr(Yii::$app->language, 0, 2)]
-////                ]
-//            ]
         ];
 
-        $query->query($filters);
+        $query->query(['bool' => $queryBool]);
+
+        $data = $query->all();
 
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+        $dataProvider = new ArrayDataProvider([
+            'allModels' => $data,
             'pagination' => [
-                'defaultPageSize' => $module->itemOnPage,
-                'forcePageParam' => false,
-            ],
+                'pageSize' => $module->itemOnPage,
+            ]
         ]);
 
         return $dataProvider;

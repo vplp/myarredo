@@ -1,6 +1,5 @@
 <?php
 
-use yii\helpers\BaseStringHelper;
 use yii\helpers\Html;
 use frontend\modules\catalog\models\Product;
 
@@ -25,17 +24,18 @@ $this->title = $this->context->title;
                         <div class="col-md-12 col-lg-12">
                             <div class="cont-area">
 
-                                <?php if ($models): ?>
-
-                                    <h3>Результат поиска
-                                        для <?php echo "<span class='label label-success'>" . $queryParams['search'] . "</span>" ?></h3>
+                                <?php if ($models) { ?>
+                                    <h3>Результат поиска для
+                                        <span class='label label-success'>
+                                            <?= $queryParams['search'] ?>
+                                        </span>
+                                    </h3>
 
                                     <div class="cat-prod-wrap">
                                         <div class="cat-prod">
-
-                                            <?php foreach ($models as $model) {
-
-                                                $product = Product::findByID($model['_source']['id']);
+                                            <?php
+                                            foreach ($models as $model) {
+                                                $product = Product::findByID($model['id']);
 
                                                 if ($product != null) {
                                                     $factory = [];
@@ -47,20 +47,17 @@ $this->title = $this->context->title;
                                                     ]);
                                                 }
                                             } ?>
-
                                         </div>
                                         <div class="pagi-wrap">
 
-                                            <?= frontend\components\LinkPager::widget([
-                                                'pagination' => $pages,
-                                            ]) ?>
+                                            <?= frontend\components\LinkPager::widget(['pagination' => $pages]) ?>
 
                                         </div>
 
                                     </div>
-                                <?php else: ?>
+                                <?php } else { ?>
                                     К сожалению по данному запросу товаров не найдено
-                                <?php endif; ?>
+                                <?php } ?>
 
                             </div>
 

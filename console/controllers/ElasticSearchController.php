@@ -44,15 +44,11 @@ class ElasticSearchController extends Controller
 
         $models = Product::find()
             ->andFilterWhere([
-                'mark1' => '0',
+                Product::tableName() . '.removed' => '0',
+                Product::tableName() . '.mark1' => '0',
             ])
-//            ->innerJoinWith(['lang', 'factory'])
-//            ->andFilterWhere([
-//                Product::tableName() . '.removed' => '0',
-//                Product::tableName() . '.mark1' => '0',
-//            ])
             ->enabled()
-            ->orderBy(Product::tableName() . '.id DESC')
+            ->orderBy(Product::tableName() . '.id ASC')
             ->limit(100)
             ->all();
 

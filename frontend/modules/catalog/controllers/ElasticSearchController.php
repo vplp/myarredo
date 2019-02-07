@@ -2,12 +2,12 @@
 
 namespace frontend\modules\catalog\controllers;
 
-use  Yii;
+use Yii;
 use yii\helpers\ArrayHelper;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    ElasticSearchProduct, Product
+    ElasticSearchProduct
 };
 
 /**
@@ -26,13 +26,13 @@ class ElasticSearchController extends BaseController
      */
     public function actionSearch()
     {
+        $this->title = Yii::t('app', 'Search');
+
         $model = new ElasticSearchProduct();
 
         $queryParams = ArrayHelper::merge(['search' => ''], Yii::$app->request->queryParams);
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
-
-        $this->title = Yii::t('app', 'Search');
 
         return $this->render('search', [
             'queryParams' => $queryParams,
