@@ -35,14 +35,14 @@ $this->title = $this->context->title;
                                         <div class="cat-prod">
                                             <?php
                                             foreach ($models as $model) {
-                                                $product = Product::findByID($model['id']);
+                                                $product = $model->product;
 
-                                                if ($product != null) {
+                                                if ($model->product != null) {
                                                     $factory = [];
-                                                    $factory[$product['factory']['id']] = $product['factory'];
+                                                    $factory[$model->product['factory']['id']] = $model->product['factory'];
 
                                                     echo $this->render('/category/_list_item', [
-                                                        'model' => $product,
+                                                        'model' => $model->product,
                                                         'factory' => $factory,
                                                     ]);
                                                 }

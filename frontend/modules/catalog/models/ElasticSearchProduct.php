@@ -8,7 +8,7 @@ use yii\elasticsearch\ActiveRecord;
 use yii\elasticsearch\Query;
 use yii\elasticsearch\ActiveDataProvider;
 use yii\elasticsearch\QueryBuilder;
-use \yii\data\ArrayDataProvider;
+use yii\data\ArrayDataProvider;
 
 /**
  * Class ElasticSearchProduct
@@ -18,6 +18,8 @@ use \yii\data\ArrayDataProvider;
  * @property string $title_it
  * @property string $description_ru
  * @property string $description_it
+ *
+ * @property Product $product
  *
  * @package frontend\modules\catalog\models
  */
@@ -182,6 +184,11 @@ class ElasticSearchProduct extends ActiveRecord
         return $result;
     }
 
+    public function getProduct()
+    {
+        return $this->hasOne(Product::class, ['id' => 'id']);
+    }
+
     /**
      * @param $params
      * @return ArrayDataProvider
@@ -190,7 +197,7 @@ class ElasticSearchProduct extends ActiveRecord
     {
         $lang = substr(Yii::$app->language, 0, 2);
 
-        $query = self::find();
+        $query = self::find()->with(["product"]);
 
         //$query = ElasticSearchProduct::find();
 
@@ -201,7 +208,7 @@ class ElasticSearchProduct extends ActiveRecord
             'should' => [
                 [
                     'multi_match' => [
-                        'fields' => ['title_ru'],
+                        'fields' => ['title_' . $lang],
                         "query" => $params['search'],
                         "type" => "best_fields",
                         'fuzziness' => 'AUTO',
@@ -211,7 +218,7 @@ class ElasticSearchProduct extends ActiveRecord
                 ],
                 [
                     'query_string' => [
-                        'fields' => ['title_ru'],
+                        'fields' => ['title_' . $lang],
                         "query" => '*' . $params['search'] . '*',
                         'fuzziness' => 'AUTO',
                         "minimum_should_match" => "70%",
