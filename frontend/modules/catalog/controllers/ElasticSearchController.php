@@ -26,6 +26,7 @@ class ElasticSearchController extends BaseController
      */
     public function actionSearch()
     {
+        //ElasticSearchProduct::updateMapping();
         $this->title = Yii::t('app', 'Search');
 
         $model = new ElasticSearchProduct();

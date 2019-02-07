@@ -192,11 +192,16 @@ class ElasticSearchProduct extends ActiveRecord
 
         $query = self::find();
 
+        //$query = ElasticSearchProduct::find();
+
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
         $queryBool = [
             'should' => [
                 [
                     'multi_match' => [
-                        'fields' => ['title_' . $lang . '^20'],
+                        'fields' => ['title_ru'],
                         "query" => $params['search'],
                         "type" => "best_fields",
                         'fuzziness' => 'AUTO',
@@ -206,7 +211,7 @@ class ElasticSearchProduct extends ActiveRecord
                 ],
                 [
                     'query_string' => [
-                        'fields' => ['title_' . $lang . '^20'],
+                        'fields' => ['title_ru'],
                         "query" => '*' . $params['search'] . '*',
                         'fuzziness' => 'AUTO',
                         "minimum_should_match" => "70%",
@@ -218,16 +223,15 @@ class ElasticSearchProduct extends ActiveRecord
 
         $query->query(['bool' => $queryBool]);
 
-        $data = $query->all();
+        $query->limit(10000);
 
-        /** @var Catalog $module */
-        $module = Yii::$app->getModule('catalog');
+        $data = $query->all();
 
         $dataProvider = new ArrayDataProvider([
             'allModels' => $data,
             'pagination' => [
                 'pageSize' => $module->itemOnPage,
-            ]
+            ],
         ]);
 
         return $dataProvider;
