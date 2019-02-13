@@ -76,7 +76,7 @@ class Catalog extends \common\modules\catalog\Catalog
                     [
                         'name' => 'Sale in Italy',
                         'position' => 7,
-                        'url' => ['/catalog/italian-product/list'],
+                        'url' => ['/catalog/sale-italy/list'],
                     ],
                 ]
             ];

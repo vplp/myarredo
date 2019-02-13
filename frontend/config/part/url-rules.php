@@ -76,9 +76,9 @@ return [
     'catalog/factory-product/promotion' => 'catalog/factory-product/promotion',
 
     // Italian product
-    'italian-sale/<filter:[\=\;\-\/\w\d]+>' => 'catalog/italian-product-sale/list',
-    'italian-sale' => 'catalog/italian-product-sale/list',
-    'italian-sale-product/<alias:[\w\-]+>' => 'catalog/italian-product-sale/view',
+    'sale-italy/<filter:[\=\;\-\/\w\d]+>' => 'catalog/sale-italy/list',
+    'sale-italy' => 'catalog/sale-italy/list',
+    'sale-italy-product/<alias:[\w\-]+>' => 'catalog/sale-italy/view',
     //
     'italian-product' => 'catalog/italian-product/list',
     'italian-product/create' => 'catalog/italian-product/create',

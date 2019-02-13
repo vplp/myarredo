@@ -26,11 +26,11 @@ use frontend\modules\catalog\models\{
 };
 
 /**
- * Class ItalianProductSaleController
+ * Class SaleItalyController
  *
  * @package frontend\modules\catalog\controllers
  */
-class ItalianProductSaleController extends BaseController
+class SaleItalyController extends BaseController
 {
     public $label = "Sale in Italy";
 
@@ -132,7 +132,7 @@ class ItalianProductSaleController extends BaseController
 
         $this->breadcrumbs[] = [
             'label' => Yii::t('app', 'Sale in Italy'),
-            'url' => ['/catalog/italian-product-sale/list']
+            'url' => ['/catalog/sale-italy/list']
         ];
 
         $keys = Yii::$app->catalogFilter->keys;
@@ -143,7 +143,7 @@ class ItalianProductSaleController extends BaseController
 
             $this->breadcrumbs[] = [
                 'label' => $model['category'][0]['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl($params, '/catalog/italian-product-sale/list')
+                'url' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale-italy/list')
             ];
         }
 
@@ -153,7 +153,7 @@ class ItalianProductSaleController extends BaseController
 
             $this->breadcrumbs[] = [
                 'label' => $model['types']['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl($params, '/catalog/italian-product-sale/list')
+                'url' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale-italy/list')
             ];
         }
 
@@ -227,7 +227,7 @@ class ItalianProductSaleController extends BaseController
 
         $this->breadcrumbs[] = [
             'label' => Yii::t('app', 'Sale in Italy'),
-            'url' => ['/catalog/italian-product-sale/list']
+            'url' => ['/catalog/sale-italy/list']
         ];
 
         $noIndexFollow = $indexFollow = 0;

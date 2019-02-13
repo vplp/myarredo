@@ -17,11 +17,11 @@ use backend\modules\catalog\models\{
 };
 
 /**
- * Class ItalianProductController
+ * Class SaleItalyController
  *
  * @package backend\modules\catalog\controllers
  */
-class ItalianProductController extends BackendController
+class SaleItalyController extends BackendController
 {
     public $model = ItalianProduct::class;
     public $modelLang = ItalianProductLang::class;
