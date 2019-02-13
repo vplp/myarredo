@@ -14,7 +14,27 @@ use yii\helpers\{
                 <object>
                     <ul class="dropdown-menu">
 
-                        <?php if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner'])) { ?>
+                        <?php if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['logistician'])) { ?>
+                            <li>
+                                <?= Html::a(
+                                    Yii::t('app', 'Orders'),
+                                    ['/shop/partner-order/list']
+                                ); ?>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <?= Html::a(
+                                    Yii::t('app', 'Profile'),
+                                    ['/user/profile/index']
+                                ); ?>
+                            </li>
+                            <li>
+                                <?= Html::a(
+                                    Yii::t('app', 'Sign Up'),
+                                    ['/user/logout/index']
+                                ); ?>
+                            </li>
+                        <?php } elseif (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner'])) { ?>
                             <li>
                                 <?= Html::a(
                                     Yii::t('app', 'Furniture in Italy'),

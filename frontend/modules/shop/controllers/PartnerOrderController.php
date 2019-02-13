@@ -34,7 +34,7 @@ class PartnerOrderController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['partner'],
+                        'roles' => ['partner', 'logistician'],
                     ],
                     [
                         'allow' => false,
@@ -46,6 +46,7 @@ class PartnerOrderController extends BaseController
 
     /**
      * @return string
+     * @throws \Throwable
      */
     public function actionList()
     {
@@ -83,8 +84,7 @@ class PartnerOrderController extends BaseController
      */
     public function actionPjaxSave()
     {
-        if (
-            Yii::$app->request->isPost &&
+        if (Yii::$app->request->isPost &&
             (Yii::$app->request->post('OrderAnswer'))['order_id'] &&
             Yii::$app->request->post('OrderItemPrice') &&
             Yii::$app->request->post('action-save-answer')
@@ -113,7 +113,6 @@ class PartnerOrderController extends BaseController
                 $dataOrderItemPrice = Yii::$app->request->post('OrderItemPrice');
 
                 foreach ($dataOrderItemPrice as $product_id => $price) {
-
                     $modelOrderItemPrice = OrderItemPrice::findByOrderIdUserIdProductId(
                         $modelOrder->id,
                         Yii::$app->getUser()->getId(),
@@ -194,8 +193,7 @@ class PartnerOrderController extends BaseController
      */
     public function actionSendAnswer()
     {
-        if (
-            Yii::$app->request->isPost &&
+        if (Yii::$app->request->isPost &&
             (Yii::$app->request->post('OrderAnswer'))['order_id'] &&
             Yii::$app->request->post('action-send-answer')
         ) {

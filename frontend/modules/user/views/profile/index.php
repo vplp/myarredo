@@ -74,7 +74,17 @@ $this->title = Yii::t('app', 'Profile');
                     <?php } else { ?>
                         <div class="profile-box">
 
-                            <?php if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner'])) { ?>
+                            <?php if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['logistician'])) { ?>
+                                <a href="<?= Url::toRoute(['/shop/partner-order/list'], true) ?>"
+                                   class="profile-quadrlink">
+                                    <div class="profile-quadrlink-img">
+                                        <img src="<?= $bundle->baseUrl ?>/img/requests.png" alt="">
+                                    </div>
+                                    <div class="profile-quadrlink-text">
+                                        <?= Yii::t('app', 'Orders') ?>
+                                    </div>
+                                </a>
+                            <?php } elseif (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner'])) { ?>
                                 <a href="<?= Url::toRoute(['/shop/partner-order/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
