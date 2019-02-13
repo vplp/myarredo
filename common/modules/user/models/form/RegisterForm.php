@@ -76,7 +76,7 @@ class RegisterForm extends CommonForm
                     'reCaptcha'
                 ],
                 'required',
-                'on' => 'registerFactory'
+                'on' => ['registerFactory', 'registerLogistician']
             ],
             [
                 [
@@ -95,7 +95,7 @@ class RegisterForm extends CommonForm
             [
                 ['user_agreement'],
                 'required',
-                'on' => ['registerPartner', 'registerFactory'],
+                'on' => ['registerPartner', 'registerFactory', 'registerLogistician'],
                 'requiredValue' => 1,
                 'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
             ],
@@ -110,7 +110,8 @@ class RegisterForm extends CommonForm
                     'adminPasswordChange',
                     'register',
                     'registerPartner',
-                    'registerFactory'
+                    'registerFactory',
+                    'registerLogistician'
                 ]
             ],
             [['reCaptcha'], \frontend\widgets\recaptcha3\RecaptchaV3Validator::class, 'acceptance_score' => 0.5],
@@ -173,6 +174,23 @@ class RegisterForm extends CommonForm
                 'cape_index'
             ],
             'registerFactory' => [
+                'username',
+                'email',
+                'password',
+                'password_confirmation',
+                'first_name',
+                'last_name',
+                'phone',
+                'address',
+                'name_company',
+                'website',
+                'country_id',
+                'city_id',
+                'user_agreement',
+                //'factory_package'
+                'reCaptcha'
+            ],
+            'registerLogistician' => [
                 'username',
                 'email',
                 'password',
@@ -397,6 +415,83 @@ class RegisterForm extends CommonForm
      * @throws \Exception
      */
     private function addFactoryProfile($userId)
+    {
+        $model = new Profile([
+            'scenario' => 'basicCreate',
+            'user_id' => $userId,
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'phone' => $this->phone,
+            'address' => $this->address,
+            'name_company' => $this->name_company,
+            'website' => $this->website,
+            'country_id' => $this->country_id,
+            'city_id' => $this->city_id,
+            //'factory_package' => $this->factory_package,
+            'preferred_language' => Yii::$app->language,
+        ]);
+        if ($model->validate()) {
+            /** @var PDO $transaction */
+            $transaction = self::getDb()->beginTransaction();
+            try {
+                $save = $model->save();
+                ($save) ? $transaction->commit() : $transaction->rollBack();
+                return $save;
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                throw new \Exception($e);
+            }
+        } else {
+            $this->addErrors($model->getErrors());
+            return false;
+        }
+    }
+
+    /**
+     * Add new Logistician to base
+     */
+    public function addLogistician()
+    {
+        $model = new User([
+            'scenario' => 'userCreate',
+            'username' => $this->email,
+            'email' => $this->email,
+            'published' => ActiveRecord::STATUS_KEY_ON,
+            'group_id' => Group::LOQISTICIAN,
+        ]);
+
+        $model->setPassword($this->password)->generateAuthKey();
+
+        if ($model->validate()) {
+            /** @var PDO $transaction */
+            $transaction = self::getDb()->beginTransaction();
+            try {
+                $save = $model->save();
+                if ($save) {
+                    $transaction->commit();
+                    return $this->addLogisticianProfile($model->id);
+                } else {
+                    $transaction->rollBack();
+                    return false;
+                }
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                throw new \Exception($e);
+            }
+        } else {
+            $this->addErrors($model->getErrors());
+            return false;
+        }
+    }
+
+    /**
+     * Create new empty profile for a new Logistician
+     *
+     * @param $userId
+     * @return bool
+     * @throws \Exception
+     */
+    private function addLogisticianProfile($userId)
     {
         $model = new Profile([
             'scenario' => 'basicCreate',

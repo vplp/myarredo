@@ -13,7 +13,7 @@ $bundle = AppAsset::register($this);
  * @var \frontend\modules\user\models\form\RegisterForm $model
  */
 
-$this->title = Yii::t('app', 'Регистрация для фабрики');
+$this->title = Yii::t('app', 'Регистрация для логиста');
 
 $model->user_agreement = 1;
 ?>
@@ -24,7 +24,7 @@ $model->user_agreement = 1;
             <div class="container large-container">
                 <?php $form = ActiveForm::begin([
                     'id' => 'register-form',
-                    'action' => Url::toRoute('/user/register/factory'),
+                    'action' => Url::toRoute('/user/register/logistician'),
                 ]); ?>
                 <div class="row">
 
@@ -37,11 +37,6 @@ $model->user_agreement = 1;
 
                     <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5 right-border">
                         <div class="form-block-in">
-                            <?php /*$form->field($model, 'factory_package')
-                                ->dropDownList(
-                                    Profile::factoryPackageKeyRange(),
-                                    ['class' => 'selectpicker']
-                                )*/ ?>
 
                             <?= $form->field($model, 'name_company') ?>
 

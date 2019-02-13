@@ -15,6 +15,7 @@ return [
     'partners-map' => 'page/contacts/list-partners',
 
     // Module [[Users]]
+    'logistician/registration' => 'user/register/logistician',
     'partner/registration' => 'user/register/partner',
     'factory/registration' => 'user/register/factory',
     'user/register' => 'user/register/user',
