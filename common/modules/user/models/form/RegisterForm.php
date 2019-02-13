@@ -64,17 +64,6 @@ class RegisterForm extends CommonForm
                 'on' => 'registerPartner'
             ],
             [
-                ['cape_index'],
-                'required',
-                'on' => 'registerPartner',
-                'when' => function ($model) {
-                    return $model->country_id === 4;
-                },
-                'whenClient' => "function (attribute, value) {
-                    return $('input[name=\"RegisterForm[country_id]\"]').val() == 4;
-                }"
-            ],
-            [
                 [
                     'last_name',
                     'phone',
@@ -124,7 +113,18 @@ class RegisterForm extends CommonForm
                     'registerFactory'
                 ]
             ],
-            [['reCaptcha'], \frontend\widgets\recaptcha3\RecaptchaV3Validator::className(), 'acceptance_score' => 0.5]
+            [['reCaptcha'], \frontend\widgets\recaptcha3\RecaptchaV3Validator::class, 'acceptance_score' => 0.5],
+            [
+                ['cape_index'],
+                'required',
+                'on' => 'registerPartner',
+                'when' => function ($model) {
+                    return $model->country_id === 4;
+                },
+                'whenClient' => "function (attribute, value) {
+                    return $('select[name=\"RegisterForm[country_id]\"]').val() == 4;
+                }"
+            ],
         ];
 
         if ($this->_username_attribute === 'email') {
