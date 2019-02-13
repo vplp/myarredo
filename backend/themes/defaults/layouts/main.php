@@ -10,10 +10,6 @@ use backend\widgets\Alert;
 
 $navMiniStatus = isset($_COOKIE['navbar-minimalize']) ? intval($_COOKIE['navbar-minimalize']) : 0;
 
-/**
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
- */
 $bundle = AppAsset::register($this);
 
 $this->beginPage();
@@ -25,10 +21,12 @@ $this->beginPage();
 <head>
     <base href="<?= Yii::$app->getUrlManager()->getBaseUrl() ?>">
     <meta charset="<?= Yii::$app->charset ?>"/>
-    <link rel="shortcut icon" type="image/png" href="shortfavicon.png"/>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/png" href="/shortfavicon.png"/>
+    <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <?php $this->head(); ?>
+
     <input type="hidden" id="token" value="<?= Yii::$app->request->getCsrfToken() ?>">
 </head>
 <body class="html <?= $navMiniStatus == 1 ? 'mini-navbar' : '' ?>">

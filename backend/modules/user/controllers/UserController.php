@@ -64,6 +64,9 @@ class UserController extends BackendController
         return ArrayHelper::merge(
             $action,
             [
+                'list' => [
+                    'layout' => 'list-user',
+                ],
                 'update' => [
                     'class' => Update::class,
                     'redirect' => function () {
