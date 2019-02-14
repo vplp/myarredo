@@ -711,7 +711,9 @@ h1 {
       line-height: 31px;
       text-align: center;
       margin: 0; }
-    .footer .cities-list h5 {
+    .footer .cities-list h5,
+    .footer .cities-list .title-h5 {
+      display: block;
       font-size: 18px;
       text-align: center;
       font-weight: 600;
@@ -6741,6 +6743,9 @@ h1 {
   text-decoration: none;
   border-color: #448339;
 }
+.adding-product-page .manager-history ul li.lang-cell {
+  width: 4%;
+}
 /* ---------------------------------------new media queries-------------------------------------- */
 
 @media (min-width: 1200px) and (max-width: 1300px) {
@@ -6848,6 +6853,9 @@ h1 {
   }
   .sellout-box .section-header h2 {
     text-align: center;
+  }
+  .adding-product-page .manager-history ul li.lang-cell {
+    width: 5%;
   }
 }
 @media (min-width: 599px) and (max-width: 699px) {
