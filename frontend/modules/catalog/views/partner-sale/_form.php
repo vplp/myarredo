@@ -194,7 +194,7 @@ $this->title = ($model->isNewRecord)
                                     ]
                                 )
                                 ->dropDownList(
-                                    [null => '--'] + Country::dropDownList(),
+                                    [null => '--'] + Country::dropDownList([2, 3, 1]),
                                     ['class' => 'selectpicker']
                                 ); ?>
                         </div>

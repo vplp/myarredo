@@ -29,42 +29,42 @@ class Sys extends \common\modules\sys\Sys
 
         if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin'])) {
             $menuItems = [
-                'name' => 'System',
+                'label' => 'System',
                 'icon' => 'fa-map-marker',
                 'position' => 9,
                 'items' => [
                     [
-                        'name' => 'Translation',
+                        'label' => 'Translation',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/translation/translation/list'],
                     ],
                     [
-                        'name' => 'Params',
+                        'label' => 'Params',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/configs/params/list'],
                     ],
                     /*[
-                        'name' => 'Growl',
+                        'label' => 'Growl',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/growl/growl/list'],
                     ],
                     [
-                        'name' => 'MailBox',
+                        'label' => 'MailBox',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/mail-carrier/mail-carrier/list'],
                     ],*/
                     [
-                        'name' => 'Role of User',
+                        'label' => 'Role of User',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/user/role/list'],
                     ],
                     /*[
-                        'name' => 'Messages',
+                        'label' => 'Messages',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/messages/file/list'],
                     ],
                     [
-                        'name' => 'Log',
+                        'label' => 'Log',
                         'icon' => 'fa-tasks',
                         'url' => ['/sys/logbook/logbook/list'],
                     ],*/
