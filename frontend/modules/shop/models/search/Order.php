@@ -85,7 +85,7 @@ class Order extends OrderModel
         $query
             ->groupBy(self::tableName() . '.id');
 
-        if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
+        if (Yii::$app->user->identity->group->role == 'factory') {
             $query
                 ->innerJoinWith(["items.product product"], false)
                 ->andFilterWhere(['IN', 'product.factory_id', $this->factory_id]);

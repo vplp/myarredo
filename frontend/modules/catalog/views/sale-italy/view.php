@@ -8,8 +8,9 @@ use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
     Factory, Sale, Product
 };
-use frontend\modules\catalog\widgets\sale\SaleRequestForm;
 use frontend\themes\myarredo\assets\AppAsset;
+use frontend\modules\shop\widgets\request\RequestPrice;
+use frontend\modules\catalog\widgets\sale\SaleRequestForm;
 
 $bundle = AppAsset::register($this);
 /**
@@ -152,53 +153,11 @@ $this->title = $this->context->title;
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 sellout-cont">
+                            <div class="best-price-form">
+                                <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
 
-                            <?php if (!empty($model['user'])) { ?>
-                                <div class="brand-info">
-                                    <div class="white-area">
-                                        <div class="image-container">
-                                            <img src="<?= $bundle->baseUrl ?>/img/brand.png" alt="">
-                                        </div>
-                                        <div class="brand-info">
-                                            <p class="text-center">
-                                                <?= Yii::t('app', 'Контакты продавца') ?>
-                                            </p>
-                                            <h4 class="text-center">
-                                                <?= $model['user']['profile']['name_company']; ?>
-                                            </h4>
-                                            <div class="ico">
-                                                <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
-                                            </div>
-                                            <div class="tel-num js-show-num">
-                                                (XXX) XXX-XX-XX
-                                            </div>
-
-                                            <a href="javascript:void(0);" class="js-show-num-btn">
-                                                Узнать номер
-                                            </a>
-
-                                            <div class="ico">
-                                                <img src="<?= $bundle->baseUrl ?>/img/marker-map.png" alt="">
-                                            </div>
-                                            <div class="text-center adress">
-                                                <?= $model['user']['profile']['city']['lang']['title']; ?>,<br>
-                                                <?= $model['user']['profile']['address']; ?>
-                                            </div>
-
-                                            <div class="ico">
-                                                <img src="<?= $bundle->baseUrl ?>/img/conv.svg" alt="">
-                                            </div>
-                                            <a href="javascript:void(0);" class="write-seller" data-toggle="modal"
-                                               data-target="#myModal">
-                                                написать продавцу
-                                            </a>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            <?php } ?>
-
+                                <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
+                            </div>
                         </div>
 
                         <div class="col-md-12 sellout-box">

@@ -32,6 +32,7 @@ class AdminOrderController extends BaseController
                 'class' => VerbFilter::class,
                 'actions' => [
                     'list' => ['get', 'post'],
+                    'list-italy' => ['get', 'post'],
                 ],
             ],
             'AccessControl' => [
@@ -51,8 +52,52 @@ class AdminOrderController extends BaseController
 
     /**
      * @return string
+     * @throws \Throwable
      */
     public function actionList()
+    {
+        $model = new Order();
+
+        $params = Yii::$app->request->get() ?? [];
+
+        if (isset($params['country_id']) && $params['country_id'] > 0 && $params['city_id'] == 0) {
+            $modelCity = City::findAll(['country_id' => $params['country_id']]);
+            $params['city_id'] = [];
+            if ($modelCity != null) {
+                foreach ($modelCity as $city) {
+                    $params['city_id'][] = $city['id'];
+                }
+            }
+        }
+
+        if (!isset($params['country_id'])) {
+            $params['country_id'] = 0;
+        }
+
+        if (!isset($params['city_id'])) {
+            $params['city_id'] = 0;
+        }
+
+        $models = $model->search($params);
+
+        $this->title = Yii::t('app', 'Orders');
+
+        $this->breadcrumbs[] = [
+            'label' => $this->title,
+        ];
+
+        return $this->render('list', [
+            'model' => $model,
+            'models' => $models,
+            'params' => $params,
+        ]);
+    }
+
+    /**
+     * @return string
+     * @throws \Throwable
+     */
+    public function actionListItaly()
     {
         $model = new Order();
 

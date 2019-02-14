@@ -283,10 +283,15 @@ class ItalianProduct extends ActiveRecord
             $this->alias = time();
         }
 
+        return parent::beforeSave($insert);
+    }
+
+    public function beforeValidate()
+    {
         $this->country_id = 4;
         $this->city_id = 159;
 
-        return parent::beforeSave($insert);
+        return parent::beforeValidate();
     }
 
     /**

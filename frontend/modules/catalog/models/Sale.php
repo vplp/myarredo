@@ -21,7 +21,7 @@ class Sale extends \common\modules\catalog\models\Sale
      */
     public function beforeSave($insert)
     {
-        if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') {
+        if (Yii::$app->user->identity->group->role == 'partner') {
             $this->user_id = Yii::$app->getUser()->id;
         }
 

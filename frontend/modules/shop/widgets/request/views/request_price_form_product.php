@@ -4,8 +4,6 @@ use yii\helpers\{
     Html, Url
 };
 use yii\widgets\ActiveForm;
-//
-use frontend\modules\location\models\City;
 
 /** @var $model \frontend\modules\shop\models\CartCustomerForm */
 
@@ -32,7 +30,7 @@ $model->city_id = Yii::$app->city->getCityId();
 
 <?= $form
     ->field($model, 'phone')
-    ->widget(\yii\widgets\MaskedInput::className(), [
+    ->widget(\yii\widgets\MaskedInput::class, [
         'mask' => Yii::$app->city->getPhoneMask(),
         'clientOptions' => [
             'clearIncomplete' => true
@@ -40,12 +38,6 @@ $model->city_id = Yii::$app->city->getCityId();
     ])
     ->input('text', ['placeholder' => Yii::t('app', 'Phone')])
     ->label(false) ?>
-
-<?php
-//$form->field($model, 'city_id')
-//    ->dropDownList(City::dropDownList(Yii::$app->city->getCountryId()))
-//    ->label(false)
-?>
 
 <?= $form->field($model, 'city_id')
     ->input('hidden', ['value' => $model->city_id])
@@ -69,6 +61,9 @@ $model->city_id = Yii::$app->city->getCityId();
     )
     ->label(false) ?>
 
-<?= Html::submitButton(Yii::t('app', 'Получить лучшую цену'), ['class' => 'add-to-notepad-product btn btn-success big', 'data-id' => $product_id,]) ?>
+<?= Html::submitButton(
+    Yii::t('app', 'Получить лучшую цену'),
+    ['class' => 'add-to-notepad-product btn btn-success big', 'data-id' => $product_id,]
+) ?>
 
-<?php ActiveForm::end(); ?>
+<?php ActiveForm::end();

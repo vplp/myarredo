@@ -75,6 +75,8 @@ class SaleController extends BaseController
 
     /**
      * @return string
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionList()
     {

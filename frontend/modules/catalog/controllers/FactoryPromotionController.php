@@ -50,8 +50,8 @@ class FactoryPromotionController extends BaseController
     public function behaviors()
     {
         if (!Yii::$app->getUser()->isGuest &&
-            Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
-            !Yii::$app->getUser()->getIdentity()->profile->factory_id) {
+            Yii::$app->user->identity->group->role == 'factory' &&
+            !Yii::$app->user->identity->profile->factory_id) {
             throw new ForbiddenHttpException(Yii::t('app', 'Access denied without factory id.'));
         }
 

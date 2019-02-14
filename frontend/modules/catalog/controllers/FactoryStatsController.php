@@ -35,8 +35,8 @@ class FactoryStatsController extends BaseController
     public function behaviors()
     {
         if (!Yii::$app->getUser()->isGuest &&
-            Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
-            !Yii::$app->getUser()->getIdentity()->profile->factory_id) {
+            Yii::$app->user->identity->group->role == 'factory' &&
+            !Yii::$app->user->identity->profile->factory_id) {
             throw new ForbiddenHttpException(Yii::t('app', 'Access denied without factory id.'));
         }
 
@@ -73,8 +73,8 @@ class FactoryStatsController extends BaseController
 
         $params = Yii::$app->request->get() ?? [];
 
-        if (!Yii::$app->getUser()->isGuest && Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
-            $params['factory_id'] = Yii::$app->getUser()->getIdentity()->profile->factory_id;
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
+            $params['factory_id'] = Yii::$app->user->identity->profile->factory_id;
         }
 
         $start_date = mktime(0, 0, 0, date("m"), date("d") - 30, date("Y"));

@@ -8,7 +8,7 @@ $bundle = AppAsset::register($this);
 
 <?php
 if (!Yii::$app->getUser()->isGuest &&
-    in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner', 'admin', 'factory'])
+    in_array(Yii::$app->user->identity->group->role, ['partner', 'admin', 'factory'])
 ) { ?>
     <div class="ico">
         <img src="<?= $bundle->baseUrl ?>/img/phone.svg">

@@ -37,7 +37,7 @@ $bundle = AppAsset::register($this);
 
                     <?php
                     if (!Yii::$app->getUser()->isGuest &&
-                        Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+                        Yii::$app->user->identity->group->role == 'factory'
                     ) {
                     } else { ?>
                         <div class="white-stripe">
@@ -58,7 +58,7 @@ $bundle = AppAsset::register($this);
 
             <?php
             if (!Yii::$app->getUser()->isGuest &&
-                Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
+                Yii::$app->user->identity->group->role == 'factory' &&
                 Yii::$app->controller->action->id != 'list-partners'
             ) {
             } else {
@@ -67,7 +67,7 @@ $bundle = AppAsset::register($this);
 
             <?php
             if (!Yii::$app->getUser()->isGuest &&
-                Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+                Yii::$app->user->identity->group->role == 'factory'
             ) {
             } else { ?>
                 <?= Cities::widget() ?>
@@ -90,7 +90,7 @@ $bundle = AppAsset::register($this);
 
                             <?php
                             if (!Yii::$app->getUser()->isGuest &&
-                                Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+                                Yii::$app->user->identity->group->role == 'factory'
                             ) {
                             } else { ?>
                                 <?= Menu::widget(['alias' => 'footer']) ?>

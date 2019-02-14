@@ -80,6 +80,41 @@ class PartnerOrderController extends BaseController
     }
 
     /**
+     * @return string
+     * @throws \Throwable
+     */
+    public function actionListItaly()
+    {
+        $model = new Order();
+
+        $params = Yii::$app->request->post() ?? [];
+
+        /**
+         * add city_id
+         */
+        $modelCity = City::findAll(['country_id' => Yii::$app->user->identity->profile->country_id]);
+
+        if ($modelCity != null) {
+            foreach ($modelCity as $city) {
+                $params['city_id'][] = $city['id'];
+            }
+        }
+
+        $models = $model->search($params);
+
+        $this->title = Yii::t('app', 'Orders');
+
+        $this->breadcrumbs[] = [
+            'label' => $this->title,
+        ];
+
+        return $this->render('list', [
+            'models' => $models->getModels(),
+            'pages' => $models->getPagination()
+        ]);
+    }
+
+    /**
      * @return array
      */
     public function actionPjaxSave()

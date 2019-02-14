@@ -143,9 +143,14 @@ return [
     'shop/cart/add-to-cart' => 'shop/cart/add-to-cart',
     'shop/cart/delete-from-cart' => 'shop/cart/delete-from-cart',
     'shop/cart/delete-from-cart-popup' => 'shop/cart/delete-from-cart-popup',
-    'shop/factory-order/list' => 'shop/factory-order/list',
+
+    'factory/orders' => 'shop/factory-order/list',
+    'factory/orders-italy' => 'shop/factory-order/list-italy',
     'admin/orders' => 'shop/admin-order/list',
+    'admin/orders-italy' => 'shop/admin-order/list-italy',
     'partner/orders' => 'shop/partner-order/list',
+    'partner/orders-italy' => 'shop/partner-order/list-italy',
+
     'partner/orders/pjax-save' => 'shop/partner-order/pjax-save',
     'partner/orders/send-answer' => 'shop/partner-order/send-answer',
 

@@ -65,7 +65,7 @@ class LoginController extends BaseController
         $model->setScenario('signIn');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
-            $user = Yii::$app->getUser()->getIdentity();
+            $user = Yii::$app->user->identity;
 
             Yii::$app->params['themes']['language'] = $user->profile->preferred_language;
             Yii::$app->language = $user->profile->preferred_language;

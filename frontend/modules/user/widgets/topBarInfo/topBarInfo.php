@@ -44,7 +44,7 @@ class topBarInfo extends Widget
     {
         $this->model = Yii::$app->getUser();
         if ($this->model != null) {
-            $this->modelIndentity = Yii::$app->getUser()->getIdentity();
+            $this->modelIndentity = Yii::$app->user->identity;
             $this->modelProfile = $this->modelIndentity->profile ?? null;
         }
     }

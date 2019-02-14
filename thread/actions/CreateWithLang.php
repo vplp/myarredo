@@ -49,8 +49,8 @@ class CreateWithLang extends ActionCRUD
             throw new Exception(__CLASS__ . '::modelClassLang must be set.');
         }
         /** @var ActiveRecord $this ->model */
-        $this->model = new $this->modelClass;
-        $this->modelLang = new $this->modelClassLang;
+        $this->model = new $this->modelClass();
+        $this->modelLang = new $this->modelClassLang();
 
         if ($this->model === null) {
             throw new Exception($this->modelClass . 'must be exists.');

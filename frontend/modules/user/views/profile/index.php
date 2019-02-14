@@ -74,7 +74,7 @@ $this->title = Yii::t('app', 'Profile');
                     <?php } else { ?>
                         <div class="profile-box">
 
-                            <?php if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['logistician'])) { ?>
+                            <?php if (in_array(Yii::$app->user->identity->group->role, ['logistician'])) { ?>
                                 <a href="<?= Url::toRoute(['/shop/partner-order/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
@@ -84,7 +84,7 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Yii::t('app', 'Orders') ?>
                                     </div>
                                 </a>
-                            <?php } elseif (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner'])) { ?>
+                            <?php } elseif (in_array(Yii::$app->user->identity->group->role, ['partner'])) { ?>
                                 <a href="<?= Url::toRoute(['/shop/partner-order/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
@@ -103,7 +103,7 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Yii::t('app', 'Sale') ?>
                                     </div>
                                 </a>
-                            <?php } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'admin') { ?>
+                            <?php } elseif (Yii::$app->user->identity->group->role == 'admin') { ?>
                                 <a href="<?= Url::toRoute(['/shop/admin-order/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
@@ -131,7 +131,7 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Yii::t('app', 'Factory statistics') ?>
                                     </div>
                                 </a>
-                            <?php } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
+                            <?php } elseif (Yii::$app->user->identity->group->role == 'factory') { ?>
                                 <a href="<?= Url::toRoute(['/catalog/factory-product/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">

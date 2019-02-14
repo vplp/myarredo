@@ -80,23 +80,23 @@ use frontend\modules\user\widgets\menu\UserMenu;
 
                     <div class="right-part">
 
-                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'user') { ?>
+                        <?php if (Yii::$app->user->identity->group->role == 'user') { ?>
                             <?= Cart::widget(['view' => 'short']) ?>
                         <?php } ?>
 
                         <div class="sign-in">
                             <?php
-                            $role = Yii::$app->getUser()->getIdentity()->group->role;
+                            $role = Yii::$app->user->identity->group->role;
                             if ($role == 'partner') {
-                                echo Yii::$app->getUser()->getIdentity()->profile->name_company;
+                                echo Yii::$app->user->identity->profile->name_company;
                             } elseif ($role == 'admin') {
-                                echo Yii::$app->getUser()->getIdentity()->profile->first_name;
+                                echo Yii::$app->user->identity->profile->first_name;
                             } elseif ($role == 'factory') {
-                                echo Yii::$app->getUser()->getIdentity()->profile->factory
-                                    ? Yii::$app->getUser()->getIdentity()->profile->factory->title
+                                echo Yii::$app->user->identity->profile->factory
+                                    ? Yii::$app->user->identity->profile->factory->title
                                     : '';
                             } else {
-                                echo Yii::$app->getUser()->getIdentity()->profile->first_name;
+                                echo Yii::$app->user->identity->profile->first_name;
                             } ?>
                         </div>
 
@@ -120,7 +120,7 @@ use frontend\modules\user\widgets\menu\UserMenu;
 
                 <?php
                 if (!Yii::$app->getUser()->isGuest &&
-                    Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+                    Yii::$app->user->identity->group->role == 'factory'
                 ) {
                 } else { ?>
                     <?= CatalogMenu::widget([]); ?>
@@ -243,7 +243,7 @@ use frontend\modules\user\widgets\menu\UserMenu;
 
         <?php
         if (!Yii::$app->getUser()->isGuest &&
-            Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+            Yii::$app->user->identity->group->role == 'factory'
         ) {
             echo UserMenu::widget(['view' => 'user_menu_mobile']);
         } else {

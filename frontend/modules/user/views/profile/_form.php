@@ -48,7 +48,7 @@ $this->title = Yii::t('app', 'Profile');
                     /**
                      * for factory
                      */
-                    if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
+                    if (Yii::$app->user->identity->group->role == 'factory') { ?>
                         <div class="col-md-4 col-lg-4 one-row">
                             <?= $form->field($model, 'email_company') ?>
                             <?= $form->field($model, 'address') ?>
@@ -60,7 +60,7 @@ $this->title = Yii::t('app', 'Profile');
                     /**
                      * for partner
                      */
-                    if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') { ?>
+                    if (Yii::$app->user->identity->group->role == 'partner') { ?>
                         <div class="col-md-4 col-lg-4 one-row">
                             <?= $form->field($model, 'name_company') ?>
                             <?= $form->field($model, 'website') ?>

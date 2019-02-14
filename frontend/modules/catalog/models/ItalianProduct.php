@@ -95,7 +95,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
     public function getUrl()
     {
         return Url::toRoute([
-                '/catalog/italian-product/view',
+                '/catalog/sale-italy/view',
                 'alias' => $this->alias
             ], true);
     }
