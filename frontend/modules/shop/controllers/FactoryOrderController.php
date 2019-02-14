@@ -44,6 +44,7 @@ class FactoryOrderController extends BaseController
                 'class' => VerbFilter::class,
                 'actions' => [
                     'list' => ['get'],
+                    'list-italy' => ['get'],
                     'view' => ['get'],
                 ],
             ],
