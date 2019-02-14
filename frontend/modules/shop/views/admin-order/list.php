@@ -42,7 +42,7 @@ $this->title = $this->context->title;
                         <li>
                             <span><?= Yii::t('app', 'Email') ?></span>
                         </li>
-                        <li>
+                        <li class="lang-cell">
                             <span><?= Yii::t('app', 'lang') ?></span>
                         </li>
                         <li>
@@ -76,7 +76,7 @@ $this->title = $this->context->title;
                                 <li>
                                     <span><?= $modelOrder->customer->email ?></span>
                                 </li>
-                                <li>
+                                <li class="lang-cell">
                                     <span><?= substr($modelOrder->lang, 0, 2) ?></span>
                                 </li>
                                 <li>
