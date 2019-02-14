@@ -38,10 +38,18 @@ use backend\widgets\Tabs;
             ]),
             'visible' => ($model->user->group_id == 3) ? 1 : 0
         ],
+        [
+            'label' => Yii::t('app', 'Logistician'),
+            'content' => $this->render('parts/_partner_profile', [
+                'form' => $form,
+                'model' => $model,
+            ]),
+            'visible' => ($model->user->group_id == 7) ? 1 : 0
+        ],
     ]
 ]) ?>
 
 
 <?= $form->submit($model, $this) ?>
 
-<?php ActiveForm::end() ?>
+<?php ActiveForm::end();

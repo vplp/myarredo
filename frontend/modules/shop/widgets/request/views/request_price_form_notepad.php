@@ -53,7 +53,8 @@ $model->city_id = Yii::$app->city->getCityId();
     ->textarea(['placeholder' => Yii::t('app', 'Comment')])
     ->label(false) ?>
 
-<?= $form->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])->checkbox([], false)
+<?= $form->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])
+    ->checkbox([], false)
     ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
 
 <?= $form->field($model, 'reCaptcha')
@@ -63,6 +64,9 @@ $model->city_id = Yii::$app->city->getCityId();
     )
     ->label(false) ?>
 
-<?= Html::submitButton(Yii::t('app', 'Получить лучшую цену'), ['class' => 'btn btn-success big']) ?>
+<?= Html::submitButton(
+    Yii::t('app', 'Получить лучшую цену'),
+    ['class' => 'btn btn-success big']
+) ?>
 
-<?php ActiveForm::end(); ?>
+<?php ActiveForm::end();

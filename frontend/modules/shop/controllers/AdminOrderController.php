@@ -78,6 +78,8 @@ class AdminOrderController extends BaseController
             $params['city_id'] = 0;
         }
 
+        $params['product_type'] = 'product';
+
         $models = $model->search($params);
 
         $this->title = Yii::t('app', 'Orders');
@@ -120,6 +122,8 @@ class AdminOrderController extends BaseController
         if (!isset($params['city_id'])) {
             $params['city_id'] = 0;
         }
+
+        $params['product_type'] = 'sale-italy';
 
         $models = $model->search($params);
 

@@ -15,6 +15,7 @@ use frontend\modules\shop\models\{
     Order as OrderModel,
     Customer
 };
+use frontend\modules\catalog\models\ItalianProduct;
 
 /**
  * Class Order
@@ -31,6 +32,7 @@ class Order extends OrderModel
     public function rules()
     {
         return [
+            [['product_type'], 'in', 'range' => array_keys(self::productTypeKeyRange())],
             [['id', 'customer_id', 'city_id', 'factory_id'], 'integer'],
         ];
     }
@@ -70,6 +72,7 @@ class Order extends OrderModel
             ->andFilterWhere([
                 'id' => $this->id,
                 self::tableName() . '.customer_id' => $this->customer_id,
+                self::tableName() . '.product_type' => $this->product_type,
             ]);
 
         if (isset($params['city_id']) && is_array($params['city_id'])) {
@@ -129,6 +132,16 @@ class Order extends OrderModel
 
         // переносим все атрибуты из заполненой формы в заказ
         $order->setAttributes($customerForm->getAttributes());
+
+        $order->product_type = 'product';
+
+        foreach ($cart->items as $cartItem) {
+            if (ItalianProduct::findById($cartItem->product_id) != null) {
+                $order->product_type = 'sale-italy';
+                break;
+            }
+        }
+
         $order->lang = Yii::$app->language;
         $order->customer_id = $customer_id;
 

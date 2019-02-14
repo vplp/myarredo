@@ -73,7 +73,10 @@ $model->city_id = Yii::$app->city->getCityId();
 
     </div>
     <div class="modal-footer">
-        <?= Html::submitButton(Yii::t('app', 'Получить лучшую цену'), ['class' => 'btn btn-success big']) ?>
+        <?= Html::submitButton(
+            Yii::t('app', 'Получить лучшую цену'),
+            ['class' => 'btn btn-success big']
+        ) ?>
     </div>
 
 <?php ActiveForm::end(); ?>

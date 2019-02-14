@@ -17,7 +17,7 @@ use yii\base\Model;
  *
  * @package frontend\modules\shop\models
  */
-Class CartCustomerForm extends Model
+class CartCustomerForm extends Model
 {
     public $reCaptcha;
     public $full_name;

@@ -65,6 +65,9 @@ class PartnerOrderController extends BaseController
             }
         }
 
+
+        $params['product_type'] = 'product';
+
         $models = $model->search($params);
 
         $this->title = Yii::t('app', 'Orders');
@@ -99,6 +102,8 @@ class PartnerOrderController extends BaseController
                 $params['city_id'][] = $city['id'];
             }
         }
+
+        $params['product_type'] = 'sale-italy';
 
         $models = $model->search($params);
 

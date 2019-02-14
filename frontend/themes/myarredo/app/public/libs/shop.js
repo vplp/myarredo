@@ -5,7 +5,8 @@ $('.request-price').on('click', function () {
     var product_id = $(this).data('id'),
         count = 1;
 
-    $.post('/shop/cart/add-to-cart/',
+    $.post(
+        '/shop/cart/add-to-cart/',
         {
             _csrf: $('#token').val(),
             id: product_id,
@@ -14,7 +15,6 @@ $('.request-price').on('click', function () {
         }
     ).done(function (data) {
         if (data == true) {
-
             refresh_full_cart();
 
             $.post(
@@ -54,9 +54,12 @@ $('.add-to-notepad').on('click', function () {
 /**
  * добавление в попап корзину
  */
-function add_to_popup(id, count) {
+function add_to_popup(id, count)
+{
     count = count || 1;
-    $.post('/shop/cart/add-to-cart/',
+
+    $.post(
+        '/shop/cart/add-to-cart/',
         {
             _csrf: $('#token').val(),
             id: id,
@@ -72,9 +75,12 @@ function add_to_popup(id, count) {
 /**
  * добавление в корзину
  */
-function add_to_cart(id, count) {
+function add_to_cart(id, count)
+{
     count = count || 1;
-    $.post('/shop/cart/add-to-cart/',
+
+    $.post(
+        '/shop/cart/add-to-cart/',
         {
             _csrf: $('#token').val(),
             id: id,
@@ -90,9 +96,11 @@ function add_to_cart(id, count) {
 /**
  * удаление елемента из попапа корзины
  */
-function delete_from_popup(id, count) {
+function delete_from_popup(id, count)
+{
     count = count || 0;
-    $.post('/shop/cart/delete-from-cart/',
+    $.post(
+        '/shop/cart/delete-from-cart/',
         {
             _csrf: $('#token').val(),
             product_id: id,
@@ -108,9 +116,11 @@ function delete_from_popup(id, count) {
 /**
  * удаление елемента из корзины
  */
-function delete_from_cart(id, count) {
+function delete_from_cart(id, count)
+{
     count = count || 0;
-    $.post('/shop/cart/delete-from-cart/',
+    $.post(
+        '/shop/cart/delete-from-cart/',
         {
             _csrf: $('#token').val(),
             product_id: id,
@@ -126,15 +136,14 @@ function delete_from_cart(id, count) {
 /**
  * изменение количества елемента в корзины
  */
-function change_count_cart_item(id, value, count) {
-
+function change_count_cart_item(id, value, count)
+{
     if (isNumeric(value)) {
         var f_count = (count - value);
 
         if (f_count != 0 && f_count > 0) {
             delete_from_cart(id, f_count);
-        }
-        else if (f_count != 0 && f_count < 0) {
+        } else if (f_count != 0 && f_count < 0) {
             add_to_cart(id, -f_count);
         }
     }
@@ -143,14 +152,14 @@ function change_count_cart_item(id, value, count) {
 /**
  * изменение количества елемента в попапе корзины
  */
-function change_count_cart_popup_item(id, value, count) {
+function change_count_cart_popup_item(id, value, count)
+{
     var value = +value;
     if (isNumeric(value)) {
         var f_count = (count - value);
         if (f_count != 0 && f_count > 0) {
             delete_from_popup(id, f_count);
-        }
-        else if (f_count != 0 && f_count < 0) {
+        } else if (f_count != 0 && f_count < 0) {
             add_to_popup(id, -f_count);
         }
     }
@@ -159,7 +168,8 @@ function change_count_cart_popup_item(id, value, count) {
 /**
  * Refresh popup
  */
-function refresh_popup_cart() {
+function refresh_popup_cart()
+{
     $.post(
         '/shop/widget/',
         {
@@ -179,7 +189,8 @@ function refresh_popup_cart() {
 /**
  * Refresh
  */
-function refresh_full_cart() {
+function refresh_full_cart()
+{
     $.post(
         '/shop/widget/',
         {
@@ -194,7 +205,8 @@ function refresh_full_cart() {
     });
 }
 
-function isNumeric(n) {
+function isNumeric(n)
+{
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
@@ -219,7 +231,7 @@ $('.ajax-status-switcher').on('click', function () {
             });
         },
         error: function (err) {
-           //console.log(err);
+            //console.log(err);
         }
     });
 });

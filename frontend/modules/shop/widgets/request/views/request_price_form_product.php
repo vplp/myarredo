@@ -63,7 +63,10 @@ $model->city_id = Yii::$app->city->getCityId();
 
 <?= Html::submitButton(
     Yii::t('app', 'Получить лучшую цену'),
-    ['class' => 'add-to-notepad-product btn btn-success big', 'data-id' => $product_id,]
+    [
+        'class' => 'add-to-notepad-product btn btn-success big',
+        'data-id' => $product_id,
+    ]
 ) ?>
 
 <?php ActiveForm::end();
