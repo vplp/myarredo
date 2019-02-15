@@ -48,7 +48,16 @@ $('.add-to-notepad-product').on('click', function () {
  */
 $('.add-to-notepad').on('click', function () {
     var product_id = $(this).data('id');
-    add_to_popup(product_id);
+    var ourElem = $(this);
+    var noteBok = $('.header').find('.my-notebook').find('.for-price').text();
+    if (!$(this).hasClass('doned')) {
+        add_to_popup(product_id);
+        $(this).addClass('doned');
+        setTimeout(function() {
+            ourElem.removeAttr('data-toggle');
+            $('.header').find('.my-notebook').find('.for-price').text(+noteBok + 1);
+        },400);
+    }
 });
 
 /**
