@@ -168,11 +168,7 @@ class Order extends OrderModel
                 }
                 $transaction->commit();
 
-                return [
-                    'id' => $order->id,
-                    'total_summ' => $order->total_summ,
-                    'link' => $order->getTokenLink()
-                ];
+                return $order;
             } else {
                 $transaction->rollBack();
             }

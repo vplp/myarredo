@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use frontend\modules\catalog\models\Product;
 
 /* @var $this yii\web\View */
-/* @var $item \frontend\modules\shop\models\CartItem */
+/* @var $item \frontend\modules\shop\models\OrderItem */
 
 ?>
 
@@ -27,7 +27,7 @@ use frontend\modules\catalog\models\Product;
 
             if (Product::isImage($item->product['image_link'])) {
                 echo Html::img(
-                    'https://www.myarredo.' . $order->city->country->alias . '/' . Product::getImageThumb($item->product['image_link']),
+                    'https://www.myarredo.' . $order->city->country->alias . Product::getImageThumb($item->product['image_link']),
                     ['class' => 'width: 140px; max-height: 100px;']
                 );
             }

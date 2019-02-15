@@ -23,13 +23,14 @@ use frontend\modules\catalog\models\Product;
     <div style="background-color:#fff9ea; text-align: left; padding: 10px 0 40px 30px;">
         <p style="font-size: 18px;">Здравствуйте, <?= $modelOrder->customer['full_name'] ?></p>
         <p style="font-size: 16px; color: #591612;">Согласно вашему <span style="font-weight: bold; color: #000;">запросу №<?= $modelOrder['id'] ?></span>
-            от <?= $modelOrder->getCreatedTime(); ?> года, отправляем цены на интересующие Вас товары. Спасибо за обращение!</p>
+            от <?= $modelOrder->getCreatedTime(); ?> года, отправляем цены на интересующие Вас товары. Спасибо за
+            обращение!</p>
     </div>
 
     <div style="background-color:#fff; padding:20px; clear: both;">
         <p style="color: #591612; font-size: 16px;">Цены на запрошенные товары</p>
 
-        <?php foreach ($modelOrder->items as $item): ?>
+        <?php foreach ($modelOrder->items as $item) { ?>
             <div style="clear: both; height: 100px;">
                 <div style="float: left;">
                     <?= Html::a(
@@ -50,27 +51,31 @@ use frontend\modules\catalog\models\Product;
                 <div style="padding-top: 10px; color:#8e3628"><?= $item->orderItemPrice->price; ?> &euro;</div>
             </div>
 
-        <?php endforeach; ?>
+        <?php } ?>
 
     </div>
 
-    <?php if ($modelOrder->orderAnswer->answer): ?>
+    <?php if ($modelOrder->orderAnswer->answer) { ?>
         <div style="background-color:#fff; padding:20px;">
             <p style="color: #591612; font-size: 16px;">Примечание</p>
             <p style="background: url('https://www.myarredo.ru/uploads/mailer/cloud.png') 20px 5px no-repeat; width:410px; padding-left: 80px;">
                 <?= nl2br($modelOrder->orderAnswer->answer) ?>
             </p>
         </div>
-    <?php endif; ?>
+    <?php } ?>
 
     <div style="background-color:#c4c0b8; padding:25px 60px 20px;">
         <p style="color: #591612; margin-bottom: 1px;">
             <?= $modelOrder->orderAnswer->user->profile->name_company; ?><br>
-            <?= $modelOrder->orderAnswer->user->profile->city->lang->title; ?><br>
+            <?= $modelOrder->orderAnswer->user->profile->city->lang->title ?? null; ?><br>
             <?= $modelOrder->orderAnswer->user->profile->address; ?>
         </p>
-        <span style="display: block; color: #591612; margin-bottom: 5px;"><?= $modelOrder->orderAnswer->user->email; ?></span>
-        <span style="text-align: left; color: #0077ca; border-bottom: 1px dotted #0077ca;"><?= $modelOrder->orderAnswer->user->profile->phone; ?></span>
+        <span style="display: block; color: #591612; margin-bottom: 5px;">
+            <?= $modelOrder->orderAnswer->user->email; ?>
+        </span>
+        <span style="text-align: left; color: #0077ca; border-bottom: 1px dotted #0077ca;">
+            <?= $modelOrder->orderAnswer->user->profile->phone; ?>
+        </span>
     </div>
 
 </div>

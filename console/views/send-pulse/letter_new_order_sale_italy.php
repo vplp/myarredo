@@ -1,10 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\ItalianProduct;
 
 /* @var $this yii\web\View */
-/* @var $item \frontend\modules\shop\models\CartItem */
+/* @var $item \frontend\modules\shop\models\OrderItem */
 
 ?>
 
@@ -25,16 +25,16 @@ use frontend\modules\catalog\models\Product;
         foreach ($order->items as $item) {
             echo Html::beginTag('p');
 
-            if (Product::isImage($item->product['image_link'])) {
+            if (ItalianProduct::isImage($item->product['image_link'])) {
                 echo Html::img(
-                    'https://www.myarredo.' . $order->city->country->alias . '/' . Product::getImageThumb($item->product['image_link']),
+                    'https://www.myarredo.' . $order->city->country->alias . ItalianProduct::getImageThumb($item->product['image_link']),
                     ['class' => 'width: 140px; max-height: 100px;']
                 );
             }
 
             echo Html::a(
                 $item->product['lang']['title'],
-                'https://www.myarredo.' . $order->city->country->alias . '/product/' . $item->product['alias'] . '/',
+                'https://www.myarredo.' . $order->city->country->alias . '/sale-italy-product/' . $item->product['alias'] . '/',
                 ['style' => 'font-weight:bold; display: block; color: #000; text-transform: uppercase; text-decoration: underline;']
             );
 
@@ -58,7 +58,7 @@ use frontend\modules\catalog\models\Product;
 
         <p>Удачи в продажах!</p>
 
-        <a href="https://www.myarredo.<?= $order->city->country->alias ?>/partner/orders/"
+        <a href="https://www.myarredo.<?= $order->city->country->alias ?>/partner/orders-italy/"
            style="text-decoration: none; color:#fff;">
             <div style="background-color:#00b05a; width: 80%; font-size: 18px; padding:20px; color: #fff; margin: 35px auto 20px; text-align: center;">
                 <span style="display: block;">ПОЛУЧИТЬ КЛИЕНТА</span>
