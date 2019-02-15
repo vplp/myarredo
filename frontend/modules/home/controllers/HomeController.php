@@ -41,8 +41,8 @@ class HomeController extends BaseController
 
     /**
      * @param $action
-     * @return bool|\yii\web\Response
-     * @throws \yii\web\BadRequestHttpException
+     * @return bool
+     * @throws \yii\web\NotFoundHttpException
      */
     public function beforeAction($action)
     {
