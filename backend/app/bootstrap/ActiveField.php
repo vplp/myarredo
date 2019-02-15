@@ -30,7 +30,8 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
 
         $name = uniqid();
         $initImageConfig = "{  
-                    key: '" . basename($preview) . "',
+                    name: '" . basename($preview) . "',
+                    key: '" . $preview . "',
                     url: '" . Url::toRoute(['filedelete', 'id' => $this->model->id]) . "'
                 }";
 
@@ -52,7 +53,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
                 'uploadAsync' => true,
                 'showCaption' => false,
                 'showRemove' => false,
-                'showUpload' => true,
+                'showUpload' => false,
                 'overwriteInitial' => false,
                 'initialPreview' => [$preview],
                 'initialPreviewConfig' => new JsExpression('[' . $initImageConfig . ']'),
@@ -63,7 +64,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
             ],
             'pluginEvents' => [
                 'filebatchselected' => 'function(event, files) {
-                    //$(".kv-file-upload").click();
+                    $(".kv-file-upload").click();
                 }',
                 'filebatchuploadsuccess' => 'function(event, data, previewId, index){
                     var response = data.response;
@@ -122,7 +123,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
                     '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
                 ],
                 'uploadAsync' => true,
-                'showUpload' => true,
+                'showUpload' => false,
                 'showCaption' => false,
                 'showRemove' => false,
                 'overwriteInitial' => false,
@@ -134,28 +135,28 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
             ], $pluginOptions),
             'pluginEvents' => [
                 'filebatchselected' => 'function(event, files) {
-                    //$(".kv-file-upload").click();
+                    $(".kv-file-upload").click();
                 }',
-                'filebatchuploadsuccess' => 'function(event, data, previewId, index){
-                        var response = data.response;
-                        var val = $("input[name=\'' . $inputName . '\']").val();
-                        var aval = val.split(\',\');
-                            aval.push(response.name);
-                            console.log(val, aval);
-                        $("input[name=\'' . $inputName . '\']").val(aval.join(\',\'));
+                'filebatchuploadsuccess' => 'function(event, data, previewId, index) {
+                    var response = data.response;
+                    var val = $("input[name=\'' . $inputName . '\']").val();
+                    var aval = val.split(\',\');
+                        aval.push(response.name);
+                        console.log(val, aval);
+                    $("input[name=\'' . $inputName . '\']").val(aval.join(\',\'));
                 }',
-                'fileuploaded' => 'function(event, data, previewId, index){
-                        var response = data.response;
-                        var val = $("input[name=\'' . $inputName . '\']").val();
-                        var aval = val.split(\',\');
-                            aval.push(response.name);
-                            console.log(val, aval);
-                        $("input[name=\'' . $inputName . '\']").val(aval.join(\',\'));
+                'fileuploaded' => 'function(event, data, previewId, index) {
+                    var response = data.response;
+                    var val = $("input[name=\'' . $inputName . '\']").val();
+                    var aval = val.split(\',\');
+                        aval.push(response.name);
+                        console.log(val, aval);
+                    $("input[name=\'' . $inputName . '\']").val(aval.join(\',\'));
                 }',
-                'filedeleted' => 'function(event, key){
+                'filedeleted' => 'function(event, key) {
                     console.log(key);
                  }',
-                'fileclear' => 'function(event){
+                'fileclear' => 'function(event) {
                     $("input[name=\'' . $inputName . '\']").val("");
                 }',
             ]
