@@ -47,6 +47,7 @@ class CartController extends BaseController
              */
             $new_order = SearchOrder::addNewOrder(Yii::$app->shop_cart->cart, $model);
 
+            /** @var $new_order Order */
             if ($new_order) {
                 $order = Order::findById($new_order['id']);
 
@@ -61,6 +62,9 @@ class CartController extends BaseController
                             'model' => $new_order,
                             'customerForm' => $model,
                             'order' => $order,
+                            'text' => ($new_order->product_type == 'product')
+                                ? Yii::$app->param->getByName('MAIL_SHOP_ORDER_TEXT')
+                                : Yii::$app->param->getByName('MAIL_SHOP_ORDER_TEXT_FOR_SALE_ITALY')
                         ]
                     )
                     ->setTo($model['email'])
