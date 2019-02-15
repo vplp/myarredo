@@ -26,7 +26,6 @@ echo Tabs::widget([
                 'model' => $model,
                 'modelLang' => $modelLang
             ]),
-            'visible' => $visible
         ],
         [
             'label' => Yii::t('page', 'Page'),

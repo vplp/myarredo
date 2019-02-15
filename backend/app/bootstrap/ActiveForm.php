@@ -58,7 +58,10 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
      */
     public function text_line($model, $attribute, $options = [])
     {
-        return $this->field($model, $attribute, $options)->placeholder(Html::encode($model->getAttributeLabel($attribute)))->textInput(['maxlength' => true]);
+        return $this
+            ->field($model, $attribute)
+            ->placeholder(Html::encode($model->getAttributeLabel($attribute)))
+            ->textInput($options);
     }
 
     /**
