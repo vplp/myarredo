@@ -27,7 +27,7 @@ use frontend\modules\catalog\models\ItalianProduct;
 
             if (ItalianProduct::isImage($item->product['image_link'])) {
                 echo Html::img(
-                    'https://www.myarredo.' . $order->city->country->alias . '/' . ItalianProduct::getImageThumb($item->product['image_link']),
+                    'https://www.myarredo.' . $order->city->country->alias . ItalianProduct::getImageThumb($item->product['image_link']),
                     ['class' => 'width: 140px; max-height: 100px;']
                 );
             }
