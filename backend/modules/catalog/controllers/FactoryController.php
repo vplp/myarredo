@@ -41,7 +41,7 @@ class FactoryController extends BackendController
                     ],
                     [
                         'allow' => true,
-                        'roles' => ['admin', 'catalogEditor'],
+                        'roles' => ['admin', 'catalogEditor', 'seo'],
                     ],
                     [
                         'allow' => false,

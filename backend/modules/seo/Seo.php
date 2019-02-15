@@ -34,7 +34,7 @@ class Seo extends \common\modules\seo\Seo
     {
         $menuItems = [];
 
-        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin', 'seo'])) {
+        if (in_array(Yii::$app->user->identity->group->role, ['admin', 'seo'])) {
             $menuItems = [
                 'label' => 'SEO',
                 'icon' => 'fa-file-text',

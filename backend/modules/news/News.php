@@ -20,7 +20,7 @@ class News extends \common\modules\news\News
     {
         $menuItems = [];
 
-        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin', 'catalogEditor'])) {
+        if (in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])) {
             $menuItems = [
                 'label' => 'Information for partners',
                 'icon' => 'fa-file-text',

@@ -27,7 +27,7 @@ class Sys extends \common\modules\sys\Sys
     {
         $menuItems = [];
 
-        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin'])) {
+        if (in_array(Yii::$app->user->identity->group->role, ['admin'])) {
             $menuItems = [
                 'label' => 'System',
                 'icon' => 'fa-map-marker',

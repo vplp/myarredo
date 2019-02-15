@@ -17,7 +17,7 @@ class Shop extends \common\modules\shop\Shop
     {
         $menuItems = [];
 
-        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin'])) {
+        if (in_array(Yii::$app->user->identity->group->role, ['admin'])) {
             $menuItems = [
                 'label' => 'Shop',
                 'icon' => 'fa-map-marker',

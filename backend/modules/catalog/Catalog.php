@@ -21,7 +21,7 @@ class Catalog extends \common\modules\catalog\Catalog
     {
         $menuItems = [];
 
-        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin', 'catalogEditor'])) {
+        if (in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])) {
             $menuItems = [
                 'label' => 'Catalog',
                 'icon' => 'fa-file-text',
@@ -77,6 +77,19 @@ class Catalog extends \common\modules\catalog\Catalog
                         'label' => 'Sale in Italy',
                         'position' => 7,
                         'url' => ['/catalog/sale-italy/list'],
+                    ],
+                ]
+            ];
+        } elseif (in_array(Yii::$app->user->identity->group->role, ['seo'])) {
+            $menuItems = [
+                'label' => 'Catalog',
+                'icon' => 'fa-file-text',
+                'position' => 4,
+                'items' => [
+                    [
+                        'label' => 'Factory',
+                        'position' => 7,
+                        'url' => ['/catalog/factory/list'],
                     ],
                 ]
             ];

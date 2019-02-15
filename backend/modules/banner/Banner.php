@@ -21,7 +21,7 @@ class Banner extends \common\modules\banner\Banner
     {
         $menuItems = [];
 
-        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin'])) {
+        if (in_array(Yii::$app->user->identity->group->role, ['admin'])) {
             $menuItems = [
                 'label' => 'Banner',
                 'icon' => 'fa fa-sitemap',
