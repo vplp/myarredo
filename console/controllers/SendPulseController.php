@@ -240,7 +240,7 @@ class SendPulseController extends Controller
             ->one();
 
         if ($modelOrder !== null) {
-            $bookId = $modelOrder->city->country->bookId;
+            $bookId = 2289833;
             $senderName = 'myarredo';
             $senderEmail = 'info@myarredo.ru';
             $subject = 'Новая заявка №' . $modelOrder['id'];
