@@ -26,6 +26,10 @@ class SendPulseController extends Controller
     {
         $this->stdout("SendPulse: start import emails. \n", Console::FG_GREEN);
 
+        /**
+         * Import by country
+         */
+
         $modelCountry = Country::findBase()->all();
 
         foreach ($modelCountry as $country) {
@@ -61,6 +65,30 @@ class SendPulseController extends Controller
 
                 Yii::$app->sendPulse->addEmails($bookId, $emails);
             }
+        }
+
+        /**
+         * Import for sale italy 2289833
+         */
+
+        $modelUser = User::findBase()
+            ->andFilterWhere(['IN', User::tableName() . 'group_id', [Group::PARTNER, Group::LOQISTICIAN]])
+            ->all();
+
+        if ($modelUser != null) {
+            $bookId = 2289833;
+            $emails = [];
+
+            foreach ($modelUser as $user) {
+                $emails[] = [
+                    'email' => $user['email'],
+                    'variables' => [
+                        'name' => $user['profile']['fullName'],
+                    ],
+                ];
+            }
+
+            Yii::$app->sendPulse->addEmails($bookId, $emails);
         }
 
         $this->stdout("SendPulse: end import emails. \n", Console::FG_GREEN);
