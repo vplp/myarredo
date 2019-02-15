@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 //
-use frontend\modules\catalog\models\Sale;
+use frontend\modules\catalog\models\ItalianProduct;
 
 /**
  * @var \frontend\modules\catalog\models\Sale $model
@@ -11,7 +11,7 @@ use frontend\modules\catalog\models\Sale;
 ?>
 
 <?= Html::beginTag('a', [
-    'href' => $model->getUrl(),
+    'href' => ItalianProduct::getUrl($model['alias']),
     'class' => 'one-prod-tile'
 ]); ?>
 
@@ -20,7 +20,7 @@ use frontend\modules\catalog\models\Sale;
         <div class="img-cont" data-dominant-color>
             <span class="background"></span>
             <?= Html::img(
-                Sale::getImageThumb($model['image_link']),
+                ItalianProduct::getImageThumb($model['image_link']),
                 [
                     'alt' => $model->getTitle(),
                     'itemprop' => 'contentUrl'

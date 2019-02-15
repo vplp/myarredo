@@ -3,6 +3,9 @@
 namespace frontend\modules\shop\widgets\cart;
 
 use Yii;
+//
+use frontend\modules\catalog\models\ItalianProduct;
+//
 use thread\app\base\widgets\Widget;
 
 /**
@@ -26,11 +29,19 @@ class Cart extends Widget
     {
         if (!empty(Yii::$app->shop_cart->items)) {
             $products_id = [];
+
             foreach (Yii::$app->shop_cart->items as $item) {
                 $products_id[] = $item->product_id;
             }
-            $products = call_user_func([Yii::$app->shop_cart->frontendProductClass, 'findByIDs'], $products_id);
+
+
+            $products1 = call_user_func([Yii::$app->shop_cart->frontendProductClass, 'findByIDs'], $products_id);
+
+            $products2 = call_user_func([ItalianProduct::class, 'findByIDs'], $products_id);
+
+            $products = array_merge($products1, $products2);
             $products_id = [];
+
             //заполним массив с продуктами так, чтобы айдишники стали ключами
             foreach ($products as $product) {
                 $products_id[$product->id] = $product;

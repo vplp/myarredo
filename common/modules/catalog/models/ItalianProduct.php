@@ -369,6 +369,7 @@ class ItalianProduct extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getCategory()
     {
@@ -419,6 +420,7 @@ class ItalianProduct extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getSpecification()
     {
@@ -519,5 +521,23 @@ class ItalianProduct extends ActiveRecord
         }
 
         return $imagesSources;
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findByID($id)
+    {
+        return self::findBase()->byID($id)->one();
+    }
+
+    /**
+     * @param $ids
+     * @return array
+     */
+    public static function findByIDs($ids): array
+    {
+        return self::findBase()->andWhere(['IN', 'id', array_unique($ids)])->all();
     }
 }
