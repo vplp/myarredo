@@ -39,26 +39,28 @@ class SendPulseController extends Controller
             /**
              * Add new email to mailing lists
              */
-            $bookId = $country['bookId'];
-            $emails = [];
+            if ($country['bookId']) {
+                $bookId = $country['bookId'];
+                $emails = [];
 
-            $emails[] = [
-                'email' => strip_tags(Yii::$app->param->getByName('MAIL_SPECIAL_EMAIL')),
-                'variables' => [
-                    'name' => 'SPECIAL_EMAIL',
-                ],
-            ];
-
-            foreach ($modelUser as $user) {
                 $emails[] = [
-                    'email' => $user['email'],
+                    'email' => strip_tags(Yii::$app->param->getByName('MAIL_SPECIAL_EMAIL')),
                     'variables' => [
-                        'name' => $user['profile']['fullName'],
+                        'name' => 'SPECIAL_EMAIL',
                     ],
                 ];
-            }
 
-            Yii::$app->sendPulse->addEmails($bookId, $emails);
+                foreach ($modelUser as $user) {
+                    $emails[] = [
+                        'email' => $user['email'],
+                        'variables' => [
+                            'name' => $user['profile']['fullName'],
+                        ],
+                    ];
+                }
+
+                Yii::$app->sendPulse->addEmails($bookId, $emails);
+            }
         }
 
         $this->stdout("SendPulse: end import emails. \n", Console::FG_GREEN);
@@ -74,26 +76,28 @@ class SendPulseController extends Controller
         $modelCountry = Country::findBase()->all();
 
         foreach ($modelCountry as $country) {
-            $bookId = $country['bookId'];
-            $emails = [];
+            if ($country['bookId']) {
+                $bookId = $country['bookId'];
+                $emails = [];
 
-            $requestResult = Yii::$app->sendPulse->getEmailsFromBook($bookId);
+                $requestResult = Yii::$app->sendPulse->getEmailsFromBook($bookId);
 
-            foreach ($requestResult as $item) {
-                $modelUser = User::findBase()
-                    ->andWhere([
-                        'group_id' => Group::PARTNER,
-                        'email' => $item->email,
-                    ])
-                    ->one();
+                foreach ($requestResult as $item) {
+                    $modelUser = User::findBase()
+                        ->andWhere([
+                            'group_id' => Group::PARTNER,
+                            'email' => $item->email,
+                        ])
+                        ->one();
 
-                if ($modelUser == null) {
-                    $emails[] = $item->email;
+                    if ($modelUser == null) {
+                        $emails[] = $item->email;
+                    }
                 }
-            }
 
-            if (!empty($emails)) {
-                Yii::$app->sendPulse->removeEmails($bookId, $emails);
+                if (!empty($emails)) {
+                    Yii::$app->sendPulse->removeEmails($bookId, $emails);
+                }
             }
         }
 
@@ -107,10 +111,14 @@ class SendPulseController extends Controller
     {
         $this->stdout("SendPulse: start send test campaign. \n", Console::FG_GREEN);
 
-        // get order
-
+        /**
+         * get order
+         */
         $modelOrder = Order::findBase()
-            ->andWhere(['create_campaign' => '0'])
+            ->andWhere([
+                'create_campaign' => '0',
+                'product_type' => 'product'
+            ])
             ->enabled()
             ->one();
 
@@ -125,7 +133,14 @@ class SendPulseController extends Controller
             /**
              * send partner campaign
              */
-            $response = Yii::$app->sendPulse->createCampaign($senderName, $senderEmail, $subject, $body, $bookId, $name);
+            $response = Yii::$app->sendPulse->createCampaign(
+                $senderName,
+                $senderEmail,
+                $subject,
+                $body,
+                $bookId,
+                $name
+            );
 
             $response = (array)$response;
 
@@ -154,9 +169,9 @@ class SendPulseController extends Controller
         foreach ($modelOrder->items as $item) {
             if ($item->product['factory_id'] &&
                 $item->product['factory'] &&
-                $item->product['factory']['email'] != '') {
+                $item->product['factory']['email'] != ''
+            ) {
                 // use factory email
-
                 $senderEmail = $item->product['factory']['email'];
 
                 $this->stdout("Send to factory: " . $senderEmail . " \n", Console::FG_GREEN);
@@ -178,7 +193,6 @@ class SendPulseController extends Controller
 
             if ($item->product['factory_id']) {
                 // use user factory email
-
                 $modelUser = User::findBase()
                     ->andWhere([
                         'group_id' => Group::FACTORY,
