@@ -58,7 +58,7 @@ use frontend\modules\catalog\models\ItalianProduct;
 
         <p>Удачи в продажах!</p>
 
-        <a href="https://www.myarredo.<?= $order->city->country->alias ?>/partner/orders/"
+        <a href="https://www.myarredo.<?= $order->city->country->alias ?>/partner/orders-italy/"
            style="text-decoration: none; color:#fff;">
             <div style="background-color:#00b05a; width: 80%; font-size: 18px; padding:20px; color: #fff; margin: 35px auto 20px; text-align: center;">
                 <span style="display: block;">ПОЛУЧИТЬ КЛИЕНТА</span>
