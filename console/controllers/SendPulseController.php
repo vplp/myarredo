@@ -105,6 +105,10 @@ class SendPulseController extends Controller
     {
         $this->stdout("SendPulse: start remove emails. \n", Console::FG_GREEN);
 
+        /**
+         * Remove by country
+         */
+
         $modelCountry = Country::findBase()->all();
 
         foreach ($modelCountry as $country) {
@@ -133,11 +137,35 @@ class SendPulseController extends Controller
             }
         }
 
+        /**
+         * Remove for sale italy 2289833
+         */
+
+        $bookId = 2289833;
+
+        $requestResult = Yii::$app->sendPulse->getEmailsFromBook($bookId);
+
+        foreach ($requestResult as $item) {
+            $modelUser = User::findBase()
+                ->andWhere([
+                    'email' => $item->email,
+                ])
+                ->one();
+
+            if ($modelUser == null) {
+                $emails[] = $item->email;
+            }
+        }
+
+        if (!empty($emails)) {
+            Yii::$app->sendPulse->removeEmails($bookId, $emails);
+        }
+
         $this->stdout("SendPulse: end remove emails. \n", Console::FG_GREEN);
     }
 
     /**
-     * SendPulse: send partner campaign campaign
+     * SendPulse: send partner campaign
      */
     public function actionSendCampaign()
     {
@@ -159,7 +187,64 @@ class SendPulseController extends Controller
             $senderName = 'myarredo';
             $senderEmail = 'info@myarredo.ru';
             $subject = 'Новая заявка №' . $modelOrder['id'];
-            $body = $this->renderPartial('letter_new_order_for_partner', ['order' => $modelOrder]);
+            $body = $this->renderPartial('letter_new_order', ['order' => $modelOrder]);
+            $name = 'Новая заявка №' . $modelOrder['id'];
+
+            /**
+             * send partner campaign
+             */
+            $response = Yii::$app->sendPulse->createCampaign(
+                $senderName,
+                $senderEmail,
+                $subject,
+                $body,
+                $bookId,
+                $name
+            );
+
+            $response = (array)$response;
+
+            var_dump($response);
+
+            if (!isset($response['is_error'])) {
+                /**
+                 * send factory campaign
+                 */
+                $this->sendNewRequestForFactory($modelOrder);
+                $modelOrder->setScenario('create_campaign');
+                $modelOrder->create_campaign = '1';
+                $modelOrder->save();
+                $this->stdout("Create campaign: " . $subject . " \n", Console::FG_GREEN);
+            }
+        }
+
+        $this->stdout("SendPulse: end send test campaign. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * SendPulse: send partner campaign sale-italy
+     */
+    public function actionSendCampaignSaleItaly()
+    {
+        $this->stdout("SendPulse: start send test campaign. \n", Console::FG_GREEN);
+
+        /**
+         * get order
+         */
+        $modelOrder = Order::findBase()
+            ->andWhere([
+                'create_campaign' => '0',
+                'product_type' => 'sale-italy'
+            ])
+            ->enabled()
+            ->one();
+
+        if ($modelOrder !== null) {
+            $bookId = $modelOrder->city->country->bookId;
+            $senderName = 'myarredo';
+            $senderEmail = 'info@myarredo.ru';
+            $subject = 'Новая заявка №' . $modelOrder['id'];
+            $body = $this->renderPartial('letter_new_order_sale_italy', ['order' => $modelOrder]);
             $name = 'Новая заявка №' . $modelOrder['id'];
 
             /**
