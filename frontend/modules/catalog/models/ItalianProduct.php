@@ -103,6 +103,26 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
 
     /**
      * @param string $image_link
+     * @return bool
+     */
+    public static function isImage($image_link = '')
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getProductUploadPath();
+
+        $image = false;
+
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = true;
+        }
+
+        return $image;
+    }
+
+    /**
+     * @param string $image_link
      * @return null|string
      */
     public static function getImage($image_link = '')

@@ -136,6 +136,10 @@ class Product extends \common\modules\catalog\models\Product
         return (new search\Product())->search($params);
     }
 
+    /**
+     * @param string $image_link
+     * @return bool
+     */
     public static function isImage($image_link = '')
     {
         /** @var Catalog $module */

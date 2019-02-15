@@ -4,8 +4,7 @@ use yii\helpers\Html;
 use frontend\modules\catalog\models\Product;
 
 /* @var $this yii\web\View */
-/* @var $item \frontend\modules\shop\models\CartItem */
-/** @var $item \frontend\modules\shop\models\OrderItem */
+/* @var $item \frontend\modules\shop\models\OrderItem */
 
 ?>
 
