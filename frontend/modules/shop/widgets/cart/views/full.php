@@ -59,3 +59,11 @@ use yii\helpers\{
 </div>
 
 -->
+<?php
+$script = <<< JS
+    $('.basket-item-info').on('click', '.remove', function() {
+        window.location.reload();
+    });
+JS;
+$this->registerJs($script, yii\web\View::POS_READY);
+?>

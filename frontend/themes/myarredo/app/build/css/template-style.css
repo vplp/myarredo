@@ -1856,7 +1856,8 @@ h1 {
 .prod-card-page #prod-slider .thumb-item {
   height: 130px;
   max-height: 130px;
-  min-width: 130px;
+  min-width: 140px;
+  max-width: 140px;
   display: flex;
   align-items: center;
   outline: none; }
@@ -1871,7 +1872,7 @@ h1 {
     overflow: hidden;
     border: 1px solid #FFFFFF;
     border-bottom: 4px solid #FFFFFF;
-    max-width: 130px; }
+    max-width: 140px; }
     .prod-card-page #prod-slider .nav-cont .thumb-item.slick-current {
       border-bottom: 4px solid #538D49;
       outline: none; }
@@ -1887,10 +1888,11 @@ h1 {
       opacity: 0.2; }
     .prod-card-page #prod-slider .nav-cont .thumb-item img {
       display: block;
-      max-width: 100%;
+      max-width: 140px;
       max-height: 100%;
-      width: auto;
+      width: 100%;
       height: auto;
+      object-fit: contain;
       margin-left: auto;
       margin-right: auto; }
 
@@ -1962,8 +1964,16 @@ h1 {
     .prod-card-page .best-price-form .form-control::placeholder {
       color: #535351;
       font-size: 14px; }
+
+  .checkbox .field-italianproduct-published label {
+    padding-left: 12px;
+  }    
+  .checkbox .field-italianproduct-published label::before {
+    display: none;
+  }
   .prod-card-page .best-price-form .jq-checkbox,
-  .field-salerequest-user_agreement .jq-checkbox {
+  .field-salerequest-user_agreement .jq-checkbox,
+  .field-italianproduct-published  .jq-checkbox {
     width: 24px;
     height: 24px;
     background: #FFFFFF;
@@ -1975,7 +1985,8 @@ h1 {
       border: 1px solid #ccc;
     }
     .prod-card-page .best-price-form .jq-checkbox.checked .jq-checkbox__div,
-    .field-salerequest-user_agreement .jq-checkbox.checked .jq-checkbox__div {
+    .field-salerequest-user_agreement .jq-checkbox.checked .jq-checkbox__div,
+    .field-italianproduct-published .jq-checkbox.checked .jq-checkbox__div {
       background: none;
       box-shadow: none;
       margin: 0;
@@ -1983,13 +1994,22 @@ h1 {
       height: auto;
       position: relative; }
       .prod-card-page .best-price-form .jq-checkbox.checked .jq-checkbox__div:after,
-      .field-salerequest-user_agreement .jq-checkbox.checked .jq-checkbox__div:after {
+      .field-salerequest-user_agreement .jq-checkbox.checked .jq-checkbox__div:after,
+      .field-italianproduct-published .jq-checkbox.checked .jq-checkbox__div:after {
         content: '\f00c';
         font-family: 'FontAwesome';
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%); }
+
+      .field-italianproduct-published  .jq-checkbox {
+        position: absolute !important;
+        top: 14px;
+        left: 0;
+        background-color: #f3f2f0;
+      }
+
   .prod-card-page .best-price-form .field-cartcustomerform-recaptcha {
     transform: scale(0.93);
     transform-origin: 0; }
