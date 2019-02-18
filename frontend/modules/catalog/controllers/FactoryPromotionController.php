@@ -99,14 +99,14 @@ class FactoryPromotionController extends BaseController
                 ],
                 'create-payment' => [
                     'class' => CreatePaymentAction::class,
-                    'orderClass' => FactoryPromotion::className(),
+                    'orderClass' => FactoryPromotion::class,
                     'beforePayment' => function ($order) {
                         return $order->payment_status == FactoryPromotion::PAYMENT_STATUS_PENDING;
                     }
                 ],
                 'notify' => [
                     'class' => ConfirmPaymentAction::class,
-                    'orderClass' => FactoryPromotion::className(),
+                    'orderClass' => FactoryPromotion::class,
                     'beforeConfirm' => function ($payment, $order) {
                         $order->payment_status = $payment->object->paid
                             ? FactoryPromotion::PAYMENT_STATUS_SUCCESS

@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'reCaptcha')
                     ->widget(
-                        \frontend\widgets\recaptcha3\RecaptchaV3Widget::className(),
+                        \frontend\widgets\recaptcha3\RecaptchaV3Widget::class,
                         ['actionName' => 'request_password']
                     )
                     ->label(false) ?>

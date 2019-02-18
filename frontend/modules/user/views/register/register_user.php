@@ -31,7 +31,7 @@ $this->title = 'Регистрация';
                         <?= $form->field($model, 'last_name') ?>
 
                         <?= $form->field($model, 'phone')
-                            ->widget(\yii\widgets\MaskedInput::className(), [
+                            ->widget(\yii\widgets\MaskedInput::class, [
                                 'mask' => Yii::$app->city->getPhoneMask(),
                                 'clientOptions' => [
                                     'clearIncomplete' => true

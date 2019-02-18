@@ -51,13 +51,8 @@ $model->user_agreement = 1;
                                 ->label(false) ?>
 
                             <?= $form->field($model, 'phone')
-                                //+39 (99) 999-99-99
-                                ->widget(\yii\widgets\MaskedInput::className(), [
-                                    'mask' => [
-                                        '+39 (9999) 99999',
-                                        '+39 (9999) 999-999',
-                                        '+39 (9999) 999-9999'
-                                    ],
+                                ->widget(\yii\widgets\MaskedInput::class, [
+                                    'mask' => Yii::$app->city->getPhoneMask(),
                                     'clientOptions' => [
                                         'clearIncomplete' => true
                                     ]
@@ -87,7 +82,7 @@ $model->user_agreement = 1;
                             <?= $form
                                 ->field($model, 'reCaptcha')
                                 ->widget(
-                                    \frontend\widgets\recaptcha3\RecaptchaV3Widget::className(),
+                                    \frontend\widgets\recaptcha3\RecaptchaV3Widget::class,
                                     ['actionName' => 'register_factory']
                                 )
                                 ->label(false) ?>

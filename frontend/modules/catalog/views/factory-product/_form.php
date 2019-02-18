@@ -55,7 +55,7 @@ $this->title = ($model->isNewRecord)
 
                         <?= $form
                             ->field($model, 'collections_id')
-                            ->widget(Select2::classname(), [
+                            ->widget(Select2::class, [
                                 'data' => Collection::dropDownList([
                                     'factory_id' => Yii::$app->user->identity->profile->factory_id
                                 ]),
@@ -70,14 +70,14 @@ $this->title = ($model->isNewRecord)
 
                         <?= $form
                             ->field($model, 'catalog_type_id')
-                            ->widget(Select2::classname(), [
+                            ->widget(Select2::class, [
                                 'data' => Types::dropDownList(),
                                 'options' => ['placeholder' => Yii::t('app', 'Select option')],
                             ]) ?>
 
                         <?= $form
                             ->field($model, 'category_ids')
-                            ->widget(Select2::classname(), [
+                            ->widget(Select2::class, [
                                 'data' => Category::dropDownList([
                                     'type_id' => $model->isNewRecord ? 0 : $model['catalog_type_id']
                                 ]),

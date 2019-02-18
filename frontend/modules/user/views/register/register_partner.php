@@ -65,7 +65,7 @@ $model->user_agreement = 1;
                                 <?= $form->field($model, 'cape_index') ?>
 
                                 <?= $form->field($model, 'phone')
-                                    ->widget(\yii\widgets\MaskedInput::className(), [
+                                    ->widget(\yii\widgets\MaskedInput::class, [
                                         'mask' => Yii::$app->city->getPhoneMask(),
                                         'clientOptions' => [
                                             'clearIncomplete' => true
@@ -96,7 +96,7 @@ $model->user_agreement = 1;
                                 <?= $form
                                     ->field($model, 'reCaptcha')
                                     ->widget(
-                                        \frontend\widgets\recaptcha3\RecaptchaV3Widget::className(),
+                                        \frontend\widgets\recaptcha3\RecaptchaV3Widget::class,
                                         ['actionName' => 'register_partner']
                                     )
                                     ->label(false) ?>
