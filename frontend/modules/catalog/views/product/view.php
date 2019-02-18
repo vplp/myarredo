@@ -212,7 +212,8 @@ $this->title = $this->context->title;
                                                 'class' => 'add-to-notepad btn btn-default big',
                                                 'data-id' => $model['id'],
                                                 'data-toggle' => 'modal',
-                                                'data-target' => '#myModal'
+                                                'data-target' => '#myModal',
+                                                'data-message' => Yii::t('app', 'В блокноте')
                                             ]
                                         );
                                     } else {

@@ -1,3 +1,5 @@
+var baseUrl = $("base").attr("href");
+
 /**
  * Кнопка запросить цену
  */
@@ -6,7 +8,7 @@ $('.request-price').on('click', function () {
         count = 1;
 
     $.post(
-        '/shop/cart/add-to-cart/',
+        baseUrl + 'shop/cart/add-to-cart/',
         {
             _csrf: $('#token').val(),
             id: product_id,
@@ -18,7 +20,7 @@ $('.request-price').on('click', function () {
             refresh_full_cart();
 
             $.post(
-                '/shop/widget/request-price/',
+                baseUrl + 'shop/widget/request-price/',
                 {
                     _csrf: $('#token').val(),
                     view: 'full'
@@ -53,22 +55,21 @@ $('.add-to-notepad').on('click', function () {
     if (!$(this).hasClass('doned')) {
         add_to_popup(product_id);
         $(this).addClass('doned');
-        setTimeout(function() {
+        setTimeout(function () {
             ourElem.removeAttr('data-toggle');
             $('.header').find('.my-notebook').find('.for-price').text(+noteBok + 1);
-        },400);
+        }, 400);
     }
 });
 
 /**
  * добавление в попап корзину
  */
-function add_to_popup(id, count)
-{
+function add_to_popup(id, count) {
     count = count || 1;
 
     $.post(
-        '/shop/cart/add-to-cart/',
+        baseUrl + 'shop/cart/add-to-cart/',
         {
             _csrf: $('#token').val(),
             id: id,
@@ -84,12 +85,11 @@ function add_to_popup(id, count)
 /**
  * добавление в корзину
  */
-function add_to_cart(id, count)
-{
+function add_to_cart(id, count) {
     count = count || 1;
 
     $.post(
-        '/shop/cart/add-to-cart/',
+        baseUrl + 'shop/cart/add-to-cart/',
         {
             _csrf: $('#token').val(),
             id: id,
@@ -105,11 +105,10 @@ function add_to_cart(id, count)
 /**
  * удаление елемента из попапа корзины
  */
-function delete_from_popup(id, count)
-{
+function delete_from_popup(id, count) {
     count = count || 0;
     $.post(
-        '/shop/cart/delete-from-cart/',
+        baseUrl + 'shop/cart/delete-from-cart/',
         {
             _csrf: $('#token').val(),
             product_id: id,
@@ -125,11 +124,10 @@ function delete_from_popup(id, count)
 /**
  * удаление елемента из корзины
  */
-function delete_from_cart(id, count)
-{
+function delete_from_cart(id, count) {
     count = count || 0;
     $.post(
-        '/shop/cart/delete-from-cart/',
+        baseUrl + 'shop/cart/delete-from-cart/',
         {
             _csrf: $('#token').val(),
             product_id: id,
@@ -145,8 +143,7 @@ function delete_from_cart(id, count)
 /**
  * изменение количества елемента в корзины
  */
-function change_count_cart_item(id, value, count)
-{
+function change_count_cart_item(id, value, count) {
     if (isNumeric(value)) {
         var f_count = (count - value);
 
@@ -161,8 +158,7 @@ function change_count_cart_item(id, value, count)
 /**
  * изменение количества елемента в попапе корзины
  */
-function change_count_cart_popup_item(id, value, count)
-{
+function change_count_cart_popup_item(id, value, count) {
     var value = +value;
     if (isNumeric(value)) {
         var f_count = (count - value);
@@ -177,10 +173,9 @@ function change_count_cart_popup_item(id, value, count)
 /**
  * Refresh popup
  */
-function refresh_popup_cart()
-{
+function refresh_popup_cart() {
     $.post(
-        '/shop/widget/',
+        baseUrl + 'shop/widget/',
         {
             _csrf: $('#token').val(),
             view: 'full_popup'
@@ -189,7 +184,8 @@ function refresh_popup_cart()
         if (data.success) {
             $('#short_cart').html(data.views.short);
             $('#myModal').html(data.view);
-            $('.prod-card-page').find('.add-to-notepad').html('В блокноте')
+            var obj = $('.prod-card-page').find('.add-to-notepad');
+            obj.html(obj.data('message'));
             $('#myModal').modal();
         }
     });
@@ -198,10 +194,9 @@ function refresh_popup_cart()
 /**
  * Refresh
  */
-function refresh_full_cart()
-{
+function refresh_full_cart() {
     $.post(
-        '/shop/widget/',
+        baseUrl + 'shop/widget/',
         {
             _csrf: $('#token').val(),
             view: 'full'
@@ -214,8 +209,7 @@ function refresh_full_cart()
     });
 }
 
-function isNumeric(n)
-{
+function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
