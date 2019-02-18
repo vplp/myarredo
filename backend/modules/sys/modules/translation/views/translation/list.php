@@ -29,9 +29,11 @@ echo GridView::widget(
                 'filter' => GridViewFilter::selectOne($filter, 'key', Source::listFromTo('key', 'key')),
             ],
             [
+                'class' => \thread\widgets\grid\kartik\EditableColumn::class,
                 'attribute' => 'translation',
-                'value' => 'message.translation',
-                'label' => Yii::t('app', 'Translation'),
+                'displayValue' => function ($model) {
+                    return $model['message']['translation'];
+                }
             ],
             [
                 'class' => ActionCheckboxColumn::class,

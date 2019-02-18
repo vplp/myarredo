@@ -4,14 +4,17 @@ namespace backend\modules\location\controllers;
 
 use Yii;
 use yii\web\Response;
-//
-use thread\app\base\controllers\BackendController;
+use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 //
 use backend\modules\location\models\{
     City,
     CityLang,
     search\City as filterCityModel
 };
+//
+use thread\actions\EditableAttributeSaveLang;
+use thread\app\base\controllers\BackendController;
 
 /**
  * Class CityController
@@ -26,6 +29,49 @@ class CityController extends BackendController
 
     public $title = 'City';
     public $name = 'city';
+
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function actions()
+    {
+        return ArrayHelper::merge(
+            parent::actions(),
+            [
+                'attribute-save' => [
+                    'class' => EditableAttributeSaveLang::class,
+                    'modelClass' => $this->modelLang,
+                    'attribute' => 'title',
+                ]
+            ]
+        );
+    }
 
     /**
      * Get cities
