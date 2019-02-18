@@ -83,7 +83,7 @@ class ItalianProductController extends BaseController
                     'modelClassLang' => $this->modelLang,
                     'scenario' => 'frontend',
                     'redirect' => function () {
-                        return ['update', 'id' => $this->action->getModel()->id];
+                        return ['list'];
                     }
                 ],
                 'intrash' => [

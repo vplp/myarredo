@@ -65,7 +65,6 @@ class PartnerOrderController extends BaseController
             }
         }
 
-
         $params['product_type'] = 'product';
 
         $models = $model->search($params);

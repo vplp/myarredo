@@ -24,8 +24,6 @@ use frontend\modules\catalog\models\ItalianProduct;
  */
 class Order extends OrderModel
 {
-    public $factory_id;
-
     /**
      * @return array
      */
@@ -33,7 +31,7 @@ class Order extends OrderModel
     {
         return [
             [['product_type'], 'in', 'range' => array_keys(self::productTypeKeyRange())],
-            [['id', 'customer_id', 'city_id', 'factory_id'], 'integer'],
+            [['id', 'customer_id', 'city_id'], 'integer'],
         ];
     }
 
@@ -87,12 +85,6 @@ class Order extends OrderModel
 
         $query
             ->groupBy(self::tableName() . '.id');
-
-        if (Yii::$app->user->identity->group->role == 'factory') {
-            $query
-                ->innerJoinWith(["items.product product"], false)
-                ->andFilterWhere(['IN', 'product.factory_id', $this->factory_id]);
-        }
 
         return $dataProvider;
     }
