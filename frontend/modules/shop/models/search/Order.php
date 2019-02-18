@@ -31,7 +31,7 @@ class Order extends OrderModel
     {
         return [
             [['product_type'], 'in', 'range' => array_keys(self::productTypeKeyRange())],
-            [['id', 'customer_id', 'city_id'], 'integer'],
+            [['id', 'customer_id', 'city_id', 'factory_id'], 'integer'],
         ];
     }
 
@@ -85,6 +85,12 @@ class Order extends OrderModel
 
         $query
             ->groupBy(self::tableName() . '.id');
+
+        if (Yii::$app->user->identity->group->role == 'factory') {
+            $query
+                ->innerJoinWith(["items.product product"], false)
+                ->andFilterWhere(['IN', 'product.factory_id', Yii::$app->user->identity->profile->factory_id]);
+        }
 
         return $dataProvider;
     }
