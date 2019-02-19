@@ -140,17 +140,6 @@ class RegisterController extends BaseController
                     ->send();
             }
 
-//            if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
-//                return $this->redirect(Url::toRoute('/user/profile/index'));
-//            }
-//
-//            if ($status === true) {
-//                Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
-//                return $this->redirect(Url::toRoute('/user/login/index'));
-//            }
-
-            //Yii::$app->getSession()->addFlash('success', Yii::t('user', 'add new members'));
-
             return $this->redirect(Url::toRoute('/user/login/index'));
         }
 
