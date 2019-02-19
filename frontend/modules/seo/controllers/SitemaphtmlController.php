@@ -36,7 +36,7 @@ class SitemaphtmlController extends \frontend\components\BaseController
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'index' => ['get'],
                 ],

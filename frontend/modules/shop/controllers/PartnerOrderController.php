@@ -65,7 +65,6 @@ class PartnerOrderController extends BaseController
             }
         }
 
-
         $params['product_type'] = 'product';
 
         $models = $model->search($params);
@@ -76,7 +75,7 @@ class PartnerOrderController extends BaseController
             'label' => $this->title,
         ];
 
-        return $this->render('list', [
+        return $this->render('list/list', [
             'models' => $models->getModels(),
             'pages' => $models->getPagination()
         ]);
@@ -113,7 +112,7 @@ class PartnerOrderController extends BaseController
             'label' => $this->title,
         ];
 
-        return $this->render('list', [
+        return $this->render('list-italy/list', [
             'models' => $models->getModels(),
             'pages' => $models->getPagination()
         ]);

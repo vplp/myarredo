@@ -30,10 +30,10 @@ class OrderItem extends \thread\modules\shop\models\OrderItem
      */
     public function getProduct()
     {
-        if ($this->order->product_type == 'product') {
-            return $this->hasOne(Product::class, ['id' => 'product_id']);
-        } else {
+        if ($this->order && $this->order->product_type == 'sale-italy') {
             return $this->hasOne(ItalianProduct::class, ['id' => 'product_id']);
+        } else {
+            return $this->hasOne(Product::class, ['id' => 'product_id']);
         }
     }
 

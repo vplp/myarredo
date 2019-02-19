@@ -15,7 +15,8 @@ use thread\modules\location\Location as LocationModule;
 class CityLang extends ActiveRecordLang
 {
     /**
-     * @return null|object
+     * @return object|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -61,6 +62,7 @@ class CityLang extends ActiveRecordLang
     {
         return [
             'backend' => ['title'],
+            'title' => ['title'],
         ];
     }
 }

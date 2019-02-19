@@ -72,18 +72,11 @@ class FactoryOrderController extends BaseController
     {
         $model = new Order();
 
-        $params = Yii::$app->request->queryParams;
+        $params = Yii::$app->request->post() ?? [];
 
         $params['product_type'] = 'product';
 
-        $models = $model->search(
-            ArrayHelper::merge(
-                $params,
-                [
-                    'factory_id' => Yii::$app->user->identity->profile->factory_id
-                ]
-            )
-        );
+        $models = $model->search($params);
 
         $this->title = Yii::t('app', 'Orders');
 
@@ -106,17 +99,11 @@ class FactoryOrderController extends BaseController
     {
         $model = new Order();
 
-        $params = Yii::$app->request->queryParams;
+        $params = Yii::$app->request->post() ?? [];
+
         $params['product_type'] = 'sale-italy';
 
-        $models = $model->search(
-            ArrayHelper::merge(
-                $params,
-                [
-                    'factory_id' => Yii::$app->user->identity->profile->factory_id
-                ]
-            )
-        );
+        $models = $model->search($params);
 
         $this->title = Yii::t('app', 'Orders');
 

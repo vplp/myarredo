@@ -148,6 +148,7 @@ class ItalianProduct extends ActiveRecord
             [['email'], 'email'],
             [['gallery_image'], 'string', 'max' => 1024],
             [['alias'], 'unique'],
+            [['factory_name',], 'default', 'value' => ''],
             [['catalog_type_id', 'factory_id', 'position'], 'default', 'value' => '0'],
             [['currency'], 'default', 'value' => 'EUR'],
             [
