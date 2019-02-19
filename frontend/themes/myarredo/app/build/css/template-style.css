@@ -1230,7 +1230,8 @@ h1 {
       background-position: center;
       background-repeat: no-repeat;
       background-size: 400%;
-      filter: blur(60px); }
+      filter: blur(60px);
+      opacity: 0.2; }
     .home-main .sale-sect .img-cont img {
       display: block;
       max-height: 100%;
