@@ -18,7 +18,6 @@ use thread\app\base\models\ActiveRecordLang;
  * @property string $description
  * @property string $content
  * @property string $defects
- * @property string $material
  *
  * @package common\modules\catalog\models
  */
@@ -50,7 +49,7 @@ class ItalianProductLang extends ActiveRecordLang
             [['title'], 'required'],
             ['rid', 'exist', 'targetClass' => ItalianProduct::class, 'targetAttribute' => 'id'],
             [['title'], 'string', 'max' => 255],
-            [['defects', 'material'], 'string', 'max' => 1024],
+            [['defects'], 'string', 'max' => 1024],
             [['description', 'content'], 'string'],
             [['description', 'content'], 'default', 'value' => '']
         ]);
@@ -62,8 +61,8 @@ class ItalianProductLang extends ActiveRecordLang
     public function scenarios()
     {
         return [
-            'backend' => ['title', 'description', 'content', 'defects', 'material'],
-            'frontend' => ['title', 'description', 'defects', 'material'],
+            'backend' => ['title', 'description', 'content', 'defects'],
+            'frontend' => ['title', 'description', 'defects'],
         ];
     }
 
@@ -77,7 +76,6 @@ class ItalianProductLang extends ActiveRecordLang
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
             'defects' => Yii::t('app', 'Defects'),
-            'material' => Yii::t('app', 'Material'),
         ];
     }
 }
