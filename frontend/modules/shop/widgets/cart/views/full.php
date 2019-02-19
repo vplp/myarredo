@@ -6,7 +6,7 @@ use yii\helpers\{
 
 ?>
 
-<div class="flex s-between basket-items">
+<div class="flex basket-items">
     <?php foreach ($items as $item): ?>
         <?= $this->render('parts/item_of_cart', ['item' => $item, 'product' => $products[$item['product_id']] ?? []]); ?>
     <?php endforeach; ?>
