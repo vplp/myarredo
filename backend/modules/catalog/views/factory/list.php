@@ -45,7 +45,6 @@ echo GridView::widget([
         ],
         [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
-            'deleteLink' => $visible
         ],
     ]
 ]);
