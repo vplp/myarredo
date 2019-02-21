@@ -48,7 +48,7 @@ use frontend\modules\catalog\models\{
                 </ul>
 
                 <a href="<?= Category::getUrl($model['alias']) ?>" class="view-all">
-                    Смотреть все
+                    <?= Yii::t('app', 'Смотреть все') ?>
                 </a>
             </div>
         </div>
