@@ -18,89 +18,6 @@ $this->title = $this->context->title;
 
                 <?= Html::tag('h1', $this->context->title); ?>
 
-                <!--
-                <form class="form-filter-date-cont flex">
-                    <div class="dropdown arr-drop">
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Россия</button>
-                        <ul class="dropdown-menu drop-down-find">
-                            <li>
-                                <input type="text" class="find">
-                            </li>
-                            <li>
-                                <a href="#">Россия</a>
-                            </li>
-                            <li>
-                                <a href="#">Украина</a>
-                            </li>
-                            <li>
-                                <a href="#">Беларусь</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="dropdown arr-drop">
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Выберите
-                            город
-                        </button>
-                        <ul class="dropdown-menu drop-down-find">
-                            <li>
-                                <input type="text" class="find">
-                            </li>
-                            <li>
-                                <a href="#">Киев</a>
-                            </li>
-                            <li>
-                                <a href="#">Днепр</a>
-                            </li>
-                            <li>
-                                <a href="#">Харьков</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="dropdown large-picker">
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">21.08.2017 -
-                            21.08.2017
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#">
-                                    Oggi
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Leri
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Settimana
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    30 giorni
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Messe attuale
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Mese precedente
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#"></a>
-                            </li>
-                        </ul>
-                    </div>
-                </form>
-                -->
-
                 <?= NewsListForPartners::widget([]) ?>
 
                 <?php if (!Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
@@ -138,6 +55,9 @@ $this->title = $this->context->title;
                             <li>
                                 <span><?= Yii::t('app', 'Дата ответа') ?></span>
                             </li>
+                            <li class="lang-cell">
+                                <span><?= Yii::t('app', 'lang') ?></span>
+                            </li>
                             <li>
                                 <span><?= Yii::t('app', 'City') ?></span>
                             </li>
@@ -148,15 +68,13 @@ $this->title = $this->context->title;
                     </div>
                     <div class="manager-history-list">
 
-                        <?php if (!empty($models)): ?>
-                            <?php foreach ($models as $modelOrder): ?>
+                        <?php if (!empty($models)) { ?>
+                            <?php foreach ($models as $modelOrder) { ?>
                                 <div class="item" data-hash="<?= $modelOrder->id; ?>">
 
                                     <ul class="orders-title-block flex">
                                         <li class="order-id">
-                                        <span>
-                                            <?= $modelOrder->id ?>
-                                        </span>
+                                            <span><?= $modelOrder->id ?></span>
                                         </li>
                                         <li class="application-date">
                                             <span><?= $modelOrder->getCreatedTime() ?></span>
@@ -165,71 +83,75 @@ $this->title = $this->context->title;
                                             <span><?= $modelOrder->customer->full_name ?></span>
                                         </li>
                                         <li>
-                                        <span>
+                                            <span>
+                                                <?php
+                                                if ($modelOrder->orderAnswer->id &&
+                                                    $modelOrder->orderAnswer->answer_time != 0) {
+                                                    echo $modelOrder->customer->phone;
+                                                } else {
+                                                    echo '-';
+                                                } ?>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span>
                                             <?php
-                                            if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
-                                                echo $modelOrder->customer->phone;
+                                            if ($modelOrder->orderAnswer->id &&
+                                                $modelOrder->orderAnswer->answer_time != 0) {
+                                                echo $modelOrder->customer->email;
                                             } else {
                                                 echo '-';
                                             } ?>
-                                        </span>
-                                        </li>
-                                        <li>
-                                        <span>
-                                        <?php
-                                        if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
-                                            echo $modelOrder->customer->email;
-                                        } else {
-                                            echo '-';
-                                        } ?>
-                                        </span>
+                                            </span>
                                         </li>
                                         <li>
                                             <span><?= $modelOrder->orderAnswer->getAnswerTime() ?></span>
                                         </li>
-                                        <li>
-                                        <span>
-                                            <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
-                                        </span>
+                                        <li class="lang-cell">
+                                            <span><?= substr($modelOrder->lang, 0, 2) ?></span>
                                         </li>
-                                        <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
+                                        <li>
+                                            <span>
+                                                <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span><?= $modelOrder->getOrderStatus(); ?></span>
+                                        </li>
                                     </ul>
 
                                     <div class="hidden-order-info flex">
-                                        <?php if ($modelOrder->isArchive()): ?>
-                                            <?= $this->render('_list_item_archive', [
+                                        <?php
+                                        if ($modelOrder->isArchive()) {
+                                            echo $this->render('_list_item_archive', [
                                                 'modelOrder' => $modelOrder,
-                                            ]) ?>
-                                        <?php else: ?>
-                                            <?= $this->render('_list_item', [
+                                            ]);
+                                        } else {
+                                            echo $this->render('_list_item', [
                                                 'modelOrder' => $modelOrder,
                                                 'modelOrderAnswer' => $modelOrder->orderAnswer,
-                                            ]) ?>
-                                        <?php endif; ?>
+                                            ]);
+                                        } ?>
                                     </div>
 
                                 </div>
 
-                            <?php endforeach; ?>
-
-
-                        <?php endif; ?>
+                            <?php } ?>
+                        <?php } ?>
 
                     </div>
 
                     <?= frontend\components\LinkPager::widget([
                         'pagination' => $pages,
-                    ]);
-                    ?>
+                    ]) ?>
 
                 </div>
             </div>
         </div>
     </main>
 
-<?php if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
-
-    <?php
+<?php
+if (Yii::$app->user->identity->profile->possibilityToAnswer) {
     $url = Url::toRoute(['/shop/partner-order/pjax-save']);
 
     $script = <<<JS
@@ -283,6 +205,4 @@ $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
 JS;
 
     $this->registerJs($script, yii\web\View::POS_READY);
-    ?>
-
-<?php } ?>
+}

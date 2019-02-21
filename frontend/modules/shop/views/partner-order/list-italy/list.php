@@ -55,6 +55,9 @@ $this->title = $this->context->title;
                             <li>
                                 <span><?= Yii::t('app', 'Дата ответа') ?></span>
                             </li>
+                            <li class="lang-cell">
+                                <span><?= Yii::t('app', 'lang') ?></span>
+                            </li>
                             <li>
                                 <span><?= Yii::t('app', 'City') ?></span>
                             </li>
@@ -65,15 +68,12 @@ $this->title = $this->context->title;
                     </div>
                     <div class="manager-history-list">
 
-                        <?php if (!empty($models)): ?>
-                            <?php foreach ($models as $modelOrder): ?>
+                        <?php if (!empty($models)) { ?>
+                            <?php foreach ($models as $modelOrder) { ?>
                                 <div class="item" data-hash="<?= $modelOrder->id; ?>">
-
                                     <ul class="orders-title-block flex">
                                         <li class="order-id">
-                                        <span>
-                                            <?= $modelOrder->id ?>
-                                        </span>
+                                            <span><?= $modelOrder->id ?></span>
                                         </li>
                                         <li class="application-date">
                                             <span><?= $modelOrder->getCreatedTime() ?></span>
@@ -82,27 +82,32 @@ $this->title = $this->context->title;
                                             <span><?= $modelOrder->customer->full_name ?></span>
                                         </li>
                                         <li>
-                                        <span>
-                                            <?php
-                                            if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
-                                                echo $modelOrder->customer->phone;
-                                            } else {
-                                                echo '-';
-                                            } ?>
-                                        </span>
+                                            <span>
+                                                <?php
+                                                if ($modelOrder->orderAnswer->id &&
+                                                    $modelOrder->orderAnswer->answer_time != 0) {
+                                                    echo $modelOrder->customer->phone;
+                                                } else {
+                                                    echo '-';
+                                                } ?>
+                                            </span>
                                         </li>
                                         <li>
-                                        <span>
-                                        <?php
-                                        if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
-                                            echo $modelOrder->customer->email;
-                                        } else {
-                                            echo '-';
-                                        } ?>
-                                        </span>
+                                            <span>
+                                                <?php
+                                                if ($modelOrder->orderAnswer->id &&
+                                                    $modelOrder->orderAnswer->answer_time != 0) {
+                                                    echo $modelOrder->customer->email;
+                                                } else {
+                                                    echo '-';
+                                                } ?>
+                                            </span>
                                         </li>
                                         <li>
                                             <span><?= $modelOrder->orderAnswer->getAnswerTime() ?></span>
+                                        </li>
+                                        <li class="lang-cell">
+                                            <span><?= substr($modelOrder->lang, 0, 2) ?></span>
                                         </li>
                                         <li>
                                         <span>
@@ -113,40 +118,37 @@ $this->title = $this->context->title;
                                     </ul>
 
                                     <div class="hidden-order-info flex">
-                                        <?php if ($modelOrder->isArchive()): ?>
-                                            <?= $this->render('_list_item_archive', [
+                                        <?php
+                                        if ($modelOrder->isArchive()) {
+                                            echo $this->render('_list_item_archive', [
                                                 'modelOrder' => $modelOrder,
-                                            ]) ?>
-                                        <?php else: ?>
-                                            <?= $this->render('_list_item', [
+                                            ]);
+                                        } else {
+                                            echo $this->render('_list_item', [
                                                 'modelOrder' => $modelOrder,
                                                 'modelOrderAnswer' => $modelOrder->orderAnswer,
-                                            ]) ?>
-                                        <?php endif; ?>
+                                            ]);
+                                        } ?>
                                     </div>
 
                                 </div>
 
-                            <?php endforeach; ?>
-
-
-                        <?php endif; ?>
+                            <?php } ?>
+                        <?php } ?>
 
                     </div>
 
                     <?= frontend\components\LinkPager::widget([
                         'pagination' => $pages,
-                    ]);
-                    ?>
+                    ]) ?>
 
                 </div>
             </div>
         </div>
     </main>
 
-<?php if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
-
-    <?php
+<?php
+if (Yii::$app->user->identity->profile->possibilityToAnswer) {
     $url = Url::toRoute(['/shop/partner-order/pjax-save']);
 
     $script = <<<JS
@@ -200,6 +202,4 @@ $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
 JS;
 
     $this->registerJs($script, yii\web\View::POS_READY);
-    ?>
-
-<?php } ?>
+}
