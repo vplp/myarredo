@@ -174,7 +174,7 @@ $this->title = $this->context->title;
                                             </div>
 
                                             <a href="javascript:void(0);" class="js-show-num-btn">
-                                                Узнать номер
+                                                <?= Yii::t('app', 'Узнать номер') ?>
                                             </a>
 
                                             <div class="ico">
@@ -190,7 +190,7 @@ $this->title = $this->context->title;
                                             </div>
                                             <a href="javascript:void(0);" class="write-seller" data-toggle="modal"
                                                data-target="#myModal">
-                                                написать продавцу
+                                                <?= Yii::t('app', 'Написать продавцу') ?>
                                             </a>
 
                                         </div>

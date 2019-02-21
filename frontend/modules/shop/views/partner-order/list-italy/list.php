@@ -26,7 +26,7 @@ $this->title = $this->context->title;
                         небольшого кода на Вашем сайте.
                         <u>
                             <?= Html::a(
-                                'Подробнее..',
+                                Yii::t('app', 'Подробнее'),
                                 Url::toRoute(['/page/page/view', 'alias' => 'razmeshchenie-koda']),
                                 ['style' => 'color:red; font-size: 24px;']
                             ) ?>
