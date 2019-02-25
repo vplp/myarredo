@@ -18,7 +18,7 @@ use backend\modules\catalog\models\{
 
 <?= $form
     ->field($model, 'factory_id')
-    ->widget(Select2::classname(), [
+    ->widget(Select2::class, [
         'data' => Factory::dropDownList(),
         'options' => ['placeholder' => Yii::t('app', 'Select option')],
     ]) ?>
@@ -27,7 +27,7 @@ use backend\modules\catalog\models\{
 
 <?= $form
     ->field($model, 'catalog_type_id')
-    ->widget(Select2::classname(), [
+    ->widget(Select2::class, [
         'data' => Types::dropDownList(),
         'options' => ['placeholder' => Yii::t('app', 'Select option')],
     ]) ?>
@@ -62,7 +62,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
 <?= $form
     ->field($model, 'category_ids')
-    ->widget(Select2::classname(), [
+    ->widget(Select2::class, [
         'data' => Category::dropDownList(['type_id' => $model->isNewRecord ? 0 : $model['catalog_type_id']]),
         'options' => [
             'placeholder' => Yii::t('app', 'Select option'),

@@ -18,7 +18,7 @@ use backend\modules\catalog\models\Samples;
 
     <?= $form
         ->field($model, 'samples_ids')
-        ->widget(Select2::classname(), [
+        ->widget(Select2::class, [
             'data' => Samples::dropDownList(['factory_id' => $model['factory_id']]),
             'options' => [
                 'placeholder' => Yii::t('app', 'Select option'),

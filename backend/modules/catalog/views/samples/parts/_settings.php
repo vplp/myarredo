@@ -15,7 +15,7 @@ use backend\modules\catalog\models\Factory;
 
 <?= $form
     ->field($model, 'factory_id')
-    ->widget(Select2::classname(), [
+    ->widget(Select2::class, [
         'data' => Factory::dropDownList(),
         'options' => ['placeholder' => Yii::t('app', 'Select option')],
     ])  ?>

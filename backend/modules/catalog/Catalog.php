@@ -52,7 +52,11 @@ class Catalog extends \common\modules\catalog\Catalog
                         'position' => 4,
                         'url' => ['/catalog/types/list'],
                     ],
-
+                    [
+                        'label' => Yii::t('app', 'Colors'),
+                        'position' => 4,
+                        'url' => ['/catalog/colors/list'],
+                    ],
                     [
                         'label' => 'Samples',
                         'position' => 5,

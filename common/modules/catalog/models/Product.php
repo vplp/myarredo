@@ -96,6 +96,7 @@ class Product extends ActiveRecord implements iProduct
                 'relations' => [
                     'category_ids' => 'category',
                     'samples_ids' => 'samples',
+                    'colors_ids' => 'colors',
                     'factory_catalogs_files_ids' => 'factoryCatalogsFiles',
                     'factory_prices_files_ids' => 'factoryPricesFiles',
                 ],
@@ -163,6 +164,7 @@ class Product extends ActiveRecord implements iProduct
                 [
                     'category_ids',
                     'samples_ids',
+                    'colors_ids',
                     'factory_catalogs_files_ids',
                     'factory_prices_files_ids'
                 ],
@@ -222,6 +224,7 @@ class Product extends ActiveRecord implements iProduct
                 'article',
                 'category_ids',
                 'samples_ids',
+                'colors_ids',
                 'factory_catalogs_files_ids',
                 'factory_prices_files_ids',
                 'mark'
@@ -263,6 +266,7 @@ class Product extends ActiveRecord implements iProduct
             'deleted' => Yii::t('app', 'Deleted'),
             'category_ids' => Yii::t('app', 'Category'),
             'samples_ids' => Yii::t('app', 'Samples'),
+            'colors_ids' => Yii::t('app', 'Colors'),
             'factory_catalogs_files_ids' => Yii::t('app', 'Factory catalogs files'),
             'factory_prices_files_ids' => Yii::t('app', 'Factory prices files'),
             'specification_value_ids',
@@ -469,6 +473,7 @@ class Product extends ActiveRecord implements iProduct
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getCategory()
     {
@@ -479,12 +484,24 @@ class Product extends ActiveRecord implements iProduct
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getSamples()
     {
         return $this
             ->hasMany(Samples::class, ['id' => 'samples_id'])
             ->viaTable(ProductRelSamples::tableName(), ['catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getColors()
+    {
+        return $this
+            ->hasMany(Colors::class, ['id' => 'color_id'])
+            ->viaTable(ProductRelColors::tableName(), ['catalog_item_id' => 'id']);
     }
 
     /**
@@ -497,6 +514,7 @@ class Product extends ActiveRecord implements iProduct
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getFactoryCatalogsFiles()
     {

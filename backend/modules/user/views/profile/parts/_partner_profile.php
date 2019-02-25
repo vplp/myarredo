@@ -33,7 +33,7 @@ if (in_array($model['user']['group_id'], [4, 7])) {
 
     echo $form
         ->field($model, 'city_ids')
-        ->widget(Select2::className(), [
+        ->widget(Select2::class, [
             'data' => City::dropDownList($model->country_id),
             'options' => [
                 'placeholder' => Yii::t('app', 'Select option'),

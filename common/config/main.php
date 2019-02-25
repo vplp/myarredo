@@ -18,4 +18,3 @@ return ArrayHelper::merge(
         'modules' => require(__DIR__ . '/modules.php')
     ]
 );
-

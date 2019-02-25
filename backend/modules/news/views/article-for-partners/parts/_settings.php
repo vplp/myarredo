@@ -23,7 +23,7 @@ use backend\modules\user\models\User;
 
 <?= $form
     ->field($model, 'city_ids')
-    ->widget(Select2::classname(), [
+    ->widget(Select2::class, [
         'data' => City::dropDownList(),
         'options' => [
             'placeholder' => Yii::t('app', 'Select option'),
@@ -33,7 +33,7 @@ use backend\modules\user\models\User;
 
 <?= $form
     ->field($model, 'user_ids')
-    ->widget(Select2::classname(), [
+    ->widget(Select2::class, [
         'data' => User::dropDownListPartner(),
         'options' => [
             'placeholder' => Yii::t('app', 'Select option'),

@@ -9,7 +9,7 @@ use backend\modules\location\models\City;
 
 <?= $form
     ->field($model, 'city_ids')
-    ->widget(Select2::classname(), [
+    ->widget(Select2::class, [
         'data' => City::dropDownList(),
         'options' => [
             'placeholder' => Yii::t('app', 'Select option'),
