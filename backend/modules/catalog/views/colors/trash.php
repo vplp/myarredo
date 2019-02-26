@@ -31,8 +31,9 @@ echo GridView::widget([
         ],
         [
             'attribute' => 'title',
-            'value' => 'lang.title',
-            'label' => Yii::t('app', 'Title'),
+            'value' => function ($model) {
+                return $model->getTitle();
+            },
         ],
         [
             'class' => ActionDeleteColumn::class,

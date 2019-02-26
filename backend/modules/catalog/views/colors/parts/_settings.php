@@ -14,7 +14,7 @@ use kartik\color\ColorInput;
 
 <?php
 if (!$model->isNewRecord) {
-    $form->text_line($model, 'default_title')->textInput(['disabled' => true]);
+    echo $form->text_line($model, 'default_title')->textInput(['disabled' => true]);
 } ?>
 
 <?= $form->text_line($model, 'alias') ?>

@@ -109,6 +109,14 @@ class Colors extends ActiveRecord
     }
 
     /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return (isset($this->lang->title)) ? $this->lang->title : "{{$this->default_title}}";
+    }
+
+    /**
      * @return mixed
      */
     public static function findBase()
