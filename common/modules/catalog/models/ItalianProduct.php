@@ -38,6 +38,7 @@ use common\modules\user\models\User;
  * @property string $gallery_image
  * @property double $price
  * @property double $price_new
+ * @property double $price_without_technology
  * @property string $currency
  * @property float $volume
  * @property float $weight
@@ -124,8 +125,8 @@ class ItalianProduct extends ActiveRecord
                 ],
                 'integer'
             ],
-            [['price', 'volume', 'weight', 'price_new'], 'double'],
-            [['price', 'volume', 'weight', 'price_new'], 'default', 'value' => 0.00],
+            [['price', 'volume', 'weight', 'price_new', 'price_without_technology'], 'double'],
+            [['price', 'volume', 'weight', 'price_new', 'price_without_technology'], 'default', 'value' => 0.00],
             [
                 [
                     'on_main',
@@ -198,6 +199,7 @@ class ItalianProduct extends ActiveRecord
                 'alias',
                 'price',
                 'price_new',
+                'price_without_technology',
                 'currency',
                 'volume',
                 'weight',
@@ -224,6 +226,7 @@ class ItalianProduct extends ActiveRecord
                 'alias',
                 'price',
                 'price_new',
+                'price_without_technology',
                 'currency',
                 'volume',
                 'weight',
@@ -259,6 +262,7 @@ class ItalianProduct extends ActiveRecord
             'alias' => Yii::t('app', 'Alias'),
             'price' => Yii::t('app', 'Price'),
             'price_new' => Yii::t('app', 'New price'),
+            'price_without_technology' => Yii::t('app', 'Price without technology'),
             'currency' => Yii::t('app', 'Currency'),
             'volume' => Yii::t('app', 'Volume'),
             'weight' => Yii::t('app', 'Weight'),
@@ -316,7 +320,18 @@ class ItalianProduct extends ActiveRecord
                         $model->specification_id = $val;
                         $model->val = $specification_id;
                         $model->save();
-                    } elseif ($specification_id && $val) {
+                    } elseif (in_array($specification_id, [60]) && is_array($val)) {
+                        foreach ($val as $v) {
+                            $model = new ItalianProductRelSpecification();
+
+                            $model->setScenario('backend');
+                            $model->item_id = $this->id;
+                            $model->specification_id = $specification_id;
+                            $model->val = $v;
+
+                            $model->save();
+                        }
+                    } else {
                         $model = new ItalianProductRelSpecification();
 
                         $model->setScenario('backend');
@@ -457,7 +472,11 @@ class ItalianProduct extends ActiveRecord
         }
 
         foreach ($this->specificationValue as $v) {
-            $mas[$v['specification_id']] = $v['val'];
+            if ($v['specification_id'] == 60) {
+                $mas[$v['val']] = $v['specification_id'];
+            } else {
+                $mas[$v['specification_id']] = $v['val'];
+            }
 
             if (in_array($v['specification_id'], $style)) {
                 $mas['style'] = $v['spec_id'];
@@ -468,8 +487,6 @@ class ItalianProduct extends ActiveRecord
         }
 
         return (!empty($mas)) ? $mas : array();
-
-        return $this->specificationValue;
     }
 
     /**

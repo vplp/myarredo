@@ -75,6 +75,9 @@ $this->registerJs($script, yii\web\View::POS_READY);
         <?= $form->text_line($model, 'price') ?>
     </div>
     <div class="col-md-3">
+        <?= $form->text_line($model, 'price_without_technology') ?>
+    </div>
+    <div class="col-md-3">
         <?= $form->text_line($model, 'price_new') ?>
     </div>
     <div class="col-md-3">

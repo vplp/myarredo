@@ -24,6 +24,9 @@ $this->title = (($model->isNewRecord)
         : Yii::t('app', 'Edit')) .
     ' ' . Yii::t('app', 'Furniture in Italy');
 
+$specification_value = $model->getSpecificationValueBySpecification();
+$Specifications = Specification::findBase()->all();
+
 ?>
 
     <main>
@@ -84,6 +87,38 @@ $this->title = (($model->isNewRecord)
 
                         <?= $form->field($modelLang, 'description')->textarea() ?>
 
+                        <?php
+                        foreach ($Specifications as $Specification) {
+                            if (in_array($Specification['id'], [60])) {
+                                $value = [];
+                                foreach ($specification_value as $k => $v) {
+                                    if ($v == $Specification['id']) {
+                                        $value[] = $k;
+                                    }
+                                }
+                                ?>
+                                <div class="form-group row field-specification-for-kitchen">
+                                    <?= Html::label(
+                                        $Specification['lang']['title'],
+                                        null,
+                                        ['class' => 'col-sm-3 col-form-label']
+                                    ) ?>
+                                    <div class="col-sm-9">
+                                        <?= Select2::widget([
+                                            'name' => 'SpecificationValue[' . $Specification['id'] . ']',
+                                            'value' => $value,
+                                            'data' => $Specification->getChildrenDropDownList(),
+                                            'options' => [
+                                                'placeholder' => Yii::t('app', 'Select option'),
+                                                'multiple' => true,
+                                                'id' => 'select-specification-for-kitchen'
+                                            ]
+                                        ]) ?>
+                                    </div>
+                                </div>
+                            <?php }
+                        } ?>
+
                         <?= $form->field($modelLang, 'defects')->textarea() ?>
 
                         <?php
@@ -107,8 +142,7 @@ $this->title = (($model->isNewRecord)
                         } ?>
 
                         <?php
-                        $specification_value = $model->getSpecificationValueBySpecification();
-                        foreach (Specification::findBase()->all() as $Specification) {
+                        foreach ($Specifications as $Specification) {
                             if ($Specification['type'] === '1' && !in_array($Specification['id'], [39, 47])) { ?>
                                 <div class="form-group row">
                                     <?= Html::label(
@@ -202,6 +236,13 @@ $this->title = (($model->isNewRecord)
                                 ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
                             ) ?>
 
+                        <?= $form
+                            ->field(
+                                $model,
+                                'price_without_technology',
+                                ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+                            ) ?>
+
                         <div class="form-group row price-row">
                             <?= $form
                                 ->field(
@@ -275,11 +316,29 @@ $url = Url::toRoute('/catalog/factory-product/ajax-get-category');
 $urlGetCities = Url::toRoute('/location/location/get-cities');
 
 $script = <<<JS
+var type_id = $('#italianproduct-catalog_type_id').find('option:selected').val();
+
+if (type_id == 3) {
+     $('.field-specification-for-kitchen').show();
+} else {
+    $('.field-specification-for-kitchen').hide();
+    $('#select-specification-for-kitchen option').attr('selected', false).trigger("change");
+}
+
 $('#italianproduct-catalog_type_id').on('change', function () {
+    var type_id = $(this).find('option:selected').val();
+    
+    if (type_id == 3) {
+         $('.field-specification-for-kitchen').show();
+    } else {
+        $('.field-specification-for-kitchen').hide();
+        $('#select-specification-for-kitchen option').attr('selected', false).trigger("change");
+    }
+    
     $.post('$url',
         {
             _csrf: $('#token').val(),
-            type_id: $(this).find('option:selected').val()
+            type_id: type_id
         }
     ).done(function (data) {
         var html = '';
@@ -289,6 +348,7 @@ $('#italianproduct-catalog_type_id').on('change', function () {
         $('#italianproduct-category_ids').html(html);
     });
 });
+// field-specification-for-kitchen
 $('select#italianproduct-country_id').change(function(){
     var country_id = parseInt($(this).val());
     $.post('$urlGetCities', {_csrf: $('#token').val(),country_id:country_id}, function(data){

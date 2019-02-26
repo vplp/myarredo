@@ -15,7 +15,6 @@ use backend\widgets\TreeGrid;
 echo $form->text_line($model, 'volume');
 echo $form->text_line($model, 'weight');
 echo $form->text_line($model, 'production_year');
-echo $form->text_line($modelLang, 'material');
 
 if (!$model->isNewRecord) {
     echo TreeGrid::widget([
