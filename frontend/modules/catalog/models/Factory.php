@@ -235,6 +235,12 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->andFilterWhere(['IN', 'productCollection.id', $params[$keys['collection']]]);
         }
 
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["product.colors as productColors"], false)
+                ->andFilterWhere(['IN', 'productColors.alias', $params[$keys['colors']]]);
+        }
+
         if (Yii::$app->request->get('show') == 'in_stock') {
             $query->andWhere([
                 Product::tableName() . '.in_stock' => '1'

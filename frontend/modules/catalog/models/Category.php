@@ -75,10 +75,10 @@ class Category extends \common\modules\catalog\models\Category
     }
 
     /**
-     * Get by alias
-     *
-     * @param string $alias
-     * @return ActiveRecord|null
+     * @param $alias
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findByAlias($alias)
     {
@@ -92,6 +92,8 @@ class Category extends \common\modules\catalog\models\Category
     /**
      * @param $id
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findById($id)
     {
@@ -103,10 +105,10 @@ class Category extends \common\modules\catalog\models\Category
     }
 
     /**
-     * Search
-     *
      * @param $params
      * @return \yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function search($params)
     {
@@ -184,6 +186,8 @@ class Category extends \common\modules\catalog\models\Category
     /**
      * @param array $params
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getWithProduct($params = [])
     {
@@ -213,6 +217,12 @@ class Category extends \common\modules\catalog\models\Category
             $query
                 ->innerJoinWith(["product.collection productCollection"], false)
                 ->andFilterWhere(['IN', 'productCollection.id', $params[$keys['collection']]]);
+        }
+
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["product.colors as productColors"], false)
+                ->andFilterWhere(['IN', 'productColors.alias', $params[$keys['colors']]]);
         }
 
         if (Yii::$app->request->get('show') == 'in_stock') {

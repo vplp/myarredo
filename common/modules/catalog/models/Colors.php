@@ -113,7 +113,7 @@ class Colors extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->joinWith(['lang'])->orderBy(ColorsLang::tableName() . '.title');
+        return self::find()->joinWith(['lang'])->orderBy(self::tableName() . '.position');
     }
 
     /**
@@ -122,5 +122,16 @@ class Colors extends ActiveRecord
     public function getLang()
     {
         return $this->hasOne(ColorsLang::class, ['rid' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getProduct()
+    {
+        return $this
+            ->hasMany(Product::class, ['id' => 'catalog_item_id'])
+            ->viaTable(ProductRelColors::tableName(), ['color_id' => 'id']);
     }
 }

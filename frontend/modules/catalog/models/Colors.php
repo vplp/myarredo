@@ -82,10 +82,10 @@ class Colors extends \common\modules\catalog\models\Colors
     }
 
     /**
-     * Search
-     *
      * @param $params
      * @return \yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function search($params)
     {
@@ -121,6 +121,12 @@ class Colors extends \common\modules\catalog\models\Colors
                 ->andFilterWhere(['IN', 'productCategory.alias', $params[$keys['category']]]);
         }
 
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["product.types productTypes"], false)
+                ->andFilterWhere(['IN', 'productTypes.alias', $params[$keys['type']]]);
+        }
+
         if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["product.specification productSpecification"], false)
@@ -150,8 +156,8 @@ class Colors extends \common\modules\catalog\models\Colors
                 ->select([
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
-                    ColorsLang::tableName() . '.title',
-                    'count(' . self::tableName() . '.id) as count'
+                    self::tableName() . '.position',
+                    'count(' . self::tableName() . '.id) as count',
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();

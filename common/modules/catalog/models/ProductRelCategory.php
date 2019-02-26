@@ -2,21 +2,23 @@
 
 namespace common\modules\catalog\models;
 
-use thread\app\base\models\ActiveRecord;
 use common\modules\catalog\Catalog;
+//
+use thread\app\base\models\ActiveRecord;
 
 /**
  * Class ProductRelCategory
  *
- * @property string $catalog_item_id
- * @property string $group_id
+ * @property int $catalog_item_id
+ * @property int $group_id
  *
  * @package common\modules\catalog\models
  */
 class ProductRelCategory extends ActiveRecord
 {
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

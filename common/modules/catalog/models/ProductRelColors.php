@@ -2,14 +2,15 @@
 
 namespace common\modules\catalog\models;
 
-use thread\app\base\models\ActiveRecord;
 use common\modules\catalog\Catalog;
+//
+use thread\app\base\models\ActiveRecord;
 
 /**
  * Class ProductRelColors
  *
- * @property string $catalog_item_id
- * @property string $color_id
+ * @property int $catalog_item_id
+ * @property int $color_id
  *
  * @package common\modules\catalog\models
  */
@@ -73,5 +74,20 @@ class ProductRelColors extends ActiveRecord
             'catalog_item_id',
             'color_id',
         ];
+    }
+
+    /**
+     * @param $subQuery
+     * @return mixed
+     */
+    public static function getCounts($subQuery)
+    {
+        return self::find()
+            ->asArray()
+            ->indexBy('color_id')
+            ->select('color_id, count(color_id) as count')
+            ->groupBy('color_id')
+            ->andWhere(['in', 'catalog_item_id', $subQuery])
+            ->all();
     }
 }

@@ -173,6 +173,7 @@ class Category extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getTypes()
     {
@@ -183,6 +184,7 @@ class Category extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getProduct()
     {
@@ -193,6 +195,7 @@ class Category extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getSale()
     {
@@ -203,6 +206,7 @@ class Category extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getItalianProduct()
     {

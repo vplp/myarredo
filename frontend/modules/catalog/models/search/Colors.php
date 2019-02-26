@@ -7,15 +7,15 @@ use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
 use frontend\modules\catalog\models\{
-    Types as TypesModel
+    Colors as ColorsModel
 };
 
 /**
- * Class Types
+ * Class Colors
  *
  * @package frontend\modules\catalog\models\search
  */
-class Types extends TypesModel
+class Colors extends ColorsModel
 {
     public $title;
 
@@ -64,7 +64,7 @@ class Types extends TypesModel
 
         $query->andFilterWhere(['like', 'alias', $this->alias]);
         //
-        $query->andFilterWhere(['like', TypesLang::tableName() . '.title', $this->title]);
+        $query->andFilterWhere(['like', ColorsLang::tableName() . '.title', $this->title]);
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();
@@ -81,7 +81,7 @@ class Types extends TypesModel
      */
     public function search($params)
     {
-        $query = TypesModel::findBase();
+        $query = ColorsModel::findBase();
         return $this->baseSearch($query, $params);
     }
 }

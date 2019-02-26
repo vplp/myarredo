@@ -10,7 +10,7 @@ use yii\web\NotFoundHttpException;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Collection, Product, Category, Factory, Types, Specification
+    Collection, Product, Category, Factory, Types, Specification, Colors
 };
 
 /**
@@ -73,6 +73,7 @@ class CategoryController extends BaseController
         $types = Types::getWithProduct($queryParams);
         $style = Specification::getWithProduct($queryParams);
         $factory = Factory::getWithProduct($queryParams);
+        $colors = Colors::getWithProduct($queryParams);
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
@@ -100,6 +101,7 @@ class CategoryController extends BaseController
             'types' => $types,
             'style' => $style,
             'factory' => $factory,
+            'colors' => $colors,
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),
         ]);

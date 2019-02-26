@@ -22,18 +22,19 @@ use frontend\modules\catalog\models\Category;
             <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Category') ?></a>
 
             <div class="list-item">
-
-                <?php foreach ($category as $item):
-                    $options = $item['checked'] ? ['class' => 'one-item selected'] : ['class' => 'one-item'];
-
+                <?php
+                foreach ($category as $item) {
+                    $options = $item['checked']
+                        ? ['class' => 'one-item selected']
+                        : ['class' => 'one-item'];
                     echo Html::a(
-                        Html::img(Category::getImage($item['image_link3'])) . $item['title'] . '<span>' . $item['count'] . '</span>',
+                        Html::img(
+                            Category::getImage($item['image_link3'])
+                        ) . $item['title'] . '<span>' . $item['count'] . '</span>',
                         $item['link'],
                         $options
                     );
-
-                endforeach; ?>
-
+                } ?>
             </div>
         </div>
 
@@ -176,6 +177,33 @@ use frontend\modules\catalog\models\Category;
         </div>
 
         */ ?>
+
+        <?php if ($colors): ?>
+            <div class="one-filter open subject-filter">
+                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Color') ?></a>
+                <div class="list-item">
+
+                    <?php foreach ($colors as $item): ?>
+
+                        <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
+
+                        <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
+                        <div class="filter-group">
+                            <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
+                        <?= Html::endTag('a'); ?>
+
+                    <?php endforeach; ?>
+
+                </div>
+
+                <?php if (count($colors) > 10): ?>
+                    <a href="javascript:void(0);" class="show-all-sub show-more show-class" data-variant="Скрыть">
+                        <span class="btn-text"><?= Yii::t('app', 'Show all colors') ?></span>
+                    </a>
+                <?php endif; ?>
+
+            </div>
+        <?php endif; ?>
 
         <?= Html::hiddenInput('sort', Yii::$app->request->get('sort') ?? null) ?>
         <?= Html::hiddenInput('object', Yii::$app->request->get('object') ?? null) ?>
