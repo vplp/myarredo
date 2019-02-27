@@ -45,7 +45,7 @@ class m190225_143855_create_catalog_colors_lang_table extends Migration
             ]
         );
 
-        //$this->createIndex('rid', $this->tableLang, ['rid', 'lang'], true);
+        $this->createIndex('rid', $this->tableLang, ['rid', 'lang'], true);
 
         $this->addForeignKey(
             'fk-catalog_colors_lang-rid-catalog_colors-id',

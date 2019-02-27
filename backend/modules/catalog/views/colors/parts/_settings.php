@@ -12,11 +12,6 @@ use kartik\color\ColorInput;
 
 <?= $form->text_line_lang($modelLang, 'title') ?>
 
-<?php
-if (!$model->isNewRecord) {
-    echo $form->text_line($model, 'default_title')->textInput(['disabled' => true]);
-} ?>
-
 <?= $form->text_line($model, 'alias') ?>
 
 <div class="row control-group">

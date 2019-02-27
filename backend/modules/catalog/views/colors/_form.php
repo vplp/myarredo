@@ -5,6 +5,7 @@ use backend\app\bootstrap\ActiveForm;
 
 /**
  * @var \backend\modules\catalog\models\Colors $model
+ * @var \backend\modules\catalog\models\ColorsLang $modelLang
  */
 
 $form = ActiveForm::begin();
