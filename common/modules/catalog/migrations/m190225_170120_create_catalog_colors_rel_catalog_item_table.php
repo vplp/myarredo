@@ -76,8 +76,8 @@ class m190225_170120_create_catalog_colors_rel_catalog_item_table extends Migrat
         $this->dropForeignKey('fk-catalog_colors_rel_catalog_item_ibfk_2', $this->tableRel);
         $this->dropForeignKey('fk-catalog_colors_rel_catalog_item_ibfk_1', $this->tableRel);
 
-        $this->dropIndex('idx_color_id_item_id', $this->tableRel);
-        $this->dropIndex('idx_item_id', $this->tableRel);
+        $this->dropIndex('idx_color_id_catalog_item_id', $this->tableRel);
+        $this->dropIndex('idx_catalog_item_id', $this->tableRel);
         $this->dropIndex('idx_color_id', $this->tableRel);
 
         $this->dropTable($this->tableRel);
