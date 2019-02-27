@@ -220,7 +220,7 @@ use frontend\modules\catalog\models\Category;
                         <div class="my-checkbox" style="background-color:red;"></div>Красный
                     </div>
                 </a>
-                <a class="one-item-check" href="/catalog">                        
+                <a class="one-item-check selected" href="/catalog">                        
                     <div class="filter-group">
                         <div class="my-checkbox" style="background-color:green;"></div>Зеленый
                     </div>
