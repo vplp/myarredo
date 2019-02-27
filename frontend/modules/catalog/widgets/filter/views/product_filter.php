@@ -183,7 +183,7 @@ use frontend\modules\catalog\models\Category;
 
         */
 
-        if ($colors) { ?>
+        if ($colors) {?>
             <div class="one-filter open subject-filter">
                 <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Color') ?></a>
                 <div class="list-item">
@@ -209,8 +209,30 @@ use frontend\modules\catalog\models\Category;
 
             </div>
 
-        <?php }
+        <?php } ?>
+            
+        <div class="one-filter open colors-box">
+            <a href="javascript:void(0);" class="filt-but">Цвет</a>
+            <div class="list-item">
 
+                <a class="one-item-check selected" href="/catalog">
+                    <div class="filter-group">
+                        <div class="my-checkbox" style="background-color:red;"></div>Красный
+                    </div>
+                </a>
+                <a class="one-item-check" href="/catalog">                        
+                    <div class="filter-group">
+                        <div class="my-checkbox" style="background-color:green;"></div>Зеленый
+                    </div>
+                </a>
+                <a class="one-item-check selected" href="/catalog">                        
+                    <div class="filter-group">
+                        <div class="my-checkbox" style="background-color:yellow;"></div>Желтый
+                    </div>
+                </a>
+            </div>
+        </div>
+        <?php
         echo Html::hiddenInput('sort', Yii::$app->request->get('sort') ?? null);
         echo Html::hiddenInput('object', Yii::$app->request->get('object') ?? null);
 

@@ -6774,6 +6774,9 @@ h1 {
 .adding-product-page .manager-history ul li.lang-cell {
   width: 4%;
 }
+.category-page .filters .one-filter.colors-box .one-item-check.selected .my-checkbox:after {
+  color: #ffffff;
+}
 /* ---------------------------------------new media queries-------------------------------------- */
 
 @media (min-width: 1200px) and (max-width: 1300px) {
