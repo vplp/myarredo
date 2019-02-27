@@ -229,7 +229,7 @@ class ProductFilter extends Widget
          */
 
         $colors = [];
-        
+
         foreach ($this->colors as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
@@ -255,6 +255,7 @@ class ProductFilter extends Widget
                 'title' => $obj['lang']['title'],
                 'count' => $obj['count'],
                 'alias' => $obj['alias'],
+                'color_code' => $obj['color_code'],
             );
         }
 

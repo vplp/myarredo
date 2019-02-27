@@ -157,6 +157,7 @@ class Colors extends \common\modules\catalog\models\Colors
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
                     self::tableName() . '.position',
+                    self::tableName() . '.color_code',
                     'count(' . self::tableName() . '.id) as count',
                 ])
                 ->groupBy(self::tableName() . '.id')
