@@ -151,6 +151,22 @@ class Catalog extends aModule
     }
 
     /**
+     * @return string
+     */
+    public function getItalianProductFileUploadPath()
+    {
+        return $this->getBaseUploadPath() . '/italianProductFile';
+    }
+
+    /**
+     * @return string
+     */
+    public function getItalianProductFileUploadUrl()
+    {
+        return $this->getBaseUploadUrl() . '/italianProductFile';
+    }
+
+    /**
      * Image upload path
      * @return string
      */

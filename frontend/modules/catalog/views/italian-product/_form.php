@@ -58,6 +58,12 @@ $Specifications = Specification::findBase()->all();
                             <?= $form
                                 ->field($model, 'gallery_image')
                                 ->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
+
+                            <?= $form->field($model, 'file_link')->fileInputWidget(
+                                $model->getFileLink(),
+                                ['accept' => '.jpeg,.png,.doc,.docx,.xlsx,application/pdf', 'maxFileSize' => 0],
+                                ['jpeg', 'png', 'pdf', 'doc', 'docx', 'xlsx']
+                            ) ?>
                         <?php } ?>
 
                         <?= $form->field($modelLang, 'title') ?>

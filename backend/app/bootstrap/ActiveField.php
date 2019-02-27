@@ -181,8 +181,8 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
                     key: '" . basename($preview) . "',
                     filename: '" . basename($preview) . "',
                     caption: '" . basename($preview) . "',
-                    size: " . filesize('..' . $preview) . ",
-                    url: '" . Url::toRoute(['filedelete', 'id' => $this->model->id]) . "'
+                    size: " . filesize(Yii::getAlias('@frontend-web') . $preview) . ",
+                    url: '" . Url::toRoute(['one-file-delete', 'id' => $this->model->id]) . "'
                 }";
 
         $inputName = Html::getInputName($this->model, $this->attribute);
@@ -190,7 +190,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
         $this->parts['{input}'] .= FileInput::widget([
             'name' => $name,
             'pluginOptions' => [
-                'uploadUrl' => Url::toRoute(['fileupload', 'input_file_name' => $name]),
+                'uploadUrl' => Url::toRoute(['one-file-upload', 'input_file_name' => $name]),
                 'uploadExtraData' => [
                     '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
                 ],

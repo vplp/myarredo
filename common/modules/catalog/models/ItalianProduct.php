@@ -36,6 +36,7 @@ use common\modules\user\models\User;
  * @property string $factory_name
  * @property string $article
  * @property string $gallery_image
+ * @property string $file_link
  * @property double $price
  * @property double $price_new
  * @property double $price_without_technology
@@ -143,7 +144,17 @@ class ItalianProduct extends ActiveRecord
                 'range' => array_keys(static::currencyRange())
             ],
             [
-                ['region', 'phone', 'email', 'alias', 'factory_name', 'article', 'image_link', 'production_year'],
+                [
+                    'region',
+                    'phone',
+                    'email',
+                    'alias',
+                    'factory_name',
+                    'article',
+                    'image_link',
+                    'file_link',
+                    'production_year',
+                ],
                 'string',
                 'max' => 255
             ],
@@ -198,6 +209,7 @@ class ItalianProduct extends ActiveRecord
                 'article',
                 'image_link',
                 'gallery_image',
+                'file_link',
                 'alias',
                 'price',
                 'price_new',
@@ -226,6 +238,7 @@ class ItalianProduct extends ActiveRecord
                 'article',
                 'image_link',
                 'gallery_image',
+                'file_link',
                 'alias',
                 'price',
                 'price_new',
@@ -263,6 +276,7 @@ class ItalianProduct extends ActiveRecord
             'article' => Yii::t('app', 'Артикул'),
             'image_link' => Yii::t('app', 'Image link'),
             'gallery_image' => Yii::t('app', 'Gallery image'),
+            'file_link' => Yii::t('app', 'Project drawing'),
             'alias' => Yii::t('app', 'Alias'),
             'price' => Yii::t('app', 'Price'),
             'price_new' => Yii::t('app', 'New price'),
@@ -555,6 +569,45 @@ class ItalianProduct extends ActiveRecord
         }
 
         return $imagesSources;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getFileLink()
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getItalianProductFileUploadPath();
+        $url = $module->getItalianProductFileUploadUrl();
+
+        $image = null;
+
+        if (!empty($this->file_link) && is_file($path . '/' . $this->file_link)) {
+            $image = $url . '/' . $this->file_link;
+        }
+
+        return $image;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getFileSize()
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getItalianProductFileUploadPath();
+
+        $file_size = 0;
+
+        if (!empty($this->file_link) && is_file($path . '/' . $this->file_link)) {
+            $file_size = filesize($path . '/' . $this->file_link);
+        }
+
+        return $file_size;
     }
 
     /**

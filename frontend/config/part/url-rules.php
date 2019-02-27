@@ -86,6 +86,8 @@ return [
     'italian-product/intrash/<id:[\d\-]+>' => 'catalog/italian-product/intrash',
     'catalog/italian-product/fileupload' => 'catalog/italian-product/fileupload',
     'catalog/italian-product/filedelete' => 'catalog/italian-product/filedelete',
+    'catalog/italian-product/one-file-upload' => 'catalog/italian-product/one-file-upload',
+    'catalog/italian-product/one-file-delete' => 'catalog/italian-product/one-file-delete',
 
     // Factory promotion
     'factory-promotion' => 'catalog/factory-promotion/list',

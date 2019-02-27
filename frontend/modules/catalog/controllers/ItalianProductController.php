@@ -102,6 +102,16 @@ class ItalianProductController extends BaseController
                     'useHashPath' => true,
                     'path' => $this->module->getProductUploadPath()
                 ],
+                'one-file-upload' => [
+                    'class' => UploadAction::class,
+                    'path' => $this->module->getItalianProductFileUploadPath(),
+                    'uploadOnlyImage' => false,
+                    'unique' => false
+                ],
+                'one-file-delete' => [
+                    'class' => DeleteAction::class,
+                    'path' => $this->module->getItalianProductFileUploadPath()
+                ],
             ]
         );
     }
