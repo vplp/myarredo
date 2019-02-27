@@ -7,10 +7,7 @@ use yii\helpers\{
 use kartik\widgets\Select2;
 //
 use frontend\modules\catalog\models\{
-    Category, Factory, Types, Specification
-};
-use frontend\modules\location\models\{
-    Country, City
+    Category, Factory, Types, Specification, Colors
 };
 
 /**
@@ -188,6 +185,16 @@ $Specifications = Specification::findBase()->all();
                                 </div>
                             <?php } ?>
                         <?php } ?>
+
+                        <?= $form
+                            ->field($model, 'colors_ids')
+                            ->widget(Select2::class, [
+                                'data' => Colors::dropDownList(),
+                                'options' => [
+                                    'placeholder' => Yii::t('app', 'Select option'),
+                                    'multiple' => true
+                                ],
+                            ]) ?>
 
                         <?= $form->field(
                             $model,

@@ -501,7 +501,7 @@ class Product extends ActiveRecord implements iProduct
     {
         return $this
             ->hasMany(Colors::class, ['id' => 'color_id'])
-            ->viaTable(ProductRelColors::tableName(), ['catalog_item_id' => 'id']);
+            ->viaTable(ColorsRelProduct::tableName(), ['item_id' => 'id']);
     }
 
     /**

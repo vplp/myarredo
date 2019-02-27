@@ -48,6 +48,14 @@ use backend\widgets\Tabs;
                 'modelLang' => $modelLang
             ])
         ],
+        [
+            'label' => Yii::t('app', 'Colors'),
+            'content' => $this->render('parts/_colors', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
     ]
 ]) ?>
 

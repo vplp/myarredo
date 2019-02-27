@@ -5,19 +5,19 @@ use yii\db\Migration;
 use common\modules\catalog\Catalog;
 
 /**
- * Handles the creation of table `{{%catalog_colors_rel_catalog_item}}`.
+ * Handles the creation of table `{{%catalog_colors_rel_catalog_italian_item}}`.
  */
-class m190225_170120_create_catalog_colors_rel_catalog_item_table extends Migration
+class m190226_174520_create_catalog_colors_rel_catalog_italian_item_table extends Migration
 {
     /**
      * @var string
      */
-    public $tableRel = '{{%catalog_colors_rel_catalog_item}}';
+    public $tableRel = '{{%catalog_colors_rel_catalog_italian_item}}';
 
     /**
      * @var string
      */
-    public $tableProduct = '{{%catalog_item}}';
+    public $tableProduct = '{{%catalog_italian_item}}';
 
     /**
      * @var string
@@ -48,7 +48,7 @@ class m190225_170120_create_catalog_colors_rel_catalog_item_table extends Migrat
         $this->createIndex('idx_color_id_item_id', $this->tableRel, ['color_id', 'item_id'], true);
 
         $this->addForeignKey(
-            'fk-catalog_colors_rel_catalog_item_ibfk_1',
+            'fk-catalog_colors_rel_catalog_italian_item_ibfk_1',
             $this->tableRel,
             'color_id',
             $this->tableColors,
@@ -58,7 +58,7 @@ class m190225_170120_create_catalog_colors_rel_catalog_item_table extends Migrat
         );
 
         $this->addForeignKey(
-            'fk-catalog_colors_rel_catalog_item_ibfk_2',
+            'fk-catalog_colors_rel_catalog_italian_item_ibfk_2',
             $this->tableRel,
             'item_id',
             $this->tableProduct,
@@ -73,8 +73,8 @@ class m190225_170120_create_catalog_colors_rel_catalog_item_table extends Migrat
      */
     public function safeDown()
     {
-        $this->dropForeignKey('fk-catalog_colors_rel_catalog_item_ibfk_2', $this->tableRel);
-        $this->dropForeignKey('fk-catalog_colors_rel_catalog_item_ibfk_1', $this->tableRel);
+        $this->dropForeignKey('fk-catalog_colors_rel_catalog_italian_item_ibfk_2', $this->tableRel);
+        $this->dropForeignKey('fk-catalog_colors_rel_catalog_italian_item_ibfk_1', $this->tableRel);
 
         $this->dropIndex('idx_color_id_item_id', $this->tableRel);
         $this->dropIndex('idx_item_id', $this->tableRel);

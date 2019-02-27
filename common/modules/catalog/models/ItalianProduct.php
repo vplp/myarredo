@@ -90,6 +90,7 @@ class ItalianProduct extends ActiveRecord
                 'class' => ManyToManyBehavior::className(),
                 'relations' => [
                     'category_ids' => 'category',
+                    'colors_ids' => 'colors',
                 ],
             ],
             [
@@ -155,6 +156,7 @@ class ItalianProduct extends ActiveRecord
             [
                 [
                     'category_ids',
+                    'colors_ids',
                 ],
                 'each',
                 'rule' => ['integer']
@@ -209,6 +211,7 @@ class ItalianProduct extends ActiveRecord
                 'position',
                 'on_main',
                 'category_ids',
+                'colors_ids',
             ],
             'frontend' => [
                 'country_id',
@@ -236,6 +239,7 @@ class ItalianProduct extends ActiveRecord
                 'position',
                 'on_main',
                 'category_ids',
+                'colors_ids',
             ]
         ];
     }
@@ -274,6 +278,7 @@ class ItalianProduct extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
             'category_ids' => Yii::t('app', 'Category'),
+            'colors_ids' => Yii::t('app', 'Colors'),
         ];
     }
 
@@ -432,6 +437,17 @@ class ItalianProduct extends ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getColors()
+    {
+        return $this
+            ->hasMany(Colors::class, ['id' => 'color_id'])
+            ->viaTable(ColorsRelItalianProduct::tableName(), ['item_id' => 'id']);
     }
 
     /**
