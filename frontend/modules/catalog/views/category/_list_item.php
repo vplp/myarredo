@@ -59,7 +59,7 @@ use frontend\modules\catalog\models\Product;
 
         <object class="btn-block">
             <a class="more-info">
-                <?= Yii::t('app', 'Подробнее') ?>
+                <?= Yii::t('app', 'Уточнить цену') ?>
             </a>
 
             <!--
