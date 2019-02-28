@@ -6,10 +6,8 @@ use yii\helpers\Html;
 /* @var $item \frontend\modules\catalog\models\Product */
 /* @var $product \frontend\modules\shop\models\CartItem */
 
-?>
 
-<?php if (!empty($product)) : ?>
-
+if (!empty($product)) { ?>
     <tr>
         <td>
             <div class="prod-name"><?= $product['lang']['title']; ?></div>
@@ -27,6 +25,5 @@ use yii\helpers\Html;
             <div class="price"><?= $item['total_summ'] ?>&nbsp;<span>грн</span></div>
         </td>
     </tr>
-
-<?php endif; ?>
-
+    <?php
+}
