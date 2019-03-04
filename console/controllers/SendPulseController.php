@@ -182,6 +182,8 @@ class SendPulseController extends Controller
             ->enabled()
             ->one();
 
+        /** @var Order $modelOrder */
+
         if ($modelOrder !== null) {
             $bookId = $modelOrder->city->country->bookId;
             $senderName = 'myarredo';
