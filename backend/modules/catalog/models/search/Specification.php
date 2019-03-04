@@ -19,7 +19,6 @@ use backend\modules\catalog\models\{
 class Specification extends SpecificationModel implements BaseBackendSearchModel
 {
     public $title;
-    //public $parent_id;
 
     /**
      * @return array
@@ -58,12 +57,13 @@ class Specification extends SpecificationModel implements BaseBackendSearchModel
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'parent_id' => $this->parent_id
+            self::tableName() . '.id' => $this->id,
+            self::tableName() . '.parent_id' => $this->parent_id
         ]);
 
-        $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['=', 'published', $this->published]);
+        $query
+            ->andFilterWhere(['like', self::tableName() . '.alias', $this->alias])
+            ->andFilterWhere(['=', self::tableName() . '.published', $this->published]);
 
         $query->andFilterWhere(['like', SpecificationLang::tableName() . '.title', $this->title]);
 

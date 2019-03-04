@@ -69,13 +69,13 @@ class Product extends ProductModel implements BaseBackendSearchModel
         }
 
         $query->andFilterWhere([
-            Product::tableName() . '.id' => $this->id,
-            Product::tableName() . '.factory_id' => $this->factory_id,
+            self::tableName() . '.id' => $this->id,
+            self::tableName() . '.factory_id' => $this->factory_id,
         ]);
 
         $query
-            ->andFilterWhere(['like', Product::tableName() . '.alias', $this->alias])
-            ->andFilterWhere(['=', Product::tableName() . '.published', $this->published]);
+            ->andFilterWhere(['like', self::tableName() . '.alias', $this->alias])
+            ->andFilterWhere(['=', self::tableName() . '.published', $this->published]);
 
         $query
             ->andFilterWhere(['like', ProductLang::tableName() . '.title', $this->title]);

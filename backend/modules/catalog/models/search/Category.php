@@ -56,9 +56,10 @@ class Category extends CategoryModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['=', 'published', $this->published]);
-        //
+        $query
+            ->andFilterWhere(['like', self::tableName() . '.alias', $this->alias])
+            ->andFilterWhere(['=', self::tableName() . '.published', $this->published]);
+
         $query->andFilterWhere(['like', CategoryLang::tableName() . '.title', $this->title]);
 
         return $dataProvider;
