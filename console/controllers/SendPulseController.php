@@ -207,14 +207,15 @@ class SendPulseController extends Controller
             $response = (array)$response;
 
             if (!isset($response['is_error'])) {
+                $modelOrder->setScenario('create_campaign');
+                $modelOrder->create_campaign = '1';
+                $modelOrder->save();
+
                 /**
                  * send factory campaign
                  */
                 $this->sendNewRequestForFactory($modelOrder);
 
-                $modelOrder->setScenario('create_campaign');
-                $modelOrder->create_campaign = '1';
-                $modelOrder->save();
                 $this->stdout("Create campaign: " . $subject . " \n", Console::FG_GREEN);
             }
         }
@@ -265,14 +266,15 @@ class SendPulseController extends Controller
             var_dump($response);
 
             if (!isset($response['is_error'])) {
+                $modelOrder->setScenario('create_campaign');
+                $modelOrder->create_campaign = '1';
+                $modelOrder->save();
+
                 /**
                  * send factory campaign
                  */
                 $this->sendNewRequestForFactory($modelOrder);
 
-                $modelOrder->setScenario('create_campaign');
-                $modelOrder->create_campaign = '1';
-                $modelOrder->save();
                 $this->stdout("Create campaign: " . $subject . " \n", Console::FG_GREEN);
             }
         }
