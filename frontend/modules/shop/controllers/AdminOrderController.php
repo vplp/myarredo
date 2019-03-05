@@ -78,6 +78,10 @@ class AdminOrderController extends BaseController
             $params['city_id'] = 0;
         }
 
+        if (!isset($params['factory_id'])) {
+            $params['factory_id'] = 0;
+        }
+
         $params['product_type'] = 'product';
 
         $models = $model->search($params);
@@ -89,8 +93,8 @@ class AdminOrderController extends BaseController
         ];
 
         return $this->render('list', [
-            'model' => $model,
             'models' => $models,
+            'model' => $model,
             'params' => $params,
         ]);
     }
@@ -121,6 +125,10 @@ class AdminOrderController extends BaseController
 
         if (!isset($params['city_id'])) {
             $params['city_id'] = 0;
+        }
+
+        if (!isset($params['factory_id'])) {
+            $params['factory_id'] = 0;
         }
 
         $params['product_type'] = 'sale-italy';

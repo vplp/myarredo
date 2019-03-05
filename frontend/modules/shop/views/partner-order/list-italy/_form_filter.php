@@ -14,25 +14,12 @@ use frontend\modules\catalog\models\Factory;
 
 <?php $form = ActiveForm::begin([
     'method' => 'get',
-    'action' => Url::toRoute(['/shop/admin-order/list']),
+    //'action' => Url::toRoute(['/shop/admin-order/list']),
     'id' => 'form-stats',
     'options' => [
         'class' => 'form-filter-date-cont flex'
     ]
 ]); ?>
-
-    <div class="form-group">
-        <?= Select2::widget([
-            'name' => 'country_id',
-            'value' => $params['country_id'],
-            'data' => [0 => '--'] + Country::dropDownList(),
-            'options' => [
-                'id' => 'country_id',
-                'multiple' => false,
-                'placeholder' => Yii::t('app', 'Choose the country')
-            ]
-        ]); ?>
-    </div>
 
     <div class="form-group">
         <?= Select2::widget([
@@ -51,7 +38,7 @@ use frontend\modules\catalog\models\Factory;
         <?= Select2::widget([
             'name' => 'city_id',
             'value' => (!is_array($params['city_id'])) ? $params['city_id'] : 0,
-            'data' => [0 => '--'] + City::dropDownList($params['country_id']),
+            'data' => [0 => '--'] + City::dropDownList(Yii::$app->user->identity->profile->country_id),
             'options' => [
                 'id' => 'city_id',
                 'multiple' => false,

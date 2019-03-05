@@ -24,6 +24,8 @@ use frontend\modules\catalog\models\ItalianProduct;
  */
 class Order extends OrderModel
 {
+    public $factory_id;
+
     /**
      * @return array
      */
@@ -90,6 +92,18 @@ class Order extends OrderModel
             $query
                 ->innerJoinWith(["items.product product"], false)
                 ->andFilterWhere(['IN', 'product.factory_id', Yii::$app->user->identity->profile->factory_id]);
+        }
+
+        if (isset($params['factory_id']) && $params['factory_id'] > 0) {
+            $subQueryFactory = OrderModel::find()
+                ->select(OrderModel::tableName() . '.id')
+                ->innerJoinWith(["items.product product"], false)
+                ->andFilterWhere(['IN', 'product.factory_id', $params['factory_id']]);
+
+            $query->andFilterWhere([
+                    'AND',
+                    ['in', self::tableName() . '.id', $subQueryFactory]
+                ]);
         }
 
         return $dataProvider;

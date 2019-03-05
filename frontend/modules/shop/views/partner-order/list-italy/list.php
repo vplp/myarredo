@@ -20,6 +20,12 @@ $this->title = $this->context->title;
 
                 <?= NewsListForPartners::widget([]) ?>
 
+                <?= $this->render('_form_filter', [
+                    'model' => $model,
+                    'params' => $params,
+                    'models' => $models,
+                ]); ?>
+
                 <?php if (!Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                     <div style="color:red; font-size: 24px;">
                         Вы сможете ответить на Заявки покупателей после размещения
@@ -68,20 +74,19 @@ $this->title = $this->context->title;
                     </div>
                     <div class="manager-history-list">
 
-                        <?php if (!empty($models)) { ?>
-                            <?php foreach ($models as $modelOrder) { ?>
-                                <div class="item" data-hash="<?= $modelOrder->id; ?>">
-                                    <ul class="orders-title-block flex">
-                                        <li class="order-id">
-                                            <span><?= $modelOrder->id ?></span>
-                                        </li>
-                                        <li class="application-date">
-                                            <span><?= $modelOrder->getCreatedTime() ?></span>
-                                        </li>
-                                        <li>
-                                            <span><?= $modelOrder->customer->full_name ?></span>
-                                        </li>
-                                        <li>
+                        <?php foreach ($models->getModels() as $modelOrder) { ?>
+                            <div class="item" data-hash="<?= $modelOrder->id; ?>">
+                                <ul class="orders-title-block flex">
+                                    <li class="order-id">
+                                        <span><?= $modelOrder->id ?></span>
+                                    </li>
+                                    <li class="application-date">
+                                        <span><?= $modelOrder->getCreatedTime() ?></span>
+                                    </li>
+                                    <li>
+                                        <span><?= $modelOrder->customer->full_name ?></span>
+                                    </li>
+                                    <li>
                                             <span>
                                                 <?php
                                                 if ($modelOrder->orderAnswer->id &&
@@ -91,8 +96,8 @@ $this->title = $this->context->title;
                                                     echo '-';
                                                 } ?>
                                             </span>
-                                        </li>
-                                        <li>
+                                    </li>
+                                    <li>
                                             <span>
                                                 <?php
                                                 if ($modelOrder->orderAnswer->id &&
@@ -102,44 +107,43 @@ $this->title = $this->context->title;
                                                     echo '-';
                                                 } ?>
                                             </span>
-                                        </li>
-                                        <li>
-                                            <span><?= $modelOrder->orderAnswer->getAnswerTime() ?></span>
-                                        </li>
-                                        <li class="lang-cell">
-                                            <span><?= substr($modelOrder->lang, 0, 2) ?></span>
-                                        </li>
-                                        <li>
+                                    </li>
+                                    <li>
+                                        <span><?= $modelOrder->orderAnswer->getAnswerTime() ?></span>
+                                    </li>
+                                    <li class="lang-cell">
+                                        <span><?= substr($modelOrder->lang, 0, 2) ?></span>
+                                    </li>
+                                    <li>
                                         <span>
                                             <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
                                         </span>
-                                        </li>
-                                        <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
-                                    </ul>
+                                    </li>
+                                    <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
+                                </ul>
 
-                                    <div class="hidden-order-info flex">
-                                        <?php
-                                        if ($modelOrder->isArchive()) {
-                                            echo $this->render('_list_item_archive', [
-                                                'modelOrder' => $modelOrder,
-                                            ]);
-                                        } else {
-                                            echo $this->render('_list_item', [
-                                                'modelOrder' => $modelOrder,
-                                                'modelOrderAnswer' => $modelOrder->orderAnswer,
-                                            ]);
-                                        } ?>
-                                    </div>
-
+                                <div class="hidden-order-info flex">
+                                    <?php
+                                    if ($modelOrder->isArchive()) {
+                                        echo $this->render('_list_item_archive', [
+                                            'modelOrder' => $modelOrder,
+                                        ]);
+                                    } else {
+                                        echo $this->render('_list_item', [
+                                            'modelOrder' => $modelOrder,
+                                            'modelOrderAnswer' => $modelOrder->orderAnswer,
+                                        ]);
+                                    } ?>
                                 </div>
 
-                            <?php } ?>
+                            </div>
+
                         <?php } ?>
 
                     </div>
 
                     <?= frontend\components\LinkPager::widget([
-                        'pagination' => $pages,
+                        'pagination' => $models->getPagination(),
                     ]) ?>
 
                 </div>

@@ -52,17 +52,28 @@ class PartnerOrderController extends BaseController
     {
         $model = new Order();
 
-        $params = Yii::$app->request->post() ?? [];
+        $params = Yii::$app->request->get() ?? [];
 
         /**
          * add city_id
          */
-        $modelCity = City::findAll(['country_id' => Yii::$app->user->identity->profile->country_id]);
+        if (!isset($params['city_id'])) {
+            $params['city_id'] = 0;
+        }
 
-        if ($modelCity != null) {
-            foreach ($modelCity as $city) {
-                $params['city_id'][] = $city['id'];
+        if (isset($params['city_id']) && $params['city_id'] == 0) {
+            unset($params['city_id']);
+            $modelCity = City::findAll(['country_id' => Yii::$app->user->identity->profile->country_id]);
+
+            if ($modelCity != null) {
+                foreach ($modelCity as $city) {
+                    $params['city_id'][] = $city['id'];
+                }
             }
+        }
+
+        if (!isset($params['factory_id'])) {
+            $params['factory_id'] = 0;
         }
 
         $params['product_type'] = 'product';
@@ -76,8 +87,9 @@ class PartnerOrderController extends BaseController
         ];
 
         return $this->render('list/list', [
-            'models' => $models->getModels(),
-            'pages' => $models->getPagination()
+            'models' => $models,
+            'model' => $model,
+            'params' => $params,
         ]);
     }
 
@@ -89,17 +101,28 @@ class PartnerOrderController extends BaseController
     {
         $model = new Order();
 
-        $params = Yii::$app->request->post() ?? [];
+        $params = Yii::$app->request->get() ?? [];
 
         /**
          * add city_id
          */
-        $modelCity = City::findAll(['country_id' => Yii::$app->user->identity->profile->country_id]);
+        if (!isset($params['city_id'])) {
+            $params['city_id'] = 0;
+        }
 
-        if ($modelCity != null) {
-            foreach ($modelCity as $city) {
-                $params['city_id'][] = $city['id'];
+        if (isset($params['city_id']) && $params['city_id'] == 0) {
+            unset($params['city_id']);
+            $modelCity = City::findAll(['country_id' => Yii::$app->user->identity->profile->country_id]);
+
+            if ($modelCity != null) {
+                foreach ($modelCity as $city) {
+                    $params['city_id'][] = $city['id'];
+                }
             }
+        }
+
+        if (!isset($params['factory_id'])) {
+            $params['factory_id'] = 0;
         }
 
         $params['product_type'] = 'sale-italy';
@@ -113,8 +136,9 @@ class PartnerOrderController extends BaseController
         ];
 
         return $this->render('list-italy/list', [
-            'models' => $models->getModels(),
-            'pages' => $models->getPagination()
+            'models' => $models,
+            'model' => $model,
+            'params' => $params,
         ]);
     }
 
