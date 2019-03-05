@@ -320,7 +320,7 @@ class SendPulseController extends Controller
                     ->one();
 
                 if ($modelUser !== null) {
-                    $senderEmail = $modelUser['email'];
+                    $senderEmail = trim($modelUser['email']);
 
                     $this->stdout("Send to factory: " . $senderEmail . " \n", Console::FG_GREEN);
 
