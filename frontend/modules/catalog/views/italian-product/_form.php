@@ -68,7 +68,6 @@ $Specifications = Specification::findBase()->all();
 
                         <?= $form->field($modelLang, 'title') ?>
 
-
                         <?= $form
                             ->field($model, 'catalog_type_id')
                             ->widget(Select2::class, [
@@ -164,7 +163,8 @@ $Specifications = Specification::findBase()->all();
                                         ) ?>
                                     </div>
                                 </div>
-                            <?php } elseif (in_array($Specification['id'], [2, 9])) {
+                                <?php
+                            } elseif ($Specification['id'] == 2) {
                                 $value = null;
                                 foreach ($specification_value as $k => $v) {
                                     if ($v == $Specification['id']) {
@@ -172,6 +172,49 @@ $Specifications = Specification::findBase()->all();
                                     }
                                 }
                                 ?>
+                                <div class="form-group row">
+                                    <?= Html::label(
+                                        $Specification['lang']['title'],
+                                        null,
+                                        ['class' => 'col-sm-3 col-form-label']
+                                    ) ?>
+                                    <div class="col-sm-4">
+                                        <?= Select2::widget([
+                                            'name' => 'SpecificationValue[' . $Specification['id'] . ']',
+                                            'value' => $value,
+                                            'data' => $Specification->getChildrenDropDownList() +
+                                                ['0' => Yii::t('app', 'Другое')],
+                                            'options' => [
+                                                'placeholder' => Yii::t('app', 'Select option')
+                                            ]
+                                        ]) ?>
+
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <?= $form
+                                            ->field(
+                                                $modelLang,
+                                                'material',
+                                                ['template' => "{label}<div class=\"col-sm-12\">{input}</div>\n{hint}\n{error}"]
+                                            )
+                                            ->input(
+                                                'text',
+                                                ['placeholder' => Yii::t('app', 'Добавьте материал')]
+                                            )
+                                            ->label(false) ?>
+                                    </div>
+                                </div>
+
+
+                                <?php
+                            } elseif ($Specification['id'] == 9) {
+                                $value = null;
+                                foreach ($specification_value as $k => $v) {
+                                    if ($v == $Specification['id']) {
+                                        $value = $k;
+                                    }
+                                } ?>
+
                                 <div class="form-group row">
                                     <?= Html::label(
                                         $Specification['lang']['title'],
@@ -190,6 +233,7 @@ $Specifications = Specification::findBase()->all();
                                     </div>
                                 </div>
                             <?php } ?>
+
                         <?php } ?>
 
                         <?= $form
@@ -337,6 +381,23 @@ if (type_id == 3) {
     $('.field-specification-for-kitchen').hide();
     $('#select-specification-for-kitchen option').attr('selected', false).trigger("change");
 }
+
+var material_id = $('select[name="SpecificationValue[2]"]').find('option:selected').val();
+var material_text = $('input[name="ItalianProductLang[material]"]').val();
+
+if (!isNaN(material_id) && material_text != '') {
+    $('.field-specification-for-kitchen').show();
+} else {
+    $('#italianproductlang-material').hide();
+}
+
+$('select[name="SpecificationValue[2]"]').on('change', function () {
+    if ($(this).val() == 0) {
+        $('#italianproductlang-material').show();
+    } else {
+        $('#italianproductlang-material').hide();
+    }
+});
 
 $('#italianproduct-catalog_type_id').on('change', function () {
     var type_id = $(this).find('option:selected').val();

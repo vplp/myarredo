@@ -7,4 +7,4 @@
 
 echo $form->text_editor_lang($modelLang, 'description');
 echo $form->text_editor_lang($modelLang, 'defects');
-//echo $form->text_editor_lang($modelLang, 'content');
+echo $form->text_editor_lang($modelLang, 'material');

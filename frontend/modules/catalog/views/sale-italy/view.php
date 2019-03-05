@@ -136,14 +136,15 @@ $this->title = $this->context->title;
                                             $array[] = $item['specification']['lang']['title'];
                                         }
                                     }
-                                    if (!empty($array)) { ?>
-                                        <tr>
-                                            <td><?= Yii::t('app', 'Материал') ?></td>
-                                            <td>
-                                                <?= implode('; ', $array) ?>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
+                                    ?>
+                                    <tr>
+                                        <td><?= Yii::t('app', 'Материал') ?></td>
+                                        <td>
+                                            <?= !empty($array)
+                                                ? implode('; ', $array)
+                                                : $model['lang']['material'] ?>
+                                        </td>
+                                    </tr>
                                 <?php } ?>
                             </table>
 
