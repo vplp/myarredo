@@ -171,54 +171,54 @@ class SendPulseController extends Controller
     {
         $this->stdout("SendPulse: start send test campaign. \n", Console::FG_GREEN);
 
-        /**
-         * get order
-         */
-        $modelOrder = Order::findBase()
-            ->andWhere([
-                'create_campaign' => '0',
-                'product_type' => 'product'
-            ])
-            ->enabled()
-            ->one();
-
-        /** @var Order $modelOrder */
-
-        if ($modelOrder !== null) {
-            $bookId = $modelOrder->city->country->bookId;
-            $senderName = 'myarredo';
-            $senderEmail = 'info@myarredo.ru';
-            $subject = 'Новая заявка №' . $modelOrder['id'];
-            $body = $this->renderPartial('letter_new_order', ['order' => $modelOrder]);
-            $name = 'Новая заявка №' . $modelOrder['id'];
-
-            /**
-             * send partner campaign
-             */
-            $response = Yii::$app->sendPulse->createCampaign(
-                $senderName,
-                $senderEmail,
-                $subject,
-                $body,
-                $bookId,
-                $name
-            );
-
-            $response = (array)$response;
-
-            var_dump($response);
-
-            if (!isset($response['is_error'])) {
-                /**
-                 * send factory campaign
-                 */
-                $this->sendNewRequestForFactory($modelOrder);
-                $modelOrder->setScenario('create_campaign');
-                $modelOrder->create_campaign = '1';
-                $modelOrder->save();
-                $this->stdout("Create campaign: " . $subject . " \n", Console::FG_GREEN);
-            }
-        }
+//        /**
+//         * get order
+//         */
+//        $modelOrder = Order::findBase()
+//            ->andWhere([
+//                'create_campaign' => '0',
+//                'product_type' => 'product'
+//            ])
+//            ->enabled()
+//            ->one();
+//
+//        /** @var Order $modelOrder */
+//
+//        if ($modelOrder !== null) {
+//            $bookId = $modelOrder->city->country->bookId;
+//            $senderName = 'myarredo';
+//            $senderEmail = 'info@myarredo.ru';
+//            $subject = 'Новая заявка №' . $modelOrder['id'];
+//            $body = $this->renderPartial('letter_new_order', ['order' => $modelOrder]);
+//            $name = 'Новая заявка №' . $modelOrder['id'];
+//
+//            /**
+//             * send partner campaign
+//             */
+//            $response = Yii::$app->sendPulse->createCampaign(
+//                $senderName,
+//                $senderEmail,
+//                $subject,
+//                $body,
+//                $bookId,
+//                $name
+//            );
+//
+//            $response = (array)$response;
+//
+//            var_dump($response);
+//
+//            if (!isset($response['is_error'])) {
+//                /**
+//                 * send factory campaign
+//                 */
+//                $this->sendNewRequestForFactory($modelOrder);
+//                $modelOrder->setScenario('create_campaign');
+//                $modelOrder->create_campaign = '1';
+//                $modelOrder->save();
+//                $this->stdout("Create campaign: " . $subject . " \n", Console::FG_GREEN);
+//            }
+//        }
 
         $this->stdout("SendPulse: end send test campaign. \n", Console::FG_GREEN);
     }
@@ -230,52 +230,52 @@ class SendPulseController extends Controller
     {
         $this->stdout("SendPulse: start send test campaign. \n", Console::FG_GREEN);
 
-        /**
-         * get order
-         */
-        $modelOrder = Order::findBase()
-            ->andWhere([
-                'create_campaign' => '0',
-                'product_type' => 'sale-italy'
-            ])
-            ->enabled()
-            ->one();
-
-        if ($modelOrder !== null) {
-            $bookId = 2289833;
-            $senderName = 'myarredo';
-            $senderEmail = 'info@myarredo.ru';
-            $subject = 'Новая заявка №' . $modelOrder['id'];
-            $body = $this->renderPartial('letter_new_order_sale_italy', ['order' => $modelOrder]);
-            $name = 'Новая заявка №' . $modelOrder['id'];
-
-            /**
-             * send partner campaign
-             */
-            $response = Yii::$app->sendPulse->createCampaign(
-                $senderName,
-                $senderEmail,
-                $subject,
-                $body,
-                $bookId,
-                $name
-            );
-
-            $response = (array)$response;
-
-            var_dump($response);
-
-            if (!isset($response['is_error'])) {
-                /**
-                 * send factory campaign
-                 */
-                $this->sendNewRequestForFactory($modelOrder);
-                $modelOrder->setScenario('create_campaign');
-                $modelOrder->create_campaign = '1';
-                $modelOrder->save();
-                $this->stdout("Create campaign: " . $subject . " \n", Console::FG_GREEN);
-            }
-        }
+//        /**
+//         * get order
+//         */
+//        $modelOrder = Order::findBase()
+//            ->andWhere([
+//                'create_campaign' => '0',
+//                'product_type' => 'sale-italy'
+//            ])
+//            ->enabled()
+//            ->one();
+//
+//        if ($modelOrder !== null) {
+//            $bookId = 2289833;
+//            $senderName = 'myarredo';
+//            $senderEmail = 'info@myarredo.ru';
+//            $subject = 'Новая заявка №' . $modelOrder['id'];
+//            $body = $this->renderPartial('letter_new_order_sale_italy', ['order' => $modelOrder]);
+//            $name = 'Новая заявка №' . $modelOrder['id'];
+//
+//            /**
+//             * send partner campaign
+//             */
+//            $response = Yii::$app->sendPulse->createCampaign(
+//                $senderName,
+//                $senderEmail,
+//                $subject,
+//                $body,
+//                $bookId,
+//                $name
+//            );
+//
+//            $response = (array)$response;
+//
+//            var_dump($response);
+//
+//            if (!isset($response['is_error'])) {
+//                /**
+//                 * send factory campaign
+//                 */
+//                $this->sendNewRequestForFactory($modelOrder);
+//                $modelOrder->setScenario('create_campaign');
+//                $modelOrder->create_campaign = '1';
+//                $modelOrder->save();
+//                $this->stdout("Create campaign: " . $subject . " \n", Console::FG_GREEN);
+//            }
+//        }
 
         $this->stdout("SendPulse: end send test campaign. \n", Console::FG_GREEN);
     }
