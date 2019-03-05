@@ -179,6 +179,7 @@ class SendPulseController extends Controller
                 'create_campaign' => '0',
                 'product_type' => 'product'
             ])
+            ->orderBy(['created_at' => SORT_ASC])
             ->enabled()
             ->one();
 
@@ -238,6 +239,7 @@ class SendPulseController extends Controller
                 'create_campaign' => '0',
                 'product_type' => 'sale-italy'
             ])
+            ->orderBy(['created_at' => SORT_ASC])
             ->enabled()
             ->one();
 
