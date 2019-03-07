@@ -19,6 +19,9 @@ return [
     'news' => [
         'class' => \frontend\modules\news\News::class,
     ],
+    'articles' => [
+        'class' => \frontend\modules\articles\Articles::class,
+    ],
     'seo' => [
         'class' => \frontend\modules\seo\Seo::class,
         'objects' => [

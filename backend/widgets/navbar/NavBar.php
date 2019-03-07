@@ -98,6 +98,7 @@ class NavBar extends \yii\bootstrap\NavBar
                         $items[] = $this->getItem($item);
                     }
                     // set items menu 2nd level and sort them
+                    $this->menuItems[$moduleName]['label'] .= '</span><span class="fa arrow"></span>';
                     $this->menuItems[$moduleName]['items'] = $this->sortItems($items);
                 }
             }

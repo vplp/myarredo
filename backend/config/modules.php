@@ -35,6 +35,9 @@ return [
     'news' => [
         'class' => \backend\modules\news\News::class,
     ],
+    'articles' => [
+        'class' => \backend\modules\articles\Articles::class,
+    ],
     'seo' => [
         'class' => \backend\modules\seo\Seo::class,
     ],
