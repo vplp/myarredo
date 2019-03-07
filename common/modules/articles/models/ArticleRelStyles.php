@@ -31,7 +31,7 @@ class ArticleRelStyles extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%articles_article_rel_catalog_type}}';
+        return '{{%articles_article_rel_catalog_style}}';
     }
 
     /**
