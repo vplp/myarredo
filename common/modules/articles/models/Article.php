@@ -241,6 +241,7 @@ class Article extends ActiveRecord
         if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
             $image = $url . '/' . $this->image_link;
         }
+
         return $image;
     }
 }

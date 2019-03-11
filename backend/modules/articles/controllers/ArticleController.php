@@ -8,7 +8,7 @@ use backend\modules\articles\models\{
     Article, ArticleLang, search\Article as filterArticleModel
 };
 //
-use thread\actions\fileapi\{
+use common\actions\upload\{
     DeleteAction, UploadAction
 };
 use thread\app\base\controllers\BackendController;

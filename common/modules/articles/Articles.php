@@ -32,7 +32,7 @@ class Articles extends aModule
      */
     public static function getFormatDate()
     {
-        return Yii::$app->getModule('news')->params['format']['date'];
+        return Yii::$app->getModule('articles')->params['format']['date'];
     }
 
     /**
@@ -42,6 +42,10 @@ class Articles extends aModule
     public function getArticleUploadPath()
     {
         $dir = $this->getBaseUploadPath() . '/articles';
+
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
 
         return $dir;
     }

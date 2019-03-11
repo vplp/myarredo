@@ -1,22 +1,19 @@
 <?php
 
-use thread\app\bootstrap\{
-    ActiveForm, Tabs
-};
-//
-use backend\modules\articles\models\{
-    Article, ArticleLang
-};
+use backend\app\bootstrap\ActiveForm;
+use backend\widgets\Tabs;
 
 /**
- * @var Article $model
- * @var ArticleLang $modelLang
+ * @var \backend\app\bootstrap\ActiveForm $form
+ * @var \backend\modules\articles\models\Article $model
+ * @var \backend\modules\articles\models\ArticleLang $modelLang
  */
-?>
 
-<?php $form = ActiveForm::begin(); ?>
-<?= $form->submit($model, $this) ?>
-<?= Tabs::widget([
+$form = ActiveForm::begin();
+
+echo $form->submit($model, $this);
+
+echo Tabs::widget([
     'items' => [
         [
             'label' => Yii::t('app', 'Settings'),
@@ -43,6 +40,8 @@ use backend\modules\articles\models\{
             ])
         ],
     ]
-]) ?>
-<?= $form->submit($model, $this) ?>
-<?php ActiveForm::end(); ?>
+]);
+
+echo $form->submit($model, $this);
+
+ActiveForm::end();
