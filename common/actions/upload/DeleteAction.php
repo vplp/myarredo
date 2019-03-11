@@ -57,6 +57,10 @@ class DeleteAction extends Action
         if (($file = Yii::$app->getRequest()->post($this->paramName))) {
             $filename = FileHelper::normalizePath($this->path . '/' . $file);
 
+            if (!is_file($filename)) {
+                $filename = FileHelper::normalizePath($this->path . '/' . basename($file));
+            }
+
             if ($this->useHashPath) {
                 /*
                 $hash = preg_replace(
@@ -66,7 +70,6 @@ class DeleteAction extends Action
                 );
                 $hashFile = $hash . '/' . $file;
                 */
-
                 $hashFile = str_replace('uploads/images', '', $file);
 
                 $filename = FileHelper::normalizePath($this->path . '/' . $hashFile);
