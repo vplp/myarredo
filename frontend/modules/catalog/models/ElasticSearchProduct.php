@@ -178,7 +178,6 @@ class ElasticSearchProduct extends ActiveRecord
             }
         } catch (\Exception $e) {
             $result = false;
-            var_dump($e->getMessage());
         }
 
         return $result;
