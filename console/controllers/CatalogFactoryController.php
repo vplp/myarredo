@@ -94,7 +94,7 @@ class CatalogFactoryController extends Controller
                         throw new \Exception($e);
                     }
                 } catch (\ImagickException $e) {
-                    var_dump($e);
+                    $this->stdout("ERROR ID=" . $model->id . " " . $e->getMessage() . " \n", Console::FG_GREEN);
                 }
             }
 
