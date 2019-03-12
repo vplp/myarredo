@@ -357,9 +357,9 @@ class SaleController extends BaseController
             ]);
         }
 
-        $this->pageH1 = ($this->pageH1 != '')
-            ? $this->pageH1
-            : implode(' ', $pageH1);
+//        $this->pageH1 = ($this->pageH1 != '')
+//            ? $this->pageH1
+//            : implode(' ', $pageH1);
 
         return $this;
     }
