@@ -53,44 +53,48 @@ class CatalogFactoryController extends Controller
                  */
                 $pdfFile = $path . '/' . $model->file_link . '[0]';
 
-                $imageData = new Imagick($pdfFile);
-
-                $imageData->setImageFormat('jpg');
-                $imageData->resizeImage(
-                    200,
-                    200,
-                    imagick::FILTER_LANCZOS,
-                    1,
-                    true
-                );
-
-                $image_link = $model->id . '.jpg';
-
-                file_put_contents(
-                    $path . '/thumb/' . $image_link,
-                    $imageData->getImageBlob()
-                );
-
-                /**
-                 * save
-                 */
-                /** @var PDO $transaction */
-                $transaction = $model::getDb()->beginTransaction();
                 try {
-                    $model->setScenario('setImage');
+                    $imageData = new Imagick($pdfFile);
 
-                    $model->image_link = $image_link;
+                    $imageData->setImageFormat('jpg');
+                    $imageData->resizeImage(
+                        200,
+                        200,
+                        imagick::FILTER_LANCZOS,
+                        1,
+                        true
+                    );
 
-                    if ($model->save()) {
-                        $transaction->commit();
-                        $this->stdout("ID=" . $model->id . " \n", Console::FG_GREEN);
-                    } else {
-                        var_dump($model->errors);
+                    $image_link = $model->id . '.jpg';
+
+                    file_put_contents(
+                        $path . '/thumb/' . $image_link,
+                        $imageData->getImageBlob()
+                    );
+
+                    /**
+                     * save
+                     */
+                    /** @var PDO $transaction */
+                    $transaction = $model::getDb()->beginTransaction();
+                    try {
+                        $model->setScenario('setImage');
+
+                        $model->image_link = $image_link;
+
+                        if ($model->save()) {
+                            $transaction->commit();
+                            $this->stdout("ID=" . $model->id . " \n", Console::FG_GREEN);
+                        } else {
+                            var_dump($model->errors);
+                            $transaction->rollBack();
+                        }
+                    } catch (\Exception $e) {
                         $transaction->rollBack();
+                        throw new \Exception($e);
                     }
-                } catch (\Exception $e) {
-                    $transaction->rollBack();
-                    throw new \Exception($e);
+                } catch (\ImagickException $e) {
+                    var_dump($e);
                 }
             }
 
