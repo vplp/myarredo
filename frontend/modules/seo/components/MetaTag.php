@@ -142,11 +142,13 @@ class MetaTag extends Component
 
     /**
      * @return $this
+     * @throws \yii\base\InvalidConfigException
      */
     protected function getDirectModel()
     {
         if (!empty($this->local_url)) {
-            $this->direct_model = Directlink::find()->url($this->local_url)->enabled()->one();
+            //$this->direct_model = Directlink::find()->url($this->local_url)->enabled()->one();
+            $this->direct_model = Directlink::getInfo();
         }
 
         return $this;

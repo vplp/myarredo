@@ -3,8 +3,6 @@
 namespace frontend\modules\seo\modules\directlink\models;
 
 use Yii;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
 
 /**
  * Class Directlink
