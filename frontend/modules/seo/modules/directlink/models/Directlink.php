@@ -58,13 +58,18 @@ class Directlink extends \common\modules\seo\modules\directlink\models\Directlin
      */
     public static function getInfo()
     {
-        $record = self::findByUrl();
 
-        if (!empty($record->cities) &&
-            !in_array(Yii::$app->city->getCityId(), ArrayHelper::map($record->cities, 'id', 'id'))
-        ) {
-            $record = null;
+        $record = self::findByUrl(Yii::$app->city->getCityId());
+
+        if ($record == null) {
+            $record = self::findByUrl();
         }
+
+//        if (!empty($record->cities) &&
+//            !in_array(Yii::$app->city->getCityId(), ArrayHelper::map($record->cities, 'id', 'id'))
+//        ) {
+//            $record = null;
+//        }
 
         return $record;
     }
