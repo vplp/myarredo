@@ -53,7 +53,7 @@ class MetaTag extends Component
      * @param string $title
      * @return $this
      */
-    public function set_title(string $title)
+    public function setTitle(string $title)
     {
         $this->set_seo_title = $title;
         return $this;
@@ -63,7 +63,7 @@ class MetaTag extends Component
      * @param string $description
      * @return $this
      */
-    public function set_description(string $description)
+    public function setDescription(string $description)
     {
         $this->set_seo_description = $description;
         return $this;
@@ -73,7 +73,7 @@ class MetaTag extends Component
      * @param string $h1
      * @return $this
      */
-    public function set_h1(string $h1)
+    public function setH1(string $h1)
     {
         $this->set_seo_h1 = $h1;
         return $this;
@@ -83,7 +83,7 @@ class MetaTag extends Component
      * @param string $content
      * @return $this
      */
-    public function set_content(string $content)
+    public function setContent(string $content)
     {
         $this->set_seo_content = $content;
         return $this;
@@ -93,7 +93,7 @@ class MetaTag extends Component
      * @param string $keywords
      * @return $this
      */
-    public function set_keywords(string $keywords)
+    public function setKeywords(string $keywords)
     {
         $this->set_seo_keywords = $keywords;
         return $this;
@@ -103,7 +103,7 @@ class MetaTag extends Component
      * @param string $image_url
      * @return $this
      */
-    public function set_image_url(string $image_url)
+    public function setImageUrl(string $image_url)
     {
         $this->set_seo_image_url = $image_url;
         return $this;
@@ -312,7 +312,7 @@ class MetaTag extends Component
     /**
      * @return $this
      */
-    public function render_graph()
+    public function renderGraph()
     {
         $this->getDirectModel()->analyze();
         $view = Yii::$app->getView();

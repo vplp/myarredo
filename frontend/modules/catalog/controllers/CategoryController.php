@@ -109,6 +109,8 @@ class CategoryController extends BaseController
 
     /**
      * @return array
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionAjaxGetTypes()
     {
@@ -352,9 +354,9 @@ class CategoryController extends BaseController
             ]);
         }
 
-//        $this->pageH1 = ($this->pageH1 != '')
-//            ? $this->pageH1
-//            : implode(', ', $pageH1);
+        Yii::$app->metatag->seo_h1 = (Yii::$app->metatag->seo_h1 != '')
+            ? Yii::$app->metatag->seo_h1
+            : implode(', ', $pageH1);
 
         return $this;
     }
