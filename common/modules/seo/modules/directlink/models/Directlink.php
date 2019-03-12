@@ -10,6 +10,7 @@ use common\modules\location\models\City;
 /**
  * Class Directlink
  *
+ * @property City[] $cities
  * @property Lang $lang
  *
  * @package common\modules\seo\modules\directlink\models

@@ -13,9 +13,17 @@ echo GridView::widget([
         'id',
         'url',
         [
-            //'attribute' => 'title',
-            //'value' => 'lang.title',
+            'format' => 'raw',
             'label' => Yii::t('app', 'Cities'),
+            'value' => function ($model) {
+                /** @var \backend\modules\seo\modules\directlink\models\Directlink $model */
+                $result = [];
+                foreach ($model->cities as $city) {
+                    $result[] = $city->lang->title;
+                }
+
+                return implode(' | ', $result);
+            },
         ],
         [
             'class' => ActionStatusColumn::class,
