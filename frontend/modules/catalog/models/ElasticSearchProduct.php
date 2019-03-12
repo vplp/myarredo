@@ -46,7 +46,7 @@ class ElasticSearchProduct extends ActiveRecord
      */
     public function attributes()
     {
-        return ['id', 'title_ru', 'title_it', /*'description_ru', 'description_it'*/];
+        return ['id', 'title_ru', 'title_it', 'description_ru', 'description_it'];
     }
 
     /**
@@ -60,8 +60,8 @@ class ElasticSearchProduct extends ActiveRecord
                     'id' => ['type' => 'long'],
                     'title_ru' => ['type' => 'text'],
                     'title_it' => ['type' => 'text'],
-                    //'description_ru' => ['type' => 'text'],
-                    //'description_it' => ['type' => 'text'],
+                    'description_ru' => ['type' => 'text'],
+                    'description_it' => ['type' => 'text'],
                 ]
             ],
         ];
@@ -163,12 +163,12 @@ class ElasticSearchProduct extends ActiveRecord
         $lang = substr($product['lang']['lang'], 0, 2);
 
         $title = 'title_' . $lang;
-        //$description = 'description_' . $lang;
+        $description = 'description_' . $lang;
 
         $record->id = $product['id'];
 
         $record->$title = $product['lang']['title'];
-        //$record->$description = $product['lang']['description'];
+        $record->$description = $product['lang']['description'];
 
         try {
             if (!$isExist) {
@@ -178,7 +178,6 @@ class ElasticSearchProduct extends ActiveRecord
             }
         } catch (\Exception $e) {
             $result = false;
-            //handle error here
         }
 
         return $result;
@@ -199,8 +198,6 @@ class ElasticSearchProduct extends ActiveRecord
 
         $query = self::find()->with(["product"]);
 
-        //$query = ElasticSearchProduct::find();
-
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
 
@@ -208,7 +205,7 @@ class ElasticSearchProduct extends ActiveRecord
             'should' => [
                 [
                     'multi_match' => [
-                        'fields' => ['title_' . $lang],
+                        'fields' => ['title_' . $lang, 'description_' . $lang],
                         "query" => $params['search'],
                         "type" => "best_fields",
                         'fuzziness' => 'AUTO',
@@ -218,10 +215,10 @@ class ElasticSearchProduct extends ActiveRecord
                 ],
                 [
                     'query_string' => [
-                        'fields' => ['title_' . $lang],
+                        'fields' => ['title_' . $lang, 'description_' . $lang],
                         "query" => '*' . $params['search'] . '*',
                         'fuzziness' => 'AUTO',
-                        "minimum_should_match" => "70%",
+                        "minimum_should_match" => "60%",
                         'boost' => 5
                     ],
                 ]
