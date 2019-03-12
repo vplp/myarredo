@@ -3,12 +3,9 @@
 namespace frontend\modules\catalog\models;
 
 use Yii;
+use yii\data\ArrayDataProvider;
 //
 use yii\elasticsearch\ActiveRecord;
-use yii\elasticsearch\Query;
-use yii\elasticsearch\ActiveDataProvider;
-use yii\elasticsearch\QueryBuilder;
-use yii\data\ArrayDataProvider;
 
 /**
  * Class ElasticSearchProduct
@@ -87,9 +84,6 @@ class ElasticSearchProduct extends ActiveRecord
         $command->createIndex(static::index(), [
             'settings' => ['index' => ['refresh_interval' => '1s']],
             'mappings' => static::mapping(),
-            //'warmers' => [ /* ... */ ],
-            //'aliases' => [ /* ... */ ],
-            //'creation_date' => '...'
         ]);
     }
 
@@ -118,7 +112,6 @@ class ElasticSearchProduct extends ActiveRecord
 
             return $record->update();
         } catch (\Exception $e) {
-            //handle error here
             return false;
         }
     }
@@ -134,7 +127,6 @@ class ElasticSearchProduct extends ActiveRecord
             $record->delete();
             return 1;
         } catch (\Exception $e) {
-            //handle error here
             return false;
         }
     }
@@ -178,7 +170,6 @@ class ElasticSearchProduct extends ActiveRecord
             }
         } catch (\Exception $e) {
             $result = false;
-            var_dump($record->errors);
         }
 
         return $result;

@@ -53,7 +53,6 @@ class ElasticSearchController extends Controller
             ->all();
 
         foreach ($models as $product) {
-            $this->stdout("ID=" . $product->id . " \n", Console::FG_GREEN);
             /** @var PDO $transaction */
             /** @var $product Product */
             $transaction = $product::getDb()->beginTransaction();
@@ -63,7 +62,7 @@ class ElasticSearchController extends Controller
                 $product->mark1 = '1';
 
                 $save = ElasticSearchProduct::addRecord($product);
-var_dump($save);
+
                 if ($product->save() && $save) {
                     $transaction->commit();
                     $this->stdout("save: ID=" . $product->id . " \n", Console::FG_GREEN);
