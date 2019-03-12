@@ -110,7 +110,7 @@ $bundle = AppAsset::register($this);
                 <div class="container large-container">
                     <div class="section-header">
 
-                        <?= Html::tag('h1', $this->context->SeoH1, ['class' => 'section-title']); ?>
+                        <?= Html::tag('h1', Yii::$app->metatag->seo_h1, ['class' => 'section-title']); ?>
 
                         <?= Html::a(
                             Yii::t('app', 'Смотреть все категории'),
@@ -132,7 +132,7 @@ $bundle = AppAsset::register($this);
                 <div class="container large-container">
                     <div class="post-cont">
 
-                        <?= $this->context->SeoContent; ?>
+                        <?= Yii::$app->metatag->seo_content; ?>
 
                     </div>
                 </div>

@@ -7,10 +7,9 @@ use yii\helpers\ArrayHelper;
 use yii\base\Component;
 use yii\log\Logger;
 //
-use frontend\modules\seo\modules\{
-    modellink\models\Modellink,
-    directlink\models\Directlink
-};
+use frontend\modules\seo\modules\modellink\models\Modellink;
+use frontend\modules\seo\modules\directlink\models\Directlink;
+//
 use thread\app\base\models\ActiveRecord;
 
 /**
@@ -26,12 +25,17 @@ class MetaTag extends Component
 
     public $seo_title = '';
     public $seo_description = '';
+    public $seo_h1 = '';
+    public $seo_content = '';
+
     protected $seo_keywords = '';
     protected $seo_robots = '';
     protected $seo_image_url = '';
 
     protected $set_seo_title = '';
     protected $set_seo_description = '';
+    protected $set_seo_h1 = '';
+    protected $set_seo_content = '';
     protected $set_seo_keywords = '';
     protected $set_seo_image_url = '';
 
@@ -62,6 +66,26 @@ class MetaTag extends Component
     public function set_description(string $description)
     {
         $this->set_seo_description = $description;
+        return $this;
+    }
+
+    /**
+     * @param string $h1
+     * @return $this
+     */
+    public function set_h1(string $h1)
+    {
+        $this->set_seo_h1 = $h1;
+        return $this;
+    }
+
+    /**
+     * @param string $content
+     * @return $this
+     */
+    public function set_content(string $content)
+    {
+        $this->set_seo_content = $content;
         return $this;
     }
 
@@ -141,6 +165,8 @@ class MetaTag extends Component
 
             $this->seo_title = $model['lang']['title'];
             $this->seo_description = $model['lang']['description'];
+            $this->seo_h1 = $model['lang']['h1'];
+            $this->seo_content = $model['lang']['content'];
             $this->seo_keywords = $model['lang']['keywords'];
             $this->seo_robots = Modellink::statusMetaRobotsRange()[$model['meta_robots']];
             $this->seo_image_url = $model['image_url'];
@@ -152,6 +178,12 @@ class MetaTag extends Component
         }
         if (!empty($this->set_seo_description)) {
             $this->seo_description = $this->set_seo_description;
+        }
+        if (!empty($this->set_seo_h1)) {
+            $this->seo_h1 = $this->set_seo_h1;
+        }
+        if (!empty($this->set_seo_content)) {
+            $this->seo_content = $this->set_seo_content;
         }
         if (!empty($this->set_seo_keywords)) {
             $this->seo_keywords = $this->set_seo_keywords;
@@ -174,6 +206,8 @@ class MetaTag extends Component
 
             $this->seo_title = (!empty($model['lang']['title'])) ? $model['lang']['title'] : $this->seo_title;
             $this->seo_description = (!empty($model['lang']['description'])) ? $model['lang']['description'] : $this->seo_description;
+            $this->seo_h1 = (!empty($model['lang']['h1'])) ? $model['lang']['h1'] : $this->seo_h1;
+            $this->seo_content = (!empty($model['lang']['content'])) ? $model['lang']['content'] : $this->seo_content;
             $this->seo_keywords = (!empty($model['lang']['keywords'])) ? $model['lang']['keywords'] : $this->seo_keywords;
             $this->seo_robots = Directlink::statusMetaRobotsRange()[$model['meta_robots']];
             $this->seo_image_url = (!empty($model['image_url'])) ? $model['image_url'] : $this->seo_image_url;
@@ -181,13 +215,42 @@ class MetaTag extends Component
 
         $this->seo_title = str_replace(
             ['#городе#', '#nella citta#', '#телефон#'],
-            [Yii::$app->city->getCityTitleWhere(), Yii::$app->city->getCityTitleWhere(), Yii::$app->partner->getPartnerPhone()],
+            [
+                Yii::$app->city->getCityTitleWhere(),
+                Yii::$app->city->getCityTitleWhere(),
+                Yii::$app->partner->getPartnerPhone()
+            ],
             $this->seo_title
         );
+
         $this->seo_description = str_replace(
             ['#городе#', '#nella citta#', '#телефон#'],
-            [Yii::$app->city->getCityTitleWhere(), Yii::$app->city->getCityTitleWhere(), Yii::$app->partner->getPartnerPhone()],
+            [
+                Yii::$app->city->getCityTitleWhere(),
+                Yii::$app->city->getCityTitleWhere(),
+                Yii::$app->partner->getPartnerPhone()
+            ],
             $this->seo_description
+        );
+
+        $this->seo_h1 = str_replace(
+            ['#городе#', '#nella citta#', '#телефон#'],
+            [
+                Yii::$app->city->getCityTitleWhere(),
+                Yii::$app->city->getCityTitleWhere(),
+                Yii::$app->partner->getPartnerPhone()
+            ],
+            $this->seo_h1
+        );
+
+        $this->seo_content = str_replace(
+            ['#городе#', '#nella citta#', '#телефон#'],
+            [
+                Yii::$app->city->getCityTitleWhere(),
+                Yii::$app->city->getCityTitleWhere(),
+                Yii::$app->partner->getPartnerPhone()
+            ],
+            $this->seo_content
         );
 
         return $this;

@@ -44,8 +44,8 @@ $bundle = AppAsset::register($this);
 
                             <?= Html::tag(
                                 'h1',
-                                (($this->context->SeoH1)
-                                    ? $this->context->SeoH1
+                                ((Yii::$app->metatag->seo_h1)
+                                    ? Yii::$app->metatag->seo_h1
                                     : Yii::t('app', 'Мебель') . ' ' .
                                     $model['title'] . ' ' . Yii::t('app', 'в') . ' ' .
                                     Yii::$app->city->getCityTitleWhere()),
@@ -157,7 +157,7 @@ $bundle = AppAsset::register($this);
                     </div>
                 </div>
 
-                <?= $this->context->SeoContent ?>
+                <?= Yii::$app->metatag->seo_content ?>
 
             </div>
         </div>

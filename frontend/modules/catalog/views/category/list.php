@@ -25,7 +25,7 @@ $this->title = $this->context->title;
             <div class="container large-container">
                 <div class="row">
 
-                    <?= Html::tag('h1', $this->context->SeoH1) ?>
+                    <?= Html::tag('h1', Yii::$app->metatag->seo_h1) ?>
 
                     <?= Breadcrumbs::widget([
                         'links' => $this->context->breadcrumbs,
@@ -96,7 +96,7 @@ $this->title = $this->context->title;
                         <div class="comp-advanteges">
 
                             <?php if (!Yii::$app->request->get('page')) { ?>
-                                <?= $this->context->SeoContent ?>
+                                <?= Yii::$app->metatag->seo_content ?>
                             <?php } ?>
                         </div>
                     </div>
