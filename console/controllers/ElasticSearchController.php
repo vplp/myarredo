@@ -53,6 +53,7 @@ class ElasticSearchController extends Controller
             ->all();
 
         foreach ($models as $product) {
+            $this->stdout("ID=" . $product->id . " \n", Console::FG_GREEN);
             /** @var PDO $transaction */
             /** @var $product Product */
             $transaction = $product::getDb()->beginTransaction();
