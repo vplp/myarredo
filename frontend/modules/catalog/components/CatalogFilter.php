@@ -447,7 +447,7 @@ class CatalogFilter extends Component
             $result = array_diff_assoc(self::$_structure['colors'], self::$_parameters[self::$keys['colors']]);
 
             if (!empty($result)) {
-                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+                //throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
         }
     }
