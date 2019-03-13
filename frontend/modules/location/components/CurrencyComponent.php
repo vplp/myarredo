@@ -58,11 +58,11 @@ class CurrencyComponent extends Component
     public function getValue($price)
     {
         $value = ($this->model != null)
-            ? ($this->model->course * $price)
+            ? ($price / $this->model->course)
             : $price;
 
         return number_format(
-            $value,
+            $price,
             2,
             '.',
             ''

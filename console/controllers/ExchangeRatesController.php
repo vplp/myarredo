@@ -48,6 +48,8 @@ class ExchangeRatesController extends Controller
 
                 $currency->course = floatval($curs->Vcurs) / floatval($curs->Vnom);
 
+                $this->stdout($curs->VchCode . " " . $curs->Vcurs . " " . $curs->Vnom . " \n", Console::FG_GREEN);
+
                 $currency->save();
             }
         }
