@@ -15,12 +15,12 @@ use frontend\modules\configs\models\Language;
  */
 class Geolocation extends Component
 {
-    public $config = ['provider' => NULL, 'return_formats' => NULL, 'api_key' => NULL];
+    public $config = ['provider' => null, 'return_formats' => null, 'api_key' => null];
 
     private static $plugins = array();
-    private static $provider = NULL;
-    private static $return_formats = NULL;
-    private static $api_key = NULL;
+    private static $provider = null;
+    private static $return_formats = null;
+    private static $api_key = null;
 
     public function __construct($config = array())
     {
@@ -46,7 +46,7 @@ class Geolocation extends Component
 
                 self::$provider = $plugin;
 
-                self::$api_key = (isset($config['config']['api_key'])) ? $config['config']['api_key'] : NULL;
+                self::$api_key = (isset($config['config']['api_key'])) ? $config['config']['api_key'] : null;
 
             } else {
                 throw new \yii\web\HttpException(404, 'The requested Item could not be found.');
@@ -83,7 +83,7 @@ class Geolocation extends Component
      * @param string $ip You can supply an IP address or none to use the current client IP address
      * @return mixed
      */
-    public static function getInfo($ip = NULL)
+    public static function getInfo($ip = null)
     {
         if (!isset($ip))
             $ip = self::getIP();
@@ -104,7 +104,7 @@ class Geolocation extends Component
      * @param string $provider The provider plugin name
      * @param string $format The data return format
      */
-    public static function getPlugin($provider = NULL, $format = NULL, $api_key = NULL)
+    public static function getPlugin($provider = null, $format = null, $api_key = null)
     {
         self::$plugins = array_diff(scandir((__DIR__) . '/plugins/'), array('..', '.'));
 

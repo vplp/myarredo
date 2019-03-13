@@ -28,20 +28,23 @@ class CurrencyController extends BaseController
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'change-currency' => ['post'],
+                    'change' => ['post'],
                 ],
             ],
         ];
     }
 
     /**
-     * Get cities
+     * Change currency
      */
     public function actionChange()
     {
         if (Yii::$app->request->isAjax && $currency = Yii::$app->getRequest()->post('currency')) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
+            /**
+             * Set currency
+             */
             if (array_key_exists($currency, Currency::getMapCode2Course())) {
                 Yii::$app->session->set('currency', $currency);
                 return ['success' => 1];

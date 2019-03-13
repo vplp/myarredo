@@ -63,10 +63,11 @@ $this->title = $this->context->title;
                                     <div class="price-sticker">
                                         <?= Yii::t('app', 'Цена от') ?>:
                                         <span>
-                                        <?= $model['price_from']; ?>&nbsp;<span class="currency">€</span>
+                                        <?= Yii::$app->currency->getValue($model['price_from']); ?>
+                                            &nbsp;<span class="currency"><?= Yii::$app->currency->symbol ?></span>
                                             <meta itemprop="price"
-                                                  content="<?= number_format($model['price_from'], 0, '', '') ?>">
-                                            <meta itemprop="priceCurrency" content="EUR"/>
+                                                  content="<?= Yii::$app->currency->getValue($model['price_from']); ?>">
+                                            <meta itemprop="priceCurrency" content="<?= Yii::$app->currency->code ?>"/>
                                     </span>
                                     </div>
                                 <?php } else { ?>
