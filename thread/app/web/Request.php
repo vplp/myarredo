@@ -3,14 +3,13 @@
 namespace thread\app\web;
 
 use yii\base\ErrorException;
+//
 use thread\app\web\interfaces\InjectionLanguage as iInjectionLanguage;
 
 /**
  * Class Request
  *
- * @package thread\components
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
+ * @package thread\app\web
  */
 final class Request extends \yii\web\Request
 {
@@ -41,21 +40,23 @@ final class Request extends \yii\web\Request
     }
 
     /**
-     *
-     * @return string
+     * @return bool|mixed|string
+     * @throws \yii\base\InvalidConfigException
      */
     protected function resolveRequestUri()
     {
         if ($this->_requestUri === null) {
-            $this->_requestUri = call_user_func([$this->InjectionLanguageClass, 'processLangInUrl'],
-                parent::resolveRequestUri());
+            $this->_requestUri = call_user_func(
+                [$this->InjectionLanguageClass, 'processLangInUrl'],
+                parent::resolveRequestUri()
+            );
         }
         return $this->_requestUri;
     }
 
     /**
-     *
-     * @return string
+     * @return mixed
+     * @throws \yii\base\InvalidConfigException
      */
     public function getOriginalUrl()
     {
@@ -63,12 +64,11 @@ final class Request extends \yii\web\Request
     }
 
     /**
-     *
-     * @return string
+     * @return mixed
+     * @throws \yii\base\InvalidConfigException
      */
     public function getOriginalRequestUri()
     {
         return call_user_func([$this->InjectionLanguageClass, 'addLangToUrl'], $this->resolveRequestUri());
     }
-
 }

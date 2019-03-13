@@ -9,7 +9,9 @@ use frontend\modules\sys\widgets\lang\LangSwitch;
 use frontend\modules\catalog\widgets\menu\CatalogMenu;
 use frontend\modules\catalog\widgets\menu_mobile\CatalogMenuMobile;
 use frontend\modules\shop\widgets\cart\Cart;
-use frontend\modules\location\widgets\ChangeCity;
+use frontend\modules\location\widgets\{
+    ChangeCity, ChangeCurrency
+};
 use frontend\modules\user\widgets\menu\UserMenu;
 
 ?>
@@ -50,6 +52,10 @@ use frontend\modules\user\widgets\menu\UserMenu;
                         <div class="lang-selector">
                             <?= LangSwitch::widget() ?>
                         </div>
+
+                        <div class="lang-selector">
+                            <?= ChangeCurrency::widget() ?>
+                        </div>
                     </div>
                     <div class="right-part">
 
@@ -75,6 +81,9 @@ use frontend\modules\user\widgets\menu\UserMenu;
                     <div class="left-part">
                         <div class="lang-selector">
                             <?= LangSwitch::widget() ?>
+                        </div>
+                        <div class="lang-selector">
+                            <?= ChangeCurrency::widget() ?>
                         </div>
                     </div>
 
@@ -262,9 +271,10 @@ use frontend\modules\user\widgets\menu\UserMenu;
 
             </div>
             <div class="one-list-cont">
-
                 <?= LangSwitch::widget(['view' => 'lang_switch_mobile']) ?>
-
+            </div>
+            <div class="one-list-cont">
+                <?= ChangeCurrency::widget(['view' => 'change_currency_mobile']) ?>
             </div>
         </div>
     </div>

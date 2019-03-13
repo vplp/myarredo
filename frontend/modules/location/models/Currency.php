@@ -2,6 +2,8 @@
 
 namespace frontend\modules\location\models;
 
+use yii\helpers\ArrayHelper;
+
 /**
  * Class Currency
  *
@@ -47,5 +49,13 @@ class Currency extends \common\modules\location\models\Currency
     public static function findBase()
     {
         return parent::findBase()->enabled();
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getMapCode2Course()
+    {
+        return ArrayHelper::map(self::findBase()->all(), 'code2', 'course');
     }
 }

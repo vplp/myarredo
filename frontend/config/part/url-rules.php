@@ -158,6 +158,7 @@ return [
 
     // Module [[Location]]
     'location/location/get-cities' => 'location/location/get-cities',
+    'location/currency/change' => 'location/currency/change',
 
     // Module [[Banner]]
     'banner/factory-banner/list' => 'banner/factory-banner/list',
