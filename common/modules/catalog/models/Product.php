@@ -245,7 +245,7 @@ class Product extends ActiveRecord implements iProduct
             'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
             'country_code' => 'Показывать для страны',
-            'article' => Yii::t('app', 'Vendor code'),
+            'article' => Yii::t('app', 'Артикул'),
             //'price' => Yii::t('app', 'Price'),
             'volume' => Yii::t('app', 'Volume'),
             'factory_price' => Yii::t('app', 'Factory price'),
