@@ -72,7 +72,7 @@ class CurrencyComponent extends Component
             $value,
             2,
             '.',
-            ''
+            ' '
         );
     }
 }
