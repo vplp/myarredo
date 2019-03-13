@@ -37,6 +37,14 @@ abstract class BaseController extends Controller
             exit();
         }
 
+        $session = Yii::$app->session;
+
+        if (!$session->has('currency') && Yii::$app->city->domain == 'ru') {
+            $session->set('currency', 'RUB');
+        } elseif (!$session->has('currency')) {
+            $session->set('currency', 'EUR');
+        }
+
         $this->getAlternateHreflang();
 
         return parent::beforeAction($action);

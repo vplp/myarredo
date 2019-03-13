@@ -38,14 +38,6 @@ class ChangeCurrency extends Widget
         parent::init();
 
         $this->items = Currency::findBase()->all();
-
-        $session = Yii::$app->session;
-
-        if (!$session->has('currency') && Yii::$app->city->domain == 'ru') {
-            $session->set('currency', 'RUB');
-        } elseif (!$session->has('currency')) {
-            $session->set('currency', 'EUR');
-        }
     }
 
     /**
