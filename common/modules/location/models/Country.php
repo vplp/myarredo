@@ -45,7 +45,7 @@ class Country extends \thread\modules\location\models\Country
     public function attributeLabels()
     {
         $attributeLabels = [
-            'bookId'  => 'bookId',
+            'bookId' => 'bookId',
         ];
 
         return ArrayHelper::merge($attributeLabels, parent::attributeLabels());
@@ -58,7 +58,7 @@ class Country extends \thread\modules\location\models\Country
     {
         return self::find()
             ->joinWith(['lang'])
-            ->orderBy(self::tableName(). '.position');
+            ->orderBy(self::tableName() . '.position');
     }
 
     /**

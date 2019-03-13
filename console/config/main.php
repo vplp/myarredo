@@ -88,6 +88,9 @@ return ArrayHelper::merge(
             'catalog-factory' => [
                 'class' => \console\controllers\CatalogFactoryController::class,
             ],
+            'exchange-rates' => [
+                'class' => \console\controllers\ExchangeRatesController::class,
+            ],
             'stats' => [
                 'class' => \console\controllers\StatsController::class,
             ],

@@ -3,11 +3,11 @@
 namespace frontend\modules\location\models;
 
 /**
- * Class CountryLang
+ * Class CurrencyLang
  *
  * @package frontend\modules\location\models
  */
-class CountryLang extends \common\modules\location\models\CountryLang
+class CurrencyLang extends \common\modules\location\models\CurrencyLang
 {
     /**
      * @return array

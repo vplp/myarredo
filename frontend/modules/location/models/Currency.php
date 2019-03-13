@@ -3,11 +3,11 @@
 namespace frontend\modules\location\models;
 
 /**
- * Class CountryLang
+ * Class Currency
  *
  * @package frontend\modules\location\models
  */
-class CountryLang extends \common\modules\location\models\CountryLang
+class Currency extends \common\modules\location\models\Currency
 {
     /**
      * @return array
@@ -39,5 +39,13 @@ class CountryLang extends \common\modules\location\models\CountryLang
     public function rules()
     {
         return [];
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function findBase()
+    {
+        return parent::findBase()->enabled();
     }
 }
