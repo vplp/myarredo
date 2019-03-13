@@ -52,17 +52,24 @@ class CurrencyComponent extends Component
     }
 
     /**
-     * @param $price
+     * @param float $price
+     * @param string $code
      * @return mixed
      */
-    public function getValue($price)
+    public function getValue($price, $code)
     {
-        $value = ($this->model != null)
-            ? ($price / $this->model->course)
-            : $price;
+        if ($code != $this->model->code2 && $this->model->code2 == 'RUB') {
+            $currency = Currency::findByCode2($code);
+            $value = $price * $currency->course;
+        } elseif ($code != $this->model->code2) {
+            $currency = Currency::findByCode2($code);
+            $value = $price * ($currency->course / $this->model->course);
+        } else {
+            $value = $price;
+        }
 
         return number_format(
-            $price,
+            $value,
             2,
             '.',
             ''

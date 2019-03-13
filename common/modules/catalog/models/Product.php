@@ -36,6 +36,7 @@ use common\modules\user\models\{
  * @property float $volume
  * @property float $factory_price
  * @property float $price_from
+ * @property string $currency
  * @property string $default_title
  * @property integer $popular
  * @property integer $novelty
@@ -172,6 +173,8 @@ class Product extends ActiveRecord implements iProduct
                 'rule' => ['integer']
             ],
             [['category_ids'], 'required'],
+            [['currency'], 'in', 'range' => array_keys(static::currencyRange())],
+            [['currency'], 'default', 'value' => 'EUR'],
         ];
     }
 
@@ -207,6 +210,7 @@ class Product extends ActiveRecord implements iProduct
                 'volume',
                 'factory_price',
                 'price_from',
+                'currency',
                 'is_composition',
                 'popular',
                 'novelty',
@@ -246,6 +250,7 @@ class Product extends ActiveRecord implements iProduct
             'volume' => Yii::t('app', 'Volume'),
             'factory_price' => Yii::t('app', 'Factory price'),
             'price_from' => Yii::t('app', 'Price from'),
+            'currency' => Yii::t('app', 'Currency'),
             'removed' => 'Снят с производства',
             'in_stock' => 'Под заказ | В наличии',
             'factory_id' => Yii::t('app', 'Factory'),
@@ -347,6 +352,17 @@ class Product extends ActiveRecord implements iProduct
         }
 
         parent::afterSave($insert, $changedAttributes);
+    }
+
+    /**
+     * @return array
+     */
+    public static function currencyRange()
+    {
+        return [
+            'EUR' => 'EUR',
+            'RUB' => 'RUB'
+        ];
     }
 
     /**

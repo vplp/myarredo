@@ -54,7 +54,7 @@ use frontend\modules\catalog\models\Product;
             <div class="prod-pricebox">
                 <?= Yii::t('app', 'Цена от') ?>:
                 <span class="for-green">
-                    <?= Yii::$app->currency->getValue($model['price_from']); ?>
+                    <?= Yii::$app->currency->getValue($model['price_from'], $model['currency']); ?>
                     &nbsp;<span class="currency"><?= Yii::$app->currency->symbol ?></span>
                 </span>
             </div>
