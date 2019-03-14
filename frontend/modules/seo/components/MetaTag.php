@@ -260,6 +260,7 @@ class MetaTag extends Component
 
     /**
      * @return $this
+     * @throws \yii\base\InvalidConfigException
      */
     public function render()
     {
