@@ -69,7 +69,7 @@ class CurrencyComponent extends Component
         }
 
         return number_format(
-            $value,
+            ceil($value),
             2,
             '.',
             ' '
