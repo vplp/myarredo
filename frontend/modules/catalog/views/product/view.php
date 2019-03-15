@@ -83,7 +83,16 @@ $this->title = $this->context->title;
                                     <?php } elseif (!$model['removed']) { ?>
                                         <meta itemprop="availability" content="PreOrder">
                                     <?php } ?>
+                                    <meta itemprop="priceValidUntil" content="">
+                                    <meta itemprop="url" content="<?= Product::getUrl($model['alias']) ?>">
                                 </div>
+                            </div>
+
+                            <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                                <meta itemprop="ratingValue" content="1"/>
+                                <meta itemprop="bestRating" content="5"/>
+                                <meta itemprop="ratingCount" content="1"/>
+                                <meta itemprop="reviewCount" content="1"/>
                             </div>
 
                             <div class="alert" role="alert">
@@ -148,7 +157,10 @@ $this->title = $this->context->title;
                                 <?php if (!$model['is_composition']) { ?>
                                     <tr>
                                         <td><?= Yii::t('app', 'Артикул') ?></td>
-                                        <td><?= $model['article']; ?></td>
+                                        <td>
+                                            <?= $model['article']; ?>
+                                            <meta itemprop="sku" content="<?= $model['article'] ?>">
+                                        </td>
                                     </tr>
 
                                     <?php if (!empty($model['specificationValue'])) { ?>
