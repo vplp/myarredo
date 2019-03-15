@@ -82,9 +82,11 @@ use frontend\modules\user\widgets\menu\UserMenu;
                         <div class="lang-selector">
                             <?= LangSwitch::widget() ?>
                         </div>
-                        <div class="lang-selector">
-                            <?= ChangeCurrency::widget() ?>
-                        </div>
+                        <?php if (!in_array(Yii::$app->city->domain, ['ua', 'by'])) { ?>
+                            <div class="lang-selector">
+                                <?= ChangeCurrency::widget() ?>
+                            </div>
+                        <?php } ?>
                     </div>
 
                     <div class="right-part">
@@ -273,9 +275,12 @@ use frontend\modules\user\widgets\menu\UserMenu;
             <div class="one-list-cont">
                 <?= LangSwitch::widget(['view' => 'lang_switch_mobile']) ?>
             </div>
-            <div class="one-list-cont">
-                <?= ChangeCurrency::widget(['view' => 'change_currency_mobile']) ?>
-            </div>
+
+            <?php if (!in_array(Yii::$app->city->domain, ['ua', 'by'])) { ?>
+                <div class="one-list-cont">
+                    <?= ChangeCurrency::widget(['view' => 'change_currency_mobile']) ?>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div>
