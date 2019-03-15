@@ -37,6 +37,18 @@ abstract class BaseController extends Controller
             exit();
         }
 
+        $this->getAlternateHreflang();
+
+        $this->setCurrency();
+
+        return parent::beforeAction($action);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function setCurrency()
+    {
         $session = Yii::$app->session;
 
         /**
@@ -51,11 +63,6 @@ abstract class BaseController extends Controller
         } elseif (!$session->has('currency')) {
             $session->set('currency', 'EUR');
         }
-
-
-        $this->getAlternateHreflang();
-
-        return parent::beforeAction($action);
     }
 
     /**
@@ -64,18 +71,16 @@ abstract class BaseController extends Controller
     protected function getAlternateHreflang()
     {
         $languages = Language::getAllByLocate();
-        $current_url = Yii::$app->request->pathInfo;
+        $current_url = Yii::$app->request->url;
 
         foreach ($languages as $alternate) {
-            if (Yii::$app->language != $alternate['local']) {
-                $alternatePages[$alternate['local']] = [
-                    'href' => Yii::$app->request->hostInfo .
-                        ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') . '/' .
-                        str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
-                    'lang' => substr($alternate['local'], 0, 2),
-                    'current' => (Yii::$app->language == $alternate['local']) ? true : false
-                ];
-            }
+            $alternatePages[$alternate['local']] = [
+                'href' => Yii::$app->request->hostInfo .
+                    ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') .
+                    str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
+                'lang' => substr($alternate['local'], 0, 2),
+                'current' => (Yii::$app->language == $alternate['local']) ? true : false
+            ];
         }
 
         if (!empty($alternatePages)) {
