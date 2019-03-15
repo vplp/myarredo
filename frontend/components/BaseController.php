@@ -44,7 +44,9 @@ abstract class BaseController extends Controller
          */
         $lang = substr(Yii::$app->language, 0, 2);
 
-        if (!$session->has('currency') && $lang == 'ru') {
+        if (Yii::$app->city->domain == 'ua') {
+            $session->set('currency', 'EUR');
+        } elseif (!$session->has('currency') && $lang == 'ru') {
             $session->set('currency', 'RUB');
         } elseif (!$session->has('currency')) {
             $session->set('currency', 'EUR');
