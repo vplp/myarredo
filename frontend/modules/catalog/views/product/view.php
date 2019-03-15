@@ -83,7 +83,7 @@ $this->title = $this->context->title;
                                     <?php } elseif (!$model['removed']) { ?>
                                         <meta itemprop="availability" content="PreOrder">
                                     <?php } ?>
-                                    <meta itemprop="priceValidUntil" content="">
+                                    <meta itemprop="priceValidUntil" content="<?= date('Y-m-d')?>">
                                     <meta itemprop="url" content="<?= Product::getUrl($model['alias']) ?>">
                                 </div>
                             </div>
