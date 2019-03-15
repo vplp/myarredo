@@ -24,14 +24,14 @@ $this->title = $this->context->title;
         <div class="page sale-page prod-card-page">
             <div class="container-wrap">
                 <div class="container large-container">
-                    <div class="row" itemscope itemtype="http://schema.org/Product">
+                    <div class="row">
 
                         <?= Breadcrumbs::widget([
                             'links' => $this->context->breadcrumbs,
                         ]) ?>
 
                     </div>
-                    <div class="row sale-prod">
+                    <div class="row sale-prod" itemscope itemtype="http://schema.org/Product">
                         <div class="col-sm-6 col-md-6 col-lg-5">
 
                             <?= $this->render('parts/_carousel', [
