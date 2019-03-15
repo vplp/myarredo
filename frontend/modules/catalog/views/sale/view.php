@@ -74,7 +74,7 @@ $this->title = $this->context->title;
                             </div>
 
                             <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                                <meta itemprop="ratingValue" content="1"/>
+                                <meta itemprop="ratingValue" content="5"/>
                                 <meta itemprop="bestRating" content="5"/>
                                 <meta itemprop="ratingCount" content="1"/>
                                 <meta itemprop="reviewCount" content="1"/>
