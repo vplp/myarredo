@@ -24,7 +24,7 @@ $this->title = $this->context->title;
         <div class="page sale-page prod-card-page">
             <div class="container-wrap">
                 <div class="container large-container">
-                    <div class="row">
+                    <div class="row" itemscope itemtype="http://schema.org/Product">
 
                         <?= Breadcrumbs::widget([
                             'links' => $this->context->breadcrumbs,
@@ -40,7 +40,8 @@ $this->title = $this->context->title;
 
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-4">
-                            <div class="prod-info">
+                            <div class="prod-info" itemprop="offers" itemscope
+                                 itemtype="http://schema.org/Offer">
                                 <?= Html::tag('h1', $model->getTitle()); ?>
 
                                 <?php if ($model->price > 0) { ?>
@@ -54,6 +55,11 @@ $this->title = $this->context->title;
                                         <?= Yii::t('app', 'Цена') ?>:
                                         <span>
                                         <?= $model->price_new . ' ' . $model->currency; ?>
+                                            <meta itemprop="price" content="<?= $model->price_new ?>">
+                                            <meta itemprop="priceCurrency" content="<?= $model->currency ?>"/>
+                                            <meta itemprop="availability" content="InStock"/>
+                                            <meta itemprop="priceValidUntil" content="<?= date('Y-m-d') ?>"/>
+                                            <meta itemprop="url" content="<?= $model->getUrl() ?>"/>
                                     </span>
                                     </div>
                                     <?php if ($model->price > 0) { ?>
@@ -67,6 +73,15 @@ $this->title = $this->context->title;
                                 </div>
                             </div>
 
+                            <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                                <meta itemprop="ratingValue" content="1"/>
+                                <meta itemprop="bestRating" content="5"/>
+                                <meta itemprop="ratingCount" content="1"/>
+                                <meta itemprop="reviewCount" content="1"/>
+                            </div>
+
+                            <meta itemprop="sku" content="<?= $model['article'] ?>">
+
                             <table class="info-table" width="100%">
                                 <tr>
                                     <td><?= Yii::t('app', 'Factory') ?></td>
@@ -77,6 +92,7 @@ $this->title = $this->context->title;
                                                 Factory::getUrl($model['factory']['alias'])
                                             )
                                             : $model['factory_name'] ?>
+                                        <meta itemprop="brand" content="<?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name']; ?>"/>
                                     </td>
                                 </tr>
                                 <?php if (!empty($model['specificationValue'])) {
@@ -146,7 +162,7 @@ $this->title = $this->context->title;
                                 <?php } ?>
                             </table>
 
-                            <div class="prod-shortstory">
+                            <div class="prod-shortstory" itemprop="description">
                                 <?= $model['lang']['description']; ?>
                             </div>
                         </div>

@@ -79,12 +79,12 @@ $this->title = $this->context->title;
                                     <?= Yii::t('app', 'Наличие') ?>:
                                     <span><?= ($model['status']) ?></span>
                                     <?php if (!$model['removed'] && $model['in_stock']) { ?>
-                                        <meta itemprop="availability" content="InStock">
+                                        <meta itemprop="availability" content="InStock"/>
                                     <?php } elseif (!$model['removed']) { ?>
-                                        <meta itemprop="availability" content="PreOrder">
+                                        <meta itemprop="availability" content="PreOrder"/>
                                     <?php } ?>
-                                    <meta itemprop="priceValidUntil" content="<?= date('Y-m-d')?>">
-                                    <meta itemprop="url" content="<?= Product::getUrl($model['alias']) ?>">
+                                    <meta itemprop="priceValidUntil" content="<?= date('Y-m-d')?>"/>
+                                    <meta itemprop="url" content="<?= Product::getUrl($model['alias']) ?>"/>
                                 </div>
                             </div>
 
@@ -129,7 +129,7 @@ $this->title = $this->context->title;
                                     <tr>
                                         <td><?= Yii::t('app', 'Factory') ?></td>
                                         <td>
-                                            <meta itemprop="brand" content="<?= $model['factory']['title'] ?>">
+                                            <meta itemprop="brand" content="<?= $model['factory']['title'] ?>"/>
                                             <?= Html::a(
                                                 $model['factory']['title'],
                                                 Factory::getUrl($model['factory']['alias'])
