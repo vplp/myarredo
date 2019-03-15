@@ -46,8 +46,12 @@ use frontend\modules\catalog\models\Sale;
                         </div>
                         <div class="price">
                             <span class="old-price">
-                                <?= $model['price'] ?> <?= $model['currency'] ?></span> | <span class="new-price">
-                                <?= $model['price_new'] ?></span> <?= $model['currency'] ?>
+                                <?= Yii::$app->currency->getValue($model['price'], $model['currency']) . ' ' .
+                                Yii::$app->currency->symbol; ?>
+                            </span> |
+                            <span class="new-price">
+                                <?= Yii::$app->currency->getValue($model['price_new'], $model['currency']) ?>
+                            </span> <?= Yii::$app->currency->symbol ?>
                         </div>
                     </a>
                 <?php }
