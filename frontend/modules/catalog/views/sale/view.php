@@ -42,7 +42,7 @@ $this->title = $this->context->title;
                         <div class="col-sm-6 col-md-6 col-lg-4">
                             <div class="prod-info" itemprop="offers" itemscope
                                  itemtype="http://schema.org/Offer">
-                                <?= Html::tag('h1', $model->getTitle()); ?>
+                                <?= Html::tag('h1', $model->getTitle(), ['itemprop' => 'name']); ?>
 
                                 <?php if ($model->price > 0) { ?>
                                     <div class="old-price">
