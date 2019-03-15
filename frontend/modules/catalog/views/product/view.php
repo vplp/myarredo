@@ -154,12 +154,13 @@ $this->title = $this->context->title;
                                     </tr>
                                 <?php } ?>
 
+                                <meta itemprop="sku" content="<?= $model['article'] ?>">
+
                                 <?php if (!$model['is_composition']) { ?>
                                     <tr>
                                         <td><?= Yii::t('app', 'Артикул') ?></td>
                                         <td>
                                             <?= $model['article']; ?>
-                                            <meta itemprop="sku" content="<?= $model['article'] ?>">
                                         </td>
                                     </tr>
 
