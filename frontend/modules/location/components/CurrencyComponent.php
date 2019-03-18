@@ -54,9 +54,10 @@ class CurrencyComponent extends Component
     /**
      * @param float $price
      * @param string $code
+     * @param string $thousand_sep
      * @return mixed
      */
-    public function getValue($price, $code)
+    public function getValue($price, $code, $thousand_sep = ' ')
     {
         if ($code != $this->model->code2 && $this->model->code2 == 'RUB') {
             $currency = Currency::findByCode2($code);
@@ -72,7 +73,7 @@ class CurrencyComponent extends Component
             ceil($value),
             2,
             '.',
-            ' '
+            $thousand_sep
         );
     }
 }

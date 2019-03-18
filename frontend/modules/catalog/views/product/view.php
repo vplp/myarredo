@@ -66,7 +66,7 @@ $this->title = $this->context->title;
                                         <?= Yii::$app->currency->getValue($model['price_from'], $model['currency']); ?>
                                             &nbsp;<span class="currency"><?= Yii::$app->currency->symbol ?></span>
                                             <meta itemprop="price"
-                                                  content="<?= Yii::$app->currency->getValue($model['price_from'], $model['currency']); ?>">
+                                                  content="<?= Yii::$app->currency->getValue($model['price_from'], $model['currency'], ''); ?>">
                                             <meta itemprop="priceCurrency" content="<?= Yii::$app->currency->code ?>"/>
                                     </span>
                                     </div>
