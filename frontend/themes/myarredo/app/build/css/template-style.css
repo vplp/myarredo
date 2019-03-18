@@ -2040,7 +2040,9 @@ h1 {
 
 .prod-card-page .price-availability {
   display: flex;
-  width: 100%; }
+  width: 100%;
+  flex-wrap: wrap;
+ }
   .prod-card-page .price-availability .price-sticker {
     height: 33px;
     background: #C4242E;
@@ -6774,6 +6776,9 @@ h1 {
 }
 .adding-product-page .manager-history ul li.lang-cell {
   width: 4%;
+}
+.field-specification-for-kitchen .select2-search__field {
+  min-width: 200px !important;
 }
 /* .category-page .filters .one-filter.colors-box .one-item-check.selected .my-checkbox:after {
   color: #ffffff;
