@@ -156,10 +156,6 @@ class FactoryPromotionController extends BaseController
                     $transaction->commit();
 
                     if (Yii::$app->getRequest()->post('payment')) {
-//                        return $this->redirect(Url::toRoute([
-//                            '/catalog/factory-promotion/create-payment',
-//                            'id' => $model->id
-//                        ]));
                         return $this->redirect(Url::toRoute([
                             '/catalog/factory-promotion-payment/invoice',
                             'id' => $model->id

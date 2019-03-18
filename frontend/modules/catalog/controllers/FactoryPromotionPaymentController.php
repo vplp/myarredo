@@ -2,34 +2,17 @@
 
 namespace frontend\modules\catalog\controllers;
 
-use common\components\robokassa\actions\{
-    ResultAction, SuccessAction, FailAction
-};
-use frontend\modules\location\models\City;
 use Yii;
-use yii\db\Exception;
-use yii\db\Transaction;
-use yii\helpers\{
-    ArrayHelper, Url
-};
 use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    FactoryPromotion,
-    search\FactoryPromotion as filterFactoryPromotionModel,
-    FactoryProduct,
-    search\FactoryProduct as filterFactoryProductModel
+    FactoryPromotion
 };
 //
-use common\components\YandexKassaAPI\actions\ConfirmPaymentAction;
-use common\components\YandexKassaAPI\actions\CreatePaymentAction;
-//
-use thread\actions\{
-    ListModel,
-    AttributeSwitch
+use common\components\robokassa\actions\{
+    ResultAction, SuccessAction, FailAction
 };
 
 /**
@@ -96,7 +79,13 @@ class FactoryPromotionPaymentController extends BaseController
         /** @var \robokassa\Merchant $merchant */
         $merchant = Yii::$app->get('robokassa');
 
-        return $merchant->payment($model->amount, $model->id, 'Оплата рекламной компании', null, Yii::$app->user->identity->email);
+        return $merchant->payment(
+            $model->amount,
+            $model->id,
+            'Оплата рекламной компании',
+            null,
+            Yii::$app->user->identity->email
+        );
     }
 
     /**
@@ -129,18 +118,17 @@ class FactoryPromotionPaymentController extends BaseController
      */
     public function successCallback($merchant, $nInvId, $nOutSum, $shp)
     {
-        //$this->loadModel($nInvId)->updateAttributes(['payment_status' => FactoryPromotion::PAYMENT_STATUS_ACCEPTED]);
-
         $model = $this->loadModel($nInvId);
         $model->setScenario('setPaymentStatus');
         $model->payment_status = FactoryPromotion::PAYMENT_STATUS_SUCCESS;
         $model->save();
 
-        return $this->render('success', [
-            'messages' => 'Operation of payment is successfully completed',
-        ]);
-
-        //return 'Operation of payment is successfully completed'; //$this->goBack();
+        return $this->render(
+            'success',
+            [
+                'messages' => 'Operation of payment is successfully completed',
+            ]
+        );
     }
 
     /**
@@ -152,8 +140,6 @@ class FactoryPromotionPaymentController extends BaseController
      */
     public function resultCallback($merchant, $nInvId, $nOutSum, $shp)
     {
-        //$this->loadModel($nInvId)->updateAttributes(['payment_status' => FactoryPromotion::PAYMENT_STATUS_SUCCESS]);
-
         $model = $this->loadModel($nInvId);
         $model->setScenario('setPaymentStatus');
         $model->payment_status = FactoryPromotion::PAYMENT_STATUS_SUCCESS;
@@ -174,7 +160,6 @@ class FactoryPromotionPaymentController extends BaseController
         $model = $this->loadModel($nInvId);
 
         if ($model->payment_status == FactoryPromotion::PAYMENT_STATUS_PENDING) {
-            //$model->updateAttributes(['payment_status' => FactoryPromotion::PAYMENT_STATUS_FAIL]);
             $model->setScenario('setPaymentStatus');
             $model->payment_status = FactoryPromotion::PAYMENT_STATUS_FAIL;
             $model->save();

@@ -2,21 +2,23 @@
 
 namespace frontend\modules\catalog\controllers;
 
+use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 //
+use frontend\actions\UpdateWithLang;
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
     ItalianProduct, ItalianProductLang, search\ItalianProduct as filterItalianProductModel
 };
 //
-use thread\actions\{
-    CreateWithLang, ListModel, AttributeSwitch
-};
-use frontend\actions\UpdateWithLang;
-//
 use common\actions\upload\{
     DeleteAction, UploadAction
+};
+//
+use thread\actions\{
+    CreateWithLang, ListModel, AttributeSwitch
 };
 
 /**
@@ -53,6 +55,28 @@ class ItalianProductController extends BaseController
                 ],
             ],
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function actionPayment()
+    {
+        $this->title = Yii::t('app', 'Furniture in Italy');
+
+        if ($ids = Yii::$app->getRequest()->post('id')) {
+            $models = ItalianProduct::findByIDsUserId($ids, Yii::$app->getUser()->id);
+
+            if ($models == null) {
+                throw new ForbiddenHttpException('Access denied');
+            }
+
+            return $this->render('payment', [
+                'models' => $models,
+            ]);
+        } else {
+            throw new ForbiddenHttpException('Access denied');
+        }
     }
 
     /**
