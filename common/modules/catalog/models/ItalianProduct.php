@@ -127,8 +127,15 @@ class ItalianProduct extends ActiveRecord
                 ],
                 'integer'
             ],
-            [['price', 'volume', 'weight', 'price_new', 'price_without_technology'], 'double'],
-            [['price', 'volume', 'weight', 'price_new', 'price_without_technology'], 'default', 'value' => 0.00],
+            [
+                ['price', 'volume', 'weight', 'price_new', 'price_without_technology'],
+                'double'
+            ],
+            [
+                ['price', 'volume', 'weight', 'price_new', 'price_without_technology'],
+                'default',
+                'value' => 0.00
+            ],
             [
                 [
                     'on_main',
@@ -247,10 +254,7 @@ class ItalianProduct extends ActiveRecord
                 'volume',
                 'weight',
                 'production_year',
-                'published',
-                'deleted',
                 'position',
-                'on_main',
                 'category_ids',
                 'colors_ids',
             ]
@@ -626,5 +630,15 @@ class ItalianProduct extends ActiveRecord
     public static function findByIDs($ids): array
     {
         return self::findBase()->andWhere(['IN', 'id', array_unique($ids)])->all();
+    }
+
+    /**
+     * @param $ids
+     * @param $user_id
+     * @return array
+     */
+    public static function findByIDsUserId($ids, $user_id)
+    {
+        return self::findBase()->user_id($user_id)->andWhere(['IN', 'id', array_unique($ids)])->all();
     }
 }

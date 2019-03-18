@@ -82,8 +82,10 @@ return [
     //
     'italian-product' => 'catalog/italian-product/list',
     'italian-product/create' => 'catalog/italian-product/create',
+    'italian-product/payment' => 'catalog/italian-product/payment',
     'italian-product/update/<id:[\d\-]+>' => 'catalog/italian-product/update',
     'italian-product/intrash/<id:[\d\-]+>' => 'catalog/italian-product/intrash',
+
     'catalog/italian-product/fileupload' => 'catalog/italian-product/fileupload',
     'catalog/italian-product/filedelete' => 'catalog/italian-product/filedelete',
     'catalog/italian-product/one-file-upload' => 'catalog/italian-product/one-file-upload',
