@@ -5,12 +5,11 @@ use yii\grid\GridView;
 use backend\modules\catalog\models\Category;
 //
 use thread\widgets\grid\{
-    ActionDeleteColumn, ActionRestoreColumn
+    ActionDeleteColumn, ActionRestoreColumn, GridViewFilter
 };
 
 /**
- *
- * @package admin\modules\page\view
+ * @var \backend\modules\articles\models\search\Article $model
  */
 
 echo GridView::widget([
