@@ -110,6 +110,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                 'factory_id',
                                                 Factory::dropDownList()
                                             ),
+                                            'headerOptions' => ['class' => 'col-sm-2'],
                                         ],
                                         [
                                             'format' => 'raw',
@@ -130,7 +131,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                         ]
                                                     );
                                             },
-                                            'headerOptions' => ['class' => 'col-sm-1'],
+                                            'headerOptions' => ['class' => 'col-sm-2'],
                                             'contentOptions' => ['class' => 'text-center'],
                                         ],
                                         [
@@ -164,7 +165,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                 },
                                             ],
                                             'buttonOptions' => ['class' => 'btn btn-default btn-xs'],
-                                            'headerOptions' => ['class' => 'col-sm-1',],
+                                            'headerOptions' => ['class' => 'col-sm-1'],
                                         ],
                                         [
                                             'class' => kartik\grid\CheckboxColumn::class,
@@ -198,7 +199,13 @@ $script = <<<JS
 $('.js-add-products-to-payment').hide();
 
 $('.kv-row-checkbox').on('change', function () {
-    $('.js-add-products-to-payment').show();
+    var keys = $("#italian-product-grid").yiiGridView("getSelectedRows");
+    
+    if (keys.length > 0) {
+        $('.js-add-products-to-payment').show();
+    } else {
+        $('.js-add-products-to-payment').hide();
+    }
 });
 
 $('.js-add-products-to-payment').on('click', function () {
