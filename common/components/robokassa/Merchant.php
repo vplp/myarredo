@@ -36,7 +36,7 @@ class Merchant extends BaseObject
      * @return string|\yii\console\Response|\yii\web\Response
      * @throws \yii\base\InvalidConfigException
      */
-    public function payment($nOutSum, $nInvId, $sOutSumCurrency, $sInvDesc = null, $sIncCurrLabel = null, $sEmail = null, $sCulture = null, $shp = [], $returnLink = false)
+    public function payment($nOutSum, $nInvId, $sOutSumCurrency = null, $sInvDesc = null, $sIncCurrLabel = null, $sEmail = null, $sCulture = null, $shp = [], $returnLink = false)
     {
         $url = $this->baseUrl;
 

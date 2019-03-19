@@ -20,7 +20,6 @@ use thread\app\base\models\ActiveRecord;
  * Class Payment
  *
  * @property integer $id
- * @property string $invoice_id
  * @property integer $user_id
  * @property string $type
  * @property integer $amount
@@ -36,6 +35,8 @@ use thread\app\base\models\ActiveRecord;
  */
 class Payment extends ActiveRecord
 {
+    public $items_ids;
+
     const PAYMENT_STATUS_PENDING = 'pending';
     const PAYMENT_STATUS_ACCEPTED = 'accepted';
     const PAYMENT_STATUS_SUCCESS = 'success';
@@ -80,7 +81,6 @@ class Payment extends ActiveRecord
     public function rules()
     {
         return [
-            [['invoice_id'], 'string', 'max' => 255],
             [['type', 'amount', 'currency'], 'required'],
             [['type'], 'in', 'range' => array_keys(static::getTypeKeyRange())],
             [['currency'], 'in', 'range' => array_keys(static::getCurrencyKeyRange())],
@@ -106,7 +106,6 @@ class Payment extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'setInvoiceId' => ['invoice_id'],
             'setPaymentStatus' => [
                 'payment_status',
                 'payment_time',
@@ -139,7 +138,6 @@ class Payment extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'invoice_id',
             'user_id',
             'type',
             'amount',
@@ -197,7 +195,7 @@ class Payment extends ActiveRecord
     {
         return [
             'EUR' => 'EUR',
-            'RUB' => 'RUB',
+            'RUR' => 'RUR',
             'USD' => 'USD',
         ];
     }
@@ -211,32 +209,5 @@ class Payment extends ActiveRecord
             'factory_promotion' => 'factory_promotion',
             'italian_item' => 'italian_item'
         ];
-    }
-
-    /**
-     * @param string $invoiceId
-     */
-    public function setInvoiceId($invoiceId)
-    {
-        $this->setScenario('setInvoiceId');
-
-        $this->invoice_id = $invoiceId;
-    }
-
-    /**
-     * @return mixed|string
-     */
-    public function getInvoiceId()
-    {
-        return $this->invoice_id;
-    }
-
-    /**
-     * @param $invoiceId
-     * @return OrderInterface
-     */
-    public function findByInvoiceId($invoiceId)
-    {
-        return self::find()->where(['invoice_id' => $invoiceId]);
     }
 }

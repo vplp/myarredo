@@ -20,6 +20,7 @@ use frontend\modules\catalog\models\{
     FactoryProduct,
     search\FactoryProduct as filterFactoryProductModel
 };
+use frontend\modules\payment\models\Payment;
 //
 use common\components\YandexKassaAPI\actions\ConfirmPaymentAction;
 use common\components\YandexKassaAPI\actions\CreatePaymentAction;
@@ -156,10 +157,7 @@ class FactoryPromotionController extends BaseController
                     $transaction->commit();
 
                     if (Yii::$app->getRequest()->post('payment')) {
-                        return $this->redirect(Url::toRoute([
-                            '/catalog/factory-promotion-payment/invoice',
-                            'id' => $model->id
-                        ]));
+                        $this->crateInvoice($model);
                     } else {
                         return $this->redirect(Url::toRoute([
                             '/catalog/factory-promotion/update',
@@ -217,14 +215,7 @@ class FactoryPromotionController extends BaseController
                     $transaction->commit();
 
                     if (Yii::$app->getRequest()->post('payment')) {
-//                        return $this->redirect(Url::toRoute([
-//                            '/catalog/factory-promotion/create-payment',
-//                            'id' => $model->id
-//                        ]));
-                        return $this->redirect(Url::toRoute([
-                            '/catalog/factory-promotion-payment/invoice',
-                            'id' => $model->id
-                        ]));
+                        $this->crateInvoice($model);
                     }
                 } else {
                     $transaction->rollBack();
@@ -247,5 +238,50 @@ class FactoryPromotionController extends BaseController
             'dataProviderFactoryProduct' => $dataProviderFactoryProduct,
             'filterModelFactoryProduct' => $filterModelFactoryProduct,
         ]);
+    }
+
+    /**
+     * @param FactoryPromotion $model
+     * @return mixed
+     * @throws \yii\base\InvalidConfigException
+     */
+    protected function crateInvoice(FactoryPromotion $model)
+    {
+        $modelPayment = new Payment();
+        $modelPayment->setScenario('frontend');
+
+        $modelPayment->user_id = Yii::$app->user->id;
+        $modelPayment->type = 'factory_promotion';
+        $modelPayment->amount = $model->amount;
+        $modelPayment->currency = 'RUR';
+        $modelPayment->items_ids = [$model->id];
+
+        /** @var Transaction $transaction */
+        $transaction = $modelPayment::getDb()->beginTransaction();
+        try {
+            $modelPayment->payment_status = Payment::PAYMENT_STATUS_PENDING;
+
+            $save = $modelPayment->save();
+
+            if ($save) {
+                $transaction->commit();
+
+                /** @var \robokassa\Merchant $merchant */
+                $merchant = Yii::$app->get('robokassa');
+
+                return $merchant->payment(
+                    $modelPayment->amount,
+                    $modelPayment->id,
+                    $modelPayment->currency,
+                    ($modelPayment->type == 'factory_promotion') ? 'Оплата рекламной компании' : 'Оплата товаров',
+                    null,
+                    Yii::$app->user->identity->email
+                );
+            } else {
+                $transaction->rollBack();
+            }
+        } catch (Exception $e) {
+            $transaction->rollBack();
+        }
     }
 }

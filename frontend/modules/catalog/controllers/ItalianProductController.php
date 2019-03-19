@@ -2,7 +2,6 @@
 
 namespace frontend\modules\catalog\controllers;
 
-use frontend\modules\payment\models\Payment;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
@@ -13,6 +12,7 @@ use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
     ItalianProduct, ItalianProductLang, search\ItalianProduct as filterItalianProductModel
 };
+use frontend\modules\payment\models\Payment;
 //
 use common\actions\upload\{
     DeleteAction, UploadAction
