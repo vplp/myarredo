@@ -13,7 +13,7 @@ use thread\app\base\models\ActiveRecord;
  * @property int $article_id
  * @property int $style_id
  *
- * @package common\modules\catalog\models
+ * @package common\modules\articles\models
  */
 class ArticleRelStyles extends ActiveRecord
 {

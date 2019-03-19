@@ -99,12 +99,6 @@ return [
     'factory-promotion/update/<id:[\d\-]+>' => 'catalog/factory-promotion/update',
     'factory-promotion/intrash/<id:[\d\-]+>' => 'catalog/factory-promotion/intrash',
 
-    // Factory promotion robokassa
-    'factory-promotion-payment/invoice/<id:[\d\-]+>' => 'catalog/factory-promotion-payment/invoice',
-    'factory-promotion-payment/result' => 'catalog/factory-promotion-payment/result',
-    'factory-promotion-payment/success' => 'catalog/factory-promotion-payment/success',
-    'factory-promotion-payment/fail' => 'catalog/factory-promotion-payment/fail',
-
     // Partner sale
     'partner/sale' => 'catalog/partner-sale/list',
     'partner/sale/create' => 'catalog/partner-sale/create',
@@ -112,6 +106,12 @@ return [
     'partner/sale/intrash/<id:[\d\-]+>' => 'catalog/partner-sale/intrash',
     'catalog/partner-sale/fileupload' => 'catalog/partner-sale/fileupload',
     'catalog/partner-sale/filedelete' => 'catalog/partner-sale/filedelete',
+
+    // Module [[Payment]]
+    'payment/invoice' => 'payment/payment/invoice',
+    'payment/result' => 'payment/payment/result',
+    'payment/success' => 'payment/payment/success',
+    'payment/fail' => 'payment/payment/fail',
 
     // Module [[News]]
     'news/<alias:[\w\-]+>' => 'news/list/index',

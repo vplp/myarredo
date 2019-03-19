@@ -18,6 +18,9 @@ use common\modules\location\models\{
 };
 use common\modules\catalog\Catalog;
 use common\modules\user\models\User;
+use common\modules\payment\models\{
+    Payment, PaymentRelItem
+};
 
 /**
  * Class ItalianProduct
@@ -53,6 +56,7 @@ use common\modules\user\models\User;
  *
  * @property ItalianProductLang $lang
  * @property ItalianProductRelCategory[] $category
+ * @property Payment $payment
  * @property ItalianProductRelSpecification[] $specificationValue
  * @property Factory $factory
  * @property User $user
@@ -423,6 +427,18 @@ class ItalianProduct extends ActiveRecord
     public function getCountry()
     {
         return $this->hasOne(Country::class, ['id' => 'country_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getPayment()
+    {
+        return $this
+            ->hasOne(Payment::class, ['id' => 'payment_id'])
+            ->viaTable(PaymentRelItem::tableName(), ['item_id' => 'id'])
+            ->andWhere([Payment::tableName() . '.type' => 'italian_item']);
     }
 
     /**

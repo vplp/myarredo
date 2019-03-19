@@ -38,6 +38,20 @@ echo GridView::widget([
             'filter' => GridViewFilter::selectOne($filter, 'category', Category::dropDownList()),
         ],
         [
+            'value' => function ($model) {
+                /** @var $model \backend\modules\catalog\models\ItalianProduct */
+
+                $status = $model->payment ? Yii::t('app', ucfirst($model->payment->payment_status)) : '';
+
+                if ($model->payment && $model->payment->payment_status == 'success') {
+                    $status .= ' ' .  date('Y-m-d', $model->payment->payment_time);
+                }
+
+                return $status;
+            },
+            'label' => Yii::t('app', 'Payment status'),
+        ],
+        [
             'attribute' => Yii::t('app', 'Factory'),
             'value' => function ($model) {
                 /** @var $model \backend\modules\catalog\models\ItalianProduct */

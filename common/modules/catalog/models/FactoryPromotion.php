@@ -300,6 +300,7 @@ class FactoryPromotion extends ActiveRecord// implements OrderInterface
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getCities()
     {
@@ -327,6 +328,7 @@ class FactoryPromotion extends ActiveRecord// implements OrderInterface
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getProducts()
     {

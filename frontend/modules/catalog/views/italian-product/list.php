@@ -116,8 +116,8 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'format' => 'raw',
                                             'attribute' => Yii::t('app', 'Status'),
                                             'value' => function ($model) {
-                                                /** @var $model \frontend\modules\catalog\models\FactoryProduct */
-                                                return $model->published
+                                                /** @var $model \frontend\modules\catalog\models\ItalianProduct */
+                                                $status = $model->published
                                                     ? Yii::t('app', 'Published')
                                                     : Html::a(
                                                         Yii::t('app', 'Not published'),
@@ -130,6 +130,12 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                             ],
                                                         ]
                                                     );
+
+                                                if ($model->payment && $model->payment->payment_status == 'success') {
+                                                    $status .= ', ' . Yii::t('app', ucfirst($model->payment->payment_status));
+                                                }
+
+                                                return $status;
                                             },
                                             'headerOptions' => ['class' => 'col-sm-2'],
                                             'contentOptions' => ['class' => 'text-center'],

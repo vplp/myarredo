@@ -1,11 +1,15 @@
 <?php
 
-use yii\helpers\Html;
+use yii\helpers\{
+    Html, Url
+};
+use yii\widgets\ActiveForm;
 //
 use frontend\modules\catalog\models\ItalianProduct;
 
 $this->title = $this->context->title;
 
+/** @var \frontend\modules\payment\models\Payment $modelPayment */
 
 ?>
 
@@ -22,6 +26,10 @@ $this->title = $this->context->title;
                         <?= Yii::$app->param->getByName('ITALIAN_PRODUCT_PAYMENT_TEXT') ?>
                     </div>
 
+                    <?php $form = ActiveForm::begin([
+                        'action' => Url::toRoute(['/payment/payment/invoice'])
+                    ]); ?>
+
                     <div id="list-product">
                         <?php
                         foreach ($models as $product) {
@@ -29,7 +37,7 @@ $this->title = $this->context->title;
                                 $product->lang->title .
                                 Html::input(
                                     'hidden',
-                                    'FactoryPromotion[product_ids][]',
+                                    'Payment[items_ids][]',
                                     $product->id
                                 ) .
                                 Html::img(ItalianProduct::getImageThumb($product['image_link']), ['width' => 50]) .
@@ -46,18 +54,41 @@ $this->title = $this->context->title;
                         } ?>
                     </div>
 
-                    <div>Всего к оплате <?= count($models) * 5 ?> евро</div>
+                    <div>Всего к оплате: <?= $modelPayment->amount . ' ' . $modelPayment->currency ?></div>
 
-                    <?= Html::button(
-                        Yii::t('app', 'Перейти к оплате'),
-                        ['class' => 'btn btn-goods', 'name' => 'payment', 'value' => 1]
-                    ) ?>
+                    <?php
+                    echo $form
+                            ->field($modelPayment, 'amount')
+                            ->label(false)
+                            ->input('hidden') .
+                        $form
+                            ->field($modelPayment, 'user_id')
+                            ->label(false)
+                            ->input('hidden') .
+                        $form
+                            ->field($modelPayment, 'type')
+                            ->label(false)
+                            ->input('hidden') .
+                        $form
+                            ->field($modelPayment, 'currency')
+                            ->label(false)
+                            ->input('hidden');
 
-                    <?= Html::a(
-                        Yii::t('app', 'Вернуться к списку'),
-                        ['/catalog/italian-product/list'],
-                        ['class' => 'btn btn-cancel']
-                    ) ?>
+                    echo Html::tag(
+                        'div',
+                        Html::submitButton(
+                            Yii::t('app', 'Перейти к оплате'),
+                            ['class' => 'btn btn-goods', 'name' => 'payment', 'value' => 1]
+                        ) . '&nbsp;' . Html::a(
+                            Yii::t('app', 'Вернуться к списку'),
+                            ['/catalog/italian-product/list'],
+                            ['class' => 'btn btn-cancel']
+                        ),
+                        ['class' => 'buttons-cont']
+                    );
+
+                    ActiveForm::end();
+                    ?>
 
                 </div>
             </div>

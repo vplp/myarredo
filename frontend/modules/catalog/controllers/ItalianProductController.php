@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\controllers;
 
+use frontend\modules\payment\models\Payment;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
@@ -71,8 +72,17 @@ class ItalianProductController extends BaseController
                 throw new ForbiddenHttpException('Access denied');
             }
 
+            $modelPayment = new Payment();
+            $modelPayment->setScenario('frontend');
+
+            $modelPayment->user_id = Yii::$app->user->id;
+            $modelPayment->type = 'italian_item';
+            $modelPayment->amount = count($models) * 5;
+            $modelPayment->currency = 'EUR';
+
             return $this->render('payment', [
                 'models' => $models,
+                'modelPayment' => $modelPayment,
             ]);
         } else {
             throw new ForbiddenHttpException('Access denied');

@@ -1,9 +1,6 @@
 <?php
 
 return [
-    /**
-     * CORE
-     */
     'home' => [
         'class' => \frontend\modules\home\Home::class,
     ],
@@ -51,5 +48,10 @@ return [
     'forms' => [
         'class' => \frontend\modules\forms\Forms::class,
     ],
-    'gridview' => ['class' => 'kartik\grid\Module']
+    'payment' => [
+        'class' => \frontend\modules\payment\PaymentModule::class,
+    ],
+    'gridview' => [
+        'class' => \kartik\grid\Module::class
+    ]
 ];

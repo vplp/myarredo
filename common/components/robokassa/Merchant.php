@@ -26,6 +26,7 @@ class Merchant extends BaseObject
     /**
      * @param $nOutSum
      * @param $nInvId
+     * @param $sOutSumCurrency
      * @param null $sInvDesc
      * @param null $sIncCurrLabel
      * @param null $sEmail
@@ -35,11 +36,11 @@ class Merchant extends BaseObject
      * @return string|\yii\console\Response|\yii\web\Response
      * @throws \yii\base\InvalidConfigException
      */
-    public function payment($nOutSum, $nInvId, $sInvDesc = null, $sIncCurrLabel = null, $sEmail = null, $sCulture = null, $shp = [], $returnLink = false)
+    public function payment($nOutSum, $nInvId, $sOutSumCurrency, $sInvDesc = null, $sIncCurrLabel = null, $sEmail = null, $sCulture = null, $shp = [], $returnLink = false)
     {
         $url = $this->baseUrl;
 
-        $signature = "{$this->sMerchantLogin}:{$nOutSum}:{$nInvId}:{$this->sMerchantPass1}";
+        $signature = "{$this->sMerchantLogin}:{$nOutSum}:{$nInvId}:{$sOutSumCurrency}:{$this->sMerchantPass1}";
 
         if (!empty($shp)) {
             $signature .= ':' . $this->implodeShp($shp);
@@ -50,6 +51,7 @@ class Merchant extends BaseObject
         $url .= '?' . http_build_query([
                 'MrchLogin' => $this->sMerchantLogin,
                 'OutSum' => $nOutSum,
+                'OutSumCurrency' => $sOutSumCurrency,
                 'InvId' => $nInvId,
                 'Desc' => $sInvDesc,
                 'SignatureValue' => $sSignatureValue,
