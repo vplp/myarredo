@@ -13,6 +13,7 @@ use frontend\modules\catalog\models\{
     ItalianProduct, ItalianProductLang, search\ItalianProduct as filterItalianProductModel
 };
 use frontend\modules\payment\models\Payment;
+use frontend\modules\location\models\Currency;
 //
 use common\actions\upload\{
     DeleteAction, UploadAction
@@ -77,8 +78,23 @@ class ItalianProductController extends BaseController
 
             $modelPayment->user_id = Yii::$app->user->id;
             $modelPayment->type = 'italian_item';
-            $modelPayment->amount = count($models) * 5;
-            $modelPayment->currency = 'EUR';
+
+            /**
+             * cost 1 product = 5 EUR
+             * conversion to RUB
+             */
+
+            $currency = Currency::findByCode2('EUR');
+            /** @var Currency $amount */
+            $amount = (5 * $currency->course + 1 * $currency->course + 0.12 * $currency->course);
+
+            $modelPayment->amount = number_format(
+                ceil(count($models) * $amount),
+                2,
+                '.',
+                ''
+            );
+            $modelPayment->currency = 'RUB';
 
             return $this->render('payment', [
                 'models' => $models,

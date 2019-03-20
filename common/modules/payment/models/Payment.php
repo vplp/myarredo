@@ -195,7 +195,7 @@ class Payment extends ActiveRecord
     {
         return [
             'EUR' => 'EUR',
-            'RUR' => 'RUR',
+            'RUB' => 'RUB',
             'USD' => 'USD',
         ];
     }

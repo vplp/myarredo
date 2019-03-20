@@ -253,7 +253,7 @@ class FactoryPromotionController extends BaseController
         $modelPayment->user_id = Yii::$app->user->id;
         $modelPayment->type = 'factory_promotion';
         $modelPayment->amount = $model->amount;
-        $modelPayment->currency = 'RUR';
+        $modelPayment->currency = 'RUB';
         $modelPayment->items_ids = [$model->id];
 
         /** @var Transaction $transaction */
@@ -272,8 +272,7 @@ class FactoryPromotionController extends BaseController
                 return $merchant->payment(
                     $modelPayment->amount,
                     $modelPayment->id,
-                    $modelPayment->currency,
-                    ($modelPayment->type == 'factory_promotion') ? 'Оплата рекламной компании' : 'Оплата товаров',
+                    'Оплата рекламной компании',
                     null,
                     Yii::$app->user->identity->email
                 );
