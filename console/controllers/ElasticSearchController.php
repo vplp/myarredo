@@ -68,18 +68,10 @@ class ElasticSearchController extends Controller
                 foreach ($languages as $lang) {
                     Yii::$app->language = $lang['local'];
 
-                    /** @var $modelLang ProductLang */
-                    $modelLang = ProductLang::find()
-                        ->where([
-                            'rid' => $model->id,
-                        ])
-                        ->one();
+                    /** @var $product Product */
+                    $product = Product::findByID($model->id);
 
-                    if ($modelLang != null) {
-                        $product = $model + $modelLang;
-
-                        $save = ElasticSearchProduct::addRecord($product);
-                    }
+                    $save = ElasticSearchProduct::addRecord($product);
                 }
 
                 if ($model->save() && $save) {
