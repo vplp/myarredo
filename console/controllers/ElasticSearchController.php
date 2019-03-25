@@ -71,7 +71,9 @@ class ElasticSearchController extends Controller
                     /** @var $product Product */
                     $product = Product::findByID($model->id);
 
-                    $save = ElasticSearchProduct::addRecord($product);
+                    if (!empty($product->lang)) {
+                        $save = ElasticSearchProduct::addRecord($product);
+                    }
                 }
 
                 if ($model->save() && $save) {
