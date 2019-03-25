@@ -13,8 +13,10 @@ use yii\elasticsearch\ActiveRecord;
  * @property integer $id
  * @property string $title_ru
  * @property string $title_it
+ * @property string $title_en
  * @property string $description_ru
  * @property string $description_it
+ * @property string $description_en
  *
  * @property Product $product
  *
@@ -43,7 +45,15 @@ class ElasticSearchProduct extends ActiveRecord
      */
     public function attributes()
     {
-        return ['id', 'title_ru', 'title_it', 'description_ru', 'description_it'];
+        return [
+            'id',
+            'title_ru',
+            'title_it',
+            'title_en',
+            'description_ru',
+            'description_it',
+            'description_en'
+        ];
     }
 
     /**
@@ -57,8 +67,10 @@ class ElasticSearchProduct extends ActiveRecord
                     'id' => ['type' => 'long'],
                     'title_ru' => ['type' => 'text'],
                     'title_it' => ['type' => 'text'],
+                    'title_en' => ['type' => 'text'],
                     'description_ru' => ['type' => 'text'],
                     'description_it' => ['type' => 'text'],
+                    'description_en' => ['type' => 'text'],
                 ]
             ],
         ];
@@ -82,7 +94,11 @@ class ElasticSearchProduct extends ActiveRecord
         $db = static::getDb();
         $command = $db->createCommand();
         $command->createIndex(static::index(), [
-            'settings' => ['index' => ['refresh_interval' => '1s']],
+            'settings' => [
+                'index' => [
+                    'refresh_interval' => '1s'
+                ]
+            ],
             'mappings' => static::mapping(),
         ]);
     }
@@ -125,6 +141,7 @@ class ElasticSearchProduct extends ActiveRecord
         try {
             $record = self::get($product_id);
             $record->delete();
+
             return 1;
         } catch (\Exception $e) {
             return false;
