@@ -147,9 +147,9 @@ class Product extends ProductModel
          * cache
          */
 
-        self::getDb()->cache(function ($db) use ($dataProvider) {
-            $dataProvider->prepare();
-        });
+//        self::getDb()->cache(function ($db) use ($dataProvider) {
+//            $dataProvider->prepare();
+//        });
 
         return $dataProvider;
     }
