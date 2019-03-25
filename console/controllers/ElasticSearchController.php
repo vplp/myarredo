@@ -76,7 +76,7 @@ class ElasticSearchController extends Controller
                         ->one();
 
                     if ($modelLang != null) {
-                        $product = array_merge((array)$model, (array)$modelLang);
+                        $product = $model + $modelLang;
 
                         $save = ElasticSearchProduct::addRecord($product);
                     }
