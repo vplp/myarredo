@@ -201,13 +201,14 @@ class RegisterController extends BaseController
                     ->setSubject(Yii::$app->name)
                     ->send();
 
-                if (!Yii::$app->session->has("newUserFactory")) {
-                    Yii::$app->session->set("newUserFactory", true);
-                }
-
                 if ($modelUser->published == 1 && $modelUser->deleted == 0 && $model->getAutoLoginAfterRegister() === true && $model->login()) {
+                    if (!Yii::$app->session->has("newUserFactory")) {
+                        Yii::$app->session->set("newUserFactory", true);
+                    }
                     return $this->redirect(Url::toRoute('/user/profile/index'));
                 }
+
+                Yii::$app->session->setFlash('success', Yii::$app->param->getByName('USER_FACTORY_REG_CONGRATULATIONS'));
 
                 return $this->redirect(Url::toRoute('/user/login/index'));
             }

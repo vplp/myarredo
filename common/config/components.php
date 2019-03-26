@@ -33,23 +33,6 @@ return [
         'pathToLayout' => '@frontend/mail/layouts',
         'pathToViews' => '@frontend/mail/views',
     ],
-    'mailer' => [
-        'class' => \yii\swiftmailer\Mailer::class,
-        'transport' => [
-            'class' => 'Swift_SmtpTransport',
-            'host' => 'smtp-pulse.com',
-            'username' => 'myarredo@mail.ru',
-            'password' => 'ZYfKZWr29eB3',
-            'port' => '465',
-            'encryption' => 'ssl',
-        ],
-        'useFileTransport' => false,
-        'enableSwiftMailerLogging' => true,
-        'messageConfig' => [
-            'charset' => 'UTF-8',
-            'from' => ['info@myarredo.ru' => 'myarredo'],
-        ],
-    ],
     'cache' => [
         'class' => \yii\caching\FileCache::class,
         'cachePath' => '@runtime',
