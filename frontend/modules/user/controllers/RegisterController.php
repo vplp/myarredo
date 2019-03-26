@@ -168,6 +168,7 @@ class RegisterController extends BaseController
             if ($status === true) {
                 $modelUser = User::find()->email($model->email)->one();
 
+                /** @var User $modelUser */
                 /** send mail to admin */
 
                 $message = 'Зарегистрирована новая фабрика';
@@ -200,7 +201,7 @@ class RegisterController extends BaseController
                     ->setSubject(Yii::$app->name)
                     ->send();
 
-                if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
+                if ($modelUser->published == 1 && $modelUser->deleted == 0 && $model->getAutoLoginAfterRegister() === true && $model->login()) {
                     if (!Yii::$app->session->has("newUserFactory")) {
                         Yii::$app->session->set("newUserFactory", true);
                     }
@@ -208,10 +209,7 @@ class RegisterController extends BaseController
                     return $this->redirect(Url::toRoute('/user/profile/index'));
                 }
 
-                if ($status === true) {
-                    //Yii::$app->getSession()->addFlash('success', Yii::t('user', 'add new members'));
-                    return $this->redirect(Url::toRoute('/user/login/index'));
-                }
+                return $this->redirect(Url::toRoute('/user/login/index'));
             }
         }
 
