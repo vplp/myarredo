@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use frontend\modules\catalog\models\Product;
 
 /**
  * @var \frontend\modules\catalog\models\ElasticSearchProduct $model
@@ -25,7 +24,7 @@ $this->title = $this->context->title;
                             <div class="cont-area">
 
                                 <?php if ($models) { ?>
-                                    <h3>Результат поиска для
+                                    <h3><?= Yii::t('app', 'Результат поиска для') ?>
                                         <span class='label label-success'>
                                             <?= $queryParams['search'] ?>
                                         </span>
@@ -55,9 +54,9 @@ $this->title = $this->context->title;
                                         </div>
 
                                     </div>
-                                <?php } else { ?>
-                                    К сожалению по данному запросу товаров не найдено
-                                <?php } ?>
+                                <?php } else {
+                                    echo Yii::t('app', 'К сожалению по данному запросу товаров не найдено');
+                                } ?>
 
                             </div>
 
