@@ -105,11 +105,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                     ? $model['factory']['title']
                                                     : $model['factory_name'];
                                             },
-                                            'filter' => GridViewFilter::selectOne(
-                                                $filter,
-                                                'factory_id',
-                                                Factory::dropDownList()
-                                            ),
+                                            'filter' => false,
                                             'headerOptions' => ['class' => 'col-sm-2'],
                                         ],
                                         [

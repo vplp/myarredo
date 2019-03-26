@@ -11,10 +11,14 @@ use yii\helpers\Html;
 <?php if (!empty($product)) { ?>
     <div class="basket-item-info">
         <div class="item">
-            <a href="javascript:void(0);" class="remove"
-               onclick="delete_from_cart(<?= $item['product_id'] ?>, <?= $item['count'] ?>)">
-                <i class="fa fa-times" aria-hidden="true"></i>
-            </a>
+            <?= Html::a(
+                '<i class="fa fa-times" aria-hidden="true"></i>',
+                'javascript:void(0);',
+                [
+                    'class' => 'remove',
+                    'onclick' => 'delete_from_cart(' . $item['product_id'] . ', ' . $item['count'] . ')'
+                ]
+            ) ?>
             <div class="img-cont">
                 <?= Html::a(
                     Html::img($product::getImageThumb($product['image_link'])),

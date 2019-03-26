@@ -41,11 +41,6 @@ use frontend\modules\catalog\models\ItalianProduct;
             <a class="more-info">
                 <?= Yii::t('app', 'Подробнее') ?>
             </a>
-            <!--
-            <a href="javascript:void(0);" class="get-price">
-                запросить цену
-            </a>
-            -->
         </object>
 
     </div>

@@ -38,9 +38,11 @@ use yii\helpers\Html;
 
     </div>
 
-    <a href="javascript:void(0);" class="img-zoom">
-        <?= Yii::t('app', 'Увеличить') ?>
-    </a>
+    <?= Html::a(
+        Yii::t('app', 'Увеличить'),
+        'javascript:void(0);',
+        ['class' => 'img-zoom']
+    ) ?>
 
     <!-- Carousel nav -->
 

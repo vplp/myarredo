@@ -9,17 +9,19 @@
 
         <div class="row">
 
-            <?php if ($posts): ?>
-                <?php foreach ($posts as $post) : ?>
+            <?php if ($posts) {
+                foreach ($posts as $post) { ?>
                     <div class="col-md-12">
-                        <a href="<?= $post->getUrl() ?>"> <?= $post['lang']['title'] ?> </a>
+                        <?= Html::a(
+                            $post['lang']['title'],
+                            $post->getUrl(),
+                            []
+                        ) ?>
                     </div>
-
-                <?php endforeach; ?>
-
-            <?php else : ?>
-                <h1> Not found </h1>
-            <?php endif; ?>
+                <?php }
+            } else { ?>
+                <h1>Not found</h1>
+            <?php } ?>
 
         </div>
     </div>

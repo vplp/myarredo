@@ -33,9 +33,11 @@ $this->title = $this->context->title;
 
                 </div>
                 <div class="cat-content">
-                    <a href="javascript:void(0);" class="js-filter-btn">
-                        Фильтры
-                    </a>
+                    <?= Html::a(
+                        Yii::t('app', 'Фильтры'),
+                        'javascript:void(0);',
+                        ['class' => 'js-filter-btn']
+                    ) ?>
                     <div class="row">
                         <div class="col-md-3 col-lg-3 js-filter-modal">
 

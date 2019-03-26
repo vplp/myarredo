@@ -93,7 +93,8 @@ $this->title = $this->context->title;
                                                 Factory::getUrl($model['factory']['alias'])
                                             )
                                             : $model['factory_name'] ?>
-                                        <meta itemprop="brand" content="<?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name']; ?>"/>
+                                        <meta itemprop="brand"
+                                              content="<?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name']; ?>"/>
                                     </td>
                                 </tr>
                                 <?php if (!empty($model['specificationValue'])) {
@@ -190,9 +191,11 @@ $this->title = $this->context->title;
                                                 (XXX) XXX-XX-XX
                                             </div>
 
-                                            <a href="javascript:void(0);" class="js-show-num-btn">
-                                                <?= Yii::t('app', 'Узнать номер') ?>
-                                            </a>
+                                            <?= Html::a(
+                                                Yii::t('app', 'Узнать номер'),
+                                                'javascript:void(0);',
+                                                ['class' => 'js-show-num-btn']
+                                            ) ?>
 
                                             <div class="ico">
                                                 <img src="<?= $bundle->baseUrl ?>/img/marker-map.png" alt="">
@@ -205,10 +208,16 @@ $this->title = $this->context->title;
                                             <div class="ico">
                                                 <img src="<?= $bundle->baseUrl ?>/img/conv.svg" alt="">
                                             </div>
-                                            <a href="javascript:void(0);" class="write-seller" data-toggle="modal"
-                                               data-target="#myModal">
-                                                <?= Yii::t('app', 'Написать продавцу') ?>
-                                            </a>
+
+                                            <?= Html::a(
+                                                Yii::t('app', 'Написать продавцу'),
+                                                'javascript:void(0);',
+                                                [
+                                                    'class' => 'write-seller',
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#myModal'
+                                                ]
+                                            ) ?>
 
                                         </div>
                                     </div>

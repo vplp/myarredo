@@ -19,9 +19,11 @@ use frontend\modules\catalog\models\Category;
         ]); ?>
 
         <div class="one-filter open">
-
-            <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Category') ?></a>
-
+            <?= Html::a(
+                Yii::t('app', 'Category'),
+                'javascript:void(0);',
+                ['class' => 'filt-but']
+            ) ?>
             <div class="list-item">
                 <?php
                 foreach ($category as $item) {
@@ -42,7 +44,11 @@ use frontend\modules\catalog\models\Category;
         <?php
         if ($types) { ?>
             <div class="one-filter open subject-filter">
-                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Предмет') ?></a>
+                <?= Html::a(
+                    Yii::t('app', 'Предмет'),
+                    'javascript:void(0);',
+                    ['class' => 'filt-but']
+                ) ?>
                 <div class="list-item">
 
                     <?php
@@ -59,18 +65,27 @@ use frontend\modules\catalog\models\Category;
 
                 </div>
 
-                <?php if (count($types) > 10) { ?>
-                    <a href="javascript:void(0);" class="show-all-sub show-more show-class" data-variant="Скрыть">
-                        <span class="btn-text"><?= Yii::t('app', 'Показать все предметы') ?></span>
-                    </a>
-                <?php } ?>
+                <?php if (count($types) > 10) {
+                    echo Html::a(
+                        '<span class="btn-text">' . Yii::t('app', 'Показать все предметы') . '</span>',
+                        'javascript:void(0);',
+                        [
+                            'class' => 'show-all-sub show-more show-class',
+                            'data-variant' => 'Скрыть',
+                        ]
+                    );
+                } ?>
 
             </div>
         <?php }
 
         if ($style) { ?>
             <div class="one-filter open">
-                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Стиль') ?></a>
+                <?= Html::a(
+                    Yii::t('app', 'Стиль'),
+                    'javascript:void(0);',
+                    ['class' => 'filt-but']
+                ) ?>
                 <div class="list-item">
 
                     <?php
@@ -91,7 +106,11 @@ use frontend\modules\catalog\models\Category;
 
         if ($factory) { ?>
             <div class="one-filter open">
-                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Фабрики') ?></a>
+                <?= Html::a(
+                    Yii::t('app', 'Фабрики'),
+                    'javascript:void(0);',
+                    ['class' => 'filt-but']
+                ) ?>
                 <div class="list-item">
 
                     <?php
@@ -105,11 +124,15 @@ use frontend\modules\catalog\models\Category;
                         echo Html::endTag('a');
                     } ?>
 
-                    <a href="#" class="show-more show-class" data-toggle="modal" data-target="#factory-modal">
-                        <span class="btn-text">
-                            <?= Yii::t('app', 'Показать еще') ?>
-                        </span>
-                    </a>
+                    <?= Html::a(
+                        '<span class="btn-text">' . Yii::t('app', 'Показать еще') . '</span>',
+                        'javascript:void(0);',
+                        [
+                            'class' => 'show-more show-class',
+                            'data-toggle' => 'modal',
+                            'data-target' => '#factory-modal',
+                        ]
+                    ) ?>
 
                     <div id="factory-modal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
@@ -182,9 +205,13 @@ use frontend\modules\catalog\models\Category;
         </div>
         */
 
-        if ($colors) {?>
+        if ($colors) { ?>
             <div class="one-filter open colors-box">
-                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Color') ?></a>
+                <?= Html::a(
+                    Yii::t('app', 'Color'),
+                    'javascript:void(0);',
+                    ['class' => 'filt-but']
+                ) ?>
                 <div class="list-item">
 
                     <?php
@@ -193,7 +220,8 @@ use frontend\modules\catalog\models\Category;
                         echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
                         ?>
                         <div class="filter-group">
-                            <div class="my-checkbox" style="background-color:<?= $item['color_code'] ?>;"></div><?= $item['title'] ?>
+                            <div class="my-checkbox"
+                                 style="background-color:<?= $item['color_code'] ?>;"></div><?= $item['title'] ?>
                         </div>
                         <span><?= $item['count'] ?></span>
                         <?php
@@ -202,11 +230,16 @@ use frontend\modules\catalog\models\Category;
 
                 </div>
 
-                <?php if (count($colors) > 10) { ?>
-                    <a href="javascript:void(0);" class="show-all-sub show-more show-class" data-variant="Скрыть">
-                        <span class="btn-text"><?= Yii::t('app', 'Show all colors') ?></span>
-                    </a>
-                <?php } ?>
+                <?php if (count($colors) > 10) {
+                    echo Html::a(
+                        '<span class="btn-text">' . Yii::t('app', 'Show all colors') . '</span>',
+                        'javascript:void(0);',
+                        [
+                            'class' => 'show-all-sub show-more show-class',
+                            'data-variant' => 'Скрыть',
+                        ]
+                    );
+                } ?>
 
             </div>
 

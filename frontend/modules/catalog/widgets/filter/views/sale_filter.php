@@ -18,18 +18,21 @@ use frontend\modules\catalog\models\{
             'action' => Url::toRoute([$route])
         ]) ?>
 
-        <?php if (count(Yii::$app->catalogFilter->params) > 1) { ?>
-            <?= Html::a(
+        <?php if (count(Yii::$app->catalogFilter->params) > 1) {
+            echo Html::a(
                 Yii::t('app', 'Сбросить фильтры'),
                 Url::toRoute([$route]),
                 ['class' => 'reset']
-            ) ?>
-        <?php } ?>
+            );
+        }
 
-        <?php
         if ($cities) { ?>
             <div class="one-filter open subject-filter">
-                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'City') ?></a>
+                <?= Html::a(
+                    Yii::t('app', 'City'),
+                    'javascript:void(0);',
+                    ['class' => 'filt-but']
+                ) ?>
                 <div class="list-item">
 
                     <?php foreach ($cities as $item) { ?>
@@ -55,7 +58,11 @@ use frontend\modules\catalog\models\{
 
         <div class="one-filter open">
 
-            <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Category') ?></a>
+            <?= Html::a(
+                Yii::t('app', 'Category'),
+                'javascript:void(0);',
+                ['class' => 'filt-but']
+            ) ?>
 
             <div class="list-item">
 
@@ -76,7 +83,11 @@ use frontend\modules\catalog\models\{
 
         <?php if ($types) { ?>
             <div class="one-filter open subject-filter">
-                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Предмет') ?></a>
+                <?= Html::a(
+                    Yii::t('app', 'Предмет'),
+                    'javascript:void(0);',
+                    ['class' => 'filt-but']
+                ) ?>
                 <div class="list-item">
 
                     <?php foreach ($types as $item) { ?>
@@ -101,7 +112,11 @@ use frontend\modules\catalog\models\{
 
         <?php if ($style) { ?>
             <div class="one-filter open">
-                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Стиль') ?></a>
+                <?= Html::a(
+                    Yii::t('app', 'Стиль'),
+                    'javascript:void(0);',
+                    ['class' => 'filt-but']
+                ) ?>
                 <div class="list-item">
 
                     <?php foreach ($style as $item) { ?>
@@ -121,7 +136,11 @@ use frontend\modules\catalog\models\{
 
         <?php if ($factory) { ?>
             <div class="one-filter open subject-filter">
-                <a href="javascript:void(0);" class="filt-but"><?= Yii::t('app', 'Фабрики') ?></a>
+                <?= Html::a(
+                    Yii::t('app', 'Фабрики'),
+                    'javascript:void(0);',
+                    ['class' => 'filt-but']
+                ) ?>
                 <div class="list-item">
 
                     <?php
@@ -142,7 +161,15 @@ use frontend\modules\catalog\models\{
                     } ?>
                 </div>
 
-                <?php if ($count_factory > 5) { ?>
+                <?php if ($count_factory > 5) {
+                    echo Html::a(
+                        '<span class="btn-text">' . Yii::t('app', 'Показать все предметы') . '</span>',
+                        'javascript:void(0);',
+                        [
+                            'class' => 'show-all-sub show-more show-class',
+                            'data-variant' => 'Скрыть',
+                        ]
+                    );?>
                     <a href="javascript:void(0);" class="show-all-sub show-more show-class" data-variant="Скрыть">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                         <span class="btn-text"><?= Yii::t('app', 'Показать еще') ?></span>

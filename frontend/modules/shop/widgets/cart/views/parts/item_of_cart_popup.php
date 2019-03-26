@@ -8,8 +8,7 @@ use yii\helpers\Html;
 
 ?>
 
-<?php if (!empty($product)) : ?>
-
+<?php if (!empty($product)) { ?>
     <tr>
         <td class="img-td">
             <div class="img-cont"><?= Html::img($product->getImage()) ?></div>
@@ -32,10 +31,15 @@ use yii\helpers\Html;
             <div class="price"><?= $item['total_summ'] ?>&nbsp;<span>грн</span></div>
         </td>
         <td class="remove-td">
-            <a href="javascript:void(0);" class="remove"
-               onclick="delete_from_popup(<?= $item['product_id'] ?>, <?= $item['count'] ?>)"></a>
+            <?= Html::a(
+                '',
+                'javascript:void(0);',
+                [
+                    'class' => 'remove',
+                    'onclick' => 'delete_from_popup(' . $item['product_id'] . ', ' . $item['count'] . ')'
+                ]
+            ) ?>
         </td>
     </tr>
 
-<?php endif; ?>
-
+<?php }
