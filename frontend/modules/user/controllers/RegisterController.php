@@ -138,9 +138,11 @@ class RegisterController extends BaseController
                     ->setTo($model->email)
                     ->setSubject(Yii::$app->name)
                     ->send();
-            }
 
-            return $this->redirect(Url::toRoute('/user/login/index'));
+                Yii::$app->session->setFlash('success', Yii::$app->param->getByName('USER_PERTNER_REG_CONGRATULATIONS'));
+
+                return $this->redirect(Url::toRoute('/user/login/index'));
+            }
         }
 
         return $this->render('register_partner', [
