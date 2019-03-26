@@ -166,7 +166,7 @@ class RegisterController extends BaseController
             $status = $model->addFactory();
 
             if ($status === true) {
-                $modelUser = User::findByEmail($model->email);
+                $modelUser = User::find()->email($model->email)->one();
 
                 /** send mail to admin */
 
@@ -238,7 +238,7 @@ class RegisterController extends BaseController
             $status = $model->addLogistician();
 
             if ($status === true) {
-                $modelUser = User::findByEmail($model->email);
+                $modelUser = User::find()->email($model->email)->one();
 
                 /** send mail to admin */
 
