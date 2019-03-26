@@ -265,7 +265,7 @@ $this->title = $this->context->title;
                                 <div class="title">
                                     1
                                     <div class="img-cont">
-                                        <img src="<?= $bundle->baseUrl ?>/img/num1.svg" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/num1.svg') ?>
                                     </div>
                                 </div>
                                 <div class="descr">
@@ -279,7 +279,7 @@ $this->title = $this->context->title;
                                 <div class="title">
                                     2
                                     <div class="img-cont">
-                                        <img src="<?= $bundle->baseUrl ?>/img/num2.svg" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/num2.svg') ?>
                                     </div>
                                 </div>
                                 <div class="descr">
@@ -293,7 +293,7 @@ $this->title = $this->context->title;
                                 <div class="title">
                                     3
                                     <div class="img-cont" style="margin-top: 0;">
-                                        <img src="<?= $bundle->baseUrl ?>/img/num3.svg" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/num3.svg') ?>
                                     </div>
                                 </div>
                                 <div class="descr">
@@ -304,7 +304,7 @@ $this->title = $this->context->title;
                                 <div class="title">
                                     4
                                     <div class="img-cont">
-                                        <img src="<?= $bundle->baseUrl ?>/img/num4.svg" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/num4.svg') ?>
                                     </div>
                                 </div>
                                 <div class="descr">
@@ -315,7 +315,7 @@ $this->title = $this->context->title;
                                 <div class="title">
                                     5
                                     <div class="img-cont">
-                                        <img src="<?= $bundle->baseUrl ?>/img/num5.svg" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/num5.svg') ?>
                                     </div>
                                 </div>
                                 <div class="descr">
@@ -330,7 +330,7 @@ $this->title = $this->context->title;
                     <div class="container large-container">
                         <div class="after-text">
                             <div class="img-container">
-                                <img src="<?= $bundle->baseUrl ?>/img/hand.svg" alt="">
+                                <?= Html::img($bundle->baseUrl . '/img/hand.svg') ?>
                             </div>
                             <div class="text-contain">
                                 <?= Yii::t('app', 'Экономьте время и усилия на поиск по множеству сайтов. Все лучшие и проверенные поставщики собраны в нашей сети.') ?>

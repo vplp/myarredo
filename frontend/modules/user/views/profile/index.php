@@ -25,7 +25,7 @@ $this->title = Yii::t('app', 'Profile');
                 <div class="part-contact-left">
                     <div class="part-contact-left-imgbox">
                         <div class="profile-imgbox-img">
-                            <img src="<?= $bundle->baseUrl ?>/img/profile_user_img.jpg" alt="Профиль">
+                            <?= Html::img($bundle->baseUrl . '/img/profile_user_img.jpg') ?>
                         </div>
                     </div>
                     <div class="part-contact-left-formbox">
@@ -64,7 +64,7 @@ $this->title = Yii::t('app', 'Profile');
 
                         <div class="welcome-box">
                             <div class="welcome-left">
-                                <img src="<?= $bundle->baseUrl ?>/img/thank_register.png" alt="welcome">
+                                <?= Html::img($bundle->baseUrl . '/img/thank_register.png') ?>
                             </div>
                             <div class="welcome-right">
                                 <?= Yii::$app->param->getByName('USER_FACTORY_REG_CONGRATULATIONS') ?>
@@ -78,7 +78,7 @@ $this->title = Yii::t('app', 'Profile');
                                 <a href="<?= Url::toRoute(['/shop/partner-order/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
-                                        <img src="<?= $bundle->baseUrl ?>/img/requests.png" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/requests.png') ?>
                                     </div>
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'Orders') ?>
@@ -88,7 +88,7 @@ $this->title = Yii::t('app', 'Profile');
                                 <a href="<?= Url::toRoute(['/shop/partner-order/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
-                                        <img src="<?= $bundle->baseUrl ?>/img/requests.png" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/requests.png') ?>
                                     </div>
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'Orders') ?>
@@ -97,7 +97,7 @@ $this->title = Yii::t('app', 'Profile');
                                 <a href="<?= Url::toRoute(['/catalog/partner-sale/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
-                                        <img src="<?= $bundle->baseUrl ?>/img/my_products.png" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/my_products.png') ?>
                                     </div>
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'Sale') ?>
@@ -107,7 +107,7 @@ $this->title = Yii::t('app', 'Profile');
                                 <a href="<?= Url::toRoute(['/shop/admin-order/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
-                                        <img src="<?= $bundle->baseUrl ?>/img/requests.png" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/requests.png') ?>
                                     </div>
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'Orders') ?>
@@ -116,7 +116,7 @@ $this->title = Yii::t('app', 'Profile');
                                 <a href="<?= Url::toRoute(['/catalog/product-stats/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
-                                        <img src="<?= $bundle->baseUrl ?>/img/statistics_prods.png" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/statistics_prods.png') ?>
                                     </div>
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'Product statistics') ?>
@@ -125,7 +125,7 @@ $this->title = Yii::t('app', 'Profile');
                                 <a href="<?= Url::toRoute(['/catalog/factory-stats/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
-                                        <img src="<?= $bundle->baseUrl ?>/img/statistics_factorys.png" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/statistics_factorys.png') ?>
                                     </div>
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'Factory statistics') ?>
@@ -135,7 +135,7 @@ $this->title = Yii::t('app', 'Profile');
                                 <a href="<?= Url::toRoute(['/catalog/factory-product/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
-                                        <img src="<?= $bundle->baseUrl ?>/img/my_products.png" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/my_products.png') ?>
                                     </div>
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'My goods') ?>
@@ -144,7 +144,7 @@ $this->title = Yii::t('app', 'Profile');
                                 <a href="<?= Url::toRoute(['/catalog/factory-collections/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
-                                        <img src="<?= $bundle->baseUrl ?>/img/collections.png" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/collections.png') ?>
                                     </div>
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'Collections') ?>
@@ -153,7 +153,7 @@ $this->title = Yii::t('app', 'Profile');
                                 <a href="<?= Url::toRoute(['/catalog/factory-promotion/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
-                                        <img src="<?= $bundle->baseUrl ?>/img/reclams_campany.png" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/reclams_campany.png') ?>
                                     </div>
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'Рекламные кампании') ?>
@@ -162,7 +162,7 @@ $this->title = Yii::t('app', 'Profile');
                                 <a href="<?= Url::toRoute(['/shop/factory-order/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
-                                        <img src="<?= $bundle->baseUrl ?>/img/requests.png" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/requests.png') ?>
                                     </div>
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'Orders') ?>
@@ -171,7 +171,7 @@ $this->title = Yii::t('app', 'Profile');
                                 <a href="<?= Url::toRoute(['/catalog/product-stats/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
-                                        <img src="<?= $bundle->baseUrl ?>/img/statistics_prods.png" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/statistics_prods.png') ?>
                                     </div>
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'Product statistics') ?>
@@ -180,7 +180,7 @@ $this->title = Yii::t('app', 'Profile');
                                 <a href="<?= Url::toRoute(['/catalog/factory-stats/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
-                                        <img src="<?= $bundle->baseUrl ?>/img/statistics_factorys.png" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/statistics_factorys.png') ?>
                                     </div>
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'Factory statistics') ?>
@@ -190,7 +190,7 @@ $this->title = Yii::t('app', 'Profile');
 
                             <a href="<?= Url::toRoute(['/user/logout/index'], true) ?>" class="profile-quadrlink">
                                 <div class="profile-quadrlink-img">
-                                    <img src="<?= $bundle->baseUrl ?>/img/come_out.png" alt="Коллекция">
+                                    <?= Html::img($bundle->baseUrl . '/img/come_out.png') ?>
                                 </div>
                                 <div class="profile-quadrlink-text">
                                     <?= Yii::t('app', 'Sign Up') ?>

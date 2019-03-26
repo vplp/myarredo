@@ -34,7 +34,6 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                     </div>
                     <table class="char" width="100%">
                         <tr>
-                            <!-- <td><?= Yii::t('app', 'Предмет') ?></td> -->
                             <td colspan="2">
                                 <?= Html::a(
                                     $orderItem->product['lang']['title'],

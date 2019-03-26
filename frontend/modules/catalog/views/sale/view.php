@@ -175,7 +175,7 @@ $this->title = $this->context->title;
                                 <div class="brand-info">
                                     <div class="white-area">
                                         <div class="image-container">
-                                            <img src="<?= $bundle->baseUrl ?>/img/brand.png" alt="">
+                                            <?= Html::img($bundle->baseUrl . '/img/brand.png') ?>
                                         </div>
                                         <div class="brand-info">
                                             <p class="text-center">
@@ -185,7 +185,7 @@ $this->title = $this->context->title;
                                                 <?= $model['user']['profile']['name_company']; ?>
                                             </h4>
                                             <div class="ico">
-                                                <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
+                                                <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
                                             </div>
                                             <div class="tel-num js-show-num">
                                                 (XXX) XXX-XX-XX
@@ -198,7 +198,7 @@ $this->title = $this->context->title;
                                             ) ?>
 
                                             <div class="ico">
-                                                <img src="<?= $bundle->baseUrl ?>/img/marker-map.png" alt="">
+                                                <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
                                             </div>
                                             <div class="text-center adress">
                                                 <?= $model['user']['profile']['city']['lang']['title']; ?>,<br>
@@ -206,7 +206,7 @@ $this->title = $this->context->title;
                                             </div>
 
                                             <div class="ico">
-                                                <img src="<?= $bundle->baseUrl ?>/img/conv.svg" alt="">
+                                                <?= Html::img($bundle->baseUrl . '/img/conv.svg') ?>
                                             </div>
 
                                             <?= Html::a(

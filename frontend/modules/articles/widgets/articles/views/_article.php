@@ -6,11 +6,11 @@ use yii\helpers\Html;
 
 <div class="articles_i cf">
     <div class="articles_i_l">
-        <?php if ($article->getArticleImage()): ?>
+        <?php if ($article->getArticleImage()) { ?>
             <div class="articles_i_img">
-                <img src="<?= $article->getArticleImage() ?>" alt="">
+                <?= Html::img($article->getArticleImage()) ?>
             </div>
-        <?php endif; ?>
+        <?php } ?>
     </div>
     <div class="articles_i_r">
         <div class="articles_i_date"><?= $article->getPublishedTime() ?></div>

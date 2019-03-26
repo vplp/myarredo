@@ -31,7 +31,7 @@ $model->user_agreement = 1;
                     <div class="col-sm-12 col-md-2">
                         <?= Html::tag('h2', $this->title); ?>
                         <div class="img-cont">
-                            <img src="<?= $bundle->baseUrl ?>/img/sign-up-2.svg" alt="">
+                            <?= Html::img($bundle->baseUrl . '/img/sign-up-2.svg') ?>
                         </div>
                     </div>
 

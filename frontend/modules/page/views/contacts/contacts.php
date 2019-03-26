@@ -23,7 +23,7 @@ $bundle = AppAsset::register($this);
                             ?>
                             <div class="one-cont double-cont">
                                 <div class="img-part">
-                                    <img src="<?= $bundle->baseUrl ?>/img/cont1.svg" alt="">
+                                    <?= Html::img($bundle->baseUrl . '/img/cont1.svg') ?>
                                 </div>
                                 <div class="info-part">
                                     <div class="main-sticker">
@@ -33,7 +33,7 @@ $bundle = AppAsset::register($this);
                                     <?= Html::tag('h2', $mainPartner->profile->name_company); ?>
 
                                     <div class="ico">
-                                        <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
                                     </div>
 
                                     <?= Html::a(
@@ -43,7 +43,7 @@ $bundle = AppAsset::register($this);
                                     ) ?>
 
                                     <div class="ico">
-                                        <img src="<?= $bundle->baseUrl ?>/img/marker-map.png" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
                                     </div>
                                     <div class="adres">
                                         <?= isset($mainPartner->profile->city) ? $mainPartner->profile->city->lang->title . '<br>' : '' ?>
@@ -57,7 +57,7 @@ $bundle = AppAsset::register($this);
                             <div class="one-cont">
                                 <?= Html::tag('h2', $partner->profile->name_company); ?>
                                 <div class="ico">
-                                    <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
+                                    <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
                                 </div>
 
                                 <?= Html::a(
@@ -67,7 +67,7 @@ $bundle = AppAsset::register($this);
                                 ) ?>
 
                                 <div class="ico">
-                                    <img src="<?= $bundle->baseUrl ?>/img/marker-map.png" alt="">
+                                    <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
                                 </div>
                                 <div class="adres">
                                     <?= isset($partner->profile->city) ? $partner->profile->city->lang->title . '<br>' : '' ?>

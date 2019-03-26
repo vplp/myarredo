@@ -141,7 +141,7 @@ $bundle = AppAsset::register($this);
 
                             <div class="one-prod-tile last">
                                 <div class="img-cont">
-                                    <img src="<?= $bundle->baseUrl ?>/img/factory.svg" alt="">
+                                    <?= Html::img($bundle->baseUrl . '/img/factory.svg') ?>
                                 </div>
 
                                 <?= Html::a(

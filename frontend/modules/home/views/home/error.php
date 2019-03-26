@@ -15,7 +15,7 @@ $bundle = AppAsset::register($this);
             <div class="row">
                 <div class="col-md-6">
                     <figure class="error-img">
-                        <img src="<?= $bundle->baseUrl ?>/img/not_found.svg" alt="not found">
+                        <?= Html::img($bundle->baseUrl . '/img/not_found.svg') ?>
                     </figure>
                 </div>
                 <div class="col-md-6">
