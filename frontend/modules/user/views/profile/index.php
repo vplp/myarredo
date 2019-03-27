@@ -84,14 +84,42 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Yii::t('app', 'Orders') ?>
                                     </div>
                                 </a>
-                            <?php } elseif (in_array(Yii::$app->user->identity->group->role, ['partner'])) { ?>
-                                <a href="<?= Url::toRoute(['/shop/partner-order/list'], true) ?>"
+                            <?php } elseif (in_array(Yii::$app->user->identity->group->role, ['partner']) && Yii::$app->user->identity->profile->country_id == 4) { ?>
+                                <a href="<?= Url::toRoute(['/catalog/italian-product/list'], true) ?>"
+                                   class="profile-quadrlink">
+                                    <div class="profile-quadrlink-img">
+                                        <?= Html::img($bundle->baseUrl . '/img/my_products.png') ?>
+                                    </div>
+                                    <div class="profile-quadrlink-text">
+                                        <?= Yii::t('app', 'Furniture in Italy') ?>
+                                    </div>
+                                </a>
+                                <a href="<?= Url::toRoute(['/shop/partner-order/list-italy'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
                                         <?= Html::img($bundle->baseUrl . '/img/requests.png') ?>
                                     </div>
                                     <div class="profile-quadrlink-text">
-                                        <?= Yii::t('app', 'Orders') ?>
+                                        <?= Yii::t('app', 'Orders italy') ?>
+                                    </div>
+                                </a>
+                            <?php } elseif (in_array(Yii::$app->user->identity->group->role, ['partner'])) { ?>
+                                <a href="<?= Url::toRoute(['/catalog/italian-product/list'], true) ?>"
+                                   class="profile-quadrlink">
+                                    <div class="profile-quadrlink-img">
+                                        <?= Html::img($bundle->baseUrl . '/img/my_products.png') ?>
+                                    </div>
+                                    <div class="profile-quadrlink-text">
+                                        <?= Yii::t('app', 'Furniture in Italy') ?>
+                                    </div>
+                                </a>
+                                <a href="<?= Url::toRoute(['/shop/partner-order/list-italy'], true) ?>"
+                                   class="profile-quadrlink">
+                                    <div class="profile-quadrlink-img">
+                                        <?= Html::img($bundle->baseUrl . '/img/requests.png') ?>
+                                    </div>
+                                    <div class="profile-quadrlink-text">
+                                        <?= Yii::t('app', 'Orders italy') ?>
                                     </div>
                                 </a>
                                 <a href="<?= Url::toRoute(['/catalog/partner-sale/list'], true) ?>"
@@ -101,6 +129,15 @@ $this->title = Yii::t('app', 'Profile');
                                     </div>
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'Sale') ?>
+                                    </div>
+                                </a>
+                                <a href="<?= Url::toRoute(['/shop/partner-order/list'], true) ?>"
+                                   class="profile-quadrlink">
+                                    <div class="profile-quadrlink-img">
+                                        <?= Html::img($bundle->baseUrl . '/img/requests.png') ?>
+                                    </div>
+                                    <div class="profile-quadrlink-text">
+                                        <?= Yii::t('app', 'Orders') ?>
                                     </div>
                                 </a>
                             <?php } elseif (Yii::$app->user->identity->group->role == 'admin') { ?>
