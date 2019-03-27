@@ -4,7 +4,7 @@ namespace common\modules\payment\models;
 
 use Yii;
 use yii\helpers\{
-    ArrayHelper, Inflector
+    ArrayHelper
 };
 //
 use voskobovich\behaviors\ManyToManyBehavior;
@@ -30,19 +30,17 @@ use thread\app\base\models\ActiveRecord;
  * @property integer $updated_at
  * @property boolean $published
  * @property boolean $deleted
- * @property boolean $items_ids
+ *
+ * @property PaymentRelItem[] $items_ids
  *
  * @package common\modules\payment\models
  */
 class Payment extends ActiveRecord
 {
-    public $items_ids;
-
     const PAYMENT_STATUS_PENDING = 'pending';
     const PAYMENT_STATUS_ACCEPTED = 'accepted';
     const PAYMENT_STATUS_SUCCESS = 'success';
     const PAYMENT_STATUS_FAIL = 'fail';
-
 
     /**
      * @return object|string|\yii\db\Connection|null
@@ -82,7 +80,7 @@ class Payment extends ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'amount', 'currency', 'items_ids'], 'required'],
+            [['type', 'amount', 'currency'], 'required'],
             [['type'], 'in', 'range' => array_keys(static::getTypeKeyRange())],
             [['currency'], 'in', 'range' => array_keys(static::getCurrencyKeyRange())],
             [['payment_status'], 'in', 'range' => array_keys(static::getPaymentStatusKeyRange())],
@@ -90,9 +88,7 @@ class Payment extends ActiveRecord
             [['user_id', 'payment_time', 'create_time', 'update_time'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [
-                [
-                    'items_ids',
-                ],
+                'items_ids',
                 'each',
                 'rule' => ['integer']
             ],
@@ -119,6 +115,7 @@ class Payment extends ActiveRecord
                 'payment_status',
                 'payment_time',
                 'published',
+                'items_ids'
             ],
             'frontend' => [
                 'user_id',

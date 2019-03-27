@@ -72,9 +72,6 @@ class PaymentController extends BaseController
             try {
                 $model->payment_status = Payment::PAYMENT_STATUS_PENDING;
 
-                /* !!! */ echo  '<pre style="color:red;">'; print_r($model->attributes); echo '</pre>'; /* !!! */
-                die;
-
                 $save = $model->save();
 
                 if ($save) {

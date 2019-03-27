@@ -83,10 +83,11 @@ class ItalianProductController extends BaseController
              * cost 1 product = 5 EUR
              * conversion to RUB
              */
+            $cost = 0.2;
 
             $currency = Currency::findByCode2('EUR');
             /** @var Currency $amount */
-            $amount = (5 * $currency->course + 1 * $currency->course + 0.12 * $currency->course);
+            $amount = ($cost * $currency->course + 1 * $currency->course + 0.12 * $currency->course);
 
             $modelPayment->amount = number_format(
                 ceil(count($models) * $amount),

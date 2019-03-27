@@ -56,7 +56,6 @@ class PaymentRelItem extends ActiveRecord
                 'targetClass' => Payment::class,
                 'targetAttribute' => 'id'
             ],
-            [['item_id'], 'integer'],
             [
                 'item_id',
                 'exist',
