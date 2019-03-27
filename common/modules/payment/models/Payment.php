@@ -30,6 +30,7 @@ use thread\app\base\models\ActiveRecord;
  * @property integer $updated_at
  * @property boolean $published
  * @property boolean $deleted
+ * @property boolean $items_ids
  *
  * @package common\modules\payment\models
  */

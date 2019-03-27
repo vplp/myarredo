@@ -352,8 +352,8 @@ $Specifications = Specification::findBase()->all();
                                             '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
                                             'id[]' => $model->id,
                                         ],
-                                    ],
-                                    ['class' => 'btn btn-success']
+                                        'class' => 'btn btn-success'
+                                    ]
                                 );
                             } ?>
                         </div>

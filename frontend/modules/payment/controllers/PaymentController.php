@@ -74,6 +74,7 @@ class PaymentController extends BaseController
 
                 /* !!! */ echo  '<pre style="color:red;">'; print_r($model->attributes); echo '</pre>'; /* !!! */
                 die;
+
                 $save = $model->save();
 
                 if ($save) {
