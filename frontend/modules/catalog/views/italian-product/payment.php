@@ -40,7 +40,10 @@ $this->title = $this->context->title;
                                     'Payment[items_ids][]',
                                     $product->id
                                 ) .
-                                Html::img(ItalianProduct::getImageThumb($product['image_link']), ['width' => 50]) .
+                                Html::img(
+                                    ItalianProduct::getImageThumb($product['image_link']),
+                                    ['width' => 50]
+                                ) .
                                 Html::a(
                                     '<i class="fa fa-times"></i></a>',
                                     "javascript:void(0);",
@@ -54,7 +57,8 @@ $this->title = $this->context->title;
                         } ?>
                     </div>
 
-                    <div>Всего к оплате: <?= $modelPayment->amount . ' ' . $modelPayment->currency ?></div>
+                    <div><?= Yii::t('app', 'Всего к оплате') ?>
+                        : <?= $modelPayment->amount . ' ' . $modelPayment->currency ?></div>
 
                     <?php
                     echo $form
