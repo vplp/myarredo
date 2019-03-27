@@ -3,10 +3,10 @@
 namespace frontend\modules\catalog\models;
 
 use Yii;
+use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 //
 use common\modules\catalog\models\Product as CommonProduct;
-use yii\helpers\Url;
 
 /**
  * Class FactoryProduct
@@ -122,6 +122,7 @@ class FactoryProduct extends CommonProduct
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getFactoryPromotionRelProduct()
     {
