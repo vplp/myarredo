@@ -413,7 +413,8 @@ class MetaTag extends Component
             'content' => $array['image'] ?? null,
         ]);
 
-        $locale = Yii::$app->language;
+        $lang = substr(Yii::$app->language, 0, 2);
+        $locale = $lang . '_' . strtoupper(Yii::$app->city->domain);
 
         $view->registerMetaTag([
             'property' => 'og:locale',
