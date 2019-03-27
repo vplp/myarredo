@@ -314,6 +314,7 @@ class MetaTag extends Component
 
     /**
      * @return $this
+     * @throws \yii\base\InvalidConfigException
      */
     public function renderGraph()
     {
@@ -372,5 +373,53 @@ class MetaTag extends Component
     public static function getModelKey(ActiveRecord $model)
     {
         return Modellink::getModelKey($model);
+    }
+
+    /**
+     * @param $array
+     * @return $this
+     */
+    public function renderArrayGraph($array)
+    {
+        $view = Yii::$app->getView();
+
+        $view->registerMetaTag([
+            'property' => 'og:site_name',
+            'content' => $array['site_name'] ?? null,
+        ]);
+
+        $view->registerMetaTag([
+            'property' => 'og:type',
+            'content' => $array['type'] ?? 'website',
+        ]);
+
+        $view->registerMetaTag([
+            'property' => 'og:url',
+            'content' => Yii::$app->getRequest()->getAbsoluteUrl(),
+        ]);
+
+        $view->registerMetaTag([
+            'property' => 'og:title',
+            'content' => $array['title'] ?? null,
+        ]);
+
+        $view->registerMetaTag([
+            'property' => 'og:description',
+            'content' => $array['description'] ?? null,
+        ]);
+
+        $view->registerMetaTag([
+            'property' => 'og:image',
+            'content' => $array['image'] ?? null,
+        ]);
+
+        $locale = Yii::$app->language;
+
+        $view->registerMetaTag([
+            'property' => 'og:locale',
+            'content' => $locale,
+        ]);
+
+        return $this;
     }
 }

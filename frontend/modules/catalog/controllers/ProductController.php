@@ -141,11 +141,14 @@ class ProductController extends BaseController
         $pageDescription[] = Yii::t('app', 'Купить в интернет-магазине Myarredo в') .
             ' ' . Yii::$app->city->getCityTitleWhere();
 
-        $this->title = implode('. ', $pageTitle);
+        $pageTitle = implode('. ', $pageTitle);
+        $pageDescription = implode('. ', $pageDescription);
+
+        $this->title = $pageTitle;
 
         Yii::$app->view->registerMetaTag([
             'name' => 'description',
-            'content' => implode('. ', $pageDescription),
+            'content' => $pageDescription,
         ]);
 
         $lang = substr(Yii::$app->language, 0, 2);
@@ -155,6 +158,14 @@ class ProductController extends BaseController
             'href' => Yii::$app->request->hostInfo . '/' .
                 ($lang != 'ru' ? $lang . '/' : '') .
                 Yii::$app->request->pathInfo
+        ]);
+
+        Yii::$app->metatag->renderArrayGraph([
+            'site_name' => 'Myarredo Family',
+            'type' => 'article',
+            'title' => $pageTitle,
+            'description' => $pageDescription,
+            'image' => Yii::$app->request->hostInfo . Product::getImage($model['image_link']),
         ]);
 
         return $this->render('view', [

@@ -212,11 +212,23 @@ class SaleController extends BaseController
                 Yii::t('app', 'из Италии со скидкой');
         }
 
-        $this->title = implode('. ', $pageTitle);
+        $pageTitle = implode('. ', $pageTitle);
+        $pageDescription = implode('. ', $pageDescription);
+
+
+        $this->title = $pageTitle;
 
         Yii::$app->view->registerMetaTag([
             'name' => 'description',
-            'content' => implode('. ', $pageDescription),
+            'content' => $pageDescription,
+        ]);
+
+        Yii::$app->metatag->renderArrayGraph([
+            'site_name' => 'Myarredo Family',
+            'type' => 'article',
+            'title' => $pageTitle,
+            'description' => $pageDescription,
+            'image' => Yii::$app->request->hostInfo . Sale::getImage($model['image_link']),
         ]);
 
         return $this->render('view', [
