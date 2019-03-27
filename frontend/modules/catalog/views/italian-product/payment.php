@@ -33,8 +33,9 @@ $this->title = $this->context->title;
                     <div id="list-product">
                         <?php
                         foreach ($models as $product) {
+                            /** @var ItalianProduct $product */
                             echo '<div class="list-product-item">' .
-                                $product->lang->title .
+                                $product->getTitle() .
                                 Html::input(
                                     'hidden',
                                     'Payment[items_ids][]',
