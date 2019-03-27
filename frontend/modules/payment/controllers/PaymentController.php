@@ -66,12 +66,14 @@ class PaymentController extends BaseController
         $model = new Payment();
         $model->setScenario('frontend');
 
-        if ($model->load(Yii::$app->getRequest()->post())) {
+        if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
             /** @var Transaction $transaction */
             $transaction = $model::getDb()->beginTransaction();
             try {
                 $model->payment_status = Payment::PAYMENT_STATUS_PENDING;
 
+                /* !!! */ echo  '<pre style="color:red;">'; print_r($model->attributes); echo '</pre>'; /* !!! */
+                die;
                 $save = $model->save();
 
                 if ($save) {

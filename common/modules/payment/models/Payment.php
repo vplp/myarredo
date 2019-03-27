@@ -81,7 +81,7 @@ class Payment extends ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'amount', 'currency'], 'required'],
+            [['type', 'amount', 'currency', 'items_ids'], 'required'],
             [['type'], 'in', 'range' => array_keys(static::getTypeKeyRange())],
             [['currency'], 'in', 'range' => array_keys(static::getCurrencyKeyRange())],
             [['payment_status'], 'in', 'range' => array_keys(static::getPaymentStatusKeyRange())],

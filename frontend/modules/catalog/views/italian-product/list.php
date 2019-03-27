@@ -89,7 +89,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                             ['width' => 50]
                                                         ),
                                                         Url::toRoute(
-                                                            ['/catalog/italian-product/intrash', 'id' => $model->id]
+                                                            ['/catalog/italian-product/update', 'id' => $model->id]
                                                         )
                                                     );
                                             },
@@ -106,7 +106,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                     Html::a(
                                                         $model['lang']['title'],
                                                         Url::toRoute(
-                                                            ['/catalog/italian-product/intrash', 'id' => $model->id]
+                                                            ['/catalog/italian-product/update', 'id' => $model->id]
                                                         )
                                                     );
                                             },
