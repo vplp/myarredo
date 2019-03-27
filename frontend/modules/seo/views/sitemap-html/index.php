@@ -14,6 +14,7 @@ $this->title = $this->context->title;
     <div class="page about-page">
         <div class="container large-container">
             <div class="col-md-12">
+                <?= Html::tag('h1', Yii::t('app', 'Карта сайта')); ?>
                 <?= Html::tag('h2', Yii::t('app', 'Категории мебели')); ?>
                 <div class="text">
 

@@ -151,6 +151,8 @@ class SitemapHtmlController extends \frontend\components\BaseController
             ];
         }
 
+        $this->title = Yii::t('app', 'Карта сайта');
+
         return $this->render('index', [
             'category' => $category,
             'types' => $types,
