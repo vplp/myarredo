@@ -82,18 +82,34 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'attribute' => 'image_link',
                                             'value' => function ($model) {
                                                 /** @var \frontend\modules\catalog\models\ItalianProduct $model */
-                                                return Html::img(
-                                                    ItalianProduct::getImageThumb($model['image_link']),
-                                                    ['width' => 50]
-                                                );
+                                                return
+                                                    Html::a(
+                                                        Html::img(
+                                                            ItalianProduct::getImageThumb($model['image_link']),
+                                                            ['width' => 50]
+                                                        ),
+                                                        Url::toRoute(
+                                                            ['/catalog/italian-product/intrash', 'id' => $model->id]
+                                                        )
+                                                    );
                                             },
                                             'headerOptions' => ['class' => 'col-sm-1'],
                                             'contentOptions' => ['class' => 'text-center'],
                                             'filter' => false
                                         ],
                                         [
+                                            'format' => 'raw',
                                             'attribute' => 'title',
-                                            'value' => 'lang.title',
+                                            'value' => function ($model) {
+                                                /** @var \frontend\modules\catalog\models\ItalianProduct $model */
+                                                return
+                                                    Html::a(
+                                                        $model['lang']['title'],
+                                                        Url::toRoute(
+                                                            ['/catalog/italian-product/intrash', 'id' => $model->id]
+                                                        )
+                                                    );
+                                            },
                                             'label' => Yii::t('app', 'Title'),
                                         ],
                                         [

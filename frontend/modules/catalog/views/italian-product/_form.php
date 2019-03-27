@@ -330,12 +330,32 @@ $Specifications = Specification::findBase()->all();
                         </div>
 
                         <div class="buttons-cont">
-                            <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+                            <?= Html::submitButton(
+                                Yii::t('app', 'Save'),
+                                ['class' => 'btn btn-success']
+                            ) ?>
+
                             <?= Html::a(
                                 Yii::t('app', 'Вернуться к списку'),
                                 ['/catalog/italian-product/list'],
                                 ['class' => 'btn btn-primary']
                             ) ?>
+
+                            <?php
+                            if (!$model->isNewRecord) {
+                                echo Html::a(
+                                    Yii::t('app', 'Оплатить размещение'),
+                                    ['/catalog/italian-product/payment'],
+                                    [
+                                        'data-method' => 'POST',
+                                        'data-params' => [
+                                            '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
+                                            'id[]' => $model->id,
+                                        ],
+                                    ],
+                                    ['class' => 'btn btn-success']
+                                );
+                            } ?>
                         </div>
 
                         <?php ActiveForm::end(); ?>
