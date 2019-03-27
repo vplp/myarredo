@@ -131,7 +131,7 @@ return [
     'forms/feedback' => 'forms/forms/feedback',
 
     // Module [[SEO]]
-    'page/sitemap' => 'seo/sitemaphtml/index',
+    'page/sitemap' => 'seo/sitemap-html/index',
     //
     'sitemap/pathcache' => 'seo/pathcache/pathcache/index',
     'sitemap/fill' => 'seo/sitemap/fill/index',

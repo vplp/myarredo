@@ -113,7 +113,7 @@ class Factory extends \common\modules\catalog\models\Factory
      * @param string $alias
      * @return string
      */
-    public static function getUrl(string $alias)
+    public static function getUrl($alias)
     {
         return Url::toRoute(['/catalog/factory/view', 'alias' => $alias], true);
     }
