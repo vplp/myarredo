@@ -99,3 +99,20 @@ $this->title = Yii::t('app', 'Profile');
         </div>
     </div>
 </main>
+
+<?php
+$url = Url::toRoute(['/location/location/get-cities']);
+$script = <<<JS
+$('select#profile-country_id').change(function(){
+    var country_id = parseInt($(this).val());
+    
+    $.post('$url', {_csrf: $('#token').val(),country_id:country_id}, function(data){
+        var select = $('select#profile-city_id');
+        select.html(data.options);
+        select.selectpicker("refresh");
+    });
+});
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);
+?>

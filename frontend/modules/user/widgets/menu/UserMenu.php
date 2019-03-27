@@ -48,6 +48,20 @@ class UserMenu extends Widget
                     'url' => ['/page/page/view', 'alias' => 'instructions']
                 ]
             ];
+        } elseif (!Yii::$app->getUser()->isGuest &&
+            in_array(Yii::$app->user->identity->group->role, ['partner']) &&
+            Yii::$app->user->identity->profile->country_id == 4
+        ) {
+            $this->menuItems = [
+                [
+                    'label' => Yii::t('app', 'Furniture in Italy'),
+                    'url' => ['/catalog/italian-product/list']
+                ],
+                [
+                    'label' => Yii::t('app', 'Orders italy'),
+                    'url' => ['/shop/partner-order/list-italy']
+                ],
+            ];
         } elseif (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['partner'])) {
             $this->menuItems = [
                 [
