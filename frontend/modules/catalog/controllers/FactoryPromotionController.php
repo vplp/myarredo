@@ -272,9 +272,10 @@ class FactoryPromotionController extends BaseController
                 return $merchant->payment(
                     $modelPayment->amount,
                     $modelPayment->id,
-                    'Оплата рекламной компании',
+                    Yii::t('app', 'Оплата рекламной кампании'),
                     null,
-                    Yii::$app->user->identity->email
+                    Yii::$app->user->identity->email,
+                    substr(Yii::$app->language, 0, 2)
                 );
             } else {
                 $transaction->rollBack();
