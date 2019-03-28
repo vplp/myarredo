@@ -6780,10 +6780,43 @@ h1 {
 .field-specification-for-kitchen .select2-search__field {
   min-width: 200px !important;
 }
+#italian-product-grid-container table.table tbody tr td:nth-child(5) {
+  text-align: center;
+}
+.itprod-box .btn-goods {
+  margin-top: 20px;
+}
+.itprod-box .cont-goods .table .jq-checkbox {
+  cursor: pointer;
+}
+.itprod-box .cont-goods .table .jq-checkbox.checked .jq-checkbox__div {
+  margin: 4px 0 0 7px;
+}
+.itprod-box .cont-goods .table thead tr td input[type=text] {
+  background-color: #f3f2f0;
+}
+
+
 /* .category-page .filters .one-filter.colors-box .one-item-check.selected .my-checkbox:after {
   color: #ffffff;
 } */
 /* ---------------------------------------new media queries-------------------------------------- */
+
+@media (min-width: 1461px) {
+  /* .itprod-box .btn-goods {
+    margin-left: 10px;
+  } */
+  .itprod-panel-add {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  .itprod-box #factory-product {
+    margin: 0 auto;
+    max-width: 1400px;
+    padding: 0 20px;
+  }
+}
 
 @media (min-width: 1200px) and (max-width: 1300px) {
   .profile-quadrlink {
@@ -6829,14 +6862,14 @@ h1 {
     text-align: center;
   }
 }
-@media (max-width: 1200px) {
-  .prod-pricebox {
-    font-size: 12px;
-  }
-}
 @media (max-width: 1220px) {
   .welcome-tittle {
     font-size: 26px;
+  }
+}
+@media (max-width: 1200px) {
+  .prod-pricebox {
+    font-size: 12px;
   }
 }
 @media (max-width: 1199px) {
@@ -6855,6 +6888,15 @@ h1 {
   .part-contact-left,
   .part-contact-right {
     width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  #italian-product-grid-container table.table {
+    margin: 0 -1px;
+  }
+  #italian-product-grid-container table.table td {
+    min-width: 72px;
+    vertical-align: middle;
   }
 }
 @media (max-width: 760px) {

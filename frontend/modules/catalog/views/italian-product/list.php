@@ -29,16 +29,17 @@ $this->title = Yii::t('app', 'Furniture in Italy');
 
     <main>
         <div class="page category-page">
-            <div class="container large-container">
+            <div class="largex-container itprod-box">
                 <div class="row title-cont">
 
                     <?= Html::tag('h1', Yii::t('app', 'Furniture in Italy')); ?>
-
-                    <?= Html::a(
-                        '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Add'),
-                        Url::toRoute(['/catalog/italian-product/create']),
-                        ['class' => 'btn btn-goods']
-                    ) ?>
+                    <div class="itprod-panel-add">
+                        <?= Html::a(
+                            '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Add'),
+                            Url::toRoute(['/catalog/italian-product/create']),
+                            ['class' => 'btn btn-goods']
+                        ) ?>
+                    </div>
 
                     <?= Breadcrumbs::widget([
                         'links' => $this->context->breadcrumbs,
