@@ -529,10 +529,10 @@ class ItalianProduct extends ActiveRecord
             }
 
             if (in_array($v['specification_id'], $style)) {
-                $mas['style'] = $v['spec_id'];
+                $mas['style'] = $v['specification_id'];
             }
             if (in_array($v['specification_id'], $material)) {
-                $mas['material'] = $v['spec_id'];
+                $mas['material'] = $v['specification_id'];
             }
         }
 
