@@ -28,12 +28,34 @@ $Specifications = Specification::findBase()->all();
 
     <main>
         <div class="page create-sale">
-            <div class="largex-container forcusttitle">
+            <div class="largex-container itprodform-box">
 
                 <?= Html::tag('h1', $this->title); ?>
 
-                <div class="column-center">
-                    <div class="form-horizontal">
+                <div class="column-center add-itprod-box">                   
+
+                    <div class="form-horizontal add-itprod-content">
+
+                        <!-- steps box -->
+                        <div class="progress-steps-box">
+                            <div class="progress-steps-step active">
+                                <span class="step-numb">1</span>
+                                <span class="step-text">информация про товар</span>
+                            </div>
+                            <div class="progress-steps-step">
+                                <span class="step-numb">2</span>
+                                <span class="step-text">фото товара</span>
+                            </div>
+                            <div class="progress-steps-step">
+                                <span class="step-numb">3</span>
+                                <span class="step-text">проверка товара</span>
+                            </div>
+                            <div class="progress-steps-step">
+                                <span class="step-numb">4</span>
+                                <span class="step-text">оплата</span>
+                            </div>
+                        </div>
+                        <!-- steps box end -->
 
                         <?php $form = ActiveForm::begin([
                             'action' => ($model->isNewRecord)
@@ -361,6 +383,25 @@ $Specifications = Specification::findBase()->all();
                         <?php ActiveForm::end(); ?>
 
                     </div>
+                    <!-- rules box -->
+                    <div class="add-itprod-rules">
+                        <div class="add-itprod-rules-item">
+                            <h4 class="additprod-title">Помни это...</h4>
+                            <div class="additprod-textbox">
+                                <p>
+                                    Обьявление будет опубликовано если оно соответствует правилам Myarredo
+                                </p>
+                                <p>
+                                    Не вводите одно и то же обьявление несколько раз
+                                </p>
+                            </div>
+                            <div class="panel-additprod-rules">
+                                <a href="#" class="btn-myarredo"> <i class="fa fa-question-circle" aria-hidden="true"></i> Правила</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- rules box end -->
+
                 </div>
             </div>
         </div>

@@ -6795,17 +6795,126 @@ h1 {
 .itprod-box .cont-goods .table thead tr td input[type=text] {
   background-color: #f3f2f0;
 }
-
-
+.create-sale .largex-container .column-center.add-itprod-box {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.add-itprod-box {
+  display: flex;
+}
+.add-itprod-rules {
+  min-width: 300px;
+  max-width: 300px;
+  padding-left: 20px;
+}
+.itprodform-box .add-itprod-box .add-itprod-content {
+  width: 100%;
+}
+.itprodform-box h1 {
+  padding-left: 25px;
+}
+.add-itprod-content {
+  width: 100%;
+  padding-right: 20px;
+}
+.progress-steps-box {
+  display: flex;
+  align-items: center;
+  padding: 20px 0 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: -5px;
+}
+.progress-steps-step {
+  font-family: Palatino,"Open Sans",sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #999999;
+  padding: 5px 25px 5px 5px;
+}
+.progress-steps-step.active {
+  color: #000000;
+}
+.step-numb {
+  display: inline-block;
+  width: 33px;
+  height: 30px;
+  text-align: center;
+  padding: 3px 6px;
+  background-color: #f3f2f0;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  position: relative;
+  margin-right: 6px;
+}
+.progress-steps-step.active .step-numb {
+  background-color: #ffffff;
+}
+.progress-steps-step:not(:first-child) {
+  padding-left: 40px;
+}
+.progress-steps-step:not(:first-child) .step-numb::before {
+  content: '';
+  display: inline-block;
+  width: 50px;
+  height: 1px;
+  background-color: #cccccc;
+  position: absolute;
+  top: 55%;
+  left: -50px;
+}
+.additprod-title {
+  color: #545451;
+  font-weight: 600;
+}
+.additprod-textbox p {
+  color: #545451;
+  font-size: 16px;
+  line-height: 20px;
+}
+.btn-myarredo {
+  display: inline-block;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #448339;
+  color: #ffffff;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 16px;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.btn-myarredo:hover {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #429333;
+}
+.btn-myarredo:focus, .btn-myarredo:visited {
+  text-decoration: none;
+  color: #ffffff;
+}
+.btn-myarredo .fa {
+  margin-right: 4px;
+}
+.panel-additprod-rules {
+  margin-top: 15px;
+}
 /* .category-page .filters .one-filter.colors-box .one-item-check.selected .my-checkbox:after {
   color: #ffffff;
 } */
 /* ---------------------------------------new media queries-------------------------------------- */
 
 @media (min-width: 1461px) {
-  /* .itprod-box .btn-goods {
-    margin-left: 10px;
-  } */
   .itprod-panel-add {
     max-width: 1400px;
     margin: 0 auto;
@@ -6833,10 +6942,32 @@ h1 {
   .profile-gencont .part-contact-right {
     padding-left: 20px;
   }
+  .add-itprod-rules {
+    border-left: 1px dotted #535351;
+  }
 }
 @media (max-width: 1460px) {
   .largex-container {
     padding: 0 20px;
+  }
+}
+@media (max-width: 1340px) {
+  .progress-steps-box {
+    padding: 10px 0 20px;
+  }
+}
+@media (max-width: 1300px) {
+  .progress-steps-step {
+    padding-right: 20px;
+  }
+}
+@media (max-width: 1280px) {
+  .progress-steps-step:not(:first-child) {
+    padding-left: 20px;
+  }
+  .progress-steps-step:not(:first-child) .step-numb::before {
+    width: 25px;
+    left: -25px;
   }
 }
 @media (max-width: 1199px) {
@@ -6860,6 +6991,13 @@ h1 {
   }
   .largex-container h1.title-h1-profile {
     text-align: center;
+  }
+  .add-itprod-box {
+    flex-wrap: wrap;
+  }
+  .add-itprod-rules {
+    margin-top: 30px;
+    padding-left: 0;
   }
 }
 @media (max-width: 1220px) {
@@ -6888,6 +7026,26 @@ h1 {
   .part-contact-left,
   .part-contact-right {
     width: 100%;
+  }
+}
+@media (max-width: 991px) {
+  .progress-steps-step {
+    padding-right: 0px;
+    font-size: 14px;
+    line-height: 17px;
+    flex-wrap: wrap;
+  }
+  .step-numb {
+    line-height: 22px;
+    display: block;
+    margin: 0 auto;
+  }
+  .step-text {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 6px;
+    min-height: 34px;
   }
 }
 @media (min-width: 768px) {
@@ -7018,6 +7176,18 @@ h1 {
   .welcome-tittle {
     font-size: 24px;
     max-height: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .progress-steps-box {
+    margin-left: -20px;
+  }
+  .step-text {
+    display: none;
+  }
+  .progress-steps-step {
+    width: 25%;
+    min-width: 25%;
   }
 }
 @media (max-width: 355px) {
