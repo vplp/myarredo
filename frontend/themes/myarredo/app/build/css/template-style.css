@@ -169,12 +169,27 @@ h1 {
     .header .wishlist .fa {
       font-size: 20px;
       margin-right: 4px; }
+
   .header .sign-in {
     display: flex;
     align-items: center;
     height: 100%;
     padding: 0 30px;
-    font-size: 14px; }
+    font-size: 14px; 
+  }
+  .header .sign-in.withicon::before {
+    content: '';
+    display: inline-block;
+    width: 35px;
+    height: 33px;
+    overflow: hidden;
+    background-image: url('../img/shop_profile.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    margin-right: 5px;
+  }
+
     .header .sign-in .fa {
       margin-right: 5px;
       color: #BDBCB3;
@@ -5047,10 +5062,10 @@ h1 {
     font-size: 0; }
     .header .back-call .fa {
       font-size: 20px; }
-  .header .sign-in {
+  /* .header .sign-in {
     font-size: 0;
     background: rgba(240, 240, 240, 0.9);
-    padding: 0 12px; }
+    padding: 0 12px; } */
     .header .sign-in .fa {
       margin-right: 0; }
   .header .search-cont {
@@ -6893,6 +6908,7 @@ h1 {
   line-height: 1.5;
   border-radius: .25rem;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  cursor: pointer;
 }
 .btn-myarredo:hover {
   text-decoration: none;
@@ -6908,6 +6924,11 @@ h1 {
 }
 .panel-additprod-rules {
   margin-top: 15px;
+}
+.bot-header .header-addprodbox {
+  position: absolute;
+  top: 30px;
+  right: 3px;
 }
 /* .category-page .filters .one-filter.colors-box .one-item-check.selected .my-checkbox:after {
   color: #ffffff;

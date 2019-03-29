@@ -388,6 +388,7 @@ $Specifications = Specification::findBase()->all();
                         <?php ActiveForm::end(); ?>
 
                     </div>
+                    
                     <!-- rules box -->
                     <div class="add-itprod-rules">
                         <div class="add-itprod-rules-item">

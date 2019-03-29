@@ -96,7 +96,7 @@ use frontend\modules\user\widgets\menu\UserMenu;
                             <?= Cart::widget(['view' => 'short']) ?>
                         <?php } ?>
 
-                        <div class="sign-in">
+                        <div class="sign-in withicon">
                             <?php
                             $role = Yii::$app->user->identity->group->role;
                             if ($role == 'partner') {
@@ -139,11 +139,11 @@ use frontend\modules\user\widgets\menu\UserMenu;
                     Yii::$app->user->identity->profile->country_id == 4
                 ) {
                     ?>
-                    <div class="">
+                    <div class="header-addprodbox">
                         <?= Html::a(
                             '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Добавить товар'),
                             Url::toRoute(['/catalog/italian-product/create']),
-                            ['class' => 'btn btn-goods']
+                            ['class' => 'btn-myarredo']
                         ) ?>
                     </div>
                     <?php
