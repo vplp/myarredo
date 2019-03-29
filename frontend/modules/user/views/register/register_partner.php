@@ -35,7 +35,7 @@ $model->user_agreement = 1;
                         <div class="col-sm-12 col-md-2">
                             <?= Html::tag('h2', $this->title); ?>
                             <div class="img-cont">
-                                <img src="<?= $bundle->baseUrl ?>/img/sign-up.svg" alt="">
+                                <?= Html::img($bundle->baseUrl . '/img/sign-up.svg') ?>
                             </div>
                         </div>
 
@@ -45,20 +45,27 @@ $model->user_agreement = 1;
 
                                 <?= $form->field($model, 'address') ?>
 
-                                <?= $form->field($model, 'country_id')
+                                <?php
+                                /**
+                                 * country and city
+                                 */
+                                echo $form->field($model, 'country_id')
                                     ->dropDownList(
                                         [null => '--'] + Country::dropDownList(),
                                         ['class' => 'selectpicker']
-                                    ); ?>
+                                    );
 
-                                <?= $form->field($model, 'city_id')
+                                echo $form->field($model, 'city_id')
                                     ->dropDownList(
-                                        [null => '--'] + City::dropDownList(),
+                                        [null => '--'],
                                         ['class' => 'selectpicker']
-                                    ); ?>
+                                    );
+                                ?>
+
+                                <?= $form->field($model, 'cape_index') ?>
 
                                 <?= $form->field($model, 'phone')
-                                    ->widget(\yii\widgets\MaskedInput::className(), [
+                                    ->widget(\yii\widgets\MaskedInput::class, [
                                         'mask' => Yii::$app->city->getPhoneMask(),
                                         'clientOptions' => [
                                             'clearIncomplete' => true
@@ -88,7 +95,10 @@ $model->user_agreement = 1;
 
                                 <?= $form
                                     ->field($model, 'reCaptcha')
-                                    ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
+                                    ->widget(
+                                        \frontend\widgets\recaptcha3\RecaptchaV3Widget::class,
+                                        ['actionName' => 'register_partner']
+                                    )
                                     ->label(false) ?>
 
                                 <div class="a-warning">
@@ -112,16 +122,45 @@ $model->user_agreement = 1;
     </main>
 
 <?php
-
+$url = Url::toRoute(['/location/location/get-cities']);
 $script = <<<JS
+var country_id = parseInt($('#registerform-country_id').val());
+
+showHideForItalia(country_id)
+
 $('select#registerform-country_id').change(function(){
     var country_id = parseInt($(this).val());
-    $.post('/location/location/get-cities/', {_csrf: $('#token').val(),country_id:country_id}, function(data){
+    
+    $.post('$url', {_csrf: $('#token').val(),country_id:country_id}, function(data){
         var select = $('select#registerform-city_id');
         select.html(data.options);
         select.selectpicker("refresh");
     });
+    
+   showHideForItalia(country_id)
 });
+
+function showHideForItalia(country_id) {
+    // if selected Italy
+    if (country_id == 4) {
+        $('.field-registerform-city_id').css('display', 'none');
+        $('.field-registerform-exp_with_italian').css('display', 'none');
+        $('.field-registerform-delivery_to_other_cities').css('display', 'none');
+        
+        $('.field-registerform-cape_index').css('display', 'block');
+       
+        setTimeout(function() {
+            var romeOption = $('select#registerform-city_id').children('option')[1];
+            $(romeOption).prop('selected', true);
+        },300);
+    } else {
+        $('.field-registerform-city_id').css('display', 'block');
+        $('.field-registerform-exp_with_italian').css('display', 'block');
+        $('.field-registerform-delivery_to_other_cities').css('display', 'block');
+        
+        $('.field-registerform-cape_index').css('display', 'none');
+    }
+}
 JS;
 
 $this->registerJs($script, yii\web\View::POS_READY);

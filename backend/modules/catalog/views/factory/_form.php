@@ -9,11 +9,15 @@ use backend\widgets\Tabs;
  * @var \backend\app\bootstrap\ActiveForm $form
  */
 
-?>
+$visible = in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])
+    ? true
+    : false;
 
-<?php $form = ActiveForm::begin(); ?>
-<?= $form->submit($model, $this) ?>
-<?= Tabs::widget([
+$form = ActiveForm::begin();
+
+echo $form->submit($model, $this);
+
+echo Tabs::widget([
     'items' => [
         [
             'label' => Yii::t('app', 'General'),
@@ -21,7 +25,7 @@ use backend\widgets\Tabs;
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang
-            ])
+            ]),
         ],
         [
             'label' => Yii::t('page', 'Page'),
@@ -29,7 +33,7 @@ use backend\widgets\Tabs;
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang,
-            ])
+            ]),
         ],
         [
             'label' => Yii::t('app', 'Image'),
@@ -37,7 +41,8 @@ use backend\widgets\Tabs;
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang
-            ])
+            ]),
+            'visible' => $visible
         ],
         [
             'label' => 'Коллекции',
@@ -45,7 +50,8 @@ use backend\widgets\Tabs;
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang
-            ])
+            ]),
+            'visible' => $visible
         ],
         [
             'label' => Yii::t('app', 'Catalogs'),
@@ -53,7 +59,8 @@ use backend\widgets\Tabs;
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang
-            ])
+            ]),
+            'visible' => $visible
         ],
         [
             'label' => Yii::t('app', 'Prices'),
@@ -61,7 +68,8 @@ use backend\widgets\Tabs;
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang
-            ])
+            ]),
+            'visible' => $visible
         ],
         [
             'label' => 'Meta',
@@ -72,6 +80,8 @@ use backend\widgets\Tabs;
             ])
         ],
     ]
-]) ?>
-<?= $form->submit($model, $this) ?>
-<?php ActiveForm::end(); ?>
+]);
+
+echo $form->submit($model, $this);
+
+ActiveForm::end();

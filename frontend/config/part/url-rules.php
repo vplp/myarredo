@@ -15,6 +15,7 @@ return [
     'partners-map' => 'page/contacts/list-partners',
 
     // Module [[Users]]
+    'logistician/registration' => 'user/register/logistician',
     'partner/registration' => 'user/register/partner',
     'factory/registration' => 'user/register/factory',
     'user/register' => 'user/register/user',
@@ -74,6 +75,22 @@ return [
     'catalog/factory-product/filedelete' => 'catalog/factory-product/filedelete',
     'catalog/factory-product/promotion' => 'catalog/factory-product/promotion',
 
+    // Italian product
+    'sale-italy/<filter:[\=\;\-\/\w\d]+>' => 'catalog/sale-italy/list',
+    'sale-italy' => 'catalog/sale-italy/list',
+    'sale-italy-product/<alias:[\w\-]+>' => 'catalog/sale-italy/view',
+    //
+    'italian-product' => 'catalog/italian-product/list',
+    'italian-product/create' => 'catalog/italian-product/create',
+    'italian-product/payment' => 'catalog/italian-product/payment',
+    'italian-product/update/<id:[\d\-]+>' => 'catalog/italian-product/update',
+    'italian-product/intrash/<id:[\d\-]+>' => 'catalog/italian-product/intrash',
+
+    'catalog/italian-product/fileupload' => 'catalog/italian-product/fileupload',
+    'catalog/italian-product/filedelete' => 'catalog/italian-product/filedelete',
+    'catalog/italian-product/one-file-upload' => 'catalog/italian-product/one-file-upload',
+    'catalog/italian-product/one-file-delete' => 'catalog/italian-product/one-file-delete',
+
     // Factory promotion
     'factory-promotion' => 'catalog/factory-promotion/list',
     'factory-promotion/create' => 'catalog/factory-promotion/create',
@@ -90,6 +107,12 @@ return [
     'catalog/partner-sale/fileupload' => 'catalog/partner-sale/fileupload',
     'catalog/partner-sale/filedelete' => 'catalog/partner-sale/filedelete',
 
+    // Module [[Payment]]
+    'payment/invoice' => 'payment/payment/invoice',
+    'payment/result' => 'payment/payment/result',
+    'payment/success' => 'payment/payment/success',
+    'payment/fail' => 'payment/payment/fail',
+
     // Module [[News]]
     'news/<alias:[\w\-]+>' => 'news/list/index',
     'news' => 'news/list/index',
@@ -105,11 +128,10 @@ return [
     'find/<condition:[\w\-]+>' => 'page/find/index',
 
     // Module [[Forms]]
-    'forms/feedbackform/captcha' => 'forms/feedbackform/captcha',
-    'forms/feedbackform/add' => 'forms/feedbackform/add',
+    'forms/feedback' => 'forms/forms/feedback',
 
     // Module [[SEO]]
-    'page/sitemap' => 'seo/sitemaphtml/index',
+    'page/sitemap' => 'seo/sitemap-html/index',
     //
     'sitemap/pathcache' => 'seo/pathcache/pathcache/index',
     'sitemap/fill' => 'seo/sitemap/fill/index',
@@ -125,14 +147,20 @@ return [
     'shop/cart/add-to-cart' => 'shop/cart/add-to-cart',
     'shop/cart/delete-from-cart' => 'shop/cart/delete-from-cart',
     'shop/cart/delete-from-cart-popup' => 'shop/cart/delete-from-cart-popup',
-    'shop/factory-order/list' => 'shop/factory-order/list',
+
+    'shop/factory/orders' => 'shop/factory-order/list',
+    'shop/factory/orders-italy' => 'shop/factory-order/list-italy',
     'admin/orders' => 'shop/admin-order/list',
+    'admin/orders-italy' => 'shop/admin-order/list-italy',
     'partner/orders' => 'shop/partner-order/list',
+    'partner/orders-italy' => 'shop/partner-order/list-italy',
+
     'partner/orders/pjax-save' => 'shop/partner-order/pjax-save',
     'partner/orders/send-answer' => 'shop/partner-order/send-answer',
 
     // Module [[Location]]
     'location/location/get-cities' => 'location/location/get-cities',
+    'location/currency/change' => 'location/currency/change',
 
     // Module [[Banner]]
     'banner/factory-banner/list' => 'banner/factory-banner/list',

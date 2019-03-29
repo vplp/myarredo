@@ -47,6 +47,11 @@ class ProductFilter extends Widget
      */
     public $min_max_price = [];
 
+    /**
+     * @var object
+     */
+    public $colors = [];
+
     public function init()
     {
         parent::init();
@@ -61,15 +66,16 @@ class ProductFilter extends Widget
     {
         $keys = Yii::$app->catalogFilter->keys;
 
-        // CATEGORY LIST
+        /**
+         * CATEGORY LIST
+         */
 
         $category = [];
 
         foreach ($this->category as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (
-                !empty($params[$keys['category']]) &&
+            if (!empty($params[$keys['category']]) &&
                 in_array($obj['alias'], $params[$keys['category']])
             ) {
                 $checked = 1;
@@ -92,15 +98,16 @@ class ProductFilter extends Widget
             );
         }
 
-        // TYPE LIST
+        /**
+         * TYPE LIST
+         */
 
         $types = [];
 
         foreach ($this->types as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (
-                !empty($params[$keys['type']]) &&
+            if (!empty($params[$keys['type']]) &&
                 in_array($obj['alias'], $params[$keys['type']])
             ) {
                 $checked = 1;
@@ -125,15 +132,16 @@ class ProductFilter extends Widget
             );
         }
 
-        // STYLE LIST
+        /**
+         * STYLE LIST
+         */
 
         $style = [];
 
         foreach ($this->style as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (
-                !empty($params[$keys['style']]) &&
+            if (!empty($params[$keys['style']]) &&
                 in_array($obj['alias'], $params[$keys['style']])
             ) {
                 $checked = 1;
@@ -158,15 +166,16 @@ class ProductFilter extends Widget
             );
         }
 
-        // FACTORY LIST
+        /**
+         * FACTORY LIST
+         */
 
         $factory = [];
 
         foreach ($this->factory as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (
-                !empty($params[$keys['factory']]) &&
+            if (!empty($params[$keys['factory']]) &&
                 in_array($obj['alias'], $params[$keys['factory']])
             ) {
                 $checked = 1;
@@ -215,6 +224,41 @@ class ProductFilter extends Widget
             $factory_first_show = array_slice($factory_first_show, 0, 5);
         }
 
+        /**
+         * COLORS LIST
+         */
+
+        $colors = [];
+
+        foreach ($this->colors as $key => $obj) {
+            $params = Yii::$app->catalogFilter->params;
+
+            if (!empty($params[$keys['colors']]) &&
+                in_array($obj['alias'], $params[$keys['colors']])
+            ) {
+                $checked = 1;
+                $params[$keys['colors']] = array_diff($params[$keys['colors']], [$obj['alias']]);
+            } else {
+                $checked = 0;
+                $params[$keys['colors']][] = $obj['alias'];
+            }
+
+            // sort value
+
+            array_multisort($params[$keys['colors']], SORT_ASC, $params[$keys['colors']]);
+
+            $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
+
+            $colors[$key] = array(
+                'checked' => $checked,
+                'link' => $link,
+                'title' => $obj['lang']['title'],
+                'count' => $obj['count'],
+                'alias' => $obj['alias'],
+                'color_code' => $obj['color_code'],
+            );
+        }
+
         return $this->render($this->view, [
             'route' => $this->route,
             'category' => $category,
@@ -223,6 +267,7 @@ class ProductFilter extends Widget
             'factory' => $factory,
             'factory_first_show' => $factory_first_show,
             'min_max_price' => !empty($this->min_max_price) ? $this->min_max_price : ['maxPrice' => 0, 'minPrice' => 0],
+            'colors' => $colors,
             'filter' => Yii::$app->catalogFilter->params
         ]);
     }

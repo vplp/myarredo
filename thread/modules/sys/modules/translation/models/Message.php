@@ -15,7 +15,6 @@ use thread\modules\sys\modules\translation\Translation as TranslationModule;
  * @property string $lang
  * @property string $translation
  *
- * @author Andrew Kontseba - Skinwalker <andjey.skinwalker@gmail.com>
  * @package thread\modules\sys\modules\translation\models
  */
 class Message extends ActiveRecordLang
@@ -64,9 +63,8 @@ class Message extends ActiveRecordLang
     public function scenarios()
     {
         return [
-            'backend' => [
-                'translation'
-            ]
+            'backend' => ['translation'],
+            'translation' => ['translation']
         ];
     }
 }

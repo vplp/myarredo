@@ -34,25 +34,25 @@ class Seo extends \common\modules\seo\Seo
     {
         $menuItems = [];
 
-        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin', 'seo'])) {
+        if (in_array(Yii::$app->user->identity->group->role, ['admin', 'seo'])) {
             $menuItems = [
-                'name' => 'SEO',
+                'label' => 'SEO',
                 'icon' => 'fa-file-text',
                 'position' => 10,
                 'items' =>
                     [
                         /*[
-                            'name' => 'Robots.txt',
+                            'label' => 'Robots.txt',
                             'position' => 1,
                             'url' => ['/seo/robots/update'],
                         ],*/
                         [
-                            'name' => 'Direct Link',
+                            'label' => 'Direct Link',
                             'position' => 2,
                             'url' => ['/seo/directlink/directlink/list'],
                         ],
                         /*[
-                            'name' => 'Base Info',
+                            'label' => 'Base Info',
                             'position' => 2,
                             'url' => ['/seo/info/info/list'],
                         ]*/

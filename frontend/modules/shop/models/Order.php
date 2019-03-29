@@ -21,6 +21,8 @@ class Order extends \common\modules\shop\models\Order
     {
         return ArrayHelper::merge(parent::scenarios(), [
             'addNewOrder' => [
+                'product_type',
+                'lang',
                 'delivery_method_id',
                 'payment_method_id',
                 'order_status',
@@ -34,23 +36,6 @@ class Order extends \common\modules\shop\models\Order
                 'deleted'
             ],
         ]);
-    }
-
-    /**
-     * @return mixed|\yii\db\ActiveQuery
-     * @throws \Throwable
-     */
-    public function getItems()
-    {
-        $query = $this->hasMany(OrderItem::class, ['order_id' => 'id']);
-
-        if (!Yii::$app->getUser()->isGuest && Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
-            $query
-                ->innerJoinWith(["product product"], false)
-                ->andFilterWhere(['IN', 'product.factory_id', Yii::$app->user->identity->profile->factory_id]);
-        }
-
-        return $query;
     }
 
     /**

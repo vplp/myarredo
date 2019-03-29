@@ -35,7 +35,12 @@ class RegisterController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['user', 'partner', 'factory'],
+                        'actions' => [
+                            'user',
+                            'partner',
+                            'factory',
+                            'logistician'
+                        ],
                         'roles' => ['?'],
                     ],
                     [
@@ -133,20 +138,11 @@ class RegisterController extends BaseController
                     ->setTo($model->email)
                     ->setSubject(Yii::$app->name)
                     ->send();
+
+                Yii::$app->session->setFlash('success', Yii::$app->param->getByName('USER_PERTNER_REG_CONGRATULATIONS'));
+
+                return $this->redirect(Url::toRoute('/user/login/index'));
             }
-
-//            if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
-//                return $this->redirect(Url::toRoute('/user/profile/index'));
-//            }
-//
-//            if ($status === true) {
-//                Yii::$app->getSession()->addFlash('login', Yii::t('user', 'add new members'));
-//                return $this->redirect(Url::toRoute('/user/login/index'));
-//            }
-
-            //Yii::$app->getSession()->addFlash('success', Yii::t('user', 'add new members'));
-
-            return $this->redirect(Url::toRoute('/user/login/index'));
         }
 
         return $this->render('register_partner', [
@@ -172,8 +168,9 @@ class RegisterController extends BaseController
             $status = $model->addFactory();
 
             if ($status === true) {
-                $modelUser = User::findByEmail($model->email);
+                $modelUser = User::find()->email($model->email)->one();
 
+                /** @var User $modelUser */
                 /** send mail to admin */
 
                 $message = 'Зарегистрирована новая фабрика';
@@ -206,22 +203,87 @@ class RegisterController extends BaseController
                     ->setSubject(Yii::$app->name)
                     ->send();
 
-                if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
+                if ($modelUser->published == 1 && $modelUser->deleted == 0 && $model->getAutoLoginAfterRegister() === true && $model->login()) {
                     if (!Yii::$app->session->has("newUserFactory")) {
                         Yii::$app->session->set("newUserFactory", true);
                     }
+                    return $this->redirect(Url::toRoute('/user/profile/index'));
+                }
 
+                Yii::$app->session->setFlash('success', Yii::$app->param->getByName('USER_FACTORY_REG_CONGRATULATIONS'));
+
+                return $this->redirect(Url::toRoute('/user/login/index'));
+            }
+        }
+
+        return $this->render('register_factory', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * @return string|\yii\web\Response
+     * @throws \Exception
+     */
+    public function actionLogistician()
+    {
+        if (!Yii::$app->getUser()->getIsGuest()) {
+            return $this->redirect(Url::toRoute('/home/home/index'));
+        }
+
+        /** @var RegisterForm $model */
+        $model = new $this->model();
+        $model->setScenario('registerLogistician');
+
+        if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
+            $status = $model->addLogistician();
+
+            if ($status === true) {
+                $modelUser = User::find()->email($model->email)->one();
+
+                /** send mail to admin */
+
+                $message = 'Зарегистрировн новый логист';
+
+                Yii::$app
+                    ->mailer
+                    ->compose(
+                        'letter_notification_for_admin',
+                        [
+                            'message' => $message,
+                            'title' => $modelUser->profile->name_company,
+                            'url' => Url::home(true) . 'backend/user/user/update?id=' . $modelUser->id,
+                        ]
+                    )
+                    ->setTo(Yii::$app->params['mailer']['setTo'])
+                    ->setSubject($message)
+                    ->send();
+
+                Yii::$app
+                    ->mailer
+                    ->compose(
+                        'letter_about_registration',
+                        [
+                            'user' => $model,
+                            'password' => $model['password'],
+                            'text' => Yii::$app->param->getByName('MAIL_REGISTRATION_TEXT_FOR_FACTORY')
+                        ]
+                    )
+                    ->setTo($model->email)
+                    ->setSubject(Yii::$app->name)
+                    ->send();
+
+                if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
                     return $this->redirect(Url::toRoute('/user/profile/index'));
                 }
 
                 if ($status === true) {
-                    //Yii::$app->getSession()->addFlash('success', Yii::t('user', 'add new members'));
                     return $this->redirect(Url::toRoute('/user/login/index'));
                 }
             }
         }
 
-        return $this->render('register_factory', [
+        return $this->render('register_logistician', [
             'model' => $model,
         ]);
     }

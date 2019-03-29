@@ -14,7 +14,8 @@ use frontend\modules\catalog\models\{
     Factory,
     Types,
     Specification,
-    Collection
+    Collection,
+    Colors
 };
 use frontend\modules\location\models\{
     Country, City
@@ -65,6 +66,7 @@ class CatalogFilter extends Component
         'price' => '.80',
         //'country' => '.60',
         //'city' => '.70',
+        'colors' => '.90',
     ];
 
     /**
@@ -83,6 +85,7 @@ class CatalogFilter extends Component
             self::$keys['price'] => 'price',
             //self::$keys['city'] => 'city',
             //self::$keys['country'] => 'country',
+            self::$keys['colors'] => 'colors',
         ];
     }
 
@@ -417,6 +420,35 @@ class CatalogFilter extends Component
             }
 
             self::$_parameters[self::$keys['price']] = $_data;
+        }
+
+        /**
+         * Colors
+         */
+
+        if (!empty(self::$_structure['colors'])) {
+            $model = Colors::findBase()
+                ->andWhere(['IN', Colors::tableName() . '.alias', self::$_structure['colors']])
+                ->indexBy('id')
+                ->all();
+
+            if (count(self::$_structure['colors']) != count($model) || $model == null) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            // sort value
+
+            foreach ($model as $obj) {
+                self::setParam(self::$keys['colors'], $obj['alias']);
+            }
+
+            // check value
+
+            $result = array_diff_assoc(self::$_structure['colors'], self::$_parameters[self::$keys['colors']]);
+
+            if (!empty($result)) {
+                //throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
         }
     }
 }

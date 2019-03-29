@@ -117,13 +117,13 @@ class FactoryCatalogsFilesController extends BackendController
             'outtrash' => [
                 'redirect' => $link
             ],
-            'fileupload' => [
+            'one-file-upload' => [
                 'class' => UploadAction::class,
                 'path' => $this->module->getFactoryCatalogsFilesUploadPath(),
                 'uploadOnlyImage' => false,
                 'unique' => false
             ],
-            'filedelete' => [
+            'one-file-delete' => [
                 'class' => DeleteAction::class,
                 'path' => $this->module->getFactoryCatalogsFilesUploadPath()
             ],

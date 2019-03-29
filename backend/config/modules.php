@@ -1,25 +1,12 @@
 <?php
 
-/**
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
- */
 return [
-    /**
-     * COMPONENTS
-     */
     'gridview' => [
         'class' => \kartik\grid\Module::class,
     ],
-    /**
-     * SYSTEM
-     */
     'sys' => [
         'class' => \backend\modules\sys\Sys::class,
     ],
-    /**
-     * CORE
-     */
     'home' => [
         'class' => \backend\modules\home\Home::class,
     ],
@@ -35,6 +22,9 @@ return [
     'news' => [
         'class' => \backend\modules\news\News::class,
     ],
+    'articles' => [
+        'class' => \backend\modules\articles\Articles::class,
+    ],
     'seo' => [
         'class' => \backend\modules\seo\Seo::class,
     ],
@@ -49,5 +39,8 @@ return [
     ],
     'banner' => [
         'class' => \backend\modules\banner\Banner::class,
+    ],
+    'payment' => [
+        'class' => \backend\modules\payment\PaymentModule::class,
     ],
 ];

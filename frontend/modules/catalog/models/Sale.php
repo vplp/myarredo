@@ -15,6 +15,20 @@ use frontend\components\ImageResize;
 class Sale extends \common\modules\catalog\models\Sale
 {
     /**
+     * @param bool $insert
+     * @return bool
+     * @throws \Throwable
+     */
+    public function beforeSave($insert)
+    {
+        if (Yii::$app->user->identity->group->role == 'partner') {
+            $this->user_id = Yii::$app->getUser()->id;
+        }
+
+        return parent::beforeSave($insert);
+    }
+
+    /**
      * @return mixed
      */
     public static function findBase()
@@ -29,6 +43,25 @@ class Sale extends \common\modules\catalog\models\Sale
             $query
                 ->enabled();
         }
+
+        /**
+         * orderBy
+         */
+
+        $order = [];
+
+        $order[] = self::tableName() . '.on_main DESC';
+
+        $partner = Yii::$app->partner->getPartner();
+        if ($partner != null && $partner->id) {
+            $order[] = '(CASE WHEN user_id=' . $partner->id . ' THEN 0 ELSE 1 END), position DESC';
+        }
+
+        $order[] = self::tableName() . '.updated_at DESC';
+
+        $query->orderBy(implode(',', $order));
+
+        //$query->orderBy(self::tableName() . '.updated_at DESC');
 
         return $query;
     }
@@ -55,7 +88,9 @@ class Sale extends \common\modules\catalog\models\Sale
 
     /**
      * @param $params
-     * @return \yii\data\ActiveDataProvider
+     * @return mixed|\yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function search($params)
     {
@@ -64,7 +99,9 @@ class Sale extends \common\modules\catalog\models\Sale
 
     /**
      * @param $params
-     * @return \yii\data\ActiveDataProvider
+     * @return mixed|\yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function trash($params)
     {
@@ -99,8 +136,8 @@ class Sale extends \common\modules\catalog\models\Sale
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
 
-        $path = $module->getSaleUploadPath();
-        $url = $module->getSaleUploadUrl();
+        $path = $module->getProductUploadPath();
+        $url = $module->getProductUploadUrl();
 
         $image = null;
 
@@ -122,7 +159,7 @@ class Sale extends \common\modules\catalog\models\Sale
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
 
-        $path = $module->getSaleUploadPath();
+        $path = $module->getProductUploadPath();
 
         $image = null;
 
@@ -168,9 +205,15 @@ class Sale extends \common\modules\catalog\models\Sale
                 : $this->gallery_image;
 
             $images = explode(',', $this->gallery_image);
-        } else {
-            $images[] = $this->image_link;
+
+            foreach ($images as $key => $image) {
+                if (!file_exists($path . '/' . $image)) {
+                    unset($images[$key]);
+                }
+            }
         }
+
+        $images = !empty($images) ? $images : [$this->image_link];
 
         $imagesSources = [];
 

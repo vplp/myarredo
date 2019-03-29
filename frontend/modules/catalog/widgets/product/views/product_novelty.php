@@ -10,12 +10,14 @@ use frontend\modules\catalog\models\Product;
         <div class="row">
             <div class="col-sm-12 col-md-12">
                 <div class="section-header">
-                    <h3 class="section-title">
+                    <h2 class="section-title">
                         <?= Yii::t('app', 'Новинки') ?>
-                    </h3>
-                    <a href="#" class="sticker">
-                        <?= Yii::t('app', 'Смотреть все категории') ?>
-                    </a>
+                    </h2>
+                    <?= Html::a(
+                        Yii::t('app', 'Смотреть все категории'),
+                        null,
+                        ['class' => 'sticker']
+                    ) ?>
                 </div>
 
                 <div id="novelties-slider" class="carousel slide" data-ride="carousel">
@@ -27,30 +29,34 @@ use frontend\modules\catalog\models\Product;
                                 <div class="item-in">
                                     <div class="left">
 
-                                        <?php foreach ($level as $key => $model) { ?>
-                                            <?php if ($key == 0) { ?>
-                                                <a href="<?= Product::getUrl($model['alias']) ?>" class="large">
-                                                    <?= Html::img(
+                                        <?php foreach ($level as $key => $model) {
+                                            if ($key == 0) {
+                                                echo Html::a(
+                                                    Html::img(
                                                         Product::getImageThumb($model['image_link']),
                                                         ['alt' => Product::getStaticTitle($model)]
-                                                    ); ?>
-                                                </a>
-                                            <?php } ?>
-                                        <?php } ?>
+                                                    ),
+                                                    Product::getUrl($model['alias']),
+                                                    ['class' => 'large']
+                                                );
+                                            }
+                                        } ?>
 
                                     </div>
                                     <div class="right">
 
-                                        <?php foreach ($level as $key => $model) { ?>
-                                            <?php if ($key > 0) { ?>
-                                                <a href="<?= Product::getUrl($model['alias']) ?>" class="smaller">
-                                                    <?= Html::img(
+                                        <?php foreach ($level as $key => $model) {
+                                            if ($key > 0) {
+                                                echo Html::a(
+                                                    Html::img(
                                                         Product::getImageThumb($model['image_link']),
                                                         ['alt' => Product::getStaticTitle($model)]
-                                                    ); ?>
-                                                </a>
-                                            <?php } ?>
-                                        <?php } ?>
+                                                    ),
+                                                    Product::getUrl($model['alias']),
+                                                    ['class' => 'smaller']
+                                                );
+                                            }
+                                        } ?>
 
                                     </div>
                                 </div>

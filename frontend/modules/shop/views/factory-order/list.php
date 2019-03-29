@@ -29,6 +29,9 @@ $this->title = $this->context->title;
                             <li class="application-date">
                                 <span><?= Yii::t('app', 'Request Date') ?></span>
                             </li>
+                            <li class="lang-cell">
+                                <span><?= Yii::t('app', 'lang') ?></span>
+                            </li>
                             <li>
                                 <span><?= Yii::t('app', 'City') ?></span>
                             </li>
@@ -50,7 +53,11 @@ $this->title = $this->context->title;
                                     <li class="application-date">
                                         <span><?= $modelOrder->getCreatedTime() ?></span>
                                     </li>
-                                    <li><span>
+                                    <li class="lang-cell">
+                                        <span><?= substr($modelOrder->lang, 0, 2) ?></span>
+                                    </li>
+                                    <li>
+                                        <span>
                                             <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
                                         </span>
                                     </li>

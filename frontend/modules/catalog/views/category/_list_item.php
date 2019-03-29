@@ -50,16 +50,20 @@ use frontend\modules\catalog\models\Product;
             </div>
         </div>
 
+        <?php if (!$model['removed'] && $model['price_from'] > 0) { ?>
+            <div class="prod-pricebox">
+                <?= Yii::t('app', 'Цена от') ?>:
+                <span class="for-green">
+                    <?= Yii::$app->currency->getValue($model['price_from'], $model['currency']); ?>
+                    &nbsp;<span class="currency"><?= Yii::$app->currency->symbol ?></span>
+                </span>
+            </div>
+        <?php } ?>
+
         <object class="btn-block">
             <a class="more-info">
-                <?= Yii::t('app', 'Подробнее') ?>
+                <?= Yii::t('app', 'Уточнить цену') ?>
             </a>
-            
-            <!--
-            <a href="javascript:void(0);" class="get-price">
-                запросить цену
-            </a>
-            -->
         </object>
     </div>
 

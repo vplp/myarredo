@@ -20,7 +20,7 @@ use backend\modules\catalog\models\{
 
 <?= $form
     ->field($model, 'types_ids')
-    ->widget(Select2::classname(), [
+    ->widget(Select2::class, [
         'data' => Types::dropDownList(),
         'options' => [
             'placeholder' => Yii::t('app', 'Select option'),

@@ -98,6 +98,7 @@ class NavBar extends \yii\bootstrap\NavBar
                         $items[] = $this->getItem($item);
                     }
                     // set items menu 2nd level and sort them
+                    $this->menuItems[$moduleName]['label'] .= '</span><span class="fa arrow"></span>';
                     $this->menuItems[$moduleName]['items'] = $this->sortItems($items);
                 }
             }
@@ -137,9 +138,9 @@ class NavBar extends \yii\bootstrap\NavBar
 
         $icon = $item['icon'] ?? '';
 
-        $name = Yii::t('navbar', $item['name']);
+        $label = Yii::t('navbar', $item['label']);
 
-        $array['label'] = '<i class="fa ' . $icon . '"></i><span class="nav-label">' . $name . '</span>';
+        $array['label'] = '<i class="fa ' . $icon . '"></i><span class="nav-label">' . $label . '</span>';
 
         if (isset($item['url'])) {
             $array['url'] = $item['url'];

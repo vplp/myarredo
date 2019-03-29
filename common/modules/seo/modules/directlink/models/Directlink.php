@@ -10,6 +10,7 @@ use common\modules\location\models\City;
 /**
  * Class Directlink
  *
+ * @property City[] $cities
  * @property Lang $lang
  *
  * @package common\modules\seo\modules\directlink\models
@@ -82,6 +83,7 @@ class Directlink extends \thread\modules\seo\modules\directlink\models\Directlin
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getCities()
     {

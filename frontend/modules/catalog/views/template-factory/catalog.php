@@ -10,7 +10,6 @@ use frontend\modules\catalog\widgets\filter\{
 };
 
 $this->title = $this->context->title;
-
 ?>
 
 <main>

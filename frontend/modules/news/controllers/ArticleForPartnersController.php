@@ -35,17 +35,35 @@ class ArticleForPartnersController extends \frontend\components\BaseController
     }
 
     /**
+     * @param $id
+     * @return string
+     * @throws ForbiddenHttpException
+     */
+    public function actionIndex($id)
+    {
+        $model = ArticleForPartners::findById($id);
+
+        if (empty($model)) {
+            throw new ForbiddenHttpException('Access denied');
+        }
+
+        return $this->render('article_for_partners', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
      * @return array
      */
-    public function actions()
-    {
-        return [
-            'index' => [
-                'class' => RecordView::class,
-                'modelClass' => ArticleForPartners::class,
-                'methodName' => 'findByAlias',
-                'view' => 'article_for_partners',
-            ],
-        ];
-    }
+//    public function actions()
+//    {
+//        return [
+//            'index' => [
+//                'class' => RecordView::class,
+//                'modelClass' => ArticleForPartners::class,
+//                'methodName' => 'findById',
+//                'view' => 'article_for_partners',
+//            ],
+//        ];
+//    }
 }

@@ -81,11 +81,7 @@ $this->title = $this->context->title;
                                             /** @var $model \frontend\modules\catalog\models\Sale */
                                             return ($model['factory']) ? $model['factory']['title'] : $model['factory_name'];
                                         },
-                                        'filter' => GridViewFilter::selectOne(
-                                            $filter,
-                                            'factory_id',
-                                            Factory::dropDownList()
-                                        ),
+                                        'filter' => false,
                                     ],
                                     [
                                         'format' => 'raw',

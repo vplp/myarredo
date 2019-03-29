@@ -12,6 +12,10 @@ use backend\widgets\GridView\GridView;
  * @var \backend\app\bootstrap\ActiveForm $form
  */
 
+$visible = in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])
+    ? true
+    : false;
+
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
@@ -24,20 +28,23 @@ echo GridView::widget([
         [
             'class' => ActionStatusColumn::class,
             'attribute' => 'popular',
-            'action' => 'popular'
+            'action' => 'popular',
+            'visible' => $visible
         ],
         [
             'class' => ActionStatusColumn::class,
             'attribute' => 'popular_by',
-            'action' => 'popular_by'
+            'action' => 'popular_by',
+            'visible' => $visible
         ],
         [
             'class' => ActionStatusColumn::class,
             'attribute' => 'popular_ua',
-            'action' => 'popular_ua'
+            'action' => 'popular_ua',
+            'visible' => $visible
         ],
         [
-            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class
+            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
         ],
     ]
 ]);

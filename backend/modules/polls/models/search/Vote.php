@@ -72,7 +72,7 @@ class Vote extends VoteModel implements BaseBackendSearchModel
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
-        $query->andFilterWhere(['like', 'published', $this->published]);
+        $query->andFilterWhere(['=', 'published', $this->published]);
         //
         $query->andFilterWhere(['like', VoteLang::tableName() . '.title', $this->title]);
 

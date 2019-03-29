@@ -8,6 +8,7 @@ use kartik\widgets\Select2;
 use frontend\modules\location\models\{
     Country, City
 };
+use frontend\modules\catalog\models\Factory;
 
 ?>
 
@@ -35,6 +36,19 @@ use frontend\modules\location\models\{
 
     <div class="form-group">
         <?= Select2::widget([
+            'name' => 'factory_id',
+            'value' => (!is_array($params['factory_id'])) ? $params['factory_id'] : 0,
+            'data' => [0 => '--'] + Factory::dropDownList($params['factory_id']),
+            'options' => [
+                'id' => 'factory_id',
+                'multiple' => false,
+                'placeholder' => Yii::t('app', 'Select option')
+            ]
+        ]); ?>
+    </div>
+
+    <div class="form-group">
+        <?= Select2::widget([
             'name' => 'city_id',
             'value' => (!is_array($params['city_id'])) ? $params['city_id'] : 0,
             'data' => [0 => '--'] + City::dropDownList($params['country_id']),
@@ -47,7 +61,7 @@ use frontend\modules\location\models\{
     </div>
 
     <div class="form-group">
-        <div class="form-control">Количество заявок: <?= $models->getTotalCount() ?></div>
+        <div class="form-control"><?= Yii::t('app', 'Количество') ?>: <?= $models->getTotalCount() ?></div>
     </div>
 
 <?php ActiveForm::end(); ?>
@@ -60,6 +74,9 @@ $('select#country_id').change(function(){
     $('#form-stats').submit();
 });
 $('select#city_id').change(function(){
+  $('#form-stats').submit();
+});
+$('select#factory_id').change(function(){
   $('#form-stats').submit();
 });
 JS;

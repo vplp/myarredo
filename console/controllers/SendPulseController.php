@@ -26,6 +26,10 @@ class SendPulseController extends Controller
     {
         $this->stdout("SendPulse: start import emails. \n", Console::FG_GREEN);
 
+        /**
+         * Import by country
+         */
+
         $modelCountry = Country::findBase()->all();
 
         foreach ($modelCountry as $country) {
@@ -39,15 +43,45 @@ class SendPulseController extends Controller
             /**
              * Add new email to mailing lists
              */
-            $bookId = $country['bookId'];
-            $emails = [];
+            if ($country['bookId']) {
+                $bookId = $country['bookId'];
+                $emails = [];
 
-            $emails[] = [
-                'email' => strip_tags(Yii::$app->param->getByName('MAIL_SPECIAL_EMAIL')),
-                'variables' => [
-                    'name' => 'SPECIAL_EMAIL',
-                ],
-            ];
+                $emails[] = [
+                    'email' => strip_tags(Yii::$app->param->getByName('MAIL_SPECIAL_EMAIL')),
+                    'variables' => [
+                        'name' => 'SPECIAL_EMAIL',
+                    ],
+                ];
+
+                foreach ($modelUser as $user) {
+                    $emails[] = [
+                        'email' => $user['email'],
+                        'variables' => [
+                            'name' => $user['profile']['fullName'],
+                        ],
+                    ];
+                }
+
+                Yii::$app->sendPulse->addEmails($bookId, $emails);
+            }
+        }
+
+        /**
+         * Import for sale italy 2289833
+         */
+
+        $modelUser = User::findBase()
+            ->andWhere([
+                'or',
+                User::tableName() . '.group_id = ' . Group::PARTNER,
+                User::tableName() . '.group_id = ' . Group::LOQISTICIAN,
+            ])
+            ->all();
+
+        if ($modelUser != null) {
+            $bookId = 2289833;
+            $emails = [];
 
             foreach ($modelUser as $user) {
                 $emails[] = [
@@ -71,70 +105,178 @@ class SendPulseController extends Controller
     {
         $this->stdout("SendPulse: start remove emails. \n", Console::FG_GREEN);
 
+        /**
+         * Remove by country
+         */
+
         $modelCountry = Country::findBase()->all();
 
         foreach ($modelCountry as $country) {
-            $bookId = $country['bookId'];
-            $emails = [];
+            if ($country['bookId']) {
+                $bookId = $country['bookId'];
+                $emails = [];
 
-            $requestResult = Yii::$app->sendPulse->getEmailsFromBook($bookId);
+                $requestResult = Yii::$app->sendPulse->getEmailsFromBook($bookId);
 
-            foreach ($requestResult as $item) {
-                $modelUser = User::findBase()
-                    ->andWhere([
-                        'group_id' => Group::PARTNER,
-                        'email' => $item->email,
-                    ])
-                    ->one();
+                foreach ($requestResult as $item) {
+                    $modelUser = User::findBase()
+                        ->andWhere([
+                            'group_id' => Group::PARTNER,
+                            'email' => $item->email,
+                        ])
+                        ->one();
 
-                if ($modelUser == null) {
-                    $emails[] = $item->email;
+                    if ($modelUser == null) {
+                        $emails[] = $item->email;
+                    }
+                }
+
+                if (!empty($emails)) {
+                    Yii::$app->sendPulse->removeEmails($bookId, $emails);
                 }
             }
+        }
 
-            if (!empty($emails)) {
-                Yii::$app->sendPulse->removeEmails($bookId, $emails);
+        /**
+         * Remove for sale italy 2289833
+         */
+
+        $bookId = 2289833;
+
+        $requestResult = Yii::$app->sendPulse->getEmailsFromBook($bookId);
+
+        foreach ($requestResult as $item) {
+            $modelUser = User::findBase()
+                ->andWhere([
+                    'email' => $item->email,
+                ])
+                ->one();
+
+            if ($modelUser == null) {
+                $emails[] = $item->email;
             }
+        }
+
+        if (!empty($emails)) {
+            Yii::$app->sendPulse->removeEmails($bookId, $emails);
         }
 
         $this->stdout("SendPulse: end remove emails. \n", Console::FG_GREEN);
     }
 
     /**
-     * SendPulse: send partner campaign campaign
+     * SendPulse: send partner campaign
      */
     public function actionSendCampaign()
     {
         $this->stdout("SendPulse: start send test campaign. \n", Console::FG_GREEN);
 
-        // get order
-
+        /**
+         * get order
+         */
         $modelOrder = Order::findBase()
-            ->andWhere(['create_campaign' => '0'])
+            ->andWhere([
+                'create_campaign' => '0',
+                'product_type' => 'product'
+            ])
+            ->orderBy(['created_at' => SORT_ASC])
             ->enabled()
             ->one();
+
+        /** @var Order $modelOrder */
 
         if ($modelOrder !== null) {
             $bookId = $modelOrder->city->country->bookId;
             $senderName = 'myarredo';
             $senderEmail = 'info@myarredo.ru';
             $subject = 'Новая заявка №' . $modelOrder['id'];
-            $body = $this->renderPartial('letter_new_order_for_partner', ['order' => $modelOrder]);
+            $body = $this->renderPartial('letter_new_order', ['order' => $modelOrder]);
             $name = 'Новая заявка №' . $modelOrder['id'];
 
-            // send partner campaign
+            /**
+             * send partner campaign
+             */
+            $response = Yii::$app->sendPulse->createCampaign(
+                $senderName,
+                $senderEmail,
+                $subject,
+                $body,
+                $bookId,
+                $name
+            );
 
-            $response = Yii::$app->sendPulse->createCampaign($senderName, $senderEmail, $subject, $body, $bookId, $name);
+            $response = (array)$response;
+
+            if (!isset($response['is_error'])) {
+                $modelOrder->setScenario('create_campaign');
+                $modelOrder->create_campaign = '1';
+                $modelOrder->save();
+
+                /**
+                 * send factory campaign
+                 */
+                $this->sendNewRequestForFactory($modelOrder);
+
+                $this->stdout("Create campaign: " . $subject . " \n", Console::FG_GREEN);
+            }
+        }
+
+        $this->stdout("SendPulse: end send test campaign. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * SendPulse: send partner campaign sale-italy
+     */
+    public function actionSendCampaignSaleItaly()
+    {
+        $this->stdout("SendPulse: start send test campaign. \n", Console::FG_GREEN);
+
+        /**
+         * get order
+         */
+        $modelOrder = Order::findBase()
+            ->andWhere([
+                'create_campaign' => '0',
+                'product_type' => 'sale-italy'
+            ])
+            ->orderBy(['created_at' => SORT_ASC])
+            ->enabled()
+            ->one();
+
+        if ($modelOrder !== null) {
+            $bookId = 2289833;
+            $senderName = 'myarredo';
+            $senderEmail = 'info@myarredo.ru';
+            $subject = 'Новая заявка №' . $modelOrder['id'];
+            $body = $this->renderPartial('letter_new_order_sale_italy', ['order' => $modelOrder]);
+            $name = 'Новая заявка №' . $modelOrder['id'];
+
+            /**
+             * send partner campaign
+             */
+            $response = Yii::$app->sendPulse->createCampaign(
+                $senderName,
+                $senderEmail,
+                $subject,
+                $body,
+                $bookId,
+                $name
+            );
 
             $response = (array)$response;
 
             var_dump($response);
 
             if (!isset($response['is_error'])) {
-                //$this->sendNewRequestForFactory($modelOrder);
                 $modelOrder->setScenario('create_campaign');
                 $modelOrder->create_campaign = '1';
                 $modelOrder->save();
+
+                /**
+                 * send factory campaign
+                 */
+                $this->sendNewRequestForFactory($modelOrder);
+
                 $this->stdout("Create campaign: " . $subject . " \n", Console::FG_GREEN);
             }
         }
@@ -148,15 +290,11 @@ class SendPulseController extends Controller
     private function sendNewRequestForFactory($modelOrder)
     {
         foreach ($modelOrder->items as $item) {
-
-            if (
-                $item->product['factory_id'] &&
+            if ($item->product['factory_id'] &&
                 $item->product['factory'] &&
                 $item->product['factory']['email'] != ''
             ) {
-
                 // use factory email
-
                 $senderEmail = $item->product['factory']['email'];
 
                 $this->stdout("Send to factory: " . $senderEmail . " \n", Console::FG_GREEN);
@@ -174,10 +312,10 @@ class SendPulseController extends Controller
                     ->setSubject('Новый запрос на товар')
                     ->send();
 
-            } elseif ($item->product['factory_id']) {
+            }
 
+            if ($item->product['factory_id']) {
                 // use user factory email
-
                 $modelUser = User::findBase()
                     ->andWhere([
                         'group_id' => Group::FACTORY,
@@ -186,8 +324,7 @@ class SendPulseController extends Controller
                     ->one();
 
                 if ($modelUser !== null) {
-
-                    $senderEmail = $modelUser['email'];
+                    $senderEmail = trim($modelUser['email']);
 
                     $this->stdout("Send to factory: " . $senderEmail . " \n", Console::FG_GREEN);
 

@@ -18,9 +18,9 @@ use frontend\modules\catalog\models\{
     FactoryPromotion,
     search\FactoryPromotion as filterFactoryPromotionModel,
     FactoryProduct,
-    search\FactoryProduct as filterFactoryProductModel,
-    FactoryPromotionPayment
+    search\FactoryProduct as filterFactoryProductModel
 };
+use frontend\modules\payment\models\Payment;
 //
 use common\components\YandexKassaAPI\actions\ConfirmPaymentAction;
 use common\components\YandexKassaAPI\actions\CreatePaymentAction;
@@ -51,8 +51,8 @@ class FactoryPromotionController extends BaseController
     public function behaviors()
     {
         if (!Yii::$app->getUser()->isGuest &&
-            Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
-            !Yii::$app->getUser()->getIdentity()->profile->factory_id) {
+            Yii::$app->user->identity->group->role == 'factory' &&
+            !Yii::$app->user->identity->profile->factory_id) {
             throw new ForbiddenHttpException(Yii::t('app', 'Access denied without factory id.'));
         }
 
@@ -100,18 +100,18 @@ class FactoryPromotionController extends BaseController
                 ],
                 'create-payment' => [
                     'class' => CreatePaymentAction::class,
-                    'orderClass' => FactoryPromotion::className(),
+                    'orderClass' => FactoryPromotion::class,
                     'beforePayment' => function ($order) {
-                        return $order->payment_status == FactoryPromotion::PAYMENT_STATUS_NEW;
+                        return $order->payment_status == FactoryPromotion::PAYMENT_STATUS_PENDING;
                     }
                 ],
                 'notify' => [
                     'class' => ConfirmPaymentAction::class,
-                    'orderClass' => FactoryPromotion::className(),
+                    'orderClass' => FactoryPromotion::class,
                     'beforeConfirm' => function ($payment, $order) {
                         $order->payment_status = $payment->object->paid
-                            ? FactoryPromotion::PAYMENT_STATUS_PAID
-                            : FactoryPromotion::PAYMENT_STATUS_NEW;
+                            ? FactoryPromotion::PAYMENT_STATUS_SUCCESS
+                            : FactoryPromotion::PAYMENT_STATUS_PENDING;
 
                         $order->payment_object = json_encode($payment);
 
@@ -157,10 +157,7 @@ class FactoryPromotionController extends BaseController
                     $transaction->commit();
 
                     if (Yii::$app->getRequest()->post('payment')) {
-                        return $this->redirect(Url::toRoute([
-                            '/catalog/factory-promotion/create-payment',
-                            'id' => $model->id
-                        ]));
+                        $this->crateInvoice($model);
                     } else {
                         return $this->redirect(Url::toRoute([
                             '/catalog/factory-promotion/update',
@@ -218,10 +215,7 @@ class FactoryPromotionController extends BaseController
                     $transaction->commit();
 
                     if (Yii::$app->getRequest()->post('payment')) {
-                        return $this->redirect(Url::toRoute([
-                            '/catalog/factory-promotion/create-payment',
-                            'id' => $model->id
-                        ]));
+                        $this->crateInvoice($model);
                     }
                 } else {
                     $transaction->rollBack();
@@ -239,10 +233,55 @@ class FactoryPromotionController extends BaseController
         }
         $model->city_ids = $cities;
 
-        return $this->render($model->payment_status == FactoryPromotion::PAYMENT_STATUS_PAID ? 'view' : '_form', [
+        return $this->render($model->payment_status == FactoryPromotion::PAYMENT_STATUS_SUCCESS ? 'view' : '_form', [
             'model' => $model,
             'dataProviderFactoryProduct' => $dataProviderFactoryProduct,
             'filterModelFactoryProduct' => $filterModelFactoryProduct,
         ]);
+    }
+
+    /**
+     * @param FactoryPromotion $model
+     * @return mixed
+     * @throws \yii\base\InvalidConfigException
+     */
+    protected function crateInvoice(FactoryPromotion $model)
+    {
+        $modelPayment = new Payment();
+        $modelPayment->setScenario('frontend');
+
+        $modelPayment->user_id = Yii::$app->user->id;
+        $modelPayment->type = 'factory_promotion';
+        $modelPayment->amount = $model->amount;
+        $modelPayment->currency = 'RUB';
+        $modelPayment->items_ids = [$model->id];
+
+        /** @var Transaction $transaction */
+        $transaction = $modelPayment::getDb()->beginTransaction();
+        try {
+            $modelPayment->payment_status = Payment::PAYMENT_STATUS_PENDING;
+
+            $save = $modelPayment->save();
+
+            if ($save) {
+                $transaction->commit();
+
+                /** @var \robokassa\Merchant $merchant */
+                $merchant = Yii::$app->get('robokassa');
+
+                return $merchant->payment(
+                    $modelPayment->amount,
+                    $modelPayment->id,
+                    Yii::t('app', 'Оплата рекламной кампании'),
+                    null,
+                    Yii::$app->user->identity->email,
+                    substr(Yii::$app->language, 0, 2)
+                );
+            } else {
+                $transaction->rollBack();
+            }
+        } catch (Exception $e) {
+            $transaction->rollBack();
+        }
     }
 }

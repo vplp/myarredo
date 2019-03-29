@@ -6,7 +6,7 @@ use yii\helpers\{
 //
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
-    Factory, Sale
+    Factory, Sale, Product
 };
 use frontend\modules\catalog\widgets\sale\SaleRequestForm;
 use frontend\themes\myarredo\assets\AppAsset;
@@ -31,7 +31,7 @@ $this->title = $this->context->title;
                         ]) ?>
 
                     </div>
-                    <div class="row sale-prod">
+                    <div class="row sale-prod" itemscope itemtype="http://schema.org/Product">
                         <div class="col-sm-6 col-md-6 col-lg-5">
 
                             <?= $this->render('parts/_carousel', [
@@ -40,7 +40,8 @@ $this->title = $this->context->title;
 
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-4">
-                            <div class="prod-info">
+                            <div class="prod-info" itemprop="offers" itemscope
+                                 itemtype="http://schema.org/Offer">
                                 <?= Html::tag('h1', $model->getTitle()); ?>
 
                                 <?php if ($model->price > 0) { ?>
@@ -54,6 +55,11 @@ $this->title = $this->context->title;
                                         <?= Yii::t('app', 'Цена') ?>:
                                         <span>
                                         <?= $model->price_new . ' ' . $model->currency; ?>
+                                            <meta itemprop="price" content="<?= $model->price_new ?>">
+                                            <meta itemprop="priceCurrency" content="<?= $model->currency ?>"/>
+                                            <meta itemprop="availability" content="InStock"/>
+                                            <meta itemprop="priceValidUntil" content="<?= date('Y-m-d') ?>"/>
+                                            <meta itemprop="url" content="<?= $model->getUrl() ?>"/>
                                     </span>
                                     </div>
                                     <?php if ($model->price > 0) { ?>
@@ -67,6 +73,16 @@ $this->title = $this->context->title;
                                 </div>
                             </div>
 
+                            <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                                <meta itemprop="ratingValue" content="5"/>
+                                <meta itemprop="bestRating" content="5"/>
+                                <meta itemprop="ratingCount" content="1"/>
+                                <meta itemprop="reviewCount" content="1"/>
+                            </div>
+
+                            <meta itemprop="sku" content="<?= $model['article'] ?>">
+                            <meta itemprop="name" content="<?= $model->getTitle() ?>">
+
                             <table class="info-table" width="100%">
                                 <tr>
                                     <td><?= Yii::t('app', 'Factory') ?></td>
@@ -77,6 +93,8 @@ $this->title = $this->context->title;
                                                 Factory::getUrl($model['factory']['alias'])
                                             )
                                             : $model['factory_name'] ?>
+                                        <meta itemprop="brand"
+                                              content="<?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name']; ?>"/>
                                     </td>
                                 </tr>
                                 <?php if (!empty($model['specificationValue'])) {
@@ -106,7 +124,6 @@ $this->title = $this->context->title;
                                                         $item['url']
                                                     );
                                                 }
-
                                                 ?>
                                             </td>
                                         </tr>
@@ -147,18 +164,18 @@ $this->title = $this->context->title;
                                 <?php } ?>
                             </table>
 
-                            <div class="prod-shortstory">
+                            <div class="prod-shortstory" itemprop="description">
                                 <?= $model['lang']['description']; ?>
                             </div>
                         </div>
 
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 sellout-cont">
 
                             <?php if (!empty($model['user'])) { ?>
                                 <div class="brand-info">
                                     <div class="white-area">
                                         <div class="image-container">
-                                            <img src="<?= $bundle->baseUrl ?>/img/brand.png" alt="">
+                                            <?= Html::img($bundle->baseUrl . '/img/brand.png') ?>
                                         </div>
                                         <div class="brand-info">
                                             <p class="text-center">
@@ -168,18 +185,20 @@ $this->title = $this->context->title;
                                                 <?= $model['user']['profile']['name_company']; ?>
                                             </h4>
                                             <div class="ico">
-                                                <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
+                                                <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
                                             </div>
                                             <div class="tel-num js-show-num">
                                                 (XXX) XXX-XX-XX
                                             </div>
 
-                                            <a href="javascript:void(0);" class="js-show-num-btn">
-                                                Узнать номер
-                                            </a>
+                                            <?= Html::a(
+                                                Yii::t('app', 'Узнать номер'),
+                                                'javascript:void(0);',
+                                                ['class' => 'js-show-num-btn']
+                                            ) ?>
 
                                             <div class="ico">
-                                                <img src="<?= $bundle->baseUrl ?>/img/marker-map.png" alt="">
+                                                <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
                                             </div>
                                             <div class="text-center adress">
                                                 <?= $model['user']['profile']['city']['lang']['title']; ?>,<br>
@@ -187,12 +206,18 @@ $this->title = $this->context->title;
                                             </div>
 
                                             <div class="ico">
-                                                <img src="<?= $bundle->baseUrl ?>/img/conv.svg" alt="">
+                                                <?= Html::img($bundle->baseUrl . '/img/conv.svg') ?>
                                             </div>
-                                            <a href="javascript:void(0);" class="write-seller" data-toggle="modal"
-                                               data-target="#myModal">
-                                                написать продавцу
-                                            </a>
+
+                                            <?= Html::a(
+                                                Yii::t('app', 'Написать продавцу'),
+                                                'javascript:void(0);',
+                                                [
+                                                    'class' => 'write-seller',
+                                                    'data-toggle' => 'modal',
+                                                    'data-target' => '#myModal'
+                                                ]
+                                            ) ?>
 
                                         </div>
                                     </div>
@@ -202,8 +227,7 @@ $this->title = $this->context->title;
 
                         </div>
 
-
-                        <div class="col-md-12">
+                        <div class="col-md-12 sellout-box">
                             <div class="section-header">
                                 <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
                                 <?= Html::a(
@@ -214,6 +238,13 @@ $this->title = $this->context->title;
                             </div>
                         </div>
                     </div>
+
+                    <?= $this->render('@app/modules/catalog/views/product/parts/_product_by_factory', [
+                        'factory' => $model['factory'],
+                        'types' => $model['types'],
+                        'models' => Product::getProductByFactory($model['factory_id'], $model['catalog_type_id'])
+                    ]) ?>
+
                 </div>
             </div>
         </div>
@@ -225,13 +256,14 @@ $this->title = $this->context->title;
 <?php
 $user_id = $model['user']['id'];
 $sale_item_id = $model['id'];
+$url = Url::toRoute(['//catalog/sale/ajax-get-phone']);
 $script = <<<JS
 $('.js-show-num-btn').on('click', function () {
     $.post(
-        '/catalog/sale/ajax-get-phone/', 
+        '$url', 
         {_csrf: $('#token').val(), user_id: $user_id, sale_item_id: $sale_item_id}, 
         function(data){
-            $('.js-show-num').html(data.phone);
+            $('.js-show-num').html('<a href="tel:'+data.phone+'">'+data.phone+'</a>');
             $('.js-show-num-btn').remove();
         }, 
         'json'

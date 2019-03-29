@@ -36,6 +36,7 @@ use common\modules\user\models\{
  * @property float $volume
  * @property float $factory_price
  * @property float $price_from
+ * @property string $currency
  * @property string $default_title
  * @property integer $popular
  * @property integer $novelty
@@ -69,7 +70,8 @@ use common\modules\user\models\{
 class Product extends ActiveRecord implements iProduct
 {
     /**
-     * @return null|object|string|\yii\db\Connection
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -95,6 +97,7 @@ class Product extends ActiveRecord implements iProduct
                 'relations' => [
                     'category_ids' => 'category',
                     'samples_ids' => 'samples',
+                    'colors_ids' => 'colors',
                     'factory_catalogs_files_ids' => 'factoryCatalogsFiles',
                     'factory_prices_files_ids' => 'factoryPricesFiles',
                 ],
@@ -162,6 +165,7 @@ class Product extends ActiveRecord implements iProduct
                 [
                     'category_ids',
                     'samples_ids',
+                    'colors_ids',
                     'factory_catalogs_files_ids',
                     'factory_prices_files_ids'
                 ],
@@ -169,6 +173,8 @@ class Product extends ActiveRecord implements iProduct
                 'rule' => ['integer']
             ],
             [['category_ids'], 'required'],
+            [['currency'], 'in', 'range' => array_keys(static::currencyRange())],
+            [['currency'], 'default', 'value' => 'EUR'],
         ];
     }
 
@@ -201,10 +207,10 @@ class Product extends ActiveRecord implements iProduct
                 'created_at',
                 'updated_at',
                 'position',
-                //'price',
                 'volume',
                 'factory_price',
                 'price_from',
+                'currency',
                 'is_composition',
                 'popular',
                 'novelty',
@@ -222,8 +228,10 @@ class Product extends ActiveRecord implements iProduct
                 'article',
                 'category_ids',
                 'samples_ids',
+                'colors_ids',
                 'factory_catalogs_files_ids',
                 'factory_prices_files_ids',
+                'mark'
             ],
         ];
     }
@@ -237,11 +245,12 @@ class Product extends ActiveRecord implements iProduct
             'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
             'country_code' => 'Показывать для страны',
-            'article' => Yii::t('app', 'Vendor code'),
+            'article' => Yii::t('app', 'Артикул'),
             //'price' => Yii::t('app', 'Price'),
             'volume' => Yii::t('app', 'Volume'),
             'factory_price' => Yii::t('app', 'Factory price'),
             'price_from' => Yii::t('app', 'Price from'),
+            'currency' => Yii::t('app', 'Currency'),
             'removed' => 'Снят с производства',
             'in_stock' => 'Под заказ | В наличии',
             'factory_id' => Yii::t('app', 'Factory'),
@@ -262,6 +271,7 @@ class Product extends ActiveRecord implements iProduct
             'deleted' => Yii::t('app', 'Deleted'),
             'category_ids' => Yii::t('app', 'Category'),
             'samples_ids' => Yii::t('app', 'Samples'),
+            'colors_ids' => Yii::t('app', 'Colors'),
             'factory_catalogs_files_ids' => Yii::t('app', 'Factory catalogs files'),
             'factory_prices_files_ids' => Yii::t('app', 'Factory prices files'),
             'specification_value_ids',
@@ -287,6 +297,8 @@ class Product extends ActiveRecord implements iProduct
                 $this->alias = $this->id . ' ' . $this->alias;
             }
         }
+
+        $this->mark = '0';
 
         if (YII_ENV_PROD) {
             /** @var Catalog $module */
@@ -340,6 +352,17 @@ class Product extends ActiveRecord implements iProduct
         }
 
         parent::afterSave($insert, $changedAttributes);
+    }
+
+    /**
+     * @return array
+     */
+    public static function currencyRange()
+    {
+        return [
+            'EUR' => 'EUR',
+            'RUB' => 'RUB'
+        ];
     }
 
     /**
@@ -453,9 +476,11 @@ class Product extends ActiveRecord implements iProduct
 
         $imagesSources = [];
 
-        foreach ($images as $image) {
+        foreach ($images as $key => $image) {
             if (file_exists($path . '/' . $image)) {
                 $imagesSources[] = $url . '/' . $image;
+            } else {
+                unset($images[$key]);
             }
         }
 
@@ -464,6 +489,7 @@ class Product extends ActiveRecord implements iProduct
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getCategory()
     {
@@ -474,12 +500,24 @@ class Product extends ActiveRecord implements iProduct
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getSamples()
     {
         return $this
             ->hasMany(Samples::class, ['id' => 'samples_id'])
             ->viaTable(ProductRelSamples::tableName(), ['catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getColors()
+    {
+        return $this
+            ->hasMany(Colors::class, ['id' => 'color_id'])
+            ->viaTable(ColorsRelProduct::tableName(), ['item_id' => 'id']);
     }
 
     /**
@@ -492,6 +530,7 @@ class Product extends ActiveRecord implements iProduct
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getFactoryCatalogsFiles()
     {

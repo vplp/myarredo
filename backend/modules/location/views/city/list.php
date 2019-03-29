@@ -9,7 +9,7 @@ use thread\widgets\grid\{
 use backend\modules\location\models\Country;
 
 /**
- * @var \backend\modules\location\models\search\City $model
+ * @var \backend\modules\location\models\City $model
  */
 
 echo GridView::widget([
@@ -17,9 +17,12 @@ echo GridView::widget([
     'filterModel' => $filter,
     'columns' => [
         [
-            'attribute' => 'title',
-            'value' => 'lang.title',
+            'class' => \thread\widgets\grid\kartik\EditableColumn::class,
             'label' => Yii::t('app', 'Title'),
+            'attribute' => 'title',
+            'displayValue' => function ($model) {
+                return $model['lang']['title'];
+            }
         ],
         [
             'attribute' => 'country_id',

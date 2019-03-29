@@ -5,7 +5,7 @@
 
 //TODO : отрефакторить код
 
-$user = Yii::$app->getUser()->getIdentity();
+$user = Yii::$app->user->identity;
 ?>
 <li class="nav-header">
     <div class="dropdown profile-element text-center">
@@ -23,7 +23,7 @@ $user = Yii::$app->getUser()->getIdentity();
                     'label' => Yii::t('user', 'Profile'),
                     'url' => \yii\helpers\Url::toRoute([
                         '/user/ownprofile/update',
-                        'id' => Yii::$app->getUser()->getIdentity()->getId()
+                        'id' => Yii::$app->user->identity->getId()
                     ])
                 ],
                 '<li role="presentation" class="divider"></li>',

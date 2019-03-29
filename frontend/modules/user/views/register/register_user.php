@@ -31,7 +31,7 @@ $this->title = 'Регистрация';
                         <?= $form->field($model, 'last_name') ?>
 
                         <?= $form->field($model, 'phone')
-                            ->widget(\yii\widgets\MaskedInput::className(), [
+                            ->widget(\yii\widgets\MaskedInput::class, [
                                 'mask' => Yii::$app->city->getPhoneMask(),
                                 'clientOptions' => [
                                     'clearIncomplete' => true
@@ -61,11 +61,11 @@ $this->title = 'Регистрация';
     </main>
 
 <?php
-
+$url = Url::toRoute(['/location/location/get-cities']);
 $script = <<<JS
 $('select#registerform-country_id').change(function(){
     var country_id = parseInt($(this).val());
-    $.post('/location/location/get-cities/', {_csrf: $('#token').val(),country_id:country_id}, function(data){
+    $.post('$url', {_csrf: $('#token').val(),country_id:country_id}, function(data){
         var select = $('select#registerform-city_id');
         select.html(data.options);
         select.selectpicker("refresh");

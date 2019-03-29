@@ -33,10 +33,12 @@ class Cart extends Component
     {
         parent::init();
 
-        $product = new $this->threadProductClass;
+        $product = new $this->threadProductClass();
+
         if (!($product instanceof iProductThreadModel)) {
             throw new ErrorException($this->threadProductClass . ' must be implemented ' . iProductThreadModel::class);
         }
+
         $this->cart = CartModel::findBySessionID();
         $this->items = $this->cart ? $this->cart->items : [];
     }

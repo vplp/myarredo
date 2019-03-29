@@ -15,6 +15,7 @@ use frontend\modules\shop\models\{
     Order as OrderModel,
     Customer
 };
+use frontend\modules\catalog\models\ItalianProduct;
 
 /**
  * Class Order
@@ -31,6 +32,7 @@ class Order extends OrderModel
     public function rules()
     {
         return [
+            [['product_type'], 'in', 'range' => array_keys(self::productTypeKeyRange())],
             [['id', 'customer_id', 'city_id', 'factory_id'], 'integer'],
         ];
     }
@@ -70,6 +72,7 @@ class Order extends OrderModel
             ->andFilterWhere([
                 'id' => $this->id,
                 self::tableName() . '.customer_id' => $this->customer_id,
+                self::tableName() . '.product_type' => $this->product_type,
             ]);
 
         if (isset($params['city_id']) && is_array($params['city_id'])) {
@@ -85,10 +88,22 @@ class Order extends OrderModel
         $query
             ->groupBy(self::tableName() . '.id');
 
-        if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') {
+        if (Yii::$app->user->identity->group->role == 'factory') {
             $query
                 ->innerJoinWith(["items.product product"], false)
-                ->andFilterWhere(['IN', 'product.factory_id', $this->factory_id]);
+                ->andFilterWhere(['IN', 'product.factory_id', Yii::$app->user->identity->profile->factory_id]);
+        }
+
+        if (isset($params['factory_id']) && $params['factory_id'] > 0) {
+            $subQueryFactory = OrderModel::find()
+                ->select(OrderModel::tableName() . '.id')
+                ->innerJoinWith(["items.product product"], false)
+                ->andFilterWhere(['IN', 'product.factory_id', $params['factory_id']]);
+
+            $query->andFilterWhere([
+                    'AND',
+                    ['in', self::tableName() . '.id', $subQueryFactory]
+                ]);
         }
 
         return $dataProvider;
@@ -129,6 +144,17 @@ class Order extends OrderModel
 
         // переносим все атрибуты из заполненой формы в заказ
         $order->setAttributes($customerForm->getAttributes());
+
+        $order->product_type = 'product';
+
+        foreach ($cart->items as $cartItem) {
+            if (ItalianProduct::findById($cartItem->product_id) != null) {
+                $order->product_type = 'sale-italy';
+                break;
+            }
+        }
+
+        $order->lang = Yii::$app->language;
         $order->customer_id = $customer_id;
 
         $order->generateToken();
@@ -154,11 +180,7 @@ class Order extends OrderModel
                 }
                 $transaction->commit();
 
-                return [
-                    'id' => $order->id,
-                    'total_summ' => $order->total_summ,
-                    'link' => $order->getTokenLink()
-                ];
+                return $order;
             } else {
                 $transaction->rollBack();
             }

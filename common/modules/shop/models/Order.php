@@ -11,6 +11,8 @@ use common\modules\location\models\City;
  * Class Order
  *
  * @property integer $id
+ * @property string $product_type
+ * @property string $lang
  * @property integer $customer_id
  * @property integer $city_id
  * @property string $order_status
@@ -41,11 +43,13 @@ class Order extends \thread\modules\shop\models\Order
     public function rules()
     {
         return [
+            ['lang', 'string', 'min' => 5, 'max' => 5],
             [['customer_id', 'city_id'], 'required'],
             [['comment'], 'string', 'max' => 512],
             [['token'], 'string', 'max' => 255],
             [['customer_id', 'city_id', 'items_count', 'items_total_count'], 'integer'],
             [['order_status'], 'in', 'range' => array_keys(self::getOrderStatuses())],
+            [['product_type'], 'in', 'range' => array_keys(self::productTypeKeyRange())],
             [['published', 'deleted', 'create_campaign'], 'in', 'range' => array_keys(self::statusKeyRange())],
 
             // set default values
@@ -86,10 +90,22 @@ class Order extends \thread\modules\shop\models\Order
     public function attributeLabels()
     {
         $attributeLabels = [
+            'lang' => Yii::t('app', 'lang'),
             'comment' => Yii::t('app', 'Comment client'),
         ];
 
         return ArrayHelper::merge(parent::attributeLabels(), $attributeLabels);
+    }
+
+    /**
+     * @return array
+     */
+    public static function productTypeKeyRange()
+    {
+        return [
+            'product' => 'product',
+            'sale-italy' => 'sale-italy',
+        ];
     }
 
     /**

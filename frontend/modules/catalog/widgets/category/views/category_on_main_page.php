@@ -15,17 +15,18 @@ use frontend\modules\catalog\models\{
 ?>
 
 <div class="categories-wrap">
-    <?php foreach ($models as $model): ?>
+    <?php foreach ($models as $model) { ?>
         <div class="one-cat">
             <div class="one-cat-in">
                 <div class="cat-title">
                     <?= $model['lang']['title']; ?>
                 </div>
-                <a href="<?= Category::getUrl($model['alias']) ?>" class="img-cont">
-                    <?= Html::img(Category::getImage($model['image_link'])); ?>
-                    <?= Html::img(Category::getImage($model['image_link2']), ['class' => 'is-hover']); ?>
-                </a>
-
+                <?= Html::a(
+                    Html::img(Category::getImage($model['image_link'])) .
+                    Html::img(Category::getImage($model['image_link2']), ['class' => 'is-hover']),
+                    Category::getUrl($model['alias']),
+                    ['class' => 'img-cont']
+                ) ?>
                 <ul class="cat-list">
                     <?php
                     $keys = Yii::$app->catalogFilter->keys;
@@ -46,11 +47,12 @@ use frontend\modules\catalog\models\{
                     }
                     ?>
                 </ul>
-
-                <a href="<?= Category::getUrl($model['alias']) ?>" class="view-all">
-                    Смотреть все
-                </a>
+                <?= Html::a(
+                    Yii::t('app', 'Смотреть все'),
+                    Category::getUrl($model['alias']),
+                    ['class' => 'view-all']
+                ) ?>
             </div>
         </div>
-    <?php endforeach; ?>
+    <?php } ?>
 </div>

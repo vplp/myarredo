@@ -15,16 +15,25 @@ use thread\modules\location\Location as LocationModule;
 /**
  * Class Currency
  *
+ * @property int $id
+ * @property string $alias
+ * @property string $code1
+ * @property string $code2
+ * @property string $title
+ * @property float $course
+ * @property string $currency_symbol
+ * @property int $created_at
+ * @property int $updated_at
+ * @property boolean $published
+ * @property boolean $deleted
+ *
  * @package thread\modules\location\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Currency extends ActiveRecord
 {
-
     /**
-     *
-     * @return string
+     * @return object|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -32,7 +41,6 @@ class Currency extends ActiveRecord
     }
 
     /**
-     *
      * @return string
      */
     public static function tableName()
@@ -41,7 +49,6 @@ class Currency extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
      * @return array
      */
     public function behaviors()
@@ -64,7 +71,6 @@ class Currency extends ActiveRecord
     }
 
     /**
-     *
      * @return array
      */
     public function rules()
@@ -82,7 +88,6 @@ class Currency extends ActiveRecord
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()
@@ -90,12 +95,12 @@ class Currency extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
+            'setCourse' => ['course'],
             'backend' => ['alias', 'code1', 'course', 'code2', 'published', 'currency_symbol', 'deleted'],
         ];
     }
 
     /**
-     *
      * @return array
      */
     public function attributeLabels()
@@ -121,5 +126,4 @@ class Currency extends ActiveRecord
     {
         return $this->hasOne(CurrencyLang::class, ['rid' => 'id']);
     }
-
 }

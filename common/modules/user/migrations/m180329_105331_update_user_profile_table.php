@@ -10,7 +10,7 @@ class m180329_105331_update_user_profile_table extends Migration
      * table name
      * @var string
      */
-    public $table= '{{%user_profile}}';
+    public $table = '{{%user_profile}}';
 
     /**
      * @inheritdoc

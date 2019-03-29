@@ -32,6 +32,7 @@ use common\modules\user\models\User as UserModel;
  * @property int $city_id
  * @property int $user_agreement
  * @property int $factory_package
+ * @property string $cape_index
  *
  * @package thread\modules\user\models\form
  */
@@ -64,6 +65,7 @@ class CommonForm extends Model
     public $country_id;
     public $city_id;
     public $factory_package;
+    public $cape_index;
 
     /**
      * Private attributes.
@@ -118,7 +120,8 @@ class CommonForm extends Model
                     'address',
                     'name_company',
                     'website',
-                    'exp_with_italian'
+                    'exp_with_italian',
+                    'cape_index'
                 ],
                 'string',
                 'max' => 255
@@ -188,6 +191,7 @@ class CommonForm extends Model
             'delivery_to_other_cities' => Yii::t('app', 'Готов к поставкам мебели в другие города'),
             'user_agreement' => Yii::t('app', 'Подтверждаю <a href="/terms-of-use/" target="_blank">пользовательское соглашение</a>'),
             'factory_package' => Yii::t('app', 'Package'),
+            'cape_index' => Yii::t('app', 'CAPE index'),
         ];
     }
 

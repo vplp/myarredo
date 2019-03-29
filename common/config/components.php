@@ -33,23 +33,6 @@ return [
         'pathToLayout' => '@frontend/mail/layouts',
         'pathToViews' => '@frontend/mail/views',
     ],
-    'mailer' => [
-        'class' => \yii\swiftmailer\Mailer::class,
-        'transport' => [
-            'class' => 'Swift_SmtpTransport',
-            'host' => 'smtp-pulse.com',
-            'username' => 'myarredo@mail.ru',
-            'password' => 'ZYfKZWr29eB3',
-            'port' => '465',
-            'encryption' => 'ssl',
-        ],
-        'useFileTransport' => false,
-        'enableSwiftMailerLogging' => true,
-        'messageConfig' => [
-            'charset' => 'UTF-8',
-            'from' => ['info@myarredo.ru' => 'myarredo'],
-        ],
-    ],
     'cache' => [
         'class' => \yii\caching\FileCache::class,
         'cachePath' => '@runtime',
@@ -80,11 +63,10 @@ return [
             'database' => 1,
         ]
     ],
-    'reCaptcha' => [
-        'name' => 'reCaptcha',
-        'class' => \himiklab\yii2\recaptcha\ReCaptcha::class,
-        'siteKey' => '6LehPRkUAAAAAB1TVTLbwB1GYua9tI4aC1cHYSTU',
-        'secret' => '6LehPRkUAAAAADUIdKWBJx1tPKLztXMoVcsrHVrl',
+    'recaptchaV3' => [
+        'class' => \frontend\widgets\recaptcha3\RecaptchaV3::class,
+        'site_key' => '6LehRIoUAAAAALWGhlNNdb7hmXiK8NTju_tl2LXl',
+        'secret_key' => '6LehRIoUAAAAAKfN2eFDO7nR7xmLE8bCJQMRlPyk',
     ],
     'sendPulse' => [
         'class' => \common\components\sendpulse\SendPulse::class,
@@ -109,6 +91,15 @@ return [
         'class' => \common\components\YandexKassaAPI\YandexKassaAPI::class,
         'returnUrl' => 'https://www.myarredo.ru/',
         'shopId' => '518473', //'519736',
-        'key' => 'live_LFY41_Fv20kbUCvAYMS66r3q6aS4r78MX3u2NU7C8To', //'test_PHsoZmISCHfA5FjC6bcUPWyxDSCBS-s6YgQrKMV7TYA',
+        'key' => 'live_LFY41_Fv20kbUCvAYMS66r3q6aS4r78MX3u2NU7C8To',
+        //'key' => 'test_PHsoZmISCHfA5FjC6bcUPWyxDSCBS-s6YgQrKMV7TYA',
     ],
+    'robokassa' => [
+        'class' => \common\components\robokassa\Merchant::class,
+        'baseUrl' => 'https://auth.robokassa.ru/Merchant/Index.aspx',
+        'sMerchantLogin' => 'MYARREDOFAMILY',
+        'sMerchantPass1' => YII_DEBUG ? 'test_E8Sl6Pwc1EOqVO2QJh7T' : 'o3RIgyHzCzV9Y4rdR5k2',
+        'sMerchantPass2' => YII_DEBUG ? 'test_XfgDyHnd1P6bfxB91QO5' : 'R69VO6fXmuhfmPfQ5V6Y',
+        'isTest' => YII_DEBUG,
+    ]
 ];

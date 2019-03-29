@@ -3,7 +3,7 @@
 use backend\widgets\GridView\GridView;
 
 echo GridView::widget([
-    'dataProvider' => $model->search(Yii::$app->getRequest()->queryParams),    
+    'dataProvider' => $model->search(Yii::$app->getRequest()->queryParams),
     'columns' => [
         'id',
         [

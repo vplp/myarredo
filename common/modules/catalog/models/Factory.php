@@ -23,20 +23,24 @@ use common\helpers\Inflector;
  * @property string $first_letter
  * @property string $url
  * @property string $email
- * @property integer $popular
- * @property integer $popular_by
- * @property integer $popular_ua
+ * @property boolean $popular
+ * @property boolean $popular_by
+ * @property boolean $popular_ua
  * @property integer $created_at
  * @property integer $updated_at
- * @property integer $published
- * @property integer $deleted
+ * @property boolean $published
+ * @property boolean $deleted
  * @property integer $novelty
  * @property string $novelty_url
  * @property string $image_link
+ * @property string $video
  * @property integer $position
  * @property integer $partner_id
  * @property integer $alternative
  * @property integer $new_price
+ * @property boolean $show_for_ru
+ * @property boolean $show_for_by
+ * @property boolean $show_for_ua
  *
  * @property FactoryLang $lang
  * @property Collection $collection
@@ -49,7 +53,8 @@ use common\helpers\Inflector;
 class Factory extends ActiveRecord
 {
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -92,7 +97,19 @@ class Factory extends ActiveRecord
             [['alias', 'title'], 'required'],
             [['created_at', 'updated_at', 'position', 'partner_id'], 'integer'],
             [
-                ['published', 'deleted', 'position', 'popular_ua', 'popular_by', 'novelty', 'alternative', 'new_price'],
+                [
+                    'published',
+                    'deleted',
+                    'position',
+                    'popular_ua',
+                    'popular_by',
+                    'novelty',
+                    'alternative',
+                    'new_price',
+                    'show_for_ru',
+                    'show_for_by',
+                    'show_for_ua'
+                ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
             ],
@@ -101,6 +118,7 @@ class Factory extends ActiveRecord
                 'string',
                 'max' => 255
             ],
+            ['video', 'string', 'max' => 1024],
             [['first_letter'], 'string', 'max' => 2],
             [['alias'], 'unique'],
             [['position', 'partner_id'], 'default', 'value' => '0'],
@@ -128,6 +146,7 @@ class Factory extends ActiveRecord
                 'email',
                 'novelty_url',
                 'image_link',
+                'video',
                 'first_letter',
                 'published',
                 'deleted',
@@ -138,7 +157,10 @@ class Factory extends ActiveRecord
                 'alternative',
                 'position',
                 'partner_id',
-                'new_price'
+                'new_price',
+                'show_for_ru',
+                'show_for_by',
+                'show_for_ua'
             ],
         ];
     }
@@ -157,6 +179,7 @@ class Factory extends ActiveRecord
             'email' => 'E-Mail',
             'novelty_url' => 'Новинки url',
             'image_link' => 'Изображение',
+            'video' => Yii::t('app', 'Youtube embed video url'),
             'novelty' => 'Новинки',
             'popular' => 'Популярный Ru',
             'popular_by' => 'Популярный By',
@@ -169,6 +192,9 @@ class Factory extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
             'new_price' => 'Цена требует проверки, есть новый прайс',
+            'show_for_ru' => 'Показывать на ru',
+            'show_for_by' => 'Показывать на by',
+            'show_for_ua' => 'Показывать на ua',
         ];
     }
 
@@ -202,6 +228,14 @@ class Factory extends ActiveRecord
     public function getSale()
     {
         return $this->hasMany(Sale::class, ['factory_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItalianProduct()
+    {
+        return $this->hasMany(ItalianProduct::class, ['factory_id' => 'id']);
     }
 
     /**

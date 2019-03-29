@@ -96,7 +96,7 @@ class ProfileController extends BackendController
         if (in_array($actionName, ['fileupload', 'filedelete'])) {
             $model = Profile::find()->byId(Yii::$app->getRequest()->get('id', 0))->one();
             if ($model === null) {
-                throw new NotFoundHttpException;
+                throw new NotFoundHttpException();
             }
             $this->user_id = $model['user_id'];
         }

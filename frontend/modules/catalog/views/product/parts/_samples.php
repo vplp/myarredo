@@ -10,10 +10,10 @@ use yii\helpers\Html;
 
 <div class="container large-container">
     <div class="row">
-        <?php foreach ($samples as $model): ?>
+        <?php foreach ($samples as $model) { ?>
             <div class="col-md-3">
                 <?= Html::a(Html::img($model->getImageLink()), $model->getImageLink(), ['class' => 'show-modal']); ?>
             </div>
-        <?php endforeach; ?>
+        <?php } ?>
     </div>
 </div>

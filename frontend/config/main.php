@@ -18,10 +18,13 @@ return ArrayHelper::merge(
             'on beforeRequest' => function () {
                 $pathInfo = Yii::$app->request->pathInfo;
 
-                if (strripos($pathInfo, '.txt')) {
+                if (strripos($pathInfo, '.txt') || strripos($pathInfo, '.xml')) {
                     //die;
                 } elseif ($_SERVER['REQUEST_URI'] == '/it') {
                     Yii::$app->response->redirect('/it/', 301)->send();
+                    die;
+                } elseif ($_SERVER['REQUEST_URI'] == '/en') {
+                    Yii::$app->response->redirect('/en/', 301)->send();
                     die;
                 } elseif (!empty($pathInfo) &&
                     Yii::$app->request->isGet &&

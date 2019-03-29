@@ -25,20 +25,19 @@ $bundle = AppAsset::register($this);
                         <div class="cont-info">
                             <div class="cont-info-in">
                                 <div class="cont-info-border">
-                                    <h4><?= Yii::t('app', 'Contacts') ?></h4>
+                                    <div class=""><?= Yii::t('app', 'Contacts') ?></div>
 
                                     <?= PartnerInfo::widget() ?>
 
                                 </div>
                             </div>
                         </div>
-                        <div class="cont-bg"
-                             style="background-image: url(<?= $bundle->baseUrl ?>/img/cont-photo-bg.jpg);"></div>
+                        <div class="cont-bg" style="background-image: url(<?= $bundle->baseUrl ?>/img/cont-photo-bg.jpg);"></div>
                     </div>
 
                     <?php
                     if (!Yii::$app->getUser()->isGuest &&
-                        Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+                        Yii::$app->user->identity->group->role == 'factory'
                     ) {
                     } else { ?>
                         <div class="white-stripe">
@@ -59,7 +58,7 @@ $bundle = AppAsset::register($this);
 
             <?php
             if (!Yii::$app->getUser()->isGuest &&
-                Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
+                Yii::$app->user->identity->group->role == 'factory' &&
                 Yii::$app->controller->action->id != 'list-partners'
             ) {
             } else {
@@ -68,7 +67,7 @@ $bundle = AppAsset::register($this);
 
             <?php
             if (!Yii::$app->getUser()->isGuest &&
-                Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+                Yii::$app->user->identity->group->role == 'factory'
             ) {
             } else { ?>
                 <?= Cities::widget() ?>
@@ -91,7 +90,7 @@ $bundle = AppAsset::register($this);
 
                             <?php
                             if (!Yii::$app->getUser()->isGuest &&
-                                Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+                                Yii::$app->user->identity->group->role == 'factory'
                             ) {
                             } else { ?>
                                 <?= Menu::widget(['alias' => 'footer']) ?>

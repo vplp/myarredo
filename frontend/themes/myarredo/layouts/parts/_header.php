@@ -9,7 +9,10 @@ use frontend\modules\sys\widgets\lang\LangSwitch;
 use frontend\modules\catalog\widgets\menu\CatalogMenu;
 use frontend\modules\catalog\widgets\menu_mobile\CatalogMenuMobile;
 use frontend\modules\shop\widgets\cart\Cart;
-use frontend\modules\location\widgets\ChangeCity;
+use frontend\modules\location\widgets\{
+    ChangeCity, ChangeCurrency
+};
+use frontend\modules\user\widgets\menu\UserMenu;
 
 ?>
 
@@ -21,19 +24,14 @@ use frontend\modules\location\widgets\ChangeCity;
                 <div class="container large-container">
 
                     <div class="left-part">
-                        <?php /*if (!in_array(Yii::$app->controller->id, ['sale'])) { ?>
+                        <?php if (!in_array(Yii::$app->controller->id, ['sale'])) { ?>
                             <a class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
                                     <span class="phone"><?= Yii::$app->partner->getPartnerPhone() ?></span>
-                                    <?php if (Yii::$app->city->domain == 'ru') { ?>
-                                        <span class="descr">
-                                            <?= Yii::t('app', 'Бесплатно в вашем городе') ?>
-                                        </span>
-                                    <?php } ?>
                                 </div>
                             </a>
-                        <?php }*/ ?>
+                        <?php } ?>
 
                         <?php /*
                         <a class="back-call">
@@ -54,6 +52,11 @@ use frontend\modules\location\widgets\ChangeCity;
                         <div class="lang-selector">
                             <?= LangSwitch::widget() ?>
                         </div>
+                        <?php if (in_array(Yii::$app->city->domain, ['ru'])) { ?>
+                            <div class="lang-selector">
+                                <?= ChangeCurrency::widget() ?>
+                            </div>
+                        <?php } ?>
                     </div>
                     <div class="right-part">
 
@@ -80,197 +83,36 @@ use frontend\modules\location\widgets\ChangeCity;
                         <div class="lang-selector">
                             <?= LangSwitch::widget() ?>
                         </div>
+                        <?php if (in_array(Yii::$app->city->domain, ['ru'])) { ?>
+                            <div class="lang-selector">
+                                <?= ChangeCurrency::widget() ?>
+                            </div>
+                        <?php } ?>
                     </div>
 
                     <div class="right-part">
 
-                        <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'user') { ?>
+                        <?php if (Yii::$app->user->identity->group->role == 'user') { ?>
                             <?= Cart::widget(['view' => 'short']) ?>
                         <?php } ?>
 
-                        <div class="sign-in">
+                        <div class="sign-in withicon">
                             <?php
-                            $role = Yii::$app->getUser()->getIdentity()->group->role;
+                            $role = Yii::$app->user->identity->group->role;
                             if ($role == 'partner') {
-                                echo Yii::$app->getUser()->getIdentity()->profile->name_company;
+                                echo Yii::$app->user->identity->profile->name_company;
                             } elseif ($role == 'admin') {
-                                echo Yii::$app->getUser()->getIdentity()->profile->first_name;
+                                echo Yii::$app->user->identity->profile->first_name;
                             } elseif ($role == 'factory') {
-                                echo Yii::$app->getUser()->getIdentity()->profile->factory
-                                    ? Yii::$app->getUser()->getIdentity()->profile->factory->title
+                                echo Yii::$app->user->identity->profile->factory
+                                    ? Yii::$app->user->identity->profile->factory->title
                                     : '';
                             } else {
-                                echo Yii::$app->getUser()->getIdentity()->profile->first_name;
+                                echo Yii::$app->user->identity->profile->first_name;
                             } ?>
                         </div>
 
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <div class="my-notebook dropdown">
-                                    <span class="red-but notebook-but dropdown-toggle" data-toggle="dropdown">
-                                        <i class="fa fa-bars" aria-hidden="true"></i>
-                                        <?= Yii::t('app', 'Menu') ?>
-                                        <object>
-                                            <ul class="dropdown-menu">
-
-                                                <?php if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner'])) { ?>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Orders'),
-                                                            ['/shop/partner-order/list']
-                                                        ); ?>
-                                                    </li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Sale'),
-                                                            ['/catalog/partner-sale/list']
-                                                        ); ?>
-                                                    </li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Размещение кода'),
-                                                            ['/page/page/view', 'alias' => 'razmeshchenie-koda']
-                                                        ); ?>
-                                                    </li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Инструкция партнерам'),
-                                                            ['/page/page/view', 'alias' => 'instructions']
-                                                        ); ?>
-                                                    </li>
-                                                    <li role="separator" class="divider"></li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Profile'),
-                                                            ['/user/profile/index']
-                                                        ); ?>
-                                                    </li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Sign Up'),
-                                                            ['/user/logout/index']
-                                                        ); ?>
-                                                    </li>
-                                                <?php } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'admin') { ?>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Orders'),
-                                                            ['/shop/admin-order/list']
-                                                        ); ?>
-                                                    </li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Product statistics'),
-                                                            ['/catalog/product-stats/list']
-                                                        ); ?>
-                                                    </li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Factory statistics'),
-                                                            ['/catalog/factory-stats/list']
-                                                        ); ?>
-                                                    </li>
-                                                    <li role="separator" class="divider"></li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Profile'),
-                                                            ['/user/profile/index']
-                                                        ); ?>
-                                                    </li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Sign Up'),
-                                                            ['/user/logout/index']
-                                                        ); ?>
-                                                    </li>
-                                                <?php } elseif (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'My goods'),
-                                                            ['/catalog/factory-product/list']
-                                                        ); ?>
-                                                    </li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Collections'),
-                                                            ['/catalog/factory-collections/list']
-                                                        ); ?>
-                                                    </li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Рекламные кампании'),
-                                                            ['/catalog/factory-promotion/list']
-                                                        ); ?>
-                                                    </li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Orders'),
-                                                            ['/shop/factory-order/list']
-                                                        ); ?>
-                                                    </li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Product statistics'),
-                                                            ['/catalog/product-stats/list']
-                                                        ); ?>
-                                                    </li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Factory statistics'),
-                                                            ['/catalog/factory-stats/list']
-                                                        ); ?>
-                                                    </li>
-                                                    <?php
-                                                    /*
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Banners'),
-                                                            ['/banner/factory-banner/list']
-                                                        ); ?>
-                                                    </li>
-                                                    */
-                                                    ?>
-
-                                                    <li role="separator" class="divider"></li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Profile'),
-                                                            ['/user/profile/index']
-                                                        ); ?>
-                                                    </li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Sign Up'),
-                                                            ['/user/logout/index']
-                                                        ); ?>
-                                                    </li>
-                                                <?php } else { ?>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Orders'),
-                                                            ['/shop/order/list']
-                                                        ); ?>
-                                                    </li>
-                                                    <li role="separator" class="divider"></li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Profile'),
-                                                            ['/user/profile/index']
-                                                        ); ?>
-                                                    </li>
-                                                    <li>
-                                                        <?= Html::a(
-                                                            Yii::t('app', 'Sign Up'),
-                                                            ['/user/logout/index']
-                                                        ); ?>
-                                                    </li>
-                                                <?php } ?>
-                                            </ul>
-                                        </object>
-                                    </span>
-                                </div>
-                            </li>
-                        </ul>
+                        <?= UserMenu::widget(['view' => 'user_menu']); ?>
 
                     </div>
 
@@ -290,8 +132,21 @@ use frontend\modules\location\widgets\ChangeCity;
 
                 <?php
                 if (!Yii::$app->getUser()->isGuest &&
-                    Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+                    Yii::$app->user->identity->group->role == 'factory'
                 ) {
+                } elseif (!Yii::$app->getUser()->isGuest &&
+                    Yii::$app->user->identity->group->role == 'partner' &&
+                    Yii::$app->user->identity->profile->country_id == 4
+                ) {
+                    ?>
+                    <div class="header-addprodbox">
+                        <?= Html::a(
+                            '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Добавить товар'),
+                            Url::toRoute(['/catalog/italian-product/create']),
+                            ['class' => 'btn-myarredo']
+                        ) ?>
+                    </div>
+                    <?php
                 } else { ?>
                     <?= CatalogMenu::widget([]); ?>
 
@@ -303,9 +158,15 @@ use frontend\modules\location\widgets\ChangeCity;
                         ]); ?>
 
                         <div class="search-group">
-                            <input id="search" name="search" placeholder="<?= Yii::t('app', 'Поиск') ?>"
-                                   class="form-control input-md" required
-                                   value="" type="text">
+                            <?= Html::input(
+                                'text',
+                                'search',
+                                null,
+                                [
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => Yii::t('app', 'Поиск'),
+                                ]
+                            ) ?>
                             <?= Html::submitButton(
                                 '<i class="fa fa-search" aria-hidden="true"></i>',
                                 ['class' => 'search-button']
@@ -330,11 +191,6 @@ use frontend\modules\location\widgets\ChangeCity;
                 <a class="phone-num">
                     <?= Yii::$app->partner->getPartnerPhone() ?>
                 </a>
-                <?php if (Yii::$app->city->domain == 'ru') { ?>
-                    <div class="after-num">
-                        <?= Yii::t('app', 'Бесплатно в вашем городе') ?>
-                    </div>
-                <?php } ?>
             </div>
         </div>
     </div>
@@ -347,11 +203,39 @@ use frontend\modules\location\widgets\ChangeCity;
         </div>
     </div>
 
+    <div class="mobsearch-box">
+        <?php $form = ActiveForm::begin([
+            'action' => ['/catalog/elastic-search/search'],
+            'method' => 'get',
+            'options' => ['class' => 'mobsearch-form'],
+        ]); ?>
+
+        <div class="mobsearch-group">
+            <?= Html::input(
+                'text',
+                'search',
+                null,
+                [
+                    'class' => 'form-control mobsearch-fld',
+                    'placeholder' => Yii::t('app', 'Поиск'),
+                ]
+            ) ?>
+            <?= Html::submitButton(
+                'Поиск',
+                ['class' => 'btn-mobsearch']
+            ) ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
+
+    </div>
+
     <div class="mobile-menu js-mobile-menu">
         <div class="stripe">
 
-            <?php if ((Yii::$app->getUser()->isGuest)) { ?>
-                <?= Html::a(
+            <?php
+            if ((Yii::$app->getUser()->isGuest)) {
+                echo Html::a(
                     '<i class="fa fa-sign-in" aria-hidden="true"></i>' .
                     Yii::t('app', 'Sign In'),
                     ['/user/login/index'],
@@ -359,17 +243,17 @@ use frontend\modules\location\widgets\ChangeCity;
                         'class' => 'mobile-btn',
                         'rel' => 'nofollow'
                     ]
-                ) ?>
-            <?php } else { ?>
-                <?= Html::a(
+                );
+            } else {
+                echo Html::a(
                     Yii::t('app', 'Sign Up'),
                     ['/user/logout/index'],
                     [
                         'class' => 'mobile-btn',
                         'rel' => 'nofollow'
                     ]
-                ) ?>
-            <?php } ?>
+                );
+            } ?>
 
             <a class="back-call">
                 <i class="fa fa-phone" aria-hidden="true"></i>
@@ -384,11 +268,13 @@ use frontend\modules\location\widgets\ChangeCity;
 
         <?php
         if (!Yii::$app->getUser()->isGuest &&
-            Yii::$app->getUser()->getIdentity()->group->role == 'factory'
+            Yii::$app->user->identity->group->role == 'factory'
         ) {
-        } else { ?>
-            <?= CatalogMenuMobile::widget([]); ?>
-        <?php } ?>
+            echo UserMenu::widget(['view' => 'user_menu_mobile']);
+        } else {
+            echo UserMenu::widget(['view' => 'user_menu_mobile']);
+            echo CatalogMenuMobile::widget([]);
+        } ?>
 
         <div class="bot-list">
             <div class="one-list-cont">
@@ -401,10 +287,14 @@ use frontend\modules\location\widgets\ChangeCity;
 
             </div>
             <div class="one-list-cont">
-
                 <?= LangSwitch::widget(['view' => 'lang_switch_mobile']) ?>
-
             </div>
+
+            <?php if (in_array(Yii::$app->city->domain, ['ru'])) { ?>
+                <div class="one-list-cont">
+                    <?= ChangeCurrency::widget(['view' => 'change_currency_mobile']) ?>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div>

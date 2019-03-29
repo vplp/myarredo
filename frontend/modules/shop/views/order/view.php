@@ -21,11 +21,14 @@ use frontend\modules\catalog\models\Product;
                 <div class="col-md-12">
 
                     <div class="flex basket-items">
-                        <?php foreach ($order->items as $item): ?>
+                        <?php foreach ($order->items as $item) { ?>
                             <div class="basket-item-info">
                                 <div class="item">
                                     <div class="img-cont">
-                                        <?= Html::a(Html::img($item->product->getImage()), Product::getUrl($item->product['alias'])) ?>
+                                        <?= Html::a(
+                                            Html::img(Product::getImageThumb($item->product['image_link'])),
+                                            Product::getUrl($item->product['alias'])
+                                        ) ?>
                                     </div>
                                     <table width="100%">
                                         <tr>
@@ -39,7 +42,7 @@ use frontend\modules\catalog\models\Product;
                                     </table>
                                 </div>
                             </div>
-                        <?php endforeach; ?>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

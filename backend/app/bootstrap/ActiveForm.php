@@ -42,8 +42,9 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
         /** @var Model $model */
         foreach ($models as $model) {
             $model->validate($attributes);
-            foreach ($model->getErrors() as $attribute => $errors)
+            foreach ($model->getErrors() as $attribute => $errors) {
                 $result[Html::getInputId($model, $attribute)] = $errors;
+            }
         }
 
         return $result;
@@ -57,7 +58,10 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
      */
     public function text_line($model, $attribute, $options = [])
     {
-        return $this->field($model, $attribute, $options)->placeholder(Html::encode($model->getAttributeLabel($attribute)))->textInput(['maxlength' => true]);
+        return $this
+            ->field($model, $attribute)
+            ->placeholder(Html::encode($model->getAttributeLabel($attribute)))
+            ->textInput($options);
     }
 
     /**

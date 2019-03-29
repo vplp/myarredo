@@ -28,7 +28,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-            [['category', 'factory_id', 'city_id', 'user_id'], 'integer'],
+            [['id', 'category', 'factory_id', 'city_id', 'user_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -63,18 +63,22 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'factory_id' => $this->factory_id,
-            'city_id' => $this->city_id,
-            'user_id' => $this->user_id
+            self::tableName() . '.id' => $this->id,
+            self::tableName() . '.factory_id' => $this->factory_id,
+            self::tableName() . '.city_id' => $this->city_id,
+            self::tableName() . '.user_id' => $this->user_id
         ]);
-        //
-        $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published]);
-        //
+
+        $query
+            ->andFilterWhere(['like', self::tableName() . '.alias', $this->alias])
+            ->andFilterWhere(['=', self::tableName() . '.published', $this->published]);
+
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);
-        //
-        $query->innerJoinWith(["category"])->andFilterWhere([SaleRelCategory::tableName() . '.group_id' => $this->category]);
+
+        if ($this->category) {
+            $query->innerJoinWith(["category"])
+                ->andFilterWhere([SaleRelCategory::tableName() . '.group_id' => $this->category]);
+        }
 
         return $dataProvider;
     }

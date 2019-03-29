@@ -75,6 +75,8 @@ class SaleController extends BaseController
 
     /**
      * @return string
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionList()
     {
@@ -91,7 +93,6 @@ class SaleController extends BaseController
         $types = Types::getWithSale($queryParams);
         $style = Specification::getWithSale($queryParams);
         $factory = Factory::getWithSale($queryParams);
-
         $countries = Country::getWithSale($queryParams);
         $cities = City::getWithSale($queryParams);
 
@@ -99,7 +100,14 @@ class SaleController extends BaseController
 
         Yii::$app->metatag->render();
 
-        $this->listSeo();
+        if (!empty($models->getModels())) {
+            $this->listSeo();
+        } else {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'robots',
+                'content' => 'noindex, follow',
+            ]);
+        }
 
         return $this->render('list', [
             'category' => $category,
@@ -204,11 +212,23 @@ class SaleController extends BaseController
                 Yii::t('app', 'из Италии со скидкой');
         }
 
-        $this->title = implode('. ', $pageTitle);
+        $pageTitle = implode('. ', $pageTitle);
+        $pageDescription = implode('. ', $pageDescription);
+
+
+        $this->title = $pageTitle;
 
         Yii::$app->view->registerMetaTag([
             'name' => 'description',
-            'content' => implode('. ', $pageDescription),
+            'content' => $pageDescription,
+        ]);
+
+        Yii::$app->metatag->renderArrayGraph([
+            'site_name' => 'Myarredo Family',
+            'type' => 'article',
+            'title' => $pageTitle,
+            'description' => $pageDescription,
+            'image' => Yii::$app->request->hostInfo . Sale::getImage($model['image_link']),
         ]);
 
         return $this->render('view', [
@@ -241,7 +261,7 @@ class SaleController extends BaseController
     }
 
     /**
-     * @return $this
+     * @inheritdoc
      */
     public function listSeo()
     {
@@ -349,9 +369,9 @@ class SaleController extends BaseController
             ]);
         }
 
-        $this->pageH1 = ($this->pageH1 != '')
-            ? $this->pageH1
-            : implode(' ', $pageH1);
+        Yii::$app->metatag->seo_h1 = (Yii::$app->metatag->seo_h1 != '')
+            ? Yii::$app->metatag->seo_h1
+            : implode(', ', $pageH1);
 
         return $this;
     }

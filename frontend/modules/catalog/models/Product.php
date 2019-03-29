@@ -57,6 +57,9 @@ class Product extends \common\modules\catalog\models\Product
             ->enabled()
             ->andFilterWhere([
                 Product::tableName() . '.removed' => '0',
+                Factory::tableName() . '.published' => '1',
+                Factory::tableName() . '.deleted' => '0',
+                Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
             ]);
     }
 
@@ -135,6 +138,10 @@ class Product extends \common\modules\catalog\models\Product
         return (new search\Product())->search($params);
     }
 
+    /**
+     * @param string $image_link
+     * @return bool
+     */
     public static function isImage($image_link = '')
     {
         /** @var Catalog $module */

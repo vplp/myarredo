@@ -82,7 +82,7 @@ class Correspondence extends CorrespondenceModel implements BaseBackendSearchMod
         }
 
         $query->andFilterWhere(['like', 'subject', $this->subject])
-            ->andFilterWhere(['like', 'published', $this->published]);
+            ->andFilterWhere(['=', 'published', $this->published]);
         //
         $query->andFilterWhere(['>=', 'published_time', $this->date_from]);
         $query->andFilterWhere(['<=', 'published_time', $this->date_to]);

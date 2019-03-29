@@ -75,10 +75,10 @@ class Category extends \common\modules\catalog\models\Category
     }
 
     /**
-     * Get by alias
-     *
-     * @param string $alias
-     * @return ActiveRecord|null
+     * @param $alias
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findByAlias($alias)
     {
@@ -92,6 +92,8 @@ class Category extends \common\modules\catalog\models\Category
     /**
      * @param $id
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findById($id)
     {
@@ -103,10 +105,10 @@ class Category extends \common\modules\catalog\models\Category
     }
 
     /**
-     * Search
-     *
      * @param $params
      * @return \yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function search($params)
     {
@@ -184,6 +186,8 @@ class Category extends \common\modules\catalog\models\Category
     /**
      * @param array $params
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getWithProduct($params = [])
     {
@@ -215,6 +219,12 @@ class Category extends \common\modules\catalog\models\Category
                 ->andFilterWhere(['IN', 'productCollection.id', $params[$keys['collection']]]);
         }
 
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["product.colors as productColors"], false)
+                ->andFilterWhere(['IN', 'productColors.alias', $params[$keys['colors']]]);
+        }
+
         if (Yii::$app->request->get('show') == 'in_stock') {
             $query->andWhere([
                 Product::tableName() . '.in_stock' => '1'
@@ -225,10 +235,14 @@ class Category extends \common\modules\catalog\models\Category
             return $query
                 ->innerJoinWith(["product"], false)
                 ->innerJoinWith(["product.lang"], false)
+                ->innerJoinWith(["product.factory"], false)
                 ->andFilterWhere([
                     Product::tableName() . '.published' => '1',
                     Product::tableName() . '.deleted' => '0',
                     Product::tableName() . '.removed' => '0',
+                    Factory::tableName() . '.published' => '1',
+                    Factory::tableName() . '.deleted' => '0',
+                    Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
                 ])
                 ->select([
                     self::tableName() . '.id',
@@ -292,6 +306,54 @@ class Category extends \common\modules\catalog\models\Category
             ->andFilterWhere([
                 Sale::tableName() . '.published' => '1',
                 Sale::tableName() . '.deleted' => '0',
+            ])
+            ->select([
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                self::tableName() . '.position',
+                self::tableName() . '.image_link',
+                self::tableName() . '.image_link2',
+                self::tableName() . '.image_link3',
+                CategoryLang::tableName() . '.title',
+                'count(' . self::tableName() . '.id) as count'
+            ])
+            ->groupBy(self::tableName() . '.id')
+            ->all();
+    }
+
+    /**
+     * @param array $params
+     * @return mixed
+     */
+    public static function getWithItalianProduct($params = [])
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = self::findBase();
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["italianProduct.types italianProductTypes"], false)
+                ->andFilterWhere(['IN', 'italianProductTypes.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["italianProduct.specification italianProductSpecification"], false)
+                ->andFilterWhere(['IN', 'italianProductSpecification.alias', $params[$keys['style']]]);
+        }
+
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["italianProduct.factory italianProductFactory"], false)
+                ->andFilterWhere(['IN', 'italianProductFactory.alias', $params[$keys['factory']]]);
+        }
+
+        return $query
+            ->innerJoinWith(["italianProduct"], false)
+            ->andFilterWhere([
+                ItalianProduct::tableName() . '.published' => '1',
+                ItalianProduct::tableName() . '.deleted' => '0',
             ])
             ->select([
                 self::tableName() . '.id',

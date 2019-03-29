@@ -20,8 +20,8 @@ $this->title = $this->context->title;
             <div class="container large-container">
                 <div class="row">
 
-                    <?= Html::tag('h1', ($this->context->SeoH1 != '')
-                        ? $this->context->SeoH1
+                    <?= Html::tag('h1', (Yii::$app->metatag->seo_h1 != '')
+                        ? Yii::$app->metatag->seo_h1
                         : Yii::t('app', 'Распродажа итальянской мебели')); ?>
 
                     <?= Breadcrumbs::widget([
@@ -75,7 +75,7 @@ $this->title = $this->context->title;
 
                     <div class="row">
                         <div class="comp-advanteges">
-                            <?= $this->context->SeoContent ?>
+                            <?= Yii::$app->metatag->seo_content ?>
                         </div>
                     </div>
                 </div>

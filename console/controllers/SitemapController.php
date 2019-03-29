@@ -142,6 +142,14 @@ class SitemapController extends Controller
                 fwrite($handle, $str);
             }
 
+            // Add sale file
+            $link = '/sitemap/sale/sitemap_sale_' . $city['alias'] . '.xml';
+            $str = PHP_EOL . "\t<sitemap>"
+                . PHP_EOL . "\t\t<loc>" . $city->getSubDomainUrl() . $link . "</loc>"
+                . PHP_EOL . "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>"
+                . PHP_EOL . "\t</sitemap>";
+            fwrite($handle, $str);
+
             fwrite($handle, PHP_EOL . '</sitemapindex>');
             fclose($handle);
             chmod($filePath, 0777);

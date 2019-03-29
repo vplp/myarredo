@@ -37,4 +37,4 @@ $this->context->actionListLinkStatus = Url::to(
 <?= $form->switcher($model, 'published') ?>
 <?= $form->submit($model, $this) ?>
 
-<?php ActiveForm::end(); ?>
+<?php ActiveForm::end();

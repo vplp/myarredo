@@ -38,7 +38,7 @@ $model->city_id = Yii::$app->city->getCityId();
             ->label(false) ?>
 
         <?= $form->field($model, 'phone')
-            ->widget(\yii\widgets\MaskedInput::className(), [
+            ->widget(\yii\widgets\MaskedInput::class, [
                 'mask' => Yii::$app->city->getPhoneMask(),
                 'clientOptions' => [
                     'clearIncomplete' => true
@@ -48,9 +48,9 @@ $model->city_id = Yii::$app->city->getCityId();
             ->label(false) ?>
 
         <?php
-//        $form->field($model, 'city_id')
-//            ->dropDownList(City::dropDownList(Yii::$app->city->getCountryId()))
-//            ->label(false)
+        //        $form->field($model, 'city_id')
+        //            ->dropDownList(City::dropDownList(Yii::$app->city->getCountryId()))
+        //            ->label(false)
         ?>
 
         <?= $form->field($model, 'city_id')
@@ -65,12 +65,18 @@ $model->city_id = Yii::$app->city->getCityId();
             ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
 
         <?= $form->field($model, 'reCaptcha')
-            ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
+            ->widget(
+                \frontend\widgets\recaptcha3\RecaptchaV3Widget::class,
+                ['actionName' => 'request_price_popup']
+            )
             ->label(false) ?>
 
     </div>
     <div class="modal-footer">
-        <?= Html::submitButton(Yii::t('app', 'Получить лучшую цену'), ['class' => 'btn btn-success big']) ?>
+        <?= Html::submitButton(
+            Yii::t('app', 'Получить лучшую цену'),
+            ['class' => 'btn btn-success big']
+        ) ?>
     </div>
 
 <?php ActiveForm::end(); ?>

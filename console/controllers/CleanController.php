@@ -1,15 +1,14 @@
 <?php
+
 namespace console\controllers;
 
 use yii\helpers\FileHelper;
-
 
 /**
  * Class ClearController
  */
 class CleanController extends \yii\console\Controller
 {
-
     public $assetPaths = ['@app/web/assets'];
     public $runtimePaths = ['@runtime'];
 
@@ -49,11 +48,11 @@ class CleanController extends \yii\console\Controller
      */
     public function actionAddAccess()
     {
-
     }
 
     /**
      * @param $dir
+     * @throws \yii\base\ErrorException
      */
     private function cleanDir($dir)
     {
@@ -65,6 +64,4 @@ class CleanController extends \yii\console\Controller
             }
         }
     }
-
-
 }

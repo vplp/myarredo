@@ -30,7 +30,7 @@ $model->city_id = Yii::$app->city->getCityId();
     ->label(false) ?>
 
 <?= $form->field($model, 'phone')
-    ->widget(\yii\widgets\MaskedInput::className(), [
+    ->widget(\yii\widgets\MaskedInput::class, [
         'mask' => Yii::$app->city->getPhoneMask(),
         'clientOptions' => [
             'clearIncomplete' => true
@@ -53,13 +53,20 @@ $model->city_id = Yii::$app->city->getCityId();
     ->textarea(['placeholder' => Yii::t('app', 'Comment')])
     ->label(false) ?>
 
-<?= $form->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])->checkbox([], false)
+<?= $form->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])
+    ->checkbox([], false)
     ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
 
 <?= $form->field($model, 'reCaptcha')
-    ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
+    ->widget(
+        \frontend\widgets\recaptcha3\RecaptchaV3Widget::class,
+        ['actionName' => 'request_price_notepad']
+    )
     ->label(false) ?>
 
-<?= Html::submitButton(Yii::t('app', 'Получить лучшую цену'), ['class' => 'btn btn-success big']) ?>
+<?= Html::submitButton(
+    Yii::t('app', 'Получить лучшую цену'),
+    ['class' => 'btn btn-success big']
+) ?>
 
-<?php ActiveForm::end(); ?>
+<?php ActiveForm::end();

@@ -69,20 +69,22 @@ class FactoryProduct extends FactoryProductModel implements BaseBackendSearchMod
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'factory_id' => $this->factory_id,
+            self::tableName() . '.id' => $this->id,
+            self::tableName() . '.factory_id' => $this->factory_id,
         ]);
 
         $query
-            ->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published]);
+            ->andFilterWhere(['like', self::tableName() . '.alias', $this->alias])
+            ->andFilterWhere(['=', self::tableName() . '.published', $this->published]);
 
         $query
             ->andFilterWhere(['like', FactoryProductLang::tableName() . '.title', $this->title]);
 
-        $query
-            ->innerJoinWith(["category"])
-            ->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $this->category]);
+        if ($this->category) {
+            $query
+                ->innerJoinWith(["category"])
+                ->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $this->category]);
+        }
 
         return $dataProvider;
     }

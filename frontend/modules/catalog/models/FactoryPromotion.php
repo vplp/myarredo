@@ -104,7 +104,7 @@ class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
     {
         /** send mail to admin */
 
-        if ($this->payment_status == 'paid') {
+        if ($this->payment_status == 'success') {
             $message = 'Оплата фабрикой рекламной компании';
 
             Yii::$app

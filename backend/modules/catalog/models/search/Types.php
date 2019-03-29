@@ -57,12 +57,16 @@ class Types extends TypesModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published]);
-        //
+        $query
+            ->andFilterWhere(['like', self::tableName() . '.alias', $this->alias])
+            ->andFilterWhere(['=', self::tableName() . '.published', $this->published]);
+
         $query->andFilterWhere(['like', TypesLang::tableName() . '.title', $this->title]);
-        //
-        $query->innerJoinWith(["category"])->andFilterWhere([TypesRelCategory::tableName() . '.group_id' => $this->category]);
+
+        if ($this->category) {
+            $query->innerJoinWith(["category"])
+                ->andFilterWhere([TypesRelCategory::tableName() . '.group_id' => $this->category]);
+        }
 
         return $dataProvider;
     }

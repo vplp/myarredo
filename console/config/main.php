@@ -2,7 +2,10 @@
 
 use yii\helpers\ArrayHelper;
 use frontend\modules\catalog\models\{
-    Category, Product, Factory
+    Category
+};
+use console\models\{
+    Product, Factory, Sale
 };
 
 $main = require(dirname(__DIR__, 2) . '/common/config/main.php');
@@ -76,8 +79,17 @@ return ArrayHelper::merge(
                     "$rootDir/temp",
                 ],
             ],
-            'cron' => [
-                'class' => \console\controllers\CronController::class,
+            'catalog-product' => [
+                'class' => \console\controllers\CatalogProductController::class,
+            ],
+            'catalog-sale' => [
+                'class' => \console\controllers\CatalogSaleController::class,
+            ],
+            'catalog-factory' => [
+                'class' => \console\controllers\CatalogFactoryController::class,
+            ],
+            'exchange-rates' => [
+                'class' => \console\controllers\ExchangeRatesController::class,
             ],
             'stats' => [
                 'class' => \console\controllers\StatsController::class,
@@ -146,6 +158,20 @@ return ArrayHelper::merge(
                     ],
                 ]
             ],
+            'sitemap-sale' => [
+                'class' => \console\controllers\SitemapSaleController::class,
+                'modelName' => [
+                    'class' => Sale::class,
+                    'dataClosure' => function ($model) {
+                        return [
+                            'loc' => '/sale-product/' . $model['alias'] . '/',
+                            'lastmod' => date('c', $model['updated_at']),
+                            'changefreq' => 'daily',
+                            'priority' => 0.5
+                        ];
+                    }
+                ],
+            ],
             'sitemap-image' => [
                 'class' => \console\controllers\SitemapImageController::class,
                 'models' => [
@@ -155,10 +181,13 @@ return ArrayHelper::merge(
                             $module = Yii::$app->getModule('catalog');
                             $url = $module->getProductUploadUrl();
 
-                            return [
-                                'loc' => '/product/' . $model['alias'] . '/',
-                                'image_link' => $url . '/' . $model['image_link'],
-                            ];
+                            if ($model['image_link']) {
+                                return [
+                                    'loc' => '/product/' . $model['alias'] . '/',
+                                    'image_link' => $url . '/' . $model['image_link'],
+                                    'title' => $model['lang']['title'],
+                                ];
+                            }
                         }
                     ],
                 ],

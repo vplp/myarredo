@@ -1,3 +1,5 @@
+var baseUrl = $("base").attr("href");
+
 /**
  * Кнопка запросить цену
  */
@@ -5,7 +7,8 @@ $('.request-price').on('click', function () {
     var product_id = $(this).data('id'),
         count = 1;
 
-    $.post('/shop/cart/add-to-cart/',
+    $.post(
+        baseUrl + 'shop/cart/add-to-cart/',
         {
             _csrf: $('#token').val(),
             id: product_id,
@@ -14,11 +17,10 @@ $('.request-price').on('click', function () {
         }
     ).done(function (data) {
         if (data == true) {
-
             refresh_full_cart();
 
             $.post(
-                '/shop/widget/request-price/',
+                baseUrl + 'shop/widget/request-price/',
                 {
                     _csrf: $('#token').val(),
                     view: 'full'
@@ -48,7 +50,16 @@ $('.add-to-notepad-product').on('click', function () {
  */
 $('.add-to-notepad').on('click', function () {
     var product_id = $(this).data('id');
-    add_to_popup(product_id);
+    var ourElem = $(this);
+    var noteBok = $('.header').find('.my-notebook').find('.for-price').text();
+    if (!$(this).hasClass('doned')) {
+        add_to_popup(product_id);
+        $(this).addClass('doned');
+        setTimeout(function () {
+            ourElem.removeAttr('data-toggle');
+            $('.header').find('.my-notebook').find('.for-price').text(+noteBok + 1);
+        }, 400);
+    }
 });
 
 /**
@@ -56,7 +67,9 @@ $('.add-to-notepad').on('click', function () {
  */
 function add_to_popup(id, count) {
     count = count || 1;
-    $.post('/shop/cart/add-to-cart/',
+
+    $.post(
+        baseUrl + 'shop/cart/add-to-cart/',
         {
             _csrf: $('#token').val(),
             id: id,
@@ -74,7 +87,9 @@ function add_to_popup(id, count) {
  */
 function add_to_cart(id, count) {
     count = count || 1;
-    $.post('/shop/cart/add-to-cart/',
+
+    $.post(
+        baseUrl + 'shop/cart/add-to-cart/',
         {
             _csrf: $('#token').val(),
             id: id,
@@ -92,7 +107,8 @@ function add_to_cart(id, count) {
  */
 function delete_from_popup(id, count) {
     count = count || 0;
-    $.post('/shop/cart/delete-from-cart/',
+    $.post(
+        baseUrl + 'shop/cart/delete-from-cart/',
         {
             _csrf: $('#token').val(),
             product_id: id,
@@ -110,7 +126,8 @@ function delete_from_popup(id, count) {
  */
 function delete_from_cart(id, count) {
     count = count || 0;
-    $.post('/shop/cart/delete-from-cart/',
+    $.post(
+        baseUrl + 'shop/cart/delete-from-cart/',
         {
             _csrf: $('#token').val(),
             product_id: id,
@@ -127,14 +144,12 @@ function delete_from_cart(id, count) {
  * изменение количества елемента в корзины
  */
 function change_count_cart_item(id, value, count) {
-
     if (isNumeric(value)) {
         var f_count = (count - value);
 
         if (f_count != 0 && f_count > 0) {
             delete_from_cart(id, f_count);
-        }
-        else if (f_count != 0 && f_count < 0) {
+        } else if (f_count != 0 && f_count < 0) {
             add_to_cart(id, -f_count);
         }
     }
@@ -149,8 +164,7 @@ function change_count_cart_popup_item(id, value, count) {
         var f_count = (count - value);
         if (f_count != 0 && f_count > 0) {
             delete_from_popup(id, f_count);
-        }
-        else if (f_count != 0 && f_count < 0) {
+        } else if (f_count != 0 && f_count < 0) {
             add_to_popup(id, -f_count);
         }
     }
@@ -161,7 +175,7 @@ function change_count_cart_popup_item(id, value, count) {
  */
 function refresh_popup_cart() {
     $.post(
-        '/shop/widget/',
+        baseUrl + 'shop/widget/',
         {
             _csrf: $('#token').val(),
             view: 'full_popup'
@@ -170,7 +184,8 @@ function refresh_popup_cart() {
         if (data.success) {
             $('#short_cart').html(data.views.short);
             $('#myModal').html(data.view);
-            $('.prod-card-page').find('.add-to-notepad').html('В блокноте')
+            var obj = $('.prod-card-page').find('.add-to-notepad');
+            obj.html(obj.data('message'));
             $('#myModal').modal();
         }
     });
@@ -181,7 +196,7 @@ function refresh_popup_cart() {
  */
 function refresh_full_cart() {
     $.post(
-        '/shop/widget/',
+        baseUrl + 'shop/widget/',
         {
             _csrf: $('#token').val(),
             view: 'full'
@@ -219,7 +234,7 @@ $('.ajax-status-switcher').on('click', function () {
             });
         },
         error: function (err) {
-           //console.log(err);
+            //console.log(err);
         }
     });
 });

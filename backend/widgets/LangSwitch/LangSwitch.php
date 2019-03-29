@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\widgets\LangSwitch;
 
 use Yii;
@@ -7,17 +8,16 @@ use thread\app\base\widgets\Widget;
 
 /**
  * Class LangSwitch
+ *
  * @package backend\widgets\LangSwitch
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class LangSwitch extends Widget
 {
-
     /**
      * @var string
      */
     public $view = 'LangSwitch';
+
     /**
      * @var string
      */
@@ -27,24 +27,28 @@ class LangSwitch extends Widget
      * @var string
      */
     public $current = '';
+
     /**
      * @var null
      */
     protected $items = null;
 
     /**
-     *
+     * @inheritdoc
      */
     public function init()
     {
         parent::init();
-        $langModel = new Yii::$app->languages->languageModel;
+
+        $langModel = new Yii::$app->languages->languageModel();
+
         $this->items = $langModel->getLanguages();
         $this->current = $langModel->getCurrent()['label'];
     }
 
     /**
      * @return string
+     * @throws \yii\base\InvalidConfigException
      */
     public function run()
     {
@@ -54,12 +58,13 @@ class LangSwitch extends Widget
         $url = substr($request->getUrl(), strlen($baseUrl));
 
         foreach ($this->items as $lang) {
-            if (!$lang['by_default']) {
+            if (!$lang['by_default'] && $lang['local'] != Yii::$app->language) {
                 $items[] = ['label' => $lang['label'], 'url' => $baseUrl . '/' . $lang['alias'] . $url];
-            } else {
+            } else if ($lang['local'] != Yii::$app->language) {
                 $items[] = ['label' => $lang['label'], 'url' => $baseUrl . $url];
             }
         }
+
         return $this->render($this->view, [
             'models' => $items,
             'current' => $this->current,

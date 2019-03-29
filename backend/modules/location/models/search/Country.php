@@ -64,7 +64,7 @@ class Country extends CountryModel implements BaseBackendSearchModel
         $query->andFilterWhere(['like', 'alias', $this->alias])
             ->andFilterWhere(['like', 'alpha2', $this->alpha2])
             ->andFilterWhere(['like', 'alpha3', $this->alpha3])
-            ->andFilterWhere(['like', 'published', $this->published]);
+            ->andFilterWhere(['=', 'published', $this->published]);
         //
         $query->andFilterWhere(['like', CountryLang::tableName() . '.title', $this->title]);
 

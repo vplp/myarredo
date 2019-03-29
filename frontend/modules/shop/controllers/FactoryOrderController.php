@@ -33,8 +33,8 @@ class FactoryOrderController extends BaseController
     public function behaviors()
     {
         if (!Yii::$app->getUser()->isGuest &&
-            Yii::$app->getUser()->getIdentity()->group->role == 'factory' &&
-            !Yii::$app->getUser()->getIdentity()->profile->factory_id
+            Yii::$app->user->identity->group->role == 'factory' &&
+            !Yii::$app->user->identity->profile->factory_id
         ) {
             throw new ForbiddenHttpException(Yii::t('app', 'Access denied without factory id.'));
         }
@@ -43,8 +43,9 @@ class FactoryOrderController extends BaseController
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'list' => ['get', 'post'],
-                    'view' => ['get', 'post'],
+                    'list' => ['get'],
+                    'list-italy' => ['get'],
+                    'view' => ['get'],
                 ],
             ],
             'AccessControl' => [
@@ -71,14 +72,38 @@ class FactoryOrderController extends BaseController
     {
         $model = new Order();
 
-        $models = $model->search(
-            ArrayHelper::merge(
-                Yii::$app->request->queryParams,
-                [
-                    'factory_id' => Yii::$app->getUser()->getIdentity()->profile->factory_id
-                ]
-            )
-        );
+        $params = Yii::$app->request->post() ?? [];
+
+        $params['product_type'] = 'product';
+
+        $models = $model->search($params);
+
+        $this->title = Yii::t('app', 'Orders');
+
+        $this->breadcrumbs[] = [
+            'label' => $this->title,
+        ];
+
+        return $this->render('list', [
+            'models' => $models->getModels(),
+            'pages' => $models->getPagination()
+        ]);
+    }
+
+    /**
+     * @return string
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public function actionListItaly()
+    {
+        $model = new Order();
+
+        $params = Yii::$app->request->post() ?? [];
+
+        $params['product_type'] = 'sale-italy';
+
+        $models = $model->search($params);
 
         $this->title = Yii::t('app', 'Orders');
 

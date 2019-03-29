@@ -29,27 +29,31 @@ class CartController extends BaseController
      */
     public function actionNotepad()
     {
-        $this->title = Yii::t('app','Мой блокнот');
+        $this->title = Yii::t('app', 'Мой блокнот');
 
-        $model = new CartCustomerForm;
+        $model = new CartCustomerForm();
         $model->setScenario('frontend');
 
         if (Yii::$app->getRequest()->get('order') && Yii::$app->getRequest()->get('order') == 'good') {
             return $this->render('order_success');
         }
 
-        if (
-            $model->load(Yii::$app->getRequest()->post(), 'CartCustomerForm') &&
+        if ($model->load(Yii::$app->getRequest()->post(), 'CartCustomerForm') &&
             $model->validate() &&
             !empty(Yii::$app->shop_cart->items)
         ) {
-            // create new order
+            /**
+             * create new order
+             */
             $new_order = SearchOrder::addNewOrder(Yii::$app->shop_cart->cart, $model);
 
+            /** @var $new_order Order */
             if ($new_order) {
                 $order = Order::findById($new_order['id']);
 
-                // send user letter
+                /**
+                 * send user letter
+                 */
                 Yii::$app
                     ->mailer
                     ->compose(
@@ -58,13 +62,20 @@ class CartController extends BaseController
                             'model' => $new_order,
                             'customerForm' => $model,
                             'order' => $order,
+                            'text' => ($new_order->product_type == 'product')
+                                ? Yii::$app->param->getByName('MAIL_SHOP_ORDER_TEXT')
+                                : Yii::$app->param->getByName('MAIL_SHOP_ORDER_TEXT_FOR_SALE_ITALY')
                         ]
                     )
                     ->setTo($model['email'])
-                    ->setSubject(Yii::t('app', 'Your order № {order_id}', ['order_id' => $new_order['id']]))
+                    ->setSubject(
+                        Yii::t('app', 'Your order № {order_id}', ['order_id' => $new_order['id']])
+                    )
                     ->send();
 
-                // clear cart
+                /**
+                 * clear cart
+                 */
                 Yii::$app->shop_cart->deleteCart();
 
                 return Yii::$app->controller->redirect(Url::toRoute(['/shop/cart/notepad', 'order' => 'good']));
@@ -107,6 +118,7 @@ class CartController extends BaseController
     {
         if (Yii::$app->request->isAjax && Yii::$app->getRequest()->post('product_id')) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
             $product_id = Yii::$app->getRequest()->post('product_id');
             $count = Yii::$app->getRequest()->post('count') ?? 0;
 

@@ -95,12 +95,12 @@ class PartnerSaleController extends BaseController
                 'fileupload' => [
                     'class' => UploadAction::class,
                     'useHashPath' => true,
-                    'path' => $this->module->getSaleUploadPath()
+                    'path' => $this->module->getProductUploadPath()
                 ],
                 'filedelete' => [
                     'class' => DeleteAction::class,
                     'useHashPath' => true,
-                    'path' => $this->module->getSaleUploadPath()
+                    'path' => $this->module->getProductUploadPath()
                 ],
             ]
         );

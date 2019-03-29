@@ -36,14 +36,19 @@ $this->title = Yii::t('app', 'Profile');
                         <?= $form->field($model, 'first_name') ?>
                         <?= $form->field($model, 'last_name') ?>
                         <?= $form->field($model, 'phone')
-                            ->widget(\yii\widgets\MaskedInput::className(), [
+                            ->widget(\yii\widgets\MaskedInput::class, [
                                 'mask' => Yii::$app->city->getPhoneMask(),
                                 'clientOptions' => [
                                     'clearIncomplete' => true
                                 ]
                             ]) ?>
                     </div>
-                    <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'factory') { ?>
+
+                    <?php
+                    /**
+                     * for factory
+                     */
+                    if (Yii::$app->user->identity->group->role == 'factory') { ?>
                         <div class="col-md-4 col-lg-4 one-row">
                             <?= $form->field($model, 'email_company') ?>
                             <?= $form->field($model, 'address') ?>
@@ -51,7 +56,11 @@ $this->title = Yii::t('app', 'Profile');
                         </div>
                     <?php } ?>
 
-                    <?php if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') { ?>
+                    <?php
+                    /**
+                     * for partner
+                     */
+                    if (Yii::$app->user->identity->group->role == 'partner') { ?>
                         <div class="col-md-4 col-lg-4 one-row">
                             <?= $form->field($model, 'name_company') ?>
                             <?= $form->field($model, 'website') ?>
@@ -74,10 +83,7 @@ $this->title = Yii::t('app', 'Profile');
                         </div>
                     <?php } ?>
 
-
                 </div>
-
-                <?php //\thread\widgets\HtmlForm::imageOne($model, 'avatar', ['image_url' => $model->getAvatarImage()]) ?>
 
                 <div class="row form-group">
                     <div class="col-sm-4">
@@ -93,3 +99,20 @@ $this->title = Yii::t('app', 'Profile');
         </div>
     </div>
 </main>
+
+<?php
+$url = Url::toRoute(['/location/location/get-cities']);
+$script = <<<JS
+$('select#profile-country_id').change(function(){
+    var country_id = parseInt($(this).val());
+    
+    $.post('$url', {_csrf: $('#token').val(),country_id:country_id}, function(data){
+        var select = $('select#profile-city_id');
+        select.html(data.options);
+        select.selectpicker("refresh");
+    });
+});
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);
+?>

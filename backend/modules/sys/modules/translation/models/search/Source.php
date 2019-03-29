@@ -63,7 +63,7 @@ class Source extends SourceModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'published', $this->published]);
+        $query->andFilterWhere(['=', 'published', $this->published]);
         $query->andFilterWhere(['like', 'key', $this->key]);
         $query->andFilterWhere(['like', 'category', $this->category]);
         $query->andFilterWhere(['like', Message::tableName() . '.translation', $this->translation]);

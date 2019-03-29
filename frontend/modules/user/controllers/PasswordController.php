@@ -65,7 +65,7 @@ class PasswordController extends BaseController
         /**
          * @var $userIdentity User
          */
-        $userIdentity = Yii::$app->getUser()->getIdentity();
+        $userIdentity = Yii::$app->user->identity;
 
         $model = new ChangePassword();
         $model->setScenario('passwordChange');

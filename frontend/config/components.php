@@ -36,6 +36,9 @@ return [
     'city' => [
         'class' => \frontend\modules\location\components\CityComponent::class,
     ],
+    'currency' => [
+        'class' => \frontend\modules\location\components\CurrencyComponent::class,
+    ],
     'partner' => [
         'class' => \frontend\modules\user\components\PartnerComponent::class,
     ],

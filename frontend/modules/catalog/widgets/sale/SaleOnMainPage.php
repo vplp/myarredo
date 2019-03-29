@@ -2,8 +2,13 @@
 
 namespace frontend\modules\catalog\widgets\sale;
 
+use Yii;
 use yii\base\Widget;
+//
 use frontend\modules\catalog\models\Sale;
+use frontend\modules\location\models\{
+    Country, City
+};
 
 /**
  * Class SaleOnMainPage
@@ -28,9 +33,19 @@ class SaleOnMainPage extends Widget
     public function init()
     {
         $this->models = Sale::findBase()
-            ->andWhere(['on_main' => '1'])
+            ->innerJoinWith(["country", "city"])
+            ->andFilterWhere(['IN', Country::tableName() . '.id', Yii::$app->city->getCountryId()])
+            ->andFilterWhere(['IN', City::tableName() . '.id', Yii::$app->city->getCityId()])
+            ->andWhere([
+                'or',
+                Sale::tableName() . '.on_main = \'1\'',
+                Sale::tableName() . '.on_main = \'0\'',
+            ])
             ->cache(7200)
+            ->limit(8)
             ->all();
+
+        $_models = [];
 
         if ($this->models != null) {
             $i = 0;
@@ -49,11 +64,13 @@ class SaleOnMainPage extends Widget
      */
     public function run()
     {
-        return $this->render(
-            $this->view,
-            [
-                'models' => $this->models
-            ]
-        );
+        if (!empty($this->models)) {
+            return $this->render(
+                $this->view,
+                [
+                    'models' => $this->models
+                ]
+            );
+        }
     }
 }

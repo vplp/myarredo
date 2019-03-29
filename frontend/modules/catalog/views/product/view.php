@@ -63,10 +63,11 @@ $this->title = $this->context->title;
                                     <div class="price-sticker">
                                         <?= Yii::t('app', 'Цена от') ?>:
                                         <span>
-                                        <?= $model['price_from']; ?>&nbsp;<span class="currency">€</span>
+                                        <?= Yii::$app->currency->getValue($model['price_from'], $model['currency']); ?>
+                                            &nbsp;<span class="currency"><?= Yii::$app->currency->symbol ?></span>
                                             <meta itemprop="price"
-                                                  content="<?= number_format($model['price_from'], 0, '', '') ?>">
-                                            <meta itemprop="priceCurrency" content="EUR"/>
+                                                  content="<?= Yii::$app->currency->getValue($model['price_from'], $model['currency'], ''); ?>">
+                                            <meta itemprop="priceCurrency" content="<?= Yii::$app->currency->code ?>"/>
                                     </span>
                                     </div>
                                 <?php } else { ?>
@@ -78,11 +79,20 @@ $this->title = $this->context->title;
                                     <?= Yii::t('app', 'Наличие') ?>:
                                     <span><?= ($model['status']) ?></span>
                                     <?php if (!$model['removed'] && $model['in_stock']) { ?>
-                                        <meta itemprop="availability" content="InStock">
+                                        <meta itemprop="availability" content="InStock"/>
                                     <?php } elseif (!$model['removed']) { ?>
-                                        <meta itemprop="availability" content="PreOrder">
+                                        <meta itemprop="availability" content="PreOrder"/>
                                     <?php } ?>
+                                    <meta itemprop="priceValidUntil" content="<?= date('Y-m-d')?>"/>
+                                    <meta itemprop="url" content="<?= Product::getUrl($model['alias']) ?>"/>
                                 </div>
+                            </div>
+
+                            <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                                <meta itemprop="ratingValue" content="5"/>
+                                <meta itemprop="bestRating" content="5"/>
+                                <meta itemprop="ratingCount" content="1"/>
+                                <meta itemprop="reviewCount" content="1"/>
                             </div>
 
                             <div class="alert" role="alert">
@@ -119,7 +129,7 @@ $this->title = $this->context->title;
                                     <tr>
                                         <td><?= Yii::t('app', 'Factory') ?></td>
                                         <td>
-                                            <meta itemprop="brand" content="<?= $model['factory']['title'] ?>">
+                                            <meta itemprop="brand" content="<?= $model['factory']['title'] ?>"/>
                                             <?= Html::a(
                                                 $model['factory']['title'],
                                                 Factory::getUrl($model['factory']['alias'])
@@ -144,10 +154,14 @@ $this->title = $this->context->title;
                                     </tr>
                                 <?php } ?>
 
+                                <meta itemprop="sku" content="<?= $model['article'] ?>">
+
                                 <?php if (!$model['is_composition']) { ?>
                                     <tr>
                                         <td><?= Yii::t('app', 'Артикул') ?></td>
-                                        <td><?= $model['article']; ?></td>
+                                        <td>
+                                            <?= $model['article']; ?>
+                                        </td>
                                     </tr>
 
                                     <?php if (!empty($model['specificationValue'])) { ?>
@@ -212,7 +226,8 @@ $this->title = $this->context->title;
                                                 'class' => 'add-to-notepad btn btn-default big',
                                                 'data-id' => $model['id'],
                                                 'data-toggle' => 'modal',
-                                                'data-target' => '#myModal'
+                                                'data-target' => '#myModal',
+                                                'data-message' => Yii::t('app', 'В блокноте')
                                             ]
                                         );
                                     } else {
@@ -238,7 +253,6 @@ $this->title = $this->context->title;
                     </div>
                 </div>
 
-
                 <div class="best-price">
                     <div class="container large-container">
                         <div class="section-header">
@@ -251,7 +265,7 @@ $this->title = $this->context->title;
                                 <div class="title">
                                     1
                                     <div class="img-cont">
-                                        <img src="<?= $bundle->baseUrl ?>/img/num1.svg" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/num1.svg') ?>
                                     </div>
                                 </div>
                                 <div class="descr">
@@ -265,7 +279,7 @@ $this->title = $this->context->title;
                                 <div class="title">
                                     2
                                     <div class="img-cont">
-                                        <img src="<?= $bundle->baseUrl ?>/img/num2.svg" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/num2.svg') ?>
                                     </div>
                                 </div>
                                 <div class="descr">
@@ -279,7 +293,7 @@ $this->title = $this->context->title;
                                 <div class="title">
                                     3
                                     <div class="img-cont" style="margin-top: 0;">
-                                        <img src="<?= $bundle->baseUrl ?>/img/num3.svg" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/num3.svg') ?>
                                     </div>
                                 </div>
                                 <div class="descr">
@@ -290,7 +304,7 @@ $this->title = $this->context->title;
                                 <div class="title">
                                     4
                                     <div class="img-cont">
-                                        <img src="<?= $bundle->baseUrl ?>/img/num4.svg" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/num4.svg') ?>
                                     </div>
                                 </div>
                                 <div class="descr">
@@ -301,7 +315,7 @@ $this->title = $this->context->title;
                                 <div class="title">
                                     5
                                     <div class="img-cont">
-                                        <img src="<?= $bundle->baseUrl ?>/img/num5.svg" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/num5.svg') ?>
                                     </div>
                                 </div>
                                 <div class="descr">
@@ -309,9 +323,14 @@ $this->title = $this->context->title;
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="best-price">
+                    <div class="container large-container">
                         <div class="after-text">
                             <div class="img-container">
-                                <img src="<?= $bundle->baseUrl ?>/img/hand.svg" alt="">
+                                <?= Html::img($bundle->baseUrl . '/img/hand.svg') ?>
                             </div>
                             <div class="text-contain">
                                 <?= Yii::t('app', 'Экономьте время и усилия на поиск по множеству сайтов. Все лучшие и проверенные поставщики собраны в нашей сети.') ?>

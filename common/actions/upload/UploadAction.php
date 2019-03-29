@@ -89,7 +89,6 @@ class UploadAction extends Action
     public function run()
     {
         if (Yii::$app->request->isPost) {
-
             if (!empty($this->getParamName) && Yii::$app->getRequest()->get($this->getParamName)) {
                 $this->paramName = Yii::$app->getRequest()->get($this->getParamName);
             }
@@ -98,6 +97,8 @@ class UploadAction extends Action
             $model = new DynamicModel(compact('file'));
 
             $model->addRule('file', $this->_validator, $this->validatorOptions);
+
+            $result = [];
 
             if ($model->validate()) {
                 if ($this->unique === true) {
@@ -123,19 +124,15 @@ class UploadAction extends Action
                 }
 
                 if ($model->file->saveAs($this->path . $model->file->name)) {
-
-                    $result = [
-                        'key' => $model->file->name,
-                        'caption' => $model->file->name,
-                        'name' => $model->file->name
-                    ];
-
+                    $result['key'] = $model->file->name;
+                    $result['caption'] = $model->file->name;
+                    $result['name'] = $model->file->name;
                 } else {
-                    $result = ['error' => 'Can\'t upload file'];
+                    $result['error'] = 'Can\'t upload file';
                 }
 
             } else {
-                $result = ['error' => $model->getErrors()];
+                $result['error'] = $model->getErrors();
             }
 
             if (\Yii::$app->getRequest()->isAjax) {

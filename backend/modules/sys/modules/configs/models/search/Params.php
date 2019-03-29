@@ -64,7 +64,7 @@ class Params extends ParamsModel implements BaseBackendSearchModel
         }
 
         $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published])
+            ->andFilterWhere(['=', 'published', $this->published])
             ->andFilterWhere(['like', 'group_id', $this->group_id]);
         //
         $query->andFilterWhere(['like', ParamsLang::tableName() . '.title', $this->title]);

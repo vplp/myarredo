@@ -60,6 +60,26 @@ echo GridView::widget([
             'value' => 'amount',
         ],
         [
+            'attribute' => 'start_date_promotion',
+            'value' => function ($model) {
+                return $model->payment_status == 'success'
+                    ? date('j.m.Y H:i', $model->start_date_promotion)
+                    : '-';
+            },
+            'format' => 'raw',
+            'filter' => false
+        ],
+        [
+            'attribute' => 'end_date_promotion',
+            'value' => function ($model) {
+                return $model->payment_status == 'success'
+                    ? date('j.m.Y H:i', $model->end_date_promotion)
+                    : '-';
+            },
+            'format' => 'raw',
+            'filter' => false
+        ],
+        [
             'attribute' => 'payment_status',
             'value' => function ($model) {
                 /** @var \backend\modules\catalog\models\FactoryPromotion $model */

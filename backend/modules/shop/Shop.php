@@ -17,29 +17,29 @@ class Shop extends \common\modules\shop\Shop
     {
         $menuItems = [];
 
-        if (in_array(Yii::$app->getUser()->getIdentity()->group->role, ['admin'])) {
+        if (in_array(Yii::$app->user->identity->group->role, ['admin'])) {
             $menuItems = [
-                'name' => 'Shop',
+                'label' => 'Shop',
                 'icon' => 'fa-map-marker',
                 'position' => 6,
                 'items' => [
 //            [
-//                'name' => 'Delivery Methods',
+//                'label' => 'Delivery Methods',
 //                'icon' => 'fa-tasks',
 //                'url' => ['/shop/delivery-methods/list'],
 //            ],
 //            [
-//                'name' => 'Payment Methods',
+//                'label' => 'Payment Methods',
 //                'icon' => 'fa-tasks',
 //                'url' => ['/shop/payment-methods/list'],
 //            ],
                     [
-                        'name' => 'Factory promotion',
+                        'label' => 'Factory promotion',
                         'position' => 1,
                         'url' => ['/catalog/factory-promotion/list'],
                     ],
                     [
-                        'name' => 'Orders',
+                        'label' => 'Orders',
                         'position' => 2,
                         'url' => ['/shop/order/list'],
                     ]

@@ -3,10 +3,10 @@
 namespace frontend\modules\catalog\models;
 
 use Yii;
+use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 //
 use common\modules\catalog\models\Product as CommonProduct;
-use yii\helpers\Url;
 
 /**
  * Class FactoryProduct
@@ -61,6 +61,7 @@ class FactoryProduct extends CommonProduct
         if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
             $this->user_id = Yii::$app->user->identity->id;
             $this->factory_id = Yii::$app->user->identity->profile->factory_id;
+            $this->mark = '0';
         }
 
         return parent::beforeSave($insert);
@@ -83,29 +84,16 @@ class FactoryProduct extends CommonProduct
                 'created_at',
                 'updated_at',
                 'position',
-                //'price',
                 'volume',
                 'factory_price',
                 'price_from',
                 'is_composition',
-                //'popular',
-                //'novelty',
-                //'bestseller',
-                //'onmain',
-                //'published',
-                //'deleted',
-                //'removed',
-                //'in_stock',
-                //'moderation',
-                //'country_code',
-                //'user',
                 'alias',
                 'default_title',
                 'article',
                 'category_ids',
                 'samples_ids',
-                //'factory_catalogs_files_ids',
-                //'factory_prices_files_ids',
+                'mark'
             ]
         ]);
     }
@@ -134,6 +122,7 @@ class FactoryProduct extends CommonProduct
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getFactoryPromotionRelProduct()
     {

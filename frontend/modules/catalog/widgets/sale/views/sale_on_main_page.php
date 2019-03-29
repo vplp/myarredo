@@ -15,9 +15,9 @@ use frontend\modules\catalog\models\Sale;
 <div class="sale-sect">
     <div class="container large-container">
         <div class="section-header">
-            <h3 class="section-title">
+            <h2 class="section-title">
                 <?= Yii::t('app', 'Sale') ?>
-            </h3>
+            </h2>
             <?= Html::a(
                 Yii::t('app', 'Все акционные товары'),
                 Url::toRoute(['/catalog/sale/list']),
@@ -46,8 +46,12 @@ use frontend\modules\catalog\models\Sale;
                         </div>
                         <div class="price">
                             <span class="old-price">
-                                <?= $model['price'] ?> <?= $model['currency'] ?></span> | <span class="new-price">
-                                <?= $model['price_new'] ?></span> <?= $model['currency'] ?>
+                                <?= Yii::$app->currency->getValue($model['price'], $model['currency']) . ' ' .
+                                Yii::$app->currency->symbol; ?>
+                            </span> |
+                            <span class="new-price">
+                                <?= Yii::$app->currency->getValue($model['price_new'], $model['currency']) ?>
+                            </span> <?= Yii::$app->currency->symbol ?>
                         </div>
                     </a>
                 <?php }

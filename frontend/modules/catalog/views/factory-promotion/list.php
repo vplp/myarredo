@@ -140,7 +140,7 @@ $this->title = $this->context->title;
                                                     /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
                                                     return (
                                                         Yii::$app->user->identity->id == $model->user_id &&
-                                                        $model->payment_status != FactoryPromotion::PAYMENT_STATUS_PAID)
+                                                        $model->payment_status != FactoryPromotion::PAYMENT_STATUS_SUCCESS)
                                                         ? Html::a(
                                                             '<span class="glyphicon glyphicon-trash"></span>',
                                                             Url::toRoute([

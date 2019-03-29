@@ -17,7 +17,7 @@ class Polls extends \common\modules\polls\Polls
     public $itemOnPage = 20;
 
     public $menuItems = [
-        'name' => 'Polls',
+        'label' => 'Polls',
         'icon' => 'fa-users',
         'url' => ['/polls/polls/list'],
         'position' => 6,

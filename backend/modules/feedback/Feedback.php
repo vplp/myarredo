@@ -16,18 +16,18 @@ class Feedback extends \common\modules\feedback\Feedback
     public $itemOnPage = 20;
 
     public $menuItems = [
-        'name' => 'Feedback',
+        'label' => 'Feedback',
         'icon' => 'fa-file-text',
         'position' => 4,
         'items' =>
             [
                 [
-                    'name' => 'Feedback',
+                    'label' => 'Feedback',
                     'position' => 1,
                     'url' => ['/feedback/group/list'],
                 ],
                 [
-                    'name' => 'Question',
+                    'label' => 'Question',
                     'position' => 2,
                     'url' => ['/feedback/question/list'],
                 ]

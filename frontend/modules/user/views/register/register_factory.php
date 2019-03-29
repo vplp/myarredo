@@ -1,15 +1,11 @@
 <?php
 
-use frontend\themes\myarredo\assets\AppAsset;
-use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
+use yii\widgets\ActiveForm;
 //
-use frontend\modules\location\models\{
-    Country, City
-};
-use frontend\modules\user\models\Profile;
+use frontend\themes\myarredo\assets\AppAsset;
 
 $bundle = AppAsset::register($this);
 
@@ -35,7 +31,7 @@ $model->user_agreement = 1;
                     <div class="col-sm-12 col-md-2">
                         <?= Html::tag('h2', $this->title); ?>
                         <div class="img-cont">
-                            <img src="<?= $bundle->baseUrl ?>/img/sign-up-2.svg" alt="">
+                            <?= Html::img($bundle->baseUrl . '/img/sign-up-2.svg') ?>
                         </div>
                     </div>
 
@@ -61,7 +57,7 @@ $model->user_agreement = 1;
 
                             <?= $form->field($model, 'phone')
                                 //+39 (99) 999-99-99
-                                ->widget(\yii\widgets\MaskedInput::className(), [
+                                ->widget(\yii\widgets\MaskedInput::class, [
                                     'mask' => [
                                         '+39 (9999) 99999',
                                         '+39 (9999) 999-999',
@@ -85,27 +81,32 @@ $model->user_agreement = 1;
                             <?= $form->field($model, 'password_confirmation')->passwordInput() ?>
 
                             <?= $form
-                                ->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])
+                                ->field(
+                                    $model,
+                                    'user_agreement',
+                                    ['template' => '{input}{label}{error}{hint}']
+                                )
                                 ->checkbox([], false)
                                 ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
 
                             <?= $form
                                 ->field($model, 'reCaptcha')
-                                ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
+                                ->widget(
+                                    \frontend\widgets\recaptcha3\RecaptchaV3Widget::class,
+                                    ['actionName' => 'register_factory']
+                                )
                                 ->label(false) ?>
 
                             <div class="a-warning">
                                 * <?= Yii::t('app', 'Поля обязательны для заполнения') ?>
                             </div>
 
-                            <?= Html::submitButton(Yii::t('app', 'Зарегистрироваться'), ['class' => 'btn btn-success']) ?>
+                            <?= Html::submitButton(
+                                Yii::t('app', 'Зарегистрироваться'),
+                                ['class' => 'btn btn-success']
+                            ) ?>
                         </div>
 
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
-                        <div class="text">
-                            <?php //Yii::$app->param->getByName('USER_FACTORY_REG_TEXT') ?>
-                        </div>
                     </div>
                 </div>
                 <?php ActiveForm::end(); ?>

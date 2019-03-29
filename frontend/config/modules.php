@@ -1,9 +1,6 @@
 <?php
 
 return [
-    /**
-     * CORE
-     */
     'home' => [
         'class' => \frontend\modules\home\Home::class,
     ],
@@ -18,6 +15,9 @@ return [
     ],
     'news' => [
         'class' => \frontend\modules\news\News::class,
+    ],
+    'articles' => [
+        'class' => \frontend\modules\articles\Articles::class,
     ],
     'seo' => [
         'class' => \frontend\modules\seo\Seo::class,
@@ -45,5 +45,13 @@ return [
     'banner' => [
         'class' => \frontend\modules\banner\Banner::class,
     ],
-    'gridview' => ['class' => 'kartik\grid\Module']
+    'forms' => [
+        'class' => \frontend\modules\forms\Forms::class,
+    ],
+    'payment' => [
+        'class' => \frontend\modules\payment\PaymentModule::class,
+    ],
+    'gridview' => [
+        'class' => \kartik\grid\Module::class
+    ]
 ];

@@ -7,9 +7,11 @@ use yii\helpers\{
     ArrayHelper
 };
 use voskobovich\behaviors\ManyToManyBehavior;
-use thread\app\base\models\ActiveRecord;
+//
 use common\modules\catalog\Catalog;
 use common\actions\upload\UploadBehavior;
+//
+use thread\app\base\models\ActiveRecord;
 
 /**
  * Class Category
@@ -35,7 +37,8 @@ use common\actions\upload\UploadBehavior;
 class Category extends ActiveRecord
 {
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -113,7 +116,19 @@ class Category extends ActiveRecord
             'deleted' => ['deleted'],
             'position' => ['position'],
             'product_count' => ['product_count'],
-            'backend' => ['product_count', 'alias', 'image_link', 'image_link2', 'image_link3', 'popular', 'popular_by', 'position', 'published', 'deleted', 'types_ids'],
+            'backend' => [
+                'product_count',
+                'alias',
+                'image_link',
+                'image_link2',
+                'image_link3',
+                'popular',
+                'popular_by',
+                'position',
+                'published',
+                'deleted',
+                'types_ids'
+            ],
         ];
     }
 
@@ -158,6 +173,7 @@ class Category extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getTypes()
     {
@@ -168,6 +184,7 @@ class Category extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getProduct()
     {
@@ -178,12 +195,24 @@ class Category extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getSale()
     {
         return $this
             ->hasMany(Sale::class, ['id' => 'sale_item_id'])
             ->viaTable(SaleRelCategory::tableName(), ['group_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getItalianProduct()
+    {
+        return $this
+            ->hasMany(ItalianProduct::class, ['id' => 'item_id'])
+            ->viaTable(ItalianProductRelCategory::tableName(), ['group_id' => 'id']);
     }
 
     /**
@@ -253,7 +282,7 @@ class Category extends ActiveRecord
     {
         $groups = self::find()->all();
         foreach ($groups as $group) {
-            $group['product_count'] = $group->getProduct()->enabled()->count()??0;
+            $group['product_count'] = $group->getProduct()->enabled()->count() ?? 0;
             $group->save(false);
         }
     }

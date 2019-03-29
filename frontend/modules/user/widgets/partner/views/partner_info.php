@@ -8,10 +8,10 @@ $bundle = AppAsset::register($this);
 
 <?php
 if (!Yii::$app->getUser()->isGuest &&
-    in_array(Yii::$app->getUser()->getIdentity()->group->role, ['partner', 'admin', 'factory'])
+    in_array(Yii::$app->user->identity->group->role, ['partner', 'admin', 'factory'])
 ) { ?>
     <div class="ico">
-        <img src="<?= $bundle->baseUrl ?>/img/phone.svg">
+        <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
     </div>
     <p><?= Yii::t('app', 'Администрация проекта') ?></p>
 
@@ -32,7 +32,7 @@ if (!Yii::$app->getUser()->isGuest &&
 
 <?php } else { ?>
     <div class="ico">
-        <img src="<?= $bundle->baseUrl ?>/img/phone.svg">
+        <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
     </div>
 
     <meta itemprop="name" content="<?= Html::encode($partner['profile']['name_company']) ?>"/>
@@ -41,12 +41,12 @@ if (!Yii::$app->getUser()->isGuest &&
 
     <p class="num" itemprop="telephone"><?= Yii::$app->partner->getPartnerPhone() ?></p>
 
-    <?php if (Yii::$app->city->domain == 'ru') { ?>
+    <?php /*if (Yii::$app->city->domain == 'ru') { ?>
         <p><?= Yii::t('app', 'Бесплатно в вашем городе') ?></p>
-    <?php } ?>
+    <?php }*/ ?>
 
     <div class="ico">
-        <img src="<?= $bundle->baseUrl ?>/img/marker-map.png">
+        <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
     </div>
 
     <div class="stud" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">

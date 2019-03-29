@@ -64,7 +64,7 @@ use backend\modules\catalog\models\{
 
 <?= $form
     ->field($model, 'product_ids')
-    ->widget(Select2::classname(), [
+    ->widget(Select2::class, [
         'data' => ArrayHelper::map($model->product, 'id', function ($item) {
             return  '[' . $item['article'] . '] ' . $item['lang']['title'];
         }),

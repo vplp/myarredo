@@ -11,7 +11,7 @@ use voskobovich\behaviors\ManyToManyBehavior;
 //
 use thread\app\base\models\ActiveRecord;
 //
-use common\modules\catalog\Catalog;
+use common\modules\catalog\Catalog as CatalogModule;
 use common\modules\user\models\User;
 use common\modules\location\models\{
     Country, City
@@ -49,10 +49,12 @@ use common\components\YandexKassaAPI\interfaces\OrderInterface;
  *
  * @package common\modules\catalog\models
  */
-class FactoryPromotion extends ActiveRecord implements OrderInterface
+class FactoryPromotion extends ActiveRecord// implements OrderInterface
 {
-    const PAYMENT_STATUS_NEW = 'new';
-    const PAYMENT_STATUS_PAID = 'paid';
+    const PAYMENT_STATUS_PENDING = 'pending';
+    const PAYMENT_STATUS_ACCEPTED = 'accepted';
+    const PAYMENT_STATUS_SUCCESS = 'success';
+    const PAYMENT_STATUS_FAIL = 'fail';
 
     /**
      * @return mixed|null|object|string|\yii\db\Connection
@@ -60,7 +62,7 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
      */
     public static function getDb()
     {
-        return Catalog::getDb();
+        return CatalogModule::getDb();
     }
 
     /**
@@ -106,11 +108,21 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
                     'country_id',
                     'views',
                     'created_at',
-                    'updated_at',
-                    'start_date_promotion',
-                    'end_date_promotion'
+                    'updated_at'
                 ],
                 'integer'
+            ],
+            [
+                ['start_date_promotion'],
+                'date',
+                'format' => 'php:' . CatalogModule::getFormatDate(),
+                'timestampAttribute' => 'start_date_promotion'
+            ],
+            [
+                ['end_date_promotion'],
+                'date',
+                'format' => 'php:' . CatalogModule::getFormatDate(),
+                'timestampAttribute' => 'end_date_promotion'
             ],
             [['invoice_id'], 'string', 'max' => 255],
             [['payment_object'], 'string'],
@@ -146,6 +158,9 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
                 'amount',
                 'amount_with_vat',
                 'status',
+                'payment_status',
+                'start_date_promotion',
+                'end_date_promotion',
                 'published',
                 'deleted',
             ],
@@ -192,14 +207,24 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
         ];
     }
 
+    public static function statusKeyRange()
+    {
+        return [
+            static::STATUS_KEY_ON => Yii::t('app', 'Активная'),
+            static::STATUS_KEY_OFF => Yii::t('app', 'Завершена')
+        ];
+    }
+
     /**
      * @return array
      */
     public static function paymentStatusKeyRange()
     {
         return [
-            static::PAYMENT_STATUS_NEW => Yii::t('app', 'New'),
-            static::PAYMENT_STATUS_PAID => Yii::t('app', 'Paid'),
+            static::PAYMENT_STATUS_PENDING => 'pending',
+            static::PAYMENT_STATUS_ACCEPTED => 'accepted',
+            static::PAYMENT_STATUS_SUCCESS => 'success',
+            static::PAYMENT_STATUS_FAIL => 'fail',
         ];
     }
 
@@ -235,7 +260,7 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
         }
 
         if (in_array($this->scenario, ['setPaymentStatus'])) {
-            if ($this->payment_status == 'paid') {
+            if ($this->payment_status == 'success') {
                 $start_date = mktime(date("H"), date("i"), 0, date("m"), date("d"), date("Y"));
                 $end_date = mktime(date("H"), date("i"), 0, date("m"), date("d") + 3, date("Y"));
 
@@ -275,6 +300,7 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getCities()
     {
@@ -302,6 +328,7 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getProducts()
     {
@@ -404,5 +431,23 @@ class FactoryPromotion extends ActiveRecord implements OrderInterface
     public function findByInvoiceId($invoiceId)
     {
         return self::find()->where(['invoice_id' => $invoiceId]);
+    }
+
+    /**
+     * @return string
+     */
+    public function getStartDatePromotionTime()
+    {
+        $format = CatalogModule::getFormatDate();
+        return $this->start_date_promotion == 0 ? date($format) : date($format, $this->start_date_promotion);
+    }
+
+    /**
+     * @return string
+     */
+    public function getEndDatePromotionTime()
+    {
+        $format = CatalogModule::getFormatDate();
+        return $this->end_date_promotion == 0 ? date($format) : date($format, $this->end_date_promotion);
     }
 }

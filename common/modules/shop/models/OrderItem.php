@@ -4,10 +4,13 @@ namespace common\modules\shop\models;
 
 use Yii;
 use common\modules\catalog\models\Product;
+use common\modules\catalog\models\ItalianProduct;
 
 /**
  * Class OrderItem
  *
+ * @property Order $order
+ * @property Product $product
  * @property OrderItemPrice[] $orderItemPrice
  *
  * @package common\modules\shop\models
@@ -17,9 +20,21 @@ class OrderItem extends \thread\modules\shop\models\OrderItem
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getOrder()
+    {
+        return $this->hasOne(Order::class, ['id' => 'order_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getProduct()
     {
-        return $this->hasOne(Product::class, ['id' => 'product_id']);
+        if ($this->order && $this->order->product_type == 'sale-italy') {
+            return $this->hasOne(ItalianProduct::class, ['id' => 'product_id']);
+        } else {
+            return $this->hasOne(Product::class, ['id' => 'product_id']);
+        }
     }
 
     /**

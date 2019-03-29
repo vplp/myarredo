@@ -15,6 +15,7 @@ echo GridView::widget([
     'filterModel' => $filter,
     'columns' => [
         [
+            'label' => Yii::t('app', 'Title'),
             'attribute' => 'title',
             'value' => 'lang.title',
         ],

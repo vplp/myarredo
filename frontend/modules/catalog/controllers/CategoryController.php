@@ -10,7 +10,7 @@ use yii\web\NotFoundHttpException;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Collection, Product, Category, Factory, Types, Specification
+    Collection, Product, Category, Factory, Types, Specification, Colors
 };
 
 /**
@@ -73,12 +73,20 @@ class CategoryController extends BaseController
         $types = Types::getWithProduct($queryParams);
         $style = Specification::getWithProduct($queryParams);
         $factory = Factory::getWithProduct($queryParams);
+        $colors = Colors::getWithProduct($queryParams);
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         Yii::$app->metatag->render();
 
-        $this->listSeo();
+        if (!empty($models->getModels())) {
+            $this->listSeo();
+        } else {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'robots',
+                'content' => 'noindex, follow',
+            ]);
+        }
 
         if (empty($models->getModels())) {
             Yii::$app->view->registerMetaTag([
@@ -93,6 +101,7 @@ class CategoryController extends BaseController
             'types' => $types,
             'style' => $style,
             'factory' => $factory,
+            'colors' => $colors,
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),
         ]);
@@ -100,6 +109,8 @@ class CategoryController extends BaseController
 
     /**
      * @return array
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionAjaxGetTypes()
     {
@@ -155,7 +166,7 @@ class CategoryController extends BaseController
     }
 
     /**
-     * @return $this
+     * @inheritdoc
      */
     public function listSeo()
     {
@@ -336,10 +347,15 @@ class CategoryController extends BaseController
                 'name' => 'robots',
                 'content' => 'noindex, follow',
             ]);
+        } elseif (Yii::$app->getRequest()->get('page')) {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'robots',
+                'content' => 'index, follow',
+            ]);
         }
 
-        $this->pageH1 = ($this->pageH1 != '')
-            ? $this->pageH1
+        Yii::$app->metatag->seo_h1 = (Yii::$app->metatag->seo_h1 != '')
+            ? Yii::$app->metatag->seo_h1
             : implode(', ', $pageH1);
 
         return $this;

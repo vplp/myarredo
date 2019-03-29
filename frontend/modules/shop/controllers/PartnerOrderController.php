@@ -34,7 +34,7 @@ class PartnerOrderController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['partner'],
+                        'roles' => ['partner', 'logistician'],
                     ],
                     [
                         'allow' => false,
@@ -46,23 +46,37 @@ class PartnerOrderController extends BaseController
 
     /**
      * @return string
+     * @throws \Throwable
      */
     public function actionList()
     {
         $model = new Order();
 
-        $params = Yii::$app->request->post() ?? [];
+        $params = Yii::$app->request->get() ?? [];
 
         /**
          * add city_id
          */
-        $modelCity = City::findAll(['country_id' => Yii::$app->user->identity->profile->country_id]);
+        if (!isset($params['city_id'])) {
+            $params['city_id'] = 0;
+        }
 
-        if ($modelCity != null) {
-            foreach ($modelCity as $city) {
-                $params['city_id'][] = $city['id'];
+        if (isset($params['city_id']) && $params['city_id'] == 0) {
+            unset($params['city_id']);
+            $modelCity = City::findAll(['country_id' => Yii::$app->user->identity->profile->country_id]);
+
+            if ($modelCity != null) {
+                foreach ($modelCity as $city) {
+                    $params['city_id'][] = $city['id'];
+                }
             }
         }
+
+        if (!isset($params['factory_id'])) {
+            $params['factory_id'] = 0;
+        }
+
+        $params['product_type'] = 'product';
 
         $models = $model->search($params);
 
@@ -72,9 +86,59 @@ class PartnerOrderController extends BaseController
             'label' => $this->title,
         ];
 
-        return $this->render('list', [
-            'models' => $models->getModels(),
-            'pages' => $models->getPagination()
+        return $this->render('list/list', [
+            'models' => $models,
+            'model' => $model,
+            'params' => $params,
+        ]);
+    }
+
+    /**
+     * @return string
+     * @throws \Throwable
+     */
+    public function actionListItaly()
+    {
+        $model = new Order();
+
+        $params = Yii::$app->request->get() ?? [];
+
+        /**
+         * add city_id
+         */
+        if (!isset($params['city_id'])) {
+            $params['city_id'] = 0;
+        }
+
+        if (isset($params['city_id']) && $params['city_id'] == 0) {
+            unset($params['city_id']);
+            $modelCity = City::findAll(['country_id' => Yii::$app->user->identity->profile->country_id]);
+
+            if ($modelCity != null) {
+                foreach ($modelCity as $city) {
+                    $params['city_id'][] = $city['id'];
+                }
+            }
+        }
+
+        if (!isset($params['factory_id'])) {
+            $params['factory_id'] = 0;
+        }
+
+        $params['product_type'] = 'sale-italy';
+
+        $models = $model->search($params);
+
+        $this->title = Yii::t('app', 'Orders');
+
+        $this->breadcrumbs[] = [
+            'label' => $this->title,
+        ];
+
+        return $this->render('list-italy/list', [
+            'models' => $models,
+            'model' => $model,
+            'params' => $params,
         ]);
     }
 
@@ -83,8 +147,7 @@ class PartnerOrderController extends BaseController
      */
     public function actionPjaxSave()
     {
-        if (
-            Yii::$app->request->isPost &&
+        if (Yii::$app->request->isPost &&
             (Yii::$app->request->post('OrderAnswer'))['order_id'] &&
             Yii::$app->request->post('OrderItemPrice') &&
             Yii::$app->request->post('action-save-answer')
@@ -113,7 +176,6 @@ class PartnerOrderController extends BaseController
                 $dataOrderItemPrice = Yii::$app->request->post('OrderItemPrice');
 
                 foreach ($dataOrderItemPrice as $product_id => $price) {
-
                     $modelOrderItemPrice = OrderItemPrice::findByOrderIdUserIdProductId(
                         $modelOrder->id,
                         Yii::$app->getUser()->getId(),
@@ -194,8 +256,7 @@ class PartnerOrderController extends BaseController
      */
     public function actionSendAnswer()
     {
-        if (
-            Yii::$app->request->isPost &&
+        if (Yii::$app->request->isPost &&
             (Yii::$app->request->post('OrderAnswer'))['order_id'] &&
             Yii::$app->request->post('action-send-answer')
         ) {

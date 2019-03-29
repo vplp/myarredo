@@ -20,7 +20,7 @@ use backend\modules\catalog\models\{
 
     <?= $form
         ->field($model, 'factory_catalogs_files_ids')
-        ->widget(Select2::classname(), [
+        ->widget(Select2::class, [
             'data' => FactoryCatalogsFiles::dropDownList([
                 'factory_id' => $model['factory_id'],
                 //'file_type' => '1'
@@ -33,7 +33,7 @@ use backend\modules\catalog\models\{
 
     <?= $form
         ->field($model, 'factory_prices_files_ids')
-        ->widget(Select2::classname(), [
+        ->widget(Select2::class, [
             'data' => FactoryPricesFiles::dropDownList([
                 'factory_id' => $model['factory_id'],
                 //'file_type' => '2'

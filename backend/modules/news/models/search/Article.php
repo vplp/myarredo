@@ -92,7 +92,7 @@ class Article extends ArticleModel implements BaseBackendSearchModel
         $query->with(['group', 'group.lang']);
 
         $query->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'published', $this->published])
+            ->andFilterWhere(['=', 'published', $this->published])
             ->andFilterWhere(['like', 'published_time', $this->published_time])
             ->andFilterWhere(['like', 'group_id', $this->group_id]);
         //

@@ -22,7 +22,8 @@ class RequestPrice extends Widget
      */
     public function run()
     {
-        $model = new CartCustomerForm;
+        $model = new CartCustomerForm();
+
         $model->setScenario('frontend');
 
         $model->load(Yii::$app->getRequest()->post());

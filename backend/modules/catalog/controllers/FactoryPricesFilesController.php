@@ -117,13 +117,13 @@ class FactoryPricesFilesController extends BackendController
             'outtrash' => [
                 'redirect' => $link
             ],
-            'fileupload' => [
+            'one-file-upload' => [
                 'class' => UploadAction::class,
                 'path' => $this->module->getFactoryPricesFilesUploadPath(),
                 'uploadOnlyImage' => false,
                 'unique' => false
             ],
-            'filedelete' => [
+            'one-file-delete' => [
                 'class' => DeleteAction::class,
                 'path' => $this->module->getFactoryPricesFilesUploadPath()
             ],

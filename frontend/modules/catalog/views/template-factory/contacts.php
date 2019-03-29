@@ -18,17 +18,19 @@ $this->title = $this->context->title;
                 <?= Html::tag('h1', $this->context->title); ?>
                 <div class="of-conts">
 
-                    <?php foreach ($partners as $partner): ?>
+                    <?php foreach ($partners as $partner) { ?>
                         <div class="one-cont">
                             <?= Html::tag('h4', $partner->profile->name_company); ?>
                             <div class="adres">
                                 <?= isset($partner->profile->city) ? $partner->profile->city->lang->title . '<br>' : '' ?>
                                 <?= $partner->profile->address ?>
                             </div>
-                            <a href="tel:<?= $partner->profile->getPhone() ?>"><?= $partner->profile->getPhone() ?></a>
+                            <?= Html::a(
+                                $partner->profile->getPhone(),
+                                'tel:' . $partner->profile->getPhone(),
+                            ) ?>
                         </div>
-                    <?php endforeach; ?>
-
+                    <?php } ?>
 
                 </div>
                 <div class="warning">
@@ -39,7 +41,7 @@ $this->title = $this->context->title;
                     <?= PartnerMap::widget(['city' => Yii::$app->city->getCity()]) ?>
 
                     <?= Html::a(
-                        Yii::t('app','Посмотреть все офисы продаж'),
+                        Yii::t('app', 'Посмотреть все офисы продаж'),
                         Url::toRoute('/page/contacts/list-partners'),
                         ['class' => 'view-all']
                     ); ?>

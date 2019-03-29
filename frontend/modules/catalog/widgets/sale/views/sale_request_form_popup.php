@@ -32,12 +32,14 @@ $model->user_agreement = 1;
                     ->input('text', ['placeholder' => Yii::t('app', 'Email')])
                     ->label(false) ?>
 
-                <?= $form->field($model, 'user_name')
+                <?= $form
+                    ->field($model, 'user_name')
                     ->input('text', ['placeholder' => Yii::t('app', 'Name')])
                     ->label(false) ?>
 
-                <?= $form->field($model, 'phone')
-                    ->widget(\yii\widgets\MaskedInput::className(), [
+                <?= $form
+                    ->field($model, 'phone')
+                    ->widget(\yii\widgets\MaskedInput::class, [
                         'mask' => Yii::$app->city->getPhoneMask(),
                         'clientOptions' => [
                             'clearIncomplete' => true
@@ -46,18 +48,28 @@ $model->user_agreement = 1;
                     ->input('text', ['placeholder' => Yii::t('app', 'Phone')])
                     ->label(false) ?>
 
-                <?= $form->field($model, 'question')
+                <?= $form
+                    ->field($model, 'question')
                     ->textarea(['placeholder' => Yii::t('app', 'Comment')])
                     ->label(false) ?>
 
-                <?= $form->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])->checkbox([], false)
+                <?= $form
+                    ->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])
+                    ->checkbox([], false)
                     ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
 
-                <?= $form->field($model, 'reCaptcha')
-                    ->widget(\himiklab\yii2\recaptcha\ReCaptcha::className())
+                <?= $form
+                    ->field($model, 'reCaptcha')
+                    ->widget(
+                        \frontend\widgets\recaptcha3\RecaptchaV3Widget::class,
+                        ['actionName' => 'sale_request_popup']
+                    )
                     ->label(false) ?>
 
-                <?= Html::submitButton(Yii::t('app', 'Отправить'), ['class' => 'btn btn-success big']) ?>
+                <?= Html::submitButton(
+                    Yii::t('app', 'Отправить'),
+                    ['class' => 'btn btn-success big']
+                ) ?>
 
                 <?php ActiveForm::end(); ?>
             </div>

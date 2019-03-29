@@ -41,6 +41,8 @@ class Category extends CategoryModel
      * @param $query
      * @param $params
      * @return ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function baseSearch($query, $params)
     {
@@ -65,8 +67,10 @@ class Category extends CategoryModel
     }
 
     /**
-     * @param array $params
+     * @param $params
      * @return ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function search($params)
     {

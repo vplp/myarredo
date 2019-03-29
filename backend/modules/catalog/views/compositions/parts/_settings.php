@@ -19,7 +19,7 @@ use backend\modules\catalog\models\{
 
 <?= $form
     ->field($model, 'factory_id')
-    ->widget(Select2::classname(), [
+    ->widget(Select2::class, [
         'data' => Factory::dropDownList(),
         'options' => ['placeholder' => Yii::t('app', 'Select option')],
     ]) ?>
@@ -54,14 +54,14 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
 <?= $form
     ->field($model, 'collections_id')
-    ->widget(Select2::classname(), [
+    ->widget(Select2::class, [
         'data' => Collection::dropDownList(['factory_id' => $model->isNewRecord ? 0 : $model['factory_id']]),
         'options' => ['placeholder' => Yii::t('app', 'Select option')],
     ]) ?>
 
 <?= $form
     ->field($model, 'category_ids')
-    ->widget(Select2::classname(), [
+    ->widget(Select2::class, [
         'data' => Category::dropDownList(),
         'options' => [
             'placeholder' => Yii::t('app', 'Select option'),

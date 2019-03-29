@@ -14,7 +14,6 @@ use frontend\modules\location\models\{
 };
 //
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
-use yii\helpers\Html;
 
 /**
  * Class Sale
@@ -47,7 +46,9 @@ class Sale extends SaleModel implements BaseBackendSearchModel
     /**
      * @param $query
      * @param $params
-     * @return ActiveDataProvider
+     * @return mixed|ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function baseSearch($query, $params)
     {
@@ -65,7 +66,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         ]);
 
         if (isset($params['Sale'])) {
-            $params = array_merge($params, $params['Sale']) ;
+            $params = array_merge($params, $params['Sale']);
         }
 
         if (!($this->load($params, ''))) {
@@ -124,6 +125,10 @@ class Sale extends SaleModel implements BaseBackendSearchModel
 
         $query->andFilterWhere(['like', SaleLang::tableName() . '.title', $this->title]);
 
+        /**
+         * cache
+         */
+
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();
         });
@@ -132,8 +137,10 @@ class Sale extends SaleModel implements BaseBackendSearchModel
     }
 
     /**
-     * @param array $params
-     * @return ActiveDataProvider
+     * @param $params
+     * @return mixed|ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function search($params)
     {
@@ -142,8 +149,10 @@ class Sale extends SaleModel implements BaseBackendSearchModel
     }
 
     /**
-     * @param array $params
-     * @return ActiveDataProvider
+     * @param $params
+     * @return mixed|ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function trash($params)
     {

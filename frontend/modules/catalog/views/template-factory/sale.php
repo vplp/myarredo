@@ -42,7 +42,7 @@ $this->title = $this->context->title;
 
                 <div class="row">
                     <div class="comp-advanteges">
-                        <?= $this->context->SeoContent ?>
+                        <?= Yii::$app->metatag->seo_content ?>
                     </div>
                 </div>
 

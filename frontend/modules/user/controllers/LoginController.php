@@ -61,23 +61,16 @@ class LoginController extends BaseController
         }
 
         /** @var SignInForm $model */
-        $model = new $this->model;
+        $model = new $this->model();
         $model->setScenario('signIn');
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
-
-            $user = Yii::$app->getUser()->getIdentity();
+            $user = Yii::$app->user->identity;
 
             Yii::$app->params['themes']['language'] = $user->profile->preferred_language;
             Yii::$app->language = $user->profile->preferred_language;
 
-            if ($user->group->role == 'partner') {
-                return $this->redirect(Url::toRoute(['/shop/partner-order/list']));
-            } elseif ($user->group->role == 'admin') {
-                return $this->redirect(Url::toRoute(['/shop/admin-order/list']));
-            } else {
-                return $this->redirect(Url::toRoute(['/user/profile/index']));
-            }
+            return $this->redirect(Url::toRoute(['/user/profile/index']));
         } else {
             return $this->render('index', [
                 'model' => $model,
@@ -86,14 +79,12 @@ class LoginController extends BaseController
     }
 
     /**
-     * Перевірка валідації моделі(-ей)
-     * Має бути встановдений у моделі scenario 'backend'
-     * @return mixed
+     * @return array
      */
     public function actionValidation()
     {
         /** @var Model $model */
-        $model = new $this->model;
+        $model = new $this->model();
         $model->setScenario('signIn');
         $model->load(Yii::$app->getRequest()->post());
 

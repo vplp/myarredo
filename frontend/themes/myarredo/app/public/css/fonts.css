@@ -19,17 +19,17 @@
 }
 @font-face {
     font-family: 'Palatino';
-    src: url('../fonts/Palatino-Linotype.ttf') format('truetype'),
-        url('../fonts/palatino-linotype.woff2') format('woff2'),
-        url('../fonts/palatino-linotype.woff') format('woff');
+    src: url('../fonts/palatino-linotype.woff2') format('woff2'),
+        url('../fonts/palatino-linotype.woff') format('woff'),
+        url('../fonts/Palatino-Linotype.ttf') format('truetype');
     font-weight: normal;  
     font-style: normal;
 }
 @font-face {
     font-family: 'Palatino';
-    src: url('../fonts/palab.ttf') format('truetype'),
-        url('../fonts/palab.woff2') format('woff2'),
-        url('../fonts/palab.woff') format('woff');
+    src: url('../fonts/palab.woff2') format('woff2'),
+        url('../fonts/palab.woff') format('woff'),
+        url('../fonts/palab.ttf') format('truetype');
     font-weight: bold;  
     font-style: normal;
 }

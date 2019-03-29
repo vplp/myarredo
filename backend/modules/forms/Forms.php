@@ -17,22 +17,22 @@ class Forms extends FormsModule
     public $itemOnPage = 20;
 
     public $menuItems = [
-        'name' => 'Forms',
+        'label' => 'Forms',
         'icon' => 'fa-tasks',
         'position' => 5,
         'items' => [
             [
-                'name' => 'Callbacks',
+                'label' => 'Callbacks',
                 'icon' => 'fa-file-text',
                 'url' => ['/forms/feedback/list'],
             ],
             [
-                'name' => 'Questions',
+                'label' => 'Questions',
                 'icon' => 'fa-file-text',
                 'url' => ['/forms/question/list'],
             ],
             [
-                'name' => 'Repairment Orders',
+                'label' => 'Repairment Orders',
                 'icon' => 'fa-file-text',
                 'url' => ['/forms/repairment/list'],
             ]

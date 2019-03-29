@@ -33,6 +33,7 @@ use common\modules\catalog\models\Factory;
  * @property int $pdf_access
  * @property int $show_contacts
  * @property int $factory_package
+ * @property string $cape_index
  *
  * @property Country $country
  * @property City $city
@@ -81,7 +82,8 @@ class Profile extends \thread\modules\user\models\Profile
                     'name_company',
                     'email_company',
                     'website',
-                    'exp_with_italian'
+                    'exp_with_italian',
+                    'cape_index'
                 ],
                 'string',
                 'max' => 255
@@ -140,6 +142,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'possibility_to_answer',
                 'pdf_access',
                 'show_contacts',
+                'cape_index',
             ],
             'basicCreate' => [
                 'phone',
@@ -159,7 +162,8 @@ class Profile extends \thread\modules\user\models\Profile
                 'pdf_access',
                 'show_contacts',
                 'preferred_language',
-                'factory_package'
+                'factory_package',
+                'cape_index',
             ],
             'backend' => [
                 'first_name',
@@ -182,6 +186,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'pdf_access',
                 'show_contacts',
                 'city_ids',
+                'cape_index',
             ]
         ]);
     }
@@ -193,24 +198,25 @@ class Profile extends \thread\modules\user\models\Profile
     {
         return ArrayHelper::merge(parent::attributeLabels(), [
             'phone' => Yii::t('app', 'Phone'),
-            'additional_phone' => Yii::t('app','Телефон для подмены'),
-            'address' => Yii::t('app','Address'),
-            'name_company' => Yii::t('app','Название компании'),
-            'email_company' => Yii::t('app','E-mail'),
-            'website' => Yii::t('app','Адресс сайта'),
-            'exp_with_italian' => Yii::t('app','Опыт работы с итальянской мебелью, лет'),
-            'country_id' => Yii::t('app','Country'),
-            'city_id' => Yii::t('app','City'),
-            'factory_id' => Yii::t('app','Factory'),
-            'delivery_to_other_cities' => Yii::t('app','Готов к поставкам мебели в другие города'),
+            'additional_phone' => Yii::t('app', 'Телефон для подмены'),
+            'address' => Yii::t('app', 'Address'),
+            'name_company' => Yii::t('app', 'Название компании'),
+            'email_company' => Yii::t('app', 'E-mail'),
+            'website' => Yii::t('app', 'Адресс сайта'),
+            'exp_with_italian' => Yii::t('app', 'Опыт работы с итальянской мебелью, лет'),
+            'country_id' => Yii::t('app', 'Country'),
+            'city_id' => Yii::t('app', 'City'),
+            'factory_id' => Yii::t('app', 'Factory'),
+            'delivery_to_other_cities' => Yii::t('app', 'Готов к поставкам мебели в другие города'),
             'latitude' => Yii::t('app', 'Latitude'),
             'longitude' => Yii::t('app', 'Longitude'),
             'partner_in_city' => Yii::t('app', 'Partner in city'),
-            'possibility_to_answer' => Yii::t('app','Отвечает без установки кода на сайт'),
-            'pdf_access' => Yii::t('app','Доступ к прайсам и каталогам'),
-            'show_contacts' => Yii::t('app','Показывать в контактах'),
-            'city_ids' => Yii::t('app','Ответы в городах'),
-            'factory_package' => Yii::t('app','Package'),
+            'possibility_to_answer' => Yii::t('app', 'Отвечает без установки кода на сайт'),
+            'pdf_access' => Yii::t('app', 'Доступ к прайсам и каталогам'),
+            'show_contacts' => Yii::t('app', 'Показывать в контактах'),
+            'city_ids' => Yii::t('app', 'Ответы в городах'),
+            'factory_package' => Yii::t('app', 'Package'),
+            'cape_index' => Yii::t('app', 'CAPE index'),
         ]);
     }
 
@@ -232,6 +238,7 @@ class Profile extends \thread\modules\user\models\Profile
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getCities()
     {
@@ -255,10 +262,11 @@ class Profile extends \thread\modules\user\models\Profile
     {
         $model = Country::findById($this->country_id);
 
-        if ($model == null || empty($model->lang))
+        if ($model == null || empty($model->lang)) {
             return false;
-        else
+        } else {
             return $model->lang->title;
+        }
     }
 
     /**
@@ -268,10 +276,11 @@ class Profile extends \thread\modules\user\models\Profile
     {
         $model = City::findById($this->city_id);
 
-        if ($model == null || empty($model->lang))
+        if ($model == null || empty($model->lang)) {
             return false;
-        else
+        } else {
             return $model->lang->title;
+        }
     }
 
     /**
@@ -313,8 +322,7 @@ class Profile extends \thread\modules\user\models\Profile
         if (Yii::$app->getUser()->getIdentity()->profile->possibility_to_answer) {
             return true;
         } elseif (Yii::$app->getUser()->getIdentity()->profile->website) {
-
-            $html = $this->get_data(Yii::$app->getUser()->getIdentity()->profile->website);
+            $html = $this->getCurlData(Yii::$app->getUser()->getIdentity()->profile->website);
 
             $matches = array();
 
@@ -344,7 +352,7 @@ class Profile extends \thread\modules\user\models\Profile
 
         if ($modelCities != null) {
             foreach ($modelCities as $item) {
-                if($item['id'] == $city_id) {
+                if ($item['id'] == $city_id) {
                     return true;
                 }
             }
@@ -357,7 +365,7 @@ class Profile extends \thread\modules\user\models\Profile
      * @param $url
      * @return mixed
      */
-    private function get_data($url)
+    private function getCurlData($url)
     {
         $ch = curl_init();
         $timeout = 5;

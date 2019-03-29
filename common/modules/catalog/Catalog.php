@@ -95,30 +95,6 @@ class Catalog extends aModule
     }
 
     /**
-     * Samples upload path
-     * @return string
-     */
-    public function getSaleUploadPath()
-    {
-        $dir = $this->getBaseUploadPath() . '/images';
-
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
-
-        return $dir;
-    }
-
-    /**
-     * Samples upload URL
-     * @return string
-     */
-    public function getSaleUploadUrl()
-    {
-        return $this->getBaseUploadUrl() . '/images';
-    }
-
-    /**
      * Factory upload path
      * @return string
      */
@@ -175,6 +151,22 @@ class Catalog extends aModule
     }
 
     /**
+     * @return string
+     */
+    public function getItalianProductFileUploadPath()
+    {
+        return $this->getBaseUploadPath() . '/italianProductFile';
+    }
+
+    /**
+     * @return string
+     */
+    public function getItalianProductFileUploadUrl()
+    {
+        return $this->getBaseUploadUrl() . '/italianProductFile';
+    }
+
+    /**
      * Image upload path
      * @return string
      */
@@ -190,5 +182,13 @@ class Catalog extends aModule
     public function getBaseUploadUrl()
     {
         return '/uploads';
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getFormatDate()
+    {
+        return Yii::$app->getModule('news')->params['format']['date'];
     }
 }

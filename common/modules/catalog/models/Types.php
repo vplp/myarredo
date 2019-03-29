@@ -28,7 +28,8 @@ use common\modules\catalog\Catalog;
 class Types extends ActiveRecord
 {
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -122,6 +123,7 @@ class Types extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getCategory()
     {
@@ -144,5 +146,13 @@ class Types extends ActiveRecord
     public function getSale()
     {
         return $this->hasMany(Sale::class, ['catalog_type_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItalianProduct()
+    {
+        return $this->hasMany(ItalianProduct::class, ['catalog_type_id' => 'id']);
     }
 }

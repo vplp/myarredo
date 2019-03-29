@@ -53,7 +53,11 @@ class Factory extends \common\modules\catalog\models\Factory
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled();
+        return parent::findBase()
+            ->andFilterWhere([
+                self::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
+            ])
+            ->enabled();
     }
 
     /**
@@ -65,10 +69,10 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
-     * Get by alias
-     *
-     * @param string $alias
-     * @return ActiveRecord|null
+     * @param $alias
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findByAlias($alias)
     {
@@ -82,6 +86,8 @@ class Factory extends \common\modules\catalog\models\Factory
     /**
      * @param $alias
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findAllByAlias($alias)
     {
@@ -95,8 +101,6 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
-     * Search
-     *
      * @param $params
      * @return \yii\data\ActiveDataProvider
      */
@@ -109,9 +113,27 @@ class Factory extends \common\modules\catalog\models\Factory
      * @param string $alias
      * @return string
      */
-    public static function getUrl(string $alias)
+    public static function getUrl($alias)
     {
         return Url::toRoute(['/catalog/factory/view', 'alias' => $alias], true);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCatalogsFiles()
+    {
+        return $this->hasMany(FactoryCatalogsFiles::class, ['factory_id' => 'id'])
+            ->andWhere(['file_type' => 1])->enabled();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPricesFiles()
+    {
+        return $this->hasMany(FactoryPricesFiles::class, ['factory_id' => 'id'])
+            ->andWhere(['file_type' => 2])->enabled();
     }
 
     /**
@@ -159,9 +181,20 @@ class Factory extends \common\modules\catalog\models\Factory
         return $image;
     }
 
+    public function getVideo()
+    {
+        if ($this->video) {
+            return '<iframe width="560" height="315" src="' . $this->video . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        } else {
+            return false;
+        }
+    }
+
     /**
      * @param array $params
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getWithProduct($params = [])
     {
@@ -200,6 +233,12 @@ class Factory extends \common\modules\catalog\models\Factory
             $query
                 ->innerJoinWith(["product.collection productCollection"], false)
                 ->andFilterWhere(['IN', 'productCollection.id', $params[$keys['collection']]]);
+        }
+
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["product.colors as productColors"], false)
+                ->andFilterWhere(['IN', 'productColors.alias', $params[$keys['colors']]]);
         }
 
         if (Yii::$app->request->get('show') == 'in_stock') {
@@ -286,15 +325,62 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
+     * @param array $params
+     * @return mixed
+     */
+    public static function getWithItalianProduct($params = [])
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = self::findBase();
+
+        $query
+            ->innerJoinWith(["italianProduct"], false)
+            ->andFilterWhere([
+                ItalianProduct::tableName() . '.published' => '1',
+                ItalianProduct::tableName() . '.deleted' => '0',
+            ]);
+
+        if (isset($params[$keys['category']])) {
+            $query
+                ->innerJoinWith(["italianProduct.category italianProductCategory"], false)
+                ->andFilterWhere(['IN', 'italianProductCategory.alias', $params[$keys['category']]]);
+        }
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["italianProduct.types italianProductTypes"], false)
+                ->andFilterWhere(['IN', 'italianProductTypes.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["italianProduct.specification italianProductSpecification"], false)
+                ->andFilterWhere(['IN', 'italianProductSpecification.alias', $params[$keys['style']]]);
+        }
+
+        return $query
+            ->select([
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                self::tableName() . '.first_letter',
+                self::tableName() . '.title',
+                'count(' . self::tableName() . '.id) as count'
+            ])
+            ->groupBy(self::tableName() . '.id')
+            ->asArray()
+            ->all();
+    }
+
+    /**
      * @return mixed
      */
     public static function getListLetters()
     {
-        return parent::findBase()
+        return self::findBase()
             ->select([self::tableName() . '.first_letter'])
             ->groupBy(self::tableName() . '.first_letter')
             ->orderBy(self::tableName() . '.first_letter')
-            ->enabled()
             ->all();
     }
 

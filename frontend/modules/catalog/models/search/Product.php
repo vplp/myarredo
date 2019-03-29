@@ -11,7 +11,8 @@ use frontend\modules\catalog\models\{
     Types,
     Factory,
     Product as ProductModel,
-    Specification
+    Specification,
+    Colors
 };
 use frontend\modules\catalog\Catalog;
 
@@ -110,6 +111,16 @@ class Product extends ProductModel
             $query->andFilterWhere(['between', self::tableName() . '.price_from', $params[$keys['price']][0], $params[$keys['price']][1]]);
         }
 
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["colors"])
+                ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
+        }
+
+        /**
+         * orderBy
+         */
+
         $order = [];
 
         if (isset($params['sort']) && $params['sort'] == 'asc') {
@@ -132,9 +143,13 @@ class Product extends ProductModel
 
         $query->orderBy(implode(',', $order));
 
-        self::getDb()->cache(function ($db) use ($dataProvider) {
-            $dataProvider->prepare();
-        });
+        /**
+         * cache
+         */
+
+//        self::getDb()->cache(function ($db) use ($dataProvider) {
+//            $dataProvider->prepare();
+//        });
 
         return $dataProvider;
     }
@@ -179,6 +194,12 @@ class Product extends ProductModel
             $query
                 ->innerJoinWith(["factory"])
                 ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
+        }
+
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["colors"])
+                ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
         }
 
         $query->select(ProductModel::tableName() . '.id');

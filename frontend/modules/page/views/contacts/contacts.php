@@ -23,23 +23,27 @@ $bundle = AppAsset::register($this);
                             ?>
                             <div class="one-cont double-cont">
                                 <div class="img-part">
-                                    <img src="<?= $bundle->baseUrl ?>/img/cont1.svg" alt="">
+                                    <?= Html::img($bundle->baseUrl . '/img/cont1.svg') ?>
                                 </div>
                                 <div class="info-part">
                                     <div class="main-sticker">
                                         <?= Yii::t('app', 'Главный партнер') ?>
                                     </div>
 
-                                    <?= Html::tag('h4', $mainPartner->profile->name_company); ?>
+                                    <?= Html::tag('h2', $mainPartner->profile->name_company); ?>
 
                                     <div class="ico">
-                                        <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
                                     </div>
 
-                                    <a href="tel:<?= $mainPartner->profile->phone ?>"><?= $mainPartner->profile->phone ?></a>
+                                    <?= Html::a(
+                                        $mainPartner->profile->phone,
+                                        'tel:' . $mainPartner->profile->phone,
+                                        []
+                                    ) ?>
 
                                     <div class="ico">
-                                        <img src="<?= $bundle->baseUrl ?>/img/marker-map.png" alt="">
+                                        <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
                                     </div>
                                     <div class="adres">
                                         <?= isset($mainPartner->profile->city) ? $mainPartner->profile->city->lang->title . '<br>' : '' ?>
@@ -51,13 +55,19 @@ $bundle = AppAsset::register($this);
 
                         <?php foreach ($partners as $partner) { ?>
                             <div class="one-cont">
-                                <?= Html::tag('h4', $partner->profile->name_company); ?>
+                                <?= Html::tag('h2', $partner->profile->name_company); ?>
                                 <div class="ico">
-                                    <img src="<?= $bundle->baseUrl ?>/img/phone.svg" alt="">
+                                    <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
                                 </div>
-                                <a href="tel:<?= $partner->profile->phone ?>"><?= $partner->profile->phone ?></a>
+
+                                <?= Html::a(
+                                    $partner->profile->phone,
+                                    'tel:' . $partner->profile->phone,
+                                    []
+                                ) ?>
+
                                 <div class="ico">
-                                    <img src="<?= $bundle->baseUrl ?>/img/marker-map.png" alt="">
+                                    <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
                                 </div>
                                 <div class="adres">
                                     <?= isset($partner->profile->city) ? $partner->profile->city->lang->title . '<br>' : '' ?>

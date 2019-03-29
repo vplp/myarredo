@@ -7,10 +7,9 @@ use yii\helpers\ArrayHelper;
 use yii\base\Component;
 use yii\log\Logger;
 //
-use frontend\modules\seo\modules\{
-    modellink\models\Modellink,
-    directlink\models\Directlink
-};
+use frontend\modules\seo\modules\modellink\models\Modellink;
+use frontend\modules\seo\modules\directlink\models\Directlink;
+//
 use thread\app\base\models\ActiveRecord;
 
 /**
@@ -26,12 +25,17 @@ class MetaTag extends Component
 
     public $seo_title = '';
     public $seo_description = '';
+    public $seo_h1 = '';
+    public $seo_content = '';
+
     protected $seo_keywords = '';
     protected $seo_robots = '';
     protected $seo_image_url = '';
 
     protected $set_seo_title = '';
     protected $set_seo_description = '';
+    protected $set_seo_h1 = '';
+    protected $set_seo_content = '';
     protected $set_seo_keywords = '';
     protected $set_seo_image_url = '';
 
@@ -49,7 +53,7 @@ class MetaTag extends Component
      * @param string $title
      * @return $this
      */
-    public function set_title(string $title)
+    public function setTitle(string $title)
     {
         $this->set_seo_title = $title;
         return $this;
@@ -59,9 +63,29 @@ class MetaTag extends Component
      * @param string $description
      * @return $this
      */
-    public function set_description(string $description)
+    public function setDescription(string $description)
     {
         $this->set_seo_description = $description;
+        return $this;
+    }
+
+    /**
+     * @param string $h1
+     * @return $this
+     */
+    public function setH1(string $h1)
+    {
+        $this->set_seo_h1 = $h1;
+        return $this;
+    }
+
+    /**
+     * @param string $content
+     * @return $this
+     */
+    public function setContent(string $content)
+    {
+        $this->set_seo_content = $content;
         return $this;
     }
 
@@ -69,7 +93,7 @@ class MetaTag extends Component
      * @param string $keywords
      * @return $this
      */
-    public function set_keywords(string $keywords)
+    public function setKeywords(string $keywords)
     {
         $this->set_seo_keywords = $keywords;
         return $this;
@@ -79,7 +103,7 @@ class MetaTag extends Component
      * @param string $image_url
      * @return $this
      */
-    public function set_image_url(string $image_url)
+    public function setImageUrl(string $image_url)
     {
         $this->set_seo_image_url = $image_url;
         return $this;
@@ -118,11 +142,13 @@ class MetaTag extends Component
 
     /**
      * @return $this
+     * @throws \yii\base\InvalidConfigException
      */
     protected function getDirectModel()
     {
         if (!empty($this->local_url)) {
-            $this->direct_model = Directlink::find()->url($this->local_url)->enabled()->one();
+            //$this->direct_model = Directlink::find()->url($this->local_url)->enabled()->one();
+            $this->direct_model = Directlink::getInfo();
         }
 
         return $this;
@@ -141,6 +167,8 @@ class MetaTag extends Component
 
             $this->seo_title = $model['lang']['title'];
             $this->seo_description = $model['lang']['description'];
+            $this->seo_h1 = $model['lang']['h1'];
+            $this->seo_content = $model['lang']['content'];
             $this->seo_keywords = $model['lang']['keywords'];
             $this->seo_robots = Modellink::statusMetaRobotsRange()[$model['meta_robots']];
             $this->seo_image_url = $model['image_url'];
@@ -152,6 +180,12 @@ class MetaTag extends Component
         }
         if (!empty($this->set_seo_description)) {
             $this->seo_description = $this->set_seo_description;
+        }
+        if (!empty($this->set_seo_h1)) {
+            $this->seo_h1 = $this->set_seo_h1;
+        }
+        if (!empty($this->set_seo_content)) {
+            $this->seo_content = $this->set_seo_content;
         }
         if (!empty($this->set_seo_keywords)) {
             $this->seo_keywords = $this->set_seo_keywords;
@@ -174,24 +208,67 @@ class MetaTag extends Component
 
             $this->seo_title = (!empty($model['lang']['title'])) ? $model['lang']['title'] : $this->seo_title;
             $this->seo_description = (!empty($model['lang']['description'])) ? $model['lang']['description'] : $this->seo_description;
+            $this->seo_h1 = (!empty($model['lang']['h1'])) ? $model['lang']['h1'] : $this->seo_h1;
+            $this->seo_content = (!empty($model['lang']['content'])) ? $model['lang']['content'] : $this->seo_content;
             $this->seo_keywords = (!empty($model['lang']['keywords'])) ? $model['lang']['keywords'] : $this->seo_keywords;
             $this->seo_robots = Directlink::statusMetaRobotsRange()[$model['meta_robots']];
             $this->seo_image_url = (!empty($model['image_url'])) ? $model['image_url'] : $this->seo_image_url;
         }
 
-        $this->seo_title = str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), $this->seo_title);
-        $this->seo_description = str_replace(['#городе#', '#nella citta#'], Yii::$app->city->getCityTitleWhere(), $this->seo_description);
+        $this->seo_title = str_replace(
+            ['#городе#', '#nella citta#', '#телефон#'],
+            [
+                Yii::$app->city->getCityTitleWhere(),
+                Yii::$app->city->getCityTitleWhere(),
+                Yii::$app->partner->getPartnerPhone()
+            ],
+            $this->seo_title
+        );
+
+        $this->seo_description = str_replace(
+            ['#городе#', '#nella citta#', '#телефон#'],
+            [
+                Yii::$app->city->getCityTitleWhere(),
+                Yii::$app->city->getCityTitleWhere(),
+                Yii::$app->partner->getPartnerPhone()
+            ],
+            $this->seo_description
+        );
+
+        $this->seo_h1 = str_replace(
+            ['#городе#', '#nella citta#', '#телефон#'],
+            [
+                Yii::$app->city->getCityTitleWhere(),
+                Yii::$app->city->getCityTitleWhere(),
+                Yii::$app->partner->getPartnerPhone()
+            ],
+            $this->seo_h1
+        );
+
+        $this->seo_content = str_replace(
+            ['#городе#', '#nella citta#', '#телефон#'],
+            [
+                Yii::$app->city->getCityTitleWhere(),
+                Yii::$app->city->getCityTitleWhere(),
+                Yii::$app->partner->getPartnerPhone()
+            ],
+            $this->seo_content
+        );
 
         return $this;
     }
 
     /**
      * @return $this
+     * @throws \yii\base\InvalidConfigException
      */
     public function render()
     {
         $this->getDirectModel()->analyze();
         $view = Yii::$app->getView();
+
+        $lang = substr(Yii::$app->language, 0, 2);
+        $lang = $lang != 'ru' ? $lang . '/' : '';
 
         // title_register
         if ($this->seo_title) {
@@ -220,24 +297,26 @@ class MetaTag extends Component
                 'name' => 'robots',
                 'content' => $this->seo_robots,
             ]);
-        } elseif (Yii::$app->getRequest()->get('page')) {
+        } elseif (Yii::$app->getRequest()->get('page') && !in_array(Yii::$app->controller->id, ['sale', 'category'])) {
             $view->registerMetaTag([
                 'name' => 'robots',
-                'content' => 'noindex, follow',
-            ]);
-            $view->registerLinkTag([
-                'rel' => 'canonical',
-                'href' => Yii::$app->request->hostInfo . '/' . Yii::$app->request->pathInfo
+                'content' => 'index, follow',
             ]);
         }
+
+        $view->registerLinkTag([
+            'rel' => 'canonical',
+            'href' => Yii::$app->request->hostInfo . '/' . $lang . Yii::$app->request->pathInfo
+        ]);
 
         return $this;
     }
 
     /**
      * @return $this
+     * @throws \yii\base\InvalidConfigException
      */
-    public function render_graph()
+    public function renderGraph()
     {
         $this->getDirectModel()->analyze();
         $view = Yii::$app->getView();
@@ -294,5 +373,54 @@ class MetaTag extends Component
     public static function getModelKey(ActiveRecord $model)
     {
         return Modellink::getModelKey($model);
+    }
+
+    /**
+     * @param $array
+     * @return $this
+     */
+    public function renderArrayGraph($array)
+    {
+        $view = Yii::$app->getView();
+
+        $view->registerMetaTag([
+            'property' => 'og:site_name',
+            'content' => $array['site_name'] ?? null,
+        ]);
+
+        $view->registerMetaTag([
+            'property' => 'og:type',
+            'content' => $array['type'] ?? 'website',
+        ]);
+
+        $view->registerMetaTag([
+            'property' => 'og:url',
+            'content' => Yii::$app->getRequest()->getAbsoluteUrl(),
+        ]);
+
+        $view->registerMetaTag([
+            'property' => 'og:title',
+            'content' => $array['title'] ?? null,
+        ]);
+
+        $view->registerMetaTag([
+            'property' => 'og:description',
+            'content' => $array['description'] ?? null,
+        ]);
+
+        $view->registerMetaTag([
+            'property' => 'og:image',
+            'content' => $array['image'] ?? null,
+        ]);
+
+        $lang = substr(Yii::$app->language, 0, 2);
+        $locale = $lang . '_' . strtoupper(Yii::$app->city->domain);
+
+        $view->registerMetaTag([
+            'property' => 'og:locale',
+            'content' => $locale,
+        ]);
+
+        return $this;
     }
 }

@@ -24,8 +24,6 @@ $this->title = $this->context->title;
                 'models' => $models,
             ]); ?>
 
-
-
             <div class="manager-history">
                 <div class="manager-history-header">
                     <ul class="orders-title-block flex">
@@ -33,19 +31,22 @@ $this->title = $this->context->title;
                             <span>№</span>
                         </li>
                         <li class="application-date">
-                            <span>Дата заявки</span>
+                            <span><?= Yii::t('app', 'Request Date') ?></span>
                         </li>
                         <li>
-                            <span>Имя</span>
+                            <span><?= Yii::t('app', 'Name') ?></span>
                         </li>
                         <li>
-                            <span>Телефон</span>
+                            <span><?= Yii::t('app', 'Phone') ?></span>
                         </li>
                         <li>
-                            <span>Email</span>
+                            <span><?= Yii::t('app', 'Email') ?></span>
+                        </li>
+                        <li class="lang-cell">
+                            <span><?= Yii::t('app', 'lang') ?></span>
                         </li>
                         <li>
-                            <span>Город</span>
+                            <span><?= Yii::t('app', 'City') ?></span>
                         </li>
                         <li>
                             <span><?= Yii::t('app', 'Status') ?></span>
@@ -54,15 +55,14 @@ $this->title = $this->context->title;
                 </div>
                 <div class="manager-history-list">
 
-                    <?php foreach ($models->getModels() as $modelOrder): ?>
-
+                    <?php foreach ($models->getModels() as $modelOrder) { ?>
                         <div class="item" data-hash="<?= $modelOrder->id; ?>">
 
                             <ul class="orders-title-block flex">
                                 <li class="order-id">
-                                        <span>
-                                            <?= $modelOrder->id; ?>
-                                        </span>
+                                    <span>
+                                        <?= $modelOrder->id; ?>
+                                    </span>
                                 </li>
                                 <li class="application-date">
                                     <span><?= $modelOrder->getCreatedTime() ?></span>
@@ -76,9 +76,13 @@ $this->title = $this->context->title;
                                 <li>
                                     <span><?= $modelOrder->customer->email ?></span>
                                 </li>
-                                <li><span>
-                                            <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
-                                        </span>
+                                <li class="lang-cell">
+                                    <span><?= substr($modelOrder->lang, 0, 2) ?></span>
+                                </li>
+                                <li>
+                                    <span>
+                                        <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
+                                    </span>
                                 </li>
                                 <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
                             </ul>
@@ -90,17 +94,15 @@ $this->title = $this->context->title;
                                 ]) ?>
 
                             </div>
-
                         </div>
 
-                    <?php endforeach; ?>
+                    <?php } ?>
 
                 </div>
 
                 <?= frontend\components\LinkPager::widget([
                     'pagination' => $models->getPagination(),
-                ]);
-                ?>
+                ]) ?>
 
             </div>
         </div>

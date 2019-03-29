@@ -3,10 +3,9 @@
 namespace frontend\modules\catalog\models;
 
 use Yii;
+use yii\data\ArrayDataProvider;
 //
 use yii\elasticsearch\ActiveRecord;
-use yii\elasticsearch\Query;
-use yii\elasticsearch\ActiveDataProvider;
 
 /**
  * Class ElasticSearchProduct
@@ -14,8 +13,12 @@ use yii\elasticsearch\ActiveDataProvider;
  * @property integer $id
  * @property string $title_ru
  * @property string $title_it
+ * @property string $title_en
  * @property string $description_ru
  * @property string $description_it
+ * @property string $description_en
+ *
+ * @property Product $product
  *
  * @package frontend\modules\catalog\models
  */
@@ -42,7 +45,15 @@ class ElasticSearchProduct extends ActiveRecord
      */
     public function attributes()
     {
-        return ['id', 'title_ru', 'title_it', 'description_ru', 'description_it'];
+        return [
+            'id',
+            'title_ru',
+            'title_it',
+            'title_en',
+            'description_ru',
+            'description_it',
+            'description_en'
+        ];
     }
 
     /**
@@ -56,8 +67,10 @@ class ElasticSearchProduct extends ActiveRecord
                     'id' => ['type' => 'long'],
                     'title_ru' => ['type' => 'text'],
                     'title_it' => ['type' => 'text'],
+                    'title_en' => ['type' => 'text'],
                     'description_ru' => ['type' => 'text'],
                     'description_it' => ['type' => 'text'],
+                    'description_en' => ['type' => 'text'],
                 ]
             ],
         ];
@@ -81,11 +94,12 @@ class ElasticSearchProduct extends ActiveRecord
         $db = static::getDb();
         $command = $db->createCommand();
         $command->createIndex(static::index(), [
-            'settings' => ['index' => ['refresh_interval' => '1s']],
+            'settings' => [
+                'index' => [
+                    'refresh_interval' => '1s'
+                ]
+            ],
             'mappings' => static::mapping(),
-            //'warmers' => [ /* ... */ ],
-            //'aliases' => [ /* ... */ ],
-            //'creation_date' => '...'
         ]);
     }
 
@@ -114,7 +128,6 @@ class ElasticSearchProduct extends ActiveRecord
 
             return $record->update();
         } catch (\Exception $e) {
-            //handle error here
             return false;
         }
     }
@@ -128,9 +141,9 @@ class ElasticSearchProduct extends ActiveRecord
         try {
             $record = self::get($product_id);
             $record->delete();
+
             return 1;
         } catch (\Exception $e) {
-            //handle error here
             return false;
         }
     }
@@ -174,66 +187,63 @@ class ElasticSearchProduct extends ActiveRecord
             }
         } catch (\Exception $e) {
             $result = false;
-            //handle error here
         }
 
         return $result;
     }
 
+    public function getProduct()
+    {
+        return $this->hasOne(Product::class, ['id' => 'id']);
+    }
+
     /**
      * @param $params
-     * @return ActiveDataProvider
+     * @return ArrayDataProvider
      */
     public function search($params)
     {
         $lang = substr(Yii::$app->language, 0, 2);
 
-        $query = new Query();
-
-        $query->from(self::index(), self::type());
-
-        $filters = [
-            'multi_match' => [
-                "type" => "most_fields",
-                'query' => $params['search'],
-                'fields' => [
-                    'title_' . $lang,
-                    //'description_' . $lang,
-                ],
-            ],
-//            'bool' => [
-//                'must' => [
-//                    'match' => [
-//                        'title_' . $lang => $params['search'],
-//                        'type' => 'most_fields',
-//                        'minimum_should_match' => '75%',
-//                    ],
-////                    'multi_match' => [
-////                        //"operator" => "OR",
-////                        //"type" => "best_fields",
-////                        'query' => $params['search'],
-////                        'fields' => [
-////                            'languages.title',
-////                            'languages.description',
-////                        ]
-////                    ],
-//                ],
-////                'filter' => [
-////                    'term' => ['languages.lang' => substr(Yii::$app->language, 0, 2)]
-////                ]
-//            ]
-        ];
-
-        $query->query($filters);
+        $query = self::find()->with(["product"]);
 
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+        $queryBool = [
+            'should' => [
+                [
+                    'multi_match' => [
+                        'fields' => ['title_' . $lang, 'description_' . $lang],
+                        "query" => $params['search'],
+                        "type" => "best_fields",
+                        'fuzziness' => 'AUTO',
+                        "minimum_should_match" => "70%",
+                        'boost' => 10
+                    ],
+                ],
+                [
+                    'query_string' => [
+                        'fields' => ['title_' . $lang, 'description_' . $lang],
+                        "query" => '*' . $params['search'] . '*',
+                        'fuzziness' => 'AUTO',
+                        "minimum_should_match" => "60%",
+                        'boost' => 5
+                    ],
+                ]
+            ],
+        ];
+
+        $query->query(['bool' => $queryBool]);
+
+        $query->limit(10000);
+
+        $data = $query->all();
+
+        $dataProvider = new ArrayDataProvider([
+            'allModels' => $data,
             'pagination' => [
-                'defaultPageSize' => $module->itemOnPage,
-                'forcePageParam' => false,
+                'pageSize' => $module->itemOnPage,
             ],
         ]);
 

@@ -45,6 +45,7 @@ use common\modules\user\models\User;
  * @property integer $on_main
  * @property string $image_link
  * @property string $gallery_image
+ * @property integer $mark
  *
  * @property SaleLang $lang
  * @property SaleRelCategory[] $category
@@ -59,7 +60,8 @@ use common\modules\user\models\User;
 class Sale extends ActiveRecord
 {
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -127,6 +129,7 @@ class Sale extends ActiveRecord
                     'on_main',
                     'published',
                     'deleted',
+                    'mark',
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
@@ -171,6 +174,7 @@ class Sale extends ActiveRecord
             'deleted' => ['deleted'],
             'on_main' => ['on_main'],
             'setImages' => ['image_link', 'gallery_image'],
+            'setMark' => ['mark'],
             'backend' => [
                 'country_id',
                 'city_id',
@@ -250,6 +254,7 @@ class Sale extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
             'category_ids' => Yii::t('app', 'Category'),
+            'mark' => 'Mark',
         ];
     }
 
@@ -260,10 +265,6 @@ class Sale extends ActiveRecord
      */
     public function beforeSave($insert)
     {
-        if (Yii::$app->getUser()->getIdentity()->group->role == 'partner') {
-            $this->user_id = Yii::$app->getUser()->id;
-        }
-
         if ($this->alias == '') {
             $this->alias = time();
         }
@@ -331,9 +332,7 @@ class Sale extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()
-            ->joinWith(['lang'])
-            ->orderBy(self::tableName() . '.updated_at DESC');
+        return self::find()->joinWith(['lang']);
     }
 
     /**
@@ -346,6 +345,7 @@ class Sale extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getCategory()
     {
@@ -396,6 +396,7 @@ class Sale extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getSpecification()
     {
@@ -434,10 +435,10 @@ class Sale extends ActiveRecord
             $mas[$v['specification_id']] = $v['val'];
 
             if (in_array($v['specification_id'], $style)) {
-                $mas['style'] = $v['spec_id'];
+                $mas['style'] = $v['specification_id'];
             }
             if (in_array($v['specification_id'], $material)) {
-                $mas['material'] = $v['spec_id'];
+                $mas['material'] = $v['specification_id'];
             }
         }
 
@@ -454,8 +455,8 @@ class Sale extends ActiveRecord
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
 
-        $path = $module->getSaleUploadPath();
-        $url = $module->getSaleUploadUrl();
+        $path = $module->getProductUploadPath();
+        $url = $module->getProductUploadUrl();
 
         $image = null;
 
@@ -489,11 +490,15 @@ class Sale extends ActiveRecord
 
         $imagesSources = [];
 
-        foreach ($images as $image) {
+        foreach ($images as $key => $image) {
             if (file_exists($path . '/' . $image)) {
                 $imagesSources[] = $url . '/' . $image;
+            } else {
+                unset($images[$key]);
             }
         }
+
+        $this->gallery_image = implode(',', $images);
 
         return $imagesSources;
     }

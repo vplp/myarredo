@@ -5,7 +5,7 @@ namespace frontend\components;
 use Yii;
 use yii\web\Controller;
 //
-use frontend\modules\seo\modules\directlink\models\Directlink;
+use frontend\modules\sys\models\Language;
 
 /**
  * Class BaseController
@@ -28,48 +28,70 @@ abstract class BaseController extends Controller
      * @var array
      */
     public $breadcrumbs = [];
-    public $pageH1 = '';
 
-    protected $directLink;
-
-    public function init()
+    public function beforeAction($action)
     {
-        $this->directLink = Directlink::getInfo();
+        if (preg_match('!/{2,}!', $_SERVER['REQUEST_URI'])) {
+            $url = preg_replace('!/{2,}!', '/', $_SERVER['REQUEST_URI']);
+            header('Location: ' . $url, false, 301);
+            exit();
+        }
 
-        parent::init();
+        $this->getAlternateHreflang();
+
+        $this->setCurrency();
+
+        return parent::beforeAction($action);
     }
 
     /**
-     * @return string
+     * @inheritdoc
      */
-    public function getSeoH1()
+    protected function setCurrency()
     {
-        if (isset($this->directLink['lang']) && $this->directLink['lang']['h1']) {
-            $this->pageH1 = str_replace(
-                ['#городе#', '#nella citta#'],
-                Yii::$app->city->getCityTitleWhere(),
-                $this->directLink['lang']['h1']
-            );
-        }
+        $session = Yii::$app->session;
 
-        return $this->pageH1;
+        /**
+         * Set currency
+         */
+        $lang = substr(Yii::$app->language, 0, 2);
+
+        if (in_array(Yii::$app->city->domain, ['ua', 'by'])) {
+            $session->set('currency', 'EUR');
+        } elseif (!$session->has('currency') && $lang == 'ru') {
+            $session->set('currency', 'RUB');
+        } elseif (!$session->has('currency')) {
+            $session->set('currency', 'EUR');
+        }
     }
 
     /**
-     * @return string
+     * @inheritdoc
      */
-    public function getSeoContent()
+    protected function getAlternateHreflang()
     {
-        $content = false;
+        $languages = Language::getAllByLocate();
+        $current_url = Yii::$app->request->url;
 
-        if (isset($this->directLink['lang']) && $this->directLink['lang']['content']) {
-            $content = str_replace(
-                ['#городе#', '#nella citta#'],
-                Yii::$app->city->getCityTitleWhere(),
-                $this->directLink['lang']['content']
-            );
+        foreach ($languages as $alternate) {
+            $alternatePages[$alternate['local']] = [
+                'href' => Yii::$app->request->hostInfo .
+                    ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') .
+                    str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
+                'lang' => substr($alternate['local'], 0, 2),
+                'current' => (Yii::$app->language == $alternate['local']) ? true : false
+            ];
         }
 
-        return $content;
+        if (!empty($alternatePages)) {
+            foreach ($alternatePages as $page) {
+                Yii::$app->view->registerLinkTag([
+                    'rel' => 'alternate',
+                    'href' => $page['href'],
+                    'hreflang' => $page['lang']
+                ]);
+            }
+            unset($alternatePages);
+        }
     }
 }

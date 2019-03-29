@@ -30,7 +30,8 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
 
         $name = uniqid();
         $initImageConfig = "{  
-                    key: '" . basename($preview) . "',
+                    name: '" . basename($preview) . "',
+                    key: '" . $preview . "',
                     url: '" . Url::toRoute(['filedelete', 'id' => $this->model->id]) . "'
                 }";
 
@@ -98,7 +99,8 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
             foreach ($options['initialPreview'] as $key => $image) {
                 $initImage[] = $image;
                 $initImageConfig[] = "{
-                   key: '" . basename($image) . "',
+                    name: '" . basename($image) . "',
+                    key: '" . $image . "',
                     url: '" . Url::toRoute(['filedelete', 'id' => $this->model->id]) . "'
                 }";
             }
@@ -133,30 +135,30 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
             ], $pluginOptions),
             'pluginEvents' => [
                 'filebatchselected' => 'function(event, files) {
-                $(".kv-file-upload").click();
+                    $(".kv-file-upload").click();
                 }',
-                'filebatchuploadsuccess' => 'function(event, data, previewId, index){
-                        var response = data.response;
-                        var val = $("input[name=\'' . $inputName . '\']").val();
-                        var aval = val.split(\',\');
-                            aval.push(response.name);
-                            console.log(val, aval);
-                        $("input[name=\'' . $inputName . '\']").val(aval.join(\',\'));
+                'filebatchuploadsuccess' => 'function(event, data, previewId, index) {
+                    var response = data.response;
+                    var val = $("input[name=\'' . $inputName . '\']").val();
+                    var aval = val.split(\',\');
+                        aval.push(response.name);
+                        console.log(val, aval);
+                    $("input[name=\'' . $inputName . '\']").val(aval.join(\',\'));
                 }',
-                'fileuploaded' => 'function(event, data, previewId, index){
-                        var response = data.response;
-                        var val = $("input[name=\'' . $inputName . '\']").val();
-                        var aval = val.split(\',\');
-                            aval.push(response.name);
-                            console.log(val, aval);
-                        $("input[name=\'' . $inputName . '\']").val(aval.join(\',\'));
+                'fileuploaded' => 'function(event, data, previewId, index) {
+                    var response = data.response;
+                    var val = $("input[name=\'' . $inputName . '\']").val();
+                    var aval = val.split(\',\');
+                        aval.push(response.name);
+                        console.log(val, aval);
+                    $("input[name=\'' . $inputName . '\']").val(aval.join(\',\'));
                 }',
-                /*'filedeleted' => 'function(event, key){
+                'filedeleted' => 'function(event, key) {
                     console.log(key);
                  }',
-                'fileclear' => 'function(event){
+                'fileclear' => 'function(event) {
                     $("input[name=\'' . $inputName . '\']").val("");
-                }',*/
+                }',
             ]
         ]);
         return $this;
@@ -179,8 +181,8 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
                     key: '" . basename($preview) . "',
                     filename: '" . basename($preview) . "',
                     caption: '" . basename($preview) . "',
-                    size: " . filesize('..' . $preview) . ",
-                    url: '" . Url::toRoute(['filedelete', 'id' => $this->model->id]) . "'
+                    size: " . filesize(Yii::getAlias('@frontend-web') . $preview) . ",
+                    url: '" . Url::toRoute(['one-file-delete', 'id' => $this->model->id]) . "'
                 }";
 
         $inputName = Html::getInputName($this->model, $this->attribute);
@@ -188,7 +190,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
         $this->parts['{input}'] .= FileInput::widget([
             'name' => $name,
             'pluginOptions' => [
-                'uploadUrl' => Url::toRoute(['fileupload', 'input_file_name' => $name]),
+                'uploadUrl' => Url::toRoute(['one-file-upload', 'input_file_name' => $name]),
                 'uploadExtraData' => [
                     '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
                 ],

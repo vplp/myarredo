@@ -7,9 +7,11 @@ use yii\helpers\Console;
 use yii\console\Controller;
 //
 use frontend\modules\catalog\models\ElasticSearchProduct;
+//
 use common\modules\catalog\models\{
-    Product
+    Product, ProductLang
 };
+use common\modules\sys\models\Language;
 
 /**
  * Class ElasticSearchController
@@ -23,45 +25,60 @@ class ElasticSearchController extends Controller
      */
     public function actionResetMark()
     {
+        $this->stdout("ResetMark: start. \n", Console::FG_GREEN);
+
         Yii::$app->db->createCommand()
             ->update(Product::tableName(), ['mark1' => '0'], "`mark1`='1'")
             ->execute();
+
+        $this->stdout("ResetMark: finish. \n", Console::FG_GREEN);
     }
 
     /**
-     * @param string $lang
-     * @throws \yii\db\Exception
+     * @throws \yii\base\InvalidConfigException
      */
-    public function actionAdd($lang = 'ru-RU')
+    public function actionAdd()
     {
         $this->stdout("ElasticSearch: start. \n", Console::FG_GREEN);
 
-        Yii::$app->language = $lang;
-
         $models = Product::find()
-            ->innerJoinWith(['lang', 'factory'])
             ->andFilterWhere([
                 Product::tableName() . '.removed' => '0',
                 Product::tableName() . '.mark1' => '0',
             ])
             ->enabled()
             ->orderBy(Product::tableName() . '.id DESC')
-            ->limit(500)
+            ->limit(100)
             ->all();
 
-        foreach ($models as $product) {
+        foreach ($models as $model) {
             /** @var PDO $transaction */
-            /** @var $product Product */
-            $transaction = $product::getDb()->beginTransaction();
+            /** @var $model Product */
+            $transaction = $model::getDb()->beginTransaction();
             try {
-                $product->setScenario('setMark1');
+                $model->setScenario('setMark1');
 
-                $product->mark1 = '1';
+                $model->mark1 = '1';
 
-                $save = ElasticSearchProduct::addRecord($product);
-                if ($product->save() && $save) {
+                $modelLanguage = new Language();
+                $languages = $modelLanguage->getLanguages();
+
+                $save = false;
+
+                foreach ($languages as $lang) {
+                    Yii::$app->language = $lang['local'];
+
+                    /** @var $product Product */
+                    $product = Product::findByID($model->id);
+
+                    if (!empty($product->lang)) {
+                        $save = ElasticSearchProduct::addRecord($product);
+                    }
+                }
+
+                if ($model->save() && $save) {
                     $transaction->commit();
-                    $this->stdout("save: ID=" . $product->id . " \n", Console::FG_GREEN);
+                    $this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
                 } else {
                     $transaction->rollBack();
                 }
