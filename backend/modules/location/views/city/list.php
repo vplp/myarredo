@@ -18,6 +18,7 @@ echo GridView::widget([
     'columns' => [
         [
             'class' => \thread\widgets\grid\kartik\EditableColumn::class,
+            'label' => Yii::t('app', 'Title'),
             'attribute' => 'title',
             'displayValue' => function ($model) {
                 return $model['lang']['title'];
