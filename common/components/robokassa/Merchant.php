@@ -47,6 +47,10 @@ class Merchant extends BaseObject
 
         $sSignatureValue = $this->encryptSignature($signature);
 
+        if ($sCulture && !in_array($sCulture, ['ru', 'en'])) {
+            $sCulture = 'en';
+        }
+
         $url .= '?' . http_build_query([
                 'MrchLogin' => $this->sMerchantLogin,
                 'OutSum' => $nOutSum,

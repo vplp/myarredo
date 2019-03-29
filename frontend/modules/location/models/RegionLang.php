@@ -3,11 +3,11 @@
 namespace frontend\modules\location\models;
 
 /**
- * Class CityLang
+ * Class RegionLang
  *
  * @package frontend\modules\location\models
  */
-class CityLang extends \common\modules\location\models\CityLang
+class RegionLang extends \common\modules\location\models\RegionLang
 {
     /**
      * @return array

@@ -7,6 +7,8 @@
 return [
     'location' => 'Локализация',
     'Country' => 'Страны',
+    'Regions' => 'Регионы',
+    'Region' => 'Регион',
     'City' => 'Города',
     'Currency' => 'Валюты',
     'Language' => 'Языки',

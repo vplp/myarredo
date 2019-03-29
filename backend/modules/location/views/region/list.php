@@ -3,11 +3,13 @@
 use backend\widgets\GridView\GridView;
 //
 use thread\widgets\grid\{
-    ActionCheckboxColumn
+    ActionCheckboxColumn, GridViewFilter
 };
+//
+use backend\modules\location\models\Country;
 
 /**
- * @var \backend\modules\location\models\search\Currency $model
+ * @var \backend\modules\location\models\Region $model
  */
 
 echo GridView::widget([
@@ -15,12 +17,19 @@ echo GridView::widget([
     'filterModel' => $filter,
     'columns' => [
         [
+            'class' => \thread\widgets\grid\kartik\EditableColumn::class,
             'label' => Yii::t('app', 'Title'),
             'attribute' => 'title',
-            'value' => 'lang.title',
+            'displayValue' => function ($model) {
+                return $model->getTitle();
+            }
         ],
-        'course',
-        'code2',
+        [
+            'attribute' => 'country_id',
+            'value' => 'country.lang.title',
+            'label' => Yii::t('app', 'Country'),
+            'filter' => GridViewFilter::selectOne($filter, 'country_id', Country::dropDownList())
+        ],
         [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',

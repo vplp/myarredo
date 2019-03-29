@@ -134,6 +134,19 @@ use frontend\modules\user\widgets\menu\UserMenu;
                 if (!Yii::$app->getUser()->isGuest &&
                     Yii::$app->user->identity->group->role == 'factory'
                 ) {
+                } elseif (!Yii::$app->getUser()->isGuest &&
+                    Yii::$app->user->identity->group->role == 'partner' &&
+                    Yii::$app->user->identity->profile->country_id == 4
+                ) {
+                    ?>
+                    <div class="">
+                        <?= Html::a(
+                            '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Добавить товар'),
+                            Url::toRoute(['/catalog/italian-product/create']),
+                            ['class' => 'btn btn-goods']
+                        ) ?>
+                    </div>
+                    <?php
                 } else { ?>
                     <?= CatalogMenu::widget([]); ?>
 

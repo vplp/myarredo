@@ -1,13 +1,13 @@
 <?php
 
-use backend\widgets\GridView\GridView;
+use yii\grid\GridView;
 //
 use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
 };
 
 /**
- * @var \backend\modules\location\models\search\Currency $model
+ * @var \backend\modules\location\models\search\Region $model
  */
 
 echo GridView::widget([
@@ -19,8 +19,11 @@ echo GridView::widget([
             'attribute' => 'title',
             'value' => 'lang.title',
         ],
-        'course',
-        'code2',
+        [
+            'attribute' => 'country_id',
+            'value' => 'country.lang.title',
+            'label' => Yii::t('app', 'Country'),
+        ],
         [
             'class' => ActionDeleteColumn::class,
         ],

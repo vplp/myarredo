@@ -83,9 +83,12 @@ class PaymentController extends BaseController
                     return $merchant->payment(
                         $model->amount,
                         $model->id,
-                        ($model->type == 'factory_promotion') ? 'Оплата рекламной компании' : 'Оплата товаров',
+                        ($model->type == 'factory_promotion')
+                            ? Yii::t('app', 'Оплата рекламной кампании')
+                            : Yii::t('app', 'Оплата товаров'),
                         null,
-                        Yii::$app->user->identity->email
+                        Yii::$app->user->identity->email,
+                        substr(Yii::$app->language, 0, 2)
                     );
                 } else {
                     $transaction->rollBack();

@@ -17,6 +17,8 @@ return [
     'Region' => 'Регион',
     'Country' => 'Страна',
     'Countries' => 'Страны',
+    'Regions' => 'Регионы',
+    'Region' => 'Регион',
     'City' => 'Город',
     'Cities' => 'Города',
     'Currency' => 'Валюта',
