@@ -29,6 +29,11 @@ class Location extends \common\modules\location\Location
                         'url' => ['/location/country/list'],
                     ],
                     [
+                        'label' => 'Regions',
+                        'icon' => 'fa-tasks',
+                        'url' => ['/location/region/list'],
+                    ],
+                    [
                         'label' => 'Cities',
                         'icon' => 'fa-tasks',
                         'url' => ['/location/city/list'],
