@@ -6,6 +6,7 @@ use yii\helpers\{
 };
 use kartik\widgets\Select2;
 //
+use frontend\modules\location\models\Region;
 use frontend\modules\catalog\models\{
     Category, Factory, Types, Specification, Colors
 };
@@ -258,17 +259,21 @@ $Specifications = Specification::findBase()->all();
                             ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
                         ) ?>
 
+
                         <?= $form->field(
                             $model,
                             'production_year',
                             ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
                         ) ?>
 
-                        <?= $form->field(
-                            $model,
-                            'region',
-                            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
-                        ) ?>
+                        <?= $form
+                            ->field($model, 'region_id')
+                            ->widget(Select2::class, [
+                                'data' => Region::dropDownList(4),
+                                'options' => [
+                                    'placeholder' => Yii::t('app', 'Select option'),
+                                ],
+                            ]) ?>
 
                         <?php
                         $model->phone = $model->isNewRecord ? Yii::$app->user->identity->profile->phone : '';

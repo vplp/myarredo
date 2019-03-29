@@ -14,7 +14,7 @@ use thread\app\base\models\ActiveRecord;
 //
 use common\helpers\Inflector;
 use common\modules\location\models\{
-    City, Country
+    City, Country, Region
 };
 use common\modules\catalog\Catalog;
 use common\modules\user\models\User;
@@ -28,8 +28,8 @@ use common\modules\payment\models\{
  * @property integer $id
  * @property string $alias
  * @property integer $country_id
+ * @property integer $region_id
  * @property integer $city_id
- * @property string $region
  * @property string $phone
  * @property string $email
  * @property integer $user_id
@@ -61,6 +61,7 @@ use common\modules\payment\models\{
  * @property Factory $factory
  * @property User $user
  * @property Country $country
+ * @property Region $region
  * @property City $city
  * @property Types $types
  *
@@ -121,6 +122,7 @@ class ItalianProduct extends ActiveRecord
             [
                 [
                     'country_id',
+                    'region_id',
                     'city_id',
                     'user_id',
                     'catalog_type_id',
@@ -156,7 +158,7 @@ class ItalianProduct extends ActiveRecord
             ],
             [
                 [
-                    'region',
+                    //'region',
                     'phone',
                     'email',
                     'alias',
@@ -209,8 +211,9 @@ class ItalianProduct extends ActiveRecord
             'setImages' => ['image_link', 'gallery_image'],
             'backend' => [
                 'country_id',
+                'region_id',
                 'city_id',
-                'region',
+                //'region',
                 'phone',
                 'email',
                 'user_id',
@@ -238,8 +241,9 @@ class ItalianProduct extends ActiveRecord
             ],
             'frontend' => [
                 'country_id',
+                'region_id',
                 'city_id',
-                'region',
+                //'region',
                 'phone',
                 'email',
                 'user_id',
@@ -273,8 +277,9 @@ class ItalianProduct extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'country_id' => Yii::t('app', 'Country'),
+            'region_id' => Yii::t('app', 'Region'),
             'city_id' => Yii::t('app', 'City'),
-            'region' => Yii::t('app', 'Region'),
+            //'region' => Yii::t('app', 'Region'),
             'phone' => Yii::t('app', 'Phone'),
             'email' => Yii::t('app', 'Email'),
             'user_id' => Yii::t('app', 'User'),
@@ -439,6 +444,14 @@ class ItalianProduct extends ActiveRecord
             ->hasOne(Payment::class, ['id' => 'payment_id'])
             ->viaTable(PaymentRelItem::tableName(), ['item_id' => 'id'])
             ->andWhere([Payment::tableName() . '.type' => 'italian_item']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRegion()
+    {
+        return $this->hasOne(Region::class, ['id' => 'region_id']);
     }
 
     /**
