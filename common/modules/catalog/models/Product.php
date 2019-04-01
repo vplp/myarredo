@@ -298,7 +298,9 @@ class Product extends ActiveRecord implements iProduct
             }
         }
 
-        $this->mark = '0';
+        if (in_array($this->scenario, ['frontend', 'backend'])) {
+            $this->mark = '0';
+        }
 
         if (YII_ENV_PROD) {
             /** @var Catalog $module */

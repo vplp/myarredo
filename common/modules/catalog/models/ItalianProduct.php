@@ -53,6 +53,7 @@ use common\modules\payment\models\{
  * @property integer $updated_at
  * @property integer $published
  * @property integer $deleted
+ * @property integer $mark
  *
  * @property ItalianProductLang $lang
  * @property ItalianProductRelCategory[] $category
@@ -147,6 +148,7 @@ class ItalianProduct extends ActiveRecord
                     'on_main',
                     'published',
                     'deleted',
+                    'mark',
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
@@ -209,6 +211,7 @@ class ItalianProduct extends ActiveRecord
             'deleted' => ['deleted'],
             'on_main' => ['on_main'],
             'setImages' => ['image_link', 'gallery_image'],
+            'setMark' => ['mark'],
             'backend' => [
                 'country_id',
                 'region_id',
@@ -236,6 +239,7 @@ class ItalianProduct extends ActiveRecord
                 'deleted',
                 'position',
                 'on_main',
+                'mark',
                 'category_ids',
                 'colors_ids',
             ],
@@ -263,6 +267,7 @@ class ItalianProduct extends ActiveRecord
                 'weight',
                 'production_year',
                 'position',
+                'mark',
                 'category_ids',
                 'colors_ids',
             ]
@@ -304,6 +309,7 @@ class ItalianProduct extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'mark' => 'Mark',
             'category_ids' => Yii::t('app', 'Category'),
             'colors_ids' => Yii::t('app', 'Colors'),
         ];
@@ -318,6 +324,10 @@ class ItalianProduct extends ActiveRecord
     {
         if ($this->alias == '') {
             $this->alias = time();
+        }
+
+        if (in_array($this->scenario, ['frontend', 'backend'])) {
+            $this->mark = '0';
         }
 
         return parent::beforeSave($insert);
