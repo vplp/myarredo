@@ -19,14 +19,14 @@ use common\modules\catalog\models\{
 class CatalogItalianProductController extends Controller
 {
     /**
-     * Reset mark
+     * @throws \yii\db\Exception
      */
     public function actionResetMark()
     {
         $this->stdout("ResetMark: start. \n", Console::FG_GREEN);
 
         Yii::$app->db->createCommand()
-            ->update(Product::tableName(), ['mark' => '0'], "`mark`='1'")
+            ->update(ItalianProduct::tableName(), ['mark' => '0'], "`mark`='1'")
             ->execute();
 
         $this->stdout("ResetMark: finish. \n", Console::FG_GREEN);
@@ -41,27 +41,32 @@ class CatalogItalianProductController extends Controller
     {
         $this->stdout("Translate: start. \n", Console::FG_GREEN);
 
-        $languages = Language::findBase()->enabled()->all();
+        Yii::$app->language = 'ru-RU';
 
-        //$currentLanguage = Yii::$app->language;
+        $models = ItalianProduct::findBase()
+            ->andFilterWhere([
+                'mark' => '0',
+            ])
+            ->limit(50)
+            ->orderBy(ItalianProduct::tableName() . '.id DESC')
+            ->all();
 
-        foreach ($languages as $language) {
-            Yii::$app->language = $language->local;
-            $currentLanguage = $language->local;
-            $models = ItalianProduct::findBase()
-                ->andFilterWhere([
-                    'mark' => '0',
-                ])
-                ->limit(50)
-                ->orderBy(ItalianProduct::tableName() . '.id DESC')
-                ->all();
+        foreach ($models as $model) {
+            /** @var PDO $transaction */
+            /** @var $model ItalianProduct */
 
-            foreach ($models as $model) {
-                /** @var PDO $transaction */
-                /** @var $model ItalianProduct */
-                if (!empty($model->lang)) {
-                    $this->logicTranslate($model, $currentLanguage);
-                }
+            Yii::$app->language = 'ru-RU';
+            $currentLanguage = Yii::$app->language;
+
+            if (!empty($model->lang)) {
+                $this->logicTranslate($model, $currentLanguage);
+            } else {
+                Yii::$app->language = 'it-IT';
+                $currentLanguage = Yii::$app->language;
+
+                $modelIt = ItalianProduct::findByID($model->id);
+
+                $this->logicTranslate($modelIt, $currentLanguage);
             }
         }
 
@@ -75,7 +80,10 @@ class CatalogItalianProductController extends Controller
      */
     protected function logicTranslate($model, $currentLanguage)
     {
-        $languages = Language::findBase()->enabled()->all();
+        $languages = Language::findBase()
+            ->orderBy('by_default DESC')
+            ->enabled()
+            ->all();
 
         /** @var PDO $transaction */
         /** @var $model ItalianProduct */

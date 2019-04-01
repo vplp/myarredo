@@ -197,6 +197,7 @@ class Sale extends ActiveRecord
                 'position',
                 'on_main',
                 'category_ids',
+                'mark'
             ],
             'frontend' => [
                 'country_id',
@@ -220,6 +221,7 @@ class Sale extends ActiveRecord
                 'position',
                 'on_main',
                 'category_ids',
+                'mark'
             ]
         ];
     }
@@ -267,6 +269,10 @@ class Sale extends ActiveRecord
     {
         if ($this->alias == '') {
             $this->alias = time();
+        }
+
+        if (in_array($this->scenario, ['frontend', 'backend'])) {
+            $this->mark = '0';
         }
 
         return parent::beforeSave($insert);
