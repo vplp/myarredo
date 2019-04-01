@@ -82,59 +82,59 @@ class ItalianProductLang extends ActiveRecordLang
         ];
     }
 
-    /**
-     * @param bool $insert
-     * @param array $changedAttributes
-     */
-    public function afterSave($insert, $changedAttributes)
-    {
-        $models = Language::findBase()->enabled()->all();
-
-        $current = Yii::$app->language;
-
-        foreach ($models as $model) {
-            if ($model->local != $current) {
-                /** @var Language $model */
-                Yii::$app->language = $model->local;
-
-                $modelLang = ItalianProductLang::find()
-                    ->where([
-                        'rid' => $model->id
-                    ])
-                    ->one();
-
-                if ($modelLang == null) {
-                    $modelLang = new ItalianProductLang();
-
-                    $modelLang->rid = $model->id;
-                    $modelLang->lang = Yii::$app->language;
-                }
-
-                $language = substr($current, 0, 2) . '-' . substr(Yii::$app->language, 0, 2);
-
-                if ($this->title != '') {
-                    $modelLang->title = Yii::$app->yandexTranslator
-                        ->getTranslate($this->title, $language);
-                }
-
-                if ($this->description != '') {
-                    $modelLang->description = Yii::$app->yandexTranslator
-                        ->getTranslate($this->description, $language);
-                }
-
-                if ($this->defects != '') {
-                    $modelLang->defects = Yii::$app->yandexTranslator
-                        ->getTranslate($this->defects, $language);
-                }
-
-                $modelLang->setScenario('backend');
-
-                $modelLang->save();
-            }
-        }
-
-        Yii::$app->language = $current;
-
-        parent::afterSave($insert, $changedAttributes);
-    }
+//    /**
+//     * @param bool $insert
+//     * @param array $changedAttributes
+//     */
+//    public function afterSave($insert, $changedAttributes)
+//    {
+//        $models = Language::findBase()->enabled()->all();
+//
+//        $current = Yii::$app->language;
+//
+//        foreach ($models as $model) {
+//            if ($model->local != $current) {
+//                /** @var Language $model */
+//                Yii::$app->language = $model->local;
+//
+//                $modelLang = ItalianProductLang::find()
+//                    ->where([
+//                        'rid' => $model->id
+//                    ])
+//                    ->one();
+//
+//                if ($modelLang == null) {
+//                    $modelLang = new ItalianProductLang();
+//
+//                    $modelLang->rid = $model->id;
+//                    $modelLang->lang = Yii::$app->language;
+//                }
+//
+//                $language = substr($current, 0, 2) . '-' . substr(Yii::$app->language, 0, 2);
+//
+//                if ($this->title != '') {
+//                    $modelLang->title = Yii::$app->yandexTranslator
+//                        ->getTranslate($this->title, $language);
+//                }
+//
+//                if ($this->description != '') {
+//                    $modelLang->description = Yii::$app->yandexTranslator
+//                        ->getTranslate($this->description, $language);
+//                }
+//
+//                if ($this->defects != '') {
+//                    $modelLang->defects = Yii::$app->yandexTranslator
+//                        ->getTranslate($this->defects, $language);
+//                }
+//
+//                $modelLang->setScenario('backend');
+//
+//                $modelLang->save();
+//            }
+//        }
+//
+//        Yii::$app->language = $current;
+//
+//        parent::afterSave($insert, $changedAttributes);
+//    }
 }
