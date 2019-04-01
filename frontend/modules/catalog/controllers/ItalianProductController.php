@@ -3,7 +3,9 @@
 namespace frontend\modules\catalog\controllers;
 
 use Yii;
-use yii\helpers\ArrayHelper;
+use yii\helpers\{
+    ArrayHelper, Url
+};
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
 //
@@ -111,6 +113,16 @@ class ItalianProductController extends BaseController
      */
     public function actions()
     {
+        if (Yii::$app->request->get('step') == 'photo') {
+            $link = function () {
+                return Url::to(['update', 'id' => $this->action->getModel()->id, 'step' => 'check']);
+            };
+        } else {
+            $link = function () {
+                return Url::to(['update', 'id' => $this->action->getModel()->id, 'step' => 'photo']);
+            };
+        }
+
         return ArrayHelper::merge(
             parent::actions(),
             [
@@ -124,8 +136,9 @@ class ItalianProductController extends BaseController
                     'modelClass' => $this->model,
                     'modelClassLang' => $this->modelLang,
                     'scenario' => 'frontend',
+                    'layout' => 'italian_product_form',
                     'redirect' => function () {
-                        return ['update', 'id' => $this->action->getModel()->id];
+                        return ['update', 'id' => $this->action->getModel()->id, 'step' => 'image'];
                     }
                 ],
                 'update' => [
@@ -133,9 +146,8 @@ class ItalianProductController extends BaseController
                     'modelClass' => $this->model,
                     'modelClassLang' => $this->modelLang,
                     'scenario' => 'frontend',
-                    'redirect' => function () {
-                        return ['list'];
-                    }
+                    'layout' => 'italian_product_form',
+                    'redirect' => $link
                 ],
                 'intrash' => [
                     'class' => AttributeSwitch::class,

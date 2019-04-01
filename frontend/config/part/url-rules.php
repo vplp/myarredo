@@ -83,6 +83,7 @@ return [
     'italian-product' => 'catalog/italian-product/list',
     'italian-product/create' => 'catalog/italian-product/create',
     'italian-product/payment' => 'catalog/italian-product/payment',
+    'italian-product/update/<id:[\d\-]+>/<step:(photo|check|payment)>' => 'catalog/italian-product/update',
     'italian-product/update/<id:[\d\-]+>' => 'catalog/italian-product/update',
     'italian-product/intrash/<id:[\d\-]+>' => 'catalog/italian-product/intrash',
 

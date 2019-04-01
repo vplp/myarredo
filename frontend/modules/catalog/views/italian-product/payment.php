@@ -83,7 +83,7 @@ $this->title = $this->context->title;
                         'div',
                         Html::submitButton(
                             Yii::t('app', 'Перейти к оплате'),
-                            ['class' => 'btn btn-goods', 'name' => 'payment', 'value' => 1]
+                            ['class' => 'btn btn-goods']
                         ) . '&nbsp;' . Html::a(
                             Yii::t('app', 'Вернуться к списку'),
                             ['/catalog/italian-product/list'],
