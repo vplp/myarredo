@@ -42,63 +42,77 @@ $modelPayment->amount = number_format(
 $modelPayment->currency = 'RUB';
 
 ?>
+<div class="page create-sale page-reclamations">
+    <div class="largex-container">
 
-<?php $form = ActiveForm::begin([
-    'action' => Url::toRoute(['/payment/payment/invoice']),
-]); ?>
+        <div class="column-center">
+            <div class="form-horizontal">
 
-    <div id="list-product">
-        <div class="list-product-item">
-            <?php
-            /** @var ItalianProduct $product */
-            echo $model->getTitle() .
-                Html::input(
-                    'hidden',
-                    'Payment[items_ids][]',
-                    $model->id
-                ) .
-                Html::img(
-                    ItalianProduct::getImageThumb($model['image_link']),
-                    ['width' => 50]
-                ) ?>
+                <div>
+                    <?= Yii::$app->param->getByName('ITALIAN_PRODUCT_PAYMENT_TEXT') ?>
+                </div>
+
+                <?php $form = ActiveForm::begin([
+                    'action' => Url::toRoute(['/payment/payment/invoice']),
+                ]); ?>
+
+                <div id="list-product">
+                    <div class="list-product-item">
+                        <?php
+                        /** @var ItalianProduct $product */
+                        echo $model->getTitle() .
+                            Html::input(
+                                'hidden',
+                                'Payment[items_ids][]',
+                                $model->id
+                            ) .
+                            Html::img(
+                                ItalianProduct::getImageThumb($model['image_link']),
+                                ['width' => 50]
+                            ) ?>
+                    </div>
+
+                </div>
+
+                <div><?= Yii::t('app', 'Всего к оплате') ?>
+                    : <?= $modelPayment->amount . ' ' . $modelPayment->currency ?></div>
+
+                <?php
+                echo $form
+                        ->field($modelPayment, 'amount')
+                        ->label(false)
+                        ->input('hidden') .
+                    $form
+                        ->field($modelPayment, 'user_id')
+                        ->label(false)
+                        ->input('hidden') .
+                    $form
+                        ->field($modelPayment, 'type')
+                        ->label(false)
+                        ->input('hidden') .
+                    $form
+                        ->field($modelPayment, 'currency')
+                        ->label(false)
+                        ->input('hidden');
+                ?>
+
+                <div class="buttons-cont">
+                    <?= Html::submitButton(
+                        Yii::t('app', 'Оплатить'),
+                        ['class' => 'btn btn-success']
+                    ) ?>
+
+                    <?= Html::a(
+                        Yii::t('app', 'Cancel'),
+                        ['/catalog/italian-product/list'],
+                        ['class' => 'btn btn-primary']
+                    ) ?>
+                </div>
+
+
+                <?php ActiveForm::end(); ?>
+
+            </div>
         </div>
-
     </div>
-
-    <div><?= Yii::t('app', 'Всего к оплате') ?>
-        : <?= $modelPayment->amount . ' ' . $modelPayment->currency ?></div>
-
-<?php
-echo $form
-        ->field($modelPayment, 'amount')
-        ->label(false)
-        ->input('hidden') .
-    $form
-        ->field($modelPayment, 'user_id')
-        ->label(false)
-        ->input('hidden') .
-    $form
-        ->field($modelPayment, 'type')
-        ->label(false)
-        ->input('hidden') .
-    $form
-        ->field($modelPayment, 'currency')
-        ->label(false)
-        ->input('hidden');
-?>
-
-    <div class="buttons-cont">
-        <?= Html::submitButton(
-            Yii::t('app', 'Оплатить'),
-            ['class' => 'btn btn-success']
-        ) ?>
-
-        <?= Html::a(
-            Yii::t('app', 'Cancel'),
-            ['/catalog/italian-product/list'],
-            ['class' => 'btn btn-primary']
-        ) ?>
-    </div>
-
-
-<?php ActiveForm::end(); ?>
+</div>
