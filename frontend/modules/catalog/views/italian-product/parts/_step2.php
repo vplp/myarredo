@@ -1,8 +1,6 @@
 <?php
 
-use yii\helpers\{
-    Html, Url
-};
+use yii\helpers\Html;
 //
 use frontend\modules\catalog\models\{
     ItalianProduct, ItalianProductLang
@@ -17,39 +15,98 @@ use backend\app\bootstrap\ActiveForm;
 
 ?>
 
-<?php $form = ActiveForm::begin([
-    //'action' => Url::toRoute(['/catalog/italian-product/update', 'id' => $model->id,]),
-    'fieldConfig' => [
-        'template' => "{label}<div class=\"col-sm-9\">{input}</div>\n{hint}\n{error}",
-        'labelOptions' => ['class' => 'col-sm-3 col-form-label'],
-    ],
-]); ?>
+<div class="form-horizontal add-itprod-content">
 
-<?= $form
-    ->field($model, 'image_link')
-    ->imageOne($model->getImageLink()) ?>
+    <!-- steps box -->
+    <div class="progress-steps-box">
+        <div class="progress-steps-step<?= !Yii::$app->request->get('step') ? ' active' : '' ?>">
+            <span class="step-numb">1</span>
+            <span class="step-text">
+                                    <?= Yii::t('app', 'Информация про товар') ?>
+                                </span>
+        </div>
+        <div class="progress-steps-step<?= Yii::$app->request->get('step') == 'photo' ? ' active' : '' ?>">
+            <span class="step-numb">2</span>
+            <span class="step-text">
+                                    <?= Yii::t('app', 'Фото товара') ?>
+                                </span>
+        </div>
+        <div class="progress-steps-step<?= Yii::$app->request->get('step') == 'check' ? ' active' : '' ?>">
+            <span class="step-numb">3</span>
+            <span class="step-text">
+                                    <?= Yii::t('app', 'Проверка товара') ?>
+                                </span>
+        </div>
+        <div class="progress-steps-step<?= Yii::$app->request->get('step') == 'payment' ? ' active' : '' ?>">
+            <span class="step-numb">4</span>
+            <span class="step-text">
+                                    <?= Yii::t('app', 'Оплата') ?>
+                                </span>
+        </div>
+    </div>
+    <!-- steps box end -->
 
-<?= $form
-    ->field($model, 'gallery_image')
-    ->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
+    <?php $form = ActiveForm::begin([
+        'fieldConfig' => [
+            'template' => "{label}<div class=\"col-sm-9\">{input}</div>\n{hint}\n{error}",
+            'labelOptions' => ['class' => 'col-sm-3 col-form-label'],
+        ],
+    ]) ?>
 
-<?= $form->field($model, 'file_link')->fileInputWidget(
-    $model->getFileLink(),
-    ['accept' => '.jpeg,.png,.doc,.docx,.xlsx,application/pdf', 'maxFileSize' => 0],
-    ['jpeg', 'png', 'pdf', 'doc', 'docx', 'xlsx']
-) ?>
+    <?= $form
+        ->field($model, 'image_link')
+        ->imageOne($model->getImageLink()) ?>
 
-<div class="buttons-cont">
-    <?= Html::submitButton(
-        Yii::t('app', 'Save'),
-        ['class' => 'btn btn-success']
+    <?= $form
+        ->field($model, 'gallery_image')
+        ->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
+
+    <?= $form->field($model, 'file_link')->fileInputWidget(
+        $model->getFileLink(),
+        ['accept' => '.jpeg,.png,.doc,.docx,.xlsx,application/pdf', 'maxFileSize' => 0],
+        ['jpeg', 'png', 'pdf', 'doc', 'docx', 'xlsx']
     ) ?>
 
-    <?= Html::a(
-        Yii::t('app', 'Cancel'),
-        ['/catalog/italian-product/list'],
-        ['class' => 'btn btn-primary']
-    ) ?>
+    <div class="buttons-cont">
+        <?= Html::submitButton(
+            Yii::t('app', 'Save'),
+            ['class' => 'btn btn-success']
+        ) ?>
+
+        <?= Html::a(
+            Yii::t('app', 'Cancel'),
+            ['/catalog/italian-product/list'],
+            ['class' => 'btn btn-primary']
+        ) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
 </div>
 
-<?php ActiveForm::end(); ?>
+<!-- rules box -->
+<div class="add-itprod-rules">
+    <div class="add-itprod-rules-item">
+
+        <?= Yii::$app->param->getByName('ITALIAN_PRODUCT_STEP2_TEXT') ?>
+
+        <!--<h4 class="additprod-title">Помни это...</h4>
+     <div class="additprod-textbox">
+         <p>
+             Обьявление будет опубликовано если оно соответствует правилам Myarredo
+         </p>
+         <p>
+             Не вводите одно и то же обьявление несколько раз
+         </p>
+     </div>
+     <div class="panel-additprod-rules">
+         <a href="#" class="btn-myarredo">
+             <i class="fa fa-question-circle" aria-hidden="true"></i>
+             Правила
+         </a>
+     </div>-->
+    </div>
+</div>
+<!-- rules box end -->
+
+

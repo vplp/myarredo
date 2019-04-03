@@ -136,7 +136,6 @@ class ItalianProductController extends BaseController
                     'modelClass' => $this->model,
                     'modelClassLang' => $this->modelLang,
                     'scenario' => 'frontend',
-                    'layout' => 'italian_product_form',
                     'redirect' => function () {
                         return ['update', 'id' => $this->action->getModel()->id, 'step' => 'image'];
                     }
@@ -146,7 +145,6 @@ class ItalianProductController extends BaseController
                     'modelClass' => $this->model,
                     'modelClassLang' => $this->modelLang,
                     'scenario' => 'frontend',
-                    'layout' => 'italian_product_form',
                     'redirect' => $link
                 ],
                 'intrash' => [

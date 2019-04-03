@@ -32,6 +32,7 @@ $this->title = $this->context->title;
                         ]) ?>
 
                     </div>
+
                     <div class="row sale-prod">
                         <div class="col-sm-6 col-md-6 col-lg-5">
 
