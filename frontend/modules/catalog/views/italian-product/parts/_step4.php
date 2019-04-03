@@ -8,14 +8,15 @@ use yii\widgets\ActiveForm;
 //
 use frontend\modules\payment\models\Payment;
 use frontend\modules\location\models\Currency;
-use frontend\modules\catalog\models\ItalianProduct;
+use frontend\modules\catalog\models\{
+    ItalianProduct, ItalianProductLang
+};
 
 /**
- * @var \frontend\modules\catalog\models\ItalianProduct $model
- * @var \frontend\modules\catalog\models\ItalianProductLang $modelLang
- * @var \frontend\modules\payment\models\Payment $modelPayment
+ * @var ItalianProduct $model
+ * @var ItalianProductLang $modelLang
+ * @var Payment $modelPayment
  */
-
 
 $modelPayment = new Payment();
 $modelPayment->setScenario('frontend');

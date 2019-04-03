@@ -4,6 +4,7 @@ use yii\helpers\{
     Html, Url
 };
 
+/** @var \yii\web\View $content */
 
 $this->title = $this->context->title;
 
@@ -23,19 +24,27 @@ $this->beginContent('@app/layouts/main.php');
                         <div class="progress-steps-box">
                             <div class="progress-steps-step<?= !Yii::$app->request->get('step') ? ' active' : '' ?>">
                                 <span class="step-numb">1</span>
-                                <span class="step-text">информация про товар</span>
+                                <span class="step-text">
+                                    <?= Yii::t('app', 'Информация про товар') ?>
+                                </span>
                             </div>
                             <div class="progress-steps-step<?= Yii::$app->request->get('step') ==  'photo' ? ' active' : '' ?>">
                                 <span class="step-numb">2</span>
-                                <span class="step-text">фото товара</span>
+                                <span class="step-text">
+                                    <?= Yii::t('app', 'Фото товара') ?>
+                                </span>
                             </div>
                             <div class="progress-steps-step<?= Yii::$app->request->get('step') ==  'check' ? ' active' : '' ?>">
                                 <span class="step-numb">3</span>
-                                <span class="step-text">проверка товара</span>
+                                <span class="step-text">
+                                    <?= Yii::t('app', 'Проверка товара') ?>
+                                </span>
                             </div>
                             <div class="progress-steps-step<?= Yii::$app->request->get('step') ==  'payment' ? ' active' : '' ?>">
                                 <span class="step-numb">4</span>
-                                <span class="step-text">оплата</span>
+                                <span class="step-text">
+                                    <?= Yii::t('app', 'Оплата') ?>
+                                </span>
                             </div>
                         </div>
                         <!-- steps box end -->
@@ -46,6 +55,7 @@ $this->beginContent('@app/layouts/main.php');
                     <!-- rules box -->
                     <div class="add-itprod-rules">
                         <div class="add-itprod-rules-item">
+
                             <h4 class="additprod-title">Помни это...</h4>
                             <div class="additprod-textbox">
                                 <p>
@@ -56,8 +66,10 @@ $this->beginContent('@app/layouts/main.php');
                                 </p>
                             </div>
                             <div class="panel-additprod-rules">
-                                <a href="#" class="btn-myarredo"> <i class="fa fa-question-circle"
-                                                                     aria-hidden="true"></i> Правила</a>
+                                <a href="#" class="btn-myarredo">
+                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                    Правила
+                                </a>
                             </div>
                         </div>
                     </div>

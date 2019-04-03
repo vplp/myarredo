@@ -6,7 +6,7 @@ use yii\helpers\{
 //
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
-    Factory, Sale, Product
+    Factory, ItalianProduct, Product
 };
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\shop\widgets\request\RequestPrice;
@@ -14,7 +14,7 @@ use frontend\modules\catalog\widgets\sale\SaleRequestForm;
 
 $bundle = AppAsset::register($this);
 /**
- * @var \frontend\modules\catalog\models\Sale $model
+ * @var ItalianProduct $model
  */
 
 $this->title = $this->context->title;
@@ -153,20 +153,23 @@ $this->title = $this->context->title;
                             </div>
                         </div>
 
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 sellout-cont">
-                            <div class="best-price-form">
-                                <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
+                        <?php if (Yii::$app->controller->id == 'sale-italy') { ?>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 sellout-cont">
+                                <div class="best-price-form">
+                                    <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
 
-                                <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
+                                    <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
+
+                                </div>
                             </div>
-                        </div>
+                        <?php } ?>
 
                         <div class="col-md-12 sellout-box">
                             <div class="section-header">
                                 <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
                                 <?= Html::a(
                                     Yii::t('app', 'Вернуться к списку'),
-                                    Url::toRoute(['/catalog/sale/list']),
+                                    Url::toRoute(['/catalog/sale-italy/list']),
                                     ['class' => 'back']
                                 ); ?>
                             </div>
@@ -184,8 +187,11 @@ $this->title = $this->context->title;
         </div>
     </main>
 
-<?= SaleRequestForm::widget(['sale_item_id' => $model['id']]) ?>
-
+<?php
+if (Yii::$app->controller->id == 'sale-italy') {
+    echo SaleRequestForm::widget(['sale_item_id' => $model['id']]);
+}
+?>
 
 <?php
 $user_id = $model['user']['id'];

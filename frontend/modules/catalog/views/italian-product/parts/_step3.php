@@ -3,15 +3,23 @@
 use yii\helpers\{
     Html, Url
 };
+//
+use frontend\modules\catalog\models\{
+    ItalianProduct, ItalianProductLang
+};
 
 /**
- * @var \frontend\modules\catalog\models\ItalianProduct $model
- * @var \frontend\modules\catalog\models\ItalianProductLang $modelLang
+ * @var ItalianProduct $model
+ * @var ItalianProductLang $modelLang
  */
+
+echo $this->render('../../sale-italy/view', [
+    'model' => $model,
+    'modelLang' => $modelLang
+]);
 
 ?>
 
-step3
 
 <div class="buttons-cont">
     <?= Html::a(

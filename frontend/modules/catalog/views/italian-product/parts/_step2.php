@@ -4,11 +4,15 @@ use yii\helpers\{
     Html, Url
 };
 //
+use frontend\modules\catalog\models\{
+    ItalianProduct, ItalianProductLang
+};
+//
 use backend\app\bootstrap\ActiveForm;
 
 /**
- * @var \frontend\modules\catalog\models\ItalianProduct $model
- * @var \frontend\modules\catalog\models\ItalianProductLang $modelLang
+ * @var ItalianProduct $model
+ * @var ItalianProductLang $modelLang
  */
 
 ?>

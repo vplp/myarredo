@@ -7,15 +7,15 @@ use kartik\widgets\Select2;
 //
 use frontend\modules\location\models\Region;
 use frontend\modules\catalog\models\{
-    Category, Factory, Types, Specification, Colors
+    Category, Factory, Types, Specification, Colors, ItalianProduct, ItalianProductLang
 };
 //
 use backend\app\bootstrap\ActiveForm;
 
 /**
- * @var \frontend\modules\catalog\models\ItalianProduct $model
- * @var \frontend\modules\catalog\models\ItalianProductLang $modelLang
- * @var \frontend\modules\catalog\models\Specification $Specification
+ * @var ItalianProduct $model
+ * @var ItalianProductLang $modelLang
+ * @var Specification $Specification
  */
 
 $specification_value = $model->getSpecificationValueBySpecification();
@@ -23,297 +23,297 @@ $Specifications = Specification::findBase()->all();
 
 ?>
 
-        <?php $form = ActiveForm::begin([
-            'action' => ($model->isNewRecord)
-                ? Url::toRoute(['/catalog/italian-product/create'])
-                : Url::toRoute(['/catalog/italian-product/update', 'id' => $model->id]),
-            'fieldConfig' => [
-                'template' => "{label}<div class=\"col-sm-9\">{input}</div>\n{hint}\n{error}",
-                'labelOptions' => ['class' => 'col-sm-3 col-form-label'],
-            ],
-        ]); ?>
+<?php $form = ActiveForm::begin([
+    'action' => ($model->isNewRecord)
+        ? Url::toRoute(['/catalog/italian-product/create'])
+        : Url::toRoute(['/catalog/italian-product/update', 'id' => $model->id]),
+    'fieldConfig' => [
+        'template' => "{label}<div class=\"col-sm-9\">{input}</div>\n{hint}\n{error}",
+        'labelOptions' => ['class' => 'col-sm-3 col-form-label'],
+    ],
+]); ?>
 
-        <?= $form->field($modelLang, 'title') ?>
+<?= $form->field($modelLang, 'title') ?>
 
-        <?= $form
-            ->field($model, 'catalog_type_id')
-            ->widget(Select2::class, [
-                'data' => Types::dropDownList(),
-                'options' => ['placeholder' => Yii::t('app', 'Select option')],
-            ]) ?>
+<?= $form
+    ->field($model, 'catalog_type_id')
+    ->widget(Select2::class, [
+        'data' => Types::dropDownList(),
+        'options' => ['placeholder' => Yii::t('app', 'Select option')],
+    ]) ?>
 
-        <?= $form
-            ->field($model, 'category_ids')
-            ->widget(Select2::class, [
-                'data' => Category::dropDownList([
-                    'type_id' => $model->isNewRecord ? 0 : $model['catalog_type_id']
-                ]),
-                'options' => [
-                    'placeholder' => Yii::t('app', 'Select option'),
-                    'multiple' => true
-                ],
-            ]) ?>
+<?= $form
+    ->field($model, 'category_ids')
+    ->widget(Select2::class, [
+        'data' => Category::dropDownList([
+            'type_id' => $model->isNewRecord ? 0 : $model['catalog_type_id']
+        ]),
+        'options' => [
+            'placeholder' => Yii::t('app', 'Select option'),
+            'multiple' => true
+        ],
+    ]) ?>
 
-        <?= $form->field($modelLang, 'description')->textarea() ?>
+<?= $form->field($modelLang, 'description')->textarea() ?>
 
-        <?php
-        foreach ($Specifications as $Specification) {
-            if (in_array($Specification['id'], [60])) {
-                $value = [];
-                foreach ($specification_value as $k => $v) {
-                    if ($v == $Specification['id']) {
-                        $value[] = $k;
-                    }
-                }
-                ?>
-                <div class="form-group row field-specification-for-kitchen">
-                    <?= Html::label(
-                        $Specification['lang']['title'],
-                        null,
-                        ['class' => 'col-sm-3 col-form-label']
-                    ) ?>
-                    <div class="col-sm-9">
-                        <?= Select2::widget([
-                            'name' => 'SpecificationValue[' . $Specification['id'] . ']',
-                            'value' => $value,
-                            'data' => $Specification->getChildrenDropDownList(),
-                            'options' => [
-                                'placeholder' => Yii::t('app', 'Select option'),
-                                'multiple' => true,
-                                'id' => 'select-specification-for-kitchen'
-                            ]
-                        ]) ?>
-                    </div>
-                </div>
-            <?php }
-        } ?>
-
-        <?= $form->field($modelLang, 'defects')->textarea() ?>
-
-        <?php
-        /**
-         * Choose Factory
-         */
-        if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['factory'])) {
-            $model->factory_id = Yii::$app->user->identity->profile->factory_id;
-
-            echo $form->field($model, 'factory_id')
-                ->label(false)
-                ->input('hidden');
-        } else {
-            echo $form
-                ->field($model, 'factory_id')
-                ->widget(Select2::class, [
-                    'data' => Factory::dropDownList(),
-                    'options' => ['placeholder' => Yii::t('app', 'Select option')],
-                ]);
-            echo $form->field($model, 'factory_name');
-        } ?>
-
-        <?php
-        foreach ($Specifications as $Specification) {
-            if ($Specification['type'] === '1' && !in_array($Specification['id'], [39, 47])) { ?>
-                <div class="form-group row">
-                    <?= Html::label(
-                        $Specification['lang']['title'] . ' (' . Yii::t('app', 'см') . ')',
-                        null,
-                        ['class' => 'col-sm-3 col-form-label']
-                    ) ?>
-                    <div class="col-sm-2">
-                        <?= Html::input(
-                            'number',
-                            'SpecificationValue[' . $Specification['id'] . ']',
-                            !empty($specification_value[$Specification['id']])
-                                ? $specification_value[$Specification['id']]
-                                : null,
-                            ['class' => 'form-control']
-                        ) ?>
-                    </div>
-                </div>
-                <?php
-            } elseif ($Specification['id'] == 2) {
-                $value = null;
-                foreach ($specification_value as $k => $v) {
-                    if ($v == $Specification['id']) {
-                        $value = $k;
-                    }
-                }
-                ?>
-                <div class="form-group row">
-                    <?= Html::label(
-                        $Specification['lang']['title'],
-                        null,
-                        ['class' => 'col-sm-3 col-form-label']
-                    ) ?>
-                    <div class="col-sm-4">
-                        <?= Select2::widget([
-                            'name' => 'SpecificationValue[' . $Specification['id'] . ']',
-                            'value' => $value,
-                            'data' => $Specification->getChildrenDropDownList() +
-                                ['0' => Yii::t('app', 'Другое')],
-                            'options' => [
-                                'placeholder' => Yii::t('app', 'Select option')
-                            ]
-                        ]) ?>
-
-                    </div>
-                    <div class="col-sm-5">
-                        <?= $form
-                            ->field(
-                                $modelLang,
-                                'material',
-                                ['template' => "{label}<div class=\"col-sm-12\">{input}</div>\n{hint}\n{error}"]
-                            )
-                            ->input(
-                                'text',
-                                ['placeholder' => Yii::t('app', 'Добавьте материал')]
-                            )
-                            ->label(false) ?>
-                    </div>
-                </div>
-
-
-                <?php
-            } elseif ($Specification['id'] == 9) {
-                $value = null;
-                foreach ($specification_value as $k => $v) {
-                    if ($v == $Specification['id']) {
-                        $value = $k;
-                    }
-                } ?>
-
-                <div class="form-group row">
-                    <?= Html::label(
-                        $Specification['lang']['title'],
-                        null,
-                        ['class' => 'col-sm-3 col-form-label']
-                    ) ?>
-                    <div class="col-sm-9">
-                        <?= Select2::widget([
-                            'name' => 'SpecificationValue[' . $Specification['id'] . ']',
-                            'value' => $value,
-                            'data' => $Specification->getChildrenDropDownList(),
-                            'options' => [
-                                'placeholder' => Yii::t('app', 'Select option')
-                            ]
-                        ]) ?>
-                    </div>
-                </div>
-            <?php } ?>
-
-        <?php } ?>
-
-        <?= $form
-            ->field($model, 'colors_ids')
-            ->widget(Select2::class, [
-                'data' => Colors::dropDownList(),
-                'options' => [
-                    'placeholder' => Yii::t('app', 'Select option'),
-                    'multiple' => true
-                ],
-            ]) ?>
-
-        <?= $form->field(
-            $model,
-            'volume',
-            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
-        ) ?>
-
-        <?= $form->field(
-            $model,
-            'weight',
-            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
-        ) ?>
-
-
-        <?= $form->field(
-            $model,
-            'production_year',
-            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
-        ) ?>
-
-        <?= $form
-            ->field($model, 'region_id')
-            ->widget(Select2::class, [
-                'data' => Region::dropDownList(4),
-                'options' => [
-                    'placeholder' => Yii::t('app', 'Select option'),
-                ],
-            ]) ?>
-
-        <?php
-        $model->phone = $model->isNewRecord ? Yii::$app->user->identity->profile->phone : '';
-        echo $form->field(
-            $model,
-            'phone',
-            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
-        ) ?>
-
-        <?php
-        $model->email = $model->isNewRecord ? Yii::$app->user->identity->email : '';
-        echo $form->field(
-            $model,
-            'email',
-            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
-        ) ?>
-
-        <?= $form
-            ->field(
-                $model,
-                'price',
-                ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+<?php
+foreach ($Specifications as $Specification) {
+    if (in_array($Specification['id'], [60])) {
+        $value = [];
+        foreach ($specification_value as $k => $v) {
+            if ($v == $Specification['id']) {
+                $value[] = $k;
+            }
+        }
+        ?>
+        <div class="form-group row field-specification-for-kitchen">
+            <?= Html::label(
+                $Specification['lang']['title'],
+                null,
+                ['class' => 'col-sm-3 col-form-label']
             ) ?>
-
-        <?= $form
-            ->field(
-                $model,
-                'price_without_technology',
-                ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
-            ) ?>
-
-        <div class="form-group row price-row">
-            <?= $form
-                ->field(
-                    $model,
-                    'price_new',
-                    [
-                        'template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}",
-                        'options' => [
-                            'class' => '',
-                        ]
+            <div class="col-sm-9">
+                <?= Select2::widget([
+                    'name' => 'SpecificationValue[' . $Specification['id'] . ']',
+                    'value' => $value,
+                    'data' => $Specification->getChildrenDropDownList(),
+                    'options' => [
+                        'placeholder' => Yii::t('app', 'Select option'),
+                        'multiple' => true,
+                        'id' => 'select-specification-for-kitchen'
                     ]
+                ]) ?>
+            </div>
+        </div>
+    <?php }
+} ?>
+
+<?= $form->field($modelLang, 'defects')->textarea() ?>
+
+<?php
+/**
+ * Choose Factory
+ */
+if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['factory'])) {
+    $model->factory_id = Yii::$app->user->identity->profile->factory_id;
+
+    echo $form->field($model, 'factory_id')
+        ->label(false)
+        ->input('hidden');
+} else {
+    echo $form
+        ->field($model, 'factory_id')
+        ->widget(Select2::class, [
+            'data' => Factory::dropDownList(),
+            'options' => ['placeholder' => Yii::t('app', 'Select option')],
+        ]);
+    echo $form->field($model, 'factory_name');
+} ?>
+
+<?php
+foreach ($Specifications as $Specification) {
+    if ($Specification['type'] === '1' && !in_array($Specification['id'], [39, 47])) { ?>
+        <div class="form-group row">
+            <?= Html::label(
+                $Specification['lang']['title'] . ' (' . Yii::t('app', 'см') . ')',
+                null,
+                ['class' => 'col-sm-3 col-form-label']
+            ) ?>
+            <div class="col-sm-2">
+                <?= Html::input(
+                    'number',
+                    'SpecificationValue[' . $Specification['id'] . ']',
+                    !empty($specification_value[$Specification['id']])
+                        ? $specification_value[$Specification['id']]
+                        : null,
+                    ['class' => 'form-control']
                 ) ?>
-
-            <?= $form
-                ->field(
-                    $model,
-                    'currency',
-                    [
-                        'template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}",
-                        'options' => [
-                            'class' => '',
-                        ]
+            </div>
+        </div>
+        <?php
+    } elseif ($Specification['id'] == 2) {
+        $value = null;
+        foreach ($specification_value as $k => $v) {
+            if ($v == $Specification['id']) {
+                $value = $k;
+            }
+        }
+        ?>
+        <div class="form-group row">
+            <?= Html::label(
+                $Specification['lang']['title'],
+                null,
+                ['class' => 'col-sm-3 col-form-label']
+            ) ?>
+            <div class="col-sm-4">
+                <?= Select2::widget([
+                    'name' => 'SpecificationValue[' . $Specification['id'] . ']',
+                    'value' => $value,
+                    'data' => $Specification->getChildrenDropDownList() +
+                        ['0' => Yii::t('app', 'Другое')],
+                    'options' => [
+                        'placeholder' => Yii::t('app', 'Select option')
                     ]
-                )
-                ->dropDownList($model::currencyRange())
-                ->label(false) ?>
+                ]) ?>
 
+            </div>
+            <div class="col-sm-5">
+                <?= $form
+                    ->field(
+                        $modelLang,
+                        'material',
+                        ['template' => "{label}<div class=\"col-sm-12\">{input}</div>\n{hint}\n{error}"]
+                    )
+                    ->input(
+                        'text',
+                        ['placeholder' => Yii::t('app', 'Добавьте материал')]
+                    )
+                    ->label(false) ?>
+            </div>
         </div>
 
-        <div class="buttons-cont">
-            <?= Html::submitButton(
-                Yii::t('app', 'Save'),
-                ['class' => 'btn btn-success']
-            ) ?>
 
-            <?= Html::a(
-                Yii::t('app', 'Cancel'),
-                ['/catalog/italian-product/list'],
-                ['class' => 'btn btn-primary']
+        <?php
+    } elseif ($Specification['id'] == 9) {
+        $value = null;
+        foreach ($specification_value as $k => $v) {
+            if ($v == $Specification['id']) {
+                $value = $k;
+            }
+        } ?>
+
+        <div class="form-group row">
+            <?= Html::label(
+                $Specification['lang']['title'],
+                null,
+                ['class' => 'col-sm-3 col-form-label']
             ) ?>
+            <div class="col-sm-9">
+                <?= Select2::widget([
+                    'name' => 'SpecificationValue[' . $Specification['id'] . ']',
+                    'value' => $value,
+                    'data' => $Specification->getChildrenDropDownList(),
+                    'options' => [
+                        'placeholder' => Yii::t('app', 'Select option')
+                    ]
+                ]) ?>
+            </div>
         </div>
+    <?php } ?>
 
-        <?php ActiveForm::end(); ?>
+<?php } ?>
+
+<?= $form
+    ->field($model, 'colors_ids')
+    ->widget(Select2::class, [
+        'data' => Colors::dropDownList(),
+        'options' => [
+            'placeholder' => Yii::t('app', 'Select option'),
+            'multiple' => true
+        ],
+    ]) ?>
+
+<?= $form->field(
+    $model,
+    'volume',
+    ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+) ?>
+
+<?= $form->field(
+    $model,
+    'weight',
+    ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+) ?>
+
+
+<?= $form->field(
+    $model,
+    'production_year',
+    ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+) ?>
+
+<?= $form
+    ->field($model, 'region_id')
+    ->widget(Select2::class, [
+        'data' => Region::dropDownList(4),
+        'options' => [
+            'placeholder' => Yii::t('app', 'Select option'),
+        ],
+    ]) ?>
+
+<?php
+$model->phone = $model->isNewRecord ? Yii::$app->user->identity->profile->phone : '';
+echo $form->field(
+    $model,
+    'phone',
+    ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+) ?>
+
+<?php
+$model->email = $model->isNewRecord ? Yii::$app->user->identity->email : '';
+echo $form->field(
+    $model,
+    'email',
+    ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+) ?>
+
+<?= $form
+    ->field(
+        $model,
+        'price',
+        ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+    ) ?>
+
+<?= $form
+    ->field(
+        $model,
+        'price_without_technology',
+        ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+    ) ?>
+
+    <div class="form-group row price-row">
+        <?= $form
+            ->field(
+                $model,
+                'price_new',
+                [
+                    'template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}",
+                    'options' => [
+                        'class' => '',
+                    ]
+                ]
+            ) ?>
+
+        <?= $form
+            ->field(
+                $model,
+                'currency',
+                [
+                    'template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}",
+                    'options' => [
+                        'class' => '',
+                    ]
+                ]
+            )
+            ->dropDownList($model::currencyRange())
+            ->label(false) ?>
+
+    </div>
+
+    <div class="buttons-cont">
+        <?= Html::submitButton(
+            Yii::t('app', 'Save'),
+            ['class' => 'btn btn-success']
+        ) ?>
+
+        <?= Html::a(
+            Yii::t('app', 'Cancel'),
+            ['/catalog/italian-product/list'],
+            ['class' => 'btn btn-primary']
+        ) ?>
+    </div>
+
+<?php ActiveForm::end(); ?>
 
 <?php
 

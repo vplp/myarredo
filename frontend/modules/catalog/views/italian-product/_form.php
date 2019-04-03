@@ -1,9 +1,12 @@
 <?php
 
+use frontend\modules\catalog\models\{
+    ItalianProduct, ItalianProductLang
+};
+
 /**
- * @var \frontend\modules\catalog\models\ItalianProduct $model
- * @var \frontend\modules\catalog\models\ItalianProductLang $modelLang
- * @var \frontend\modules\catalog\models\Specification $Specification
+ * @var ItalianProduct $model
+ * @var ItalianProductLang $modelLang
  */
 
 $this->title = (($model->isNewRecord)
@@ -17,10 +20,6 @@ if (Yii::$app->request->get('step') == 'photo') {
         'modelLang' => $modelLang
     ]);
 } elseif (Yii::$app->request->get('step') == 'check') {
-    echo $this->render('../sale-italy/view', [
-        'model' => $model,
-        'modelLang' => $modelLang
-    ]);
     echo $this->render('parts/_step3', [
         'model' => $model,
         'modelLang' => $modelLang
