@@ -132,6 +132,25 @@ $this->title = $this->context->title;
 
                                     <?php
                                     $array = [];
+                                    $nameSpecification = '';
+                                    foreach ($model['specificationValue'] as $item) {
+                                        if ($item['specification']['id'] == 60) {
+                                            $nameSpecification = $item['specification']['lang']['title'];
+                                            $array[] = $item['specificationByVal']['lang']['title'];
+                                        }
+                                    }
+                                    ?>
+                                    <tr>
+                                        <td><?= $nameSpecification ?></td>
+                                        <td>
+                                            <?= !empty($array)
+                                                ? implode('; ', $array)
+                                                : '' ?>
+                                        </td>
+                                    </tr>
+
+                                    <?php
+                                    $array = [];
                                     foreach ($model['specificationValue'] as $item) {
                                         if ($item['specification']['parent_id'] == 2) {
                                             $array[] = $item['specification']['lang']['title'];

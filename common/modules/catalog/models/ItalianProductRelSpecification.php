@@ -87,4 +87,12 @@ class ItalianProductRelSpecification extends ActiveRecord
     {
         return $this->hasOne(Specification::class, ['id' => 'specification_id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSpecificationByVal()
+    {
+        return $this->hasOne(Specification::class, ['id' => 'val']);
+    }
 }
