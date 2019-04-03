@@ -20,7 +20,7 @@ class Page extends \common\modules\page\Page
         if (in_array(Yii::$app->user->identity->group->role, ['admin', 'seo'])) {
             $menuItems = [
                 'label' => 'Pages',
-                'icon' => 'fa fa-sitemap',
+                'icon' => 'fa-sitemap',
                 'url' => ['/page/page/list'],
                 'position' => 1,
             ];

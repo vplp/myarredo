@@ -23,7 +23,7 @@ class RulesModule extends \common\modules\rules\RulesModule
         if (in_array(Yii::$app->user->identity->group->role, ['admin'])) {
             $menuItems = [
                 'label' => Yii::t('app', 'General rules'),
-                'icon' => 'fa fa-sitemap',
+                'icon' => 'fa-file-text',
                 'url' => ['/rules/rules/list'],
                 'position' => 4,
             ];
