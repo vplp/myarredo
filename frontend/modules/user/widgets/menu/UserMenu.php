@@ -61,6 +61,10 @@ class UserMenu extends Widget
                     'label' => Yii::t('app', 'Orders italy'),
                     'url' => ['/shop/partner-order/list-italy']
                 ],
+                [
+                    'label' => Yii::t('app', 'General rules'),
+                    'url' => ['/rules/rules/list']
+                ],
             ];
         } elseif (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['partner'])) {
             $this->menuItems = [
@@ -87,7 +91,11 @@ class UserMenu extends Widget
                 [
                     'label' => Yii::t('app', 'Инструкция партнерам'),
                     'url' => ['/page/page/view', 'alias' => 'instructions']
-                ]
+                ],
+                [
+                    'label' => Yii::t('app', 'General rules'),
+                    'url' => ['/rules/rules/list']
+                ],
             ];
         } elseif (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') {
             $this->menuItems = [
@@ -141,7 +149,11 @@ class UserMenu extends Widget
                 [
                     'label' => Yii::t('app', 'Factory statistics'),
                     'url' => ['/catalog/factory-stats/list']
-                ]
+                ],
+                [
+                    'label' => Yii::t('app', 'General rules'),
+                    'url' => ['/rules/rules/list']
+                ],
             ];
         } else {
             $this->menuItems = [

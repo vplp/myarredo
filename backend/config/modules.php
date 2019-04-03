@@ -43,4 +43,7 @@ return [
     'payment' => [
         'class' => \backend\modules\payment\PaymentModule::class,
     ],
+    'rules' => [
+        'class' => \backend\modules\rules\RulesModule::class,
+    ],
 ];

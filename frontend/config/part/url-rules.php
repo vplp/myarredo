@@ -120,6 +120,10 @@ return [
     'news/article/<alias:[\w\-]+>' => 'news/article/index',
     'news/article-for-partners/<id:[\d\-]+>' => 'news/article-for-partners/index',
 
+    // Module [[Rules]]
+    'rules' => 'rules/rules/list',
+    'rules/<id:[\d\-]+>' => 'rules/rules/view',
+
     // Module [[Feedback]]
     'page/contact' => 'feedback/feedback/index',
     'page/contact/send' => 'feedback/form/send',

@@ -51,6 +51,9 @@ return [
     'payment' => [
         'class' => \frontend\modules\payment\PaymentModule::class,
     ],
+    'rules' => [
+        'class' => \frontend\modules\rules\RulesModule::class,
+    ],
     'gridview' => [
         'class' => \kartik\grid\Module::class
     ]
