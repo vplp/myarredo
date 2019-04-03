@@ -6,7 +6,7 @@ use yii\helpers\{
 //
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
-    Factory, ItalianProduct, Product
+    Factory, ItalianProduct
 };
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\shop\widgets\request\RequestPrice;
@@ -147,8 +147,47 @@ $this->title = $this->context->title;
                                         </td>
                                     </tr>
                                 <?php } ?>
+
+                                <?php if (!empty($model['colors'])) { ?>
+                                    <tr>
+                                        <td><?= $model->getAttributeLabel('colors_ids') ?></td>
+                                        <td>
+                                            <?php
+                                            $array = [];
+                                            foreach ($model['colors'] as $item) {
+                                                $array[] = $item['lang']['title'];
+                                            }
+                                            echo implode('; ', $array);
+                                            ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+
+                                <tr>
+                                    <td><?= $model->getAttributeLabel('production_year') ?></td>
+                                    <td>
+                                        <?= $model['production_year'] ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><?= $model->getAttributeLabel('volume') ?></td>
+                                    <td>
+                                        <?= $model['volume'] ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><?= $model->getAttributeLabel('weight') ?></td>
+                                    <td>
+                                        <?= $model['weight'] ?>
+                                    </td>
+                                </tr>
                             </table>
 
+                            <div class="prod-shortstory">
+                                <?= $model['lang']['defects']; ?>
+                            </div>
                             <div class="prod-shortstory">
                                 <?= $model['lang']['description']; ?>
                             </div>
@@ -163,25 +202,21 @@ $this->title = $this->context->title;
 
                                 </div>
                             </div>
+
+                            <div class="col-md-12 sellout-box">
+                                <div class="section-header">
+                                    <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
+                                    <?= Html::a(
+                                        Yii::t('app', 'Вернуться к списку'),
+                                        Url::toRoute(['/catalog/sale-italy/list']),
+                                        ['class' => 'back']
+                                    ); ?>
+                                </div>
+                            </div>
+
                         <?php } ?>
 
-                        <div class="col-md-12 sellout-box">
-                            <div class="section-header">
-                                <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
-                                <?= Html::a(
-                                    Yii::t('app', 'Вернуться к списку'),
-                                    Url::toRoute(['/catalog/sale-italy/list']),
-                                    ['class' => 'back']
-                                ); ?>
-                            </div>
-                        </div>
                     </div>
-
-                    <?= $this->render('@app/modules/catalog/views/product/parts/_product_by_factory', [
-                        'factory' => $model['factory'],
-                        'types' => $model['types'],
-                        'models' => Product::getProductByFactory($model['factory_id'], $model['catalog_type_id'])
-                    ]) ?>
 
                 </div>
             </div>

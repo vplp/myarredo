@@ -100,7 +100,7 @@ class UploadAction extends Action
 
             $result = [];
 
-            if ($model->validate() && $model->file) {
+            if ($model->validate() && $model->file != null) {
                 if ($this->unique === true) {
                     $model->file->name = uniqid() .
                         (empty($model->file->extension)

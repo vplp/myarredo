@@ -114,10 +114,12 @@ class ItalianProductController extends BaseController
     public function actions()
     {
         if (Yii::$app->request->get('step') == 'photo') {
+            $scenario = 'setImages';
             $link = function () {
                 return Url::to(['update', 'id' => $this->action->getModel()->id, 'step' => 'check']);
             };
         } else {
+            $scenario = 'frontend';
             $link = function () {
                 return Url::to(['update', 'id' => $this->action->getModel()->id, 'step' => 'photo']);
             };
@@ -144,7 +146,7 @@ class ItalianProductController extends BaseController
                     'class' => UpdateWithLang::class,
                     'modelClass' => $this->model,
                     'modelClassLang' => $this->modelLang,
-                    'scenario' => 'frontend',
+                    'scenario' => $scenario,
                     'redirect' => $link
                 ],
                 'intrash' => [

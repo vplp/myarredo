@@ -62,6 +62,7 @@ class ItalianProductLang extends ActiveRecordLang
     public function scenarios()
     {
         return [
+            'setImages' => [],
             'backend' => ['title', 'description', 'content', 'defects', 'material'],
             'frontend' => ['title', 'description', 'defects', 'material'],
         ];

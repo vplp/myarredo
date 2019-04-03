@@ -1,8 +1,6 @@
 <?php
 
-use yii\helpers\{
-    Html, Url
-};
+use yii\helpers\Html;
 //
 use frontend\modules\catalog\models\{
     ItalianProduct, ItalianProductLang
@@ -26,7 +24,6 @@ $this->title = (($model->isNewRecord)
             <?= Html::tag('h1', $this->title); ?>
 
             <div class="column-center add-itprod-box">
-
 
                 <?php
                 if (Yii::$app->request->get('step') == 'photo') {
