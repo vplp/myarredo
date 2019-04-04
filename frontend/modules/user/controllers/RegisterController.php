@@ -112,18 +112,15 @@ class RegisterController extends BaseController
 
             $modelSignInForm->setScenario('signIn');
             $modelSignInForm->setAttributes($user->getAttributes());
-            $modelSignInForm->email_or_code = $user->email;
 
             $modelSignInForm->login();
 
-            Yii::$app->session->setFlash('success', 'Вы успешно подтвердили свою регистрацию.');
+                Yii::$app->session->setFlash('success', Yii::$app->param->getByName('USER_CONFIRMATION_SUCCESS'));
 
             return $this->redirect(Url::toRoute('/user/login/index'));
         }
 
-        return $this->render('confirmation', [
-
-        ]);
+        return $this->render('confirmation', []);
     }
 
     /**
