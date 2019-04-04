@@ -3991,7 +3991,8 @@ h1 {
     padding-top: 20px;
     padding-left: 10px;
   }
-  .largex-container h1 {
+  .largex-container h1,
+  .largex-container h2 {
     margin-top: 0;
     padding: 20px 15px 0;
     text-align: left;
@@ -6948,6 +6949,85 @@ h1 {
   width: 33%;
   padding: 0 15px;
 }
+.largex-container .rulesbox {
+  padding-bottom: 40px;
+}
+.largex-container .rulescont {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 0;
+  margin-top: 35px;
+}
+.largex-container .rulescont.forflex ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+.largex-container .rulescont.forflex ul li {
+  width: 33%;
+  padding: 0 15px 15px;
+}
+.largex-container .rulescont.forflex ul li::before {
+  display: none;
+}
+.largex-container .rulescont.forflex ul li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  background-color: #F3F2F0;
+  color: #917d7d;
+  padding: 20px 38px 20px 20px;
+  min-height: 135px;
+  max-height: 135px;
+  position: relative;
+}
+.largex-container .rulescont.forflex ul li a::after {
+  font-family: "FontAwesome";
+  content: "\f054";
+  position: absolute;
+  top: 40%;
+  right: 25px;
+  transition: 0.3s;
+}
+.largex-container .rulescont.forflex ul li a:hover {
+  text-decoration: none;
+  color: #41403e;
+}
+.largex-container .rulescont.forflex ul li a:hover::after {
+  right: 20px;
+}
+.largex-container .rulescont p {
+  font-size: 18px;
+  padding: 0 15px;
+}
+.largex-container .rulespanel {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.largex-container .rulespanel a.btn {
+  display: inline-block;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  background-color: #448339;
+  border-color: #448339;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 8px 14px;
+  font-size: 18px;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  cursor: pointer;
+}
+.largex-container .rulespanel a.btn:hover {
+  color: #fff;
+  background-color: #218838;
+  border-color: #1e7e34;
+}
 /* .category-page .filters .one-filter.colors-box .one-item-check.selected .my-checkbox:after {
   color: #ffffff;
 } */
@@ -7081,6 +7161,9 @@ h1 {
     margin-top: 30px;
     padding-left: 0;
   }
+  .page.rules-page {
+    background-color: #ffffff;
+  }
 }
 @media (max-width: 991px) {
   .progress-steps-step {
@@ -7127,6 +7210,9 @@ h1 {
   }
   .adding-product-page .manager-history ul li.lang-cell {
     width: 5%;
+  }
+  .largex-container .rulescont.forflex ul li {
+    width: 50%;
   }
 }
 @media (min-width: 768px) {
@@ -7175,6 +7261,9 @@ h1 {
 @media (max-width: 660px) {
   .sitemap-list li {
     width: 50%;
+  }
+  .largex-container .rulescont.forflex ul li {
+    width: 100%;
   }
 }
 @media (max-width: 599px) {
