@@ -265,7 +265,10 @@ $Specifications = Specification::findBase()->all();
             ]) ?>
 
         <?php
-        $model->phone = $model->isNewRecord ? Yii::$app->user->identity->profile->phone : $model->phone;
+        $model->phone = $model->isNewRecord
+            ? Yii::$app->user->identity->profile->phone
+            : $model->phone;
+
         echo $form->field(
             $model,
             'phone',
@@ -273,7 +276,9 @@ $Specifications = Specification::findBase()->all();
         ) ?>
 
         <?php
-        $model->email = $model->isNewRecord ? Yii::$app->user->identity->email : '';
+        $model->email = $model->isNewRecord
+            ? Yii::$app->user->identity->email
+            : $model->email;
         echo $form->field(
             $model,
             'email',
