@@ -6826,6 +6826,7 @@ h1 {
 }
 .itprodform-box .add-itprod-box .add-itprod-content {
   width: 100%;
+  max-width: 1050px;
 }
 .itprodform-box h1 {
   padding-left: 25px;
@@ -6833,6 +6834,13 @@ h1 {
 .add-itprod-content {
   width: 100%;
   padding-right: 20px;
+}
+.add-itprod-content .sale-page .prod-info h1 {
+  padding: 0;
+  margin-bottom: 8px;
+}
+.add-itprod-content .container {
+  width: 100%;
 }
 .progress-steps-box {
   display: flex;
@@ -6967,6 +6975,17 @@ h1 {
   }
   .add-itprod-rules {
     border-left: 1px dotted #535351;
+  }
+}
+@media (min-width: 768px) {
+  .add-itprod-content .sale-prod .col-lg-5 {
+    width: 45%;
+  }
+  .add-itprod-content .sale-prod .col-lg-4 {
+    width: 50%;
+  }
+  .add-itprod-content .sale-page .prod-info h1 {
+    margin-top: -6px;
   }
 }
 @media (max-width: 1460px) {
