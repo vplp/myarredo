@@ -65,6 +65,6 @@ class Rules extends \common\modules\rules\models\Rules
      */
     public function getUrl()
     {
-        return Url::toRoute(['/rules/rules/index', 'id' => $this->id]);
+        return Url::toRoute(['/rules/rules/view', 'id' => $this->id]);
     }
 }
