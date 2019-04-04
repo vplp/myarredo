@@ -8,7 +8,10 @@ use yii\helpers\Url;
 //
 use frontend\components\BaseController;
 use frontend\modules\user\models\User;
-use frontend\modules\user\models\form\RegisterForm;
+use frontend\modules\user\models\form\{
+    RegisterForm, SignInForm
+};
+use yii\web\Response;
 
 
 /**
@@ -39,7 +42,8 @@ class RegisterController extends BaseController
                             'user',
                             'partner',
                             'factory',
-                            'logistician'
+                            'logistician',
+                            'confirmation'
                         ],
                         'roles' => ['?'],
                     ],
@@ -84,6 +88,41 @@ class RegisterController extends BaseController
 
         return $this->render('register_user', [
             'model' => $model,
+        ]);
+    }
+
+    /**
+     * @param $token
+     * @return string|Response
+     * @throws \Exception
+     */
+    public function actionConfirmation($token)
+    {
+        if (!\Yii::$app->getUser()->getIsGuest()) {
+            return $this->redirect(Url::toRoute('/home/home/index'));
+        }
+
+        /** @var RegisterForm $model */
+        $model = new $this->model();
+
+        $user = $model->confirmation($token);
+
+        if ($user !== false) {
+            $modelSignInForm = new SignInForm();
+
+            $modelSignInForm->setScenario('signIn');
+            $modelSignInForm->setAttributes($user->getAttributes());
+            $modelSignInForm->email_or_code = $user->email;
+
+            $modelSignInForm->login();
+
+            Yii::$app->session->setFlash('success', 'Вы успешно подтвердили свою регистрацию.');
+
+            return $this->redirect(Url::toRoute('/user/login/index'));
+        }
+
+        return $this->render('confirmation', [
+
         ]);
     }
 
@@ -266,7 +305,7 @@ class RegisterController extends BaseController
                         [
                             'user' => $model,
                             'password' => $model['password'],
-                            'text' => Yii::$app->param->getByName('MAIL_REGISTRATION_TEXT_FOR_FACTORY')
+                            'text' => Yii::$app->param->getByName('MAIL_REGISTRATION_TEXT_FOR_PARTNER')
                         ]
                     )
                     ->setTo($model->email)
