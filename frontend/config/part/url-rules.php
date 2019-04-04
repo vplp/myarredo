@@ -19,6 +19,7 @@ return [
     'partner/registration' => 'user/register/partner',
     'factory/registration' => 'user/register/factory',
     'user/register' => 'user/register/user',
+    'user/confirmation/<token:[\w\-]+>' => 'user/register/confirmation',
     'user/login' => 'user/login/index',
     'user/logout' => 'user/logout/index',
     'user/profile' => 'user/profile/index',

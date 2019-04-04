@@ -3,10 +3,10 @@
 namespace common\modules\user\models\form;
 
 use Yii;
+use Exception;
+use DomainException;
 use yii\db\mssql\PDO;
 use yii\helpers\ArrayHelper;
-//
-use thread\app\base\models\ActiveRecord;
 //
 use common\modules\user\models\{
     Group, Profile, User
@@ -14,6 +14,8 @@ use common\modules\user\models\{
 use common\modules\location\models\{
     City, Country
 };
+//
+use thread\app\base\models\ActiveRecord;
 
 /**
  * Class RegisterForm
@@ -245,9 +247,9 @@ class RegisterForm extends CommonForm
                     $transaction->rollBack();
                     return false;
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $transaction->rollBack();
-                throw new \Exception($e);
+                throw new Exception($e);
             }
         } else {
             $this->addErrors($model->getErrors());
@@ -260,7 +262,7 @@ class RegisterForm extends CommonForm
      *
      * @param $userId
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     private function addUserProfile($userId)
     {
@@ -282,9 +284,9 @@ class RegisterForm extends CommonForm
                 $save = $model->save();
                 ($save) ? $transaction->commit() : $transaction->rollBack();
                 return $save;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $transaction->rollBack();
-                throw new \Exception($e);
+                throw new Exception($e);
             }
         } else {
             $this->addErrors($model->getErrors());
@@ -319,9 +321,9 @@ class RegisterForm extends CommonForm
                     $transaction->rollBack();
                     return false;
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $transaction->rollBack();
-                throw new \Exception($e);
+                throw new Exception($e);
             }
         } else {
             $this->addErrors($model->getErrors());
@@ -334,7 +336,7 @@ class RegisterForm extends CommonForm
      *
      * @param $userId
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     private function addPartnerProfile($userId)
     {
@@ -360,9 +362,9 @@ class RegisterForm extends CommonForm
                 $save = $model->save();
                 ($save) ? $transaction->commit() : $transaction->rollBack();
                 return $save;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $transaction->rollBack();
-                throw new \Exception($e);
+                throw new Exception($e);
             }
         } else {
             $this->addErrors($model->getErrors());
@@ -397,9 +399,9 @@ class RegisterForm extends CommonForm
                     $transaction->rollBack();
                     return false;
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $transaction->rollBack();
-                throw new \Exception($e);
+                throw new Exception($e);
             }
         } else {
             $this->addErrors($model->getErrors());
@@ -412,7 +414,7 @@ class RegisterForm extends CommonForm
      *
      * @param $userId
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     private function addFactoryProfile($userId)
     {
@@ -437,9 +439,9 @@ class RegisterForm extends CommonForm
                 $save = $model->save();
                 ($save) ? $transaction->commit() : $transaction->rollBack();
                 return $save;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $transaction->rollBack();
-                throw new \Exception($e);
+                throw new Exception($e);
             }
         } else {
             $this->addErrors($model->getErrors());
@@ -474,9 +476,9 @@ class RegisterForm extends CommonForm
                     $transaction->rollBack();
                     return false;
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $transaction->rollBack();
-                throw new \Exception($e);
+                throw new Exception($e);
             }
         } else {
             $this->addErrors($model->getErrors());
@@ -489,7 +491,7 @@ class RegisterForm extends CommonForm
      *
      * @param $userId
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     private function addLogisticianProfile($userId)
     {
@@ -514,13 +516,46 @@ class RegisterForm extends CommonForm
                 $save = $model->save();
                 ($save) ? $transaction->commit() : $transaction->rollBack();
                 return $save;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $transaction->rollBack();
-                throw new \Exception($e);
+                throw new Exception($e);
             }
         } else {
             $this->addErrors($model->getErrors());
             return false;
+        }
+    }
+
+    /**
+     * @param $token
+     * @return User|null
+     * @throws Exception
+     */
+    public function confirmation($token)
+    {
+        if (empty($token)) {
+            throw new DomainException('Empty confirm token.');
+        }
+
+        $user = User::findOne(['auth_key' => $token]);
+
+        if (!$user) {
+            throw new DomainException('User is not found.');
+        }
+
+        $user->setScenario('published');
+        $user->published = ActiveRecord::STATUS_KEY_ON;
+
+        /** @var PDO $transaction */
+        $transaction = self::getDb()->beginTransaction();
+        try {
+            if ($user->save()) {
+                $transaction->commit();
+                return $user;
+            }
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            throw new Exception($e);
         }
     }
 }
