@@ -24,7 +24,7 @@ $token_url = Yii::$app->getRequest()->hostInfo .
     ]);
 
 $replace = [
-    Html::encode($user['first_name']),
+    Html::encode($user['profile']['first_name']),
     $user['email'],
     $password,
     Html::a($token_url, $token_url)

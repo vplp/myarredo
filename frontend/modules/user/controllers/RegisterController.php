@@ -169,7 +169,7 @@ class RegisterController extends BaseController
                     ->compose(
                         'letter_about_registration',
                         [
-                            'user' => $model,
+                            'user' => $modelUser,
                             'password' => $model['password'],
                             'text' => Yii::$app->param->getByName('MAIL_REGISTRATION_TEXT_FOR_PARTNER')
                         ]
