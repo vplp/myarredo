@@ -20,7 +20,7 @@ $this->title = $this->context->title;
 
                     <?php if ($category) {
                         echo Html::beginTag('ul', [
-                            'class' => 'list'
+                            'class' => 'list sitemap-list'
                         ]);
                         foreach ($category as $item) {
                             echo Html::tag(
@@ -42,7 +42,7 @@ $this->title = $this->context->title;
 
                     <?php if ($types) {
                         echo Html::beginTag('ul', [
-                            'class' => 'list'
+                            'class' => 'list sitemap-list'
                         ]);
                         foreach ($types as $item) {
                             echo Html::tag(
@@ -64,7 +64,7 @@ $this->title = $this->context->title;
 
                     <?php if ($style) {
                         echo Html::beginTag('ul', [
-                            'class' => 'list'
+                            'class' => 'list sitemap-list'
                         ]);
                         foreach ($style as $item) {
                             echo Html::tag(
@@ -86,7 +86,7 @@ $this->title = $this->context->title;
 
                     <?php if ($colors) {
                         echo Html::beginTag('ul', [
-                            'class' => 'list'
+                            'class' => 'list sitemap-list'
                         ]);
                         foreach ($colors as $item) {
                             echo Html::tag(
@@ -108,7 +108,7 @@ $this->title = $this->context->title;
 
                     <?php if ($factory) {
                         echo Html::beginTag('ul', [
-                            'class' => 'list'
+                            'class' => 'list sitemap-list'
                         ]);
                         foreach ($factory as $item) {
                             echo Html::tag(

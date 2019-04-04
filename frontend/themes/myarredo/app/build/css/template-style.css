@@ -6940,11 +6940,22 @@ h1 {
   top: 30px;
   right: 3px;
 }
+.sitemap-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.sitemap-list li {
+  width: 33%;
+  padding: 0 15px;
+}
 /* .category-page .filters .one-filter.colors-box .one-item-check.selected .my-checkbox:after {
   color: #ffffff;
 } */
+/* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------- */
 
+/* min width styles */
 @media (min-width: 1461px) {
   .itprod-panel-add {
     max-width: 1400px;
@@ -6988,6 +6999,9 @@ h1 {
     margin-top: -6px;
   }
 }
+
+/* max-width styles */
+
 @media (max-width: 1460px) {
   .largex-container {
     padding: 0 20px;
@@ -7010,36 +7024,6 @@ h1 {
   .progress-steps-step:not(:first-child) .step-numb::before {
     width: 25px;
     left: -25px;
-  }
-}
-@media (max-width: 1199px) {
-  .factory-profile .profile-gencont .part-contact {
-    flex-wrap: wrap;
-  }
-  .profile-gencont .part-contact-left,
-  .profile-gencont .part-contact-right {
-    width: 100%;
-  }
-  .profile-gencont .part-contact-left {
-    max-width: 660px;
-    margin: 0 auto 35px;
-  }
-  .profile-gencont .part-contact-right .profile-box {
-    margin: 0 auto;
-  }
-  .profile-box,
-  .welcome-box {
-    max-width: 665px;
-  }
-  .largex-container h1.title-h1-profile {
-    text-align: center;
-  }
-  .add-itprod-box {
-    flex-wrap: wrap;
-  }
-  .add-itprod-rules {
-    margin-top: 30px;
-    padding-left: 0;
   }
 }
 @media (max-width: 1220px) {
@@ -7069,6 +7053,34 @@ h1 {
   .part-contact-right {
     width: 100%;
   }
+  .factory-profile .profile-gencont .part-contact {
+    flex-wrap: wrap;
+  }
+  .profile-gencont .part-contact-left,
+  .profile-gencont .part-contact-right {
+    width: 100%;
+  }
+  .profile-gencont .part-contact-left {
+    max-width: 660px;
+    margin: 0 auto 35px;
+  }
+  .profile-gencont .part-contact-right .profile-box {
+    margin: 0 auto;
+  }
+  .profile-box,
+  .welcome-box {
+    max-width: 665px;
+  }
+  .largex-container h1.title-h1-profile {
+    text-align: center;
+  }
+  .add-itprod-box {
+    flex-wrap: wrap;
+  }
+  .add-itprod-rules {
+    margin-top: 30px;
+    padding-left: 0;
+  }
 }
 @media (max-width: 991px) {
   .progress-steps-step {
@@ -7089,26 +7101,6 @@ h1 {
     margin-top: 6px;
     min-height: 34px;
   }
-}
-@media (min-width: 768px) {
-  #italian-product-grid-container table.table {
-    margin: 0 -1px;
-  }
-  #italian-product-grid-container table.table td {
-    min-width: 72px;
-    vertical-align: middle;
-  }
-}
-@media (max-width: 760px) {
-  .welcome-box {
-    flex-wrap: wrap;
-  }
-  .welcome-left,
-  .welcome-right {
-    width: 100%;
-  }
-}
-@media (max-width: 991px) {
   .largex-container {
     max-width: 750px;
   }
@@ -7137,6 +7129,29 @@ h1 {
     width: 5%;
   }
 }
+@media (min-width: 768px) {
+  #italian-product-grid-container table.table {
+    margin: 0 -1px;
+  }
+  #italian-product-grid-container table.table td {
+    min-width: 72px;
+    vertical-align: middle;
+  }
+}
+@media (max-width: 767px) {
+  .factory-page .text iframe {
+    width: 100% !important;
+  }
+}
+@media (max-width: 760px) {
+  .welcome-box {
+    flex-wrap: wrap;
+  }
+  .welcome-left,
+  .welcome-right {
+    width: 100%;
+  }
+}
 @media (min-width: 599px) and (max-width: 699px) {
   .profile-quadrlink {
     width: 25%;
@@ -7148,11 +7163,6 @@ h1 {
     padding-left: 20px;
   }
 }
-@media (max-width: 767px) {
-  .factory-page .text iframe {
-    width: 100% !important;
-  }
-}
 @media (max-width: 699px) {
   .profile-gencont .part-contact-right .profile-box {
     max-height: 100%;
@@ -7160,6 +7170,11 @@ h1 {
   }
   .factory-page .text iframe {
     height: 44vw;
+  }
+}
+@media (max-width: 660px) {
+  .sitemap-list li {
+    width: 50%;
   }
 }
 @media (max-width: 599px) {
@@ -7200,6 +7215,9 @@ h1 {
   }
   .factory-page .text iframe {
     height: auto;
+  }
+  .sitemap-list li {
+    width: 100%;
   }
 }
 @media (max-width: 535px) {
