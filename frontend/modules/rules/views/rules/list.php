@@ -11,11 +11,11 @@ $this->title = $this->context->title;
 
 ?>
     <main>
-        <div class="page about-page">
-            <div class="container large-container">
-                <div class="col-md-12">
+        <div class="page about-page rules-page">
+            <div class="largex-container">
+                <div class="rulesbox">
                     <?= Html::tag('h1', Yii::t('app', 'General rules'), []); ?>
-                    <div class="text">
+                    <div class="rulescont forflex">
 
                         <?php
                         echo Html::beginTag('ul');

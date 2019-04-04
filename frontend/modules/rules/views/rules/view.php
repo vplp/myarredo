@@ -11,18 +11,19 @@ $this->title = $model['lang']['title'];
 ?>
 
 <main>
-    <div class="page about-page">
-        <div class="container large-container">
-            <div class="col-md-12">
+    <div class="page about-page rules-page">
+        <div class="largex-container">
+            <div class="rulesbox">
                 <?= Html::tag('h2', $model['lang']['title'], []); ?>
 
-                <div class="text">
+                <div class="rulescont">
 
                     <?= $model['lang']['content'] ?>
 
                 </div>
-
-                <?= FormFeedback::widget(['view' => 'form_feedback_rules']) ?>
+                <div class="rulespanel">
+                    <?= FormFeedback::widget(['view' => 'form_feedback_rules']) ?>
+                </div>
             </div>
 
         </div>
