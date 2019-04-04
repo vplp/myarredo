@@ -16,11 +16,11 @@ use frontend\modules\forms\models\FormsFeedback;
     [
         'class' => 'btn',
         'data-toggle' => 'modal',
-        'data-target' => '#formFeedbackModal'
+        'data-target' => '#formFeedbackModalRules'
     ]
 ) ?>
 
-<div class="modal fade" id="formFeedbackModal">
+<div class="modal fade" id="formFeedbackModalRules">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
