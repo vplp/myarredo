@@ -431,8 +431,10 @@ class ItalianProduct extends ActiveRecord
 
             if ($statusNew == 'not_approved') {
                 // letter_italian_product_change_status
+                // Yii::$app->param->getByName('MAIL_ITALIAN_PRODUCT_NOT_APPROVED_TEXT')
             } elseif ($statusNew == 'approved') {
                 // letter_italian_product_change_status
+                // Yii::$app->param->getByName('MAIL_ITALIAN_PRODUCT_APPROVED_TEXT')
             }
         }
 
