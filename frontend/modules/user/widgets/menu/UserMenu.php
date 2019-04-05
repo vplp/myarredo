@@ -32,21 +32,9 @@ class UserMenu extends Widget
         if (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['logistician'])) {
             $this->menuItems = [
                 [
-                    'label' => Yii::t('app', 'Orders'),
-                    'url' => ['/shop/partner-order/list'],
-                ],
-                [
                     'label' => Yii::t('app', 'Orders italy'),
                     'url' => ['/shop/partner-order/list-italy']
                 ],
-                [
-                    'label' => Yii::t('app', 'Размещение кода'),
-                    'url' => ['/page/page/view', 'alias' => 'razmeshchenie-koda']
-                ],
-                [
-                    'label' => Yii::t('app', 'Инструкция партнерам'),
-                    'url' => ['/page/page/view', 'alias' => 'instructions']
-                ]
             ];
         } elseif (!Yii::$app->getUser()->isGuest &&
             in_array(Yii::$app->user->identity->group->role, ['partner']) &&
