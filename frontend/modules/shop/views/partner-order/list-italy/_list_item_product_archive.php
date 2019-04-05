@@ -57,6 +57,16 @@ use frontend\modules\catalog\models\ItalianProduct;
             </td>
         </tr>
         <tr class="noborder">
+            <td colspan="2" class="spec-pad">
+                <span class="for-ordertable"><?= Yii::t('app', 'Region') ?></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="spec-pad2">
+                <span class="for-ordertable-descr"><?= $orderItem->product['region']['title'] ?></span>
+            </td>
+        </tr>
+        <tr class="noborder">
             <td colspan="2">
                 <span class="for-ordertable"><?= Yii::t('app', 'Цена доставки') ?></span>
             </td>

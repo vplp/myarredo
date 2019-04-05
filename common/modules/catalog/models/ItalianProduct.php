@@ -62,8 +62,8 @@ use common\modules\payment\models\{
  * @property Factory $factory
  * @property User $user
  * @property Country $country
- * @property Region $region
  * @property City $city
+ * @property Region $region
  * @property Types $types
  *
  * @package common\modules\catalog\models
@@ -160,7 +160,6 @@ class ItalianProduct extends ActiveRecord
             ],
             [
                 [
-                    //'region',
                     'phone',
                     'email',
                     'alias',
@@ -216,7 +215,6 @@ class ItalianProduct extends ActiveRecord
                 'country_id',
                 'region_id',
                 'city_id',
-                //'region',
                 'phone',
                 'email',
                 'user_id',
@@ -247,7 +245,6 @@ class ItalianProduct extends ActiveRecord
                 'country_id',
                 'region_id',
                 'city_id',
-                //'region',
                 'phone',
                 'email',
                 'user_id',
@@ -284,7 +281,6 @@ class ItalianProduct extends ActiveRecord
             'country_id' => Yii::t('app', 'Country'),
             'region_id' => Yii::t('app', 'Region'),
             'city_id' => Yii::t('app', 'City'),
-            //'region' => Yii::t('app', 'Region'),
             'phone' => Yii::t('app', 'Phone'),
             'email' => Yii::t('app', 'Email'),
             'user_id' => Yii::t('app', 'User'),
