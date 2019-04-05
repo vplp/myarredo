@@ -60,6 +60,7 @@ class RegisterForm extends CommonForm
                     'country_id',
                     'city_id',
                     'user_agreement',
+                    'confirm_processing_data',
                     'reCaptcha'
                 ],
                 'required',
@@ -74,7 +75,6 @@ class RegisterForm extends CommonForm
                     'country_id',
                     'city_id',
                     'user_agreement',
-                    //'factory_package',
                     'reCaptcha'
                 ],
                 'required',
@@ -101,7 +101,14 @@ class RegisterForm extends CommonForm
                 'requiredValue' => 1,
                 'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
             ],
-            [['delivery_to_other_cities', 'user_agreement'], 'in', 'range' => [0, 1]],
+            [
+                ['confirm_processing_data'],
+                'required',
+                'on' => ['registerPartner',],
+                'requiredValue' => 1,
+                'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
+            ],
+            [['delivery_to_other_cities', 'user_agreement', 'confirm_processing_data'], 'in', 'range' => [0, 1]],
             [['country_id', 'city_id'], 'integer'],
             [['country_id', 'city_id', 'delivery_to_other_cities'], 'default', 'value' => 0],
             [
@@ -172,6 +179,7 @@ class RegisterForm extends CommonForm
                 'city_id',
                 'delivery_to_other_cities',
                 'user_agreement',
+                'confirm_processing_data',
                 'reCaptcha',
                 'cape_index'
             ],
@@ -189,7 +197,6 @@ class RegisterForm extends CommonForm
                 'country_id',
                 'city_id',
                 'user_agreement',
-                //'factory_package'
                 'reCaptcha'
             ],
             'registerLogistician' => [
@@ -206,7 +213,6 @@ class RegisterForm extends CommonForm
                 'country_id',
                 'city_id',
                 'user_agreement',
-                //'factory_package'
                 'reCaptcha'
             ],
         ];

@@ -1,20 +1,20 @@
 <?php
 
-use frontend\themes\myarredo\assets\AppAsset;
-use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
+use yii\widgets\ActiveForm;
 //
+use frontend\themes\myarredo\assets\AppAsset;
+use frontend\widgets\recaptcha3\RecaptchaV3Widget;
+use frontend\modules\user\models\form\RegisterForm;
 use frontend\modules\location\models\{
     Country, City
 };
 
 $bundle = AppAsset::register($this);
 
-/**
- * @var \frontend\modules\user\models\form\RegisterForm $model
- */
+/** @var $model RegisterForm */
 
 $this->title = Yii::t('app', 'Регистрация для салонов продаж');
 
@@ -94,9 +94,14 @@ $model->user_agreement = 1;
                                     ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
 
                                 <?= $form
+                                    ->field($model, 'confirm_processing_data', ['template' => '{input}{label}{error}{hint}'])
+                                    ->checkbox([], false)
+                                    ->label('&nbsp;' . $model->getAttributeLabel('confirm_processing_data')) ?>
+
+                                <?= $form
                                     ->field($model, 'reCaptcha')
                                     ->widget(
-                                        \frontend\widgets\recaptcha3\RecaptchaV3Widget::class,
+                                        RecaptchaV3Widget::class,
                                         ['actionName' => 'register_partner']
                                     )
                                     ->label(false) ?>
@@ -105,7 +110,10 @@ $model->user_agreement = 1;
                                     * <?= Yii::t('app', 'Поля обязательны для заполнения') ?>
                                 </div>
 
-                                <?= Html::submitButton(Yii::t('app', 'Зарегистрироваться'), ['class' => 'btn btn-success']) ?>
+                                <?= Html::submitButton(
+                                    Yii::t('app', 'Зарегистрироваться'),
+                                    ['class' => 'btn btn-success']
+                                ) ?>
                             </div>
 
                         </div>
@@ -164,4 +172,3 @@ function showHideForItalia(country_id) {
 JS;
 
 $this->registerJs($script, yii\web\View::POS_READY);
-?>

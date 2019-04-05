@@ -26,7 +26,7 @@ class PaymentController extends BaseController
 
     /**
      * @return array
-     * @throws \Throwable
+     * @throws ForbiddenHttpException
      */
     public function behaviors()
     {
@@ -58,7 +58,7 @@ class PaymentController extends BaseController
     }
 
     /**
-     * @return string
+     * @return mixed
      * @throws \yii\base\InvalidConfigException
      */
     public function actionInvoice()
@@ -100,7 +100,7 @@ class PaymentController extends BaseController
     }
 
     /**
-     * @inheritdoc
+     * @return array
      */
     public function actions()
     {
@@ -125,7 +125,7 @@ class PaymentController extends BaseController
      * @param $nInvId
      * @param $nOutSum
      * @param $shp
-     * @return \yii\web\Response
+     * @return string
      */
     public function successCallback($merchant, $nInvId, $nOutSum, $shp)
     {
@@ -140,7 +140,7 @@ class PaymentController extends BaseController
         return $this->render(
             'success',
             [
-                'messages' => 'Operation of payment is successfully completed',
+                'messages' => Yii::$app->param->getByName('PAYMENT_SUCCESS_TEXT'),
             ]
         );
     }

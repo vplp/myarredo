@@ -31,6 +31,7 @@ use common\modules\user\models\User as UserModel;
  * @property int $country_id
  * @property int $city_id
  * @property int $user_agreement
+ * @property int $confirm_processing_data
  * @property int $factory_package
  * @property string $cape_index
  *
@@ -62,6 +63,7 @@ class CommonForm extends Model
     public $exp_with_italian;
     public $delivery_to_other_cities;
     public $user_agreement;
+    public $confirm_processing_data;
     public $country_id;
     public $city_id;
     public $factory_package;
@@ -126,7 +128,7 @@ class CommonForm extends Model
                 'string',
                 'max' => 255
             ],
-            [['delivery_to_other_cities, user_agreement'], 'in', 'range' => [0, 1]],
+            [['delivery_to_other_cities, user_agreement', 'confirm_processing_data'], 'in', 'range' => [0, 1]],
             [['factory_package'], 'in', 'range' => [0, 1, 2]],
             [['country_id', 'city_id'], 'integer'],
             [
@@ -190,6 +192,7 @@ class CommonForm extends Model
             'city_id' => Yii::t('app', 'City'),
             'delivery_to_other_cities' => Yii::t('app', 'Готов к поставкам мебели в другие города'),
             'user_agreement' => Yii::t('app', 'Подтверждаю <a href="/terms-of-use/" target="_blank">пользовательское соглашение</a>'),
+            'confirm_processing_data' => Yii::t('app', 'Подтверждаю <a href="/terms-of-use/" target="_blank">обработку моих персональных данных</a>'),
             'factory_package' => Yii::t('app', 'Package'),
             'cape_index' => Yii::t('app', 'CAPE index'),
         ];
