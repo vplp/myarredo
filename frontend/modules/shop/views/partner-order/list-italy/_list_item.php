@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 use frontend\modules\shop\models\{
     Order, OrderItem, OrderAnswer
 };
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\ItalianProduct;
 
 /* @var $this yii\web\View */
 
@@ -32,19 +32,27 @@ use frontend\modules\catalog\models\Product;
                 <div class="basket-item-info">
 
                     <div class="img-cont">
-                        <?= Html::a(
-                            Html::img(Product::getImageThumb($orderItem->product['image_link'])),
-                            Product::getUrl($orderItem->product['alias'])
-                        ); ?>
+                        <?php if (ItalianProduct::isPublished($orderItem->product['alias'])) {
+                            echo Html::a(
+                                Html::img(ItalianProduct::getImageThumb($orderItem->product['image_link'])),
+                                ItalianProduct::getUrl($orderItem->product['alias'])
+                            );
+                        } else {
+                            echo Html::img(ItalianProduct::getImageThumb($orderItem->product['image_link']));
+                        } ?>
                     </div>
                     <table class="char" width="100%">
                         <tr>
                             <td colspan="2">
-                                <?= Html::a(
-                                    $orderItem->product['lang']['title'],
-                                    Product::getUrl($orderItem->product['alias']),
-                                    ['class' => 'productlink']
-                                ); ?>
+                                <?php if (ItalianProduct::isPublished($orderItem->product['alias'])) {
+                                    Html::a(
+                                        $orderItem->product['lang']['title'],
+                                        ItalianProduct::getUrl($orderItem->product['alias']),
+                                        ['class' => 'productlink']
+                                    );
+                                } else {
+                                    echo $orderItem->product['lang']['title'];
+                                } ?>
                             </td>
                         </tr>
                         <tr>
@@ -84,7 +92,7 @@ use frontend\modules\catalog\models\Product;
                         <tr class="noborder">
                             <td colspan="2" class="spec-pad">
                             <span class="for-ordertable">
-                                <?= Yii::t('app', 'Цена для клиента') ?>
+                                <?= Yii::t('app', 'Цена доставки') ?>
                             </span>
                             </td>
                         </tr>

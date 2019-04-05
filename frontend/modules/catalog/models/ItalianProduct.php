@@ -104,6 +104,19 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
     }
 
     /**
+     * @param $alias
+     * @return bool
+     */
+    public static function isPublished($alias)
+    {
+        if (self::findByAlias($alias) != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * @param string $image_link
      * @return bool
      */
