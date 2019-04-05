@@ -2,7 +2,7 @@
 
 use backend\widgets\GridView\GridView;
 use backend\modules\catalog\models\{
-    Category, Factory
+    Category, Factory, ItalianProduct
 };
 use backend\modules\location\models\{
     City
@@ -13,7 +13,7 @@ use thread\widgets\grid\{
     ActionStatusColumn, GridViewFilter
 };
 
-/** @var $model \backend\modules\catalog\models\ItalianProduct */
+/** @var $model ItalianProduct */
 
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
@@ -28,8 +28,10 @@ echo GridView::widget([
         [
             'attribute' => 'category',
             'value' => function ($model) {
+                /** @var $model ItalianProduct */
                 $result = [];
                 foreach ($model->category as $category) {
+                    /** @var $category Category */
                     $result[] = ($category->lang) ? $category->lang->title : '(не задано)';
                 }
                 return implode(', ', $result);
@@ -39,7 +41,7 @@ echo GridView::widget([
         ],
         [
             'value' => function ($model) {
-                /** @var $model \backend\modules\catalog\models\ItalianProduct */
+                /** @var $model ItalianProduct */
 
                 $status = $model->payment ? Yii::t('app', ucfirst($model->payment->payment_status)) : '';
 
@@ -54,13 +56,14 @@ echo GridView::widget([
         [
             'attribute' => Yii::t('app', 'Factory'),
             'value' => function ($model) {
-                /** @var $model \backend\modules\catalog\models\ItalianProduct */
+                /** @var $model ItalianProduct */
                 return ($model['factory']) ? $model['factory']['title'] : $model['factory_name'];
             },
             'filter' => GridViewFilter::selectOne($filter, 'factory_id', Factory::dropDownList()),
         ],
         [
             'value' => function ($model) {
+                /** @var $model ItalianProduct */
                 return ($model->user) ? $model->user->profile->name_company : '';
             },
             'filter' => GridViewFilter::selectOne(
@@ -71,10 +74,18 @@ echo GridView::widget([
         ],
         [
             'value' => function ($model) {
+                /** @var $model ItalianProduct */
                 return ($model->city) ? $model->city->lang->title : '-';
             },
             'label' => Yii::t('app', 'City'),
             'filter' => GridViewFilter::selectOne($filter, 'city_id', City::dropDownList()),
+        ],
+        [
+            'value' => function ($model) {
+                /** @var $model ItalianProduct */
+                return $model::statusRange($model->status);
+            },
+            'label' => Yii::t('app', 'Status'),
         ],
         [
             'class' => ActionStatusColumn::class,

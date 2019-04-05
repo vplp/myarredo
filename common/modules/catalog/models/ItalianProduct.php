@@ -54,6 +54,7 @@ use common\modules\payment\models\{
  * @property integer $published
  * @property integer $deleted
  * @property integer $mark
+ * @property integer $status
  *
  * @property ItalianProductLang $lang
  * @property ItalianProductRelCategory[] $category
@@ -159,6 +160,11 @@ class ItalianProduct extends ActiveRecord
                 'range' => array_keys(static::currencyRange())
             ],
             [
+                ['status'],
+                'in',
+                'range' => array_keys(static::statusRange())
+            ],
+            [
                 [
                     'phone',
                     'email',
@@ -178,6 +184,7 @@ class ItalianProduct extends ActiveRecord
             [['factory_name',], 'default', 'value' => ''],
             [['catalog_type_id', 'factory_id', 'position'], 'default', 'value' => '0'],
             [['currency'], 'default', 'value' => 'EUR'],
+            [['status'], 'default', 'value' => 'not_considered'],
             [
                 [
                     'category_ids',
@@ -198,6 +205,22 @@ class ItalianProduct extends ActiveRecord
             'EUR' => 'EUR',
             'RUB' => 'RUB'
         ];
+    }
+
+    /**
+     * @param string $status
+     * @return array|mixed
+     */
+    public static function statusRange($status = '')
+    {
+
+        $data = [
+            'not_considered' => Yii::t('app', 'Not considered'),
+            'not_approved' => Yii::t('app', 'Not approved'),
+            'approved' => Yii::t('app', 'Approved')
+        ];
+
+        return $status ? $data[$status] : $data;
     }
 
     /**
@@ -238,6 +261,7 @@ class ItalianProduct extends ActiveRecord
                 'position',
                 'on_main',
                 'mark',
+                'status',
                 'category_ids',
                 'colors_ids',
             ],
@@ -306,6 +330,7 @@ class ItalianProduct extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
             'mark' => 'Mark',
+            'status' => Yii::t('app', 'Status'),
             'category_ids' => Yii::t('app', 'Category'),
             'colors_ids' => Yii::t('app', 'Colors'),
         ];
@@ -397,6 +422,17 @@ class ItalianProduct extends ActiveRecord
                         $model->save();
                     }
                 }
+            }
+        }
+
+        if (key_exists('status', $changedAttributes)) {
+            $statusNew = Yii::$app->request->getBodyParam('ItalianProduct')['status'];
+            $statusOld = $changedAttributes['status'];
+
+            if ($statusNew == 'not_approved') {
+                // letter_italian_product_change_status
+            } elseif ($statusNew == 'approved') {
+                // letter_italian_product_change_status
             }
         }
 

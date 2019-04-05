@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
- */
 return [
     'languages' => [
         'class' => \thread\app\model\Languages::class,
@@ -26,14 +22,6 @@ return [
         'enableCsrfValidation' => true,
         'enableCookieValidation' => true,
         'cookieValidationKey' => 'thread',
-    ],
-    'mailer' => [
-        'class' => \yii\swiftmailer\Mailer::class,
-        'viewPath' => '@backend/mail',
-        // send all mails to a file by default. You have to set
-        // 'useFileTransport' to false and configure a transport
-        // for the mailer to send real emails.
-        'useFileTransport' => true,
     ],
     'view' => [
         'theme' => [
