@@ -73,6 +73,10 @@ class PartnerOrderController extends BaseController
          * add city_id
          */
 
+        if (!isset($params['city_id'])) {
+            $params['city_id'] = 0;
+        }
+
         if (isset($params['city_id']) && $params['city_id'] == 0) {
             unset($params['city_id']);
             $modelCity = City::findAll(['country_id' => Yii::$app->user->identity->profile->country_id]);
@@ -82,10 +86,6 @@ class PartnerOrderController extends BaseController
                     $params['city_id'][] = $city['id'];
                 }
             }
-        }
-
-        if (!isset($params['city_id'])) {
-            $params['city_id'] = 0;
         }
 
         if (!isset($params['factory_id'])) {
@@ -122,6 +122,9 @@ class PartnerOrderController extends BaseController
         /**
          * add city_id
          */
+        if (!isset($params['city_id'])) {
+            $params['city_id'] = 0;
+        }
 
         if (isset($params['city_id']) && $params['city_id'] == 0) {
             unset($params['city_id']);
@@ -132,10 +135,6 @@ class PartnerOrderController extends BaseController
                     $params['city_id'][] = $city['id'];
                 }
             }
-        }
-
-        if (!isset($params['city_id'])) {
-            $params['city_id'] = 0;
         }
 
         if (!isset($params['factory_id'])) {

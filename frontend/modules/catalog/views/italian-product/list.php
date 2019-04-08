@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+use yii\data\Pagination;
 use yii\widgets\Pjax;
 use kartik\grid\GridView;
 //
@@ -16,8 +17,9 @@ use thread\widgets\grid\{
 };
 
 /**
- * @var \yii\data\Pagination $pages
- * @var $model \frontend\modules\catalog\models\ItalianProduct
+ * @var $pages Pagination
+ * @var $model ItalianProduct
+ * @var $filter ItalianProduct
  */
 
 $dataProvider = $model->search(Yii::$app->request->queryParams);
@@ -82,7 +84,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'format' => 'raw',
                                             'attribute' => 'image_link',
                                             'value' => function ($model) {
-                                                /** @var \frontend\modules\catalog\models\ItalianProduct $model */
+                                                /** @var $model ItalianProduct */
                                                 return
                                                     Html::a(
                                                         Html::img(
@@ -102,7 +104,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'format' => 'raw',
                                             'attribute' => 'title',
                                             'value' => function ($model) {
-                                                /** @var \frontend\modules\catalog\models\ItalianProduct $model */
+                                                /** @var $model ItalianProduct */
                                                 return
                                                     Html::a(
                                                         $model['lang']['title'],
@@ -117,7 +119,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'attribute' => 'factory_id',
                                             'format' => 'raw',
                                             'value' => function ($model) {
-                                                /** @var $model \frontend\modules\catalog\models\ItalianProduct */
+                                                /** @var $model ItalianProduct */
                                                 return ($model['factory'])
                                                     ? $model['factory']['title']
                                                     : $model['factory_name'];
@@ -126,14 +128,39 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'headerOptions' => ['class' => 'col-sm-2'],
                                         ],
                                         [
+                                            'attribute' => 'price_new',
+                                            'format' => 'raw',
+                                            'value' => function ($model) {
+                                                /** @var $model ItalianProduct */
+                                                return $model['price_new'] . ' ' . $model['currency'];
+                                            },
+                                            'filter' => false,
+                                            'headerOptions' => ['class' => 'col-sm-2'],
+                                        ],
+                                        [
+                                            'label' => Yii::t('app', 'Просмотры товара'),
+                                            'format' => 'raw',
+                                            'value' => function ($model) {
+                                                /** @var $model ItalianProduct */
+                                                return $model->getCountViews();
+                                            },
+                                        ],
+                                        [
+                                            'label' => Yii::t('app', 'Запрос телефона'),
+                                            'value' => function ($model) {
+                                                /** @var $model ItalianProduct */
+                                                return $model->getCountRequestPhone();
+                                            },
+                                        ],
+                                        [
                                             'format' => 'raw',
                                             'attribute' => Yii::t('app', 'Status'),
                                             'value' => function ($model) {
-                                                /** @var $model \frontend\modules\catalog\models\ItalianProduct */
+                                                /** @var $model ItalianProduct */
                                                 $status = $model->published
                                                     ? Yii::t('app', 'Published')
                                                     : Html::a(
-                                                        Yii::t('app', 'Not published'),
+                                                        Yii::t('app', 'Опубликовать'),
                                                         ['/catalog/italian-product/payment'],
                                                         [
                                                             'data-method' => 'POST',
@@ -145,7 +172,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                     );
 
                                                 if ($model->payment && $model->payment->payment_status == 'success') {
-                                                    $status .= ', ' . Yii::t('app', ucfirst($model->payment->payment_status));
+                                                    $status = Yii::t('app', 'На модерации');
                                                 }
 
                                                 return $status;
@@ -158,9 +185,9 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'template' => '{update} {delete}',
                                             'buttons' => [
                                                 'update' => function ($url, $model) {
-                                                    /** @var $model \frontend\modules\catalog\models\ItalianProduct */
+                                                    /** @var $model ItalianProduct */
                                                     return Html::a(
-                                                        '<span class="glyphicon glyphicon-pencil"></span>',
+                                                        '<span class="glyphicon glyphicon-pencil"></span> ' . Yii::t('app', 'Edit'),
                                                         Url::toRoute(
                                                             ['/catalog/italian-product/update', 'id' => $model->id]
                                                         ),
@@ -170,9 +197,9 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                     );
                                                 },
                                                 'delete' => function ($url, $model) {
-                                                    /** @var $model \frontend\modules\catalog\models\ItalianProduct */
+                                                    /** @var $model ItalianProduct */
                                                     return Html::a(
-                                                        '<span class="glyphicon glyphicon-trash"></span>',
+                                                        '<span class="glyphicon glyphicon-trash"></span> ' . Yii::t('app', 'Delete'),
                                                         Url::toRoute(
                                                             ['/catalog/italian-product/intrash', 'id' => $model->id]
                                                         ),
@@ -190,7 +217,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'class' => kartik\grid\CheckboxColumn::class,
                                             'name' => 'id',
                                             'checkboxOptions' => function ($model) {
-                                                /** @var $model \frontend\modules\catalog\models\ItalianProduct */
+                                                /** @var $model ItalianProduct */
                                                 if ($model->published) {
                                                     return ['disabled' => true];
                                                 } else {

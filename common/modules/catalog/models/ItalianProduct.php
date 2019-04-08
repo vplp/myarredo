@@ -701,4 +701,28 @@ class ItalianProduct extends ActiveRecord
     {
         return self::findBase()->user_id($user_id)->andWhere(['IN', 'id', array_unique($ids)])->all();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCountViews()
+    {
+//        return SaleStats::findBase()
+//            ->andWhere(['sale_item_id' => $this->id])
+//            ->count();
+
+        return 0;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountRequestPhone()
+    {
+//        return SalePhoneRequest::findBase()
+//            ->andWhere(['sale_item_id' => $this->id])
+//            ->count();
+
+        return 0;
+    }
 }
