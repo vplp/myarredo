@@ -30,7 +30,6 @@ use frontend\modules\catalog\models\ItalianProduct;
             <?php
             foreach ($modelOrder->items as $orderItem) { ?>
                 <div class="basket-item-info">
-
                     <div class="img-cont">
                         <?php if (ItalianProduct::isPublished($orderItem->product['alias'])) {
                             echo Html::a(
