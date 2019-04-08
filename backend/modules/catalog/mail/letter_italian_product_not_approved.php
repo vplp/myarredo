@@ -1,8 +1,19 @@
 <?php
 
 use yii\helpers\Html;
+//
+use frontend\modules\catalog\models\ItalianProduct;
 
 /* @var $this yii\web\View */
+/** @var $model ItalianProduct */
+
+$search = ['$full_name'];
+
+$replace = [
+    $model->user->profile->getFullName()
+];
+
+$text = str_replace($search, $replace, $text);
 
 ?>
 
@@ -11,6 +22,13 @@ use yii\helpers\Html;
         <span style="color: #fff; font:bold 16px Arial,sans-serif;">Мы помогаем купить итальянскую мебель по лучшим ценам.</span>
     </div>
     <div style="background-color:#fff9ea; text-align: left; padding: 10px 0 40px 10px;">
-
+        <?= $text ?>
+    </div>
+    <div style="background-color:#fff9ea; text-align: left; padding: 10px 0 40px 10px;">
+        <?= Html::a(
+            Yii::t('app', 'View'),
+            'https://www.myarredo.ru/italian-product/update/' . $model->id,
+            ['style' => '']
+        ) ?>
     </div>
 </div>

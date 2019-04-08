@@ -425,19 +425,6 @@ class ItalianProduct extends ActiveRecord
             }
         }
 
-        if (key_exists('status', $changedAttributes)) {
-            $statusNew = Yii::$app->request->getBodyParam('ItalianProduct')['status'];
-            $statusOld = $changedAttributes['status'];
-
-            if ($statusNew == 'not_approved') {
-                // letter_italian_product_change_status
-                // Yii::$app->param->getByName('MAIL_ITALIAN_PRODUCT_NOT_APPROVED_TEXT')
-            } elseif ($statusNew == 'approved') {
-                // letter_italian_product_change_status
-                // Yii::$app->param->getByName('MAIL_ITALIAN_PRODUCT_APPROVED_TEXT')
-            }
-        }
-
         parent::afterSave($insert, $changedAttributes);
     }
 
