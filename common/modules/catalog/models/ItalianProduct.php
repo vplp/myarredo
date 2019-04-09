@@ -21,6 +21,7 @@ use common\modules\user\models\User;
 use common\modules\payment\models\{
     Payment, PaymentRelItem
 };
+use common\modules\shop\models\OrderItem;
 
 /**
  * Class ItalianProduct
@@ -406,7 +407,7 @@ class ItalianProduct extends ActiveRecord
                     }
                 }
             }
-        } else if ($this->scenario == 'backend') {
+        } elseif ($this->scenario == 'backend') {
             // delete relation ItalianProductRelSpecification
             ItalianProductRelSpecification::deleteAll(['item_id' => $this->id]);
 
@@ -707,22 +708,18 @@ class ItalianProduct extends ActiveRecord
      */
     public function getCountViews()
     {
-//        return SaleStats::findBase()
-//            ->andWhere(['sale_item_id' => $this->id])
-//            ->count();
-
-        return 0;
+        return ItalianProductStats::findBase()
+            ->andWhere(['item_id' => $this->id])
+            ->count();
     }
 
     /**
      * @return mixed
      */
-    public function getCountRequestPhone()
+    public function getCountRequests()
     {
-//        return SalePhoneRequest::findBase()
-//            ->andWhere(['sale_item_id' => $this->id])
-//            ->count();
-
-        return 0;
+        return OrderItem::findBase()
+            ->andWhere(['product_id' => $this->id])
+            ->count();
     }
 }

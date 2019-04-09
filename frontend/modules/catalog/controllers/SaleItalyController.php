@@ -4,21 +4,18 @@ namespace frontend\modules\catalog\controllers;
 
 use Yii;
 use yii\helpers\{
-    ArrayHelper, Html
+    ArrayHelper
 };
-use yii\web\Response;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 //
 use frontend\components\BaseController;
-use frontend\modules\location\models\{
-    Country, City
-};
 use frontend\modules\catalog\models\{
     ItalianProduct,
     ItalianProductLang,
     search\ItalianProduct as filterItalianProductModel,
+    ItalianProductStats,
     Category,
     Factory,
     Types,
@@ -129,6 +126,9 @@ class SaleItalyController extends BaseController
         if ($model == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
+
+        // ItalianProductStats
+        ItalianProductStats::create($model->id);
 
         $this->breadcrumbs[] = [
             'label' => Yii::t('app', 'Sale in Italy'),

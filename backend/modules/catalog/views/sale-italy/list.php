@@ -88,6 +88,21 @@ echo GridView::widget([
             'label' => Yii::t('app', 'Status'),
         ],
         [
+            'label' => Yii::t('app', 'Количество просмотров'),
+            'format' => 'raw',
+            'value' => function ($model) {
+                /** @var $model ItalianProduct */
+                return $model->getCountViews();
+            },
+        ],
+        [
+            'label' => Yii::t('app', 'Количество запросов'),
+            'value' => function ($model) {
+                /** @var $model ItalianProduct */
+                return $model->getCountRequests();
+            },
+        ],
+        [
             'class' => ActionStatusColumn::class,
             'attribute' => 'published',
             'action' => 'published'

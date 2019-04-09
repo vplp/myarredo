@@ -37,6 +37,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
         $query = parent::findBase();
 
         if (!Yii::$app->getUser()->isGuest &&
+            Yii::$app->controller->id == 'italian-product' &&
             in_array(Yii::$app->user->identity->group->role, ['factory', 'partner'])) {
             $query
                 ->andWhere(['user_id' => Yii::$app->user->identity->id])

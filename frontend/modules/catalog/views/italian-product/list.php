@@ -138,7 +138,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'headerOptions' => ['class' => 'col-sm-2'],
                                         ],
                                         [
-                                            'label' => Yii::t('app', 'Просмотры товара'),
+                                            'label' => Yii::t('app', 'Количество просмотров'),
                                             'format' => 'raw',
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
@@ -146,10 +146,10 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             },
                                         ],
                                         [
-                                            'label' => Yii::t('app', 'Запрос телефона'),
+                                            'label' => Yii::t('app', 'Количество запросов'),
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
-                                                return $model->getCountRequestPhone();
+                                                return $model->getCountRequests();
                                             },
                                         ],
                                         [

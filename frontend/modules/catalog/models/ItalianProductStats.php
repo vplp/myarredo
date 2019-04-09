@@ -7,16 +7,16 @@ use Yii;
 use frontend\modules\catalog\Catalog;
 
 /**
- * Class SaleStats
+ * Class ItalianProductStats
  *
  * @package frontend\modules\catalog\models
  */
-class SaleStats extends \common\modules\catalog\models\SaleStats
+class ItalianProductStats extends \common\modules\catalog\models\ItalianProductStats
 {
     /**
-     * @param $sale_item_id
+     * @param $item_id
      */
-    public static function create($sale_item_id)
+    public static function create($item_id)
     {
         /** @var $module Catalog */
         $module = Yii::$app->getModule('catalog');
@@ -27,7 +27,7 @@ class SaleStats extends \common\modules\catalog\models\SaleStats
             $model->setScenario('frontend');
 
             $model->user_id = Yii::$app->getUser()->id ?? 0;
-            $model->sale_item_id = $sale_item_id;
+            $model->item_id = $item_id;
             $model->country_id = Yii::$app->city->getCountryId();
             $model->city_id = Yii::$app->city->getCityId();
             $model->ip = Yii::$app->request->userIP;
