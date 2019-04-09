@@ -2,6 +2,7 @@
 
 namespace common\modules\catalog\models;
 
+use DateTime;
 use Yii;
 use yii\helpers\{
     ArrayHelper
@@ -53,6 +54,8 @@ use common\modules\shop\models\OrderItem;
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $published
+ * @property integer $published_date_from
+ * @property integer $published_date_to
  * @property integer $deleted
  * @property integer $mark
  * @property integer $status
@@ -132,6 +135,8 @@ class ItalianProduct extends ActiveRecord
                     'factory_id',
                     'created_at',
                     'updated_at',
+                    'published_date_from',
+                    'published_date_to',
                     'position'
                 ],
                 'integer'
@@ -230,7 +235,7 @@ class ItalianProduct extends ActiveRecord
     public function scenarios()
     {
         return [
-            'published' => ['published'],
+            'published' => ['published', 'published_date_from', 'published_date_to'],
             'deleted' => ['deleted'],
             'on_main' => ['on_main'],
             'setImages' => ['image_link', 'gallery_image'],
@@ -329,6 +334,8 @@ class ItalianProduct extends ActiveRecord
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
+            'published_date_from' => Yii::t('app', 'Published date from'),
+            'published_date_to' => Yii::t('app', 'Published date to'),
             'deleted' => Yii::t('app', 'Deleted'),
             'mark' => 'Mark',
             'status' => Yii::t('app', 'Status'),
@@ -350,6 +357,16 @@ class ItalianProduct extends ActiveRecord
 
         if (in_array($this->scenario, ['frontend', 'backend'])) {
             $this->mark = '0';
+        }
+
+        if (in_array($this->scenario, ['published', 'backend'])) {
+            if ($this->published == '1' && $this->published_date_from == 0 && $this->published_date_to == 0) {
+                $this->published_date_from = time();
+                $this->published_date_to = strtotime('+60 days');
+            } elseif ($this->published == '0' && $this->published_date_from > 0) {
+                $this->published_date_from = 0;
+                $this->published_date_to = 0;
+            }
         }
 
         return parent::beforeSave($insert);
@@ -721,5 +738,18 @@ class ItalianProduct extends ActiveRecord
         return OrderItem::findBase()
             ->andWhere(['product_id' => $this->id])
             ->count();
+    }
+
+    /**
+     * @return string
+     * @throws \Exception
+     */
+    public function getDiffPublishedDate()
+    {
+        $datetime1 = new DateTime('now');
+        $datetime2 = (new DateTime())->setTimestamp($this->published_date_to);
+
+        $interval = $datetime1->diff($datetime2);
+        return $interval->format('%a');
     }
 }
