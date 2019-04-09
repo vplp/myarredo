@@ -63,5 +63,4 @@ class User extends \common\modules\user\models\User
 
         return $query->one();
     }
-
 }

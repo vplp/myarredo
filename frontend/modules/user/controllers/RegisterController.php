@@ -230,7 +230,7 @@ class RegisterController extends BaseController
                     ->compose(
                         'letter_about_registration',
                         [
-                            'user' => $model,
+                            'user' => $modelUser,
                             'password' => $model['password'],
                             'text' => Yii::$app->param->getByName('MAIL_REGISTRATION_TEXT_FOR_FACTORY')
                         ]
@@ -300,7 +300,7 @@ class RegisterController extends BaseController
                     ->compose(
                         'letter_about_registration',
                         [
-                            'user' => $model,
+                            'user' => $modelUser,
                             'password' => $model['password'],
                             'text' => Yii::$app->param->getByName('MAIL_REGISTRATION_TEXT_FOR_PARTNER')
                         ]
@@ -309,13 +309,9 @@ class RegisterController extends BaseController
                     ->setSubject(Yii::$app->name)
                     ->send();
 
-                if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
-                    return $this->redirect(Url::toRoute('/user/profile/index'));
-                }
+                Yii::$app->session->setFlash('success', Yii::$app->param->getByName('USER_PERTNER_REG_CONGRATULATIONS'));
 
-                if ($status === true) {
-                    return $this->redirect(Url::toRoute('/user/login/index'));
-                }
+                return $this->redirect(Url::toRoute('/user/login/index'));
             }
         }
 
