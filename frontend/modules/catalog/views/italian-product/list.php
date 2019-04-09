@@ -37,6 +37,18 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                     <?= Html::tag('h1', Yii::t('app', 'Furniture in Italy')); ?>
                     <div class="itprod-panel-add">
                         <?= Html::a(
+                            '<i class="fa fa-list"></i> ' . Yii::t('app', 'Активные'),
+                            null,
+                            ['class' => 'btn']
+                        ) ?>
+
+                        <?= Html::a(
+                            '<i class="fa fa-list"></i> ' . Yii::t('app', 'Завершенные'),
+                            Url::toRoute(['/catalog/italian-product/completed']),
+                            ['class' => 'btn']
+                        ) ?>
+
+                        <?= Html::a(
                             '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Add'),
                             Url::toRoute(['/catalog/italian-product/create']),
                             ['class' => 'btn btn-goods']

@@ -133,6 +133,13 @@ class ItalianProductController extends BaseController
                     'modelClass' => $this->model,
                     'filterModel' => $this->filterModel,
                 ],
+                'completed' => [
+                    'class' => ListModel::class,
+                    'modelClass' => $this->model,
+                    'methodName' => 'completed',
+                    'view' => 'completed',
+                    'filterModel' => $this->filterModel,
+                ],
                 'create' => [
                     'class' => CreateWithLang::class,
                     'modelClass' => $this->model,

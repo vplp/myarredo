@@ -135,6 +135,18 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
+    public function completed($params)
+    {
+        $query = ItalianProductModel::findBase();
+        return $this->baseSearch($query, $params);
+    }
+
+    /**
+     * @param $params
+     * @return mixed|ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
     public function trash($params)
     {
         $query = ItalianProductModel::findBase();

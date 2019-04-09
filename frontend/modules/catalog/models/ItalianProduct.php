@@ -38,10 +38,19 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
 
         if (!Yii::$app->getUser()->isGuest &&
             Yii::$app->controller->id == 'italian-product' &&
+            Yii::$app->controller->action->id != 'completed' &&
             in_array(Yii::$app->user->identity->group->role, ['factory', 'partner'])) {
             $query
-                ->andWhere(['user_id' => Yii::$app->user->identity->id])
+                ->andWhere([self::tableName() . '.user_id' => Yii::$app->user->identity->id])
                 ->undeleted();
+        } elseif (!Yii::$app->getUser()->isGuest &&
+            Yii::$app->controller->id == 'italian-product' &&
+            Yii::$app->controller->action->id == 'completed' &&
+            in_array(Yii::$app->user->identity->group->role, ['factory', 'partner'])) {
+            $query
+                ->andWhere([self::tableName() . '.user_id' => Yii::$app->user->identity->id])
+                ->andWhere(['<=', self::tableName() . '.published_date_to', time()])
+                ->enabled();
         } else {
             $query
                 ->enabled();
@@ -79,6 +88,17 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
     public function search($params)
     {
         return (new search\ItalianProduct())->search($params);
+    }
+
+    /**
+     * @param $params
+     * @return mixed|\yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function completed($params)
+    {
+        return (new search\ItalianProduct())->completed($params);
     }
 
     /**
