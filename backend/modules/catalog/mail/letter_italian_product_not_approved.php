@@ -7,7 +7,7 @@ use frontend\modules\catalog\models\ItalianProduct;
 /* @var $this yii\web\View */
 /** @var $model ItalianProduct */
 
-$search = ['$full_name'];
+$search = ['FULL_NAME'];
 
 $replace = [
     $model->user->profile->getFullName()
