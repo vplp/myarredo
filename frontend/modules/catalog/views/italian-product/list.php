@@ -43,7 +43,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                         ) ?>
 
                         <?= Html::a(
-                            '<i class="fa fa-list"></i> ' . Yii::t('app', 'Завершенные'),
+                            '<i class="fa fa-outdent"></i> ' . Yii::t('app', 'Завершенные'),
                             Url::toRoute(['/catalog/italian-product/completed']),
                             ['class' => 'btn']
                         ) ?>

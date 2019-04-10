@@ -6813,9 +6813,6 @@ h1 {
 #italian-product-grid-container table.table tbody tr td a.btn.btn-xs:first-child {
   margin-bottom: 5px;
 }
-.itprod-box .btn-goods {
-  margin-top: 20px;
-}
 .itprod-box .cont-goods .table .jq-checkbox {
   cursor: pointer;
 }
@@ -6860,6 +6857,12 @@ h1 {
 }
 .add-itprod-content .container {
   width: 100%;
+}
+.itprod-panel-add {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  margin-bottom: 10px;
 }
 .progress-steps-box {
   display: flex;
@@ -7123,7 +7126,7 @@ h1 {
 @media (min-width: 1461px) {
   .itprod-panel-add {
     max-width: 1400px;
-    margin: 0 auto;
+    margin: 16px auto 10px;
     padding: 0 15px;
   }
   .itprod-box #factory-product {
@@ -7421,6 +7424,11 @@ h1 {
   .progress-steps-step {
     width: 25%;
     min-width: 25%;
+  }
+}
+@media (max-width: 400px) {
+  .itprod-panel-add {
+    flex-direction: column;
   }
 }
 @media (max-width: 355px) {
