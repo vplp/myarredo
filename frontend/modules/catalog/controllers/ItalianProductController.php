@@ -85,7 +85,7 @@ class ItalianProductController extends BaseController
              * cost 1 product = 5 EUR
              * conversion to RUB
              */
-            $cost = 0.2;
+            $cost = 5;
 
             $currency = Currency::findByCode2('EUR');
             /** @var Currency $amount */

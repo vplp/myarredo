@@ -63,21 +63,6 @@ use frontend\modules\catalog\models\{
 
         <?= Yii::$app->param->getByName('ITALIAN_PRODUCT_STEP3_TEXT') ?>
 
-        <!--<h4 class="additprod-title">Помни это...</h4>
-    <div class="additprod-textbox">
-        <p>
-            Обьявление будет опубликовано если оно соответствует правилам Myarredo
-        </p>
-        <p>
-            Не вводите одно и то же обьявление несколько раз
-        </p>
-    </div>
-    <div class="panel-additprod-rules">
-        <a href="#" class="btn-myarredo">
-            <i class="fa fa-question-circle" aria-hidden="true"></i>
-            Правила
-        </a>
-    </div>-->
     </div>
 </div>
 <!-- rules box end -->
