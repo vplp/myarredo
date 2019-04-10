@@ -48,12 +48,12 @@ class LangSwitch extends Widget
         $items = [];
 
         foreach ($this->items as $lang) {
-            $path = \Yii::$app->request->pathInfo;
+            $path = Yii::$app->request->url;
 
             if ($lang['local'] == Yii::$app->language) {
                 $this->current = [
                     'label' => $lang['label'],
-                    'url' => '/' . $lang['alias'] . '/' . $path,
+                    'url' => Yii::$app->request->hostInfo . '/' . $lang['alias'] . $path,
                     'alias' => $lang['alias'],
                     'model' => $lang,
                 ];
@@ -62,14 +62,14 @@ class LangSwitch extends Widget
             if (!$lang['by_default']) {
                 $items[] = [
                     'label' => $lang['label'],
-                    'url' => '/' . $lang['alias'] . '/' . $path,
+                    'url' => Yii::$app->request->hostInfo . '/' . $lang['alias'] . $path,
                     'alias' => $lang['alias'],
                     'model' => $lang,
                 ];
             } else {
                 $items[] = [
                     'label' => $lang['label'],
-                    'url' => '/' . $path,
+                    'url' => Yii::$app->request->hostInfo . $path,
                     'alias' => $lang['alias'],
                     'model' => $lang,
                 ];

@@ -68,7 +68,7 @@ class ItalianProductController extends BaseController
     {
         $this->title = Yii::t('app', 'Furniture in Italy');
 
-        if ($ids = Yii::$app->getRequest()->post('id')) {
+        if ($ids = Yii::$app->getRequest()->get('id')) {
             $models = ItalianProduct::findByIDsUserId($ids, Yii::$app->getUser()->id);
 
             if ($models == null) {

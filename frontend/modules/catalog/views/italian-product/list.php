@@ -11,10 +11,6 @@ use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
     ItalianProduct, Factory
 };
-//
-use thread\widgets\grid\{
-    GridViewFilter
-};
 
 /**
  * @var $pages Pagination
@@ -115,7 +111,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                         [
                                             'format' => 'raw',
                                             'attribute' => 'title',
-                                            'filter' =>false,
+                                            'filter' => false,
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
                                                 return
@@ -175,19 +171,33 @@ $this->title = Yii::t('app', 'Furniture in Italy');
 
                                                 if ($model->published == 1) {
                                                     // $status = $model->getDiffPublishedDate();
-                                                    $status = Html::tag('div', 
-                                                    Html::tag('div', '' , [
-                                                        'class' => 'progressbar',
-                                                        'style' => 'width:'.(100 * $model->getDiffPublishedDate() / 60). '%',
-                                                        ]),
-                                                    ['class' => 'progressbox', 'title' => (100 * $model->getDiffPublishedDate() / 60) . '%'])
-                                                    . Html::tag('span', 'осталось дней - '.$model->getDiffPublishedDate(), ['class' => 'progresssubtitle']);
+                                                    $status = Html::tag(
+                                                            'div',
+                                                            Html::tag(
+                                                                'div',
+                                                                '',
+                                                                [
+                                                                    'class' => 'progressbar',
+                                                                    'style' => 'width:' . (100 * $model->getDiffPublishedDate() / 60) . '%',
+                                                                ]
+                                                            ),
+                                                            [
+                                                                'class' => 'progressbox',
+                                                                'title' => (100 * $model->getDiffPublishedDate() / 60) . '%'
+                                                            ]
+                                                        )
+                                                        .
+                                                        Html::tag(
+                                                            'span',
+                                                            Yii::t('app', 'Осталось дней') . ' - ' . $model->getDiffPublishedDate(),
+                                                            ['class' => 'progresssubtitle']
+                                                        );
                                                 } else {
                                                     $status = Html::a(
                                                         Yii::t('app', 'Опубликовать'),
                                                         ['/catalog/italian-product/payment'],
                                                         [
-                                                            'data-method' => 'POST',
+                                                            'data-method' => 'GET',
                                                             'data-params' => [
                                                                 '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
                                                                 'id[]' => $model->id,
@@ -283,7 +293,7 @@ $('.kv-row-checkbox').on('change', function () {
 $('.js-add-products-to-payment').on('click', function () {
     var keys = $("#italian-product-grid").yiiGridView("getSelectedRows");
     if (keys.length > 0) {
-        var form = '<form action="' + baseUrl + 'italian-product/payment/" method="post">' +
+        var form = '<form action="' + baseUrl + 'italian-product/payment/" method="get">' +
         '<input type="hidden" name="_csrf" value="' + $('#token').val() + '" />';
         
         $.each(keys, function(key, value) {
