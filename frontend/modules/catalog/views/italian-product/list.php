@@ -103,6 +103,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                         [
                                             'format' => 'raw',
                                             'attribute' => 'title',
+                                            'filter' =>false,
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
                                                 return
@@ -110,23 +111,24 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                         $model['lang']['title'],
                                                         Url::toRoute(
                                                             ['/catalog/italian-product/update', 'id' => $model->id]
-                                                        )
+                                                        ),
+                                                        ['class' => 'prodname']
                                                     );
                                             },
                                             'label' => Yii::t('app', 'Title'),
                                         ],
-                                        [
-                                            'attribute' => 'factory_id',
-                                            'format' => 'raw',
-                                            'value' => function ($model) {
-                                                /** @var $model ItalianProduct */
-                                                return ($model['factory'])
-                                                    ? $model['factory']['title']
-                                                    : $model['factory_name'];
-                                            },
-                                            'filter' => false,
-                                            'headerOptions' => ['class' => 'col-sm-2'],
-                                        ],
+                                        // [
+                                        //     'attribute' => 'factory_id',
+                                        //     'format' => 'raw',
+                                        //     'value' => function ($model) {
+                                        //         /** @var $model ItalianProduct */
+                                        //         return ($model['factory'])
+                                        //             ? $model['factory']['title']
+                                        //             : $model['factory_name'];
+                                        //     },
+                                        //     'filter' => false,
+                                        //     'headerOptions' => ['class' => 'col-sm-2'],
+                                        // ],
                                         [
                                             'attribute' => 'price_new',
                                             'format' => 'raw',
@@ -142,14 +144,15 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'format' => 'raw',
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
-                                                return $model->getCountViews();
+                                                return Html::tag('span', $model->getCountViews(), ['class' => 'viewscount']);
                                             },
                                         ],
                                         [
+                                            'format' => 'raw',
                                             'label' => Yii::t('app', 'Количество запросов'),
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
-                                                return $model->getCountRequests();
+                                                return Html::tag('span', $model->getCountRequests(), ['class' => 'requestcount']);
                                             },
                                         ],
                                         [
@@ -159,7 +162,14 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                 /** @var $model ItalianProduct */
 
                                                 if ($model->published == 1) {
-                                                    $status = $model->getDiffPublishedDate();
+                                                    // $status = $model->getDiffPublishedDate();
+                                                    $status = Html::tag('div', 
+                                                    Html::tag('div', '' , [
+                                                        'class' => 'progressbar',
+                                                        'style' => 'width:'.(100 * $model->getDiffPublishedDate() / 60). '%',
+                                                        ]),
+                                                    ['class' => 'progressbox', 'title' => (100 * $model->getDiffPublishedDate() / 60) . '%'])
+                                                    . Html::tag('span', 'осталось дней - '.$model->getDiffPublishedDate(), ['class' => 'progresssubtitle']);
                                                 } else {
                                                     $status = Html::a(
                                                         Yii::t('app', 'Опубликовать'),
@@ -170,6 +180,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                                 '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
                                                                 'id[]' => $model->id,
                                                             ],
+                                                            'class' => 'btn-puplished btn-xs'
                                                         ]
                                                     );
                                                 }

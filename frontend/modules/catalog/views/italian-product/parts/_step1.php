@@ -272,7 +272,7 @@ $Specifications = Specification::findBase()->all();
         echo $form->field(
             $model,
             'phone',
-            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+            ['template' => "{label}<div class=\"col-sm-4\">{input}</div>\n{hint}\n{error}"]
         ) ?>
 
         <?php
@@ -282,7 +282,7 @@ $Specifications = Specification::findBase()->all();
         echo $form->field(
             $model,
             'email',
-            ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
+            ['template' => "{label}<div class=\"col-sm-4\">{input}</div>\n{hint}\n{error}"]
         ) ?>
 
         <?= $form

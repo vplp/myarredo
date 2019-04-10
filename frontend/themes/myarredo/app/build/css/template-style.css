@@ -1749,8 +1749,7 @@ h1 {
   .btn-goods:hover,
   .btn-goods:focus {
     color: #ffffff;
-    background-color: #255a1c;
-    border-radius: 2px;
+    background-color: #28a745;
   }
   .btn-cancel {
     background-color: transparent;
@@ -6798,8 +6797,21 @@ h1 {
 .field-specification-for-kitchen .select2-search__field {
   min-width: 200px !important;
 }
-#italian-product-grid-container table.table tbody tr td:nth-child(5) {
+#italian-product-grid-container table.table tbody tr td,
+#italian-product-grid-container table.table thead tr th {
+  vertical-align: middle;
   text-align: center;
+}
+#italian-product-grid-container table.table tbody tr td:nth-child(5),
+#italian-product-grid-container table.table tbody tr td:nth-child(4) {
+  text-align: center;
+}
+#italian-product-grid-container table.table tbody tr td a.btn.btn-xs {
+  width: 100%;
+  max-width: 120px;
+}
+#italian-product-grid-container table.table tbody tr td a.btn.btn-xs:first-child {
+  margin-bottom: 5px;
 }
 .itprod-box .btn-goods {
   margin-top: 20px;
@@ -6812,6 +6824,12 @@ h1 {
 }
 .itprod-box .cont-goods .table thead tr td input[type=text] {
   background-color: #f3f2f0;
+}
+.add-itprod-box form .form-control {
+  max-width: 585px;
+}
+.add-itprod-box form .select2-container {
+  max-width: 585px;
 }
 .create-sale .largex-container .column-center.add-itprod-box {
   padding-left: 25px;
@@ -7027,6 +7045,72 @@ h1 {
   color: #fff;
   background-color: #218838;
   border-color: #1e7e34;
+}
+.viewscount::before {
+  font-family: "FontAwesome";
+  content: "\f06e";
+  font-size: 16px;
+  margin-right: 4px;
+}
+.requestcount:before {
+  font-family: "FontAwesome";
+  content: "\f003";
+  font-size: 16px;
+  margin-right: 4px;
+}
+.progressbox {
+  width: 100%;
+  max-width: 180px;
+  height: 15px;
+  position: relative;
+  background-color: #ddd;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+.progressbar {
+  background-color: #28a745;
+  width: 43%;
+  height: 100%;
+  position: absolute;
+  border-radius: 10px 0 0 10px;
+}
+#factory-product table a.prodname {
+  font-weight: 600;
+  color: #333333;
+  text-decoration: none;
+  transition: 0.4s;
+}
+#factory-product table a.prodname:hover {
+  text-decoration: none;
+  color: #337ab7;
+}
+.btn-puplished {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid #448339;
+  background-color: #448339;
+  color: #ffffff;
+  padding: 2px 8px;
+  font-size: 13px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-puplished:hover {
+  text-decoration: none;
+  background-color: #28a745;
+  border-color: #28a745;
+  color: #ffffff;
+}
+.btn-dell.btn-danger {
+  background-color: #C4242E;
+}
+.btn-default {
+  cursor: pointer;
 }
 /* .category-page .filters .one-filter.colors-box .one-item-check.selected .my-checkbox:after {
   color: #ffffff;
