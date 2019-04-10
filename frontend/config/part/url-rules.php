@@ -82,6 +82,7 @@ return [
     'sale-italy-product/<alias:[\w\-]+>' => 'catalog/sale-italy/view',
     //
     'italian-product' => 'catalog/italian-product/list',
+    'italian-product/completed' => 'catalog/italian-product/completed',
     'italian-product/create' => 'catalog/italian-product/create',
     'italian-product/payment' => 'catalog/italian-product/payment',
     'italian-product/update/<id:[\d\-]+>/<step:(photo|check|payment)>' => 'catalog/italian-product/update',
