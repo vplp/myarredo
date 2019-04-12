@@ -8,6 +8,7 @@ use yii\filters\AccessControl;
 use frontend\components\BaseController;
 use frontend\modules\payment\models\{
     Payment, search\Payment as filterPaymentModel
+};
 
 /**
  * Class PartnerPaymentController
