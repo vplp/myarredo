@@ -8,9 +8,6 @@ use yii\filters\AccessControl;
 use frontend\components\BaseController;
 use frontend\modules\payment\models\{
     Payment, search\Payment as filterPaymentModel
-};
-//
-use thread\actions\ListModel;
 
 /**
  * Class PartnerPaymentController
@@ -48,20 +45,6 @@ class PartnerPaymentController extends BaseController
     }
 
     /**
-     * @return array
-     */
-    public function actions()
-    {
-        return [
-            'list1' => [
-                'class' => ListModel::class,
-                'modelClass' => $this->model,
-                'filterModel' => $this->filterModel,
-            ],
-        ];
-    }
-
-    /**
      * @return string
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
@@ -71,11 +54,10 @@ class PartnerPaymentController extends BaseController
         $model = new Payment();
 
         $params = Yii::$app->request->queryParams ?? [];
-        if (!Yii::$app->getUser()->isGuest &&
-            in_array(Yii::$app->user->identity->group->role, ['factory', 'partner'])) {
-            $params['user_id'] = Yii::$app->getUser()->id;
-            $params['type'] = 'italian_item';
-        }
+
+        $params['user_id'] = Yii::$app->getUser()->id;
+        $params['type'] = 'italian_item';
+
         $models = $model->search($params);
 
         return $this->render('list', [
