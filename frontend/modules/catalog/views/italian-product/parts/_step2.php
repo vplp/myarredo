@@ -53,11 +53,13 @@ use backend\app\bootstrap\ActiveForm;
         ->field($model, 'gallery_image')
         ->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
 
-    <?= $form->field($model, 'file_link')->fileInputWidget(
-        $model->getFileLink(),
-        ['accept' => '.jpeg,.png,.doc,.docx,.xlsx,application/pdf', 'maxFileSize' => 0],
-        ['jpeg', 'png', 'pdf', 'doc', 'docx', 'xlsx']
-    ) ?>
+    <?= $form
+        ->field($model, 'file_link')
+        ->fileInputWidget(
+            $model->getFileLink(),
+            ['accept' => '.jpeg,.png,.doc,.docx,.xlsx,application/pdf', 'maxFileSize' => 0],
+            ['jpeg', 'png', 'pdf', 'doc', 'docx', 'xlsx']
+        ) ?>
 
     <div class="buttons-cont">
         <?= Html::submitButton(

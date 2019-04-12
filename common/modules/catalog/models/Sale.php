@@ -275,6 +275,26 @@ class Sale extends ActiveRecord
             $this->mark = '0';
         }
 
+        if (YII_ENV_PROD) {
+            /** @var Catalog $module */
+            $module = Yii::$app->getModule('catalog');
+
+            $path = $module->getProductUploadPath();
+            $url = $module->getProductUploadUrl();
+
+            $images = explode(',', $this->gallery_image);
+
+            $imagesSources = [];
+
+            foreach ($images as $image) {
+                if (is_file($path . '/' . $image)) {
+                    $imagesSources[] = $image;
+                }
+            }
+
+            $this->gallery_image = implode(',', $imagesSources);
+        }
+
         return parent::beforeSave($insert);
     }
 
@@ -497,7 +517,7 @@ class Sale extends ActiveRecord
         $imagesSources = [];
 
         foreach ($images as $key => $image) {
-            if (file_exists($path . '/' . $image)) {
+            if (is_file($path . '/' . $image)) {
                 $imagesSources[] = $url . '/' . $image;
             } else {
                 unset($images[$key]);
