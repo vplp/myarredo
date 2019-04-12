@@ -31,7 +31,7 @@ use thread\app\base\models\ActiveRecord;
  * @property boolean $published
  * @property boolean $deleted
  *
- * @property PaymentRelItem[] $items_ids
+ * @property PaymentRelItem[] $items
  *
  * @package common\modules\payment\models
  */
@@ -136,17 +136,17 @@ class Payment extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id',
+            'user_id' => Yii::t('app', 'User'),
             'type',
-            'amount',
-            'currency',
-            'payment_status',
-            'payment_time',
+            'amount' => Yii::t('app', 'Amount'),
+            'currency' => Yii::t('app', 'Currency'),
+            'payment_status' => Yii::t('app', 'Payment status'),
+            'payment_time' => Yii::t('app', 'Payment time'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
-            'items_ids'
+            'items_ids' => Yii::t('app', 'Products'),
         ];
     }
 
@@ -155,7 +155,7 @@ class Payment extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->orderBy('id');
+        return self::find()->orderBy('id DESC');
     }
 
     /**

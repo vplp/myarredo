@@ -84,6 +84,10 @@ class UserMenu extends Widget
                     'label' => Yii::t('app', 'General rules'),
                     'url' => ['/rules/rules/list']
                 ],
+                [
+                    'label' => Yii::t('app', 'Платежная информация'),
+                    'url' => ['/payment/partner-payment/list']
+                ],
             ];
         } elseif (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') {
             $this->menuItems = [
@@ -141,6 +145,10 @@ class UserMenu extends Widget
                 [
                     'label' => Yii::t('app', 'General rules'),
                     'url' => ['/rules/rules/list']
+                ],
+                [
+                    'label' => Yii::t('app', 'Платежная информация'),
+                    'url' => ['/payment/partner-payment/list']
                 ],
             ];
         } else {
