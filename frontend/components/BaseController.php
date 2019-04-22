@@ -47,6 +47,16 @@ abstract class BaseController extends Controller
     /**
      * @inheritdoc
      */
+    public function afterAction($action, $result)
+    {
+        $this->detectBrowserLanguage();
+
+        return parent::afterAction($action, $result);
+    }
+
+    /**
+     * @inheritdoc
+     */
     protected function setCurrency()
     {
         $session = Yii::$app->session;
@@ -92,6 +102,36 @@ abstract class BaseController extends Controller
                 ]);
             }
             unset($alternatePages);
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function detectBrowserLanguage()
+    {
+        $session = Yii::$app->session;
+
+        // список языков
+        $languages = Language::getAllByLocate();
+        $current_url = Yii::$app->request->url;
+
+        $sites = [];
+
+        foreach ($languages as $alternate) {
+            $sites[$alternate['alias']] = Yii::$app->request->hostInfo .
+                ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') .
+                str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url);
+        }
+
+        // получаем язык
+        $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+
+        // перенаправление на субдомен
+        if (!$session->has('BrowserLanguage') && in_array($lang, array_keys($sites))) {
+            $session->set('BrowserLanguage', $lang);
+            header('Location: ' . $sites[$lang], false, 301);
+            exit();
         }
     }
 }
