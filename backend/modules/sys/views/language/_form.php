@@ -1,5 +1,9 @@
 <?php
+
 use backend\app\bootstrap\ActiveForm;
+use backend\modules\sys\models\Language;
+
+/** @var $model Language */
 
 $form = ActiveForm::begin();
 echo $form->submit($model, $this);
