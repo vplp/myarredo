@@ -6,10 +6,13 @@ use yii\helpers\{
 use yii\widgets\ActiveForm;
 //
 use frontend\modules\catalog\models\ItalianProduct;
+use frontend\modules\payment\models\Payment;
 
 $this->title = $this->context->title;
 
-/** @var \frontend\modules\payment\models\Payment $modelPayment */
+/** @var $modelPayment Payment */
+/** @var $models ItalianProduct */
+/** @var $product ItalianProduct */
 
 ?>
 
@@ -30,36 +33,55 @@ $this->title = $this->context->title;
                         'action' => Url::toRoute(['/payment/payment/invoice'])
                     ]); ?>
 
-                    <div id="list-product">
-                        <?php
-                        foreach ($models as $product) {
-                            /** @var ItalianProduct $product */
-                            echo '<div class="list-product-item">' .
-                                $product->getTitle() .
-                                Html::input(
-                                    'hidden',
-                                    'Payment[items_ids][]',
-                                    $product->id
-                                ) .
-                                Html::img(
-                                    ItalianProduct::getImageThumb($product['image_link']),
-                                    ['width' => 50]
-                                ) .
-                                Html::a(
-                                    '<i class="fa fa-times"></i></a>',
-                                    "javascript:void(0);",
-                                    [
-                                        'id' => 'del-product',
-                                        'class' => 'close',
-                                        'data-id' => $product->id
-                                    ]
-                                ) .
-                                '</div>';
-                        } ?>
-                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>№</th>
+                            <th><?= Yii::t('app', 'Наименование услуг') ?></th>
+                            <th><?= Yii::t('app', 'Количество') ?></th>
+                            <th><?= Yii::t('app', 'Цена') ?></th>
+                            <th><?= Yii::t('app', 'Сумма') ?></th>
+                            <th><?= Yii::t('app', 'Валюта') ?></th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                    <div><?= Yii::t('app', 'Всего к оплате') ?>
-                        : <?= $modelPayment->amount . ' ' . $modelPayment->currency ?></div>
+                        <?php foreach ($models as $key => $product) { ?>
+                            <tr>
+                                <th><?= $key + 1 ?></th>
+                                <td>
+                                    <?= $product->getTitle() .
+                                    Html::input(
+                                        'hidden',
+                                        'Payment[items_ids][]',
+                                        $product->id
+                                    ) .
+                                    Html::img(
+                                        ItalianProduct::getImageThumb($product['image_link']),
+                                        ['width' => 50]
+                                    ) ?>
+                                </td>
+                                <td>1</td>
+                                <td><?= $amount ?></td>
+                                <td><?= $amount ?></td>
+                                <td><?= $modelPayment->currency ?></td>
+                            </tr>
+                        <?php } ?>
+
+                        </tbody>
+                    </table>
+
+                    <div>
+                        <?= Yii::t('app', 'Итого') ?>: <?= $modelPayment->amount . ' ' . $modelPayment->currency ?>
+                    </div>
+                    <div>
+                        <?= Yii::t('app', 'В том числе НДС') ?>
+                        : <?= '0 ' . $modelPayment->currency ?>
+                    </div>
+                    <div>
+                        <?= Yii::t('app', 'Всего к оплате') ?>
+                        : <?= $modelPayment->amount . ' ' . $modelPayment->currency ?>
+                    </div>
 
                     <?php
                     echo $form

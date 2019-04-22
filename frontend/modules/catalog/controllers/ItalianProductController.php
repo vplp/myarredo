@@ -89,19 +89,17 @@ class ItalianProductController extends BaseController
 
             $currency = Currency::findByCode2('EUR');
             /** @var Currency $amount */
-            $amount = ($cost * $currency->course + 1 * $currency->course + 0.12 * $currency->course);
+            $amount = ceil($cost * $currency->course + 1 * $currency->course + 0.12 * $currency->course);
+            $amount = number_format($amount, 2, '.', '');
 
-            $modelPayment->amount = number_format(
-                ceil(count($models) * $amount),
-                2,
-                '.',
-                ''
-            );
+            $modelPayment->amount = number_format(count($models) * $amount, 2, '.', '');
             $modelPayment->currency = 'RUB';
 
             return $this->render('payment', [
                 'models' => $models,
                 'modelPayment' => $modelPayment,
+                'amount' => $amount,
+                'currency' => $currency,
             ]);
         } else {
             throw new ForbiddenHttpException('Access denied');

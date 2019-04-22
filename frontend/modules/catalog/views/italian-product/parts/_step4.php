@@ -32,14 +32,10 @@ $cost = 5;
 
 $currency = Currency::findByCode2('EUR');
 /** @var Currency $amount */
-$amount = ($cost * $currency->course + 1 * $currency->course + 0.12 * $currency->course);
+$amount = ceil($cost * $currency->course + 1 * $currency->course + 0.12 * $currency->course);
+$amount = number_format($amount, 2, '.', '');
 
-$modelPayment->amount = number_format(
-    ceil($amount),
-    2,
-    '.',
-    ''
-);
+$modelPayment->amount = number_format($amount, 2, '.', '');
 $modelPayment->currency = 'RUB';
 ?>
 
@@ -80,26 +76,53 @@ $modelPayment->currency = 'RUB';
                         'action' => Url::toRoute(['/payment/payment/invoice']),
                     ]); ?>
 
-                    <div id="list-product">
-                        <div class="list-product-item">
-                            <?php
-                            /** @var ItalianProduct $product */
-                            echo $model->getTitle() .
-                                Html::input(
-                                    'hidden',
-                                    'Payment[items_ids][]',
-                                    $model->id
-                                ) .
-                                Html::img(
-                                    ItalianProduct::getImageThumb($model['image_link']),
-                                    ['width' => 50]
-                                ) ?>
-                        </div>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>№</th>
+                            <th><?= Yii::t('app', 'Наименование услуг') ?></th>
+                            <th><?= Yii::t('app', 'Количество') ?></th>
+                            <th><?= Yii::t('app', 'Цена') ?></th>
+                            <th><?= Yii::t('app', 'Сумма') ?></th>
+                            <th><?= Yii::t('app', 'Валюта') ?></th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
+                            <tr>
+                                <th>1</th>
+                                <td>
+                                    <?= $model->getTitle() .
+                                    Html::input(
+                                        'hidden',
+                                        'Payment[items_ids][]',
+                                        $model->id
+                                    ) .
+                                    Html::img(
+                                        ItalianProduct::getImageThumb($model['image_link']),
+                                        ['width' => 50]
+                                    ) ?>
+                                </td>
+                                <td>1</td>
+                                <td><?= $amount ?></td>
+                                <td><?= $amount ?></td>
+                                <td><?= $modelPayment->currency ?></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <div>
+                        <?= Yii::t('app', 'Итого') ?>: <?= $modelPayment->amount . ' ' . $modelPayment->currency ?>
                     </div>
-
-                    <div><?= Yii::t('app', 'Всего к оплате') ?>
-                        : <?= $modelPayment->amount . ' ' . $modelPayment->currency ?></div>
+                    <div>
+                        <?= Yii::t('app', 'В том числе НДС') ?>
+                        : <?= '0 ' . $modelPayment->currency ?>
+                    </div>
+                    <div>
+                        <?= Yii::t('app', 'Всего к оплате') ?>
+                        : <?= $modelPayment->amount . ' ' . $modelPayment->currency ?>
+                    </div>
 
                     <?php
                     echo $form
