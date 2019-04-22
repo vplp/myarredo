@@ -33,6 +33,9 @@ return [
     'shop' => [
         'class' => \frontend\modules\shop\Shop::class,
     ],
+    'sys' => [
+        'class' => \frontend\modules\sys\Sys::class,
+    ],
     'feedback' => [
         'class' => \frontend\modules\feedback\Feedback::class,
     ],

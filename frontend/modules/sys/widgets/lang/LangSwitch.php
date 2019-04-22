@@ -4,6 +4,9 @@ namespace frontend\modules\sys\widgets\lang;
 
 use Yii;
 use yii\base\Widget;
+use yii\helpers\Html;
+//
+use frontend\modules\sys\models\Language;
 
 /**
  * Class LangSwitch
@@ -37,7 +40,7 @@ class LangSwitch extends Widget
         $langModel = new Yii::$app->languages->languageModel();
 
         $this->items = $langModel->getLanguages();
-        $this->current = $langModel->getCurrent()['label'];
+        $this->current = $langModel->getCurrent();
     }
 
     /**
@@ -45,15 +48,24 @@ class LangSwitch extends Widget
      */
     public function run()
     {
+        $this->current['image'] = Language::isImage($this->current['img_flag'])
+            ? Html::img(Language::getImage($this->current['img_flag']))
+            : '<i class="fa fa-globe" aria-hidden="true"></i>';
+
         $items = [];
 
         foreach ($this->items as $lang) {
             $path = Yii::$app->request->url;
 
+            $image =  Language::isImage($lang['img_flag'])
+                ? Html::img(Language::getImage($lang['img_flag']))
+                : '<i class="fa fa-globe" aria-hidden="true"></i>';
+
             if ($lang['local'] == Yii::$app->language) {
                 $this->current = [
                     'label' => $lang['label'],
                     'url' => Yii::$app->request->hostInfo . '/' . $lang['alias'] . $path,
+                    'image' => $image,
                     'alias' => $lang['alias'],
                     'model' => $lang,
                 ];
@@ -63,6 +75,7 @@ class LangSwitch extends Widget
                 $items[] = [
                     'label' => $lang['label'],
                     'url' => Yii::$app->request->hostInfo . '/' . $lang['alias'] . $path,
+                    'image' => $image,
                     'alias' => $lang['alias'],
                     'model' => $lang,
                 ];
@@ -70,6 +83,7 @@ class LangSwitch extends Widget
                 $items[] = [
                     'label' => $lang['label'],
                     'url' => Yii::$app->request->hostInfo . $path,
+                    'image' => $image,
                     'alias' => $lang['alias'],
                     'model' => $lang,
                 ];

@@ -115,7 +115,7 @@ class RegisterController extends BaseController
 
             $modelSignInForm->login();
 
-                Yii::$app->session->setFlash('success', Yii::$app->param->getByName('USER_CONFIRMATION_SUCCESS'));
+            Yii::$app->session->setFlash('success', Yii::$app->param->getByName('USER_CONFIRMATION_SUCCESS'));
 
             return $this->redirect(Url::toRoute('/user/login/index'));
         }

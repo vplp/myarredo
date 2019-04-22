@@ -1,11 +1,16 @@
 <?php
 
 use yii\helpers\Html;
+//
+use frontend\modules\sys\models\Language;
+
+/** @var $current Language */
+/** @var $models Language */
+/** @var $model Language */
 
 ?>
 <div class="one-list js-toggle-list">
-    <i class="fa fa-globe" aria-hidden="true"></i>
-    <?= $current['label'] ?>
+    <?= $current['image'] . $current['label'] ?>
 </div>
 <ul class="mobile-lang-list js-list-container">
     <?php
@@ -16,7 +21,7 @@ use yii\helpers\Html;
         echo Html::tag(
             'li',
             Html::a(
-                '<i class="fa fa-globe" aria-hidden="true"></i>' . $model['label'],
+                $model['image'] . $model['label'],
                 $model['url'],
                 []
             )
