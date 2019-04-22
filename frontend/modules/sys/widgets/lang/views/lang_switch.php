@@ -11,7 +11,7 @@ use frontend\modules\sys\models\Language;
 ?>
 
 <?= Html::a(
-    $current['image'] . $current['label'] .
+    $current['image'] . ' ' . $current['label'] .
     '<i class="fa fa-chevron-down" aria-hidden="true"></i>',
     'javascript:void(0);',
     ['class' => 'js-select-lang']
@@ -26,7 +26,7 @@ use frontend\modules\sys\models\Language;
         echo Html::tag(
             'li',
             Html::a(
-                $model['image'] . $model['label'],
+                $model['image'] . ' ' . $model['label'],
                 $model['url'],
                 []
             )

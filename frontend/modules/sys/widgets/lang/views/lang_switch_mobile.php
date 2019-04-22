@@ -10,7 +10,7 @@ use frontend\modules\sys\models\Language;
 
 ?>
 <div class="one-list js-toggle-list">
-    <?= $current['image'] . $current['label'] ?>
+    <?= $current['image'] . ' ' . $current['label'] ?>
 </div>
 <ul class="mobile-lang-list js-list-container">
     <?php
@@ -21,7 +21,7 @@ use frontend\modules\sys\models\Language;
         echo Html::tag(
             'li',
             Html::a(
-                $model['image'] . $model['label'],
+                $model['image'] . ' ' . $model['label'],
                 $model['url'],
                 []
             )
