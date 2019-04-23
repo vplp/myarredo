@@ -83,7 +83,6 @@ $modelPayment->currency = 'RUB';
                             <th><?= Yii::t('app', 'Наименование услуг') ?></th>
                             <th><?= Yii::t('app', 'Количество') ?></th>
                             <th><?= Yii::t('app', 'Цена') ?></th>
-                            <th><?= Yii::t('app', 'Сумма') ?></th>
                             <th><?= Yii::t('app', 'Валюта') ?></th>
                         </tr>
                         </thead>
@@ -104,7 +103,6 @@ $modelPayment->currency = 'RUB';
                                     ) ?>
                                 </td>
                                 <td>1</td>
-                                <td><?= $amount ?></td>
                                 <td><?= $amount ?></td>
                                 <td><?= $modelPayment->currency ?></td>
                             </tr>
