@@ -70,11 +70,11 @@ $this->title = $this->context->title;
                     </table>
 
                     <div>
-                        <?= Yii::t('app', 'Итого') ?>: <?= $modelPayment->amount . ' ' . $modelPayment->currency ?>
+                        <?= Yii::t('app', 'Итого') ?>: <?= $total . ' ' . $modelPayment->currency ?>
                     </div>
                     <div>
                         <?= Yii::t('app', 'В том числе НДС') ?>
-                        : <?= '0 ' . $modelPayment->currency ?>
+                        : <?= $nds . ' ' . $modelPayment->currency ?>
                     </div>
                     <div>
                         <?= Yii::t('app', 'Всего к оплате') ?>

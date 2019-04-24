@@ -81,24 +81,30 @@ class ItalianProductController extends BaseController
             $modelPayment->user_id = Yii::$app->user->id;
             $modelPayment->type = 'italian_item';
 
+            $currency = Currency::findByCode2('EUR');
+
+            /** @var Currency $amount */
+
             /**
              * cost 1 product = 5 EUR
              * conversion to RUB
              */
-            $cost = 5;
+            $cost = 5 * $currency->course;
 
-            $currency = Currency::findByCode2('EUR');
-            /** @var Currency $amount */
-            $amount = ceil($cost * $currency->course + 1 * $currency->course + 0.12 * $currency->course);
+            $amount = $cost + ($cost * 0.02);
             $amount = number_format($amount, 2, '.', '');
 
-            $modelPayment->amount = number_format(count($models) * $amount, 2, '.', '');
+            $total = count($models) * $amount;
+            $nds = $total / 100 * 20;
+            $modelPayment->amount = number_format($total + $nds, 2, '.', '');
             $modelPayment->currency = 'RUB';
 
             return $this->render('payment', [
                 'models' => $models,
                 'modelPayment' => $modelPayment,
                 'amount' => $amount,
+                'total' => $total,
+                'nds' => $nds,
                 'currency' => $currency,
             ]);
         } else {

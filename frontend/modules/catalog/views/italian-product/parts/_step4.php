@@ -24,18 +24,22 @@ $modelPayment->setScenario('frontend');
 $modelPayment->user_id = Yii::$app->user->id;
 $modelPayment->type = 'italian_item';
 
+$currency = Currency::findByCode2('EUR');
+
+/** @var Currency $amount */
+
 /**
  * cost 1 product = 5 EUR
  * conversion to RUB
  */
-$cost = 5;
+$cost = 5 * $currency->course;
 
-$currency = Currency::findByCode2('EUR');
-/** @var Currency $amount */
-$amount = ceil($cost * $currency->course + 1 * $currency->course + 0.12 * $currency->course);
+$amount = $cost + ($cost * 0.02);
 $amount = number_format($amount, 2, '.', '');
 
-$modelPayment->amount = number_format($amount, 2, '.', '');
+$total = $amount;
+$nds = $total / 100 * 20;
+$modelPayment->amount = number_format($total + $nds, 2, '.', '');
 $modelPayment->currency = 'RUB';
 ?>
 
@@ -111,11 +115,11 @@ $modelPayment->currency = 'RUB';
                     </table>
 
                     <div>
-                        <?= Yii::t('app', 'Итого') ?>: <?= $modelPayment->amount . ' ' . $modelPayment->currency ?>
+                        <?= Yii::t('app', 'Итого') ?>: <?= $total . ' ' . $modelPayment->currency ?>
                     </div>
                     <div>
                         <?= Yii::t('app', 'В том числе НДС') ?>
-                        : <?= '0 ' . $modelPayment->currency ?>
+                        : <?= $nds . ' ' . $modelPayment->currency ?>
                     </div>
                     <div>
                         <?= Yii::t('app', 'Всего к оплате') ?>
