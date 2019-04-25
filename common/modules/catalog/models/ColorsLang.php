@@ -15,6 +15,7 @@ use thread\app\base\models\ActiveRecordLang;
  * @property integer $rid
  * @property string $lang
  * @property string $title
+ * @property string $title_where
  *
  * @package common\modules\catalog\models
  */
@@ -43,9 +44,9 @@ class ColorsLang extends ActiveRecordLang
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            [['title'], 'required'],
+            [['title', 'title_where'], 'required'],
             ['rid', 'exist', 'targetClass' => Colors::class, 'targetAttribute' => 'id'],
-            [['title'], 'string', 'max' => 255],
+            [['title', 'title_where'], 'string', 'max' => 255],
         ]);
     }
 
@@ -55,7 +56,7 @@ class ColorsLang extends ActiveRecordLang
     public function scenarios()
     {
         return [
-            'backend' => ['title'],
+            'backend' => ['title', 'title_where'],
         ];
     }
 
@@ -66,6 +67,7 @@ class ColorsLang extends ActiveRecordLang
     {
         return [
             'title' => Yii::t('app', 'Title'),
+            'title_where' => Yii::t('app', 'Title where'),
         ];
     }
 }

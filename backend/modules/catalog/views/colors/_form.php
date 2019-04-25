@@ -2,10 +2,13 @@
 
 use backend\widgets\Tabs;
 use backend\app\bootstrap\ActiveForm;
+use backend\modules\catalog\models\{
+    Colors, ColorsLang
+};
 
 /**
- * @var \backend\modules\catalog\models\Colors $model
- * @var \backend\modules\catalog\models\ColorsLang $modelLang
+ * @var $model Colors
+ * @var $modelLang ColorsLang
  */
 
 $form = ActiveForm::begin();

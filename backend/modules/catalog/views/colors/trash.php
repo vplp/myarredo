@@ -7,9 +7,14 @@ use backend\widgets\GridView\GridView;
 use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
 };
+use backend\modules\catalog\models\{
+    Colors, ColorsLang
+};
 
 /**
- * @var \backend\modules\catalog\models\Colors $model
+ * @var $model Colors
+ * @var $filter Colors
+ * @var $modelLang ColorsLang
  */
 
 echo GridView::widget([
@@ -20,7 +25,7 @@ echo GridView::widget([
         [
             'attribute' => 'color_code',
             'value' => function ($model) {
-                /** @var \backend\modules\catalog\models\Colors $model */
+                /** @var $model Colors */
                 return Html::tag(
                     'span',
                     '&nbsp;&nbsp;&nbsp;',

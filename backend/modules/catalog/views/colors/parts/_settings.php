@@ -1,16 +1,22 @@
 <?php
 
 use kartik\color\ColorInput;
+//
+use backend\app\bootstrap\ActiveForm;
+use backend\modules\catalog\models\{
+    Colors, ColorsLang
+};
 
 /**
- * @var \backend\modules\catalog\models\Colors $model
- * @var \backend\modules\catalog\models\ColorsLang $modelLang
- * @var \backend\app\bootstrap\ActiveForm $form
+ * @var $model Colors
+ * @var $modelLang ColorsLang
+ * @var $form ActiveForm
  */
 
 ?>
 
 <?= $form->text_line_lang($modelLang, 'title') ?>
+<?= $form->text_line_lang($modelLang, 'title_where') ?>
 
 <?= $form->text_line($model, 'alias') ?>
 
