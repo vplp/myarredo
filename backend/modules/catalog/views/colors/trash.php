@@ -40,6 +40,7 @@ echo GridView::widget([
                 return $model->getTitle();
             },
         ],
+        'title_where',
         [
             'class' => ActionDeleteColumn::class,
         ],

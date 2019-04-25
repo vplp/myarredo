@@ -194,7 +194,7 @@ class CategoryController extends BaseController
 
             $colors = [];
             foreach ($models as $model) {
-                $colors[] = $model['lang']['title'];
+                $colors[] = $model['lang']['title_where'];
             }
 
             $pageTitle[] = implode(', ', $colors);

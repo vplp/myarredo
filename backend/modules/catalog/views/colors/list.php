@@ -41,6 +41,7 @@ echo GridView::widget([
                 return $model->getTitle();
             },
         ],
+        'title_where',
         [
             'class' => ActionStatusColumn::class,
             'attribute' => 'published',
