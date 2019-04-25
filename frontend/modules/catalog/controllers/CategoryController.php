@@ -185,6 +185,24 @@ class CategoryController extends BaseController
          * query
          */
 
+        if (!empty($params[$keys['colors']])) {
+            $models = Colors::findByAlias($params[$keys['colors']]);
+
+            $colors = [];
+            foreach ($models as $model) {
+                $colors[] = $model['lang']['title'];
+            }
+
+            $pageTitle[] = implode(', ', $colors);
+            $pageH1[] = implode(' - ', $colors);
+            $pageDescription[] = implode(', ', $colors);
+
+            $this->breadcrumbs[] = [
+                'label' => implode(', ', $colors),
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['colors'] => $params[$keys['colors']]])
+            ];
+        }
+
         if (!empty($params[$keys['category']])) {
             $model = Category::findByAlias($params[$keys['category']][0]);
 
