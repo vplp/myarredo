@@ -1,9 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+//
+use frontend\modules\page\models\Page;
 
 /**
- * @var $model \frontend\modules\page\models\Page
+ * @var $model Page
  */
 
 $this->title = $this->context->title;
