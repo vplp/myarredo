@@ -298,7 +298,8 @@ class CategoryController extends BaseController
          */
 
         $seo_title = implode(' ', $pageTitle) .
-            Yii::t('app', ' | Купить') .
+            ' | ' .
+            Yii::t('app', 'Купить') .
             ' ' .
             implode(' ', $pageTitle) .
             ' ' .
