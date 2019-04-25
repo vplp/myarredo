@@ -16,7 +16,7 @@ use backend\modules\catalog\models\{
 ?>
 
 <?= $form->text_line_lang($modelLang, 'title') ?>
-<?= $form->text_line_lang($modelLang, 'title_where') ?>
+<?= $form->text_line_lang($modelLang, 'plural_title') ?>
 
 <?= $form->text_line($model, 'alias') ?>
 

@@ -42,9 +42,9 @@ echo GridView::widget([
             'label' => Yii::t('app', 'Title'),
         ],
         [
-            'attribute' => 'title_where',
-            'value' => 'lang.title_where',
-            'label' => Yii::t('app', 'Title where'),
+            'attribute' => 'plural_title',
+            'value' => 'lang.plural_title',
+            'label' => Yii::t('app', 'Plural title'),
         ],
         [
             'class' => ActionDeleteColumn::class,

@@ -33,7 +33,7 @@ class m190425_120925_update_catalog_colors_lang_table extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn($this->tableLang, 'title_where', $this->string(128)->defaultValue(null)->comment('title'));
+        $this->addColumn($this->tableLang, 'plural_title', $this->string(128)->defaultValue(null));
     }
 
     /**
@@ -41,6 +41,6 @@ class m190425_120925_update_catalog_colors_lang_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropColumn($this->tableLang, 'title_where');
+        $this->dropColumn($this->tableLang, 'plural_title');
     }
 }
