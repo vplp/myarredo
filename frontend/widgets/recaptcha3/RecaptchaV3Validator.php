@@ -71,25 +71,5 @@ class RecaptchaV3Validator extends Validator
         }
 
         return $this->isValid ? null : [$this->message, []];
-
-//        if (!$value) {
-//            return [$this->message, []];
-//        }
-//
-//        $result = $this->_component->validateValue($value);
-//
-//        if ($result === false) {
-//            return [$this->message, []];
-//        }
-//
-//        if (!empty($result) && $result['success'] && $result['score'] > 0) {
-//            return null;
-//        }
-//        ///* !!! */ echo  '<pre style="color:red;">'; print_r($result); echo '</pre>'; /* !!! */ die;
-////        if ($this->acceptance_score !== null && $this->acceptance_score > $result) {
-////            return [$this->message, []];
-////        }
-//
-//        return [$this->message, []];
     }
 }
