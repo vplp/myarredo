@@ -128,11 +128,14 @@ abstract class BaseController extends Controller
         $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 
         // проверяем язык
-        if (!in_array($lang, array_keys($sites))) {
-            $lang = 'ru';
-            $session->set('BrowserLanguage', $lang);
-        } elseif (!$session->has('BrowserLanguage') && in_array($lang, array_keys($sites))) {
-            // перенаправление на субдомен
+//        if (!in_array($lang, array_keys($sites))) {
+//            $lang = 'ru';
+//        }
+        /** @var \frontend\modules\catalog\Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        // перенаправление на субдомен
+        if (!$module->isBot1() && !$module->isBot2() && !$session->has('BrowserLanguage') && in_array($lang, array_keys($sites))) {
             $session->set('BrowserLanguage', $lang);
             header('Location: ' . $sites[$lang], false, 301);
             exit();
