@@ -169,7 +169,9 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
 
-                                                if ($model->published == 1) {
+                                                if ($model->payment && $model->payment->payment_status == 'success' && $model->published == 0) {
+                                                    $status = Yii::t('app', 'На модерации');
+                                                } elseif ($model->payment && $model->payment->payment_status == 'success' && $model->published == 1) {
                                                     $status = Html::tag(
                                                             'div',
                                                             Html::tag(
@@ -204,10 +206,6 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                             'class' => 'btn-puplished btn-xs'
                                                         ]
                                                     );
-                                                }
-
-                                                if ($model->payment && $model->payment->payment_status == 'success') {
-                                                    $status = Yii::t('app', 'На модерации');
                                                 }
 
                                                 return $status;
