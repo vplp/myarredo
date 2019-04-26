@@ -131,14 +131,12 @@ abstract class BaseController extends Controller
 //        if (!in_array($lang, array_keys($sites))) {
 //            $lang = 'ru';
 //        }
-        /** @var \frontend\modules\catalog\Catalog $module */
-        $module = Yii::$app->getModule('catalog');
 
         // перенаправление на субдомен
-        if (!$module->isBot1() && !$module->isBot2() && !$session->has('BrowserLanguage') && in_array($lang, array_keys($sites))) {
-            $session->set('BrowserLanguage', $lang);
-            header('Location: ' . $sites[$lang], false, 301);
-            exit();
-        }
+//        if (!$session->has('BrowserLanguage') && in_array($lang, array_keys($sites))) {
+//            $session->set('BrowserLanguage', $lang);
+//            header('Location: ' . $sites[$lang], false, 301);
+//            exit();
+//        }
     }
 }
