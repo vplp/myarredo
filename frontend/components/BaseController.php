@@ -110,35 +110,37 @@ abstract class BaseController extends Controller
      */
     protected function detectBrowserLanguage()
     {
-        $session = Yii::$app->session;
+        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+            $session = Yii::$app->session;
 
-        // список языков
-        $languages = Language::getAllByLocate();
-        $current_url = Yii::$app->request->url;
+            // список языков
+            $languages = Language::getAllByLocate();
+            $current_url = Yii::$app->request->url;
 
-        $sites = [];
+            $sites = [];
 
-        foreach ($languages as $alternate) {
-            $sites[$alternate['alias']] = Yii::$app->request->hostInfo .
-                ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') .
-                str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url);
-        }
+            foreach ($languages as $alternate) {
+                $sites[$alternate['alias']] = Yii::$app->request->hostInfo .
+                    ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') .
+                    str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url);
+            }
 
-        // получаем язык
-        $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+            // получаем язык
+            $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 
-        // проверяем язык
+            // проверяем язык
 //        if (!in_array($lang, array_keys($sites))) {
 //            $lang = 'ru';
 //        }
 
-        // перенаправление на субдомен
-        if (!$session->has('BrowserLanguage') && in_array($lang, array_keys($sites))) {
-            $session->set('BrowserLanguage', $lang);
-            header('Location: ' . $sites[$lang]);
-            exit();
-        } else {
-            $session->set('BrowserLanguage', 'ru');
+            // перенаправление на субдомен
+            if (!$session->has('BrowserLanguage') && in_array($lang, array_keys($sites))) {
+                $session->set('BrowserLanguage', $lang);
+                header('Location: ' . $sites[$lang]);
+                exit();
+            } else {
+                $session->set('BrowserLanguage', 'ru');
+            }
         }
     }
 }
