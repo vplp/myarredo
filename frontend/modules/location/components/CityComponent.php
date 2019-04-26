@@ -96,7 +96,12 @@ class CityComponent extends Component
                 '+39 (9999) 999-9999'
             ];
         } elseif (Yii::$app->language == 'it-IT') {
-            $mask = '+39 (99) 999-99-99';
+            $mask = [
+                '+39 (99) 999-99-99',
+                '+39 (9999) 99999',
+                '+39 (9999) 999-999',
+                '+39 (9999) 999-9999'
+            ];
         } elseif (in_array($this->domain, ['by'])) {
             $mask = '+375 (99) 999-99-99';
         } elseif (in_array($this->domain, ['ua'])) {

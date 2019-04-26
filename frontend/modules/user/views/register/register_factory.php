@@ -6,11 +6,12 @@ use yii\helpers\{
 use yii\widgets\ActiveForm;
 //
 use frontend\themes\myarredo\assets\AppAsset;
+use frontend\modules\user\models\form\RegisterForm;
 
 $bundle = AppAsset::register($this);
 
 /**
- * @var \frontend\modules\user\models\form\RegisterForm $model
+ * @var $model RegisterForm
  */
 
 $this->title = Yii::t('app', 'Регистрация для фабрики');
