@@ -135,7 +135,7 @@ abstract class BaseController extends Controller
         // перенаправление на субдомен
         if (!$session->has('BrowserLanguage') && in_array($lang, array_keys($sites))) {
             $session->set('BrowserLanguage', $lang);
-            header('Location: ' . $sites[$lang], false, 301);
+            header('Location: ' . $sites[$lang]);
             exit();
         }
     }
