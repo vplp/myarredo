@@ -3,9 +3,10 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-
+//
+use forntend\modules\forms\models\FormsFeedback;
 /**
- * @var \common\modules\forms\models\FormsFeedback $model
+ * @var $model FormsFeedback
  */
 
 ?>

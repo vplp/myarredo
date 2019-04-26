@@ -170,7 +170,6 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                 /** @var $model ItalianProduct */
 
                                                 if ($model->published == 1) {
-                                                    // $status = $model->getDiffPublishedDate();
                                                     $status = Html::tag(
                                                             'div',
                                                             Html::tag(

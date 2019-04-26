@@ -89,7 +89,9 @@ $this->title = $this->context->title;
                                             $params = Yii::$app->catalogFilter->params;
                                             $params[$keys['style']] = $item['specification']['alias'];
 
-                                            ($model['factory']) ? $params[$keys['factory']] = $model['factory']['alias'] : null;
+                                            ($model['factory'])
+                                                ? $params[$keys['factory']] = $model['factory']['alias']
+                                                : null;
 
                                             $array[] = [
                                                 'title' => $item['specification']['lang']['title'],
@@ -205,10 +207,18 @@ $this->title = $this->context->title;
                             </table>
 
                             <div class="prod-shortstory">
-                                <?= $model['lang']['defects']; ?>
+                                <?= $model['lang']['defects'] != ''
+                                    ? Html::tag('strong', Yii::t('app', 'Defects'))
+                                    . '<br>' .
+                                    $model['lang']['defects']
+                                    : null; ?>
                             </div>
                             <div class="prod-shortstory">
-                                <?= $model['lang']['description']; ?>
+                                <?= $model['lang']['description'] != ''
+                                    ? Html::tag('strong', Yii::t('app', 'Description'))
+                                    . '<br>' .
+                                    $model['lang']['description']
+                                    : null; ?>
                             </div>
                         </div>
 
