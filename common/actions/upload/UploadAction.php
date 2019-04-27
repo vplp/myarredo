@@ -100,7 +100,11 @@ class UploadAction extends Action
 
             $result = [];
 
-            if ($model->validate() && $model->file) {
+            $result['$this->paramName'] = $this->paramName;
+            $result['$file'] = $file;
+            $result['$model'] = $model;
+
+            if ($model->validate() && $model->file != null) {
                 if ($this->unique === true) {
                     $model->file->name = uniqid() .
                         (empty($model->file->extension)
@@ -130,12 +134,11 @@ class UploadAction extends Action
                 } else {
                     $result['error'] = 'Can\'t upload file';
                 }
-
             } else {
-                $result['error'] = $model->getErrors();
+                $result['error'] = 'Can\'t upload file';
             }
 
-            if (\Yii::$app->getRequest()->isAjax) {
+            if (Yii::$app->getRequest()->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
             }
 

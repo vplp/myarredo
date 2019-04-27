@@ -29,12 +29,12 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
         $config['view'] = $this->form->getView();
 
         $name = uniqid();
+
         $initImageConfig = "{  
                     name: '" . basename($preview) . "',
                     key: '" . $preview . "',
                     url: '" . Url::toRoute(['filedelete', 'id' => $this->model->id]) . "'
                 }";
-
         $inputName = Html::getInputName($this->model, $this->attribute);
         $this->parts['{input}'] = Html::activeHiddenInput($this->model, $this->attribute);
         $this->parts['{input}'] .= FileInput::widget([
@@ -93,6 +93,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
         $config['attribute'] = $this->attribute;
         $config['view'] = $this->form->getView();
         $name = uniqid();
+
         $initImageConfig = [];
         $initImage = [];
         if (isset($options['initialPreview']) && !empty($options['initialPreview'])) {

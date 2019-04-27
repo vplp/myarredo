@@ -128,11 +128,6 @@ abstract class BaseController extends Controller
             // получаем язык
             $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 
-            // проверяем язык
-//        if (!in_array($lang, array_keys($sites))) {
-//            $lang = 'ru';
-//        }
-
             // перенаправление на субдомен
             if (!$session->has('BrowserLanguage') && in_array($lang, array_keys($sites))) {
                 $session->set('BrowserLanguage', $lang);
