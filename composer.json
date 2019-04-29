@@ -27,6 +27,7 @@
     "yiisoft/yii2-authclient": "*",
     "yiisoft/yii2-imagine": "*",
     "yiisoft/yii2-redis": "~2.0.0",
+    "kartik-v/yii2-widget-fileinput": "1.0.8",
     "kartik-v/yii2-widgets": "*",
     "kartik-v/yii2-editable": "^1.7",
     "kartik-v/yii2-date-range": "*",

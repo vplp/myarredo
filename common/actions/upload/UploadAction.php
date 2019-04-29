@@ -100,10 +100,6 @@ class UploadAction extends Action
 
             $result = [];
 
-            $result['$this->paramName'] = $this->paramName;
-            $result['$file'] = $file;
-            $result['$model'] = $model;
-
             if ($model->validate() && $model->file != null) {
                 if ($this->unique === true) {
                     $model->file->name = uniqid() .
@@ -135,7 +131,7 @@ class UploadAction extends Action
                     $result['error'] = 'Can\'t upload file';
                 }
             } else {
-                $result['error'] = 'Can\'t upload file';
+                $result['error'] = $model->getErrors();
             }
 
             if (Yii::$app->getRequest()->isAjax) {

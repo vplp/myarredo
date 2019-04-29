@@ -92,6 +92,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
         $config['model'] = $this->model;
         $config['attribute'] = $this->attribute;
         $config['view'] = $this->form->getView();
+
         $name = uniqid();
 
         $initImageConfig = [];
@@ -112,7 +113,6 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
             'name' => $name,
             'options' => [
                 'multiple' => true,
-                'class' => 'file-loading',
                 'accept' => 'image/*'
             ],
             'pluginOptions' => ArrayHelper::merge([
@@ -178,6 +178,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
         $config['view'] = $this->form->getView();
 
         $name = uniqid();
+
         $initialPreviewConfig = "{  
                     key: '" . basename($preview) . "',
                     filename: '" . basename($preview) . "',
