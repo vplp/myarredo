@@ -140,6 +140,15 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Yii::t('app', 'Orders') ?>
                                     </div>
                                 </a>
+                                <a href="<?= Url::toRoute(['/payment/partner-payment/list'], true) ?>"
+                                   class="profile-quadrlink">
+                                    <div class="profile-quadrlink-img">
+                                        <?= Html::img($bundle->baseUrl . '/img/statistics_factorys.png') ?>
+                                    </div>
+                                    <div class="profile-quadrlink-text">
+                                        <?= Yii::t('app', 'Платежная информация') ?>
+                                    </div>
+                                </a>
                             <?php } elseif (Yii::$app->user->identity->group->role == 'admin') { ?>
                                 <a href="<?= Url::toRoute(['/shop/admin-order/list'], true) ?>"
                                    class="profile-quadrlink">
@@ -221,6 +230,15 @@ $this->title = Yii::t('app', 'Profile');
                                     </div>
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'Factory statistics') ?>
+                                    </div>
+                                </a>
+                                <a href="<?= Url::toRoute(['/payment/partner-payment/list'], true) ?>"
+                                   class="profile-quadrlink">
+                                    <div class="profile-quadrlink-img">
+                                        <?= Html::img($bundle->baseUrl . '/img/statistics_factorys.png') ?>
+                                    </div>
+                                    <div class="profile-quadrlink-text">
+                                        <?= Yii::t('app', 'Платежная информация') ?>
                                     </div>
                                 </a>
                             <?php } ?>
