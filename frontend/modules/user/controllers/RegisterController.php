@@ -210,11 +210,11 @@ class RegisterController extends BaseController
                 /** @var User $modelUser */
                 /** send mail to admin */
 
-                $message = '<p>Название компании: ' . $modelUser->profile->name_company . '<br>' .
-                    'Имя: ' . $modelUser->profile->first_name . '<br>' .
-                    'Фамилия: ' . $modelUser->profile->last_name . '<br>' .
-                    'телефон: ' . $modelUser->profile->phone . '<br>' .
-                    'е-майл: ' . $modelUser->email . '</p>';
+                $message = '<p>Название компании: ' . $modelUser->profile->name_company . '</p>' .
+                    '<p>Имя: ' . $modelUser->profile->first_name . '</p>' .
+                    '<p>Фамилия: ' . $modelUser->profile->last_name . '</p>' .
+                    '<p>телефон: ' . $modelUser->profile->phone . '</p>' .
+                    '<p>е-майл: ' . $modelUser->email . '</p>';
 
                 Yii::$app
                     ->mailer
