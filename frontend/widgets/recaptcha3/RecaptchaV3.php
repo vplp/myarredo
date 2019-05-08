@@ -47,9 +47,11 @@ class RecaptchaV3 extends Component
      */
     public function registerScript($view)
     {
+        $lang = substr(Yii::$app->language, 0, 2);
+
         /** @var View $view */
         $view->registerJsFile(
-            $this->apiJs . '?render=' . $this->site_key,
+            $this->apiJs . '?render=' . $this->site_key . '&hl=' . $lang,
             [
                 'async' => true,
                 'defer' => true,
