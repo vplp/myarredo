@@ -358,6 +358,7 @@ class RegisterForm extends CommonForm
             'exp_with_italian' => $this->exp_with_italian,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
+            'preferred_language' => Yii::$app->language,
             'delivery_to_other_cities' => $this->delivery_to_other_cities,
             'cape_index' => $this->cape_index,
         ]);
@@ -435,7 +436,6 @@ class RegisterForm extends CommonForm
             'website' => $this->website,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
-            //'factory_package' => $this->factory_package,
             'preferred_language' => Yii::$app->language,
         ]);
         if ($model->validate()) {
@@ -512,7 +512,6 @@ class RegisterForm extends CommonForm
             'website' => $this->website,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
-            //'factory_package' => $this->factory_package,
             'preferred_language' => Yii::$app->language,
         ]);
         if ($model->validate()) {
