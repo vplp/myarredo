@@ -2,6 +2,10 @@
 
 /* @var $this yii\web\View */
 
+/* @var $title string */
+/* @var $message string */
+/* @var $url string */
+
 ?>
 
 <div style="width:540px; font: 16px Arial,sans-serif;">

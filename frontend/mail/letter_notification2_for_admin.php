@@ -9,9 +9,13 @@ use frontend\modules\catalog\models\{
 
 /* @var $this yii\web\View */
 
+/* @var $title string */
+/* @var $message string */
+/* @var $url string */
+
 /**
- * @var \frontend\modules\catalog\models\FactoryPromotion $model
- * @var \frontend\modules\catalog\models\FactoryProduct $modelProduct
+ * @var $model FactoryPromotion
+ * @var $modelProduct FactoryProduct
  */
 
 ?>
