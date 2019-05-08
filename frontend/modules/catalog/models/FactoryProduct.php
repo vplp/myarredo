@@ -148,7 +148,7 @@ class FactoryProduct extends CommonProduct
     {
         /** send mail to admin */
 
-        $message = 'Добавление фабрикой нового товара';
+        $message = Yii::$app->user->identity->profile->factory->title . ': ' . $this->title;
 
         Yii::$app
             ->mailer
@@ -156,7 +156,7 @@ class FactoryProduct extends CommonProduct
                 'letter_notification_for_admin',
                 [
                     'message' => $message,
-                    'title' => Yii::$app->user->identity->profile->factory->title . ': ' . $this->title,
+                    'title' => 'Добавление фабрикой нового товара',
                     'url' => Url::home(true) . 'backend/catalog/product/update?id=' . $this->id,
                 ]
             )

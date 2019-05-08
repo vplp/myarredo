@@ -143,17 +143,18 @@ class RegisterController extends BaseController
             if ($status === true) {
                 $modelUser = User::find()->email($model->email)->one();
 
+                /** @var User $modelUser */
                 /** send mail to admin */
 
-                $message = 'Зарегистрирован новый партнер';
+                $message = $modelUser->profile->name_company;
 
                 Yii::$app
                     ->mailer
                     ->compose(
                         'letter_notification_for_admin',
                         [
+                            'title' => 'Зарегистрирован новый партнер',
                             'message' => $message,
-                            'title' => $modelUser->profile->name_company,
                             'url' => Url::home(true) . 'backend/user/user/update?id=' . $modelUser->id,
                         ]
                     )
@@ -209,15 +210,19 @@ class RegisterController extends BaseController
                 /** @var User $modelUser */
                 /** send mail to admin */
 
-                $message = 'Зарегистрирована новая фабрика';
+                $message = '<p>Название компании: ' . $modelUser->profile->name_company . '<br>' .
+                    'Имя: ' . $modelUser->profile->first_name . '<br>' .
+                    'Фамилия: ' . $modelUser->profile->last_name . '<br>' .
+                    'телефон: ' . $modelUser->profile->phone . '<br>' .
+                    'е-майл: ' . $modelUser->email . '</p>';
 
                 Yii::$app
                     ->mailer
                     ->compose(
                         'letter_notification_for_admin',
                         [
+                            'title' => '<p>Зарегистрирована новая фабрика</p>',
                             'message' => $message,
-                            'title' => $modelUser->profile->name_company,
                             'url' => Url::home(true) . 'backend/user/user/update?id=' . $modelUser->id,
                         ]
                     )
@@ -279,15 +284,15 @@ class RegisterController extends BaseController
 
                 /** send mail to admin */
 
-                $message = 'Зарегистрировн новый логист';
+                $message = $modelUser->profile->name_company;
 
                 Yii::$app
                     ->mailer
                     ->compose(
                         'letter_notification_for_admin',
                         [
+                            'title' => 'Зарегистрировн новый логист',
                             'message' => $message,
-                            'title' => $modelUser->profile->name_company,
                             'url' => Url::home(true) . 'backend/user/user/update?id=' . $modelUser->id,
                         ]
                     )

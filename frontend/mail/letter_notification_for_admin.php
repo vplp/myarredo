@@ -11,8 +11,8 @@
         </span>
     </div>
     <div style="background-color:#fff9ea; text-align: left; padding: 10px 0 40px 10px;">
-        <div><?= $message ?></div>
         <div><?= $title ?></div>
+        <div><?= $message ?></div>
         <div><?= $url ?></div>
     </div>
 </div>
