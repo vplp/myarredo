@@ -238,7 +238,7 @@ class ItalianProduct extends ActiveRecord
             'published' => ['published', 'published_date_from', 'published_date_to'],
             'deleted' => ['deleted'],
             'on_main' => ['on_main'],
-            'setImages' => ['image_link', 'gallery_image'],
+            'setImages' => ['image_link', 'gallery_image', 'file_link'],
             'setMark' => ['mark'],
             'backend' => [
                 'country_id',
