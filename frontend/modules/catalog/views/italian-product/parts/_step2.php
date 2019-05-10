@@ -53,13 +53,16 @@ use backend\app\bootstrap\ActiveForm;
         ->field($model, 'gallery_image')
         ->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
 
-    <?= $form
-        ->field($model, 'file_link')
-        ->fileInputWidget(
-            $model->getFileLink(),
-            ['accept' => '.rar,.zip,.jpeg,.png,.doc,.docx,.xlsx,application/pdf', 'maxFileSize' => 0],
-            ['rar', 'zip', 'jpeg', 'png', 'pdf', 'doc', 'docx', 'xlsx']
-        ) ?>
+    <?php
+    if ($model->catalog_type_id == 3) {
+        echo $form
+            ->field($model, 'file_link')
+            ->fileInputWidget(
+                $model->getFileLink(),
+                ['accept' => '.rar,.zip,.jpeg,.png,.doc,.docx,.xlsx,application/pdf', 'maxFileSize' => 0],
+                ['rar', 'zip', 'jpeg', 'png', 'pdf', 'doc', 'docx', 'xlsx']
+            );
+    } ?>
 
     <div class="buttons-cont">
         <?= Html::submitButton(
