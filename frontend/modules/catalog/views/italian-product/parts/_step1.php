@@ -111,7 +111,10 @@ $Specifications = Specification::findBase()->all();
             <?php }
         } ?>
 
-        <?= $form->field($modelLang, 'defects')->textarea() ?>
+        <?= $form
+            ->field($modelLang, 'defects')
+            ->label(Yii::t('app', 'Опишите отличительные характеристики объекта, состояние сохранности и любые дефекты'))
+            ->textarea() ?>
 
         <?php
         /**
