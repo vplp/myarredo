@@ -14,7 +14,6 @@ use frontend\modules\catalog\models\Factory;
 
 <?php $form = ActiveForm::begin([
     'method' => 'get',
-    'action' => Url::toRoute(['/shop/admin-order/list']),
     'id' => 'form-stats',
     'options' => [
         'class' => 'form-filter-date-cont flex'
