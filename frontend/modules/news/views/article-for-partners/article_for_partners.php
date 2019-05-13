@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 
-
 /**
  * @var $model \frontend\modules\news\models\ArticleForPartners
  */

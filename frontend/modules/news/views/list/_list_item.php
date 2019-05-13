@@ -15,7 +15,7 @@ use yii\helpers\Html;
                  sizes="(min-width:1200px) 620px,
                         (min-width:1000px) 430px,
                         (min-width:620px)  580px, 280px">
-        <?php }?>
+        <?php } ?>
         <figcaption>
             <p class="date"><?= $article->getPublishedTime() ?></p>
             <p class="title"><?= Html::a(Html::encode($article['lang']['title']), $article->getUrl(), []) ?></p>
