@@ -80,50 +80,58 @@ $modelPayment->currency = 'RUB';
                         'action' => Url::toRoute(['/payment/payment/invoice']),
                     ]); ?>
 
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>№</th>
-                            <th><?= Yii::t('app', 'Наименование услуг') ?></th>
-                            <th><?= Yii::t('app', 'Количество') ?></th>
-                            <th><?= Yii::t('app', 'Цена') ?></th>
-                            <th><?= Yii::t('app', 'Валюта') ?></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
+                    <div class="wrap-table-totalpay">
+                        <table class="table table-bordered table-totalpay">
+                            <thead>
                             <tr>
-                                <th>1</th>
-                                <td>
-                                    <?= $model->getTitle() .
-                                    Html::input(
-                                        'hidden',
-                                        'Payment[items_ids][]',
-                                        $model->id
-                                    ) .
-                                    Html::img(
-                                        ItalianProduct::getImageThumb($model['image_link']),
-                                        ['width' => 50]
-                                    ) ?>
-                                </td>
-                                <td>1</td>
-                                <td><?= $amount ?></td>
-                                <td><?= $modelPayment->currency ?></td>
+                                <th>№</th>
+                                <th><?= Yii::t('app', 'Наименование услуг') ?></th>
+                                <th><?= Yii::t('app', 'Количество') ?></th>
+                                <th><?= Yii::t('app', 'Цена') ?></th>
+                                <th><?= Yii::t('app', 'Валюта') ?></th>
                             </tr>
+                            </thead>
+                            <tbody>
 
-                        </tbody>
-                    </table>
+                                <tr>
+                                    <th>1</th>
+                                    <td class="cell-img-and-descr">
+                                        <?= $model->getTitle() .
+                                        Html::input(
+                                            'hidden',
+                                            'Payment[items_ids][]',
+                                            $model->id
+                                        ) .
+                                        Html::img(
+                                            ItalianProduct::getImageThumb($model['image_link']),
+                                            ['width' => 50]
+                                        ) ?>
+                                    </td>
+                                    <td>1</td>
+                                    <td><?= $amount ?></td>
+                                    <td><?= $modelPayment->currency ?></td>
+                                </tr>
 
-                    <div>
-                        <?= Yii::t('app', 'Итого') ?>: <?= $total . ' ' . $modelPayment->currency ?>
+                            </tbody>
+                        </table>
                     </div>
-                    <div>
-                        <?= Yii::t('app', 'В том числе НДС') ?>
-                        : <?= $nds . ' ' . $modelPayment->currency ?>
-                    </div>
-                    <div>
-                        <?= Yii::t('app', 'Всего к оплате') ?>
-                        : <?= $modelPayment->amount . ' ' . $modelPayment->currency ?>
+
+                    <div class="total-box">
+                        <div>
+                           <span class="for-total"> <?= Yii::t('app', 'Итого') ?> :</span> <span class="for-styles"><?= $total . ' ' . $modelPayment->currency ?></span>
+                        </div>
+                        <div>
+                        <span class="for-total">
+                            <?= Yii::t('app', 'В том числе НДС') ?> :
+                        </span>
+                            <span class="for-styles"><?= $nds . ' ' . $modelPayment->currency ?></span>
+                        </div>
+                        <div>
+                            <span class="for-total">
+                                <?= Yii::t('app', 'Всего к оплате') ?> :
+                            </span>
+                            <span class="for-styles"><?= $modelPayment->amount . ' ' . $modelPayment->currency ?></span>
+                        </div>
                     </div>
 
                     <?php

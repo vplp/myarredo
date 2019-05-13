@@ -177,6 +177,13 @@ function showHideForItalia(country_id) {
         $('.field-registerform-cape_index').css('display', 'none');
     }
 }
+
+// js для отмены события ссылки для бутстрап-селектов в форме регистрации поле - Выбор страны  (для исправления бага в браузерах Firefox)
+(function() {
+    $('.field-registerform-country_id').on('click', '.bootstrap-select>.dropdown-toggle', function(etg) {
+        $(this).siblings('.dropdown-menu').find('a').attr('href', 'javascript:void(0)');
+    });
+})();
 JS;
 
 $this->registerJs($script, yii\web\View::POS_READY);

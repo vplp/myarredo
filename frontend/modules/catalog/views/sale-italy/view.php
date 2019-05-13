@@ -69,7 +69,7 @@ $this->title = $this->context->title;
                                 </div>
                             </div>
 
-                            <table class="info-table" width="100%">
+                            <table class="info-table itproduct-table" width="100%">
                                 <tr>
                                     <td><?= Yii::t('app', 'Factory') ?></td>
                                     <td>

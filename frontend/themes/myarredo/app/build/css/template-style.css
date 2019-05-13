@@ -2205,6 +2205,37 @@ h1 {
 .prod-card-page .prod-info-table {
   margin-bottom: 20px; }
 
+.prod-card-page .info-table.itproduct-table td.product-size>span {
+  display: inline-flex;
+  width: 45%;
+  margin-right: 10px;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .prod-card-page .info-table.itproduct-table td.product-size>span {
+    width: 100%;
+    margin-right: 0;
+  }
+} 
+@media (max-width: 640px) {
+  .prod-card-page .info-table.itproduct-table td.product-size>span {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+.table-totalpay .cell-img-and-descr img {
+  float: left;
+  margin-right: 10px;
+}
+@media (max-width: 700px) {
+  .wrap-table-totalpay {
+    width: 100%;
+    overflow: auto;
+  }
+  .table-totalpay {
+    min-width: 500px;
+  }
+}
 .composition .tab-pane {
   padding: 35px 0; }
 
@@ -4019,6 +4050,14 @@ h1 {
     margin: 0 auto;
     padding: 0 30px 25px;
   }
+  @media (max-width: 700px) {
+    .add-itprod-content .create-sale.page-reclamations .largex-container {
+      padding: 0;
+    }
+    .add-itprod-content .create-sale.page-reclamations .largex-container .column-center {
+      padding: 0 0 25px;
+    }
+  }
   .create-sale .largex-container .form-horizontal {
     width: auto;
   }
@@ -4058,6 +4097,35 @@ h1 {
   }
   .page-reclamations .close:hover {
     opacity: 1;
+  }
+
+  .page-reclamations .total-box {
+    max-width: 280px;
+    margin: 0 0 0 auto;
+    width: fit-content;
+  }
+  .page-reclamations .total-box>div {
+    margin-bottom: 2px;
+  }
+  .page-reclamations .total-box>div .for-styles {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .page-reclamations .total-box>div .for-total {
+    display: inline-block;
+    min-width: 135px;
+    margin-right: 6px;
+  }
+  @media (max-width: 360px) {
+    .page-reclamations .total-box {
+      width: 100%;
+      margin: 0 auto;
+    }
+    .page-reclamations .total-box>div .for-total {
+      min-width: auto;
+      width: 100%;
+
+    }
   }
   .field-factorypromotion-city_ids .control-label {
     color: #535351;
@@ -6531,6 +6599,10 @@ h1 {
   padding: 45px 0;
 }
 .factory-profile .part-contact-update .user-update-form {
+  width: 100%;
+}
+.factory-profile .part-contact.part-contact-update .field-profile-country_id label,
+.factory-profile .part-contact.part-contact-update .field-profile-city_id label {
   width: 100%;
 }
 .part-contact-left {
