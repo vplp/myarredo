@@ -97,7 +97,7 @@ class CityComponent extends Component
             ];
         } elseif (Yii::$app->language == 'it-IT') {
             $mask = [
-               // '+39 (99) 999-99-99',
+                '+39 (99) 999-99-99',
                 '+39 (9999) 99999',
                 '+39 (9999) 999-999',
                 '+39 (9999) 999-9999'
