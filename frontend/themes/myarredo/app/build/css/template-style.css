@@ -213,10 +213,10 @@ h1 {
       padding-left: 0;
       margin: 0; }
       .header .bot-header .navigation a {
-        font-size: 16px;
+        font-size: 15px;
         text-transform: uppercase;
         color: #41403e;
-        padding: 10px 15px;
+        padding: 10px 10px;
         font-weight: 600; }
         .header .bot-header .navigation a:hover, .header .bot-header .navigation a:active, .header .bot-header .navigation a:focus {
           text-decoration: none; }
@@ -4613,7 +4613,7 @@ h1 {
     min-width: 160px; }
   .header .bot-header .navigation a {
     font-size: 12px;
-    padding: 10px 10px; }
+    padding: 10px 7px; }
   .header .bot-header .navigation .list-level {
     padding: 25px 40px 30px; }
     .header .bot-header .navigation .list-level li {
