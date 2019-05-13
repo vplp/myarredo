@@ -354,21 +354,6 @@ $Specifications = Specification::findBase()->all();
 
             <?= Yii::$app->param->getByName('ITALIAN_PRODUCT_STEP1_TEXT') ?>
 
-            <!--<h4 class="additprod-title">Помни это...</h4>
-    <div class="additprod-textbox">
-        <p>
-            Обьявление будет опубликовано если оно соответствует правилам Myarredo
-        </p>
-        <p>
-            Не вводите одно и то же обьявление несколько раз
-        </p>
-    </div>
-    <div class="panel-additprod-rules">
-        <a href="#" class="btn-myarredo">
-            <i class="fa fa-question-circle" aria-hidden="true"></i>
-            Правила
-        </a>
-    </div>-->
         </div>
     </div>
     <!-- rules box end -->
@@ -382,8 +367,10 @@ $script = <<<JS
 var type_id = $('#italianproduct-catalog_type_id').find('option:selected').val();
 
 if (type_id == 3) {
-     $('.field-specification-for-kitchen').show();
+    $('.field-italianproduct-price_without_technology').show();
+    $('.field-specification-for-kitchen').show();
 } else {
+    $('.field-italianproduct-price_without_technology').hide();
     $('.field-specification-for-kitchen').hide();
     $('#select-specification-for-kitchen option').attr('selected', false).trigger("change");
 }
