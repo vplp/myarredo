@@ -35,12 +35,14 @@ use frontend\modules\catalog\models\Category;
             </ul>
         </div>
     </li>
+
     <li<?= (Yii::$app->controller->id == 'sale') ? ' class="has-list"' : '' ?>>
         <?= Html::a(
             Yii::t('app', 'Sale'),
             Url::toRoute(['/catalog/sale/list'])
         ) ?>
     </li>
+
     <?php if (Yii::$app->city->domain == 'ru') { ?>
         <li<?= (Yii::$app->controller->id == 'sale-italy') ? ' class="has-list"' : '' ?>>
             <?= Html::a(
@@ -56,14 +58,7 @@ use frontend\modules\catalog\models\Category;
             Url::toRoute(['/catalog/factory/list'])
         ) ?>
     </li>
-    <!--
-    <li<?= (Yii::$app->controller->id == 'page' && Yii::$app->request->get('alias') == 'about') ? ' class="has-list"' : '' ?>>
-        <?= Html::a(
-        Yii::t('app', 'About the project'),
-        Url::toRoute(['/page/page/view', 'alias' => 'about'])
-    ) ?>
-    </li>
-    -->
+
     <li<?= (Yii::$app->controller->id == 'contacts') ? ' class="has-list"' : '' ?>>
         <?= Html::a(
             Yii::t('app', 'Где купить'),
