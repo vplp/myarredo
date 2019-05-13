@@ -1,9 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+//
+use frontend\modules\forms\models\FormsFeedback;
 
 /**
- * @var \common\modules\forms\models\FormsFeedback $model
+ * @var FormsFeedback $model
  */
 
 ?>

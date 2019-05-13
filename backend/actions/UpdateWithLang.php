@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\actions;
 
 use Yii;
@@ -9,12 +10,9 @@ use yii\log\Logger;
  * Class UpdateWithLang
  *
  * @package backend\actions
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class UpdateWithLang extends \thread\actions\UpdateWithLang
 {
-
     /**
      * Run Callback function if model saved correctly
      */
@@ -25,7 +23,6 @@ class UpdateWithLang extends \thread\actions\UpdateWithLang
         $defaultLang = Yii::$app->languages->getDefault();
 
         if (isset($model['default_title']) && isset($model['lang']['title'])) {
-
             if ($defaultLang['local'] == $model['lang']['lang'] && $model['default_title'] != $model['lang']['title']) {
                 $model['default_title'] = $model['lang']['title'];
 

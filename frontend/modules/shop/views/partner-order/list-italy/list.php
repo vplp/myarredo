@@ -3,10 +3,14 @@
 use yii\helpers\{
     Html, Url
 };
+//
+use frontend\modules\shop\models\Order;
 use frontend\modules\news\widgets\news\NewsListForPartners;
 
 /**
- * @var \frontend\modules\shop\models\Order $modelOrder
+ * @var $modelOrder Order
+ * @var $model Order
+ * @var $models Order
  */
 
 $this->title = $this->context->title;
@@ -25,20 +29,6 @@ $this->title = $this->context->title;
                     'params' => $params,
                     'models' => $models,
                 ]); ?>
-
-                <?php if (!Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
-                    <div style="color:red; font-size: 24px;">
-                        Вы сможете ответить на Заявки покупателей после размещения
-                        небольшого кода на Вашем сайте.
-                        <u>
-                            <?= Html::a(
-                                Yii::t('app', 'Подробнее'),
-                                Url::toRoute(['/page/page/view', 'alias' => 'razmeshchenie-koda']),
-                                ['style' => 'color:red; font-size: 24px;']
-                            ) ?>
-                        </u>
-                    </div>
-                <?php } ?>
 
                 <div class="manager-history">
                     <div class="manager-history-header">
@@ -87,26 +77,26 @@ $this->title = $this->context->title;
                                         <span><?= $modelOrder->customer->full_name ?></span>
                                     </li>
                                     <li>
-                                            <span>
-                                                <?php
-                                                if ($modelOrder->orderAnswer->id &&
-                                                    $modelOrder->orderAnswer->answer_time != 0) {
-                                                    echo $modelOrder->customer->phone;
-                                                } else {
-                                                    echo '-';
-                                                } ?>
-                                            </span>
+                                        <span>
+                                            <?php
+                                            if ($modelOrder->orderAnswer->id &&
+                                                $modelOrder->orderAnswer->answer_time != 0) {
+                                                echo $modelOrder->customer->phone;
+                                            } else {
+                                                echo '-';
+                                            } ?>
+                                        </span>
                                     </li>
                                     <li>
-                                            <span>
-                                                <?php
-                                                if ($modelOrder->orderAnswer->id &&
-                                                    $modelOrder->orderAnswer->answer_time != 0) {
-                                                    echo $modelOrder->customer->email;
-                                                } else {
-                                                    echo '-';
-                                                } ?>
-                                            </span>
+                                        <span>
+                                            <?php
+                                            if ($modelOrder->orderAnswer->id &&
+                                                $modelOrder->orderAnswer->answer_time != 0) {
+                                                echo $modelOrder->customer->email;
+                                            } else {
+                                                echo '-';
+                                            } ?>
+                                        </span>
                                     </li>
                                     <li>
                                         <span><?= $modelOrder->orderAnswer->getAnswerTime() ?></span>
@@ -152,10 +142,10 @@ $this->title = $this->context->title;
     </main>
 
 <?php
-if (Yii::$app->user->identity->profile->possibilityToAnswer) {
-    $url = Url::toRoute(['/shop/partner-order/pjax-save']);
 
-    $script = <<<JS
+$url = Url::toRoute(['/shop/partner-order/pjax-save']);
+
+$script = <<<JS
 $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
     var form = $(this).parent();
    
@@ -205,5 +195,4 @@ $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
 });
 JS;
 
-    $this->registerJs($script, yii\web\View::POS_READY);
-}
+$this->registerJs($script, yii\web\View::POS_READY);

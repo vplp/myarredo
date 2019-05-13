@@ -33,6 +33,9 @@ return [
     'shop' => [
         'class' => \frontend\modules\shop\Shop::class,
     ],
+    'sys' => [
+        'class' => \frontend\modules\sys\Sys::class,
+    ],
     'feedback' => [
         'class' => \frontend\modules\feedback\Feedback::class,
     ],
@@ -50,6 +53,9 @@ return [
     ],
     'payment' => [
         'class' => \frontend\modules\payment\PaymentModule::class,
+    ],
+    'rules' => [
+        'class' => \frontend\modules\rules\RulesModule::class,
     ],
     'gridview' => [
         'class' => \kartik\grid\Module::class

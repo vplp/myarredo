@@ -1,10 +1,11 @@
 <?php
 
-use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
+use yii\widgets\ActiveForm;
 use kartik\widgets\Select2;
+//
 use frontend\modules\location\models\{
     Country, City
 };
@@ -82,4 +83,3 @@ $('select#factory_id').change(function(){
 JS;
 
 $this->registerJs($script, yii\web\View::POS_READY);
-?>

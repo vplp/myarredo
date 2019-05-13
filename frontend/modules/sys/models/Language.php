@@ -2,6 +2,9 @@
 
 namespace frontend\modules\sys\models;
 
+use Yii;
+//
+use frontend\modules\sys\Sys;
 use common\modules\sys\models\Language as CommonLanguageModel;
 
 class Language extends CommonLanguageModel
@@ -12,7 +15,6 @@ class Language extends CommonLanguageModel
     public function getLanguages(): array
     {
         return self::findBase()
-            //->andFilterWhere(['IN', 'id', [3, 4]])
             ->enabled()
             ->asArray()
             ->all();
@@ -28,5 +30,46 @@ class Language extends CommonLanguageModel
             ->indexBy('local')
             ->asArray()
             ->all();
+    }
+
+    /**
+     * @param string $img_flag
+     * @return bool
+     */
+    public static function isImage($img_flag = '')
+    {
+        /** @var Sys $module */
+        $module = Yii::$app->getModule('sys');
+
+        $path = $module->getFlagUploadPath();
+
+        $image = false;
+
+        if (!empty($img_flag) && is_file($path . '/' . $img_flag)) {
+            $image = true;
+        }
+
+        return $image;
+    }
+
+    /**
+     * @param string $img_flag
+     * @return null|string
+     */
+    public static function getImage($img_flag = '')
+    {
+        /** @var Sys $module */
+        $module = Yii::$app->getModule('sys');
+
+        $path = $module->getFlagUploadPath();
+        $url = $module->getFlagUploadUrl();
+
+        $image = null;
+
+        if (!empty($img_flag) && is_file($path . '/' . $img_flag)) {
+            $image = $url . '/' . $img_flag;
+        }
+
+        return $image;
     }
 }

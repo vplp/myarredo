@@ -80,20 +80,22 @@ class FactoryPromotion extends \common\modules\catalog\models\FactoryPromotion
     {
         /** send mail to admin */
 
-        $message = 'Создание фабрикой рекламной компании';
+        $title = 'Создание фабрикой рекламной компании';
+
+        $message = Yii::$app->user->identity->profile->factory->title;
 
         Yii::$app
             ->mailer
             ->compose(
                 'letter_notification_for_admin',
                 [
+                    'title' => $title,
                     'message' => $message,
-                    'title' => Yii::$app->user->identity->profile->factory->title,
                     'url' => Url::home(true) . 'backend/catalog/factory-promotion/update?id=' . $this->id,
                 ]
             )
             ->setTo(Yii::$app->params['mailer']['setTo'])
-            ->setSubject($message)
+            ->setSubject($title)
             ->send();
     }
 

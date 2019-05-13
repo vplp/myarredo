@@ -16,8 +16,14 @@ use yii\bootstrap\{
  */
 class AppAsset extends AssetBundle
 {
+    /**
+     * @var string
+     */
     public $sourcePath = '@app/themes/myarredo/app/public';
 
+    /**
+     * @var array
+     */
     public $css = [
         'libs/nouislider/nouislider.min.css',
         'libs/slick-1.6/slick.css',
@@ -29,6 +35,9 @@ class AppAsset extends AssetBundle
         'css/template-style.min.css',
     ];
 
+    /**
+     * @var array
+     */
     public $js = [
         'https://use.fontawesome.com/35f65baac5.js',
         'libs/bootstrap-select/js/bootstrap-select.min.js',
@@ -43,9 +52,20 @@ class AppAsset extends AssetBundle
         'js/main.js'
     ];
 
+    /**
+     * @var array
+     */
     public $depends = [
         YiiAsset::class,
         BootstrapAsset::class,
         BootstrapPluginAsset::class,
+    ];
+
+    /**
+     * @var array
+     */
+    public $jsOptions = [
+        'async' => true,
+        'defer' => true,
     ];
 }

@@ -91,12 +91,16 @@ class CityComponent extends Component
         if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
             $mask = [
                 '+7 (999) 999-99-99',
-                '+39 (9999) 99999',
+                '+39 (99) 999-99-99',
                 '+39 (9999) 999-999',
                 '+39 (9999) 999-9999'
             ];
         } elseif (Yii::$app->language == 'it-IT') {
-            $mask = '+39 (99) 999-99-99';
+            $mask = [
+                '+39 (99) 999-99-99',
+                '+39 (9999) 999-999',
+                '+39 (9999) 999-9999'
+            ];
         } elseif (in_array($this->domain, ['by'])) {
             $mask = '+375 (99) 999-99-99';
         } elseif (in_array($this->domain, ['ua'])) {

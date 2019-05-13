@@ -34,7 +34,22 @@ class PartnerOrderController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['partner', 'logistician'],
+                        'actions' => [
+                            'list',
+                            'list-italy',
+                            'send-answer',
+                            'pjax-save'
+                        ],
+                        'roles' => ['partner'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => [
+                            'list-italy',
+                            'send-answer',
+                            'pjax-save'
+                        ],
+                        'roles' => ['logistician'],
                     ],
                     [
                         'allow' => false,
@@ -57,11 +72,12 @@ class PartnerOrderController extends BaseController
         /**
          * add city_id
          */
+
         if (!isset($params['city_id'])) {
             $params['city_id'] = 0;
         }
 
-        if (isset($params['city_id']) && $params['city_id'] == 0) {
+        if (isset($params['city_id']) && $params['city_id'] == 0 && Yii::$app->user->identity->profile->country_id) {
             unset($params['city_id']);
             $modelCity = City::findAll(['country_id' => Yii::$app->user->identity->profile->country_id]);
 
@@ -110,7 +126,7 @@ class PartnerOrderController extends BaseController
             $params['city_id'] = 0;
         }
 
-        if (isset($params['city_id']) && $params['city_id'] == 0) {
+        if (isset($params['city_id']) && $params['city_id'] == 0 && Yii::$app->user->identity->profile->country_id) {
             unset($params['city_id']);
             $modelCity = City::findAll(['country_id' => Yii::$app->user->identity->profile->country_id]);
 

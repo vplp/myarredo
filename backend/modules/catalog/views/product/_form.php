@@ -3,12 +3,17 @@
 use yii\helpers\{
     Html
 };
-use backend\app\bootstrap\ActiveForm;
+//
 use backend\widgets\Tabs;
+use backend\app\bootstrap\ActiveForm;
+use backend\modules\catalog\models\{
+    Product, ProductLang
+};
 
 /**
- * @var \backend\app\bootstrap\ActiveForm $form
- * @var \backend\modules\catalog\models\Product $model
+ * @var $form ActiveForm
+ * @var $model Product
+ * @var $modelLang ProductLang
  */
 
 ?>

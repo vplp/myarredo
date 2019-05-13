@@ -3,9 +3,7 @@
 namespace frontend\modules\user\controllers;
 
 use Yii;
-use yii\{
-    web\BadRequestHttpException, base\InvalidParamException, db\Exception, filters\AccessControl
-};
+use yii\{helpers\Url, web\BadRequestHttpException, base\InvalidParamException, db\Exception, filters\AccessControl};
 //
 use frontend\components\BaseController;
 use frontend\modules\user\models\form\{
@@ -108,7 +106,7 @@ class PasswordController extends BaseController
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->generateResetToken()) {
             if ($model->sendEmail()) {
                 Yii::$app->session->setFlash('success', 'Проверьте свою электронную почту для получения дальнейших инструкций.');
-                return $this->goHome();
+                return $this->redirect(Url::toRoute('/home/home/index'));
             } else {
                 Yii::$app->session->setFlash('error', 'Извините, мы не можем сбросить пароль для отправки по электронной почте.');
             }
@@ -137,7 +135,7 @@ class PasswordController extends BaseController
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->setPassword()) {
             Yii::$app->session->setFlash('success', Yii::t('app', 'Password changed'));
-            return $this->goHome();
+            return $this->redirect(Url::toRoute('/home/home/index'));
         }
 
         return $this->render('resetPassword', [

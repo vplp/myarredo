@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+use yii\data\Pagination;
 use yii\widgets\Pjax;
 use kartik\grid\GridView;
 //
@@ -10,14 +11,11 @@ use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
     ItalianProduct, Factory
 };
-//
-use thread\widgets\grid\{
-    GridViewFilter
-};
 
 /**
- * @var \yii\data\Pagination $pages
- * @var $model \frontend\modules\catalog\models\ItalianProduct
+ * @var $pages Pagination
+ * @var $model ItalianProduct
+ * @var $filter ItalianProduct
  */
 
 $dataProvider = $model->search(Yii::$app->request->queryParams);
@@ -34,6 +32,18 @@ $this->title = Yii::t('app', 'Furniture in Italy');
 
                     <?= Html::tag('h1', Yii::t('app', 'Furniture in Italy')); ?>
                     <div class="itprod-panel-add">
+                        <?= Html::a(
+                            '<i class="fa fa-list"></i> ' . Yii::t('app', 'Активные'),
+                            null,
+                            ['class' => 'btn']
+                        ) ?>
+
+                        <?= Html::a(
+                            '<i class="fa fa-outdent"></i> ' . Yii::t('app', 'Завершенные'),
+                            Url::toRoute(['/catalog/italian-product/completed']),
+                            ['class' => 'btn']
+                        ) ?>
+
                         <?= Html::a(
                             '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Add'),
                             Url::toRoute(['/catalog/italian-product/create']),
@@ -82,7 +92,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'format' => 'raw',
                                             'attribute' => 'image_link',
                                             'value' => function ($model) {
-                                                /** @var \frontend\modules\catalog\models\ItalianProduct $model */
+                                                /** @var $model ItalianProduct */
                                                 return
                                                     Html::a(
                                                         Html::img(
@@ -101,51 +111,101 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                         [
                                             'format' => 'raw',
                                             'attribute' => 'title',
+                                            'filter' => false,
                                             'value' => function ($model) {
-                                                /** @var \frontend\modules\catalog\models\ItalianProduct $model */
+                                                /** @var $model ItalianProduct */
                                                 return
                                                     Html::a(
                                                         $model['lang']['title'],
                                                         Url::toRoute(
                                                             ['/catalog/italian-product/update', 'id' => $model->id]
-                                                        )
+                                                        ),
+                                                        ['class' => 'prodname']
                                                     );
                                             },
                                             'label' => Yii::t('app', 'Title'),
                                         ],
+                                        // [
+                                        //     'attribute' => 'factory_id',
+                                        //     'format' => 'raw',
+                                        //     'value' => function ($model) {
+                                        //         /** @var $model ItalianProduct */
+                                        //         return ($model['factory'])
+                                        //             ? $model['factory']['title']
+                                        //             : $model['factory_name'];
+                                        //     },
+                                        //     'filter' => false,
+                                        //     'headerOptions' => ['class' => 'col-sm-2'],
+                                        // ],
                                         [
-                                            'attribute' => 'factory_id',
+                                            'attribute' => 'price_new',
                                             'format' => 'raw',
                                             'value' => function ($model) {
-                                                /** @var $model \frontend\modules\catalog\models\ItalianProduct */
-                                                return ($model['factory'])
-                                                    ? $model['factory']['title']
-                                                    : $model['factory_name'];
+                                                /** @var $model ItalianProduct */
+                                                return $model['price_new'] . ' ' . $model['currency'];
                                             },
                                             'filter' => false,
                                             'headerOptions' => ['class' => 'col-sm-2'],
                                         ],
                                         [
+                                            'label' => Yii::t('app', 'Количество просмотров'),
+                                            'format' => 'raw',
+                                            'value' => function ($model) {
+                                                /** @var $model ItalianProduct */
+                                                return Html::tag('span', $model->getCountViews(), ['class' => 'viewscount']);
+                                            },
+                                        ],
+                                        [
+                                            'format' => 'raw',
+                                            'label' => Yii::t('app', 'Количество запросов'),
+                                            'value' => function ($model) {
+                                                /** @var $model ItalianProduct */
+                                                return Html::tag('span', $model->getCountRequests(), ['class' => 'requestcount']);
+                                            },
+                                        ],
+                                        [
                                             'format' => 'raw',
                                             'attribute' => Yii::t('app', 'Status'),
                                             'value' => function ($model) {
-                                                /** @var $model \frontend\modules\catalog\models\ItalianProduct */
-                                                $status = $model->published
-                                                    ? Yii::t('app', 'Published')
-                                                    : Html::a(
-                                                        Yii::t('app', 'Not published'),
+                                                /** @var $model ItalianProduct */
+
+                                                if ($model->payment && $model->payment->payment_status == 'success' && $model->published == 0) {
+                                                    $status = Yii::t('app', 'На модерации');
+                                                } elseif ($model->payment && $model->payment->payment_status == 'success' && $model->published == 1) {
+                                                    $status = Html::tag(
+                                                            'div',
+                                                            Html::tag(
+                                                                'div',
+                                                                '',
+                                                                [
+                                                                    'class' => 'progressbar',
+                                                                    'style' => 'width:' . (100 * $model->getDiffPublishedDate() / 60) . '%',
+                                                                ]
+                                                            ),
+                                                            [
+                                                                'class' => 'progressbox',
+                                                                'title' => (100 * $model->getDiffPublishedDate() / 60) . '%'
+                                                            ]
+                                                        )
+                                                        .
+                                                        Html::tag(
+                                                            'span',
+                                                            Yii::t('app', 'Осталось дней') . ' - ' . $model->getDiffPublishedDate(),
+                                                            ['class' => 'progresssubtitle']
+                                                        );
+                                                } else {
+                                                    $status = Html::a(
+                                                        Yii::t('app', 'Опубликовать'),
                                                         ['/catalog/italian-product/payment'],
                                                         [
-                                                            'data-method' => 'POST',
+                                                            'data-method' => 'GET',
                                                             'data-params' => [
                                                                 '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
                                                                 'id[]' => $model->id,
                                                             ],
+                                                            'class' => 'btn-puplished btn-xs'
                                                         ]
                                                     );
-
-                                                if ($model->payment && $model->payment->payment_status == 'success') {
-                                                    $status .= ', ' . Yii::t('app', ucfirst($model->payment->payment_status));
                                                 }
 
                                                 return $status;
@@ -158,9 +218,9 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'template' => '{update} {delete}',
                                             'buttons' => [
                                                 'update' => function ($url, $model) {
-                                                    /** @var $model \frontend\modules\catalog\models\ItalianProduct */
+                                                    /** @var $model ItalianProduct */
                                                     return Html::a(
-                                                        '<span class="glyphicon glyphicon-pencil"></span>',
+                                                        '<span class="glyphicon glyphicon-pencil"></span> ' . Yii::t('app', 'Edit'),
                                                         Url::toRoute(
                                                             ['/catalog/italian-product/update', 'id' => $model->id]
                                                         ),
@@ -170,9 +230,9 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                     );
                                                 },
                                                 'delete' => function ($url, $model) {
-                                                    /** @var $model \frontend\modules\catalog\models\ItalianProduct */
+                                                    /** @var $model ItalianProduct */
                                                     return Html::a(
-                                                        '<span class="glyphicon glyphicon-trash"></span>',
+                                                        '<span class="glyphicon glyphicon-trash"></span> ' . Yii::t('app', 'Delete'),
                                                         Url::toRoute(
                                                             ['/catalog/italian-product/intrash', 'id' => $model->id]
                                                         ),
@@ -190,7 +250,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'class' => kartik\grid\CheckboxColumn::class,
                                             'name' => 'id',
                                             'checkboxOptions' => function ($model) {
-                                                /** @var $model \frontend\modules\catalog\models\ItalianProduct */
+                                                /** @var $model ItalianProduct */
                                                 if ($model->published) {
                                                     return ['disabled' => true];
                                                 } else {
@@ -230,7 +290,7 @@ $('.kv-row-checkbox').on('change', function () {
 $('.js-add-products-to-payment').on('click', function () {
     var keys = $("#italian-product-grid").yiiGridView("getSelectedRows");
     if (keys.length > 0) {
-        var form = '<form action="' + baseUrl + 'italian-product/payment/" method="post">' +
+        var form = '<form action="' + baseUrl + 'italian-product/payment/" method="get">' +
         '<input type="hidden" name="_csrf" value="' + $('#token').val() + '" />';
         
         $.each(keys, function(key, value) {

@@ -37,10 +37,20 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
         $query = parent::findBase();
 
         if (!Yii::$app->getUser()->isGuest &&
+            Yii::$app->controller->id == 'italian-product' &&
+            Yii::$app->controller->action->id != 'completed' &&
             in_array(Yii::$app->user->identity->group->role, ['factory', 'partner'])) {
             $query
-                ->andWhere(['user_id' => Yii::$app->user->identity->id])
+                ->andWhere([self::tableName() . '.user_id' => Yii::$app->user->identity->id])
                 ->undeleted();
+        } elseif (!Yii::$app->getUser()->isGuest &&
+            Yii::$app->controller->id == 'italian-product' &&
+            Yii::$app->controller->action->id == 'completed' &&
+            in_array(Yii::$app->user->identity->group->role, ['factory', 'partner'])) {
+            $query
+                ->andWhere([self::tableName() . '.user_id' => Yii::$app->user->identity->id])
+                ->andWhere(['<=', self::tableName() . '.published_date_to', time()])
+                ->enabled();
         } else {
             $query
                 ->enabled();
@@ -86,6 +96,17 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
+    public function completed($params)
+    {
+        return (new search\ItalianProduct())->completed($params);
+    }
+
+    /**
+     * @param $params
+     * @return mixed|\yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
     public function trash($params)
     {
         return (new search\ItalianProduct())->trash($params);
@@ -101,6 +122,19 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
             '/catalog/sale-italy/view',
             'alias' => $alias
         ], true);
+    }
+
+    /**
+     * @param $alias
+     * @return bool
+     */
+    public static function isPublished($alias)
+    {
+        if (self::findByAlias($alias) != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -208,7 +242,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
         $imagesSources = [];
 
         foreach ($images as $image) {
-            if (file_exists($path . '/' . $image)) {
+            if (is_file($path . '/' . $image)) {
                 $imagesSources[] = [
                     'img' => $url . '/' . $image,
                     'thumb' => self::getImageThumb($image, 600, 600)

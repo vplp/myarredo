@@ -7,9 +7,14 @@ use backend\widgets\GridView\GridView;
 use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
 };
+use backend\modules\catalog\models\{
+    Colors, ColorsLang
+};
 
 /**
- * @var \backend\modules\catalog\models\Colors $model
+ * @var $model Colors
+ * @var $filter Colors
+ * @var $modelLang ColorsLang
  */
 
 echo GridView::widget([
@@ -20,7 +25,7 @@ echo GridView::widget([
         [
             'attribute' => 'color_code',
             'value' => function ($model) {
-                /** @var \backend\modules\catalog\models\Colors $model */
+                /** @var $model Colors */
                 return Html::tag(
                     'span',
                     '&nbsp;&nbsp;&nbsp;',
@@ -34,6 +39,12 @@ echo GridView::widget([
             'value' => function ($model) {
                 return $model->getTitle();
             },
+            'label' => Yii::t('app', 'Title'),
+        ],
+        [
+            'attribute' => 'plural_title',
+            'value' => 'lang.plural_title',
+            'label' => Yii::t('app', 'Plural title'),
         ],
         [
             'class' => ActionDeleteColumn::class,

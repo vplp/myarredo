@@ -74,12 +74,8 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'factory_id' => $this->factory_id,
-        ]);
-
-        $query->andFilterWhere([
             self::tableName() . '.id' => $this->id,
+            self::tableName() . '.factory_id' => $this->factory_id,
             self::tableName() . '.user_id' => $this->user_id
         ]);
 

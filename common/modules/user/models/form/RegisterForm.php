@@ -3,10 +3,10 @@
 namespace common\modules\user\models\form;
 
 use Yii;
+use Exception;
+use DomainException;
 use yii\db\mssql\PDO;
 use yii\helpers\ArrayHelper;
-//
-use thread\app\base\models\ActiveRecord;
 //
 use common\modules\user\models\{
     Group, Profile, User
@@ -14,6 +14,8 @@ use common\modules\user\models\{
 use common\modules\location\models\{
     City, Country
 };
+//
+use thread\app\base\models\ActiveRecord;
 
 /**
  * Class RegisterForm
@@ -58,6 +60,7 @@ class RegisterForm extends CommonForm
                     'country_id',
                     'city_id',
                     'user_agreement',
+                    'confirm_processing_data',
                     'reCaptcha'
                 ],
                 'required',
@@ -72,7 +75,6 @@ class RegisterForm extends CommonForm
                     'country_id',
                     'city_id',
                     'user_agreement',
-                    //'factory_package',
                     'reCaptcha'
                 ],
                 'required',
@@ -99,7 +101,14 @@ class RegisterForm extends CommonForm
                 'requiredValue' => 1,
                 'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
             ],
-            [['delivery_to_other_cities', 'user_agreement'], 'in', 'range' => [0, 1]],
+            [
+                ['confirm_processing_data'],
+                'required',
+                'on' => ['registerPartner',],
+                'requiredValue' => 1,
+                'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
+            ],
+            [['delivery_to_other_cities', 'user_agreement', 'confirm_processing_data'], 'in', 'range' => [0, 1]],
             [['country_id', 'city_id'], 'integer'],
             [['country_id', 'city_id', 'delivery_to_other_cities'], 'default', 'value' => 0],
             [
@@ -170,6 +179,7 @@ class RegisterForm extends CommonForm
                 'city_id',
                 'delivery_to_other_cities',
                 'user_agreement',
+                'confirm_processing_data',
                 'reCaptcha',
                 'cape_index'
             ],
@@ -187,7 +197,6 @@ class RegisterForm extends CommonForm
                 'country_id',
                 'city_id',
                 'user_agreement',
-                //'factory_package'
                 'reCaptcha'
             ],
             'registerLogistician' => [
@@ -204,7 +213,6 @@ class RegisterForm extends CommonForm
                 'country_id',
                 'city_id',
                 'user_agreement',
-                //'factory_package'
                 'reCaptcha'
             ],
         ];
@@ -227,7 +235,7 @@ class RegisterForm extends CommonForm
             'scenario' => 'userCreate',
             'username' => $this->email,
             'email' => $this->email,
-            'published' => ActiveRecord::STATUS_KEY_ON,
+            'published' => ActiveRecord::STATUS_KEY_OFF,
             'group_id' => Group::USER,
         ]);
 
@@ -245,9 +253,9 @@ class RegisterForm extends CommonForm
                     $transaction->rollBack();
                     return false;
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $transaction->rollBack();
-                throw new \Exception($e);
+                throw new Exception($e);
             }
         } else {
             $this->addErrors($model->getErrors());
@@ -260,7 +268,7 @@ class RegisterForm extends CommonForm
      *
      * @param $userId
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     private function addUserProfile($userId)
     {
@@ -282,9 +290,9 @@ class RegisterForm extends CommonForm
                 $save = $model->save();
                 ($save) ? $transaction->commit() : $transaction->rollBack();
                 return $save;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $transaction->rollBack();
-                throw new \Exception($e);
+                throw new Exception($e);
             }
         } else {
             $this->addErrors($model->getErrors());
@@ -319,9 +327,9 @@ class RegisterForm extends CommonForm
                     $transaction->rollBack();
                     return false;
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $transaction->rollBack();
-                throw new \Exception($e);
+                throw new Exception($e);
             }
         } else {
             $this->addErrors($model->getErrors());
@@ -334,7 +342,7 @@ class RegisterForm extends CommonForm
      *
      * @param $userId
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     private function addPartnerProfile($userId)
     {
@@ -350,6 +358,7 @@ class RegisterForm extends CommonForm
             'exp_with_italian' => $this->exp_with_italian,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
+            'preferred_language' => Yii::$app->language,
             'delivery_to_other_cities' => $this->delivery_to_other_cities,
             'cape_index' => $this->cape_index,
         ]);
@@ -360,9 +369,9 @@ class RegisterForm extends CommonForm
                 $save = $model->save();
                 ($save) ? $transaction->commit() : $transaction->rollBack();
                 return $save;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $transaction->rollBack();
-                throw new \Exception($e);
+                throw new Exception($e);
             }
         } else {
             $this->addErrors($model->getErrors());
@@ -397,9 +406,9 @@ class RegisterForm extends CommonForm
                     $transaction->rollBack();
                     return false;
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $transaction->rollBack();
-                throw new \Exception($e);
+                throw new Exception($e);
             }
         } else {
             $this->addErrors($model->getErrors());
@@ -412,7 +421,7 @@ class RegisterForm extends CommonForm
      *
      * @param $userId
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     private function addFactoryProfile($userId)
     {
@@ -427,7 +436,6 @@ class RegisterForm extends CommonForm
             'website' => $this->website,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
-            //'factory_package' => $this->factory_package,
             'preferred_language' => Yii::$app->language,
         ]);
         if ($model->validate()) {
@@ -437,9 +445,9 @@ class RegisterForm extends CommonForm
                 $save = $model->save();
                 ($save) ? $transaction->commit() : $transaction->rollBack();
                 return $save;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $transaction->rollBack();
-                throw new \Exception($e);
+                throw new Exception($e);
             }
         } else {
             $this->addErrors($model->getErrors());
@@ -456,7 +464,7 @@ class RegisterForm extends CommonForm
             'scenario' => 'userCreate',
             'username' => $this->email,
             'email' => $this->email,
-            'published' => ActiveRecord::STATUS_KEY_ON,
+            'published' => ActiveRecord::STATUS_KEY_OFF,
             'group_id' => Group::LOQISTICIAN,
         ]);
 
@@ -474,9 +482,9 @@ class RegisterForm extends CommonForm
                     $transaction->rollBack();
                     return false;
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $transaction->rollBack();
-                throw new \Exception($e);
+                throw new Exception($e);
             }
         } else {
             $this->addErrors($model->getErrors());
@@ -489,7 +497,7 @@ class RegisterForm extends CommonForm
      *
      * @param $userId
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     private function addLogisticianProfile($userId)
     {
@@ -504,7 +512,6 @@ class RegisterForm extends CommonForm
             'website' => $this->website,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
-            //'factory_package' => $this->factory_package,
             'preferred_language' => Yii::$app->language,
         ]);
         if ($model->validate()) {
@@ -514,13 +521,46 @@ class RegisterForm extends CommonForm
                 $save = $model->save();
                 ($save) ? $transaction->commit() : $transaction->rollBack();
                 return $save;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $transaction->rollBack();
-                throw new \Exception($e);
+                throw new Exception($e);
             }
         } else {
             $this->addErrors($model->getErrors());
             return false;
+        }
+    }
+
+    /**
+     * @param $token
+     * @return User|null
+     * @throws Exception
+     */
+    public function confirmation($token)
+    {
+        if (empty($token)) {
+            throw new DomainException('Empty confirm token.');
+        }
+
+        $user = User::findOne(['auth_key' => $token]);
+
+        if (!$user) {
+            throw new DomainException('User is not found.');
+        }
+
+        $user->setScenario('published');
+        $user->published = ActiveRecord::STATUS_KEY_ON;
+
+        /** @var PDO $transaction */
+        $transaction = self::getDb()->beginTransaction();
+        try {
+            if ($user->save()) {
+                $transaction->commit();
+                return $user;
+            }
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            throw new Exception($e);
         }
     }
 }

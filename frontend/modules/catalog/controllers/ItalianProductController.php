@@ -3,7 +3,9 @@
 namespace frontend\modules\catalog\controllers;
 
 use Yii;
-use yii\helpers\ArrayHelper;
+use yii\helpers\{
+    ArrayHelper, Url
+};
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
 //
@@ -66,7 +68,7 @@ class ItalianProductController extends BaseController
     {
         $this->title = Yii::t('app', 'Furniture in Italy');
 
-        if ($ids = Yii::$app->getRequest()->post('id')) {
+        if ($ids = Yii::$app->getRequest()->get('id')) {
             $models = ItalianProduct::findByIDsUserId($ids, Yii::$app->getUser()->id);
 
             if ($models == null) {
@@ -79,27 +81,31 @@ class ItalianProductController extends BaseController
             $modelPayment->user_id = Yii::$app->user->id;
             $modelPayment->type = 'italian_item';
 
+            $currency = Currency::findByCode2('EUR');
+
+            /** @var Currency $amount */
+
             /**
              * cost 1 product = 5 EUR
              * conversion to RUB
              */
-            $cost = 0.2;
+            $cost = 5 * $currency->course;
 
-            $currency = Currency::findByCode2('EUR');
-            /** @var Currency $amount */
-            $amount = ($cost * $currency->course + 1 * $currency->course + 0.12 * $currency->course);
+            $amount = $cost + ($cost * 0.02);
+            $amount = number_format($amount, 2, '.', '');
 
-            $modelPayment->amount = number_format(
-                ceil(count($models) * $amount),
-                2,
-                '.',
-                ''
-            );
+            $total = count($models) * $amount;
+            $nds = $total / 100 * 20;
+            $modelPayment->amount = number_format($total + $nds, 2, '.', '');
             $modelPayment->currency = 'RUB';
 
             return $this->render('payment', [
                 'models' => $models,
                 'modelPayment' => $modelPayment,
+                'amount' => $amount,
+                'total' => $total,
+                'nds' => $nds,
+                'currency' => $currency,
             ]);
         } else {
             throw new ForbiddenHttpException('Access denied');
@@ -111,6 +117,18 @@ class ItalianProductController extends BaseController
      */
     public function actions()
     {
+        if (Yii::$app->request->get('step') == 'photo') {
+            $scenario = 'setImages';
+            $link = function () {
+                return Url::to(['update', 'id' => $this->action->getModel()->id, 'step' => 'check']);
+            };
+        } else {
+            $scenario = 'frontend';
+            $link = function () {
+                return Url::to(['update', 'id' => $this->action->getModel()->id, 'step' => 'photo']);
+            };
+        }
+
         return ArrayHelper::merge(
             parent::actions(),
             [
@@ -119,23 +137,28 @@ class ItalianProductController extends BaseController
                     'modelClass' => $this->model,
                     'filterModel' => $this->filterModel,
                 ],
+                'completed' => [
+                    'class' => ListModel::class,
+                    'modelClass' => $this->model,
+                    'methodName' => 'completed',
+                    'view' => 'completed',
+                    'filterModel' => $this->filterModel,
+                ],
                 'create' => [
                     'class' => CreateWithLang::class,
                     'modelClass' => $this->model,
                     'modelClassLang' => $this->modelLang,
                     'scenario' => 'frontend',
                     'redirect' => function () {
-                        return ['update', 'id' => $this->action->getModel()->id];
+                        return ['update', 'id' => $this->action->getModel()->id, 'step' => 'image'];
                     }
                 ],
                 'update' => [
                     'class' => UpdateWithLang::class,
                     'modelClass' => $this->model,
                     'modelClassLang' => $this->modelLang,
-                    'scenario' => 'frontend',
-                    'redirect' => function () {
-                        return ['list'];
-                    }
+                    'scenario' => $scenario,
+                    'redirect' => $link
                 ],
                 'intrash' => [
                     'class' => AttributeSwitch::class,

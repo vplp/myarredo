@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\modules\sys\controllers;
 
 use Yii;
@@ -8,7 +9,7 @@ use thread\app\base\controllers\BackendController;
 use thread\actions\{
     Create, ListModel, Update
 };
-use thread\actions\fileapi\{
+use common\actions\upload\{
     DeleteAction, UploadAction
 };
 //
@@ -21,8 +22,6 @@ use backend\modules\sys\models\{
  * Class LanguageController
  *
  * @package backend\modules\sys\controllers
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class LanguageController extends BackendController
 {
@@ -48,11 +47,11 @@ class LanguageController extends BackendController
             ],
             'fileupload' => [
                 'class' => UploadAction::class,
-                'path' => Yii::$app->getModule('sys')->getFlagUploadUrl()
+                'path' => $this->module->getFlagUploadPath()
             ],
             'filedelete' => [
                 'class' => DeleteAction::class,
-                'path' => Yii::$app->getModule('sys')->getFlagUploadUrl()
+                'path' => $this->module->getFlagUploadPath()
             ],
         ]);
     }

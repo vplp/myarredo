@@ -3,6 +3,8 @@
 namespace frontend\modules\catalog\models;
 
 use Yii;
+//
+use frontend\modules\catalog\Catalog;
 
 /**
  * Class SaleStats
@@ -11,9 +13,12 @@ use Yii;
  */
 class SaleStats extends \common\modules\catalog\models\SaleStats
 {
+    /**
+     * @param $sale_item_id
+     */
     public static function create($sale_item_id)
     {
-        /** @var \frontend\modules\catalog\Catalog $module */
+        /** @var $module Catalog */
         $module = Yii::$app->getModule('catalog');
 
         if (!$module->isBot1() && !$module->isBot2()) {

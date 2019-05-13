@@ -90,6 +90,9 @@ $this->registerJs($script, yii\web\View::POS_READY);
         <?= $form->switcher($model, 'published') ?>
     </div>
     <div class="col-md-3">
+        <?= $form->field($model, 'status')->dropDownList($model::statusRange()); ?>
+    </div>
+    <div class="col-md-3">
         <?= $form->switcher($model, 'on_main') ?>
     </div>
     <div class="col-md-3">

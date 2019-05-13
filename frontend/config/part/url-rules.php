@@ -19,6 +19,7 @@ return [
     'partner/registration' => 'user/register/partner',
     'factory/registration' => 'user/register/factory',
     'user/register' => 'user/register/user',
+    'user/confirmation/<token:[\w\-]+>' => 'user/register/confirmation',
     'user/login' => 'user/login/index',
     'user/logout' => 'user/logout/index',
     'user/profile' => 'user/profile/index',
@@ -81,8 +82,10 @@ return [
     'sale-italy-product/<alias:[\w\-]+>' => 'catalog/sale-italy/view',
     //
     'italian-product' => 'catalog/italian-product/list',
+    'italian-product/completed' => 'catalog/italian-product/completed',
     'italian-product/create' => 'catalog/italian-product/create',
     'italian-product/payment' => 'catalog/italian-product/payment',
+    'italian-product/update/<id:[\d\-]+>/<step:(photo|check|payment)>' => 'catalog/italian-product/update',
     'italian-product/update/<id:[\d\-]+>' => 'catalog/italian-product/update',
     'italian-product/intrash/<id:[\d\-]+>' => 'catalog/italian-product/intrash',
 
@@ -112,12 +115,17 @@ return [
     'payment/result' => 'payment/payment/result',
     'payment/success' => 'payment/payment/success',
     'payment/fail' => 'payment/payment/fail',
+    'partner-payment/list' => 'payment/partner-payment/list',
 
     // Module [[News]]
     'news/<alias:[\w\-]+>' => 'news/list/index',
     'news' => 'news/list/index',
     'news/article/<alias:[\w\-]+>' => 'news/article/index',
     'news/article-for-partners/<id:[\d\-]+>' => 'news/article-for-partners/index',
+
+    // Module [[Rules]]
+    'rules' => 'rules/rules/list',
+    'rules/<id:[\d\-]+>' => 'rules/rules/view',
 
     // Module [[Feedback]]
     'page/contact' => 'feedback/feedback/index',

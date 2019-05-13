@@ -6,11 +6,12 @@ use yii\helpers\{
 use yii\widgets\ActiveForm;
 //
 use frontend\themes\myarredo\assets\AppAsset;
+use frontend\modules\user\models\form\RegisterForm;
 
 $bundle = AppAsset::register($this);
 
 /**
- * @var \frontend\modules\user\models\form\RegisterForm $model
+ * @var $model RegisterForm
  */
 
 $this->title = Yii::t('app', 'Регистрация для фабрики');
@@ -58,11 +59,7 @@ $model->user_agreement = 1;
                             <?= $form->field($model, 'phone')
                                 //+39 (99) 999-99-99
                                 ->widget(\yii\widgets\MaskedInput::class, [
-                                    'mask' => [
-                                        '+39 (9999) 99999',
-                                        '+39 (9999) 999-999',
-                                        '+39 (9999) 999-9999'
-                                    ],
+                                    'mask' => Yii::$app->city->getPhoneMask(),
                                     'clientOptions' => [
                                         'clearIncomplete' => true
                                     ]

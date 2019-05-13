@@ -92,7 +92,7 @@ class AdminOrderController extends BaseController
             'label' => $this->title,
         ];
 
-        return $this->render('list', [
+        return $this->render('list/list', [
             'models' => $models,
             'model' => $model,
             'params' => $params,
@@ -141,7 +141,7 @@ class AdminOrderController extends BaseController
             'label' => $this->title,
         ];
 
-        return $this->render('list', [
+        return $this->render('list-italy/list', [
             'model' => $model,
             'models' => $models,
             'params' => $params,

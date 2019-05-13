@@ -146,8 +146,9 @@ class UploadBehavior extends Behavior
     /**
      * Save model attribute file.
      *
-     * @param string $attribute Attribute name
+     * @param $attribute
      * @param $filename
+     * @throws \yii\base\Exception
      */
     protected function saveFile($attribute, $filename)
     {

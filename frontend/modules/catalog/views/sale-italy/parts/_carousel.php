@@ -1,10 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use frontend\modules\catalog\models\ItalianProduct;
 
-/**
- * @var \frontend\modules\catalog\models\Sale $model
- */
+/** @var $model ItalianProduct */
 
 ?>
 

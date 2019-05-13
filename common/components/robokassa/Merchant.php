@@ -4,6 +4,7 @@ namespace common\components\robokassa;
 
 use Yii;
 use yii\base\BaseObject;
+use yii\helpers\Url;
 
 /**
  * Class Merchant
@@ -60,6 +61,8 @@ class Merchant extends BaseObject
                 'IncCurrLabel' => $sIncCurrLabel,
                 'Email' => $sEmail,
                 'Culture' => $sCulture,
+                'SuccessUrl' => Url::toRoute(['payment/payment/success']),
+                'FailUrl' => Url::toRoute(['payment/payment/fail']),
                 'IsTest' => $this->isTest ? 1 : null,
             ]);
 

@@ -79,7 +79,6 @@ class ProductStatsDays extends ProductStatsModel
         }
 
         if (isset($params['country_id']) && $params['country_id'] > 0 && !$params['city_id']) {
-
             $model = City::findAll(['country_id' => $params['country_id']]);
 
             if ($model != null) {

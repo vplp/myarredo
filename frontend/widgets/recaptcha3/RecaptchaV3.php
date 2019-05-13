@@ -3,6 +3,7 @@
 namespace frontend\widgets\recaptcha3;
 
 use Yii;
+use Exception;
 use yii\base\Component;
 use yii\helpers\Json;
 use yii\web\View;
@@ -27,17 +28,17 @@ class RecaptchaV3 extends Component
     private $apiRequestUrl = 'https://www.google.com/recaptcha/api/siteverify';
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function init()
     {
         parent::init();
 
         if (empty($this->site_key)) {
-            throw new \Exception('site key cant be null');
+            throw new Exception('site key cant be null');
         }
         if (empty($this->secret_key)) {
-            throw new \Exception('secret key cant be null');
+            throw new Exception('secret key cant be null');
         }
     }
 
@@ -46,10 +47,14 @@ class RecaptchaV3 extends Component
      */
     public function registerScript($view)
     {
+        $lang = substr(Yii::$app->language, 0, 2);
+
         /** @var View $view */
         $view->registerJsFile(
-            $this->apiJs . '?render=' . $this->site_key,
+            $this->apiJs . '?render=' . $this->site_key . '&hl=' . $lang,
             [
+                'async' => true,
+                'defer' => true,
                 'position' => $view::POS_HEAD,
             ],
             'recaptcha-v3-script'
@@ -70,7 +75,7 @@ class RecaptchaV3 extends Component
             ]);
 
             return $response;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
 

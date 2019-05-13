@@ -18,8 +18,6 @@ use common\modules\catalog\models\{
 class CatalogSaleController extends Controller
 {
     /**
-     * Reset mark
-     *
      * @throws \yii\db\Exception
      */
     public function actionResetMark()
@@ -34,10 +32,7 @@ class CatalogSaleController extends Controller
     }
 
     /**
-     * Translate
-     *
      * @throws \yii\base\InvalidConfigException
-     * @throws \yii\db\Exception
      */
     public function actionTranslate()
     {

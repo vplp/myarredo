@@ -16,8 +16,9 @@ use thread\widgets\grid\{
 };
 
 /**
- * @var \yii\data\Pagination $pages
- * @var $model \frontend\modules\catalog\models\Sale
+ * @var $pages \yii\data\Pagination
+ * @var $model Sale
+ * @var $filter Sale
  */
 
 $dataProvider = $model->search(Yii::$app->request->queryParams);
@@ -62,7 +63,7 @@ $this->title = $this->context->title;
                                         'format' => 'raw',
                                         'attribute' => 'image_link',
                                         'value' => function ($model) {
-                                            /** @var \frontend\modules\catalog\models\Sale $model */
+                                            /** @var $model Sale */
                                             return Html::img(Sale::getImageThumb($model['image_link']), ['width' => 50]);
                                         },
                                         'headerOptions' => ['class' => 'col-sm-1'],
@@ -78,7 +79,7 @@ $this->title = $this->context->title;
                                         'attribute' => 'factory_id',
                                         'format' => 'raw',
                                         'value' => function ($model) {
-                                            /** @var $model \frontend\modules\catalog\models\Sale */
+                                            /** @var $model Sale */
                                             return ($model['factory']) ? $model['factory']['title'] : $model['factory_name'];
                                         },
                                         'filter' => false,
@@ -87,7 +88,7 @@ $this->title = $this->context->title;
                                         'format' => 'raw',
                                         'attribute' => 'published',
                                         'value' => function ($model) {
-                                            /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                            /** @var $model Sale */
                                             return Html::checkbox(false, $model->published, ['disabled' => true]);
                                         },
                                         'headerOptions' => ['class' => 'col-sm-1'],
@@ -105,14 +106,14 @@ $this->title = $this->context->title;
                                         'label' => Yii::t('app', 'Просмотры товара'),
                                         'format' => 'raw',
                                         'value' => function ($model) {
-                                            /** @var $model \frontend\modules\catalog\models\Sale */
+                                            /** @var $model Sale */
                                             return $model->getCountViews();
                                         },
                                     ],
                                     [
                                         'label' => Yii::t('app', 'Запрос телефона'),
                                         'value' => function ($model) {
-                                            /** @var $model \frontend\modules\catalog\models\Sale */
+                                            /** @var $model Sale */
                                             return $model->getCountRequestPhone();
                                         },
                                     ],
@@ -121,7 +122,7 @@ $this->title = $this->context->title;
                                         'template' => '{update} {delete}',
                                         'buttons' => [
                                             'update' => function ($url, $model) {
-                                                /** @var $model \frontend\modules\catalog\models\Sale */
+                                                /** @var $model Sale */
                                                 return Html::a(
                                                     '<span class="glyphicon glyphicon-pencil"></span>',
                                                     Url::toRoute(['/catalog/partner-sale/update', 'id' => $model->id]),
@@ -131,7 +132,7 @@ $this->title = $this->context->title;
                                                 );
                                             },
                                             'delete' => function ($url, $model) {
-                                                /** @var $model \frontend\modules\catalog\models\Sale */
+                                                /** @var $model Sale */
                                                 return Html::a(
                                                     '<span class="glyphicon glyphicon-trash"></span>',
                                                     Url::toRoute(['/catalog/partner-sale/intrash', 'id' => $model->id]),

@@ -20,7 +20,7 @@ class User extends \common\modules\user\User
         if (in_array(Yii::$app->user->identity->group->role, ['admin'])) {
             $menuItems = [
                 'label' => 'User',
-                'icon' => 'fa fa-sitemap',
+                'icon' => 'fa-file-text',
                 'url' => ['/user/user/list'],
                 'position' => 5,
             ];

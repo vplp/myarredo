@@ -6,7 +6,7 @@ use yii\helpers\{
 //
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
-    Factory, Sale, Product
+    Factory, ItalianProduct
 };
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\shop\widgets\request\RequestPrice;
@@ -14,7 +14,7 @@ use frontend\modules\catalog\widgets\sale\SaleRequestForm;
 
 $bundle = AppAsset::register($this);
 /**
- * @var \frontend\modules\catalog\models\Sale $model
+ * @var ItalianProduct $model
  */
 
 $this->title = $this->context->title;
@@ -32,6 +32,7 @@ $this->title = $this->context->title;
                         ]) ?>
 
                     </div>
+
                     <div class="row sale-prod">
                         <div class="col-sm-6 col-md-6 col-lg-5">
 
@@ -68,7 +69,7 @@ $this->title = $this->context->title;
                                 </div>
                             </div>
 
-                            <table class="info-table" width="100%">
+                            <table class="info-table itproduct-table" width="100%">
                                 <tr>
                                     <td><?= Yii::t('app', 'Factory') ?></td>
                                     <td>
@@ -88,7 +89,9 @@ $this->title = $this->context->title;
                                             $params = Yii::$app->catalogFilter->params;
                                             $params[$keys['style']] = $item['specification']['alias'];
 
-                                            ($model['factory']) ? $params[$keys['factory']] = $model['factory']['alias'] : null;
+                                            ($model['factory'])
+                                                ? $params[$keys['factory']] = $model['factory']['alias']
+                                                : null;
 
                                             $array[] = [
                                                 'title' => $item['specification']['lang']['title'],
@@ -131,6 +134,25 @@ $this->title = $this->context->title;
 
                                     <?php
                                     $array = [];
+                                    $nameSpecification = '';
+                                    foreach ($model['specificationValue'] as $item) {
+                                        if ($item['specification']['id'] == 60) {
+                                            $nameSpecification = $item['specification']['lang']['title'];
+                                            $array[] = $item['specificationByVal']['lang']['title'];
+                                        }
+                                    }
+                                    ?>
+                                    <tr>
+                                        <td><?= $nameSpecification ?></td>
+                                        <td>
+                                            <?= !empty($array)
+                                                ? implode('; ', $array)
+                                                : '' ?>
+                                        </td>
+                                    </tr>
+
+                                    <?php
+                                    $array = [];
                                     foreach ($model['specificationValue'] as $item) {
                                         if ($item['specification']['parent_id'] == 2) {
                                             $array[] = $item['specification']['lang']['title'];
@@ -146,46 +168,95 @@ $this->title = $this->context->title;
                                         </td>
                                     </tr>
                                 <?php } ?>
+
+                                <?php if (!empty($model['colors'])) { ?>
+                                    <tr>
+                                        <td><?= $model->getAttributeLabel('colors_ids') ?></td>
+                                        <td>
+                                            <?php
+                                            $array = [];
+                                            foreach ($model['colors'] as $item) {
+                                                $array[] = $item['lang']['title'];
+                                            }
+                                            echo implode('; ', $array);
+                                            ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+
+                                <tr>
+                                    <td><?= $model->getAttributeLabel('production_year') ?></td>
+                                    <td>
+                                        <?= $model['production_year'] ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><?= $model->getAttributeLabel('volume') ?></td>
+                                    <td>
+                                        <?= $model['volume'] ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><?= $model->getAttributeLabel('weight') ?></td>
+                                    <td>
+                                        <?= $model['weight'] ?>
+                                    </td>
+                                </tr>
                             </table>
 
                             <div class="prod-shortstory">
-                                <?= $model['lang']['description']; ?>
+                                <?= $model['lang']['defects'] != ''
+                                    ? Html::tag('strong', Yii::t('app', 'Defects'))
+                                    . '<br>' .
+                                    $model['lang']['defects']
+                                    : null; ?>
+                            </div>
+                            <div class="prod-shortstory">
+                                <?= $model['lang']['description'] != ''
+                                    ? Html::tag('strong', Yii::t('app', 'Description'))
+                                    . '<br>' .
+                                    $model['lang']['description']
+                                    : null; ?>
                             </div>
                         </div>
 
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 sellout-cont">
-                            <div class="best-price-form">
-                                <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
+                        <?php if (Yii::$app->controller->id == 'sale-italy') { ?>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 sellout-cont">
+                                <div class="best-price-form">
+                                    <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
 
-                                <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
-                            </div>
-                        </div>
+                                    <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
 
-                        <div class="col-md-12 sellout-box">
-                            <div class="section-header">
-                                <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
-                                <?= Html::a(
-                                    Yii::t('app', 'Вернуться к списку'),
-                                    Url::toRoute(['/catalog/sale/list']),
-                                    ['class' => 'back']
-                                ); ?>
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="col-md-12 sellout-box">
+                                <div class="section-header">
+                                    <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
+                                    <?= Html::a(
+                                        Yii::t('app', 'Вернуться к списку'),
+                                        Url::toRoute(['/catalog/sale-italy/list']),
+                                        ['class' => 'back']
+                                    ); ?>
+                                </div>
+                            </div>
+
+                        <?php } ?>
+
                     </div>
-
-                    <?= $this->render('@app/modules/catalog/views/product/parts/_product_by_factory', [
-                        'factory' => $model['factory'],
-                        'types' => $model['types'],
-                        'models' => Product::getProductByFactory($model['factory_id'], $model['catalog_type_id'])
-                    ]) ?>
 
                 </div>
             </div>
         </div>
     </main>
 
-<?= SaleRequestForm::widget(['sale_item_id' => $model['id']]) ?>
-
+<?php
+if (Yii::$app->controller->id == 'sale-italy') {
+    echo SaleRequestForm::widget(['sale_item_id' => $model['id']]);
+}
+?>
 
 <?php
 $user_id = $model['user']['id'];

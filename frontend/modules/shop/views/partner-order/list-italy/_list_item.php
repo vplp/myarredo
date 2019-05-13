@@ -5,19 +5,24 @@ use yii\helpers\{
 };
 use yii\widgets\ActiveForm;
 //
-use frontend\modules\catalog\models\Product;
+use frontend\modules\shop\models\{
+    Order, OrderItem, OrderAnswer
+};
+use frontend\modules\catalog\models\ItalianProduct;
 
 /* @var $this yii\web\View */
-/* @var $modelOrder \frontend\modules\shop\models\Order */
-/* @var $modelOrderAnswer \frontend\modules\shop\models\OrderAnswer */
-/* @var $orderItem \frontend\modules\shop\models\OrderItem */
 
-if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
-    <?php $form = ActiveForm::begin([
-        'id' => 'OrderAnswerForm',
-        'options' => ['data' => ['pjax' => true]],
-        'action' => $modelOrder->getPartnerOrderOnListUrl(),
-    ]); ?>
+/* @var $modelOrder Order */
+/* @var $modelOrderAnswer OrderAnswer */
+/* @var $orderItem OrderItem */
+
+?>
+
+<?php $form = ActiveForm::begin([
+    'id' => 'OrderAnswerForm',
+    'options' => ['data' => ['pjax' => true]],
+    'action' => $modelOrder->getPartnerOrderOnListUrl(),
+]) ?>
 
     <div class="hidden-order-in ordersanswer-box">
         <div class="flex-product orderanswer-cont">
@@ -25,21 +30,28 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
             <?php
             foreach ($modelOrder->items as $orderItem) { ?>
                 <div class="basket-item-info">
-
                     <div class="img-cont">
-                        <?= Html::a(
-                            Html::img(Product::getImageThumb($orderItem->product['image_link'])),
-                            Product::getUrl($orderItem->product['alias'])
-                        ); ?>
+                        <?php if (ItalianProduct::isPublished($orderItem->product['alias'])) {
+                            echo Html::a(
+                                Html::img(ItalianProduct::getImageThumb($orderItem->product['image_link'])),
+                                ItalianProduct::getUrl($orderItem->product['alias'])
+                            );
+                        } else {
+                            echo Html::img(ItalianProduct::getImageThumb($orderItem->product['image_link']));
+                        } ?>
                     </div>
                     <table class="char" width="100%">
                         <tr>
                             <td colspan="2">
-                                <?= Html::a(
-                                    $orderItem->product['lang']['title'],
-                                    Product::getUrl($orderItem->product['alias']),
-                                    ['class' => 'productlink']
-                                ); ?>
+                                <?php if (ItalianProduct::isPublished($orderItem->product['alias'])) {
+                                    Html::a(
+                                        $orderItem->product['lang']['title'],
+                                        ItalianProduct::getUrl($orderItem->product['alias']),
+                                        ['class' => 'productlink']
+                                    );
+                                } else {
+                                    echo $orderItem->product['lang']['title'];
+                                } ?>
                             </td>
                         </tr>
                         <tr>
@@ -73,13 +85,13 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                         </tr>
                         <tr>
                             <td colspan="2" class="spec-pad2">
-                                <?= $orderItem->product['region'] ?>
+                                <?= $orderItem->product['region']['title'] ?>
                             </td>
                         </tr>
                         <tr class="noborder">
                             <td colspan="2" class="spec-pad">
                             <span class="for-ordertable">
-                                <?= Yii::t('app', 'Цена для клиента') ?>
+                                <?= Yii::t('app', 'Цена доставки') ?>
                             </span>
                             </td>
                         </tr>
@@ -97,26 +109,24 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                         </tr>
                     </table>
 
-                    <?php if (!Yii::$app->getUser()->isGuest &&
-                        Yii::$app->user->identity->profile->isPdfAccess()
-                    ): ?>
+                    <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->isPdfAccess()) { ?>
                         <div class="downloads">
 
-                            <?php if (!empty($orderItem->product['factoryPricesFiles'])): ?>
+                            <?php if (!empty($orderItem->product['factoryPricesFiles'])) { ?>
                                 <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
                                 <ul>
-                                    <?php foreach ($orderItem->product['factoryPricesFiles'] as $priceFile): ?>
-                                        <?php if ($fileLink = $priceFile->getFileLink()): ?>
+                                    <?php foreach ($orderItem->product['factoryPricesFiles'] as $priceFile) {
+                                        if ($fileLink = $priceFile->getFileLink()) { ?>
                                             <li>
                                                 <?= Html::a($priceFile->title, $fileLink, ['target' => '_blank']) ?>
                                             </li>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
+                                        <?php }
+                                    } ?>
                                 </ul>
-                            <?php endif; ?>
+                            <?php } ?>
                         </div>
 
-                    <?php endif; ?>
+                    <?php } ?>
 
                 </div>
 
@@ -130,10 +140,8 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
 
             <?= $form
                 ->field($modelOrderAnswer, 'answer')
-                ->textarea([
-                    'rows' => 5,
-                    'disabled' => (!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0) ? false : true
-                ]) ?>
+                ->textarea(['rows' => 5,
+                    'disabled' => (!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0) ? false : true]) ?>
 
             <?= $form
                 ->field($modelOrderAnswer, 'id')
@@ -155,66 +163,40 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
         </div>
     </div>
 
-    <?php
-    if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null) {
-        if ((!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0)) {
-            echo Html::submitButton(Yii::t('app', 'Save'), [
-                'class' => 'btn btn-success action-save-answer',
-                'name' => 'action-save-answer',
-                'value' => 1
-            ]);
-        }
-    } else {
-        echo '<p>Оплатите возможность отвечать на заявки из этого города!</p>';
-    } ?>
-
-    <?php ActiveForm::end(); ?>
-
-
-    <?php
-    if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null &&
-        ($modelOrderAnswer->id && $modelOrderAnswer->answer_time == 0)
-    ) {
-        $form = ActiveForm::begin([
-            'id' => 'OrderAnswerForm',
-            'options' => ['data' => ['pjax' => true]],
-            'action' => Url::toRoute(['/shop/partner-order/send-answer']),
-        ]);
-
-        echo $form
-            ->field($modelOrderAnswer, 'id')
-            ->input('hidden')
-            ->label(false);
-
-        echo $form
-            ->field($modelOrderAnswer, 'order_id')
-            ->input('hidden', ['value' => $modelOrder->id])
-            ->label(false);
-
-        echo Html::submitButton('Отправить ответ клиенту', [
-            'class' => 'btn btn-success',
-            'name' => 'action-send-answer',
-            'value' => 1
-        ]);
-
-        ActiveForm::end();
-
+<?php
+if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null) {
+    if ((!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0)) {
+        echo Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success action-save-answer',
+            'name' => 'action-save-answer',
+            'value' => 1]);
     }
-} else { ?>
-    <div class="hidden-order-in">
-        <div class="flex-product orderanswer-cont">
+} else {
+    echo '<p>Оплатите возможность отвечать на заявки из этого города!</p>';
+} ?>
 
-            <?php
-            foreach ($modelOrder->items as $orderItem) {
-                echo $this->render('_list_item_product_archive', [
-                    'orderItem' => $orderItem,
-                ]);
-            } ?>
+<?php ActiveForm::end(); ?>
 
-        </div>
-        <div class="form-wrap">
 
-        </div>
-    </div>
+<?php
+if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null &&
+    ($modelOrderAnswer->id && $modelOrderAnswer->answer_time == 0)) {
+    $form = ActiveForm::begin(['id' => 'OrderAnswerForm',
+        'options' => ['data' => ['pjax' => true]],
+        'action' => Url::toRoute(['/shop/partner-order/send-answer']),]);
 
-<?php } ?>
+    echo $form
+        ->field($modelOrderAnswer, 'id')
+        ->input('hidden')
+        ->label(false);
+
+    echo $form
+        ->field($modelOrderAnswer, 'order_id')
+        ->input('hidden', ['value' => $modelOrder->id])
+        ->label(false);
+
+    echo Html::submitButton('Отправить ответ клиенту', ['class' => 'btn btn-success',
+        'name' => 'action-send-answer',
+        'value' => 1]);
+
+    ActiveForm::end();
+}

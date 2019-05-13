@@ -28,7 +28,7 @@ class Menu extends \common\modules\menu\Menu
         if (in_array(Yii::$app->user->identity->group->role, ['admin'])) {
             $menuItems = [
                 'label' => 'Menu',
-                'icon' => 'fa fa-sitemap',
+                'icon' => 'fa-sitemap',
                 'url' => ['/menu/menu/list'],
                 'position' => 2,
             ];

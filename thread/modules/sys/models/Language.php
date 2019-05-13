@@ -3,13 +3,13 @@
 namespace thread\modules\sys\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 //
 use thread\app\base\models\{
     ActiveRecord
 };
 use thread\app\model\interfaces\LanguageModel;
 use thread\modules\sys\Sys as SysModule;
-use yii\helpers\ArrayHelper;
 
 /**
  * Class Language
@@ -108,15 +108,17 @@ class Language extends ActiveRecord implements LanguageModel
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getFlagUploadUrl()
     {
-        /** @var sys $Module */
+        /** @var SysModule $Module */
         $Module = Yii::$app->getModule('sys');
-        $path = $Module->getFlagUploadUrl();
+
+        $path = $Module->getFlagUploadPath();
         $url = $Module->getFlagUploadUrl();
         $image = null;
+
         if (isset($this->img_flag) && file_exists($path . '/' . $this->img_flag)) {
             $image = $url . '/' . $this->img_flag;
         }
@@ -124,6 +126,11 @@ class Language extends ActiveRecord implements LanguageModel
         return $image;
     }
 
+    /**
+     * @param string $key
+     * @param string $value
+     * @return array
+     */
     public function getLanguageArray($key = 'id', $value = 'local'): array
     {
         return ArrayHelper::map($this->getLanguages(), $key, $value);

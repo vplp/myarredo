@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\actions;
 
 use Yii;
@@ -9,12 +10,9 @@ use yii\log\Logger;
  * Class CreateWithLang
  *
  * @package backend\actions
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class CreateWithLang extends \thread\actions\CreateWithLang
 {
-
     /**
      * Run Callback function if model saved correctly
      */

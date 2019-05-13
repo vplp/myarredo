@@ -34,7 +34,13 @@ class Sys extends aModule
      */
     public function getFlagUploadPath()
     {
-        return $this->getBaseUploadPath() . '/language';
+        $dir = $this->getBaseUploadPath() . '/language';
+
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+
+        return $dir;
     }
 
     /**
@@ -44,5 +50,23 @@ class Sys extends aModule
     public function getFlagUploadUrl()
     {
         return $this->getBaseUploadUrl() . '/language';
+    }
+
+    /**
+     * Image upload path
+     * @return string
+     */
+    public function getBaseUploadPath()
+    {
+        return Yii::getAlias('@uploads');
+    }
+
+    /**
+     * Base upload URL
+     * @return string
+     */
+    public function getBaseUploadUrl()
+    {
+        return '/uploads';
     }
 }

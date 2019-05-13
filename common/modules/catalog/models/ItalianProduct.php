@@ -2,6 +2,7 @@
 
 namespace common\modules\catalog\models;
 
+use DateTime;
 use Yii;
 use yii\helpers\{
     ArrayHelper
@@ -21,6 +22,7 @@ use common\modules\user\models\User;
 use common\modules\payment\models\{
     Payment, PaymentRelItem
 };
+use common\modules\shop\models\OrderItem;
 
 /**
  * Class ItalianProduct
@@ -52,7 +54,11 @@ use common\modules\payment\models\{
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $published
+ * @property integer $published_date_from
+ * @property integer $published_date_to
  * @property integer $deleted
+ * @property integer $mark
+ * @property integer $status
  *
  * @property ItalianProductLang $lang
  * @property ItalianProductRelCategory[] $category
@@ -61,8 +67,8 @@ use common\modules\payment\models\{
  * @property Factory $factory
  * @property User $user
  * @property Country $country
- * @property Region $region
  * @property City $city
+ * @property Region $region
  * @property Types $types
  *
  * @package common\modules\catalog\models
@@ -129,6 +135,8 @@ class ItalianProduct extends ActiveRecord
                     'factory_id',
                     'created_at',
                     'updated_at',
+                    'published_date_from',
+                    'published_date_to',
                     'position'
                 ],
                 'integer'
@@ -147,6 +155,7 @@ class ItalianProduct extends ActiveRecord
                     'on_main',
                     'published',
                     'deleted',
+                    'mark',
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
@@ -157,8 +166,12 @@ class ItalianProduct extends ActiveRecord
                 'range' => array_keys(static::currencyRange())
             ],
             [
+                ['status'],
+                'in',
+                'range' => array_keys(static::statusRange())
+            ],
+            [
                 [
-                    //'region',
                     'phone',
                     'email',
                     'alias',
@@ -177,6 +190,7 @@ class ItalianProduct extends ActiveRecord
             [['factory_name',], 'default', 'value' => ''],
             [['catalog_type_id', 'factory_id', 'position'], 'default', 'value' => '0'],
             [['currency'], 'default', 'value' => 'EUR'],
+            [['status'], 'default', 'value' => 'not_considered'],
             [
                 [
                     'category_ids',
@@ -200,20 +214,36 @@ class ItalianProduct extends ActiveRecord
     }
 
     /**
+     * @param string $status
+     * @return array|mixed
+     */
+    public static function statusRange($status = '')
+    {
+
+        $data = [
+            'not_considered' => Yii::t('app', 'Not considered'),
+            'not_approved' => Yii::t('app', 'Not approved'),
+            'approved' => Yii::t('app', 'Approved')
+        ];
+
+        return $status ? $data[$status] : $data;
+    }
+
+    /**
      * @return array
      */
     public function scenarios()
     {
         return [
-            'published' => ['published'],
+            'published' => ['published', 'published_date_from', 'published_date_to'],
             'deleted' => ['deleted'],
             'on_main' => ['on_main'],
-            'setImages' => ['image_link', 'gallery_image'],
+            'setImages' => ['image_link', 'gallery_image', 'file_link'],
+            'setMark' => ['mark'],
             'backend' => [
                 'country_id',
                 'region_id',
                 'city_id',
-                //'region',
                 'phone',
                 'email',
                 'user_id',
@@ -236,6 +266,8 @@ class ItalianProduct extends ActiveRecord
                 'deleted',
                 'position',
                 'on_main',
+                'mark',
+                'status',
                 'category_ids',
                 'colors_ids',
             ],
@@ -243,7 +275,6 @@ class ItalianProduct extends ActiveRecord
                 'country_id',
                 'region_id',
                 'city_id',
-                //'region',
                 'phone',
                 'email',
                 'user_id',
@@ -263,6 +294,7 @@ class ItalianProduct extends ActiveRecord
                 'weight',
                 'production_year',
                 'position',
+                'mark',
                 'category_ids',
                 'colors_ids',
             ]
@@ -279,7 +311,6 @@ class ItalianProduct extends ActiveRecord
             'country_id' => Yii::t('app', 'Country'),
             'region_id' => Yii::t('app', 'Region'),
             'city_id' => Yii::t('app', 'City'),
-            //'region' => Yii::t('app', 'Region'),
             'phone' => Yii::t('app', 'Phone'),
             'email' => Yii::t('app', 'Email'),
             'user_id' => Yii::t('app', 'User'),
@@ -303,7 +334,11 @@ class ItalianProduct extends ActiveRecord
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
+            'published_date_from' => Yii::t('app', 'Published date from'),
+            'published_date_to' => Yii::t('app', 'Published date to'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'mark' => 'Mark',
+            'status' => Yii::t('app', 'Status'),
             'category_ids' => Yii::t('app', 'Category'),
             'colors_ids' => Yii::t('app', 'Colors'),
         ];
@@ -318,6 +353,40 @@ class ItalianProduct extends ActiveRecord
     {
         if ($this->alias == '') {
             $this->alias = time();
+        }
+
+        if (in_array($this->scenario, ['frontend', 'backend'])) {
+            $this->mark = '0';
+        }
+
+        if (in_array($this->scenario, ['published', 'backend'])) {
+            if ($this->published == '1' && $this->published_date_from == 0 && $this->published_date_to == 0) {
+                $this->published_date_from = time();
+                $this->published_date_to = strtotime('+60 days');
+            } elseif ($this->published == '0' && $this->published_date_from > 0) {
+                $this->published_date_from = 0;
+                $this->published_date_to = 0;
+            }
+        }
+
+        if (YII_ENV_PROD) {
+            /** @var Catalog $module */
+            $module = Yii::$app->getModule('catalog');
+
+            $path = $module->getProductUploadPath();
+            $url = $module->getProductUploadUrl();
+
+            $images = explode(',', $this->gallery_image);
+
+            $imagesSources = [];
+
+            foreach ($images as $image) {
+                if (is_file($path . '/' . $image)) {
+                    $imagesSources[] = $image;
+                }
+            }
+
+            $this->gallery_image = implode(',', $imagesSources);
         }
 
         return parent::beforeSave($insert);
@@ -375,7 +444,7 @@ class ItalianProduct extends ActiveRecord
                     }
                 }
             }
-        } else if ($this->scenario == 'backend') {
+        } elseif ($this->scenario == 'backend') {
             // delete relation ItalianProductRelSpecification
             ItalianProductRelSpecification::deleteAll(['item_id' => $this->id]);
 
@@ -596,7 +665,7 @@ class ItalianProduct extends ActiveRecord
         $imagesSources = [];
 
         foreach ($images as $image) {
-            if (file_exists($path . '/' . $image)) {
+            if (is_file($path . '/' . $image)) {
                 $imagesSources[] = $url . '/' . $image;
             }
         }
@@ -669,5 +738,38 @@ class ItalianProduct extends ActiveRecord
     public static function findByIDsUserId($ids, $user_id)
     {
         return self::findBase()->user_id($user_id)->andWhere(['IN', 'id', array_unique($ids)])->all();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountViews()
+    {
+        return ItalianProductStats::findBase()
+            ->andWhere(['item_id' => $this->id])
+            ->count();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountRequests()
+    {
+        return OrderItem::findBase()
+            ->andWhere(['product_id' => $this->id])
+            ->count();
+    }
+
+    /**
+     * @return string
+     * @throws \Exception
+     */
+    public function getDiffPublishedDate()
+    {
+        $datetime1 = new DateTime('now');
+        $datetime2 = (new DateTime())->setTimestamp($this->published_date_to);
+
+        $interval = $datetime1->diff($datetime2);
+        return $interval->format('%a');
     }
 }

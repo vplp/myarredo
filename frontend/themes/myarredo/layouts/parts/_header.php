@@ -98,6 +98,8 @@ use frontend\modules\user\widgets\menu\UserMenu;
 
                         <div class="sign-in withicon">
                             <?php
+                            echo Html::beginTag('a', ['href' => Url::toRoute('/user/profile/index')]);
+
                             $role = Yii::$app->user->identity->group->role;
                             if ($role == 'partner') {
                                 echo Yii::$app->user->identity->profile->name_company;
@@ -109,7 +111,8 @@ use frontend\modules\user\widgets\menu\UserMenu;
                                     : '';
                             } else {
                                 echo Yii::$app->user->identity->profile->first_name;
-                            } ?>
+                            }
+                            echo Html::endTag('a');?>
                         </div>
 
                         <?= UserMenu::widget(['view' => 'user_menu']); ?>

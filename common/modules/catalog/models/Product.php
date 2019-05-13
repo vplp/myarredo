@@ -298,7 +298,9 @@ class Product extends ActiveRecord implements iProduct
             }
         }
 
-        $this->mark = '0';
+        if (in_array($this->scenario, ['frontend', 'backend'])) {
+            $this->mark = '0';
+        }
 
         if (YII_ENV_PROD) {
             /** @var Catalog $module */
@@ -312,7 +314,7 @@ class Product extends ActiveRecord implements iProduct
             $imagesSources = [];
 
             foreach ($images as $image) {
-                if (file_exists($path . '/' . $image)) {
+                if (is_file($path . '/' . $image)) {
                     $imagesSources[] = $image;
                 }
             }
@@ -477,7 +479,7 @@ class Product extends ActiveRecord implements iProduct
         $imagesSources = [];
 
         foreach ($images as $key => $image) {
-            if (file_exists($path . '/' . $image)) {
+            if (is_file($path . '/' . $image)) {
                 $imagesSources[] = $url . '/' . $image;
             } else {
                 unset($images[$key]);

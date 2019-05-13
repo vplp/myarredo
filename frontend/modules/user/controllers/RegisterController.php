@@ -8,7 +8,10 @@ use yii\helpers\Url;
 //
 use frontend\components\BaseController;
 use frontend\modules\user\models\User;
-use frontend\modules\user\models\form\RegisterForm;
+use frontend\modules\user\models\form\{
+    RegisterForm, SignInForm
+};
+use yii\web\Response;
 
 
 /**
@@ -39,7 +42,8 @@ class RegisterController extends BaseController
                             'user',
                             'partner',
                             'factory',
-                            'logistician'
+                            'logistician',
+                            'confirmation'
                         ],
                         'roles' => ['?'],
                     ],
@@ -88,6 +92,38 @@ class RegisterController extends BaseController
     }
 
     /**
+     * @param $token
+     * @return string|Response
+     * @throws \Exception
+     */
+    public function actionConfirmation($token)
+    {
+        if (!\Yii::$app->getUser()->getIsGuest()) {
+            return $this->redirect(Url::toRoute('/home/home/index'));
+        }
+
+        /** @var RegisterForm $model */
+        $model = new $this->model();
+
+        $user = $model->confirmation($token);
+
+        if ($user !== false) {
+            $modelSignInForm = new SignInForm();
+
+            $modelSignInForm->setScenario('signIn');
+            $modelSignInForm->setAttributes($user->getAttributes());
+
+            $modelSignInForm->login();
+
+            Yii::$app->session->setFlash('success', Yii::$app->param->getByName('USER_CONFIRMATION_SUCCESS'));
+
+            return $this->redirect(Url::toRoute('/user/login/index'));
+        }
+
+        return $this->render('confirmation', []);
+    }
+
+    /**
      * @return string|\yii\web\Response
      * @throws \Exception
      */
@@ -107,22 +143,30 @@ class RegisterController extends BaseController
             if ($status === true) {
                 $modelUser = User::find()->email($model->email)->one();
 
+                /** @var User $modelUser */
                 /** send mail to admin */
 
-                $message = 'Зарегистрирован новый партнер';
+                $title = 'Зарегистрирован новый партнер';
+
+                $message = '<p>Название компании: ' . $modelUser->profile->name_company . '</p>' .
+                    '<p>Имя: ' . $modelUser->profile->first_name . '</p>' .
+                    '<p>Фамилия: ' . $modelUser->profile->last_name . '</p>' .
+                    '<p>Страна: ' . $modelUser->profile->country->lang->title . '</p>' .
+                    '<p>телефон: ' . $modelUser->profile->phone . '</p>' .
+                    '<p>е-майл: ' . $modelUser->email . '</p>';
 
                 Yii::$app
                     ->mailer
                     ->compose(
                         'letter_notification_for_admin',
                         [
+                            'title' => $title,
                             'message' => $message,
-                            'title' => $modelUser->profile->name_company,
                             'url' => Url::home(true) . 'backend/user/user/update?id=' . $modelUser->id,
                         ]
                     )
                     ->setTo(Yii::$app->params['mailer']['setTo'])
-                    ->setSubject($message)
+                    ->setSubject($title)
                     ->send();
 
                 Yii::$app
@@ -130,7 +174,7 @@ class RegisterController extends BaseController
                     ->compose(
                         'letter_about_registration',
                         [
-                            'user' => $model,
+                            'user' => $modelUser,
                             'password' => $model['password'],
                             'text' => Yii::$app->param->getByName('MAIL_REGISTRATION_TEXT_FOR_PARTNER')
                         ]
@@ -173,20 +217,27 @@ class RegisterController extends BaseController
                 /** @var User $modelUser */
                 /** send mail to admin */
 
-                $message = 'Зарегистрирована новая фабрика';
+                $title = 'Зарегистрирована новая фабрика';
+
+                $message = '<p>Название компании: ' . $modelUser->profile->name_company . '</p>' .
+                    '<p>Имя: ' . $modelUser->profile->first_name . '</p>' .
+                    '<p>Фамилия: ' . $modelUser->profile->last_name . '</p>' .
+                    '<p>Страна: ' . $modelUser->profile->country->lang->title . '</p>' .
+                    '<p>телефон: ' . $modelUser->profile->phone . '</p>' .
+                    '<p>е-майл: ' . $modelUser->email . '</p>';
 
                 Yii::$app
                     ->mailer
                     ->compose(
                         'letter_notification_for_admin',
                         [
+                            'title' => $title,
                             'message' => $message,
-                            'title' => $modelUser->profile->name_company,
                             'url' => Url::home(true) . 'backend/user/user/update?id=' . $modelUser->id,
                         ]
                     )
                     ->setTo(Yii::$app->params['mailer']['setTo'])
-                    ->setSubject($message)
+                    ->setSubject($title)
                     ->send();
 
                 Yii::$app
@@ -194,7 +245,7 @@ class RegisterController extends BaseController
                     ->compose(
                         'letter_about_registration',
                         [
-                            'user' => $model,
+                            'user' => $modelUser,
                             'password' => $model['password'],
                             'text' => Yii::$app->param->getByName('MAIL_REGISTRATION_TEXT_FOR_FACTORY')
                         ]
@@ -243,20 +294,22 @@ class RegisterController extends BaseController
 
                 /** send mail to admin */
 
-                $message = 'Зарегистрировн новый логист';
+                $title = 'Зарегистрировн новый логист';
+
+                $message = $modelUser->profile->name_company;
 
                 Yii::$app
                     ->mailer
                     ->compose(
                         'letter_notification_for_admin',
                         [
+                            'title' => $title,
                             'message' => $message,
-                            'title' => $modelUser->profile->name_company,
                             'url' => Url::home(true) . 'backend/user/user/update?id=' . $modelUser->id,
                         ]
                     )
                     ->setTo(Yii::$app->params['mailer']['setTo'])
-                    ->setSubject($message)
+                    ->setSubject($title)
                     ->send();
 
                 Yii::$app
@@ -264,22 +317,18 @@ class RegisterController extends BaseController
                     ->compose(
                         'letter_about_registration',
                         [
-                            'user' => $model,
+                            'user' => $modelUser,
                             'password' => $model['password'],
-                            'text' => Yii::$app->param->getByName('MAIL_REGISTRATION_TEXT_FOR_FACTORY')
+                            'text' => Yii::$app->param->getByName('MAIL_REGISTRATION_TEXT_FOR_PARTNER')
                         ]
                     )
                     ->setTo($model->email)
                     ->setSubject(Yii::$app->name)
                     ->send();
 
-                if ($status === true && $model->getAutoLoginAfterRegister() === true && $model->login()) {
-                    return $this->redirect(Url::toRoute('/user/profile/index'));
-                }
+                Yii::$app->session->setFlash('success', Yii::$app->param->getByName('USER_PERTNER_REG_CONGRATULATIONS'));
 
-                if ($status === true) {
-                    return $this->redirect(Url::toRoute('/user/login/index'));
-                }
+                return $this->redirect(Url::toRoute('/user/login/index'));
             }
         }
 
