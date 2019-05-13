@@ -41,18 +41,29 @@ use frontend\modules\catalog\models\Category;
             Url::toRoute(['/catalog/sale/list'])
         ) ?>
     </li>
+    <?php if (Yii::$app->city->domain == 'ru') { ?>
+        <li<?= (Yii::$app->controller->id == 'sale-italy') ? ' class="has-list"' : '' ?>>
+            <?= Html::a(
+                Yii::t('app', 'Sale in Italy'),
+                Url::toRoute(['/catalog/sale-italy/list'])
+            ) ?>
+        </li>
+    <?php } ?>
+
     <li<?= (Yii::$app->controller->id == 'factory') ? ' class="has-list"' : '' ?>>
         <?= Html::a(
             Yii::t('app', 'Фабрики'),
             Url::toRoute(['/catalog/factory/list'])
         ) ?>
     </li>
+    <!--
     <li<?= (Yii::$app->controller->id == 'page' && Yii::$app->request->get('alias') == 'about') ? ' class="has-list"' : '' ?>>
         <?= Html::a(
-            Yii::t('app', 'About the project'),
-            Url::toRoute(['/page/page/view', 'alias' => 'about'])
-        ) ?>
+        Yii::t('app', 'About the project'),
+        Url::toRoute(['/page/page/view', 'alias' => 'about'])
+    ) ?>
     </li>
+    -->
     <li<?= (Yii::$app->controller->id == 'contacts') ? ' class="has-list"' : '' ?>>
         <?= Html::a(
             Yii::t('app', 'Где купить'),
