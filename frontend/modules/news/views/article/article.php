@@ -1,8 +1,8 @@
 <?php
+
 use yii\helpers\Html;
 
 $this->title = $model['lang']['title'];
-echo $this->render('/part/seo', ['article' => $model]);
 ?>
 
 <div class="news-img">
