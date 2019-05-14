@@ -3,32 +3,32 @@
 $this->title = $this->context->title;
 ?>
 
-<div class="myarredo-blog-wrap">
-    <div class="myarredo-blog">
-        <div class="myarredoblog-box">
-            <h2 class="myarredoblog-title"><?= Yii::t('app', 'Articles') ?></h2>
+    <div class="myarredo-blog-wrap">
+        <div class="myarredo-blog">
+            <div class="myarredoblog-box">
+                <h2 class="myarredoblog-title"><?= Yii::t('app', 'Articles') ?></h2>
 
-            <div class="articlebox">
-                <?php for ($i = 0; $i < count($models); $i++): ?>
-                    <?php if (isset($models[$i])): ?>
-                        <?= $this->render('_article', ['article' => $models[$i]]) ?>
-                    <?php endif; ?>
-                <?php endfor; ?>
-            </div>
+                <div class="articlebox">
+                    <?php for ($i = 0; $i < count($models); $i++): ?>
+                        <?php if (isset($models[$i])): ?>
+                            <?= $this->render('_article', ['article' => $models[$i]]) ?>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                </div>
 
-            <div class="catalog">
-                <div class="pages">
-                    <?=
-                    yii\widgets\LinkPager::widget([
-                        'pagination' => $pages,
-                        'registerLinkTags' => true,
-                    ]);
-                    ?>
+                <div class="catalog">
+                    <div class="pages">
+                        <?=
+                        yii\widgets\LinkPager::widget([
+                            'pagination' => $pages,
+                            'registerLinkTags' => true,
+                        ]);
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 <?php
 $script = <<<JS
 
