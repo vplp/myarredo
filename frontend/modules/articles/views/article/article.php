@@ -1,18 +1,13 @@
 <?php
 
 use yii\helpers\Html;
+//
+use frontend\modules\articles\models\Article;
+
+/** @var $model Article */
 
 $this->title = $model['lang']['title'];
 $this->context->breadcrumbs[] = $this->title;
-
-Yii::$app->openGraph->optMetaData([
-    'title' => $this->title,
-    'description' => $model['lang']['description'],
-    'url' => Yii::$app->request->hostInfo . Yii::$app->request->getUrl(),
-    'image' => $model->getArticleImage() ? $model->getArticleImage() : '',
-    'type' => 'website'
-]);
-
 ?>
 
 <div class="main-new">

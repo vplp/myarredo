@@ -1,5 +1,9 @@
 <?php
 
+use frontend\modules\articles\models\Article;
+
+/** @var $models Article */
+
 $this->title = $this->context->title;
 ?>
 
@@ -9,29 +13,27 @@ $this->title = $this->context->title;
                 <h2 class="myarredoblog-title"><?= Yii::t('app', 'Articles') ?></h2>
 
                 <div class="articlebox">
-                    <?php for ($i = 0; $i < count($models); $i++): ?>
-                        <?php if (isset($models[$i])): ?>
-                            <?= $this->render('_article', ['article' => $models[$i]]) ?>
-                        <?php endif; ?>
-                    <?php endfor; ?>
+                    <?php for ($i = 0; $i < count($models); $i++) {
+                        if (isset($models[$i])) {
+                            echo $this->render('_article', ['article' => $models[$i]]);
+                        }
+                    } ?>
                 </div>
 
                 <div class="catalog">
                     <div class="pages">
-                        <?=
-                        yii\widgets\LinkPager::widget([
+                        <?= yii\widgets\LinkPager::widget([
                             'pagination' => $pages,
                             'registerLinkTags' => true,
-                        ]);
-                        ?>
+                        ]) ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 <?php
 $script = <<<JS
-
 // Функция для добавление полосы после каждой 4-ой статьи
 function addHrForBlog() {
     $('.articlebox').children('.article-item').each(function(i, item) {
