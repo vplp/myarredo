@@ -266,6 +266,14 @@ class Profile extends \thread\modules\user\models\Profile
     }
 
     /**
+     * @return string
+     */
+    public function getNameCompany()
+    {
+        return (isset($this->lang->name_company)) ? $this->lang->name_company : "";
+    }
+
+    /**
      * @return mixed
      */
     public function getCountryTitle()

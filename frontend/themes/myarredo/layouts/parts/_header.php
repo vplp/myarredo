@@ -102,7 +102,7 @@ use frontend\modules\user\widgets\menu\UserMenu;
 
                             $role = Yii::$app->user->identity->group->role;
                             if ($role == 'partner') {
-                                echo Yii::$app->user->identity->profile->lang->name_company;
+                                echo Yii::$app->user->identity->profile->getNameCompany();
                             } elseif ($role == 'admin') {
                                 echo Yii::$app->user->identity->profile->first_name;
                             } elseif ($role == 'factory') {
