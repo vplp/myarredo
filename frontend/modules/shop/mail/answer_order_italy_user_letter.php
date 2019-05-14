@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 //
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\ItalianProduct;
 use frontend\modules\shop\models\{
     Order, OrderItem
 };
@@ -29,26 +29,25 @@ use frontend\modules\shop\models\{
         <p style="font-size: 18px;">Здравствуйте, <?= $modelOrder->customer['full_name'] ?></p>
         <p style="font-size: 16px; color: #591612;">
             Согласно вашему <span style="font-weight: bold; color: #000;">запросу №<?= $modelOrder['id'] ?></span>
-            в <?= $modelOrder->getCreatedTime(); ?> года, отправляем цены на интересующие Вас товары. Спасибо за
-            обращение!</p>
+            в <?= $modelOrder->getCreatedTime(); ?> года, отправляем цену на доставку интересующего Вас товара. Спасибо за обращение!</p>
     </div>
 
     <div style="background-color:#fff; padding:20px; clear: both;">
-        <p style="color: #591612; font-size: 16px;">Цены на запрошенные товары</p>
+        <p style="color: #591612; font-size: 16px;">Цена за доставку на запрошенный товар</p>
 
         <?php foreach ($modelOrder->items as $item) { ?>
             <div style="clear: both; height: 100px;">
                 <div style="float: left;">
                     <?= Html::a(
                         $item->product['lang']['title'],
-                        Product::getUrl($item->product['alias']),
+                        ItalianProduct::getUrl($item->product['alias']),
                         ['style' => 'width: 140px; max-height: 100px;']
                     ); ?>
                 </div>
                 <div style="float: left; margin: 10px 30px;">
                     <?= Html::a(
                         $item->product['lang']['title'],
-                        Product::getUrl($item->product['alias']),
+                        ItalianProduct::getUrl($item->product['alias']),
                         ['style' => 'font-weight:bold; color: #000; text-transform: uppercase; text-decoration: underline;']
                     ); ?>
                     <br>

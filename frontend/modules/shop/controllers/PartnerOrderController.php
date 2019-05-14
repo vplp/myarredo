@@ -300,11 +300,17 @@ class PartnerOrderController extends BaseController
                     if ($save) {
                         $transaction->commit();
 
+                        if ($modelOrder->product_type == 'product') {
+                            $viewMail = '/../mail/answer_order_user_letter';
+                        } else {
+                            $viewMail = '/../mail/answer_order_italy_user_letter';
+                        }
+
                         // send user letter
                         Yii::$app
                             ->mailer
                             ->compose(
-                                '/../mail/answer_order_user_letter',
+                                $viewMail,
                                 [
                                     'modelOrder' => $modelOrder,
                                     'modelAnswer' => $modelAnswer,
