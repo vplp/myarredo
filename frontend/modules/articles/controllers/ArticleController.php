@@ -4,15 +4,19 @@ namespace frontend\modules\articles\controllers;
 
 use Yii;
 use yii\helpers\Url;
-use thread\actions\RecordView;
+use yii\filters\VerbFilter;
+//
+use frontend\components\BaseController;
 use frontend\modules\articles\models\Article;
+//
+use thread\actions\RecordView;
 
 /**
  * Class ArticleController
  *
  * @package frontend\modules\articles\controllers
  */
-class ArticleController extends \frontend\components\BaseController
+class ArticleController extends BaseController
 {
     public $title = "Article";
     public $defaultAction = 'index';
@@ -24,7 +28,7 @@ class ArticleController extends \frontend\components\BaseController
     {
         return [
             'verbs' => [
-                'class' => \yii\filters\VerbFilter::class,
+                'class' => VerbFilter::class,
                 'actions' => [
                     'index' => ['get', 'post'],
                 ],
@@ -33,7 +37,6 @@ class ArticleController extends \frontend\components\BaseController
     }
 
     /**
-     *
      * @return array
      */
     public function actions()
@@ -44,27 +47,7 @@ class ArticleController extends \frontend\components\BaseController
                 'modelClass' => Article::class,
                 'methodName' => 'findByAlias',
                 'view' => 'article',
-                'layout' => "/column2"
             ],
         ];
-    }
-
-    /**
-     * @param $action
-     * @return bool|\yii\web\Response
-     * @throws \yii\base\ExitException
-     * @throws \yii\web\BadRequestHttpException
-     */
-    public function beforeAction($action)
-    {
-        /**
-         * breadcrumbs
-         */
-        $this->breadcrumbs[] = [
-            'label' => Yii::t('app', 'Articles'),
-            'url' => Url::toRoute(['/articles/list/index'])
-        ];
-
-        return parent::beforeAction($action);
     }
 }

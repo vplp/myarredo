@@ -11,6 +11,7 @@ return [
 
     // Module [[Articles]]
     'articles' => 'articles/list/index',
+    'articles/<alias:[\w\-]+>' => 'articles/article/index',
 
     // Module [[Home]]
     '' => 'home/home/index',

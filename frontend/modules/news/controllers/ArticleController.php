@@ -6,6 +6,7 @@ use yii\filters\VerbFilter;
 //
 use thread\actions\RecordView;
 //
+use frontend\components\BaseController;
 use frontend\modules\news\models\Article;
 
 /**
@@ -13,7 +14,7 @@ use frontend\modules\news\models\Article;
  *
  * @package frontend\modules\news\controllers
  */
-class ArticleController extends \frontend\components\BaseController
+class ArticleController extends BaseController
 {
 
     public $title = "Article";

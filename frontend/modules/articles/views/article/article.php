@@ -14,7 +14,7 @@ $this->context->breadcrumbs[] = $this->title;
     <div class="new-description">
         <div class="data-news"><?= $model->getPublishedTime() ?></div>
         <div class="title-news"><?= $model['lang']['title'] ?></div>
-        <div class="short-new"><?= $model['lang']['full_description'] ?></div>
+        <div class="short-new"><?= $model['lang']['description'] ?></div>
     </div>
     <div class="img-for-new">
         <?= Html::img($model->getArticleImage()) ?>

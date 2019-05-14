@@ -49,7 +49,7 @@ class Article extends \common\modules\articles\models\Article
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled();
+        return self::find()->innerJoinWith(["lang"])->orderBy(['published_time' => SORT_DESC]);
     }
 
     /**
