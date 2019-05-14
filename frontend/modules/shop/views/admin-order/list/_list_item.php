@@ -48,7 +48,7 @@ use frontend\modules\catalog\models\Product;
                         <td>
                             <?php
                             foreach ($orderItem->orderItemPrices as $price) {
-                                echo '<div><strong>' . $price['user']['profile']['name_company'] . '</strong></div>' .
+                                echo '<div><strong>' . $price['user']['profile']['lang']['name_company'] . '</strong></div>' .
                                     '<div>' . $price['user']['email'] . '</div>' .
                                     '<div><strong>' . $price['price'] . '</strong></div><br>';
                             }
@@ -98,7 +98,7 @@ use frontend\modules\catalog\models\Product;
 
             <?php
             foreach ($modelOrder->orderAnswers as $answer) {
-                echo '<div><strong>' . $answer['user']['profile']['name_company'] . '</strong></div>' .
+                echo '<div><strong>' . $answer['user']['profile']['lang']['name_company'] . '</strong></div>' .
                     '<div>' . $answer['user']['email'] . '</div>' .
                     '<div>' . $answer->getAnswerTime() . '</div>' .
                     '<div>' . $answer['answer'] . '</div><br>';

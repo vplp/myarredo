@@ -5,15 +5,17 @@ use kartik\widgets\Select2;
 use backend\modules\location\models\{
     Country, City
 };
+use backend\modules\user\models\{
+    Profile, ProfileLang
+};
 
-/**
- * @var $model \backend\modules\user\models\Profile
- */
+/** @var $model Profile */
+/** @var $modelLang ProfileLang */
 
 if (in_array($model['user']['group_id'], [4, 7])) {
     echo $form->text_line($model, 'additional_phone');
 
-    echo $form->text_line($model, 'name_company');
+    echo $form->text_line($modelLang, 'name_company');
 
     echo $form->text_line($model, 'website');
 
@@ -29,7 +31,7 @@ if (in_array($model['user']['group_id'], [4, 7])) {
 
     echo $form->text_line($model, 'longitude');
 
-    echo $form->text_line($model, 'address');
+    echo $form->text_line($modelLang, 'address');
 
     echo $form
         ->field($model, 'city_ids')

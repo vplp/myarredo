@@ -8,10 +8,12 @@ use yii\helpers\{
 use frontend\modules\location\models\{
     Country, City
 };
+use frontend\modules\user\models\{
+    Profile, ProfileLang
+};
 
-/**
- * @var \frontend\modules\user\models\Profile $model
- */
+/** @var $model Profile */
+/** @var $modelLang ProfileLang */
 
 $this->title = Yii::t('app', 'Profile');
 
@@ -51,7 +53,7 @@ $this->title = Yii::t('app', 'Profile');
                     if (Yii::$app->user->identity->group->role == 'factory') { ?>
                         <div class="col-md-4 col-lg-4 one-row">
                             <?= $form->field($model, 'email_company') ?>
-                            <?= $form->field($model, 'address') ?>
+                            <?= $form->field($modelLang, 'address') ?>
                             <?= $form->field($model, 'website') ?>
                         </div>
                     <?php } ?>
@@ -62,7 +64,7 @@ $this->title = Yii::t('app', 'Profile');
                      */
                     if (Yii::$app->user->identity->group->role == 'partner') { ?>
                         <div class="col-md-4 col-lg-4 one-row">
-                            <?= $form->field($model, 'name_company') ?>
+                            <?= $form->field($modelLang, 'name_company') ?>
                             <?= $form->field($model, 'website') ?>
                         </div>
 
@@ -79,7 +81,7 @@ $this->title = Yii::t('app', 'Profile');
                                     ['class' => 'selectpicker']
                                 ); ?>
 
-                            <?= $form->field($model, 'address') ?>
+                            <?= $form->field($modelLang, 'address') ?>
                         </div>
                     <?php } ?>
 

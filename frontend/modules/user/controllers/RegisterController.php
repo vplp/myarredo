@@ -148,7 +148,7 @@ class RegisterController extends BaseController
 
                 $title = 'Зарегистрирован новый партнер';
 
-                $message = '<p>Название компании: ' . $modelUser->profile->name_company . '</p>' .
+                $message = '<p>Название компании: ' . $modelUser->profile->lang->name_company . '</p>' .
                     '<p>Имя: ' . $modelUser->profile->first_name . '</p>' .
                     '<p>Фамилия: ' . $modelUser->profile->last_name . '</p>' .
                     '<p>Страна: ' . $modelUser->profile->country->lang->title . '</p>' .
@@ -219,7 +219,7 @@ class RegisterController extends BaseController
 
                 $title = 'Зарегистрирована новая фабрика';
 
-                $message = '<p>Название компании: ' . $modelUser->profile->name_company . '</p>' .
+                $message = '<p>Название компании: ' . $modelUser->profile->lang->name_company . '</p>' .
                     '<p>Имя: ' . $modelUser->profile->first_name . '</p>' .
                     '<p>Фамилия: ' . $modelUser->profile->last_name . '</p>' .
                     '<p>Страна: ' . $modelUser->profile->country->lang->title . '</p>' .
@@ -296,7 +296,7 @@ class RegisterController extends BaseController
 
                 $title = 'Зарегистрировн новый логист';
 
-                $message = $modelUser->profile->name_company;
+                $message = $modelUser->profile->lang->name_company;
 
                 Yii::$app
                     ->mailer

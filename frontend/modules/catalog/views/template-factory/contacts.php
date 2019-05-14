@@ -20,10 +20,10 @@ $this->title = $this->context->title;
 
                     <?php foreach ($partners as $partner) { ?>
                         <div class="one-cont">
-                            <?= Html::tag('h4', $partner->profile->name_company); ?>
+                            <?= Html::tag('h4', $partner->profile->lang->name_company); ?>
                             <div class="adres">
                                 <?= isset($partner->profile->city) ? $partner->profile->city->lang->title . '<br>' : '' ?>
-                                <?= $partner->profile->address ?>
+                                <?= $partner->profile->lang->address ?>
                             </div>
                             <?= Html::a(
                                 $partner->profile->getPhone(),

@@ -13,7 +13,7 @@ use frontend\modules\catalog\models\Product;
 <div style="width:540px; font: 16px Arial,sans-serif;">
     <div style="background:#c4c0b8; padding:15px 0 0; color:#fff;">
         <p style="text-transform: uppercase; margin:0; padding-left: 20px;">
-            <?= $modelOrder->orderAnswer->user->profile->name_company; ?>
+            <?= $modelOrder->orderAnswer->user->profile->lang->name_company; ?>
             <span style="display: block; font-style: italic;text-transform: none;">Студия итальянской мебели</span></p>
         <span style="padding-left: 20px; font-style: italic;">участник сети</span>
     </div>
@@ -66,9 +66,9 @@ use frontend\modules\catalog\models\Product;
 
     <div style="background-color:#c4c0b8; padding:25px 60px 20px;">
         <p style="color: #591612; margin-bottom: 1px;">
-            <?= $modelOrder->orderAnswer->user->profile->name_company; ?><br>
+            <?= $modelOrder->orderAnswer->user->profile->lang->name_company; ?><br>
             <?= $modelOrder->orderAnswer->user->profile->city->lang->title ?? null; ?><br>
-            <?= $modelOrder->orderAnswer->user->profile->address; ?>
+            <?= $modelOrder->orderAnswer->user->profile->lang->address; ?>
         </p>
         <span style="display: block; color: #591612; margin-bottom: 5px;">
             <?= $modelOrder->orderAnswer->user->email; ?>

@@ -38,6 +38,8 @@ use common\modules\catalog\models\Factory;
  * @property Country $country
  * @property City $city
  *
+ * @property ProfileLang $lang
+ *
  * @package common\modules\user\models
  */
 class Profile extends \thread\modules\user\models\Profile
@@ -218,6 +220,14 @@ class Profile extends \thread\modules\user\models\Profile
             'factory_package' => Yii::t('app', 'Package'),
             'cape_index' => Yii::t('app', 'CAPE index'),
         ]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLang()
+    {
+        return $this->hasOne(ProfileLang::class, ['rid' => 'id']);
     }
 
     /**

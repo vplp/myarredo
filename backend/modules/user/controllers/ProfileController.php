@@ -7,26 +7,34 @@ use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 //
 use thread\app\base\controllers\BackendController;
-use thread\actions\Update;
+use thread\actions\UpdateWithLang;
 use thread\actions\fileapi\{
     DeleteAction, UploadAction
 };
 //
 use backend\modules\user\models\{
-    Profile, User
+    Profile, ProfileLang, User
 };
 
 /**
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
+ * Class ProfileController
+ *
+ * @package backend\modules\user\controllers
  */
 class ProfileController extends BackendController
 {
     public $name = 'profile';
+
     public $title = "Profile";
+
     protected $model = Profile::class;
+
+    protected $modelLang = ProfileLang::class;
+
     public $defaultAction = 'update';
+
     public $actionListLinkStatus = ['/user/user/list'];
+
     protected $user_id = null;
 
     /**
@@ -67,8 +75,10 @@ class ProfileController extends BackendController
 
         return [
             'update' => [
-                'class' => Update::class,
+                'class' => UpdateWithLang::class,
                 'modelClass' => $this->model,
+                'modelClassLang' => $this->modelLang,
+                'scenario' => 'backend',
                 'redirect' => function () {
                     return $_POST['save_and_exit'] ? ['/user/user/list'] : ['update', 'id' => $this->action->getModel()->id];
                 }

@@ -9,7 +9,7 @@ use yii\db\mssql\PDO;
 use yii\helpers\ArrayHelper;
 //
 use common\modules\user\models\{
-    Group, Profile, User
+    Group, Profile, ProfileLang, User
 };
 use common\modules\location\models\{
     City, Country
@@ -352,8 +352,6 @@ class RegisterForm extends CommonForm
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'phone' => $this->phone,
-            'address' => $this->address,
-            'name_company' => $this->name_company,
             'website' => $this->website,
             'exp_with_italian' => $this->exp_with_italian,
             'country_id' => $this->country_id,
@@ -362,12 +360,25 @@ class RegisterForm extends CommonForm
             'delivery_to_other_cities' => $this->delivery_to_other_cities,
             'cape_index' => $this->cape_index,
         ]);
+
         if ($model->validate()) {
             /** @var PDO $transaction */
             $transaction = self::getDb()->beginTransaction();
             try {
                 $save = $model->save();
-                ($save) ? $transaction->commit() : $transaction->rollBack();
+
+                $modelLang = new ProfileLang([
+                    'scenario' => 'basicCreate',
+                    'rid' => $model->id,
+                    'lang' => Yii::$app->language,
+                    'address' => $this->address,
+                    'name_company' => $this->name_company,
+                ]);
+
+                $saveLang = $modelLang->save();
+
+                ($save && $saveLang) ? $transaction->commit() : $transaction->rollBack();
+
                 return $save;
             } catch (Exception $e) {
                 $transaction->rollBack();
@@ -431,8 +442,6 @@ class RegisterForm extends CommonForm
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'phone' => $this->phone,
-            'address' => $this->address,
-            'name_company' => $this->name_company,
             'website' => $this->website,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
@@ -443,6 +452,19 @@ class RegisterForm extends CommonForm
             $transaction = self::getDb()->beginTransaction();
             try {
                 $save = $model->save();
+
+                $modelLang = new ProfileLang([
+                    'scenario' => 'basicCreate',
+                    'rid' => $model->id,
+                    'lang' => Yii::$app->language,
+                    'address' => $this->address,
+                    'name_company' => $this->name_company,
+                ]);
+
+                $saveLang = $modelLang->save();
+
+                ($save && $saveLang) ? $transaction->commit() : $transaction->rollBack();
+
                 ($save) ? $transaction->commit() : $transaction->rollBack();
                 return $save;
             } catch (Exception $e) {
@@ -507,18 +529,30 @@ class RegisterForm extends CommonForm
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'phone' => $this->phone,
-            'address' => $this->address,
-            'name_company' => $this->name_company,
             'website' => $this->website,
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
             'preferred_language' => Yii::$app->language,
         ]);
+
         if ($model->validate()) {
             /** @var PDO $transaction */
             $transaction = self::getDb()->beginTransaction();
             try {
                 $save = $model->save();
+
+                $modelLang = new ProfileLang([
+                    'scenario' => 'basicCreate',
+                    'rid' => $model->id,
+                    'lang' => Yii::$app->language,
+                    'address' => $this->address,
+                    'name_company' => $this->name_company,
+                ]);
+
+                $saveLang = $modelLang->save();
+
+                ($save && $saveLang) ? $transaction->commit() : $transaction->rollBack();
+
                 ($save) ? $transaction->commit() : $transaction->rollBack();
                 return $save;
             } catch (Exception $e) {

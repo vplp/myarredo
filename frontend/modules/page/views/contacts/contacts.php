@@ -30,7 +30,7 @@ $bundle = AppAsset::register($this);
                                         <?= Yii::t('app', 'Главный партнер') ?>
                                     </div>
 
-                                    <?= Html::tag('h2', $mainPartner->profile->name_company); ?>
+                                    <?= Html::tag('h2', $mainPartner->profile->lang->name_company); ?>
 
                                     <div class="ico">
                                         <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
@@ -47,7 +47,7 @@ $bundle = AppAsset::register($this);
                                     </div>
                                     <div class="adres">
                                         <?= isset($mainPartner->profile->city) ? $mainPartner->profile->city->lang->title . '<br>' : '' ?>
-                                        <?= $mainPartner->profile->address ?>
+                                        <?= $mainPartner->profile->lang->address ?>
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@ $bundle = AppAsset::register($this);
 
                         <?php foreach ($partners as $partner) { ?>
                             <div class="one-cont">
-                                <?= Html::tag('h2', $partner->profile->name_company); ?>
+                                <?= Html::tag('h2', $partner->profile->lang->name_company); ?>
                                 <div class="ico">
                                     <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
                                 </div>
@@ -71,7 +71,7 @@ $bundle = AppAsset::register($this);
                                 </div>
                                 <div class="adres">
                                     <?= isset($partner->profile->city) ? $partner->profile->city->lang->title . '<br>' : '' ?>
-                                    <?= $partner->profile->address ?>
+                                    <?= $partner->profile->lang->address ?>
                                 </div>
                             </div>
                         <?php } ?>
