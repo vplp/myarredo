@@ -9,6 +9,9 @@ return [
         'suffix' => '.txt'
     ],
 
+    // Module [[Articles]]
+    'articles' => 'articles/list/index',
+
     // Module [[Home]]
     '' => 'home/home/index',
     'contacts' => 'page/contacts/index',

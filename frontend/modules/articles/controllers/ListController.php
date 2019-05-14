@@ -61,7 +61,6 @@ class ListController extends BaseController
                 'class' => ListQuery::class,
                 'query' => ($group) ? Article::findBase()->group_id($group) : Article::findBase(),
                 'recordOnPage' => $this->module->itemOnPage,
-                'layout' => "/column1"
             ],
         ];
     }

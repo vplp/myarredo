@@ -4,12 +4,18 @@ use yii\helpers\Html;
 
 ?>
 
-<div class="news">
-    <div class="img-for-new"><?= Html::img($article->getArticleImage()) ?></div>
-    <div class="all-news-descript">
-        <div class="data-news"><?= $article->getPublishedTime() ?></div>
-        <div class="title-for-all-news"><?= $article['lang']['title'] ?></div>
-        <div class="short-new"><?= $article['lang']['description'] ?></div>
-        <?= Html::a(Yii::t('front', 'Read more'), $article->getUrl(), ['class' => 'more-page']) ?>
+<div class="article-item">
+    <div class="article-item-box">
+        <a class="article-item-imglink" href="<?= $article->getUrl() ?>">
+            <div class="article-item-img"><?= Html::img($article->getArticleImage()) ?></div>
+        </a>
+        <div class="article-item-descr">           
+            <div class="article-item-title"><?= $article['lang']['title'] ?></div>
+            <div class="article-item-shortdescr"><?= $article['lang']['description'] ?></div>
+            <div class="panel-article-item">
+                <?= Html::a(Yii::t('front', 'Read more'), $article->getUrl(), ['class' => 'btn-aricle-more']) ?>
+                <div class="article-item-data"> <i class="fa fa-calendar" aria-hidden="true"></i> <?= $article->getPublishedTime() ?></div>
+            </div>
+        </div>
     </div>
 </div>

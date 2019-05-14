@@ -7190,6 +7190,187 @@ h1 {
 /* .category-page .filters .one-filter.colors-box .one-item-check.selected .my-checkbox:after {
   color: #ffffff;
 } */
+
+/* --------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------blog-news styles-------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------- */
+.myarredo-blog-wrap {
+  width: 100%;
+  background-color: #F3F2F0;
+}
+.myarredo-blog {
+  max-width: 1600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 25px 0;
+}
+.myarredoblog-box {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.myarredoblog-title {
+  font-family: "Palatino","Open Sans",sans-serif;
+  font-size: 35px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #535351;
+  padding: 0 0 0 20px;
+  margin: 0;
+}
+.articlebox {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 8px;
+}
+.article-item {
+  width: 25%;
+  padding: 20px;
+}
+@media(max-width: 1380px) {
+  .article-item {
+    padding: 20px 10px;
+  }
+}
+@media(max-width: 991px) {
+  .article-item {
+    width: 33%;
+  }
+}
+@media(max-width: 779px) {
+  .article-item {
+    width: 50%;
+  }
+}
+@media(max-width: 579px) {
+  .article-item {
+    width: 100%;
+  }
+}
+.articlebox .article-item-hr {
+  width: 100%;
+  max-width: 1355px;
+  height: 1px;
+  background-color: #bdbcb3;
+  margin: 8px auto;
+}
+@media(max-width: 991px) {
+  .articlebox .article-item-hr {
+    display: none !important;
+  }
+}
+.article-item-img {
+  width: 100%;
+  max-width: 296px;
+  margin: 0 auto;
+}
+.article-item-img img {
+  position: relative;
+  width: 100%;
+  max-width: 296px;
+  height: auto;
+  max-height: 190px;
+  min-height: 190px;
+  object-fit: cover;
+  transition: 0.3s;
+}
+.article-item-img:hover img {
+  transform: scale(1.01, 1.01);
+}
+.article-item-box {
+  padding: 8px;
+  background-color: #ffffff;
+  transition: 0.4s;
+  max-width: 313px;
+  margin: 0 auto;
+}
+.article-item-box:hover {
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+}
+.article-item-imglink {
+  text-decoration: none;
+  display: inline-block;
+}
+.article-item-title {
+  font-size: 20px;
+  line-height: 28px;
+  color: #535351;
+  padding: 8px 0;
+  min-height: 70px;
+  max-height: 70px;
+  overflow: hidden;
+}
+@media(max-width: 1199px) and (min-width: 992px) {
+  .article-item-title {
+    font-size: 18px;
+  }
+}
+@media(max-width: 880px) and (min-width: 780px) {
+  .article-item-title {
+    font-size: 18px;
+  }
+}
+@media(max-width: 660px) and (min-width: 580px) {
+  .article-item-title {
+    font-size: 18px;
+  }
+}
+.article-item-shortdescr {
+  font-size: 16px;
+  line-height: 26px;
+  color: #535351;
+  padding: 6px 0;
+  min-height: 116px;
+  max-height: 116px;
+  overflow: hidden;
+}
+@media(max-width: 1199px) and (min-width: 992px) {
+  .article-item-shortdescr {
+    font-size: 14px;
+  }
+}
+@media(max-width: 880px) and (min-width: 780px) {
+  .article-item-shortdescr {
+    font-size: 14px;
+  }
+}
+@media(max-width: 660px) and (min-width: 580px) {
+  .article-item-shortdescr {
+    font-size: 14px;
+  }
+}
+.panel-article-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 8px 0;
+}
+.btn-aricle-more {
+  display: inline-block;
+  padding: 6px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #448339;
+  border: 1px solid #448339;
+  text-transform: uppercase;
+  text-decoration: none;
+  outline: transparent;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.btn-aricle-more:hover {
+  text-decoration: none;
+  background-color: #448339;
+  color: #ffffff;
+}
+.article-item-data {
+  font-size: 12px;
+  color: #757575;
+}
+.article-item-data .fa {
+  margin-right: 6px;
+}
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
 /* ---------------------------------------------------------------------------------------------------- */
