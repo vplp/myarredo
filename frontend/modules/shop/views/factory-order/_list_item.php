@@ -26,7 +26,7 @@ use yii\helpers\{
             <div><?= Yii::t('app', 'Response time') ?>:</div>
             <?php
             foreach ($modelOrder->orderAnswers as $key => $answer) {
-                echo '<div><strong>' . $answer['user']['profile']['name_company'] . '</strong></div>' .
+                echo '<div><strong>' . $answer['user']['profile']['lang']['name_company'] . '</strong></div>' .
                     '<div>' . ($key + 1) . ') ' . $answer->getAnswerTime() . '</div>';
             }
             ?>

@@ -1,11 +1,12 @@
 <?php
 
 use backend\modules\catalog\models\Factory;
+use backend\modules\user\models\{
+    Profile, ProfileLang
+};
 
-/**
- * @var $model \backend\modules\user\models\Profile
- */
-
+/** @var $model Profile */
+/** @var $modelLang ProfileLang */
 
 if (in_array($model['user']['group_id'], [3])) {
     echo $form->field($model, 'factory_id')
@@ -15,5 +16,5 @@ if (in_array($model['user']['group_id'], [3])) {
 
     echo $form->text_line($model, 'website');
 
-    echo $form->text_line($model, 'address');
+    echo $form->text_line($modelLang, 'address');
 }

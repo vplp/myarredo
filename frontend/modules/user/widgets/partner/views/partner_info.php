@@ -35,7 +35,7 @@ if (!Yii::$app->getUser()->isGuest &&
         <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
     </div>
 
-    <meta itemprop="name" content="<?= Html::encode($partner['profile']['name_company']) ?>"/>
+    <meta itemprop="name" content="<?= Html::encode($partner['profile']['lang']['name_company']) ?>"/>
 
     <p><?= Yii::t('app', 'Получить консультацию в') ?> <?= $city['lang']['title_where'] ?></p>
 
@@ -50,12 +50,12 @@ if (!Yii::$app->getUser()->isGuest &&
     </div>
 
     <div class="stud" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-        <p><?= Html::encode($partner['profile']['name_company']) ?></p>
+        <p><?= Html::encode($partner['profile']['lang']['name_company']) ?></p>
         <meta itemprop="addressLocality"
               content="<?= $city['country']['lang']['title'] ?> <?= $city['lang']['title'] ?>"/>
         <p><?= $city['lang']['title'] ?></p>
-        <meta itemprop="streetAddress" content="<?= $partner['profile']['address'] ?></"/>
-        <p><?= $partner['profile']['address'] ?></p>
+        <meta itemprop="streetAddress" content="<?= $partner['profile']['lang']['address'] ?></"/>
+        <p><?= $partner['profile']['lang']['address'] ?></p>
         <p><?= $partner['profile']['phone'] ?></p>
     </div>
 

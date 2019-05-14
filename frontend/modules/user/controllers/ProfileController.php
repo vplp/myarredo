@@ -13,7 +13,7 @@ use thread\actions\fileapi\{
 //
 use frontend\components\BaseController;
 use frontend\modules\user\models\{
-    Profile
+    Profile, ProfileLang
 };
 
 /**
@@ -24,6 +24,7 @@ use frontend\modules\user\models\{
 class ProfileController extends BaseController
 {
     protected $model = Profile::class;
+    protected $modelLang = ProfileLang::class;
     public $title = "Profile";
     public $defaultAction = 'index';
 
@@ -89,18 +90,43 @@ class ProfileController extends BaseController
     {
         /** @var Profile $model */
         $model = new $this->model();
-
-        $model->setScenario('ownEdit');
+        $modelLang = new $this->modelLang();
 
         $profile = $model::findByUserId(Yii::$app->getUser()->id);
+        $profileLang = $modelLang::find()->where(['rid' => Yii::$app->getUser()->id])->one();
+
         $profile->setScenario('ownEdit');
 
-        if ($profile->load(Yii::$app->getRequest()->post())) {
+        if ($profileLang == null) {
+            $profileLang = new ProfileLang([
+                'rid' => $profile->id,
+                'lang' => Yii::$app->language,
+            ]);
+        }
+
+        $profileLang->setScenario('ownEdit');
+
+        if ($profile->load(Yii::$app->getRequest()->post()) && $profileLang->load(Yii::$app->getRequest()->post())) {
             $transaction = $profile::getDb()->beginTransaction();
             try {
                 $save = $profile->save();
+
                 if ($save) {
+                    $transactionLang = $profileLang::getDb()->beginTransaction();
+                    try {
+                        $saveLang = $profileLang->save();
+
+                        if ($saveLang) {
+                            $transactionLang->commit();
+                        } else {
+                            $transactionLang->rollBack();
+                        }
+                    } catch (Exception $e) {
+                        $transactionLang->rollBack();
+                    }
+
                     $transaction->commit();
+
                     return $this->redirect(['index']);
                 } else {
                     $transaction->rollBack();
@@ -112,6 +138,7 @@ class ProfileController extends BaseController
 
         return $this->render('_form', [
             'model' => $profile,
+            'modelLang' => $profileLang,
         ]);
     }
 }

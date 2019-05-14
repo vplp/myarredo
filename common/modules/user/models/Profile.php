@@ -38,6 +38,8 @@ use common\modules\catalog\models\Factory;
  * @property Country $country
  * @property City $city
  *
+ * @property ProfileLang $lang
+ *
  * @package common\modules\user\models
  */
 class Profile extends \thread\modules\user\models\Profile
@@ -223,6 +225,14 @@ class Profile extends \thread\modules\user\models\Profile
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getLang()
+    {
+        return $this->hasOne(ProfileLang::class, ['rid' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getCountry()
     {
         return $this->hasOne(Country::class, ['id' => 'country_id']);
@@ -253,6 +263,14 @@ class Profile extends \thread\modules\user\models\Profile
     public function getFactory()
     {
         return $this->hasOne(Factory::class, ['id' => 'factory_id']);
+    }
+
+    /**
+     * @return string
+     */
+    public function getNameCompany()
+    {
+        return (isset($this->lang->name_company)) ? $this->lang->name_company : "";
     }
 
     /**

@@ -182,7 +182,7 @@ $this->title = $this->context->title;
                                                 <?= Yii::t('app', 'Контакты продавца') ?>
                                             </p>
                                             <h4 class="text-center">
-                                                <?= $model['user']['profile']['name_company']; ?>
+                                                <?= $model['user']['profile']['lang']['name_company']; ?>
                                             </h4>
                                             <div class="ico">
                                                 <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
@@ -202,7 +202,7 @@ $this->title = $this->context->title;
                                             </div>
                                             <div class="text-center adress">
                                                 <?= $model['user']['profile']['city']['lang']['title']; ?>,<br>
-                                                <?= $model['user']['profile']['address']; ?>
+                                                <?= $model['user']['profile']['lang']['address']; ?>
                                             </div>
 
                                             <div class="ico">
