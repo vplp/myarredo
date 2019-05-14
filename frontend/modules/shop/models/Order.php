@@ -155,6 +155,14 @@ class Order extends \common\modules\shop\models\Order
     /**
      * @return string
      */
+    public function getPartnerOrderOnListItalyUrl()
+    {
+        return Url::toRoute(['/shop/partner-order/list-italy']) . '#' . $this->id;
+    }
+
+    /**
+     * @return string
+     */
     public function getPartnerOrderUrl()
     {
         return Url::toRoute(['/shop/partner-order/view', 'id' => $this->id]);

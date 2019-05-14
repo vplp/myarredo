@@ -281,6 +281,9 @@ class PartnerOrderController extends BaseController
             $modelOrder = Order::findById($order_id);
             $modelAnswer = OrderAnswer::findByOrderIdUserId($order_id, Yii::$app->getUser()->getId());
 
+            /** @var $modelOrder Order */
+            /** @var $modelAnswer OrderAnswer */
+
             if (empty($modelAnswer)) {
                 $modelAnswer = new OrderAnswer();
             }
@@ -325,7 +328,11 @@ class PartnerOrderController extends BaseController
                 }
             }
 
-            return $this->redirect($modelOrder->getPartnerOrderOnListUrl());
+            if ($modelOrder->product_type == 'product') {
+                return $this->redirect($modelOrder->getPartnerOrderOnListUrl());
+            } else {
+                return $this->redirect($modelOrder->getPartnerOrderOnListItalyUrl());
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ namespace common\modules\user\models;
 use Yii;
 use yii\helpers\ArrayHelper;
 //
-use common\modules\user\User;
+use common\modules\user\User as UserModule;
 //
 use thread\app\base\models\ActiveRecordLang;
 
@@ -26,7 +26,7 @@ class ProfileLang extends ActiveRecordLang
      */
     public static function getDb()
     {
-        return User::getDb();
+        return UserModule::getDb();
     }
 
     /**
@@ -43,7 +43,7 @@ class ProfileLang extends ActiveRecordLang
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            ['rid', 'exist', 'targetClass' => Colors::class, 'targetAttribute' => 'id'],
+            ['rid', 'exist', 'targetClass' => Profile::class, 'targetAttribute' => 'id'],
             [['address', 'name_company'], 'string', 'max' => 255],
         ]);
     }
