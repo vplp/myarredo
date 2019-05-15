@@ -4,12 +4,14 @@ use yii\helpers\{
     Html, Url
 };
 use yii\widgets\ActiveForm;
+//
+use frontend\modules\shop\models\CartCustomerForm;
 
-/** @var $model \frontend\modules\shop\models\CartCustomerForm */
+/** @var $model CartCustomerForm */
 
 $model->user_agreement = 1;
 $model->city_id = Yii::$app->city->getCityId();
-
+echo Yii::$app->controller->id;
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -62,7 +64,9 @@ $model->city_id = Yii::$app->city->getCityId();
     ->label(false) ?>
 
 <?= Html::submitButton(
-    Yii::t('app', 'Получить лучшую цену'),
+    Yii::$app->controller->id == 'sale-italy'
+        ? Yii::t('app', 'Узнай цену на доставку')
+        : Yii::t('app', 'Получить лучшую цену'),
     [
         'class' => 'add-to-notepad-product btn btn-success big',
         'data-id' => $product_id,
