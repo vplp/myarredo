@@ -6,16 +6,32 @@ use Yii;
 //
 use frontend\modules\sys\Sys;
 use common\modules\sys\models\Language as CommonLanguageModel;
+use yii\helpers\ArrayHelper;
 
 class Language extends CommonLanguageModel
 {
+    /**
+     * @return mixed
+     */
+    public static function dropDownList()
+    {
+        return ArrayHelper::map(self::findBase()->asArray()->all(), 'local', 'label');
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function findBase()
+    {
+        return parent::findBase()->enabled();
+    }
+
     /**
      * @return array
      */
     public function getLanguages(): array
     {
         return self::findBase()
-            ->enabled()
             ->asArray()
             ->all();
     }
@@ -26,7 +42,6 @@ class Language extends CommonLanguageModel
     public static function getAllByLocate()
     {
         return $data = self::findBase()
-            ->enabled()
             ->indexBy('local')
             ->asArray()
             ->all();

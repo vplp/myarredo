@@ -11,7 +11,6 @@ use frontend\modules\shop\models\CartCustomerForm;
 
 $model->user_agreement = 1;
 $model->city_id = Yii::$app->city->getCityId();
-echo Yii::$app->controller->id;
 ?>
 
 <?php $form = ActiveForm::begin([

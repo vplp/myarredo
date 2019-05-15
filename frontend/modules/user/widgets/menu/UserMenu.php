@@ -47,18 +47,19 @@ class UserMenu extends Widget
                 ],
                 [
                     'label' => Yii::t('app', 'Orders italy'),
-                    'url' => ['/shop/partner-order/list-italy']
+                    'url' => ['/shop/partner-order/list-italy'],
+                    'visible' => in_array(Yii::$app->language, ['it-IT', 'en-EN'])
                 ],
-                [
-                    'label' => Yii::t('app', 'General rules'),
-                    'url' => ['/rules/rules/list']
-                ],
+//                [
+//                    'label' => Yii::t('app', 'General rules'),
+//                    'url' => ['/rules/rules/list']
+//                ],
             ];
         } elseif (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['partner'])) {
             $this->menuItems = [
                 [
-                    'label' => Yii::t('app', 'Furniture in Italy'),
-                    'url' => ['/catalog/italian-product/list']
+                    'label' => Yii::t('app', 'Sale'),
+                    'url' => ['/catalog/partner-sale/list']
                 ],
                 [
                     'label' => Yii::t('app', 'Orders'),
@@ -66,11 +67,8 @@ class UserMenu extends Widget
                 ],
                 [
                     'label' => Yii::t('app', 'Orders italy'),
-                    'url' => ['/shop/partner-order/list-italy']
-                ],
-                [
-                    'label' => Yii::t('app', 'Sale'),
-                    'url' => ['/catalog/partner-sale/list']
+                    'url' => ['/shop/partner-order/list-italy'],
+                    'visible' => in_array(Yii::$app->language, ['it-IT', 'en-EN'])
                 ],
                 [
                     'label' => Yii::t('app', 'Размещение кода'),
@@ -80,14 +78,14 @@ class UserMenu extends Widget
                     'label' => Yii::t('app', 'Инструкция партнерам'),
                     'url' => ['/page/page/view', 'alias' => 'instructions']
                 ],
-                [
-                    'label' => Yii::t('app', 'General rules'),
-                    'url' => ['/rules/rules/list']
-                ],
-                [
-                    'label' => Yii::t('app', 'Платежная информация'),
-                    'url' => ['/payment/partner-payment/list']
-                ],
+//                [
+//                    'label' => Yii::t('app', 'General rules'),
+//                    'url' => ['/rules/rules/list']
+//                ],
+//                [
+//                    'label' => Yii::t('app', 'Платежная информация'),
+//                    'url' => ['/payment/partner-payment/list']
+//                ],
             ];
         } elseif (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') {
             $this->menuItems = [
