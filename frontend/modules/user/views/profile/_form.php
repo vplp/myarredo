@@ -11,6 +11,7 @@ use frontend\modules\location\models\{
 use frontend\modules\user\models\{
     Profile, ProfileLang
 };
+use frontend\modules\sys\models\Language;
 
 /** @var $model Profile */
 /** @var $modelLang ProfileLang */
@@ -37,6 +38,7 @@ $this->title = Yii::t('app', 'Profile');
                     <div class="col-md-4 col-lg-4 one-row">
                         <?= $form->field($model, 'first_name') ?>
                         <?= $form->field($model, 'last_name') ?>
+
                         <?= $form->field($model, 'phone')
                             ->widget(\yii\widgets\MaskedInput::class, [
                                 'mask' => Yii::$app->city->getPhoneMask(),
@@ -44,6 +46,13 @@ $this->title = Yii::t('app', 'Profile');
                                     'clearIncomplete' => true
                                 ]
                             ]) ?>
+
+                        <?= $form->field($model, 'preferred_language')
+                            ->dropDownList(
+                                Language::dropDownList(),
+                                ['class' => 'selectpicker']
+                            ); ?>
+
                     </div>
 
                     <?php
