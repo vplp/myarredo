@@ -81,6 +81,7 @@ $this->title = $this->context->title;
                                             : $model['factory_name'] ?>
                                     </td>
                                 </tr>
+
                                 <?php if (!empty($model['specificationValue'])) {
                                     $array = [];
                                     foreach ($model['specificationValue'] as $item) {
@@ -120,7 +121,7 @@ $this->title = $this->context->title;
                                         <td class="product-size">
                                             <?php
                                             foreach ($model['specificationValue'] as $item) {
-                                                if ($item['specification']['parent_id'] == 4) {
+                                                if ($item['specification']['parent_id'] == 4 && $item['val']) {
                                                     echo Html::beginTag('span') .
                                                         $item['specification']['lang']['title'] .
                                                         ' (' . Yii::t('app', 'см') . ')' .
@@ -225,7 +226,7 @@ $this->title = $this->context->title;
                         <?php if (Yii::$app->controller->id == 'sale-italy') { ?>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 sellout-cont">
                                 <div class="best-price-form">
-                                    <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
+                                    <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на доставку') ?></h3>
 
                                     <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
 

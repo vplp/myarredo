@@ -67,6 +67,18 @@ use frontend\modules\catalog\models\ItalianProduct;
                         <tr class="noborder">
                             <td colspan="2" class="spec-pad">
                                 <span class="for-ordertable">
+                                    <?= Yii::t('app', 'Предмет') ?>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="spec-pad2">
+                                <?= $orderItem->product['types']['lang']['title'] ?>
+                            </td>
+                        </tr>
+                        <tr class="noborder">
+                            <td colspan="2" class="spec-pad">
+                                <span class="for-ordertable">
                                     <?= Yii::t('app', 'Factory') ?>
                                 </span>
                             </td>
@@ -88,6 +100,57 @@ use frontend\modules\catalog\models\ItalianProduct;
                                 <?= $orderItem->product['region']['title'] ?>
                             </td>
                         </tr>
+                        <tr class="noborder">
+                            <td colspan="2" class="spec-pad">
+                                <span class="for-ordertable">
+                                    <?= $orderItem->product->getAttributeLabel('volume') ?>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="spec-pad2">
+                                <?= $orderItem->product['volume'] ?>
+                            </td>
+                        </tr>
+                        <tr class="noborder">
+                            <td colspan="2" class="spec-pad">
+                                <span class="for-ordertable">
+                                    <?= $orderItem->product->getAttributeLabel('weight') ?>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="spec-pad2">
+                                <?= $orderItem->product['weight'] ?>
+                            </td>
+                        </tr>
+
+                        <?php if (!empty($orderItem->product['specificationValue'])) { ?>
+                            <tr class="noborder">
+                                <td colspan="2" class="spec-pad">
+                                <span class="for-ordertable">
+                                    <?= Yii::t('app', 'Размеры') ?>
+                                </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="spec-pad2">
+                                    <?php
+                                    foreach ($orderItem->product['specificationValue'] as $item) {
+                                        if ($item['specification']['parent_id'] == 4 && $item['val']) {
+                                            echo Html::beginTag('div') .
+                                                $item['specification']['lang']['title'] .
+                                                ' (' . Yii::t('app', 'см') . ')' .
+                                                ': ' .
+                                                $item['val'] .
+                                                Html::endTag('div');
+                                        }
+                                    } ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
+
+
                         <tr class="noborder">
                             <td colspan="2" class="spec-pad">
                             <span class="for-ordertable">

@@ -222,7 +222,7 @@ class Order extends ActiveRecord
      */
     public function getCreatedTime()
     {
-        $format = 'd.m.Y H:i';
+        $format = 'H:i d.m.Y';
         return $this->created_at == 0 ? date($format) : date($format, $this->created_at);
     }
 }
