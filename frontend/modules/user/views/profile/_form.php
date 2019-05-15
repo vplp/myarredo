@@ -47,11 +47,11 @@ $this->title = Yii::t('app', 'Profile');
                                 ]
                             ]) ?>
 
-                        <?= $form->field($model, 'preferred_language')
+                        <?php $form->field($model, 'preferred_language')
                             ->dropDownList(
                                 Language::dropDownList(),
                                 ['class' => 'selectpicker']
-                            ); ?>
+                            ) ?>
 
                     </div>
 
@@ -82,13 +82,13 @@ $this->title = Yii::t('app', 'Profile');
                                 ->dropDownList(
                                     [null => '--'] + Country::dropDownList(),
                                     ['class' => 'selectpicker']
-                                ); ?>
+                                ) ?>
 
                             <?= $form->field($model, 'city_id')
                                 ->dropDownList(
                                     [null => '--'] + City::dropDownList($model->country_id),
                                     ['class' => 'selectpicker']
-                                ); ?>
+                                ) ?>
 
                             <?= $form->field($modelLang, 'address') ?>
                         </div>
