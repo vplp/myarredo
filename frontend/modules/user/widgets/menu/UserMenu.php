@@ -67,8 +67,7 @@ class UserMenu extends Widget
                 ],
                 [
                     'label' => Yii::t('app', 'Orders italy'),
-                    'url' => ['/shop/partner-order/list-italy'],
-                    'visible' => in_array(Yii::$app->language, ['it-IT', 'en-EN'])
+                    'url' => ['/shop/partner-order/list-italy']
                 ],
                 [
                     'label' => Yii::t('app', 'Размещение кода'),
