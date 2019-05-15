@@ -81,6 +81,7 @@ $this->title = $this->context->title;
                                             : $model['factory_name'] ?>
                                     </td>
                                 </tr>
+
                                 <?php if (!empty($model['specificationValue'])) {
                                     $array = [];
                                     foreach ($model['specificationValue'] as $item) {
