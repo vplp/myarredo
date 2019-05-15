@@ -47,7 +47,7 @@ $this->title = Yii::t('app', 'Profile');
                                 ]
                             ]) ?>
 
-                        <?php $form->field($model, 'preferred_language')
+                        <?= $form->field($model, 'preferred_language')
                             ->dropDownList(
                                 Language::dropDownList(),
                                 ['class' => 'selectpicker']

@@ -47,7 +47,8 @@ class UserMenu extends Widget
                 ],
                 [
                     'label' => Yii::t('app', 'Orders italy'),
-                    'url' => ['/shop/partner-order/list-italy']
+                    'url' => ['/shop/partner-order/list-italy'],
+                    'visible' => in_array(Yii::$app->language, ['it-IT', 'en-EN'])
                 ],
 //                [
 //                    'label' => Yii::t('app', 'General rules'),
@@ -66,7 +67,8 @@ class UserMenu extends Widget
                 ],
                 [
                     'label' => Yii::t('app', 'Orders italy'),
-                    'url' => ['/shop/partner-order/list-italy']
+                    'url' => ['/shop/partner-order/list-italy'],
+                    'visible' => in_array(Yii::$app->language, ['it-IT', 'en-EN'])
                 ],
                 [
                     'label' => Yii::t('app', 'Размещение кода'),

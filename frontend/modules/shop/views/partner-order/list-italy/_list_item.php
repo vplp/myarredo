@@ -54,16 +54,6 @@ use frontend\modules\catalog\models\ItalianProduct;
                                 } ?>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <span class="for-ordertable">
-                                    <?= Yii::t('app', 'Артикул') ?>
-                                </span>
-                            </td>
-                            <td>
-                                <?= $orderItem->product['article'] ?>
-                            </td>
-                        </tr>
                         <tr class="noborder">
                             <td colspan="2" class="spec-pad">
                                 <span class="for-ordertable">
@@ -227,14 +217,14 @@ use frontend\modules\catalog\models\ItalianProduct;
     </div>
 
 <?php
-if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null) {
+if (Yii::$app->user->identity->profile->country_id == 4 || Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null) {
     if ((!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0)) {
         echo Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success action-save-answer',
             'name' => 'action-save-answer',
             'value' => 1]);
     }
 } else {
-    echo '<p>Оплатите возможность отвечать на заявки из этого города!</p>';
+    echo Html::tag('p', Yii::t('app', 'Оплатите возможность отвечать на заявки из этого города!'));
 } ?>
 
 <?php ActiveForm::end(); ?>

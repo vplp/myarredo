@@ -95,15 +95,17 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Yii::t('app', 'Furniture in Italy') ?>
                                     </div>
                                 </a>
-                                <a href="<?= Url::toRoute(['/shop/partner-order/list-italy'], true) ?>"
-                                   class="profile-quadrlink">
-                                    <div class="profile-quadrlink-img">
-                                        <?= Html::img($bundle->baseUrl . '/img/requests.png') ?>
-                                    </div>
-                                    <div class="profile-quadrlink-text">
-                                        <?= Yii::t('app', 'Orders italy') ?>
-                                    </div>
-                                </a>
+                                <?php if (in_array(Yii::$app->language, ['it-IT', 'en-EN'])) { ?>
+                                    <a href="<?= Url::toRoute(['/shop/partner-order/list-italy'], true) ?>"
+                                       class="profile-quadrlink">
+                                        <div class="profile-quadrlink-img">
+                                            <?= Html::img($bundle->baseUrl . '/img/requests.png') ?>
+                                        </div>
+                                        <div class="profile-quadrlink-text">
+                                            <?= Yii::t('app', 'Orders italy') ?>
+                                        </div>
+                                    </a>
+                                <?php } ?>
                             <?php } elseif (in_array(Yii::$app->user->identity->group->role, ['partner'])) { ?>
                                 <a href="<?= Url::toRoute(['/catalog/partner-sale/list'], true) ?>"
                                    class="profile-quadrlink">
@@ -123,15 +125,17 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Yii::t('app', 'Orders') ?>
                                     </div>
                                 </a>
-                                <a href="<?= Url::toRoute(['/shop/partner-order/list-italy'], true) ?>"
-                                   class="profile-quadrlink">
-                                    <div class="profile-quadrlink-img">
-                                        <?= Html::img($bundle->baseUrl . '/img/requests.png') ?>
-                                    </div>
-                                    <div class="profile-quadrlink-text">
-                                        <?= Yii::t('app', 'Orders italy') ?>
-                                    </div>
-                                </a>
+                                <?php if (in_array(Yii::$app->language, ['it-IT', 'en-EN'])) { ?>
+                                    <a href="<?= Url::toRoute(['/shop/partner-order/list-italy'], true) ?>"
+                                       class="profile-quadrlink">
+                                        <div class="profile-quadrlink-img">
+                                            <?= Html::img($bundle->baseUrl . '/img/requests.png') ?>
+                                        </div>
+                                        <div class="profile-quadrlink-text">
+                                            <?= Yii::t('app', 'Orders italy') ?>
+                                        </div>
+                                    </a>
+                                <?php } ?>
                             <?php } elseif (Yii::$app->user->identity->group->role == 'admin') { ?>
                                 <a href="<?= Url::toRoute(['/shop/admin-order/list'], true) ?>"
                                    class="profile-quadrlink">
