@@ -78,7 +78,22 @@ class RegisterForm extends CommonForm
                     'reCaptcha'
                 ],
                 'required',
-                'on' => ['registerFactory', 'registerLogistician']
+                'on' => ['registerFactory']
+            ],
+            [
+                [
+                    'last_name',
+                    'phone',
+                    'name_company',
+                    'address',
+                    'country_id',
+                    'city_id',
+                    'user_agreement',
+                    'user_confirm_offers',
+                    'reCaptcha'
+                ],
+                'required',
+                'on' => ['registerLogistician']
             ],
             [
                 [
@@ -102,13 +117,24 @@ class RegisterForm extends CommonForm
                 'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
             ],
             [
+                ['user_confirm_offers'],
+                'required',
+                'on' => ['registerLogistician'],
+                'requiredValue' => 1,
+                'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
+            ],
+            [
                 ['confirm_processing_data'],
                 'required',
                 'on' => ['registerPartner',],
                 'requiredValue' => 1,
                 'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
             ],
-            [['delivery_to_other_cities', 'user_agreement', 'confirm_processing_data'], 'in', 'range' => [0, 1]],
+            [
+                ['delivery_to_other_cities', 'user_agreement', 'confirm_processing_data', 'user_confirm_offers'],
+                'in',
+                'range' => [0, 1]
+            ],
             [['country_id', 'city_id'], 'integer'],
             [['country_id', 'city_id', 'delivery_to_other_cities'], 'default', 'value' => 0],
             [
@@ -213,6 +239,7 @@ class RegisterForm extends CommonForm
                 'country_id',
                 'city_id',
                 'user_agreement',
+                'user_confirm_offers',
                 'reCaptcha'
             ],
         ];
@@ -465,7 +492,6 @@ class RegisterForm extends CommonForm
 
                 ($save && $saveLang) ? $transaction->commit() : $transaction->rollBack();
 
-                ($save) ? $transaction->commit() : $transaction->rollBack();
                 return $save;
             } catch (Exception $e) {
                 $transaction->rollBack();
@@ -553,7 +579,6 @@ class RegisterForm extends CommonForm
 
                 ($save && $saveLang) ? $transaction->commit() : $transaction->rollBack();
 
-                ($save) ? $transaction->commit() : $transaction->rollBack();
                 return $save;
             } catch (Exception $e) {
                 $transaction->rollBack();

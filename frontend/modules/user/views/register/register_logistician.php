@@ -6,16 +6,18 @@ use yii\helpers\{
 use yii\widgets\ActiveForm;
 //
 use frontend\themes\myarredo\assets\AppAsset;
+use frontend\modules\user\models\form\RegisterForm;
 
 $bundle = AppAsset::register($this);
 
 /**
- * @var \frontend\modules\user\models\form\RegisterForm $model
+ * @var $model RegisterForm
  */
 
 $this->title = Yii::t('app', 'Регистрация для логиста');
 
 $model->user_agreement = 1;
+$model->user_confirm_offers = 1;
 ?>
 
 <main>
@@ -78,6 +80,15 @@ $model->user_agreement = 1;
                                 )
                                 ->checkbox([], false)
                                 ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
+
+                            <?= $form
+                                ->field(
+                                    $model,
+                                    'user_confirm_offers',
+                                    ['template' => '{input}{label}{error}{hint}']
+                                )
+                                ->checkbox([], false)
+                                ->label('&nbsp;' . $model->getAttributeLabel('user_confirm_offers')) ?>
 
                             <?= $form
                                 ->field($model, 'reCaptcha')
