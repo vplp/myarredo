@@ -7516,6 +7516,286 @@ h1 {
     padding: 10px;
   }
 }
+
+/* --------------------------------------------------------------------------------------------------------- */
+/* ---------------------------------------about page styles-------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------- */
+.about-main, .about-wrap {
+  background-color: #F3F2F0;
+}
+@media(max-width: 991px) {
+  .about-main, .about-wrap {
+    background-color: #ffffff;
+  }
+}
+.aboutbox {
+  padding: 0;
+}
+.about-title {
+  display: none;
+}
+.about-container {
+  position: relative;
+}
+.about-content {
+  padding-bottom: 20px;
+}
+@media(max-width: 1200px) {
+  .largex-container.about-container {
+    padding: 0 15px;
+    background-color: #F3F2F0;
+  }
+}
+@media(max-width: 991px) {
+  .largex-container.about-container {
+    background-color: #ffffff;
+  }
+}
+.presentsbox {
+  min-height: 600px;
+  background-color: #f3f2f0;
+  background-image: url('../img/about/fon_mebel.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 -136px;
+  padding: 20px 0;
+}
+@media(max-width: 1500px) {
+  .presentsbox {
+    background-position: 0 -123px;
+  }
+}
+@media(max-width: 1400px) {
+  .presentsbox {
+    background-position: 0 -108px;
+    min-height: 500px;
+  }
+}
+@media(max-width: 1300px) {
+  .presentsbox {
+    background-position: 0 -98px;
+  }
+}
+@media(max-width: 1200px) {
+  .presentsbox {
+    min-height: 360px;
+    background-position: 0 -69px;
+  }
+}
+@media(max-width: 991px) {
+  .presentsbox {
+    min-height: 275px;
+    background-image: url('../img/about/fon_mebel_tablet.jpg');
+    background-position: 0 -57px;
+  }
+}
+@media(max-width: 740px) {
+  .presentsbox {
+    min-height: 36vw;
+    background-position: 0 -53px;
+  }
+}
+@media(max-width: 510px) {
+  .presentsbox {
+    min-height: 210px;
+    background-position: 0 -27px;
+  }
+}
+@media(max-width: 459px) {
+  .presentsbox {
+    background-position: 0 0;
+  }
+}
+.about-content-box {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.about-container .about-titleh2 {
+  font-size: 56px;
+  line-height: 75px;
+  color: #41403e;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 20px;
+  max-width: 600px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: -18px;
+  left: -125px;
+}
+@media(max-width: 1400px) {
+  .about-container .about-titleh2 {
+    font-size: 45px;
+    line-height: 70px;
+    letter-spacing: 16px;
+  }
+}
+@media(max-width: 1200px) {
+  .about-container .about-titleh2 {
+    font-size: 38px;
+    line-height: 50px;
+    letter-spacing: 10px;
+    left: -89px;
+  }
+}
+@media(max-width: 991px) {
+  .about-container .about-titleh2 {
+    font-size: 30px;
+    line-height: 40px;
+    letter-spacing: 8px;
+    left: -77px;
+  }
+}
+@media(max-width: 359px) {
+  .about-container .about-titleh2 {
+    font-size: 26px;
+    line-height: 36px;
+    letter-spacing: 6px;
+    left: -72px;
+  }
+}
+.about-presents-titlebox {
+  padding: 40px;
+  max-width: 555px;
+  max-height: 275px;
+  border-top: 1px solid #bdbcb3;
+  border-right: 1px solid #bdbcb3;
+  border-bottom: 1px solid #bdbcb3;
+  position: relative;
+  margin-top: 15px;
+  margin-left: 80px;
+}
+@media(max-width: 1400px) {
+  .about-presents-titlebox {
+    max-width: 455px;
+    max-height: 265px;
+  }
+}
+@media(max-width: 1200px) {
+  .about-presents-titlebox {
+    max-width: 360px;
+    max-height: 200px;
+    margin-top: 10px;
+  }
+}
+@media(max-width: 991px) {
+  .about-presents-titlebox {
+    max-width: 285px;
+    max-height: 166px;
+    margin-top: 0px;
+    margin-left: 35px;
+  }
+}
+@media(max-width: 359px) {
+  .about-presents-titlebox {
+    max-width: 235px;
+    max-height: 155px;
+  }
+}
+.about-presents-titlebox::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 25px;
+  background-color: #bdbcb3;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.about-presents-titlebox::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 25px;
+  background-color: #bdbcb3;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.topiconsbox {
+  background-color: #ffffff;
+}
+.topicons-itbox {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 110px 0;
+}
+@media(max-width: 991px) {
+  .topicons-itbox {
+    padding: 80px 0;
+  }
+}
+@media(max-width: 459px) {
+  .topicons-itbox {
+    padding: 60px 0;
+  }
+}
+.topicons-item {
+  width: 20%;
+  border-right: 1px solid #bdbcb3;
+  padding: 0 45px;
+}
+@media(max-width: 1400px) {
+  .topicons-item {
+    padding: 0 30px;
+  }
+}
+@media(max-width: 1400px) {
+  .topicons-item {
+    padding: 0 25px;
+  }
+}
+@media(max-width: 991px) {
+  .topicons-item {
+    width: 33%;
+    margin-bottom: 40px;
+  }
+}
+@media(max-width: 991px) {
+  .topicons-item {
+    width: 50%;
+  }
+}
+@media(min-width: 992px) {
+  .topicons-item:last-child {
+    border-right: 0;
+  }
+}
+@media(min-width: 460px) and (max-width: 991px) {
+  .topicons-item:nth-child(2),
+  .topicons-item:nth-child(4) {
+    border-right: 0;
+  }
+}
+@media(max-width: 459px) {
+  .topicons-item {
+    width: 100%;
+  }
+}
+.topicons-item-icon {
+  margin-bottom: 18px;
+  height: 70px;
+}
+.topicons-item-icon img {
+  width: auto;
+  height: auto;
+  max-width: 80px;
+  max-height: 54px;
+}
+.topicons-item-text {
+  font-size: 17px;
+  font-weight: 300;
+  color: #41403e;
+  line-height: 26px;
+}
+@media(max-width: 1200px) {
+  .topicons-item-text {
+    font-size: 15px;
+    line-height: 24px;
+  }
+}
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
 /* ---------------------------------------------------------------------------------------------------- */
