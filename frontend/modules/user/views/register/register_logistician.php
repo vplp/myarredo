@@ -3,9 +3,11 @@
 use yii\helpers\{
     Html, Url
 };
+use yii\web\View;
 use yii\widgets\ActiveForm;
 //
 use frontend\themes\myarredo\assets\AppAsset;
+use frontend\modules\location\models\Country;
 use frontend\modules\user\models\form\RegisterForm;
 
 $bundle = AppAsset::register($this);
@@ -44,13 +46,22 @@ $model->user_confirm_offers = 1;
 
                             <?= $form->field($model, 'address') ?>
 
-                            <?= $form->field($model, 'country_id')
-                                ->input('hidden', ['value' => 0])
-                                ->label(false) ?>
+                            <?php
+                            /**
+                             * country and city
+                             */
+                            echo $form->field($model, 'country_id')
+                                ->dropDownList(
+                                    [null => '--'] + Country::dropDownList(),
+                                    ['class' => 'selectpicker']
+                                );
 
-                            <?= $form->field($model, 'city_id')
-                                ->input('hidden', ['value' => 0])
-                                ->label(false) ?>
+                            echo $form->field($model, 'city_id')
+                                ->dropDownList(
+                                    [null => '--'],
+                                    ['class' => 'selectpicker']
+                                );
+                            ?>
 
                             <?= $form->field($model, 'phone')
                                 ->widget(\yii\widgets\MaskedInput::class, [
@@ -115,3 +126,20 @@ $model->user_confirm_offers = 1;
         </div>
     </div>
 </main>
+
+
+<?php
+$url = Url::toRoute(['/location/location/get-cities']);
+$script = <<<JS
+$('select#registerform-country_id').change(function(){
+    var country_id = parseInt($(this).val());
+    
+    $.post('$url', {_csrf: $('#token').val(),country_id:country_id}, function(data){
+        var select = $('select#registerform-city_id');
+        select.html(data.options);
+        select.selectpicker("refresh");
+    });
+});
+JS;
+
+$this->registerJs($script, yii\web\View::POS_READY);
