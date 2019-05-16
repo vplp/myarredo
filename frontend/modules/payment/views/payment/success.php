@@ -1,11 +1,11 @@
-<main>
-    <div class="page about-page">
-        <div class="container large-container">
-            <div class="col-md-12">
-                <div class="text">
+<main class="paysuccess-main">
+    <div class="about-page paysuccess-page">
+        <div class="largex-container">
+            <div class="paysuccesbox">
+                <div class="paysucces-text">
 
                     <?= $messages ?>
-
+                    
                 </div>
             </div>
 

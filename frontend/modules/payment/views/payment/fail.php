@@ -1,8 +1,8 @@
-<main>
-    <div class="page about-page">
-        <div class="container large-container">
-            <div class="col-md-12">
-                <div class="text">
+<main class="payerror-main">
+    <div class="about-page payerror-page">
+        <div class="largex-container">
+            <div class="payerrorbox">
+                <div class="payerror-text">
 
                     <?= $messages ?>
 
