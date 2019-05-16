@@ -4,12 +4,12 @@ use yii\helpers\{
     Html, Url
 };
 use frontend\modules\news\widgets\news\NewsListForPartners;
+use frontend\modules\shop\models\Order;
 
 /**
- * @var \frontend\modules\shop\models\Order $modelOrder
+ * @var $modelOrder Order
  */
 
-$this->title = $this->context->title;
 ?>
 
     <main>
@@ -28,8 +28,7 @@ $this->title = $this->context->title;
 
                 <?php if (!Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                     <div style="color:red; font-size: 24px;">
-                        Вы сможете ответить на Заявки покупателей после размещения
-                        небольшого кода на Вашем сайте.
+                        <?= Yii::t('app', 'Вы сможете ответить на Заявки покупателей после размещения небольшого кода на Вашем сайте.') ?>
                         <u>
                             <?= Html::a(
                                 Yii::t('app', 'Подробнее'),

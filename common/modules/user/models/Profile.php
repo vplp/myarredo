@@ -337,7 +337,11 @@ class Profile extends \thread\modules\user\models\Profile
      */
     public function getPossibilityToAnswer()
     {
-        if (Yii::$app->getUser()->getIdentity()->profile->possibility_to_answer) {
+        if (in_array(Yii::$app->user->identity->group->role, ['partner']) &&
+            Yii::$app->user->identity->profile->country_id &&
+            Yii::$app->user->identity->profile->country_id == 4) {
+            return true;
+        } elseif (Yii::$app->getUser()->getIdentity()->profile->possibility_to_answer) {
             return true;
         } elseif (Yii::$app->getUser()->getIdentity()->profile->website) {
             $html = $this->getCurlData(Yii::$app->getUser()->getIdentity()->profile->website);
@@ -366,6 +370,12 @@ class Profile extends \thread\modules\user\models\Profile
      */
     public function getPossibilityToSaveAnswer($city_id = 0)
     {
+        if (in_array(Yii::$app->user->identity->group->role, ['partner']) &&
+            Yii::$app->user->identity->profile->country_id &&
+            Yii::$app->user->identity->profile->country_id == 4) {
+            return true;
+        }
+
         $modelCities = Yii::$app->getUser()->getIdentity()->profile->cities;
 
         if ($modelCities != null) {

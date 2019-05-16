@@ -138,9 +138,7 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
         </div>
     </div>
 
-    <?php if ((Yii::$app->user->identity->profile->country_id && Yii::$app->user->identity->profile->country_id == 4) ||
-        Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null
-    ) {
+    <?php if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null) {
         if ((!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0)) {
             echo Html::submitButton(Yii::t('app', 'Save'), [
                 'class' => 'btn btn-success action-save-answer',

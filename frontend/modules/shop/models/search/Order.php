@@ -97,10 +97,7 @@ class Order extends OrderModel
         if (Yii::$app->user->identity->group->role == 'partner' &&
             Yii::$app->user->identity->profile->country_id &&
             Yii::$app->user->identity->profile->country_id == 4) {
-            $query
-                ->andFilterWhere([
-                    self::tableName() . '.lang' => 'it-IT',
-                ]);
+            $query->andFilterWhere(['IN', self::tableName() . '.lang', ['it-IT', 'en-EN']]);
         }
 
         if (isset($params['factory_id']) && $params['factory_id'] > 0) {
