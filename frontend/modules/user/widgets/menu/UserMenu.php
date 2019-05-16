@@ -38,6 +38,7 @@ class UserMenu extends Widget
             ];
         } elseif (!Yii::$app->getUser()->isGuest &&
             in_array(Yii::$app->user->identity->group->role, ['partner']) &&
+            Yii::$app->user->identity->profile->country_id &&
             Yii::$app->user->identity->profile->country_id == 4
         ) {
             $this->menuItems = [

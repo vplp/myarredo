@@ -85,6 +85,7 @@ $this->title = Yii::t('app', 'Profile');
                                     </div>
                                 </a>
                             <?php } elseif (in_array(Yii::$app->user->identity->group->role, ['partner']) &&
+                                Yii::$app->user->identity->profile->country_id &&
                                 Yii::$app->user->identity->profile->country_id == 4) { ?>
                                 <a href="<?= Url::toRoute(['/catalog/italian-product/list'], true) ?>"
                                    class="profile-quadrlink">
