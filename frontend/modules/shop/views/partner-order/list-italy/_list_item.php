@@ -231,7 +231,6 @@ if ((Yii::$app->user->identity->profile->country_id && Yii::$app->user->identity
 
 <?php ActiveForm::end(); ?>
 
-
 <?php
 if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null &&
     ($modelOrderAnswer->id && $modelOrderAnswer->answer_time == 0)) {

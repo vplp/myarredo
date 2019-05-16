@@ -49,12 +49,12 @@ class UserMenu extends Widget
                 [
                     'label' => Yii::t('app', 'Orders italy'),
                     'url' => ['/shop/partner-order/list-italy'],
-                    'visible' => in_array(Yii::$app->language, ['it-IT', 'en-EN'])
+                    'visible' => false
                 ],
-//                [
-//                    'label' => Yii::t('app', 'General rules'),
-//                    'url' => ['/rules/rules/list']
-//                ],
+                [
+                    'label' => Yii::t('app', 'Orders'),
+                    'url' => ['/shop/partner-order/list']
+                ],
             ];
         } elseif (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['partner'])) {
             $this->menuItems = [

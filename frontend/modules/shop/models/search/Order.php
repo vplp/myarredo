@@ -94,6 +94,15 @@ class Order extends OrderModel
                 ->andFilterWhere(['IN', 'product.factory_id', Yii::$app->user->identity->profile->factory_id]);
         }
 
+        if (Yii::$app->user->identity->group->role == 'partner' &&
+            Yii::$app->user->identity->profile->country_id &&
+            Yii::$app->user->identity->profile->country_id == 4) {
+            $query
+                ->andFilterWhere([
+                    self::tableName() . '.lang' => 'it-IT',
+                ]);
+        }
+
         if (isset($params['factory_id']) && $params['factory_id'] > 0) {
             $subQueryFactory = OrderModel::find()
                 ->select(OrderModel::tableName() . '.id')
@@ -101,9 +110,9 @@ class Order extends OrderModel
                 ->andFilterWhere(['IN', 'product.factory_id', $params['factory_id']]);
 
             $query->andFilterWhere([
-                    'AND',
-                    ['in', self::tableName() . '.id', $subQueryFactory]
-                ]);
+                'AND',
+                ['in', self::tableName() . '.id', $subQueryFactory]
+            ]);
         }
 
         return $dataProvider;
