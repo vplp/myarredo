@@ -341,6 +341,8 @@ class Profile extends \thread\modules\user\models\Profile
             Yii::$app->user->identity->profile->country_id &&
             Yii::$app->user->identity->profile->country_id == 4) {
             return true;
+        } elseif (in_array(Yii::$app->user->identity->group->role, ['logistician'])) {
+            return true;
         } elseif (Yii::$app->getUser()->getIdentity()->profile->possibility_to_answer) {
             return true;
         } elseif (Yii::$app->getUser()->getIdentity()->profile->website) {
@@ -373,6 +375,8 @@ class Profile extends \thread\modules\user\models\Profile
         if (in_array(Yii::$app->user->identity->group->role, ['partner']) &&
             Yii::$app->user->identity->profile->country_id &&
             Yii::$app->user->identity->profile->country_id == 4) {
+            return true;
+        } elseif (in_array(Yii::$app->user->identity->group->role, ['logistician'])) {
             return true;
         }
 

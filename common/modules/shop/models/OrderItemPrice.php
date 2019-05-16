@@ -51,7 +51,10 @@ class OrderItemPrice extends ActiveRecord
                 'compare',
                 'compareValue' => 108,
                 'operator' => '>=',
-                'message' => 'Ваш ответ должен быть максимально приближен к реальности'
+                'message' => Yii::t('app', 'Ваш ответ должен быть максимально приближен к реальности'),
+                'when' => function () {
+                    return Yii::$app->user->identity->group->role != 'logistician';
+                }
             ],
         ];
     }
