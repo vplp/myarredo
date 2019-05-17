@@ -134,12 +134,25 @@ $script = <<<JS
 $('select#registerform-country_id').change(function(){
     var country_id = parseInt($(this).val());
     
+    changeInputmaskByCountry(country_id);
+    
     $.post('$url', {_csrf: $('#token').val(),country_id:country_id}, function(data){
         var select = $('select#registerform-city_id');
         select.html(data.options);
         select.selectpicker("refresh");
     });
 });
+
+function changeInputmaskByCountry(country_id) {
+    var inputmask = [];
+    
+    inputmask[1] = {"clearIncomplete":true,"mask":["+380 (99) 999-99-99"]};
+    inputmask[2] = {"clearIncomplete":true,"mask":["+7 (999) 999-99-99"]};
+    inputmask[3] = {"clearIncomplete":true,"mask":["+375 (99) 999-99-99"]};
+    inputmask[4] = {"clearIncomplete":true,"mask":["+39 (99) 999-99-99","+39 (9999) 999-999","+39 (9999) 999-9999"]};
+
+    $('#registerform-phone').inputmask(inputmask[country_id]).trigger('focus').trigger("change");
+}
 JS;
 
 $this->registerJs($script, yii\web\View::POS_READY);

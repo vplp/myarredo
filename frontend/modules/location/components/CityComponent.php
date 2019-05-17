@@ -84,32 +84,43 @@ class CityComponent extends Component
     }
 
     /**
-     * @return string
+     * @param null $key
+     * @return mixed
      */
-    public function getPhoneMask()
+    public function getPhoneMask($key = null)
     {
-        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
-            $mask = [
+        $mask = [
+            'ua' => [
+                '+380 (99) 999-99-99'
+            ],
+            'ru' => [
                 '+7 (999) 999-99-99',
+            ],
+            'by' => [
+                '+375 (99) 999-99-99'
+            ],
+            'it' => [
                 '+39 (99) 999-99-99',
                 '+39 (9999) 999-999',
                 '+39 (9999) 999-9999'
-            ];
-        } elseif (Yii::$app->language == 'it-IT') {
-            $mask = [
-                '+39 (99) 999-99-99',
-                '+39 (9999) 999-999',
-                '+39 (9999) 999-9999'
-            ];
-        } elseif (in_array($this->domain, ['by'])) {
-            $mask = '+375 (99) 999-99-99';
-        } elseif (in_array($this->domain, ['ua'])) {
-            $mask = '+380 (99) 999-99-99';
-        } else {
-            $mask = '+7 (999) 999-99-99';
+            ],
+        ];
+
+        if (in_array($key, array_keys($mask))) {
+            return $mask[$key];
         }
 
-        return $mask;
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
+            return $mask['ru'] + $mask['it'];
+        } elseif (Yii::$app->language == 'it-IT') {
+            return $mask['it'];
+        } elseif (in_array($this->domain, ['by'])) {
+            return $mask['by'];
+        } elseif (in_array($this->domain, ['ua'])) {
+            return $mask['ua'];
+        } else {
+            return $mask['ru'];
+        }
     }
 
     /**
