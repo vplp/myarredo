@@ -116,10 +116,15 @@ $this->title = Yii::t('app', 'Profile');
 <?php
 $url = Url::toRoute(['/location/location/get-cities']);
 $script = <<<JS
+var country_id = parseInt($('#profile-country_id').val());
+
+showHideForItalia(country_id);
+
 $('select#profile-country_id').change(function(){
     var country_id = parseInt($(this).val());
     
     changeInputmaskByCountry(country_id);
+    showHideForItalia(country_id);
     
     $.post('$url', {_csrf: $('#token').val(),country_id:country_id}, function(data){
         var select = $('select#profile-city_id');
@@ -128,15 +133,29 @@ $('select#profile-country_id').change(function(){
     });
 });
 
+function showHideForItalia(country_id) {
+    // if selected Italy
+    if (country_id == 4) {
+        $('.field-profile-city_id').css('display', 'none');
+        
+        setTimeout(function() {
+            var romeOption = $('select#registerform-city_id').children('option')[0];
+            $(romeOption).prop('selected', true);
+        },300);
+    } else {
+        $('.field-profile-city_id').css('display', 'block');
+    }
+}
+
 function changeInputmaskByCountry(country_id) {
     var inputmask = [];
-    
+   
     inputmask[1] = {"clearIncomplete":true,"mask":["+380 (99) 999-99-99"]};
     inputmask[2] = {"clearIncomplete":true,"mask":["+7 (999) 999-99-99"]};
     inputmask[3] = {"clearIncomplete":true,"mask":["+375 (99) 999-99-99"]};
     inputmask[4] = {"clearIncomplete":true,"mask":["+39 (99) 999-99-99","+39 (9999) 999-999","+39 (9999) 999-9999"]};
 
-    $('#registerform-phone').inputmask(inputmask[country_id]).trigger('focus').trigger("change");
+    $('#profile-phone').inputmask(inputmask[country_id]).trigger('focus').trigger("change");
 }
 JS;
 
