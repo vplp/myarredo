@@ -23,8 +23,10 @@ $this->title = $this->context->title;
                 <?= Html::tag('h1', Html::encode($model['lang']['title']), ['class' => 'about-title']); ?>
                 <div class="about-content">
 
-                    <?= $model['lang']['content'] ?>
-                    <!-- <div class="presentsbox">
+                    <!-- <?= $model['lang']['content'] ?> -->
+
+                    <!-- top section start -->
+                    <div class="presentsbox">
                         <div class="about-content-box">
                             <div class="about-presents-titlebox">
                                 <h2 class="about-titleh2">Выбираете итальянскую мебель?</h2>
@@ -118,7 +120,92 @@ $this->title = $this->context->title;
                             </div>
 
                         </div>
-                    </div> -->
+                    </div>
+                    <!-- top section end -->
+
+                    <!-- section Best price start -->
+                    <div class="bestpricebox">
+                        <div class="bestprice-leftbox">
+                            <div class="about-bestprice-titlebox">
+                                <h2 class="about-titleh2">Как мы получаем лучшие цены для Вас?</h2>
+                            </div>
+                        </div>
+                        <div class="bestprice-rightbox">
+                            <ul class="bestprice-list">
+                                <li>
+                                    <div class="bestprice-list-numberbox">
+                                        <div class="list-number-box">
+                                            <span class="for-numb">1</span>
+                                            <span class="for-label">шаг</span>
+                                        </div>
+                                    </div>
+                                    <div class="bestprice-list-textbox">
+                                        Ваш запрос направляется 
+                                        всем поставщикам, 
+                                        авторизованным в нашей 
+                                        сети MY ARREDO FAMILY.
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="bestprice-list-numberbox">
+                                        <div class="list-number-box">
+                                            <span class="for-numb">2</span>
+                                            <span class="for-label">шаг</span>
+                                        </div>
+                                    </div>
+                                    <div class="bestprice-list-textbox">
+                                        Самые активные и успешные 
+                                        профессионалы рассчитают 
+                                        для вас лучшие цены
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="bestprice-list-numberbox">
+                                        <div class="list-number-box">
+                                            <span class="for-numb">3</span>
+                                            <span class="for-label">шаг</span>
+                                        </div>
+                                    </div>
+                                    <div class="bestprice-list-textbox">
+                                        Вы получите предложения 
+                                        и останется только выбрать 
+                                        лучшее по цене и условиям. 
+                                        Экономьте время и усилия на 
+                                        поиск по множеству сайтов.
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="bestprice-list-numberbox">
+                                        <div class="list-number-box">
+                                            <span class="for-numb">4</span>
+                                            <span class="for-label">шаг</span>
+                                        </div>
+                                    </div>
+                                    <div class="bestprice-list-textbox">
+                                        Дополнительные скидки и бонусы 
+                                        от итальянских фабрик участникам 
+                                        сети MY ARREDO FAMILY дают 
+                                        возможность предоставить Вам 
+                                        самые привлекательные цены.
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="bestprice-list-numberbox">
+                                        <div class="list-number-box">
+                                            <span class="for-numb">5</span>
+                                            <span class="for-label">шаг</span>
+                                        </div>
+                                    </div>
+                                    <div class="bestprice-list-textbox">
+                                        Всего пара кликов и лучшие 
+                                        поставщики итальянской 
+                                        мебели поборются за ваш заказ!
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- section Best price end -->
 
                 </div>
             </div>

@@ -7625,6 +7625,11 @@ h1 {
   top: -18px;
   left: -125px;
 }
+.about-container .bestpricebox .about-titleh2 {
+  min-width: 445px;
+  font-size: 48px;
+  line-height: 66px;
+}
 @media(max-width: 1400px) {
   .about-container .about-titleh2 {
     font-size: 45px;
@@ -7639,6 +7644,12 @@ h1 {
     letter-spacing: 10px;
     left: -89px;
   }
+  .about-container .bestpricebox .about-titleh2 {
+    font-size: 38px;
+    line-height: 50px;
+    letter-spacing: 10px;
+    min-width: 400px;
+  }
 }
 @media(max-width: 991px) {
   .about-container .about-titleh2 {
@@ -7646,6 +7657,13 @@ h1 {
     line-height: 40px;
     letter-spacing: 8px;
     left: -77px;
+  }
+  .about-container .bestpricebox .about-titleh2 {
+    font-size: 30px;
+    line-height: 40px;
+    letter-spacing: 8px;
+    left: -85px;
+    min-width: 320px;
   }
 }
 @media(max-width: 359px) {
@@ -7655,8 +7673,16 @@ h1 {
     letter-spacing: 6px;
     left: -72px;
   }
+  .about-container .bestpricebox .about-titleh2 {
+    font-size: 26px;
+    line-height: 36px;
+    letter-spacing: 6px;
+    min-width: 270px;
+    left: -78px;
+  }
 }
-.about-presents-titlebox {
+.about-presents-titlebox,
+.about-bestprice-titlebox {
   padding: 40px;
   max-width: 555px;
   max-height: 275px;
@@ -7667,10 +7693,19 @@ h1 {
   margin-top: 15px;
   margin-left: 80px;
 }
+.about-bestprice-titlebox {
+  max-height: 385px;
+  max-width: 360px;
+  margin-left: 225px;
+  margin-top: 40px;
+}
 @media(max-width: 1400px) {
   .about-presents-titlebox {
     max-width: 455px;
     max-height: 265px;
+  }
+  .about-bestprice-titlebox {
+    margin-left: 115px;
   }
 }
 @media(max-width: 1200px) {
@@ -7678,6 +7713,10 @@ h1 {
     max-width: 360px;
     max-height: 200px;
     margin-top: 10px;
+  }
+  .about-bestprice-titlebox {
+    margin-left: 70px;
+    max-height: 250px;
   }
 }
 @media(max-width: 991px) {
@@ -7687,14 +7726,25 @@ h1 {
     margin-top: 0px;
     margin-left: 35px;
   }
+  .about-bestprice-titlebox {
+    margin-left: 60px;
+    max-height: 210px;
+    max-width: 282px;
+  }
 }
 @media(max-width: 359px) {
   .about-presents-titlebox {
     max-width: 235px;
     max-height: 155px;
   }
+  .about-bestprice-titlebox {
+    max-height: 190px;
+    max-width: 235px;
+    margin-left: 45px;
+  }
 }
-.about-presents-titlebox::before {
+.about-presents-titlebox::before,
+.about-bestprice-titlebox::before {
   content: "";
   display: inline-block;
   width: 1px;
@@ -7704,7 +7754,8 @@ h1 {
   top: 0;
   left: 0;
 }
-.about-presents-titlebox::after {
+.about-presents-titlebox::after,
+.about-bestprice-titlebox::after {
   content: "";
   display: inline-block;
   width: 1px;
@@ -7729,7 +7780,7 @@ h1 {
 }
 @media(max-width: 459px) {
   .topicons-itbox {
-    padding: 60px 0;
+    padding: 60px 0 30px;
   }
 }
 .topicons-item {
@@ -7794,6 +7845,192 @@ h1 {
   .topicons-item-text {
     font-size: 15px;
     line-height: 24px;
+  }
+}
+.bestpricebox {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 25px;
+}
+.bestprice-leftbox {
+  width: 50%;
+  background-color: #edebe6;
+  background-image: url('../img/about/bestprice.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  min-height: 1055px;
+}
+.bestprice-rightbox {
+  width: 50%;
+  background-color: #edebe6; 
+  padding: 90px 0 90px 110px;
+}
+@media(max-width: 1200px) {
+  .bestprice-rightbox {
+    padding: 73px 0 73px 60px;
+  }
+  .bestprice-leftbox {
+    min-height: 975px;
+  }
+}
+@media(max-width: 992px) {
+  .bestprice-rightbox {
+    padding: 70px 0 70px 40px;
+  }
+}
+@media(max-width: 730px) {
+  .bestprice-leftbox,
+  .bestprice-rightbox {
+    width: 100%;
+  }
+  .bestprice-leftbox {
+    background-image: url('../img/about/bestprice_mob.jpg');
+    min-height: 300px;
+  }
+}
+@media(max-width: 379px) {
+  .bestprice-rightbox {
+    padding: 60px 0 60px 30px;
+  }
+}
+.bestprice-list {
+  padding: 0;
+}
+.bestprice-list li {
+  display: flex;
+  margin-bottom: 60px;
+}
+.list-number-box {
+  width: 95px;
+  height: 105px;
+  border-top: 1px solid #bdbcb3;
+  border-right: 1px solid #bdbcb3;
+  border-bottom: 1px solid #bdbcb3;
+  position: relative;
+}
+.list-number-box::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 9px;
+  background-color: #bdbcb3;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.list-number-box::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 9px;
+  background-color: #bdbcb3;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.list-number-box .for-numb {
+  display: inline-block;
+  font-size: 92px;
+  line-height: 95px;
+  font-weight: 900;
+  color: #bdbcb3;
+  position: relative;
+  left: -30px;
+}
+.list-number-box .for-label {
+  display: inline-block;
+  font-size: 17px;
+  line-height: 26px;
+  color: #545451;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  position: relative;
+  top: -68px;
+  left: 25px;
+  transform: rotate(-90deg);
+}
+.list-number-box .for-label::before {
+  display: inline-block;
+  content: ".";
+  font-size: 70px;
+  line-height: 26px;
+  color: #e2474a;
+  position: absolute;
+  top: -23px;
+  left: -22px;
+}
+.bestprice-list-textbox {
+  max-width: 240px;
+  margin: 0 auto 0 50px;
+  font-size: 19px;
+  font-weight: 300;
+  color: #545451;
+  max-height: 108px;
+  overflow: visible;
+  margin-top: -8px;
+}
+.bestprice-list li:nth-child(3) .bestprice-list-textbox {
+  max-width: 300px;
+}
+.bestprice-list li:nth-child(4) .bestprice-list-textbox {
+  max-width: 325px;
+}
+@media(max-width: 1200px) {
+  .bestprice-list-textbox {
+    font-size: 16px;
+    margin-top: -3px;
+    margin-left: 30px;
+    padding-right: 15px;
+  }
+}
+@media(max-width: 991px) {
+  .bestprice-list-textbox {
+    font-size: 15px;
+    margin-top: -5px;
+    margin-left: 15px;
+  }
+  .bestprice-list li {
+    margin-bottom: 65px;
+  }
+  .list-number-box {
+    width: 85px;
+    height: 95px;
+  }
+  .list-number-box .for-numb {
+    font-size: 82px;
+    line-height: 90px;
+    left: -26px;
+  }
+  .list-number-box .for-label {
+    font-size: 16px;
+    top: -67px;
+    left: 21px;
+  }
+}
+@media(max-width: 379px) {
+  .bestprice-list-textbox {
+    font-size: 14px;
+    margin-top: -5px;
+  }
+}
+@media(max-width: 359px) {
+  .bestprice-list-textbox {
+    font-size: 13px;
+  }
+  .list-number-box {
+    width: 75px;
+    height: 85px;
+  }
+  .list-number-box .for-numb {
+    font-size: 72px;
+    line-height: 80px;
+    left: -23px;
+  }
+  .list-number-box .for-label {
+    font-size: 14px;
+    top: -62px;
+    left: 18px;
   }
 }
 /* --------------------------------------------------------------------------------------------------------- */
