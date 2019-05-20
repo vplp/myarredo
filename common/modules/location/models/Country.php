@@ -45,7 +45,7 @@ class Country extends \thread\modules\location\models\Country
     public function attributeLabels()
     {
         $attributeLabels = [
-            'bookId' => 'bookId',
+            'bookId' => 'ID Адресной книги в SendPulse',
         ];
 
         return ArrayHelper::merge($attributeLabels, parent::attributeLabels());

@@ -88,7 +88,7 @@ class ProfileController extends BaseController
      */
     public function actionUpdate()
     {
-        /** @var Profile $model */
+        /** @var $profile Profile */
         $model = new $this->model();
         $modelLang = new $this->modelLang();
 
@@ -109,6 +109,8 @@ class ProfileController extends BaseController
         if ($profile->load(Yii::$app->getRequest()->post()) && $profileLang->load(Yii::$app->getRequest()->post())) {
             $transaction = $profile::getDb()->beginTransaction();
             try {
+                $profile->city_id = ($profile->country_id == 4) ? 0 : $profile->city_id;
+
                 $save = $profile->save();
 
                 if ($save) {
