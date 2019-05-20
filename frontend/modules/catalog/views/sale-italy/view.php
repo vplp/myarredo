@@ -40,6 +40,16 @@ $this->title = $this->context->title;
                                 'model' => $model
                             ]); ?>
 
+                            <?php if ($model->catalog_type_id == 3 && $model->file_link) { ?>
+                                <div>
+                                    <?= Html::a(
+                                        Yii::t('app', 'Смотреть проект'),
+                                        $model->getFileLink(),
+                                        ['target' => '_blank']
+                                    ) ?>
+                                </div>
+                            <?php } ?>
+
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-4">
                             <div class="prod-info">
@@ -54,19 +64,24 @@ $this->title = $this->context->title;
                                 <div class="prod-price">
                                     <div class="price">
                                         <?= Yii::t('app', 'Цена') ?>:
-                                        <span>
-                                        <?= $model->price_new . ' ' . $model->currency; ?>
-                                    </span>
+                                        <span><?= $model->price_new . ' ' . $model->currency; ?></span>
                                     </div>
                                     <?php if ($model->price > 0) { ?>
                                         <div class="price economy">
                                             <?= Yii::t('app', 'Экономия') ?>:
-                                            <span>
-                                            <?= ($model->price - $model->price_new) . ' ' . $model->currency; ?>
-                                        </span>
+                                            <span><?= ($model->price - $model->price_new) . ' ' . $model->currency; ?></span>
                                         </div>
                                     <?php } ?>
                                 </div>
+
+                                <?php if ($model->catalog_type_id == 3 && $model->price_without_technology) { ?>
+                                    <div class="prod-price">
+                                        <div class="price economy">
+                                            <?= $model->getAttributeLabel('price_without_technology') ?>:
+                                            <span><?= $model->price_without_technology . ' ' . $model->currency; ?></span>
+                                        </div>
+                                    </div>
+                                <?php } ?>
                             </div>
 
                             <table class="info-table itproduct-table" width="100%">
