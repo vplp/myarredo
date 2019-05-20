@@ -7611,6 +7611,20 @@ h1 {
   margin: 0 auto;
   padding: 0 15px;
 }
+.offers-topbox {
+  min-height: 560px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.offers-leftbox, .offers-rightbox {
+  width: 50%;
+  position: relative;
+}
+.mebel-decor-box {
+  position: absolute;
+  left: 25px;
+  bottom: 20px;
+}
 .about-container .about-titleh2 {
   font-size: 56px;
   line-height: 75px;
@@ -7625,7 +7639,8 @@ h1 {
   top: -18px;
   left: -125px;
 }
-.about-container .bestpricebox .about-titleh2 {
+.about-container .bestpricebox .about-titleh2,
+.about-container .offersbox .about-titleh2 {
   min-width: 445px;
   font-size: 48px;
   line-height: 66px;
@@ -7644,7 +7659,8 @@ h1 {
     letter-spacing: 10px;
     left: -89px;
   }
-  .about-container .bestpricebox .about-titleh2 {
+  .about-container .bestpricebox .about-titleh2,
+  .about-container .offersbox .about-titleh2 {
     font-size: 38px;
     line-height: 50px;
     letter-spacing: 10px;
@@ -7658,7 +7674,8 @@ h1 {
     letter-spacing: 8px;
     left: -77px;
   }
-  .about-container .bestpricebox .about-titleh2 {
+  .about-container .bestpricebox .about-titleh2,
+  .about-container .offersbox .about-titleh2 {
     font-size: 30px;
     line-height: 40px;
     letter-spacing: 8px;
@@ -7673,7 +7690,8 @@ h1 {
     letter-spacing: 6px;
     left: -72px;
   }
-  .about-container .bestpricebox .about-titleh2 {
+  .about-container .bestpricebox .about-titleh2,
+  .about-container .offersbox .about-titleh2 {
     font-size: 26px;
     line-height: 36px;
     letter-spacing: 6px;
@@ -7682,7 +7700,8 @@ h1 {
   }
 }
 .about-presents-titlebox,
-.about-bestprice-titlebox {
+.about-bestprice-titlebox,
+.about-offers-titlebox {
   padding: 40px;
   max-width: 555px;
   max-height: 275px;
@@ -7698,6 +7717,12 @@ h1 {
   max-width: 360px;
   margin-left: 225px;
   margin-top: 40px;
+}
+.about-offers-titlebox {
+  max-width: 420px;
+  max-height: 390px;
+  margin-top: 95px;
+  margin-left: 115px;
 }
 @media(max-width: 1400px) {
   .about-presents-titlebox {
@@ -7744,7 +7769,8 @@ h1 {
   }
 }
 .about-presents-titlebox::before,
-.about-bestprice-titlebox::before {
+.about-bestprice-titlebox::before,
+.about-offers-titlebox::before {
   content: "";
   display: inline-block;
   width: 1px;
@@ -7755,7 +7781,8 @@ h1 {
   left: 0;
 }
 .about-presents-titlebox::after,
-.about-bestprice-titlebox::after {
+.about-bestprice-titlebox::after,
+.about-offers-titlebox::after {
   content: "";
   display: inline-block;
   width: 1px;

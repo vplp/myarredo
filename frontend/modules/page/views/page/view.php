@@ -23,10 +23,10 @@ $this->title = $this->context->title;
                 <?= Html::tag('h1', Html::encode($model['lang']['title']), ['class' => 'about-title']); ?>
                 <div class="about-content">
 
-                    <?= $model['lang']['content'] ?>
+                    <!-- <?= $model['lang']['content'] ?> -->
 
                     <!-- top section start -->
-                    <!-- <div class="presentsbox">
+                    <div class="presentsbox">
                         <div class="about-content-box">
                             <div class="about-presents-titlebox">
                                 <h2 class="about-titleh2">Выбираете итальянскую мебель?</h2>
@@ -120,11 +120,11 @@ $this->title = $this->context->title;
                             </div>
 
                         </div>
-                    </div> -->
+                    </div>
                     <!-- top section end -->
 
                     <!-- section Best price start -->
-                    <!-- <div class="bestpricebox">
+                    <div class="bestpricebox">
                         <div class="bestprice-leftbox">
                             <div class="about-bestprice-titlebox">
                                 <h2 class="about-titleh2">Как мы получаем лучшие цены для Вас?</h2>
@@ -204,8 +204,41 @@ $this->title = $this->context->title;
                                 </li>
                             </ul>
                         </div>
-                    </div> -->
+                    </div>
                     <!-- section Best price end -->
+
+                    <!-- section offers start -->
+                    <div class="offersbox">
+                        <div class="about-content-box offers-topbox">
+                            <div class="offers-leftbox">
+                                <div class="about-offers-titlebox">
+                                    <h2 class="about-titleh2">Что предлагает сеть myArredo family?</h2>
+                                </div>
+                            </div>
+                            <div class="offers-rightbox">
+                                <div class="mebel-decor-box">
+                                    <img src="<?= $bundle->baseUrl ?>/img/about/mebel_decor.png" alt="Предложения">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-content-box offers-gallerybox">
+                            <div class="offers-gallery-item">
+                                <div class="gallery-item-textbox">
+                                    Проверенные салоны 
+                                    продаж итальянской 
+                                    мебели в более чем 70 
+                                    городах России.
+                                </div>
+                            </div>
+                            <div class="offers-gallery-item">
+                                <img src="<?= $bundle->baseUrl ?>/img/about/about2.png" alt="Предложения">
+                            </div>
+                            <div class="offers-gallery-item">
+                                <img src="<?= $bundle->baseUrl ?>/img/about/about3.png" alt="Предложения">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- section offers end -->
 
                 </div>
             </div>
