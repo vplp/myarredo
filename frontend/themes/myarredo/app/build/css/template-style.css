@@ -5630,14 +5630,18 @@ h1 {
     background: linear-gradient(to bottom right, #B5B3AA, #919284); }
   .home-main .top-home-img {
     overflow-x: hidden;
-    height: 410px; }
+    height: 410px;
+    background-color: #545b54;
+   }
     .home-main .top-home-img > img {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       height: 100%;
-      width: auto; }
+      width: auto;
+      display: none;
+     }
   .home-main .filter-bot {
     flex-direction: column;
     background: #FFFFFF; }
