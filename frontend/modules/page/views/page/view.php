@@ -222,19 +222,44 @@ $this->title = $this->context->title;
                             </div>
                         </div>
                         <div class="about-content-box offers-gallerybox">
-                            <div class="offers-gallery-item">
-                                <div class="gallery-item-textbox">
-                                    Проверенные салоны 
-                                    продаж итальянской 
-                                    мебели в более чем 70 
-                                    городах России.
+                            <div class="offers-gallery-item textbox-gallery">
+                                <div class="offers-gallery-inner">
+                                    <div class="gallery-item-textbox">
+                                        <div class="gallery-textbox-icon">
+                                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        </div>
+                                        <p class="gallery-textbox-p">
+                                            Проверенные салоны 
+                                            продаж итальянской 
+                                            мебели в более чем 70 
+                                            городах России.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="offers-gallery-item">
-                                <img src="<?= $bundle->baseUrl ?>/img/about/about2.png" alt="Предложения">
+                                <img src="<?= $bundle->baseUrl ?>/img/about/gall1.jpg" alt="Предложения">
                             </div>
                             <div class="offers-gallery-item">
-                                <img src="<?= $bundle->baseUrl ?>/img/about/about3.png" alt="Предложения">
+                                <img src="<?= $bundle->baseUrl ?>/img/about/gall2.jpg" alt="Предложения">
+                            </div>
+                            <div class="offers-gallery-item">
+                                <img src="<?= $bundle->baseUrl ?>/img/about/gall3.jpg" alt="Предложения">
+                            </div>
+                            <div class="offers-gallery-item">
+                                <img src="<?= $bundle->baseUrl ?>/img/about/gall4.jpg" alt="Предложения">
+                            </div>
+                            <div class="offers-gallery-item">
+                                <img src="<?= $bundle->baseUrl ?>/img/about/gall5.jpg" alt="Предложения">
+                            </div>
+                            <div class="offers-gallery-item">
+                                <img src="<?= $bundle->baseUrl ?>/img/about/gall6.jpg" alt="Предложения">
+                            </div>
+                            <div class="offers-gallery-item">
+                                <img src="<?= $bundle->baseUrl ?>/img/about/gall7.jpg" alt="Предложения">
+                            </div>
+                            <div class="offers-gallery-item">
+                                <img src="<?= $bundle->baseUrl ?>/img/about/gall8.jpg" alt="Предложения">
                             </div>
                         </div>
                     </div>

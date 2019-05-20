@@ -7645,6 +7645,11 @@ h1 {
   font-size: 48px;
   line-height: 66px;
 }
+@media(max-width: 1200px) {
+  .offers-topbox {
+    min-height: 455px;
+  }
+}
 @media(max-width: 1400px) {
   .about-container .about-titleh2 {
     font-size: 45px;
@@ -7665,6 +7670,15 @@ h1 {
     line-height: 50px;
     letter-spacing: 10px;
     min-width: 400px;
+  }
+  .about-container .offersbox .about-titleh2 {
+    min-width: 340px;
+  }
+  .mebel-decor-box {
+    min-height: 520px;
+  }
+  .mebel-decor-box img {
+    width: 100%;
   }
 }
 @media(max-width: 991px) {
@@ -7723,6 +7737,13 @@ h1 {
   max-height: 390px;
   margin-top: 95px;
   margin-left: 115px;
+}
+@media(max-width: 1200px) {
+  .about-offers-titlebox {
+    margin-left: 55px;
+    max-width: 300px;
+    max-height: 300px;
+  }
 }
 @media(max-width: 1400px) {
   .about-presents-titlebox {
@@ -7900,6 +7921,9 @@ h1 {
   .bestprice-leftbox {
     min-height: 975px;
   }
+  .offersbox {
+    background-color: #ffffff;
+  }
 }
 @media(max-width: 992px) {
   .bestprice-rightbox {
@@ -8059,6 +8083,55 @@ h1 {
     top: -62px;
     left: 18px;
   }
+}
+.offers-gallerybox {
+  display: flex;
+  flex-wrap: wrap;
+}
+.offers-gallery-item {
+  width: 33%;
+  height: 320px;
+}
+.offers-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.3s;
+}
+.offers-gallery-item img:hover {
+  transform: scale(1.01, 1.01);
+}
+.offers-gallery-item.textbox-gallery {
+  background-image: url('../img/about/about1.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.offers-gallery-inner {
+  height: 100%;
+  background-color: rgba(255, 84, 81, 0.95);
+  padding: 15px;
+}
+.gallery-item-textbox {
+  border: 1px solid #ffffff;
+  height: 100%;
+}
+.gallery-textbox-icon {
+  text-align: center;
+  padding: 30px 0 20px;
+}
+.gallery-textbox-icon .fa {
+  font-size: 60px;
+  line-height: 60px;
+  color: #ffffff;
+}
+.gallery-textbox-p {
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: 300;
+  text-align: center;
+  max-width: 260px;
+  margin: 0 auto;
 }
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
