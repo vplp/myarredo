@@ -19,7 +19,8 @@
 }
 @font-face {
     font-family: 'Palatino';
-    src: url('../fonts/palatino-linotype.woff2') format('woff2'),
+    font-display: auto;
+    src: local('Palatino'), url('../fonts/palatino-linotype.woff2') format('woff2'),
         url('../fonts/palatino-linotype.woff') format('woff'),
         url('../fonts/Palatino-Linotype.ttf') format('truetype');
     font-weight: normal;  
@@ -27,7 +28,8 @@
 }
 @font-face {
     font-family: 'Palatino';
-    src: url('../fonts/palab.woff2') format('woff2'),
+    font-display: auto;
+    src: local('Palatino'), url('../fonts/palab.woff2') format('woff2'),
         url('../fonts/palab.woff') format('woff'),
         url('../fonts/palab.ttf') format('truetype');
     font-weight: bold;  
