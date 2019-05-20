@@ -63,9 +63,11 @@ use frontend\modules\shop\models\Order;
                             <li class="lang-cell">
                                 <span><?= Yii::t('app', 'lang') ?></span>
                             </li>
-                            <li>
-                                <span><?= Yii::t('app', 'City') ?></span>
-                            </li>
+                            <?php if (Yii::$app->language == 'ru-RU') { ?>
+                                <li>
+                                    <span><?= Yii::t('app', 'City') ?></span>
+                                </li>
+                            <?php } ?>
                             <li>
                                 <span><?= Yii::t('app', 'Status') ?></span>
                             </li>
@@ -114,11 +116,13 @@ use frontend\modules\shop\models\Order;
                                     <li class="lang-cell">
                                         <span><?= substr($modelOrder->lang, 0, 2) ?></span>
                                     </li>
-                                    <li>
-                                            <span>
-                                                <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
-                                            </span>
-                                    </li>
+                                    <?php if (Yii::$app->language == 'ru-RU') { ?>
+                                        <li>
+                                        <span>
+                                            <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
+                                        </span>
+                                        </li>
+                                    <?php } ?>
                                     <li>
                                         <span><?= $modelOrder->getOrderStatus(); ?></span>
                                     </li>
