@@ -1,13 +1,15 @@
 <?php
 
-use frontend\themes\myarredo\assets\AppAsset;
-use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
+use yii\widgets\ActiveForm;
+//
+use frontend\themes\myarredo\assets\AppAsset;
+use frontend\modules\user\models\form\SignInForm;
 
 /**
- * @var \frontend\modules\user\models\form\SignInForm $model
+ * @var $model SignInForm
  */
 
 $this->title = Yii::t('app', 'Login');
@@ -24,7 +26,7 @@ $bundle = AppAsset::register($this);
                 ]) ?>
 
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-4">
+                    <div class="col-xs-12 col-sm-12 col-md-3">
                         <div class="square-in">
                             <h3>
                                 <?= Yii::t('app', 'Вход для зарегистрированных пользователей') ?>
@@ -53,7 +55,7 @@ $bundle = AppAsset::register($this);
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-4">
+                    <div class="col-xs-12 col-sm-12 col-md-3">
                         <div class="square-in">
                             <h3>
                                 <?= Yii::t('app', 'Регистрация для салонов продаж') ?>
@@ -64,7 +66,7 @@ $bundle = AppAsset::register($this);
                             <?= Html::a(Yii::t('app', 'Зарегистрироваться'), ['/user/register/partner'], ['class' => 'btn btn-default']) ?>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-4">
+                    <div class="col-xs-12 col-sm-12 col-md-3">
                         <div class="square-in">
                             <h3>
                                 <?= Yii::t('app', 'Регистрация для фабрики') ?>
@@ -73,6 +75,17 @@ $bundle = AppAsset::register($this);
                                 <?= Html::img($bundle->baseUrl . '/img/sign-in2.svg') ?>
                             </div>
                             <?= Html::a(Yii::t('app', 'Зарегистрироваться'), ['/user/register/factory'], ['class' => 'btn btn-default']) ?>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-3">
+                        <div class="square-in">
+                            <h3>
+                                <?= Yii::t('app', 'Регистрация для логиста') ?>
+                            </h3>
+                            <div class="img-cont">
+                                <?= Html::img($bundle->baseUrl . '/img/sign-in2.svg') ?>
+                            </div>
+                            <?= Html::a(Yii::t('app', 'Зарегистрироваться'), ['/user/register/logistician'], ['class' => 'btn btn-default']) ?>
                         </div>
                     </div>
                 </div>
