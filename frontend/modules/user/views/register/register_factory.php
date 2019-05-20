@@ -38,12 +38,6 @@ $model->user_agreement = 1;
 
                     <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5 right-border">
                         <div class="form-block-in">
-                            <?php /*$form->field($model, 'factory_package')
-                                ->dropDownList(
-                                    Profile::factoryPackageKeyRange(),
-                                    ['class' => 'selectpicker']
-                                )*/ ?>
-
                             <?= $form->field($model, 'name_company') ?>
 
                             <?= $form->field($model, 'address') ?>
@@ -57,9 +51,8 @@ $model->user_agreement = 1;
                                 ->label(false) ?>
 
                             <?= $form->field($model, 'phone')
-                                //+39 (99) 999-99-99
                                 ->widget(\yii\widgets\MaskedInput::class, [
-                                    'mask' => Yii::$app->city->getPhoneMask(),
+                                    'mask' => Yii::$app->city->getPhoneMask('it'),
                                     'clientOptions' => [
                                         'clearIncomplete' => true
                                     ]

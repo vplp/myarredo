@@ -261,7 +261,7 @@ $Specifications = Specification::findBase()->all();
         <?= $form
             ->field($model, 'region_id')
             ->widget(Select2::class, [
-                'data' => Region::dropDownList(4),
+                'data' => [0 => '--'] + Region::dropDownList(4),
                 'options' => [
                     'placeholder' => Yii::t('app', 'Select option'),
                 ],
@@ -396,8 +396,10 @@ $('#italianproduct-catalog_type_id').on('change', function () {
     var type_id = $(this).find('option:selected').val();
     
     if (type_id == 3) {
-         $('.field-specification-for-kitchen').show();
+        $('.field-italianproduct-price_without_technology').show();
+        $('.field-specification-for-kitchen').show();
     } else {
+        $('.field-italianproduct-price_without_technology').hide();
         $('.field-specification-for-kitchen').hide();
         $('#select-specification-for-kitchen option').attr('selected', false).trigger("change");
     }

@@ -11,6 +11,7 @@ use frontend\modules\user\models\form\RegisterForm;
 use frontend\modules\location\models\{
     Country, City
 };
+use borales\extensions\phoneInput\PhoneInput;
 
 $bundle = AppAsset::register($this);
 
@@ -52,7 +53,9 @@ $model->user_agreement = 1;
                                 echo $form->field($model, 'country_id')
                                     ->dropDownList(
                                         [null => '--'] + Country::dropDownList(),
-                                        ['class' => 'selectpicker']
+                                        [
+                                            'class' => 'selectpicker'
+                                        ]
                                     );
 
                                 echo $form->field($model, 'city_id')
@@ -64,7 +67,8 @@ $model->user_agreement = 1;
 
                                 <?= $form->field($model, 'cape_index') ?>
 
-                                <?= $form->field($model, 'phone')
+                                <?= $form
+                                    ->field($model, 'phone')
                                     ->widget(\yii\widgets\MaskedInput::class, [
                                         'mask' => Yii::$app->city->getPhoneMask(),
                                         'clientOptions' => [
@@ -139,13 +143,16 @@ $model->user_agreement = 1;
 
 <?php
 $url = Url::toRoute(['/location/location/get-cities']);
+
 $script = <<<JS
 var country_id = parseInt($('#registerform-country_id').val());
 
-showHideForItalia(country_id)
+showHideForItalia(country_id);
 
 $('select#registerform-country_id').change(function(){
     var country_id = parseInt($(this).val());
+    
+    changeInputmaskByCountry(country_id);
     
     $.post('$url', {_csrf: $('#token').val(),country_id:country_id}, function(data){
         var select = $('select#registerform-city_id');
@@ -153,8 +160,19 @@ $('select#registerform-country_id').change(function(){
         select.selectpicker("refresh");
     });
     
-   showHideForItalia(country_id)
+    showHideForItalia(country_id);
 });
+
+function changeInputmaskByCountry(country_id) {
+    var inputmask = [];
+    
+    inputmask[1] = {"clearIncomplete":true,"mask":["+380 (99) 999-99-99"]};
+    inputmask[2] = {"clearIncomplete":true,"mask":["+7 (999) 999-99-99"]};
+    inputmask[3] = {"clearIncomplete":true,"mask":["+375 (99) 999-99-99"]};
+    inputmask[4] = {"clearIncomplete":true,"mask":["+39 (99) 999-99-99","+39 (9999) 999-999","+39 (9999) 999-9999"]};
+
+    $('#registerform-phone').inputmask(inputmask[country_id]).trigger('focus').trigger("change");
+}
 
 function showHideForItalia(country_id) {
     // if selected Italy

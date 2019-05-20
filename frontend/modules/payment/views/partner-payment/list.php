@@ -20,9 +20,6 @@ use frontend\modules\payment\models\{
  * @var $filter Payment
  */
 
-//$dataProvider = $model->search(Yii::$app->request->queryParams);
-//$dataProvider->sort = false;
-
 $this->title = Yii::t('app', 'Платежная информация');
 
 ?>
@@ -50,7 +47,6 @@ $this->title = Yii::t('app', 'Платежная информация');
                             <?= GridView::widget([
                                 'id' => 'partner-payment-grid',
                                 'dataProvider' => $dataProvider,
-                                'filterModel' => false,
                                 'filterUrl' => Url::toRoute(['/payment/partner-payment/list']),
                                 'panel' => [
                                     'after' => false,
@@ -60,14 +56,14 @@ $this->title = Yii::t('app', 'Платежная информация');
                                 ],
                                 'columns' => [
                                     [
-                                        'label' => Yii::t('app', 'Артикул'),
+                                        'label' => Yii::t('app', 'Title'),
                                         'value' => function ($model) {
                                             /** @var $model Payment */
                                             $arr = [];
                                             if ($model->type == 'italian_item') {
                                                 foreach ($model->items as $item) {
                                                     /** @var $item ItalianProduct */
-                                                    $arr[] = $item->article;
+                                                    $arr[] = $item->getTitle();
                                                 }
                                             }
                                             return implode(', ', $arr);
