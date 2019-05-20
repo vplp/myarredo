@@ -26,7 +26,7 @@ $bundle = AppAsset::register($this);
                 ]) ?>
 
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-3">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="square-in">
                             <h3>
                                 <?= Yii::t('app', 'Вход для зарегистрированных пользователей') ?>
@@ -55,7 +55,7 @@ $bundle = AppAsset::register($this);
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-3">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="square-in">
                             <h3>
                                 <?= Yii::t('app', 'Регистрация для салонов продаж') ?>
@@ -66,7 +66,7 @@ $bundle = AppAsset::register($this);
                             <?= Html::a(Yii::t('app', 'Зарегистрироваться'), ['/user/register/partner'], ['class' => 'btn btn-default']) ?>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-3">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="square-in">
                             <h3>
                                 <?= Yii::t('app', 'Регистрация для фабрики') ?>
@@ -77,7 +77,7 @@ $bundle = AppAsset::register($this);
                             <?= Html::a(Yii::t('app', 'Зарегистрироваться'), ['/user/register/factory'], ['class' => 'btn btn-default']) ?>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-3">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                         <div class="square-in">
                             <h3>
                                 <?= Yii::t('app', 'Регистрация для логиста') ?>
