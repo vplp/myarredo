@@ -5,6 +5,7 @@ namespace frontend\modules\shop\controllers;
 use Yii;
 use yii\db\mssql\PDO;
 use yii\filters\AccessControl;
+use yii\web\Response;
 //
 use frontend\components\BaseController;
 use frontend\modules\location\models\City;
@@ -171,7 +172,7 @@ class PartnerOrderController extends BaseController
             Yii::$app->request->post('OrderItemPrice') &&
             Yii::$app->request->post('action-save-answer')
         ) {
-            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            Yii::$app->response->format = Response::FORMAT_JSON;
 
             $response = ['success' => 1];
 
@@ -246,14 +247,42 @@ class PartnerOrderController extends BaseController
 
                 $modelOrderAnswer->setScenario('frontend');
                 $modelOrderAnswer->user_id = Yii::$app->getUser()->getId();
+                $modelOrderAnswer->answer_time = time();
 
                 if ($modelOrderAnswer->load(Yii::$app->request->post()) && $modelOrderAnswer->validate()) {
                     /** @var PDO $transaction */
                     $transaction = $modelOrderAnswer::getDb()->beginTransaction();
                     try {
                         $save = $modelOrderAnswer->save();
+
                         if ($save) {
                             $transaction->commit();
+
+                            if ($modelOrder->product_type == 'product') {
+                                $viewMail = '/../mail/answer_order_user_letter';
+                            } else {
+                                $viewMail = '/../mail/answer_order_italy_user_letter';
+                            }
+
+                            // send user letter
+                            Yii::$app
+                                ->mailer
+                                ->compose(
+                                    $viewMail,
+                                    [
+                                        'modelOrder' => $modelOrder,
+                                        'modelAnswer' => $modelOrderAnswer,
+                                    ]
+                                )
+                                ->setTo($modelOrder->customer['email'])
+                                ->setSubject('Ответ за заказ № ' . $modelOrder['id'])
+                                ->send();
+
+                            // message
+                            Yii::$app->getSession()->setFlash(
+                                'success',
+                                'Отправлено'
+                            );
                         } else {
                             $transaction->rollBack();
                         }
@@ -270,78 +299,78 @@ class PartnerOrderController extends BaseController
         }
     }
 
-    /**
-     * Send answer
-     */
-    public function actionSendAnswer()
-    {
-        if (Yii::$app->request->isPost &&
-            (Yii::$app->request->post('OrderAnswer'))['order_id'] &&
-            Yii::$app->request->post('action-send-answer')
-        ) {
-            $order_id = (Yii::$app->request->post('OrderAnswer'))['order_id'];
-
-            $modelOrder = Order::findById($order_id);
-            $modelAnswer = OrderAnswer::findByOrderIdUserId($order_id, Yii::$app->getUser()->getId());
-
-            /** @var $modelOrder Order */
-            /** @var $modelAnswer OrderAnswer */
-
-            if (empty($modelAnswer)) {
-                $modelAnswer = new OrderAnswer();
-            }
-
-            $modelAnswer->setScenario('frontend');
-            $modelAnswer->user_id = Yii::$app->getUser()->getId();
-            $modelAnswer->answer_time = time();
-
-            if ($modelAnswer->load(Yii::$app->request->post()) && $modelAnswer->validate()) {
-                /** @var PDO $transaction */
-                $transaction = $modelAnswer::getDb()->beginTransaction();
-                try {
-                    $save = $modelAnswer->save();
-                    if ($save) {
-                        $transaction->commit();
-
-                        if ($modelOrder->product_type == 'product') {
-                            $viewMail = '/../mail/answer_order_user_letter';
-                        } else {
-                            $viewMail = '/../mail/answer_order_italy_user_letter';
-                        }
-
-                        // send user letter
-                        Yii::$app
-                            ->mailer
-                            ->compose(
-                                $viewMail,
-                                [
-                                    'modelOrder' => $modelOrder,
-                                    'modelAnswer' => $modelAnswer,
-                                ]
-                            )
-                            ->setTo($modelOrder->customer['email'])
-                            ->setSubject('Ответ за заказ № ' . $modelOrder['id'])
-                            ->send();
-
-                        // message
-                        Yii::$app->getSession()->setFlash(
-                            'success',
-                            'Отправлено'
-                        );
-
-                    } else {
-                        $transaction->rollBack();
-                    }
-                } catch (Exception $e) {
-                    $transaction->rollBack();
-                }
-            }
-
-            if ($modelOrder->product_type == 'product') {
-                return $this->redirect($modelOrder->getPartnerOrderOnListUrl());
-            } else {
-                return $this->redirect($modelOrder->getPartnerOrderOnListItalyUrl());
-            }
-        }
-    }
+//    /**
+//     * Send answer
+//     */
+//    public function actionSendAnswer()
+//    {
+//        if (Yii::$app->request->isPost &&
+//            (Yii::$app->request->post('OrderAnswer'))['order_id'] &&
+//            Yii::$app->request->post('action-send-answer')
+//        ) {
+//            $order_id = (Yii::$app->request->post('OrderAnswer'))['order_id'];
+//
+//            $modelOrder = Order::findById($order_id);
+//            $modelAnswer = OrderAnswer::findByOrderIdUserId($order_id, Yii::$app->getUser()->getId());
+//
+//            /** @var $modelOrder Order */
+//            /** @var $modelAnswer OrderAnswer */
+//
+//            if (empty($modelAnswer)) {
+//                $modelAnswer = new OrderAnswer();
+//            }
+//
+//            $modelAnswer->setScenario('frontend');
+//            $modelAnswer->user_id = Yii::$app->getUser()->getId();
+//            $modelAnswer->answer_time = time();
+//
+//            if ($modelAnswer->load(Yii::$app->request->post()) && $modelAnswer->validate()) {
+//                /** @var PDO $transaction */
+//                $transaction = $modelAnswer::getDb()->beginTransaction();
+//                try {
+//                    $save = $modelAnswer->save();
+//                    if ($save) {
+//                        $transaction->commit();
+//
+//                        if ($modelOrder->product_type == 'product') {
+//                            $viewMail = '/../mail/answer_order_user_letter';
+//                        } else {
+//                            $viewMail = '/../mail/answer_order_italy_user_letter';
+//                        }
+//
+//                        // send user letter
+//                        Yii::$app
+//                            ->mailer
+//                            ->compose(
+//                                $viewMail,
+//                                [
+//                                    'modelOrder' => $modelOrder,
+//                                    'modelAnswer' => $modelAnswer,
+//                                ]
+//                            )
+//                            ->setTo($modelOrder->customer['email'])
+//                            ->setSubject('Ответ за заказ № ' . $modelOrder['id'])
+//                            ->send();
+//
+//                        // message
+//                        Yii::$app->getSession()->setFlash(
+//                            'success',
+//                            'Отправлено'
+//                        );
+//
+//                    } else {
+//                        $transaction->rollBack();
+//                    }
+//                } catch (Exception $e) {
+//                    $transaction->rollBack();
+//                }
+//            }
+//
+//            if ($modelOrder->product_type == 'product') {
+//                return $this->redirect($modelOrder->getPartnerOrderOnListUrl());
+//            } else {
+//                return $this->redirect($modelOrder->getPartnerOrderOnListItalyUrl());
+//            }
+//        }
+//    }
 }
