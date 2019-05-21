@@ -218,7 +218,7 @@ use frontend\modules\catalog\models\ItalianProduct;
 
 <?php
 if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null) {
-    if ((!$modelOrderAnswer->id || $modelOrderAnswer->answer_time == 0)) {
+    if (!$modelOrderAnswer->id) {
         echo Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success action-save-answer',
             'name' => 'action-save-answer',
             'value' => 1]);
