@@ -3,19 +3,23 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&subset=cyrillic-ext');
 @font-face {
     font-family: 'HelveticaNeueCyr-Roman';
-    src: url('../fonts/helveticaneuecyr-roman.otf');
+    font-display: auto;
+    src: local('HelveticaNeueCyr-Roman'), url('../fonts/helveticaneuecyr-roman.otf');
 }
 @font-face {
     font-family: 'HelveticaNeueCyr-Light';
-    src: url('../fonts/HelveticaNeue-Light.ttf');
+    font-display: auto;
+    src: local('HelveticaNeueCyr-Light'), url('../fonts/HelveticaNeue-Light.ttf');
 }
 @font-face {
     font-family: 'HelveticaNeueCyr-Thin';
-    src: url('../fonts/HelveticaNeue-Thin.ttf');
+    font-display: auto;
+    src: local('HelveticaNeueCyr-Thin'), url('../fonts/HelveticaNeue-Thin.ttf');
 }
 @font-face {
     font-family: 'HelveticaNeueCyr-Bold';
-    src: url('../fonts/HelveticaNeue-CondensedBold.ttf');
+    font-display: auto;
+    src: local('HelveticaNeueCyr-Bold'), url('../fonts/HelveticaNeue-CondensedBold.ttf');
 }
 @font-face {
     font-family: 'Palatino';
