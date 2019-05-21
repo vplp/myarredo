@@ -951,7 +951,17 @@ h1 {
   .home-main .container-wrap {
     background: #FFFFFF; }
   .home-main .top-home-img {
-    position: relative; }
+    position: relative; 
+  }
+  @media(min-width: 769px) {
+    .home-main .top-home-img {
+      background-image: url('../img/baner1.jpg');
+      background-repeat: repeat;
+      background-position: center center;
+      background-size: cover;
+      min-height: 560px;
+    }
+  }
     .home-main .top-home-img img {
       display: block;
       width: 100%;
