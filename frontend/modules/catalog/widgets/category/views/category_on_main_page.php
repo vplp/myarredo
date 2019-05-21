@@ -22,8 +22,14 @@ use frontend\modules\catalog\models\{
                     <?= $model['lang']['title']; ?>
                 </div>
                 <?= Html::a(
-                    Html::img(Category::getImage($model['image_link'])) .
-                    Html::img(Category::getImage($model['image_link2']), ['class' => 'is-hover']),
+                    Html::img(Category::getImage($model['image_link']), [
+                            'class' => 'lazyload', 
+                            'data-src' => Category::getImage($model['image_link'])
+                        ])
+                    . Html::img(Category::getImage($model['image_link2']), [
+                            'class' => 'is-hover lazyload',
+                            'data-src' => Category::getImage($model['image_link2'])
+                        ]),
                     Category::getUrl($model['alias']),
                     ['class' => 'img-cont']
                 ) ?>

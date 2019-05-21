@@ -1,3 +1,8 @@
+// инициализация LazyLoad
+window.addEventListener("load", function(event) {
+    lazyload();
+});
+
 $(document).ready(function(){
     var state = {
         _device: "",
