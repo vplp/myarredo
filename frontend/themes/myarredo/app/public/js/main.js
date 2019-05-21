@@ -1,9 +1,10 @@
-// инициализация LazyLoad
-window.addEventListener("load", function(event) {
-    lazyload();
-});
 
 $(document).ready(function(){
+
+    // инициализация LazyLoad
+    $("img.lazyload").lazyload();
+
+
     var state = {
         _device: "",
         _mobInit: function(){
