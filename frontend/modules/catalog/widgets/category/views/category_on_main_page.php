@@ -23,11 +23,11 @@ use frontend\modules\catalog\models\{
                 </div>
                 <?= Html::a(
                     Html::img("", [
-                            'class' => 'lazyload', 
+                            'class' => 'lazy', 
                             'data-src' => Category::getImage($model['image_link'])
                         ])
                     . Html::img("", [
-                            'class' => 'is-hover lazyload',
+                            'class' => 'is-hover lazy',
                             'data-src' => Category::getImage($model['image_link2'])
                         ]),
                     Category::getUrl($model['alias']),

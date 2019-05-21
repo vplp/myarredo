@@ -1,9 +1,10 @@
+// инициализация LazyLoad
+var lazyLoadInstance = new LazyLoad({
+    elements_selector: ".lazy"
+    // ... more custom settings?
+});
 
 $(document).ready(function(){
-
-    // инициализация LazyLoad
-    $("img.lazyload").lazyload();
-
 
     var state = {
         _device: "",

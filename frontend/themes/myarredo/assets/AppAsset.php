@@ -49,8 +49,7 @@ class AppAsset extends AssetBundle
         'libs/Vibrant.min.js',
         'libs/formstyler/jquery.formstyler.js',
         'libs/fancybox/jquery.fancybox.pack.js',
-        'libs/lazyload/jquery.lazyload.min.js',
-        'libs/lazyload/jquery.scrollstop.min.js',
+        'libs/lazyload/lazyload.min.js',
         'js/main.js'
     ];
 
