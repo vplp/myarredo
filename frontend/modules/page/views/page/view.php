@@ -23,10 +23,10 @@ $this->title = $this->context->title;
                 <?= Html::tag('h1', Html::encode($model['lang']['title']), ['class' => 'about-title']); ?>
                 <div class="about-content">
 
-                    <!-- <?= $model['lang']['content'] ?> -->
+                    <?= $model['lang']['content'] ?>
 
                     <!-- top section start -->
-                    <div class="presentsbox">
+                    <!-- <div class="presentsbox">
                         <div class="about-content-box">
                             <div class="about-presents-titlebox">
                                 <h2 class="about-titleh2">Выбираете итальянскую мебель?</h2>
@@ -120,11 +120,11 @@ $this->title = $this->context->title;
                             </div>
 
                         </div>
-                    </div>
+                    </div> -->
                     <!-- top section end -->
 
                     <!-- section Best price start -->
-                    <div class="bestpricebox">
+                    <!-- <div class="bestpricebox">
                         <div class="bestprice-leftbox">
                             <div class="about-bestprice-titlebox">
                                 <h2 class="about-titleh2">Как мы получаем лучшие цены для Вас?</h2>
@@ -204,11 +204,11 @@ $this->title = $this->context->title;
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- section Best price end -->
 
                     <!-- section offers start -->
-                    <div class="offersbox">
+                    <!-- <div class="offersbox">
                         <div class="about-content-box offers-topbox">
                             <div class="offers-leftbox">
                                 <div class="about-offers-titlebox">
@@ -222,11 +222,11 @@ $this->title = $this->context->title;
                             </div>
                         </div>
                         <div class="about-content-box offers-gallerybox">
-                            <div class="offers-gallery-item textbox-gallery">
+                            <div class="offers-gallery-item textbox-gallery1">
                                 <div class="offers-gallery-inner">
                                     <div class="gallery-item-textbox">
                                         <div class="gallery-textbox-icon">
-                                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                            <span class="for-numb">1</span>
                                         </div>
                                         <p class="gallery-textbox-p">
                                             Проверенные салоны 
@@ -237,33 +237,216 @@ $this->title = $this->context->title;
                                     </div>
                                 </div>
                             </div>
-                            <div class="offers-gallery-item">
-                                <img src="<?= $bundle->baseUrl ?>/img/about/gall1.jpg" alt="Предложения">
+                            <div class="offers-gallery-item textbox-gallery2">
+                                <div class="offers-gallery-inner">
+                                    <div class="gallery-item-textbox">
+                                        <div class="gallery-textbox-icon">
+                                            <span class="for-numb">2</span>
+                                        </div>
+                                        <p class="gallery-textbox-p">
+                                            Электронный каталог myarredo.ru, в 
+                                            котором легко подобрать любую мебель с  
+                                            помощью разных фильтров даже неопытному пользователю.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="offers-gallery-item">
-                                <img src="<?= $bundle->baseUrl ?>/img/about/gall2.jpg" alt="Предложения">
+                            <div class="offers-gallery-item textbox-gallery3">
+                                <div class="offers-gallery-inner">
+                                    <div class="gallery-item-textbox">
+                                        <div class="gallery-textbox-icon">
+                                            <span class="for-numb">3</span>
+                                        </div>
+                                        <p class="gallery-textbox-p">
+                                            Огромную базу каталогов и образцов (варианты тканей, дерева, покраски) в 
+                                            салонах-партнерах сети.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="offers-gallery-item">
-                                <img src="<?= $bundle->baseUrl ?>/img/about/gall3.jpg" alt="Предложения">
+                            <div class="offers-gallery-item textbox-gallery4">
+                                <div class="offers-gallery-inner">
+                                    <div class="gallery-item-textbox">
+                                        <div class="gallery-textbox-icon">
+                                            <span class="for-numb">4</span>
+                                        </div>
+                                        <p class="gallery-textbox-p">
+                                            Консультации опытных менеджеров, которые выслушав ваши пожелания 
+                                            помогут не потеряться в разнообразии предлагаемых вариантов и выбрать нужный.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="offers-gallery-item">
-                                <img src="<?= $bundle->baseUrl ?>/img/about/gall4.jpg" alt="Предложения">
+                            <div class="offers-gallery-item textbox-gallery5">
+                                <div class="offers-gallery-inner">
+                                    <div class="gallery-item-textbox">
+                                        <div class="gallery-textbox-icon">
+                                            <span class="for-numb">5</span>
+                                        </div>
+                                        <p class="gallery-textbox-p">
+                                            Лучшие цены и условия покупки.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="offers-gallery-item">
-                                <img src="<?= $bundle->baseUrl ?>/img/about/gall5.jpg" alt="Предложения">
+                            <div class="offers-gallery-item textbox-gallery6">
+                                <div class="offers-gallery-inner">
+                                    <div class="gallery-item-textbox">
+                                        <div class="gallery-textbox-icon">
+                                            <span class="for-numb">6</span>
+                                        </div>
+                                        <p class="gallery-textbox-p">
+                                            Своевременную доставку в оговоренные сроки.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="offers-gallery-item">
-                                <img src="<?= $bundle->baseUrl ?>/img/about/gall6.jpg" alt="Предложения">
+                            <div class="offers-gallery-item textbox-gallery7">
+                                <div class="offers-gallery-inner">
+                                    <div class="gallery-item-textbox">
+                                        <div class="gallery-textbox-icon">
+                                            <span class="for-numb">7</span>
+                                        </div>
+                                        <p class="gallery-textbox-p">
+                                            Профессиональную сборку, монтаж и установку.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="offers-gallery-item">
-                                <img src="<?= $bundle->baseUrl ?>/img/about/gall7.jpg" alt="Предложения">
+                            <div class="offers-gallery-item textbox-gallery8">
+                                <div class="offers-gallery-inner">
+                                    <div class="gallery-item-textbox">
+                                        <div class="gallery-textbox-icon">
+                                            <span class="for-numb">8</span>
+                                        </div>
+                                        <p class="gallery-textbox-p">
+                                            Консультации и услуги дизайнеров и архитекторов по 
+                                            созданию и разработке проектов ваших интерьеров.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="offers-gallery-item">
-                                <img src="<?= $bundle->baseUrl ?>/img/about/gall8.jpg" alt="Предложения">
+                            <div class="offers-gallery-item textbox-gallery9">
+                                <div class="offers-gallery-inner">
+                                    <div class="gallery-item-textbox">
+                                        <div class="gallery-textbox-icon">
+                                            <span class="for-numb">9</span>
+                                        </div>
+                                        <p class="gallery-textbox-p">
+                                            На портале myarredo.ru самая большая база распродажи в России, 
+                                            если нет желания ждать мебель по и индивидуальному заказу.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- section offers end -->
+
+                    <!-- section better-otchers start -->
+                    <!-- <div class="better-otchersbox">
+                        <div class="better-otchers-topbox">
+                            <div class="betotchers-leftbox">
+                                <div class="about-betotchers-titlebox">
+                                    <h2 class="about-titleh2">Почему партнеры сети Myarredo family лучше других?</h2>
+                                </div>
+                            </div>
+                            <div class="betotchers-rightbox">
+                                <div class="betotchers-decorbox">
+                                    <img src="<?= $bundle->baseUrl ?>/img/about/about_bg.png" alt="Лучше других">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="better-otchers-iconbox">
+
+                            <div class="betotchers-icon-item">
+                                <div class="betotchers-icon-itembox">
+                                    <div class="betotchers-iconitem-icon">
+                                        <img src="<?= $bundle->baseUrl ?>/img/about/best.png" alt="Опыт">
+                                    </div>
+                                    <div class="betotchers-iconitem-text">
+                                        <b>1.</b> Средний возраст компаний
+                                        парнеров <b>Myarredo Family</b> 
+                                        9 лет. Это показатель 
+                                        стабильности и опыта в деле
+                                        обустройства вашего
+                                        дома.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="betotchers-icon-item">
+                                <div class="betotchers-icon-itembox">
+                                    <div class="betotchers-iconitem-icon">
+                                        <img src="<?= $bundle->baseUrl ?>/img/about/best1.png" alt="Качество">
+                                    </div>
+                                    <div class="betotchers-iconitem-text">
+                                        <b>2. Никаких подделок.</b> Все 
+                                        наши партнеры работают 
+                                        напрямую с итальянскими
+                                        фабриками.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="betotchers-icon-item">
+                                <div class="betotchers-icon-itembox">
+                                    <div class="betotchers-iconitem-icon">
+                                        <img src="<?= $bundle->baseUrl ?>/img/about/best4.png" alt="Надежность">
+                                    </div>
+                                    <div class="betotchers-iconitem-text">
+                                        <b>3.</b> Большинство партнеров
+                                        сети рекомендованы 
+                                        фабриками, как <b>надежные
+                                        поставщики</b> зарекомендовавшие
+                                        себя многолетним
+                                        сотрудничеством.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="betotchers-icon-item">
+                                <div class="betotchers-icon-itembox">
+                                    <div class="betotchers-iconitem-icon">
+                                        <img src="<?= $bundle->baseUrl ?>/img/about/best3.png" alt="Безопастность">
+                                    </div>
+                                    <div class="betotchers-iconitem-text">
+                                        <b>4. Ваши  права защищены.</b>
+                                        Все наши партнеры 
+                                        работают по договору
+                                        и соблюдают Закон о
+                                        защите прав потребителей.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="better-otchers-blockbox">
+                            <div class="about-content-box betotchers-blockbox">
+                                <div class="betotchers-block-leftbox">
+                                    <div class="block-leftbox-icon">
+                                        <img src="<?= $bundle->baseUrl ?>/img/about/best5.png" alt="Контроль качества">
+                                    </div>
+                                    <div class="block-leftbox-text">
+                                        Служба контроля качества <b>Myarredo Family</b>  каждый месяц 
+                                        проверяет, на сколько покупатели удовлетворены уровнем 
+                                        обслуживания.
+                                    </div>
+                                </div>
+                                <div class="betotchers-block-rightbox">
+                                   <div class="block-rightbox-icon">
+                                        <img src="<?= $bundle->baseUrl ?>/img/about/best6.png" alt="Обратная связь">
+                                   </div> 
+                                   <div class="block-rightbox-text">
+                                        Если вы хотите похвалить кого-то из наших партнеров
+                                        или пожаловаться - оставте свое сообщение.
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- section better-otchers end -->
 
                 </div>
             </div>
