@@ -2,6 +2,7 @@
 
 namespace frontend\modules\articles\widgets\articles;
 
+use Yii;
 use yii\base\Widget;
 //
 use frontend\modules\articles\models\Article;
@@ -33,9 +34,13 @@ class ArticlesList extends Widget
      */
     public function init()
     {
-        $this->model = Article::findBase()
-            ->limit($this->limit)
-            ->all();
+        $query =  Article::findBase()->limit($this->limit);
+
+        if (Yii::$app->request->get('alias')) {
+            $query->andFilterWhere(['<>', 'alias', $this->id]);
+        }
+
+        $this->model = $query->all();
     }
 
     /**
