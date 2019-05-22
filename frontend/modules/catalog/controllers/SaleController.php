@@ -253,6 +253,8 @@ class SaleController extends BaseController
                 // SalePhoneRequest
                 SalePhoneRequest::create($sale_item_id);
 
+                $user['phone'] = $user['phone'] == '+7 (978) 207-41-44' ? '+7 (985) 999-33-04' : $user['phone'];
+
                 return ['success' => 0, 'phone' => $user['phone']];
             }
 
