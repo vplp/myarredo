@@ -36,8 +36,8 @@ class ArticlesList extends Widget
     {
         $query =  Article::findBase()->limit($this->limit);
 
-        if (Yii::$app->request->get('alias')) {
-            $query->andFilterWhere(['<>', 'alias', $this->id]);
+        if ($alias = Yii::$app->request->get('alias')) {
+            $query->andFilterWhere(['<>', 'alias', $alias]);
         }
 
         $this->model = $query->all();
