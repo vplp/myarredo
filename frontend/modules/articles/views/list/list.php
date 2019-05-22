@@ -3,6 +3,7 @@
 use frontend\modules\articles\models\Article;
 
 /** @var $models Article */
+/** @var $models Article */
 
 $this->title = $this->context->title;
 ?>

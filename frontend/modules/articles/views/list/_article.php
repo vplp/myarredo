@@ -17,9 +17,11 @@ use frontend\modules\articles\models\Article;
             <div class="article-item-title"><?= $article['lang']['title'] ?></div>
             <div class="article-item-shortdescr"><?= $article['lang']['description'] ?></div>
             <div class="panel-article-item">
-
-                <?= Html::a(Yii::t('app', 'Подробнее'), $article->getUrl(), ['class' => 'btn-aricle-more']) ?>
-
+                <?= Html::a(
+                    Yii::t('app', 'Подробнее'),
+                    $article->getUrl(),
+                    ['class' => 'btn-aricle-more']
+                ) ?>
                 <div class="article-item-data">
                     <i class="fa fa-calendar" aria-hidden="true"></i> <?= $article->getPublishedTime() ?>
                 </div>

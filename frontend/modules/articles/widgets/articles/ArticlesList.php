@@ -19,6 +19,11 @@ class ArticlesList extends Widget
     public $view = 'articles_list';
 
     /**
+     * @var int
+     */
+    public $limit = 3;
+
+    /**
      * @var object
      */
     protected $model = [];
@@ -28,7 +33,9 @@ class ArticlesList extends Widget
      */
     public function init()
     {
-        $this->model = Article::findBase()->limit(3)->all();
+        $this->model = Article::findBase()
+            ->limit($this->limit)
+            ->all();
     }
 
     /**
