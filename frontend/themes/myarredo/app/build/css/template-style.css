@@ -7669,7 +7669,11 @@ h1 {
   font-size: 48px;
   line-height: 66px;
 }
-
+@media(max-width: 1350px) {
+  .about-container .better-otchersbox .about-titleh2 {
+    min-width: 705px;
+  }
+}
 @media(max-width: 1400px) {
   .about-container .about-titleh2 {
     font-size: 45px;
@@ -7796,6 +7800,33 @@ h1 {
   max-width: 695px;
   max-height: 315px;
   margin-left: 240px;
+}
+@media(max-width: 1600px) {
+  .about-betotchers-titlebox {
+    margin-left: 15vw;
+  }
+}
+@media(max-width: 1550px) {
+  .about-betotchers-titlebox {
+    margin-left: 14vw;
+  }
+}
+@media(max-width: 1500px) {
+  .about-betotchers-titlebox {
+    margin-left: 12vw;
+  }
+}
+@media(max-width: 1460px) {
+  .about-betotchers-titlebox {
+    margin-left: 10vw;
+  }
+}
+@media(max-width: 1350px) {
+  .about-betotchers-titlebox {
+    margin-left: 9vw;
+    max-width: 645px;
+  }
+  
 }
 @media(max-width: 1200px) {
   .about-offers-titlebox {
@@ -7987,13 +8018,14 @@ h1 {
 .better-otchers-topbox {
   display: flex;
   flex-wrap: wrap;
-  padding: 40px 0 0;
+  padding: 40px 0 110px;
 }
 .betotchers-leftbox {
   width: 65%;
 }
 .betotchers-rightbox {
   width: 35%;
+  position: relative;
 }
 .betotchers-decorbox img {
   width: 100%;
@@ -8060,7 +8092,7 @@ h1 {
   height: auto;
 }
 .better-otchers-blockbox {
-  padding: 60px 0 40px;
+  padding: 70px 0 40px;
 }
 .block-leftbox-text,
 .block-rightbox-text {
@@ -8069,6 +8101,16 @@ h1 {
   color: #41403e;
   line-height: 26px;
   margin-left: 40px;
+}
+.betotchers-decorbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+@media(max-width: 1250px) {
+  .betotchers-decorbox {
+    left: 20px;
+  }
 }
 @media(max-width: 1200px) {
   .bestprice-rightbox {
