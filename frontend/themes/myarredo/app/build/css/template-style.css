@@ -7692,7 +7692,8 @@ h1 {
     left: -89px;
   }
   .about-container .bestpricebox .about-titleh2,
-  .about-container .offersbox .about-titleh2 {
+  .about-container .offersbox .about-titleh2,
+  .about-container .better-otchersbox .about-titleh2 {
     font-size: 38px;
     line-height: 50px;
     letter-spacing: 10px;
@@ -7701,11 +7702,17 @@ h1 {
   .about-container .offersbox .about-titleh2 {
     min-width: 340px;
   }
+  .about-container .better-otchersbox .about-titleh2 {
+    min-width: 435px;
+  }
   .mebel-decor-box {
     min-height: 520px;
   }
   .mebel-decor-box img {
     width: 100%;
+  }
+  .better-otchersbox {
+    background-color: #ffffff;
   }
 }
 @media(max-width: 991px) {
@@ -7719,12 +7726,16 @@ h1 {
     left: -77px;
   }
   .about-container .bestpricebox .about-titleh2,
-  .about-container .offersbox .about-titleh2 {
+  .about-container .offersbox .about-titleh2,
+  .about-container .better-otchersbox .about-titleh2 {
     font-size: 30px;
     line-height: 40px;
     letter-spacing: 8px;
     left: -85px;
     min-width: 320px;
+  }
+  .about-container .better-otchersbox .about-titleh2 {
+    min-width: 350px;
   }
   .offersbox .about-titleh2 {
     min-width: 265px;
@@ -7749,6 +7760,15 @@ h1 {
   }
   .offers-leftbox, .offers-rightbox {
     width: 100%;
+  }
+}
+@media(max-width: 420px) {
+  .about-container .better-otchersbox .about-titleh2 {
+    font-size: 23px;
+    line-height: 36px;
+    letter-spacing: 6px;
+    min-width: 270px;
+    left: -78px;
   }
 }
 @media(max-width: 359px) {
@@ -7834,6 +7854,11 @@ h1 {
     max-width: 300px;
     max-height: 300px;
   }
+  .about-betotchers-titlebox {
+    margin-left: 65px;
+    max-width: 405px;
+    max-height: 300px;
+  }
 }
 @media(max-width: 1400px) {
   .about-presents-titlebox {
@@ -7871,6 +7896,26 @@ h1 {
     max-width: 240px;
     max-height: 255px;
     margin-top: 60px;
+  }
+  .about-betotchers-titlebox {
+    max-width: 310px;
+    max-height: 250px;
+  }
+}
+@media(max-width: 680px) {
+  .about-betotchers-titlebox {
+    margin: 15px auto 0;
+  }
+}
+@media(max-width: 460px) {
+  .about-betotchers-titlebox {
+    margin-left: 65px;
+  }
+}
+@media(max-width: 420px) {
+  .about-betotchers-titlebox {
+    max-width: 240px;
+    max-height: 230px;
   }
 }
 @media(max-width: 359px) {
@@ -8122,10 +8167,34 @@ h1 {
   .offersbox {
     background-color: #ffffff;
   }
+  .betotchers-decorbox {
+    left: -85px;
+  }
+  .betotchers-icon-item {
+    width: 50%;
+    margin-bottom: 60px;
+  }
+  .betotchers-icon-itembox {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+  .betotchers-iconitem-icon {
+    margin-bottom: 30px;
+  }
 }
 @media(max-width: 992px) {
   .bestprice-rightbox {
     padding: 70px 0 70px 40px;
+  }
+  .betotchers-decorbox {
+    left: -50px;
+  }
+  .betotchers-block-leftbox,
+  .betotchers-block-rightbox {
+    width: 100%;
+  }
+  .betotchers-block-leftbox {
+    margin-bottom: 40px;
   }
 }
 @media(max-width: 730px) {
@@ -8136,6 +8205,41 @@ h1 {
   .bestprice-leftbox {
     background-image: url('../img/about/bestprice_mob.jpg');
     min-height: 300px;
+  }
+  .betotchers-decorbox {
+    left: -25px;
+  }
+}
+@media(max-width: 680px) {
+  .betotchers-leftbox {
+    width: 100%;
+  }
+  .betotchers-rightbox {
+    display: none;
+  }
+}
+@media(max-width: 559px) {
+  .betotchers-icon-item {
+    width: 100%;
+  }
+}
+@media(max-width: 500px) {
+  .betotchers-block-leftbox,
+  .betotchers-block-rightbox {
+    flex-wrap: wrap;
+    max-height: 100%;
+  }
+  .block-leftbox-icon,
+  .block-leftbox-text,
+  .block-rightbox-icon,
+  .block-rightbox-text {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .block-leftbox-icon,
+  .block-rightbox-icon {
+    margin-bottom: 20px;
   }
 }
 @media(max-width: 379px) {
