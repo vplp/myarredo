@@ -13,7 +13,7 @@ use frontend\themes\myarredo\assets\AppAsset;
 
 $bundle = AppAsset::register($this);
 /**
- * @var \frontend\modules\catalog\models\Sale $model
+ * @var $model Sale
  */
 
 $this->title = $this->context->title;
