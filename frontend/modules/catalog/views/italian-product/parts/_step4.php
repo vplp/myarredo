@@ -29,17 +29,21 @@ $currency = Currency::findByCode2('EUR');
 /** @var Currency $amount */
 
 /**
- * cost 1 product = 5 EUR
+ * cost 1 product = 10 EUR
  * conversion to RUB
  */
-$cost = 5 * $currency->course;
+$cost = 10 * $currency->course;
 
 $amount = $cost + ($cost * 0.02);
 $amount = number_format($amount, 2, '.', '');
 
 $total = $amount;
-$nds = $total / 100 * 20;
-$modelPayment->amount = number_format($total + $nds, 2, '.', '');
+$nds = number_format($total / 100 * 20, 2, '.', '');
+
+$discount_percent = 50;
+$discount_money = number_format($total / 100 * $discount_percent, 2, '.', '');
+
+$modelPayment->amount = number_format($total + $nds - $discount_money, 2, '.', '');
 $modelPayment->currency = 'RUB';
 ?>
 
@@ -125,6 +129,9 @@ $modelPayment->currency = 'RUB';
                             <?= Yii::t('app', 'В том числе НДС') ?> :
                         </span>
                             <span class="for-styles"><?= $nds . ' ' . $modelPayment->currency ?></span>
+                        </div>
+                        <div>
+                            <span class="for-total"><?= Yii::t('app', 'Скидка') . ' ' . $discount_percent . '%'; ?> :</span> <span class="for-styles"><?= $discount_money . ' ' . $modelPayment->currency ?></span>
                         </div>
                         <div>
                             <span class="for-total">

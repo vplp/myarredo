@@ -86,17 +86,21 @@ class ItalianProductController extends BaseController
             /** @var Currency $amount */
 
             /**
-             * cost 1 product = 5 EUR
+             * cost 1 product = 10 EUR
              * conversion to RUB
              */
-            $cost = 5 * $currency->course;
+            $cost = 10 * $currency->course;
 
             $amount = $cost + ($cost * 0.02);
             $amount = number_format($amount, 2, '.', '');
 
             $total = count($models) * $amount;
-            $nds = $total / 100 * 20;
-            $modelPayment->amount = number_format($total + $nds, 2, '.', '');
+            $nds = number_format($total / 100 * 20, 2, '.', '');
+
+            $discount_percent = 50;
+            $discount_money = number_format($total / 100 * $discount_percent, 2, '.', '');
+
+            $modelPayment->amount = number_format($total + $nds - $discount_money, 2, '.', '');
             $modelPayment->currency = 'RUB';
 
             return $this->render('payment', [
@@ -105,6 +109,8 @@ class ItalianProductController extends BaseController
                 'amount' => $amount,
                 'total' => $total,
                 'nds' => $nds,
+                'discount_percent' => $discount_percent,
+                'discount_money' => $discount_money,
                 'currency' => $currency,
             ]);
         } else {
