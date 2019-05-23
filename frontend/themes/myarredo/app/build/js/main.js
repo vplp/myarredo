@@ -1,10 +1,18 @@
-// инициализация LazyLoad
-var lazyLoadInstance = new LazyLoad({
-    elements_selector: ".lazy"
-    // ... more custom settings?
-});
 
 $(document).ready(function(){
+
+    // инициализация LazyLoad
+    var lazyLoadInstance = new LazyLoad({
+        elements_selector: ".lazy"
+        
+    });
+
+    // for hide h1 for about page
+    (function() {
+        if ($('.about-container').length > 0 && $('.about-presents-titlebox').length > 0) {
+            $('.about-container').find('.about-title').slideUp();
+        }
+    })();
 
     var state = {
         _device: "",

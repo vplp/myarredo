@@ -7549,14 +7549,17 @@ h1 {
 .aboutbox {
   padding: 0;
 }
-.about-title {
-  display: none;
+.about-container .about-title {
+  margin-bottom: 20px;
 }
 .about-container {
   position: relative;
 }
 .about-content {
   padding-bottom: 20px;
+}
+.aboutbox .about-content>p {
+  padding: 0 20px;
 }
 @media(max-width: 1200px) {
   .largex-container.about-container {
@@ -7710,6 +7713,7 @@ h1 {
   }
   .mebel-decor-box img {
     width: 100%;
+    height: auto;
   }
   .better-otchersbox {
     background-color: #ffffff;
