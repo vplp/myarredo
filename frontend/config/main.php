@@ -18,7 +18,11 @@ return ArrayHelper::merge(
             'on beforeRequest' => function () {
                 $pathInfo = Yii::$app->request->pathInfo;
 
-                if (strripos($pathInfo, '.txt') || strripos($pathInfo, '.xml')) {
+                if (strripos($pathInfo, '.txt') ||
+                    strripos($pathInfo, '.xml') ||
+                    strripos($pathInfo, '.jpg') ||
+                    strripos($pathInfo, '.png')
+                ) {
                     //die;
                 } elseif ($_SERVER['REQUEST_URI'] == '/it') {
                     Yii::$app->response->redirect('/it/', 301)->send();
