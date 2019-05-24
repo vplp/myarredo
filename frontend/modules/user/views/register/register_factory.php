@@ -82,8 +82,8 @@ $model->user_agreement = 1;
                             <?= $form
                                 ->field($model, 'reCaptcha')
                                 ->widget(
-                                    \frontend\widgets\recaptcha3\RecaptchaV3Widget::class,
-                                    ['actionName' => 'register_factory']
+                                    \himiklab\yii2\recaptcha\ReCaptcha3::class,
+                                    ['action' => 'register_factory']
                                 )
                                 ->label(false) ?>
 

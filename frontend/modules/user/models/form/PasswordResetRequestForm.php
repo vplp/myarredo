@@ -27,7 +27,7 @@ class PasswordResetRequestForm extends \common\modules\user\models\form\Password
                 'required',
                 'on' => 'remind'
             ],
-            [['reCaptcha'], \frontend\widgets\recaptcha3\RecaptchaV3Validator::class, 'acceptance_score' => 0.5]
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::class, 'threshold' => 0.5]
         ];
 
         return ArrayHelper::merge($rules, parent::rules());

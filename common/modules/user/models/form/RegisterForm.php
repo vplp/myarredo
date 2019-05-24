@@ -149,7 +149,7 @@ class RegisterForm extends CommonForm
                     'registerLogistician'
                 ]
             ],
-            [['reCaptcha'], \frontend\widgets\recaptcha3\RecaptchaV3Validator::class, 'acceptance_score' => 0.5],
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::class, 'threshold' => 0.5],
             [
                 ['cape_index'],
                 'required',

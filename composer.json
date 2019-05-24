@@ -41,7 +41,8 @@
     "sendpulse/rest-api": "^1.0",
     "yiisoft/yii2-elasticsearch": "~2.0.0",
     "yandex/translate-api": "1.5.x",
-    "yandex-money/yandex-checkout-sdk-php": "^1.0"
+    "yandex-money/yandex-checkout-sdk-php": "^1.0",
+    "himiklab/yii2-recaptcha-widget": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",

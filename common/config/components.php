@@ -63,10 +63,10 @@ return [
             'database' => 1,
         ]
     ],
-    'recaptchaV3' => [
-        'class' => \frontend\widgets\recaptcha3\RecaptchaV3::class,
-        'site_key' => '6LehRIoUAAAAALWGhlNNdb7hmXiK8NTju_tl2LXl',
-        'secret_key' => '6LehRIoUAAAAAKfN2eFDO7nR7xmLE8bCJQMRlPyk',
+    'reCaptcha' => [
+        'class' => \himiklab\yii2\recaptcha\ReCaptchaConfig::class,
+        'siteKeyV3' => '6LehRIoUAAAAALWGhlNNdb7hmXiK8NTju_tl2LXl',
+        'secretV3' => '6LehRIoUAAAAAKfN2eFDO7nR7xmLE8bCJQMRlPyk',
     ],
     'sendPulse' => [
         'class' => \common\components\sendpulse\SendPulse::class,

@@ -6,7 +6,6 @@ use yii\helpers\{
 use yii\widgets\ActiveForm;
 //
 use frontend\themes\myarredo\assets\AppAsset;
-use frontend\widgets\recaptcha3\RecaptchaV3Widget;
 use frontend\modules\user\models\form\RegisterForm;
 use frontend\modules\location\models\{
     Country, City
@@ -113,8 +112,8 @@ $model->user_agreement = 1;
                                 <?= $form
                                     ->field($model, 'reCaptcha')
                                     ->widget(
-                                        RecaptchaV3Widget::class,
-                                        ['actionName' => 'register_partner']
+                                        \himiklab\yii2\recaptcha\ReCaptcha3::class,
+                                        ['action' => 'register_partner']
                                     )
                                     ->label(false) ?>
 

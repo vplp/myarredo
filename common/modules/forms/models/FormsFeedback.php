@@ -55,7 +55,7 @@ class FormsFeedback extends ActiveRecord
                 'requiredValue' => 1,
                 'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
             ],
-            [['reCaptcha'], \frontend\widgets\recaptcha3\RecaptchaV3Validator::className(), 'acceptance_score' => 0.5]
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::class, 'threshold' => 0.5]
         ];
     }
 
