@@ -99,7 +99,7 @@ $model->user_agreement = 1;
                                         ['template' => '{input}{label}{error}{hint}']
                                     )
                                     ->checkbox([], false)
-                                    ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
+                                    ->label('&nbsp;' . Yii::t('app', 'User agreement for partner')) ?>
 
                                 <?= $form
                                     ->field(
