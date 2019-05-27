@@ -1,10 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+//
 use frontend\modules\catalog\models\Product;
 
 /**
- * @var \frontend\modules\catalog\models\Product $model
+ * @var $model Product
  */
 
 ?>
