@@ -3,12 +3,14 @@
 use yii\helpers\{
     Html, Url
 };
+//
 use frontend\themes\myarredo\assets\AppAsset;
+use frontend\modules\user\models\Profile;
 
 $bundle = AppAsset::register($this);
 
 /**
- * @var \frontend\modules\user\models\Profile $model
+ * @var $model Profile
  */
 
 $this->title = Yii::t('app', 'Profile');
@@ -70,7 +72,6 @@ $this->title = Yii::t('app', 'Profile');
                                 <?= Yii::$app->param->getByName('USER_FACTORY_REG_CONGRATULATIONS') ?>
                             </div>
                         </div>
-
                     <?php } else { ?>
                         <div class="profile-box">
 
@@ -216,6 +217,15 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Yii::t('app', 'Orders') ?>
                                     </div>
                                 </a>
+                                <a href="<?= Url::toRoute(['/catalog/italian-product/list'], true) ?>"
+                                   class="profile-quadrlink">
+                                    <div class="profile-quadrlink-img">
+                                        <?= Html::img($bundle->baseUrl . '/img/my_products.png') ?>
+                                    </div>
+                                    <div class="profile-quadrlink-text">
+                                        <?= Yii::t('app', 'Furniture in Italy') ?>
+                                    </div>
+                                </a>
                                 <a href="<?= Url::toRoute(['/catalog/product-stats/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
@@ -225,7 +235,7 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Yii::t('app', 'Product statistics') ?>
                                     </div>
                                 </a>
-                                <a href="<?= Url::toRoute(['/catalog/factory-stats/list'], true) ?>"
+                                <!--<a href="<?= Url::toRoute(['/catalog/factory-stats/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
                                         <?= Html::img($bundle->baseUrl . '/img/statistics_factorys.png') ?>
@@ -233,7 +243,7 @@ $this->title = Yii::t('app', 'Profile');
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'Factory statistics') ?>
                                     </div>
-                                </a>
+                                </a>-->
                                 <a href="<?= Url::toRoute(['/payment/partner-payment/list'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
@@ -253,8 +263,6 @@ $this->title = Yii::t('app', 'Profile');
                                     <?= Yii::t('app', 'Sign Up') ?>
                                 </div>
                             </a>
-
-                            <div class="profile-quadrlink"></div>
                         </div>
                     <?php } ?>
 
