@@ -67,7 +67,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                 <?= GridView::widget([
                                     'id' => 'italian-product-grid',
                                     'dataProvider' => $dataProvider,
-                                    'filterModel' => $filter,
+                                    //'filterModel' => $filter,
                                     'filterUrl' => Url::toRoute(['/catalog/italian-product/list']),
 
                                     'panel' => [
@@ -257,7 +257,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                     return [];
                                                 }
                                             },
-                                            'header' => false,
+                                            'header' => Yii::t('app', 'Select'),
                                             'contentOptions' => ['class' => 'kv-row-select'],
                                         ]
                                     ],
