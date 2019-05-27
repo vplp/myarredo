@@ -35,7 +35,7 @@ $model->user_confirm_offers = 1;
                         <div class="col-sm-12 col-md-2">
                             <?= Html::tag('h2', $this->title); ?>
                             <div class="img-cont">
-                                <?= Html::img($bundle->baseUrl . '/img/sign-up-2.svg') ?>
+                                <?= Html::img($bundle->baseUrl . '/img/sign-up-3.svg') ?>
                             </div>
                         </div>
 

@@ -32,10 +32,12 @@ $bundle = AppAsset::register($this);
                                 <?= Yii::t('app', 'Вход для зарегистрированных пользователей') ?>
                             </h3>
                             <div class="in-group">
-
                                 <?= $form
                                     ->field($model, $model->getUsernameAttribute())
-                                    ->input('text', ['placeholder' => $model->getAttributeLabel($model->getUsernameAttribute())])
+                                    ->input(
+                                        'text',
+                                        ['placeholder' => $model->getAttributeLabel($model->getUsernameAttribute())]
+                                    )
                                     ->label(false) ?>
 
                                 <?= $form
@@ -46,12 +48,17 @@ $bundle = AppAsset::register($this);
                                 <?= $form
                                     ->field($model, 'rememberMe')
                                     ->checkbox() ?>
-
                             </div>
-
                             <div class="flex s-between c-align">
-                                <?= Html::submitButton(Yii::t('app', 'Войти'), ['class' => 'btn btn-default', 'name' => 'login-button']) ?>
-                                <?= Html::a(Yii::t('app', 'Забыли пароль?'), ['/user/password/request-reset'], ['class' => 'forgot-pass']) ?>
+                                <?= Html::submitButton(
+                                    Yii::t('app', 'Войти'),
+                                    ['class' => 'btn btn-default', 'name' => 'login-button']
+                                ) ?>
+                                <?= Html::a(
+                                    Yii::t('app', 'Забыли пароль?'),
+                                    ['/user/password/request-reset'],
+                                    ['class' => 'forgot-pass']
+                                ) ?>
                             </div>
                         </div>
                     </div>
@@ -60,10 +67,20 @@ $bundle = AppAsset::register($this);
                             <h3>
                                 <?= Yii::t('app', 'Регистрация для салонов продаж') ?>
                             </h3>
-                            <div class="img-cont">
-                                <?= Html::img($bundle->baseUrl . '/img/sign-in1.svg') ?>
-                            </div>
-                            <?= Html::a(Yii::t('app', 'Зарегистрироваться'), ['/user/register/partner'], ['class' => 'btn btn-default']) ?>
+
+                            <?= Html::a(
+                                Html::tag(
+                                    'div',
+                                    Html::img($bundle->baseUrl . '/img/sign-in1.svg'),
+                                    ['class' => 'img-cont']
+                                ) .
+                                Html::tag(
+                                    'div',
+                                    Yii::t('app', 'Зарегистрироваться'),
+                                    ['class' => 'btn btn-default']
+                                ),
+                                ['/user/register/partner']
+                            ) ?>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
@@ -71,10 +88,20 @@ $bundle = AppAsset::register($this);
                             <h3>
                                 <?= Yii::t('app', 'Регистрация для фабрики') ?>
                             </h3>
-                            <div class="img-cont">
-                                <?= Html::img($bundle->baseUrl . '/img/sign-in2.svg') ?>
-                            </div>
-                            <?= Html::a(Yii::t('app', 'Зарегистрироваться'), ['/user/register/factory'], ['class' => 'btn btn-default']) ?>
+
+                            <?= Html::a(
+                                Html::tag(
+                                    'div',
+                                    Html::img($bundle->baseUrl . '/img/sign-in2.svg'),
+                                    ['class' => 'img-cont']
+                                ) .
+                                Html::tag(
+                                    'div',
+                                    Yii::t('app', 'Зарегистрироваться'),
+                                    ['class' => 'btn btn-default']
+                                ),
+                                ['/user/register/factory']
+                            ) ?>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
@@ -82,10 +109,20 @@ $bundle = AppAsset::register($this);
                             <h3>
                                 <?= Yii::t('app', 'Регистрация для логиста') ?>
                             </h3>
-                            <div class="img-cont">
-                                <?= Html::img($bundle->baseUrl . '/img/sign-in2.svg') ?>
-                            </div>
-                            <?= Html::a(Yii::t('app', 'Зарегистрироваться'), ['/user/register/logistician'], ['class' => 'btn btn-default']) ?>
+
+                            <?= Html::a(
+                                Html::tag(
+                                    'div',
+                                    Html::img($bundle->baseUrl . '/img/sign-up-3.svg'),
+                                    ['class' => 'img-cont']
+                                ) .
+                                Html::tag(
+                                    'div',
+                                    Yii::t('app', 'Зарегистрироваться'),
+                                    ['class' => 'btn btn-default']
+                                ),
+                                ['/user/register/logistician']
+                            ) ?>
                         </div>
                     </div>
                 </div>

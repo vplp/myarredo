@@ -148,14 +148,23 @@ function showHideForItalia(country_id) {
 }
 
 function changeInputmaskByCountry(country_id) {
+    
     var inputmask = [];
-   
+    
     inputmask[1] = {"clearIncomplete":true,"mask":["+380 (99) 999-99-99"]};
     inputmask[2] = {"clearIncomplete":true,"mask":["+7 (999) 999-99-99"]};
     inputmask[3] = {"clearIncomplete":true,"mask":["+375 (99) 999-99-99"]};
     inputmask[4] = {"clearIncomplete":true,"mask":["+39 (99) 999-99-99","+39 (9999) 999-999","+39 (9999) 999-9999"]};
 
-    $('#profile-phone').inputmask(inputmask[country_id]).trigger('focus').trigger("change");
+    var mask;
+    
+    if (!isNaN(country_id) && country_id != '') {
+        mask = inputmask[country_id];
+    } else {
+        mask = inputmask[4];
+    }
+    console.log(mask)
+    $('#profile-phone').inputmask(mask).trigger('focus').trigger("change");
 }
 JS;
 
