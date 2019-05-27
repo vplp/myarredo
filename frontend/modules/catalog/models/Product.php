@@ -176,6 +176,8 @@ class Product extends \common\modules\catalog\models\Product
 
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
             $image = $url . '/' . $image_link;
+        } else {
+            $image = 'https://www.myarredo.ru/uploads/images/' . $image_link;
         }
 
         return $image;
@@ -214,6 +216,8 @@ class Product extends \common\modules\catalog\models\Product
             // resize
             $ImageResize = new ImageResize();
             $image = $ImageResize->getThumb($image, $width, $height);
+        } else {
+            $image = 'https://www.myarredo.ru/uploads/images/' . $image_link;
         }
 
         return $image;

@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use frontend\modules\catalog\models\Product;
 
+/** @var $models Product[] */
+/** @var $model Product */
+
 ?>
 
 <div class="novelties">
@@ -27,6 +30,7 @@ use frontend\modules\catalog\models\Product;
                             <div class="item<?= ($k == 1) ? ' active' : '' ?>">
 
                                 <div class="item-in">
+                                    <?php /*
                                     <div class="left">
 
                                         <?php foreach ($level as $key => $model) {
@@ -43,10 +47,11 @@ use frontend\modules\catalog\models\Product;
                                         } ?>
 
                                     </div>
-                                    <div class="right">
+                                    */ ?>
 
+                                    <div class="right">
                                         <?php foreach ($level as $key => $model) {
-                                            if ($key > 0) {
+                                            if ($key < 4) {
                                                 echo Html::a(
                                                     Html::img(
                                                         Product::getImageThumb($model['image_link']),
@@ -57,7 +62,20 @@ use frontend\modules\catalog\models\Product;
                                                 );
                                             }
                                         } ?>
-
+                                    </div>
+                                    <div class="right">
+                                        <?php foreach ($level as $key => $model) {
+                                            if ($key >= 4) {
+                                                echo Html::a(
+                                                    Html::img(
+                                                        Product::getImageThumb($model['image_link']),
+                                                        ['alt' => Product::getStaticTitle($model)]
+                                                    ),
+                                                    Product::getUrl($model['alias']),
+                                                    ['class' => 'smaller']
+                                                );
+                                            }
+                                        } ?>
                                     </div>
                                 </div>
                             </div>
