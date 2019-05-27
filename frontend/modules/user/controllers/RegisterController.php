@@ -222,7 +222,6 @@ class RegisterController extends BaseController
                 $message = '<p>Название компании: ' . $modelUser->profile->getNameCompany() . '</p>' .
                     '<p>Имя: ' . $modelUser->profile->first_name . '</p>' .
                     '<p>Фамилия: ' . $modelUser->profile->last_name . '</p>' .
-                    '<p>Страна: ' . $modelUser->profile->country->lang->title . '</p>' .
                     '<p>телефон: ' . $modelUser->profile->phone . '</p>' .
                     '<p>е-майл: ' . $modelUser->email . '</p>';
 
