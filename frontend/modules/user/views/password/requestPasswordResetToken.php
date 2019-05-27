@@ -34,8 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'reCaptcha')
                     ->widget(
-                        \himiklab\yii2\recaptcha\ReCaptcha3::class,
-                        ['action' => 'request_password']
+                        \himiklab\yii2\recaptcha\ReCaptcha2::class
+                        //['action' => 'request_password']
                     )
                     ->label(false) ?>
 

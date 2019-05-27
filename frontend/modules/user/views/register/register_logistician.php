@@ -104,8 +104,8 @@ $model->user_confirm_offers = 1;
                                 <?= $form
                                     ->field($model, 'reCaptcha')
                                     ->widget(
-                                        \himiklab\yii2\recaptcha\ReCaptcha3::class,
-                                        ['action' => 'register_factory']
+                                        \himiklab\yii2\recaptcha\ReCaptcha2::class
+                                        //['action' => 'register_factory']
                                     )
                                     ->label(false) ?>
 

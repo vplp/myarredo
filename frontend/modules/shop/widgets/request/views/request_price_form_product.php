@@ -57,8 +57,8 @@ $model->city_id = Yii::$app->city->getCityId();
 <?= $form
     ->field($model, 'reCaptcha')
     ->widget(
-        \himiklab\yii2\recaptcha\ReCaptcha3::class,
-        ['action' => 'request_price_product']
+        \himiklab\yii2\recaptcha\ReCaptcha2::class
+        //['action' => 'request_price_product']
     )
     ->label(false) ?>
 

@@ -50,8 +50,8 @@ use forntend\modules\forms\models\FormsFeedback;
 <?= $form
     ->field($model, 'reCaptcha')
     ->widget(
-        \himiklab\yii2\recaptcha\ReCaptcha3::class,
-        ['action' => 'feedback']
+        \himiklab\yii2\recaptcha\ReCaptcha2::class
+        //['action' => 'feedback']
     )
     ->label(false) ?>
 

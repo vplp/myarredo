@@ -112,8 +112,8 @@ $model->user_agreement = 1;
                                 <?= $form
                                     ->field($model, 'reCaptcha')
                                     ->widget(
-                                        \himiklab\yii2\recaptcha\ReCaptcha3::class,
-                                        ['action' => 'register_partner']
+                                        \himiklab\yii2\recaptcha\ReCaptcha2::class
+                                        //['action' => 'register_partner']
                                     )
                                     ->label(false) ?>
 

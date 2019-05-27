@@ -64,7 +64,10 @@ return [
         ]
     ],
     'reCaptcha' => [
+        'name' => 'reCaptcha',
         'class' => \himiklab\yii2\recaptcha\ReCaptchaConfig::class,
+        'siteKeyV2' => '6LehPRkUAAAAAB1TVTLbwB1GYua9tI4aC1cHYSTU',
+        'secretV2' => '6LehPRkUAAAAADUIdKWBJx1tPKLztXMoVcsrHVrl',
         'siteKeyV3' => '6LehRIoUAAAAALWGhlNNdb7hmXiK8NTju_tl2LXl',
         'secretV3' => '6LehRIoUAAAAAKfN2eFDO7nR7xmLE8bCJQMRlPyk',
     ],
