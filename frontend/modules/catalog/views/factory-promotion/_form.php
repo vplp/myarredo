@@ -14,8 +14,8 @@ use frontend\modules\catalog\models\{
 };
 
 /**
- * @var \frontend\modules\catalog\models\FactoryPromotion $model
- * @var \frontend\modules\catalog\models\FactoryProduct $modelProduct
+ * @var $model FactoryPromotion
+ * @var $modelProduct FactoryProduct
  */
 
 $this->title = Yii::t('app', 'Рекламировать');
@@ -64,7 +64,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                                 [
                                                     'attribute' => 'image_link',
                                                     'value' => function ($model) {
-                                                        /** @var \frontend\modules\catalog\models\FactoryProduct $model */
+                                                        /** @var $model FactoryProduct */
                                                         return Html::img(Product::getImageThumb($model['image_link']), ['width' => 50]);
                                                     },
                                                     'headerOptions' => ['class' => 'col-sm-1'],
@@ -79,8 +79,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                                 [
                                                     'format' => 'raw',
                                                     'value' => function ($model) {
-                                                        /** @var \frontend\modules\catalog\models\FactoryProduct $model */
-
+                                                        /** @var $model FactoryProduct */
                                                         $checked = FactoryPromotionRelProduct::findBase()
                                                             ->where([
                                                                 'promotion_id' => Yii::$app->request->get('id'),
@@ -93,7 +92,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                                             $checked,
                                                             [
                                                                 'value' => $model->id,
-                                                                'data-title' => $model->lang->title,
+                                                                'data-title' => $model->getTitle(),
                                                                 'data-image' => Product::getImageThumb($model['image_link']),
                                                                 'data-article' => $model->article,
                                                             ]
