@@ -6,8 +6,12 @@ use yii\helpers\{
 
 //
 use frontend\modules\user\widgets\partner\PartnerMap;
+use frontend\modules\user\models\User;
 
 $this->title = $this->context->title;
+
+/** @var $partners User[] */
+/** @var $partner User */
 
 ?>
 
@@ -27,7 +31,7 @@ $this->title = $this->context->title;
                             </div>
                             <?= Html::a(
                                 $partner->profile->getPhone(),
-                                'tel:' . $partner->profile->getPhone(),
+                                'tel:' . $partner->profile->getPhone()
                             ) ?>
                         </div>
                     <?php } ?>
