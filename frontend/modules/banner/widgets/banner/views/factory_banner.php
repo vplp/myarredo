@@ -1,9 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+//
+use frontend\modules\banner\models\BannerItem;
 
 /**
- * @var \frontend\modules\banner\models\BannerItem $model
+ * @var $model BannerItem
  */
 
 
@@ -24,7 +26,6 @@ if (!empty($items)) { ?>
     </div>
 
     <?php
-
 }
 
 $script = <<<JS

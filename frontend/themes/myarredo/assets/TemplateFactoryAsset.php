@@ -47,6 +47,7 @@ class TemplateFactoryAsset extends AssetBundle
         'libs/shop.js',
         'libs/formstyler/jquery.formstyler.js',
         'libs/fancybox/jquery.fancybox.pack.js',
+        'libs/lazyload/lazyload.min.js',
         'js/main.js',
     ];
 
