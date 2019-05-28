@@ -6,29 +6,25 @@ use yii\helpers\Html;
  * @var \frontend\modules\banner\models\BannerItem $model
  */
 
-?>
 
-<?php if (!empty($items)): ?>
-
+if (!empty($items)) { ?>
     <div class="fact-slider">
 
-        <?php foreach ($items as $model): ?>
-
+        <?php foreach ($items as $model) { ?>
             <div class="img-cont">
-                <?php if ($model['lang']['link'] != ''): ?>
-                    <?= Html::a(Html::img($model->getImageLink()), $model['lang']['link'], []); ?>
-                <?php else: ?>
-                    <?= Html::img($model->getImageLink()); ?>
-                <?php endif; ?>
+                <?php if ($model['lang']['link'] != '') {
+                    echo Html::a(Html::img($model->getImageLink()), $model['lang']['link'], []);
+                } else {
+                    echo Html::img($model->getImageLink());
+                } ?>
                 <span><?= $model['lang']['title']; ?></span>
             </div>
-
-        <?php endforeach; ?>
+        <?php } ?>
 
     </div>
 
-<?php
-$script = <<<JS
+    <?php
+    $script = <<<JS
 $('.fact-slider').slick({
     autoplay: true,
     dots: true,
@@ -39,7 +35,5 @@ $('.fact-slider').slick({
 });
 JS;
 
-$this->registerJs($script, yii\web\View::POS_END);
-?>
-
-<?php endif; ?>
+    $this->registerJs($script, yii\web\View::POS_READY);
+}
