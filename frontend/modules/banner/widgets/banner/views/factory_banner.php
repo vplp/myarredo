@@ -29,13 +29,15 @@ if (!empty($items)) { ?>
 }
 
 $script = <<<JS
-$('.fact-slider').slick({
-    autoplay: true,
-    dots: true,
-    arrows: false,
-    fade: true,
-    cssEase: 'linear',
-    autoplaySpeed: 3000
+$(document).ready(function() {
+    $('.fact-slider').slick({
+        autoplay: true,
+        dots: true,
+        arrows: false,
+        fade: true,
+        cssEase: 'linear',
+        autoplaySpeed: 3000
+    });
 });
 JS;
 
