@@ -6589,6 +6589,10 @@ h1 {
     max-width: 194px;
   }
 }
+.tomassy-page .fact-slider {
+  max-height: 390px;
+  overflow: hidden;
+}
 .paysuccess-page, .paysuccess-main, .payerror-main, .payerror-page {
   background-color: #F3F2F0;
 }
