@@ -24,7 +24,10 @@ if (!empty($items)) { ?>
     </div>
 
     <?php
-    $script = <<<JS
+
+}
+
+$script = <<<JS
 $('.fact-slider').slick({
     autoplay: true,
     dots: true,
@@ -35,5 +38,5 @@ $('.fact-slider').slick({
 });
 JS;
 
-    $this->registerJs($script, yii\web\View::POS_READY);
-}
+$this->registerJs($script, yii\web\View::POS_READY);
+
