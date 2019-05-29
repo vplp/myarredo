@@ -131,6 +131,10 @@ $model->user_confirm_offers = 1;
 <?php
 $url = Url::toRoute(['/location/location/get-cities']);
 $script = <<<JS
+
+$('#registerform-country_id').selectpicker();
+$('#registerform-city_id').selectpicker();
+
 $('select#registerform-country_id').change(function(){
     var country_id = parseInt($(this).val());
     
