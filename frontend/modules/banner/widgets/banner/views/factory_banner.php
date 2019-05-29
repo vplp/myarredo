@@ -28,18 +28,3 @@ if (!empty($items)) { ?>
     <?php
 }
 
-$script = <<<JS
-$(document).ready(function() {
-    $('.fact-slider').slick({
-        autoplay: true,
-        dots: true,
-        arrows: false,
-        fade: true,
-        cssEase: 'linear',
-        autoplaySpeed: 3000
-    });
-});
-JS;
-
-$this->registerJs($script, yii\web\View::POS_READY);
-

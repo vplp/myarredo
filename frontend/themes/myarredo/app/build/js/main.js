@@ -735,4 +735,20 @@ $(document).ready(function(){
         });
     }
 
+    // Инициализация слайдера на странице фабрики
+    (function() {
+        setTimeout(function() {
+            if ($('.fact-slider').length) {
+                $('.fact-slider').slick({
+                    autoplay: true,
+                    dots: true,
+                    arrows: false,
+                    fade: true,
+                    cssEase: 'linear',
+                    autoplaySpeed: 3000
+                });
+            }
+        },400);
+    })();
+
 });
