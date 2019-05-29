@@ -15,6 +15,7 @@ use thread\modules\user\User as UserModule;
  * @property integer $group_id
  * @property string $username
  * @property string $auth_key
+ * @property string $password
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email
@@ -63,7 +64,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['username', 'email'], 'required'],
             [['group_id', 'created_at', 'updated_at'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
+            [['username', 'password', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
             [['email'], 'email'],
             [['auth_key'], 'string', 'max' => 32],
         ];
@@ -79,10 +80,10 @@ class User extends ActiveRecord implements IdentityInterface
             'deleted' => ['deleted'],
             'backend' => ['username', 'email', 'published', 'deleted', 'group_id'],
             'userCreate' => ['username', 'email', 'published', 'group_id'],
-            'passwordChange' => ['password_hash'],
+            'passwordChange' => ['password', 'password_hash'],
             'profile' => ['username'],
             'resetPassword' => ['password_reset_token'],
-            'setPassword' => ['password_hash']
+            'setPassword' => ['password', 'password_hash']
         ];
     }
 
@@ -96,6 +97,7 @@ class User extends ActiveRecord implements IdentityInterface
             'group_id' => Yii::t('app', 'Group'),
             'username' => Yii::t('app', 'Username'),
             'auth_key' => Yii::t('user', 'Auth key'),
+            'password' => Yii::t('user', 'Password'),
             'password_hash' => Yii::t('user', 'Password hash'),
             'password_reset_token' => Yii::t('user', 'Password reset token'),
             'email' => Yii::t('app', 'Email'),
@@ -180,7 +182,9 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function setPassword($password)
     {
+        $this->password = $password;
         $this->password_hash = Yii::$app->getSecurity()->generatePasswordHash($password);
+
         return $this;
     }
 
@@ -274,6 +278,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * @return bool
+     * @throws \Throwable
      */
     public static function getUserGroup()
     {

@@ -4,11 +4,11 @@ use yii\helpers\{
     Html, Url
 };
 use backend\modules\user\models\{
-    Group
+    Group, User
 };
 
 /**
- * @var $model \backend\modules\user\models\User
+ * @var $model User
  */
 
 ?>
@@ -16,12 +16,15 @@ use backend\modules\user\models\{
 <?= $form->text_line($model, 'username') ?>
 
 <?= $form->text_line($model, 'email') ?>
+<?= $form->text_line($model, 'password')->textInput(['disabled' => true]) ?>
 
-<?php if ($model['id'] != 1): echo $form->field($model, 'group_id')->selectOne(Group::dropDownList()); endif; ?>
+<?php if ($model['id'] != 1) {
+    echo $form->field($model, 'group_id')->selectOne(Group::dropDownList());
+} ?>
 
-<?php if (!in_array($model['id'], [1])):
+<?php if (!in_array($model['id'], [1])) {
     echo $form->switcher($model, 'published');
-endif; ?>
+} ?>
 
 <p>
     <?= Html::a(Yii::t('user', 'Edit profile'), ['/user/profile/update', 'id' => $model->profile->id]); ?>
