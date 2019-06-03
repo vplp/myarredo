@@ -3,12 +3,9 @@
 namespace frontend\modules\articles\controllers;
 
 use Yii;
-use yii\web\NotFoundHttpException;
 //
 use frontend\components\BaseController;
-use frontend\modules\articles\models\{
-    Article, Group
-};
+use frontend\modules\articles\models\Article;
 //
 use thread\actions\ListQuery;
 
@@ -43,26 +40,10 @@ class ListController extends BaseController
      */
     public function actions()
     {
-        $g = function () {
-            $r = 0;
-            if (Yii::$app->request->get('alias')) {
-                $item = Group::findByAlias(Yii::$app->request->get('alias'));
-
-                if ($item === null) {
-                    throw new NotFoundHttpException(Yii::t('app', 'Page not found.'));
-                }
-
-                $r = $item['id'];
-            }
-            return $r;
-        };
-
-        $group = $g();
-
         return [
             'index' => [
                 'class' => ListQuery::class,
-                'query' => ($group) ? Article::findBase()->group_id($group) : Article::findBase(),
+                'query' => Article::findBase(),
                 'recordOnPage' => $this->module->itemOnPage,
             ],
         ];
@@ -75,14 +56,6 @@ class ListController extends BaseController
     public function beforeAction($action)
     {
         $this->title = Yii::t('app', 'Articles');
-
-        $item = (isset($_GET['alias']))
-            ? Group::findByAlias($_GET['alias'])
-            : null;
-
-        if ($item !== null) {
-            $this->title = $item['lang']['title'];
-        }
 
         /**
          * breadcrumbs
