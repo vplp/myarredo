@@ -46,17 +46,12 @@ class Article extends \common\modules\news\models\Article
     /**
      * @return mixed
      */
-    public static function find()
-    {
-        return parent::find()->enabled();
-    }
-
-    /**
-     * @return mixed
-     */
     public static function findBase()
     {
-        return self::find()->innerJoinWith(["lang"])->orderBy(['published_time' => SORT_DESC]);
+        return parent::findBase()
+            ->innerJoinWith(["lang"])
+            ->enabled()
+            ->orderBy(['published_time' => SORT_DESC]);
     }
 
     /**

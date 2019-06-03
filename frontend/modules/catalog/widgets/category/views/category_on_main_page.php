@@ -9,7 +9,8 @@ use frontend\modules\catalog\models\{
 };
 
 /**
- * @var $model \frontend\modules\catalog\models\Category
+ * @var $models Category[]
+ * @var $model Category
  */
 
 ?>
@@ -23,13 +24,13 @@ use frontend\modules\catalog\models\{
                 </div>
                 <?= Html::a(
                     Html::img("", [
-                            'class' => 'lazy', 
-                            'data-src' => Category::getImage($model['image_link'])
-                        ])
+                        'class' => 'lazy',
+                        'data-src' => Category::getImage($model['image_link'])
+                    ])
                     . Html::img("", [
-                            'class' => 'is-hover lazy',
-                            'data-src' => Category::getImage($model['image_link2'])
-                        ]),
+                        'class' => 'is-hover lazy',
+                        'data-src' => Category::getImage($model['image_link2'])
+                    ]),
                     Category::getUrl($model['alias']),
                     ['class' => 'img-cont']
                 ) ?>

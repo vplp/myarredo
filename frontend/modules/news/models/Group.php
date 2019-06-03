@@ -46,17 +46,9 @@ class Group extends \common\modules\news\models\Group
     /**
      * @return mixed
      */
-    public static function find()
-    {
-        return parent::find()->enabled();
-    }
-
-    /**
-     * @return mixed
-     */
     public static function findBase()
     {
-        return self::find()->innerJoinWith(["lang"]);
+        return parent::findBase()->innerJoinWith(["lang"]);
     }
 
     /**
