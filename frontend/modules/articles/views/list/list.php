@@ -2,7 +2,7 @@
 
 use frontend\modules\articles\models\Article;
 
-/** @var $models Article */
+/** @var $pages \yii\data\Pagination */
 /** @var $models Article */
 
 $this->title = $this->context->title;
@@ -23,9 +23,8 @@ $this->title = $this->context->title;
 
                 <div class="catalog">
                     <div class="pages">
-                        <?= yii\widgets\LinkPager::widget([
+                        <?= frontend\components\LinkPager::widget([
                             'pagination' => $pages,
-                            'registerLinkTags' => true,
                         ]) ?>
                     </div>
                 </div>

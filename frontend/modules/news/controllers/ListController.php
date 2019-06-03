@@ -73,7 +73,6 @@ class ListController extends BaseController
     /**
      * @param $action
      * @return bool
-     * @throws \yii\web\BadRequestHttpException
      */
     public function beforeAction($action)
     {

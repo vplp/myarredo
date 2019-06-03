@@ -49,7 +49,10 @@ class Article extends \common\modules\articles\models\Article
      */
     public static function findBase()
     {
-        return self::find()->innerJoinWith(["lang"])->orderBy(['published_time' => SORT_DESC]);
+        return parent::findBase()
+            ->innerJoinWith(["lang"])
+            ->enabled()
+            ->orderBy(['published_time' => SORT_DESC]);
     }
 
     /**
@@ -76,5 +79,16 @@ class Article extends \common\modules\articles\models\Article
     public function getUrl()
     {
         return Url::toRoute(['/articles/article/index', 'alias' => $this->alias]);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function search($params)
+    {
+        return (new search\Article())->search($params);
     }
 }
