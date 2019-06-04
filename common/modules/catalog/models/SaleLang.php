@@ -4,8 +4,10 @@ namespace common\modules\catalog\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-use thread\app\base\models\ActiveRecordLang;
+//
 use common\modules\catalog\Catalog;
+//
+use thread\app\base\models\ActiveRecordLang;
 
 /**
  * Class SaleLang

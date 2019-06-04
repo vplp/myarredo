@@ -32,7 +32,8 @@ class SaleRequest extends ActiveRecord
     public $reCaptcha;
 
     /**
-     * @return null|object|string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

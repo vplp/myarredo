@@ -28,7 +28,8 @@ use common\modules\catalog\Catalog;
 class Collection extends ActiveRecord
 {
     /**
-     * @return null|object|string|\yii\db\Connection
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

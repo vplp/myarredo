@@ -29,7 +29,8 @@ class ProductStats extends ActiveRecord
     public $count;
 
     /**
-     * @return null|object|string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

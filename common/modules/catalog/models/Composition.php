@@ -163,6 +163,7 @@ class Composition extends Product
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getProduct()
     {
@@ -189,5 +190,4 @@ class Composition extends Product
 
         return $image;
     }
-
 }
