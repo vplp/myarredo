@@ -118,59 +118,59 @@ class Order extends \thread\modules\shop\models\Order
             ->orderBy(['created_at' => SORT_DESC]);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCustomer()
-    {
-        return $this
-            ->hasOne(Customer::class, ['id' => 'customer_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCity()
-    {
-        return $this
-            ->hasOne(City::class, ['id' => 'city_id']);
-    }
-
-    /**
-     * @return mixed|\yii\db\ActiveQuery
-     * @throws \Throwable
-     */
-    public function getItems()
-    {
-        return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOrderAnswers()
-    {
-        return $this
-            ->hasMany(OrderAnswer::class, ['order_id' => 'id'])
-            ->andWhere(OrderAnswer::tableName() . '.answer_time > 0');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOrderAnswer()
-    {
-        $modelAnswer = OrderAnswer::findByOrderIdUserId(
-            $this->id,
-            Yii::$app->getUser()->getId()
-        );
-
-        if ($modelAnswer == null) {
-            $modelAnswer = new OrderAnswer();
-        }
-
-        return $modelAnswer;
-    }
+//    /**
+//     * @return \yii\db\ActiveQuery
+//     */
+//    public function getCustomer()
+//    {
+//        return $this
+//            ->hasOne(Customer::class, ['id' => 'customer_id']);
+//    }
+//
+//    /**
+//     * @return \yii\db\ActiveQuery
+//     */
+//    public function getCity()
+//    {
+//        return $this
+//            ->hasOne(City::class, ['id' => 'city_id']);
+//    }
+//
+//    /**
+//     * @return mixed|\yii\db\ActiveQuery
+//     * @throws \Throwable
+//     */
+//    public function getItems()
+//    {
+//        return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
+//    }
+//
+//    /**
+//     * @return mixed
+//     */
+//    public function getOrderAnswers()
+//    {
+//        return $this
+//            ->hasMany(OrderAnswer::class, ['order_id' => 'id'])
+//            ->andWhere(OrderAnswer::tableName() . '.answer_time > 0');
+//    }
+//
+//    /**
+//     * @return mixed
+//     */
+//    public function getOrderAnswer()
+//    {
+//        $modelAnswer = OrderAnswer::findByOrderIdUserId(
+//            $this->id,
+//            Yii::$app->getUser()->getId()
+//        );
+//
+//        if ($modelAnswer == null) {
+//            $modelAnswer = new OrderAnswer();
+//        }
+//
+//        return $modelAnswer;
+//    }
 
     public function isArchive()
     {

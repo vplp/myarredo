@@ -95,8 +95,7 @@ class Product extends \common\modules\catalog\models\Product
      */
     public function getFactory()
     {
-        return $this->hasOne(Factory::class, ['id' => 'factory_id'])
-            ->enabled();
+        return $this->hasOne(Factory::class, ['id' => 'factory_id'])->enabled();
     }
 
     /**
@@ -104,8 +103,7 @@ class Product extends \common\modules\catalog\models\Product
      */
     public function getTypes()
     {
-        return $this->hasOne(Types::class, ['id' => 'catalog_type_id'])
-            ->enabled();
+        return $this->hasOne(Types::class, ['id' => 'catalog_type_id'])->enabled();
     }
 
     /**
@@ -126,6 +124,28 @@ class Product extends \common\modules\catalog\models\Product
         });
 
         return $result;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getFactoryCatalogsFiles()
+    {
+        return $this
+            ->hasMany(FactoryCatalogsFiles::class, ['id' => 'factory_file_id'])
+            ->viaTable(ProductRelFactoryCatalogsFiles::tableName(), ['catalog_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getFactoryPricesFiles()
+    {
+        return $this
+            ->hasMany(FactoryPricesFiles::class, ['id' => 'factory_file_id'])
+            ->viaTable(ProductRelFactoryPricesFiles::tableName(), ['catalog_item_id' => 'id']);
     }
 
     /**

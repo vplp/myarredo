@@ -79,26 +79,6 @@ use frontend\modules\catalog\models\ItalianProduct;
                         </td>
                     </tr>
                 </table>
-
-                <div class="downloads">
-
-                    <?php if (!empty($orderItem->product['factoryPricesFiles'])) { ?>
-                        <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
-                        <ul>
-                            <?php
-                            foreach ($orderItem->product['factoryPricesFiles'] as $priceFile) {
-                                if ($fileLink = $priceFile->getFileLink()) { ?>
-                                    <li>
-                                        <?= Html::a($priceFile->title, $fileLink, ['target' => '_blank']) ?>
-                                    </li>
-                                <?php }
-                            }
-                            ?>
-                        </ul>
-                    <?php } ?>
-
-                </div>
-
             </div>
         <?php } ?>
 

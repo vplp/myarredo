@@ -12,6 +12,9 @@ use frontend\components\ImageResize;
 /**
  * Class Factory
  *
+ * @property CatalogsFiles[] $catalogsFiles
+ * @property PricesFiles[] $pricesFiles
+ *
  * @package frontend\modules\catalog\models
  */
 class Factory extends \common\modules\catalog\models\Factory
@@ -124,7 +127,7 @@ class Factory extends \common\modules\catalog\models\Factory
     public function getCatalogsFiles()
     {
         return $this->hasMany(FactoryCatalogsFiles::class, ['factory_id' => 'id'])
-            ->andWhere(['file_type' => 1])->enabled();
+            ->andWhere([FactoryCatalogsFiles::tableName() . '.file_type' => 1])->enabled();
     }
 
     /**
@@ -133,7 +136,7 @@ class Factory extends \common\modules\catalog\models\Factory
     public function getPricesFiles()
     {
         return $this->hasMany(FactoryPricesFiles::class, ['factory_id' => 'id'])
-            ->andWhere(['file_type' => 2])->enabled();
+            ->andWhere([FactoryPricesFiles::tableName() . '.file_type' => 2])->enabled();
     }
 
     /**

@@ -3,11 +3,14 @@
 use yii\helpers\{
     Html, Url
 };
+use frontend\modules\shop\models\{
+    Order, OrderItem
+};
 use frontend\modules\catalog\models\Product;
 
 /* @var $this yii\web\View */
-/* @var $modelOrder \frontend\modules\shop\models\Order */
-/* @var $orderItem \frontend\modules\shop\models\OrderItem */
+/* @var $modelOrder Order */
+/* @var $orderItem OrderItem */
 
 ?>
 
@@ -59,11 +62,16 @@ use frontend\modules\catalog\models\Product;
 
                 <div class="downloads">
 
-                    <?php if (!empty($orderItem->product['factoryPricesFiles'])) { ?>
+                    <?php
+                    $pricesFiles = ($orderItem->product->factoryPricesFiles != null)
+                        ? $orderItem->product->factoryPricesFiles
+                        : $orderItem->product->factory->pricesFiles;
+
+                    if (!empty($pricesFiles)) { ?>
                         <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
                         <ul>
                             <?php
-                            foreach ($orderItem->product['factoryPricesFiles'] as $priceFile) {
+                            foreach ($pricesFiles as $priceFile) {
                                 if ($fileLink = $priceFile->getFileLink()) { ?>
                                     <li>
                                         <?= Html::a($priceFile->title, $fileLink, ['target' => '_blank']) ?>
