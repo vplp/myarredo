@@ -543,6 +543,7 @@ class Product extends ActiveRecord implements iProduct
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getFactoryPricesFiles()
     {
@@ -569,6 +570,7 @@ class Product extends ActiveRecord implements iProduct
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getSpecification()
     {
@@ -588,6 +590,7 @@ class Product extends ActiveRecord implements iProduct
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getUserGroup()
     {

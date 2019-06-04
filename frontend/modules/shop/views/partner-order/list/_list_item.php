@@ -92,10 +92,15 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                         Yii::$app->user->identity->profile->isPdfAccess()) { ?>
                         <div class="downloads">
 
-                            <?php if (!empty($orderItem->product['factoryPricesFiles'])) { ?>
+                            <?php
+                            $pricesFiles = ($orderItem->product['factoryPricesFiles'] != null)
+                                ? $orderItem->product['factoryPricesFiles']
+                                : $orderItem->product->factory['pricesFiles'];
+
+                            if (!empty($pricesFiles)) { ?>
                                 <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
                                 <ul>
-                                    <?php foreach ($orderItem->product['factoryPricesFiles'] as $priceFile) {
+                                    <?php foreach ($pricesFiles as $priceFile) {
                                         if ($fileLink = $priceFile->getFileLink()) { ?>
                                             <li>
                                                 <?= Html::a($priceFile->title, $fileLink, ['target' => '_blank']) ?>

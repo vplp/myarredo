@@ -165,7 +165,12 @@ use frontend\modules\catalog\models\ItalianProduct;
                     <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->isPdfAccess()) { ?>
                         <div class="downloads">
 
-                            <?php if (!empty($orderItem->product['factoryPricesFiles'])) { ?>
+                            <?php
+                            $pricesFiles = ($orderItem->product['factoryPricesFiles'] != null)
+                                ? $orderItem->product['factoryPricesFiles']
+                                : $orderItem->product->factory['pricesFiles'];
+
+                            if (!empty($orderItem->product['factoryPricesFiles'])) { ?>
                                 <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
                                 <ul>
                                     <?php foreach ($orderItem->product['factoryPricesFiles'] as $priceFile) {
