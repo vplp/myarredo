@@ -10,7 +10,7 @@ use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\shop\widgets\request\RequestPrice;
 
 /**
- * @var \frontend\modules\catalog\models\Product $model
+ * @var $model Product
  */
 
 $bundle = AppAsset::register($this);
@@ -253,6 +253,43 @@ $this->title = $this->context->title;
                     </div>
                 </div>
 
+                <div class="row composition">
+                    <div class="col-md-12">
+                        <ul class="nav nav-tabs">
+                            <?php if (!empty($elementsComposition)) { ?>
+                                <li>
+                                    <a data-toggle="tab" href="#panel1"><?= Yii::t('app', 'Предметы композиции') ?></a>
+                                </li>
+                            <?php } ?>
+                            <?php if (!empty($model['samples'])) { ?>
+                                <li>
+                                    <a data-toggle="tab" href="#panel2"><?= Yii::t('app', 'Варианты отделки') ?></a>
+                                </li>
+                            <?php } ?>
+                        </ul>
+
+                        <div class="tab-content">
+
+                            <?php if (!empty($elementsComposition)) { ?>
+                                <div id="panel1" class="tab-pane fade">
+                                    <?= $this->render('parts/_product_by_composition', [
+                                        'models' => $elementsComposition
+                                    ]); ?>
+                                </div>
+                            <?php } ?>
+
+                            <?php if (!empty($model['samples'])) { ?>
+                                <div id="panel2" class="tab-pane fade">
+                                    <?= $this->render('parts/_samples', [
+                                        'samples' => $model['samples']
+                                    ]); ?>
+                                </div>
+                            <?php } ?>
+
+                        </div>
+                    </div>
+                </div>
+
                 <div class="best-price">
                     <div class="container large-container">
                         <div class="section-header">
@@ -335,43 +372,6 @@ $this->title = $this->context->title;
                             <div class="text-contain">
                                 <?= Yii::t('app', 'Экономьте время и усилия на поиск по множеству сайтов. Все лучшие и проверенные поставщики собраны в нашей сети.') ?>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row composition">
-                    <div class="col-md-12">
-                        <ul class="nav nav-tabs">
-                            <?php if (!empty($elementsComposition)) { ?>
-                                <li>
-                                    <a data-toggle="tab" href="#panel1"><?= Yii::t('app', 'Предметы композиции') ?></a>
-                                </li>
-                            <?php } ?>
-                            <?php if (!empty($model['samples'])) { ?>
-                                <li>
-                                    <a data-toggle="tab" href="#panel2"><?= Yii::t('app', 'Варианты отделки') ?></a>
-                                </li>
-                            <?php } ?>
-                        </ul>
-
-                        <div class="tab-content">
-
-                            <?php if (!empty($elementsComposition)) { ?>
-                                <div id="panel1" class="tab-pane fade">
-                                    <?= $this->render('parts/_product_by_composition', [
-                                        'models' => $elementsComposition
-                                    ]); ?>
-                                </div>
-                            <?php } ?>
-
-                            <?php if (!empty($model['samples'])) { ?>
-                                <div id="panel2" class="tab-pane fade">
-                                    <?= $this->render('parts/_samples', [
-                                        'samples' => $model['samples']
-                                    ]); ?>
-                                </div>
-                            <?php } ?>
-
                         </div>
                     </div>
                 </div>
