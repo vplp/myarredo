@@ -56,7 +56,7 @@ class ArticleForPartners extends \common\modules\news\models\ArticleForPartners
 
         $subQueryCity = ArticleForPartnersRelCity::find()
             ->select('article_id')
-            ->andWhere([ArticleForPartnersRelCity::tableName() . '.city_id' => Yii::$app->city->getCityId()]);
+            ->andWhere([ArticleForPartnersRelCity::tableName() . '.city_id' => Yii::$app->user->identity->profile->city_id]);
 
         $query = self::findBase()
             ->andFilterWhere([
