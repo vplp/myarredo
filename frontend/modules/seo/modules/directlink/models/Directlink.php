@@ -21,7 +21,8 @@ class Directlink extends \common\modules\seo\modules\directlink\models\Directlin
 
     /**
      * @param int $city_id
-     * @return array
+     * @return array|mixed
+     * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
     public static function findByUrl($city_id = 0)
@@ -38,20 +39,24 @@ class Directlink extends \common\modules\seo\modules\directlink\models\Directlin
         $result = [];
 
         if (!empty($local_url)) {
-            $query = Directlink::findBase()->url($local_url);
-            if ($city_id) {
-                $query
-                    ->joinWith(['cities'])
-                    ->andWhere(['fv_seo_direct_link_rel_location_city.location_city_id' => $city_id]);
-            }
-            $result = $query->one();
+            $result = self::getDb()->cache(function ($db) use ($local_url, $city_id) {
+                $query = self::findBase()->url($local_url);
+                if ($city_id) {
+                    $query
+                        ->joinWith(['cities'])
+                        ->andWhere(['fv_seo_direct_link_rel_location_city.location_city_id' => $city_id]);
+                }
+
+                return $query->one();
+            });
         }
 
         return $result;
     }
 
     /**
-     * @return array
+     * @return array|mixed
+     * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
     public static function getInfo()

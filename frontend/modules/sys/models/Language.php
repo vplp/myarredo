@@ -3,19 +3,20 @@
 namespace frontend\modules\sys\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 //
 use frontend\modules\sys\Sys;
-use common\modules\sys\models\Language as CommonLanguageModel;
-use yii\helpers\ArrayHelper;
 
-class Language extends CommonLanguageModel
+class Language extends \common\modules\sys\models\Language
 {
     /**
-     * @return mixed
+     * @return array
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function dropDownList()
     {
-        return ArrayHelper::map(self::findBase()->asArray()->all(), 'local', 'label');
+        return ArrayHelper::map(self::findBase()->all(), 'local', 'label');
     }
 
     /**
@@ -28,23 +29,30 @@ class Language extends CommonLanguageModel
 
     /**
      * @return array
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function getLanguages(): array
     {
-        return self::findBase()
-            ->asArray()
-            ->all();
+        $result = self::getDb()->cache(function ($db) {
+            return self::findBase()->asArray()->all();
+        });
+
+        return $result;
     }
 
     /**
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getAllByLocate()
     {
-        return $data = self::findBase()
-            ->indexBy('local')
-            ->asArray()
-            ->all();
+        $result = self::getDb()->cache(function ($db) {
+            return self::findBase()->indexBy('local')->asArray()->all();
+        });
+
+        return $result;
     }
 
     /**

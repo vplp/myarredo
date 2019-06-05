@@ -48,7 +48,7 @@ class Region extends \common\modules\location\models\Region
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled();
+        return parent::findBase()->asArray()->enabled();
     }
 
     /**
@@ -80,20 +80,22 @@ class Region extends \common\modules\location\models\Region
     }
 
     /**
-     * Drop down list
-     *
      * @param int $country_id
-     * @return mixed
+     * @return array|mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function dropDownList($country_id = 0)
     {
-        $query = self::findBase();
+        $data = self::getDb()->cache(function ($db) use ($country_id) {
+            $query = self::findBase();
 
-        if ($country_id) {
-            $query->andFilterWhere(['country_id' => $country_id]);
-        }
+            if ($country_id) {
+                $query->andFilterWhere(['country_id' => $country_id]);
+            }
 
-        $data = $query->all();
+            return $query->all();
+        });
 
         return ArrayHelper::map($data, 'id', 'lang.title');
     }

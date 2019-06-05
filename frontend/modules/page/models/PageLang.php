@@ -7,34 +7,37 @@ namespace frontend\modules\page\models;
  *
  * @package frontend\modules\page\models
  */
-class PageLang extends \common\modules\page\models\PageLang {
-
+class PageLang extends \common\modules\page\models\PageLang
+{
     /**
      * @return array
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return [];
     }
 
     /**
      * @return array
      */
-    public function scenarios() {
+    public function scenarios()
+    {
         return [];
     }
 
     /**
      * @return array
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [];
     }
 
     /**
      * @return array
      */
-    public function rules() {
+    public function rules()
+    {
         return [];
     }
-
 }

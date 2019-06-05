@@ -3,10 +3,14 @@
 use yii\helpers\{
     Html, Url
 };
+//
+use frontend\modules\location\models\{
+    Country, City
+};
 
 /**
- * @var $country \frontend\modules\location\models\Country
- * @var $city \frontend\modules\location\models\City
+ * @var $country Country
+ * @var $city City
  */
 
 ?>
@@ -23,7 +27,7 @@ use yii\helpers\{
                 foreach ($country['cities'] as $cityCountry) {
                     echo Html::a(
                         $cityCountry['lang']['title'],
-                        $cityCountry->getSubDomainUrl(),
+                        City::getSubDomainUrl($cityCountry),
                         ['class' => 'dropdown-item']
                     );
                 } ?>
@@ -39,7 +43,7 @@ use yii\helpers\{
                 }
                 echo Html::a(
                     $cityCountry['lang']['title'],
-                    $cityCountry->getSubDomainUrl(),
+                    City::getSubDomainUrl($cityCountry),
                     ['rel' => 'nofollow']
                 );
             }

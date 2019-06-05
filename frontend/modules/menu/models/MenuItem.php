@@ -3,6 +3,7 @@
 namespace frontend\modules\menu\models;
 
 use thread\app\model\interfaces\BaseFrontModel;
+use yii\helpers\Url;
 
 /**
  * Class MenuItem
@@ -11,9 +12,7 @@ use thread\app\model\interfaces\BaseFrontModel;
  */
 final class MenuItem extends \common\modules\menu\models\MenuItem implements BaseFrontModel
 {
-
     /**
-     *
      * @return array
      */
     public function behaviors()
@@ -22,7 +21,6 @@ final class MenuItem extends \common\modules\menu\models\MenuItem implements Bas
     }
 
     /**
-     *
      * @return array
      */
     public function scenarios()
@@ -31,7 +29,6 @@ final class MenuItem extends \common\modules\menu\models\MenuItem implements Bas
     }
 
     /**
-     *
      * @return array
      */
     public function attributeLabels()
@@ -40,7 +37,6 @@ final class MenuItem extends \common\modules\menu\models\MenuItem implements Bas
     }
 
     /**
-     *
      * @return array
      */
     public function rules()
@@ -48,46 +44,56 @@ final class MenuItem extends \common\modules\menu\models\MenuItem implements Bas
         return [];
     }
 
-    public static function find()
-    {
-        return parent::find()->enabled();
-    }
-
     /**
      * @return mixed
      */
     public static function findBase()
     {
-        return self::find()->innerJoinWith(["lang"])->orderBy(['position' => SORT_ASC]);
+        return parent::findBase()->enabled();
     }
 
     /**
-     *
-     * @param string $group
-     * @return array|null
-     */
-    public static function getAllByGroup($group = '', $parent = 0)
-    {
-        return self::findBase()->group_id($group)->parent_id($parent)->all();
-    }
-
-    /**
-     *
      * @param string $alias
-     * @return ActiveRecord|null
+     * @return mixed
+     * @throws \Throwable
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->byAlias($alias)->one();
+        $result = self::getDb()->cache(function ($db) use ($alias) {
+            return self::findBase()->byAlias($alias)->one();
+        });
+
+        return $result;
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return mixed
+     * @throws \Throwable
      */
     public static function findById($id)
     {
-        return self::findBase()->byID($id)->one();
+        $result = self::getDb()->cache(function ($db) use ($id) {
+            return self::findBase()->byId($id)->one();
+        });
+
+        return $result;
+    }
+
+    /**
+     * @param string $group
+     * @param int $parent
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getAllByGroup($group = '', $parent = 0)
+    {
+        $result = self::getDb()->cache(function ($db) use ($group, $parent) {
+            return self::findBase()->group_id($group)->parent_id($parent)->all();
+        });
+
+        return $result;
     }
 
     /**

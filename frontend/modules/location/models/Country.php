@@ -53,7 +53,7 @@ class Country extends \common\modules\location\models\Country
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled();
+        return parent::findBase()->asArray()->enabled();
     }
 
     /**
@@ -79,7 +79,14 @@ class Country extends \common\modules\location\models\Country
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->byAlias($alias)->one();
+        $result = self::getDb()->cache(function ($db) use ($alias) {
+            return self::findBase()
+                ->joinWith(['cities', 'cities.country citiesCountry'])
+                ->byAlias($alias)
+                ->one();
+        });
+
+        return $result;
     }
 
     /**
@@ -89,7 +96,10 @@ class Country extends \common\modules\location\models\Country
     public static function findById($id)
     {
         $result = self::getDb()->cache(function ($db) use ($id) {
-            return self::findBase()->byId($id)->one();
+            return self::findBase()
+                ->byId($id)
+                ->joinWith(['cities', 'cities.country citiesCountry'])
+                ->one();
         });
 
         return $result;
@@ -103,13 +113,15 @@ class Country extends \common\modules\location\models\Country
      */
     public static function dropDownList($IDs = [])
     {
-        $query = self::findBase();
+        $data = self::getDb()->cache(function ($db) use ($IDs) {
+            $query = self::findBase();
 
-        if ($IDs) {
-            $query->byId($IDs);
-        }
+            if ($IDs) {
+                $query->byId($IDs);
+            }
 
-        $data = $query->all();
+            return $query->all();
+        });
 
         return ArrayHelper::map($data, 'id', 'lang.title');
     }

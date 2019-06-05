@@ -32,18 +32,23 @@ class SaleOnMainPage extends Widget
      */
     public function init()
     {
-        $this->models = Sale::findBase()
-            ->innerJoinWith(["country", "city"])
-            ->andFilterWhere(['IN', Country::tableName() . '.id', Yii::$app->city->getCountryId()])
-            ->andFilterWhere(['IN', City::tableName() . '.id', Yii::$app->city->getCityId()])
-            ->andWhere([
-                'or',
-                Sale::tableName() . '.on_main = \'1\'',
-                Sale::tableName() . '.on_main = \'0\'',
-            ])
-            ->cache(7200)
-            ->limit(8)
-            ->all();
+        $country_id = Yii::$app->city->getCountryId();
+        $city_id = Yii::$app->city->getCityId();
+
+        $this->models = Sale::getDb()->cache(function ($db) use ($country_id, $city_id) {
+            return Sale::findBase()
+                ->innerJoinWith(["country", "city"])
+                ->andFilterWhere(['IN', Country::tableName() . '.id', $country_id])
+                ->andFilterWhere(['IN', City::tableName() . '.id', $city_id])
+                ->andWhere([
+                    'or',
+                    Sale::tableName() . '.on_main = \'1\'',
+                    Sale::tableName() . '.on_main = \'0\'',
+                ])
+                ->limit(8)
+                ->asArray()
+                ->all();
+        });
 
         $_models = [];
 

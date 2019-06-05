@@ -48,17 +48,9 @@ class Page extends \common\modules\page\models\Page implements BaseFrontModel
     /**
      * @return mixed
      */
-    public static function find()
-    {
-        return parent::find()->enabled();
-    }
-
-    /**
-     * @return mixed
-     */
     public static function findBase()
     {
-        return parent::find();
+        return parent::findBase()->enabled();
     }
 
     /**

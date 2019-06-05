@@ -26,8 +26,8 @@ use thread\modules\page\Page as PageModule;
 class PageLang extends ActiveRecordLang
 {
     /**
-     * Db connection
-     * @return string
+     * @return object|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

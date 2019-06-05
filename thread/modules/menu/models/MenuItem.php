@@ -61,8 +61,8 @@ class MenuItem extends ActiveRecord
     protected static $permanent_link = [];
 
     /**
-     *
-     * @return string
+     * @return object|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

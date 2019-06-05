@@ -44,16 +44,8 @@ class Group extends \common\modules\user\models\Group
     /**
      * @return mixed
      */
-    public static function find()
-    {
-        return parent::find()->enabled()->innerJoinWith(['lang']);
-    }
-
-    /**
-     * @return mixed
-     */
     public static function findBase()
     {
-        return self::find();
+        return parent::findBase()->enabled();
     }
 }

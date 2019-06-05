@@ -5,13 +5,13 @@ use yii\helpers\Html;
 use frontend\modules\catalog\models\Sale;
 
 /**
- * @var \frontend\modules\catalog\models\Sale $model
+ * @var $model Sale
  */
 
 ?>
 
 <?= Html::beginTag('a', [
-    'href' => $model->getUrl(),
+    'href' => Sale::getUrl($model['alias']),
     'class' => 'one-prod-tile'
 ]); ?>
 
@@ -33,7 +33,7 @@ use frontend\modules\catalog\models\Sale;
                 <?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name'] ?>
             </div>
             <div class="tile-prod-name" itemprop="name">
-                <?= $model->getTitle() ?>
+                <?= $model['lang']['title'] ?>
             </div>
         </div>
 

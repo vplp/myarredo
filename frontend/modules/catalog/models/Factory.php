@@ -389,12 +389,14 @@ class Factory extends \common\modules\catalog\models\Factory
 
     /**
      * @param array $ids
-     * @return array
-     * @throws \yii\db\Exception
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getFactoryCategory(array $ids)
     {
-        $command = Yii::$app->db->createCommand("SELECT
+        $result = self::getDb()->cache(function ($db) use ($ids) {
+            return self::getDb()->createCommand("SELECT
                 COUNT(product.id) as count, 
                 factory.id AS factory_id,
                 category.id AS category_id,
@@ -422,19 +424,22 @@ class Factory extends \common\modules\catalog\models\Factory
                 ':deleted' => '0',
                 ':removed' => '0',
                 ':lang' => Yii::$app->language,
-            ]);
+            ])->queryAll();
+        });
 
-        return $command->queryAll();
+        return $result;
     }
 
     /**
      * @param int $id
-     * @return array
-     * @throws \yii\db\Exception
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getFactoryTypes(int $id)
     {
-        $command = Yii::$app->db->createCommand("SELECT
+        $result = self::getDb()->cache(function ($db) use ($id) {
+            return self::getDb()->createCommand("SELECT
                 COUNT(types.id) as count, 
                 types.id, 
                 types.alias,
@@ -451,25 +456,28 @@ class Factory extends \common\modules\catalog\models\Factory
             GROUP BY 
                 types.id
             ORDER BY typesLang.title")
-            ->bindValues([
-                ':published' => '1',
-                ':deleted' => '0',
-                ':removed' => '0',
-                ':id' => $id,
-                ':lang' => Yii::$app->language,
-            ]);
+                ->bindValues([
+                    ':published' => '1',
+                    ':deleted' => '0',
+                    ':removed' => '0',
+                    ':id' => $id,
+                    ':lang' => Yii::$app->language,
+                ])->queryAll();
+        });
 
-        return $command->queryAll();
+        return $result;
     }
 
     /**
      * @param int $id
-     * @return array
-     * @throws \yii\db\Exception
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getFactoryCollection(int $id)
     {
-        $command = Yii::$app->db->createCommand("SELECT
+        $result = self::getDb()->cache(function ($db) use ($id) {
+            return self::getDb()->createCommand("SELECT
                 COUNT(collection.id) as count, 
                 collection.id,
                 collection.title
@@ -488,13 +496,16 @@ class Factory extends \common\modules\catalog\models\Factory
                 ':deleted' => '0',
                 ':removed' => '0',
                 ':id' => $id,
-            ]);
+            ])->queryAll();
+        });
 
-        return $command->queryAll();
+        return $result;
     }
 
     /**
      * @return int
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function getFactoryTotalCountSale()
     {

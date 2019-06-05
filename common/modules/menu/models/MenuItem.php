@@ -1,14 +1,19 @@
 <?php
+
 namespace common\modules\menu\models;
 
 /**
  * Class MenuItem
  *
  * @package common\modules\menu\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class MenuItem extends \thread\modules\menu\models\MenuItem
 {
-
+    /**
+     * @return mixed
+     */
+    public static function findBase()
+    {
+        return self::find()->innerJoinWith(["lang"])->orderBy(['position' => SORT_ASC]);
+    }
 }

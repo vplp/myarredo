@@ -48,14 +48,35 @@ class Currency extends \common\modules\location\models\Currency
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled();
+        return parent::findBase()->asArray()->enabled();
     }
 
     /**
+     * @param string $code2
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function findByCode2($code2)
+    {
+        $result = self::getDb()->cache(function ($db) use ($code2) {
+            return self::findBase()->andWhere(['code2' => $code2])->one();
+        });
+
+        return $result;
+    }
+
+    /**
+     * @return array
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getMapCode2Course()
     {
-        return ArrayHelper::map(self::findBase()->all(), 'code2', 'course');
+        $result = self::getDb()->cache(function ($db) {
+            return self::findBase()->all();
+        });
+
+        return ArrayHelper::map($result, 'code2', 'course');
     }
 }

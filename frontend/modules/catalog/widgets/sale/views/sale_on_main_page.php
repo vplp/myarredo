@@ -7,7 +7,8 @@ use yii\helpers\{
 use frontend\modules\catalog\models\Sale;
 
 /**
- * @var $model \frontend\modules\catalog\models\Category
+ * @var $models Sale
+ * @var $model Sale
  */
 
 ?>
@@ -28,7 +29,7 @@ use frontend\modules\catalog\models\Sale;
             <?php
             foreach ($models as $k => $level) {
                 foreach ($level as $key => $model) { ?>
-                    <a href="<?= $model->getUrl() ?>" class="one-sale" data-dominant-color itemscope
+                    <a href="<?= Sale::getUrl($model['alias']) ?>" class="one-sale" data-dominant-color itemscope
                        itemtype="http://schema.org/ImageObject">
                         <div class="img-cont">
                             <span class="background"></span>
@@ -36,13 +37,13 @@ use frontend\modules\catalog\models\Sale;
                                 Sale::getImageThumb($model['image_link']),
                                 [
                                     'class' => 'cont',
-                                    'alt' => $model->getTitle(),
+                                    'alt' => $model['lang']['title'],
                                     'itemprop' => 'contentUrl'
                                 ]
                             ) ?>
                         </div>
                         <div class="prod-title" itemprop="name">
-                            <?= $model->getTitle() ?>
+                            <?= $model['lang']['title'] ?>
                         </div>
                         <div class="price">
                             <span class="old-price">

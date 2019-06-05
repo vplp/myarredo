@@ -131,7 +131,8 @@ class Country extends ActiveRecord
     }
 
     /**
-     * @return $this
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getCurrencies()
     {

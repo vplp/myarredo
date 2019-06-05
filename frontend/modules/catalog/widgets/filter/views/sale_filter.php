@@ -161,18 +161,10 @@ use frontend\modules\catalog\models\{
                     } ?>
                 </div>
 
-                <?php if ($count_factory > 5) {
-                    echo Html::a(
-                        '<span class="btn-text">' . Yii::t('app', 'Показать все предметы') . '</span>',
-                        'javascript:void(0);',
-                        [
-                            'class' => 'show-all-sub show-more show-class',
-                            'data-variant' => 'Скрыть',
-                        ]
-                    );?>
+                <?php if ($count_factory > 5) { ?>
                     <a href="javascript:void(0);" class="show-all-sub show-more show-class" data-variant="Скрыть">
                         <i class="fa fa-plus" aria-hidden="true"></i>
-                        <span class="btn-text"><?= Yii::t('app', 'Показать еще') ?></span>
+                        <span class="btn-text"><?= Yii::t('app', 'Показать все фабрики') ?></span>
                     </a>
                 <?php } ?>
 

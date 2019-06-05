@@ -1,13 +1,15 @@
 <?php
 
 use yii\helpers\Html;
+use yii\data\Pagination;
 //
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\widgets\filter\SaleFilter;
+use frontend\modules\catalog\models\Sale;
 
 /**
- * @var $pages \yii\data\Pagination
- * @var $model \frontend\modules\catalog\models\Sale
+ * @var $pages Pagination
+ * @var $model Sale
  */
 
 $this->title = $this->context->title;

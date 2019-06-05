@@ -3,6 +3,7 @@
 namespace frontend\modules\catalog\widgets\category;
 
 use yii\base\Widget;
+//
 use frontend\modules\catalog\models\Category;
 
 /**
@@ -27,10 +28,9 @@ class CategoryOnMainPage extends Widget
      */
     public function init()
     {
-        $this->models = Category::findBase()
-            ->andWhere(['popular' => '1'])
-            ->cache(7200)
-            ->all();
+        $this->models = Category::getDb()->cache(function ($db) {
+            return Category::findBase()->andWhere(['popular' => '1'])->all();
+        });
     }
 
     /**

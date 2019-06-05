@@ -59,7 +59,7 @@ $this->title = $this->context->title;
                                             <meta itemprop="priceCurrency" content="<?= $model->currency ?>"/>
                                             <meta itemprop="availability" content="InStock"/>
                                             <meta itemprop="priceValidUntil" content="<?= date('Y-m-d') ?>"/>
-                                            <meta itemprop="url" content="<?= $model->getUrl() ?>"/>
+                                            <meta itemprop="url" content="<?= Sale::getUrl($model['alias']) ?>"/>
                                     </span>
                                     </div>
                                     <?php if ($model->price > 0) { ?>

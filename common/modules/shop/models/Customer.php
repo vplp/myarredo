@@ -16,6 +16,6 @@ class Customer extends \thread\modules\shop\models\Customer
      */
     public function getProfile()
     {
-        return $this->hasOne(Profile::className(), ['user_id' => 'user_id']);
+        return $this->hasOne(Profile::class, ['user_id' => 'user_id']);
     }
 }

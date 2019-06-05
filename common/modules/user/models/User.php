@@ -17,7 +17,7 @@ class User extends \thread\modules\user\models\User
      */
     public function getGroup()
     {
-        return $this->hasOne(Group::className(), ['id' => 'group_id']);
+        return $this->hasOne(Group::class, ['id' => 'group_id']);
     }
 
     /**
@@ -25,7 +25,7 @@ class User extends \thread\modules\user\models\User
      */
     public function getProfile()
     {
-        return $this->hasOne(Profile::className(), ['user_id' => 'id']);
+        return $this->hasOne(Profile::class, ['user_id' => 'id']);
     }
 
     /**
@@ -34,7 +34,7 @@ class User extends \thread\modules\user\models\User
     public static function findBase()
     {
         return self::find()
-            ->innerJoinWith([
+            ->joinWith([
                 'group',
                 'group.lang',
                 'profile'

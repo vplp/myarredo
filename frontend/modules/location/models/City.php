@@ -53,7 +53,7 @@ class City extends \common\modules\location\models\City
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled();
+        return parent::findBase()->asArray()->enabled();
     }
 
     /**
@@ -64,7 +64,10 @@ class City extends \common\modules\location\models\City
     public static function findByAlias($alias)
     {
         $result = self::getDb()->cache(function ($db) use ($alias) {
-            return self::findBase()->byAlias($alias)->one();
+            return self::findBase()
+                ->joinWith(['country', 'country.lang'])
+                ->byAlias($alias)
+                ->one();
         });
 
         return $result;
@@ -78,39 +81,43 @@ class City extends \common\modules\location\models\City
     public static function findById($id)
     {
         $result = self::getDb()->cache(function ($db) use ($id) {
-            return self::findBase()->byId($id)->one();
+            return self::findBase()
+                ->joinWith(['country', 'country.lang'])
+                ->byId($id)->one();
         });
 
         return $result;
     }
 
     /**
-     * Drop down list
-     *
      * @param int $country_id
-     * @return mixed
+     * @return array|mixed
+     * @throws \Throwable
      */
     public static function dropDownList($country_id = 0)
     {
-        $query = self::findBase();
+        $data = self::getDb()->cache(function ($db) use ($country_id) {
+            $query = self::findBase();
 
-        if ($country_id) {
-            $query->andFilterWhere(['country_id' => $country_id]);
-        }
+            if ($country_id) {
+                $query->andFilterWhere(['country_id' => $country_id]);
+            }
 
-        $data = $query->all();
+            return $query->all();
+        });
 
         return ArrayHelper::map($data, 'id', 'lang.title');
     }
 
     /**
+     * @param $model
      * @return string
      */
-    public function getSubDomainUrl()
+    public static function getSubDomainUrl($model)
     {
-        $url = (!in_array($this->id, array(4, 2, 1)))
-            ? 'https://' . $this->alias . '.myarredo.' . $this->country->alias
-            : 'https://' . 'www.myarredo.' . $this->country->alias;
+        $url = (!in_array($model['id'], array(4, 2, 1)))
+            ? 'https://' . $model['alias'] . '.myarredo.' . $model['country']['alias']
+            : 'https://' . 'www.myarredo.' . $model['country']['alias'];
 
         return $url;
     }

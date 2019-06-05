@@ -95,7 +95,7 @@ class Profile extends ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(UserModel::className(), ['id' => 'user_id']);
+        return $this->hasOne(UserModel::class, ['id' => 'user_id']);
     }
 
     /**

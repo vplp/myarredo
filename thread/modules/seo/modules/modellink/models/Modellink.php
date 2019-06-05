@@ -12,19 +12,17 @@ use thread\modules\seo\modules\modellink\Modellink as ParentModule;
  * Class Modellink
  *
  * @package thread\modules\seo\modules\modellink\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Modellink extends ActiveRecord
 {
-
     /**
      * @var
      */
     public static $commonQuery = query\ActiveQuery::class;
 
     /**
-     * @return string
+     * @return object|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -47,7 +45,11 @@ class Modellink extends ActiveRecord
         return [
             [['model_key', 'model_id', 'lang'], 'required'],
             [['created_at', 'updated_at', 'model_id'], 'integer'],
-            [['published', 'deleted', 'add_to_sitemap', 'dissallow_in_robotstxt'], 'in', 'range' => array_keys(static::statusKeyRange())],
+            [
+                ['published', 'deleted', 'add_to_sitemap', 'dissallow_in_robotstxt'],
+                'in',
+                'range' => array_keys(static::statusKeyRange())
+            ],
             [['meta_robots'], 'in', 'range' => array_keys(static::statusMetaRobotsRange())],
             [['title', 'description', 'keywords', 'image_url'], 'string', 'max' => 255],
             [['lang'], 'string', 'max' => 5],
@@ -64,8 +66,23 @@ class Modellink extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'add_to_sitemap' => ['add_to_sitemap'],
-            'dissallow_in_robotstxt' => ['dissallow_in_robotstxt'],
-            'backend' => ['model_key', 'model_id', 'lang', 'published', 'deleted', 'add_to_sitemap', 'dissallow_in_robotstxt', 'meta_robots', 'title', 'description', 'keywords', 'image_url'],
+            'dissallow_in_robotstxt' => [
+                'dissallow_in_robotstxt'
+            ],
+            'backend' => [
+                'model_key',
+                'model_id',
+                'lang',
+                'published',
+                'deleted',
+                'add_to_sitemap',
+                'dissallow_in_robotstxt',
+                'meta_robots',
+                'title',
+                'description',
+                'keywords',
+                'image_url'
+            ],
         ];
     }
 

@@ -51,7 +51,7 @@ class Colors extends \common\modules\catalog\models\Colors
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled()->asArray();
+        return parent::findBase()->asArray()->enabled();
     }
 
     /**

@@ -37,7 +37,7 @@ class ChangeCity extends Widget
     {
         $this->city = Yii::$app->city->getCity();
 
-        $this->country = Country::findById($this->city->country->id);
+        $this->country = Country::findById($this->city['country']['id']);
     }
 
     /**

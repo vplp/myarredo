@@ -113,7 +113,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getGroup()
     {
-        return $this->hasOne(Group::className(), ['id' => 'group_id']);
+        return $this->hasOne(Group::class, ['id' => 'group_id']);
     }
 
     /**
@@ -121,7 +121,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getProfile()
     {
-        return $this->hasOne(Profile::className(), ['user_id' => 'id']);
+        return $this->hasOne(Profile::class, ['user_id' => 'id']);
     }
 
     /**

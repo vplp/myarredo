@@ -26,7 +26,8 @@ class CurrencyComponent extends Component
         /**
          * Get current currency
          */
-        if ($session->has('currency') && array_key_exists($session->get('currency'), Currency::getMapCode2Course())) {
+        if ($session->has('currency') &&
+            array_key_exists($session->get('currency'), Currency::getMapCode2Course())) {
             $this->model = Currency::findByCode2($session->get('currency'));
         }
     }
@@ -37,7 +38,7 @@ class CurrencyComponent extends Component
     public function getSymbol()
     {
         return ($this->model != null)
-            ? $this->model->currency_symbol
+            ? $this->model['currency_symbol']
             : '€';
     }
 
@@ -47,24 +48,26 @@ class CurrencyComponent extends Component
     public function getCode()
     {
         return ($this->model != null)
-            ? $this->model->code2
+            ? $this->model['code2']
             : 'EUR';
     }
 
     /**
-     * @param float $price
-     * @param string $code
+     * @param $price
+     * @param $code
      * @param string $thousand_sep
-     * @return mixed
+     * @return string
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function getValue($price, $code, $thousand_sep = ' ')
     {
-        if ($code != $this->model->code2 && $this->model->code2 == 'RUB') {
+        if ($code != $this->model['code2'] && $this->model['code2'] == 'RUB') {
             $currency = Currency::findByCode2($code);
-            $value = $price * $currency->course;
-        } elseif ($code != $this->model->code2) {
+            $value = $price * $currency['course'];
+        } elseif ($code != $this->model['code2']) {
             $currency = Currency::findByCode2($code);
-            $value = $price * ($currency->course / $this->model->course);
+            $value = $price * ($currency['course'] / $this->model['course']);
         } else {
             $value = $price;
         }

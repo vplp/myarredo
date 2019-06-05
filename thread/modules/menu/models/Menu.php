@@ -25,13 +25,12 @@ use thread\app\base\models\ActiveRecord;
  * @property MenuLang $lang
  *
  * @package thread\modules\menu\models
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
  */
 class Menu extends ActiveRecord
 {
     /**
-     * @return string
+     * @return object|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

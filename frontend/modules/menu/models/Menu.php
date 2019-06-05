@@ -46,17 +46,9 @@ final class Menu extends \common\modules\menu\models\Menu implements BaseFrontMo
     /**
      * @return mixed
      */
-    public static function find()
-    {
-        return parent::find()->enabled()->innerJoinWith(["lang"]);
-    }
-
-    /**
-     * @return mixed
-     */
     public static function findBase()
     {
-        return self::find();
+        return parent::findBase()->asArray()->enabled();
     }
 
     /**
@@ -80,19 +72,31 @@ final class Menu extends \common\modules\menu\models\Menu implements BaseFrontMo
     /**
      * @param $id
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getById($id)
     {
-        return self::findById($id)->one();
+        $result = self::getDb()->cache(function ($db) use ($id) {
+            return self::findById($id)->one();
+        });
+
+        return $result;
     }
 
     /**
      * @param $alias
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getByAlias($alias)
     {
-        return self::findByAlias($alias)->one();
+        $result = self::getDb()->cache(function ($db) use ($alias) {
+            return self::findByAlias($alias)->one();
+        });
+
+        return $result;
     }
 
     /**
@@ -102,5 +106,4 @@ final class Menu extends \common\modules\menu\models\Menu implements BaseFrontMo
     {
         // TODO: Implement getUrl() method.
     }
-
 }

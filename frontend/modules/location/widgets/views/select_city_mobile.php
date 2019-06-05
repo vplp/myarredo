@@ -3,10 +3,14 @@
 use yii\helpers\{
     Html, Url
 };
+//
+use frontend\modules\location\models\{
+    Country, City
+};
 
 /**
- * @var $country \frontend\modules\location\models\Country
- * @var $city \frontend\modules\location\models\City
+ * @var $country Country
+ * @var $city City
  */
 
 ?>
@@ -19,9 +23,9 @@ use yii\helpers\{
         echo Html::beginTag('li', $option);
 
         if (in_array(Yii::$app->controller->id, ['sale'])) {
-            $url = $cityCountry->getSubDomainUrl();
+            $url = City::getSubDomainUrl($cityCountry);
         } else {
-            $url = $cityCountry->getSubDomainUrl() . '/' . Yii::$app->request->pathInfo;
+            $url = City::getSubDomainUrl($cityCountry) . '/' . Yii::$app->request->pathInfo;
         }
 
         echo Html::a(
