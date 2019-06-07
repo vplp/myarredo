@@ -48,7 +48,7 @@ class PartnerMap extends Widget
             /** @var $obj User */
             $dataJS[$k]['lat'] = (float)$obj->profile->latitude;
             $dataJS[$k]['lng'] = (float)$obj->profile->longitude;
-            $dataJS[$k]['address'] = $obj->profile->lang->address;
+            $dataJS[$k]['address'] = isset($obj->profile->lang) ? $obj->profile->lang->address : '';
             $dataJS[$k]['city'] = isset($obj->profile->city) ? $obj->profile->city->lang->title : '';
             $dataJS[$k]['country'] = isset($obj->profile->country) ? $obj->profile->country->lang->title : '';
             $dataJS[$k]['phone'] = $obj->profile->phone;
