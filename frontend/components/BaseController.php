@@ -2,6 +2,7 @@
 
 namespace frontend\components;
 
+use frontend\modules\catalog\Catalog;
 use Yii;
 use yii\web\Controller;
 //
@@ -110,7 +111,10 @@ abstract class BaseController extends Controller
      */
     protected function detectBrowserLanguage()
     {
-        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+        /** @var $module Catalog */
+        $module = Yii::$app->getModule('catalog');
+
+        if (!$module->isBot1() && !$module->isBot2() && isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
             $session = Yii::$app->session;
 
             // список языков
