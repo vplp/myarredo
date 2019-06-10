@@ -67,7 +67,7 @@ class CatalogFactoryController extends Controller
 
                     $image_link = $model->id . '.jpg';
 
-                    file_put_contents(
+                    @file_put_contents(
                         $path . '/thumb/' . $image_link,
                         $imageData->getImageBlob()
                     );
