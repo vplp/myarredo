@@ -29,11 +29,12 @@ class CatalogFactoryController extends Controller
         $models = FactoryFile::find()
             ->andWhere([
                 FactoryFile::tableName() . '.image_link' => null,
-                FactoryFile::tableName() . '.file_type' => 2
+                FactoryFile::tableName() . '.file_type' => 1,
+                FactoryFile::tableName() . '.factory_id' => 220
             ])
             ->orderBy(FactoryFile::tableName() . '.updated_at DESC')
+            ->limit(50)
             ->enabled()
-            ->limit(25)
             ->all();
 
         foreach ($models as $model) {
