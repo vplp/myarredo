@@ -2,6 +2,7 @@
 
 namespace backend\modules\articles\controllers;
 
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 //
 use backend\modules\articles\models\{
@@ -25,6 +26,32 @@ class ArticleController extends BackendController
     public $filterModel = filterArticleModel::class;
     public $title = 'Article';
     public $name = 'articles';
+
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'AccessControl' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['error'],
+                        'roles' => ['?', '@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['admin', 'seo'],
+                    ],
+                    [
+                        'allow' => false,
+                    ],
+                ],
+            ],
+        ];
+    }
 
     /**
      * @return array
