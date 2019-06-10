@@ -58,7 +58,6 @@ class CatalogFactoryController extends Controller
                 try {
                     $imageData = new Imagick($pdfFile);
 
-                    $imageData->
                     $imageData->setImageFormat('jpg');
                     $imageData->resizeImage(
                         200,
