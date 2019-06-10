@@ -1,9 +1,7 @@
 <?php
 
 use yii\helpers\ArrayHelper;
-use frontend\modules\catalog\models\{
-    Category
-};
+use frontend\modules\catalog\models\Category;
 use console\models\{
     Product, Factory, Sale
 };
