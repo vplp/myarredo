@@ -27,7 +27,7 @@ class CatalogFactoryController extends Controller
         $this->stdout("TranslateTitle: start. \n", Console::FG_GREEN);
 
         $models = FactoryFile::findBase()
-            ->where(['image_link' => null])
+            ->where(['image_link' => null, 'file_type' => 1])
             ->limit(10)
             ->enabled()
             ->all();
