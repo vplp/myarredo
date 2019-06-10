@@ -32,7 +32,7 @@ class CatalogFactoryController extends Controller
                 FactoryFile::tableName() . '.file_type' => 1,
                 //FactoryFile::tableName() . '.factory_id' => 220
             ])
-            ->orderBy(FactoryFile::tableName() . '.updated_at DESC')
+            ->orderBy(FactoryFile::tableName() . '.id DESC')
             ->limit(50)
             ->enabled()
             ->all();
