@@ -10,7 +10,7 @@ use frontend\modules\location\models\Country;
 use frontend\modules\user\models\{
     User, Group, Profile
 };
-use common\modules\shop\models\Order;
+use frontend\modules\shop\models\Order;
 
 /**
  * Class SendPulseController

@@ -123,8 +123,6 @@ class FactoryFile extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()
-            ->orderBy(self::tableName() . '.updated_at DESC')
-            ->enabled();
+        return self::find()->orderBy(self::tableName() . '.updated_at DESC');
     }
 }

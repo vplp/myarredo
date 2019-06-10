@@ -8,10 +8,10 @@ use yii\console\Controller;
 //
 use frontend\modules\catalog\models\ElasticSearchProduct;
 //
-use common\modules\catalog\models\{
+use frontend\modules\catalog\models\{
     Product, ProductLang
 };
-use common\modules\sys\models\Language;
+use frontend\modules\sys\models\Language;
 
 /**
  * Class ElasticSearchController

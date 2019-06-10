@@ -6,7 +6,7 @@ use Yii;
 use yii\helpers\Console;
 use yii\console\Controller;
 //
-use common\modules\catalog\models\{
+use frontend\modules\catalog\models\{
     Product, ProductLang
 };
 
