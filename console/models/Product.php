@@ -16,11 +16,11 @@ class Product extends \frontend\modules\catalog\models\Product
     {
         return self::find()
             ->innerJoinWith(['lang', 'factory'])
-            ->orderBy(self::tableName() . '.updated_at DESC')
-            ->enabled()
             ->andFilterWhere([
                 Product::tableName() . '.removed' => '0'
-            ]);
+            ])
+            ->orderBy(self::tableName() . '.updated_at DESC')
+            ->enabled();
     }
 
     /**

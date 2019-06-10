@@ -29,7 +29,6 @@ class CatalogFactoryController extends Controller
         $models = FactoryFile::findBase()
             ->where(['image_link' => null, 'file_type' => 2])
             ->limit(25)
-            ->enabled()
             ->all();
 
         foreach ($models as $model) {
