@@ -49,7 +49,7 @@ class CatalogFactoryController extends Controller
 
             if (!empty($model->file_link) &&
                 is_file($path . '/' . $model->file_link) &&
-                strlen($model->file_link) < 8) {
+                strlen($model->file_link) <= 8) {
                 /**
                  * thumb
                  */
