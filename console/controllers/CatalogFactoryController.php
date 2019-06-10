@@ -26,11 +26,13 @@ class CatalogFactoryController extends Controller
     {
         $this->stdout("TranslateTitle: start. \n", Console::FG_GREEN);
 
-        $models = FactoryFile::findBase()
-            ->where([
+        $models = FactoryFile::find()
+            ->andWhere([
                 FactoryFile::tableName() . '.image_link' => null,
                 FactoryFile::tableName() . '.file_type' => 2
             ])
+            ->orderBy(FactoryFile::tableName() . '.updated_at DESC')
+            ->enabled()
             ->limit(25)
             ->all();
 
