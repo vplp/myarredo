@@ -117,4 +117,14 @@ class FactoryFile extends ActiveRecord
             'deleted' => Yii::t('app', 'Deleted'),
         ];
     }
+
+    /**
+     * @return mixed
+     */
+    public static function findBase()
+    {
+        return self::find()
+            ->orderBy(self::tableName() . '.updated_at DESC')
+            ->enabled();
+    }
 }

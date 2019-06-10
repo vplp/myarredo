@@ -61,9 +61,7 @@ abstract class ActiveRecord extends dbActiveRecord
      */
     public static function findBase()
     {
-        return self::find()
-            ->orderBy('updated_at DESC')
-            ->enabled();
+        return self::find();
     }
 
     /**
