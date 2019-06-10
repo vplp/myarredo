@@ -30,7 +30,7 @@ class CatalogFactoryController extends Controller
             ->andWhere([
                 FactoryFile::tableName() . '.image_link' => null,
                 FactoryFile::tableName() . '.file_type' => 1,
-                FactoryFile::tableName() . '.factory_id' => 220
+                //FactoryFile::tableName() . '.factory_id' => 220
             ])
             ->orderBy(FactoryFile::tableName() . '.updated_at DESC')
             ->limit(50)
