@@ -47,7 +47,9 @@ class CatalogFactoryController extends Controller
                 mkdir($path . '/thumb', 0777, true);
             }
 
-            if (!empty($model->file_link) && is_file($path . '/' . $model->file_link)) {
+            if (!empty($model->file_link) &&
+                is_file($path . '/' . $model->file_link) &&
+                intval($model->file_link) < 50525085 ) {
                 /**
                  * thumb
                  */
@@ -56,6 +58,7 @@ class CatalogFactoryController extends Controller
                 try {
                     $imageData = new Imagick($pdfFile);
 
+                    $imageData->
                     $imageData->setImageFormat('jpg');
                     $imageData->resizeImage(
                         200,
