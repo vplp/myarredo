@@ -50,7 +50,7 @@ abstract class BaseController extends Controller
      */
     public function afterAction($action, $result)
     {
-        //$this->detectBrowserLanguage();
+        $this->detectBrowserLanguage();
 
         return parent::afterAction($action, $result);
     }
