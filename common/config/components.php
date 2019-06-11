@@ -20,7 +20,7 @@ return [
     'i18n' => [
         'class' => \thread\modules\sys\modules\translation\components\I18N::class,
         'languageModel' => \common\modules\sys\models\Language::class,
-        'enableCaching' => false,
+        'enableCaching' => true,
         'cachingDuration' => 3600
     ],
     'shop_cart' => [
