@@ -36,8 +36,8 @@ class CartCustomerForm extends Model
     {
         return [
             [['full_name', 'email', 'phone', 'reCaptcha', 'city_id'], 'required'],
-            [['delivery'], 'in', 'range' => array_keys(DeliveryMethods::dropDownList())],
-            [['pay'], 'in', 'range' => array_keys(PaymentMethods::dropDownList())],
+            //[['delivery'], 'in', 'range' => array_keys(DeliveryMethods::dropDownList())],
+            //[['pay'], 'in', 'range' => array_keys(PaymentMethods::dropDownList())],
             [['comment'], 'string', 'max' => 2048],
             [['full_name'], 'string', 'max' => 255],
             [['phone'], 'string', 'max' => 50],
