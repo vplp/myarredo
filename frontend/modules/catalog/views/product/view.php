@@ -25,7 +25,6 @@ $elementsComposition = $model['elementsComposition'];
 $keys = Yii::$app->catalogFilter->keys;
 
 $this->title = $this->context->title;
-
 ?>
 
 <main>
@@ -48,6 +47,15 @@ $this->title = $this->context->title;
 
                     </div>
                     <div class="col-sm-6 col-md-6 col-lg-4">
+                        <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') {
+                            echo Html::a(
+                                Yii::t('app', 'Edit'),
+                                '/backend/catalog/product/update?id=' . $model['id'],
+                                [
+                                    'target' => '_blank'
+                                ]
+                            );
+                        } ?>
                         <div class="product-title">
                             <?= Html::tag(
                                 'h1',
@@ -83,7 +91,7 @@ $this->title = $this->context->title;
                                     <?php } elseif (!$model['removed']) { ?>
                                         <meta itemprop="availability" content="PreOrder"/>
                                     <?php } ?>
-                                    <meta itemprop="priceValidUntil" content="<?= date('Y-m-d')?>"/>
+                                    <meta itemprop="priceValidUntil" content="<?= date('Y-m-d') ?>"/>
                                     <meta itemprop="url" content="<?= Product::getUrl($model['alias']) ?>"/>
                                 </div>
                             </div>

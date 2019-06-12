@@ -40,6 +40,15 @@ $this->title = $this->context->title;
 
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-4">
+                            <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') {
+                                echo Html::a(
+                                    Yii::t('app', 'Edit'),
+                                    '/backend/catalog/sale/update?id=' . $model['id'],
+                                    [
+                                        'target' => '_blank'
+                                    ]
+                                );
+                            } ?>
                             <div class="prod-info" itemprop="offers" itemscope
                                  itemtype="http://schema.org/Offer">
                                 <?= Html::tag('h1', $model->getTitle()); ?>
