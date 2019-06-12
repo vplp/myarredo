@@ -11,18 +11,18 @@ use frontend\modules\catalog\models\{
 };
 
 /**
- * Class SaleRequestForm
+ * Class SaleOfferPriceForm
  *
  * @property integer $sale_item_id
  *
  * @package frontend\modules\catalog\widgets\sale
  */
-class SaleRequestForm extends Widget
+class SaleOfferPriceForm extends Widget
 {
     /**
      * @var string
      */
-    public $view = 'sale_request_form_popup';
+    public $view = 'sale_offer_price_form_popup';
 
     /**
      * @var int
@@ -37,7 +37,7 @@ class SaleRequestForm extends Widget
     {
         $model = new SaleRequest();
 
-        $model->setScenario('requestForm');
+        $model->setScenario('offerPriceForm');
 
         $modelSale = Sale::findById($this->sale_item_id);
 
@@ -59,14 +59,14 @@ class SaleRequestForm extends Widget
                     Yii::$app
                         ->mailer
                         ->compose(
-                            '@app/modules/catalog/mail/sale_request_form_letter.php',
+                            '@app/modules/catalog/mail/sale_request_offer_price_form_letter.php',
                             [
                                 'model' => $model,
                                 'modelSale' => $modelSale,
                             ]
                         )
-                        ->setTo([$modelSale->user['email'], 'info@myarredo.ru'])
-                        ->setSubject('Поступил новый вопрос на товар')
+                        ->setTo(['zndron@gmail.com']) //$modelSale->user['email'], 'info@myarredo.ru'
+                        ->setSubject('Пользователь предложил свою цену на товар')
                         ->send();
 
                     // message

@@ -16,6 +16,7 @@ use common\modules\catalog\Catalog;
  * @property integer $sale_item_id
  * @property integer $country_id
  * @property integer $city_id
+ * @property float $offer_price
  * @property string $ip
  * @property string $email
  * @property string $user_name
@@ -62,7 +63,16 @@ class SaleRequest extends ActiveRecord
     public function rules()
     {
         return [
-            [['sale_item_id', 'full_name', 'email', 'phone', 'user_agreement', 'reCaptcha'], 'required'],
+            [
+                ['sale_item_id', 'full_name', 'email', 'phone', 'user_agreement', 'reCaptcha'],
+                'required',
+                'on' => 'requestForm'
+            ],
+            [
+                ['sale_item_id', 'full_name', 'phone', 'offer_price', 'reCaptcha'],
+                'required',
+                'on' => 'offerPriceForm'
+            ],
             [['ip'], 'string', 'max' => 45],
             [['question'], 'string', 'max' => 1024],
             [['email', 'user_name', 'phone'], 'string', 'max' => 255],
@@ -77,11 +87,12 @@ class SaleRequest extends ActiveRecord
                 ],
                 'integer'
             ],
+            ['offer_price', 'default', 'value' => 0.00],
             [['user_agreement'], 'in', 'range' => [0, 1]],
             [
                 ['user_agreement'],
                 'required',
-                'on' => ['frontend'],
+                'on' => ['requestForm'],
                 'requiredValue' => 1,
                 'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
             ],
@@ -95,7 +106,7 @@ class SaleRequest extends ActiveRecord
     public function scenarios()
     {
         return [
-            'frontend' => [
+            'requestForm' => [
                 'user_id',
                 'sale_item_id',
                 'country_id',
@@ -106,6 +117,17 @@ class SaleRequest extends ActiveRecord
                 'phone',
                 'question',
                 'user_agreement',
+                'reCaptcha'
+            ],
+            'offerPriceForm' => [
+                'user_id',
+                'sale_item_id',
+                'country_id',
+                'city_id',
+                'offer_price',
+                'ip',
+                'user_name',
+                'phone',
                 'reCaptcha'
             ],
         ];
@@ -122,6 +144,7 @@ class SaleRequest extends ActiveRecord
             'sale_item_id' => Yii::t('app', 'Product'),
             'country_id',
             'city_id',
+            'offer_price' => Yii::t('app', 'Price'),
             'ip',
             'email' => Yii::t('app', 'Email'),
             'user_name' => Yii::t('app', 'Name'),

@@ -4,14 +4,16 @@ use yii\helpers\{
     Html, Url
 };
 use yii\widgets\ActiveForm;
+//
+use frontend\modules\catalog\models\SaleRequest;
 
-/** @var $model \frontend\modules\catalog\models\SaleRequest */
+/** @var $model SaleRequest */
 
 $model->user_agreement = 1;
 
 ?>
 
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="modalSaleRequestForm">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

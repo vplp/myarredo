@@ -8,7 +8,9 @@ use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
     Factory, Sale, Product
 };
-use frontend\modules\catalog\widgets\sale\SaleRequestForm;
+use frontend\modules\catalog\widgets\sale\{
+    SaleRequestForm, SaleOfferPriceForm
+};
 use frontend\themes\myarredo\assets\AppAsset;
 
 $bundle = AppAsset::register($this);
@@ -81,6 +83,16 @@ $this->title = $this->context->title;
                                     <?php } ?>
                                 </div>
                             </div>
+
+                            <?= Html::a(
+                                Yii::t('app', 'Предложите свою цену'),
+                                'javascript:void(0);',
+                                [
+                                    'class' => 'back',
+                                    'data-toggle' => 'modal',
+                                    'data-target' => '#modalSaleOfferPrice'
+                                ]
+                            ) ?>
 
                             <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
                                 <meta itemprop="ratingValue" content="5"/>
@@ -224,7 +236,7 @@ $this->title = $this->context->title;
                                                 [
                                                     'class' => 'write-seller',
                                                     'data-toggle' => 'modal',
-                                                    'data-target' => '#myModal'
+                                                    'data-target' => '#modalSaleRequestForm'
                                                 ]
                                             ) ?>
 
@@ -260,6 +272,7 @@ $this->title = $this->context->title;
     </main>
 
 <?= SaleRequestForm::widget(['sale_item_id' => $model['id']]) ?>
+<?= SaleOfferPriceForm::widget(['sale_item_id' => $model['id']]) ?>
 
 
 <?php
