@@ -88,7 +88,7 @@ $this->title = $this->context->title;
                                 Yii::t('app', 'Предложите свою цену'),
                                 'javascript:void(0);',
                                 [
-                                    'class' => 'back',
+                                    'class' => '',
                                     'data-toggle' => 'modal',
                                     'data-target' => '#modalSaleOfferPrice'
                                 ]
