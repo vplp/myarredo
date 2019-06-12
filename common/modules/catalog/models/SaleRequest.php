@@ -31,6 +31,7 @@ class SaleRequest extends ActiveRecord
 {
     public $user_agreement;
     public $reCaptcha;
+    public $reCaptcha2;
 
     /**
      * @return object|string|\yii\db\Connection|null
@@ -69,7 +70,7 @@ class SaleRequest extends ActiveRecord
                 'on' => 'requestForm'
             ],
             [
-                ['sale_item_id', 'full_name', 'phone', 'offer_price', 'reCaptcha'],
+                ['sale_item_id', 'full_name', 'phone', 'offer_price', 'reCaptcha2'],
                 'required',
                 'on' => 'offerPriceForm'
             ],
@@ -87,6 +88,7 @@ class SaleRequest extends ActiveRecord
                 ],
                 'integer'
             ],
+            [['email', 'question'], 'default', 'value' => ''],
             ['offer_price', 'default', 'value' => 0.00],
             [['user_agreement'], 'in', 'range' => [0, 1]],
             [
@@ -96,7 +98,8 @@ class SaleRequest extends ActiveRecord
                 'requiredValue' => 1,
                 'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
             ],
-            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::class]
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::class],
+            [['reCaptcha2'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::class]
         ];
     }
 
@@ -111,6 +114,7 @@ class SaleRequest extends ActiveRecord
                 'sale_item_id',
                 'country_id',
                 'city_id',
+                'offer_price',
                 'ip',
                 'email',
                 'user_name',
@@ -126,9 +130,12 @@ class SaleRequest extends ActiveRecord
                 'city_id',
                 'offer_price',
                 'ip',
+                'email',
                 'user_name',
                 'phone',
-                'reCaptcha'
+                'question',
+                'user_agreement',
+                'reCaptcha2'
             ],
         ];
     }
@@ -153,6 +160,8 @@ class SaleRequest extends ActiveRecord
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'user_agreement' => Yii::t('app', 'Подтверждаю <a href="/terms-of-use/" target="_blank">пользовательское соглашение</a>'),
+            'reCaptcha' => 'Captcha',
+            'reCaptcha2' => 'Captcha',
         ];
     }
 

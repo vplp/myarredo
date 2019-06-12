@@ -37,7 +37,7 @@ use frontend\modules\catalog\models\{
             <div style="float: left; margin: 10px 30px;">
                 <?= Html::a(
                     $modelSale->getTitle(),
-                    $modelSale->getUrl(),
+                    Sale::getUrl($modelSale['alias']),
                     ['style' => 'font-weight:bold; color: #000; text-transform: uppercase; text-decoration: underline;']
                 ) ?>
                 <br>

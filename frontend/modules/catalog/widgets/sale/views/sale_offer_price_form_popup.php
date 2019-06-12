@@ -46,11 +46,11 @@ use frontend\modules\catalog\models\SaleRequest;
 
                     <?= $form
                         ->field($model, 'offer_price')
-                        ->input('text', ['placeholder' => Yii::t('app', 'Price')])
+                        ->input('number', ['placeholder' => Yii::t('app', 'Price')])
                         ->label(false) ?>
 
                     <?= $form
-                        ->field($model, 'reCaptcha')
+                        ->field($model, 'reCaptcha2')
                         ->widget(
                             \himiklab\yii2\recaptcha\ReCaptcha2::class
                         )
