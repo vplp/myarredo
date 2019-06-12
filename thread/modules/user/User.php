@@ -34,10 +34,9 @@ class User extends aModule
 
     public $passwordResetTokenExpire = 3600;
 
-  
-
     /**
-     * @return string
+     * @return object|string|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -58,7 +57,13 @@ class User extends aModule
      */
     public function getAvatarUploadPath($user_id)
     {
-        return $this->getBaseUploadPath() . $user_id . '/profile';
+        $dir = $this->getBaseUploadPath() . $user_id . '/profile';
+
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+
+        return $dir;
     }
 
     /**
@@ -78,5 +83,4 @@ class User extends aModule
     {
         return '/uploads/' . $this->name . '/';
     }
-
 }

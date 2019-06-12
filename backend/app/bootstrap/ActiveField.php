@@ -43,7 +43,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
                 'accept' => 'image/*'
             ],
             'pluginOptions' => [
-                'uploadUrl' => Url::toRoute(['fileupload', 'input_file_name' => $name]),
+                'uploadUrl' => Url::toRoute(['fileupload', 'input_file_name' => $name, 'id' => $this->model->id]),
                 'uploadExtraData' => [
                     '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
                 ],

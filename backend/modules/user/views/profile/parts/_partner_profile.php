@@ -51,6 +51,10 @@ if (in_array($model['user']['group_id'], [4, 7])) {
 
     echo $form->switcher($model, 'show_contacts');
 
+    echo $form
+        ->field($model, 'image_link')
+        ->label('Фото салона')
+        ->imageOne($model->getImageLink());
 }
 
 $url = \yii\helpers\Url::toRoute('/location/city/get-cities');

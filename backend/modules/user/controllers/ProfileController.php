@@ -71,7 +71,6 @@ class ProfileController extends BackendController
     public function actions()
     {
         $model = Profile::find()->byId(Yii::$app->getRequest()->get('id', 0))->one();
-        $user = $model->user;
 
         return [
             'update' => [
@@ -85,11 +84,11 @@ class ProfileController extends BackendController
             ],
             'fileupload' => [
                 'class' => UploadAction::class,
-                'path' => $this->module->getAvatarUploadPath($user['id'])
+                'path' => $this->module->getAvatarUploadPath($model['user_id'])
             ],
             'filedelete' => [
                 'class' => DeleteAction::class,
-                'path' => $this->module->getAvatarUploadPath($user['id'])
+                'path' => $this->module->getAvatarUploadPath($model['user_id'])
             ],
         ];
     }
@@ -101,8 +100,8 @@ class ProfileController extends BackendController
      */
     public function beforeAction($action)
     {
-
         $actionName = $this->action->id;
+
         if (in_array($actionName, ['fileupload', 'filedelete'])) {
             $model = Profile::find()->byId(Yii::$app->getRequest()->get('id', 0))->one();
             if ($model === null) {

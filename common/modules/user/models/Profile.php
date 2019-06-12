@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 //
 use voskobovich\behaviors\ManyToManyBehavior;
 //
+use common\modules\user\User;
 use common\modules\location\models\{
     City, Country
 };
@@ -34,6 +35,7 @@ use common\modules\catalog\models\Factory;
  * @property int $show_contacts
  * @property int $factory_package
  * @property string $cape_index
+ * @property string $image_link
  *
  * @property Country $country
  * @property City $city
@@ -85,7 +87,8 @@ class Profile extends \thread\modules\user\models\Profile
                     'email_company',
                     'website',
                     'exp_with_italian',
-                    'cape_index'
+                    'cape_index',
+                    'image_link'
                 ],
                 'string',
                 'max' => 255
@@ -145,6 +148,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'pdf_access',
                 'show_contacts',
                 'cape_index',
+                'image_link'
             ],
             'basicCreate' => [
                 'phone',
@@ -166,6 +170,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'preferred_language',
                 'factory_package',
                 'cape_index',
+                'image_link'
             ],
             'backend' => [
                 'first_name',
@@ -189,6 +194,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'show_contacts',
                 'city_ids',
                 'cape_index',
+                'image_link'
             ]
         ]);
     }
@@ -219,6 +225,7 @@ class Profile extends \thread\modules\user\models\Profile
             'city_ids' => Yii::t('app', 'Ответы в городах'),
             'factory_package' => Yii::t('app', 'Package'),
             'cape_index' => Yii::t('app', 'CAPE index'),
+            'image_link' => Yii::t('app', 'Image link'),
         ]);
     }
 
@@ -412,5 +419,25 @@ class Profile extends \thread\modules\user\models\Profile
         curl_close($ch);
 
         return $data;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getImageLink()
+    {
+        /** @var User $module */
+        $module = Yii::$app->getModule('user');
+
+        $path = $module->getAvatarUploadPath($this->user_id);
+        $url = $module->getAvatarUploadUrl($this->user_id);
+
+        $image = null;
+
+        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
+            $image = $url . '/' . $this->image_link;
+        }
+
+        return $image;
     }
 }

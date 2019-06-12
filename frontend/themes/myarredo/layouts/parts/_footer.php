@@ -9,7 +9,6 @@ use frontend\modules\menu\widgets\menu\Menu;
 use frontend\modules\location\widgets\Cities;
 use frontend\modules\user\widgets\topBarInfo\topBarInfo;
 use frontend\modules\user\widgets\partner\PartnerInfo;
-use frontend\modules\user\widgets\partner\PartnerMap;
 use frontend\modules\forms\widgets\FormFeedback;
 
 $bundle = AppAsset::register($this);
@@ -22,17 +21,7 @@ $bundle = AppAsset::register($this);
             <?php if (Yii::$app->controller->id !== 'sale') { ?>
                 <div class="contacts">
                     <div class="cont-flex">
-                        <div class="cont-info">
-                            <div class="cont-info-in">
-                                <div class="cont-info-border">
-                                    <div class=""><?= Yii::t('app', 'Contacts') ?></div>
-
-                                    <?= PartnerInfo::widget() ?>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cont-bg" style="background-image: url(<?= $bundle->baseUrl ?>/img/cont-photo-bg.jpg);"></div>
+                        <?= PartnerInfo::widget() ?>
                     </div>
 
                     <?php
