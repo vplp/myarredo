@@ -32,7 +32,7 @@ $currency = Currency::findByCode2('EUR');
  * cost 1 product = 10 EUR
  * conversion to RUB
  */
-$cost = 10 * $currency->course;
+$cost = 10 * $currency['course'];
 
 $amount = $cost + ($cost * 0.02);
 $amount = number_format($amount, 2, '.', '');
