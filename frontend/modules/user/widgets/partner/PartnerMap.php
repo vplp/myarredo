@@ -31,8 +31,8 @@ class PartnerMap extends Widget
         if ($this->city) {
             $partners = User::getPartners($this->city['id']);
 
-            $lat = $this->city->lat;
-            $lng = $this->city->lng;
+            $lat = $this->city['lat'];
+            $lng = $this->city['lng'];
             $zoom = 10;
         } else {
             $partners = User::getPartners();
