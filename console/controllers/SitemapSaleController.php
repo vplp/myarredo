@@ -49,7 +49,9 @@ class SitemapSaleController extends Controller
         array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
 
         // list of cities
-        $cities = City::findBase()->all();
+        $cities = City::findBase()
+            ->joinWith(['country', 'country.lang'])
+            ->all();
 
 
         if (is_array($this->modelName)) {
@@ -64,7 +66,7 @@ class SitemapSaleController extends Controller
 //        $count = count($urls);
 //        $count_files = ceil($count / $this->countUrlInSitemap);
 
-        /** @var $city \frontend\modules\location\models\City */
+        /** @var $city City */
 
         foreach ($cities as $city) {
             // urls
@@ -94,7 +96,7 @@ class SitemapSaleController extends Controller
                 $url = $urls[$i];
 
                 $str = PHP_EOL . "\t<url>" . PHP_EOL .
-                    "\t\t<loc>" . $city->getSubDomainUrl() . $url['loc'] . "</loc>" . PHP_EOL .
+                    "\t\t<loc>" . City::getSubDomainUrl($city) . $url['loc'] . "</loc>" . PHP_EOL .
                     "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
                     "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
                     "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .

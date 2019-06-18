@@ -45,7 +45,9 @@ class SitemapController extends Controller
         array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
 
         // list of cities
-        $cities = City::findBase()->all();
+        $cities = City::findBase()
+            ->joinWith(['country', 'country.lang'])
+            ->all();
 
         // urls
         $urls = $this->urls;
@@ -74,7 +76,7 @@ class SitemapController extends Controller
 
         foreach ($cities as $city) {
 
-            /** @var $city \frontend\modules\location\models\City */
+            /** @var $city City */
 
             // create multiple sitemap files
 
@@ -92,7 +94,7 @@ class SitemapController extends Controller
 
                 // add domain site
                 $str = "\t<url>" . PHP_EOL .
-                    "\t\t<loc>" . $city->getSubDomainUrl() . "</loc>" . PHP_EOL .
+                    "\t\t<loc>" . City::getSubDomainUrl($city) . "</loc>" . PHP_EOL .
                     "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>" . PHP_EOL .
                     "\t\t<changefreq>always</changefreq>" . PHP_EOL .
                     "\t\t<priority>1</priority>" . PHP_EOL .
@@ -105,7 +107,7 @@ class SitemapController extends Controller
                         $url = $urls[$j];
 
                         $str = "\t<url>" . PHP_EOL .
-                            "\t\t<loc>" . $city->getSubDomainUrl() . $url['loc'] . "</loc>" . PHP_EOL .
+                            "\t\t<loc>" . City::getSubDomainUrl($city) . $url['loc'] . "</loc>" . PHP_EOL .
                             "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
                             "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
                             "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
@@ -136,7 +138,7 @@ class SitemapController extends Controller
             for ($i = 0; $i < $count_files; $i++) {
                 $link = '/sitemap/sitemap_' . $city['alias'] . '_' . $i . '.xml';
                 $str = PHP_EOL . "\t<sitemap>"
-                    . PHP_EOL . "\t\t<loc>" . $city->getSubDomainUrl() . $link . "</loc>"
+                    . PHP_EOL . "\t\t<loc>" . City::getSubDomainUrl($city) . $link . "</loc>"
                     . PHP_EOL . "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>"
                     . PHP_EOL . "\t</sitemap>";
                 fwrite($handle, $str);
@@ -145,7 +147,7 @@ class SitemapController extends Controller
             // Add sale file
             $link = '/sitemap/sale/sitemap_sale_' . $city['alias'] . '.xml';
             $str = PHP_EOL . "\t<sitemap>"
-                . PHP_EOL . "\t\t<loc>" . $city->getSubDomainUrl() . $link . "</loc>"
+                . PHP_EOL . "\t\t<loc>" . City::getSubDomainUrl($city) . $link . "</loc>"
                 . PHP_EOL . "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>"
                 . PHP_EOL . "\t</sitemap>";
             fwrite($handle, $str);
