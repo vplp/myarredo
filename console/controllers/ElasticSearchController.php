@@ -35,6 +35,7 @@ class ElasticSearchController extends Controller
     }
 
     /**
+     * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
     public function actionAdd()

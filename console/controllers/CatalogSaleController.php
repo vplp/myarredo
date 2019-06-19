@@ -6,7 +6,7 @@ use Yii;
 use yii\helpers\Console;
 use yii\console\Controller;
 //
-use frontend\modules\catalog\models\{
+use common\modules\catalog\models\{
     Sale, SaleLang
 };
 
@@ -67,7 +67,7 @@ class CatalogSaleController extends Controller
                 /**
                  * Translate ru-it
                  */
-
+                $saveIt = false;
                 Yii::$app->language = 'it-IT';
 
                 $modelLangIt = SaleLang::find()
@@ -96,15 +96,15 @@ class CatalogSaleController extends Controller
 
                     $modelLangIt->setScenario('backend');
 
-                    if ($modelLangIt->save()) {
-                        $this->stdout("save it: ID=" . $model->id . " \n", Console::FG_GREEN);
+                    if ($saveIt = $modelLangIt->save()) {
+                        $this->stdout("save it ID=" . $model->id . " \n", Console::FG_GREEN);
                     }
                 }
 
                 /**
                  * Translate ru-en
                  */
-
+                $saveEn = false;
                 Yii::$app->language = 'en-EN';
 
                 $modelLangEn = SaleLang::find()
@@ -133,13 +133,14 @@ class CatalogSaleController extends Controller
 
                     $modelLangEn->setScenario('backend');
 
-                    if ($modelLangEn->save()) {
-                        $this->stdout("save en: ID=" . $model->id . " \n", Console::FG_GREEN);
+                    if ($saveEn = $modelLangEn->save()) {
+                        $this->stdout("save en ID=" . $model->id . " \n", Console::FG_GREEN);
                     }
                 }
 
-                if ($model->save()) {
+                if ($model->save() && $saveIt && $saveEn) {
                     $transaction->commit();
+                    $this->stdout("translate ID=" . $model->id . " \n", Console::FG_GREEN);
                 } else {
                     $transaction->rollBack();
                 }

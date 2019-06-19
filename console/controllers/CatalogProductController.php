@@ -81,13 +81,14 @@ class CatalogProductController extends Controller
                 $modelLangRu->setScenario('backend');
 
                 if ($modelLangRu->save()) {
-                    $this->stdout("save ru: ID=" . $model->id . " \n", Console::FG_GREEN);
+                    $this->stdout("save ru ID=" . $model->id . " \n", Console::FG_GREEN);
+                    $this->stdout("save ru title=" . $modelLangRu->title . " \n", Console::FG_GREEN);
                 }
 
                 /**
                  * Translate ru-it
                  */
-
+                $saveIt = false;
                 Yii::$app->language = 'it-IT';
 
                 $modelLangIt = ProductLang::find()
@@ -116,15 +117,15 @@ class CatalogProductController extends Controller
 
                     $modelLangIt->setScenario('backend');
 
-                    if ($modelLangIt->save()) {
-                        $this->stdout("save it: ID=" . $model->id . " \n", Console::FG_GREEN);
+                    if ($saveIt = $modelLangIt->save()) {
+                        $this->stdout("save it ID=" . $model->id . " \n", Console::FG_GREEN);
                     }
                 }
 
                 /**
                  * Translate ru-en
                  */
-
+                $saveEn = false;
                 Yii::$app->language = 'en-EN';
 
                 $modelLangEn = ProductLang::find()
@@ -153,13 +154,14 @@ class CatalogProductController extends Controller
 
                     $modelLangEn->setScenario('backend');
 
-                    if ($modelLangEn->save()) {
-                        $this->stdout("save en: ID=" . $model->id . " \n", Console::FG_GREEN);
+                    if ($saveEn = $modelLangEn->save()) {
+                        $this->stdout("save en ID=" . $model->id . " \n", Console::FG_GREEN);
                     }
                 }
 
-                if ($model->save()) {
+                if ($model->save() && $saveIt && $saveEn) {
                     $transaction->commit();
+                    $this->stdout("translate ID=" . $model->id . " \n", Console::FG_GREEN);
                 } else {
                     $transaction->rollBack();
                 }

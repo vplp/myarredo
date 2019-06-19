@@ -7,7 +7,7 @@ use yii\helpers\Console;
 use yii\console\Controller;
 //
 use frontend\modules\sys\models\Language;
-use frontend\modules\catalog\models\{
+use common\modules\catalog\models\{
     ItalianProduct, ItalianProductLang
 };
 
@@ -90,6 +90,7 @@ class CatalogItalianProductController extends Controller
 
         $transaction = $model::getDb()->beginTransaction();
         try {
+            $save = false;
             foreach ($languages as $language) {
                 if ($language->local != $currentLanguage) {
                     /** @var Language $language */
@@ -127,8 +128,10 @@ class CatalogItalianProductController extends Controller
 
                     $modelLang->setScenario('backend');
 
-                    if ($modelLang->save()) {
+                    if ($save = $modelLang->save() && $modelLang->title != '') {
                         $this->stdout($translateLanguage . " save: ID=" . $model->id . " \n", Console::FG_GREEN);
+                    } else {
+                        continue;
                     }
                 }
             }
@@ -136,8 +139,8 @@ class CatalogItalianProductController extends Controller
             $model->setScenario('setMark');
             $model->mark = '1';
 
-            if ($model->save()) {
-                $this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
+            if ($model->save() && $save) {
+                $this->stdout("translate ID=" . $model->id . " \n", Console::FG_GREEN);
                 $transaction->commit();
             } else {
                 $transaction->rollBack();
