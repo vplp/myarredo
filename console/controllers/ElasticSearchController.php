@@ -8,7 +8,7 @@ use yii\console\Controller;
 //
 use frontend\modules\catalog\models\ElasticSearchProduct;
 //
-use frontend\modules\catalog\models\{
+use common\modules\catalog\models\{
     Product, ProductLang
 };
 use frontend\modules\sys\models\Language;
@@ -70,10 +70,7 @@ class ElasticSearchController extends Controller
                     Yii::$app->language = $lang['local'];
 
                     /** @var $product Product */
-                    $product = Product::find()
-                        ->innerJoinWith(['lang'])
-                        ->byID($model->id)
-                        ->one();
+                    $product = Product::findByID($model->id);
 
                     if (!empty($product->lang)) {
                         $save = ElasticSearchProduct::addRecord($product);
