@@ -183,7 +183,7 @@ var_dump($record->attributes);
             if (!$isExist) {
                 $result = $record->insert();
             } else {
-                $result = $record->update();
+                $result = $record->update(false);
             }
         } catch (\Exception $e) {
             $result = false;
