@@ -59,7 +59,7 @@ class ElasticSearchController extends Controller
             try {
                 $model->setScenario('setMark1');
 
-                $model->mark1 = '1';
+                $model->mark1 = '0';
 
                 $modelLanguage = new Language();
                 $languages = $modelLanguage->getLanguages();
@@ -77,7 +77,7 @@ class ElasticSearchController extends Controller
                     }
                 }
 
-                if ($model->save()/* && $save*/) {
+                if ($model->save() && $save) {
                     $transaction->commit();
                     $this->stdout("add ID=" . $model->id . " \n", Console::FG_GREEN);
                 } else {
