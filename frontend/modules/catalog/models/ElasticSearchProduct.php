@@ -183,9 +183,7 @@ class ElasticSearchProduct extends ActiveRecord
             if (!$isExist) {
                 $result = $record->insert();
             } else {
-                self::deleteRecord($record->id);
-                $result = $record->insert();
-                //$result = $record->update();
+                $result = $record->update();
             }
         } catch (\Exception $e) {
             $result = false;
