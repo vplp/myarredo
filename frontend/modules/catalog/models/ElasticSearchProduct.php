@@ -186,6 +186,7 @@ class ElasticSearchProduct extends ActiveRecord
                 $result = $record->update();
             }
         } catch (\Exception $e) {
+            /* !!! */ echo  '<pre style="color:red;">'; print_r($e); echo '</pre>'; /* !!! */
             $result = false;
         }
 

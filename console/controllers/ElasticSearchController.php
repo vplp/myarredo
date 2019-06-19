@@ -79,7 +79,7 @@ class ElasticSearchController extends Controller
 
                 if ($model->save() && $save) {
                     $transaction->commit();
-                    $this->stdout("save: ID=" . $model->id . " \n", Console::FG_GREEN);
+                    $this->stdout("added ID=" . $model->id . " \n", Console::FG_GREEN);
                 } else {
                     $transaction->rollBack();
                 }
