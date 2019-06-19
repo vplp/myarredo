@@ -48,7 +48,7 @@ class ElasticSearchController extends Controller
                 Product::tableName() . '.mark1' => '0',
             ])
             ->orderBy(Product::tableName() . '.id DESC')
-            ->limit(100)
+            ->limit(1)
             ->enabled()
             ->all();
 
@@ -76,6 +76,7 @@ class ElasticSearchController extends Controller
                         $saveLang[] = ElasticSearchProduct::addRecord($product);
                     }
                 }
+                var_dump($product->attributes);
 var_dump($saveLang);
                 if ($model->save() && !in_array(0, array_values($saveLang))) {
                     $transaction->commit();
