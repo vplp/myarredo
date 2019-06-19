@@ -181,12 +181,13 @@ class ElasticSearchProduct extends ActiveRecord
 
         try {
             if (!$isExist) {
+                /* !!! */ echo  '<pre style="color:red;">'; print_r('insert'); echo '</pre>'; /* !!! */
                 $result = $record->insert();
             } else {
+                /* !!! */ echo  '<pre style="color:red;">'; print_r('update'); echo '</pre>'; /* !!! */
                 $result = $record->update();
             }
         } catch (\Exception $e) {
-            /* !!! */ echo  '<pre style="color:red;">'; print_r($e); echo '</pre>'; /* !!! */
             $result = false;
         }
 
