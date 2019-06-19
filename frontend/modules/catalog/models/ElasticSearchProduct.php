@@ -178,7 +178,7 @@ class ElasticSearchProduct extends ActiveRecord
 
         $record->$title = $product['lang']['title'];
         $record->$description = $product['lang']['description'];
-
+var_dump($record->attributes);
         try {
             if (!$isExist) {
                 $result = $record->insert();
