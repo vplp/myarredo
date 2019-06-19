@@ -47,9 +47,9 @@ class ElasticSearchController extends Controller
                 Product::tableName() . '.removed' => '0',
                 Product::tableName() . '.mark1' => '0',
             ])
-            ->enabled()
             ->orderBy(Product::tableName() . '.id DESC')
             ->limit(100)
+            ->enabled()
             ->all();
 
         foreach ($models as $model) {
@@ -64,7 +64,7 @@ class ElasticSearchController extends Controller
                 $modelLanguage = new Language();
                 $languages = $modelLanguage->getLanguages();
 
-                $save = false;
+                $saveLang = [];
 
                 foreach ($languages as $lang) {
                     Yii::$app->language = $lang['local'];
@@ -73,11 +73,11 @@ class ElasticSearchController extends Controller
                     $product = Product::findByID($model->id);
 
                     if (!empty($product->lang)) {
-                        $save = ElasticSearchProduct::addRecord($product);
+                        $saveLang[] = ElasticSearchProduct::addRecord($product);
                     }
                 }
-
-                if ($model->save() && $save) {
+var_dump($saveLang);
+                if ($model->save() && !in_array(0, array_values($saveLang))) {
                     $transaction->commit();
                     $this->stdout("add ID=" . $model->id . " \n", Console::FG_GREEN);
                 } else {
