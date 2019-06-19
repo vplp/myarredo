@@ -231,7 +231,8 @@ class Product extends ActiveRecord implements iProduct
                 'colors_ids',
                 'factory_catalogs_files_ids',
                 'factory_prices_files_ids',
-                'mark'
+                'mark',
+                'mark1'
             ],
         ];
     }
@@ -300,6 +301,7 @@ class Product extends ActiveRecord implements iProduct
 
         if (in_array($this->scenario, ['frontend', 'backend'])) {
             $this->mark = '0';
+            $this->mark1 = '0';
         }
 
         if (YII_ENV_PROD) {

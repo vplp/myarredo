@@ -70,7 +70,10 @@ class ElasticSearchController extends Controller
                     Yii::$app->language = $lang['local'];
 
                     /** @var $product Product */
-                    $product = Product::findByID($model->id);
+                    $product = Product::find()
+                        ->innerJoinWith(['lang'])
+                        ->byID($model->id)
+                        ->one();
 
                     if (!empty($product->lang)) {
                         $save = ElasticSearchProduct::addRecord($product);
