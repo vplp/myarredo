@@ -47,7 +47,7 @@ class ElasticSearchController extends Controller
                 Product::tableName() . '.removed' => '0',
                 Product::tableName() . '.mark1' => '0',
             ])
-            ->orderBy(Product::tableName() . '.id ASEC')
+            ->orderBy(Product::tableName() . '.id ASC')
             ->limit(100)
             ->enabled()
             ->all();
