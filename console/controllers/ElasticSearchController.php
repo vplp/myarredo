@@ -77,8 +77,6 @@ class ElasticSearchController extends Controller
                     }
                 }
 
-                var_dump($saveLang);
-
                 if ($model->save() && !in_array(0, array_values($saveLang))) {
                     $transaction->commit();
                     $this->stdout("add ID=" . $model->id . " \n", Console::FG_GREEN);
