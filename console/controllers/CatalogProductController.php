@@ -3,9 +3,11 @@
 namespace console\controllers;
 
 use Yii;
+use yii\db\Exception;
 use yii\helpers\Console;
 use yii\console\Controller;
 //
+use frontend\modules\sys\models\Language;
 use common\modules\catalog\models\{
     Product, ProductLang
 };
@@ -34,12 +36,14 @@ class CatalogProductController extends Controller
     /**
      * Translate
      *
+     * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
     public function actionTranslate()
     {
         $this->stdout("Translate: start. \n", Console::FG_GREEN);
 
+        // products
         $models = Product::find()
             ->andFilterWhere([
                 'mark' => '0',
@@ -48,126 +52,96 @@ class CatalogProductController extends Controller
             ->orderBy(Product::tableName() . '.id DESC')
             ->all();
 
+        // languages
+        $modelLanguage = new Language();
+        $languages = $modelLanguage->getLanguages();
+
         foreach ($models as $model) {
             /** @var PDO $transaction */
             /** @var $model Product */
-            $transaction = $model::getDb()->beginTransaction();
-            try {
-                $model->setScenario('setMark');
 
-                $model->mark = '1';
+            $saveLang = [];
 
-                Yii::$app->language = 'ru-RU';
+            $this->stdout("ID = " . $model->id . " \n", Console::FG_GREEN);
 
-                /** @var $modelLangRu ProductLang */
-                $modelLangRu = ProductLang::find()
+            foreach ($languages as $language) {
+                Yii::$app->language = $language['local'];
+                $currentLanguage = Yii::$app->language;
+
+                /** @var $modelLang ProductLang */
+                $modelLang = ProductLang::find()
                     ->where([
                         'rid' => $model->id,
                     ])
                     ->one();
 
-                /**
-                 * Generate ru title
-                 */
+                if ($modelLang != null) {
+                    foreach ($languages as $language2) {
+                        if ($language2['local'] != $currentLanguage) {
+                            Yii::$app->language = $language2['local'];
 
-                if ($modelLangRu == null) {
-                    $modelLangRu = new ProductLang();
+                            /** @var $modelLang2 ProductLang */
+                            $modelLang2 = ProductLang::find()
+                                ->where([
+                                    'rid' => $model->id,
+                                    'lang' => Yii::$app->language,
+                                ])
+                                ->one();
 
-                    $modelLangRu->rid = $model->id;
-                    $modelLangRu->lang = Yii::$app->language;
-                }
+                            if ($modelLang2 == null) {
+                                $modelLang2 = new ProductLang();
 
-                $modelLangRu->title = '';
-                $modelLangRu->setScenario('backend');
+                                $modelLang2->rid = $model->id;
+                                $modelLang2->lang = Yii::$app->language;
 
-                if ($modelLangRu->save()) {
-                    $this->stdout("save ru ID=" . $model->id . " \n", Console::FG_GREEN);
-                    $this->stdout("save ru title=" . $modelLangRu->title . " \n", Console::FG_GREEN);
-                }
+                                $translateLanguage = substr($currentLanguage, 0, 2) . '-' . substr($language2['local'], 0, 2);
 
-                /**
-                 * Translate ru-it
-                 */
-                $saveIt = false;
-                Yii::$app->language = 'it-IT';
+                                $this->stdout("translate " . $translateLanguage . " \n", Console::FG_GREEN);
 
-                $modelLangIt = ProductLang::find()
-                    ->where([
-                        'rid' => $model->id,
-                        'lang' => Yii::$app->language,
-                    ])
-                    ->one();
+                                $translateTitle = (string)Yii::$app->yandexTranslator
+                                    ->getTranslate($modelLang->title, $translateLanguage);
 
-                if ($modelLangIt == null) {
-                    $modelLangIt = new ProductLang();
+                                //$this->stdout("title = " . $translateTitle . " \n", Console::FG_GREEN);
 
-                    $modelLangIt->rid = $model->id;
-                    $modelLangIt->lang = Yii::$app->language;
-                }
+                                $translateDescription = (string)Yii::$app->yandexTranslator
+                                    ->getTranslate(strip_tags($modelLang->description), $translateLanguage);
 
-                $translateTitle = Yii::$app->yandexTranslator
-                    ->getTranslate($modelLangRu->title, 'ru-it');
+                                //$this->stdout("description = " . $translateDescription . " \n", Console::FG_GREEN);
 
-                $translateDescription = Yii::$app->yandexTranslator
-                    ->getTranslate(strip_tags($modelLangRu->description), 'ru-it');
+                                if ($translateTitle != '') {
+                                    $transaction = $modelLang2::getDb()->beginTransaction();
+                                    try {
+                                        $modelLang2->title = $translateTitle;
+                                        $modelLang2->description = $translateDescription;
 
-                if ($translateTitle != '' || $translateDescription != '') {
-                    $modelLangIt->title = $translateTitle;
-                    $modelLangIt->description = $translateDescription;
+                                        $modelLang2->setScenario('backend');
 
-                    $modelLangIt->setScenario('backend');
-
-                    if ($saveIt = $modelLangIt->save()) {
-                        $this->stdout("save it ID=" . $model->id . " \n", Console::FG_GREEN);
+                                        if ($saveLang[] = intval($modelLang2->save())) {
+                                            $transaction->commit();
+                                            $this->stdout("save " . $translateLanguage . " \n", Console::FG_GREEN);
+                                        } else {
+                                            foreach ($modelLang2->errors as $attribute => $errors) {
+                                                $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
+                                            }
+                                        }
+                                    } catch (Exception $e) {
+                                        $transaction->rollBack();
+                                        throw new Exception($e);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
+            }
 
-                /**
-                 * Translate ru-en
-                 */
-                $saveEn = false;
-                Yii::$app->language = 'en-EN';
+            $this->stdout("-------------------------------" . " \n", Console::FG_GREEN);
 
-                $modelLangEn = ProductLang::find()
-                    ->where([
-                        'rid' => $model->id,
-                        'lang' => Yii::$app->language,
-                    ])
-                    ->one();
+            $model->setScenario('setMark');
+            $model->mark = '1';
 
-                if ($modelLangEn == null) {
-                    $modelLangEn = new ProductLang();
-
-                    $modelLangEn->rid = $model->id;
-                    $modelLangEn->lang = Yii::$app->language;
-                }
-
-                $translateTitle = Yii::$app->yandexTranslator
-                    ->getTranslate($modelLangRu->title, 'ru-en');
-
-                $translateDescription = Yii::$app->yandexTranslator
-                    ->getTranslate(strip_tags($modelLangRu->description), 'ru-en');
-
-                if ($translateTitle != '' || $translateDescription != '') {
-                    $modelLangEn->title = $translateTitle;
-                    $modelLangEn->description = $translateDescription;
-
-                    $modelLangEn->setScenario('backend');
-
-                    if ($saveEn = $modelLangEn->save()) {
-                        $this->stdout("save en ID=" . $model->id . " \n", Console::FG_GREEN);
-                    }
-                }
-
-                if ($model->save() && $saveIt && $saveEn) {
-                    $transaction->commit();
-                    $this->stdout("translate ID=" . $model->id . " \n", Console::FG_GREEN);
-                } else {
-                    $transaction->rollBack();
-                }
-            } catch (\Exception $e) {
-                $transaction->rollBack();
-                throw new \Exception($e);
+            if ($model->save() && !in_array(0, array_values($saveLang))) {
+                $this->stdout("translate ID = " . $model->id . " \n", Console::FG_GREEN);
             }
         }
 
