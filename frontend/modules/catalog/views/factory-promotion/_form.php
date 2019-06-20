@@ -175,7 +175,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                                 ) ?>
 
                             <?php
-                            $countries = Country::findBase()->byId([2, 3])->all();
+                            $countries = Country::findBase()->joinWith(['cities', 'cities.country citiesCountry'])->byId([2, 3])->all();
                             foreach ($countries as $country) {
                                 echo '<div class="tab-country-' . $country['id'] . '">';
                                 echo $form
