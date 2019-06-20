@@ -1,13 +1,11 @@
 <?php
 
-use yii\helpers\Html;
-//
 use frontend\modules\articles\models\Article;
 use frontend\modules\articles\widgets\articles\ArticlesList;
+
 /** @var $model Article */
 
 $this->title = $model['lang']['title'];
-$this->context->breadcrumbs[] = $this->title;
 ?>
 
 <div class="myarredo-blog-wrap">

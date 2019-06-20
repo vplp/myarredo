@@ -50,4 +50,17 @@ class ArticleController extends BaseController
             ],
         ];
     }
+
+    /**
+     * @param $action
+     * @return bool
+     */
+    public function beforeAction($action)
+    {
+        if (Yii::$app->city->domain != 'ru') {
+            return $this->redirect('https://' . 'www.myarredo.ru' . Url::current(), 301);
+        }
+
+        return parent::beforeAction($action);
+    }
 }
