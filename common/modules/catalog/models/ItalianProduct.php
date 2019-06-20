@@ -58,6 +58,7 @@ use common\modules\shop\models\OrderItem;
  * @property integer $published_date_to
  * @property integer $deleted
  * @property integer $mark
+ * @property string $language_editing
  * @property integer $status
  *
  * @property ItalianProductLang $lang
@@ -199,6 +200,8 @@ class ItalianProduct extends ActiveRecord
                 'each',
                 'rule' => ['integer']
             ],
+            [['language_editing'], 'string', 'max' => 5],
+            [['language_editing'], 'default', 'value' => ''],
         ];
     }
 
@@ -266,6 +269,7 @@ class ItalianProduct extends ActiveRecord
                 'position',
                 'on_main',
                 'mark',
+                'language_editing',
                 'status',
                 'category_ids',
                 'colors_ids',
@@ -294,6 +298,7 @@ class ItalianProduct extends ActiveRecord
                 'production_year',
                 'position',
                 'mark',
+                'language_editing',
                 'category_ids',
                 'colors_ids',
             ]
@@ -336,7 +341,8 @@ class ItalianProduct extends ActiveRecord
             'published_date_from' => Yii::t('app', 'Published date from'),
             'published_date_to' => Yii::t('app', 'Published date to'),
             'deleted' => Yii::t('app', 'Deleted'),
-            'mark' => 'Mark',
+            'mark',
+            'language_editing',
             'status' => Yii::t('app', 'Status'),
             'category_ids' => Yii::t('app', 'Category'),
             'colors_ids' => Yii::t('app', 'Colors'),
@@ -356,6 +362,7 @@ class ItalianProduct extends ActiveRecord
 
         if (in_array($this->scenario, ['frontend', 'backend'])) {
             $this->mark = '0';
+            $this->language_editing = Yii::$app->language;
         }
 
         if (in_array($this->scenario, ['published', 'backend'])) {

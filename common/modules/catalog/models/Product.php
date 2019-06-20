@@ -52,6 +52,7 @@ use common\modules\user\models\{
  * @property string $image_link
  * @property string $gallery_image
  * @property integer $mark
+ * @property string $language_editing
  * @property integer $mark1
  * @property integer $in_stock
  *
@@ -175,6 +176,8 @@ class Product extends ActiveRecord implements iProduct
             [['category_ids'], 'required'],
             [['currency'], 'in', 'range' => array_keys(static::currencyRange())],
             [['currency'], 'default', 'value' => 'EUR'],
+            [['language_editing'], 'string', 'max' => 5],
+            [['language_editing'], 'default', 'value' => ''],
         ];
     }
 
@@ -232,6 +235,7 @@ class Product extends ActiveRecord implements iProduct
                 'factory_catalogs_files_ids',
                 'factory_prices_files_ids',
                 'mark',
+                'language_editing',
                 'mark1'
             ],
         ];
@@ -276,8 +280,9 @@ class Product extends ActiveRecord implements iProduct
             'factory_catalogs_files_ids' => Yii::t('app', 'Factory catalogs files'),
             'factory_prices_files_ids' => Yii::t('app', 'Factory prices files'),
             'specification_value_ids',
-            'mark' => 'Mark',
-            'mark1' => 'Mark1',
+            'mark',
+            'language_editing',
+            'mark1'
         ];
     }
 
@@ -301,6 +306,7 @@ class Product extends ActiveRecord implements iProduct
 
         if (in_array($this->scenario, ['frontend', 'backend'])) {
             $this->mark = '0';
+            $this->language_editing = Yii::$app->language;
             $this->mark1 = '0';
         }
 

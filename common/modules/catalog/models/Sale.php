@@ -46,6 +46,7 @@ use common\modules\user\models\User;
  * @property string $image_link
  * @property string $gallery_image
  * @property integer $mark
+ * @property string $language_editing
  *
  * @property SaleLang $lang
  * @property SaleRelCategory[] $category
@@ -150,6 +151,8 @@ class Sale extends ActiveRecord
                 'each',
                 'rule' => ['integer']
             ],
+            [['language_editing'], 'string', 'max' => 5],
+            [['language_editing'], 'default', 'value' => ''],
         ];
     }
 
@@ -197,7 +200,8 @@ class Sale extends ActiveRecord
                 'position',
                 'on_main',
                 'category_ids',
-                'mark'
+                'mark',
+                'language_editing'
             ],
             'frontend' => [
                 'country_id',
@@ -221,7 +225,8 @@ class Sale extends ActiveRecord
                 'position',
                 'on_main',
                 'category_ids',
-                'mark'
+                'mark',
+                'language_editing'
             ]
         ];
     }
@@ -256,7 +261,8 @@ class Sale extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
             'category_ids' => Yii::t('app', 'Category'),
-            'mark' => 'Mark',
+            'mark',
+            'language_editing'
         ];
     }
 
@@ -273,6 +279,7 @@ class Sale extends ActiveRecord
 
         if (in_array($this->scenario, ['frontend', 'backend'])) {
             $this->mark = '0';
+            $this->language_editing = Yii::$app->language;
         }
 
         if (YII_ENV_PROD) {
