@@ -157,15 +157,14 @@ $this->title = $this->context->title;
                                             $array[] = $item['specificationByVal']['lang']['title'];
                                         }
                                     }
-                                    ?>
-                                    <tr>
-                                        <td><?= $nameSpecification ?></td>
-                                        <td>
-                                            <?= !empty($array)
-                                                ? implode('; ', $array)
-                                                : '' ?>
-                                        </td>
-                                    </tr>
+                                    if (!empty($array)) { ?>
+                                        <tr>
+                                            <td><?= $nameSpecification ?></td>
+                                            <td>
+                                                <?= implode('; ', $array) ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
 
                                     <?php
                                     $array = [];
@@ -174,15 +173,17 @@ $this->title = $this->context->title;
                                             $array[] = $item['specification']['lang']['title'];
                                         }
                                     }
-                                    ?>
-                                    <tr>
-                                        <td><?= Yii::t('app', 'Материал') ?></td>
-                                        <td>
-                                            <?= !empty($array)
-                                                ? implode('; ', $array)
-                                                : $model['lang']['material'] ?>
-                                        </td>
-                                    </tr>
+                                    if (!empty($array) || $model['lang']['material'] != '') { ?>
+                                        <tr>
+                                            <td><?= Yii::t('app', 'Материал') ?></td>
+                                            <td>
+                                                <?= !empty($array)
+                                                    ? implode('; ', $array)
+                                                    : $model['lang']['material'] ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+
                                 <?php } ?>
 
                                 <?php if (!empty($model['colors'])) { ?>
@@ -200,26 +201,32 @@ $this->title = $this->context->title;
                                     </tr>
                                 <?php } ?>
 
-                                <tr>
-                                    <td><?= $model->getAttributeLabel('production_year') ?></td>
-                                    <td>
-                                        <?= $model['production_year'] ?>
-                                    </td>
-                                </tr>
+                                <?php if ($model['production_year'] != '') { ?>
+                                    <tr>
+                                        <td><?= $model->getAttributeLabel('production_year') ?></td>
+                                        <td>
+                                            <?= $model['production_year'] ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
 
-                                <tr>
-                                    <td><?= $model->getAttributeLabel('volume') ?></td>
-                                    <td>
-                                        <?= $model['volume'] ?>
-                                    </td>
-                                </tr>
+                                <?php if ($model['volume'] != '') { ?>
+                                    <tr>
+                                        <td><?= $model->getAttributeLabel('volume') ?></td>
+                                        <td>
+                                            <?= $model['volume'] ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
 
-                                <tr>
-                                    <td><?= $model->getAttributeLabel('weight') ?></td>
-                                    <td>
-                                        <?= $model['weight'] ?>
-                                    </td>
-                                </tr>
+                                <?php if ($model['weight'] != '') { ?>
+                                    <tr>
+                                        <td><?= $model->getAttributeLabel('weight') ?></td>
+                                        <td>
+                                            <?= $model['weight'] ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
                             </table>
 
                             <div class="prod-shortstory">
