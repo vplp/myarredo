@@ -142,6 +142,50 @@ class Order extends OrderModel
         // сначала добавляем покупателя и получаем его id
         $customer_id = self::addNewCustomer($customerForm);
 
+        /**
+         * склеивание заказа
+         */
+
+        $order = OrderModel::findBase()
+            ->andFilterWhere([
+                self::tableName() . '.customer_id' => $customer_id
+            ])
+            ->one();
+
+        /** @var $order OrderModel */
+
+        if (!empty($order) && empty($order->orderAnswers) && $order->created_at > strtotime("-15 minutes", time())) {
+            $IDs = [];
+            foreach ($order->items as $item) {
+                $IDs[] = $item['product_id'];
+            }
+
+            foreach ($cart->items as $cartItem) {
+                if (!in_array($cartItem['product_id'], $IDs)) {
+                    $orderItem = new OrderItem();
+
+                    $orderItem->scenario = 'addNewOrderItem';
+
+                    // переносим все одинаковые атрибуты из корзины в заказ
+                    $orderItem->order_id = $order->id;
+                    $orderItem->setAttributes($cartItem->getAttributes());
+
+                    $orderItem->price = $cartItem->price;
+                    $orderItem->discount_percent = $cartItem->discount_percent;
+
+                    $orderItem->save();
+                }
+            }
+
+            $order->scenario = 'addNewOrder';
+            $order->save();
+
+            return $order;
+        }
+
+        /**
+         * новый заказ
+         */
         $order = new OrderModel();
         $order->scenario = 'addNewOrder';
 
@@ -180,9 +224,7 @@ class Order extends OrderModel
                     $orderItem->price = $cartItem->price;
                     $orderItem->discount_percent = $cartItem->discount_percent;
 
-                    if (!$orderItem->save()) {
-                        $transaction->rollBack();
-                    }
+                    $orderItem->save();
                 }
                 $transaction->commit();
 
