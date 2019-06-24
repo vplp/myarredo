@@ -96,9 +96,9 @@ class SitemapImageController extends Controller
                         $url = $urls[$j];
 
                         $str = "\t<url>" . PHP_EOL .
-                            "\t\t<loc>" . $city->getSubDomainUrl() . $url['loc'] . "</loc>" . PHP_EOL .
+                            "\t\t<loc>" . City::getSubDomainUrl($city) . $url['loc'] . "</loc>" . PHP_EOL .
                             "\t\t<image:image>" . PHP_EOL .
-                            "\t\t\t<image:loc>" . $city->getSubDomainUrl() . $url['image_link'] . "</image:loc>" . PHP_EOL .
+                            "\t\t\t<image:loc>" . City::getSubDomainUrl($city) . $url['image_link'] . "</image:loc>" . PHP_EOL .
                             "\t\t\t<image:title>" . htmlspecialchars($url['title']) . "</image:title>" . PHP_EOL .
                             "\t\t</image:image>" . PHP_EOL .
                             "\t</url>" . PHP_EOL;
@@ -128,7 +128,7 @@ class SitemapImageController extends Controller
             for ($i = 0; $i < $count_files; $i++) {
                 $link = '/sitemap-image/sitemap_image_' . $city['alias'] . '_' . $i . '.xml';
                 $str = PHP_EOL . "\t<sitemap>"
-                    . PHP_EOL . "\t\t<loc>" . $city->getSubDomainUrl() . $link . "</loc>"
+                    . PHP_EOL . "\t\t<loc>" . City::getSubDomainUrl($city) . $link . "</loc>"
                     . PHP_EOL . "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>"
                     . PHP_EOL . "\t</sitemap>";
                 fwrite($handle, $str);
