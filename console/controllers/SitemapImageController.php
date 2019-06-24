@@ -45,7 +45,7 @@ class SitemapImageController extends Controller
         array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
 
         // list of cities
-        $cities = City::findBase()->all();
+        $cities = City::findBase()->joinWith(['country', 'country.lang'])->all();
 
         // urls
         $urls = $this->urls;
@@ -74,7 +74,7 @@ class SitemapImageController extends Controller
 
         foreach ($cities as $city) {
 
-            /** @var $city \frontend\modules\location\models\City */
+            /** @var $city City */
 
             // create multiple SitemapImage files
 

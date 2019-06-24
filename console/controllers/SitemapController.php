@@ -45,9 +45,7 @@ class SitemapController extends Controller
         array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
 
         // list of cities
-        $cities = City::findBase()
-            ->joinWith(['country', 'country.lang'])
-            ->all();
+        $cities = City::findBase()->joinWith(['country', 'country.lang'])->all();
 
         // urls
         $urls = $this->urls;
