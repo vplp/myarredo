@@ -162,7 +162,7 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Yii::t('app', 'Orders') ?>
                                     </div>
                                 </a>
-                                <a href="<?= Url::toRoute(['/shop/partner-order/list-italy'], true) ?>"
+                                <a href="<?= Url::toRoute(['/shop/admin-order/list-italy'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
                                         <?= Html::img($bundle->baseUrl . '/img/requests.png') ?>

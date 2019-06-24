@@ -127,7 +127,7 @@ class PartnerOrderController extends BaseController
             $params['city_id'] = 0;
         }
 
-        if (!in_array(Yii::$app->user->identity->group->role, ['logistician', 'admin']) &&
+        if (!in_array(Yii::$app->user->identity->group->role, ['logistician']) &&
             Yii::$app->user->identity->profile->country_id != 4 &&
             isset($params['city_id']) && $params['city_id'] == 0
         ) {
