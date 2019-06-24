@@ -26,8 +26,8 @@ use frontend\modules\catalog\models\{
         </div>
     </div>
     <div style="background-color:#fff9ea; text-align: left; padding: 10px 0 40px 10px;">
-        <p>Здравствуйте, <?= $modelSale->user['profile']['first_name'] ?>!</p>
-        <p>Пользователь предложил свою цену на товар:</p>
+        <p>Добрый день, <?= $modelSale->user['profile']['lang']['name_company'] ?>!</p>
+        <p>Вам поступил запрос на предмет мебели вашей экспозиции:</p>
         <div style="clear: both; height: 100px;">
             <div style="float: left;">
                 <?= Html::img(
@@ -45,8 +45,10 @@ use frontend\modules\catalog\models\{
                 <span style="color:#9f8b80; font-size: 14px;"><?= ($modelSale['factory']) ? $modelSale['factory']['title'] : $modelSale['factory_name'] ?></span>
             </div>
         </div>
+        <p>Клиент указал свою собственную цену на данный товар:</p>
         <p><?= $model->getAttributeLabel('user_name') ?>: <?= $model->user_name ?></p>
         <p><?= $model->getAttributeLabel('phone') ?>: <?= $model->phone ?></p>
         <p><?= $model->getAttributeLabel('offer_price') ?>: <?= $model->offer_price ?></p>
+        <p>Свяжитесь с клиентом и согласуйте сделку.</p>
     </div>
 </div>
