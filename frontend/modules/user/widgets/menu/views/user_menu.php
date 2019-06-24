@@ -1,3 +1,11 @@
+<?php
+
+use yii\widgets\Menu;
+
+/** @var $menuItems */
+
+?>
+
 <ul class="nav navbar-nav navbar-right">
     <li>
         <div class="my-notebook dropdown">
@@ -6,7 +14,7 @@
                 <?= Yii::t('app', 'Menu') ?>
                 <object>
 
-                    <?= \yii\widgets\Menu::widget([
+                    <?= Menu::widget([
                         'items' => $menuItems,
                         'options' => [
                             'class' => 'dropdown-menu'
