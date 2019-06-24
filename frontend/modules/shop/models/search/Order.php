@@ -154,7 +154,11 @@ class Order extends OrderModel
 
         /** @var $order OrderModel */
 
-        if (!empty($order) && empty($order->orderAnswers) && $order->created_at > strtotime("-15 minutes", time())) {
+        if (!empty($order) &&
+            empty($order->orderAnswers) &&
+            $order->city_id == $customerForm['city_id'] &&
+            $order->created_at > strtotime("-15 minutes", time())
+        ) {
             $IDs = [];
             foreach ($order->items as $item) {
                 $IDs[] = $item['product_id'];
