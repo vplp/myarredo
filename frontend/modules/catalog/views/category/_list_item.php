@@ -2,18 +2,19 @@
 
 use yii\helpers\Html;
 //
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\{
+    Product, Factory
+};
 
-/**
- * @var $model Product
- */
+/** @var $model Product */
+/** @var $factory Factory */
 
 ?>
 
 <?= Html::beginTag('a', [
     'href' => Product::getUrl($model['alias']),
     'class' => 'one-prod-tile'
-]); ?>
+]) ?>
     <div class="one-prod-tile-in" itemscope itemtype="http://schema.org/ImageObject">
 
         <?php
@@ -55,7 +56,7 @@ use frontend\modules\catalog\models\Product;
             <div class="prod-pricebox">
                 <?= Yii::t('app', 'Цена от') ?>:
                 <span class="for-green">
-                    <?= Yii::$app->currency->getValue($model['price_from'], $model['currency']); ?>
+                    <?= Yii::$app->currency->getValue($model['price_from'], $model['currency']) ?>
                     &nbsp;<span class="currency"><?= Yii::$app->currency->symbol ?></span>
                 </span>
             </div>
@@ -68,4 +69,4 @@ use frontend\modules\catalog\models\Product;
         </object>
     </div>
 
-<?= Html::endTag('a'); ?>
+<?= Html::endTag('a') ?>

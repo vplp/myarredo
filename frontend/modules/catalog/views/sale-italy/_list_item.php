@@ -4,16 +4,14 @@ use yii\helpers\Html;
 //
 use frontend\modules\catalog\models\ItalianProduct;
 
-/**
- * @var \frontend\modules\catalog\models\Sale $model
- */
+/** @var $model ItalianProduct */
 
 ?>
 
 <?= Html::beginTag('a', [
     'href' => ItalianProduct::getUrl($model['alias']),
     'class' => 'one-prod-tile'
-]); ?>
+]) ?>
 
     <div class="one-prod-tile-in" itemscope itemtype="http://schema.org/ImageObject">
 
@@ -25,7 +23,7 @@ use frontend\modules\catalog\models\ItalianProduct;
                     'alt' => $model->getTitle(),
                     'itemprop' => 'contentUrl'
                 ]
-            ); ?>
+            ) ?>
         </div>
 
         <div class="item-infoblock">
@@ -36,6 +34,16 @@ use frontend\modules\catalog\models\ItalianProduct;
                 <?= $model->getTitle() ?>
             </div>
         </div>
+
+        <?php if ($model['price_new'] > 0) { ?>
+            <div class="prod-pricebox">
+                <?= Yii::t('app', 'Цена') ?>:
+                <span class="for-green">
+                    <?= $model['price_new'] ?>
+                    &nbsp;<span class="currency"><?= $model['currency'] ?></span>
+                </span>
+            </div>
+        <?php } ?>
 
         <object class="btn-block">
             <a class="more-info">
