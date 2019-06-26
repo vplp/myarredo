@@ -94,7 +94,8 @@ class CommonForm extends Model
     }
 
     /**
-     * @return string
+     * @return object|string|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

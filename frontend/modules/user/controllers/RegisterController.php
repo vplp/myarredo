@@ -98,7 +98,7 @@ class RegisterController extends BaseController
      */
     public function actionConfirmation($token)
     {
-        if (!\Yii::$app->getUser()->getIsGuest()) {
+        if (!Yii::$app->getUser()->getIsGuest()) {
             return $this->redirect(Url::toRoute('/home/home/index'));
         }
 
