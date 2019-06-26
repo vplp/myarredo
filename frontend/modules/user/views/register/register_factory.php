@@ -42,11 +42,13 @@ $model->user_agreement = 1;
 
                             <?= $form->field($model, 'address') ?>
 
-                            <?= $form->field($model, 'country_id')
+                            <?= $form
+                                ->field($model, 'country_id')
                                 ->input('hidden', ['value' => 0])
                                 ->label(false) ?>
 
-                            <?= $form->field($model, 'city_id')
+                            <?= $form
+                                ->field($model, 'city_id')
                                 ->input('hidden', ['value' => 0])
                                 ->label(false) ?>
 

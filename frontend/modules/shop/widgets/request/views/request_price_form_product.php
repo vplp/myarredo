@@ -40,7 +40,8 @@ $model->city_id = Yii::$app->city->getCityId();
     ->input('text', ['placeholder' => Yii::t('app', 'Phone')])
     ->label(false) ?>
 
-<?= $form->field($model, 'city_id')
+<?= $form
+    ->field($model, 'city_id')
     ->input('hidden', ['value' => $model->city_id])
     ->label(false) ?>
 

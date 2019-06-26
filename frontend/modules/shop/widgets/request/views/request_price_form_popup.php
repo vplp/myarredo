@@ -33,11 +33,13 @@ $model->city_id = Yii::$app->city->getCityId();
             ->input('text', ['placeholder' => Yii::t('app', 'Email')])
             ->label(false) ?>
 
-        <?= $form->field($model, 'full_name')
+        <?= $form
+            ->field($model, 'full_name')
             ->input('text', ['placeholder' => Yii::t('app', 'Name')])
             ->label(false) ?>
 
-        <?= $form->field($model, 'phone')
+        <?= $form
+            ->field($model, 'phone')
             ->widget(\yii\widgets\MaskedInput::class, [
                 'mask' => Yii::$app->city->getPhoneMask(),
                 'clientOptions' => [
@@ -47,21 +49,19 @@ $model->city_id = Yii::$app->city->getCityId();
             ->input('text', ['placeholder' => Yii::t('app', 'Phone')])
             ->label(false) ?>
 
-        <?php
-        //        $form->field($model, 'city_id')
-        //            ->dropDownList(City::dropDownList(Yii::$app->city->getCountryId()))
-        //            ->label(false)
-        ?>
-
-        <?= $form->field($model, 'city_id')
+        <?= $form
+            ->field($model, 'city_id')
             ->input('hidden', ['value' => $model->city_id])
             ->label(false) ?>
 
-        <?= $form->field($model, 'comment')
+        <?= $form-
+        >field($model, 'comment')
             ->textarea(['placeholder' => Yii::t('app', 'Comment')])
             ->label(false) ?>
 
-        <?= $form->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])->checkbox([], false)
+        <?= $form
+            ->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])
+            ->checkbox([], false)
             ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')) ?>
 
         <?= $form

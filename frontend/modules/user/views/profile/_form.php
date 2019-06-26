@@ -80,13 +80,15 @@ $this->title = Yii::t('app', 'Profile');
                         </div>
 
                         <div class="col-md-4 col-lg-4 one-row">
-                            <?= $form->field($model, 'country_id')
+                            <?= $form
+                                ->field($model, 'country_id')
                                 ->dropDownList(
                                     [null => '--'] + Country::dropDownList(),
                                     ['class' => 'selectpicker']
                                 ) ?>
 
-                            <?= $form->field($model, 'city_id')
+                            <?= $form
+                                ->field($model, 'city_id')
                                 ->dropDownList(
                                     [null => '--'] + City::dropDownList($model->country_id),
                                     ['class' => 'selectpicker']

@@ -3,11 +3,12 @@
 use yii\helpers\{
     Html, Url
 };
-use yii\web\View;
 use yii\widgets\ActiveForm;
 //
 use frontend\themes\myarredo\assets\AppAsset;
-use frontend\modules\location\models\Country;
+use frontend\modules\location\models\{
+    Country, City
+};
 use frontend\modules\user\models\form\RegisterForm;
 
 $bundle = AppAsset::register($this);
@@ -50,20 +51,23 @@ $model->user_confirm_offers = 1;
                                 /**
                                  * country and city
                                  */
-                                echo $form->field($model, 'country_id')
+                                echo $form
+                                    ->field($model, 'country_id')
                                     ->dropDownList(
                                         [null => '--'] + Country::dropDownList([1, 2, 3]),
                                         ['class' => 'selectpicker']
                                     );
 
-                                echo $form->field($model, 'city_id')
+                                echo $form
+                                    ->field($model, 'city_id')
                                     ->dropDownList(
-                                        [null => '--'],
+                                        $model->country_id ? [null => '--'] + City::dropDownList($model->country_id) : [null => '--'],
                                         ['class' => 'selectpicker']
                                     );
                                 ?>
 
-                                <?= $form->field($model, 'phone')
+                                <?= $form
+                                    ->field($model, 'phone')
                                     ->widget(\yii\widgets\MaskedInput::class, [
                                         'mask' => Yii::$app->city->getPhoneMask(),
                                         'clientOptions' => [
