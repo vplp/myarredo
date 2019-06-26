@@ -3,14 +3,14 @@
 use yii\helpers\{
     Html, Url
 };
+//
 use frontend\modules\catalog\models\Category;
 
 /**
- * @var $model \frontend\modules\catalog\models\Category
+ * @var $model Category
  */
 
 ?>
-
 
 <ul class="navigation">
     <li<?= (Yii::$app->controller->id == 'category') ? ' class="js-has-list has-list"' : ' class="js-has-list"' ?>>
