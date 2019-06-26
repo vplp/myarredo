@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 //
 use voskobovich\behaviors\ManyToManyBehavior;
 //
-use common\modules\user\User;
+use common\modules\user\User as UserModule;
 use common\modules\location\models\{
     City, Country
 };
@@ -426,7 +426,7 @@ class Profile extends \thread\modules\user\models\Profile
      */
     public function getImageLink()
     {
-        /** @var User $module */
+        /** @var UserModule $module */
         $module = Yii::$app->getModule('user');
 
         $path = $module->getAvatarUploadPath($this->user_id);

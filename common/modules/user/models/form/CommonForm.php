@@ -5,7 +5,7 @@ namespace common\modules\user\models\form;
 use Yii;
 use yii\base\Model;
 //
-use common\modules\user\User;
+use common\modules\user\User as UserModule;
 use common\modules\user\models\User as UserModel;
 
 /**
@@ -82,7 +82,7 @@ class CommonForm extends Model
 
     public function init()
     {
-        /** @var \frontend\modules\user\User $module */
+        /** @var UserModule $module */
         $module = Yii::$app->getModule('user');
 
         $this->_username_attribute = $module->username_attribute;
@@ -99,7 +99,7 @@ class CommonForm extends Model
      */
     public static function getDb()
     {
-        return User::getDb();
+        return UserModule::getDb();
     }
 
     /**
