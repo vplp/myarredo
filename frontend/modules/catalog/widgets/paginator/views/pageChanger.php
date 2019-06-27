@@ -3,12 +3,15 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+/** @var $pageArray */
+/** @var $pages */
+
 ?>
 
 <div class="this-page">
 
     <?php
-    echo Html::beginForm();
+    echo Html::beginTag('form', ['method' => 'get']);
 
     echo '<span class="label">' . Yii::t('app', 'Page') . '</span>';
 
@@ -46,8 +49,7 @@ use yii\helpers\Url;
             ]
         );
     }
-    echo Html::endForm();
-
+    echo Html::endTag('form');
     ?>
 
 </div>
