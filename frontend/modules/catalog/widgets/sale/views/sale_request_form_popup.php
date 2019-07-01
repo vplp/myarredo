@@ -64,7 +64,6 @@ $model->user_agreement = 1;
                     ->field($model, 'reCaptcha')
                     ->widget(
                         \himiklab\yii2\recaptcha\ReCaptcha2::class
-                        //['action' => 'sale_request_popup']
                     )
                     ->label(false) ?>
 

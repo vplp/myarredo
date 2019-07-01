@@ -46,6 +46,7 @@ use frontend\modules\catalog\models\{
             </div>
         </div>
         <p>Клиент указал свою собственную цену на данный товар:</p>
+        <p><?= $model->getAttributeLabel('email') ?>: <?= $model->email ?></p>
         <p><?= $model->getAttributeLabel('user_name') ?>: <?= $model->user_name ?></p>
         <p><?= $model->getAttributeLabel('phone') ?>: <?= $model->phone ?></p>
         <p><?= $model->getAttributeLabel('offer_price') ?>: <?= $model->offer_price ?></p>

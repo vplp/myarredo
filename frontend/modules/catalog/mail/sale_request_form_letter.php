@@ -45,10 +45,8 @@ use frontend\modules\catalog\models\{
             </div>
         </div>
         <p><?= $model->getAttributeLabel('email') ?>: <?= $model->email ?></p>
-        <p><?= $model->getAttributeLabel('user_name') ?>
-            : <?= $model->user_name ?></p>
+        <p><?= $model->getAttributeLabel('user_name') ?>: <?= $model->user_name ?></p>
         <p><?= $model->getAttributeLabel('phone') ?>: <?= $model->phone ?></p>
-        <p><?= $model->getAttributeLabel('question') ?>
-            : <?= $model->question ?></p>
+        <p><?= $model->getAttributeLabel('question') ?>: <?= $model->question ?></p>
     </div>
 </div>

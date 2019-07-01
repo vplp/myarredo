@@ -3,7 +3,6 @@
 use yii\helpers\{
     Html, Url
 };
-use yii\web\View;
 use yii\widgets\ActiveForm;
 //
 use frontend\modules\catalog\models\SaleRequest;
@@ -27,6 +26,11 @@ use frontend\modules\catalog\models\SaleRequest;
                         'method' => 'post',
                         'action' => false
                     ]); ?>
+
+                    <?= $form
+                        ->field($model, 'email')
+                        ->input('text', ['placeholder' => Yii::t('app', 'Email')])
+                        ->label(false) ?>
 
                     <?= $form
                         ->field($model, 'user_name')

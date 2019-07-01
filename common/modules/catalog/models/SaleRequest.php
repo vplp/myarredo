@@ -65,12 +65,12 @@ class SaleRequest extends ActiveRecord
     {
         return [
             [
-                ['sale_item_id', 'full_name', 'email', 'phone', 'user_agreement', 'reCaptcha'],
+                ['sale_item_id', 'user_name', 'email', 'phone', 'user_agreement', 'reCaptcha'],
                 'required',
                 'on' => 'requestForm'
             ],
             [
-                ['sale_item_id', 'full_name', 'phone', 'offer_price', 'reCaptcha2'],
+                ['sale_item_id', 'user_name', 'email', 'phone', 'offer_price', 'reCaptcha2'],
                 'required',
                 'on' => 'offerPriceForm'
             ],
