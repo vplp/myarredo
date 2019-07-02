@@ -55,11 +55,11 @@ class SaleOfferPriceForm extends Widget
                 if ($save) {
                     $transaction->commit();
 
-                    // send letter
+                    // send letter for partner
                     Yii::$app
                         ->mailer
                         ->compose(
-                            '@app/modules/catalog/mail/sale_request_offer_price_form_letter.php',
+                            '@app/modules/catalog/mail/sale_offer_price_for_partner_letter.php',
                             [
                                 'model' => $model,
                                 'modelSale' => $modelSale,
@@ -67,6 +67,20 @@ class SaleOfferPriceForm extends Widget
                         )
                         ->setTo([$modelSale->user['email'], 'info@myarredo.ru'])
                         ->setSubject('Пользователь предложил свою цену на товар')
+                        ->send();
+
+                    // send letter for user
+                    Yii::$app
+                        ->mailer
+                        ->compose(
+                            '@app/modules/catalog/mail/sale_offer_price_for_user_letter.php',
+                            [
+                                'model' => $model,
+                                'modelSale' => $modelSale,
+                            ]
+                        )
+                        ->setTo($model['email'])
+                        ->setSubject('Вы предложили свою цену на товар')
                         ->send();
 
                     // message
