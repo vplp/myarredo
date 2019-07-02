@@ -4,6 +4,7 @@ namespace frontend\themes\myarredo\assets;
 
 use yii\web\AssetBundle;
 use yii\web\YiiAsset;
+use yii\web\View;
 use yii\bootstrap\{
     BootstrapAsset,
     BootstrapPluginAsset
@@ -74,6 +75,6 @@ class AppAsset extends AssetBundle
      * @var array
      */
     public $cssOptions = [
-        'position' => \yii\web\View::POS_END
+        'position' => View::POS_END
     ];
 }
