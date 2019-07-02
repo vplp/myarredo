@@ -58,7 +58,6 @@ class RegisterForm extends CommonForm
                     'name_company',
                     'address',
                     'country_id',
-                    'city_id',
                     'user_agreement',
                     'confirm_processing_data',
                     'reCaptcha'
@@ -110,6 +109,17 @@ class RegisterForm extends CommonForm
                 'max' => 255
             ],
             [
+                ['city_id'],
+                'required',
+                'on' => ['registerPartner'],
+                'when' => function ($model) {
+                    return $model->country_id != 4;
+                },
+                'whenClient' => "function (attribute, value) {
+                    return $('select[name=\"RegisterForm[country_id]\"]').val() != 4;
+                }"
+            ],
+            [
                 ['user_agreement'],
                 'required',
                 'on' => ['registerPartner', 'registerFactory', 'registerLogistician'],
@@ -126,7 +136,7 @@ class RegisterForm extends CommonForm
             [
                 ['confirm_processing_data'],
                 'required',
-                'on' => ['registerPartner',],
+                'on' => ['registerPartner'],
                 'requiredValue' => 1,
                 'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
             ],
