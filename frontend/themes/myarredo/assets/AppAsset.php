@@ -69,4 +69,11 @@ class AppAsset extends AssetBundle
         'async' => true,
         'defer' => true,
     ];
+
+    /**
+     * @var array
+     */
+    public $cssOptions = [
+        'position' => \yii\web\View::POS_END
+    ];
 }

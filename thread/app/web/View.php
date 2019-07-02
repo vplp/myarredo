@@ -3,41 +3,46 @@
 namespace thread\app\web;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use yii\web\View as yiiWebView;
 
 /**
+ * Class View
  *
- * @author FilamentV <vortex.filament@gmail.com>
- * @copyright (c), Thread
+ * @package thread\app\web
  */
-class View extends yiiWebView
+class View extends \yii\web\View
 {
     /**
-     * @var array the registered JS Ld Json code blocks
-     * @see registerJsLdJson()
-     */
-    public $jsLdJson;
-
-    /**
-     * @param $js
-     * @param int $position
-     * @param null $key
-     */
-    public function registerJsLdJson($js, $position = self::POS_READY, $key = null)
-    {
-        $key = $key ?: md5($js);
-        $this->jsLdJson[$position][$key] = $js;
-    }
-
-    /**
+     * Registers a CSS file.
+     * @param string $url the CSS file to be registered.
+     * @param array $options the HTML attributes for the link tag. Please refer to [[Html::cssFile()]] for
+     * the supported options. The following options are specially handled and are not treated as HTML attributes:
      *
+     * - `depends`: array, specifies the names of the asset bundles that this CSS file depends on.
+     *
+     * @param string $key the key that identifies the CSS script file. If null, it will use
+     * $url as the key. If two CSS files are registered with the same key, the latter
+     * will overwrite the former.
      */
-    public function beginPage()
+    public function registerCssFile($url, $options = [], $key = null)
     {
-        //render seo meta tags
-        Yii::$app->metatag->render(); //->render_graph();
-        parent::beginPage();
+        $url = Yii::getAlias($url);
+        $key = $key ?: $url;
+        $depends = ArrayHelper::remove($options, 'depends', []);
+        if (empty($depends)) {
+            $position = ArrayHelper::remove($options, 'position', self::POS_HEAD);
+            $this->cssFiles[$position][$key] = Html::cssFile($url, $options);
+        } else {
+            $this->getAssetManager()->bundles[$key] = Yii::createObject([
+                'class' => AssetBundle::className(),
+                'baseUrl' => '',
+                'css' => [strncmp($url, '//', 2) === 0 ? $url : ltrim($url, '/')],
+                'cssOptions' => $options,
+                'depends' => (array)$depends,
+            ]);
+            $this->registerAssetBundle($key);
+        }
     }
 
     /**
@@ -54,8 +59,8 @@ class View extends yiiWebView
         if (!empty($this->linkTags)) {
             $lines[] = implode("\n", $this->linkTags);
         }
-        if (!empty($this->cssFiles)) {
-            $lines[] = implode("\n", $this->cssFiles);
+        if (!empty($this->cssFiles[self::POS_HEAD])) {
+            $lines[] = implode("\n", $this->cssFiles[self::POS_HEAD]);
         }
         if (!empty($this->css)) {
             $lines[] = implode("\n", $this->css);
@@ -66,13 +71,6 @@ class View extends yiiWebView
         if (!empty($this->js[self::POS_HEAD])) {
             $lines[] = Html::script(implode("\n", $this->js[self::POS_HEAD]), ['type' => 'text/javascript']);
         }
-        if (!empty($this->jsLdJson[self::POS_HEAD])) {
-            $jsonld = $this->jsLdJson[self::POS_HEAD];
-            foreach ($jsonld as $value) {
-                $lines[] = Html::script($value, ['type' => 'application/ld+json']);
-            }
-        }
-
         return empty($lines) ? '' : implode("\n", $lines);
     }
 
@@ -84,19 +82,15 @@ class View extends yiiWebView
     protected function renderBodyBeginHtml()
     {
         $lines = [];
+        if (!empty($this->cssFiles[self::POS_BEGIN])) {
+            $lines[] = implode("\n", $this->cssFiles[self::POS_BEGIN]);
+        }
         if (!empty($this->jsFiles[self::POS_BEGIN])) {
             $lines[] = implode("\n", $this->jsFiles[self::POS_BEGIN]);
         }
         if (!empty($this->js[self::POS_BEGIN])) {
             $lines[] = Html::script(implode("\n", $this->js[self::POS_BEGIN]), ['type' => 'text/javascript']);
         }
-        if (!empty($this->jsLdJson[self::POS_BEGIN])) {
-            $jsonld = $this->jsLdJson[self::POS_BEGIN];
-            foreach ($jsonld as $value) {
-                $lines[] = Html::script($value, ['type' => 'application/ld+json']);
-            }
-        }
-
         return empty($lines) ? '' : implode("\n", $lines);
     }
 
@@ -111,11 +105,12 @@ class View extends yiiWebView
     protected function renderBodyEndHtml($ajaxMode)
     {
         $lines = [];
-
+        if (!empty($this->cssFiles[self::POS_END])) {
+            $lines[] = implode("\n", $this->cssFiles[self::POS_END]);
+        }
         if (!empty($this->jsFiles[self::POS_END])) {
             $lines[] = implode("\n", $this->jsFiles[self::POS_END]);
         }
-
         if ($ajaxMode) {
             $scripts = [];
             if (!empty($this->js[self::POS_END])) {
@@ -134,12 +129,6 @@ class View extends yiiWebView
             if (!empty($this->js[self::POS_END])) {
                 $lines[] = Html::script(implode("\n", $this->js[self::POS_END]), ['type' => 'text/javascript']);
             }
-            if (!empty($this->jsLdJson[self::POS_END])) {
-                $jsonld = $this->jsLdJson[self::POS_END];
-                foreach ($jsonld as $value) {
-                    $lines[] = Html::script($value, ['type' => 'application/ld+json']);
-                }
-            }
             if (!empty($this->js[self::POS_READY])) {
                 $js = "jQuery(document).ready(function () {\n" . implode("\n", $this->js[self::POS_READY]) . "\n});";
                 $lines[] = Html::script($js, ['type' => 'text/javascript']);
@@ -149,8 +138,6 @@ class View extends yiiWebView
                 $lines[] = Html::script($js, ['type' => 'text/javascript']);
             }
         }
-
         return empty($lines) ? '' : implode("\n", $lines);
     }
-
 }
