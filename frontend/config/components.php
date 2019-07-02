@@ -22,11 +22,30 @@ return [
         'cookieValidationKey' => 'thread',
     ],
     'view' => [
+        'class' => \thread\app\web\View::class,
         'theme' => [
             'basePath' => '@app/themes/myarredo',
             'baseUrl' => '@web/themes/myarredo',
             'pathMap' => [
                 '@app/layouts' => '@app/themes/myarredo/layouts',
+            ],
+        ],
+    ],
+    'assetManager' => [
+        //Використовуємо для постійного оновлення assets
+        //потрібно для верстальника
+        //обовязково очистити директорію /frontend/assets
+        //'linkAssets' => true,
+        'bundles' => [
+            'yii\web\YiiAsset' => [
+                'cssOptions' => [
+                    'position' => \yii\web\View::POS_END
+                ],
+            ],
+            'yii\bootstrap\BootstrapAsset' => [
+                'cssOptions' => [
+                    'position' => \yii\web\View::POS_END
+                ],
             ],
         ],
     ],

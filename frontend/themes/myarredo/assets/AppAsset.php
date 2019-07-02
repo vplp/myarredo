@@ -4,6 +4,7 @@ namespace frontend\themes\myarredo\assets;
 
 use yii\web\AssetBundle;
 use yii\web\YiiAsset;
+use yii\web\View;
 use yii\bootstrap\{
     BootstrapAsset,
     BootstrapPluginAsset
@@ -68,5 +69,12 @@ class AppAsset extends AssetBundle
     public $jsOptions = [
         'async' => true,
         'defer' => true,
+    ];
+
+    /**
+     * @var array
+     */
+    public $cssOptions = [
+        'position' => View::POS_END
     ];
 }
