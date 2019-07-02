@@ -8504,6 +8504,29 @@ h1 {
     width: 100%;
   }
 }
+.adding-product-page .manager-history ul.pricelist {
+  display: block;
+}
+.adding-product-page .manager-history ul.pricelist li {
+  display: block;
+  width: 100%;
+  padding-bottom: 3px;
+}
+.btn-offerprice {
+  background-color: #448339;
+  border-color: #448339;
+  color: #ffffff;
+  transition: 0.3s;
+}
+.btn-offerprice:hover,
+.btn-offerprice:focus {
+  background-color: #469139;
+  color: #ffffff;
+}
+.sale-prod .btn-offerprice {
+  margin-top: -5px;
+  margin-bottom: 12px;
+}
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
 /* ---------------------------------------------------------------------------------------------------- */

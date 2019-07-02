@@ -69,7 +69,7 @@ use frontend\modules\catalog\models\Product;
 
                     if (!empty($pricesFiles)) { ?>
                         <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
-                        <ul>
+                        <ul class="pricelist">
                             <?php
                             foreach ($pricesFiles as $priceFile) {
                                 if ($fileLink = $priceFile->getFileLink()) { ?>
