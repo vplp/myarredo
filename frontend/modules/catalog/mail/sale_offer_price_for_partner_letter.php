@@ -28,7 +28,7 @@ use frontend\modules\catalog\models\{
     <div style="background-color:#fff9ea; text-align: left; padding: 10px 0 40px 10px;">
         <p>Добрый день, <?= $modelSale->user['profile']['lang']['name_company'] ?>!</p>
         <p>Вам поступил запрос на предмет мебели вашей экспозиции:</p>
-        <div style="clear: both;">
+        <div style="clear: both;overflow: hidden;">
             <div style="float: left;">
                 <?= Html::img(
                     'https://www.myarredo.' . $modelSale->city->country->alias . Sale::getImageThumb($modelSale['image_link']),
@@ -43,6 +43,10 @@ use frontend\modules\catalog\models\{
                 ) ?>
                 <br>
                 <span style="color:#9f8b80; font-size: 14px;"><?= ($modelSale['factory']) ? $modelSale['factory']['title'] : $modelSale['factory_name'] ?></span>
+            </div>
+            <div style="float: left; margin: 10px 30px; background: #CF0002; color: #FFF; font-size: 13px; padding: 0 7px!important; align-items: center;text-transform: uppercase;">
+                <?= Yii::t('app', 'Цена') ?>:
+                <span style="font-size: 23px; font-weight: 700;"><?= $modelSale->price_new . ' ' . $modelSale->currency ?></span>
             </div>
         </div>
         <p>Клиент указал свою собственную цену на данный товар:</p>
