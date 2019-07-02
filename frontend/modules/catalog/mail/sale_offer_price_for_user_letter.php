@@ -44,10 +44,10 @@ use frontend\modules\catalog\models\{
                 <br>
                 <span style="color:#9f8b80; font-size: 14px;"><?= ($modelSale['factory']) ? $modelSale['factory']['title'] : $modelSale['factory_name'] ?></span>
             </div>
-            <div style="background: #CF0002; color: #FFF; font-size: 13px; padding: 0 7px!important; align-items: center;text-transform: uppercase;">
-                <?= Yii::t('app', 'Цена') ?>:
-                <span style="font-size: 23px; font-weight: 700;"><?= $modelSale->price_new . ' ' . $modelSale->currency ?></span>
-            </div>
+        </div>
+        <div style="background: #CF0002; color: #FFF; font-size: 13px; padding: 0 7px!important; align-items: center;text-transform: uppercase;">
+            <?= Yii::t('app', 'Цена') ?>:
+            <span style="font-size: 23px; font-weight: 700;"><?= $modelSale->price_new . ' ' . $modelSale->currency ?></span>
         </div>
         <p>Ожидайте с вами свяжется менеджер салона.</p>
     </div>
