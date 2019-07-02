@@ -28,7 +28,7 @@ use frontend\modules\catalog\models\{
     <div style="background-color:#fff9ea; text-align: left; padding: 10px 0 40px 10px;">
         <p>Здравствуйте, <?= $model->user_name ?>!</p>
         <p>Вы предложили салону свою цену <?= $model->offer_price ?> на данный товар:</p>
-        <div style="clear: both; height: 100px;">
+        <div style="clear: both;">
             <div style="float: left;">
                 <?= Html::img(
                     'https://www.myarredo.' . $modelSale->city->country->alias . Sale::getImageThumb($modelSale['image_link']),
