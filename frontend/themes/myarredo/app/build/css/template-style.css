@@ -1252,6 +1252,7 @@ h1 {
       left: -60px;
       right: -60px;
       bottom: -60px;
+      background-color: grey;
       background-position: center;
       background-repeat: no-repeat;
       background-size: 400%;
@@ -1622,6 +1623,7 @@ h1 {
     bottom: -60px;
     left: -60px;
     right: -60px;
+    background-color: grey;
     background-size: 400%;
     background-position: center;
     background-repeat: no-repeat;
@@ -2294,6 +2296,7 @@ h1 {
     left: -60px;
     right: -60px;
     filter: blur(60px);
+    background-color: grey;
     background-size: 400%;
     background-position: center;
     background-repeat: no-repeat;

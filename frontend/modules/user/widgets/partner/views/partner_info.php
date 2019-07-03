@@ -77,5 +77,5 @@ $image_link = $partner['profile']['image_link']
     </div>
 </div>
 
-<div class="cont-bg lazy" style="background-image: url(<?= $image_link ?>"></div>
+<div class="cont-bg custom-lazy" data-background="<?= $image_link ?>"></div>
 
