@@ -51,7 +51,6 @@ class ImageResize
     public function getThumb($original, $width, $height, $prefix = '-{$width}x{$height}')
     {
         if (is_file($original)) {
-
             $this->path = Yii::getAlias('@uploads') . '/thumb';
             $this->url = '/uploads/thumb';
 
@@ -84,7 +83,7 @@ class ImageResize
                 mkdir($dir, 0777, true);
             }
 
-            if ($image->save($base . '/' . $hash_name, ['quality' => 60])) {
+            if ($image->save($base . '/' . $hash_name, ['quality' => 55])) {
                 return $this->url . '/' . $hash_name;
             }
         }
