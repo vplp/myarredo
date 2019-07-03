@@ -27,6 +27,7 @@ class TemplateFactoryAsset extends AssetBundle
      */
     public $css = [
         'libs/nouislider/nouislider.min.css',
+        'libs/font-awesome/css/font-awesome.min.css',
         'libs/slick-1.6/slick.css',
         'libs/bootstrap-select/css/bootstrap-select.min.css',
         'css/fonts.css',
@@ -39,7 +40,7 @@ class TemplateFactoryAsset extends AssetBundle
      * @var array
      */
     public $js = [
-        'https://use.fontawesome.com/35f65baac5.js',
+        // 'https://use.fontawesome.com/35f65baac5.js',
         'libs/bootstrap-select/js/bootstrap-select.min.js',
         'libs/slick-1.6/slick.min.js',
         'libs/nouislider/nouislider.min.js',
