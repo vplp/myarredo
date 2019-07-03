@@ -34,10 +34,11 @@ use frontend\modules\catalog\models\Sale;
                         <div class="img-cont">
                             <span class="background"></span>
                             <?= Html::img(
-                                Sale::getImageThumb($model['image_link']),
+                                '',
                                 [
                                     'class' => 'cont lazy',
                                     'alt' => $model['lang']['title'],
+                                    'data-src' => Sale::getImageThumb($model['image_link']),
                                     'itemprop' => 'contentUrl'
                                 ]
                             ) ?>
