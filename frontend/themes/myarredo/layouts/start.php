@@ -42,7 +42,7 @@ $bundle = AppAsset::register($this);
                             <div class="title">
                                 1
                                 <div class="img-cont">
-                                    <img src="<?= $bundle->baseUrl ?>/img/num1.svg" alt="">
+                                    <img src="<?= $bundle->baseUrl ?>/img/num1.svg" alt="номер 1" class="lazy">
                                 </div>
                             </div>
                             <div class="descr">
@@ -53,7 +53,7 @@ $bundle = AppAsset::register($this);
                             <div class="title">
                                 2
                                 <div class="img-cont">
-                                    <img src="<?= $bundle->baseUrl ?>/img/num2.svg" alt="">
+                                    <img src="<?= $bundle->baseUrl ?>/img/num2.svg" alt="номер 2" class="lazy">
                                 </div>
                             </div>
                             <div class="descr">
@@ -64,7 +64,7 @@ $bundle = AppAsset::register($this);
                             <div class="title">
                                 3
                                 <div class="img-cont" style="margin-top: 0;">
-                                    <img src="<?= $bundle->baseUrl ?>/img/num3.svg" alt="">
+                                    <img src="<?= $bundle->baseUrl ?>/img/num3.svg" alt="номер 3" class="lazy">
                                 </div>
                             </div>
                             <div class="descr">
@@ -75,7 +75,7 @@ $bundle = AppAsset::register($this);
                             <div class="title">
                                 4
                                 <div class="img-cont">
-                                    <img src="<?= $bundle->baseUrl ?>/img/num4.svg" alt="">
+                                    <img src="<?= $bundle->baseUrl ?>/img/num4.svg" alt="номер 4" class="lazy">
                                 </div>
                             </div>
                             <div class="descr">
@@ -86,7 +86,7 @@ $bundle = AppAsset::register($this);
                             <div class="title">
                                 5
                                 <div class="img-cont">
-                                    <img src="<?= $bundle->baseUrl ?>/img/num5.svg" alt="">
+                                    <img src="<?= $bundle->baseUrl ?>/img/num5.svg" alt="номер 5" class="lazy">
                                 </div>
                             </div>
                             <div class="descr">

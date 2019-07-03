@@ -3,27 +3,27 @@
 /* @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&subset=cyrillic-ext'); */
 @font-face {
     font-family: 'HelveticaNeueCyr-Roman';
-    font-display: auto;
+    font-display: fallback;
     src: local('HelveticaNeueCyr-Roman'), url('../fonts/helveticaneuecyr-roman.otf');
 }
 @font-face {
     font-family: 'HelveticaNeueCyr-Light';
-    font-display: auto;
+    font-display: fallback;
     src: local('HelveticaNeueCyr-Light'), url('../fonts/HelveticaNeue-Light.ttf');
 }
 @font-face {
     font-family: 'HelveticaNeueCyr-Thin';
-    font-display: auto;
+    font-display: fallback;
     src: local('HelveticaNeueCyr-Thin'), url('../fonts/HelveticaNeue-Thin.ttf');
 }
 @font-face {
     font-family: 'HelveticaNeueCyr-Bold';
-    font-display: auto;
+    font-display: fallback;
     src: local('HelveticaNeueCyr-Bold'), url('../fonts/HelveticaNeue-CondensedBold.ttf');
 }
 @font-face {
     font-family: 'Palatino';
-    font-display: auto;
+    font-display: fallback;
     src: local('Palatino'), url('../fonts/palatino-linotype.woff2') format('woff2'),
         url('../fonts/palatino-linotype.woff') format('woff'),
         url('../fonts/Palatino-Linotype.ttf') format('truetype');
@@ -32,7 +32,7 @@
 }
 @font-face {
     font-family: 'Palatino';
-    font-display: auto;
+    font-display: fallback;
     src: local('Palatino'), url('../fonts/palab.woff2') format('woff2'),
         url('../fonts/palab.woff') format('woff'),
         url('../fonts/palab.ttf') format('truetype');

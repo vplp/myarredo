@@ -36,7 +36,7 @@ use frontend\modules\catalog\models\Sale;
                             <?= Html::img(
                                 Sale::getImageThumb($model['image_link']),
                                 [
-                                    'class' => 'cont',
+                                    'class' => 'cont lazy',
                                     'alt' => $model['lang']['title'],
                                     'itemprop' => 'contentUrl'
                                 ]

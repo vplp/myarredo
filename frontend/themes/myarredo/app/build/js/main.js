@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+    // удаляем прелоадер
+    $('#preload_box').hide();
+
     // инициализация LazyLoad
     var lazyLoadInstance = new LazyLoad({
         elements_selector: ".lazy"
