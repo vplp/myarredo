@@ -64,7 +64,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
             ],
             'pluginEvents' => [
                 'filebatchselected' => 'function(event, files) {
-                    $(".kv-file-upload").click();
+                    $(this).fileinput("upload"); 
                 }',
                 'filebatchuploadsuccess' => 'function(event, data, previewId, index){
                     var response = data.response;
@@ -127,7 +127,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
                 'showUpload' => false,
                 'showCaption' => false,
                 'showRemove' => false,
-                'overwriteInitial' => false,
+                'overwriteInitial' => true,
                 'initialPreview' => $initImage,
                 'initialPreviewConfig' => new JsExpression('[' . implode(',', $initImageConfig) . ']'),
                 'initialPreviewAsData' => true,
@@ -135,8 +135,8 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
                 'maxFileCount' => $options['maxFileCount'] ?? 10,
             ], $pluginOptions),
             'pluginEvents' => [
-                'filebatchselected' => 'function(event, files) {
-                    $(".kv-file-upload").click();
+                'filebatchselected' => 'function(event, files) {           
+                    $(this).fileinput("upload");                            
                 }',
                 'filebatchuploadsuccess' => 'function(event, data, previewId, index) {
                     var response = data.response;
@@ -228,7 +228,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
             ],
             'pluginEvents' => [
                 'filebatchselected' => 'function(event, files) {
-                    $(".kv-file-upload").click();
+                     $(this).fileinput("upload"); 
                 }',
                 'filebatchuploadsuccess' => 'function(event, data, previewId, index){
                     var response = data.response;
