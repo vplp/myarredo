@@ -8,6 +8,7 @@ use frontend\modules\catalog\models\{
 };
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\shop\widgets\request\RequestPrice;
+use frontend\modules\catalog\widgets\product\ViewedProducts;
 
 /**
  * @var $model Product
@@ -424,6 +425,8 @@ $this->title = $this->context->title;
                 </div>
 
             <?php endif; */ ?>
+
+                <?= ViewedProducts::widget([]) ?>
 
                 <?php
                 if ($model['collections_id']) {
