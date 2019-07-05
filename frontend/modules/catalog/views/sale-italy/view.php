@@ -57,19 +57,19 @@ $this->title = $this->context->title;
 
                                 <?php if ($model->price > 0) { ?>
                                     <div class="old-price">
-                                        <?= $model->price . ' ' . $model->currency; ?>
+                                        <?= Yii::$app->currency->getValue($model['price'], $model['currency']) . ' ' . Yii::$app->currency->symbol ?>
                                     </div>
                                 <?php } ?>
 
                                 <div class="prod-price">
                                     <div class="price">
                                         <?= Yii::t('app', 'Цена') ?>:
-                                        <span><?= $model->price_new . ' ' . $model->currency; ?></span>
+                                        <span><?= Yii::$app->currency->getValue($model['price_new'], $model['currency']) . ' ' . Yii::$app->currency->symbol ?></span>
                                     </div>
                                     <?php if ($model->price > 0) { ?>
                                         <div class="price economy">
                                             <?= Yii::t('app', 'Экономия') ?>:
-                                            <span><?= ($model->price - $model->price_new) . ' ' . $model->currency; ?></span>
+                                            <span><?= Yii::$app->currency->getValue($model->price - $model->price_new, $model['currency']) . ' ' . Yii::$app->currency->symbol ?></span>
                                         </div>
                                     <?php } ?>
                                 </div>
@@ -78,7 +78,7 @@ $this->title = $this->context->title;
                                     <div class="prod-price">
                                         <div class="price economy">
                                             <?= $model->getAttributeLabel('price_without_technology') ?>:
-                                            <span><?= $model->price_without_technology . ' ' . $model->currency; ?></span>
+                                            <span><?= Yii::$app->currency->getValue($model['price_without_technology'], $model['currency']) . ' ' . Yii::$app->currency->symbol ?></span>
                                         </div>
                                     </div>
                                 <?php } ?>
