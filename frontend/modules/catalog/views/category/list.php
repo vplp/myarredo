@@ -1,5 +1,6 @@
 <?php
 
+use frontend\modules\catalog\widgets\product\ViewedProducts;
 use yii\helpers\{
     Html, Url
 };
@@ -102,6 +103,8 @@ $this->title = $this->context->title;
                             <?php } ?>
                         </div>
                     </div>
+
+                    <?= ViewedProducts::widget([]) ?>
 
                 </div>
             </div>
