@@ -39,8 +39,8 @@ use frontend\modules\catalog\models\ItalianProduct;
             <div class="prod-pricebox">
                 <?= Yii::t('app', 'Цена') ?>:
                 <span class="for-green">
-                    <?= $model['price_new'] ?>
-                    &nbsp;<span class="currency"><?= $model['currency'] ?></span>
+                    <?= Yii::$app->currency->getValue($model['price_new'], $model['currency']) ?>
+                    &nbsp;<span class="currency"><?= Yii::$app->currency->symbol ?></span>
                 </span>
             </div>
         <?php } ?>
