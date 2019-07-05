@@ -168,38 +168,54 @@ class ProductController extends BaseController
             'image' => Yii::$app->request->hostInfo . Product::getImage($model['image_link']),
         ]);
 
-        /**
-         * Viewed products
-         */
-        if (!isset(Yii::$app->request->cookies['viewed_products'])) {
-            Yii::$app->response->cookies->add(new \yii\web\Cookie([
-                'name' => 'viewed_products',
-                'value' => serialize([$model['id']]),
-                'expire' => time() + 86400 * 7,
-            ]));
-        } else {
-            $viewed = unserialize(Yii::$app->request->cookies->getValue('viewed_products'));
-
-            $ID = $model['id'];
-
-            if (!in_array($ID, $viewed) && count($viewed) == 12) {
-                $viewed = array_slice($viewed, 1, count($viewed));
-                $viewed[] = $ID;
-            } elseif (!in_array($ID, $viewed)) {
-                $viewed[] = $ID;
-            }
-
-            $viewed = serialize($viewed);
-
-            Yii::$app->response->cookies->add(new \yii\web\Cookie([
-                'name' => 'viewed_products',
-                'value' => $viewed,
-                'expire' => time() + 86400 * 7,
-            ]));
-        }
-
         return $this->render('view', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * @param $action
+     * @return bool
+     * @throws \Throwable
+     */
+    public function beforeAction($action)
+    {
+        $model = (isset($_GET['alias']))
+            ? Product::findByAlias($_GET['alias'])
+            : null;
+
+        if ($model !== null) {
+            /**
+             * Viewed products
+             */
+            if (!isset(Yii::$app->request->cookies['viewed_products'])) {
+                Yii::$app->response->cookies->add(new \yii\web\Cookie([
+                    'name' => 'viewed_products',
+                    'value' => serialize([$model['id']]),
+                    'expire' => time() + 86400 * 7,
+                ]));
+            } else {
+                $viewed = unserialize(Yii::$app->request->cookies->getValue('viewed_products'));
+
+                $ID = $model['id'];
+
+                if (!in_array($ID, $viewed) && count($viewed) == 12) {
+                    $viewed = array_slice($viewed, 1, count($viewed));
+                    $viewed[] = $ID;
+                } elseif (!in_array($ID, $viewed)) {
+                    $viewed[] = $ID;
+                }
+
+                $viewed = serialize($viewed);
+
+                Yii::$app->response->cookies->add(new \yii\web\Cookie([
+                    'name' => 'viewed_products',
+                    'value' => $viewed,
+                    'expire' => time() + 86400 * 7,
+                ]));
+            }
+        }
+
+        return parent::beforeAction($action);
     }
 }
