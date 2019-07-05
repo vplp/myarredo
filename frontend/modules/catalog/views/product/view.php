@@ -426,8 +426,6 @@ $this->title = $this->context->title;
 
             <?php endif; */ ?>
 
-                <?= ViewedProducts::widget([]) ?>
-
                 <?php
                 if ($model['collections_id']) {
                     echo $this->render('parts/_product_by_collection', [
@@ -444,6 +442,8 @@ $this->title = $this->context->title;
                         'models' => $model->getProductByFactory($model['factory_id'], $model['catalog_type_id'])
                     ]);
                 } ?>
+
+                <?= ViewedProducts::widget([]) ?>
 
             </div>
         </div>
