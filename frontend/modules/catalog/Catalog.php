@@ -3,6 +3,7 @@
 namespace frontend\modules\catalog;
 
 use Yii;
+use yii\web\Cookie;
 
 /**
  * Class Catalog
@@ -64,16 +65,16 @@ class Catalog extends \common\modules\catalog\Catalog
      * @param int $ID
      * @param string $cookieName
      */
-    public function getViewedProducts($ID, $cookieName = 'viewed_products')
+    public function getViewedProducts($ID, $cookieName)
     {
         if (!isset(Yii::$app->request->cookies[$cookieName])) {
-            Yii::$app->response->cookies->add(new \yii\web\Cookie([
+            Yii::$app->response->cookies->add(new Cookie([
                 'name' => $cookieName,
                 'value' => serialize([$ID]),
                 'expire' => time() + 86400 * 7,
             ]));
         } else {
-            $viewed = unserialize(Yii::$app->request->cookies->getValue('viewed_products'));
+            $viewed = unserialize(Yii::$app->request->cookies->getValue($cookieName));
 
             if (!in_array($ID, $viewed) && count($viewed) == 12) {
                 $viewed = array_slice($viewed, 1, count($viewed));
@@ -84,7 +85,7 @@ class Catalog extends \common\modules\catalog\Catalog
 
             $viewed = serialize($viewed);
 
-            Yii::$app->response->cookies->add(new \yii\web\Cookie([
+            Yii::$app->response->cookies->add(new Cookie([
                 'name' => $cookieName,
                 'value' => $viewed,
                 'expire' => time() + 86400 * 7,

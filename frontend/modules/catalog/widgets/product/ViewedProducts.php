@@ -26,7 +26,7 @@ class ViewedProducts extends Widget
     /**
      * @var string
      */
-    public $cookieName = 'viewed_products';
+    public $cookieName = null;
 
     /**
      * @var string
@@ -59,7 +59,9 @@ class ViewedProducts extends Widget
             $IDs = unserialize(Yii::$app->request->cookies->getValue($this->cookieName));
         }
 
-        $this->models = $modelClass::findBase()->byID($IDs)->all();
+        if (!empty($IDs)) {
+            $this->models = $modelClass::findBase()->byID($IDs)->asArray()->all();
+        }
     }
 
     /**
