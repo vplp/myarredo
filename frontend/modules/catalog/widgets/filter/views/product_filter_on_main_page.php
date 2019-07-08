@@ -2,6 +2,10 @@
 
 use yii\helpers\Url;
 
+/**
+ * @var $this \yii\web\View
+ */
+
 ?>
 
     <div class="filter"></div>
@@ -13,7 +17,6 @@ $ajax_get_types = Url::to(['/catalog/category/ajax-get-types']);
 $ajax_get_category = Url::to(['/catalog/category/ajax-get-category']);
 
 $script = <<<JS
-$(window).bind("load", function() {
     $.post('$url', {_csrf: $('#token').val()}, function(data){
         $('.filter').html(data.html);
         
@@ -45,4 +48,4 @@ $(window).bind("load", function() {
 });
 JS;
 
-$this->registerJs($script, yii\web\View::POS_END);
+$this->registerJs($script);

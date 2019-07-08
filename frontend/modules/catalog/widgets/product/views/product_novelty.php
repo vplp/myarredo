@@ -2,18 +2,20 @@
 
 use yii\helpers\Url;
 
+/**
+ * @var $this \yii\web\View
+ */
+
 ?>
 
-<div class="novelties"></div>
+    <div class="novelties"></div>
 
 <?php
 $url = Url::to(['/catalog/category/ajax-get-novelty']);
 $script = <<<JS
-$(window).bind("load", function() {
     $.post('$url', {_csrf: $('#token').val()}, function(data){
         $('.novelties').html(data.html);
     });
-});
 JS;
 
-$this->registerJs($script, yii\web\View::POS_END);
+$this->registerJs($script);
