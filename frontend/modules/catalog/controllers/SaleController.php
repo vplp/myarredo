@@ -231,6 +231,13 @@ class SaleController extends BaseController
             'image' => Yii::$app->request->hostInfo . Sale::getImage($model['image_link']),
         ]);
 
+        /**
+         * Viewed products
+         */
+        if ($model !== null) {
+            Yii::$app->getModule('catalog')->getViewedProducts($model['id'], 'viewed_sale');
+        }
+
         return $this->render('view', [
             'model' => $model,
         ]);

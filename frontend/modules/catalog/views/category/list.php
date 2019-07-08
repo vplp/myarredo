@@ -1,19 +1,20 @@
 <?php
 
-use frontend\modules\catalog\widgets\product\ViewedProducts;
 use yii\helpers\{
     Html, Url
 };
 use frontend\components\Breadcrumbs;
 //
+use frontend\modules\catalog\models\Product;
 use frontend\modules\catalog\widgets\filter\{
     ProductSorting, ProductFilter
 };
 use frontend\modules\catalog\widgets\paginator\PageChanger;
+use frontend\modules\catalog\widgets\product\ViewedProducts;
 
 /**
  * @var $pages \yii\data\Pagination
- * @var $model \frontend\modules\catalog\models\Product
+ * @var $model Product
  */
 
 $this->title = $this->context->title;
@@ -104,7 +105,7 @@ $this->title = $this->context->title;
                         </div>
                     </div>
 
-                    <?= ViewedProducts::widget([]) ?>
+                    <?= ViewedProducts::widget(['modelClass' => Product::class, 'cookieName' => 'viewed_products']) ?>
 
                 </div>
             </div>

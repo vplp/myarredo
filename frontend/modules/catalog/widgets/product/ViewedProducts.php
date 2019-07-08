@@ -4,12 +4,15 @@ namespace frontend\modules\catalog\widgets\product;
 
 use Yii;
 //
+use yii\base\Exception;
 use yii\base\Widget;
-//
-use frontend\modules\catalog\models\Product;
 
 /**
  * Class ViewedProducts
+ *
+ * @property string $modelClass
+ * @property string $cookieName
+ * @property object $models
  *
  * @package frontend\modules\catalog\widgets\products
  */
@@ -21,21 +24,42 @@ class ViewedProducts extends Widget
     public $view = 'viewed_products';
 
     /**
+     * @var string
+     */
+    public $cookieName = 'viewed_products';
+
+    /**
+     * @var string
+     */
+    public $modelClass = null;
+
+    /**
      * @var object
      */
-    protected $model = [];
+    protected $models = null;
 
     /**
      * Init model for run method
      */
     public function init()
     {
-        $ids = [];
-        if (isset(Yii::$app->request->cookies['viewed_products'])) {
-            $ids = unserialize(Yii::$app->request->cookies->getValue('viewed_products'));
+        if ($this->modelClass === null) {
+            throw new Exception(__CLASS__ . '::$modelClass must be set.');
         }
 
-        $this->model = Product::findBase()->byID($ids)->all();
+        if ($this->cookieName === null) {
+            throw new Exception(__CLASS__ . '::$cookieName must be set.');
+        }
+
+        $modelClass = new $this->modelClass();
+
+        $IDs = [];
+
+        if (isset(Yii::$app->request->cookies[$this->cookieName])) {
+            $IDs = unserialize(Yii::$app->request->cookies->getValue($this->cookieName));
+        }
+
+        $this->models = $modelClass::findBase()->byID($IDs)->all();
     }
 
     /**
@@ -46,7 +70,8 @@ class ViewedProducts extends Widget
         return $this->render(
             $this->view,
             [
-                'products' => $this->model
+                'products' => $this->models,
+                'modelClass' => $this->modelClass
             ]
         );
     }

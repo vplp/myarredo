@@ -11,6 +11,7 @@ use frontend\modules\catalog\models\{
 use frontend\modules\catalog\widgets\sale\{
     SaleRequestForm, SaleOfferPriceForm
 };
+use frontend\modules\catalog\widgets\product\ViewedProducts;
 use frontend\themes\myarredo\assets\AppAsset;
 
 $bundle = AppAsset::register($this);
@@ -265,6 +266,8 @@ $this->title = $this->context->title;
                         'types' => $model['types'],
                         'models' => Product::getProductByFactory($model['factory_id'], $model['catalog_type_id'])
                     ]) ?>
+
+                    <?= ViewedProducts::widget(['modelClass' => Sale::class, 'cookieName' => 'viewed_sale']) ?>
 
                 </div>
             </div>

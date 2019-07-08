@@ -6,6 +6,7 @@ use yii\data\Pagination;
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\widgets\filter\SaleFilter;
 use frontend\modules\catalog\models\Sale;
+use frontend\modules\catalog\widgets\product\ViewedProducts;
 
 /**
  * @var $pages Pagination
@@ -80,6 +81,9 @@ $this->title = $this->context->title;
                             <?= Yii::$app->metatag->seo_content ?>
                         </div>
                     </div>
+
+                    <?= ViewedProducts::widget(['modelClass' => Sale::class, 'cookieName' => 'viewed_sale']) ?>
+
                 </div>
             </div>
         </div>

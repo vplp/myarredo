@@ -2,6 +2,8 @@
 
 namespace frontend\modules\catalog;
 
+use Yii;
+
 /**
  * Class Catalog
  *
@@ -54,5 +56,39 @@ class Catalog extends \common\modules\catalog\Catalog
             $_SERVER['HTTP_USER_AGENT']
         );
         return $is_bot;
+    }
+
+    /**
+     * Viewed products
+     *
+     * @param int $ID
+     * @param string $cookieName
+     */
+    public function getViewedProducts($ID, $cookieName = 'viewed_products')
+    {
+        if (!isset(Yii::$app->request->cookies[$cookieName])) {
+            Yii::$app->response->cookies->add(new \yii\web\Cookie([
+                'name' => $cookieName,
+                'value' => serialize([$ID]),
+                'expire' => time() + 86400 * 7,
+            ]));
+        } else {
+            $viewed = unserialize(Yii::$app->request->cookies->getValue('viewed_products'));
+
+            if (!in_array($ID, $viewed) && count($viewed) == 12) {
+                $viewed = array_slice($viewed, 1, count($viewed));
+                $viewed[] = $ID;
+            } elseif (!in_array($ID, $viewed)) {
+                $viewed[] = $ID;
+            }
+
+            $viewed = serialize($viewed);
+
+            Yii::$app->response->cookies->add(new \yii\web\Cookie([
+                'name' => $cookieName,
+                'value' => $viewed,
+                'expire' => time() + 86400 * 7,
+            ]));
+        }
     }
 }

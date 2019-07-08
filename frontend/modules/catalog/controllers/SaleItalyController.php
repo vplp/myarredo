@@ -212,6 +212,13 @@ class SaleItalyController extends BaseController
             'content' => implode('. ', $pageDescription),
         ]);
 
+        /**
+         * Viewed products
+         */
+        if ($model !== null) {
+            Yii::$app->getModule('catalog')->getViewedProducts($model['id'], 'viewed_sale_italy');
+        }
+
         return $this->render('view', [
             'model' => $model,
         ]);

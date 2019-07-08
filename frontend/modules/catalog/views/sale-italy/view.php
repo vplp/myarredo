@@ -11,10 +11,11 @@ use frontend\modules\catalog\models\{
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\shop\widgets\request\RequestPrice;
 use frontend\modules\catalog\widgets\sale\SaleRequestForm;
+use frontend\modules\catalog\widgets\product\ViewedProducts;
 
 $bundle = AppAsset::register($this);
 /**
- * @var ItalianProduct $model
+ * @var $model ItalianProduct
  */
 
 $this->title = $this->context->title;
@@ -265,10 +266,11 @@ $this->title = $this->context->title;
                                     ); ?>
                                 </div>
                             </div>
-
                         <?php } ?>
 
                     </div>
+
+                    <?= ViewedProducts::widget(['modelClass' => ItalianProduct::class, 'cookieName' => 'viewed_sale_italy']) ?>
 
                 </div>
             </div>

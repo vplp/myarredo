@@ -443,7 +443,7 @@ $this->title = $this->context->title;
                     ]);
                 } ?>
 
-                <?= ViewedProducts::widget([]) ?>
+                <?= ViewedProducts::widget(['modelClass' => Product::class, 'cookieName' => 'viewed_products']) ?>
 
             </div>
         </div>

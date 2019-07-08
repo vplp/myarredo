@@ -1,15 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use frontend\modules\catalog\models\Product;
 
-/**
- * @var $model  Product
- */
-
-?>
-
-<?php if (!empty($products)) { ?>
+if (!empty($products)) { ?>
     <div class="rec-slider-wrap">
         <div class="flex c-align rec-header">
             <?= Html::tag('h3', Yii::t('app', 'Viewed products')) ?>
@@ -24,21 +17,21 @@ use frontend\modules\catalog\models\Product;
                             <?= Html::beginTag(
                                 'a',
                                 [
-                                    'href' => Product::getUrl($model['alias']),
+                                    'href' => $modelClass::getUrl($model['alias']),
                                     'class' => 'tile'
                                 ]
-                            ); ?>
+                            ) ?>
 
                             <div class="img-cont">
-                                <?= Html::img(Product::getImageThumb($model['image_link'])); ?>
+                                <?= Html::img($modelClass::getImageThumb($model['image_link'])) ?>
                                 <span class="background"></span>
                             </div>
 
                             <div class="add-item-text">
-                                <?= $model['lang']['title']; ?>
+                                <?= $model['lang']['title'] ?>
                             </div>
 
-                            <?= Html::endTag('a'); ?>
+                            <?= Html::endTag('a') ?>
 
                         </div>
 
@@ -48,5 +41,4 @@ use frontend\modules\catalog\models\Product;
             </div>
         </div>
     </div>
-
-<?php } ?>
+<?php }
