@@ -23,11 +23,8 @@ $bundle = AppAsset::register($this);
         <div class="container-wrap">
             <div class="top-home-img">
 
-                <div class="filter">
+                <?= ProductFilterOnMainPage::widget(); ?>
 
-                    <?= ProductFilterOnMainPage::widget(); ?>
-
-                </div>
             </div>
 
             <div class="best-price">

@@ -41,6 +41,9 @@ return [
     'catalog/<filter:[\=\;\-\w\d]+>' => 'catalog/category/list',
     'catalog/category/ajax-get-types' => 'catalog/category/ajax-get-types',
     'catalog/category/ajax-get-category' => 'catalog/category/ajax-get-category',
+    'catalog/category/ajax-get-novelty' => 'catalog/category/ajax-get-novelty',
+    'catalog/category/ajax-get-filter' => 'catalog/category/ajax-get-filter',
+
     'sale/<filter:[\=\;\-\/\w\d]+>' => 'catalog/sale/list',
     'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>' => 'catalog/template-factory/factory',
     'factory/<alias:[\w\-]+>' => 'catalog/factory/view',
