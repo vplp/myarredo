@@ -195,4 +195,4 @@ $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
 });
 JS;
 
-$this->registerJs($script, yii\web\View::POS_READY);
+$this->registerJs($script);

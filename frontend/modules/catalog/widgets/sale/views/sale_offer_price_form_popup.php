@@ -86,4 +86,4 @@ inputmask[4] = {"clearIncomplete":true,"mask":["+39 (99) 999-99-99","+39 (9999) 
 $('#salerequest-offerprice-phone').inputmask(inputmask[country_id]).trigger('focus').trigger("change");
 JS;
 
-$this->registerJs($script, yii\web\View::POS_READY);
+$this->registerJs($script);

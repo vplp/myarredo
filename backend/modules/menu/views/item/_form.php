@@ -106,4 +106,4 @@ $(document).on('change', '#menuitem-internal_source_id', function () {
 });
 JS;
 
-$this->registerJs($script, yii\web\View::POS_READY);
+$this->registerJs($script);

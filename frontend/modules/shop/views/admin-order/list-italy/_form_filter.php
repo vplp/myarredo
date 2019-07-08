@@ -82,4 +82,4 @@ $('select#factory_id').change(function(){
 });
 JS;
 
-$this->registerJs($script, yii\web\View::POS_READY);
+$this->registerJs($script);
