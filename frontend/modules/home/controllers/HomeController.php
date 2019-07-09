@@ -42,7 +42,6 @@ class HomeController extends BaseController
     /**
      * @param $action
      * @return bool
-     * @throws \yii\web\NotFoundHttpException
      */
     public function beforeAction($action)
     {

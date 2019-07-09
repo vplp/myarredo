@@ -11,10 +11,10 @@ use yii\helpers\Url;
     <div class="novelties"></div>
 
 <?php
-$url = Url::to(['/catalog/category/ajax-get-novelty']);
+$url = Url::to(['/seo/metrics/ajax-get-metrics']);
 $script = <<<JS
 $.post('$url', {_csrf: $('#token').val()}, function(data){
-    $('.novelties').html(data.html);
+    $("body").append(data.html);
 });
 JS;
 
