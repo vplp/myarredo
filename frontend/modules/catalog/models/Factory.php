@@ -362,6 +362,12 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->andFilterWhere(['IN', 'italianProductSpecification.alias', $params[$keys['style']]]);
         }
 
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["italianProduct.colors as italianProductColors"], false)
+                ->andFilterWhere(['IN', 'italianProductColors.alias', $params[$keys['colors']]]);
+        }
+
         return $query
             ->select([
                 self::tableName() . '.id',

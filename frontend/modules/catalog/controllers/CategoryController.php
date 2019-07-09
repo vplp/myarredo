@@ -6,7 +6,6 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\VerbFilter;
 use yii\web\Response;
-use yii\web\NotFoundHttpException;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{

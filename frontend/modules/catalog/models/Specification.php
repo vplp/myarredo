@@ -311,6 +311,12 @@ class Specification extends \common\modules\catalog\models\Specification
                 ->andFilterWhere(['IN', 'italianProductFactory.alias', $params[$keys['factory']]]);
         }
 
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["italianProduct.colors as italianProductColors"], false)
+                ->andFilterWhere(['IN', 'italianProductColors.alias', $params[$keys['colors']]]);
+        }
+
         return $query
             ->select([
                 self::tableName() . '.id',

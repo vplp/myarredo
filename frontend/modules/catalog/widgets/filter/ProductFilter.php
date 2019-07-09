@@ -52,6 +52,9 @@ class ProductFilter extends Widget
      */
     public $colors = [];
 
+    /**
+     * @inheritDoc
+     */
     public function init()
     {
         parent::init();
@@ -265,9 +268,9 @@ class ProductFilter extends Widget
             'types' => $types,
             'style' => $style,
             'factory' => $factory,
+            'colors' => $colors,
             'factory_first_show' => $factory_first_show,
             'min_max_price' => !empty($this->min_max_price) ? $this->min_max_price : ['maxPrice' => 0, 'minPrice' => 0],
-            'colors' => $colors,
             'filter' => Yii::$app->catalogFilter->params
         ]);
     }

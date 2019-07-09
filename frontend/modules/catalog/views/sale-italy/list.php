@@ -40,7 +40,8 @@ $this->title = $this->context->title;
                                 'category' => $category,
                                 'types' => $types,
                                 'style' => $style,
-                                'factory' => $factory
+                                'factory' => $factory,
+                                'colors' => $colors,
                             ]); ?>
 
                         </div>

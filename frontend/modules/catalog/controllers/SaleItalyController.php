@@ -19,7 +19,8 @@ use frontend\modules\catalog\models\{
     Category,
     Factory,
     Types,
-    Specification
+    Specification,
+    Colors
 };
 
 /**
@@ -90,6 +91,7 @@ class SaleItalyController extends BaseController
         $types = Types::getWithItalianProduct($queryParams);
         $style = Specification::getWithItalianProduct($queryParams);
         $factory = Factory::getWithItalianProduct($queryParams);
+        $colors = Colors::getWithItalianProduct($queryParams);
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
@@ -109,6 +111,7 @@ class SaleItalyController extends BaseController
             'types' => $types,
             'style' => $style,
             'factory' => $factory,
+            'colors' => $colors,
             'models' => $models->getModels(),
             'pages' => $models->getPagination()
         ]);

@@ -6,9 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 //
-use frontend\modules\catalog\models\{
-    ItalianProduct as ItalianProductModel, ItalianProductLang
-};
+use frontend\modules\catalog\models\{Colors, ItalianProduct as ItalianProductModel, ItalianProductLang};
 //
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 
@@ -106,6 +104,12 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
 
         if (isset($params[$keys['price']])) {
             $query->andFilterWhere(['between', self::tableName() . '.price', $params[$keys['price']][0], $params[$keys['price']][1]]);
+        }
+
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["colors"])
+                ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
         }
 
         $query->andFilterWhere(['like', ItalianProductLang::tableName() . '.title', $this->title]);

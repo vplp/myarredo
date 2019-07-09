@@ -350,6 +350,12 @@ class Category extends \common\modules\catalog\models\Category
                 ->andFilterWhere(['IN', 'italianProductFactory.alias', $params[$keys['factory']]]);
         }
 
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["italianProduct.colors as italianProductColors"], false)
+                ->andFilterWhere(['IN', 'italianProductColors.alias', $params[$keys['colors']]]);
+        }
+
         return $query
             ->innerJoinWith(["italianProduct"], false)
             ->andFilterWhere([
