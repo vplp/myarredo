@@ -1,6 +1,6 @@
 <?php if (Yii::$app->city->domain == 'ru') { ?>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script rel="preload" async defer src="https://www.googletagmanager.com/gtag/js?id=UA-54015829-1"></script>
+    <script async defer src="https://www.googletagmanager.com/gtag/js?id=UA-54015829-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -10,7 +10,7 @@
     </script>
 <?php } elseif (Yii::$app->city->domain == 'by') { ?>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script rel="preload" async defer src="https://www.googletagmanager.com/gtag/js?id=UA-54015829-4"></script>
+    <script async defer src="https://www.googletagmanager.com/gtag/js?id=UA-54015829-4"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -21,7 +21,7 @@
 
 <?php } elseif (Yii::$app->city->domain == 'ua') { ?>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script rel="preload" async defer src="https://www.googletagmanager.com/gtag/js?id=UA-54015829-3"></script>
+    <script async defer src="https://www.googletagmanager.com/gtag/js?id=UA-54015829-3"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
