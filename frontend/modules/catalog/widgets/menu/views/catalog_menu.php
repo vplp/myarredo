@@ -8,6 +8,9 @@ use frontend\modules\catalog\models\Category;
 
 /**
  * @var $model Category
+ * @var $category Category
+ * @var $categorySale Category
+ * @var $categorySaleItaly Category
  */
 
 ?>
@@ -36,19 +39,59 @@ use frontend\modules\catalog\models\Category;
         </div>
     </li>
 
-    <li<?= (Yii::$app->controller->id == 'sale') ? ' class="has-list"' : '' ?>>
+    <li<?= (Yii::$app->controller->id == 'sale') ? ' class="js-has-list has-list"' : ' class="js-has-list"' ?>>
         <?= Html::a(
             Yii::t('app', 'Sale'),
             Url::toRoute(['/catalog/sale/list'])
         ) ?>
+
+        <div class="list-level-wrap">
+            <ul class="list-level">
+
+                <?php foreach ($categorySale as $model) { ?>
+                    <li>
+                        <a href="<?= Category::getUrl($model['alias'], '/catalog/sale/list') ?>">
+                            <div class="img-cont">
+                                <?= Html::img(Category::getImage($model['image_link3'])); ?>
+                            </div>
+                            <?= $model['lang']['title'] ?>
+                        </a>
+                        <span class="count">
+                            <?= $model['count'] ?>
+                        </span>
+                    </li>
+                <?php } ?>
+
+            </ul>
+        </div>
     </li>
 
     <?php if (Yii::$app->city->domain == 'ru') { ?>
-        <li<?= (Yii::$app->controller->id == 'sale-italy') ? ' class="has-list"' : '' ?>>
+        <li<?= (Yii::$app->controller->id == 'sale-italy') ? ' class="js-has-list has-list"' : ' class="js-has-list"' ?>>
             <?= Html::a(
                 Yii::t('app', 'Sale in Italy'),
                 Url::toRoute(['/catalog/sale-italy/list'])
             ) ?>
+
+            <div class="list-level-wrap">
+                <ul class="list-level">
+
+                    <?php foreach ($categorySaleItaly as $model) { ?>
+                        <li>
+                            <a href="<?= Category::getUrl($model['alias'], '/catalog/sale-italy/list') ?>">
+                                <div class="img-cont">
+                                    <?= Html::img(Category::getImage($model['image_link3'])); ?>
+                                </div>
+                                <?= $model['lang']['title'] ?>
+                            </a>
+                            <span class="count">
+                            <?= $model['count'] ?>
+                        </span>
+                        </li>
+                    <?php } ?>
+
+                </ul>
+            </div>
         </li>
     <?php } ?>
 

@@ -117,11 +117,12 @@ class Category extends \common\modules\catalog\models\Category
 
     /**
      * @param string $alias
+     * @param string $route
      * @return string
      */
-    public static function getUrl(string $alias)
+    public static function getUrl(string $alias, $route = '/catalog/category/list')
     {
-        return Url::toRoute(['/catalog/category/list', 'filter' => $alias], true);
+        return Url::toRoute([$route, 'filter' => $alias], true);
     }
 
     /**
