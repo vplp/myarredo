@@ -81,7 +81,7 @@ $Specifications = Specification::findBase()->all();
 
         <?php
         foreach ($Specifications as $Specification) {
-            if (in_array($Specification['id'], [60])) {
+            if ($Specification['id'] == 60) {
                 $value = [];
                 foreach ($specification_value as $k => $v) {
                     if ($v == $Specification['id']) {
@@ -158,10 +158,10 @@ $Specifications = Specification::findBase()->all();
                 </div>
                 <?php
             } elseif ($Specification['id'] == 2) {
-                $value = null;
+                $value = [];
                 foreach ($specification_value as $k => $v) {
                     if ($v == $Specification['id']) {
-                        $value = $k;
+                        $value[] = $k;
                     }
                 }
                 ?>
@@ -178,10 +178,10 @@ $Specifications = Specification::findBase()->all();
                             'data' => $Specification->getChildrenDropDownList() +
                                 ['0' => Yii::t('app', 'Другое')],
                             'options' => [
-                                'placeholder' => Yii::t('app', 'Select option')
+                                'placeholder' => Yii::t('app', 'Select option'),
+                                'multiple' => true,
                             ]
                         ]) ?>
-
                     </div>
                     <div class="col-sm-5">
                         <?= $form
@@ -197,7 +197,6 @@ $Specifications = Specification::findBase()->all();
                             ->label(false) ?>
                     </div>
                 </div>
-
 
                 <?php
             } elseif ($Specification['id'] == 9) {
@@ -375,17 +374,17 @@ if (type_id == 3) {
     $('#select-specification-for-kitchen option').attr('selected', false).trigger("change");
 }
 
-var material_id = $('select[name="SpecificationValue[2]"]').find('option:selected').val();
+var material_ids = $('select[name="SpecificationValue[2][]"]').val();
 var material_text = $('input[name="ItalianProductLang[material]"]').val();
 
-if (!isNaN(material_id) && material_text != '') {
+if (material_ids.includes('0')) {
     $('.field-specification-for-kitchen').show();
 } else {
     $('#italianproductlang-material').hide();
 }
 
-$('select[name="SpecificationValue[2]"]').on('change', function () {
-    if ($(this).val() == 0) {
+$('select[name="SpecificationValue[2][]"]').on('change', function () {
+    if ($(this).val().includes('0')) {
         $('#italianproductlang-material').show();
     } else {
         $('#italianproductlang-material').hide();

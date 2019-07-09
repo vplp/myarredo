@@ -419,7 +419,7 @@ class ItalianProduct extends ActiveRecord
             // save relation ItalianProductRelSpecification
             if (Yii::$app->request->getBodyParam('SpecificationValue')) {
                 foreach (Yii::$app->request->getBodyParam('SpecificationValue') as $specification_id => $val) {
-                    if (in_array($specification_id, [2, 9]) && $val) {
+                    if (in_array($specification_id, [9]) && $val) {
                         $model = new ItalianProductRelSpecification();
 
                         $model->setScenario('backend');
@@ -427,7 +427,7 @@ class ItalianProduct extends ActiveRecord
                         $model->specification_id = $val;
                         $model->val = $specification_id;
                         $model->save();
-                    } elseif (in_array($specification_id, [60]) && is_array($val)) {
+                    } elseif (in_array($specification_id, [2, 60]) && is_array($val)) {
                         foreach ($val as $v) {
                             $model = new ItalianProductRelSpecification();
 
@@ -435,7 +435,6 @@ class ItalianProduct extends ActiveRecord
                             $model->item_id = $this->id;
                             $model->specification_id = $specification_id;
                             $model->val = $v;
-
                             $model->save();
                         }
                     } else {
@@ -445,7 +444,6 @@ class ItalianProduct extends ActiveRecord
                         $model->item_id = $this->id;
                         $model->specification_id = $specification_id;
                         $model->val = $val;
-
                         $model->save();
                     }
                 }
@@ -601,16 +599,16 @@ class ItalianProduct extends ActiveRecord
 
         $style = $material = [];
         foreach ($specification as $obj) {
-            if ($obj->parent_id === '9') {
+            if ($obj->parent_id == '9') {
                 $style[] = $obj->id;
             }
-            if ($obj->parent_id === '2') {
+            if ($obj->parent_id == '2') {
                 $material[] = $obj->id;
             }
         }
 
         foreach ($this->specificationValue as $v) {
-            if ($v['specification_id'] == 60) {
+            if (in_array($v['specification_id'], [2, 60])) {
                 $mas[$v['val']] = $v['specification_id'];
             } else {
                 $mas[$v['specification_id']] = $v['val'];
@@ -619,6 +617,7 @@ class ItalianProduct extends ActiveRecord
             if (in_array($v['specification_id'], $style)) {
                 $mas['style'] = $v['specification_id'];
             }
+
             if (in_array($v['specification_id'], $material)) {
                 $mas['material'] = $v['specification_id'];
             }

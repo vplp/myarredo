@@ -169,14 +169,17 @@ $this->title = $this->context->title;
 
                                     <?php
                                     $array = [];
+                                    $nameSpecification = '';
                                     foreach ($model['specificationValue'] as $item) {
-                                        if ($item['specification']['parent_id'] == 2) {
-                                            $array[] = $item['specification']['lang']['title'];
+                                        if ($item['specification']['id'] == 2) {
+                                            $nameSpecification = $item['specification']['lang']['title'];
+                                            $array[] = $item['specificationByVal']['lang']['title'];
                                         }
                                     }
+
                                     if (!empty($array) || $model['lang']['material'] != '') { ?>
                                         <tr>
-                                            <td><?= Yii::t('app', 'Материал') ?></td>
+                                            <td><?= $nameSpecification ?></td>
                                             <td>
                                                 <?= !empty($array)
                                                     ? implode('; ', $array)
