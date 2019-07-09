@@ -1,4 +1,4 @@
-<?php $this->render('parts/_jivosite') ?>
+<?= $this->render('parts/_jivosite') ?>
 
 <?= $this->render('parts/_yandex_metrika') ?>
 
