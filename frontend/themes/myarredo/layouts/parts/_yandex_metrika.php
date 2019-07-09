@@ -1,5 +1,4 @@
-<?php if (Yii::$app->city->domain == 'ru'): ?>
-
+<?php if (Yii::$app->city->domain == 'ru') { ?>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function (d, w, c) {
@@ -24,6 +23,7 @@
                 };
             s.type = "text/javascript";
             s.async = true;
+            s.defer = true;
             s.src = "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/watch.js";
 
             if (w.opera == "[object Opera]") {
@@ -37,9 +37,7 @@
         <div><img src="https://mc.yandex.ru/watch/24814823" style="position:absolute; left:-9999px;" alt=""/></div>
     </noscript>
     <!-- /Yandex.Metrika counter -->
-
-<?php elseif (Yii::$app->city->domain == 'by'): ?>
-
+<?php } elseif (Yii::$app->city->domain == 'by') { ?>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
         (function (d, w, c) {
@@ -60,6 +58,7 @@
                 f = function () { n.parentNode.insertBefore(s, n); };
             s.type = "text/javascript";
             s.async = true;
+            s.defer = true;
             s.src = "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/watch.js";
 
             if (w.opera == "[object Opera]") {
@@ -69,9 +68,7 @@
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/24880844" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
-
-<?php elseif (Yii::$app->city->domain == 'ua'): ?>
-
+<?php } elseif (Yii::$app->city->domain == 'ua') { ?>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
         (function (d, w, c) {
@@ -92,6 +89,7 @@
                 f = function () { n.parentNode.insertBefore(s, n); };
             s.type = "text/javascript";
             s.async = true;
+            s.defer = true;
             s.src = "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/watch.js";
 
             if (w.opera == "[object Opera]") {
@@ -101,5 +99,4 @@
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/39354035" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
-
-<?php endif; ?>
+<?php } ?>

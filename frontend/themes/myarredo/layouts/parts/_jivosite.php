@@ -14,6 +14,7 @@ if (Yii::$app->getUser()->isGuest && Yii::$app->city->domain == 'ru' &&
                 var s = document.createElement('script');
                 s.type = 'text/javascript';
                 s.async = true;
+                s.defer = true;
                 s.src = '//code.jivosite.com/script/geo-widget/' + widget_id;
                 var ss = document.getElementsByTagName('script')[0];
                 ss.parentNode.insertBefore(s, ss);
