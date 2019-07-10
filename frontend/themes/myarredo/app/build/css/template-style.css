@@ -2562,20 +2562,20 @@ h1 {
     display: flex; }
   .sale-page .prod-info .price {
     height: 32px;
-    font-size: 13px;
+    font-size: 12px;
     padding: 0 7px !important;
     display: flex;
     align-items: center;
     text-transform: uppercase;
-    margin-right: 15px; }
+    margin-right: 8px; }
     .sale-page .prod-info .price span {
-      font-size: 23px;
+      font-size: 21px;
       font-weight: 700;
       margin-left: 3px; }
   .sale-page .prod-info .economy {
     background: #E3E0D5;
     color: #535351;
-    font-size: 13px;
+    font-size: 12px;
     margin-right: 0; }
   .sale-page .prod-style {
     border-top: none;
@@ -5949,6 +5949,9 @@ h1 {
     width: 100%; }
   .container {
     width: 300px; }
+  .container.mob-fulwidth {
+    width: 100%;
+  }
   .sale {
     margin-bottom: 20px; }
   .sale .left-side {
@@ -8841,6 +8844,9 @@ h1 {
 @media (max-width: 400px) {
   .itprod-panel-add {
     flex-direction: column;
+  }
+  .concact-page .mob-fulwidth .map-cont {
+    padding: 16px 5px;
   }
 }
 @media (max-width: 355px) {

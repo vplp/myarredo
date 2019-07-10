@@ -13,7 +13,6 @@ $(document).ready(function () {
     if ($('.custom-lazy').length > 0) {
         setTimeout(function() {
             var custlazyUrl = $('.custom-lazy').attr('data-background');
-            console.log(custlazyUrl);
             $('.custom-lazy').css('background-image', 'url('+ custlazyUrl +')');
         }, 1000);
     }
