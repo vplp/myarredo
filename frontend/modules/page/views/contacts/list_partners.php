@@ -11,7 +11,7 @@ $this->title = $this->context->title;
 
 <main>
     <div class="page concact-page">
-        <div class="container large-container">
+        <div class="container large-container mob-fulwidth">
             <div class="col-md-12">
                 <?= Html::tag('h1', $this->context->title); ?>
 
