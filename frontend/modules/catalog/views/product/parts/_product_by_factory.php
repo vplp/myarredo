@@ -47,7 +47,7 @@ $keys = Yii::$app->catalogFilter->keys;
                             ); ?>
 
                             <div class="img-cont">
-                                <?= Html::img(Product::getImageThumb($model['image_link'])); ?>
+                                <?= Html::img('', ['class' => 'lazy', 'data-src' => Product::getImageThumb($model['image_link'])]); ?>
                                 <span class="background"></span>
                             </div>
 

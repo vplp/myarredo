@@ -32,10 +32,12 @@ use frontend\modules\catalog\models\{
         <div class="img-cont" data-dominant-color>
             <span class="background"></span>
             <?= Html::img(
-                Product::getImageThumb($model['image_link']),
+                '',
                 [
                     'alt' => Product::getStaticTitle($model),
-                    'itemprop' => 'contentUrl'
+                    'itemprop' => 'contentUrl',
+                    'class' => 'lazy',
+                    'data-src' => Product::getImageThumb($model['image_link'])
                 ]
             ) ?>
         </div>

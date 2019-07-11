@@ -20,10 +20,12 @@ use frontend\modules\catalog\models\Sale;
         <div class="img-cont" data-dominant-color>
             <span class="background"></span>
             <?= Html::img(
-                Sale::getImageThumb($model['image_link']),
+                '',
                 [
                     'alt' => $model->getTitle(),
-                    'itemprop' => 'contentUrl'
+                    'itemprop' => 'contentUrl',
+                    'class' => 'lazy',
+                    'data-src' => Sale::getImageThumb($model['image_link'])
                 ]
             ); ?>
         </div>
