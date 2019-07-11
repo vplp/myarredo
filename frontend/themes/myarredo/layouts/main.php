@@ -46,8 +46,6 @@ $this->beginPage();
 
     <?= $this->render('parts/_google_metrika', []) ?>
 
-    <?php //\frontend\modules\seo\widgets\AjaxMetrics::widget() ?>
-
     <input type="hidden" id="token" value="<?= Yii::$app->request->getCsrfToken() ?>">
 
     <?php $this->endBody() ?>
