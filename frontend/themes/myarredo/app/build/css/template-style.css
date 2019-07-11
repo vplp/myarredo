@@ -296,6 +296,12 @@ h1 {
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center; }
+        .header .bot-header .navigation .second-link .list-level:before {
+          left: 33%;
+        }
+        .header .bot-header .navigation .third-link .list-level:before {
+          left: 46%;
+        }
         .header .bot-header .navigation .list-level:after {
           content: "";
           position: absolute;
