@@ -20,7 +20,7 @@ $this->title = $this->context->title;
                     <?= PartnerMap::widget([]) ?>
 
                     <?= Html::a(
-                        Yii::t('app','Вернуться назад'),
+                        Yii::t('app', 'Вернуться назад'),
                         Url::toRoute('/page/contacts/index'),
                         ['class' => 'view-all']
                     ); ?>

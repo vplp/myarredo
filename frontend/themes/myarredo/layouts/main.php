@@ -40,13 +40,11 @@ $this->beginPage();
 
     <?= $this->render('parts/_footer', []) ?>
 
-    <?php $this->render('parts/_jivosite', []) ?>
+    <?= $this->render('parts/_jivosite', []) ?>
 
-    <?php $this->render('parts/_yandex_metrika', []) ?>
+    <?= $this->render('parts/_yandex_metrika', []) ?>
 
-    <?php $this->render('parts/_google_metrika', []) ?>
-
-    <?php //\frontend\modules\seo\widgets\AjaxMetrics::widget() ?>
+    <?= $this->render('parts/_google_metrika', []) ?>
 
     <input type="hidden" id="token" value="<?= Yii::$app->request->getCsrfToken() ?>">
 
