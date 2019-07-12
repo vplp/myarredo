@@ -16,7 +16,7 @@ use frontend\modules\catalog\models\Category;
 ?>
 
 <ul class="navigation">
-    <li<?= (Yii::$app->controller->id == 'category') ? ' class="js-has-list has-list"' : ' class="js-has-list"' ?>>
+    <li <?= (Yii::$app->controller->id == 'category') ? ' class="js-has-list has-list first-link"' : ' class="js-has-list first-link"' ?>>
         <?= Html::a(Yii::t('app', 'Catalog of furniture'), ['/catalog/category/list']); ?>
         <div class="list-level-wrap">
             <ul class="list-level">
@@ -39,7 +39,7 @@ use frontend\modules\catalog\models\Category;
         </div>
     </li>
 
-    <li<?= (Yii::$app->controller->id == 'sale') ? ' class="js-has-list has-list"' : ' class="js-has-list"' ?>>
+    <li <?= (Yii::$app->controller->id == 'sale') ? ' class="js-has-list has-list second-link"' : ' class="js-has-list second-link"' ?>>
         <?= Html::a(
             Yii::t('app', 'Sale'),
             Url::toRoute(['/catalog/sale/list'])
@@ -67,7 +67,7 @@ use frontend\modules\catalog\models\Category;
     </li>
 
     <?php if (Yii::$app->city->domain == 'ru') { ?>
-        <li<?= (Yii::$app->controller->id == 'sale-italy') ? ' class="js-has-list has-list"' : ' class="js-has-list"' ?>>
+        <li <?= (Yii::$app->controller->id == 'sale-italy') ? ' class="js-has-list has-list third-link"' : ' class="js-has-list third-link"' ?>>
             <?= Html::a(
                 Yii::t('app', 'Sale in Italy'),
                 Url::toRoute(['/catalog/sale-italy/list'])
@@ -95,14 +95,14 @@ use frontend\modules\catalog\models\Category;
         </li>
     <?php } ?>
 
-    <li<?= (Yii::$app->controller->id == 'factory') ? ' class="has-list"' : '' ?>>
+    <li <?= (Yii::$app->controller->id == 'factory') ? ' class="has-list"' : '' ?>>
         <?= Html::a(
             Yii::t('app', 'Фабрики'),
             Url::toRoute(['/catalog/factory/list'])
         ) ?>
     </li>
 
-    <li<?= (Yii::$app->controller->id == 'contacts') ? ' class="has-list"' : '' ?>>
+    <li <?= (Yii::$app->controller->id == 'contacts') ? ' class="has-list"' : '' ?>>
         <?= Html::a(
             Yii::t('app', 'Где купить'),
             Url::toRoute(['/page/page/view', 'alias' => 'contacts'])

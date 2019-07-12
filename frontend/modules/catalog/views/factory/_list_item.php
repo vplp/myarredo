@@ -22,7 +22,7 @@ $keys = Yii::$app->catalogFilter->keys;
 
     <div class="flex column-direction">
         <div class="logo-img">
-            <?= Html::img(Factory::getImageThumb($model['image_link'])); ?>
+            <?= Html::img('', ['class' => 'lazy', 'data-src' => Factory::getImageThumb($model['image_link'])]); ?>
         </div>
         <?= Html::tag('h2', $model['title']); ?>
     </div>

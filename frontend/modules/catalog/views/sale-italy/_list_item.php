@@ -18,10 +18,12 @@ use frontend\modules\catalog\models\ItalianProduct;
         <div class="img-cont" data-dominant-color>
             <span class="background"></span>
             <?= Html::img(
-                ItalianProduct::getImageThumb($model['image_link']),
+                '',
                 [
                     'alt' => $model->getTitle(),
-                    'itemprop' => 'contentUrl'
+                    'itemprop' => 'contentUrl',
+                    'class' => 'lazy',
+                    'data-src' => ItalianProduct::getImageThumb($model['image_link'])
                 ]
             ) ?>
         </div>
