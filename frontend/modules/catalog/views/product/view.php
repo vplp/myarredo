@@ -70,7 +70,7 @@ $this->title = $this->context->title;
 
                                 <?php if (!$model['removed'] && $model['price_from'] > 0) { ?>
                                     <div class="price-sticker">
-                                        <?= Yii::t('app', 'Цена от') ?>:
+                                        <?= Yii::t('app', 'Цена от') ?><span>&#126;</span>
                                         <span>
                                         <?= Yii::$app->currency->getValue($model['price_from'], $model['currency']); ?>
                                             &nbsp;<span class="currency"><?= Yii::$app->currency->symbol ?></span>
