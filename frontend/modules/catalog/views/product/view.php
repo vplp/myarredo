@@ -67,7 +67,7 @@ $this->title = $this->context->title;
                         <div class="prod-info-table">
                             <div class="price-availability" itemprop="offers" itemscope
                                  itemtype="http://schema.org/Offer">
-                                <!--
+
                                 <?php if (!$model['removed'] && $model['price_from'] > 0) { ?>
                                     <div class="price-sticker">
                                         <?= Yii::t('app', 'Цена от') ?><span>&#126;</span>
@@ -83,7 +83,7 @@ $this->title = $this->context->title;
                                     <meta itemprop="price" content="0"/>
                                     <meta itemprop="priceCurrency" content="EUR"/>
                                 <?php } ?>
-                                -->
+
                                 <div class="availability">
                                     <?= Yii::t('app', 'Наличие') ?>:
                                     <span><?= ($model['status']) ?></span>
