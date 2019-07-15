@@ -5,11 +5,15 @@ use kartik\widgets\Select2;
 use backend\modules\catalog\models\{
     Category, Factory, Types
 };
+use backend\app\bootstrap\ActiveForm;
+use backend\modules\catalog\models\{
+    Sale, SaleLang
+};
 
 /**
- * @var \backend\modules\catalog\models\Sale $model
- * @var \backend\modules\catalog\models\SaleLang $modelLang
- * @var \backend\app\bootstrap\ActiveForm $form
+ * @var $form ActiveForm
+ * @var $model Sale $model
+ * @var $modelLang SaleLang
  */
 ?>
 

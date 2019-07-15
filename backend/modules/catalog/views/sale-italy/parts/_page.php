@@ -1,8 +1,14 @@
 <?php
 
+use backend\app\bootstrap\ActiveForm;
+use backend\modules\catalog\models\{
+    ItalianProduct, ItalianProductLang
+};
+
 /**
- * @var \backend\modules\catalog\models\ItalianProduct $model
- * @var \backend\app\bootstrap\ActiveForm $form
+ * @var $form ActiveForm
+ * @var $model ItalianProduct $model
+ * @var $modelLang ItalianProductLang
  */
 
 echo $form->text_editor_lang($modelLang, 'description');

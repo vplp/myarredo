@@ -5,13 +5,13 @@ use kartik\widgets\Select2;
 use backend\app\bootstrap\ActiveForm;
 use backend\modules\catalog\models\Colors;
 use backend\modules\catalog\models\{
-    ItalianProduct, ItalianProductLang
+    Sale, SaleLang
 };
 
 /**
  * @var $form ActiveForm
- * @var $model ItalianProduct $model
- * @var $modelLang ItalianProductLang
+ * @var $model Sale $model
+ * @var $modelLang SaleLang
  */
 
 echo $form

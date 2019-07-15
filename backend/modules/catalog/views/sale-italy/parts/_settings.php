@@ -2,14 +2,18 @@
 
 use kartik\widgets\Select2;
 //
+use backend\app\bootstrap\ActiveForm;
 use backend\modules\catalog\models\{
     Category, Factory, Types
 };
+use backend\modules\catalog\models\{
+    ItalianProduct, ItalianProductLang
+};
 
 /**
- * @var \backend\modules\catalog\models\ItalianProduct $model
- * @var \backend\modules\catalog\models\ItalianProductLang $modelLang
- * @var \backend\app\bootstrap\ActiveForm $form
+ * @var $form ActiveForm
+ * @var $model ItalianProduct $model
+ * @var $modelLang ItalianProductLang
  */
 ?>
 

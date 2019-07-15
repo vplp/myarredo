@@ -65,7 +65,7 @@ $this->title = $this->context->title;
                             ); ?>
                         </div>
                         <div class="prod-info-table">
-                            <div class="price-availability" itemprop="offers" itemscope
+                            <div style="display: none;" class="price-availability" itemprop="offers" itemscope
                                  itemtype="http://schema.org/Offer">
 
                                 <?php if (!$model['removed'] && $model['price_from'] > 0) { ?>

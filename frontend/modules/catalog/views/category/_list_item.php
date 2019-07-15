@@ -55,7 +55,7 @@ use frontend\modules\catalog\models\{
         </div>
 
         <?php if (!$model['removed'] && $model['price_from'] > 0) { ?>
-            <div class="prod-pricebox">
+            <div class="prod-pricebox" style="display: none;">
                 <?= Yii::t('app', 'Цена от') ?><span>&#126;</span>
                 <span class="for-green">
                     <?= Yii::$app->currency->getValue($model['price_from'], $model['currency']) ?>

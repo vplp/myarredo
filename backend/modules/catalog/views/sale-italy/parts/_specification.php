@@ -1,16 +1,17 @@
 <?php
 
+use backend\app\bootstrap\ActiveForm;
 use backend\modules\catalog\models\{
-    ItalianProductRelSpecification, Specification
+    ItalianProduct, ItalianProductLang, ItalianProductRelSpecification, Specification
 };
 use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;
-//
 use backend\widgets\TreeGrid;
 
-/* @var $this yii\web\View */
-/* @var $form yii\widgets\ActiveForm */
-/* @var $model backend\modules\catalog\models\Product */
-
+/**
+ * @var $form ActiveForm
+ * @var $model ItalianProduct $model
+ * @var $modelLang ItalianProductLang
+ */
 
 echo $form->text_line($model, 'volume');
 echo $form->text_line($model, 'weight');

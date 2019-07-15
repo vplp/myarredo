@@ -2,16 +2,22 @@
 
 use backend\app\bootstrap\ActiveForm;
 use backend\widgets\Tabs;
+use backend\modules\catalog\models\{
+    Sale, SaleLang
+};
 
 /**
- * @var \backend\app\bootstrap\ActiveForm $form
- * @var \backend\modules\catalog\models\Sale $model
+ * @var $form ActiveForm
+ * @var $model Sale $model
+ * @var $modelLang SaleLang
  */
 
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
+
 <?= $form->submit($model, $this) ?>
+
 <?= Tabs::widget([
     'items' => [
         [
@@ -46,7 +52,17 @@ use backend\widgets\Tabs;
                 'modelLang' => $modelLang
             ])
         ],
+        [
+            'label' => Yii::t('app', 'Colors'),
+            'content' => $this->render('parts/_colors', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
     ]
 ]) ?>
+
 <?= $form->submit($model, $this) ?>
-<?php ActiveForm::end(); ?>
+
+<?php ActiveForm::end();

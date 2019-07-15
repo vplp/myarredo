@@ -2,10 +2,14 @@
 
 use backend\app\bootstrap\ActiveForm;
 use backend\widgets\Tabs;
+use backend\modules\catalog\models\{
+    ItalianProduct, ItalianProductLang
+};
 
 /**
- * @var \backend\app\bootstrap\ActiveForm $form
- * @var \backend\modules\catalog\models\ItalianProduct $model
+ * @var $form ActiveForm
+ * @var $model ItalianProduct $model
+ * @var $modelLang ItalianProductLang
  */
 
 ?>
