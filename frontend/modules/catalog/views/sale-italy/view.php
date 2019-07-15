@@ -83,6 +83,11 @@ $this->title = $this->context->title;
                                         </div>
                                     </div>
                                 <?php } ?>
+
+                                <div class="alert" role="alert">
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                    <?= Yii::t('app', 'Доставка товара от 20 дней') ?>
+                                </div>
                             </div>
 
                             <table class="info-table itproduct-table" width="100%">

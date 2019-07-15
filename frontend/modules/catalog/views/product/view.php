@@ -109,7 +109,6 @@ $this->title = $this->context->title;
                                 <?= Yii::t('app', 'Окончательная цена согласовывается с продавцом.') ?>
                             </div>
 
-
                             <?php if (!Yii::$app->getUser()->isGuest && $model['factory']['new_price']) { ?>
                                 <div class="alert alert-danger" role="alert">
                                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>

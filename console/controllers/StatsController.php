@@ -8,6 +8,7 @@ use yii\console\Controller;
 use frontend\modules\catalog\models\{
     ProductStats, ProductStatsDays
 };
+use frontend\modules\shop\models\Order;
 
 /**
  * Class StatsController
@@ -16,7 +17,10 @@ use frontend\modules\catalog\models\{
  */
 class StatsController extends Controller
 {
-    public function actionIndex()
+    /**
+     *
+     */
+    public function actionViews()
     {
         $this->stdout("Start. \n", Console::FG_GREEN);
 
@@ -25,13 +29,12 @@ class StatsController extends Controller
         $data = ProductStats::find()
             ->innerJoinWith(["product"])
             ->where([
-                ProductStats::tableName().'.mark' => '0',
+                ProductStats::tableName() . '.mark' => '0',
             ])
             ->limit(5000)
             ->all();
 
         foreach ($data as $item) {
-
             $timestamp = strtotime(date('d-m-Y', $item['created_at']));
             $date = mktime(0, 0, 0, date("m", $timestamp), date("d", $timestamp), date("Y", $timestamp));
 
@@ -59,12 +62,66 @@ class StatsController extends Controller
 
             $model->views = $model->views + 1;
 
-            if($model->save()) {
+            if ($model->save()) {
                 $item->setScenario('setMark');
                 $item->mark = '1';
                 $item->save();
             }
         }
+
+        $this->stdout("Finish. \n", Console::FG_GREEN);
+    }
+
+    /**
+     *
+     */
+    public function actionRequests()
+    {
+        $this->stdout("Start. \n", Console::FG_GREEN);
+
+//        $data = Order::find()
+//            ->innerJoinWith(['items'])
+//            ->where([
+//                ProductStats::tableName() . '.mark' => '0', // add mark
+//            ])
+//            ->limit(100)
+//            ->orderBy(['created_at' => SORT_DESC])
+//            ->all();
+//
+//        foreach ($data as $item) {
+//            $timestamp = strtotime(date('d-m-Y', $item['created_at']));
+//            $date = mktime(0, 0, 0, date("m", $timestamp), date("d", $timestamp), date("Y", $timestamp));
+//
+//            $model = ProductStatsDays::find()
+//                ->andWhere([
+//                    'product_id' => $item['product_id'],
+//                    'city_id' => $item['city_id'],
+//                    'factory_id' => $item['product']['factory_id'],
+//                    'city_id' => $item['city_id'],
+//                    'date' => $date,
+//                ])
+//                ->one();
+//
+//            if ($model == null) {
+//                $model = new ProductStatsDays();
+//            }
+//
+//            $model->setScenario('frontend');
+//
+//            $model->product_id = $item['product']['id'];
+//            $model->factory_id = $item['product']['factory_id'];
+//            $model->country_id = 0;
+//            $model->city_id = $item['city_id'];
+//            $model->date = $date;
+//
+//            $model->requests = $model->requests + 1;
+//
+//            if ($model->save()) {
+//                $item->setScenario('setMark');
+//                $item->mark = '1';
+//                $item->save();
+//            }
+//        }
 
         $this->stdout("Finish. \n", Console::FG_GREEN);
     }
