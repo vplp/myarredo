@@ -171,6 +171,45 @@ use frontend\modules\catalog\models\{
             </div>
         <?php } ?>
 
+        <?php if ($colors) { ?>
+            <div class="one-filter open colors-box">
+                <?= Html::a(
+                    Yii::t('app', 'Color'),
+                    'javascript:void(0);',
+                    ['class' => 'filt-but']
+                ) ?>
+                <div class="list-item">
+
+                    <?php
+                    foreach ($colors as $item) {
+                        $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
+                        echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
+                        ?>
+                        <div class="filter-group">
+                            <div class="my-checkbox"
+                                 style="background-color:<?= $item['color_code'] ?>;"></div><?= $item['title'] ?>
+                        </div>
+                        <span><?= $item['count'] ?></span>
+                        <?php
+                        echo Html::endTag('a');
+                    } ?>
+
+                </div>
+
+                <?php if (count($colors) > 10) {
+                    echo Html::a(
+                        '<span class="btn-text">' . Yii::t('app', 'Show all colors') . '</span>',
+                        'javascript:void(0);',
+                        [
+                            'class' => 'show-all-sub show-more show-class',
+                            'data-variant' => 'Скрыть',
+                        ]
+                    );
+                } ?>
+
+            </div>
+        <?php } ?>
+
         <?= Html::hiddenInput('sort', Yii::$app->request->get('sort') ?? null) ?>
         <?= Html::hiddenInput('object', Yii::$app->request->get('object') ?? null) ?>
 

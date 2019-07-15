@@ -6,9 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 //
-use frontend\modules\catalog\models\{
-    Sale as SaleModel, SaleLang
-};
+use frontend\modules\catalog\models\{Colors, Sale as SaleModel, SaleLang};
 use frontend\modules\location\models\{
     Country, City
 };
@@ -101,6 +99,12 @@ class Sale extends SaleModel implements BaseBackendSearchModel
             $query
                 ->innerJoinWith(["factory"])
                 ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
+        }
+
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["colors"])
+                ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
         }
 
         if (isset($params[$keys['price']])) {

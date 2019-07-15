@@ -64,6 +64,14 @@ class SaleFilter extends Widget
      */
     public $min_max_price = [];
 
+    /**
+     * @var object
+     */
+    public $colors = [];
+
+    /**
+     * @inheritDoc
+     */
     public function init()
     {
         parent::init();
@@ -312,12 +320,48 @@ class SaleFilter extends Widget
             );
         }
 
+        /**
+         * Colors list
+         */
+
+        $colors = [];
+
+        foreach ($this->colors as $key => $obj) {
+            $params = Yii::$app->catalogFilter->params;
+
+            if (!empty($params[$keys['colors']]) &&
+                in_array($obj['alias'], $params[$keys['colors']])
+            ) {
+                $checked = 1;
+                $params[$keys['colors']] = array_diff($params[$keys['colors']], [$obj['alias']]);
+            } else {
+                $checked = 0;
+                $params[$keys['colors']][] = $obj['alias'];
+            }
+
+            // sort value
+
+            array_multisort($params[$keys['colors']], SORT_ASC, $params[$keys['colors']]);
+
+            $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
+
+            $colors[$key] = array(
+                'checked' => $checked,
+                'link' => $link,
+                'title' => $obj['lang']['title'],
+                'count' => $obj['count'],
+                'alias' => $obj['alias'],
+                'color_code' => $obj['color_code'],
+            );
+        }
+
         return $this->render($this->view, [
             'route' => $this->route,
             'category' => $category,
             'types' => $types,
             'style' => $style,
             'factory' => $factory,
+            'colors' => $colors,
             'countries' => $countries,
             'cities' => $cities,
             'factory_first_show' => $factory_first_show,

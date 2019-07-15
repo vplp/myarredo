@@ -7,16 +7,16 @@ use yii\helpers\{
 use kartik\widgets\Select2;
 //
 use frontend\modules\catalog\models\{
-    Category, Factory, Types, Specification
+    Sale, SaleLang, Category, Factory, Types, Specification, Colors
 };
 use frontend\modules\location\models\{
     Country, City
 };
 
 /**
- * @var \frontend\modules\catalog\models\Sale $model
- * @var \frontend\modules\catalog\models\SaleLang $modelLang
- * @var \frontend\modules\catalog\models\Specification $Specification
+ * @var $model Sale
+ * @var $modelLang SaleLang
+ * @var $Specification Specification
  */
 
 $this->title = ($model->isNewRecord)
@@ -139,6 +139,16 @@ $this->title = ($model->isNewRecord)
                                 </div>
                             <?php } ?>
                         <?php } ?>
+
+                        <?= $form
+                            ->field($model, 'colors_ids')
+                            ->widget(Select2::class, [
+                                'data' => Colors::dropDownList(),
+                                'options' => [
+                                    'placeholder' => Yii::t('app', 'Select option'),
+                                    'multiple' => true
+                                ],
+                            ]) ?>
 
                         <?= $form->field(
                             $model,

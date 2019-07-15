@@ -17,7 +17,16 @@ use frontend\modules\location\models\{
 };
 use frontend\modules\user\models\Profile;
 use frontend\modules\catalog\models\{
-    Sale, SaleLang, SaleStats, SalePhoneRequest, search\Sale as filterSaleModel, Category, Factory, Types, Specification
+    Sale,
+    SaleLang,
+    SaleStats,
+    SalePhoneRequest,
+    search\Sale as filterSaleModel,
+    Category,
+    Factory,
+    Types,
+    Specification,
+    Colors
 };
 
 /**
@@ -93,6 +102,7 @@ class SaleController extends BaseController
         $types = Types::getWithSale($queryParams);
         $style = Specification::getWithSale($queryParams);
         $factory = Factory::getWithSale($queryParams);
+        $colors = Colors::getWithSale($queryParams);
         $countries = Country::getWithSale($queryParams);
         $cities = City::getWithSale($queryParams);
 
@@ -114,6 +124,7 @@ class SaleController extends BaseController
             'types' => $types,
             'style' => $style,
             'factory' => $factory,
+            'colors' => $colors,
             'countries' => $countries,
             'cities' => $cities,
             'models' => $models->getModels(),

@@ -113,8 +113,7 @@ $this->title = $this->context->title;
                                             ? Html::a(
                                                 $model['factory']['title'],
                                                 Factory::getUrl($model['factory']['alias'])
-                                            )
-                                            : $model['factory_name'] ?>
+                                            ) : $model['factory_name']; ?>
                                         <meta itemprop="brand"
                                               content="<?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name']; ?>"/>
                                     </td>
@@ -183,6 +182,21 @@ $this->title = $this->context->title;
                                             </td>
                                         </tr>
                                     <?php } ?>
+                                <?php } ?>
+
+                                <?php if (!empty($model['colors'])) { ?>
+                                    <tr>
+                                        <td><?= $model->getAttributeLabel('colors_ids') ?></td>
+                                        <td>
+                                            <?php
+                                            $array = [];
+                                            foreach ($model['colors'] as $item) {
+                                                $array[] = $item['lang']['title'];
+                                            }
+                                            echo implode('; ', $array);
+                                            ?>
+                                        </td>
+                                    </tr>
                                 <?php } ?>
                             </table>
 

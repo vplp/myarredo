@@ -169,6 +169,12 @@ class Country extends \common\modules\location\models\Country
                 ->andFilterWhere(['IN', 'saleFactory.alias', $params[$keys['factory']]]);
         }
 
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["sale.colors as saleColors"], false)
+                ->andFilterWhere(['IN', 'saleColors.alias', $params[$keys['colors']]]);
+        }
+
         $result = self::getDb()->cache(function ($db) use ($query) {
             return $query
                 ->select([

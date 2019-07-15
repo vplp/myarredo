@@ -153,4 +153,15 @@ class Colors extends ActiveRecord
             ->hasMany(ItalianProduct::class, ['id' => 'item_id'])
             ->viaTable(ColorsRelItalianProduct::tableName(), ['color_id' => 'id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getSale()
+    {
+        return $this
+            ->hasMany(Sale::class, ['id' => 'item_id'])
+            ->viaTable(ColorsRelSaleProduct::tableName(), ['color_id' => 'id']);
+    }
 }

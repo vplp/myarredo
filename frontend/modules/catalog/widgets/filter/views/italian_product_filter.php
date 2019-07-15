@@ -181,9 +181,9 @@ use frontend\modules\catalog\models\{
 
                 </div>
             </div>
-        <?php }
+        <?php } ?>
 
-        if ($colors) { ?>
+        <?php if ($colors) { ?>
             <div class="one-filter open colors-box">
                 <?= Html::a(
                     Yii::t('app', 'Color'),
@@ -220,11 +220,7 @@ use frontend\modules\catalog\models\{
                 } ?>
 
             </div>
-
-        <?php }
-
-        ?>
-
+        <?php } ?>
 
         <?= Html::hiddenInput('sort', Yii::$app->request->get('sort') ?? null) ?>
         <?= Html::hiddenInput('object', Yii::$app->request->get('object') ?? null) ?>

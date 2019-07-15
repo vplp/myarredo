@@ -173,6 +173,12 @@ class City extends \common\modules\location\models\City
                 ->andFilterWhere(['IN', 'saleFactory.alias', $params[$keys['factory']]]);
         }
 
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["sale.colors as saleColors"], false)
+                ->andFilterWhere(['IN', 'saleColors.alias', $params[$keys['colors']]]);
+        }
+
         if (isset($params['country'])) {
             $query
                 ->innerJoinWith(["country as country"], false)

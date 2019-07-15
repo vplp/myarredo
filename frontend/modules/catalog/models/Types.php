@@ -233,6 +233,12 @@ class Types extends \common\modules\catalog\models\Types
                 ->andFilterWhere(['IN', 'saleFactory.alias', $params[$keys['factory']]]);
         }
 
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["sale.colors as saleColors"], false)
+                ->andFilterWhere(['IN', 'saleColors.alias', $params[$keys['colors']]]);
+        }
+
         if (isset($params['country'])) {
             $query
                 ->innerJoinWith(["sale.country saleCountry"], false)
