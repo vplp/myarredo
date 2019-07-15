@@ -264,6 +264,7 @@ $this->title = $this->context->title;
                                 </div>
                             </div>
 
+                            <!--
                             <div class="col-md-12 sellout-box">
                                 <div class="section-header">
                                     <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
@@ -274,6 +275,8 @@ $this->title = $this->context->title;
                                     ); ?>
                                 </div>
                             </div>
+                            -->
+
                         <?php } ?>
 
                     </div>

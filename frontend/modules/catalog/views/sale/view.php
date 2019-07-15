@@ -263,6 +263,7 @@ $this->title = $this->context->title;
 
                         </div>
 
+                        <!--
                         <div class="col-md-12 sellout-box">
                             <div class="section-header">
                                 <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
@@ -273,6 +274,8 @@ $this->title = $this->context->title;
                                 ); ?>
                             </div>
                         </div>
+                        -->
+
                     </div>
 
                     <?= $this->render('@app/modules/catalog/views/product/parts/_product_by_factory', [
