@@ -180,7 +180,7 @@ class ProductStatsDays extends ActiveRecord
     {
         return self::find()
             ->innerJoinWith(["product"])
-            ->orderBy('views DESC');
+            ->orderBy('requests DESC');
     }
 
     /**
