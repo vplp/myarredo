@@ -135,7 +135,7 @@ $bundle = AppAsset::register($this);
                 </div>
             </div>
 
-            <?php if (in_array(Yii::$app->city->domain, ['ru']) && Yii::$app->city->getCityId() == 2) {
+            <?php if (in_array(Yii::$app->city->domain, ['ru']) && Yii::$app->city->getCityId() == 4) {
                 echo ArticlesList::widget(['view' => 'articles_on_main', 'limit' => 4]);
             } ?>
 
