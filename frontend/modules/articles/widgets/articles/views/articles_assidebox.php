@@ -3,6 +3,11 @@
 use yii\helpers\{
     Url, Html
 };
+//
+use frontend\modules\articles\models\Article;
+
+/** @var $articles Article[] */
+/** @var $article Article */
 
 ?>
 

@@ -12,6 +12,7 @@ use frontend\modules\catalog\widgets\{
     sale\SaleOnMainPage,
     filter\ProductFilterOnMainPage
 };
+use frontend\modules\articles\widgets\articles\ArticlesList;
 
 $bundle = AppAsset::register($this);
 ?>
@@ -133,6 +134,8 @@ $bundle = AppAsset::register($this);
                     </div>
                 </div>
             </div>
+
+            <?= ArticlesList::widget(['view' => 'articles_on_main', 'limit' => 4]) ?>
 
         </div>
 
