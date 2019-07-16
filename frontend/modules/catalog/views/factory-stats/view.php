@@ -4,10 +4,14 @@ use yii\helpers\{
     Html, Url
 };
 //
-use frontend\modules\catalog\models\Factory;
+use frontend\modules\catalog\models\{
+    Factory, ProductStats, ProductStatsDays
+};
 
-/** @var \frontend\modules\catalog\models\Factory $model */
-/** @var \frontend\modules\catalog\models\ProductStatsDays $item */
+/** @var $model Factory */
+/** @var $modelsStats ProductStats */
+/** @var $modelProductStatsDays ProductStatsDays */
+/** @var $item ProductStatsDays */
 
 $this->title = $this->context->title;
 
@@ -16,7 +20,8 @@ $data = [];
 
 foreach ($modelsStats as $item) {
     $labels[$item['date']] = $item['dateTime'];
-    $data[$item['date']] = (isset($data[$item['date']]) ? $data[$item['date']] : 0) + $item['views'];
+    $dataViews[$item['date']] = (isset($data[$item['date']]) ? $data[$item['date']] : 0) + $item['views'];
+    $dataRequests[$item['date']] = (isset($data[$item['date']]) ? $data[$item['date']] : 0) + $item['requests'];
 }
 
 $_js_labels = [];
@@ -25,10 +30,11 @@ foreach ($labels as $val) {
 }
 
 $js_labels = implode(',', $_js_labels);
-$js_data = implode(',', $data);
+$js_data_views = implode(',', $dataViews);
+$js_data_requests = implode(',', $dataRequests);
 
 $total_views = 0;
-foreach ($data as $val) {
+foreach ($dataViews as $val) {
     $total_views += $val;
 }
 
@@ -88,32 +94,47 @@ foreach ($data as $val) {
                     */ ?>
 
                     <canvas id="myChart"></canvas>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
-                    <?php
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
-                    $app_label_1 = Yii::t('app', 'Количество просмотров: {0}', $total_views);
-                    $app_label_2 = Yii::t('app', 'Даты');
-                    $app_label_3 = Yii::t('app', 'Количество');
+<?php
+$this->registerJsFile(
+    'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js',
+    [
+        'position' => yii\web\View::POS_END,
+    ]
+);
 
+$labelViews = Yii::t('app', 'Количество просмотров: {0}', $total_views);
+$labelRequests = Yii::t('app', 'Количество заявок');
+$labelDates = Yii::t('app', 'Даты');
+$labelCounts = Yii::t('app', 'Количество');
 
-                    $script = <<<JS
+$script = <<<JS
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'line',
-
     // The data for our dataset
     data: {
         labels: [$js_labels],
         datasets: [{
-            label: '$app_label_1',             
+            label: '$labelViews',             
             borderColor: 'rgb(255, 99, 132)',
-            data: [$js_data],
+            data: [$js_data_views],
+            fill: false,
+        },
+        {
+            label: '$labelRequests',             
+            borderColor: 'rgb(68, 131, 57)',
+            data: [$js_data_requests],
             fill: false,
         }]
     },
-
     // Configuration options go here
     options: {
         responsive: true,
@@ -134,26 +155,20 @@ var chart = new Chart(ctx, {
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: '$app_label_2'
+                    labelString: '$labelDates'
                 }
             }],
             yAxes: [{
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: '$app_label_3'
+                    labelString: '$labelCounts'
                 }
             }]
         }
-    }
+    }   
 });
 JS;
 
-                    $this->registerJs($script, yii\web\View::POS_END);
-                    ?>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
+$this->registerJs($script, yii\web\View::POS_END);
+?>

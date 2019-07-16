@@ -116,9 +116,9 @@ class ProductStatsDays extends ProductStatsModel
 
         }
 
-        self::getDb()->cache(function ($db) use ($dataProvider) {
-            $dataProvider->prepare();
-        });
+//        self::getDb()->cache(function ($db) use ($dataProvider) {
+//            $dataProvider->prepare();
+//        });
 
         return $dataProvider;
     }
@@ -209,9 +209,9 @@ class ProductStatsDays extends ProductStatsModel
             $query->groupBy(self::tableName() . '.factory_id');
         }
 
-        self::getDb()->cache(function ($db) use ($dataProvider) {
-            $dataProvider->prepare();
-        });
+//        self::getDb()->cache(function ($db) use ($dataProvider) {
+//            $dataProvider->prepare();
+//        });
 
         return $dataProvider;
     }

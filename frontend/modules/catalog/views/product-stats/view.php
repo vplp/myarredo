@@ -7,7 +7,6 @@ use yii\helpers\{
 use frontend\modules\catalog\models\{
     Product, ProductStats, ProductStatsDays
 };
-use yii\web\View;
 
 /** @var $model Product */
 /** @var $modelsStats ProductStats */
@@ -110,7 +109,6 @@ $js_data_requests = implode(',', $dataRequests);
 </main>
 
 <?php
-
 $this->registerJsFile(
     'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js',
     [
@@ -119,7 +117,7 @@ $this->registerJsFile(
 );
 
 $labelViews = Yii::t('app', 'Количество просмотров');
-$labelRequests = Yii::t('app', 'Количество запросов');
+$labelRequests = Yii::t('app', 'Количество заявок');
 $labelDates = Yii::t('app', 'Даты');
 $labelCounts = Yii::t('app', 'Количество');
 
@@ -140,12 +138,11 @@ var chart = new Chart(ctx, {
         },
         {
             label: '$labelRequests',             
-            borderColor: 'rgb(255, 255, 132)',
+            borderColor: 'rgb(68, 131, 57)',
             data: [$js_data_requests],
             fill: false,
         }]
     },
-
     // Configuration options go here
     options: {
         responsive: true,

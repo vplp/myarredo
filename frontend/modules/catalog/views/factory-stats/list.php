@@ -4,11 +4,14 @@ use yii\helpers\{
     Html, Url
 };
 //
-use frontend\modules\catalog\models\Factory;
+use frontend\modules\catalog\models\{
+    Factory, ProductStatsDays
+};
 
 /**
  * @var $pages \yii\data\Pagination
- * @var $model \frontend\modules\catalog\models\ProductStatsDays
+ * @var $model ProductStatsDays
+ * @var $item ProductStatsDays
  */
 
 $this->title = $this->context->title;
@@ -25,11 +28,11 @@ $this->title = $this->context->title;
             <div class="cat-prod-wrap">
                 <?php if (!empty($models)) { ?>
                     <div class="cat-prod">
-                        <?php foreach ($models as $model) { ?>
+                        <?php foreach ($models as $item) { ?>
                             <?= Html::beginTag('a', [
                                 'href' => Url::toRoute([
                                     '/catalog/factory-stats/view',
-                                    'alias' => $model['factory']['alias'],
+                                    'alias' => $item['factory']['alias'],
                                     'start_date' => Yii::$app->request->get('start_date'),
                                     'end_date' => Yii::$app->request->get('end_date'),
                                 ]),
@@ -37,15 +40,15 @@ $this->title = $this->context->title;
                             ]); ?>
 
                             <div class="img-cont">
-
-                                <?= Html::img(Factory::getImageThumb($model['factory']['image_link'])) ?>
-
-                                <div class="brand"><?= $model['views'] ?></div>
-
+                                <?= Html::img(Factory::getImageThumb($item['factory']['image_link'])) ?>
+                                <div class="brand">
+                                    <?= Yii::t('app', 'Просмотры') ?>: <?= $item['views'] ?>
+                                    <?= Yii::t('app', 'Заявки') ?>: <?= $item['requests'] ?>
+                                </div>
                             </div>
 
                             <div class="item-infoblock">
-                                <?= $model['factory']['title'] ?>
+                                <?= $item['factory']['title'] ?>
                             </div>
 
                             <?= Html::endTag('a'); ?>

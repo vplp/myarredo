@@ -44,7 +44,10 @@ $this->title = $this->context->title;
 
                             <div class="img-cont">
                                 <?= Html::img(Product::getImageThumb($item['product']['image_link'])) ?>
-                                <div class="brand">views: <?= $item['views'] ?> requests: <?= $item['requests'] ?></div>
+                                <div class="brand">
+                                    <?= Yii::t('app', 'Просмотры') ?>: <?= $item['views'] ?>
+                                    <?= Yii::t('app', 'Заявки') ?>: <?= $item['requests'] ?>
+                                </div>
                             </div>
 
                             <div class="item-infoblock">

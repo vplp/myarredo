@@ -2,6 +2,7 @@
 
 namespace console\controllers;
 
+use Yii;
 use yii\helpers\Console;
 use yii\console\Controller;
 //
@@ -20,13 +21,47 @@ use frontend\modules\shop\models\{
 class StatsController extends Controller
 {
     /**
+     * @throws \yii\db\Exception
+     */
+    public function actionResetViews()
+    {
+        $this->stdout("ResetMark: start. \n", Console::FG_GREEN);
+
+        Yii::$app->db->createCommand()
+            ->update(ProductStats::tableName(), ['mark' => '0'])
+            ->execute();
+
+        Yii::$app->db->createCommand()
+            ->update(ProductStatsDays::tableName(), ['views' => '0'])
+            ->execute();
+
+        $this->stdout("ResetMark: finish. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * @throws \yii\db\Exception
+     */
+    public function actionResetRequests()
+    {
+        $this->stdout("ResetMark: start. \n", Console::FG_GREEN);
+
+        Yii::$app->db->createCommand()
+            ->update(Order::tableName(), ['mark' => '0'])
+            ->execute();
+
+        Yii::$app->db->createCommand()
+            ->update(ProductStatsDays::tableName(), ['requests' => '0'])
+            ->execute();
+
+        $this->stdout("ResetMark: finish. \n", Console::FG_GREEN);
+    }
+
+    /**
      *
      */
     public function actionViews()
     {
         $this->stdout("Start. \n", Console::FG_GREEN);
-
-        // UPDATE `fv_catalog_item_stats` SET `mark`='0' WHERE `mark`='1'
 
         $data = ProductStats::find()
             ->innerJoinWith(["product"])
