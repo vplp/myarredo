@@ -10,22 +10,23 @@ use frontend\modules\articles\models\Article;
 /** @var $article Article */
 
 ?>
-<div class="articles-list">
-    <div class="container large-container">
-        <div class="row">
-            <div class="col-sm-12 col-md-12">
-                <div class="section-header">
-                    <h2 class="section-title">
-                        <?= Yii::t('app', 'Articles') ?>
-                    </h2>
-                    <?= Html::a(
-                        Yii::t('app', 'Смотреть все статьи'),
-                        Url::toRoute('/articles/list/index'),
-                        ['class' => 'sticker']
-                    ) ?>
-                </div>
 
-                <?php if (!empty($articles)) { ?>
+<?php if (!empty($articles)) { ?>
+    <div class="articles-list">
+        <div class="container large-container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <?= Yii::t('app', 'Articles') ?>
+                        </h2>
+                        <?= Html::a(
+                            Yii::t('app', 'Смотреть все статьи'),
+                            Url::toRoute('/articles/list/index'),
+                            ['class' => 'sticker']
+                        ) ?>
+                    </div>
+
                     <div class="article-similarbox">
 
                         <div class="article-similar">
@@ -58,10 +59,10 @@ use frontend\modules\articles\models\Article;
                         </div>
                     </div>
 
-                <?php } ?>
 
+                </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
+<?php } ?>

@@ -135,7 +135,9 @@ $bundle = AppAsset::register($this);
                 </div>
             </div>
 
-            <?= ArticlesList::widget(['view' => 'articles_on_main', 'limit' => 4]) ?>
+            <?php if (in_array(Yii::$app->city->domain, ['ru'])) {
+                echo ArticlesList::widget(['view' => 'articles_on_main', 'limit' => 4]);
+            } ?>
 
         </div>
 
