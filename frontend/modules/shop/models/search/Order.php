@@ -32,6 +32,7 @@ class Order extends OrderModel
     public function rules()
     {
         return [
+            ['lang', 'string', 'min' => 5, 'max' => 5],
             [['product_type'], 'in', 'range' => array_keys(self::productTypeKeyRange())],
             [['id', 'customer_id', 'city_id', 'factory_id'], 'integer'],
         ];
@@ -73,6 +74,7 @@ class Order extends OrderModel
                 'id' => $this->id,
                 self::tableName() . '.customer_id' => $this->customer_id,
                 self::tableName() . '.product_type' => $this->product_type,
+                self::tableName() . '.lang' => $this->lang,
             ]);
 
         if (isset($params['city_id']) && is_array($params['city_id'])) {

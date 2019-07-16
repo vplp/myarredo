@@ -11,12 +11,10 @@ class Language extends \common\modules\sys\models\Language
 {
     /**
      * @return array
-     * @throws \Throwable
-     * @throws \yii\base\InvalidConfigException
      */
     public static function dropDownList()
     {
-        return ArrayHelper::map(self::findBase()->all(), 'local', 'label');
+        return ArrayHelper::map(self::findBase()->all(), 'local', 'alias');
     }
 
     /**

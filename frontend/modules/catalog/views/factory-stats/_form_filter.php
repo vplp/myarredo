@@ -38,12 +38,12 @@ HTML;
 
 <?php if (Yii::$app->user->identity->group->role == 'admin' &&
     isset($params['factory_id']) &&
-    Yii::$app->controller->action->id != 'view'): ?>
+    Yii::$app->controller->action->id != 'view') { ?>
     <div class="form-group">
         <?= Select2::widget([
             'name' => 'factory_id',
             'value' => $params['factory_id'],
-            'data' => [0 => '--'] + Factory::dropDownList(),
+            'data' => [0 => Yii::t('app', 'Все фабрики')] + Factory::dropDownList(),
             'options' => [
                 'id' => 'factory_id',
                 'multiple' => false,
@@ -51,13 +51,13 @@ HTML;
             ]
         ]); ?>
     </div>
-<?php endif; ?>
+<?php } ?>
 
     <div class="form-group">
         <?= Select2::widget([
             'name' => 'country_id',
             'value' => $params['country_id'],
-            'data' => [0 => '--'] + Country::dropDownList(),
+            'data' => [0 => Yii::t('app', 'Все страны')] + Country::dropDownList(),
             'options' => [
                 'id' => 'country_id',
                 'multiple' => false,
@@ -69,7 +69,7 @@ HTML;
         <?= Select2::widget([
             'name' => 'city_id',
             'value' => $params['city_id'],
-            'data' => [0 => '--'] + City::dropDownList($params['country_id']),
+            'data' => [0 => Yii::t('app', 'Все города')] + City::dropDownList($params['country_id']),
             'options' => [
                 'id' => 'city_id',
                 'multiple' => false,

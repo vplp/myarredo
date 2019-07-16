@@ -204,7 +204,7 @@ $this->title = ($model->isNewRecord)
                                     ]
                                 )
                                 ->dropDownList(
-                                    [null => '--'] + Country::dropDownList([2, 3, 1]),
+                                    [null => Yii::t('app', 'Все страны')] + Country::dropDownList([2, 3, 1]),
                                     ['class' => 'selectpicker']
                                 ); ?>
                         </div>

@@ -82,6 +82,10 @@ class AdminOrderController extends BaseController
             $params['factory_id'] = 0;
         }
 
+        if (!isset($params['lang'])) {
+            $params['lang'] = 0;
+        }
+
         $params['product_type'] = 'product';
 
         $models = $model->search($params);
@@ -129,6 +133,10 @@ class AdminOrderController extends BaseController
 
         if (!isset($params['factory_id'])) {
             $params['factory_id'] = 0;
+        }
+
+        if (!isset($params['lang'])) {
+            $params['lang'] = 0;
         }
 
         $params['product_type'] = 'sale-italy';
