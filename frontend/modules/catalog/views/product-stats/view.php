@@ -4,19 +4,25 @@ use yii\helpers\{
     Html, Url
 };
 //
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\{
+    Product, ProductStats, ProductStatsDays
+};
+use yii\web\View;
 
-/** @var \frontend\modules\catalog\models\Product $model */
-/** @var \frontend\modules\catalog\models\ProductStatsDays $item */
+/** @var $model Product */
+/** @var $modelsStats ProductStats */
+/** @var $modelProductStatsDays ProductStatsDays */
+/** @var $item ProductStatsDays */
 
 $this->title = $this->context->title;
 
 $labels = [];
-$data = [];
+$dataViews = $dataRequests = [];
 
 foreach ($modelsStats as $item) {
     $labels[$item['date']] = $item['dateTime'];
-    $data[$item['date']] = (isset($data[$item['date']]) ? $data[$item['date']] : 0) + $item['views'];
+    $dataViews[$item['date']] = (isset($data[$item['date']]) ? $data[$item['date']] : 0) + $item['views'];
+    $dataRequests[$item['date']] = (isset($data[$item['date']]) ? $data[$item['date']] : 0) + $item['requests'];
 }
 
 $_js_labels = [];
@@ -25,7 +31,8 @@ foreach ($labels as $val) {
 }
 
 $js_labels = implode(',', $_js_labels);
-$js_data = implode(',', $data);
+$js_data_views = implode(',', $dataViews);
+$js_data_requests = implode(',', $dataRequests);
 ?>
 
 <main>
@@ -35,7 +42,7 @@ $js_data = implode(',', $data);
                 <div class="product-title">
                     <?= Html::tag(
                         'h1',
-                        '',//$model->getTitle(),
+                        '',
                         ['class' => 'prod-model', 'itemprop' => 'name']
                     ); ?>
                 </div>
@@ -94,18 +101,31 @@ $js_data = implode(',', $data);
                     </table>
                     */ ?>
 
-
                     <canvas id="myChart"></canvas>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
-                    <?php
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
-                    $app_label_1 = Yii::t('app', 'Количество просмотров');
-                    $app_label_2 = Yii::t('app', 'Даты');
-                    $app_label_3 = Yii::t('app', 'Количество');
+<?php
 
-                    $script = <<<JS
+$this->registerJsFile(
+    'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js',
+    [
+        'position' => yii\web\View::POS_END,
+    ]
+);
+
+$labelViews = Yii::t('app', 'Количество просмотров');
+$labelRequests = Yii::t('app', 'Количество запросов');
+$labelDates = Yii::t('app', 'Даты');
+$labelCounts = Yii::t('app', 'Количество');
+
+$script = <<<JS
 var ctx = document.getElementById('myChart').getContext('2d');
+
 var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'line',
@@ -113,9 +133,15 @@ var chart = new Chart(ctx, {
     data: {
         labels: [$js_labels],
         datasets: [{
-            label: '$app_label_1',             
+            label: '$labelViews',             
             borderColor: 'rgb(255, 99, 132)',
-            data: [$js_data],
+            data: [$js_data_views],
+            fill: false,
+        },
+        {
+            label: '$labelRequests',             
+            borderColor: 'rgb(255, 255, 132)',
+            data: [$js_data_requests],
             fill: false,
         }]
     },
@@ -140,14 +166,14 @@ var chart = new Chart(ctx, {
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: '$app_label_2'
+                    labelString: '$labelDates'
                 }
             }],
             yAxes: [{
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: '$app_label_3'
+                    labelString: '$labelCounts'
                 }
             }]
         }
@@ -155,11 +181,5 @@ var chart = new Chart(ctx, {
 });
 JS;
 
-                    $this->registerJs($script, yii\web\View::POS_END);
-                    ?>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
+$this->registerJs($script, yii\web\View::POS_END);
+?>

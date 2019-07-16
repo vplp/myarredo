@@ -4,11 +4,13 @@ use yii\helpers\{
     Html, Url
 };
 //
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\{
+    Product, ProductStatsDays
+};
 
 /**
  * @var $pages \yii\data\Pagination
- * @var $model \frontend\modules\catalog\models\ProductStatsDays
+ * @var $model ProductStatsDays
  */
 
 $this->title = $this->context->title;
