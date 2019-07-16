@@ -45,6 +45,8 @@ class ProductStatsDays extends ProductStatsModel
      * @param $query
      * @param $params
      * @return ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function baseSearch($query, $params)
     {
@@ -97,7 +99,8 @@ class ProductStatsDays extends ProductStatsModel
                 self::tableName() . '.product_id',
                 self::tableName() . '.date',
                 'count(' . self::tableName() . '.date) as count',
-                'sum(' . self::tableName() . '.views) as views'
+                'sum(' . self::tableName() . '.views) as views',
+                'sum(' . self::tableName() . '.requests) as requests'
             ]);
             $query->groupBy(self::tableName() . '.date')
                 ->orderBy(self::tableName() . '.date');
@@ -106,7 +109,8 @@ class ProductStatsDays extends ProductStatsModel
             $query->select([
                 self::tableName() . '.product_id',
                 'count(' . self::tableName() . '.product_id) as count',
-                'sum(' . self::tableName() . '.views) as views'
+                'sum(' . self::tableName() . '.views) as views',
+                'sum(' . self::tableName() . '.requests) as requests'
             ]);
             $query->groupBy(self::tableName() . '.product_id');
 
@@ -120,8 +124,10 @@ class ProductStatsDays extends ProductStatsModel
     }
 
     /**
-     * @param array $params
-     * @return ActiveDataProvider
+     * @param $params
+     * @return mixed|ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function search($params)
     {
@@ -133,6 +139,8 @@ class ProductStatsDays extends ProductStatsModel
      * @param $query
      * @param $params
      * @return ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function baseFactorySearch($query, $params)
     {
@@ -167,7 +175,6 @@ class ProductStatsDays extends ProductStatsModel
         }
 
         if (isset($params['country_id']) && $params['country_id'] > 0 && !$params['city_id']) {
-
             $model = City::findAll(['country_id' => $params['country_id']]);
 
             if ($model != null) {
@@ -186,7 +193,8 @@ class ProductStatsDays extends ProductStatsModel
                 self::tableName() . '.factory_id',
                 self::tableName() . '.date',
                 'count(' . self::tableName() . '.date) as count',
-                'sum(' . self::tableName() . '.views) as views'
+                'sum(' . self::tableName() . '.views) as views',
+                'sum(' . self::tableName() . '.requests) as requests'
             ]);
             $query->groupBy(self::tableName() . '.date')
                 ->orderBy(self::tableName() . '.date');
@@ -195,7 +203,8 @@ class ProductStatsDays extends ProductStatsModel
             $query->select([
                 self::tableName() . '.factory_id',
                 'count(' . self::tableName() . '.factory_id) as count',
-                'sum(' . self::tableName() . '.views) as views'
+                'sum(' . self::tableName() . '.views) as views',
+                'sum(' . self::tableName() . '.requests) as requests'
             ]);
             $query->groupBy(self::tableName() . '.factory_id');
         }
@@ -208,8 +217,10 @@ class ProductStatsDays extends ProductStatsModel
     }
 
     /**
-     * @param array $params
+     * @param $params
      * @return ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function factorySearch($params)
     {

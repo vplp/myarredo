@@ -10,7 +10,9 @@ use frontend\modules\catalog\models\{
 
 /**
  * @var $pages \yii\data\Pagination
+ *
  * @var $model ProductStatsDays
+ * @var $item ProductStatsDays
  */
 
 $this->title = $this->context->title;
@@ -20,18 +22,20 @@ $this->title = $this->context->title;
 <main>
     <div class="page adding-product-page">
         <div class="container large-container">
+
             <?= $this->render('_form_filter', [
                 'model' => $model,
                 'params' => $params,
             ]); ?>
+
             <div class="cat-prod-wrap">
                 <?php if (!empty($models)) { ?>
                     <div class="cat-prod">
-                        <?php foreach ($models as $model) { ?>
+                        <?php foreach ($models as $item) { ?>
                             <?= Html::beginTag('a', [
                                 'href' => Url::toRoute([
                                     '/catalog/product-stats/view',
-                                    'id' => $model['product']['id'],
+                                    'id' => $item['product']['id'],
                                     'start_date' => Yii::$app->request->get('start_date'),
                                     'end_date' => Yii::$app->request->get('end_date'),
                                 ]),
@@ -39,12 +43,12 @@ $this->title = $this->context->title;
                             ]); ?>
 
                             <div class="img-cont">
-                                <?= Html::img(Product::getImageThumb($model['product']['image_link'])) ?>
-                                <div class="brand"><?= $model['views'] ?></div>
+                                <?= Html::img(Product::getImageThumb($item['product']['image_link'])) ?>
+                                <div class="brand">views: <?= $item['views'] ?> requests: <?= $item['requests'] ?></div>
                             </div>
 
                             <div class="item-infoblock">
-                                <?= Product::getStaticTitle($model['product']) ?>
+                                <?= Product::getStaticTitle($item['product']) ?>
                             </div>
 
                             <?= Html::endTag('a'); ?>

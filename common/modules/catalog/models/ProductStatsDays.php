@@ -76,7 +76,6 @@ class ProductStatsDays extends ActiveRecord
                 ],
                 'integer'
             ],
-            //[['product_id', 'city_id', 'date'], 'validateProductCityDate', 'on' => 'frontend'],
             [['views', 'requests'], 'default', 'value' => 0]
         ];
     }
