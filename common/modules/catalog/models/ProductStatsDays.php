@@ -182,4 +182,15 @@ class ProductStatsDays extends ActiveRecord
             ->innerJoinWith(["product"])
             ->orderBy('views DESC');
     }
+
+    /**
+     * @return array
+     */
+    public static function getTypeLabel()
+    {
+        return [
+            'views' => Yii::t('app', 'Просмотры'),
+            'requests' => Yii::t('app', 'Заявки')
+        ];
+    }
 }

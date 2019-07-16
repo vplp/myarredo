@@ -101,6 +101,10 @@ class ProductStatsController extends BaseController
             $params['factory_id'] = 0;
         }
 
+        if (!isset($params['type'])) {
+            $params['type'] = null;
+        }
+
         $params['action'] = 'list';
 
         $models = $model->search($params);
@@ -151,6 +155,10 @@ class ProductStatsController extends BaseController
 
         if (!isset($params['city_id'])) {
             $params['city_id'] = 0;
+        }
+
+        if (!isset($params['type'])) {
+            $params['type'] = null;
         }
 
         $params['action'] = 'view';

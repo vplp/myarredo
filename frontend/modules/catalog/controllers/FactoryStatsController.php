@@ -101,6 +101,10 @@ class FactoryStatsController extends BaseController
             $params['factory_id'] = 0;
         }
 
+        if (!isset($params['type'])) {
+            $params['type'] = null;
+        }
+
         $params['action'] = 'list';
 
         $models = $model->factorySearch($params);
@@ -119,6 +123,8 @@ class FactoryStatsController extends BaseController
      * @param $alias
      * @return string
      * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionView($alias)
     {
@@ -152,6 +158,10 @@ class FactoryStatsController extends BaseController
 
         if (!isset($params['city_id'])) {
             $params['city_id'] = 0;
+        }
+
+        if (!isset($params['type'])) {
+            $params['type'] = null;
         }
 
         $params['action'] = 'view';

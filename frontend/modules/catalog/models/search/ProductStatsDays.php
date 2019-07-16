@@ -20,6 +20,7 @@ class ProductStatsDays extends ProductStatsModel
 {
     public $start_date;
     public $end_date;
+    public $type;
 
     /**
      * @return array
@@ -45,8 +46,6 @@ class ProductStatsDays extends ProductStatsModel
      * @param $query
      * @param $params
      * @return ActiveDataProvider
-     * @throws \Throwable
-     * @throws \yii\base\InvalidConfigException
      */
     public function baseSearch($query, $params)
     {
@@ -102,9 +101,7 @@ class ProductStatsDays extends ProductStatsModel
                 'sum(' . self::tableName() . '.views) as views',
                 'sum(' . self::tableName() . '.requests) as requests'
             ]);
-            $query->groupBy(self::tableName() . '.date')
-                ->orderBy(self::tableName() . '.date');
-
+            $query->groupBy(self::tableName() . '.date')->orderBy(self::tableName() . '.date');
         } elseif ($params['action'] == 'list' && isset($params['city_id']) && $params['city_id'] == 0) {
             $query->select([
                 self::tableName() . '.product_id',
@@ -113,12 +110,11 @@ class ProductStatsDays extends ProductStatsModel
                 'sum(' . self::tableName() . '.requests) as requests'
             ]);
             $query->groupBy(self::tableName() . '.product_id');
-
         }
 
-//        self::getDb()->cache(function ($db) use ($dataProvider) {
-//            $dataProvider->prepare();
-//        });
+        if (isset($params['type']) && in_array($params['type'], ['views', 'requests'])) {
+            $query->andWhere(['>', self::tableName() . '.' . $params['type'], 0]);
+        }
 
         return $dataProvider;
     }
@@ -126,8 +122,6 @@ class ProductStatsDays extends ProductStatsModel
     /**
      * @param $params
      * @return mixed|ActiveDataProvider
-     * @throws \Throwable
-     * @throws \yii\base\InvalidConfigException
      */
     public function search($params)
     {
@@ -139,8 +133,6 @@ class ProductStatsDays extends ProductStatsModel
      * @param $query
      * @param $params
      * @return ActiveDataProvider
-     * @throws \Throwable
-     * @throws \yii\base\InvalidConfigException
      */
     public function baseFactorySearch($query, $params)
     {
@@ -209,9 +201,9 @@ class ProductStatsDays extends ProductStatsModel
             $query->groupBy(self::tableName() . '.factory_id');
         }
 
-//        self::getDb()->cache(function ($db) use ($dataProvider) {
-//            $dataProvider->prepare();
-//        });
+        if (isset($params['type']) && in_array($params['type'], ['views', 'requests'])) {
+            $query->andWhere(['>', self::tableName() . '.' . $params['type'], 0]);
+        }
 
         return $dataProvider;
     }
@@ -219,8 +211,6 @@ class ProductStatsDays extends ProductStatsModel
     /**
      * @param $params
      * @return ActiveDataProvider
-     * @throws \Throwable
-     * @throws \yii\base\InvalidConfigException
      */
     public function factorySearch($params)
     {

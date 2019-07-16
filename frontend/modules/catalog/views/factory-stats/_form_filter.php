@@ -10,6 +10,7 @@ use frontend\modules\catalog\models\Factory;
 use frontend\modules\location\models\{
     Country, City
 };
+use frontend\modules\catalog\models\ProductStatsDays;
 
 $start_date = Yii::t('app', 'Start date');
 $end_date = Yii::t('app', 'End date');
@@ -78,6 +79,17 @@ HTML;
         ]); ?>
     </div>
     <div class="form-group">
+        <?= Select2::widget([
+            'name' => 'type',
+            'value' => $params['type'],
+            'data' => [null => Yii::t('app', 'Все действия')] + ProductStatsDays::getTypeLabel(),
+            'options' => [
+                'id' => 'type',
+                'multiple' => false
+            ]
+        ]); ?>
+    </div>
+    <div class="form-group">
         <?= DatePicker::widget([
             'name' => 'start_date',
             'name2' => 'end_date',
@@ -111,16 +123,19 @@ $('select#country_id').change(function(){
     $('#form-stats').submit();
 });
 $('select#city_id').change(function(){
-  $('#form-stats').submit();
+    $('#form-stats').submit();
+});
+$('select#type').change(function(){
+    $('#form-stats').submit();
 });
 $('select#factory_id').change(function(){
-  $('#form-stats').submit();
+    $('#form-stats').submit();
 });
 $('input#start_date').change(function(){
-  $('#form-stats').submit();
+    $('#form-stats').submit();
 });
 $('input#end_date').change(function(){
-  $('#form-stats').submit();
+    $('#form-stats').submit();
 });
 JS;
 
