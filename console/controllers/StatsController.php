@@ -85,7 +85,7 @@ class StatsController extends Controller
             ->where([
                 Order::tableName() . '.mark' => '0',
             ])
-            ->limit(1000)
+            ->limit(500)
             ->orderBy(['created_at' => SORT_DESC])
             ->all();
 
