@@ -83,7 +83,7 @@ class AdminOrderController extends BaseController
         }
 
         if (!isset($params['lang'])) {
-            $params['lang'] = 0;
+            $params['lang'] = null;
         }
 
         $params['product_type'] = 'product';
@@ -136,7 +136,7 @@ class AdminOrderController extends BaseController
         }
 
         if (!isset($params['lang'])) {
-            $params['lang'] = 0;
+            $params['lang'] = null;
         }
 
         $params['product_type'] = 'sale-italy';

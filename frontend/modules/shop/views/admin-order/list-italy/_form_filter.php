@@ -66,7 +66,7 @@ use frontend\modules\sys\models\Language;
         <?= Select2::widget([
             'name' => 'lang',
             'value' => (!is_array($params['lang'])) ? $params['lang'] : 0,
-            'data' => [0 => Yii::t('app', 'Все языки')] + Language::dropDownList(),
+            'data' => [null => Yii::t('app', 'Все языки')] + Language::dropDownList(),
             'options' => [
                 'id' => 'lang',
                 'multiple' => false,

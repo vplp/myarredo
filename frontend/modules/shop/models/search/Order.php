@@ -74,7 +74,6 @@ class Order extends OrderModel
                 'id' => $this->id,
                 self::tableName() . '.customer_id' => $this->customer_id,
                 self::tableName() . '.product_type' => $this->product_type,
-                self::tableName() . '.lang' => $this->lang,
             ]);
 
         if (isset($params['city_id']) && is_array($params['city_id'])) {
@@ -85,6 +84,11 @@ class Order extends OrderModel
                 ->andFilterWhere([
                     self::tableName() . '.city_id' => $params['city_id'],
                 ]);
+        }
+
+        if (isset($params['lang'])) {
+            $query
+                ->andFilterWhere([self::tableName() . '.lang' => $params['lang']]);
         }
 
         $query
