@@ -263,25 +263,16 @@ $this->title = $this->context->title;
 
                                 </div>
                             </div>
-
-                            <!--
-                            <div class="col-md-12 sellout-box">
-                                <div class="section-header">
-                                    <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
-                                    <?= Html::a(
-                                        Yii::t('app', 'Вернуться к списку'),
-                                        Url::toRoute(['/catalog/sale-italy/list']),
-                                        ['class' => 'back']
-                                    ); ?>
-                                </div>
-                            </div>
-                            -->
-
                         <?php } ?>
 
                     </div>
 
-                    <?= ViewedProducts::widget(['modelClass' => ItalianProduct::class, 'cookieName' => 'viewed_sale_italy']) ?>
+                    <?php if (Yii::$app->controller->action->id == 'view') {
+                        echo ViewedProducts::widget([
+                            'modelClass' => ItalianProduct::class,
+                            'cookieName' => 'viewed_sale_italy'
+                        ]);
+                    } ?>
 
                 </div>
             </div>
