@@ -113,9 +113,7 @@ class ProductStatsDays extends ProductStatsModel
         }
 
         if (isset($params['type']) && in_array($params['type'], ['views', 'requests'])) {
-            $query
-                ->andWhere(['>', self::tableName() . '.' . $params['type'], 0])
-                ->orderBy($params['type'] . ' DESC');
+            $query->orderBy($params['type'] . ' DESC');
         }
 
         return $dataProvider;
@@ -204,9 +202,7 @@ class ProductStatsDays extends ProductStatsModel
         }
 
         if (isset($params['type']) && in_array($params['type'], ['views', 'requests'])) {
-            $query
-                ->andWhere(['>', self::tableName() . '.' . $params['type'], 0])
-                ->orderBy($params['type'] . ' DESC');
+            $query->orderBy($params['type'] . ' DESC');
         }
 
         return $dataProvider;
