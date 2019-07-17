@@ -19,6 +19,7 @@ use thread\actions\RecordView;
 class ArticleController extends BaseController
 {
     public $title = "Article";
+
     public $defaultAction = 'index';
 
     /**
@@ -57,7 +58,7 @@ class ArticleController extends BaseController
      */
     public function beforeAction($action)
     {
-        if (Yii::$app->city->domain != 'ru') {
+        if (!in_array(Yii::$app->city->domain, ['ru']) && Yii::$app->city->getCityId() != 4) {
             return $this->redirect('https://' . 'www.myarredo.ru' . Url::current(), 301);
         }
 

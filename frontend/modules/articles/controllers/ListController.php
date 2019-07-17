@@ -3,13 +3,13 @@
 namespace frontend\modules\articles\controllers;
 
 use Yii;
+use yii\helpers\Url;
 use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
 use frontend\modules\articles\models\Article;
 //
 use thread\actions\ListQuery;
-use yii\helpers\Url;
 
 /**
  * Class ListController
@@ -19,7 +19,9 @@ use yii\helpers\Url;
 class ListController extends BaseController
 {
     public $label = "Articles";
+
     public $title = "Articles";
+
     public $defaultAction = 'index';
 
     /**
@@ -57,7 +59,7 @@ class ListController extends BaseController
      */
     public function beforeAction($action)
     {
-        if (Yii::$app->city->domain != 'ru') {
+        if (!in_array(Yii::$app->city->domain, ['ru']) && Yii::$app->city->getCityId() != 4) {
             return $this->redirect('https://' . 'www.myarredo.ru' . Url::toRoute('/articles/list/index'), 301);
         }
 
