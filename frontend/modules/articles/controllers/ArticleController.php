@@ -58,7 +58,7 @@ class ArticleController extends BaseController
      */
     public function beforeAction($action)
     {
-        if (!in_array(Yii::$app->city->domain, ['ru']) && Yii::$app->city->getCityId() != 4) {
+        if (Yii::$app->city->getCityId() != 4) {
             return $this->redirect('https://' . 'www.myarredo.ru' . Url::current(), 301);
         }
 
