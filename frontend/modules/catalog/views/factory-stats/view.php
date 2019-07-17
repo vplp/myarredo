@@ -33,9 +33,13 @@ $js_labels = implode(',', $_js_labels);
 $js_data_views = implode(',', $dataViews);
 $js_data_requests = implode(',', $dataRequests);
 
-$total_views = 0;
+$totalViews = 0;
 foreach ($dataViews as $val) {
-    $total_views += $val;
+    $totalViews += $val;
+}
+$totalRequests = 0;
+foreach ($dataRequests as $val) {
+    $totalRequests += $val;
 }
 
 ?>
@@ -109,7 +113,9 @@ $this->registerJsFile(
     ]
 );
 
-$labelViews = Yii::t('app', 'Количество просмотров: {0}', $total_views);
+$labelTotalViews = Yii::t('app', 'Количество просмотров: {0}', $totalViews);
+$labelTotalRequests = Yii::t('app', 'Количество заявок: {0}', $totalRequests);
+$labelViews = Yii::t('app', 'Количество просмотров');
 $labelRequests = Yii::t('app', 'Количество заявок');
 $labelDates = Yii::t('app', 'Даты');
 $labelCounts = Yii::t('app', 'Количество');
@@ -140,7 +146,7 @@ var chart = new Chart(ctx, {
         responsive: true,
         title: {
             display: true,
-            text: ''
+            text: '$labelTotalViews  $labelTotalRequests'
         },
         tooltips: {
             mode: 'index',
