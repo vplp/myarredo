@@ -1,9 +1,41 @@
 <?php
+
+use yii\web\View;
+
+/** @var $this \yii\web\View */
+
 if (Yii::$app->getUser()->isGuest && Yii::$app->city->domain == 'ru' &&
     !in_array(Yii::$app->controller->id, ['sale']) &&
     !in_array(Yii::$app->controller->module->id, ['user'])
-) { ?>
-    <!-- BEGIN JIVOSITE CODE {literal} -->
-    <script src="//code3.jivosite.com/widget.js" jv-id="8vo3Plg4NB" async></script>
-    <!-- {/literal} END JIVOSITE CODE -->
-<?php } ?>
+) {
+    $script = <<<JS
+(function () {
+    var widget_id = '8vo3Plg4NB';
+    var d = document;
+    var w = window;
+
+    function l() {
+        setTimeout(function () {
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = '//code.jivosite.com/script/widget/' + widget_id;
+            var ss = document.getElementsByTagName('script')[0];
+            ss.parentNode.insertBefore(s, ss);
+        }, 5000);
+    }
+
+    if (d.readyState == 'complete') {
+        l();
+    } else {
+        if (w.attachEvent) {
+            w.attachEvent('onload', l);
+        } else {
+            w.addEventListener('load', l, false);
+        }
+    }
+})();
+JS;
+
+    $this->registerJs($script, View::POS_END);
+}
