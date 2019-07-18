@@ -11,7 +11,7 @@ use yii\web\View;
 if (Yii::$app->city->domain == 'ru') {
     $script = <<<JS
 (function () {
-    var widget_id = 'UA-54015829-1';
+    var id = 'UA-54015829-1';
     var d = document;
     var w = window;
 
@@ -20,14 +20,14 @@ if (Yii::$app->city->domain == 'ru') {
             var s = document.createElement('script');
             s.type = 'text/javascript';
             s.async = true;
-            s.src = 'https://www.googletagmanager.com/gtag/js?id=' + widget_id;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
             var ss = document.getElementsByTagName('script')[0];
             ss.parentNode.insertBefore(s, ss);
             
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', widget_id;
+            gtag('config', id);
         }, 5000);
     }
 
@@ -47,7 +47,7 @@ JS;
 } elseif (Yii::$app->city->domain == 'by') {
     $script = <<<JS
 (function () {
-    var widget_id = 'UA-54015829-4';
+    var id = 'UA-54015829-4';
     var d = document;
     var w = window;
 
@@ -56,14 +56,14 @@ JS;
             var s = document.createElement('script');
             s.type = 'text/javascript';
             s.async = true;
-            s.src = 'https://www.googletagmanager.com/gtag/js?id=' + widget_id;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
             var ss = document.getElementsByTagName('script')[0];
             ss.parentNode.insertBefore(s, ss);
             
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', widget_id);
+            gtag('config', id);
         }, 5000);
     }
 
@@ -83,7 +83,7 @@ JS;
 } elseif (Yii::$app->city->domain == 'ua') {
     $script = <<<JS
 (function () {
-    var widget_id = 'UA-54015829-3';
+    var id = 'UA-54015829-3';
     var d = document;
     var w = window;
 
@@ -92,14 +92,14 @@ JS;
             var s = document.createElement('script');
             s.type = 'text/javascript';
             s.async = true;
-            s.src = 'https://www.googletagmanager.com/gtag/js?id=' + widget_id;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
             var ss = document.getElementsByTagName('script')[0];
             ss.parentNode.insertBefore(s, ss);
             
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', widget_id);
+            gtag('config', id);
         }, 5000);
     }
 
@@ -117,4 +117,3 @@ JS;
 
     $this->registerJs($script, View::POS_END);
 }
-
