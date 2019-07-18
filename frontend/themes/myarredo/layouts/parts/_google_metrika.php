@@ -27,7 +27,7 @@ if (Yii::$app->city->domain == 'ru') {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'UA-54015829-1');
+            gtag('config', widget_id;
         }, 5000);
     }
 
@@ -43,32 +43,78 @@ if (Yii::$app->city->domain == 'ru') {
 })();
 JS;
 
+    $this->registerJs($script, View::POS_END);
+} elseif (Yii::$app->city->domain == 'by') {
+    $script = <<<JS
+(function () {
+    var widget_id = 'UA-54015829-4';
+    var d = document;
+    var w = window;
 
-//    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-54015829-1"></script>
-//    <script>
-//    window.dataLayer = window.dataLayer || [];
-//        function gtag(){dataLayer.push(arguments);}
-//        gtag('js', new Date());
-//        gtag('config', 'UA-54015829-1');
-//    </script>
+    function l() {
+        setTimeout(function () {
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=' + widget_id;
+            var ss = document.getElementsByTagName('script')[0];
+            ss.parentNode.insertBefore(s, ss);
+            
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', widget_id);
+        }, 5000);
+    }
+
+    if (d.readyState == 'complete') {
+        l();
+    } else {
+        if (w.attachEvent) {
+            w.attachEvent('onload', l);
+        } else {
+            w.addEventListener('load', l, false);
+        }
+    }
+})();
+JS;
 
     $this->registerJs($script, View::POS_END);
-    ?>
-<?php } elseif (Yii::$app->city->domain == 'by') { ?>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-54015829-4"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-54015829-4');
-    </script>
-<?php } elseif (Yii::$app->city->domain == 'ua') { ?>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-54015829-3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-54015829-3');
-    </script>
-<?php }
+} elseif (Yii::$app->city->domain == 'ua') {
+    $script = <<<JS
+(function () {
+    var widget_id = 'UA-54015829-3';
+    var d = document;
+    var w = window;
+
+    function l() {
+        setTimeout(function () {
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=' + widget_id;
+            var ss = document.getElementsByTagName('script')[0];
+            ss.parentNode.insertBefore(s, ss);
+            
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', widget_id);
+        }, 5000);
+    }
+
+    if (d.readyState == 'complete') {
+        l();
+    } else {
+        if (w.attachEvent) {
+            w.attachEvent('onload', l);
+        } else {
+            w.addEventListener('load', l, false);
+        }
+    }
+})();
+JS;
+
+    $this->registerJs($script, View::POS_END);
+}
 
