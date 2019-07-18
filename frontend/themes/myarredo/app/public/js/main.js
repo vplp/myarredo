@@ -542,11 +542,11 @@ $(document).ready(function () {
         $(".nav-contr").hide();
     }
 
-    $("#novelties-slider .item img").each(function (i, item) {
-        var src = $(item).attr("src");
-        $(item).css({"opacity": "0"});
-        $(item).parent().css({"background-image": "url(" + src + ")"});
-    });
+    // $("#novelties-slider .item img").each(function (i, item) {
+    //     var src = $(item).attr("src");
+    //     $(item).css({"opacity": "0"});
+    //     $(item).parent().css({"background-image": "url(" + src + ")"});
+    // });
 
     if ($(".text-col").text().trim() == "") {
         $(".text-col").closest(".text-description").remove();

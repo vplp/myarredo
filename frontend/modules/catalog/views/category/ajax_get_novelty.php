@@ -53,8 +53,8 @@ use yii\helpers\Url;
                                         if ($key < 4) {
                                             echo Html::a(
                                                 Html::img(
-                                                    Product::getImageThumb($model['image_link']),
-                                                    ['alt' => Product::getStaticTitle($model)]
+                                                    '',
+                                                    ['alt' => Product::getStaticTitle($model), 'class' => 'lazy', 'data-src' => Product::getImageThumb($model['image_link'])]
                                                 ),
                                                 Product::getUrl($model['alias']),
                                                 ['class' => 'smaller']
@@ -67,8 +67,8 @@ use yii\helpers\Url;
                                         if ($key >= 4) {
                                             echo Html::a(
                                                 Html::img(
-                                                    Product::getImageThumb($model['image_link']),
-                                                    ['alt' => Product::getStaticTitle($model)]
+                                                    '',
+                                                    ['alt' => Product::getStaticTitle($model), 'class' => 'lazy', 'data-src' => Product::getImageThumb($model['image_link'])]
                                                 ),
                                                 Product::getUrl($model['alias']),
                                                 ['class' => 'smaller']
