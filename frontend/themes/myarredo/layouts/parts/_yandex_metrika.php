@@ -4,10 +4,11 @@ use yii\web\View;
 
 /** @var $this \yii\web\View */
 
-?>
+/**
+ * Yandex.Metrika counter
+ */
 
-<!-- Yandex.Metrika counter -->
-<?php if (Yii::$app->city->domain == 'ru') {
+if (Yii::$app->city->domain == 'ru') {
     $script = <<<JS
 (function () {
     var d = document;
@@ -137,5 +138,4 @@ JS;
     <noscript>
         <div><img src="https://mc.yandex.ru/watch/39354035" style="position:absolute; left:-9999px;" alt=""/></div>
     </noscript>
-<?php } ?>
-<!-- /Yandex.Metrika counter -->
+<?php }
