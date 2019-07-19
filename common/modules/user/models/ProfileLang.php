@@ -16,13 +16,15 @@ use thread\app\base\models\ActiveRecordLang;
  * @property string $lang
  * @property string $address
  * @property string $name_company
+ * @property string $about_company
  *
  * @package common\modules\user\models
  */
 class ProfileLang extends ActiveRecordLang
 {
     /**
-     * @return string|\yii\db\Connection
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -45,6 +47,8 @@ class ProfileLang extends ActiveRecordLang
         return ArrayHelper::merge(parent::rules(), [
             ['rid', 'exist', 'targetClass' => Profile::class, 'targetAttribute' => 'id'],
             [['address', 'name_company'], 'string', 'max' => 255],
+            [['about_company'], 'string'],
+            [['address', 'name_company', 'about_company'], 'default', 'value' => ''],
         ]);
     }
 
@@ -54,9 +58,9 @@ class ProfileLang extends ActiveRecordLang
     public function scenarios()
     {
         return [
-            'backend' => ['address', 'name_company'],
-            'basicCreate' => ['address', 'name_company'],
-            'ownEdit' => ['address', 'name_company'],
+            'backend' => ['address', 'name_company', 'about_company'],
+            'basicCreate' => ['address', 'name_company', 'about_company'],
+            'ownEdit' => ['address', 'name_company', 'about_company'],
         ];
     }
 
@@ -68,6 +72,7 @@ class ProfileLang extends ActiveRecordLang
         return [
             'address' => Yii::t('app', 'Address'),
             'name_company' => Yii::t('app', 'Название компании'),
+            'about_company' => 'Описание о компании',
         ];
     }
 }

@@ -123,6 +123,8 @@ $this->title = Yii::t('app', 'Profile');
                                 ) ?>
                             <?= $form->field($modelLang, 'address') ?>
                             <?= $form->field($model, 'website') ?>
+
+                            <?= $form->field($modelLang, 'about_company')->textarea(['rows' => 10]) ?>
                         </div>
 
                         <div class="col-md-4 col-lg-4 one-row">
