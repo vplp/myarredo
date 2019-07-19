@@ -23,7 +23,8 @@ use frontend\modules\catalog\models\ItalianProduct;
                     <?php if (ItalianProduct::isPublished($orderItem->product['alias'])) {
                         echo Html::a(
                             Html::img(ItalianProduct::getImageThumb($orderItem->product['image_link'])),
-                            ItalianProduct::getUrl($orderItem->product['alias'])
+                            ItalianProduct::getUrl($orderItem->product['alias']),
+                            ['target' => '_blank']
                         );
                     } else {
                         echo Html::img(ItalianProduct::getImageThumb($orderItem->product['image_link']));

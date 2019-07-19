@@ -15,7 +15,8 @@ use frontend\modules\catalog\models\Product;
     <div class="img-cont">
         <?= Html::a(
             Html::img(Product::getImageThumb($orderItem->product['image_link'])),
-            Product::getUrl($orderItem->product['alias'])
+            Product::getUrl($orderItem->product['alias']),
+            ['target' => '_blank']
         ); ?>
     </div>
     <table class="char" width="100%">
