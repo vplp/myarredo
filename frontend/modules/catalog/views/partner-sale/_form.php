@@ -27,12 +27,12 @@ $this->title = ($model->isNewRecord)
 
     <main>
         <div class="page create-sale">
-            <div class="largex-container forcusttitle">
+            <div class="largex-container itprodform-box">
 
                 <?= Html::tag('h1', $this->title); ?>
 
-                <div class="column-center">
-                    <div class="form-horizontal">
+                <div class="column-center add-itprod-box">
+                    <div class="form-horizontal add-itprod-content">
 
                         <?php $form = ActiveForm::begin([
                             'action' => ($model->isNewRecord)
@@ -259,6 +259,15 @@ $this->title = ($model->isNewRecord)
                         <?php ActiveForm::end(); ?>
 
                     </div>
+                    <!-- rules box -->
+                    <div class="add-itprod-rules">
+                        <div class="add-itprod-rules-item">
+
+                            <?= Yii::$app->param->getByName('PARTNER_SALE_TEXT') ?>
+
+                        </div>
+                    </div>
+                    <!-- rules box end -->
                 </div>
             </div>
         </div>
