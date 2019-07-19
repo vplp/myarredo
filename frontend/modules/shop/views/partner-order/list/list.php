@@ -18,7 +18,9 @@ use frontend\modules\shop\models\Order;
 
                 <?= Html::tag('h1', $this->context->title); ?>
 
-                <?= NewsListForPartners::widget([]) ?>
+                <?php if (in_array(Yii::$app->user->identity->group->role, ['partner'])) {
+                    echo NewsListForPartners::widget([]);
+                } ?>
 
                 <?= $this->render('_form_filter', [
                     'model' => $model,
