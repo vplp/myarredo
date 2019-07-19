@@ -76,10 +76,6 @@ $this->title = Yii::t('app', 'Profile');
                     if (Yii::$app->user->identity->group->role == 'partner') { ?>
                         <div class="col-md-4 col-lg-4 one-row">
                             <?= $form->field($modelLang, 'name_company') ?>
-                            <?= $form->field($model, 'website') ?>
-                        </div>
-
-                        <div class="col-md-4 col-lg-4 one-row">
                             <?= $form
                                 ->field($model, 'country_id')
                                 ->dropDownList(
@@ -93,15 +89,48 @@ $this->title = Yii::t('app', 'Profile');
                                     [null => '--'] + City::dropDownList($model->country_id),
                                     ['class' => 'selectpicker']
                                 ) ?>
-
                             <?= $form->field($modelLang, 'address') ?>
+                            <?= $form->field($model, 'website') ?>
+                        </div>
 
+                        <div class="col-md-4 col-lg-4 one-row">
                             <?= $form
                                 ->field($model, 'image_link')
                                 ->label('Фото салона')
                                 ->imageOne($model->getImageLink()) ?>
                         </div>
+                    <?php } ?>
 
+                    <?php
+                    /**
+                     * for logistician
+                     */
+                    if (Yii::$app->user->identity->group->role == 'logistician') { ?>
+                        <div class="col-md-4 col-lg-4 one-row">
+                            <?= $form->field($modelLang, 'name_company') ?>
+                            <?= $form
+                                ->field($model, 'country_id')
+                                ->dropDownList(
+                                    [null => '--'] + Country::dropDownList(),
+                                    ['class' => 'selectpicker']
+                                ) ?>
+
+                            <?= $form
+                                ->field($model, 'city_id')
+                                ->dropDownList(
+                                    [null => '--'] + City::dropDownList($model->country_id),
+                                    ['class' => 'selectpicker']
+                                ) ?>
+                            <?= $form->field($modelLang, 'address') ?>
+                            <?= $form->field($model, 'website') ?>
+                        </div>
+
+                        <div class="col-md-4 col-lg-4 one-row">
+                            <?= $form
+                                ->field($model, 'image_link')
+                                ->label('Логотип')
+                                ->imageOne($model->getImageLink()) ?>
+                        </div>
                     <?php } ?>
 
                 </div>
