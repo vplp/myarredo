@@ -173,36 +173,46 @@ $this->title = $this->context->title;
                                     </tr>
 
                                     <?php if (!empty($model['specificationValue'])) { ?>
-                                        <tr>
-                                            <td><?= Yii::t('app', 'Размеры') ?></td>
-                                            <td class="product-size">
-                                                <?php
-                                                foreach ($model['specificationValue'] as $item) {
-                                                    if ($item['specification']['parent_id'] == 4) {
-                                                        echo Html::beginTag('span') .
-                                                            $item['specification']['lang']['title'] .
-                                                            ' (' . Yii::t('app', 'см') . ')' .
-                                                            ': ' .
-                                                            $item['val'] .
-                                                            Html::endTag('span');
-                                                    }
-                                                } ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><?= Yii::t('app', 'Материал') ?></td>
-                                            <td>
-                                                <?php
-                                                $array = [];
-                                                foreach ($model['specificationValue'] as $item) {
-                                                    if ($item['specification']['parent_id'] == 2) {
-                                                        $array[] = $item['specification']['lang']['title'];
-                                                    }
-                                                }
-                                                echo implode('; ', $array);
-                                                ?>
-                                            </td>
-                                        </tr>
+                                        <?php
+                                        $array = [];
+                                        foreach ($model['specificationValue'] as $item) {
+                                            if ($item['specification']['parent_id'] == 4 && $item['val']) {
+                                                $array[] = Html::beginTag('span') .
+                                                    $item['specification']['lang']['title'] .
+                                                    ' (' . Yii::t('app', 'см') . ')' .
+                                                    ': ' .
+                                                    $item['val'] .
+                                                    Html::endTag('span');
+                                            }
+                                        }
+                                        if (!empty($array)) { ?>
+                                            <tr>
+                                                <td><?= Yii::t('app', 'Размеры') ?></td>
+                                                <td>
+                                                    <?= implode('; ', $array) ?>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+
+                                        <?php
+                                        $array = [];
+                                        $nameSpecification = '';
+                                        foreach ($model['specificationValue'] as $item) {
+                                            if ($item['specification']['id'] == 2) {
+                                                $nameSpecification = $item['specification']['lang']['title'];
+                                                $array[] = $item['specificationByVal']['lang']['title'];
+                                            }
+                                        }
+
+                                        if (!empty($array)) { ?>
+                                            <tr>
+                                                <td><?= Yii::t('app', 'Материал') ?></td>
+                                                <td>
+                                                    <?= implode('; ', $array) ?>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+
                                     <?php } ?>
                                 <?php } ?>
 

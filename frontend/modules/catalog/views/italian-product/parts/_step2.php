@@ -51,7 +51,7 @@ use backend\app\bootstrap\ActiveForm;
 
     <?= $form
         ->field($model, 'gallery_image')
-        ->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
+        ->imageSeveral(['initialPreview' => $model->getGalleryImage(), 'maxFileCount' => 15]) ?>
 
     <?php
     if ($model->catalog_type_id == 3) {
