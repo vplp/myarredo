@@ -1,6 +1,6 @@
 <?php
 
-use yii\widgets\ActiveForm;
+use backend\app\bootstrap\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
@@ -31,7 +31,7 @@ $this->title = Yii::t('app', 'Profile');
                 <?php $form = ActiveForm::begin([
                     'action' => Url::toRoute(['/user/profile/update']),
                     'options' => ['class' => 'user-update-form']
-                ]); ?>
+                ]) ?>
 
                 <div class="row">
 
@@ -95,7 +95,13 @@ $this->title = Yii::t('app', 'Profile');
                                 ) ?>
 
                             <?= $form->field($modelLang, 'address') ?>
+
+                            <?= $form
+                                ->field($model, 'image_link')
+                                ->label('Фото салона')
+                                ->imageOne($model->getImageLink()) ?>
                         </div>
+
                     <?php } ?>
 
                 </div>

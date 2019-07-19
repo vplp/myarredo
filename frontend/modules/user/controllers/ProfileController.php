@@ -88,6 +88,8 @@ class ProfileController extends BaseController
      */
     public function actionUpdate()
     {
+        /** @var $model Profile */
+        /** @var $modelLang ProfileLang */
         /** @var $profile Profile */
         $model = new $this->model();
         $modelLang = new $this->modelLang();
@@ -106,7 +108,9 @@ class ProfileController extends BaseController
 
         $profileLang->setScenario('ownEdit');
 
-        if ($profile->load(Yii::$app->getRequest()->post()) && $profileLang->load(Yii::$app->getRequest()->post())) {
+        if ($profile->load(Yii::$app->getRequest()->post()) &&
+            $profileLang->load(Yii::$app->getRequest()->post())
+        ) {
             $transaction = $profile::getDb()->beginTransaction();
             try {
                 $profile->city_id = ($profile->country_id == 4) ? 0 : $profile->city_id;
