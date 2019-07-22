@@ -119,6 +119,7 @@ class StatsController extends Controller
             ->innerJoinWith(['items'])
             ->where([
                 Order::tableName() . '.mark' => '0',
+                Order::tableName() . '.product_type' => 'product',
             ])
             ->limit(500)
             ->orderBy(['created_at' => SORT_DESC])
@@ -161,7 +162,10 @@ class StatsController extends Controller
 
             $order->setScenario('setMark');
             $order->mark = '1';
-            $order->save();
+
+            if ($order->save()) {
+                $this->stdout($order->id . " save \n", Console::FG_GREEN);
+            }
         }
 
         $this->stdout("Finish. \n", Console::FG_GREEN);
