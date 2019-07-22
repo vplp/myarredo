@@ -80,8 +80,8 @@ class CategoryController extends BaseController
         $max = Product::maxPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         $price_range = [
-            'min' => Yii::$app->currency->getValue($min, 'EUR', ''),
-            'max' => Yii::$app->currency->getValue($max, 'EUR', '')
+            'min' => $min,
+            'max' => $max
         ];
 
         Yii::$app->metatag->render();
