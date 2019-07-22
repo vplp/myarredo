@@ -11,7 +11,7 @@ use frontend\modules\catalog\models\{
 };
 
 /**
- * @var \frontend\modules\catalog\models\Factory $model
+ * @var $model Factory
  */
 
 $keys = Yii::$app->catalogFilter->keys;

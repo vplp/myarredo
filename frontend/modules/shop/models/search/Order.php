@@ -60,7 +60,7 @@ class Order extends OrderModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'defaultPageSize' => $module->itemOnPage,
+                'defaultPageSize' => $params['defaultPageSize'] ? $params['defaultPageSize'] : $module->itemOnPage,
                 'forcePageParam' => false,
             ],
         ]);

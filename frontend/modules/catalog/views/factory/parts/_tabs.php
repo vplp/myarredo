@@ -1,16 +1,18 @@
 <?php
 
-
 use yii\helpers\{
     Url, Html
 };
 //
-use frontend\modules\catalog\models\Factory;
+use frontend\modules\shop\models\Order;
+use frontend\modules\catalog\models\{
+    Factory, FactoryCatalogsFiles, FactoryPricesFiles
+};
 
 /**
- * @var \frontend\modules\catalog\models\Factory $model
- * @var \frontend\modules\catalog\models\FactoryCatalogsFiles $catalogFile
- * @var \frontend\modules\catalog\models\FactoryPricesFiles $priceFile
+ * @var $model Factory
+ * @var $catalogFile FactoryCatalogsFiles
+ * @var $priceFile FactoryPricesFiles
  */
 
 $keys = Yii::$app->catalogFilter->keys;
@@ -64,6 +66,13 @@ $keys = Yii::$app->catalogFilter->keys;
         );
     } ?>
 
+    <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') { ?>
+        <li>
+            <a data-toggle="tab" href="#orders">
+                <?= Yii::t('app', 'Orders') ?>
+            </a>
+        </li>
+    <?php } ?>
 </ul>
 
 <div class="tab-content">
@@ -157,6 +166,103 @@ $keys = Yii::$app->catalogFilter->keys;
                         Html::endTag('li');
                 } ?>
             </ul>
+        </div>
+    <?php } ?>
+
+    <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') { ?>
+        <div id="orders" class="tab-pane fade">
+            <?php
+            $modelOrder = new Order();
+            /** @var $modelOrder Order */
+            $params['product_type'] = 'product';
+            $params['factory_id'] = $model['id'];
+            $params['defaultPageSize'] = 50;
+
+            $models = $modelOrder->search($params);
+            ?>
+            <main>
+                <div class="page adding-product-page">
+                    <div class="largex-container">
+                        <div class="manager-history">
+                            <div class="manager-history-header">
+                                <ul class="orders-title-block flex">
+                                    <li class="order-id">
+                                        <span>№</span>
+                                    </li>
+                                    <li class="application-date">
+                                        <span><?= Yii::t('app', 'Request Date') ?></span>
+                                    </li>
+                                    <li>
+                                        <span><?= Yii::t('app', 'Name') ?></span>
+                                    </li>
+                                    <li>
+                                        <span><?= Yii::t('app', 'Phone') ?></span>
+                                    </li>
+                                    <li>
+                                        <span><?= Yii::t('app', 'Email') ?></span>
+                                    </li>
+                                    <li class="lang-cell">
+                                        <span><?= Yii::t('app', 'lang') ?></span>
+                                    </li>
+                                    <li>
+                                        <span><?= Yii::t('app', 'City') ?></span>
+                                    </li>
+                                    <li>
+                                        <span><?= Yii::t('app', 'Status') ?></span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="manager-history-list">
+
+                                <?php foreach ($models->getModels() as $modelOrder) { ?>
+                                    <div class="item" data-hash="<?= $modelOrder->id; ?>">
+
+                                        <ul class="orders-title-block flex">
+                                            <li class="order-id">
+                                    <span>
+                                        <?= $modelOrder->id; ?>
+                                    </span>
+                                            </li>
+                                            <li class="application-date">
+                                                <span><?= $modelOrder->getCreatedTime() ?></span>
+                                            </li>
+                                            <li>
+                                                <span><?= $modelOrder->customer->full_name ?></span>
+                                            </li>
+                                            <li>
+                                                <span><?= $modelOrder->customer->phone ?></span>
+                                            </li>
+                                            <li>
+                                                <span><?= $modelOrder->customer->email ?></span>
+                                            </li>
+                                            <li class="lang-cell">
+                                                <span><?= substr($modelOrder->lang, 0, 2) ?></span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                    <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
+                                                </span>
+                                            </li>
+                                            <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>
+                                        </ul>
+
+                                        <div class="hidden-order-info flex">
+
+                                            <?= $this->render('@app/modules/shop/views/admin-order/list/_list_item', [
+                                                'modelOrder' => $modelOrder,
+                                            ]) ?>
+
+                                        </div>
+                                    </div>
+
+                                <?php } ?>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
     <?php } ?>
 
