@@ -7,6 +7,15 @@ use yii\helpers\{
 //
 use frontend\modules\catalog\models\Category;
 
+/** @var $route string */
+/** @var $category Category */
+/** @var $types [] */
+/** @var $style [] */
+/** @var $factory [] */
+/** @var $factory_first_show [] */
+/** @var $colors [] */
+/** @var $price_range [] */
+
 ?>
 
     <div class="filters">
@@ -160,7 +169,10 @@ use frontend\modules\catalog\models\Category;
 
                                             <?php
                                             foreach ($val as $item) {
-                                                $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
+                                                $class = $item['checked']
+                                                    ? 'one-item-check selected'
+                                                    : 'one-item-check';
+
                                                 echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
                                                 ?>
                                                 <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
@@ -181,29 +193,6 @@ use frontend\modules\catalog\models\Category;
                 </div>
             </div>
         <?php }
-
-        /*
-        <div class="one-filter">
-            <div class="price-slider-cont">
-                <a href="javascript:void(0);" class="filt-but">
-                    Цена
-                </a>
-                <div id="price-slider"></div>
-                <div class="flex s-between" style="padding: 10px 0;">
-                    <div class="cur">
-                        <input type="text" id="min-price" value="<?= $min_max_price['minPrice'] ?>">
-                    </div>
-                    <span class="indent"> - </span>
-                    <div class="cur">
-                        <input type="text" id="max-price" value="<?= $min_max_price['maxPrice'] ?>">
-                    </div>
-                </div>
-                <a href="#" class="submit">
-                    OK
-                </a>
-            </div>
-        </div>
-        */
 
         if ($colors) { ?>
             <div class="one-filter open colors-box">
@@ -243,7 +232,27 @@ use frontend\modules\catalog\models\Category;
 
             </div>
 
-        <?php }
+        <?php } ?>
+
+        <div class="one-filter">
+            <div class="price-slider-cont">
+                <a href="javascript:void(0);" class="filt-but">Цена</a>
+                <div id="price-slider" data-min="<?= $price_range['min']['current'] ?>"
+                     data-max="<?= $price_range['max']['current'] ?>"></div>
+                <div class="flex s-between" style="padding: 10px 0;">
+                    <div class="cur">
+                        <?= Html::input('text', 'price[min]', $price_range['min']['default'], ['id' => 'min-price']); ?>
+                    </div>
+                    <span class="indent"> - </span>
+                    <div class="cur">
+                        <?= Html::input('text', 'price[max]', $price_range['max']['default'], ['id' => 'max-price']); ?>
+                    </div>
+                </div>
+                <a href="javascript:void(0);" class="submit">OK</a>
+            </div>
+        </div>
+
+        <?php
 
         echo Html::hiddenInput('sort', Yii::$app->request->get('sort') ?? null);
         echo Html::hiddenInput('object', Yii::$app->request->get('object') ?? null);
@@ -265,6 +274,25 @@ use frontend\modules\catalog\models\Category;
     </div>
 
 <?php
+if (!empty($price_range) && $price_range['link']) {
+    $link_for_price = $price_range['link'];
+
+    $script = <<<JS
+$('.submit').on('click', function () {
+    var link = '$link_for_price',
+        min = $('input[name="price[min]"]').val(),
+        max = $('input[name="price[max]"]').val();
+    
+    link = link.replace('{MIN}', min);
+    link = link.replace('{MAX}', max);
+    //console.log(link);
+    window.location.href = link;
+});
+JS;
+
+    $this->registerJs($script);
+}
+
 $script = <<<JS
 $('.category-filter label').on('click', function () {
     var checkbox = $(this).parent().find('input[type=checkbox]');  

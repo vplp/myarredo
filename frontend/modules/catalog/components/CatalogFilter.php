@@ -52,6 +52,7 @@ class CatalogFilter extends Component
      */
     private static $_structure = [];
 
+
     /**
      * Filter keys
      *
@@ -63,10 +64,10 @@ class CatalogFilter extends Component
         'style' => '.30',
         'factory' => '.40',
         'collection' => '.50',
-        'price' => '.80',
         //'country' => '.60',
         //'city' => '.70',
-        'colors' => '.90',
+        'colors' => '.80',
+        'price' => '.90',
     ];
 
     /**
@@ -82,10 +83,10 @@ class CatalogFilter extends Component
             self::$keys['style'] => 's',
             self::$keys['factory'] => 'f',
             self::$keys['collection'] => 'c',
-            self::$keys['price'] => 'price',
             //self::$keys['city'] => 'city',
             //self::$keys['country'] => 'country',
             self::$keys['colors'] => 'colors',
+            self::$keys['price'] => 'price',
         ];
     }
 
@@ -396,33 +397,6 @@ class CatalogFilter extends Component
         */
 
         /**
-         * Price
-         */
-
-        if (!empty(self::$_structure['price'])) {
-            $data = self::$_structure['price'];
-
-            if (strpos($data[0], 'price=') === false) {
-                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
-            }
-
-            if (count($data) != 2) {
-                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
-            }
-
-            $_data = [
-                preg_replace("/[^0-9]/", '', $data[0]),
-                preg_replace("/[^0-9]/", '', $data[1])
-            ];
-
-            if ($_data[0] >= $_data[1]) {
-                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
-            }
-
-            self::$_parameters[self::$keys['price']] = $_data;
-        }
-
-        /**
          * Colors
          */
 
@@ -449,6 +423,32 @@ class CatalogFilter extends Component
             if (!empty($result)) {
                 //throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
+        }
+
+        /**
+         * Price
+         */
+
+        if (!empty(self::$_structure['price'])) {
+            $data = self::$_structure['price'];
+            if (strpos($data[0], 'price=') === false) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            if (count($data) != 2) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            $_data = [
+                preg_replace("/[^0-9]/", '', $data[0]),
+                preg_replace("/[^0-9]/", '', $data[1])
+            ];
+
+            if ($_data[0] >= $_data[1]) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            self::$_parameters[self::$keys['price']] = $_data;
         }
     }
 }

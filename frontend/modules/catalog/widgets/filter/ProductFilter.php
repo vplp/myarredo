@@ -45,22 +45,12 @@ class ProductFilter extends Widget
     /**
      * @var object
      */
-    public $min_max_price = [];
+    public $price_range = ['min' => 0, 'max' => 99];
 
     /**
      * @var object
      */
     public $colors = [];
-
-    /**
-     * @inheritDoc
-     */
-    public function init()
-    {
-        parent::init();
-
-        $this->min_max_price = ['maxPrice' => 0, 'minPrice' => 0];
-    }
 
     /**
      * @return string
@@ -252,14 +242,45 @@ class ProductFilter extends Widget
 
             $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
 
-            $colors[$key] = array(
+            $colors[$key] = [
                 'checked' => $checked,
                 'link' => $link,
                 'title' => $obj['lang']['title'],
                 'count' => $obj['count'],
                 'alias' => $obj['alias'],
                 'color_code' => $obj['color_code'],
-            );
+            ];
+        }
+
+        /**
+         * Price range
+         */
+        $price_range = [];
+
+        // min
+        if ($this->price_range['min']) {
+            $price_range['min'] = [
+                'current' => !empty($params[$keys['price']])
+                    ? $params[$keys['price']][0]
+                    : $this->price_range['min'],
+                'default' => $this->price_range['min'],
+            ];
+        }
+
+        // max
+        if ($this->price_range['max']) {
+            $price_range['max'] = [
+                'current' => !empty($params[$keys['price']])
+                    ? $params[$keys['price']][1]
+                    : $this->price_range['max'],
+                'default' => $this->price_range['max'],
+            ];
+        }
+
+        if (!empty($price_range['min']) && !empty($price_range['max'])) {
+            $params = Yii::$app->catalogFilter->params;
+            $params[$keys['price']] = ['{MIN}', '{MAX}'];
+            $price_range['link'] = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
         }
 
         return $this->render($this->view, [
@@ -270,7 +291,7 @@ class ProductFilter extends Widget
             'factory' => $factory,
             'colors' => $colors,
             'factory_first_show' => $factory_first_show,
-            'min_max_price' => !empty($this->min_max_price) ? $this->min_max_price : ['maxPrice' => 0, 'minPrice' => 0],
+            'price_range' => $price_range,
             'filter' => Yii::$app->catalogFilter->params
         ]);
     }

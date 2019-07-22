@@ -76,6 +76,14 @@ class CategoryController extends BaseController
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
+        $min = Product::minPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+        $max = Product::maxPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+
+        $price_range = [
+            'min' => Yii::$app->currency->getValue($min, 'EUR', ''),
+            'max' => Yii::$app->currency->getValue($max, 'EUR', '')
+        ];
+
         Yii::$app->metatag->render();
 
         if (!empty($models->getModels()) && !empty($queryParams[$keys['colors']])) {
@@ -103,6 +111,7 @@ class CategoryController extends BaseController
             'style' => $style,
             'factory' => $factory,
             'colors' => $colors,
+            'price_range' => $price_range,
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),
         ]);

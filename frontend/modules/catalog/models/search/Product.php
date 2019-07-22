@@ -63,7 +63,7 @@ class Product extends ProductModel
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
+            'pagination' => isset($params['pagination']) ? $params['pagination'] : [
                 'defaultPageSize' => $module->itemOnPage,
                 'forcePageParam' => false,
             ],
@@ -124,9 +124,9 @@ class Product extends ProductModel
         $order = [];
 
         if (isset($params['sort']) && $params['sort'] == 'asc') {
-            $order[] = self::tableName() . '.factory_price ASC';
+            $order[] = self::tableName() . '.price_from ASC';
         } elseif (isset($params['sort']) && $params['sort'] == 'desc') {
-            $order[] = self::tableName() . '.factory_price DESC';
+            $order[] = self::tableName() . '.price_from DESC';
         }
 
         if (isset($params['object']) && $params['object'] == 'composition') {
@@ -147,9 +147,9 @@ class Product extends ProductModel
          * cache
          */
 
-//        self::getDb()->cache(function ($db) use ($dataProvider) {
-//            $dataProvider->prepare();
-//        });
+        self::getDb()->cache(function ($db) use ($dataProvider) {
+            $dataProvider->prepare();
+        });
 
         return $dataProvider;
     }
@@ -215,6 +215,109 @@ class Product extends ProductModel
     public function search($params)
     {
         $query = ProductModel::findBase();
+
         return $this->baseSearch($query, $params);
+    }
+
+    /**
+     * @param $params
+     * @return ActiveDataProvider
+     * @throws \Throwable
+     */
+    public static function minPrice($params)
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = ProductModel::findBase();
+
+        if (isset($params[$keys['category']])) {
+            $query
+                ->innerJoinWith(["category"])
+                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params[$keys['category']]]);
+        }
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["types"])
+                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["specification"])
+                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params[$keys['style']]]);
+        }
+
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["factory"])
+                ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
+        }
+
+        if (isset($params[$keys['collection']])) {
+            $query
+                ->innerJoinWith(["collection"])
+                ->andFilterWhere(['IN', Collection::tableName() . '.id', $params[$keys['collection']]]);
+        }
+
+
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["colors"])
+                ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
+        }
+
+        return $query->min(self::tableName() . '.price_from');
+    }
+
+    /**
+     * @param $params
+     * @return ActiveDataProvider
+     * @throws \Throwable
+     */
+    public static function maxPrice($params)
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = ProductModel::findBase();
+
+        if (isset($params[$keys['category']])) {
+            $query
+                ->innerJoinWith(["category"])
+                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params[$keys['category']]]);
+        }
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["types"])
+                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["specification"])
+                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params[$keys['style']]]);
+        }
+
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["factory"])
+                ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
+        }
+
+        if (isset($params[$keys['collection']])) {
+            $query
+                ->innerJoinWith(["collection"])
+                ->andFilterWhere(['IN', Collection::tableName() . '.id', $params[$keys['collection']]]);
+        }
+
+
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["colors"])
+                ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
+        }
+
+        return $query->max(self::tableName() . '.price_from');
     }
 }

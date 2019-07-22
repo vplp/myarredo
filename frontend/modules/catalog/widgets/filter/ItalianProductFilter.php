@@ -55,7 +55,7 @@ class ItalianProductFilter extends Widget
     /**
      * @var object
      */
-    public $min_max_price = [];
+    public $price_range = [];
 
     /**
      * @var object
@@ -69,7 +69,7 @@ class ItalianProductFilter extends Widget
     {
         parent::init();
 
-        $this->min_max_price = ['maxPrice' => 0, 'minPrice' => 0];
+        $this->price_range = ['max' => 0, 'min' => 0];
     }
 
     /**
@@ -284,7 +284,7 @@ class ItalianProductFilter extends Widget
             'factory' => $factory,
             'colors' => $colors,
             'factory_first_show' => $factory_first_show,
-            'min_max_price' => !empty($this->min_max_price) ? $this->min_max_price : ['maxPrice' => 0, 'minPrice' => 0],
+            'price_range' => !empty($this->price_range) ? $this->price_range : ['max' => 0, 'min' => 0],
             'filter' => Yii::$app->catalogFilter->params
         ]);
     }

@@ -159,6 +159,26 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     * @throws \Throwable
+     */
+    public static function minPrice($params)
+    {
+        return search\Product::minPrice($params);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     * @throws \Throwable
+     */
+    public static function maxPrice($params)
+    {
+        return search\Product::maxPrice($params);
+    }
+
+    /**
      * @param string $image_link
      * @return bool
      */
