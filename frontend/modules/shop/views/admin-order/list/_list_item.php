@@ -64,9 +64,12 @@ use frontend\modules\catalog\models\Product;
                 <div class="downloads">
 
                     <?php
-                    $pricesFiles = ($orderItem->product->factoryPricesFiles != null)
+                    $pricesFiles = ($orderItem->product && $orderItem->product->factoryPricesFiles != null)
                         ? $orderItem->product->factoryPricesFiles
-                        : $orderItem->product->factory->pricesFiles;
+                        : ($orderItem->product && $orderItem->product->factory->pricesFiles
+                            ? $orderItem->product->factory->pricesFiles
+                            : []
+                        );
 
                     if (!empty($pricesFiles)) { ?>
                         <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
