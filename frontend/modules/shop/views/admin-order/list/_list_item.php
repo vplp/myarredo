@@ -62,7 +62,6 @@ use frontend\modules\catalog\models\Product;
                 </table>
 
                 <div class="downloads">
-
                     <?php
                     $pricesFiles = ($orderItem->product && $orderItem->product->factoryPricesFiles != null)
                         ? $orderItem->product->factoryPricesFiles
@@ -74,18 +73,15 @@ use frontend\modules\catalog\models\Product;
                     if (!empty($pricesFiles)) { ?>
                         <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
                         <ul class="pricelist">
-                            <?php
-                            foreach ($pricesFiles as $priceFile) {
+                            <?php foreach ($pricesFiles as $priceFile) {
                                 if ($fileLink = $priceFile->getFileLink()) { ?>
                                     <li>
                                         <?= Html::a($priceFile->title, $fileLink, ['target' => '_blank']) ?>
                                     </li>
                                 <?php }
-                            }
-                            ?>
+                            } ?>
                         </ul>
                     <?php } ?>
-
                 </div>
 
             </div>
