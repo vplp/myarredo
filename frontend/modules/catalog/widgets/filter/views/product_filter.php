@@ -50,8 +50,7 @@ use frontend\modules\catalog\models\Category;
             </div>
         </div>
 
-        <?php
-        if ($types) { ?>
+        <?php if ($types) { ?>
             <div class="one-filter open subject-filter">
                 <?= Html::a(
                     Yii::t('app', 'Предмет'),
@@ -86,9 +85,9 @@ use frontend\modules\catalog\models\Category;
                 } ?>
 
             </div>
-        <?php }
+        <?php } ?>
 
-        if ($style) { ?>
+        <?php if ($style) { ?>
             <div class="one-filter open">
                 <?= Html::a(
                     Yii::t('app', 'Стиль'),
@@ -111,9 +110,9 @@ use frontend\modules\catalog\models\Category;
 
                 </div>
             </div>
-        <?php }
+        <?php } ?>
 
-        if ($factory) { ?>
+        <?php if ($factory) { ?>
             <div class="one-filter open">
                 <?= Html::a(
                     Yii::t('app', 'Фабрики'),
@@ -192,9 +191,9 @@ use frontend\modules\catalog\models\Category;
 
                 </div>
             </div>
-        <?php }
+        <?php } ?>
 
-        if ($colors) { ?>
+        <?php if ($colors) { ?>
             <div class="one-filter open colors-box">
                 <?= Html::a(
                     Yii::t('app', 'Color'),
@@ -231,29 +230,29 @@ use frontend\modules\catalog\models\Category;
                 } ?>
 
             </div>
-
         <?php } ?>
 
-        <div class="one-filter">
-            <div class="price-slider-cont">
-                <a href="javascript:void(0);" class="filt-but">Цена</a>
-                <div id="price-slider" data-min="<?= $price_range['min']['current'] ?>"
-                     data-max="<?= $price_range['max']['current'] ?>"></div>
-                <div class="flex s-between" style="padding: 10px 0;">
-                    <div class="cur">
-                        <?= Html::input('text', 'price[min]', $price_range['min']['default'], ['id' => 'min-price']); ?>
+        <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') { ?>
+            <div class="one-filter">
+                <div class="price-slider-cont">
+                    <a href="javascript:void(0);" class="filt-but">Цена</a>
+                    <div id="price-slider" data-min="<?= $price_range['min']['current'] ?>"
+                         data-max="<?= $price_range['max']['current'] ?>"></div>
+                    <div class="flex s-between" style="padding: 10px 0;">
+                        <div class="cur">
+                            <?= Html::input('text', 'price[min]', $price_range['min']['default'], ['id' => 'min-price']); ?>
+                        </div>
+                        <span class="indent"> - </span>
+                        <div class="cur">
+                            <?= Html::input('text', 'price[max]', $price_range['max']['default'], ['id' => 'max-price']); ?>
+                        </div>
                     </div>
-                    <span class="indent"> - </span>
-                    <div class="cur">
-                        <?= Html::input('text', 'price[max]', $price_range['max']['default'], ['id' => 'max-price']); ?>
-                    </div>
+                    <a href="javascript:void(0);" class="submit">OK</a>
                 </div>
-                <a href="javascript:void(0);" class="submit">OK</a>
             </div>
-        </div>
+        <?php } ?>
 
         <?php
-
         echo Html::hiddenInput('sort', Yii::$app->request->get('sort') ?? null);
         echo Html::hiddenInput('object', Yii::$app->request->get('object') ?? null);
 
