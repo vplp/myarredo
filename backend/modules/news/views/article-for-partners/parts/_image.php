@@ -9,4 +9,4 @@ use backend\modules\news\models\{
  * @var ArticleForPartnersLang $modelLang
  */
 
-$form->text_editor_lang($modelLang, 'content');
+echo $form->field($model, 'image_link')->imageOne($model->getArticleImage());

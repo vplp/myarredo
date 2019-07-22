@@ -11,7 +11,6 @@ use backend\modules\user\models\User;
 /**
  * @var ArticleForPartners $model
  * @var ArticleForPartnersLang $modelLang
- * @var \backend\widgets\forms\ActiveForm $form
  */
 ?>
 

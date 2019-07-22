@@ -1,5 +1,5 @@
 <?php
-use thread\modules\seo\widgets\seo\SeoWidget;
+
 use thread\app\bootstrap\{
     ActiveForm
 };

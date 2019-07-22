@@ -1,7 +1,10 @@
 <?php
 
 use yii\helpers\Html;
+//
+use frontend\modules\news\models\ArticleForPartners;
 
+/** @var $article ArticleForPartners */
 ?>
 
 <div class="newsbox-item">
@@ -32,7 +35,11 @@ use yii\helpers\Html;
                     </div>
                     <div class="modal-body">
 
-                        <?= $article['lang']['content']?>
+                        <?= $article['lang']['content'] ?>
+
+                        <?php if ($article->getArticleImage()) {
+                            echo Html::img($article->getArticleImage(), ['class' => '']);
+                        } ?>
 
                     </div>
                 </div>

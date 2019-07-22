@@ -34,6 +34,14 @@ use backend\modules\news\models\{
                 'modelLang' => $modelLang
             ])
         ],
+        [
+            'label' => Yii::t('news', 'Image'),
+            'content' => $this->render('parts/_image', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ])
+        ],
     ]
 ]) ?>
 

@@ -18,12 +18,13 @@ use thread\app\base\models\ActiveRecord;
 /**
  * Class ArticleForPartners
  *
- * @property integer id
- * @property integer position
- * @property integer show_all
- * @property integer updated_at
- * @property boolean published
- * @property boolean deleted
+ * @property integer $id
+ * @property integer $image_link
+ * @property integer $position
+ * @property integer $show_all
+ * @property integer $updated_at
+ * @property boolean $published
+ * @property boolean $deleted
  * @property array $city_ids
  * @property array $user_ids
  *
@@ -79,6 +80,7 @@ class ArticleForPartners extends ActiveRecord
     public function rules()
     {
         return [
+            [['image_link'], 'string', 'max' => 255],
             [['position', 'create_time', 'update_time'], 'integer'],
             [['show_all', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['position'], 'default', 'value' => '0'],
@@ -95,7 +97,7 @@ class ArticleForPartners extends ActiveRecord
             'show_all' => ['show_all'],
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['position', 'show_all', 'published', 'deleted', 'city_ids', 'user_ids'],
+            'backend' => ['image_link', 'position', 'show_all', 'published', 'deleted', 'city_ids', 'user_ids'],
         ];
     }
 
@@ -106,6 +108,7 @@ class ArticleForPartners extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'image_link' => Yii::t('app', 'Image link'),
             'position' => Yii::t('app', 'Position'),
             'show_all' => Yii::t('news', 'Show all'),
             'created_at' => Yii::t('app', 'Create time'),
@@ -115,6 +118,25 @@ class ArticleForPartners extends ActiveRecord
             'city_ids' => Yii::t('app', 'Cities'),
             'user_ids' => Yii::t('app', 'Users'),
         ];
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getArticleImage()
+    {
+        $module = Yii::$app->getModule('news');
+
+        $path = $module->getArticleUploadPath();
+        $url = $module->getArticleUploadUrl();
+
+        $image = null;
+
+        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
+            $image = $url . '/' . $this->image_link;
+        }
+
+        return $image;
     }
 
     /**
@@ -137,6 +159,7 @@ class ArticleForPartners extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getCities()
     {
@@ -147,6 +170,7 @@ class ArticleForPartners extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getUsers()
     {
