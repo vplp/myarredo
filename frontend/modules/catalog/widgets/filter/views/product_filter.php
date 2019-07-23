@@ -284,7 +284,7 @@ $('.submit').on('click', function () {
     
     link = link.replace('{MIN}', min);
     link = link.replace('{MAX}', max);
-    //console.log(link);
+
     window.location.href = link;
 });
 JS;
