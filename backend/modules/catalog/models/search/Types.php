@@ -2,6 +2,7 @@
 
 namespace backend\modules\catalog\models\search;
 
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
@@ -52,6 +53,8 @@ class Types extends TypesModel implements BaseBackendSearchModel
             'query' => $query,
             'pagination' => false
         ]);
+
+        $query->andWhere([self::tableName() . '.parent_id' => Yii::$app->getRequest()->get('parent_id') ?? '']);
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;

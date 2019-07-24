@@ -65,12 +65,30 @@ $this->registerJs($script);
         'options' => ['placeholder' => Yii::t('app', 'Select option')],
     ]) ?>
 
-<?= $form
-    ->field($model, 'catalog_type_id')
-    ->widget(Select2::class, [
-        'data' => Types::dropDownList(),
-        'options' => ['placeholder' => Yii::t('app', 'Select option')],
-    ]) ?>
+<div class="row control-group">
+    <div class="col-md-3">
+        <?= $form
+            ->field($model, 'catalog_type_id')
+            ->label(Yii::t('app', 'Предмет'))
+            ->widget(Select2::class, [
+                'data' => Types::dropDownList(['parent_id' => 0]),
+                'options' => ['placeholder' => Yii::t('app', 'Select option')],
+            ]) ?>
+    </div>
+    <div class="col-md-9">
+        <?= $form
+            ->field($model, 'type_ids')
+            ->widget(Select2::class, [
+                'data' => Types::dropDownList(['parent_id' => $model->isNewRecord ? -1 : $model['catalog_type_id']]),
+                'options' => [
+                    'placeholder' => Yii::t('app', 'Select option'),
+                    'multiple' => true
+                ],
+            ]) ?>
+    </div>
+</div>
+
+
 
 <?php
 $url = \yii\helpers\Url::toRoute('/catalog/product/ajax-get-category');
@@ -87,6 +105,12 @@ $('#product-catalog_type_id').on('change', function () {
            category += '<option value="'+ key +'">' + value + '</option>';
         });
         $('#product-category_ids').html(category);
+        
+        var types = '';
+        $.each(data.types, function( key, value ) {
+           types += '<option value="'+ key +'">' + value + '</option>';
+        });
+        $('#product-type_ids').html(types);
     });
 });
 JS;

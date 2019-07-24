@@ -47,6 +47,7 @@ $this->title = $this->context->title;
                                 'route' => '/catalog/category/list',
                                 'category' => $category,
                                 'types' => $types,
+                                'types2' => $types2,
                                 'style' => $style,
                                 'factory' => $factory,
                                 'colors' => $colors,

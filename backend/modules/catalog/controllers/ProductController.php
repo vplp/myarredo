@@ -14,9 +14,7 @@ use common\actions\upload\{
 use thread\app\base\controllers\BackendController;
 use thread\actions\AttributeSwitch;
 //
-use backend\modules\catalog\models\{
-    Collection, Category, Product, ProductLang, search\Product as filterProduct
-};
+use backend\modules\catalog\models\{Collection, Category, Product, ProductLang, search\Product as filterProduct, Types};
 
 /**
  * Class ProductController
@@ -128,6 +126,7 @@ class ProductController extends BackendController
 
         if (Yii::$app->request->isAjax && $type_id = Yii::$app->request->post('type_id')) {
             $response['category'] = Category::dropDownList(['type_id' => $type_id]);
+            $response['types'] = Types::dropDownList(['parent_id' => $type_id]);
         }
 
         return $response;

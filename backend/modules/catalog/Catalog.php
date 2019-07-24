@@ -48,7 +48,7 @@ class Catalog extends \common\modules\catalog\Catalog
                         'url' => ['/catalog/category/list'],
                     ],
                     [
-                        'label' => 'Types',
+                        'label' => 'Предметы',
                         'position' => 4,
                         'url' => ['/catalog/types/list'],
                     ],

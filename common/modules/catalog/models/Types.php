@@ -3,17 +3,22 @@
 namespace common\modules\catalog\models;
 
 use Yii;
+use yii\behaviors\AttributeBehavior;
 use yii\helpers\{
     ArrayHelper
 };
 use voskobovich\behaviors\ManyToManyBehavior;
+//
 use thread\app\base\models\ActiveRecord;
+//
+use common\helpers\Inflector;
 use common\modules\catalog\Catalog;
 
 /**
  * Class Types
  *
  * @property integer $id
+ * @property integer $parent_id
  * @property string $alias
  * @property integer $position
  * @property integer $created_at
@@ -22,6 +27,10 @@ use common\modules\catalog\Catalog;
  * @property integer $deleted
  *
  * @property TypesLang $lang
+ * @property TypesRelCategory $category
+ * @property Product $product
+ * @property Sale $sale
+ * @property ItalianProduct $italianProduct
  *
  * @package common\modules\catalog\models
  */
@@ -56,6 +65,16 @@ class Types extends ActiveRecord
                     'category_ids' => 'category',
                 ],
             ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias);
+                },
+            ],
         ]);
     }
 
@@ -66,11 +85,11 @@ class Types extends ActiveRecord
     {
         return [
             [['alias'], 'required'],
-            [['created_at', 'updated_at', 'position'], 'integer'],
+            [['parent_id', 'created_at', 'updated_at', 'position'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['alias'], 'string', 'max' => 255],
             [['alias'], 'unique'],
-            [['position'], 'default', 'value' => '0'],
+            [['parent_id', 'position'], 'default', 'value' => '0'],
             [['category_ids'], 'each', 'rule' => ['integer']],
         ];
     }
@@ -84,7 +103,7 @@ class Types extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'position' => ['position'],
-            'backend' => ['alias', 'position', 'published', 'deleted', 'category_ids'],
+            'backend' => ['parent_id', 'alias', 'position', 'published', 'deleted', 'category_ids'],
         ];
     }
 
@@ -95,6 +114,7 @@ class Types extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'parent_id' => Yii::t('app', 'Parent'),
             'alias' => Yii::t('app', 'Alias'),
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
@@ -103,6 +123,39 @@ class Types extends ActiveRecord
             'deleted' => Yii::t('app', 'Deleted'),
             'category_ids' => Yii::t('app', 'Category'),
         ];
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function getById($id)
+    {
+        return self::find()->byID($id)->one();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChildren()
+    {
+        return $this->hasMany(self::class, ['parent_id' => 'id']);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParent()
+    {
+        return $this->hasOne(self::class, ['id' => 'parent_id']);
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getChildrenCount()
+    {
+        return $this->getChildren()->count();
     }
 
     /**
@@ -138,6 +191,17 @@ class Types extends ActiveRecord
     public function getProduct()
     {
         return $this->hasMany(Product::class, ['catalog_type_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getProduct2()
+    {
+        return $this
+            ->hasMany(Product::class, ['id' => 'item_id'])
+            ->viaTable(ProductRelTypes::tableName(), ['type_id' => 'id']);
     }
 
     /**

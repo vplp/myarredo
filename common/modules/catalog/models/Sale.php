@@ -50,6 +50,7 @@ use common\modules\user\models\User;
  *
  * @property SaleLang $lang
  * @property SaleRelCategory[] $category
+ * @property SaleRelTypes[] $manyTypes
  * @property Factory $factory
  * @property User $user
  * @property Country $country
@@ -87,6 +88,7 @@ class Sale extends ActiveRecord
                 'class' => ManyToManyBehavior::className(),
                 'relations' => [
                     'category_ids' => 'category',
+                    'type_ids' => 'manyTypes',
                     'colors_ids' => 'colors',
                 ],
             ],
@@ -148,6 +150,7 @@ class Sale extends ActiveRecord
             [
                 [
                     'category_ids',
+                    'type_ids',
                     'colors_ids',
                 ],
                 'each',
@@ -202,6 +205,7 @@ class Sale extends ActiveRecord
                 'position',
                 'on_main',
                 'category_ids',
+                'type_ids',
                 'colors_ids',
                 'mark',
                 'language_editing'
@@ -228,6 +232,7 @@ class Sale extends ActiveRecord
                 'position',
                 'on_main',
                 'category_ids',
+                'type_ids',
                 'colors_ids',
                 'mark',
                 'language_editing'
@@ -265,6 +270,7 @@ class Sale extends ActiveRecord
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
             'category_ids' => Yii::t('app', 'Category'),
+            'type_ids' => Yii::t('app', 'Типы'),
             'colors_ids' => Yii::t('app', 'Colors'),
             'mark',
             'language_editing'
@@ -390,6 +396,17 @@ class Sale extends ActiveRecord
         return $this
             ->hasMany(Category::class, ['id' => 'group_id'])
             ->viaTable(SaleRelCategory::tableName(), ['sale_item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getManyTypes()
+    {
+        return $this
+            ->hasMany(Types::class, ['id' => 'type_id'])
+            ->viaTable(SaleRelTypes::tableName(), ['item_id' => 'id']);
     }
 
     /**

@@ -2,14 +2,15 @@
 
 use kartik\widgets\Select2;
 //
+use backend\app\bootstrap\ActiveForm;
 use backend\modules\catalog\models\{
-    Category
+    Category, Types, TypesLang
 };
 
 /**
- * @var \backend\modules\catalog\models\Types $model
- * @var \backend\modules\catalog\models\TypesLang $modelLang
- * @var \backend\app\bootstrap\ActiveForm $form
+ * @var $form ActiveForm
+ * @var $model Types
+ * @var $modelLang TypesLang
  */
 
 ?>
@@ -18,15 +19,24 @@ use backend\modules\catalog\models\{
 <?= $form->text_line_lang($modelLang, 'plural_name') ?>
 <?= $form->text_line($model, 'alias') ?>
 
-<?= $form
-    ->field($model, 'category_ids')
-    ->widget(Select2::class, [
-        'data' => Category::dropDownList(),
-        'options' => [
-            'placeholder' => Yii::t('app', 'Select option'),
-            'multiple' => true
-        ],
-    ]) ?>
+<?php if ($this->context->parent) {
+    $model->parent_id = $this->context->parent->id;
+
+    echo $form
+        ->field($model, 'parent_id')
+        ->dropDownList([0 => '--'] + Types::dropDownList(['parent_id' => 0]))
+        ->label(Yii::t('app', 'Предмет'));
+} else {
+    echo $form
+        ->field($model, 'category_ids')
+        ->widget(Select2::class, [
+            'data' => Category::dropDownList(),
+            'options' => [
+                'placeholder' => Yii::t('app', 'Select option'),
+                'multiple' => true
+            ],
+        ]);
+} ?>
 
 <div class="row control-group">
     <div class="col-md-3">

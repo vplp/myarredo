@@ -70,11 +70,10 @@ class CategoryController extends BaseController
 
         $category = Category::getWithProduct($queryParams);
         $types = Types::getWithProduct($queryParams);
+        $types2 = Types::getWithProduct2($queryParams);
         $style = Specification::getWithProduct($queryParams);
         $factory = Factory::getWithProduct($queryParams);
         $colors = Colors::getWithProduct($queryParams);
-
-        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         $min = Product::minPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
         $max = Product::maxPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
@@ -83,6 +82,8 @@ class CategoryController extends BaseController
             'min' => $min,
             'max' => $max
         ];
+
+        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         Yii::$app->metatag->render();
 
@@ -108,6 +109,7 @@ class CategoryController extends BaseController
             'group' => $group,
             'category' => $category,
             'types' => $types,
+            'types2' => $types2,
             'style' => $style,
             'factory' => $factory,
             'colors' => $colors,

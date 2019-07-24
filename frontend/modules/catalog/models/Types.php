@@ -134,6 +134,8 @@ class Types extends \common\modules\catalog\models\Types
 
         $query = self::findBase();
 
+        $query->andWhere([self::tableName() . '.parent_id' => 0]);
+
         $query
             ->innerJoinWith(["product"], false)
             ->innerJoinWith(["product.lang"], false)
@@ -194,6 +196,88 @@ class Types extends \common\modules\catalog\models\Types
                 ->groupBy(self::tableName() . '.id')
                 ->all();
         });
+
+        return $result;
+    }
+
+    /**
+     * @param array $params
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getWithProduct2($params = [])
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = self::findBase();
+
+        $query
+            ->innerJoinWith(["product2"], false)
+            ->innerJoinWith(["product2.lang"], false)
+            ->innerJoinWith(["product2.factory"], false)
+            ->andFilterWhere([
+                Product::tableName() . '.published' => '1',
+                Product::tableName() . '.deleted' => '0',
+                Product::tableName() . '.removed' => '0',
+                Factory::tableName() . '.published' => '1',
+                Factory::tableName() . '.deleted' => '0',
+                Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
+            ]);
+
+        if (isset($params[$keys['category']])) {
+            $query
+                ->innerJoinWith(["product2.category productCategory"], false)
+                ->andFilterWhere(['IN', 'productCategory.alias', $params[$keys['category']]]);
+        }
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["product2.types productTypes"], false)
+                ->andFilterWhere(['IN', 'productTypes.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["product2.specification productSpecification"], false)
+                ->andFilterWhere(['IN', 'productSpecification.alias', $params[$keys['style']]]);
+        }
+
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["product2.factory productFactory"], false)
+                ->andFilterWhere(['IN', 'productFactory.alias', $params[$keys['factory']]]);
+        }
+
+        if (isset($params[$keys['collection']])) {
+            $query
+                ->innerJoinWith(["product2.collection productCollection"], false)
+                ->andFilterWhere(['IN', 'productCollection.id', $params[$keys['collection']]]);
+        }
+
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["product2.colors as productColors"], false)
+                ->andFilterWhere(['IN', 'productColors.alias', $params[$keys['colors']]]);
+        }
+
+        if (Yii::$app->request->get('show') == 'in_stock') {
+            $query->andWhere([
+                Product::tableName() . '.in_stock' => '1'
+            ]);
+        }
+
+        //$result = self::getDb()->cache(function ($db) use ($query) {
+            return $query
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.alias',
+                    TypesLang::tableName() . '.title',
+                    'count(' . self::tableName() . '.id) as count'
+                ])
+                ->groupBy(self::tableName() . '.id')
+                ->all();
+        //});
 
         return $result;
     }

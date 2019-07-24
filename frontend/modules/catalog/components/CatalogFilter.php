@@ -67,6 +67,7 @@ class CatalogFilter extends Component
         //'country' => '.60',
         //'city' => '.70',
         'colors' => '.80',
+        'type2' => '.81',
         'price' => '.90',
     ];
 
@@ -86,6 +87,7 @@ class CatalogFilter extends Component
             //self::$keys['city'] => 'city',
             //self::$keys['country'] => 'country',
             self::$keys['colors'] => 'colors',
+            self::$keys['type2'] => 't2',
             self::$keys['price'] => 'price',
         ];
     }
@@ -264,6 +266,36 @@ class CatalogFilter extends Component
             // check value
 
             $result = array_diff_assoc(self::$_structure['type'], self::$_parameters[self::$keys['type']]);
+
+            if (!empty($result)) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+        }
+
+        /**
+         * Type2
+         */
+
+        if (!empty(self::$_structure['type2'])) {
+            $model = Types::findBase()
+                ->andWhere(['IN', Types::tableName() . '.alias', self::$_structure['type2']])
+                ->indexBy('id')
+                ->orderBy(Types::tableName() . '.alias')
+                ->all();
+
+            if (count(self::$_structure['type2']) != count($model) || $model == null) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            // sort value
+
+            foreach ($model as $obj) {
+                self::setParam(self::$keys['type2'], $obj['alias']);
+            }
+
+            // check value
+
+            $result = array_diff_assoc(self::$_structure['type2'], self::$_parameters[self::$keys['type2']]);
 
             if (!empty($result)) {
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));

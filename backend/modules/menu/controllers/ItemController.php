@@ -109,7 +109,7 @@ class ItemController extends BackendController
 
         if (in_array($action->id, ['list', 'create', 'update', 'trash'])) {
             if ($groupId === null) {
-                throw new \yii\web\NotFoundHttpException;
+                throw new \yii\web\NotFoundHttpException();
             }
         }
 
@@ -123,6 +123,4 @@ class ItemController extends BackendController
 
         return parent::beforeAction($action);
     }
-
-
 }

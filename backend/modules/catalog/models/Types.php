@@ -13,15 +13,23 @@ use common\modules\catalog\models\Types as CommonTypesModel;
  */
 class Types extends CommonTypesModel implements BaseBackendModel
 {
-    public $parent_id = 0;
-
     /**
-     * Backend form drop down list
+     * @param array $option
      * @return array
      */
-    public static function dropDownList()
+    public static function dropDownList($option = [])
     {
-        return ArrayHelper::map(self::findBase()->undeleted()->all(), 'id', 'lang.title');
+        $query = self::findBase();
+
+        if (isset($option['parent_id'])) {
+            $query->andFilterWhere([
+                'parent_id' => $option['parent_id']
+            ]);
+        }
+
+        $data = $query->undeleted()->all();
+
+        return ArrayHelper::map($data, 'id', 'lang.title');
     }
 
     /**

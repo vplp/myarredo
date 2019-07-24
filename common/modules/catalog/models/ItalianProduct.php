@@ -63,6 +63,7 @@ use common\modules\shop\models\OrderItem;
  *
  * @property ItalianProductLang $lang
  * @property ItalianProductRelCategory[] $category
+ * @property ItalianProductRelTypes[] $manyTypes
  * @property Payment $payment
  * @property ItalianProductRelSpecification[] $specificationValue
  * @property Factory $factory
@@ -103,6 +104,7 @@ class ItalianProduct extends ActiveRecord
                 'class' => ManyToManyBehavior::className(),
                 'relations' => [
                     'category_ids' => 'category',
+                    'type_ids' => 'manyTypes',
                     'colors_ids' => 'colors',
                 ],
             ],
@@ -195,6 +197,7 @@ class ItalianProduct extends ActiveRecord
             [
                 [
                     'category_ids',
+                    'type_ids',
                     'colors_ids',
                 ],
                 'each',
@@ -272,6 +275,7 @@ class ItalianProduct extends ActiveRecord
                 'language_editing',
                 'status',
                 'category_ids',
+                'type_ids',
                 'colors_ids',
             ],
             'frontend' => [
@@ -300,6 +304,7 @@ class ItalianProduct extends ActiveRecord
                 'mark',
                 'language_editing',
                 'category_ids',
+                'type_ids',
                 'colors_ids',
             ]
         ];
@@ -345,6 +350,7 @@ class ItalianProduct extends ActiveRecord
             'language_editing',
             'status' => Yii::t('app', 'Status'),
             'category_ids' => Yii::t('app', 'Category'),
+            'type_ids' => Yii::t('app', 'Типы'),
             'colors_ids' => Yii::t('app', 'Colors'),
         ];
     }
@@ -497,6 +503,17 @@ class ItalianProduct extends ActiveRecord
         return $this
             ->hasMany(Category::class, ['id' => 'group_id'])
             ->viaTable(ItalianProductRelCategory::tableName(), ['item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getManyTypes()
+    {
+        return $this
+            ->hasMany(Types::class, ['id' => 'type_id'])
+            ->viaTable(ItalianProductRelTypes::tableName(), ['item_id' => 'id']);
     }
 
     /**

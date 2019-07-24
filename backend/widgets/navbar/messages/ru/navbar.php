@@ -39,7 +39,7 @@ return [
     'Translation' => 'Переводы',
     'Catalog' => 'Каталог',
     'Category' => 'Категории',
-    'Types' => 'Типы предметов',
+    'Types' => 'Типы',
     'Product' => 'Товары',
     'Compositions' => 'Композиции',
     'Samples' => 'Отделка',

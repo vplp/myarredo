@@ -202,6 +202,12 @@ class Category extends \common\modules\catalog\models\Category
                 ->andFilterWhere(['IN', 'productTypes.alias', $params[$keys['type']]]);
         }
 
+//        if (isset($params[$keys['type2']])) {
+//            $query
+//                ->innerJoinWith(["product.manyTypes productManyTypes"])
+//                ->andFilterWhere(['IN', 'productManyTypes.alias', $params[$keys['type']]]);
+//        }
+
         if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["product.specification productSpecification"], false)

@@ -21,7 +21,7 @@ use backend\modules\catalog\models\{
 <?= $form
     ->field($model, 'types_ids')
     ->widget(Select2::class, [
-        'data' => Types::dropDownList(),
+        'data' => Types::dropDownList(['parent_id' => 0]),
         'options' => [
             'placeholder' => Yii::t('app', 'Select option'),
             'multiple' => true

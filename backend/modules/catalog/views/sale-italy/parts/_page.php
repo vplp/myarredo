@@ -11,6 +11,6 @@ use backend\modules\catalog\models\{
  * @var $modelLang ItalianProductLang
  */
 
-echo $form->text_editor_lang($modelLang, 'description');
-echo $form->text_editor_lang($modelLang, 'defects');
-echo $form->text_editor_lang($modelLang, 'material');
+echo $form->text_line_lang($modelLang, 'description')->textarea(['style' => 'height:200px;']);
+echo $form->text_line_lang($modelLang, 'defects')->textarea(['style' => 'height:200px;']);
+echo $form->text_line_lang($modelLang, 'material')->textarea(['style' => 'height:200px;']);

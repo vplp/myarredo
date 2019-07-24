@@ -42,7 +42,7 @@ use backend\modules\catalog\models\{
 <?= Html::label(Yii::t('app', 'Type')) ?>
 <?= Select2::widget([
     'name' => 'typeF',
-    'data' => Types::dropDownList(),
+    'data' => Types::dropDownList(['parent_id' => 0]),
     'options' => [
         'placeholder' => Yii::t('app', 'Select option'),
         'id' => 'typeF',

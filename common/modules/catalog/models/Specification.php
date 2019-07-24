@@ -24,6 +24,9 @@ use common\modules\catalog\Catalog;
  * @property integer $readonly
  *
  * @property SpecificationLang $lang
+ * @property Product[] $product
+ * @property Sale[] $sale
+ * @property ItalianProduct[] $italianProduct
  *
  * @package common\modules\catalog\models
  */
@@ -139,6 +142,7 @@ class Specification extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getProduct()
     {
@@ -149,6 +153,7 @@ class Specification extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getSale()
     {
@@ -159,6 +164,7 @@ class Specification extends ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getItalianProduct()
     {
