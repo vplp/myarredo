@@ -38,6 +38,7 @@ echo GridView::widget([
             'label' => Yii::t('app', 'Category'),
             'filter' => GridViewFilter::selectOne($filter, 'category', Category::dropDownList()),
             'headerOptions' => ['class' => 'col-sm-4'],
+            'visible' => ($this->context->parent) ? false : true
         ],
         [
             'format' => 'raw',
