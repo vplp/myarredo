@@ -88,7 +88,7 @@ use frontend\modules\catalog\models\Category;
             </div>
         <?php } ?>
 
-        <?php if ($types2 && !Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') { ?>
+        <?php if ($types2 && YII_DEBUG) { ?>
             <div class="one-filter open subject-filter">
                 <?= Html::a(
                     Yii::t('app', 'Тип'),
@@ -270,7 +270,7 @@ use frontend\modules\catalog\models\Category;
             </div>
         <?php } ?>
 
-        <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') { ?>
+        <?php if (YII_DEBUG) { ?>
             <div class="one-filter">
                 <div class="price-slider-cont">
                     <a href="javascript:void(0);" class="filt-but">Цена</a>

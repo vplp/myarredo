@@ -89,11 +89,11 @@ class Product extends ProductModel
                 ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
         }
 
-        if (isset($params[$keys['type2']])) {
-            $query
-                ->innerJoinWith(["manyTypes manyTypes"])
-                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
-        }
+//        if (isset($params[$keys['type2']])) {
+//            $query
+//                ->innerJoinWith(["manyTypes manyTypes"])
+//                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type2']]]);
+//        }
 
         if (isset($params[$keys['style']])) {
             $query

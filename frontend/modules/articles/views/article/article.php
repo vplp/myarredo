@@ -14,7 +14,7 @@ $this->title = $model['lang']['title'];
 
             <!-- Контент старт -->
             <div class="single-articlebox">
-                <div class="article-title"><?= $model['lang']['title'] ?></div>
+                <h1 class="article-title"><?= $model['lang']['title'] ?></h1>
                 <article class="article-textbox">
                     <?= $model['lang']['content'] ?>
                 </article>
