@@ -93,42 +93,40 @@ class CatalogProductController extends Controller
 
                                 $modelLang2->rid = $model->id;
                                 $modelLang2->lang = Yii::$app->language;
-                            }
 
-                            $translateLanguage = substr($currentLanguage, 0, 2) . '-' . substr($language2['local'], 0, 2);
+                                $translateLanguage = substr($currentLanguage, 0, 2) . '-' . substr($language2['local'], 0, 2);
 
-                            $this->stdout("translate " . $translateLanguage . " \n", Console::FG_GREEN);
+                                $this->stdout("translate " . $translateLanguage . " \n", Console::FG_GREEN);
 
-                            $translateTitle = (string)Yii::$app->yandexTranslator
-                                ->getTranslate($modelLang->title, $translateLanguage);
+                                $translateTitle = (string)Yii::$app->yandexTranslator
+                                    ->getTranslate($modelLang->title, $translateLanguage);
 
-                            //$this->stdout("title = " . $translateTitle . " \n", Console::FG_GREEN);
+                                $translateDescription = (string)Yii::$app->yandexTranslator
+                                    ->getTranslate(strip_tags($modelLang->description), $translateLanguage);
 
-                            $translateDescription = (string)Yii::$app->yandexTranslator
-                                ->getTranslate(strip_tags($modelLang->description), $translateLanguage);
+                                if ($translateTitle != '') {
+                                    $transaction = $modelLang2::getDb()->beginTransaction();
+                                    try {
+                                        $modelLang2->title = $translateTitle;
+                                        $modelLang2->description = $translateDescription;
 
-                            //$this->stdout("description = " . $translateDescription . " \n", Console::FG_GREEN);
+                                        $modelLang2->setScenario('backend');
 
-                            if ($translateTitle != '') {
-                                $transaction = $modelLang2::getDb()->beginTransaction();
-                                try {
-                                    $modelLang2->title = $translateTitle;
-                                    $modelLang2->description = $translateDescription;
-
-                                    $modelLang2->setScenario('backend');
-
-                                    if ($saveLang[] = intval($modelLang2->save())) {
-                                        $transaction->commit();
-                                        $this->stdout("save " . $translateLanguage . " \n", Console::FG_GREEN);
-                                    } else {
-                                        foreach ($modelLang2->errors as $attribute => $errors) {
-                                            $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
+                                        if ($saveLang[] = intval($modelLang2->save())) {
+                                            $transaction->commit();
+                                            $this->stdout("save " . $translateLanguage . " \n", Console::FG_GREEN);
+                                        } else {
+                                            foreach ($modelLang2->errors as $attribute => $errors) {
+                                                $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
+                                            }
                                         }
+                                    } catch (Exception $e) {
+                                        $transaction->rollBack();
+                                        throw new Exception($e);
                                     }
-                                } catch (Exception $e) {
-                                    $transaction->rollBack();
-                                    throw new Exception($e);
                                 }
+                            } else {
+                                $saveLang[] = 1;
                             }
                         }
                     }
@@ -171,12 +169,8 @@ class CatalogProductController extends Controller
                                     $translateTitle = (string)Yii::$app->yandexTranslator
                                         ->getTranslate($modelLang->title, $translateLanguage);
 
-                                    //$this->stdout("title = " . $translateTitle . " \n", Console::FG_GREEN);
-
                                     $translateDescription = (string)Yii::$app->yandexTranslator
                                         ->getTranslate(strip_tags($modelLang->description), $translateLanguage);
-
-                                    //$this->stdout("description = " . $translateDescription . " \n", Console::FG_GREEN);
 
                                     if ($translateTitle != '') {
                                         $transaction = $modelLang2::getDb()->beginTransaction();
