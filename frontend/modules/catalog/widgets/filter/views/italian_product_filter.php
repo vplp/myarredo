@@ -105,7 +105,7 @@ use frontend\modules\catalog\models\{
             </div>
         <?php } ?>
 
-        <?php if ($subtypes && YII_DEBUG) { ?>
+        <?php if ($subtypes) { ?>
             <div class="one-filter open subject-filter">
                 <?= Html::a(
                     Yii::t('app', 'Тип'),
