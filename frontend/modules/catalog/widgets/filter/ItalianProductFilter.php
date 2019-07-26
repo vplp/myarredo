@@ -40,6 +40,10 @@ class ItalianProductFilter extends Widget
     /**
      * @var object
      */
+    public $subtypes = [];
+    /**
+     * @var object
+     */
     public $style = [];
 
     /**
@@ -139,6 +143,40 @@ class ItalianProductFilter extends Widget
             $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
 
             $types[$key] = array(
+                'checked' => $checked,
+                'link' => $link,
+                'title' => $obj['lang']['title'],
+                'count' => $obj['count'],
+                'alias' => $obj['alias'],
+            );
+        }
+
+        /**
+         * SubTypes LIST
+         */
+
+        $subtypes = [];
+
+        foreach ($this->subtypes as $key => $obj) {
+            $params = Yii::$app->catalogFilter->params;
+
+            if (!empty($params[$keys['subtypes']]) &&
+                in_array($obj['alias'], $params[$keys['subtypes']])
+            ) {
+                $checked = 1;
+                $params[$keys['subtypes']] = array_diff($params[$keys['subtypes']], [$obj['alias']]);
+            } else {
+                $checked = 0;
+                $params[$keys['subtypes']][] = $obj['alias'];
+            }
+
+            // sort value
+
+            array_multisort($params[$keys['subtypes']], SORT_ASC, $params[$keys['subtypes']]);
+
+            $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
+
+            $subtypes[$key] = array(
                 'checked' => $checked,
                 'link' => $link,
                 'title' => $obj['lang']['title'],
@@ -280,6 +318,7 @@ class ItalianProductFilter extends Widget
             'route' => $this->route,
             'category' => $category,
             'types' => $types,
+            'subtypes' => $subtypes,
             'style' => $style,
             'factory' => $factory,
             'colors' => $colors,

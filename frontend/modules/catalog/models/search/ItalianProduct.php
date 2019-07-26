@@ -6,7 +6,12 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 //
-use frontend\modules\catalog\models\{Colors, ItalianProduct as ItalianProductModel, ItalianProductLang};
+use frontend\modules\catalog\models\{
+    Colors,
+    SubTypes,
+    ItalianProduct as ItalianProductModel,
+    ItalianProductLang
+};
 //
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 
@@ -61,7 +66,7 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
         ]);
 
         if (isset($params['ItalianProduct'])) {
-            $params = array_merge($params, $params['ItalianProduct']) ;
+            $params = array_merge($params, $params['ItalianProduct']);
         }
 
         if (!($this->load($params, ''))) {
@@ -88,6 +93,12 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
             $query
                 ->innerJoinWith(["types"])
                 ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["subTypes"])
+                ->andFilterWhere(['IN', SubTypes::tableName() . '.alias', $params[$keys['subtypes']]]);
         }
 
         if (isset($params[$keys['style']])) {

@@ -59,7 +59,7 @@ use common\modules\user\models\{
  * @property ProductLang $title
  * @property ProductLang $lang
  * @property ProductRelCategory[] $category
- * @property ProductRelTypes[] $manyTypes
+ * @property ProductRelSubTypes[] $subTypes
  * @property ProductRelSamples[] $samples
  * @property Factory $factory
  * @property ProductRelFactoryCatalogsFiles[] $factoryCatalogsFiles
@@ -98,7 +98,7 @@ class Product extends ActiveRecord implements iProduct
                 'class' => ManyToManyBehavior::className(),
                 'relations' => [
                     'category_ids' => 'category',
-                    'type_ids' => 'manyTypes',
+                    'subtypes_ids' => 'subTypes',
                     'samples_ids' => 'samples',
                     'colors_ids' => 'colors',
                     'factory_catalogs_files_ids' => 'factoryCatalogsFiles',
@@ -167,7 +167,7 @@ class Product extends ActiveRecord implements iProduct
             [
                 [
                     'category_ids',
-                    'type_ids',
+                    'subtypes_ids',
                     'samples_ids',
                     'colors_ids',
                     'factory_catalogs_files_ids',
@@ -233,7 +233,7 @@ class Product extends ActiveRecord implements iProduct
                 'default_title',
                 'article',
                 'category_ids',
-                'type_ids',
+                'subtypes_ids',
                 'samples_ids',
                 'colors_ids',
                 'factory_catalogs_files_ids',
@@ -279,7 +279,7 @@ class Product extends ActiveRecord implements iProduct
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
             'category_ids' => Yii::t('app', 'Category'),
-            'type_ids' => Yii::t('app', 'Типы'),
+            'subtypes_ids' => Yii::t('app', 'Типы'),
             'samples_ids' => Yii::t('app', 'Samples'),
             'colors_ids' => Yii::t('app', 'Colors'),
             'factory_catalogs_files_ids' => Yii::t('app', 'Factory catalogs files'),
@@ -517,11 +517,11 @@ class Product extends ActiveRecord implements iProduct
      * @return \yii\db\ActiveQuery
      * @throws \yii\base\InvalidConfigException
      */
-    public function getManyTypes()
+    public function getSubTypes()
     {
         return $this
-            ->hasMany(Types::class, ['id' => 'type_id'])
-            ->viaTable(ProductRelTypes::tableName(), ['item_id' => 'id']);
+            ->hasMany(SubTypes::class, ['id' => 'subtype_id'])
+            ->viaTable(ProductRelSubTypes::tableName(), ['item_id' => 'id']);
     }
 
     /**

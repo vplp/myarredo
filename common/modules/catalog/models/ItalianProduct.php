@@ -63,7 +63,7 @@ use common\modules\shop\models\OrderItem;
  *
  * @property ItalianProductLang $lang
  * @property ItalianProductRelCategory[] $category
- * @property ItalianProductRelTypes[] $manyTypes
+ * @property ItalianProductRelSubTypes[] $subTypes
  * @property Payment $payment
  * @property ItalianProductRelSpecification[] $specificationValue
  * @property Factory $factory
@@ -104,7 +104,7 @@ class ItalianProduct extends ActiveRecord
                 'class' => ManyToManyBehavior::className(),
                 'relations' => [
                     'category_ids' => 'category',
-                    'type_ids' => 'manyTypes',
+                    'subtypes_ids' => 'subTypes',
                     'colors_ids' => 'colors',
                 ],
             ],
@@ -197,7 +197,7 @@ class ItalianProduct extends ActiveRecord
             [
                 [
                     'category_ids',
-                    'type_ids',
+                    'subtypes_ids',
                     'colors_ids',
                 ],
                 'each',
@@ -275,7 +275,7 @@ class ItalianProduct extends ActiveRecord
                 'language_editing',
                 'status',
                 'category_ids',
-                'type_ids',
+                'subtypes_ids',
                 'colors_ids',
             ],
             'frontend' => [
@@ -304,7 +304,7 @@ class ItalianProduct extends ActiveRecord
                 'mark',
                 'language_editing',
                 'category_ids',
-                'type_ids',
+                'subtypes_ids',
                 'colors_ids',
             ]
         ];
@@ -350,7 +350,7 @@ class ItalianProduct extends ActiveRecord
             'language_editing',
             'status' => Yii::t('app', 'Status'),
             'category_ids' => Yii::t('app', 'Category'),
-            'type_ids' => Yii::t('app', 'Типы'),
+            'subtypes_ids' => Yii::t('app', 'Типы'),
             'colors_ids' => Yii::t('app', 'Colors'),
         ];
     }
@@ -509,11 +509,11 @@ class ItalianProduct extends ActiveRecord
      * @return \yii\db\ActiveQuery
      * @throws \yii\base\InvalidConfigException
      */
-    public function getManyTypes()
+    public function getSubTypes()
     {
         return $this
-            ->hasMany(Types::class, ['id' => 'type_id'])
-            ->viaTable(ItalianProductRelTypes::tableName(), ['item_id' => 'id']);
+            ->hasMany(SubTypes::class, ['id' => 'subtype_id'])
+            ->viaTable(ItalianProductRelSubTypes::tableName(), ['item_id' => 'id']);
     }
 
     /**

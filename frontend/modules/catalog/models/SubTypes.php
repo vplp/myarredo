@@ -8,11 +8,11 @@ use yii\helpers\{
 };
 
 /**
- * Class Types
+ * Class SubTypes
  *
  * @package frontend\modules\catalog\models
  */
-class Types extends \common\modules\catalog\models\Types
+class SubTypes extends \common\modules\catalog\models\SubTypes
 {
     /**
      * @return array
@@ -55,27 +55,6 @@ class Types extends \common\modules\catalog\models\Types
     }
 
     /**
-     * @param string $category_alias
-     * @return array
-     */
-    public static function findByCategoryAlias($category_alias)
-    {
-        $query = self::findBase();
-
-        if ($category_alias != '') {
-            $query
-                ->innerJoinWith(["category"])
-                ->andFilterWhere([
-                    Category::tableName() . '.alias' => $category_alias
-                ]);
-        }
-
-        $data = $query->all();
-
-        return $data;
-    }
-
-    /**
      * @return mixed
      */
     public static function dropDownList()
@@ -110,16 +89,7 @@ class Types extends \common\modules\catalog\models\Types
      */
     public function search($params)
     {
-        return (new search\Types())->search($params);
-    }
-
-    /**
-     * @param $alias
-     * @return string
-     */
-    public static function getUrl($alias)
-    {
-        return Url::toRoute(['/catalog/types/view', 'alias' => $alias], true);
+        return (new search\SubTypes())->search($params);
     }
 
     /**
@@ -153,10 +123,10 @@ class Types extends \common\modules\catalog\models\Types
                 ->andFilterWhere(['IN', 'productCategory.alias', $params[$keys['category']]]);
         }
 
-        if (isset($params[$keys['subtypes']])) {
+        if (isset($params[$keys['type']])) {
             $query
-                ->innerJoinWith(["product.subTypes productSubTypes"])
-                ->andFilterWhere(['IN', 'productSubTypes.alias', $params[$keys['subtypes']]]);
+                ->innerJoinWith(["product.types productTypes"], false)
+                ->andFilterWhere(['IN', 'productTypes.alias', $params[$keys['type']]]);
         }
 
         if (isset($params[$keys['style']])) {
@@ -194,7 +164,7 @@ class Types extends \common\modules\catalog\models\Types
                 ->select([
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
-                    TypesLang::tableName() . '.title',
+                    SubTypesLang::tableName() . '.title',
                     'count(' . self::tableName() . '.id) as count'
                 ])
                 ->groupBy(self::tableName() . '.id')
@@ -227,10 +197,10 @@ class Types extends \common\modules\catalog\models\Types
                 ->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
         }
 
-        if (isset($params[$keys['subtypes']])) {
+        if (isset($params[$keys['type']])) {
             $query
-                ->innerJoinWith(["sale.subTypes saleSubTypes"], false)
-                ->andFilterWhere(['IN', 'saleSubTypes.alias', $params[$keys['subtypes']]]);
+                ->innerJoinWith(["sale.types saleTypes"], false)
+                ->andFilterWhere(['IN', 'saleTypes.alias', $params[$keys['type']]]);
         }
 
         if (isset($params[$keys['style']])) {
@@ -267,7 +237,7 @@ class Types extends \common\modules\catalog\models\Types
             ->select([
                 self::tableName() . '.id',
                 self::tableName() . '.alias',
-                TypesLang::tableName() . '.title',
+                SubTypesLang::tableName() . '.title',
                 'count(' . self::tableName() . '.id) as count'
             ])
             ->groupBy(self::tableName() . '.id')
@@ -297,12 +267,6 @@ class Types extends \common\modules\catalog\models\Types
                 ->andFilterWhere(['IN', 'italianProductCategory.alias', $params[$keys['category']]]);
         }
 
-        if (isset($params[$keys['subtypes']])) {
-            $query
-                ->innerJoinWith(["italianProduct.subTypes italianProductSubTypes"], false)
-                ->andFilterWhere(['IN', 'italianProductSubTypes.alias', $params[$keys['subtypes']]]);
-        }
-
         if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["italianProduct.specification italianProductSpecification"], false)
@@ -325,7 +289,7 @@ class Types extends \common\modules\catalog\models\Types
             ->select([
                 self::tableName() . '.id',
                 self::tableName() . '.alias',
-                TypesLang::tableName() . '.title',
+                SubTypesLang::tableName() . '.title',
                 'count(' . self::tableName() . '.id) as count'
             ])
             ->groupBy(self::tableName() . '.id')

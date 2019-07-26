@@ -6,13 +6,13 @@ use yii\helpers\{
 use kartik\widgets\Select2;
 //
 use backend\modules\catalog\models\{
-    Category, Factory, Collection, Types
+    Category, Factory, Collection, Types, SubTypes
 };
 
 /**
- * @var \backend\modules\catalog\models\Product $model
- * @var \backend\modules\catalog\models\ProductLang $modelLang
- * @var \backend\app\bootstrap\ActiveForm $form
+ * @var $model Product
+ * @var $modelLang ProductLang
+ * @var $form ActiveForm
  */
 
 ?>
@@ -71,15 +71,15 @@ $this->registerJs($script);
             ->field($model, 'catalog_type_id')
             ->label(Yii::t('app', 'Предмет'))
             ->widget(Select2::class, [
-                'data' => Types::dropDownList(['parent_id' => 0]),
+                'data' => Types::dropDownList(),
                 'options' => ['placeholder' => Yii::t('app', 'Select option')],
             ]) ?>
     </div>
     <div class="col-md-9">
         <?= $form
-            ->field($model, 'type_ids')
+            ->field($model, 'subtypes_ids')
             ->widget(Select2::class, [
-                'data' => Types::dropDownList(['parent_id' => $model->isNewRecord ? -1 : $model['catalog_type_id']]),
+                'data' => SubTypes::dropDownList(['parent_id' => $model->isNewRecord ? -1 : $model['catalog_type_id']]),
                 'options' => [
                     'placeholder' => Yii::t('app', 'Select option'),
                     'multiple' => true
@@ -87,7 +87,6 @@ $this->registerJs($script);
             ]) ?>
     </div>
 </div>
-
 
 
 <?php
@@ -106,11 +105,11 @@ $('#product-catalog_type_id').on('change', function () {
         });
         $('#product-category_ids').html(category);
         
-        var types = '';
-        $.each(data.types, function( key, value ) {
-           types += '<option value="'+ key +'">' + value + '</option>';
+        var subtypes = '';
+        $.each(data.subtypes, function( key, value ) {
+           subtypes += '<option value="'+ key +'">' + value + '</option>';
         });
-        $('#product-type_ids').html(types);
+        $('#product-subtypes_ids').html(subtypes);
     });
 });
 JS;
@@ -185,5 +184,5 @@ $this->registerJs($script);
 </div>
 
 <div class="row control-group">
-    <?= Html::a('просмотр товара на сайте', '/product/'.$model->alias, ['target' => '_blank']); ?>
+    <?= Html::a('просмотр товара на сайте', '/product/' . $model->alias, ['target' => '_blank']); ?>
 </div>

@@ -19,6 +19,7 @@ use frontend\modules\catalog\models\{
     Category,
     Factory,
     Types,
+    SubTypes,
     Specification,
     Colors
 };
@@ -89,6 +90,7 @@ class SaleItalyController extends BaseController
 
         $category = Category::getWithItalianProduct($queryParams);
         $types = Types::getWithItalianProduct($queryParams);
+        $subtypes = SubTypes::getWithItalianProduct($queryParams);
         $style = Specification::getWithItalianProduct($queryParams);
         $factory = Factory::getWithItalianProduct($queryParams);
         $colors = Colors::getWithItalianProduct($queryParams);
@@ -109,6 +111,7 @@ class SaleItalyController extends BaseController
         return $this->render('list', [
             'category' => $category,
             'types' => $types,
+            'subtypes' => $subtypes,
             'style' => $style,
             'factory' => $factory,
             'colors' => $colors,

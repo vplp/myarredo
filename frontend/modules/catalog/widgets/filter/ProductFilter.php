@@ -35,7 +35,7 @@ class ProductFilter extends Widget
     /**
      * @var object
      */
-    public $types2 = [];
+    public $subtypes = [];
 
     /**
      * @var object
@@ -131,31 +131,31 @@ class ProductFilter extends Widget
         }
 
         /**
-         * TYPE LIST
+         * SubTypes LIST
          */
 
-        $types2 = [];
+        $subtypes = [];
 
-        foreach ($this->types2 as $key => $obj) {
+        foreach ($this->subtypes as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (!empty($params[$keys['type2']]) &&
-                in_array($obj['alias'], $params[$keys['type2']])
+            if (!empty($params[$keys['subtypes']]) &&
+                in_array($obj['alias'], $params[$keys['subtypes']])
             ) {
                 $checked = 1;
-                $params[$keys['type2']] = array_diff($params[$keys['type2']], [$obj['alias']]);
+                $params[$keys['subtypes']] = array_diff($params[$keys['subtypes']], [$obj['alias']]);
             } else {
                 $checked = 0;
-                $params[$keys['type2']][] = $obj['alias'];
+                $params[$keys['subtypes']][] = $obj['alias'];
             }
 
             // sort value
 
-            array_multisort($params[$keys['type2']], SORT_ASC, $params[$keys['type2']]);
+            array_multisort($params[$keys['subtypes']], SORT_ASC, $params[$keys['subtypes']]);
 
             $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
 
-            $types2[$key] = array(
+            $subtypes[$key] = array(
                 'checked' => $checked,
                 'link' => $link,
                 'title' => $obj['lang']['title'],
@@ -326,7 +326,7 @@ class ProductFilter extends Widget
             'route' => $this->route,
             'category' => $category,
             'types' => $types,
-            'types2' => $types2,
+            'subtypes' => $subtypes,
             'style' => $style,
             'factory' => $factory,
             'colors' => $colors,

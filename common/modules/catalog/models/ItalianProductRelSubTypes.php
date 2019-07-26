@@ -7,14 +7,14 @@ use thread\app\base\models\ActiveRecord;
 use common\modules\catalog\Catalog;
 
 /**
- * Class ProductRelTypes
+ * Class ItalianProductRelSubTypes
  *
  * @property string $item_id
- * @property string $type_id
+ * @property string $subtype_id
  *
  * @package common\modules\catalog\models
  */
-class ProductRelTypes extends ActiveRecord
+class ItalianProductRelSubTypes extends ActiveRecord
 {
     /**
      * @return object|string|\yii\db\Connection|null
@@ -30,7 +30,7 @@ class ProductRelTypes extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%catalog_item_rel_catalog_type}}';
+        return '{{%catalog_italian_item_rel_catalog_subtypes}}';
     }
 
     /**
@@ -47,8 +47,8 @@ class ProductRelTypes extends ActiveRecord
     public function rules()
     {
         return [
-            ['item_id', 'exist', 'targetClass' => Product::class, 'targetAttribute' => 'id'],
-            ['type_id', 'exist', 'targetClass' => Types::class, 'targetAttribute' => 'id'],
+            ['item_id', 'exist', 'targetClass' => ItalianProduct::class, 'targetAttribute' => 'id'],
+            ['subtype_id', 'exist', 'targetClass' => SubTypes::class, 'targetAttribute' => 'id'],
         ];
     }
 
@@ -60,7 +60,7 @@ class ProductRelTypes extends ActiveRecord
         return [
             'backend' => [
                 'item_id',
-                'type_id',
+                'subtype_id',
             ],
         ];
     }
@@ -72,7 +72,7 @@ class ProductRelTypes extends ActiveRecord
     {
         return [
             'item_id',
-            'type_id',
+            'subtype_id',
         ];
     }
 }

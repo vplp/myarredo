@@ -4,14 +4,14 @@ namespace backend\modules\catalog\models;
 
 use yii\helpers\ArrayHelper;
 use thread\app\model\interfaces\BaseBackendModel;
-use common\modules\catalog\models\Types as CommonTypesModel;
+use common\modules\catalog\models\SubTypes as CommonSubTypesModel;
 
 /**
- * Class Types
+ * Class SubTypes
  *
  * @package backend\modules\catalog\models
  */
-class Types extends CommonTypesModel implements BaseBackendModel
+class SubTypes extends CommonSubTypesModel implements BaseBackendModel
 {
     /**
      * @param array $option
@@ -20,6 +20,12 @@ class Types extends CommonTypesModel implements BaseBackendModel
     public static function dropDownList($option = [])
     {
         $query = self::findBase();
+
+        if (isset($option['parent_id'])) {
+            $query->andFilterWhere([
+                'parent_id' => $option['parent_id']
+            ]);
+        }
 
         $data = $query->undeleted()->all();
 
@@ -32,7 +38,7 @@ class Types extends CommonTypesModel implements BaseBackendModel
      */
     public function search($params)
     {
-        return (new search\Types())->search($params);
+        return (new search\SubTypes())->search($params);
     }
 
     /**
@@ -41,6 +47,6 @@ class Types extends CommonTypesModel implements BaseBackendModel
      */
     public function trash($params)
     {
-        return (new search\Types())->trash($params);
+        return (new search\SubTypes())->trash($params);
     }
 }

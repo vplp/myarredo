@@ -40,6 +40,7 @@ $this->title = $this->context->title;
                                 'route' => '/catalog/sale/list',
                                 'category' => $category,
                                 'types' => $types,
+                                'subtypes' => $subtypes,
                                 'style' => $style,
                                 'factory' => $factory,
                                 'colors' => $colors,

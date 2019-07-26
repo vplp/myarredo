@@ -9,7 +9,7 @@ use yii\web\Response;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Collection, Product, Category, Factory, Types, Specification, Colors
+    Collection, Product, Category, Factory, Types, SubTypes, Specification, Colors
 };
 
 /**
@@ -70,7 +70,7 @@ class CategoryController extends BaseController
 
         $category = Category::getWithProduct($queryParams);
         $types = Types::getWithProduct($queryParams);
-        $types2 = Types::getWithProduct2($queryParams);
+        $subtypes = SubTypes::getWithProduct($queryParams);
         $style = Specification::getWithProduct($queryParams);
         $factory = Factory::getWithProduct($queryParams);
         $colors = Colors::getWithProduct($queryParams);
@@ -109,7 +109,7 @@ class CategoryController extends BaseController
             'group' => $group,
             'category' => $category,
             'types' => $types,
-            'types2' => $types2,
+            'subtypes' => $subtypes,
             'style' => $style,
             'factory' => $factory,
             'colors' => $colors,

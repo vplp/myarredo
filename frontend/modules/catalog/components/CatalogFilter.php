@@ -13,6 +13,7 @@ use frontend\modules\catalog\models\{
     Category,
     Factory,
     Types,
+    SubTypes,
     Specification,
     Collection,
     Colors
@@ -67,7 +68,7 @@ class CatalogFilter extends Component
         //'country' => '.60',
         //'city' => '.70',
         'colors' => '.80',
-        'type2' => '.81',
+        'subtypes' => '.81',
         'price' => '.90',
     ];
 
@@ -87,7 +88,7 @@ class CatalogFilter extends Component
             //self::$keys['city'] => 'city',
             //self::$keys['country'] => 'country',
             self::$keys['colors'] => 'colors',
-            self::$keys['type2'] => 't2',
+            self::$keys['subtypes'] => 'st',
             self::$keys['price'] => 'price',
         ];
     }
@@ -273,29 +274,29 @@ class CatalogFilter extends Component
         }
 
         /**
-         * Type2
+         * SubTypes
          */
 
-        if (!empty(self::$_structure['type2'])) {
-            $model = Types::findBase()
-                ->andWhere(['IN', Types::tableName() . '.alias', self::$_structure['type2']])
+        if (!empty(self::$_structure['subtypes'])) {
+            $model = SubTypes::findBase()
+                ->andWhere(['IN', SubTypes::tableName() . '.alias', self::$_structure['subtypes']])
                 ->indexBy('id')
-                ->orderBy(Types::tableName() . '.alias')
+                ->orderBy(SubTypes::tableName() . '.alias')
                 ->all();
 
-            if (count(self::$_structure['type2']) != count($model) || $model == null) {
+            if (count(self::$_structure['subtypes']) != count($model) || $model == null) {
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
             // sort value
 
             foreach ($model as $obj) {
-                self::setParam(self::$keys['type2'], $obj['alias']);
+                self::setParam(self::$keys['subtypes'], $obj['alias']);
             }
 
             // check value
 
-            $result = array_diff_assoc(self::$_structure['type2'], self::$_parameters[self::$keys['type2']]);
+            $result = array_diff_assoc(self::$_structure['subtypes'], self::$_parameters[self::$keys['subtypes']]);
 
             if (!empty($result)) {
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));

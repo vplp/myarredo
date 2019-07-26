@@ -174,6 +174,12 @@ class Specification extends \common\modules\catalog\models\Specification
                 ->andFilterWhere(['IN', 'productTypes.alias', $params[$keys['type']]]);
         }
 
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["product.subTypes productSubTypes"])
+                ->andFilterWhere(['IN', 'productSubTypes.alias', $params[$keys['subtypes']]]);
+        }
+
         if (isset($params[$keys['factory']])) {
             $query
                 ->innerJoinWith(["product.factory productFactory"], false)
@@ -245,6 +251,12 @@ class Specification extends \common\modules\catalog\models\Specification
                 ->andFilterWhere(['IN', 'saleTypes.alias', $params[$keys['type']]]);
         }
 
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["sale.subTypes saleSubTypes"], false)
+                ->andFilterWhere(['IN', 'saleSubTypes.alias', $params[$keys['subtypes']]]);
+        }
+
         if (isset($params[$keys['factory']])) {
             $query
                 ->innerJoinWith(["sale.factory saleFactory"], false)
@@ -309,6 +321,12 @@ class Specification extends \common\modules\catalog\models\Specification
             $query
                 ->innerJoinWith(["italianProduct.types italianProductTypes"], false)
                 ->andFilterWhere(['IN', 'italianProductTypes.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["italianProduct.subTypes italianProductSubTypes"], false)
+                ->andFilterWhere(['IN', 'italianProductSubTypes.alias', $params[$keys['subtypes']]]);
         }
 
         if (isset($params[$keys['factory']])) {

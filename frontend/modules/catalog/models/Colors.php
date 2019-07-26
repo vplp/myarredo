@@ -129,6 +129,12 @@ class Colors extends \common\modules\catalog\models\Colors
                 ->andFilterWhere(['IN', 'productTypes.alias', $params[$keys['type']]]);
         }
 
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["product.subTypes productSubTypes"])
+                ->andFilterWhere(['IN', 'productSubTypes.alias', $params[$keys['subtypes']]]);
+        }
+
         if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["product.specification productSpecification"], false)
@@ -200,6 +206,12 @@ class Colors extends \common\modules\catalog\models\Colors
                 ->andFilterWhere(['IN', 'saleTypes.alias', $params[$keys['type']]]);
         }
 
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["sale.subTypes saleSubTypes"], false)
+                ->andFilterWhere(['IN', 'saleSubTypes.alias', $params[$keys['subtypes']]]);
+        }
+
         if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["sale.specification saleSpecification"], false)
@@ -269,6 +281,12 @@ class Colors extends \common\modules\catalog\models\Colors
             $query
                 ->innerJoinWith(["italianProduct.types italianProductTypes"], false)
                 ->andFilterWhere(['IN', 'italianProductTypes.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["italianProduct.subTypes italianProductSubTypes"], false)
+                ->andFilterWhere(['IN', 'italianProductSubTypes.alias', $params[$keys['subtypes']]]);
         }
 
         if (isset($params[$keys['style']])) {

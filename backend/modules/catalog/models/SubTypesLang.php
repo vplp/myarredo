@@ -3,11 +3,11 @@
 namespace backend\modules\catalog\models;
 
 /**
- * Class ProductRelTypes
+ * Class SubTypesLang
  *
  * @package backend\modules\catalog\models
  */
-class ProductRelTypes extends \common\modules\catalog\models\ProductRelTypes
+class SubTypesLang extends \common\modules\catalog\models\SubTypesLang
 {
 
 }

@@ -139,15 +139,7 @@ class Types extends ActiveRecord
      */
     public function getChildren()
     {
-        return $this->hasMany(self::class, ['parent_id' => 'id']);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getParent()
-    {
-        return $this->hasOne(self::class, ['id' => 'parent_id']);
+        return $this->hasMany(SubTypes::class, ['parent_id' => 'id']);
     }
 
     /**
@@ -191,17 +183,6 @@ class Types extends ActiveRecord
     public function getProduct()
     {
         return $this->hasMany(Product::class, ['catalog_type_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     * @throws \yii\base\InvalidConfigException
-     */
-    public function getProduct2()
-    {
-        return $this
-            ->hasMany(Product::class, ['id' => 'item_id'])
-            ->viaTable(ProductRelTypes::tableName(), ['type_id' => 'id']);
     }
 
     /**

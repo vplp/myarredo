@@ -10,7 +10,7 @@ use frontend\modules\catalog\models\Category;
 /** @var $route string */
 /** @var $category Category */
 /** @var $types [] */
-/** @var $types2 [] */
+/** @var $subtypes [] */
 /** @var $style [] */
 /** @var $factory [] */
 /** @var $factory_first_show [] */
@@ -88,7 +88,7 @@ use frontend\modules\catalog\models\Category;
             </div>
         <?php } ?>
 
-        <?php if ($types2 && YII_DEBUG) { ?>
+        <?php if ($subtypes && YII_DEBUG) { ?>
             <div class="one-filter open subject-filter">
                 <?= Html::a(
                     Yii::t('app', 'Тип'),
@@ -98,7 +98,7 @@ use frontend\modules\catalog\models\Category;
                 <div class="list-item">
 
                     <?php
-                    foreach ($types2 as $item) {
+                    foreach ($subtypes as $item) {
                         $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
 
                         echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
@@ -111,7 +111,7 @@ use frontend\modules\catalog\models\Category;
 
                 </div>
 
-                <?php if (count($types2) > 10) {
+                <?php if (count($subtypes) > 10) {
                     echo Html::a(
                         '<span class="btn-text">' . Yii::t('app', 'Показать все типы') . '</span>',
                         'javascript:void(0);',

@@ -6,11 +6,11 @@ use thread\widgets\grid\{
 //
 use backend\widgets\GridView\GridView;
 use backend\modules\catalog\models\{
-    Types, search\Types as filterTypes
+    SubTypes, search\SubTypes as filterSubTypes
 };
 
-/** @var $model Types */
-/** @var $filter filterTypes */
+/** @var $model SubTypes */
+/** @var $filter filterSubTypes */
 
 echo GridView::widget([
     'dataProvider' => $model->trash(Yii::$app->request->queryParams),

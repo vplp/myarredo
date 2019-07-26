@@ -9,6 +9,7 @@ use yii\data\ActiveDataProvider;
 use frontend\modules\catalog\models\{
     Category,
     Types,
+    SubTypes,
     Factory,
     Product as ProductModel,
     Specification,
@@ -89,11 +90,11 @@ class Product extends ProductModel
                 ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
         }
 
-//        if (isset($params[$keys['type2']])) {
-//            $query
-//                ->innerJoinWith(["manyTypes manyTypes"])
-//                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type2']]]);
-//        }
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["subTypes"])
+                ->andFilterWhere(['IN', SubTypes::tableName() . '.alias', $params[$keys['subtypes']]]);
+        }
 
         if (isset($params[$keys['style']])) {
             $query
@@ -190,6 +191,12 @@ class Product extends ProductModel
                 ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['types']]]);
         }
 
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["subTypes"])
+                ->andFilterWhere(['IN', SubTypes::tableName() . '.alias', $params[$keys['subtypes']]]);
+        }
+
         if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["specification"])
@@ -248,6 +255,12 @@ class Product extends ProductModel
                 ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
         }
 
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["subTypes"])
+                ->andFilterWhere(['IN', SubTypes::tableName() . '.alias', $params[$keys['subtypes']]]);
+        }
+
         if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["specification"])
@@ -265,7 +278,6 @@ class Product extends ProductModel
                 ->innerJoinWith(["collection"])
                 ->andFilterWhere(['IN', Collection::tableName() . '.id', $params[$keys['collection']]]);
         }
-
 
         if (isset($params[$keys['colors']])) {
             $query
@@ -299,6 +311,12 @@ class Product extends ProductModel
                 ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
         }
 
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["subTypes"])
+                ->andFilterWhere(['IN', SubTypes::tableName() . '.alias', $params[$keys['subtypes']]]);
+        }
+
         if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["specification"])
@@ -316,7 +334,6 @@ class Product extends ProductModel
                 ->innerJoinWith(["collection"])
                 ->andFilterWhere(['IN', Collection::tableName() . '.id', $params[$keys['collection']]]);
         }
-
 
         if (isset($params[$keys['colors']])) {
             $query

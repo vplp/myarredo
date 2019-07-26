@@ -105,6 +105,43 @@ use frontend\modules\catalog\models\{
             </div>
         <?php } ?>
 
+        <?php if ($subtypes && YII_DEBUG) { ?>
+            <div class="one-filter open subject-filter">
+                <?= Html::a(
+                    Yii::t('app', 'Тип'),
+                    'javascript:void(0);',
+                    ['class' => 'filt-but']
+                ) ?>
+                <div class="list-item">
+
+                    <?php
+                    foreach ($subtypes as $item) {
+                        $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
+
+                        echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
+                        ?>
+                        <div class="filter-group">
+                            <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
+                        <?php
+                        echo Html::endTag('a');
+                    } ?>
+
+                </div>
+
+                <?php if (count($subtypes) > 10) {
+                    echo Html::a(
+                        '<span class="btn-text">' . Yii::t('app', 'Показать все типы') . '</span>',
+                        'javascript:void(0);',
+                        [
+                            'class' => 'show-all-sub show-more show-class',
+                            'data-variant' => 'Скрыть',
+                        ]
+                    );
+                } ?>
+
+            </div>
+        <?php } ?>
+
         <?php if ($factory) { ?>
             <div class="one-filter open">
                 <?= Html::a(

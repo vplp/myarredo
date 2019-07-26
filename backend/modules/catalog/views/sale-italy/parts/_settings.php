@@ -4,7 +4,7 @@ use kartik\widgets\Select2;
 //
 use backend\app\bootstrap\ActiveForm;
 use backend\modules\catalog\models\{
-    Category, Factory, Types
+    Category, Factory, Types, SubTypes
 };
 use backend\modules\catalog\models\{
     ItalianProduct, ItalianProductLang
@@ -35,15 +35,15 @@ use backend\modules\catalog\models\{
             ->field($model, 'catalog_type_id')
             ->label(Yii::t('app', 'Предмет'))
             ->widget(Select2::class, [
-                'data' => Types::dropDownList(['parent_id' => 0]),
+                'data' => Types::dropDownList(),
                 'options' => ['placeholder' => Yii::t('app', 'Select option')],
             ]) ?>
     </div>
     <div class="col-md-9">
         <?= $form
-            ->field($model, 'type_ids')
+            ->field($model, 'subtypes_ids')
             ->widget(Select2::class, [
-                'data' => Types::dropDownList(['parent_id' => $model->isNewRecord ? -1 : $model['catalog_type_id']]),
+                'data' => SubTypes::dropDownList(['parent_id' => $model->isNewRecord ? -1 : $model['catalog_type_id']]),
                 'options' => [
                     'placeholder' => Yii::t('app', 'Select option'),
                     'multiple' => true
@@ -68,11 +68,11 @@ $('#italianproduct-catalog_type_id').on('change', function () {
         });
         $('#italianproduct-category_ids').html(category);
         
-        var types = '';
-        $.each(data.types, function( key, value ) {
-           types += '<option value="'+ key +'">' + value + '</option>';
+        var subtypes = '';
+        $.each(data.subtypes, function( key, value ) {
+           subtypes += '<option value="'+ key +'">' + value + '</option>';
         });
-        $('#italianproduct-type_ids').html(types);        
+        $('#italianproduct-subtypes_ids').html(subtypes);        
     });
 });
 JS;

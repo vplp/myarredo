@@ -5,24 +5,24 @@ use yii\db\Migration;
 use common\modules\catalog\Catalog;
 
 /**
- * Handles the creation of table `{{%catalog_sale_item_rel_catalog_type}}`.
+ * Handles the creation of table `{{%catalog_item_rel_catalog_subtypes}}`.
  */
-class m190723_131759_create_catalog_sale_item_rel_catalog_type_table extends Migration
+class m190723_123444_create_catalog_item_rel_catalog_subtypes_table extends Migration
 {
     /**
      * @var string
      */
-    public $tableRel = '{{%catalog_sale_item_rel_catalog_type}}';
+    public $tableRel = '{{%catalog_item_rel_catalog_subtypes}}';
 
     /**
      * @var string
      */
-    public $tableType = '{{%catalog_type}}';
+    public $tableSubtypes = '{{%catalog_subtypes}}';
 
     /**
      * @var string
      */
-    public $tableItem = '{{%catalog_sale_item}}';
+    public $tableItem = '{{%catalog_item}}';
 
 
     /**
@@ -40,26 +40,26 @@ class m190723_131759_create_catalog_sale_item_rel_catalog_type_table extends Mig
     public function safeUp()
     {
         $this->createTable($this->tableRel, [
-            'type_id' => $this->integer(11)->unsigned()->notNull(),
+            'subtype_id' => $this->integer(11)->unsigned()->notNull(),
             'item_id' => $this->integer(11)->unsigned()->notNull()
         ]);
 
-        $this->createIndex('idx_type_id', $this->tableRel, 'type_id');
+        $this->createIndex('idx_subtype_id', $this->tableRel, 'subtype_id');
         $this->createIndex('idx_item_id', $this->tableRel, 'item_id');
-        $this->createIndex('idx_type_id_item_id', $this->tableRel, ['type_id', 'item_id'], true);
+        $this->createIndex('idx_subtype_id_item_id', $this->tableRel, ['subtype_id', 'item_id'], true);
 
         $this->addForeignKey(
-            'fk-catalog_sale_item_rel_catalog_type_ibfk_1',
+            'fk-catalog_item_rel_catalog_subtypes_ibfk_1',
             $this->tableRel,
-            'type_id',
-            $this->tableType,
+            'subtype_id',
+            $this->tableSubtypes,
             'id',
             'CASCADE',
             'CASCADE'
         );
 
         $this->addForeignKey(
-            'fk-catalog_sale_item_rel_catalog_type_ibfk_2',
+            'fk-catalog_item_rel_catalog_subtypes_ibfk_2',
             $this->tableRel,
             'item_id',
             $this->tableItem,
@@ -74,12 +74,12 @@ class m190723_131759_create_catalog_sale_item_rel_catalog_type_table extends Mig
      */
     public function safeDown()
     {
-        $this->dropForeignKey('fk-catalog_sale_item_rel_catalog_type_ibfk_2', $this->tableRel);
-        $this->dropForeignKey('fk-catalog_sale_item_rel_catalog_type_ibfk_1', $this->tableRel);
+        $this->dropForeignKey('fk-catalog_item_rel_catalog_subtypes_ibfk_2', $this->tableRel);
+        $this->dropForeignKey('fk-catalog_item_rel_catalog_subtypes_ibfk_1', $this->tableRel);
 
-        $this->dropIndex('idx_type_id_item_id', $this->tableRel);
+        $this->dropIndex('idx_subtype_id_item_id', $this->tableRel);
         $this->dropIndex('idx_item_id', $this->tableRel);
-        $this->dropIndex('idx_type_id', $this->tableRel);
+        $this->dropIndex('idx_subtype_id', $this->tableRel);
 
         $this->dropTable($this->tableRel);
     }

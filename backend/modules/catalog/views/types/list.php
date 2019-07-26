@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 //
 use backend\widgets\GridView\gridColumns\ActionColumn;
 use backend\widgets\GridView\GridView;
@@ -11,7 +12,6 @@ use backend\modules\catalog\models\{
 use thread\widgets\grid\{
     ActionStatusColumn, GridViewFilter
 };
-use yii\helpers\Url;
 
 /** @var $model Types */
 /** @var $filter filterTypes */
@@ -38,7 +38,6 @@ echo GridView::widget([
             'label' => Yii::t('app', 'Category'),
             'filter' => GridViewFilter::selectOne($filter, 'category', Category::dropDownList()),
             'headerOptions' => ['class' => 'col-sm-4'],
-            'visible' => ($this->context->parent) ? false : true
         ],
         [
             'format' => 'raw',
@@ -46,10 +45,9 @@ echo GridView::widget([
                 /** @var $model Types */
                 return Html::a(
                     Yii::t('app', 'Типы') . ' (' . $model->getChildrenCount() . ')',
-                    ['/catalog/types/list', 'parent_id' => $model['id']]
+                    ['/catalog/sub-types/list', 'parent_id' => $model['id']]
                 );
             },
-            'visible' => ($this->context->parent) ? false : true
         ],
         [
             'class' => ActionStatusColumn::class,
@@ -58,20 +56,6 @@ echo GridView::widget([
         ],
         [
             'class' => ActionColumn::class,
-            'updateLink' => function ($model) {
-                return Url::toRoute([
-                    'update',
-                    'parent_id' => $model['parent_id'],
-                    'id' => $model['id']
-                ]);
-            },
-            'deleteLink' => function ($model) {
-                return Url::toRoute([
-                    'intrash',
-                    'parent_id' => $model['parent_id'],
-                    'id' => $model['id']
-                ]);
-            }
         ],
     ]
 ]);

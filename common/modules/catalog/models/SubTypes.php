@@ -3,25 +3,30 @@
 namespace common\modules\catalog\models;
 
 use Yii;
-//
-use common\modules\catalog\Catalog;
+use yii\behaviors\AttributeBehavior;
+use yii\helpers\{
+    ArrayHelper
+};
 //
 use thread\app\base\models\ActiveRecord;
+//
+use common\helpers\Inflector;
+use common\modules\catalog\Catalog;
 
 /**
- * Class Colors
+ * Class SubTypes
  *
  * @property integer $id
+ * @property integer $parent_id
  * @property string $alias
  * @property string $default_title
- * @property string $color_code
  * @property integer $position
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $published
  * @property integer $deleted
  *
- * @property ColorsLang $lang
+ * @property SubTypesLang $lang
  *
  * @property Product $product
  * @property Sale $sale
@@ -29,7 +34,7 @@ use thread\app\base\models\ActiveRecord;
  *
  * @package common\modules\catalog\models
  */
-class Colors extends ActiveRecord
+class SubTypes extends ActiveRecord
 {
     /**
      * @return object|string|\yii\db\Connection|null
@@ -45,7 +50,26 @@ class Colors extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%catalog_colors}}';
+        return '{{%catalog_subtypes}}';
+    }
+
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'alias',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'alias',
+                ],
+                'value' => function ($event) {
+                    return Inflector::slug($this->alias);
+                },
+            ],
+        ]);
     }
 
     /**
@@ -54,13 +78,12 @@ class Colors extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias', 'color_code'], 'required'],
-            [['created_at', 'updated_at', 'position'], 'integer'],
+            [['alias'], 'required'],
+            [['parent_id', 'created_at', 'updated_at', 'position'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['default_title'], 'string', 'max' => 255],
-            [['alias', 'color_code'], 'string', 'max' => 32],
-            [['alias', 'color_code'], 'unique'],
-            [['position'], 'default', 'value' => '0'],
+            [['alias', 'default_title'], 'string', 'max' => 255],
+            [['alias'], 'unique'],
+            [['parent_id', 'position'], 'default', 'value' => '0'],
         ];
     }
 
@@ -74,9 +97,9 @@ class Colors extends ActiveRecord
             'deleted' => ['deleted'],
             'position' => ['position'],
             'backend' => [
+                'parent_id',
                 'alias',
                 'default_title',
-                'color_code',
                 'position',
                 'published',
                 'deleted'
@@ -87,7 +110,7 @@ class Colors extends ActiveRecord
     public function beforeSave($insert)
     {
         if (Yii::$app->language == 'ru-RU') {
-            $dataModelLang = Yii::$app->request->getBodyParam('ColorsLang');
+            $dataModelLang = Yii::$app->request->getBodyParam('SubTypesLang');
             $this->default_title = $dataModelLang['title'];
         }
 
@@ -101,9 +124,9 @@ class Colors extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'parent_id' => Yii::t('app', 'Parent'),
             'alias' => Yii::t('app', 'Alias'),
             'default_title' => Yii::t('app', 'Default title'),
-            'color_code' => Yii::t('app', 'Color code'),
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
@@ -125,7 +148,7 @@ class Colors extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->joinWith(['lang'])->orderBy(self::tableName() . '.position');
+        return self::find()->joinWith(['lang'])->orderBy(SubTypesLang::tableName() . '.title');
     }
 
     /**
@@ -133,7 +156,7 @@ class Colors extends ActiveRecord
      */
     public function getLang()
     {
-        return $this->hasOne(ColorsLang::class, ['rid' => 'id']);
+        return $this->hasOne(SubTypesLang::class, ['rid' => 'id']);
     }
 
     /**
@@ -144,18 +167,7 @@ class Colors extends ActiveRecord
     {
         return $this
             ->hasMany(Product::class, ['id' => 'item_id'])
-            ->viaTable(ColorsRelProduct::tableName(), ['color_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     * @throws \yii\base\InvalidConfigException
-     */
-    public function getItalianProduct()
-    {
-        return $this
-            ->hasMany(ItalianProduct::class, ['id' => 'item_id'])
-            ->viaTable(ColorsRelItalianProduct::tableName(), ['color_id' => 'id']);
+            ->viaTable(ProductRelSubTypes::tableName(), ['subtype_id' => 'id']);
     }
 
     /**
@@ -166,6 +178,17 @@ class Colors extends ActiveRecord
     {
         return $this
             ->hasMany(Sale::class, ['id' => 'item_id'])
-            ->viaTable(ColorsRelSaleProduct::tableName(), ['color_id' => 'id']);
+            ->viaTable(SaleRelSubTypes::tableName(), ['subtype_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getItalianProduct()
+    {
+        return $this
+            ->hasMany(ItalianProduct::class, ['id' => 'item_id'])
+            ->viaTable(ItalianProductRelSubTypes::tableName(), ['subtype_id' => 'id']);
     }
 }

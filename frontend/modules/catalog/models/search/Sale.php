@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 //
-use frontend\modules\catalog\models\{Colors, Sale as SaleModel, SaleLang};
+use frontend\modules\catalog\models\{Colors, Sale as SaleModel, SaleLang, SubTypes};
 use frontend\modules\location\models\{
     Country, City
 };
@@ -87,6 +87,12 @@ class Sale extends SaleModel implements BaseBackendSearchModel
             $query
                 ->innerJoinWith(["types"])
                 ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["subTypes"])
+                ->andFilterWhere(['IN', SubTypes::tableName() . '.alias', $params[$keys['subtypes']]]);
         }
 
         if (isset($params[$keys['style']])) {

@@ -3,11 +3,11 @@
 namespace frontend\modules\catalog\models;
 
 /**
- * Class ProductRelTypes
+ * Class SaleRelSubTypes
  *
  * @package frontend\modules\catalog\models
  */
-class ProductRelTypes extends \common\modules\catalog\models\ProductRelTypes
+class SaleRelSubTypes extends \common\modules\catalog\models\SaleRelSubTypes
 {
 
 }

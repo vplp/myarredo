@@ -157,6 +157,18 @@ class Country extends \common\modules\location\models\Country
                 ->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
         }
 
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["sale.types saleTypes"], false)
+                ->andFilterWhere(['IN', 'saleTypes.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["sale.subTypes saleSubTypes"], false)
+                ->andFilterWhere(['IN', 'saleSubTypes.alias', $params[$keys['subtypes']]]);
+        }
+
         if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["sale.specification saleSpecification"], false)
