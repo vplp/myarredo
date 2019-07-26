@@ -7,7 +7,7 @@ use common\modules\catalog\Catalog;
 /**
  * Handles the creation of table `{{%catalog_italian_item_rel_catalog_subtypes}}`.
  */
-class m190723_131825_create_catalog_italian_item_rel_catalog_subtypes_table extends Migration
+class m190726_131825_create_catalog_italian_item_rel_catalog_subtypes_table extends Migration
 {
     /**
      * @var string
