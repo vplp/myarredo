@@ -5,9 +5,7 @@ use yii\helpers\{
 };
 //
 use frontend\components\Breadcrumbs;
-use frontend\modules\catalog\models\{
-    Factory, ItalianProduct
-};
+use frontend\modules\catalog\models\{Factory, ItalianProduct, Product};
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\shop\widgets\request\RequestPrice;
 use frontend\modules\catalog\widgets\sale\SaleRequestForm;
@@ -273,6 +271,12 @@ $this->title = $this->context->title;
                     </div>
 
                     <?php if (Yii::$app->controller->action->id == 'view') {
+                        echo $this->render('@app/modules/catalog/views/product/parts/_product_by_factory', [
+                            'factory' => $model['factory'],
+                            'types' => $model['types'],
+                            'models' => Product::getProductByFactory($model['factory_id'], $model['catalog_type_id'])
+                        ]);
+
                         echo ViewedProducts::widget([
                             'modelClass' => ItalianProduct::class,
                             'cookieName' => 'viewed_sale_italy'

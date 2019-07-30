@@ -75,4 +75,19 @@ class ProductRelSubTypes extends ActiveRecord
             'subtype_id',
         ];
     }
+
+    /**
+     * @param $subQuery
+     * @return mixed
+     */
+    public static function getCounts($subQuery)
+    {
+        return self::find()
+            ->asArray()
+            ->indexBy('item_id')
+            ->select('item_id, count(item_id) as count')
+            ->groupBy('item_id')
+            ->andWhere(['in', 'item_id', $subQuery])
+            ->all();
+    }
 }
