@@ -94,9 +94,12 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                         <div class="downloads">
 
                             <?php
-                            $pricesFiles = ($orderItem->product->factoryPricesFiles != null)
-                                ? $orderItem->product->factoryPricesFiles
-                                : $orderItem->product->factory->pricesFiles;
+                            $pricesFiles = [];
+                            if (isset($orderItem->product->factoryPricesFiles)) {
+                                $pricesFiles = $orderItem->product->factoryPricesFiles;
+                            } else if (isset($orderItem->product->factory->pricesFiles)) {
+                                $pricesFiles = $orderItem->product->factory->pricesFiles;
+                            }
 
                             if (!empty($pricesFiles)) { ?>
                                 <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
