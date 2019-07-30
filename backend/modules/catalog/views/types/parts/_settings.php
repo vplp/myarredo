@@ -19,15 +19,7 @@ use backend\modules\catalog\models\{
 <?= $form->text_line_lang($modelLang, 'plural_name') ?>
 <?= $form->text_line($model, 'alias') ?>
 
-<?php if ($this->context->parent) {
-    $model->parent_id = $this->context->parent->id;
-
-    echo $form
-        ->field($model, 'parent_id')
-        ->dropDownList([0 => '--'] + Types::dropDownList(['parent_id' => 0]))
-        ->label(Yii::t('app', 'Предмет'));
-} else {
-    echo $form
+<?= $form
         ->field($model, 'category_ids')
         ->widget(Select2::class, [
             'data' => Category::dropDownList(),
@@ -35,8 +27,7 @@ use backend\modules\catalog\models\{
                 'placeholder' => Yii::t('app', 'Select option'),
                 'multiple' => true
             ],
-        ]);
-} ?>
+        ]) ?>
 
 <div class="row control-group">
     <div class="col-md-3">
