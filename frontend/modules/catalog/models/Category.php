@@ -204,7 +204,7 @@ class Category extends \common\modules\catalog\models\Category
 
         if (isset($params[$keys['subtypes']])) {
             $query
-                ->innerJoinWith(["product.subTypes productSubTypes"])
+                ->innerJoinWith(["product.subTypes productSubTypes"], false)
                 ->andFilterWhere(['IN', 'productSubTypes.alias', $params[$keys['subtypes']]]);
         }
 

@@ -228,7 +228,7 @@ class Factory extends \common\modules\catalog\models\Factory
 
         if (isset($params[$keys['subtypes']])) {
             $query
-                ->innerJoinWith(["product.subTypes productSubTypes"])
+                ->innerJoinWith(["product.subTypes productSubTypes"], false)
                 ->andFilterWhere(['IN', 'productSubTypes.alias', $params[$keys['subtypes']]]);
         }
 

@@ -155,7 +155,7 @@ class Types extends \common\modules\catalog\models\Types
 
         if (isset($params[$keys['subtypes']])) {
             $query
-                ->innerJoinWith(["product.subTypes productSubTypes"])
+                ->innerJoinWith(["product.subTypes productSubTypes"], false)
                 ->andFilterWhere(['IN', 'productSubTypes.alias', $params[$keys['subtypes']]]);
         }
 
