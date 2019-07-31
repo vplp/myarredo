@@ -471,6 +471,32 @@ class CategoryController extends BaseController
         }
 
         /**
+         * subtypes
+         */
+
+        if (!empty($params[$keys['subtypes']])) {
+            $models = SubTypes::findByAlias($params[$keys['subtypes']]);
+
+            if (count($params[$keys['subtypes']]) > 1) {
+                $noIndex = 1;
+            }
+
+            $subtypes = [];
+            foreach ($models as $model) {
+                $subtypes[] = $model['lang']['title'];
+            }
+
+            $pageTitle[] = implode(', ', $subtypes);
+            $pageH1[] = implode(' - ', $subtypes);
+            $pageDescription[] = implode(', ', $subtypes);
+
+            $this->breadcrumbs[] = [
+                'label' => implode(', ', $subtypes),
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['subtypes'] => $params[$keys['subtypes']]])
+            ];
+        }
+
+        /**
          * style
          */
 
