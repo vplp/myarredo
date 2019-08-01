@@ -19,6 +19,10 @@ $ajax_get_category = Url::to(['/catalog/category/ajax-get-category']);
 $script = <<<JS
 $.post('$url', {_csrf: $('#token').val()}, function(data){
     $('.filter').html(data.html);
+
+    setTimeout(function() {
+        $('[data-styler]').styler();
+    }, 100);
     
     $('select#filter_by_category').change(function(){
         var category_alias = $(this).val();
