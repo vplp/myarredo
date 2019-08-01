@@ -222,7 +222,7 @@ $(document).ready(function () {
         }
         if (slider != null) {
             noUiSlider.create(slider, {
-                start: [$('#min-price').val(), $('#max-price').val()],
+                start: [$(slider).attr('data-min'), $(slider).attr('data-max')],
                 connect: true,
                 animate: true,
                 animationDuration: 300,
