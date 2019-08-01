@@ -106,6 +106,21 @@ $this->title = $this->context->title;
                             <meta itemprop="name" content="<?= $model->getTitle() ?>">
 
                             <table class="info-table" width="100%">
+                                <?php if ($model['subTypes'] != null) { ?>
+                                    <tr>
+                                        <td><?= Yii::t('app', 'Типы') ?></td>
+                                        <td>
+                                            <?php
+                                            $array = [];
+                                            foreach ($model['subTypes'] as $item) {
+                                                $array[] = $item['lang']['title'];
+                                            }
+
+                                            echo implode('; ', $array);
+                                            ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
                                 <tr>
                                     <td><?= Yii::t('app', 'Factory') ?></td>
                                     <td>
