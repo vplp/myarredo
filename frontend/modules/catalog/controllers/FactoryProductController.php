@@ -10,7 +10,7 @@ use yii\web\ForbiddenHttpException;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Category, Collection, FactoryProduct, FactoryProductLang, search\FactoryProduct as filterFactoryProductModel
+    Category, Collection, SubTypes, FactoryProduct, FactoryProductLang, search\FactoryProduct as filterFactoryProductModel
 };
 //
 use thread\actions\{
@@ -185,6 +185,7 @@ class FactoryProductController extends BaseController
         if (Yii::$app->request->isAjax &&
             $type_id = Yii::$app->request->post('type_id')) {
             $response['category'] = Category::dropDownList(['type_id' => $type_id]);
+            $response['subtypes'] = SubTypes::dropDownList(['parent_id' => $type_id]);
         }
 
         return $response;

@@ -7,7 +7,7 @@ use kartik\widgets\Select2;
 //
 use frontend\modules\location\models\Region;
 use frontend\modules\catalog\models\{
-    Category, Factory, Types, Specification, Colors, ItalianProduct, ItalianProductLang
+    Category, Factory, Types, SubTypes, Specification, Colors, ItalianProduct, ItalianProductLang
 };
 //
 use backend\app\bootstrap\ActiveForm;
@@ -60,9 +60,20 @@ $Specifications = Specification::findBase()->all();
 
         <?= $form
             ->field($model, 'catalog_type_id')
+            ->label(Yii::t('app', 'Предмет'))
             ->widget(Select2::class, [
                 'data' => Types::dropDownList(),
                 'options' => ['placeholder' => Yii::t('app', 'Select option')],
+            ]) ?>
+
+        <?= $form
+            ->field($model, 'subtypes_ids')
+            ->widget(Select2::class, [
+                'data' => SubTypes::dropDownList(['parent_id' => $model->isNewRecord ? -1 : $model['catalog_type_id']]),
+                'options' => [
+                    'placeholder' => Yii::t('app', 'Select option'),
+                    'multiple' => true
+                ],
             ]) ?>
 
         <?= $form
@@ -409,11 +420,17 @@ $('#italianproduct-catalog_type_id').on('change', function () {
             type_id: type_id
         }
     ).done(function (data) {
-        var html = '';
+        var category = '';
         $.each(data.category, function( key, value ) {
-           html += '<option value="'+ key +'">' + value + '</option>';
+           category += '<option value="'+ key +'">' + value + '</option>';
         });
-        $('#italianproduct-category_ids').html(html);
+        $('#italianproduct-category_ids').html(category);
+        
+        var subtypes = '';
+        $.each(data.subtypes, function( key, value ) {
+           subtypes += '<option value="'+ key +'">' + value + '</option>';
+        });
+        $('#italianproduct-subtypes_ids').html(subtypes);
     });
 });
 // field-specification-for-kitchen
