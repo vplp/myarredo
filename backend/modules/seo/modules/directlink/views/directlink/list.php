@@ -1,29 +1,30 @@
 <?php
 
-use backend\widgets\GridView\GridView;
-//
 use thread\widgets\grid\{
-    ActionStatusColumn
+    ActionStatusColumn, GridViewFilter
 };
+//
+use backend\widgets\GridView\GridView;
+use backend\modules\location\models\City;
+use backend\modules\seo\modules\directlink\models\Directlink;
 
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
-        'id',
         'url',
         [
             'format' => 'raw',
             'label' => Yii::t('app', 'Cities'),
             'value' => function ($model) {
-                /** @var \backend\modules\seo\modules\directlink\models\Directlink $model */
+                /** @var $model Directlink */
                 $result = [];
                 foreach ($model->cities as $city) {
                     $result[] = $city->lang->title;
                 }
-
-                return implode(' | ', $result);
+                return ($result) ? implode(' | ', $result) : '-';
             },
+            'filter' => GridViewFilter::selectOne($filter, 'city_id', City::dropDownListWithGroup()),
         ],
         [
             'class' => ActionStatusColumn::class,

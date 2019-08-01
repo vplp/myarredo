@@ -17,11 +17,15 @@ use backend\modules\seo\modules\directlink\models\{
 /**
  * Class Directlink
  *
+ * @property string $title
+ * @property integer $city_id
+ *
  * @package backend\modules\seo\modules\directlink\models\search
  */
 class Directlink extends ParentModel implements BaseBackendSearchModel
 {
     public $title;
+    public $city_id;
 
     /**
      * @return array
@@ -30,6 +34,7 @@ class Directlink extends ParentModel implements BaseBackendSearchModel
     {
         return [
             [['url'], 'string', 'max' => 255],
+            [['id', 'city_id'], 'integer'],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
@@ -61,6 +66,16 @@ class Directlink extends ParentModel implements BaseBackendSearchModel
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            self::tableName() . '.id' => $this->id
+        ]);
+
+        if ($this->city_id) {
+            $query
+                ->innerJoinWith(["cities"])
+                ->andFilterWhere(['IN', 'location_city_id', $this->city_id]);
         }
 
         $query->andFilterWhere(['like', 'url', $this->url])

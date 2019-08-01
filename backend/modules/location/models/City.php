@@ -31,6 +31,14 @@ class City extends \common\modules\location\models\City implements BaseBackendMo
         return ArrayHelper::map($data, 'id', 'lang.title');
     }
 
+    public static function dropDownListWithGroup()
+    {
+        $query = self::findBase();
+        $data = $query->undeleted()->all();
+
+        return ArrayHelper::map($data, 'id', 'lang.title', 'country.lang.title');
+    }
+
     /**
      * @param $params
      * @return \yii\data\ActiveDataProvider

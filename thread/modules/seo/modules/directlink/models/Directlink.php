@@ -11,6 +11,17 @@ use thread\modules\seo\modules\directlink\Directlink as ParentModule;
 /**
  * Class Directlink
  *
+ * @property integer $id
+ * @property string $url
+ * @property integer $meta_robots
+ * @property boolean $add_to_sitemap
+ * @property boolean $dissallow_in_robotstxt
+ * @property string $image_url
+ * @property integer $created_at
+ * @property integer $updated_at
+ * @property boolean $published
+ * @property boolean $deleted
+ *
  * @package thread\modules\seo\modules\directlink\models
  */
 class Directlink extends ActiveRecord
