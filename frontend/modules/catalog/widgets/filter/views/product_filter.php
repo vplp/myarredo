@@ -175,10 +175,12 @@ use frontend\modules\catalog\models\Category;
                 <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
                     <div class="cur">
                         <?= Html::input('text', 'price[min]', $price_range['min']['default'], ['id' => 'min-price']); ?>
+                        <span class="for-curicon"><i class="fa fa-eur" aria-hidden="true"></i></span>
                     </div>
                     <span class="indent"> - </span>
                     <div class="cur">
                         <?= Html::input('text', 'price[max]', $price_range['max']['default'], ['id' => 'max-price']); ?>
+                        <span class="for-curicon"><i class="fa fa-eur" aria-hidden="true"></i></span>
                     </div>
                 </div>
                 <a href="javascript:void(0);" class="submit">OK</a>

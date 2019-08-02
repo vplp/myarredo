@@ -7270,6 +7270,15 @@ h1 {
   width: 100%;
   height: auto;
 }
+.filters .one-filter .price-slider-cont .cur:after {
+  display: none;
+}
+.filters .one-filter .price-slider-cont .cur .for-curicon {
+  position: absolute;
+  font-size: 18px;
+  top: 5px;
+  right: 6px;
+}
 
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------blog-news styles-------------------------------------- */
