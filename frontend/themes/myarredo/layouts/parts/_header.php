@@ -230,7 +230,7 @@ use frontend\modules\user\widgets\menu\UserMenu;
 </style>
 <!-- preloader end -->
 
-<div class="header js-fixed-header">
+<div id="top" class="header js-fixed-header">
     <div class="container-wrap">
 
         <?php if ((Yii::$app->getUser()->isGuest)) { ?>
