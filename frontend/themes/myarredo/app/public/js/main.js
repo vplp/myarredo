@@ -117,7 +117,19 @@ $(document).ready(function () {
 
     function runDesctop() {
         //console.log("desctp");
-        $('.filters .one-filter').addClass('open');
+        // $('.filters .one-filter').addClass('open');
+        
+        // Запускаем цыкл по всем элементам всех фильтров
+        $('.filters').find('.one-filter').find('.list-item').children('a').each(function(i, elem) {
+            // Если обнаруживаем выбраный элемент в фильтре
+            if ($(elem).hasClass('selected')) {
+                console.log($(elem));
+                $(elem).closest('.one-filter').addClass('open');
+            }
+        });
+        // if ($('.filters').find('.one-filter').find('.list-item').children('.one-item').hasClass('selected')) {
+
+        // }
         if ($('.js-numbers').hasClass('slick-slider')) {
             $('.js-numbers').slick('unslick');
         }

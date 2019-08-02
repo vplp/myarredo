@@ -1456,6 +1456,9 @@ h1 {
   border: 1px solid #BDBCB3;
   margin-bottom: 0;
   margin-top: -1px; }
+.category-page .filters .one-filter.filter-range-slider {
+  margin-top: 25px;
+}
   .category-page .filters .one-filter:first-child {
     margin-top: 0; }
   .category-page .filters .one-filter .filt-but {
@@ -1464,16 +1467,26 @@ h1 {
     color: #535351;
     font-size: 13px;
     font-weight: 700; }
-    .category-page .filters .one-filter .filt-but:after {
-      content: '\f067';
-      height: 24px;
-      width: 24px;
-      border: 1px solid #E6E4DA;
-      border-radius: 12px;
-      color: #448339;
-      display: flex;
-      align-items: center;
-      justify-content: center; }
+.category-page .filters .one-filter .filt-but:after {
+    content: '\f067';
+    height: 24px;
+    width: 24px;
+    border: 1px solid #E6E4DA;
+    border-radius: 12px;
+    color: #448339;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+.category-page .filters .one-filter.filter-range-slider .filt-but:after {
+  display: none;
+}
+.filter-slider-box {
+  margin-bottom: 8px;
+}
+.price-slider-cont {
+  padding: 0 15px 15px;
+}
   .category-page .filters .one-filter .one-item-check {
     padding: 3px 18px;
     display: flex;

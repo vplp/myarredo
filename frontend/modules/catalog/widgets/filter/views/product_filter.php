@@ -28,7 +28,7 @@ use frontend\modules\catalog\models\Category;
             'action' => Url::toRoute([$route])
         ]); ?>
 
-        <div class="one-filter open">
+        <div class="one-filter">
             <?= Html::a(
                 Yii::t('app', 'Category'),
                 'javascript:void(0);',
@@ -52,7 +52,7 @@ use frontend\modules\catalog\models\Category;
         </div>
 
         <?php if ($types) { ?>
-            <div class="one-filter open subject-filter">
+            <div class="one-filter subject-filter">
                 <?= Html::a(
                     Yii::t('app', 'Предмет'),
                     'javascript:void(0);',
@@ -89,7 +89,7 @@ use frontend\modules\catalog\models\Category;
         <?php } ?>
 
         <?php if ($subtypes) { ?>
-            <div class="one-filter open subject-filter">
+            <div class="one-filter subject-filter">
                 <?= Html::a(
                     Yii::t('app', 'Тип'),
                     'javascript:void(0);',
@@ -126,7 +126,7 @@ use frontend\modules\catalog\models\Category;
         <?php } ?>
 
         <?php if ($style) { ?>
-            <div class="one-filter open">
+            <div class="one-filter">
                 <?= Html::a(
                     Yii::t('app', 'Стиль'),
                     'javascript:void(0);',
@@ -151,7 +151,7 @@ use frontend\modules\catalog\models\Category;
         <?php } ?>
 
         <?php if ($factory) { ?>
-            <div class="one-filter open">
+            <div class="one-filter">
                 <?= Html::a(
                     Yii::t('app', 'Фабрики'),
                     'javascript:void(0);',
@@ -232,7 +232,7 @@ use frontend\modules\catalog\models\Category;
         <?php } ?>
 
         <?php if ($colors) { ?>
-            <div class="one-filter open colors-box">
+            <div class="one-filter colors-box">
                 <?= Html::a(
                     Yii::t('app', 'Color'),
                     'javascript:void(0);',
@@ -271,12 +271,12 @@ use frontend\modules\catalog\models\Category;
         <?php } ?>
 
         <?php if (YII_DEBUG) { ?>
-            <div class="one-filter">
+            <div class="one-filter filter-range-slider">
+                <a href="javascript:void(0);" class="filt-but">Цена</a>
                 <div class="price-slider-cont">
-                    <a href="javascript:void(0);" class="filt-but">Цена</a>
                     <div id="price-slider" data-min="<?= $price_range['min']['current'] ?>"
                          data-max="<?= $price_range['max']['current'] ?>"></div>
-                    <div class="flex s-between" style="padding: 10px 0;">
+                    <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
                         <div class="cur">
                             <?= Html::input('text', 'price[min]', $price_range['min']['default'], ['id' => 'min-price']); ?>
                         </div>
