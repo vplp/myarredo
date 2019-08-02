@@ -117,6 +117,11 @@ $bundle = AppAsset::register($this);
             </div>
         </div>
     </div>
+    <div class="totopbox">
+        <a href="#top">
+            <img src="<?= $bundle->baseUrl ?>/img/totop.jpg" alt="top" class="totop-img">
+        </a>
+    </div>
 </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"></div>
