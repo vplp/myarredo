@@ -33,9 +33,7 @@ use frontend\modules\catalog\models\{
                 ['class' => 'filt-but']
             ) ?>
             <div class="list-item">
-
-                <?php
-                foreach ($category as $item) {
+                <?php foreach ($category as $item) {
                     $options = $item['checked'] ? ['class' => 'one-item selected'] : ['class' => 'one-item'];
 
                     echo Html::a(
@@ -45,19 +43,17 @@ use frontend\modules\catalog\models\{
                         $options
                     );
                 } ?>
-
             </div>
         </div>
 
         <?php if ($types) { ?>
-            <div class="one-filter subject-filter">
+            <div class="one-filter">
                 <?= Html::a(
                     Yii::t('app', 'Предмет'),
                     'javascript:void(0);',
                     ['class' => 'filt-but']
                 ) ?>
                 <div class="list-item">
-
                     <?php foreach ($types as $item) { ?>
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
@@ -66,20 +62,7 @@ use frontend\modules\catalog\models\{
                             <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
                         <?= Html::endTag('a'); ?>
                     <?php } ?>
-
                 </div>
-
-                <?php if (count($types) > 10) {
-                    echo Html::a(
-                        '<span class="btn-text">' . Yii::t('app', 'Показать все предметы') . '</span>',
-                        'javascript:void(0);',
-                        [
-                            'class' => 'show-all-sub show-more show-class',
-                            'data-variant' => 'Скрыть',
-                        ]
-                    );
-                } ?>
-
             </div>
         <?php } ?>
 
@@ -91,7 +74,6 @@ use frontend\modules\catalog\models\{
                     ['class' => 'filt-but']
                 ) ?>
                 <div class="list-item">
-
                     <?php foreach ($style as $item) { ?>
                         <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
 
@@ -100,22 +82,19 @@ use frontend\modules\catalog\models\{
                             <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
                         <?= Html::endTag('a'); ?>
                     <?php } ?>
-
                 </div>
             </div>
         <?php } ?>
 
         <?php if ($subtypes) { ?>
-            <div class="one-filter subject-filter">
+            <div class="one-filter">
                 <?= Html::a(
                     Yii::t('app', 'Тип'),
                     'javascript:void(0);',
                     ['class' => 'filt-but']
                 ) ?>
                 <div class="list-item">
-
-                    <?php
-                    foreach ($subtypes as $item) {
+                    <?php foreach ($subtypes as $item) {
                         $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
 
                         echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
@@ -125,20 +104,7 @@ use frontend\modules\catalog\models\{
                         <?php
                         echo Html::endTag('a');
                     } ?>
-
                 </div>
-
-                <?php if (count($subtypes) > 10) {
-                    echo Html::a(
-                        '<span class="btn-text">' . Yii::t('app', 'Показать все типы') . '</span>',
-                        'javascript:void(0);',
-                        [
-                            'class' => 'show-all-sub show-more show-class',
-                            'data-variant' => 'Скрыть',
-                        ]
-                    );
-                } ?>
-
             </div>
         <?php } ?>
 
@@ -150,72 +116,22 @@ use frontend\modules\catalog\models\{
                     ['class' => 'filt-but']
                 ) ?>
                 <div class="list-item">
+                    <?php
+                    $count_factory = 0;
+                    foreach ($factory as $letter => $val) {
+                        foreach ($val as $item) {
+                            ++$count_factory;
+                            $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
 
-                    <?php foreach ($factory_first_show as $key => $item) { ?>
-                        <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
-
-                        <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
-                        <div class="filter-group">
-                            <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
-                        <?= Html::endTag('a'); ?>
-                    <?php } ?>
-
-                    <?= Html::a(
-                        '<span class="btn-text">' . Yii::t('app', 'Показать еще') . '</span>',
-                        null,
-                        [
-                            'class' => 'show-more show-class',
-                            'data-toggle' => 'modal',
-                            'data-target' => '#factory-modal'
-                        ]
-                    ) ?>
-
-                    <div id="factory-modal" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <?= Yii::t('app', 'Close') ?>
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                                <h3 class="text-center">
-                                    <?= Yii::t('app', 'Выбор фабрики') ?>
-                                </h3>
-                                <div class="alphabet-tab">
-
-                                    <?php foreach ($factory as $letter => $val) { ?>
-                                        <?= Html::a($letter, "javascript:void(0);"); ?>
-                                    <?php } ?>
-
-                                </div>
-                                <div class="alphabet-tab-cont">
-                                    <?php foreach ($factory as $letter => $val) { ?>
-                                        <div data-show="<?= $letter ?>">
-
-                                            <?php foreach ($val as $item) { ?>
-                                                <?php $class = $item['checked']
-                                                    ? 'one-item-check selected'
-                                                    : 'one-item-check' ?>
-
-                                                <?= Html::beginTag(
-                                                    'a',
-                                                    ['href' => $item['link'], 'class' => $class]
-                                                ); ?>
-                                                <div class="my-checkbox"></div>
-                                                <?= $item['title'] ?> (<?= $item['count'] ?>)
-                                                <?= Html::endTag('a'); ?>
-                                            <?php } ?>
-
-                                        </div>
-                                    <?php } ?>
-
-                                </div>
+                            echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
+                            ?>
+                            <div class="filter-group">
+                                <div class="my-checkbox"></div><?= $item['title'] ?>
                             </div>
-
-                        </div>
-                    </div>
-
+                            <span><?= $item['count'] ?></span>
+                            <?= Html::endTag('a'); ?>
+                        <?php }
+                    } ?>
                 </div>
             </div>
         <?php } ?>
@@ -228,9 +144,7 @@ use frontend\modules\catalog\models\{
                     ['class' => 'filt-but']
                 ) ?>
                 <div class="list-item">
-
-                    <?php
-                    foreach ($colors as $item) {
+                    <?php foreach ($colors as $item) {
                         $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
                         echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
                         ?>
@@ -242,20 +156,7 @@ use frontend\modules\catalog\models\{
                         <?php
                         echo Html::endTag('a');
                     } ?>
-
                 </div>
-
-                <?php if (count($colors) > 10) {
-                    echo Html::a(
-                        '<span class="btn-text">' . Yii::t('app', 'Show all colors') . '</span>',
-                        'javascript:void(0);',
-                        [
-                            'class' => 'show-all-sub show-more show-class',
-                            'data-variant' => 'Скрыть',
-                        ]
-                    );
-                } ?>
-
             </div>
         <?php } ?>
 
