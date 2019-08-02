@@ -167,25 +167,23 @@ use frontend\modules\catalog\models\Category;
             </div>
         <?php } ?>
 
-        <?php if (YII_DEBUG) { ?>
-            <div class="one-filter filter-range-slider">
-                <a href="javascript:void(0);" class="filt-but">Цена</a>
-                <div class="price-slider-cont">
-                    <div id="price-slider" data-min="<?= $price_range['min']['current'] ?>"
-                         data-max="<?= $price_range['max']['current'] ?>"></div>
-                    <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
-                        <div class="cur">
-                            <?= Html::input('text', 'price[min]', $price_range['min']['default'], ['id' => 'min-price']); ?>
-                        </div>
-                        <span class="indent"> - </span>
-                        <div class="cur">
-                            <?= Html::input('text', 'price[max]', $price_range['max']['default'], ['id' => 'max-price']); ?>
-                        </div>
+        <div class="one-filter filter-range-slider">
+            <a href="javascript:void(0);" class="filt-but">Цена</a>
+            <div class="price-slider-cont">
+                <div id="price-slider" data-min="<?= $price_range['min']['current'] ?>"
+                     data-max="<?= $price_range['max']['current'] ?>"></div>
+                <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
+                    <div class="cur">
+                        <?= Html::input('text', 'price[min]', $price_range['min']['default'], ['id' => 'min-price']); ?>
                     </div>
-                    <a href="javascript:void(0);" class="submit">OK</a>
+                    <span class="indent"> - </span>
+                    <div class="cur">
+                        <?= Html::input('text', 'price[max]', $price_range['max']['default'], ['id' => 'max-price']); ?>
+                    </div>
                 </div>
+                <a href="javascript:void(0);" class="submit">OK</a>
             </div>
-        <?php } ?>
+        </div>
 
         <?php
         echo Html::hiddenInput('sort', Yii::$app->request->get('sort') ?? null);
