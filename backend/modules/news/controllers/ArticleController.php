@@ -4,7 +4,7 @@ namespace backend\modules\news\controllers;
 
 use yii\helpers\ArrayHelper;
 //
-use thread\actions\fileapi\{
+use common\actions\upload\{
     DeleteAction, UploadAction
 };
 use thread\actions\EditableAttributeSave;

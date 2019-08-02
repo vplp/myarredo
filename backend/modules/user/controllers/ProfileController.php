@@ -8,7 +8,7 @@ use yii\filters\AccessControl;
 //
 use thread\app\base\controllers\BackendController;
 use thread\actions\UpdateWithLang;
-use thread\actions\fileapi\{
+use common\actions\upload\{
     DeleteAction, UploadAction
 };
 //
