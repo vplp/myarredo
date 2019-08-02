@@ -27,7 +27,7 @@ use frontend\modules\catalog\models\{
         }
 
         if ($cities) { ?>
-            <div class="one-filter open subject-filter">
+            <div class="one-filter subject-filter">
                 <?= Html::a(
                     Yii::t('app', 'City'),
                     'javascript:void(0);',
@@ -56,7 +56,7 @@ use frontend\modules\catalog\models\{
             </div>
         <?php } ?>
 
-        <div class="one-filter open">
+        <div class="one-filter">
 
             <?= Html::a(
                 Yii::t('app', 'Category'),
@@ -82,7 +82,7 @@ use frontend\modules\catalog\models\{
         </div>
 
         <?php if ($types) { ?>
-            <div class="one-filter open subject-filter">
+            <div class="one-filter subject-filter">
                 <?= Html::a(
                     Yii::t('app', 'Предмет'),
                     'javascript:void(0);',
@@ -111,7 +111,7 @@ use frontend\modules\catalog\models\{
         <?php } ?>
 
         <?php if ($subtypes) { ?>
-            <div class="one-filter open subject-filter">
+            <div class="one-filter subject-filter">
                 <?= Html::a(
                     Yii::t('app', 'Тип'),
                     'javascript:void(0);',
@@ -148,7 +148,7 @@ use frontend\modules\catalog\models\{
         <?php } ?>
 
         <?php if ($style) { ?>
-            <div class="one-filter open">
+            <div class="one-filter">
                 <?= Html::a(
                     Yii::t('app', 'Стиль'),
                     'javascript:void(0);',
@@ -172,7 +172,7 @@ use frontend\modules\catalog\models\{
         <?php } ?>
 
         <?php if ($factory) { ?>
-            <div class="one-filter open subject-filter">
+            <div class="one-filter subject-filter">
                 <?= Html::a(
                     Yii::t('app', 'Фабрики'),
                     'javascript:void(0);',
@@ -209,7 +209,7 @@ use frontend\modules\catalog\models\{
         <?php } ?>
 
         <?php if ($colors) { ?>
-            <div class="one-filter open colors-box">
+            <div class="one-filter colors-box">
                 <?= Html::a(
                     Yii::t('app', 'Color'),
                     'javascript:void(0);',
