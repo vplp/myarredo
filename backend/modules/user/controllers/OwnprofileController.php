@@ -8,7 +8,7 @@ use yii\web\NotFoundHttpException;
 //
 use thread\app\base\controllers\BackendController;
 use thread\actions\Update;
-use thread\actions\fileapi\{
+use common\actions\upload\{
     DeleteAction, UploadAction
 };
 //
