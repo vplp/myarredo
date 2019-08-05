@@ -5,7 +5,7 @@ use yii\web\View;
 /** @var $this \yii\web\View */
 
 if (Yii::$app->getUser()->isGuest && Yii::$app->city->domain == 'ru' &&
-    !in_array(Yii::$app->controller->id, ['sale']) &&
+    !in_array(Yii::$app->controller->id, ['sale', 'sale-italy']) &&
     !in_array(Yii::$app->controller->module->id, ['user'])
 ) {
     $script = <<<JS

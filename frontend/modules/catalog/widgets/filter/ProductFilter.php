@@ -318,11 +318,12 @@ class ProductFilter extends Widget
 
         if (!empty($price_range['min']) && !empty($price_range['max'])) {
             $params = Yii::$app->catalogFilter->params;
+
             if (isset($params[$keys['price']]) && $params[$keys['price']][2] != Yii::$app->currency->code) {
-                $price_range['min']['current'] = Yii::$app->currency->getValue($price_range['min']['current'], 'EUR', '');
-                $price_range['min']['default'] = Yii::$app->currency->getValue($price_range['min']['default'], 'EUR', '');
-                $price_range['max']['current'] = Yii::$app->currency->getValue($price_range['max']['current'], 'EUR', '');
-                $price_range['max']['default'] = Yii::$app->currency->getValue($price_range['max']['default'], 'EUR', '');
+                $price_range['min']['current'] = Yii::$app->currency->getValue($price_range['min']['current'], $params[$keys['price']][2], '');
+                $price_range['min']['default'] = Yii::$app->currency->getValue($price_range['min']['default'], $params[$keys['price']][2], '');
+                $price_range['max']['current'] = Yii::$app->currency->getValue($price_range['max']['current'], $params[$keys['price']][2], '');
+                $price_range['max']['default'] = Yii::$app->currency->getValue($price_range['max']['default'], $params[$keys['price']][2], '');
             }
 
             $params[$keys['price']] = ['{MIN}', '{MAX}', Yii::$app->currency->code];
