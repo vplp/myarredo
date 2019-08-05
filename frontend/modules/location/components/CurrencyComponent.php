@@ -73,7 +73,7 @@ class CurrencyComponent extends Component
         }
 
         return number_format(
-            $value,
+            ceil($value),
             0,
             '.',
             $thousand_sep
@@ -82,23 +82,28 @@ class CurrencyComponent extends Component
 
     /**
      * @param $price
-     * @param $code
-     * @param string $thousand_sep
+     * @param $codeFrom
+     * @param $codeTo
      * @return string
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
     public function getReversValue($price, $codeFrom, $codeTo)
     {
-        $value = 0;
-
         if ($codeFrom != $codeTo && $codeFrom != 'EUR') {
             $currencyFrom = Currency::findByCode2($codeFrom);
             $value = $price * ($currencyFrom['course'] / 100);
         }
 
+        if ($codeFrom != $codeTo && $codeFrom != 'EUR') {
+            $currencyFrom = Currency::findByCode2($codeFrom);
+            $value = $price * ($currencyFrom['course'] / 100);
+        } else {
+            $value = $price;
+        }
+
         return number_format(
-            $value,
+            ceil($value),
             0,
             '.',
             ''
