@@ -73,7 +73,7 @@ class CurrencyComponent extends Component
         }
 
         return number_format(
-            ceil($value),
+            $value,
             0,
             '.',
             $thousand_sep
