@@ -29,9 +29,13 @@ $this->title = Yii::t('app', 'Profile');
                         <div class="profile-imgbox-img">
                             <?= Html::img($bundle->baseUrl . '/img/profile_user_img.jpg') ?>
                             <?php if (Yii::$app->user->identity->group->role == 'partner') {
-                                echo Html::a('Фото нужно добавить салона', ['/user/profile/update'], [
-                                    'class' => 'btn btn-green first'
-                                ]);
+                                echo Html::a(
+                                    Yii::t('app', 'Фото нужно добавить салона'),
+                                    ['/user/profile/update'],
+                                    [
+                                        'class' => 'btn btn-green first'
+                                    ]
+                                );
                             } ?>
                         </div>
                     </div>

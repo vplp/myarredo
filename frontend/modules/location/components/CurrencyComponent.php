@@ -93,11 +93,6 @@ class CurrencyComponent extends Component
         if ($codeFrom != $codeTo && $codeFrom != 'EUR') {
             $currencyFrom = Currency::findByCode2($codeFrom);
             $value = $price * ($currencyFrom['course'] / 100);
-        }
-
-        if ($codeFrom != $codeTo && $codeFrom != 'EUR') {
-            $currencyFrom = Currency::findByCode2($codeFrom);
-            $value = $price * ($currencyFrom['course'] / 100);
         } else {
             $value = $price;
         }
