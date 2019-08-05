@@ -468,16 +468,21 @@ class CatalogFilter extends Component
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
-            if (count($data) != 2) {
+            if (count($data) != 3) {
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
             $_data = [
                 preg_replace("/[^0-9]/", '', $data[0]),
-                preg_replace("/[^0-9]/", '', $data[1])
+                preg_replace("/[^0-9]/", '', $data[1]),
+                $data[2]
             ];
 
             if ($_data[0] >= $_data[1]) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+        
+            if (!in_array($_data[2], ['EUR', 'RUB'])) {
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 

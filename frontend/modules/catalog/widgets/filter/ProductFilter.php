@@ -318,7 +318,14 @@ class ProductFilter extends Widget
 
         if (!empty($price_range['min']) && !empty($price_range['max'])) {
             $params = Yii::$app->catalogFilter->params;
-            $params[$keys['price']] = ['{MIN}', '{MAX}'];
+            if (isset($params[$keys['price']]) && $params[$keys['price']][2] != Yii::$app->currency->code) {
+                $price_range['min']['current'] = Yii::$app->currency->getValue($price_range['min']['current'], 'EUR', '');
+                $price_range['min']['default'] = Yii::$app->currency->getValue($price_range['min']['default'], 'EUR', '');
+                $price_range['max']['current'] = Yii::$app->currency->getValue($price_range['max']['current'], 'EUR', '');
+                $price_range['max']['default'] = Yii::$app->currency->getValue($price_range['max']['default'], 'EUR', '');
+            }
+
+            $params[$keys['price']] = ['{MIN}', '{MAX}', Yii::$app->currency->code];
             $price_range['link'] = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
         }
 
