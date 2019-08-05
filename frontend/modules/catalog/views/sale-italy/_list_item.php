@@ -38,6 +38,10 @@ use frontend\modules\catalog\models\ItalianProduct;
             </div>
         </div>
 
+        <?php if ($model['is_sold']) { ?>
+            <div class="prod-is-sold"><?= Yii::t('app', 'Item sold') ?></div>
+        <?php } ?>
+
         <?php if ($model['price_new'] > 0) { ?>
             <div class="prod-pricebox">
                 <?= Yii::t('app', 'Цена') ?>:

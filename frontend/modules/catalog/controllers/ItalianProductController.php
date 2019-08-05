@@ -172,6 +172,12 @@ class ItalianProductController extends BaseController
                     'attribute' => 'deleted',
                     'redirect' => $this->defaultAction,
                 ],
+                'is-sold' => [
+                    'class' => AttributeSwitch::class,
+                    'modelClass' => $this->model,
+                    'attribute' => 'is_sold',
+                    'redirect' => $this->defaultAction,
+                ],
                 'fileupload' => [
                     'class' => UploadAction::class,
                     'useHashPath' => true,

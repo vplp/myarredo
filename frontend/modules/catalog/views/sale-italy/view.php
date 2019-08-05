@@ -82,6 +82,10 @@ $this->title = $this->context->title;
                                     </div>
                                 <?php } ?>
 
+                                <?php if ($model->is_sold) { ?>
+                                    <div class="prod-is-sold"><?= Yii::t('app', 'Item sold') ?></div>
+                                <?php } ?>
+
                                 <div class="alert" role="alert">
                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                                     <?= Yii::t('app', 'Доставка товара от 20 дней') ?>

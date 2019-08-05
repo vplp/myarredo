@@ -113,6 +113,11 @@ echo GridView::widget([
             'action' => 'on_main'
         ],
         [
+            'class' => ActionStatusColumn::class,
+            'attribute' => 'is_sold',
+            'action' => 'is_sold'
+        ],
+        [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class
         ],
     ]

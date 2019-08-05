@@ -215,7 +215,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                         ],
                                         [
                                             'class' => yii\grid\ActionColumn::class,
-                                            'template' => '{update} {delete}',
+                                            'template' => '{update} {delete}{sold}',
                                             'buttons' => [
                                                 'update' => function ($url, $model) {
                                                     /** @var $model ItalianProduct */
@@ -239,6 +239,19 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                         [
                                                             'class' => 'btn btn-default btn-xs',
                                                             'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                                        ]
+                                                    );
+                                                },
+                                                'sold' => function ($url, $model) {
+                                                    /** @var $model ItalianProduct */
+                                                    return Html::a(
+                                                        '<span class="glyphicon"></span> ' . Yii::t('app', 'Item sold'),
+                                                        Url::toRoute(
+                                                            ['/catalog/italian-product/is-sold', 'id' => $model->id]
+                                                        ),
+                                                        [
+                                                            'class' => 'btn btn-default btn-xs',
+                                                            'data-confirm' => Yii::t('yii', 'Are you sure?'),
                                                         ]
                                                     );
                                                 },

@@ -64,6 +64,12 @@ class SaleItalyController extends BackendController
                 'attribute' => 'on_main',
                 'redirect' => $this->defaultAction,
             ],
+            'is_sold' => [
+                'class' => AttributeSwitch::class,
+                'modelClass' => $this->model,
+                'attribute' => 'is_sold',
+                'redirect' => $this->defaultAction,
+            ],
             'fileupload' => [
                 'class' => UploadAction::class,
                 'useHashPath' => true,

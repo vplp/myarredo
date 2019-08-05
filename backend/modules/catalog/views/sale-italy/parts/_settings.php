@@ -110,18 +110,22 @@ $this->registerJs($script);
         <?= $form->field($model, 'currency')->dropDownList($model::currencyRange()); ?>
     </div>
 </div>
-
+<div class="row control-group">
+    <div class="col-md-3">
+        <?= $form->field($model, 'status')->dropDownList($model::statusRange()); ?>
+    </div>
+</div>
 <div class="row control-group">
     <div class="col-md-3">
         <?= $form->switcher($model, 'published') ?>
     </div>
     <div class="col-md-3">
-        <?= $form->field($model, 'status')->dropDownList($model::statusRange()); ?>
+        <?= $form->text_line($model, 'position') ?>
     </div>
     <div class="col-md-3">
         <?= $form->switcher($model, 'on_main') ?>
     </div>
     <div class="col-md-3">
-        <?= $form->text_line($model, 'position') ?>
+        <?= $form->switcher($model, 'is_sold') ?>
     </div>
 </div>

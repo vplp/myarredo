@@ -51,6 +51,7 @@ use common\modules\shop\models\OrderItem;
  * @property float $production_year
  * @property integer $position
  * @property integer $on_main
+ * @property integer $is_sold
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $published
@@ -156,6 +157,7 @@ class ItalianProduct extends ActiveRecord
             [
                 [
                     'on_main',
+                    'is_sold',
                     'published',
                     'deleted',
                     'mark',
@@ -243,6 +245,7 @@ class ItalianProduct extends ActiveRecord
             'published' => ['published', 'published_date_from', 'published_date_to'],
             'deleted' => ['deleted'],
             'on_main' => ['on_main'],
+            'is_sold' => ['is_sold'],
             'setImages' => ['image_link', 'gallery_image', 'file_link'],
             'setMark' => ['mark'],
             'backend' => [
@@ -271,6 +274,7 @@ class ItalianProduct extends ActiveRecord
                 'deleted',
                 'position',
                 'on_main',
+                'is_sold',
                 'mark',
                 'language_editing',
                 'status',
@@ -301,6 +305,7 @@ class ItalianProduct extends ActiveRecord
                 'weight',
                 'production_year',
                 'position',
+                'is_sold',
                 'mark',
                 'language_editing',
                 'category_ids',
@@ -339,6 +344,7 @@ class ItalianProduct extends ActiveRecord
             'weight' => Yii::t('app', 'Weight'),
             'production_year' => Yii::t('app', 'Production year'),
             'on_main' => Yii::t('app', 'On main'),
+            'is_sold' => Yii::t('app', 'Item sold'),
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),

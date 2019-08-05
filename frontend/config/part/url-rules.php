@@ -94,6 +94,7 @@ return [
     'italian-product/payment' => 'catalog/italian-product/payment',
     'italian-product/update/<id:[\d\-]+>/<step:(photo|check|payment)>' => 'catalog/italian-product/update',
     'italian-product/update/<id:[\d\-]+>' => 'catalog/italian-product/update',
+    'italian-product/is-sold/<id:[\d\-]+>' => 'catalog/italian-product/is-sold',
     'italian-product/intrash/<id:[\d\-]+>' => 'catalog/italian-product/intrash',
 
     'catalog/italian-product/fileupload' => 'catalog/italian-product/fileupload',
