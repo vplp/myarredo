@@ -90,23 +90,15 @@ class CurrencyComponent extends Component
      */
     public function getReversValue($price, $codeFrom, $codeTo)
     {
+        $value = 0;
+
         if ($codeFrom != $codeTo && $codeFrom != 'EUR') {
             $currencyFrom = Currency::findByCode2($codeFrom);
             $value = $price * ($currencyFrom['course'] / 100);
         }
-//
-//        if ($code != $this->model['code2'] && $this->model['code2'] == 'RUB') {
-//            $currency = Currency::findByCode2($code);
-//            $value = $price * $currency['course'];
-//        } elseif ($code != $this->model['code2']) {
-//            $currency = Currency::findByCode2($code);
-//            $value = $price * ($currency['course'] / $this->model['course']);
-//        } else {
-//            $value = $price;
-//        }
 
         return number_format(
-            ceil($value),
+            $value,
             0,
             '.',
             ''
