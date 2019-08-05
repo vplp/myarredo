@@ -79,4 +79,37 @@ class CurrencyComponent extends Component
             $thousand_sep
         );
     }
+
+    /**
+     * @param $price
+     * @param $code
+     * @param string $thousand_sep
+     * @return string
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getReversValue($price, $codeFrom, $codeTo)
+    {
+        if ($codeFrom != $codeTo && $codeFrom != 'EUR') {
+            $currencyFrom = Currency::findByCode2($codeFrom);
+            $value = $price * ($currencyFrom['course'] / 100);
+        }
+//
+//        if ($code != $this->model['code2'] && $this->model['code2'] == 'RUB') {
+//            $currency = Currency::findByCode2($code);
+//            $value = $price * $currency['course'];
+//        } elseif ($code != $this->model['code2']) {
+//            $currency = Currency::findByCode2($code);
+//            $value = $price * ($currency['course'] / $this->model['course']);
+//        } else {
+//            $value = $price;
+//        }
+
+        return number_format(
+            ceil($value),
+            0,
+            '.',
+            ''
+        );
+    }
 }

@@ -58,10 +58,9 @@ class CategoryController extends BaseController
 
         $group = [];
 
-        $keys = Yii::$app->catalogFilter->keys;
-
         Yii::$app->catalogFilter->parserUrl();
 
+        $keys = Yii::$app->catalogFilter->keys;
         $queryParams = Yii::$app->catalogFilter->params;
 
         if (isset($queryParams[$keys['category']])) {
