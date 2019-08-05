@@ -193,18 +193,25 @@ class CatalogFilter extends Component
         }
 
         if ($url !== '') {
-            return Url::toRoute($route) . $url . '/';
+            return Url::toRoute($route, true) . $url . '/';
         } else {
-            return Url::toRoute($route);
+            return Url::toRoute($route, true);
         }
     }
 
     /**
-     * Parser upl
+     * Parser url
+     *
+     * @param string $url
+     * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
-    public function parserUrl()
+    public function parserUrl($url = '')
     {
-        $elements = explode(self::AMPERSAND_1, Yii::$app->request->get('filter'));
+        $url = $url ? $url : Yii::$app->request->get('filter');
+
+        $elements = explode(self::AMPERSAND_1, $url);
 
         foreach ($elements as $k => $v) {
             if ($v) {
@@ -481,7 +488,7 @@ class CatalogFilter extends Component
             if ($_data[0] >= $_data[1]) {
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
-        
+
             if (!in_array($_data[2], ['EUR', 'RUB'])) {
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }

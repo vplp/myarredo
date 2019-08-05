@@ -30,6 +30,7 @@ echo Html::a(
 
 <?php
 $url = Url::toRoute('/location/currency/change');
+$filter = Yii::$app->request->get('filter');
 $script = <<<JS
 $('.currency-selector').on('click', '.currency-item', function() {
     var el = $(this);
@@ -38,10 +39,13 @@ $('.currency-selector').on('click', '.currency-item', function() {
     $.post('$url',
         {
             _csrf: $('#token').val(),
-            currency: currency
+            currency: currency,
+            filter: '$filter'
         }
     ).done(function (data) {
-        if (data.success == 1) {
+        if (data.link != undefined) {
+            document.location.href = data.link;
+        } else if (data.success == 1) {
             document.location.reload(true);
         }
     }, 'json');

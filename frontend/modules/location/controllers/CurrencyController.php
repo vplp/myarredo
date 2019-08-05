@@ -39,6 +39,8 @@ class CurrencyController extends BaseController
      */
     public function actionChange()
     {
+        $response = ['success' => 0];
+
         if (Yii::$app->request->isAjax && $currency = Yii::$app->getRequest()->post('currency')) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
@@ -47,10 +49,20 @@ class CurrencyController extends BaseController
              */
             if (array_key_exists($currency, Currency::getMapCode2Course())) {
                 Yii::$app->session->set('currency', $currency);
-                return ['success' => 1];
+                $response['success'] = 1;
             }
 
-            return ['success' => 0];
+            Yii::$app->catalogFilter->parserUrl(Yii::$app->getRequest()->post('filter'));
+
+            $keys = Yii::$app->catalogFilter->keys;
+            $params = Yii::$app->catalogFilter->params;
+
+            if (isset($params[$keys['price']])) {
+                $params[$keys['price']] = [];
+                $response['link'] = Yii::$app->catalogFilter->createUrl($params);
+            }
         }
+
+        return $response;
     }
 }
