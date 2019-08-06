@@ -55,11 +55,22 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
     }
 
     /**
-     * @return mixed
+     * @param array $option
+     * @return array
      */
-    public static function dropDownList()
+    public static function dropDownList($option = [])
     {
-        return ArrayHelper::map(self::findBase()->all(), 'id', 'lang.title');
+        $query = self::findBase();
+
+        if (isset($option['parent_id'])) {
+            $query->andFilterWhere([
+                'parent_id' => $option['parent_id']
+            ]);
+        }
+
+        $data = $query->undeleted()->all();
+
+        return ArrayHelper::map($data, 'id', 'lang.title');
     }
 
     /**
