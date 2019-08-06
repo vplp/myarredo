@@ -123,22 +123,75 @@ use frontend\modules\catalog\models\Category;
                     ['class' => 'filt-but']
                 ) ?>
                 <div class="list-item">
-                    <?php
-                    $count_factory = 0;
-                    foreach ($factory as $letter => $val) {
-                        foreach ($val as $item) {
-                            ++$count_factory;
-                            $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
 
-                            echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
-                            ?>
-                            <div class="filter-group">
-                                <div class="my-checkbox"></div><?= $item['title'] ?>
-                            </div>
-                            <span><?= $item['count'] ?></span>
-                            <?= Html::endTag('a'); ?>
-                        <?php }
+                    <?php
+                    foreach ($factory_first_show as $key => $item) {
+                        $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check';
+                        echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
+                        ?>
+                        <div class="filter-group">
+                            <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
+                        <?php
+                        echo Html::endTag('a');
                     } ?>
+
+                    <?= Html::a(
+                        '<span class="btn-text">' . Yii::t('app', 'Показать еще') . '</span>',
+                        'javascript:void(0);',
+                        [
+                            'class' => 'show-more show-class',
+                            'data-toggle' => 'modal',
+                            'data-target' => '#factory-modal',
+                        ]
+                    ) ?>
+
+                    <div id="factory-modal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <?= Yii::t('app', 'Close') ?>
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <h3 class="text-center">
+                                    <?= Yii::t('app', 'Выбор фабрики') ?>
+                                </h3>
+                                <div class="alphabet-tab">
+
+                                    <?php
+                                    foreach ($factory as $letter => $val) {
+                                        echo Html::a($letter, "javascript:void(0);");
+                                    } ?>
+
+                                </div>
+                                <div class="alphabet-tab-cont">
+                                    <?php foreach ($factory as $letter => $val) { ?>
+                                        <div data-show="<?= $letter ?>">
+
+                                            <?php
+                                            foreach ($val as $item) {
+                                                $class = $item['checked']
+                                                    ? 'one-item-check selected'
+                                                    : 'one-item-check';
+
+                                                echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
+                                                ?>
+                                                <div class="my-checkbox"></div><?= $item['title'] ?> (<?= $item['count'] ?>)
+                                                <?php
+                                                echo Html::endTag('a');
+                                            } ?>
+
+                                        </div>
+
+                                    <?php } ?>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
         <?php } ?>
@@ -168,7 +221,11 @@ use frontend\modules\catalog\models\Category;
         <?php } ?>
 
         <div class="one-filter filter-range-slider">
-            <a href="javascript:void(0);" class="filt-but">Цена</a>
+            <?= Html::a(
+                Yii::t('app', 'Цена'),
+                'javascript:void(0);',
+                ['class' => 'filt-but']
+            ) ?>
             <div class="price-slider-cont">
                 <div id="price-slider"
                      data-min="<?= $price_range['min']['current'] ?>"
