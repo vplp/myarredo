@@ -94,7 +94,7 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Yii::t('app', 'Orders italy') ?>
                                     </div>
                                 </a>
-                                <a href="<?= Url::toRoute(['/shop/partner-order/list-italy-payment'], true) ?>"
+                                <a href="<?= Url::toRoute(['/shop/partner-order/list-italy-answers'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
 
@@ -170,7 +170,7 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Yii::t('app', 'Orders italy') ?>
                                     </div>
                                 </a>
-                                <a href="<?= Url::toRoute(['/shop/partner-order/list-italy-payment'], true) ?>"
+                                <a href="<?= Url::toRoute(['/shop/partner-order/list-italy-answers'], true) ?>"
                                    class="profile-quadrlink">
                                     <div class="profile-quadrlink-img">
 

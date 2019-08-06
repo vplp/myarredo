@@ -170,9 +170,9 @@ return [
     'admin/orders-italy' => 'shop/admin-order/list-italy',
     'partner/orders' => 'shop/partner-order/list',
     'partner/orders-italy' => 'shop/partner-order/list-italy',
+    'partner/orders-italy-answers' => 'shop/partner-order/list-italy-answers',
 
     'partner/orders/pjax-save' => 'shop/partner-order/pjax-save',
-    'partner/orders/send-answer' => 'shop/partner-order/send-answer',
 
     // Module [[Location]]
     'location/location/get-cities' => 'location/location/get-cities',

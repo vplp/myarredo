@@ -38,7 +38,7 @@ class PartnerOrderController extends BaseController
                         'actions' => [
                             'list',
                             'list-italy',
-                            'send-answer',
+                            'list-italy-answers',
                             'pjax-save'
                         ],
                         'roles' => ['partner'],
@@ -47,7 +47,7 @@ class PartnerOrderController extends BaseController
                         'allow' => true,
                         'actions' => [
                             'list-italy',
-                            'send-answer',
+                            'list-italy-answers',
                             'pjax-save'
                         ],
                         'roles' => ['logistician'],
@@ -299,78 +299,12 @@ class PartnerOrderController extends BaseController
         }
     }
 
-//    /**
-//     * Send answer
-//     */
-//    public function actionSendAnswer()
-//    {
-//        if (Yii::$app->request->isPost &&
-//            (Yii::$app->request->post('OrderAnswer'))['order_id'] &&
-//            Yii::$app->request->post('action-send-answer')
-//        ) {
-//            $order_id = (Yii::$app->request->post('OrderAnswer'))['order_id'];
-//
-//            $modelOrder = Order::findById($order_id);
-//            $modelAnswer = OrderAnswer::findByOrderIdUserId($order_id, Yii::$app->getUser()->getId());
-//
-//            /** @var $modelOrder Order */
-//            /** @var $modelAnswer OrderAnswer */
-//
-//            if (empty($modelAnswer)) {
-//                $modelAnswer = new OrderAnswer();
-//            }
-//
-//            $modelAnswer->setScenario('frontend');
-//            $modelAnswer->user_id = Yii::$app->getUser()->getId();
-//            $modelAnswer->answer_time = time();
-//
-//            if ($modelAnswer->load(Yii::$app->request->post()) && $modelAnswer->validate()) {
-//                /** @var PDO $transaction */
-//                $transaction = $modelAnswer::getDb()->beginTransaction();
-//                try {
-//                    $save = $modelAnswer->save();
-//                    if ($save) {
-//                        $transaction->commit();
-//
-//                        if ($modelOrder->product_type == 'product') {
-//                            $viewMail = '/../mail/answer_order_user_letter';
-//                        } else {
-//                            $viewMail = '/../mail/answer_order_italy_user_letter';
-//                        }
-//
-//                        // send user letter
-//                        Yii::$app
-//                            ->mailer
-//                            ->compose(
-//                                $viewMail,
-//                                [
-//                                    'modelOrder' => $modelOrder,
-//                                    'modelAnswer' => $modelAnswer,
-//                                ]
-//                            )
-//                            ->setTo($modelOrder->customer['email'])
-//                            ->setSubject('Ответ за заказ № ' . $modelOrder['id'])
-//                            ->send();
-//
-//                        // message
-//                        Yii::$app->getSession()->setFlash(
-//                            'success',
-//                            'Отправлено'
-//                        );
-//
-//                    } else {
-//                        $transaction->rollBack();
-//                    }
-//                } catch (Exception $e) {
-//                    $transaction->rollBack();
-//                }
-//            }
-//
-//            if ($modelOrder->product_type == 'product') {
-//                return $this->redirect($modelOrder->getPartnerOrderOnListUrl());
-//            } else {
-//                return $this->redirect($modelOrder->getPartnerOrderOnListItalyUrl());
-//            }
-//        }
-//    }
+    public function actionListItalyAnswers()
+    {
+        return $this->render('list-italy/answers', [
+//            'models' => $models,
+//            'model' => $model,
+//            'params' => $params,
+        ]);
+    }
 }
