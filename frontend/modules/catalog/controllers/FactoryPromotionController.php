@@ -228,8 +228,9 @@ class FactoryPromotionController extends BaseController
         $cities = [];
         foreach ($model->city_ids as $city_id) {
             $city = City::findById($city_id);
-
-            $cities[$city->country_id][] = $city_id;
+            if ($city != null) {
+                $cities[$city['country_id']][] = $city_id;
+            }
         }
         $model->city_ids = $cities;
 

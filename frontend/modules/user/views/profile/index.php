@@ -94,6 +94,15 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Yii::t('app', 'Orders italy') ?>
                                     </div>
                                 </a>
+                                <a href="<?= Url::toRoute(['/shop/partner-order/list-italy-payment'], true) ?>"
+                                   class="profile-quadrlink">
+                                    <div class="profile-quadrlink-img">
+
+                                    </div>
+                                    <div class="profile-quadrlink-text">
+                                        <?= Yii::t('app', 'Оплатить заявки на доставку') ?>
+                                    </div>
+                                </a>
                             <?php } elseif (in_array(Yii::$app->user->identity->group->role, ['partner']) &&
                                 Yii::$app->user->identity->profile->country_id &&
                                 Yii::$app->user->identity->profile->country_id == 4) { ?>
@@ -159,6 +168,15 @@ $this->title = Yii::t('app', 'Profile');
                                     </div>
                                     <div class="profile-quadrlink-text">
                                         <?= Yii::t('app', 'Orders italy') ?>
+                                    </div>
+                                </a>
+                                <a href="<?= Url::toRoute(['/shop/partner-order/list-italy-payment'], true) ?>"
+                                   class="profile-quadrlink">
+                                    <div class="profile-quadrlink-img">
+
+                                    </div>
+                                    <div class="profile-quadrlink-text">
+                                        <?= Yii::t('app', 'Оплатить заявки на доставку') ?>
                                     </div>
                                 </a>
                             <?php } elseif (Yii::$app->user->identity->group->role == 'admin') { ?>
