@@ -31,6 +31,8 @@ use thread\app\base\models\ActiveRecord;
  * @property boolean $published
  * @property boolean $deleted
  *
+ * @property array $items_ids
+ *
  * @property PaymentRelItem[] $items
  *
  * @package common\modules\payment\models
@@ -205,7 +207,8 @@ class Payment extends ActiveRecord
     {
         return [
             'factory_promotion' => 'factory_promotion',
-            'italian_item' => 'italian_item'
+            'italian_item' => 'italian_item',
+            'italian_item_delivery' => 'italian_item_delivery'
         ];
     }
 }

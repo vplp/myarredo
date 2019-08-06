@@ -106,4 +106,5 @@ class OrderItem extends ActiveRecord
             'deleted' => Yii::t('app', 'Deleted'),
         ];
     }
+
 }

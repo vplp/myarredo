@@ -4,6 +4,7 @@ namespace frontend\modules\shop\models;
 
 use frontend\modules\catalog\models\ItalianProduct;
 use frontend\modules\catalog\models\Product;
+use Yii;
 
 /**
  * Class OrderItem
@@ -35,6 +36,33 @@ class OrderItem extends \common\modules\shop\models\OrderItem
     }
 
     /**
+     * @return int
+     */
+    public function getDeliveryAmount()
+    {
+        return  $this->orderItemPrice->price + 1 * Yii::$app->currency->getValue(50, 'EUR', '');
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function findBase()
+    {
+        return self::find()
+            ->innerJoinWith(['order', 'product'])
+            ->orderBy(['created_at' => SORT_DESC]);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findById($id)
+    {
+        return self::findBase()->byID($id)->one();
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getProduct()
@@ -52,5 +80,15 @@ class OrderItem extends \common\modules\shop\models\OrderItem
     public function getOrderItemPrices()
     {
         return $this->hasMany(OrderItemPrice::class, ['product_id' => 'product_id', 'order_id' => 'order_id']);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     * @throws \Throwable
+     */
+    public function search($params)
+    {
+        return (new search\OrderItem())->search($params);
     }
 }
