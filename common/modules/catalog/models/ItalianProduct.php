@@ -66,6 +66,7 @@ use common\modules\shop\models\OrderItem;
  * @property ItalianProductRelCategory[] $category
  * @property ItalianProductRelSubTypes[] $subTypes
  * @property Payment $payment
+ * @property Payment $paymentDelivery
  * @property ItalianProductRelSpecification[] $specificationValue
  * @property Factory $factory
  * @property User $user
@@ -539,7 +540,21 @@ class ItalianProduct extends ActiveRecord
         return $this
             ->hasOne(Payment::class, ['id' => 'payment_id'])
             ->viaTable(PaymentRelItem::tableName(), ['item_id' => 'id'])
-            ->andWhere([Payment::tableName() . '.type' => 'italian_item']);
+            ->andWhere([Payment::tableName() . '.type' => 'italian_item'])
+            ->orderBy(Payment::tableName() . '.id DESC');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getPaymentDelivery()
+    {
+        return $this
+            ->hasOne(Payment::class, ['id' => 'payment_id'])
+            ->viaTable(PaymentRelItem::tableName(), ['item_id' => 'id'])
+            ->andWhere([Payment::tableName() . '.type' => 'italian_item_delivery'])
+            ->orderBy(Payment::tableName() . '.id DESC');
     }
 
     /**

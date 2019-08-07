@@ -170,8 +170,7 @@ return [
     'admin/orders-italy' => 'shop/admin-order/list-italy',
     'partner/orders' => 'shop/partner-order/list',
     'partner/orders-italy' => 'shop/partner-order/list-italy',
-    'partner/orders-italy-answers' => 'shop/partner-order/list-italy-answers',
-    'partner/orders-pay-italy-delivery/<id:[\d\-]+>' => 'shop/partner-order/pay-italy-delivery',
+    'partner/delivery-italian-orders' => 'shop/partner-order/delivery-italian-orders',
     'partner/orders/pjax-save' => 'shop/partner-order/pjax-save',
 
     // Module [[Location]]

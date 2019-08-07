@@ -12,7 +12,7 @@ use frontend\modules\catalog\models\FactoryPromotion;
 
 /**
  * @var \yii\data\Pagination $pages
- * @var $model \frontend\modules\catalog\models\FactoryPromotion
+ * @var $model FactoryPromotion
  */
 
 $dataProvider = $model->search(Yii::$app->request->queryParams);
@@ -72,7 +72,7 @@ $this->title = $this->context->title;
                                             'format' => 'raw',
                                             'label' => Yii::t('app', 'Список товаров'),
                                             'value' => function ($model) {
-                                                /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
+                                                /** @var FactoryPromotion $model */
                                                 $result = [];
                                                 foreach ($model->products as $product) {
                                                     $result[] = $product->lang->title;
@@ -84,7 +84,7 @@ $this->title = $this->context->title;
                                             'format' => 'raw',
                                             'label' => Yii::t('app', 'Кол-во городов'),
                                             'value' => function ($model) {
-                                                /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
+                                                /** @var FactoryPromotion $model */
                                                 return count($model->cities);
                                             },
                                         ],
@@ -95,7 +95,7 @@ $this->title = $this->context->title;
                                         [
                                             'attribute' => 'payment_status',
                                             'value' => function ($model) {
-                                                /** @var \backend\modules\catalog\models\FactoryPromotion $model */
+                                                /** @var FactoryPromotion $model */
                                                 return $model->getPaymentStatusTitle();
                                             },
                                             'filter' => GridViewFilter::selectOne(
@@ -107,7 +107,7 @@ $this->title = $this->context->title;
                                         [
                                             'attribute' => 'status',
                                             'value' => function ($model) {
-                                                /** @var \frontend\modules\catalog\models\FactoryPromotion $model */
+                                                /** @var FactoryPromotion $model */
                                                 return $model->getStatusTitle();
                                             },
                                             'filter' => GridViewFilter::selectOne(
@@ -124,7 +124,7 @@ $this->title = $this->context->title;
                                             'template' => '{update} {delete}',
                                             'buttons' => [
                                                 'update' => function ($url, $model) {
-                                                    /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
+                                                    /** @var $model FactoryPromotion */
                                                     return Yii::$app->user->identity->id == $model->user_id ? Html::a(
                                                         '<span class="glyphicon glyphicon-pencil"></span>',
                                                         Url::toRoute([
@@ -137,7 +137,7 @@ $this->title = $this->context->title;
                                                     ) : '';
                                                 },
                                                 'delete' => function ($url, $model) {
-                                                    /** @var $model \frontend\modules\catalog\models\FactoryPromotion */
+                                                    /** @var $model FactoryPromotion */
                                                     return (
                                                         Yii::$app->user->identity->id == $model->user_id &&
                                                         $model->payment_status != FactoryPromotion::PAYMENT_STATUS_SUCCESS)

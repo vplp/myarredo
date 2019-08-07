@@ -77,6 +77,18 @@ class Payment extends ActiveRecord
     }
 
     /**
+     * @return bool
+     */
+    public function beforeValidate()
+    {
+        if (is_array($this->items_ids) == false) {
+            $this->items_ids = [$this->items_ids];
+        }
+
+        return parent::beforeValidate();
+    }
+
+    /**
      * @return array
      */
     public function rules()
@@ -161,14 +173,38 @@ class Payment extends ActiveRecord
     }
 
     /**
+     * @return string
+     */
+    public function getInvDesc()
+    {
+        $desc = '';
+
+        if ($this->type == 'factory_promotion') {
+            $desc = Yii::t('app', 'Оплата рекламной кампании');
+        } elseif ($this->type == 'italian_item') {
+            $desc = Yii::t('app', 'Оплата товаров');
+        } elseif ($this->type == 'italian_item_delivery') {
+            $desc = Yii::t('app', 'Оплата заявки на доставку');
+        }
+
+        return $desc;
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      * @throws \yii\base\InvalidConfigException
      */
     public function getItems()
     {
-        $class = ($this->type == 'factory_promotion')
-            ? FactoryPromotion::class
-            : ItalianProduct::class;
+        $class = FactoryPromotion::class;
+
+        if ($this->type == 'factory_promotion') {
+            $class = FactoryPromotion::class;
+        } elseif ($this->type == 'italian_item') {
+            $class = ItalianProduct::class;
+        } elseif ($this->type == 'italian_item_delivery') {
+            $class = ItalianProduct::class;
+        }
 
         return $this
             ->hasMany($class, ['id' => 'item_id'])

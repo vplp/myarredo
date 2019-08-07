@@ -38,9 +38,14 @@ class OrderItem extends \common\modules\shop\models\OrderItem
     /**
      * @return int
      */
-    public function getDeliveryAmount()
+    public function getDeliveryAmountForItalianProduct()
     {
-        return  $this->orderItemPrice->price + 1 * Yii::$app->currency->getValue(50, 'EUR', '');
+        $volume = $this->product->volume ? $this->product->volume : 2;
+        $amount = $this->orderItemPrice->price + $volume * 50;
+
+        $amount = number_format($amount, 2, '.', '');
+
+        return  $amount;
     }
 
     /**

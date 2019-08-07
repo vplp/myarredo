@@ -3,7 +3,6 @@
 namespace frontend\modules\shop\controllers;
 
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\db\Exception;
 use yii\db\mssql\PDO;
 use yii\db\Transaction;
@@ -12,7 +11,6 @@ use yii\web\Response;
 //
 use frontend\components\BaseController;
 use frontend\modules\location\models\City;
-use frontend\modules\payment\models\Payment;
 use frontend\modules\shop\models\{Order, OrderAnswer, OrderItem, OrderItemPrice};
 
 /**
@@ -40,8 +38,7 @@ class PartnerOrderController extends BaseController
                         'actions' => [
                             'list',
                             'list-italy',
-                            'list-italy-answers',
-                            'pay-italy-delivery',
+                            'delivery-italian-orders',
                             'pjax-save'
                         ],
                         'roles' => ['partner'],
@@ -50,8 +47,7 @@ class PartnerOrderController extends BaseController
                         'allow' => true,
                         'actions' => [
                             'list-italy',
-                            'list-italy-answers',
-                            'pay-italy-delivery',
+                            'delivery-italian-orders',
                             'pjax-save'
                         ],
                         'roles' => ['logistician'],
@@ -307,7 +303,7 @@ class PartnerOrderController extends BaseController
      * @return string
      * @throws \Throwable
      */
-    public function actionListItalyAnswers()
+    public function actionDeliveryItalianOrders()
     {
         $model = new OrderItem();
 
@@ -322,60 +318,8 @@ class PartnerOrderController extends BaseController
             'label' => $this->title,
         ];
 
-        return $this->render('list-italy/answers', [
+        return $this->render('list-italy/delivery_italian_orders', [
             'dataProvider' => $models,
         ]);
-    }
-
-    /**
-     * @param $id
-     * @return mixed
-     * @throws \yii\base\InvalidConfigException
-     */
-    public function actionPayItalyDelivery($id)
-    {
-        $model = OrderItem::findByID($id);
-
-        /** @var $model OrderItem */
-        if ($model == null) {
-            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
-        }
-
-        $modelPayment = new Payment();
-        $modelPayment->setScenario('frontend');
-
-        $modelPayment->user_id = Yii::$app->user->id;
-        $modelPayment->type = 'italian_item_delivery';
-        $modelPayment->amount = $model->getDeliveryAmount();
-        $modelPayment->currency = 'RUB';
-        $modelPayment->items_ids = [$model->id];
-
-        /** @var Transaction $transaction */
-        $transaction = $modelPayment::getDb()->beginTransaction();
-        try {
-            $modelPayment->payment_status = Payment::PAYMENT_STATUS_PENDING;
-
-            $save = $modelPayment->save();
-
-            if ($save) {
-                $transaction->commit();
-
-                /** @var \robokassa\Merchant $merchant */
-                $merchant = Yii::$app->get('robokassa');
-
-                return $merchant->payment(
-                    $modelPayment->amount,
-                    $modelPayment->id,
-                    Yii::t('app', 'Оплата заявки на доставку'),
-                    null,
-                    Yii::$app->user->identity->email,
-                    substr(Yii::$app->language, 0, 2)
-                );
-            } else {
-                $transaction->rollBack();
-            }
-        } catch (Exception $e) {
-            $transaction->rollBack();
-        }
     }
 }

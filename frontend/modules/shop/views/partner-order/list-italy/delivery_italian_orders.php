@@ -11,6 +11,7 @@ use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{
     ItalianProduct, Factory
 };
+use frontend\modules\shop\models\{Order, OrderAnswer, OrderItem, OrderItemPrice};
 
 /**
  * @var $pages Pagination
@@ -43,7 +44,7 @@ $this->title = $this->context->title;
                                         'format' => 'raw',
                                         'label' => Yii::t('app', 'Image link'),
                                         'value' => function ($model) {
-                                            /** @var $model ItalianProduct */
+                                            /** @var $model OrderItem */
                                             return Html::img(
                                                 ItalianProduct::getImageThumb($model['product']['image_link']),
                                                 ['width' => 50]
@@ -57,7 +58,7 @@ $this->title = $this->context->title;
                                         'format' => 'raw',
                                         'label' => Yii::t('app', 'Title'),
                                         'value' => function ($model) {
-                                            /** @var $model ItalianProduct */
+                                            /** @var $model OrderItem */
                                             return Html::a(
                                                 $model['product']['title'],
                                                 ItalianProduct::getUrl($model['product']['alias']),
@@ -72,7 +73,7 @@ $this->title = $this->context->title;
                                         'format' => 'raw',
                                         'label' => Yii::t('app', 'Answer time'),
                                         'value' => function ($model) {
-                                            /** @var $model ItalianProduct */
+                                            /** @var $model OrderItem */
                                             return date('d-m-Y', $model['order']['orderAnswer']['answer_time']);
                                         },
                                         'headerOptions' => ['class' => 'col-sm-2'],
@@ -81,32 +82,47 @@ $this->title = $this->context->title;
                                     ],
                                     [
                                         'format' => 'raw',
-                                        'label' => 'стоимость доставки',
+                                        'label' => Yii::t('app', 'Стоимость доставки'),
                                         'value' => function ($model) {
-                                            /** @var $model ItalianProduct */
+                                            /** @var $model OrderItem */
                                             return $model['orderItemPrice']['price'];
                                         },
                                     ],
                                     [
                                         'format' => 'raw',
-                                        'label' => 'к оплате',
+                                        'label' => Yii::t('app', 'Всего к оплате'),
                                         'value' => function ($model) {
-                                            /** @var $model ItalianProduct */
-                                            return $model->getDeliveryAmount();
+                                            /** @var $model OrderItem */
+                                            return $model->getDeliveryAmountForItalianProduct();
                                         },
                                     ],
                                     [
                                         'format' => 'raw',
-                                        'label' => 'оплатить',
                                         'value' => function ($model) {
-                                            /** @var $model ItalianProduct */
+                                            /** @var $model OrderItem */
+                                            if ($model['product']['paymentDelivery']['payment_status'] == 'success') {
+                                                return Yii::t('app', 'Оплачено');
+                                            }
+
+                                            $cost = $model->getDeliveryAmountForItalianProduct();
+                                            $amount = $cost + ($cost * 0.02);
+                                            $amount = Yii::$app->currency->getValue($amount, 'EUR', '');
+
                                             return Html::a(
                                                 Yii::t('app', 'Оплатить'),
-                                                Url::toRoute([
-                                                    '/shop/partner-order/pay-italy-delivery',
-                                                    'id' => $model['id']
-                                                ], true),
-                                                ['class' => 'btn btn-goods']
+                                                ['/payment/payment/invoice'],
+                                                [
+                                                    'data-method' => 'POST',
+                                                    'data-params' => [
+                                                        '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
+                                                        'Payment[user_id]' => Yii::$app->user->id,
+                                                        'Payment[type]' => 'italian_item_delivery',
+                                                        'Payment[amount]' => $amount,
+                                                        'Payment[currency]' => 'RUB',
+                                                        'Payment[items_ids]' => $model['product']['id'],
+                                                    ],
+                                                    'class' => 'btn btn-goods'
+                                                ]
                                             );
                                         },
                                     ],

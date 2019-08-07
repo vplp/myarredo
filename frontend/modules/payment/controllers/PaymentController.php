@@ -3,6 +3,7 @@
 namespace frontend\modules\payment\controllers;
 
 use Yii;
+use robokassa\Merchant;
 use yii\web\ForbiddenHttpException;
 use yii\filters\AccessControl;
 //
@@ -77,15 +78,13 @@ class PaymentController extends BaseController
                 if ($save) {
                     $transaction->commit();
 
-                    /** @var \robokassa\Merchant $merchant */
+                    /** @var $merchant Merchant */
                     $merchant = Yii::$app->get('robokassa');
 
                     return $merchant->payment(
                         $model->amount,
                         $model->id,
-                        ($model->type == 'factory_promotion')
-                            ? Yii::t('app', 'Оплата рекламной кампании')
-                            : Yii::t('app', 'Оплата товаров'),
+                        $model->getInvDesc(),
                         null,
                         Yii::$app->user->identity->email,
                         substr(Yii::$app->language, 0, 2)

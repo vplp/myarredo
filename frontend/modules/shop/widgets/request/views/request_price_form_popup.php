@@ -54,8 +54,7 @@ $model->city_id = Yii::$app->city->getCityId();
             ->input('hidden', ['value' => $model->city_id])
             ->label(false) ?>
 
-        <?= $form-
-        >field($model, 'comment')
+        <?= $form->field($model, 'comment')
             ->textarea(['placeholder' => Yii::t('app', 'Comment')])
             ->label(false) ?>
 

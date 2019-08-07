@@ -77,18 +77,24 @@ class Payment extends \common\modules\payment\models\Payment
         }
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     * @throws \yii\base\InvalidConfigException
-     */
-    public function getItems()
-    {
-        $class = ($this->type == 'factory_promotion')
-            ? FactoryPromotion::class
-            : ItalianProduct::class;
-
-        return $this
-            ->hasMany($class, ['id' => 'item_id'])
-            ->viaTable(PaymentRelItem::tableName(), ['payment_id' => 'id']);
-    }
+//    /**
+//     * @return \yii\db\ActiveQuery
+//     * @throws \yii\base\InvalidConfigException
+//     */
+//    public function getItems()
+//    {
+//        $class = null;
+//
+//        if ($this->type == 'factory_promotion') {
+//            $class = FactoryPromotion::class;
+//        } elseif ($this->type == 'italian_item') {
+//            $class = ItalianProduct::class;
+//        } elseif ($this->type == 'italian_item_delivery') {
+//            $class = ItalianProduct::class;
+//        }
+//
+//        return $this
+//            ->hasMany($class, ['id' => 'item_id'])
+//            ->viaTable(PaymentRelItem::tableName(), ['payment_id' => 'id']);
+//    }
 }
