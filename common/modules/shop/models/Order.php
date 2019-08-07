@@ -174,11 +174,28 @@ class Order extends \thread\modules\shop\models\Order
         return $modelAnswer;
     }
 
+    /**
+     * @return bool
+     */
     public function isArchive()
     {
-        return (count($this->orderAnswers) >= 3) ? true : false;
+        $isArchive = false;
+
+        if (!Yii::$app->getUser()->isGuest &&
+            Yii::$app->user->identity->profile->partner_in_city &&
+            in_array(Yii::$app->user->identity->group->role, ['partner']) &&
+            Yii::$app->user->identity->profile->city_id == $this->city_id) {
+            $isArchive = false;
+        } elseif (count($this->orderAnswers) >= 3) {
+            $isArchive = true;
+        }
+
+        return $isArchive;
     }
 
+    /**
+     * @return string
+     */
     public function getOrderStatus()
     {
         return ($this->isArchive())
