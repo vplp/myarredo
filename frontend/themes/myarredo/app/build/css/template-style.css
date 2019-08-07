@@ -1666,7 +1666,7 @@ h1 {
     font-size: 14px;
     text-align: center;
     font-weight: 600;
-    height: 70px;
+    height: 40px;
     overflow: hidden;
   }
   .category-page .cat-prod .one-prod-tile:hover {
@@ -1676,6 +1676,7 @@ h1 {
     z-index: 5; }
     .category-page .cat-prod .one-prod-tile:hover .tile-prod-name {
       height: auto;
+      min-height: 40px;
      }
     .category-page .cat-prod .one-prod-tile:hover .one-prod-tile-in {
       border-color: #BDBCB3;
@@ -7278,6 +7279,23 @@ h1 {
   font-size: 18px;
   top: 5px;
   right: 6px;
+}
+.prod-is-sold {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0 0 10px;
+}
+.sale-page .prod-is-sold {
+  text-align: left;
+  padding: 0;
+  margin-top: -6px;
+}
+.sale-page .prod-info .alert {
+  padding-left: 0;
+}
+.category-page .cat-prod .one-prod-tile:hover .item-infoblock {
+  height: auto;
 }
 
 /* --------------------------------------------------------------------------------------------------------- */

@@ -245,7 +245,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                 'sold' => function ($url, $model) {
                                                     /** @var $model ItalianProduct */
                                                     return Html::a(
-                                                        '<span class="glyphicon"></span> ' . Yii::t('app', 'Item sold'),
+                                                        '<span class="glyphicon glyphicon-shopping-cart"></span> ' . Yii::t('app', 'Item sold'),
                                                         Url::toRoute(
                                                             ['/catalog/italian-product/is-sold', 'id' => $model->id]
                                                         ),
