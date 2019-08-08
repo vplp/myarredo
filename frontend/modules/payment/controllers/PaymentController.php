@@ -43,12 +43,16 @@ class PaymentController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['result', 'success', 'fail'],
+                        'actions' => [
+                            'result',
+                            'success',
+                            'fail'
+                        ],
                         'roles' => ['?'],
                     ],
                     [
                         'allow' => true,
-                        'roles' => ['factory', 'partner'],
+                        'roles' => ['@'],
                     ],
                     [
                         'allow' => false,
