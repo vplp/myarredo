@@ -35,6 +35,10 @@ class UserMenu extends Widget
                     'label' => Yii::t('app', 'Orders italy'),
                     'url' => ['/shop/partner-order/list-italy']
                 ],
+                [
+                    'label' => Yii::t('app', 'Оплатить заявки на доставку'),
+                    'url' => ['/shop/partner-order/delivery-italian-orders']
+                ],
             ];
         } elseif (!Yii::$app->getUser()->isGuest &&
             in_array(Yii::$app->user->identity->group->role, ['partner']) &&
@@ -80,6 +84,10 @@ class UserMenu extends Widget
                 [
                     'label' => Yii::t('app', 'Инструкция партнерам'),
                     'url' => ['/page/page/view', 'alias' => 'instructions']
+                ],
+                [
+                    'label' => Yii::t('app', 'Оплатить заявки на доставку'),
+                    'url' => ['/shop/partner-order/delivery-italian-orders']
                 ],
             ];
         } elseif (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') {
