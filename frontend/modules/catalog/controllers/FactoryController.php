@@ -42,6 +42,8 @@ class FactoryController extends BaseController
     /**
      * @return string
      * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionList()
     {
@@ -110,6 +112,8 @@ class FactoryController extends BaseController
      * @param string $alias
      * @return string
      * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionView(string $alias)
     {

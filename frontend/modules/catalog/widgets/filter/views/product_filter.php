@@ -220,7 +220,7 @@ use frontend\modules\catalog\models\Category;
             </div>
         <?php } ?>
 
-        <?php if ($price_range) { ?>
+        <?php if ($price_range && $price_range['min']['default'] != $price_range['max']['default']) { ?>
             <div class="one-filter filter-range-slider">
                 <?= Html::a(
                     Yii::t('app', 'Цена'),

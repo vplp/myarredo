@@ -1,13 +1,14 @@
 <?php
 
-/**
- * @var $pages \yii\data\Pagination
- * @var $model \frontend\modules\catalog\models\Product
- */
-
+use frontend\modules\catalog\models\Product;
 use frontend\modules\catalog\widgets\filter\{
     ProductFilter
 };
+
+/**
+ * @var $pages \yii\data\Pagination
+ * @var $model Product
+ */
 
 $this->title = $this->context->title;
 ?>
@@ -24,14 +25,15 @@ $this->title = $this->context->title;
                             'route' => '/factory/' . $factory['alias'] . '/catalog',
                             'category' => $category,
                             'types' => $types,
+                            'subtypes' => $subtypes,
                             'style' => $style,
+                            'colors' => $colors,
+                            'price_range' => $price_range,
                         ]); ?>
 
                     </div>
 
                     <div class="col-md-9 col-lg-9">
-
-
                         <div class="cont-area">
                             <div class="cat-prod-wrap">
                                 <div class="cat-prod">
@@ -48,7 +50,7 @@ $this->title = $this->context->title;
 
                                     <?= frontend\components\LinkPager::widget([
                                         'pagination' => $pages,
-                                    ]); ?>
+                                    ]) ?>
 
                                 </div>
                             </div>

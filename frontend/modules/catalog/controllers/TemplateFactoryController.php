@@ -9,7 +9,16 @@ use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Collection, Product, Category, Factory, ProductStats, Sale, Types, Specification
+    Collection,
+    Colors,
+    Product,
+    Category,
+    Factory,
+    ProductStats,
+    Sale,
+    SubTypes,
+    Types,
+    Specification
 };
 use frontend\modules\user\models\User;
 
@@ -30,6 +39,8 @@ class TemplateFactoryController extends BaseController
      * @param string $alias
      * @return string
      * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionFactory(string $alias)
     {
@@ -80,6 +91,8 @@ class TemplateFactoryController extends BaseController
      * @param string $alias
      * @return string
      * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionContacts(string $alias)
     {
@@ -106,6 +119,8 @@ class TemplateFactoryController extends BaseController
      * @param string $alias
      * @return string
      * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionCatalog(string $alias)
     {
@@ -127,11 +142,23 @@ class TemplateFactoryController extends BaseController
             Yii::$app->catalogFilter->setParam($keys['factory'], $factory['alias']);
         }
 
-        $category = Category::getWithProduct(Yii::$app->catalogFilter->params);
-        $types = Types::getWithProduct(Yii::$app->catalogFilter->params);
-        $style = Specification::getWithProduct(Yii::$app->catalogFilter->params);
+        $queryParams = Yii::$app->catalogFilter->params;
 
-        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, Yii::$app->catalogFilter->params));
+        $category = Category::getWithProduct($queryParams);
+        $types = Types::getWithProduct($queryParams);
+        $subtypes = SubTypes::getWithProduct($queryParams);
+        $style = Specification::getWithProduct($queryParams);
+        $colors = Colors::getWithProduct($queryParams);
+
+        $min = Product::minPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+        $max = Product::maxPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+
+        $price_range = [
+            'min' => $min,
+            'max' => $max
+        ];
+
+        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         $this->title = Yii::t('app', 'Каталог итальянской мебели') . ' ' .
             $factory['title'] . '. ' .
@@ -142,8 +169,11 @@ class TemplateFactoryController extends BaseController
         return $this->render('catalog', [
             'category' => $category,
             'types' => $types,
+            'subtypes' => $subtypes,
             'style' => $style,
             'factory' => $factory,
+            'colors' => $colors,
+            'price_range' => $price_range,
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),
         ]);
@@ -215,6 +245,8 @@ class TemplateFactoryController extends BaseController
      * @param string $alias
      * @return string
      * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionSale(string $alias)
     {
@@ -249,6 +281,8 @@ class TemplateFactoryController extends BaseController
      * @param string $product
      * @return string
      * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionSaleProduct(string $alias, string $product)
     {
@@ -288,5 +322,4 @@ class TemplateFactoryController extends BaseController
             'model' => $model,
         ]);
     }
-
 }

@@ -6,9 +6,7 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
-use frontend\modules\catalog\models\{
-    Factory as FactoryModel, FactoryLang
-};
+use frontend\modules\catalog\models\{Factory as FactoryModel, FactoryLang, Product};
 
 /**
  * Class Factory
@@ -44,6 +42,8 @@ class Factory extends FactoryModel
      * @param $query
      * @param $params
      * @return ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function baseSearch($query, $params)
     {
@@ -63,7 +63,7 @@ class Factory extends FactoryModel
         }
 
         $query->andFilterWhere(['like', 'alias', $this->alias]);
-        //
+
         $query->andFilterWhere(['like', FactoryLang::tableName() . '.title', $this->title]);
         $query->andFilterWhere(['like', 'first_letter', $this->letter]);
 
@@ -75,12 +75,25 @@ class Factory extends FactoryModel
     }
 
     /**
-     * @param array $params
+     * @param $params
      * @return ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function search($params)
     {
         $query = FactoryModel::findBase();
+
+        $query
+            ->innerJoinWith(["product"], false)
+            ->innerJoinWith(["product.lang"], false)
+            ->andFilterWhere([
+                Product::tableName() . '.published' => '1',
+                Product::tableName() . '.deleted' => '0',
+                Product::tableName() . '.removed' => '0',
+            ])
+            ->groupBy(self::tableName() . '.id');
+
         return $this->baseSearch($query, $params);
     }
 }

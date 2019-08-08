@@ -106,6 +106,8 @@ class Factory extends \common\modules\catalog\models\Factory
     /**
      * @param $params
      * @return \yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function search($params)
     {
@@ -449,12 +451,12 @@ class Factory extends \common\modules\catalog\models\Factory
             GROUP BY 
                 category.id , factory.id
             ORDER BY categoryLang.title")
-            ->bindValues([
-                ':published' => '1',
-                ':deleted' => '0',
-                ':removed' => '0',
-                ':lang' => Yii::$app->language,
-            ])->queryAll();
+                ->bindValues([
+                    ':published' => '1',
+                    ':deleted' => '0',
+                    ':removed' => '0',
+                    ':lang' => Yii::$app->language,
+                ])->queryAll();
         });
 
         return $result;
@@ -521,12 +523,12 @@ class Factory extends \common\modules\catalog\models\Factory
             GROUP BY 
                 collection.id
             ORDER BY collection.title")
-            ->bindValues([
-                ':published' => '1',
-                ':deleted' => '0',
-                ':removed' => '0',
-                ':id' => $id,
-            ])->queryAll();
+                ->bindValues([
+                    ':published' => '1',
+                    ':deleted' => '0',
+                    ':removed' => '0',
+                    ':id' => $id,
+                ])->queryAll();
         });
 
         return $result;
