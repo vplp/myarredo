@@ -21,7 +21,7 @@ return [
         'class' => \thread\app\web\Request::class,
         'enableCsrfValidation' => true,
         'enableCookieValidation' => true,
-        'cookieValidationKey' => 'thread',
+        'cookieValidationKey' => getenv('THREAD_COOKIE_VALIDATION_KEY'),
     ],
     'view' => [
         'theme' => [

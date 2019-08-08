@@ -50,31 +50,31 @@ return [
     'redisCache' => [
         'class' => \yii\redis\Cache::class,
         'redis' => [
-            'hostname' => 'localhost',
-            'port' => 6379,
+            'hostname' => getenv('REDIS_HOST'),
+            'port' => getenv('REDIS_PORT'),
             'database' => 0,
         ]
     ],
     'rc' => [
         'class' => \yii\redis\Cache::class,
         'redis' => [
-            'hostname' => 'localhost',
-            'port' => 6379,
+            'hostname' => getenv('REDIS_HOST'),
+            'port' => getenv('REDIS_PORT'),
             'database' => 1,
         ]
     ],
     'reCaptcha' => [
         'name' => 'reCaptcha',
         'class' => \himiklab\yii2\recaptcha\ReCaptchaConfig::class,
-        'siteKeyV2' => '6LehPRkUAAAAAB1TVTLbwB1GYua9tI4aC1cHYSTU',
-        'secretV2' => '6LehPRkUAAAAADUIdKWBJx1tPKLztXMoVcsrHVrl',
-        'siteKeyV3' => '6LehRIoUAAAAALWGhlNNdb7hmXiK8NTju_tl2LXl',
-        'secretV3' => '6LehRIoUAAAAAKfN2eFDO7nR7xmLE8bCJQMRlPyk',
+        'siteKeyV2' => getenv('RECAPTCHA_SITE_KEY_V2'),
+        'secretV2' => getenv('RECAPTCHA_SECRET_V2'),
+        'siteKeyV3' => getenv('RECAPTCHA_SITE_KEY_V3'),
+        'secretV3' => getenv('RECAPTCHA_SECRET_V3'),
     ],
     'sendPulse' => [
         'class' => \common\components\sendpulse\SendPulse::class,
-        'userId' => '5a4017d2702c0caa55238646202925af',
-        'secret' => 'b93e723419dbdf7a0be49143c702d804',
+        'userId' => getenv('SEND_PULSE_USER_ID'),
+        'secret' => getenv('SEND_PULSE_SECRET'),
     ],
     'param' => [
         'class' => \common\modules\sys\modules\configs\components\ConfigsParams::class,
@@ -83,26 +83,29 @@ return [
         'class' => \yii\elasticsearch\Connection::class,
         'autodetectCluster' => false,
         'nodes' => [
-            ['http_address' => 'localhost:9200'],
+            ['http_address' => getenv('ELASTIC_SEARCH_HTTP_ADDRESS')],
         ],
     ],
     'yandexTranslator' => [
         'class' => \common\components\YandexTranslator::class,
-        'key' => 'trnsl.1.1.20180326T121847Z.97ead48fdb04534c.3713f3146271d3c8c47c8c97be8fae539ac776fd',
+        'key' => getenv('YANDEX_TRANSLATOR_KEY'),
     ],
     'yandexKassa' => [
         'class' => \common\components\YandexKassaAPI\YandexKassaAPI::class,
         'returnUrl' => 'https://www.myarredo.ru/',
-        'shopId' => '518473', //'519736',
-        'key' => 'live_LFY41_Fv20kbUCvAYMS66r3q6aS4r78MX3u2NU7C8To',
-        //'key' => 'test_PHsoZmISCHfA5FjC6bcUPWyxDSCBS-s6YgQrKMV7TYA',
+        'shopId' => getenv('YANDEX_KASSA_SHOP_ID'),
+        'key' => getenv('YANDEX_KASSA_KEY'),
     ],
     'robokassa' => [
         'class' => \common\components\robokassa\Merchant::class,
         'baseUrl' => 'https://auth.robokassa.ru/Merchant/Index.aspx',
         'sMerchantLogin' => 'MYARREDOFAMILY',
-        'sMerchantPass1' => YII_DEBUG ? 'test_E8Sl6Pwc1EOqVO2QJh7T' : 'o3RIgyHzCzV9Y4rdR5k2',
-        'sMerchantPass2' => YII_DEBUG ? 'test_XfgDyHnd1P6bfxB91QO5' : 'R69VO6fXmuhfmPfQ5V6Y',
+        'sMerchantPass1' => YII_DEBUG
+            ? getenv('ROBOKASSA_S_MERCHANT_PASS1_test')
+            : getenv('ROBOKASSA_S_MERCHANT_PASS1'),
+        'sMerchantPass2' => YII_DEBUG
+            ? getenv('ROBOKASSA_S_MERCHANT_PASS2_TEST')
+            : getenv('ROBOKASSA_S_MERCHANT_PASS2'),
         'isTest' => YII_DEBUG,
     ]
 ];
