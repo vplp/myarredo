@@ -16,6 +16,14 @@ use frontend\modules\catalog\models\ItalianProduct;
 
     <div class="one-prod-tile-in" itemscope itemtype="http://schema.org/ImageObject">
 
+        <?php if ($model['bestseller']) { ?>
+            <div class="prod-bestseller"><?= Yii::t('app', 'Bestseller') ?></div>
+        <?php } ?>
+
+        <?php if ($model->getSavingPrice()) { ?>
+            <div class="prod-saving-percentage"><?= $model->getSavingPercentage() ?></div>
+        <?php } ?>
+
         <div class="img-cont" data-dominant-color>
             <span class="background"></span>
             <?= Html::img(

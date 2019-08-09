@@ -114,6 +114,11 @@ echo GridView::widget([
         ],
         [
             'class' => ActionStatusColumn::class,
+            'attribute' => 'bestseller',
+            'action' => 'bestseller'
+        ],
+        [
+            'class' => ActionStatusColumn::class,
             'attribute' => 'is_sold',
             'action' => 'is_sold'
         ],

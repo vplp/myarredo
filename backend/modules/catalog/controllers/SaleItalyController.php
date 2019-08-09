@@ -64,6 +64,12 @@ class SaleItalyController extends BackendController
                 'attribute' => 'on_main',
                 'redirect' => $this->defaultAction,
             ],
+            'bestseller' => [
+                'class' => AttributeSwitch::class,
+                'modelClass' => $this->model,
+                'attribute' => 'bestseller',
+                'redirect' => $this->defaultAction,
+            ],
             'is_sold' => [
                 'class' => AttributeSwitch::class,
                 'modelClass' => $this->model,

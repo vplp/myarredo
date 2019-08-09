@@ -50,31 +50,31 @@ return [
     'redisCache' => [
         'class' => \yii\redis\Cache::class,
         'redis' => [
-            'hostname' => getenv('REDIS_HOST'),
-            'port' => getenv('REDIS_PORT'),
+            'hostname' => \getenv('REDIS_HOST'),
+            'port' => \getenv('REDIS_PORT'),
             'database' => 0,
         ]
     ],
     'rc' => [
         'class' => \yii\redis\Cache::class,
         'redis' => [
-            'hostname' => getenv('REDIS_HOST'),
-            'port' => getenv('REDIS_PORT'),
+            'hostname' => \getenv('REDIS_HOST'),
+            'port' => \getenv('REDIS_PORT'),
             'database' => 1,
         ]
     ],
     'reCaptcha' => [
         'name' => 'reCaptcha',
         'class' => \himiklab\yii2\recaptcha\ReCaptchaConfig::class,
-        'siteKeyV2' => getenv('RECAPTCHA_SITE_KEY_V2'),
-        'secretV2' => getenv('RECAPTCHA_SECRET_V2'),
-        'siteKeyV3' => getenv('RECAPTCHA_SITE_KEY_V3'),
-        'secretV3' => getenv('RECAPTCHA_SECRET_V3'),
+        'siteKeyV2' => \getenv('RECAPTCHA_SITE_KEY_V2'),
+        'secretV2' => \getenv('RECAPTCHA_SECRET_V2'),
+        'siteKeyV3' => \getenv('RECAPTCHA_SITE_KEY_V3'),
+        'secretV3' => \getenv('RECAPTCHA_SECRET_V3'),
     ],
     'sendPulse' => [
         'class' => \common\components\sendpulse\SendPulse::class,
-        'userId' => getenv('SEND_PULSE_USER_ID'),
-        'secret' => getenv('SEND_PULSE_SECRET'),
+        'userId' => \getenv('SEND_PULSE_USER_ID'),
+        'secret' => \getenv('SEND_PULSE_SECRET'),
     ],
     'param' => [
         'class' => \common\modules\sys\modules\configs\components\ConfigsParams::class,
@@ -83,29 +83,29 @@ return [
         'class' => \yii\elasticsearch\Connection::class,
         'autodetectCluster' => false,
         'nodes' => [
-            ['http_address' => getenv('ELASTIC_SEARCH_HTTP_ADDRESS')],
+            ['http_address' => \getenv('ELASTIC_SEARCH_HTTP_ADDRESS')],
         ],
     ],
     'yandexTranslator' => [
         'class' => \common\components\YandexTranslator::class,
-        'key' => getenv('YANDEX_TRANSLATOR_KEY'),
+        'key' => \getenv('YANDEX_TRANSLATOR_KEY'),
     ],
     'yandexKassa' => [
         'class' => \common\components\YandexKassaAPI\YandexKassaAPI::class,
         'returnUrl' => 'https://www.myarredo.ru/',
-        'shopId' => getenv('YANDEX_KASSA_SHOP_ID'),
-        'key' => getenv('YANDEX_KASSA_KEY'),
+        'shopId' => \getenv('YANDEX_KASSA_SHOP_ID'),
+        'key' => \getenv('YANDEX_KASSA_KEY'),
     ],
     'robokassa' => [
         'class' => \common\components\robokassa\Merchant::class,
         'baseUrl' => 'https://auth.robokassa.ru/Merchant/Index.aspx',
         'sMerchantLogin' => 'MYARREDOFAMILY',
         'sMerchantPass1' => YII_DEBUG
-            ? getenv('ROBOKASSA_S_MERCHANT_PASS1_test')
-            : getenv('ROBOKASSA_S_MERCHANT_PASS1'),
+            ? \getenv('ROBOKASSA_S_MERCHANT_PASS1_test')
+            : \getenv('ROBOKASSA_S_MERCHANT_PASS1'),
         'sMerchantPass2' => YII_DEBUG
-            ? getenv('ROBOKASSA_S_MERCHANT_PASS2_TEST')
-            : getenv('ROBOKASSA_S_MERCHANT_PASS2'),
+            ? \getenv('ROBOKASSA_S_MERCHANT_PASS2_TEST')
+            : \getenv('ROBOKASSA_S_MERCHANT_PASS2'),
         'isTest' => YII_DEBUG,
     ]
 ];

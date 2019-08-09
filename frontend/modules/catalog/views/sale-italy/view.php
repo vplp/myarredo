@@ -68,7 +68,7 @@ $this->title = $this->context->title;
                                     <?php if ($model->price > 0) { ?>
                                         <div class="price economy">
                                             <?= Yii::t('app', 'Экономия') ?>:
-                                            <span><?= Yii::$app->currency->getValue($model->price - $model->price_new, $model['currency']) . ' ' . Yii::$app->currency->symbol ?></span>
+                                            <span><?= $model->getSavingPercentage() ?></span>
                                         </div>
                                     <?php } ?>
                                 </div>
