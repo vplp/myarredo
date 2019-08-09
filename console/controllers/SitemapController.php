@@ -120,7 +120,6 @@ class SitemapController extends Controller
                 chmod($filePath, 0777);
             }
 
-
             // create the main sitemap file
 
             $filePath = Yii::getAlias($this->filePath . '/sitemap_' . $city['alias'] . '.xml');
@@ -153,6 +152,8 @@ class SitemapController extends Controller
             fwrite($handle, PHP_EOL . '</sitemapindex>');
             fclose($handle);
             chmod($filePath, 0777);
+
+            $this->stdout("Create sitemap_" . $city['alias'] . " \n", Console::FG_GREEN);
         }
 
         $this->stdout("Sitemap: end create. \n", Console::FG_GREEN);
