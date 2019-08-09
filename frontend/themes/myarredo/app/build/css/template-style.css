@@ -6765,7 +6765,7 @@ h1 {
   text-align: center;
   color: #535351;
   font-weight: 600;
-  margin-top: -5px;
+  margin-top: -2px;
   padding: 1px;
 }
 .prod-pricebox .for-green {
@@ -7300,6 +7300,33 @@ h1 {
 .rec-slider-wrap.novetly-sliderbox {
   margin-top: -15px;
   margin-bottom: 5px;
+}
+.prod-saving-percentage {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  background-color: #C4252F;
+  color: #ffffff;
+  padding: 1px 5px;
+  z-index: 99;
+}
+.prod-bestseller {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  background-color: #448339;
+  color: #ffffff;
+  text-transform: uppercase;
+  padding: 1px 5px;
+  z-index: 99;
+}
+.category-page .cat-prod .one-prod-tile:hover .prod-saving-percentage {
+  top: 19px;
+  left: -1px;
+}
+.category-page .cat-prod .one-prod-tile:hover .prod-bestseller {
+  top: 19px;
+  right: -1px;
 }
 
 /* --------------------------------------------------------------------------------------------------------- */
