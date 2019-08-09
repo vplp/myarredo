@@ -8,7 +8,7 @@ use frontend\themes\myarredo\assets\AppAsset;
 //
 use frontend\modules\catalog\widgets\{
     category\CategoryOnMainPage,
-    product\ProductNovelty,
+    product\ProductsNoveltiesOnMain,
     sale\SaleOnMainPage,
     filter\ProductFilterOnMainPage
 };
@@ -123,7 +123,7 @@ $bundle = AppAsset::register($this);
 
             <?= SaleOnMainPage::widget(); ?>
 
-            <?= ProductNovelty::widget(); ?>
+            <?= ProductsNoveltiesOnMain::widget(); ?>
 
             <div class="large-text">
                 <div class="container large-container">

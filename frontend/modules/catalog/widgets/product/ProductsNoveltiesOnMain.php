@@ -3,19 +3,20 @@
 namespace frontend\modules\catalog\widgets\product;
 
 use yii\base\Widget;
+//
 use frontend\modules\catalog\models\Product;
 
 /**
- * Class ProductNovelty
+ * Class ProductsNoveltiesOnMain
  *
  * @package frontend\modules\catalog\widgets\product
  */
-class ProductNovelty extends Widget
+class ProductsNoveltiesOnMain extends Widget
 {
     /**
      * @var string
      */
-    public $view = 'product_novelty';
+    public $view = 'products_novelties_on_main';
 
     /**
      * @var object
@@ -29,7 +30,6 @@ class ProductNovelty extends Widget
     {
         $this->models = Product::findBaseArray()
             ->andWhere(['onmain' => '1'])
-            ->asArray()
             ->cache(7200)
             ->all();
 

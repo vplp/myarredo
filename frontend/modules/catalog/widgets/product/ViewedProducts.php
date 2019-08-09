@@ -10,6 +10,7 @@ use yii\base\Widget;
 /**
  * Class ViewedProducts
  *
+ * @property string $view
  * @property string $modelClass
  * @property string $cookieName
  * @property object $models

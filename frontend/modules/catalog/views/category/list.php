@@ -5,12 +5,15 @@ use yii\helpers\{
 };
 use frontend\components\Breadcrumbs;
 //
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\{
+    Product, ItalianProduct
+};
 use frontend\modules\catalog\widgets\filter\{
     ProductSorting, ProductFilter
 };
 use frontend\modules\catalog\widgets\paginator\PageChanger;
 use frontend\modules\catalog\widgets\product\ViewedProducts;
+use frontend\modules\catalog\widgets\product\ProductsNovelties;
 
 /**
  * @var $pages \yii\data\Pagination
@@ -34,6 +37,9 @@ $this->title = $this->context->title;
                     ]) ?>
 
                 </div>
+
+                <?= ProductsNovelties::widget(['modelClass' => ItalianProduct::class]) ?>
+
                 <div class="cat-content">
                     <?= Html::a(
                         Yii::t('app', 'Фильтры'),
