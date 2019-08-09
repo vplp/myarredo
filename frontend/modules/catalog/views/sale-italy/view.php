@@ -289,6 +289,81 @@ $this->title = $this->context->title;
 
                     </div>
 
+                    <?php if (Yii::$app->controller->action->id == 'view') { ?>
+                        <div class="best-price">
+                            <div class="container large-container">
+                                <div class="section-header">
+                                    <h3 class="section-title">
+                                        <?= Yii::t('app', 'Как мы получаем лучшую цену на доставку Вашей мебели?') ?>
+                                    </h3>
+                                </div>
+                                <div class="numbers js-numbers">
+                                    <div class="one-number">
+                                        <div class="title">
+                                            1
+                                            <div class="img-cont">
+                                                <?= Html::img($bundle->baseUrl . '/img/num1.svg') ?>
+                                            </div>
+                                        </div>
+                                        <div class="descr">
+                                            <?= Yii::t(
+                                                'app',
+                                                'Ваш запрос отправляется всем логистам авторизованным в нашей сети.'
+                                            ) ?>
+                                        </div>
+                                    </div>
+                                    <div class="one-number">
+                                        <div class="title">
+                                            2
+                                            <div class="img-cont">
+                                                <?= Html::img($bundle->baseUrl . '/img/num2.svg') ?>
+                                            </div>
+                                        </div>
+                                        <div class="descr">
+                                            <?= Yii::t(
+                                                'app',
+                                                'Логисты подготовят вам свое предложение по срокам и цене на доставку. Окажут вам полный комплекс услуг по покупке и доставке в РФ.'
+                                            ) ?>
+                                        </div>
+                                    </div>
+                                    <div class="one-number">
+                                        <div class="title">
+                                            3
+                                            <div class="img-cont" style="margin-top: 0;">
+                                                <?= Html::img($bundle->baseUrl . '/img/num3.svg') ?>
+                                            </div>
+                                        </div>
+                                        <div class="descr">
+                                            <?= Yii::t('app', 'Не все логисты дают одинаковые цены и сроки доставки, это связано с их схемами перевозок и наличию свободных объемов для загрузки.') ?>
+                                        </div>
+                                    </div>
+                                    <div class="one-number">
+                                        <div class="title">
+                                            4
+                                            <div class="img-cont">
+                                                <?= Html::img($bundle->baseUrl . '/img/num4.svg') ?>
+                                            </div>
+                                        </div>
+                                        <div class="descr">
+                                            <?= Yii::t('app', 'В сети myarredofamily только проверенные перевозчики, которые имеют большой опыт и подтвердили свою надежность.') ?>
+                                        </div>
+                                    </div>
+                                    <div class="one-number">
+                                        <div class="title">
+                                            5
+                                            <div class="img-cont">
+                                                <?= Html::img($bundle->baseUrl . '/img/num5.svg') ?>
+                                            </div>
+                                        </div>
+                                        <div class="descr">
+                                            <?= Yii::t('app', 'Вам останется только выбрать подходящий вариант для Вас!') ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+
                     <?php if (Yii::$app->controller->action->id == 'view') {
                         echo $this->render('@app/modules/catalog/views/product/parts/_product_by_factory', [
                             'factory' => $model['factory'],
@@ -307,11 +382,9 @@ $this->title = $this->context->title;
         </div>
     </main>
 
-<?php
-if (Yii::$app->controller->id == 'sale-italy') {
+<?php if (Yii::$app->controller->id == 'sale-italy') {
     echo SaleRequestForm::widget(['sale_item_id' => $model['id']]);
-}
-?>
+} ?>
 
 <?php
 $user_id = $model['user']['id'];
