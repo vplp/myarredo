@@ -249,4 +249,22 @@ class Sale extends \common\modules\catalog\models\Sale
 
         return $title;
     }
+
+    /**
+     * @return string
+     */
+    public function getSavingPrice()
+    {
+        return ($this->price > 0)
+            ? $this->price - $this->price_new
+            : 0;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSavingPercentage()
+    {
+        return '-' . ceil(($this->price_new * 100) / $this->price) . '%';
+    }
 }
