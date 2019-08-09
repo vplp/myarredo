@@ -7297,6 +7297,10 @@ h1 {
 .category-page .cat-prod .one-prod-tile:hover .item-infoblock {
   height: auto;
 }
+.rec-slider-wrap.novetly-sliderbox {
+  margin-top: -15px;
+  margin-bottom: 5px;
+}
 
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------blog-news styles-------------------------------------- */

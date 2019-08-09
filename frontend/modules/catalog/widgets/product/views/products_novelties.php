@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 if (!empty($products)) { ?>
-    <div class="rec-slider-wrap">
+    <div class="rec-slider-wrap novetly-sliderbox">
         <div class="container large-container">
             <div class="row">
                 <div class="std-slider" id="rec-slider">
@@ -20,7 +20,7 @@ if (!empty($products)) { ?>
                             ) ?>
 
                             <div class="img-cont">
-                                <?= Html::img('', ['class' => 'lazy', 'data-src' => $modelClass::getImageThumb($model['image_link'])]) ?>
+                                <?= Html::img($modelClass::getImageThumb($model['image_link'])) ?>
                                 <span class="background"></span>
                             </div>
 
