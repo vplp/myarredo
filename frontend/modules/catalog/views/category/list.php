@@ -38,7 +38,9 @@ $this->title = $this->context->title;
 
                 </div>
 
-                <?= ProductsNovelties::widget(['modelClass' => ItalianProduct::class]) ?>
+                <?php if (Yii::$app->request->get('filter') == false) {
+                    echo ProductsNovelties::widget(['modelClass' => ItalianProduct::class]);
+                } ?>
 
                 <div class="cat-content">
                     <?= Html::a(
@@ -49,16 +51,14 @@ $this->title = $this->context->title;
                     <div class="row">
                         <div class="col-md-3 col-lg-3 js-filter-modal">
 
-                            <?= ProductFilter::widget([
-                                'route' => '/catalog/category/list',
+                            <?= ProductFilter::widget(['route' => '/catalog/category/list',
                                 'category' => $category,
                                 'types' => $types,
                                 'subtypes' => $subtypes,
                                 'style' => $style,
                                 'factory' => $factory,
                                 'colors' => $colors,
-                                'price_range' => $price_range,
-                            ]); ?>
+                                'price_range' => $price_range,]); ?>
 
                         </div>
                         <div class="col-md-9 col-lg-9">
@@ -68,9 +68,7 @@ $this->title = $this->context->title;
 
                                     <?= ProductSorting::widget() ?>
 
-                                    <?= PageChanger::widget([
-                                        'pages' => $pages
-                                    ]) ?>
+                                    <?= PageChanger::widget(['pages' => $pages]) ?>
 
                                 </div>
 
@@ -84,18 +82,14 @@ $this->title = $this->context->title;
                                         }
 
                                         foreach ($models as $model) {
-                                            echo $this->render('_list_item', [
-                                                'model' => $model,
-                                                'factory' => $_factory,
-                                            ]);
+                                            echo $this->render('_list_item', ['model' => $model,
+                                                'factory' => $_factory,]);
                                         } ?>
 
                                     </div>
                                     <div class="pagi-wrap">
 
-                                        <?= frontend\components\LinkPager::widget([
-                                            'pagination' => $pages,
-                                        ]) ?>
+                                        <?= frontend\components\LinkPager::widget(['pagination' => $pages,]) ?>
 
                                     </div>
                                 </div>
