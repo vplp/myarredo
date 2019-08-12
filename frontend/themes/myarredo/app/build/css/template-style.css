@@ -890,9 +890,11 @@ h1 {
       padding-left: 10px; }
 
 .bread-crumbs {
-  height: 78px; }
+  height: auto;
+  padding-top: 0;
+ }
   .bread-crumbs li {
-    height: 78px;
+    height: auto;
     display: inline-flex;
     align-items: center; }
     .bread-crumbs li a {
