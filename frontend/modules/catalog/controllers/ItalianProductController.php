@@ -201,4 +201,31 @@ class ItalianProductController extends BaseController
             ]
         );
     }
+
+    /**
+     * @param $action
+     * @return bool
+     * @throws ForbiddenHttpException
+     * @throws \yii\web\NotFoundHttpException
+     */
+    public function beforeAction($action)
+    {
+        $id = Yii::$app->request->get('id', null);
+
+        if (in_array($action->id, ['update', 'published'])) {
+            if ($id === null) {
+                throw new \yii\web\NotFoundHttpException();
+            }
+        }
+
+        if ($id !== null) {
+            $model = ItalianProduct::findById($id);
+            /** @var $model ItalianProduct */
+            if ($action->id == 'published' && $model != null && $model->create_mode == 'paid') {
+                throw new ForbiddenHttpException('Access denied');
+            }
+        }
+
+        return parent::beforeAction($action);
+    }
 }
