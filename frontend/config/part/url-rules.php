@@ -90,11 +90,13 @@ return [
     //
     'italian-product' => 'catalog/italian-product/list',
     'italian-product/completed' => 'catalog/italian-product/completed',
-    'italian-product/create' => 'catalog/italian-product/create',
+    'italian-product/paid-create' => 'catalog/italian-product/paid-create',
+    'italian-product/free-create' => 'catalog/italian-product/free-create',
     'italian-product/payment' => 'catalog/italian-product/payment',
     'italian-product/update/<id:[\d\-]+>/<step:(photo|check|payment)>' => 'catalog/italian-product/update',
     'italian-product/update/<id:[\d\-]+>' => 'catalog/italian-product/update',
     'italian-product/is-sold/<id:[\d\-]+>' => 'catalog/italian-product/is-sold',
+    'italian-product/published/<id:[\d\-]+>' => 'catalog/italian-product/published',
     'italian-product/intrash/<id:[\d\-]+>' => 'catalog/italian-product/intrash',
 
     'catalog/italian-product/fileupload' => 'catalog/italian-product/fileupload',

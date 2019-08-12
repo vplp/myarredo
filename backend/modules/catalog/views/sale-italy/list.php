@@ -42,8 +42,7 @@ echo GridView::widget([
         [
             'value' => function ($model) {
                 /** @var $model ItalianProduct */
-
-                $status = $model->payment ? Yii::t('app', ucfirst($model->payment->payment_status)) : '';
+                $status = $model->payment ? Yii::t('app', ucfirst($model->payment->payment_status)) : '-';
 
                 if ($model->payment && $model->payment->payment_status == 'success') {
                     $status .= ' ' .  date('Y-m-d', $model->payment->payment_time);

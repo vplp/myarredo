@@ -45,8 +45,14 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                         ) ?>
 
                         <?= Html::a(
-                            '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Add'),
-                            Url::toRoute(['/catalog/italian-product/create']),
+                            '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Paid add'),
+                            Url::toRoute(['/catalog/italian-product/paid-create']),
+                            ['class' => 'btn btn-goods']
+                        ) ?>
+
+                        <?= Html::a(
+                            '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Free add'),
+                            Url::toRoute(['/catalog/italian-product/free-create']),
                             ['class' => 'btn btn-goods']
                         ) ?>
                     </div>
@@ -67,9 +73,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                 <?= GridView::widget([
                                     'id' => 'italian-product-grid',
                                     'dataProvider' => $dataProvider,
-                                    //'filterModel' => $filter,
                                     'filterUrl' => Url::toRoute(['/catalog/italian-product/list']),
-
                                     'panel' => [
                                         'after' => Html::tag(
                                             'div',
@@ -171,7 +175,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
 
                                                 if ($model->payment && $model->payment->payment_status == 'success' && $model->published == 0) {
                                                     $status = Yii::t('app', 'На модерации');
-                                                } elseif ($model->payment && $model->payment->payment_status == 'success' && $model->published == 1) {
+                                                } elseif ($model->payment && $model->payment->payment_status == 'success' || $model->published == 1) {
                                                     $status = Html::tag(
                                                             'div',
                                                             Html::tag(
@@ -193,7 +197,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                             Yii::t('app', 'Осталось дней') . ' - ' . $model->getDiffPublishedDate(),
                                                             ['class' => 'progresssubtitle']
                                                         );
-                                                } else {
+                                                } else if ($model->create_mode == 'paid') {
                                                     $status = Html::a(
                                                         Yii::t('app', 'Опубликовать'),
                                                         ['/catalog/italian-product/payment'],
@@ -206,6 +210,16 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                             'class' => 'btn-puplished btn-xs'
                                                         ]
                                                     );
+                                                } elseif ($model->create_mode == 'free') {
+                                                    $status = Html::a(
+                                                        Yii::t('app', 'Опубликовать'),
+                                                        Url::toRoute(
+                                                            ['/catalog/italian-product/published', 'id' => $model->id]
+                                                        ),
+                                                        ['class' => 'btn-puplished btn-xs']
+                                                    );
+                                                } else {
+                                                    $status = '';
                                                 }
 
                                                 return $status;
@@ -264,7 +278,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'name' => 'id',
                                             'checkboxOptions' => function ($model) {
                                                 /** @var $model ItalianProduct */
-                                                if ($model->published) {
+                                                if ($model->create_mode == 'free' || $model->published) {
                                                     return ['disabled' => true];
                                                 } else {
                                                     return [];

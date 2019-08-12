@@ -62,6 +62,7 @@ use common\modules\shop\models\OrderItem;
  * @property integer $mark
  * @property string $language_editing
  * @property integer $status
+ * @property string $create_mode
  *
  * @property ItalianProductLang $lang
  * @property ItalianProductRelCategory[] $category
@@ -179,6 +180,11 @@ class ItalianProduct extends ActiveRecord
                 'range' => array_keys(static::statusRange())
             ],
             [
+                ['create_mode'],
+                'in',
+                'range' => array_keys(static::createModeRange())
+            ],
+            [
                 [
                     'phone',
                     'email',
@@ -210,6 +216,17 @@ class ItalianProduct extends ActiveRecord
             ],
             [['language_editing'], 'string', 'max' => 5],
             [['language_editing'], 'default', 'value' => ''],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function createModeRange()
+    {
+        return [
+            'paid' => 'paid',
+            'free' => 'free',
         ];
     }
 
@@ -282,6 +299,7 @@ class ItalianProduct extends ActiveRecord
                 'is_sold',
                 'mark',
                 'language_editing',
+                'create_mode',
                 'status',
                 'category_ids',
                 'subtypes_ids',
@@ -313,6 +331,7 @@ class ItalianProduct extends ActiveRecord
                 'is_sold',
                 'mark',
                 'language_editing',
+                'create_mode',
                 'category_ids',
                 'subtypes_ids',
                 'colors_ids',
@@ -360,6 +379,7 @@ class ItalianProduct extends ActiveRecord
             'deleted' => Yii::t('app', 'Deleted'),
             'mark',
             'language_editing',
+            'create_mode',
             'status' => Yii::t('app', 'Status'),
             'category_ids' => Yii::t('app', 'Category'),
             'subtypes_ids' => Yii::t('app', 'Типы'),

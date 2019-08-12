@@ -48,13 +48,24 @@ $Specifications = Specification::findBase()->all();
 
         <?php $form = ActiveForm::begin([
             'action' => ($model->isNewRecord)
-                ? Url::toRoute(['/catalog/italian-product/create'])
+                ? null
                 : Url::toRoute(['/catalog/italian-product/update', 'id' => $model->id]),
             'fieldConfig' => [
                 'template' => "{label}<div class=\"col-sm-9\">{input}</div>\n{hint}\n{error}",
                 'labelOptions' => ['class' => 'col-sm-3 col-form-label'],
             ],
-        ]); ?>
+        ]) ?>
+
+        <?php
+
+        if ($model->isNewRecord) {
+            $model->create_mode = Yii::$app->controller->action->id == 'paid-create' ? 'paid' : 'free';
+        }
+
+        echo $form->field($model, 'create_mode')
+            ->label(false)
+            ->input('hidden');
+        ?>
 
         <?= $form->field($modelLang, 'title') ?>
 

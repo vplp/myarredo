@@ -24,27 +24,10 @@ $modelPayment->setScenario('frontend');
 $modelPayment->user_id = Yii::$app->user->id;
 $modelPayment->type = 'italian_item';
 
-$currency = Currency::findByCode2('EUR');
+$modelCostProduct = ItalianProduct::getCostProduct();
+$modelPayment->amount = $modelCostProduct['amount'];
+$modelPayment->currency = $modelCostProduct['currency'];
 
-/** @var Currency $amount */
-
-/**
- * cost 1 product = 10 EUR
- * conversion to RUB
- */
-$cost = 10 * $currency['course'];
-
-$amount = $cost + ($cost * 0.02);
-$amount = number_format($amount, 2, '.', '');
-
-$total = $amount;
-$nds = number_format($total / 100 * 20, 2, '.', '');
-
-$discount_percent = 50;
-$discount_money = number_format($total / 100 * $discount_percent, 2, '.', '');
-
-$modelPayment->amount = number_format($total + $nds - $discount_money, 2, '.', '');
-$modelPayment->currency = 'RUB';
 ?>
 
 <div class="form-horizontal add-itprod-content">
@@ -91,30 +74,36 @@ $modelPayment->currency = 'RUB';
                                 <th>№</th>
                                 <th><?= Yii::t('app', 'Наименование услуг') ?></th>
                                 <th><?= Yii::t('app', 'Количество') ?></th>
+                                <?php if ($model->create_mode == 'free') { ?>
+                                    <th><?= Yii::t('app', 'Цена') ?></th>
+                                <?php } ?>
                                 <th><?= Yii::t('app', 'Цена') ?></th>
                                 <th><?= Yii::t('app', 'Валюта') ?></th>
                             </tr>
                             </thead>
                             <tbody>
 
-                                <tr>
-                                    <th>1</th>
-                                    <td class="cell-img-and-descr">
-                                        <?= $model->getTitle() .
-                                        Html::input(
-                                            'hidden',
-                                            'Payment[items_ids][]',
-                                            $model->id
-                                        ) .
-                                        Html::img(
-                                            ItalianProduct::getImageThumb($model['image_link']),
-                                            ['width' => 50]
-                                        ) ?>
-                                    </td>
-                                    <td>1</td>
-                                    <td><?= $amount ?></td>
-                                    <td><?= $modelPayment->currency ?></td>
-                                </tr>
+                            <tr>
+                                <th>1</th>
+                                <td class="cell-img-and-descr">
+                                    <?= $model->getTitle() .
+                                    Html::input(
+                                        'hidden',
+                                        'Payment[items_ids][]',
+                                        $model->id
+                                    ) .
+                                    Html::img(
+                                        ItalianProduct::getImageThumb($model['image_link']),
+                                        ['width' => 50]
+                                    ) ?>
+                                </td>
+                                <td>1</td>
+                                <?php if ($model->create_mode == 'free') { ?>
+                                    <th>22%</th>
+                                <?php } ?>
+                                <td><?= $modelCostProduct['amount'] ?></td>
+                                <td><?= $modelCostProduct['currency'] ?></td>
+                            </tr>
 
                             </tbody>
                         </table>
@@ -122,22 +111,24 @@ $modelPayment->currency = 'RUB';
 
                     <div class="total-box">
                         <div>
-                           <span class="for-total"> <?= Yii::t('app', 'Итого') ?> :</span> <span class="for-styles"><?= $total . ' ' . $modelPayment->currency ?></span>
+                            <span class="for-total"> <?= Yii::t('app', 'Итого') ?> :</span> <span
+                                    class="for-styles"><?= $modelCostProduct['total'] . ' ' . $modelCostProduct['currency'] ?></span>
                         </div>
                         <div>
                         <span class="for-total">
                             <?= Yii::t('app', 'В том числе НДС') ?> :
                         </span>
-                            <span class="for-styles"><?= $nds . ' ' . $modelPayment->currency ?></span>
+                            <span class="for-styles"><?= $modelCostProduct['nds'] . ' ' . $modelCostProduct['currency'] ?></span>
                         </div>
                         <div>
-                            <span class="for-total"><?= Yii::t('app', 'Скидка') . ' ' . $discount_percent . '%'; ?> :</span> <span class="for-styles"><?= $discount_money . ' ' . $modelPayment->currency ?></span>
+                            <span class="for-total"><?= Yii::t('app', 'Скидка') . ' ' . $modelCostProduct['discount_percent'] . '%'; ?> :</span>
+                            <span class="for-styles"><?=  $modelCostProduct['discount_money'] . ' ' . $modelCostProduct['currency'] ?></span>
                         </div>
                         <div>
                             <span class="for-total">
                                 <?= Yii::t('app', 'Всего к оплате') ?> :
                             </span>
-                            <span class="for-styles"><?= $modelPayment->amount . ' ' . $modelPayment->currency ?></span>
+                            <span class="for-styles"><?= $modelCostProduct['amount'] . ' ' . $modelCostProduct['currency'] ?></span>
                         </div>
                     </div>
 
@@ -161,10 +152,20 @@ $modelPayment->currency = 'RUB';
                     ?>
 
                     <div class="buttons-cont">
-                        <?= Html::submitButton(
-                            Yii::t('app', 'Оплатить'),
-                            ['class' => 'btn btn-success']
-                        ) ?>
+                        <?php if ($model->create_mode == 'free' && $model->published == 0) { ?>
+                            <?= Html::a(
+                                Yii::t('app', 'Опубликовать'),
+                                Url::toRoute(
+                                    ['/catalog/italian-product/published', 'id' => $model->id]
+                                ),
+                                ['class' => 'btn btn-success',]
+                            ) ?>
+                        <?php } else if ($model->create_mode == 'paid' && $model->published == 0) { ?>
+                            <?= Html::submitButton(
+                                Yii::t('app', 'Оплатить'),
+                                ['class' => 'btn btn-success']
+                            ) ?>
+                        <?php } ?>
 
                         <?= Html::a(
                             Yii::t('app', 'Cancel'),
@@ -172,7 +173,6 @@ $modelPayment->currency = 'RUB';
                             ['class' => 'btn btn-primary']
                         ) ?>
                     </div>
-
 
                     <?php ActiveForm::end(); ?>
 

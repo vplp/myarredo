@@ -81,37 +81,22 @@ class ItalianProductController extends BaseController
             $modelPayment->user_id = Yii::$app->user->id;
             $modelPayment->type = 'italian_item';
 
-            $currency = Currency::findByCode2('EUR');
+            $count = count($models);
 
-            /** @var Currency $amount */
+            $modelCostProduct = ItalianProduct::getCostProduct($count);
 
-            /**
-             * cost 1 product = 10 EUR
-             * conversion to RUB
-             */
-            $cost = 10 * $currency['course'];
-
-            $amount = $cost + ($cost * 0.02);
-            $amount = number_format($amount, 2, '.', '');
-
-            $total = count($models) * $amount;
-            $nds = number_format($total / 100 * 20, 2, '.', '');
-
-            $discount_percent = 50;
-            $discount_money = number_format($total / 100 * $discount_percent, 2, '.', '');
-
-            $modelPayment->amount = number_format($total + $nds - $discount_money, 2, '.', '');
-            $modelPayment->currency = 'RUB';
+            $modelPayment->amount = $modelCostProduct['amount'];
+            $modelPayment->currency = $modelCostProduct['currency'];
 
             return $this->render('payment', [
                 'models' => $models,
                 'modelPayment' => $modelPayment,
-                'amount' => $amount,
-                'total' => $total,
-                'nds' => $nds,
-                'discount_percent' => $discount_percent,
-                'discount_money' => $discount_money,
-                'currency' => $currency,
+                'amount' => $modelCostProduct['amount'],
+                'total' => $modelCostProduct['total'],
+                'nds' => $modelCostProduct['nds'],
+                'discount_percent' => $modelCostProduct['discount_percent'],
+                'discount_money' => $modelCostProduct['discount_money'],
+                'currency' => $modelCostProduct['currency'],
             ]);
         } else {
             throw new ForbiddenHttpException('Access denied');
@@ -150,13 +135,22 @@ class ItalianProductController extends BaseController
                     'view' => 'completed',
                     'filterModel' => $this->filterModel,
                 ],
-                'create' => [
+                'free-create' => [
                     'class' => CreateWithLang::class,
                     'modelClass' => $this->model,
                     'modelClassLang' => $this->modelLang,
                     'scenario' => 'frontend',
                     'redirect' => function () {
-                        return ['update', 'id' => $this->action->getModel()->id, 'step' => 'image'];
+                        return ['update', 'id' => $this->action->getModel()->id, 'step' => 'photo'];
+                    }
+                ],
+                'paid-create' => [
+                    'class' => CreateWithLang::class,
+                    'modelClass' => $this->model,
+                    'modelClassLang' => $this->modelLang,
+                    'scenario' => 'frontend',
+                    'redirect' => function () {
+                        return ['update', 'id' => $this->action->getModel()->id, 'step' => 'photo'];
                     }
                 ],
                 'update' => [
@@ -165,6 +159,12 @@ class ItalianProductController extends BaseController
                     'modelClassLang' => $this->modelLang,
                     'scenario' => $scenario,
                     'redirect' => $link
+                ],
+                'published' => [
+                    'class' => AttributeSwitch::class,
+                    'modelClass' => $this->model,
+                    'attribute' => 'published',
+                    'redirect' => $this->defaultAction,
                 ],
                 'intrash' => [
                     'class' => AttributeSwitch::class,

@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\models;
 
+use frontend\modules\location\models\Currency;
 use Yii;
 use yii\helpers\Url;
 //
@@ -259,6 +260,42 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
     public function getTitle()
     {
         return (isset($this->lang->title)) ? $this->lang->title : "{{-}}";
+    }
+
+    /**
+     * @param int $count
+     * @return array
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getCostProduct($count = 1)
+    {
+        /**
+         * cost 1 product = 10 EUR
+         * conversion to RUB
+         */
+        $currency = Currency::findByCode2('EUR');
+
+        $cost = 10 * $currency['course'];
+
+        $amount = $cost + ($cost * 0.02);
+        $amount = number_format($amount, 2, '.', '');
+        $total = $count * $amount;
+        $nds = number_format($amount / 100 * 20, 2, '.', '');
+
+        $discount_percent = 50;
+        $discount_money = number_format($total / 100 * $discount_percent, 2, '.', '');
+
+        $amount = number_format($total + $nds - $discount_money, 2, '.', '');
+
+        return [
+            'total' => $total,
+            'nds' => $nds,
+            'discount_percent' => $discount_percent,
+            'discount_money' => $discount_money,
+            'amount' => $amount,
+            'currency' => 'RUB',
+        ];
     }
 
     /**
