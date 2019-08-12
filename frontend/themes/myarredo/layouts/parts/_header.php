@@ -359,7 +359,7 @@ use frontend\modules\user\widgets\menu\UserMenu;
                     <div class="header-addprodbox">
                         <?= Html::a(
                             '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Добавить товар'),
-                            Url::toRoute(['/catalog/italian-product/create']),
+                            Url::toRoute(['/catalog/italian-product/paid-create']),
                             ['class' => 'btn-myarredo']
                         ) ?>
                     </div>
