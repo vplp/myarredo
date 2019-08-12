@@ -170,6 +170,17 @@ $(document).ready(function () {
         }
     }
 
+    (function() {
+        // Запускаем цыкл по всем элементам всех фильтров
+        $('.filters').find('.one-filter').find('.list-item').children('a').each(function(i, elem) {
+            // Если обнаруживаем выбраный элемент в фильтре
+            if ($(elem).hasClass('selected')) {
+                // оставляем фильтр открытым
+                $(elem).closest('.one-filter').addClass('open');
+            }
+        });
+    })();
+
     /*--Конец определения девайса--*/
 
     /*--Открыть/закрыть города--*/
