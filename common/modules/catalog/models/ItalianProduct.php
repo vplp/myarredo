@@ -220,14 +220,17 @@ class ItalianProduct extends ActiveRecord
     }
 
     /**
-     * @return array
+     * @param $key
+     * @return array|mixed
      */
-    public static function createModeRange()
+    public static function createModeRange($key = '')
     {
-        return [
-            'paid' => 'paid',
-            'free' => 'free',
+        $data = [
+            'paid' => Yii::t('app', 'Paid {value}', ['value' => '50 EUR']),
+            'free' => Yii::t('app', 'Free {value}', ['value' => '22%']),
         ];
+
+        return $key ? $data[$key] : $data;
     }
 
     /**
@@ -241,10 +244,10 @@ class ItalianProduct extends ActiveRecord
     }
 
     /**
-     * @param string $status
+     * @param string $key
      * @return array|mixed
      */
-    public static function statusRange($status = '')
+    public static function statusRange($key = '')
     {
 
         $data = [
@@ -253,7 +256,7 @@ class ItalianProduct extends ActiveRecord
             'approved' => Yii::t('app', 'Approved')
         ];
 
-        return $status ? $data[$status] : $data;
+        return $key ? $data[$key] : $data;
     }
 
     /**
@@ -379,7 +382,7 @@ class ItalianProduct extends ActiveRecord
             'deleted' => Yii::t('app', 'Deleted'),
             'mark',
             'language_editing',
-            'create_mode',
+            'create_mode' => Yii::t('app', 'Placement option'),
             'status' => Yii::t('app', 'Status'),
             'category_ids' => Yii::t('app', 'Category'),
             'subtypes_ids' => Yii::t('app', 'Типы'),

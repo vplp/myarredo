@@ -1,8 +1,6 @@
 <?php
 
-use yii\helpers\{
-    Html, Url
-};
+use yii\helpers\{ArrayHelper, Html, Url};
 use yii\data\Pagination;
 use yii\widgets\Pjax;
 use kartik\grid\GridView;
@@ -17,8 +15,8 @@ use frontend\modules\catalog\models\{
  * @var $model ItalianProduct
  * @var $filter ItalianProduct
  */
-
-$dataProvider = $model->search(Yii::$app->request->queryParams);
+$queryParams['defaultPageSize'] = 100;
+$dataProvider = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 $dataProvider->sort = false;
 
 $this->title = Yii::t('app', 'Furniture in Italy');
@@ -150,6 +148,13 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             },
                                             'filter' => false,
                                             'headerOptions' => ['class' => 'col-sm-2'],
+                                        ],
+                                        [
+                                            'attribute' => 'create_mode',
+                                            'value' => function ($model) {
+                                                /** @var $model ItalianProduct */
+                                                return ItalianProduct::createModeRange($model->create_mode);
+                                            },
                                         ],
                                         [
                                             'label' => Yii::t('app', 'Количество просмотров'),

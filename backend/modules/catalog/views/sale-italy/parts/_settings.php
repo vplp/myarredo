@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Html;
 use kartik\widgets\Select2;
 //
 use backend\app\bootstrap\ActiveForm;
@@ -111,6 +112,24 @@ $this->registerJs($script);
     </div>
 </div>
 <div class="row control-group">
+    <div class="col-md-3">
+        <?= $form->field($model, 'create_mode')->dropDownList($model::createModeRange(), ['disabled' => true]); ?>
+    </div>
+    <div class="col-md-3">
+        <?= Html::label(Yii::t('app', 'Payment status')) ?>
+        <div class="form-control">
+            <?php
+
+            $status = $model->payment ? Yii::t('app', ucfirst($model->payment->payment_status)) : '-';
+
+            if ($model->payment && $model->payment->payment_status == 'success') {
+                $status .= ' ' . date('Y-m-d', $model->payment->payment_time);
+            }
+
+            echo $status;
+            ?>
+        </div>
+    </div>
     <div class="col-md-3">
         <?= $form->field($model, 'status')->dropDownList($model::statusRange()); ?>
     </div>

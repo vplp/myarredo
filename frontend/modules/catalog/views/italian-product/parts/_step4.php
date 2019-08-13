@@ -101,7 +101,7 @@ $modelPayment->currency = $modelCostProduct['currency'];
                                 <?php if ($model->create_mode == 'free') { ?>
                                     <th>22%</th>
                                 <?php } ?>
-                                <td><?= $modelCostProduct['amount'] ?></td>
+                                <td><?= $modelCostProduct['total'] ?></td>
                                 <td><?= $modelCostProduct['currency'] ?></td>
                             </tr>
 

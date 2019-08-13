@@ -279,12 +279,12 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
     public static function getCostProduct($count = 1)
     {
         /**
-         * cost 1 product = 50 EUR
+         * cost 1 product = 100 EUR
          * conversion to RUB
          */
         $currency = Currency::findByCode2('EUR');
 
-        $cost = 50 * $currency['course'];
+        $cost = 100 * $currency['course'];
 
         $amount = $cost + ($cost * 0.02);
         $amount = number_format($amount, 2, '.', '');
