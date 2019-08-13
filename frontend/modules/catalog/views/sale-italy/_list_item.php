@@ -20,8 +20,8 @@ use frontend\modules\catalog\models\ItalianProduct;
             <div class="prod-bestseller"><?= Yii::t('app', 'Bestseller') ?></div>
         <?php } ?>
 
-        <?php if ($model->getSavingPrice()) { ?>
-            <div class="prod-saving-percentage"><?= $model->getSavingPercentage() ?></div>
+        <?php if (ItalianProduct::getSavingPrice($model)) { ?>
+            <div class="prod-saving-percentage"><?= ItalianProduct::getSavingPercentage($model) ?></div>
         <?php } ?>
 
         <div class="img-cont" data-dominant-color>

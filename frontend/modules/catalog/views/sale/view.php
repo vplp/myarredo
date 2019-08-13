@@ -56,7 +56,7 @@ $this->title = $this->context->title;
                                  itemtype="http://schema.org/Offer">
                                 <?= Html::tag('h1', $model->getTitle()); ?>
 
-                                <?php if ($model->getSavingPrice() > 0) { ?>
+                                <?php if (Sale::getSavingPrice($model) > 0) { ?>
                                     <div class="old-price">
                                         <?= $model->price . ' ' . $model->currency; ?>
                                     </div>
@@ -74,11 +74,11 @@ $this->title = $this->context->title;
                                             <meta itemprop="url" content="<?= Sale::getUrl($model['alias']) ?>"/>
                                     </span>
                                     </div>
-                                    <?php if ($model->getSavingPrice() > 0) { ?>
+                                    <?php if (Sale::getSavingPrice($model) > 0) { ?>
                                         <div class="price economy">
                                             <?= Yii::t('app', 'Экономия') ?>:
                                             <span>
-                                            <?= $model->getSavingPrice() . ' ' . $model->currency; ?>
+                                            <?= Sale::getSavingPrice($model) . ' ' . $model->currency; ?>
                                         </span>
                                         </div>
                                     <?php } ?>

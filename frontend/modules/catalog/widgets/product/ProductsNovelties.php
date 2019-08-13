@@ -47,9 +47,8 @@ class ProductsNovelties extends Widget
         $params = Yii::$app->catalogFilter->params;
 
 
-        $query = (new $this->modelClass())::findBase()
+        $query = (new $this->modelClass())::findBaseArray()
             ->limit(8)
-            ->asArray()
             ->cache(7200);
 
         if (isset($params[$keys['category']])) {

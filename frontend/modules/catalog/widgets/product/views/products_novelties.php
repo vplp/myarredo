@@ -10,7 +10,6 @@ if (!empty($products)) { ?>
 
                     <?php foreach ($products as $model) { ?>
                         <div class="item" data-dominant-color>
-
                             <?= Html::beginTag(
                                 'a',
                                 [
@@ -18,6 +17,14 @@ if (!empty($products)) { ?>
                                     'class' => 'tile'
                                 ]
                             ) ?>
+
+                            <?php if ($model['bestseller']) { ?>
+                                <div class="prod-bestseller"><?= Yii::t('app', 'Bestseller') ?></div>
+                            <?php } ?>
+
+                            <?php if ($modelClass::getSavingPrice($model)) { ?>
+                                <div class="prod-saving-percentage"><?= $modelClass::getSavingPercentage($model) ?></div>
+                            <?php } ?>
 
                             <div class="img-cont">
                                 <?= Html::img($modelClass::getImageThumb($model['image_link'])) ?>

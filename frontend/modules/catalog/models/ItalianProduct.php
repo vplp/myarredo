@@ -61,6 +61,14 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
     }
 
     /**
+     * @return mixed
+     */
+    public static function findBaseArray()
+    {
+        return self::findBase()->asArray();
+    }
+
+    /**
      * Get by alias
      *
      * @param string $alias
@@ -271,12 +279,12 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
     public static function getCostProduct($count = 1)
     {
         /**
-         * cost 1 product = 10 EUR
+         * cost 1 product = 50 EUR
          * conversion to RUB
          */
         $currency = Currency::findByCode2('EUR');
 
-        $cost = 10 * $currency['course'];
+        $cost = 50 * $currency['course'];
 
         $amount = $cost + ($cost * 0.02);
         $amount = number_format($amount, 2, '.', '');
@@ -299,20 +307,22 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
     }
 
     /**
-     * @return string
+     * @param $model
+     * @return int
      */
-    public function getSavingPrice()
+    public static function getSavingPrice($model)
     {
-        return ($this->price > 0)
-            ? $this->price - $this->price_new
+        return ($model['price'] > 0)
+            ? $model['price'] - $model['price_new']
             : 0;
     }
 
     /**
+     * @param $model
      * @return string
      */
-    public function getSavingPercentage()
+    public static function getSavingPercentage($model)
     {
-        return '-' . ceil(($this->price_new * 100) / $this->price) . '%';
+        return '-' . ceil(($model['price_new'] * 100) / $model['price']) . '%';
     }
 }
