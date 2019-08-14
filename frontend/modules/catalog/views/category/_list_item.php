@@ -14,7 +14,6 @@ use frontend\modules\catalog\models\{
 <?= Html::beginTag('a', [
     'href' => Product::getUrl($model['alias']),
     'class' => 'one-prod-tile',
-    'target' => '_blank'
 ]) ?>
     <div class="one-prod-tile-in" itemscope itemtype="http://schema.org/ImageObject">
 
