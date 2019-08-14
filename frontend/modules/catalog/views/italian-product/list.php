@@ -180,7 +180,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
 
                                                 if ($model->payment && $model->payment->payment_status == 'success' && $model->published == 0) {
                                                     $status = Yii::t('app', 'На модерации');
-                                                } elseif ($model->payment && $model->payment->payment_status == 'success' || $model->published == 1) {
+                                                } elseif ($model->payment && $model->payment->payment_status == 'success' && $model->published == 1) {
                                                     $status = Html::tag(
                                                             'div',
                                                             Html::tag(
