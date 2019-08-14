@@ -2,7 +2,6 @@
 
 namespace common\modules\catalog\models;
 
-use common\modules\shop\models\Order;
 use DateTime;
 use Yii;
 use yii\helpers\{
@@ -23,7 +22,9 @@ use common\modules\user\models\User;
 use common\modules\payment\models\{
     Payment, PaymentRelItem
 };
-use common\modules\shop\models\OrderItem;
+use common\modules\shop\models\{
+    Order, OrderItem
+};
 
 /**
  * Class ItalianProduct
