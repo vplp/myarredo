@@ -14,7 +14,8 @@ if (!empty($products)) { ?>
                                 'a',
                                 [
                                     'href' => $modelClass::getUrl($model['alias']),
-                                    'class' => 'tile'
+                                    'class' => 'tile',
+                                    'target' => '_blank'
                                 ]
                             ) ?>
 

@@ -47,9 +47,7 @@ $this->title = $this->context->title;
                                 echo Html::a(
                                     Yii::t('app', 'Edit'),
                                     '/backend/catalog/sale/update?id=' . $model['id'],
-                                    [
-                                        'target' => '_blank'
-                                    ]
+                                    ['target' => '_blank']
                                 );
                             } ?>
                             <div class="prod-info" itemprop="offers" itemscope
