@@ -2,6 +2,7 @@
 
 namespace common\modules\catalog\models;
 
+use common\modules\shop\models\Order;
 use DateTime;
 use Yii;
 use yii\helpers\{
@@ -827,7 +828,8 @@ class ItalianProduct extends ActiveRecord
     public function getCountRequests()
     {
         return OrderItem::findBase()
-            ->andWhere(['product_id' => $this->id])
+            ->innerJoinWith(["order"], false)
+            ->andWhere(['product_id' => $this->id, Order::tableName() . '.product_type' => 'sale-italy'])
             ->count();
     }
 
