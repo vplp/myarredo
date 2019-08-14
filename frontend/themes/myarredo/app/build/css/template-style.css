@@ -7304,6 +7304,10 @@ h1 {
   margin-bottom: 5px;
 }
 .prod-saving-percentage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 22px;
   position: absolute;
   top: 20px;
   right: 0;
@@ -7313,6 +7317,10 @@ h1 {
   z-index: 99;
 }
 .prod-bestseller {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 22px;
   position: absolute;
   top: 20px;
   left: 0;
