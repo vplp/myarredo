@@ -103,6 +103,35 @@ class ItalianProductController extends BaseController
         }
     }
 
+    public function actionOnModeration($id)
+    {
+        /** @var $model ItalianProduct */
+        $model = ItalianProduct::findById($id);
+
+        if ($model == null) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        }
+
+        $model->scenario = 'setStatus';
+
+        if ($model->status == 'not_considered') {
+            $transaction = $model::getDb()->beginTransaction();
+            try {
+                $model->status = 'on_moderation';
+
+                if ($model->save()) {
+                    // send letter
+                }
+
+                $transaction->commit();
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+            }
+        }
+
+        return $this->redirect([$this->defaultAction]);
+    }
+
     /**
      * @return array
      */
@@ -160,7 +189,7 @@ class ItalianProductController extends BaseController
                     'scenario' => $scenario,
                     'redirect' => $link
                 ],
-//                'published' => [
+//                'on-moderation' => [
 //                    'class' => AttributeSwitch::class,
 //                    'modelClass' => $this->model,
 //                    'attribute' => 'published',

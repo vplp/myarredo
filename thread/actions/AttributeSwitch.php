@@ -31,16 +31,13 @@ use thread\app\base\models\ActiveRecord;
  */
 class AttributeSwitch extends ActionCRUD
 {
-
     /**
-     * Атрибут моделі
-     * @var string
+     * @var
      */
     public $attribute;
 
     /**
-     *
-     * @var array|string|\Closure
+     * @var array
      */
     public $redirect = ['list'];
 
@@ -61,7 +58,7 @@ class AttributeSwitch extends ActionCRUD
         }
 
         /** @var ActiveRecord $this ->model */
-        $this->model = new $this->modelClass;
+        $this->model = new $this->modelClass();
 
         if ($this->model === null) {
             throw new Exception($this->modelClass . 'must be exists.');

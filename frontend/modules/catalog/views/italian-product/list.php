@@ -194,9 +194,15 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
 
-                                                if ($model->payment && $model->payment->payment_status == 'success' && $model->published == 0) {
+                                                if ($model->payment &&
+                                                    $model->payment->payment_status == 'success' &&
+                                                    $model->create_mode == 'paid' &&
+                                                    $model->published == 0) {
                                                     $status = Yii::t('app', 'На модерации');
-                                                } elseif ($model->payment && $model->payment->payment_status == 'success' && $model->published == 1) {
+                                                } elseif ($model->status == 'on_moderation' &&
+                                                   $model->published == 0) {
+                                                    $status = Yii::t('app', 'На модерации');
+                                                } elseif ($model->published == 1) {
                                                     $status = Html::tag(
                                                             'div',
                                                             Html::tag(
@@ -235,7 +241,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                     $status = Html::a(
                                                         Yii::t('app', 'Опубликовать'),
                                                         Url::toRoute(
-                                                            ['/catalog/italian-product/published', 'id' => $model->id]
+                                                            ['/catalog/italian-product/on-moderation', 'id' => $model->id]
                                                         ),
                                                         ['class' => 'btn-puplished btn-xs']
                                                     );

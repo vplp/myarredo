@@ -95,7 +95,11 @@ class SaleItalyController extends BaseController
         $factory = Factory::getWithItalianProduct($queryParams);
         $colors = Colors::getWithItalianProduct($queryParams);
 
-        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+        $params = ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams);
+
+        //* !!! */ $params['status'] = 'approved';
+
+        $models = $model->search($params);
 
         Yii::$app->metatag->render();
 

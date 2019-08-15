@@ -96,7 +96,7 @@ return [
     'italian-product/update/<id:[\d\-]+>/<step:(photo|check|payment)>' => 'catalog/italian-product/update',
     'italian-product/update/<id:[\d\-]+>' => 'catalog/italian-product/update',
     'italian-product/is-sold/<id:[\d\-]+>' => 'catalog/italian-product/is-sold',
-    'italian-product/published/<id:[\d\-]+>' => 'catalog/italian-product/published',
+    'italian-product/on-moderation/<id:[\d\-]+>' => 'catalog/italian-product/on-moderation',
     'italian-product/intrash/<id:[\d\-]+>' => 'catalog/italian-product/intrash',
 
     'catalog/italian-product/fileupload' => 'catalog/italian-product/fileupload',

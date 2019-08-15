@@ -75,7 +75,7 @@ $modelPayment->currency = $modelCostProduct['currency'];
                                 <th><?= Yii::t('app', 'Наименование услуг') ?></th>
                                 <th><?= Yii::t('app', 'Количество') ?></th>
                                 <?php if ($model->create_mode == 'free') { ?>
-                                    <th><?= Yii::t('app', 'Цена') ?></th>
+                                    <th><?= Yii::t('app', 'Цена') ?> 22%</th>
                                 <?php } ?>
                                 <th><?= Yii::t('app', 'Цена') ?></th>
                                 <th><?= Yii::t('app', 'Валюта') ?></th>
@@ -99,7 +99,7 @@ $modelPayment->currency = $modelCostProduct['currency'];
                                 </td>
                                 <td>1</td>
                                 <?php if ($model->create_mode == 'free') { ?>
-                                    <th>22%</th>
+                                    <td><?= ItalianProduct::getFreeCostPlacementProduct($model) ?></td>
                                 <?php } ?>
                                 <td><?= $modelCostProduct['total'] ?></td>
                                 <td><?= $modelCostProduct['currency'] ?></td>
@@ -156,7 +156,7 @@ $modelPayment->currency = $modelCostProduct['currency'];
                             <?= Html::a(
                                 Yii::t('app', 'Опубликовать'),
                                 Url::toRoute(
-                                    ['/catalog/italian-product/published', 'id' => $model->id]
+                                    ['/catalog/italian-product/on-moderation', 'id' => $model->id]
                                 ),
                                 ['class' => 'btn btn-success',]
                             ) ?>

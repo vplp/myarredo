@@ -222,46 +222,6 @@ class ItalianProduct extends ActiveRecord
     }
 
     /**
-     * @param $key
-     * @return array|mixed
-     */
-    public static function createModeRange($key = '')
-    {
-        $data = [
-            'paid' => Yii::t('app', 'Paid {value}', ['value' => '50 EUR']),
-            'free' => Yii::t('app', 'Free {value}', ['value' => '22%']),
-        ];
-
-        return $key ? $data[$key] : $data;
-    }
-
-    /**
-     * @return array
-     */
-    public static function currencyRange()
-    {
-        return [
-            'EUR' => 'EUR',
-        ];
-    }
-
-    /**
-     * @param string $key
-     * @return array|mixed
-     */
-    public static function statusRange($key = '')
-    {
-
-        $data = [
-            'not_considered' => Yii::t('app', 'Not considered'),
-            'not_approved' => Yii::t('app', 'Not approved'),
-            'approved' => Yii::t('app', 'Approved')
-        ];
-
-        return $key ? $data[$key] : $data;
-    }
-
-    /**
      * @return array
      */
     public function scenarios()
@@ -274,6 +234,7 @@ class ItalianProduct extends ActiveRecord
             'is_sold' => ['is_sold'],
             'setImages' => ['image_link', 'gallery_image', 'file_link'],
             'setMark' => ['mark'],
+            'setStatus' => ['status'],
             'backend' => [
                 'country_id',
                 'region_id',
@@ -511,6 +472,47 @@ class ItalianProduct extends ActiveRecord
         }
 
         parent::afterSave($insert, $changedAttributes);
+    }
+
+    /**
+     * @param $key
+     * @return array|mixed
+     */
+    public static function createModeRange($key = '')
+    {
+        $data = [
+            'paid' => Yii::t('app', 'Paid {value}', ['value' => '50 EUR']),
+            'free' => Yii::t('app', 'Free {value}', ['value' => '22%']),
+        ];
+
+        return $key ? $data[$key] : $data;
+    }
+
+    /**
+     * @return array
+     */
+    public static function currencyRange()
+    {
+        return [
+            'EUR' => 'EUR',
+        ];
+    }
+
+    /**
+     * @param string $key
+     * @return array|mixed
+     */
+    public static function statusRange($key = '')
+    {
+
+        $data = [
+            'not_considered' => Yii::t('app', 'Not considered'),
+            'not_approved' => Yii::t('app', 'Not approved'),
+            'on_moderation' => Yii::t('app', 'On moderation'),
+            'approved' => Yii::t('app', 'Approved')
+        ];
+
+        return $key ? $data[$key] : $data;
     }
 
     /**

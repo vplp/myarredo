@@ -31,6 +31,7 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
     {
         return [
             [['id', 'category_id', 'factory_id', 'user_id'], 'integer'],
+            [['status'], 'in', 'range' => array_keys(static::statusRange())],
             [['alias', 'title'], 'string', 'max' => 255],
         ];
     }
@@ -76,6 +77,7 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
         $query->andFilterWhere([
             'id' => $this->id,
             'factory_id' => $this->factory_id,
+            'status' => $this->status,
         ]);
 
         $query->andFilterWhere([
