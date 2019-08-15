@@ -120,7 +120,25 @@ class ItalianProductController extends BaseController
                 $model->status = 'on_moderation';
 
                 if ($model->save()) {
-                    // send letter
+                    /** send mail to admin */
+
+                    $title = $model->getTitle();
+
+                    $message = 'Бесплатное размещение товара отправлено на модерацию';
+
+                    Yii::$app
+                        ->mailer
+                        ->compose(
+                            'letter_notification_for_admin',
+                            [
+                                'title' => $title,
+                                'message' => $message,
+                                'url' => Url::home(true) . 'backend/catalog/sale-italy/update?id=' . $this->id,
+                            ]
+                        )
+                        ->setTo(Yii::$app->params['mailer']['setTo'])
+                        ->setSubject($title)
+                        ->send();
                 }
 
                 $transaction->commit();
