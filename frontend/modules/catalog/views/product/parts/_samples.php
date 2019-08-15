@@ -1,10 +1,10 @@
 <?php
 
 use yii\helpers\Html;
+//
+use frontend\modules\catalog\models\Samples;
 
-/**
- * @var \frontend\modules\catalog\models\Samples $model
- */
+/** @var $model Samples */
 
 ?>
 

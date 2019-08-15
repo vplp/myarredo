@@ -1,18 +1,16 @@
 <?php
 
 use yii\helpers\Html;
+//
 use frontend\modules\catalog\models\Product;
 
-/**
- * @var \frontend\modules\catalog\models\Product $model
- */
+/** @var $modelProduct */
 
 $keys = Yii::$app->catalogFilter->keys;
 
 ?>
 
 <?php if (!empty($models)) { ?>
-
     <div class="rec-slider-wrap">
         <div class="flex c-align rec-header">
 
@@ -43,7 +41,8 @@ $keys = Yii::$app->catalogFilter->keys;
                                 'a',
                                 [
                                     'href' => Product::getUrl($model['alias']),
-                                    'class' => 'tile'
+                                    'class' => 'tile',
+                                    'target' => '_blank'
                                 ]
                             ); ?>
 
@@ -66,5 +65,4 @@ $keys = Yii::$app->catalogFilter->keys;
             </div>
         </div>
     </div>
-
 <?php } ?>
