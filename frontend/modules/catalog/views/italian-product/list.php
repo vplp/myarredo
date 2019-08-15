@@ -15,7 +15,7 @@ use frontend\modules\catalog\models\{
  * @var $model ItalianProduct
  * @var $filter ItalianProduct
  */
-$queryParams['defaultPageSize'] = 100;
+$queryParams['defaultPageSize'] = 9999;
 $dataProvider = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 $dataProvider->sort = false;
 
@@ -27,6 +27,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
         <div class="page category-page">
             <div class="largex-container itprod-box">
                 <div class="row title-cont">
+
 
                     <?= Html::tag('h1', Yii::t('app', 'Furniture in Italy')); ?>
                     <div class="itprod-panel-add">
@@ -67,6 +68,21 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                             <div class="cont-area cont-goods">
 
                                 <?php Pjax::begin(['id' => 'factory-product']); ?>
+
+                                <?php
+                                $pCount = $fCount = $pCost = $fCost = 0;
+                                foreach ($dataProvider->getModels() as $model) {
+                                    if ($model->create_mode == 'paid') {
+                                        ++$pCount;
+                                        $pCost = $pCost + ItalianProduct::getCostPlacementProduct()['amount'];
+                                    } else {
+                                        ++$fCount;
+                                        $fCost = $fCost + ItalianProduct::getFreeCostPlacementProduct($model);
+                                    }
+                                }
+
+                                echo "<p>Размещено товаров: $pCount (платно - $pCost RUB); $fCount (22% - $fCost RUB)</p>";
+                                ?>
 
                                 <?= GridView::widget([
                                     'id' => 'italian-product-grid',

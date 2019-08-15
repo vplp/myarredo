@@ -83,7 +83,7 @@ class ItalianProductController extends BaseController
 
             $count = count($models);
 
-            $modelCostProduct = ItalianProduct::getCostProduct($count);
+            $modelCostProduct = ItalianProduct::getCostPlacementProduct($count);
 
             $modelPayment->amount = $modelCostProduct['amount'];
             $modelPayment->currency = $modelCostProduct['currency'];

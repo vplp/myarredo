@@ -24,7 +24,7 @@ $modelPayment->setScenario('frontend');
 $modelPayment->user_id = Yii::$app->user->id;
 $modelPayment->type = 'italian_item';
 
-$modelCostProduct = ItalianProduct::getCostProduct();
+$modelCostProduct = ItalianProduct::getCostPlacementProduct();
 $modelPayment->amount = $modelCostProduct['amount'];
 $modelPayment->currency = $modelCostProduct['currency'];
 

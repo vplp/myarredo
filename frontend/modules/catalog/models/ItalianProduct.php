@@ -276,7 +276,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getCostProduct($count = 1)
+    public static function getCostPlacementProduct($count = 1)
     {
         /**
          * cost 1 product = 100 EUR
@@ -304,6 +304,27 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
             'amount' => $amount,
             'currency' => 'RUB',
         ];
+    }
+
+    /**
+     * @param $model
+     * @return float|int|string
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getFreeCostPlacementProduct($model)
+    {
+        /**
+         * cost 1 product = 100 EUR
+         * conversion to RUB
+         */
+        $currency = Currency::findByCode2('EUR');
+
+        $cost = ($model['price_new'] / 100) * 22 * $currency['course'];
+
+        $cost = number_format($cost, 2, '.', '');
+
+        return $cost;
     }
 
     /**
