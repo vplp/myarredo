@@ -194,13 +194,15 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
 
-                                                if ($model->payment &&
+                                                if ($model->is_sold) {
+                                                    $status = Yii::t('app', 'Item sold');
+                                                } elseif ($model->payment &&
                                                     $model->payment->payment_status == 'success' &&
                                                     $model->create_mode == 'paid' &&
                                                     $model->published == 0) {
                                                     $status = Yii::t('app', 'На модерации');
                                                 } elseif ($model->status == 'on_moderation' &&
-                                                   $model->published == 0) {
+                                                    $model->published == 0) {
                                                     $status = Yii::t('app', 'На модерации');
                                                 } elseif ($model->published == 1) {
                                                     $status = Html::tag(
