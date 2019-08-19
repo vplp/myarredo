@@ -3,11 +3,17 @@
 namespace common\modules\banner\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
+//
+use voskobovich\behaviors\ManyToManyBehavior;
 //
 use thread\app\base\models\ActiveRecord;
 //
-use common\modules\catalog\models\Factory;
+use common\modules\catalog\models\{
+    Category, Factory
+};
 use common\modules\banner\BannerModule;
+use common\modules\location\models\City;
 
 /**
  * Class BannerItem
@@ -24,6 +30,8 @@ use common\modules\banner\BannerModule;
  * @property boolean $deleted
  *
  * @property Factory $factory
+ * @property BannerItemRelCity $cities
+ * @property BannerItemRelCatalogGroup $categories
  * @property BannerItemLang $lang
  *
  * @package common\modules\banner\models
@@ -52,7 +60,15 @@ class BannerItem extends ActiveRecord
      */
     public function behaviors()
     {
-        return parent::behaviors();
+        return ArrayHelper::merge(parent::behaviors(), [
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'cities_ids' => 'cities',
+                    'categories_ids' => 'categories',
+                ],
+            ],
+        ]);
     }
 
     /**
@@ -65,7 +81,15 @@ class BannerItem extends ActiveRecord
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['type'], 'in', 'range' => array_keys(static::typeKeyRange())],
             [['image_link'], 'string', 'max' => 255],
-            [['position'], 'default', 'value' => 0]
+            [['position'], 'default', 'value' => 0],
+            [
+                [
+                    'cities_ids',
+                    'categories_ids',
+                ],
+                'each',
+                'rule' => ['integer']
+            ],
         ];
     }
 
@@ -77,7 +101,17 @@ class BannerItem extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['user_id', 'factory_id', 'type', 'image_link', 'position', 'published', 'deleted'],
+            'backend' => [
+                'user_id',
+                'factory_id',
+                'type',
+                'image_link',
+                'position',
+                'published',
+                'deleted',
+                'cities_ids',
+                'categories_ids',
+            ],
         ];
     }
 
@@ -97,6 +131,8 @@ class BannerItem extends ActiveRecord
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'cities_ids' => Yii::t('app', 'Cities'),
+            'categories_ids' => Yii::t('app', 'Categories'),
         ];
     }
 
@@ -156,5 +192,27 @@ class BannerItem extends ActiveRecord
     public function getFactory()
     {
         return $this->hasOne(Factory::class, ['id' => 'factory_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getCities()
+    {
+        return $this
+            ->hasMany(City::class, ['id' => 'city_id'])
+            ->viaTable(BannerItemRelCity::tableName(), ['item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getCategories()
+    {
+        return $this
+            ->hasMany(Category::class, ['id' => 'category_id'])
+            ->viaTable(BannerItemRelCatalogGroup::tableName(), ['item_id' => 'id']);
     }
 }
