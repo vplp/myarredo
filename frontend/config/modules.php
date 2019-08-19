@@ -46,7 +46,7 @@ return [
         'class' => \frontend\modules\location\Location::class,
     ],
     'banner' => [
-        'class' => \frontend\modules\banner\Banner::class,
+        'class' => \frontend\modules\banner\BannerModule::class,
     ],
     'forms' => [
         'class' => \frontend\modules\forms\Forms::class,

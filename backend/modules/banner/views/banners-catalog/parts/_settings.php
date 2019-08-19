@@ -1,14 +1,23 @@
 <?php
 
+use backend\app\bootstrap\ActiveForm;
+use backend\modules\banner\models\{
+    BannerItem, BannerItemLang
+};
+
 /**
- * @var \backend\modules\banner\models\BannerItem $model
- * @var \backend\modules\banner\models\BannerItemLang $modelLang
- * @var \backend\app\bootstrap\ActiveForm $form
+ * @var $model BannerItem
+ * @var $modelLang BannerItemLang
+ * @var $form ActiveForm
  */
 
 ?>
 
+<?= $form->field($model, 'type')->hiddenInput(['value' => 'catalog'])->label(false) ?>
+
 <?= $form->text_line_lang($modelLang, 'title') ?>
+
+<?= $form->text_line_lang($modelLang, 'description') ?>
 
 <?= $form->text_line_lang($modelLang, 'link') ?>
 
@@ -20,5 +29,3 @@
         <?= $form->text_line($model, 'position') ?>
     </div>
 </div>
-
-

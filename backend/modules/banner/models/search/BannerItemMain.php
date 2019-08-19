@@ -11,7 +11,7 @@ use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use backend\modules\banner\BannerModule;
 use backend\modules\banner\models\{
-    BannerItem as BannerItemModel, BannerItemLang
+    BannerItemMain as BannerItemMainModel, BannerItemLang
 };
 
 /**
@@ -19,7 +19,7 @@ use backend\modules\banner\models\{
  *
  * @package backend\modules\banner\models\search
  */
-class BannerItem extends BannerItemModel implements BaseBackendSearchModel
+class BannerItemMain extends BannerItemMainModel implements BaseBackendSearchModel
 {
     public $title;
 
@@ -82,7 +82,7 @@ class BannerItem extends BannerItemModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = BannerItemModel::findBase()->undeleted();
+        $query = BannerItemMainModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -92,7 +92,7 @@ class BannerItem extends BannerItemModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = BannerItemModel::findBase()->deleted();
+        $query = BannerItemMainModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }

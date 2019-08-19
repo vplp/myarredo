@@ -38,7 +38,7 @@ return [
         'class' => \backend\modules\catalog\Catalog::class
     ],
     'banner' => [
-        'class' => \backend\modules\banner\Banner::class,
+        'class' => \backend\modules\banner\BannerModule::class,
     ],
     'payment' => [
         'class' => \backend\modules\payment\PaymentModule::class,

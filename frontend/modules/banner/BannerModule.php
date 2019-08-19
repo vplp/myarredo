@@ -3,11 +3,12 @@
 namespace frontend\modules\banner;
 
 /**
- * Class Banner
+ * Class BannerModule
  *
  * @package frontend\modules\banner
  */
-class Banner extends \common\modules\banner\Banner {
+class BannerModule extends \common\modules\banner\BannerModule
+{
     /**
      * Number of elements in GridView
      * @var int

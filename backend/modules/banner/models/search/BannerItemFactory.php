@@ -11,15 +11,15 @@ use thread\app\model\interfaces\search\BaseBackendSearchModel;
 //
 use backend\modules\banner\BannerModule;
 use backend\modules\banner\models\{
-    BannerItem as BannerItemModel, BannerItemLang
+    BannerItemFactory as BannerItemFactoryModel, BannerItemLang
 };
 
 /**
- * Class BannerItem
+ * Class BannerItemFactory
  *
  * @package backend\modules\banner\models\search
  */
-class BannerItem extends BannerItemModel implements BaseBackendSearchModel
+class BannerItemFactory extends BannerItemFactoryModel implements BaseBackendSearchModel
 {
     public $title;
 
@@ -29,6 +29,7 @@ class BannerItem extends BannerItemModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
+            [['factory_id'], 'integer'],
             [['title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -82,7 +83,7 @@ class BannerItem extends BannerItemModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = BannerItemModel::findBase()->undeleted();
+        $query = BannerItemFactoryModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -92,7 +93,7 @@ class BannerItem extends BannerItemModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = BannerItemModel::findBase()->deleted();
+        $query = BannerItemFactoryModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }

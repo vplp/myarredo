@@ -1,18 +1,17 @@
 <?php
 
 use backend\widgets\GridView\GridView;
-use thread\widgets\grid\{
-    ActionStatusColumn
+use backend\app\bootstrap\ActiveForm;
+use backend\modules\banner\models\{
+    BannerItem, BannerItemLang
 };
+//
+use thread\widgets\grid\{ActionStatusColumn, GridViewFilter};
 
 /**
- * @var \backend\modules\banner\models\BannerItem $model
- * @var \backend\modules\banner\models\BannerItemLang $modelLang
- * @var \backend\app\bootstrap\ActiveForm $form
- */
-
-/**
- * @var \backend\modules\banner\models\search\BannerItem $model
+ * @var $model BannerItem
+ * @var $modelLang BannerItemLang
+ * @var $form ActiveForm
  */
 
 echo GridView::widget([

@@ -4,14 +4,14 @@ namespace common\modules\banner;
 
 use Yii;
 //
-use thread\app\base\module\abstracts\Module as aModule;
+use thread\app\base\module\abstracts\Module;
 
 /**
  * Class Banner
  *
  * @package common\modules\banner
  */
-class Banner extends aModule
+class BannerModule extends Module
 {
     public $name = 'banner';
     public $configPath = __DIR__ . '/config.php';

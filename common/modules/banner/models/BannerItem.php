@@ -6,7 +6,8 @@ use Yii;
 //
 use thread\app\base\models\ActiveRecord;
 //
-use common\modules\banner\Banner as BannerModule;
+use common\modules\catalog\models\Factory;
+use common\modules\banner\BannerModule;
 
 /**
  * Class BannerItem
@@ -14,6 +15,7 @@ use common\modules\banner\Banner as BannerModule;
  * @property integer $id
  * @property integer $user_id
  * @property integer $factory_id
+ * @property string $type
  * @property string $image_link
  * @property integer $position
  * @property integer $created_at
@@ -21,6 +23,7 @@ use common\modules\banner\Banner as BannerModule;
  * @property boolean $published
  * @property boolean $deleted
  *
+ * @property Factory $factory
  * @property BannerItemLang $lang
  *
  * @package common\modules\banner\models
@@ -60,6 +63,7 @@ class BannerItem extends ActiveRecord
         return [
             [['user_id', 'factory_id', 'position', 'create_time', 'update_time'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
+            [['type'], 'in', 'range' => array_keys(static::typeKeyRange())],
             [['image_link'], 'string', 'max' => 255],
             [['position'], 'default', 'value' => 0]
         ];
@@ -73,7 +77,7 @@ class BannerItem extends ActiveRecord
         return [
             'published' => ['published'],
             'deleted' => ['deleted'],
-            'backend' => ['user_id', 'factory_id', 'image_link', 'position', 'published', 'deleted'],
+            'backend' => ['user_id', 'factory_id', 'type', 'image_link', 'position', 'published', 'deleted'],
         ];
     }
 
@@ -86,12 +90,25 @@ class BannerItem extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User'),
             'factory_id' => Yii::t('app', 'Factory'),
+            'type',
             'image_link' => Yii::t('app', 'Image link'),
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function typeKeyRange()
+    {
+        return [
+            'main' => 'main',
+            'catalog' => 'catalog',
+            'factory' => 'factory',
         ];
     }
 
@@ -131,5 +148,13 @@ class BannerItem extends ActiveRecord
         }
 
         return $image;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactory()
+    {
+        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
     }
 }

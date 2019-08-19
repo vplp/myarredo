@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 //
-use common\modules\banner\Banner as BannerModule;
+use common\modules\banner\BannerModule;
 
 /**
  * Class m161108_150906_create_banner_item_table

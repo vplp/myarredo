@@ -4,14 +4,14 @@ namespace backend\modules\banner\models;
 
 use thread\app\model\interfaces\BaseBackendModel;
 //
-use common\modules\banner\models\BannerItem as CommonBannerItemModel;
+use common\modules\banner\models\BannerItemMain as CommonBannerItemMain;
 
 /**
- * Class BannerItem
+ * Class BannerItemMain
  *
  * @package backend\modules\banner\models
  */
-class BannerItem extends CommonBannerItemModel implements BaseBackendModel
+class BannerItemMain extends CommonBannerItemMain implements BaseBackendModel
 {
     /**
      * @param $params
@@ -19,7 +19,7 @@ class BannerItem extends CommonBannerItemModel implements BaseBackendModel
      */
     public function search($params)
     {
-        return (new search\BannerItem())->search($params);
+        return (new search\BannerItemMain())->search($params);
     }
 
     /**
@@ -28,6 +28,6 @@ class BannerItem extends CommonBannerItemModel implements BaseBackendModel
      */
     public function trash($params)
     {
-        return (new search\BannerItem())->trash($params);
+        return (new search\BannerItemMain())->trash($params);
     }
 }

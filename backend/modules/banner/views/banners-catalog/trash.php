@@ -5,9 +5,16 @@ use yii\grid\GridView;
 use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
 };
+//
+use backend\app\bootstrap\ActiveForm;
+use backend\modules\banner\models\{
+    BannerItem, BannerItemLang
+};
 
 /**
- * @package admin\modules\page\view
+ * @var $model BannerItem
+ * @var $modelLang BannerItemLang
+ * @var $form ActiveForm
  */
 
 echo GridView::widget([

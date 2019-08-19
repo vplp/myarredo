@@ -11,20 +11,20 @@ use common\actions\upload\{
 use thread\app\base\controllers\BackendController;
 //
 use backend\modules\banner\models\{
-    BannerItem, BannerItemLang, search\BannerItem as filterBannerItemModel
+    BannerItemCatalog, BannerItemLang, search\BannerItemCatalog as filterBannerItemCatalogModel
 };
 
 /**
- * Class BannerController
+ * Class BannersCatalogController
  *
  * @package backend\modules\banner\controllers
  */
-class BannerController extends BackendController
+class BannersCatalogController extends BackendController
 {
-    public $model = BannerItem::class;
+    public $model = BannerItemCatalog::class;
     public $modelLang = BannerItemLang::class;
-    public $filterModel = filterBannerItemModel::class;
-    public $title = 'Banner';
+    public $filterModel = filterBannerItemCatalogModel::class;
+    public $title = 'Banners for catalog';
     public $name = 'banner';
 
     /**

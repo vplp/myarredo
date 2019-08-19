@@ -5,7 +5,7 @@ namespace common\modules\banner\models;
 use Yii;
 use yii\helpers\ArrayHelper;
 //
-use common\modules\banner\Banner as BannerModule;
+use common\modules\banner\BannerModule;
 //
 use thread\app\base\models\ActiveRecordLang;
 
@@ -22,7 +22,8 @@ use thread\app\base\models\ActiveRecordLang;
 class BannerItemLang extends ActiveRecordLang
 {
     /**
-     * @return string
+     * @return object|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

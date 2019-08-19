@@ -1,12 +1,15 @@
 <?php
 
-use backend\app\bootstrap\ActiveForm;
 use backend\widgets\Tabs;
+use backend\app\bootstrap\ActiveForm;
+use backend\modules\banner\models\{
+    BannerItem, BannerItemLang
+};
 
 /**
- * @var \backend\modules\banner\models\BannerItem $model
- * @var \backend\modules\banner\models\BannerItemLang $modelLang
- * @var \backend\app\bootstrap\ActiveForm $form
+ * @var $model BannerItem
+ * @var $modelLang BannerItemLang
+ * @var $form ActiveForm
  */
 
 ?>
