@@ -54,7 +54,7 @@ $this->title = $this->context->title;
                             <div class="prod-info">
                                 <?= Html::tag('h1', $model->getTitle()); ?>
 
-                                <?php if ($model->price > 0) { ?>
+                                <?php if ($model->price > 0 && !$model->is_sold) { ?>
                                     <div class="old-price">
                                         <?= Yii::$app->currency->getValue($model['price'], $model['currency']) . ' ' . Yii::$app->currency->symbol ?>
                                     </div>
@@ -65,7 +65,7 @@ $this->title = $this->context->title;
                                         <?= Yii::t('app', 'Цена') ?>:
                                         <span><?= Yii::$app->currency->getValue($model['price_new'], $model['currency']) . ' ' . Yii::$app->currency->symbol ?></span>
                                     </div>
-                                    <?php if ($model->price > 0) { ?>
+                                    <?php if ($model->price > 0 && !$model->is_sold) { ?>
                                         <div class="price economy">
                                             <?= Yii::t('app', 'Экономия') ?>:
                                             <span><?= ItalianProduct::getSavingPercentage($model) ?></span>
@@ -276,7 +276,7 @@ $this->title = $this->context->title;
                             </div>
                         </div>
 
-                        <?php if (Yii::$app->controller->id == 'sale-italy') { ?>
+                        <?php if (Yii::$app->controller->id == 'sale-italy' && !$model->is_sold) { ?>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 sellout-cont">
                                 <div class="best-price-form">
                                     <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на доставку') ?></h3>
