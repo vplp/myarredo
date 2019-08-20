@@ -56,6 +56,11 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
             'pagination' => [
                 'defaultPageSize' => $module->itemOnPage
             ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC
+                ]
+            ]
         ]);
 
         if (!($this->load($params) && $this->validate())) {
@@ -77,7 +82,7 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = FactoryModel::findBase()->undeleted();
+        $query = FactoryModel::find()->joinWith(['lang'])->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -87,7 +92,7 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = FactoryModel::findBase()->deleted();
+        $query = FactoryModel::find()->joinWith(['lang'])->deleted();
         return $this->baseSearch($query, $params);
     }
 }
