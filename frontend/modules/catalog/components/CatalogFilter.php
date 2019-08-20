@@ -193,9 +193,9 @@ class CatalogFilter extends Component
         }
 
         if ($url !== '') {
-            return Url::toRoute($route, true) . $url . '/';
+            return Url::toRoute($route) . $url . '/';
         } else {
-            return Url::toRoute($route, true);
+            return Url::toRoute($route);
         }
     }
 
