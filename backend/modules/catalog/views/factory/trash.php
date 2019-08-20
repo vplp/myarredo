@@ -1,20 +1,26 @@
 <?php
 
-use backend\widgets\GridView\GridView;
 use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
 };
+//
+use backend\app\bootstrap\ActiveForm;
+use backend\widgets\GridView\GridView;
+use backend\modules\catalog\models\{
+    Factory, FactoryLang
+};
 
 /**
- * @var \backend\modules\catalog\models\Factory $model
- * @var \backend\modules\catalog\models\FactoryLang $modelLang
- * @var \backend\app\bootstrap\ActiveForm $form
+ * @var $model Factory
+ * @var $modelLang FactoryLang
+ * @var $form ActiveForm
  */
 
 echo GridView::widget([
     'dataProvider' => $model->trash(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
+        'id',
         [
             'attribute' => 'title',
             'value' => 'lang.title',

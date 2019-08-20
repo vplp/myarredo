@@ -4,12 +4,18 @@ use thread\widgets\grid\{
     ActionStatusColumn
 };
 //
-use backend\widgets\GridView\GridView;
+use backend\app\bootstrap\ActiveForm;
+use backend\widgets\GridView\{
+    GridView, gridColumns\ActionColumn
+};
+use backend\modules\catalog\models\{
+    Factory, FactoryLang
+};
 
 /**
- * @var \backend\modules\catalog\models\Factory $model
- * @var \backend\modules\catalog\models\FactoryLang $modelLang
- * @var \backend\app\bootstrap\ActiveForm $form
+ * @var $model Factory
+ * @var $modelLang FactoryLang
+ * @var $form ActiveForm
  */
 
 $visible = in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])
@@ -20,6 +26,7 @@ echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
+        'id',
         [
             'attribute' => 'title',
             'value' => 'title',
@@ -44,7 +51,7 @@ echo GridView::widget([
             'visible' => $visible
         ],
         [
-            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
+            'class' => ActionColumn::class,
         ],
     ]
 ]);
