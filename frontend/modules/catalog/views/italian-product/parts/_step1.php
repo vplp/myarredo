@@ -158,6 +158,8 @@ $Specifications = Specification::findBase()->all();
             echo $form->field($model, 'factory_name');
         } ?>
 
+        <?= $form->text_line($model, 'article') ?>
+
         <?php
         foreach ($Specifications as $Specification) {
             if ($Specification['type'] === '1' && !in_array($Specification['id'], [39, 47])) { ?>

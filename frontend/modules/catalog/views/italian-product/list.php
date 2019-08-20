@@ -79,10 +79,20 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                         ++$fCount;
                                         $fCost = $fCost + ItalianProduct::getFreeCostPlacementProduct($model);
                                     }
-                                }
+                                } ?>
 
-                                echo "<p>Размещено товаров: $pCount (платно - $pCost RUB); $fCount (22% - $fCost RUB)</p>";
-                                ?>
+                                <p>
+                                    <?= Yii::t(
+                                        'app',
+                                        'Размещено товаров: {pCount} (платно - {pCost} RUB); {fCount} (22% - {fCost} RUB)',
+                                        [
+                                            'pCount' => $pCount,
+                                            'pCost' => $pCost,
+                                            'fCount' => $fCount,
+                                            'fCost' => $fCost
+                                        ]
+                                    ); ?>
+                                </p>
 
                                 <?= GridView::widget([
                                     'id' => 'italian-product-grid',
