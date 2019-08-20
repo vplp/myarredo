@@ -18,10 +18,14 @@ $bundle = AppAsset::register($this);
 <div class="footer">
     <div class="container-wrap">
 
-        <?php if (Yii::$app->controller->id !== 'sale') { ?>
+        <?php if (!in_array(Yii::$app->controller->id, ['sale'])) { ?>
             <div class="contacts">
                 <div class="cont-flex">
-                    <?= PartnerInfo::widget() ?>
+                    <?php if (!in_array(Yii::$app->controller->id, ['sale-italy'])) {
+                        echo PartnerInfo::widget();
+                    } else {
+                        echo FormFeedback::widget(['view' => 'sale_italy_form_feedback']);
+                    } ?>
                 </div>
 
                 <?php

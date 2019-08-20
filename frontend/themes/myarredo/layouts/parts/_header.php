@@ -249,7 +249,7 @@ use frontend\modules\user\widgets\menu\UserMenu;
                 <div class="container large-container">
 
                     <div class="left-part">
-                        <?php if (!in_array(Yii::$app->controller->id, ['sale'])) { ?>
+                        <?php if (!in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
                             <a class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
