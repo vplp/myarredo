@@ -157,7 +157,9 @@ class Tinymce extends InputWidget
         $this->_defaultSettings = [
             'language' => $this->language,
             'language_url' => '',
+            'convert_urls' => true,
             'relative_urls' => false,
+            'remove_script_host' => false,
             'height' => '200px',
             'menubar' => true,
             'statusbar' => false,
@@ -174,7 +176,9 @@ class Tinymce extends InputWidget
     {
         $this->_defaultSettings = [
             'language' => $this->language,
+            'convert_urls' => true,
             'relative_urls' => false,
+            'remove_script_host' => false,
             'language_url' => '',
             'height' => '150px',
             'menubar' => false,
@@ -192,7 +196,9 @@ class Tinymce extends InputWidget
     {
         $this->_defaultSettings = [
             'language' => $this->language,
+            'convert_urls' => true,
             'relative_urls' => false,
+            'remove_script_host' => false,
             'language_url' => '',
             'height' => '600px',
             'menubar' => true,
