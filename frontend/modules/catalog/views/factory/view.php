@@ -150,7 +150,7 @@ $bundle = AppAsset::register($this);
                                         Yii::$app->catalogFilter->params +
                                         [$keys['factory'] => $model['alias']]
                                     ),
-                                    ['class' => 'view-all']
+                                    ['class' => 'view-all', 'rel' => 'nofollow']
                                 ) ?>
                             </div>
                         </div>
