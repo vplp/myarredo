@@ -2,11 +2,14 @@
 
 use backend\app\bootstrap\ActiveForm;
 use backend\widgets\Tabs;
+use backend\modules\catalog\models\{
+    Factory, FactoryLang
+};
 
 /**
- * @var \backend\modules\catalog\models\Factory $model
- * @var \backend\modules\catalog\models\FactoryLang $modelLang
- * @var \backend\app\bootstrap\ActiveForm $form
+ * @var $model Factory
+ * @var $modelLang FactoryLang
+ * @var $form ActiveForm
  */
 
 $visible = in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])

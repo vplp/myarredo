@@ -1,9 +1,14 @@
 <?php
 
+use backend\app\bootstrap\ActiveForm;
+use backend\modules\catalog\models\{
+    Factory, FactoryLang
+};
+
 /**
- * @var \backend\modules\catalog\models\Factory $model
- * @var \backend\modules\catalog\models\FactoryLang $modelLang
- * @var \backend\app\bootstrap\ActiveForm $form
+ * @var $model Factory
+ * @var $modelLang FactoryLang
+ * @var $form ActiveForm
  */
 
 $visible = in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])
@@ -70,3 +75,20 @@ $visible = in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEd
     </div>
 
 <?php } ?>
+
+<?php if ($model->user_id) { ?>
+    <div class="row control-group">
+        <div class="col-md-3">
+            <?= $form
+                ->field($model, 'created_at')
+                ->textInput(['disabled' => true, 'value' => date('d.m.Y H:i', $model->created_at)]) ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form
+                ->field($model, 'user_id')
+                ->textInput(['disabled' => true, 'value' => $model->user->profile->getFullName()]) ?>
+        </div>
+    </div>
+<?php } ?>
+
+

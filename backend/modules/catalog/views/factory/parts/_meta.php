@@ -1,13 +1,16 @@
 <?php
 
+use backend\app\bootstrap\ActiveForm;
+use backend\modules\catalog\models\{
+    Factory, FactoryLang
+};
+
 /**
- * @var \backend\modules\catalog\models\Factory $model
- * @var \backend\modules\catalog\models\FactoryLang $modelLang
- * @var \backend\app\bootstrap\ActiveForm $form
+ * @var $model Factory
+ * @var $modelLang FactoryLang
+ * @var $form ActiveForm
  */
 
-?>
-
-<?= $form->text_line($modelLang, 'h1') ?>
-<?= $form->text_line($modelLang, 'meta_title') ?>
-<?= $form->text_line($modelLang, 'meta_desc') ?>
+echo $form->text_line($modelLang, 'h1');
+echo $form->text_line($modelLang, 'meta_title');
+echo $form->text_line($modelLang, 'meta_desc');

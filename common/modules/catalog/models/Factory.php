@@ -11,12 +11,14 @@ use yii\behaviors\AttributeBehavior;
 use thread\app\base\models\ActiveRecord;
 //
 use common\modules\catalog\Catalog;
+use common\modules\user\models\User;
 use common\helpers\Inflector;
 
 /**
  * Class Factory
  *
  * @property integer $id
+ * @property integer $user_id
  * @property string $country_code
  * @property string $alias
  * @property string $title
@@ -43,10 +45,11 @@ use common\helpers\Inflector;
  * @property boolean $show_for_ua
  *
  * @property FactoryLang $lang
+ * @property User $user
  * @property Collection $collection
  * @property FactoryFile $files
- * @property CatalogsFiles[] $catalogsFiles
- * @property PricesFiles[] $pricesFiles
+ * @property FactoryCatalogsFiles $catalogsFiles
+ * @property FactoryPricesFiles $pricesFiles
  *
  * @package common\modules\catalog\models
  */
@@ -95,7 +98,7 @@ class Factory extends ActiveRecord
     {
         return [
             [['alias', 'title'], 'required'],
-            [['created_at', 'updated_at', 'position', 'partner_id'], 'integer'],
+            [['user_id', 'created_at', 'updated_at', 'position', 'partner_id'], 'integer'],
             [
                 [
                     'published',
@@ -121,8 +124,9 @@ class Factory extends ActiveRecord
             ['video', 'string', 'max' => 1024],
             [['first_letter'], 'string', 'max' => 2],
             [['alias'], 'unique'],
-            [['position', 'partner_id'], 'default', 'value' => '0'],
-            [['country_code'], 'default', 'value' => '//']
+            [['user_id', 'position', 'partner_id'], 'default', 'value' => '0'],
+            [['country_code'], 'default', 'value' => '//'],
+            [['url', 'email', 'novelty_url'], 'default', 'value' => '']
         ];
     }
 
@@ -139,6 +143,7 @@ class Factory extends ActiveRecord
             'popular_by' => ['popular_by'],
             'popular_ua' => ['popular_ua'],
             'backend' => [
+                'user_id',
                 'title',
                 'alias',
                 'country_code',
@@ -172,6 +177,7 @@ class Factory extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'user_id' => Yii::t('app', 'User'),
             'alias' => Yii::t('app', 'Alias'),
             'title' => Yii::t('app', 'Title'),
             'country_code' => 'Показывать для страны',
@@ -199,6 +205,17 @@ class Factory extends ActiveRecord
     }
 
     /**
+     * @return bool
+     */
+    public function beforeValidate()
+    {
+        $this->first_letter = mb_strtoupper(mb_substr(trim($this->title), 0, 1, 'UTF-8'), 'UTF-8');
+        $this->alias = $this->title;
+
+        return parent::beforeValidate();
+    }
+
+    /**
      * @return mixed
      */
     public static function findBase()
@@ -212,6 +229,14 @@ class Factory extends ActiveRecord
     public function getLang()
     {
         return $this->hasOne(FactoryLang::class, ['rid' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     /**
@@ -281,5 +306,41 @@ class Factory extends ActiveRecord
         }
 
         return $image;
+    }
+
+    /**
+     * @param string $name
+     * @return int
+     */
+    public static function createByName(string $name)
+    {
+        /** @var Factory $model */
+        $model = self::findBase()->where(['title' => $name])->one();
+
+        if ($model == null) {
+            $model = new self();
+
+            $model->setScenario('backend');
+
+            $model->title = $name;
+            $model->alias = $name;
+
+            $model->user_id = Yii::$app->getUser()->id;
+
+            $model->published = self::STATUS_KEY_ON;
+            $model->deleted = self::STATUS_KEY_OFF;
+
+            $model->show_for_ru = 1;
+            $model->show_for_by = 1;
+            $model->show_for_ua = 1;
+
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Создана новая фабрика'));
+
+            $model->save();
+        } else {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Такая фабрика уже есть'));
+        }
+
+        return $model->id;
     }
 }

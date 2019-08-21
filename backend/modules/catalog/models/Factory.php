@@ -36,17 +36,6 @@ class Factory extends CommonFactoryModel implements BaseBackendModel
     }
 
     /**
-     * @return bool
-     */
-    public function beforeValidate()
-    {
-        $this->first_letter = mb_strtoupper(mb_substr(trim($this->title), 0, 1, 'UTF-8'), 'UTF-8');
-        $this->alias = $this->title;
-
-        return parent::beforeValidate();
-    }
-
-    /**
      * Backend form drop down list
      * @return array
      */

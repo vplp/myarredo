@@ -313,6 +313,11 @@ class Sale extends ActiveRecord
             $this->gallery_image = implode(',', $imagesSources);
         }
 
+        if ($this->factory_name) {
+            $this->factory_id = Factory::createByName($this->factory_name);
+            $this->factory_name = '';
+        }
+
         return parent::beforeSave($insert);
     }
 
