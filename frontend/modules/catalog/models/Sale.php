@@ -74,7 +74,15 @@ class Sale extends \common\modules\catalog\models\Sale
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->byAlias($alias)->one();
+        return self::findBase()
+            ->joinWith([
+                'lang',
+                'specificationValue',
+                'specificationValue.specification',
+                'specificationValue.specification.lang'
+            ])
+            ->byAlias($alias)
+            ->one();
     }
 
     /**

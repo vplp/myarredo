@@ -381,13 +381,7 @@ class Sale extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()
-            ->joinWith([
-                'lang',
-                'specificationValue',
-                'specificationValue.specification',
-                'specificationValue.specification.lang'
-            ]);
+        return self::find()->joinWith(['lang']);
     }
 
     /**
