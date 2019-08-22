@@ -302,33 +302,11 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'contentOptions' => ['class' => 'kv-row-select'],
                                         ]
                                     ],
-                                ]); ?>
+                                ]) ?>
 
-                                <?php
-                                $paidCount = $freeCount = $paidCost = $freeCost = 0;
-                                foreach ($dataProvider->getModels() as $model) {
-                                    if ($model->create_mode == 'paid') {
-                                        ++$paidCount;
-                                        $paidCost = $paidCost + ItalianProduct::getCostPlacementProduct()['amount'];
-                                    } else {
-                                        ++$freeCount;
-                                        $freeCost = $freeCost + ItalianProduct::getFreeCostPlacementProduct($model);
-                                    }
-                                } ?>
-
-                                <p>
-                                    <?= Yii::t(
-                                        'app',
-                                        'Размещено товаров: {paidCount} платно - {paidCost}, {freeCount} бесплатно ({percentages}% - {freeCost})',
-                                        [
-                                            'paidCount' => $paidCount,
-                                            'paidCost' => $paidCost . ' RUB',
-                                            'percentages' => 22,
-                                            'freeCount' => $freeCount,
-                                            'freeCost' => $freeCost . ' RUB'
-                                        ]
-                                    ); ?>
-                                </p>
+                                <?= $this->render('parts/_list_block_pay_for_all', [
+                                    'dataProvider' => $dataProvider
+                                ]) ?>
 
                             </div>
                         </div>
