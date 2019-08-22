@@ -235,6 +235,7 @@ class ItalianProduct extends ActiveRecord
             'setImages' => ['image_link', 'gallery_image', 'file_link'],
             'setMark' => ['mark'],
             'setStatus' => ['status'],
+            'create_mode' => ['create_mode'],
             'backend' => [
                 'country_id',
                 'region_id',

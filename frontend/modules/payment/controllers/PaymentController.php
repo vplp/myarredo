@@ -162,6 +162,7 @@ class PaymentController extends BaseController
         /** @var Payment $model */
         $model->setScenario('setPaymentStatus');
         $model->payment_status = Payment::PAYMENT_STATUS_SUCCESS;
+        $model->payment_time = time();
         $model->save();
 
         return 'OK' . $nInvId;
@@ -183,6 +184,7 @@ class PaymentController extends BaseController
         if ($model->payment_status == Payment::PAYMENT_STATUS_PENDING) {
             $model->setScenario('setPaymentStatus');
             $model->payment_status = Payment::PAYMENT_STATUS_FAIL;
+            $model->payment_time = time();
             $model->save();
 
             $messages = 'Ok';

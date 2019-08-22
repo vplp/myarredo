@@ -89,6 +89,31 @@ class Payment extends ActiveRecord
     }
 
     /**
+     * @param bool $insert
+     * @param array $changedAttributes
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+
+        /**
+         * if italian_product->create_mode = free change to paid
+         */
+
+        if (isset($changedAttributes['payment_status']) &&
+            $this->payment_status == self::PAYMENT_STATUS_SUCCESS &&
+            $this->type == 'italian_item') {
+            foreach ($this->items as $item) {
+                if ($item->create_mode == 'free') {
+                    $item->setScenario('create_mode');
+                    $item->create_mode = 'paid';
+                    $item->save();
+                }
+            }
+        }
+    }
+
+    /**
      * @return array
      */
     public function rules()
