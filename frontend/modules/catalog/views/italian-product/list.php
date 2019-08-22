@@ -322,10 +322,10 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                         'Размещено товаров: {paidCount} платно - {paidCost}, {freeCount} бесплатно ({percentages}% - {freeCost})',
                                         [
                                             'paidCount' => $paidCount,
-                                            'paidCost' => $paidCost,
+                                            'paidCost' => $paidCost . ' RUB',
                                             'percentages' => 22,
                                             'freeCount' => $freeCount,
-                                            'freeCost' => $freeCost
+                                            'freeCost' => $freeCost . ' RUB'
                                         ]
                                     ); ?>
                                 </p>
