@@ -90,7 +90,7 @@ if ($count) {
     }
 
     echo Html::submitButton(
-        Yii::t('app', 'Оплатить'),
+        Yii::t('app', 'Оплатить все товары по платному тарифу'),
         ['class' => 'btn btn-success']
     );
 
