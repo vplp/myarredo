@@ -190,7 +190,11 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                     $model->published == 0) {
                                                     $status = Yii::t('app', 'На модерации');
                                                 } elseif ($model->published == 1) {
-                                                    $status = Html::tag(
+                                                    $status = ($model->create_mode == 'paid'
+                                                        ? Yii::t('app', 'Оплачено')
+                                                        : Yii::t('app', 'Долг') . ':' . ItalianProduct::getFreeCostPlacementProduct($model))
+                                                        .
+                                                        Html::tag(
                                                             'div',
                                                             Html::tag(
                                                                 'div',
