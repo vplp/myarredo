@@ -258,6 +258,15 @@ $this->title = $this->context->title;
                                         </td>
                                     </tr>
                                 <?php } ?>
+
+                                <?php if ($model['article'] != '') { ?>
+                                    <tr>
+                                        <td><?= Yii::t('app', 'Артикул') ?></td>
+                                        <td>
+                                            <?= $model['article']; ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
                             </table>
 
                             <div class="prod-shortstory">
