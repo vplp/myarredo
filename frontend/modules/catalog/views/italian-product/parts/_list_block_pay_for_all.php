@@ -51,8 +51,10 @@ foreach ($dataProvider->getModels() as $model) {
         ++$freeCount;
     }
 }
-$modelCostProduct = ItalianProduct::getCostPlacementProduct($paidCount + $freeCount);
-?>
+$count = $paidCount + $freeCount;
+if ($count) {
+    $modelCostProduct = ItalianProduct::getCostPlacementProduct($paidCount + $freeCount);
+    ?>
     <div class="total-box">
         <div>
             <span class="for-total">Кол. товаров платно:</span> <span class="for-styles"><?= $paidCount ?></span>
@@ -78,20 +80,19 @@ $modelCostProduct = ItalianProduct::getCostPlacementProduct($paidCount + $freeCo
         </div>
     </div>
 
-<?php
-$form = ActiveForm::begin([
-    'method' => 'get',
-    'action' => Url::toRoute(['/catalog/italian-product/payment'], true),
-]);
+    <?php
+    echo '<form action="' . Url::toRoute(['/catalog/italian-product/payment'], true) . '" method="get">';
 
-foreach ($dataProvider->getModels() as $model) {
-    if ($model->published == 0) {
-        echo '<input type="hidden" name="id[]" value="' . $model['id'] . '">';
+    foreach ($dataProvider->getModels() as $model) {
+        if ($model->published == 0) {
+            echo '<input type="hidden" name="id[]" value="' . $model['id'] . '">';
+        }
     }
-}
-echo Html::submitButton(
-    Yii::t('app', 'Оплатить'),
-    ['class' => 'btn btn-success']
-);
 
-ActiveForm::end();
+    echo Html::submitButton(
+        Yii::t('app', 'Оплатить'),
+        ['class' => 'btn btn-success']
+    );
+
+    echo '</form>';
+}
