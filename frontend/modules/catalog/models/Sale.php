@@ -54,7 +54,7 @@ class Sale extends \common\modules\catalog\models\Sale
 
         $partner = Yii::$app->partner->getPartner();
         if ($partner != null && $partner->id) {
-            $order[] = '(CASE WHEN user_id=' . $partner->id . ' THEN 0 ELSE 1 END), position DESC';
+            $order[] = '(CASE WHEN ' . self::tableName() . '.user_id=' . $partner->id . ' THEN 0 ELSE 1 END), position DESC';
         }
 
         $order[] = self::tableName() . '.updated_at DESC';

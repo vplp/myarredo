@@ -292,7 +292,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'name' => 'id',
                                             'checkboxOptions' => function ($model) {
                                                 /** @var $model ItalianProduct */
-                                                if ($model->create_mode == 'free' || $model->published) {
+                                                if ($model->published) {
                                                     return ['disabled' => true];
                                                 } else {
                                                     return [];
