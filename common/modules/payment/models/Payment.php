@@ -99,11 +99,11 @@ class Payment extends ActiveRecord
         /**
          * if italian_product->create_mode = free change to paid
          */
-
         if (isset($changedAttributes['payment_status']) &&
             $this->payment_status == self::PAYMENT_STATUS_SUCCESS &&
             $this->type == 'italian_item') {
             foreach ($this->items as $item) {
+                /** @var $item ItalianProduct */
                 if ($item->create_mode == 'free') {
                     $item->setScenario('create_mode');
                     $item->create_mode = 'paid';
