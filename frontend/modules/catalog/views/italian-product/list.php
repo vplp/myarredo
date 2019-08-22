@@ -69,31 +69,6 @@ $this->title = Yii::t('app', 'Furniture in Italy');
 
                                 <?php Pjax::begin(['id' => 'factory-product']); ?>
 
-                                <?php
-                                $pCount = $fCount = $pCost = $fCost = 0;
-                                foreach ($dataProvider->getModels() as $model) {
-                                    if ($model->create_mode == 'paid') {
-                                        ++$pCount;
-                                        $pCost = $pCost + ItalianProduct::getCostPlacementProduct()['amount'];
-                                    } else {
-                                        ++$fCount;
-                                        $fCost = $fCost + ItalianProduct::getFreeCostPlacementProduct($model);
-                                    }
-                                } ?>
-
-                                <p>
-                                    <?= Yii::t(
-                                        'app',
-                                        'Размещено товаров: {pCount} (платно - {pCost} RUB); {fCount} (22% - {fCost} RUB)',
-                                        [
-                                            'pCount' => $pCount,
-                                            'pCost' => $pCost,
-                                            'fCount' => $fCount,
-                                            'fCost' => $fCost
-                                        ]
-                                    ); ?>
-                                </p>
-
                                 <?= GridView::widget([
                                     'id' => 'italian-product-grid',
                                     'dataProvider' => $dataProvider,
@@ -328,6 +303,32 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                         ]
                                     ],
                                 ]); ?>
+
+                                <?php
+                                $paidCount = $freeCount = $paidCost = $freeCost = 0;
+                                foreach ($dataProvider->getModels() as $model) {
+                                    if ($model->create_mode == 'paid') {
+                                        ++$paidCount;
+                                        $paidCost = $paidCost + ItalianProduct::getCostPlacementProduct()['amount'];
+                                    } else {
+                                        ++$freeCount;
+                                        $freeCost = $freeCost + ItalianProduct::getFreeCostPlacementProduct($model);
+                                    }
+                                } ?>
+
+                                <p>
+                                    <?= Yii::t(
+                                        'app',
+                                        'Размещено товаров: {paidCount} платно - {paidCost}, {freeCount} бесплатно ({percentages}% - {freeCost})',
+                                        [
+                                            'paidCount' => $paidCount,
+                                            'paidCost' => $paidCost,
+                                            'percentages' => 22,
+                                            'freeCount' => $freeCount,
+                                            'freeCost' => $freeCost
+                                        ]
+                                    ); ?>
+                                </p>
 
                             </div>
                         </div>
