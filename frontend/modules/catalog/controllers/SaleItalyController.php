@@ -138,7 +138,7 @@ class SaleItalyController extends BaseController
         }
 
         // ItalianProductStats
-        ItalianProductStats::create($model->id);
+        ItalianProductStats::create($model['id']);
 
         $this->breadcrumbs[] = [
             'label' => Yii::t('app', 'Sale in Italy'),
