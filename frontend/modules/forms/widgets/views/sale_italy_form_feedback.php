@@ -22,11 +22,11 @@ $image_link = $partner['profile']['image_link']
     : $bundle->baseUrl . '/img/cont-photo-bg.jpg';
 ?>
 
-<div class="cont-info">
-    <div class="cont-info-in">
+<div class="cont-info feedback-container">
+    <div class="cont-info-in feedback-box">
         <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') { ?>
             <div class="cont-info-border">
-                <div><?= Yii::t('app', 'Заполните форму') ?></div>
+                <div class="feedback-title"><?= Yii::t('app', 'Заполните форму') ?></div>
 
                 <?php $form = ActiveForm::begin([
                     'method' => 'post',
