@@ -330,9 +330,12 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
 
         $cost = ($model['price_new'] / 100) * 22 * $currency['course'];
 
-        $cost = number_format($cost, 2, '.', '');
+        $amount = number_format($cost, 2, '.', '');
 
-        return $cost;
+        return [
+            'amount' => $amount,
+            'currency' => 'RUB',
+        ];
     }
 
     /**

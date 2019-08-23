@@ -24,7 +24,7 @@ foreach ($dataProvider->getModels() as $model) {
         $paidCost = $paidCost + ItalianProduct::getCostPlacementProduct()['amount'];
     } elseif ($model->create_mode == 'free') {
         ++$freeCount;
-        $freeCost = $freeCost + ItalianProduct::getFreeCostPlacementProduct($model);
+        $freeCost = $freeCost + ItalianProduct::getFreeCostPlacementProduct($model)['amount'];
     }
 } ?>
 

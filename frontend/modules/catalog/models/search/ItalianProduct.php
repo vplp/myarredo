@@ -127,9 +127,11 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
 
         $query->andFilterWhere(['like', ItalianProductLang::tableName() . '.title', $this->title]);
 
-        self::getDb()->cache(function ($db) use ($dataProvider) {
-            $dataProvider->prepare();
-        });
+        if (Yii::$app->controller->id == 'sale-italy') {
+            self::getDb()->cache(function ($db) use ($dataProvider) {
+                $dataProvider->prepare();
+            });
+        }
 
         return $dataProvider;
     }

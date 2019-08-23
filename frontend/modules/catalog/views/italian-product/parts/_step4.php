@@ -99,7 +99,7 @@ $modelPayment->currency = $modelCostProduct['currency'];
                                 </td>
                                 <td>1</td>
                                 <?php if ($model->create_mode == 'free') { ?>
-                                    <td><?= ItalianProduct::getFreeCostPlacementProduct($model) ?></td>
+                                    <td><?= ItalianProduct::getFreeCostPlacementProduct($model)['amount'] ?></td>
                                 <?php } ?>
                                 <td><?= $modelCostProduct['total'] ?></td>
                                 <td><?= $modelCostProduct['currency'] ?></td>

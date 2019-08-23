@@ -189,15 +189,45 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                 } elseif ($model->status == 'on_moderation' &&
                                                     $model->published == 0) {
                                                     $status = Yii::t('app', 'На модерации');
-                                                } elseif ($model->published == 1) {
-                                                    $status = Html::tag(
+                                                } elseif ($model->published == 1 && $model->create_mode == 'paid') {
+                                                    $status = Html::tag('div', Yii::t('app', 'Оплачено'))
+                                                        .
+                                                        Html::tag(
                                                             'div',
-                                                            ($model->create_mode == 'paid'
-                                                                ? Yii::t('app', 'Оплачено')
-                                                                : Yii::t('app', 'Долг') . ':' . ItalianProduct::getFreeCostPlacementProduct($model))
+                                                            Html::tag(
+                                                                'div',
+                                                                '',
+                                                                [
+                                                                    'class' => 'progressbar',
+                                                                    'style' => 'width:' . (100 * $model->getDiffPublishedDate() / 60) . '%',
+                                                                ]
+                                                            ),
+                                                            [
+                                                                'class' => 'progressbox',
+                                                                'title' => (100 * $model->getDiffPublishedDate() / 60) . '%'
+                                                            ]
                                                         )
                                                         .
                                                         Html::tag(
+                                                            'span',
+                                                            Yii::t('app', 'Осталось дней') . ' - ' . $model->getDiffPublishedDate(),
+                                                            ['class' => 'progresssubtitle']
+                                                        );
+                                                } elseif ($model->published == 1 && $model->create_mode == 'free') {
+                                                    $status = '';
+
+                                                    if ($model->payment->payment_status != 'success') {
+                                                        $status = Html::tag('div', Yii::t('app', 'Долг') . ':' . ItalianProduct::getFreeCostPlacementProduct($model)['amount']) .
+                                                            Html::a(
+                                                                Yii::t('app', 'Оплатить'),
+                                                                ['/catalog/italian-product/interest-payment', 'id' => $model->id],
+                                                                [
+                                                                    'class' => 'btn-puplished btn-xs'
+                                                                ]
+                                                            );
+                                                    }
+
+                                                    $status .= Html::tag(
                                                             'div',
                                                             Html::tag(
                                                                 'div',

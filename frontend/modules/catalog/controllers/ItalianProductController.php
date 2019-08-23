@@ -103,6 +103,36 @@ class ItalianProductController extends BaseController
         }
     }
 
+    public function actionInterestPayment($id)
+    {
+        $this->title = Yii::t('app', 'Furniture in Italy');
+
+        /** @var ItalianProduct $model */
+        $model = ItalianProduct::findById($id);
+
+        if ($model == null || $model->create_mode != 'free') {
+            throw new ForbiddenHttpException('Access denied');
+        }
+
+        $modelPayment = new Payment();
+        $modelPayment->setScenario('frontend');
+
+        $modelPayment->user_id = Yii::$app->user->id;
+        $modelPayment->type = 'italian_item';
+
+        $modelCostProduct = ItalianProduct::getFreeCostPlacementProduct($model);
+
+        $modelPayment->amount = $modelCostProduct['amount'];
+        $modelPayment->currency = $modelCostProduct['currency'];
+
+        return $this->render('interest_payment', [
+            'model' => $model,
+            'modelPayment' => $modelPayment,
+            'amount' => $modelCostProduct['amount'],
+            'currency' => $modelCostProduct['currency'],
+        ]);
+    }
+
     public function actionOnModeration($id)
     {
         /** @var $model ItalianProduct */
