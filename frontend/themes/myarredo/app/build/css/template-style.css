@@ -632,7 +632,11 @@ h1 {
     background-position: center;
     background-repeat: no-repeat;
     background-image: url("../img/cont-bg.jpg");
-    padding-top: 80px; }
+    padding-top: 80px; 
+  }
+  .footer .cont-info.feedback-container {
+    padding-top: 35px;
+  }
   .footer .cont-bg {
     height: 100%;
     flex-grow: 1;
@@ -646,12 +650,31 @@ h1 {
     color: #FFFFFF;
     text-align: center;
     overflow-x: hidden;
-    padding-top: 20px; }
+    padding-top: 20px; 
+  }
   .footer .cont-info-border {
     border-bottom: 1px solid #BDBCB3;
     border-left: 1px solid #BDBCB3;
     border-right: 1px solid #BDBCB3;
-    padding-bottom: 110px; }
+    padding-bottom: 110px; 
+  }
+  .footer .feedback-title {
+    font-family: 'Palatino', 'Open Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #535351;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .footer .cont-info-in.feedback-box .cont-info-border{
+    padding: 20px;
+    border: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  .feedback-box .help-block {
+    font-size: 13px;
+    line-height: 10px;
+  }
     .footer .cont-info-border h4 {
       font-size: 34px;
       font-family: 'Palatino';
@@ -2025,7 +2048,8 @@ h1 {
   .prod-card-page .best-price-form .jq-checkbox,
   .field-salerequest-user_agreement .jq-checkbox,
   .field-italianproduct-published  .jq-checkbox,
-  .field-cartcustomerform-user_agreement .jq-checkbox {
+  .field-cartcustomerform-user_agreement .jq-checkbox,
+  .feedback-box .jq-checkbox {
     width: 24px;
     height: 24px;
     background: #FFFFFF;
@@ -2039,7 +2063,8 @@ h1 {
     .prod-card-page .best-price-form .jq-checkbox.checked .jq-checkbox__div,
     .field-salerequest-user_agreement .jq-checkbox.checked .jq-checkbox__div,
     .field-italianproduct-published .jq-checkbox.checked .jq-checkbox__div,
-    .field-cartcustomerform-user_agreement .jq-checkbox.checked .jq-checkbox__div {
+    .field-cartcustomerform-user_agreement .jq-checkbox.checked .jq-checkbox__div,
+    .feedback-box .jq-checkbox.checked .jq-checkbox__div {
       background: none;
       box-shadow: none;
       margin: 0;
@@ -2049,13 +2074,18 @@ h1 {
       .prod-card-page .best-price-form .jq-checkbox.checked .jq-checkbox__div:after,
       .field-salerequest-user_agreement .jq-checkbox.checked .jq-checkbox__div:after,
       .field-italianproduct-published .jq-checkbox.checked .jq-checkbox__div:after,
-      .field-cartcustomerform-user_agreement .jq-checkbox.checked .jq-checkbox__div:after {
+      .field-cartcustomerform-user_agreement .jq-checkbox.checked .jq-checkbox__div:after,
+      .feedback-box .jq-checkbox.checked .jq-checkbox__div:after {
         content: '\f00c';
         font-family: 'FontAwesome';
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%); }
+        transform: translate(-50%, -50%); 
+      }
+      .feedback-box .jq-checkbox.checked .jq-checkbox__div:after {
+        color: #999999;
+      }
 
       .field-italianproduct-published  .jq-checkbox {
         position: absolute !important;
@@ -2064,6 +2094,32 @@ h1 {
         background-color: #f3f2f0;
       }
 
+  .feedback-box .field-formsfeedback-user_agreement {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .feedback-box .field-formsfeedback-user_agreement .jq-checkbox {
+    width: 24px;
+  }
+  .feedback-box .field-formsfeedback-user_agreement .control-label {
+    width: calc(100% - 30px);
+    font-size: 13px;
+  }
+  .feedback-box .field-formsfeedback-user_agreement .help-block {
+    width: 100%;
+    line-height: 10px;
+  }
+  .feedback-box .field-formsfeedback-recaptcha {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .feedback-box .btn-success.big {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    min-width: 150px;
+  }
   .prod-card-page .best-price-form .field-cartcustomerform-recaptcha {
     transform: scale(0.93);
     transform-origin: 0; }
@@ -4674,9 +4730,14 @@ h1 {
     width: 480px;
     padding-top: 60px; }
   .footer .cont-flex {
-    height: 475px; }
+    min-height: 475px; 
+  }
   .footer .cont-info-in {
-    width: 330px; }
+    width: 330px; 
+  }
+  .footer .cont-info-in.feedback-box {
+    width: 400px; 
+  }
   .footer .cont-info-border {
     padding-bottom: 60px; }
     .footer .cont-info-border h4 {
@@ -5205,7 +5266,8 @@ h1 {
   .footer .cont-info-in {
     width: 290px; }
   .footer .cont-flex {
-    height: 445px; }
+    min-height: 445px; 
+  }
   .footer .white-stripe {
     height: 110px; }
   .footer #map {
@@ -8033,6 +8095,12 @@ h1 {
 @media(max-width: 460px) {
   .about-betotchers-titlebox {
     margin-left: 65px;
+  }
+}
+/* max 439px */
+@media(max-width: 439px) {
+  .footer .cont-info-in.feedback-box {
+    width: 100%;
   }
 }
 @media(max-width: 420px) {
