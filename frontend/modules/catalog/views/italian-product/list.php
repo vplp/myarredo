@@ -222,7 +222,8 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                                 Yii::t('app', 'Оплатить'),
                                                                 ['/catalog/italian-product/interest-payment', 'id' => $model->id],
                                                                 [
-                                                                    'class' => 'btn-puplished btn-xs'
+                                                                    'class' => 'btn-puplished btn-xs',
+                                                                    'style' => 'margin:5px 0;'
                                                                 ]
                                                             );
                                                     }

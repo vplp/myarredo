@@ -39,7 +39,7 @@ $this->title = $this->context->title;
                                 <th>№</th>
                                 <th><?= Yii::t('app', 'Наименование услуг') ?></th>
                                 <th><?= Yii::t('app', 'Количество') ?></th>
-                                <th><?= Yii::t('app', 'Цена') ?></th>
+                                <th><?= Yii::t('app', 'Цена') ?> 22%</th>
                                 <th><?= Yii::t('app', 'Валюта') ?></th>
                             </tr>
                             </thead>
