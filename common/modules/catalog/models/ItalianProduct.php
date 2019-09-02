@@ -854,4 +854,14 @@ class ItalianProduct extends ActiveRecord
         $interval = $datetime1->diff($datetime2);
         return $interval->format('%a');
     }
+    
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return (isset($this->lang->title))? 
+                    $this->lang->title : 
+                    "{{$this->default_title}}";
+    }
 }

@@ -216,7 +216,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                 } elseif ($model->published == 1 && $model->create_mode == 'free') {
                                                     $status = '';
 
-                                                    if ($model->payment->payment_status != 'success') {
+                                                    if ($model->payment && $model->payment->payment_status != 'success') {
                                                         $status = Html::tag('div', Yii::t('app', 'Долг') . ':' . ItalianProduct::getFreeCostPlacementProduct($model)['amount']) .
                                                             Html::a(
                                                                 Yii::t('app', 'Оплатить'),
