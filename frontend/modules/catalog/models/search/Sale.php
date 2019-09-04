@@ -58,7 +58,9 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'defaultPageSize' => $module->itemOnPage,
+                'defaultPageSize' => !empty($params['defaultPageSize'])? 
+                                        $params['defaultPageSize']: 
+                                        $module->itemOnPage,
                 'forcePageParam' => false,
             ],
         ]);

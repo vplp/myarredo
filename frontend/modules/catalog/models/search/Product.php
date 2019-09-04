@@ -65,7 +65,9 @@ class Product extends ProductModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => isset($params['pagination']) ? $params['pagination'] : [
-                'defaultPageSize' => $module->itemOnPage,
+                'defaultPageSize' => !empty($params['defaultPageSize'])? 
+                                        $params['defaultPageSize']: 
+                                        $module->itemOnPage,
                 'forcePageParam' => false,
             ],
         ]);
