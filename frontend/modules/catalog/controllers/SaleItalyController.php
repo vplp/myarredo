@@ -99,7 +99,7 @@ class SaleItalyController extends BaseController
 
         //* !!! */ $params['status'] = 'approved';
 
-        $params['defaultPageSize'] = 48;
+        $params['defaultPageSize'] = 30;
         $models = $model->search($params);
 
         Yii::$app->metatag->render();
