@@ -215,20 +215,33 @@ $this->title = Yii::t('app', 'Рекламировать');
                                 ]
                             ); ?>
 
+                        <table class="table table-bordered table-totalorder">
+                            <thead>
+                                <tr>
+                                    <th><?= Yii::t('app', 'Наименование услуг') ?></th>
+                                    <th><?= Yii::t('app', 'Цена') ?></th>
+                                    <th><?= Yii::t('app', 'Валюта') ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><?= Yii::t('app', 'Стоимость размещения товара в рекламе') ?></td>
+                                    <td><span id="cost_products">0</span></td>
+                                    <td><span class="current-item"> <?= Yii::t('app', 'руб') ?></td>
+                                </tr>
+                                <tr>
+                                    <td><?= Yii::t('app', 'Стоимость размещения рекламы в поиске') ?></td>
+                                    <td><span id="cost_of_views">0</span></td>
+                                    <td><span class="current-item"> <?= Yii::t('app', 'руб') ?> </span></td>
+                                </tr>
+                                <tr>
+                                    <td><?= Yii::t('app', 'Общая стоимость рекламной кампании') ?></td>
+                                    <td><span id="cost">0</span></td>
+                                    <td><span class="current-item"> <?= Yii::t('app', 'руб') ?> </span></td>
+                                </tr>
+                            </tbody>
+                        </table>
                         <div class="promotion-title-label">
-                            <?= Yii::t('app', 'Стоимость размещения товара в рекламе') ?>
-                            <span id="cost_products">0</span>
-                            <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
-                        </div>
-                        <div class="promotion-title-label">
-                            <?= Yii::t('app', 'Стоимость размещения рекламы в поиске') ?>
-                            <span id="cost_of_views">0</span>
-                            <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
-                        </div>
-                        <div class="promotion-title-label">
-                            <?= Yii::t('app', 'Общая стоимость рекламной кампании') ?>
-                            <span id="cost">0</span>
-                            <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
                             <span class="for-nds">(* <?= Yii::t('app', 'цены указаны без НДС') ?>)</span>
                         </div>
                         <div class="promotion-title-label for-hide">

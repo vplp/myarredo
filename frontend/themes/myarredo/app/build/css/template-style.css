@@ -1649,7 +1649,7 @@ h1 {
   padding-bottom: 23px; }
 
 .category-page .cat-prod .one-prod-tile {
-  height: 415px;
+  height: 425px;
   margin-bottom: 0;
   border: none;
   width: calc(33% - 17px);
@@ -7348,7 +7348,9 @@ h1 {
   text-align: center;
   font-size: 14px;
   font-weight: 600;
-  padding: 0 0 10px;
+  color: #ffffff;
+  padding: 6px 0 6px;
+  background-color: #C4252F;
 }
 .sale-page .prod-is-sold {
   text-align: left;
@@ -7399,6 +7401,11 @@ h1 {
 .category-page .cat-prod .one-prod-tile:hover .prod-bestseller {
   top: 19px;
   left: -1px;
+}
+.table.table-totalorder {
+  width: auto;
+  margin-top: 35px;
+  margin-bottom: 0;
 }
 
 /* --------------------------------------------------------------------------------------------------------- */
