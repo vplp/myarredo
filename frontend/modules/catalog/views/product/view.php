@@ -3,9 +3,7 @@
 use yii\helpers\Html;
 //
 use frontend\components\Breadcrumbs;
-use frontend\modules\catalog\models\{
-    Factory, Product
-};
+use frontend\modules\catalog\models\{Factory, Product, ProductLang};
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\shop\widgets\request\RequestPrice;
 use frontend\modules\catalog\widgets\product\ViewedProducts;
@@ -467,7 +465,11 @@ $this->title = $this->context->title;
                     ]);
                 } ?>
 
-                <?= ViewedProducts::widget(['modelClass' => Product::class, 'cookieName' => 'viewed_products']) ?>
+                <?= ViewedProducts::widget([
+                    'modelClass' => Product::class,
+                    'modelLangClass' => ProductLang::class,
+                    'cookieName' => 'viewed_products'
+                ]) ?>
 
             </div>
         </div>

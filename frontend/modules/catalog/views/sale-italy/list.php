@@ -5,7 +5,9 @@ use yii\helpers\Html;
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\widgets\filter\ItalianProductFilter;
 use frontend\modules\catalog\widgets\product\ViewedProducts;
-use frontend\modules\catalog\models\ItalianProduct;
+use frontend\modules\catalog\models\{
+    ItalianProduct, ItalianProductLang
+};
 
 /**
  * @var $pages \yii\data\Pagination
@@ -81,7 +83,11 @@ $this->title = $this->context->title;
                         </div>
                     </div>
 
-                    <?= ViewedProducts::widget(['modelClass' => ItalianProduct::class, 'cookieName' => 'viewed_sale_italy']) ?>
+                    <?= ViewedProducts::widget([
+                        'modelClass' => ItalianProduct::class,
+                        'modelLangClass' => ItalianProductLang::class,
+                        'cookieName' => 'viewed_sale_italy'
+                    ]) ?>
 
                 </div>
             </div>

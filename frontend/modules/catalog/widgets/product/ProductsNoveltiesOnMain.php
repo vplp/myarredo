@@ -4,7 +4,9 @@ namespace frontend\modules\catalog\widgets\product;
 
 use yii\base\Widget;
 //
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\{
+    Product, ProductLang
+};
 
 /**
  * Class ProductsNoveltiesOnMain
@@ -29,6 +31,10 @@ class ProductsNoveltiesOnMain extends Widget
     public function init()
     {
         $this->models = Product::findBaseArray()
+            ->select([
+                Product::tableName() . '.*',
+                ProductLang::tableName() . '.title',
+            ])
             ->andWhere(['onmain' => '1'])
             ->cache(7200)
             ->all();

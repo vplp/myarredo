@@ -371,6 +371,10 @@ class Product extends \common\modules\catalog\models\Product
     {
         $result = self::getDb()->cache(function ($db) use ($collections_id) {
             return parent::findBase()
+                ->select([
+                    self::tableName() . '.*',
+                    self::tableName() . '.title',
+                ])
                 ->enabled()
                 ->andWhere([
                     self::tableName() . '.collections_id' => $collections_id,
@@ -393,6 +397,10 @@ class Product extends \common\modules\catalog\models\Product
     {
         $result = self::getDb()->cache(function ($db) use ($factory_id, $catalog_type_id) {
             return parent::findBase()
+                ->select([
+                    self::tableName() . '.*',
+                    self::tableName() . '.title',
+                ])
                 ->enabled()
                 ->andWhere([
                     self::tableName() . '.factory_id' => $factory_id,

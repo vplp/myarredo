@@ -12,6 +12,7 @@ use yii\base\Widget;
  *
  * @property string $view
  * @property string $modelClass
+ * @property string $modelLangClass
  * @property string $cookieName
  * @property object $models
  *
@@ -35,6 +36,11 @@ class ViewedProducts extends Widget
     public $modelClass = null;
 
     /**
+     * @var string
+     */
+    public $modelLangClass = null;
+
+    /**
      * @var object
      */
     protected $models = null;
@@ -53,6 +59,7 @@ class ViewedProducts extends Widget
         }
 
         $modelClass = new $this->modelClass();
+        $modelLangClass = new $this->modelLangClass();
 
         $IDs = [];
 
@@ -61,7 +68,14 @@ class ViewedProducts extends Widget
         }
 
         if (!empty($IDs)) {
-            $this->models = $modelClass::findBase()->byID($IDs)->asArray()->all();
+            $this->models = $modelClass::findBase()
+                ->select([
+                    $modelClass::tableName() . '.*',
+                    $modelLangClass::tableName() . '.title',
+                ])
+                ->byID($IDs)
+                ->asArray()
+                ->all();
         }
     }
 

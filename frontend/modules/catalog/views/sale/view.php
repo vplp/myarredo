@@ -5,9 +5,7 @@ use yii\helpers\{
 };
 //
 use frontend\components\Breadcrumbs;
-use frontend\modules\catalog\models\{
-    Factory, Sale, Product
-};
+use frontend\modules\catalog\models\{Factory, Sale, Product, SaleLang};
 use frontend\modules\catalog\widgets\sale\{
     SaleRequestForm, SaleOfferPriceForm
 };
@@ -276,18 +274,18 @@ $this->title = $this->context->title;
 
                         </div>
 
-                        <!--
+                        <?php /*
                         <div class="col-md-12 sellout-box">
                             <div class="section-header">
                                 <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
                                 <?= Html::a(
-                                    Yii::t('app', 'Вернуться к списку'),
-                                    Url::toRoute(['/catalog/sale/list']),
-                                    ['class' => 'back']
-                                ); ?>
+                            Yii::t('app', 'Вернуться к списку'),
+                            Url::toRoute(['/catalog/sale/list']),
+                            ['class' => 'back']
+                        ); ?>
                             </div>
                         </div>
-                        -->
+                        */ ?>
 
                     </div>
 
@@ -297,7 +295,11 @@ $this->title = $this->context->title;
                         'models' => Product::getProductByFactory($model['factory_id'], $model['catalog_type_id'])
                     ]) ?>
 
-                    <?= ViewedProducts::widget(['modelClass' => Sale::class, 'cookieName' => 'viewed_sale']) ?>
+                    <?= ViewedProducts::widget([
+                        'modelClass' => Sale::class,
+                        'modelLangClass' => SaleLang::class,
+                        'cookieName' => 'viewed_sale'
+                    ]) ?>
 
                 </div>
             </div>

@@ -5,7 +5,7 @@ use yii\helpers\{
 };
 //
 use frontend\components\Breadcrumbs;
-use frontend\modules\catalog\models\{Factory, ItalianProduct, Product};
+use frontend\modules\catalog\models\{Factory, ItalianProduct, ItalianProductLang, Product};
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\shop\widgets\request\RequestPrice;
 use frontend\modules\catalog\widgets\sale\SaleRequestForm;
@@ -382,6 +382,7 @@ $this->title = $this->context->title;
 
                         echo ViewedProducts::widget([
                             'modelClass' => ItalianProduct::class,
+                            'modelLangClass' => ItalianProductLang::class,
                             'cookieName' => 'viewed_sale_italy'
                         ]);
                     } ?>

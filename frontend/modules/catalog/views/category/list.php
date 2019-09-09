@@ -5,9 +5,7 @@ use yii\helpers\{
 };
 use frontend\components\Breadcrumbs;
 //
-use frontend\modules\catalog\models\{
-    Product, ItalianProduct, ItalianProductLang
-};
+use frontend\modules\catalog\models\{Product, ItalianProduct, ItalianProductLang, ProductLang};
 use frontend\modules\catalog\widgets\filter\{
     ProductSorting, ProductFilter
 };
@@ -40,8 +38,8 @@ $this->title = $this->context->title;
 
                 <?php if (Yii::$app->request->get('filter') == false) {
                     echo ProductsNovelties::widget([
-                            'modelClass' => ItalianProduct::class,
-                            'modelLangClass' => ItalianProductLang::class,
+                        'modelClass' => ItalianProduct::class,
+                        'modelLangClass' => ItalianProductLang::class,
                     ]);
                 } ?>
 
@@ -110,7 +108,11 @@ $this->title = $this->context->title;
                         </div>
                     </div>
 
-                    <?= ViewedProducts::widget(['modelClass' => Product::class, 'cookieName' => 'viewed_products']) ?>
+                    <?= ViewedProducts::widget([
+                        'modelClass' => Product::class,
+                        'modelLangClass' => ProductLang::class,
+                        'cookieName' => 'viewed_products'
+                    ]) ?>
 
                 </div>
             </div>
