@@ -12,6 +12,7 @@ use frontend\modules\catalog\models\{
     SubTypes,
     Factory,
     Product as ProductModel,
+    ProductLang,
     Specification,
     Colors
 };
@@ -65,9 +66,9 @@ class Product extends ProductModel
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => isset($params['pagination']) ? $params['pagination'] : [
-                'defaultPageSize' => !empty($params['defaultPageSize'])? 
-                                        $params['defaultPageSize']: 
-                                        $module->itemOnPage,
+                'defaultPageSize' => !empty($params['defaultPageSize'])
+                    ? $params['defaultPageSize']
+                    : $module->itemOnPage,
                 'forcePageParam' => false,
             ],
         ]);
@@ -232,7 +233,11 @@ class Product extends ProductModel
      */
     public function search($params)
     {
-        $query = ProductModel::findBase();
+        $query = ProductModel::findBase()
+            ->select([
+                self::tableName() . '.*',
+                ProductLang::tableName() . '.title',
+            ]);
 
         return $this->baseSearch($query, $params);
     }

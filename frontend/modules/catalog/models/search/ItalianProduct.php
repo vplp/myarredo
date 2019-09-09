@@ -61,7 +61,9 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'defaultPageSize' => isset($params['defaultPageSize']) ? $params['defaultPageSize'] : $module->itemOnPage,
+                'defaultPageSize' => isset($params['defaultPageSize'])
+                    ? $params['defaultPageSize']
+                    : $module->itemOnPage,
                 'forcePageParam' => false,
             ],
         ]);
@@ -144,7 +146,12 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
      */
     public function search($params)
     {
-        $query = ItalianProductModel::findBase();
+        $query = ItalianProductModel::findBase()
+            ->select([
+                self::tableName() . '.*',
+                ItalianProductLang::tableName() . '.title',
+            ]);
+
         return $this->baseSearch($query, $params);
     }
 
@@ -156,7 +163,12 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
      */
     public function completed($params)
     {
-        $query = ItalianProductModel::findBase();
+        $query = ItalianProductModel::findBase()
+            ->select([
+                self::tableName() . '.*',
+                ItalianProductLang::tableName() . '.title',
+            ]);
+
         return $this->baseSearch($query, $params);
     }
 
@@ -168,7 +180,12 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
      */
     public function trash($params)
     {
-        $query = ItalianProductModel::findBase();
+        $query = ItalianProductModel::findBase()
+            ->select([
+                self::tableName() . '.*',
+                ItalianProductLang::tableName() . '.title',
+            ]);
+
         return $this->baseSearch($query, $params);
     }
 }
