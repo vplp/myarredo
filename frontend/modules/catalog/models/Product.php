@@ -373,7 +373,7 @@ class Product extends \common\modules\catalog\models\Product
             return parent::findBase()
                 ->select([
                     self::tableName() . '.*',
-                    self::tableName() . '.title',
+                    ProductLang::tableName() . '.title',
                 ])
                 ->enabled()
                 ->andWhere([
@@ -399,7 +399,7 @@ class Product extends \common\modules\catalog\models\Product
             return parent::findBase()
                 ->select([
                     self::tableName() . '.*',
-                    self::tableName() . '.title',
+                    ProductLang::tableName() . '.title',
                 ])
                 ->enabled()
                 ->andWhere([
