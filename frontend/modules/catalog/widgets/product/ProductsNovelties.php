@@ -13,6 +13,7 @@ use frontend\modules\catalog\models\Category;
  *
  * @property string $view
  * @property string $modelClass
+ * @property string $modelLangClass
  * @property object $models
  *
  * @package frontend\modules\catalog\widgets\product
@@ -30,6 +31,11 @@ class ProductsNovelties extends Widget
     public $modelClass = null;
 
     /**
+     * @var string
+     */
+    public $modelLangClass = null;
+
+    /**
      * @var object
      */
     protected $models = [];
@@ -43,11 +49,18 @@ class ProductsNovelties extends Widget
             throw new Exception(__CLASS__ . '::$modelClass must be set.');
         }
 
+        $modelClass = new $this->modelClass();
+        $modelLangClass = new $this->modelLangClass();
+
         $keys = Yii::$app->catalogFilter->keys;
         $params = Yii::$app->catalogFilter->params;
 
 
-        $query = (new $this->modelClass())::findBaseArray()
+        $query = $modelClass::findBaseArray()
+            ->select([
+                $modelClass::tableName() . '.*',
+                $modelLangClass::tableName() . '.title',
+            ])
             ->limit(8)
             ->cache(7200);
 

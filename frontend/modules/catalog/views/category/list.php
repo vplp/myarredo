@@ -6,7 +6,7 @@ use yii\helpers\{
 use frontend\components\Breadcrumbs;
 //
 use frontend\modules\catalog\models\{
-    Product, ItalianProduct
+    Product, ItalianProduct, ItalianProductLang
 };
 use frontend\modules\catalog\widgets\filter\{
     ProductSorting, ProductFilter
@@ -39,7 +39,10 @@ $this->title = $this->context->title;
                 </div>
 
                 <?php if (Yii::$app->request->get('filter') == false) {
-                    echo ProductsNovelties::widget(['modelClass' => ItalianProduct::class]);
+                    echo ProductsNovelties::widget([
+                            'modelClass' => ItalianProduct::class,
+                            'modelLangClass' => ItalianProductLang::class,
+                    ]);
                 } ?>
 
                 <div class="cat-content">
