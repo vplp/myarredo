@@ -46,7 +46,7 @@ class Order extends \common\modules\shop\models\Order
     public static function findBase()
     {
         return self::find()
-            ->innerJoinWith(['items'])
+            ->innerJoinWith(['items', 'city' ,'city.lang', 'customer', ''])
             ->orderBy(['created_at' => SORT_DESC])
             ->enabled();
     }
@@ -56,8 +56,7 @@ class Order extends \common\modules\shop\models\Order
      */
     public function getCustomer()
     {
-        return $this
-            ->hasOne(Customer::class, ['id' => 'customer_id']);
+        return $this->hasOne(Customer::class, ['id' => 'customer_id'])->cache(7200);
     }
 
     /**
@@ -65,8 +64,7 @@ class Order extends \common\modules\shop\models\Order
      */
     public function getCity()
     {
-        return $this
-            ->hasOne(City::class, ['id' => 'city_id']);
+        return $this->hasOne(City::class, ['id' => 'city_id'])->cache(7200);
     }
 
     /**
@@ -75,7 +73,7 @@ class Order extends \common\modules\shop\models\Order
      */
     public function getItems()
     {
-        return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
+        return $this->hasMany(OrderItem::class, ['order_id' => 'id'])->cache(7200);
     }
 
     /**

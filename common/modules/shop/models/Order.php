@@ -125,8 +125,7 @@ class Order extends \thread\modules\shop\models\Order
      */
     public function getCustomer()
     {
-        return $this
-            ->hasOne(Customer::class, ['id' => 'customer_id']);
+        return $this->hasOne(Customer::class, ['id' => 'customer_id']);
     }
 
     /**
@@ -134,8 +133,7 @@ class Order extends \thread\modules\shop\models\Order
      */
     public function getCity()
     {
-        return $this
-            ->hasOne(City::class, ['id' => 'city_id']);
+        return $this->hasOne(City::class, ['id' => 'city_id']);
     }
 
     /**
