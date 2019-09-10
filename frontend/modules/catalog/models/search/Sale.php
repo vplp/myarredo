@@ -6,7 +6,9 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 //
-use frontend\modules\catalog\models\{Colors, Sale as SaleModel, SaleLang, SubTypes};
+use frontend\modules\catalog\models\{
+    Colors, Sale as SaleModel, SaleLang, SubTypes, Factory
+};
 use frontend\modules\location\models\{
     Country, City
 };
@@ -162,7 +164,8 @@ class Sale extends SaleModel implements BaseBackendSearchModel
                 self::tableName() . '.price_new',
                 self::tableName() . '.currency',
                 self::tableName() . '.position',
-                SaleLang::tableName() . '.title',
+                self::tableName() . '.factory_name',
+                SaleLang::tableName() . '.title'
             ]);
 
         return $this->baseSearch($query, $params);

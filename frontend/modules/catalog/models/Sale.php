@@ -67,22 +67,26 @@ class Sale extends \common\modules\catalog\models\Sale
     }
 
     /**
-     * Get by alias
-     *
-     * @param string $alias
-     * @return ActiveRecord|null
+     * @param $alias
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()
-            ->joinWith([
-                'lang',
-                'specificationValue',
-                'specificationValue.specification',
-                'specificationValue.specification.lang'
-            ])
-            ->byAlias($alias)
-            ->one();
+        $result = self::getDb()->cache(function ($db) use ($alias) {
+            return self::findBase()
+                ->joinWith([
+                    'lang',
+                    'specificationValue',
+                    'specificationValue.specification',
+                    'specificationValue.specification.lang'
+                ])
+                ->byAlias($alias)
+                ->one();
+        });
+
+        return $result;
     }
 
     /**

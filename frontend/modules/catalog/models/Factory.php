@@ -278,6 +278,8 @@ class Factory extends \common\modules\catalog\models\Factory
     /**
      * @param array $params
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getWithSale($params = [])
     {
@@ -333,18 +335,21 @@ class Factory extends \common\modules\catalog\models\Factory
                 ->innerJoinWith(["sale.city saleCity"], false)
                 ->andFilterWhere(['IN', 'saleCity.id', $params['city']]);
         }
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.alias',
+                    self::tableName() . '.first_letter',
+                    self::tableName() . '.title',
+                    'count(' . self::tableName() . '.id) as count'
+                ])
+                ->groupBy(self::tableName() . '.id')
+                ->asArray()
+                ->all();
+        });
 
-        return $query
-            ->select([
-                self::tableName() . '.id',
-                self::tableName() . '.alias',
-                self::tableName() . '.first_letter',
-                self::tableName() . '.title',
-                'count(' . self::tableName() . '.id) as count'
-            ])
-            ->groupBy(self::tableName() . '.id')
-            ->asArray()
-            ->all();
+        return $result;
     }
 
     /**

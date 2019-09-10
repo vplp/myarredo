@@ -40,6 +40,20 @@ class Language extends \common\modules\sys\models\Language
     }
 
     /**
+     * @return array
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getCurrent(): array
+    {
+        $result = self::getDb()->cache(function ($db) {
+            return self::findBase()->andWhere(['local' => \Yii::$app->language])->asArray()->one();
+        });
+
+        return $result;
+    }
+
+    /**
      * @return mixed
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException

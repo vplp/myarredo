@@ -271,6 +271,8 @@ class Category extends \common\modules\catalog\models\Category
     /**
      * @param array $params
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getWithSale($params = [])
     {
@@ -320,29 +322,35 @@ class Category extends \common\modules\catalog\models\Category
                 ->andFilterWhere(['IN', 'saleCity.id', $params['city']]);
         }
 
-        return $query
-            ->innerJoinWith(["sale"], false)
-            ->andFilterWhere([
-                Sale::tableName() . '.published' => '1',
-                Sale::tableName() . '.deleted' => '0',
-            ])
-            ->select([
-                self::tableName() . '.id',
-                self::tableName() . '.alias',
-                self::tableName() . '.position',
-                self::tableName() . '.image_link',
-                self::tableName() . '.image_link2',
-                self::tableName() . '.image_link3',
-                CategoryLang::tableName() . '.title',
-                'count(' . self::tableName() . '.id) as count'
-            ])
-            ->groupBy(self::tableName() . '.id')
-            ->all();
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query
+                ->innerJoinWith(["sale"], false)
+                ->andFilterWhere([
+                    Sale::tableName() . '.published' => '1',
+                    Sale::tableName() . '.deleted' => '0',
+                ])
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.alias',
+                    self::tableName() . '.position',
+                    self::tableName() . '.image_link',
+                    self::tableName() . '.image_link2',
+                    self::tableName() . '.image_link3',
+                    CategoryLang::tableName() . '.title',
+                    'count(' . self::tableName() . '.id) as count'
+                ])
+                ->groupBy(self::tableName() . '.id')
+                ->all();
+        });
+
+        return $result;
     }
 
     /**
      * @param array $params
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getWithItalianProduct($params = [])
     {
@@ -380,23 +388,27 @@ class Category extends \common\modules\catalog\models\Category
                 ->andFilterWhere(['IN', 'italianProductColors.alias', $params[$keys['colors']]]);
         }
 
-        return $query
-            ->innerJoinWith(["italianProduct"], false)
-            ->andFilterWhere([
-                ItalianProduct::tableName() . '.published' => '1',
-                ItalianProduct::tableName() . '.deleted' => '0',
-            ])
-            ->select([
-                self::tableName() . '.id',
-                self::tableName() . '.alias',
-                self::tableName() . '.position',
-                self::tableName() . '.image_link',
-                self::tableName() . '.image_link2',
-                self::tableName() . '.image_link3',
-                CategoryLang::tableName() . '.title',
-                'count(' . self::tableName() . '.id) as count'
-            ])
-            ->groupBy(self::tableName() . '.id')
-            ->all();
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query
+                ->innerJoinWith(["italianProduct"], false)
+                ->andFilterWhere([
+                    ItalianProduct::tableName() . '.published' => '1',
+                    ItalianProduct::tableName() . '.deleted' => '0',
+                ])
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.alias',
+                    self::tableName() . '.position',
+                    self::tableName() . '.image_link',
+                    self::tableName() . '.image_link2',
+                    self::tableName() . '.image_link3',
+                    CategoryLang::tableName() . '.title',
+                    'count(' . self::tableName() . '.id) as count'
+                ])
+                ->groupBy(self::tableName() . '.id')
+                ->all();
+        });
+
+        return $result;
     }
 }
