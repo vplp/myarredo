@@ -148,7 +148,14 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
     {
         $query = ItalianProductModel::findBase()
             ->select([
-                self::tableName() . '.*',
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                self::tableName() . '.image_link',
+                self::tableName() . '.factory_id',
+                self::tableName() . '.price',
+                self::tableName() . '.price_new',
+                self::tableName() . '.currency',
+                self::tableName() . '.position',
                 ItalianProductLang::tableName() . '.title',
             ]);
 
@@ -165,7 +172,14 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
     {
         $query = ItalianProductModel::findBase()
             ->select([
-                self::tableName() . '.*',
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                self::tableName() . '.image_link',
+                self::tableName() . '.factory_id',
+                self::tableName() . '.price',
+                self::tableName() . '.price_new',
+                self::tableName() . '.currency',
+                self::tableName() . '.position',
                 ItalianProductLang::tableName() . '.title',
             ]);
 

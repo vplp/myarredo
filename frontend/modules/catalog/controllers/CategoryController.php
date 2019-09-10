@@ -82,7 +82,7 @@ class CategoryController extends BaseController
             'max' => $max
         ];
 
-        $queryParams['defaultPageSize'] = 21;
+        $queryParams['defaultPageSize'] = 48;
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         Yii::$app->metatag->render();
@@ -186,6 +186,16 @@ class CategoryController extends BaseController
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
             $models = Product::findBaseArray()
+                ->select([
+                    Product::tableName() . '.id',
+                    Product::tableName() . '.alias',
+                    Product::tableName() . '.image_link',
+                    Product::tableName() . '.factory_id',
+                    Product::tableName() . '.removed',
+                    Product::tableName() . '.price_from',
+                    Product::tableName() . '.currency',
+                    ProductLang::tableName() . '.title',
+                ])
                 ->andWhere(['onmain' => '1'])
                 ->cache(7200)
                 ->all();
@@ -211,7 +221,6 @@ class CategoryController extends BaseController
     /**
      * @return array
      * @throws \Throwable
-     * @throws \yii\base\ExitException
      * @throws \yii\base\InvalidConfigException
      */
     public function actionAjaxGetFilter()

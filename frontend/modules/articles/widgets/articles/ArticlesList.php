@@ -5,7 +5,9 @@ namespace frontend\modules\articles\widgets\articles;
 use Yii;
 use yii\base\Widget;
 //
-use frontend\modules\articles\models\Article;
+use frontend\modules\articles\models\{
+    Article, ArticleLang
+};
 
 /**
  * Class ArticlesList
@@ -34,7 +36,15 @@ class ArticlesList extends Widget
      */
     public function init()
     {
-        $query =  Article::findBase()->limit($this->limit);
+        $query = Article::findBase()
+            ->select([
+                Article::tableName() . '.id',
+                Article::tableName() . '.alias',
+                Article::tableName() . '.image_link',
+                ArticleLang::tableName() . '.title',
+                ArticleLang::tableName() . '.description',
+            ])
+            ->limit($this->limit);
 
         if ($alias = Yii::$app->request->get('alias')) {
             $query->andFilterWhere(['<>', 'alias', $alias]);

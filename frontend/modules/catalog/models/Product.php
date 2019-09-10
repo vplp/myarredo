@@ -53,14 +53,14 @@ class Product extends \common\modules\catalog\models\Product
     {
         return self::find()
             ->innerJoinWith(['lang', 'factory'])
-            ->orderBy(self::tableName() . '.updated_at DESC')
-            ->enabled()
             ->andFilterWhere([
                 Product::tableName() . '.removed' => '0',
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
                 Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
-            ]);
+            ])
+            ->enabled()
+            ->orderBy(self::tableName() . '.updated_at DESC');
     }
 
     /**
@@ -372,7 +372,10 @@ class Product extends \common\modules\catalog\models\Product
         $result = self::getDb()->cache(function ($db) use ($collections_id) {
             return parent::findBase()
                 ->select([
-                    self::tableName() . '.*',
+                    self::tableName() . '.id',
+                    self::tableName() . '.alias',
+                    self::tableName() . '.image_link',
+                    self::tableName() . '.factory_id',
                     ProductLang::tableName() . '.title',
                 ])
                 ->enabled()
@@ -398,7 +401,10 @@ class Product extends \common\modules\catalog\models\Product
         $result = self::getDb()->cache(function ($db) use ($factory_id, $catalog_type_id) {
             return parent::findBase()
                 ->select([
-                    self::tableName() . '.*',
+                    self::tableName() . '.id',
+                    self::tableName() . '.alias',
+                    self::tableName() . '.image_link',
+                    self::tableName() . '.factory_id',
                     ProductLang::tableName() . '.title',
                 ])
                 ->enabled()

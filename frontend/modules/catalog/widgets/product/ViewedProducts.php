@@ -70,7 +70,10 @@ class ViewedProducts extends Widget
         if (!empty($IDs)) {
             $this->models = $modelClass::findBase()
                 ->select([
-                    $modelClass::tableName() . '.*',
+                    $modelClass::tableName() . '.id',
+                    $modelClass::tableName() . '.alias',
+                    $modelClass::tableName() . '.image_link',
+                    $modelClass::tableName() . '.factory_id',
                     $modelLangClass::tableName() . '.title',
                 ])
                 ->byID($IDs)

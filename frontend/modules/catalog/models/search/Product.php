@@ -235,7 +235,13 @@ class Product extends ProductModel
     {
         $query = ProductModel::findBase()
             ->select([
-                self::tableName() . '.*',
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                self::tableName() . '.image_link',
+                self::tableName() . '.factory_id',
+                self::tableName() . '.removed',
+                self::tableName() . '.price_from',
+                self::tableName() . '.currency',
                 ProductLang::tableName() . '.title',
             ]);
 

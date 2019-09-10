@@ -154,7 +154,14 @@ class Sale extends SaleModel implements BaseBackendSearchModel
     {
         $query = SaleModel::findBase()
             ->select([
-                self::tableName() . '.*',
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                self::tableName() . '.image_link',
+                self::tableName() . '.factory_id',
+                self::tableName() . '.price',
+                self::tableName() . '.price_new',
+                self::tableName() . '.currency',
+                self::tableName() . '.position',
                 SaleLang::tableName() . '.title',
             ]);
 

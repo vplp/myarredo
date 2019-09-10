@@ -58,7 +58,10 @@ class ProductsNovelties extends Widget
 
         $query = $modelClass::findBaseArray()
             ->select([
-                $modelClass::tableName() . '.*',
+                $modelClass::tableName() . '.id',
+                $modelClass::tableName() . '.alias',
+                $modelClass::tableName() . '.image_link',
+                $modelClass::tableName() . '.factory_id',
                 $modelLangClass::tableName() . '.title',
             ])
             ->limit(8)

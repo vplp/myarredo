@@ -32,7 +32,10 @@ class ProductsNoveltiesOnMain extends Widget
     {
         $this->models = Product::findBaseArray()
             ->select([
-                Product::tableName() . '.*',
+                Product::tableName() . '.id',
+                Product::tableName() . '.alias',
+                Product::tableName() . '.image_link',
+                Product::tableName() . '.factory_id',
                 ProductLang::tableName() . '.title',
             ])
             ->andWhere(['onmain' => '1'])

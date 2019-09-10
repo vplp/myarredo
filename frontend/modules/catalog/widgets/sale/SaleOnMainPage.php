@@ -40,7 +40,16 @@ class SaleOnMainPage extends Widget
         $this->models = Sale::getDb()->cache(function ($db) use ($country_id, $city_id) {
             return Sale::findBase()
                 ->select([
-                    Sale::tableName() . '.*',
+                    Sale::tableName() . '.id',
+                    Sale::tableName() . '.alias',
+                    Sale::tableName() . '.image_link',
+                    Sale::tableName() . '.factory_id',
+                    Sale::tableName() . '.price',
+                    Sale::tableName() . '.price_new',
+                    Sale::tableName() . '.currency',
+                    Sale::tableName() . '.country_id',
+                    Sale::tableName() . '.city_id',
+                    Sale::tableName() . '.position',
                     SaleLang::tableName() . '.title',
                 ])
                 ->innerJoinWith(["country", "city"])
