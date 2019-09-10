@@ -11,6 +11,9 @@ use common\modules\catalog\models\Product as CommonProduct;
 /**
  * Class FactoryProduct
  *
+ *
+ * @property FactoryPromotionRelProduct[] $factoryPromotionRelProduct
+ *
  * @package frontend\modules\catalog\models
  */
 class FactoryProduct extends CommonProduct
@@ -115,7 +118,7 @@ class FactoryProduct extends CommonProduct
     public static function findBase()
     {
         return self::find()
-            ->innerJoinWith(['factory'])
+            ->innerJoinWith(['factory', 'category'])
             ->andWhere([self::tableName() . '.factory_id' => Yii::$app->user->identity->profile->factory_id])
             ->orderBy(self::tableName() . '.updated_at DESC');
     }
@@ -128,7 +131,8 @@ class FactoryProduct extends CommonProduct
     {
         return $this
             ->hasOne(FactoryPromotion::class, ['id' => 'promotion_id'])
-            ->viaTable(FactoryPromotionRelProduct::tableName(), ['catalog_item_id' => 'id']);
+            ->viaTable(FactoryPromotionRelProduct::tableName(), ['catalog_item_id' => 'id'])
+            ->cache(7200);
     }
 
     /**

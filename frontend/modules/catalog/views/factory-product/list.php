@@ -7,7 +7,7 @@ use kartik\grid\GridView;
 use frontend\components\Breadcrumbs;
 //
 use frontend\modules\catalog\models\{
-    Category, Product
+    Category, Product, FactoryProduct
 };
 //
 use thread\widgets\grid\{
@@ -15,8 +15,8 @@ use thread\widgets\grid\{
 };
 
 /**
- * @var \yii\data\Pagination $pages
- * @var $model \frontend\modules\catalog\models\FactoryProduct
+ * @var $pages \yii\data\Pagination
+ * @var $model FactoryProduct
  */
 
 $dataProvider = $model->search(Yii::$app->request->queryParams);
@@ -74,6 +74,7 @@ $this->title = $this->context->title;
                                             'format' => 'raw',
                                             'attribute' => 'category',
                                             'value' => function ($model) {
+                                                /** @var $model FactoryProduct */
                                                 $result = [];
                                                 foreach ($model->category as $category) {
                                                     $result[] = Html::img(
@@ -105,7 +106,7 @@ $this->title = $this->context->title;
                                             'format' => 'raw',
                                             'attribute' => 'image_link',
                                             'value' => function ($model) {
-                                                /** @var \frontend\modules\catalog\models\FactoryProduct $model */
+                                                /** @var $model FactoryProduct */
                                                 return Html::img(Product::getImageThumb($model['image_link']), ['width' => 50]);
                                             },
                                             'headerOptions' => ['class' => 'col-sm-1'],
@@ -122,6 +123,7 @@ $this->title = $this->context->title;
                                             'attribute' => 'updated_at',
                                             'label' => Yii::t('app', 'Дата'),
                                             'value' => function ($model) {
+                                                /** @var $model FactoryProduct */
                                                 return date('j.m.Y', $model->updated_at);
                                             },
                                             'headerOptions' => ['class' => 'col-sm-1'],
@@ -131,7 +133,7 @@ $this->title = $this->context->title;
                                         [
                                             'format' => 'raw',
                                             'value' => function ($model) {
-                                                /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                                /** @var $model FactoryProduct */
                                                 return (!empty($model->factoryPromotionRelProduct))
                                                     ? Yii::t('app', 'Рекламируется')
                                                     : Html::a(
@@ -147,7 +149,7 @@ $this->title = $this->context->title;
                                             'format' => 'raw',
                                             'attribute' => 'published',
                                             'value' => function ($model) {
-                                                /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                                /** @var $model FactoryProduct */
                                                 return Html::checkbox(false, $model->published, ['disabled' => true]);
                                             },
                                             'headerOptions' => ['class' => 'col-sm-1'],
@@ -166,7 +168,7 @@ $this->title = $this->context->title;
                                             'template' => '{view} {update} {delete}',
                                             'buttons' => [
                                                 'view' => function ($url, $model) {
-                                                    /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                                    /** @var $model FactoryProduct */
                                                     return ($model->published && !$model->deleted) ? Html::a(
                                                         '<span class="glyphicon glyphicon-eye-open"></span>',
                                                         Product::getUrl($model['alias']),
@@ -177,20 +179,26 @@ $this->title = $this->context->title;
                                                     ) : '';
                                                 },
                                                 'update' => function ($url, $model) {
-                                                    /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                                    /** @var $model FactoryProduct */
                                                     return Yii::$app->user->identity->id == $model->user_id ? Html::a(
                                                         '<span class="glyphicon glyphicon-pencil"></span>',
-                                                        Url::toRoute(['/catalog/factory-product/update', 'id' => $model->id]),
+                                                        Url::toRoute([
+                                                            '/catalog/factory-product/update',
+                                                            'id' => $model->id
+                                                        ]),
                                                         [
                                                             'class' => 'btn btn-default btn-xs'
                                                         ]
                                                     ) : '';
                                                 },
                                                 'delete' => function ($url, $model) {
-                                                    /** @var $model \frontend\modules\catalog\models\FactoryProduct */
+                                                    /** @var $model FactoryProduct */
                                                     return Yii::$app->user->identity->id == $model->user_id ? Html::a(
                                                         '<span class="glyphicon glyphicon-trash"></span>',
-                                                        Url::toRoute(['/catalog/factory-product/intrash', 'id' => $model->id]),
+                                                        Url::toRoute([
+                                                            '/catalog/factory-product/intrash',
+                                                            'id' => $model->id
+                                                        ]),
                                                         [
                                                             'class' => 'btn btn-default btn-xs',
                                                             'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),

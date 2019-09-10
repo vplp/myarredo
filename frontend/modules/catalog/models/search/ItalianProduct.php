@@ -156,6 +156,7 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
                 self::tableName() . '.price_new',
                 self::tableName() . '.currency',
                 self::tableName() . '.position',
+                self::tableName() . '.create_mode',
                 ItalianProductLang::tableName() . '.title',
             ]);
 
