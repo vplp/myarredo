@@ -127,7 +127,7 @@ class FactoryController extends BaseController
 
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
-        $module->itemOnPage = 19;
+        $module->itemOnPage = 20;
 
         $modelProduct = new Product();
         $product = $modelProduct->search([

@@ -67,9 +67,9 @@ class Factory extends FactoryModel
         $query->andFilterWhere(['like', FactoryLang::tableName() . '.title', $this->title]);
         $query->andFilterWhere(['like', 'first_letter', $this->letter]);
 
-        self::getDb()->cache(function ($db) use ($dataProvider) {
-            $dataProvider->prepare();
-        });
+//        self::getDb()->cache(function ($db) use ($dataProvider) {
+//            $dataProvider->prepare();
+//        });
 
         return $dataProvider;
     }
@@ -85,6 +85,13 @@ class Factory extends FactoryModel
         $query = FactoryModel::findBase();
 
         $query
+            ->select([
+                Factory::tableName() . '.id',
+                Factory::tableName() . '.alias',
+                Factory::tableName() . '.image_link',
+                Factory::tableName() . '.title',
+            ])
+            ->innerJoinWith(['lang'], false)
             ->innerJoinWith(["product"], false)
             ->innerJoinWith(["product.lang"], false)
             ->andFilterWhere([
