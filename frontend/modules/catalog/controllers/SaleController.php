@@ -108,7 +108,7 @@ class SaleController extends BaseController
         $countries = Country::getWithSale($queryParams);
         $cities = City::getWithSale($queryParams);
 
-        $queryParams['defaultPageSize'] = 21;
+        $queryParams['defaultPageSize'] = 24;
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         Yii::$app->metatag->render();
