@@ -36,6 +36,7 @@ class ProductsNoveltiesOnMain extends Widget
                 Product::tableName() . '.alias',
                 Product::tableName() . '.image_link',
                 Product::tableName() . '.factory_id',
+                Product::tableName() . '.bestseller',
                 ProductLang::tableName() . '.title',
             ])
             ->andWhere(['onmain' => '1'])
