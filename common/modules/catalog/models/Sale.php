@@ -419,7 +419,7 @@ class Sale extends ActiveRecord
      */
     public function getCountry()
     {
-        return $this->hasOne(Country::class, ['id' => 'country_id']);
+        return $this->hasOne(Country::class, ['id' => 'country_id'])->cache(7200);
     }
 
     /**
@@ -427,7 +427,7 @@ class Sale extends ActiveRecord
      */
     public function getCity()
     {
-        return $this->hasOne(City::class, ['id' => 'city_id']);
+        return $this->hasOne(City::class, ['id' => 'city_id'])->cache(7200);
     }
 
     /**
@@ -435,7 +435,7 @@ class Sale extends ActiveRecord
      */
     public function getFactory()
     {
-        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
+        return $this->hasOne(Factory::class, ['id' => 'factory_id'])->cache(7200);
     }
 
     /**
@@ -443,7 +443,7 @@ class Sale extends ActiveRecord
      */
     public function getTypes()
     {
-        return $this->hasOne(Types::class, ['id' => 'catalog_type_id']);
+        return $this->hasOne(Types::class, ['id' => 'catalog_type_id'])->cache(7200);
     }
 
     /**
@@ -451,7 +451,7 @@ class Sale extends ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::class, ['id' => 'user_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id'])->cache(7200);
     }
 
     /**

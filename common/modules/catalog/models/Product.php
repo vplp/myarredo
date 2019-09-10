@@ -551,7 +551,7 @@ class Product extends ActiveRecord implements iProduct
      */
     public function getFactory()
     {
-        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
+        return $this->hasOne(Factory::class, ['id' => 'factory_id'])->cache(7200);
     }
 
     /**

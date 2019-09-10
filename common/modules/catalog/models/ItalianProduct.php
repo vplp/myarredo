@@ -600,7 +600,7 @@ class ItalianProduct extends ActiveRecord
      */
     public function getRegion()
     {
-        return $this->hasOne(Region::class, ['id' => 'region_id']);
+        return $this->hasOne(Region::class, ['id' => 'region_id'])->cache(7200);
     }
 
     /**
@@ -608,7 +608,7 @@ class ItalianProduct extends ActiveRecord
      */
     public function getCity()
     {
-        return $this->hasOne(City::class, ['id' => 'city_id']);
+        return $this->hasOne(City::class, ['id' => 'city_id'])->cache(7200);
     }
 
     /**
@@ -616,7 +616,7 @@ class ItalianProduct extends ActiveRecord
      */
     public function getFactory()
     {
-        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
+        return $this->hasOne(Factory::class, ['id' => 'factory_id'])->cache(7200);
     }
 
     /**
@@ -624,7 +624,7 @@ class ItalianProduct extends ActiveRecord
      */
     public function getTypes()
     {
-        return $this->hasOne(Types::class, ['id' => 'catalog_type_id']);
+        return $this->hasOne(Types::class, ['id' => 'catalog_type_id'])->cache(7200);
     }
 
     /**
