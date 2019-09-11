@@ -283,6 +283,19 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
     }
 
     /**
+     * Static title
+     *
+     * @param $model
+     * @return string
+     */
+    public static function getStaticTitle($model)
+    {
+        $title = $model['lang']['title'] ?? '{{-}}';
+
+        return $title;
+    }
+
+    /**
      * @param int $count
      * @return array
      * @throws \Throwable

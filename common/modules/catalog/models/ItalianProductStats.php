@@ -13,7 +13,7 @@ use common\modules\catalog\Catalog;
  *
  * @property integer $id
  * @property integer $user_id
- * @property integer $item_id
+ * @property integer $product_id
  * @property integer $country_id
  * @property integer $city_id
  * @property string $ip
@@ -21,6 +21,7 @@ use common\modules\catalog\Catalog;
  * @property boolean $is_bot
  * @property integer $created_at
  * @property integer $updated_at
+ * @property integer $mark
  *
  * @package common\modules\catalog\models
  */
@@ -60,12 +61,12 @@ class ItalianProductStats extends ActiveRecord
     {
         return [
             [['ip'], 'string', 'max' => 45],
-            [['is_bot'], 'in', 'range' => [0, 1]],
+            [['is_bot', 'mark'], 'in', 'range' => [0, 1]],
             [['http_user_agent'], 'string', 'max' => 512],
             [
                 [
                     'user_id',
-                    'item_id',
+                    'product_id',
                     'country_id',
                     'city_id',
                     'create_time',
@@ -83,9 +84,10 @@ class ItalianProductStats extends ActiveRecord
     public function scenarios()
     {
         return [
+            'setMark' => ['mark'],
             'frontend' => [
                 'user_id',
-                'item_id',
+                'product_id',
                 'country_id',
                 'city_id',
                 'ip',
@@ -103,7 +105,7 @@ class ItalianProductStats extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User'),
-            'item_id' => Yii::t('app', 'Product'),
+            'product_id' => Yii::t('app', 'Product'),
             'country_id',
             'city_id',
             'ip',
@@ -111,6 +113,7 @@ class ItalianProductStats extends ActiveRecord
             'is_bot',
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
+            'mark',
         ];
     }
 
@@ -119,7 +122,7 @@ class ItalianProductStats extends ActiveRecord
      */
     public function getItalianProduct()
     {
-        return $this->hasOne(ItalianProduct::class, ['id' => 'item_id']);
+        return $this->hasOne(ItalianProduct::class, ['id' => 'product_id']);
     }
 
     /**
@@ -129,8 +132,8 @@ class ItalianProductStats extends ActiveRecord
     {
         return self::find()
             ->select([
-                self::tableName() . '.item_id',
-                'count(' . self::tableName() . '.item_id) as count'
+                self::tableName() . '.product_id',
+                'count(' . self::tableName() . '.product_id) as count'
             ])
             ->innerJoinWith(["italianProduct"])
             ->innerJoinWith(["italianProduct.lang"])

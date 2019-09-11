@@ -58,6 +58,12 @@ return [
     'product-stats' => 'catalog/product-stats/list',
     'product-stats/<id:[\d\-]+>' => 'catalog/product-stats/view',
 
+    'sale-stats' => 'catalog/sale-stats/list',
+    'sale-stats/<id:[\d\-]+>' => 'catalog/sale-stats/view',
+
+    'sale-italy-stats' => 'catalog/sale-italy-stats/list',
+    'sale-italy-stats/<id:[\d\-]+>' => 'catalog/sale-italy-stats/view',
+
     'factory-stats' => 'catalog/factory-stats/list',
     'factory-stats/<alias:[\w\-]+>' => 'catalog/factory-stats/view',
 

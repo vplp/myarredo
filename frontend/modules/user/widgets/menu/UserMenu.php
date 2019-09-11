@@ -105,6 +105,14 @@ class UserMenu extends Widget
                     'url' => ['/catalog/product-stats/list']
                 ],
                 [
+                    'label' => Yii::t('app', 'Sale statistics'),
+                    'url' => ['/catalog/sale-stats/list']
+                ],
+                [
+                    'label' => Yii::t('app', 'Sale in Italy statistics'),
+                    'url' => ['/catalog/sale-italy-stats/list']
+                ],
+                [
                     'label' => Yii::t('app', 'Factory statistics'),
                     'url' => ['/catalog/factory-stats/list']
                 ]
@@ -138,6 +146,14 @@ class UserMenu extends Widget
                 [
                     'label' => Yii::t('app', 'Product statistics'),
                     'url' => ['/catalog/product-stats/list']
+                ],
+                [
+                    'label' => Yii::t('app', 'Sale statistics'),
+                    'url' => ['/catalog/sale-stats/list']
+                ],
+                [
+                    'label' => Yii::t('app', 'Sale in Italy statistics'),
+                    'url' => ['/catalog/sale-italy-stats/list']
                 ],
                 [
                     'label' => Yii::t('app', 'Factory statistics'),

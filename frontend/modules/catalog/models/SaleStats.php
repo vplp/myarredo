@@ -14,9 +14,9 @@ use frontend\modules\catalog\Catalog;
 class SaleStats extends \common\modules\catalog\models\SaleStats
 {
     /**
-     * @param $sale_item_id
+     * @param $product_id
      */
-    public static function create($sale_item_id)
+    public static function create($product_id)
     {
         /** @var $module Catalog */
         $module = Yii::$app->getModule('catalog');
@@ -27,7 +27,7 @@ class SaleStats extends \common\modules\catalog\models\SaleStats
             $model->setScenario('frontend');
 
             $model->user_id = Yii::$app->getUser()->id ?? 0;
-            $model->sale_item_id = $sale_item_id;
+            $model->product_id = $product_id;
             $model->country_id = Yii::$app->city->getCountryId();
             $model->city_id = Yii::$app->city->getCityId();
             $model->ip = Yii::$app->request->userIP;
@@ -36,5 +36,16 @@ class SaleStats extends \common\modules\catalog\models\SaleStats
 
             $model->save();
         }
+    }
+
+    /**
+     * @param $params
+     * @return mixed|\yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function search($params)
+    {
+        return (new search\SaleStats())->search($params);
     }
 }

@@ -14,9 +14,9 @@ use frontend\modules\catalog\Catalog;
 class ItalianProductStats extends \common\modules\catalog\models\ItalianProductStats
 {
     /**
-     * @param $item_id
+     * @param $product_id
      */
-    public static function create($item_id)
+    public static function create($product_id)
     {
         /** @var $module Catalog */
         $module = Yii::$app->getModule('catalog');
@@ -27,7 +27,7 @@ class ItalianProductStats extends \common\modules\catalog\models\ItalianProductS
             $model->setScenario('frontend');
 
             $model->user_id = Yii::$app->getUser()->id ?? 0;
-            $model->item_id = $item_id;
+            $model->product_id = $product_id;
             $model->country_id = Yii::$app->city->getCountryId();
             $model->city_id = Yii::$app->city->getCityId();
             $model->ip = Yii::$app->request->userIP;
@@ -36,5 +36,16 @@ class ItalianProductStats extends \common\modules\catalog\models\ItalianProductS
 
             $model->save();
         }
+    }
+
+    /**
+     * @param $params
+     * @return mixed|\yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function search($params)
+    {
+        return (new search\ItalianProductStats())->search($params);
     }
 }

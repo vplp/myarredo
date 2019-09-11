@@ -252,6 +252,19 @@ class Sale extends \common\modules\catalog\models\Sale
     }
 
     /**
+     * Static title
+     *
+     * @param $model
+     * @return string
+     */
+    public static function getStaticTitle($model)
+    {
+        $title = $model['lang']['title'] ?? '{{-}}';
+
+        return $title;
+    }
+
+    /**
      * @return string
      */
     public function getFactoryTitle()

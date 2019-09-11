@@ -7,18 +7,18 @@ use yii\helpers\Console;
 use yii\console\Controller;
 //
 use frontend\modules\catalog\models\{
-    ProductStats, ProductStatsDays
+    ItalianProductStats, ItalianProductStatsDays
 };
 use frontend\modules\shop\models\{
     Order, OrderItem
 };
 
 /**
- * Class StatsController
+ * Class ItalianProductStatsController
  *
  * @package console\controllers
  */
-class StatsController extends Controller
+class ItalianProductStatsController extends Controller
 {
     /**
      * @throws \yii\db\Exception
@@ -28,11 +28,11 @@ class StatsController extends Controller
         $this->stdout("ResetViews: start. \n", Console::FG_GREEN);
 
         Yii::$app->db->createCommand()
-            ->update(ProductStats::tableName(), ['mark' => '0'])
+            ->update(ItalianProductStats::tableName(), ['mark' => '0'])
             ->execute();
 
         Yii::$app->db->createCommand()
-            ->update(ProductStatsDays::tableName(), ['views' => '0'])
+            ->update(ItalianProductStatsDays::tableName(), ['views' => '0'])
             ->execute();
 
         $this->stdout("ResetViews: finish. \n", Console::FG_GREEN);
@@ -46,11 +46,11 @@ class StatsController extends Controller
         $this->stdout("ResetRequests: start. \n", Console::FG_GREEN);
 
         Yii::$app->db->createCommand()
-            ->update(Order::tableName(), ['mark' => '0'], "product_type = 'product'")
+            ->update(Order::tableName(), ['mark' => '0'], "product_type = 'sale-italy'")
             ->execute();
 
         Yii::$app->db->createCommand()
-            ->update(ProductStatsDays::tableName(), ['requests' => '0'])
+            ->update(ItalianProductStatsDays::tableName(), ['requests' => '0'])
             ->execute();
 
         $this->stdout("ResetRequests: finish. \n", Console::FG_GREEN);
@@ -63,10 +63,10 @@ class StatsController extends Controller
     {
         $this->stdout("Start. \n", Console::FG_GREEN);
 
-        $data = ProductStats::find()
-            ->innerJoinWith(["product"])
+        $data = ItalianProductStats::find()
+            ->innerJoinWith(["italianProduct"])
             ->where([
-                ProductStats::tableName() . '.mark' => '0',
+                ItalianProductStats::tableName() . '.mark' => '0',
             ])
             ->limit(5000)
             ->all();
@@ -75,23 +75,23 @@ class StatsController extends Controller
             $timestamp = strtotime(date('d-m-Y', $item['created_at']));
             $date = mktime(0, 0, 0, date("m", $timestamp), date("d", $timestamp), date("Y", $timestamp));
 
-            $model = ProductStatsDays::find()
+            $model = ItalianProductStatsDays::find()
                 ->andWhere([
                     'product_id' => $item['product_id'],
                     'city_id' => $item['city_id'],
-                    'factory_id' => $item['product']['factory_id'],
+                    'factory_id' => $item['italianProduct']['factory_id'],
                     'date' => $date,
                 ])
                 ->one();
 
             if ($model == null) {
-                $model = new ProductStatsDays();
+                $model = new ItalianProductStatsDays();
             }
 
             $model->setScenario('frontend');
 
-            $model->product_id = $item['product']['id'];
-            $model->factory_id = $item['product']['factory_id'];
+            $model->product_id = $item['italianProduct']['id'];
+            $model->factory_id = $item['italianProduct']['factory_id'];
             $model->country_id = 0;
             $model->city_id = $item['city_id'];
             $model->date = $date;
@@ -119,7 +119,7 @@ class StatsController extends Controller
             ->innerJoinWith(['items'])
             ->where([
                 Order::tableName() . '.mark' => '0',
-                Order::tableName() . '.product_type' => 'product',
+                Order::tableName() . '.product_type' => 'sale-italy',
             ])
             ->limit(500)
             ->orderBy(['created_at' => SORT_DESC])
@@ -134,7 +134,7 @@ class StatsController extends Controller
                     $timestamp = strtotime(date('d-m-Y', $order['created_at']));
                     $date = mktime(0, 0, 0, date("m", $timestamp), date("d", $timestamp), date("Y", $timestamp));
 
-                    $model = ProductStatsDays::find()
+                    $model = ItalianProductStatsDays::find()
                         ->andWhere([
                             'product_id' => $item['product_id'],
                             'city_id' => $order['city_id'],
@@ -144,7 +144,7 @@ class StatsController extends Controller
                         ->one();
 
                     if ($model == null) {
-                        $model = new ProductStatsDays();
+                        $model = new ItalianProductStatsDays();
                     }
 
                     $model->setScenario('frontend');

@@ -325,7 +325,7 @@ class Product extends \common\modules\catalog\models\Product
      */
     public function getTitle()
     {
-        $title = $this->lang->title ?? '{}';
+        $title = $this->lang->title ?? '{{-}}';
 
         return $title;
     }
@@ -338,7 +338,7 @@ class Product extends \common\modules\catalog\models\Product
      */
     public static function getStaticTitle($model)
     {
-        $title = $model['lang']['title'] ?? '{}';
+        $title = $model['lang']['title'] ?? '{{-}}';
 
         return $title;
     }

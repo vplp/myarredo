@@ -130,8 +130,7 @@ class ProductStats extends ActiveRecord
                 self::tableName() . '.product_id',
                 'count(' . self::tableName() . '.product_id) as count'
             ])
-            ->innerJoinWith(["product"])
-            ->innerJoinWith(["product.lang"])
+            ->innerJoinWith(['product', 'product.lang'])
             ->groupBy(self::tableName() . '.product_id')
             ->orderBy('count DESC');
     }
