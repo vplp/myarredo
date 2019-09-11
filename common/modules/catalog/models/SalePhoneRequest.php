@@ -21,6 +21,7 @@ use common\modules\catalog\Catalog;
  * @property boolean $is_bot
  * @property integer $created_at
  * @property integer $updated_at
+ * @property integer $mark
  *
  * @package common\modules\catalog\models
  */
@@ -60,7 +61,7 @@ class SalePhoneRequest extends ActiveRecord
     {
         return [
             [['ip'], 'string', 'max' => 45],
-            [['is_bot'], 'in', 'range' => [0, 1]],
+            [['is_bot', 'mark'], 'in', 'range' => [0, 1]],
             [['http_user_agent'], 'string', 'max' => 512],
             [
                 [
@@ -83,6 +84,7 @@ class SalePhoneRequest extends ActiveRecord
     public function scenarios()
     {
         return [
+            'setMark' => ['mark'],
             'frontend' => [
                 'user_id',
                 'sale_item_id',
@@ -111,6 +113,7 @@ class SalePhoneRequest extends ActiveRecord
             'is_bot',
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
+            'mark',
         ];
     }
 
@@ -132,8 +135,7 @@ class SalePhoneRequest extends ActiveRecord
                 self::tableName() . '.sale_item_id',
                 'count(' . self::tableName() . '.sale_item_id) as count'
             ])
-            ->innerJoinWith(["sale"])
-            ->innerJoinWith(["sale.lang"])
+            ->innerJoinWith(['sale', 'sale.lang'])
             ->groupBy(self::tableName() . '.id')
             ->orderBy('count DESC');
     }
