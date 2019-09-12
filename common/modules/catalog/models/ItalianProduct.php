@@ -827,7 +827,7 @@ class ItalianProduct extends ActiveRecord
     public function getCountViews()
     {
         return ItalianProductStats::findBase()
-            ->andWhere(['item_id' => $this->id])
+            ->andWhere(['product_id' => $this->id])
             ->count();
     }
 

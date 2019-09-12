@@ -580,7 +580,7 @@ class Sale extends ActiveRecord
     public function getCountViews()
     {
         return SaleStats::findBase()
-            ->andWhere(['sale_item_id' => $this->id])
+            ->andWhere(['product_id' => $this->id])
             ->count();
     }
 
