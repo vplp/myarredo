@@ -157,7 +157,7 @@ class UserMenu extends Widget
                 ],
                 [
                     'label' => Yii::t('app', 'Factory statistics'),
-                    'url' => ['/catalog/factory-stats/list']
+                    'url' => ['/catalog/factory-stats/view', 'alias' => Yii::$app->user->identity->profile->factory->alias]
                 ],
                 [
                     'label' => Yii::t('app', 'General rules'),
