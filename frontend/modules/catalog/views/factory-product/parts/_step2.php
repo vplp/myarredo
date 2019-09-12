@@ -65,3 +65,13 @@ use backend\app\bootstrap\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<!-- rules box -->
+<div class="add-itprod-rules">
+    <div class="add-itprod-rules-item">
+
+        <?= Yii::$app->param->getByName('ITALIAN_PRODUCT_STEP2_TEXT') ?>
+
+    </div>
+</div>
+<!-- rules box end -->

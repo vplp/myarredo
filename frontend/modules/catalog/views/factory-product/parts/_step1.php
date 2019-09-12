@@ -138,6 +138,16 @@ use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;
 
     </div>
 
+    <!-- rules box -->
+    <div class="add-itprod-rules">
+        <div class="add-itprod-rules-item">
+
+            <?= Yii::$app->param->getByName('ITALIAN_PRODUCT_STEP1_TEXT') ?>
+
+        </div>
+    </div>
+    <!-- rules box end -->
+
 <?php
 $url = Url::toRoute('/catalog/factory-product/ajax-get-category');
 $script = <<<JS

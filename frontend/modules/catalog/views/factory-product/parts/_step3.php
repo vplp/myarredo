@@ -12,7 +12,7 @@ use frontend\modules\catalog\models\{
  */
 
 ?>
-
+<div class="form-horizontal add-itprod-content">
 <!-- steps box -->
 <div class="progress-steps-box">
     <div class="progress-steps-step<?= !Yii::$app->request->get('step') ? ' active' : '' ?>">
@@ -41,4 +41,22 @@ use frontend\modules\catalog\models\{
         ['/catalog/factory-product/update', 'id' => $model->id],
         ['class' => 'btn btn-primary']
     ) ?>
+
+    <?= Html::a(
+        Yii::t('app', 'Опубликовать'),
+        ['/catalog/factory-promotion/create', 'product_id' => $model->id],
+        ['class' => 'btn btn-primary']
+    ) ?>
 </div>
+
+</div>
+
+<!-- rules box -->
+<div class="add-itprod-rules">
+    <div class="add-itprod-rules-item">
+
+        <?= Yii::$app->param->getByName('ITALIAN_PRODUCT_STEP3_TEXT') ?>
+
+    </div>
+</div>
+<!-- rules box end -->

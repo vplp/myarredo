@@ -90,5 +90,3 @@ use backend\app\bootstrap\ActiveForm;
     </div>
 </div>
 <!-- rules box end -->
-
-
