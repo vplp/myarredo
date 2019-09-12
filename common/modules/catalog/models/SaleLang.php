@@ -59,8 +59,9 @@ class SaleLang extends ActiveRecordLang
     public function scenarios()
     {
         return [
+            'setImages' => [],
             'backend' => ['title', 'description', 'content'],
-            'frontend' => ['title', 'description'],
+            'frontend' => ['title', 'description', 'content'],
         ];
     }
 

@@ -7,6 +7,7 @@ use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 //
 use common\modules\catalog\models\Product as CommonProduct;
+use frontend\modules\catalog\models\Product as FrontendProduct;
 
 /**
  * Class FactoryProduct
@@ -16,7 +17,7 @@ use common\modules\catalog\models\Product as CommonProduct;
  *
  * @package frontend\modules\catalog\models
  */
-class FactoryProduct extends CommonProduct
+class FactoryProduct extends FrontendProduct
 {
     public $promotion;
 
@@ -77,6 +78,7 @@ class FactoryProduct extends CommonProduct
     {
         return ArrayHelper::merge(CommonProduct::scenarios(), [
             'promotion' => ['promotion'],
+            'setImages' => ['image_link', 'gallery_image'],
             'frontend' => [
                 'catalog_type_id',
                 'user_id',

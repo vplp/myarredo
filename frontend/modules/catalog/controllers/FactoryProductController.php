@@ -5,12 +5,18 @@ namespace frontend\modules\catalog\controllers;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Response;
 use yii\web\ForbiddenHttpException;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Category, Collection, SubTypes, FactoryProduct, FactoryProductLang, search\FactoryProduct as filterFactoryProductModel
+    Category,
+    Collection,
+    SubTypes,
+    FactoryProduct,
+    FactoryProductLang,
+    search\FactoryProduct as filterFactoryProductModel
 };
 //
 use thread\actions\{
@@ -77,6 +83,18 @@ class FactoryProductController extends BaseController
     {
         $this->title = Yii::t('app', 'My goods');
 
+        if (Yii::$app->request->get('step') == 'photo') {
+            $scenario = 'setImages';
+            $link = function () {
+                return Url::to(['update', 'id' => $this->action->getModel()->id, 'step' => 'check']);
+            };
+        } else {
+            $scenario = 'frontend';
+            $link = function () {
+                return Url::to(['update', 'id' => $this->action->getModel()->id, 'step' => 'photo']);
+            };
+        }
+
         return ArrayHelper::merge(
             parent::actions(),
             [
@@ -98,10 +116,8 @@ class FactoryProductController extends BaseController
                     'class' => UpdateWithLang::class,
                     'modelClass' => $this->model,
                     'modelClassLang' => $this->modelLang,
-                    'scenario' => 'frontend',
-                    'redirect' => function () {
-                        return ['update', 'id' => $this->action->getModel()->id];
-                    }
+                    'scenario' => $scenario,
+                    'redirect' => $link
                 ],
                 'intrash' => [
                     'class' => AttributeSwitch::class,

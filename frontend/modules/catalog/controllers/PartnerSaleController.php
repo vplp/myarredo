@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\controllers;
 
+use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
 //
@@ -18,6 +19,7 @@ use frontend\actions\UpdateWithLang;
 use common\actions\upload\{
     DeleteAction, UploadAction
 };
+use yii\helpers\Url;
 
 /**
  * Class PartnerSaleController
@@ -60,6 +62,18 @@ class PartnerSaleController extends BaseController
      */
     public function actions()
     {
+        if (Yii::$app->request->get('step') == 'photo') {
+            $scenario = 'setImages';
+            $link = function () {
+                return Url::to(['update', 'id' => $this->action->getModel()->id, 'step' => 'check']);
+            };
+        } else {
+            $scenario = 'frontend';
+            $link = function () {
+                return Url::to(['update', 'id' => $this->action->getModel()->id, 'step' => 'photo']);
+            };
+        }
+
         return ArrayHelper::merge(
             parent::actions(),
             [
@@ -81,10 +95,8 @@ class PartnerSaleController extends BaseController
                     'class' => UpdateWithLang::class,
                     'modelClass' => $this->model,
                     'modelClassLang' => $this->modelLang,
-                    'scenario' => 'frontend',
-                    'redirect' => function () {
-                        return ['update', 'id' => $this->action->getModel()->id];
-                    }
+                    'scenario' => $scenario,
+                    'redirect' => $link
                 ],
                 'intrash' => [
                     'class' => AttributeSwitch::class,

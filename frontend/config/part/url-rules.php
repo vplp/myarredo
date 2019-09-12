@@ -83,6 +83,7 @@ return [
     'factory-product' => 'catalog/factory-product/list',
     'factory-product/create' => 'catalog/factory-product/create',
     'catalog/factory-product/ajax-get-category' => 'catalog/factory-product/ajax-get-category',
+    'factory-product/update/<id:[\d\-]+>/<step:(photo|check)>' => 'catalog/factory-product/update',
     'factory-product/update/<id:[\d\-]+>' => 'catalog/factory-product/update',
     'factory-product/intrash/<id:[\d\-]+>' => 'catalog/factory-product/intrash',
     'catalog/factory-product/fileupload' => 'catalog/factory-product/fileupload',
@@ -122,6 +123,7 @@ return [
     // Partner sale
     'partner/sale' => 'catalog/partner-sale/list',
     'partner/sale/create' => 'catalog/partner-sale/create',
+    'partner/sale/update/<id:[\d\-]+>/<step:(photo|check)>' => 'catalog/partner-sale/update',
     'partner/sale/update/<id:[\d\-]+>' => 'catalog/partner-sale/update',
     'partner/sale/intrash/<id:[\d\-]+>' => 'catalog/partner-sale/intrash',
     'catalog/partner-sale/fileupload' => 'catalog/partner-sale/fileupload',
