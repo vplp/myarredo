@@ -82,7 +82,7 @@ class CategoryController extends BaseController
             'max' => $max
         ];
 
-        $queryParams['defaultPageSize'] = 39;
+        $queryParams['defaultPageSize'] = 33;
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         Yii::$app->metatag->render();
