@@ -97,7 +97,7 @@ class Factory extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias', 'title'], 'required'],
+            [['alias', 'title'], 'required', 'on' => 'backend'],
             [['user_id', 'created_at', 'updated_at', 'position', 'partner_id'], 'integer'],
             [
                 [
@@ -142,6 +142,7 @@ class Factory extends ActiveRecord
             'popular' => ['popular'],
             'popular_by' => ['popular_by'],
             'popular_ua' => ['popular_ua'],
+            'setImages' => ['image_link'],
             'backend' => [
                 'user_id',
                 'title',

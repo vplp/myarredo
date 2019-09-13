@@ -8,6 +8,7 @@ use yii\helpers\{
 use frontend\modules\location\models\{
     Country, City
 };
+use frontend\modules\catalog\models\Factory;
 use frontend\modules\user\models\{
     Profile, ProfileLang
 };
@@ -15,6 +16,7 @@ use frontend\modules\sys\models\Language;
 
 /** @var $model Profile */
 /** @var $modelLang ProfileLang */
+/** @var $modelFactory Factory */
 
 $this->title = Yii::t('app', 'Profile');
 
@@ -67,12 +69,16 @@ $this->title = Yii::t('app', 'Profile');
                             <?= $form->field($modelLang, 'address') ?>
                             <?= $form->field($model, 'website') ?>
                         </div>
-                        <div class="col-md-4 col-lg-4 one-row">
-                            <?= $form
-                                ->field($model, 'image_link')
-                                ->label(Yii::t('app', 'Логотип'))
-                                ->imageOne($model->getImageLink()) ?>
-                        </div>
+
+                        <?php if ($modelFactory) { ?>
+                            <div class="col-md-4 col-lg-4 one-row">
+                                <?= $form
+                                    ->field($modelFactory, 'image_link')
+                                    ->label(Yii::t('app', 'Логотип'))
+                                    ->imageOne($modelFactory->getImageLink()) ?>
+                            </div>
+                        <?php } ?>
+
                     <?php } ?>
 
                     <?php
