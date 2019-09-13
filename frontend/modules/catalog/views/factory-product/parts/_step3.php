@@ -5,6 +5,7 @@ use yii\helpers\Html;
 use frontend\modules\catalog\models\{
     FactoryProduct, FactoryProductLang
 };
+use yii\helpers\Url;
 
 /**
  * @var FactoryProduct $model
@@ -30,11 +31,6 @@ use frontend\modules\catalog\models\{
 </div>
 <!-- steps box end -->
 
-<?= $this->render('../../product/view', [
-    'model' => $model,
-    'modelLang' => $modelLang
-]) ?>
-
 <div class="buttons-cont">
     <?= Html::a(
         Yii::t('app', 'Edit'),
@@ -49,14 +45,26 @@ use frontend\modules\catalog\models\{
     ) ?>
 </div>
 
+    <?= $this->render('../../product/view', [
+        'model' => $model,
+        'modelLang' => $modelLang
+    ]) ?>
+
 </div>
 
 <!-- rules box -->
 <div class="add-itprod-rules">
     <div class="add-itprod-rules-item">
 
-        <?= Yii::$app->param->getByName('ITALIAN_PRODUCT_STEP3_TEXT') ?>
+        <?= Yii::$app->param->getByName('PARTNER_SALE_TEXT') ?>
 
     </div>
 </div>
 <!-- rules box end -->
+
+<?php
+$script = <<<JS
+$('.best-price-form').parent().hide();
+JS;
+
+$this->registerJs($script);

@@ -70,7 +70,7 @@ use backend\app\bootstrap\ActiveForm;
 <div class="add-itprod-rules">
     <div class="add-itprod-rules-item">
 
-        <?= Yii::$app->param->getByName('ITALIAN_PRODUCT_STEP2_TEXT') ?>
+        <?= Yii::$app->param->getByName('PARTNER_SALE_TEXT') ?>
 
     </div>
 </div>
