@@ -32,6 +32,7 @@ return [
     'user/password/change' => 'user/password/change',
     'user/password/reset' => 'user/password/reset',
     'user/profile/fileupload' => 'user/profile/fileupload',
+    'user/profile/filedelete' => 'user/profile/filedelete',
     'user/login/validation' => 'user/login/validation',
 
     // Module [[Catalog]]

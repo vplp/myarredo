@@ -27,13 +27,13 @@ class Factory extends \common\modules\catalog\models\Factory
         return [];
     }
 
-    /**
-     * @return array
-     */
-    public function scenarios()
-    {
-        return [];
-    }
+//    /**
+//     * @return array
+//     */
+//    public function scenarios()
+//    {
+//        return ['setImages' => ['image_link'],];
+//    }
 
     /**
      * @return array
@@ -84,6 +84,17 @@ class Factory extends \common\modules\catalog\models\Factory
         });
 
         return $result;
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function findById($id)
+    {
+        return self::findBase()->byID($id)->one();
     }
 
     /**

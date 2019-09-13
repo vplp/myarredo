@@ -7,10 +7,11 @@ use yii\{
     db\Exception, filters\AccessControl
 };
 //
-use thread\actions\fileapi\{
+use common\actions\upload\{
     DeleteAction, UploadAction
 };
 //
+use frontend\modules\catalog\models\Factory;
 use frontend\components\BaseController;
 use frontend\modules\user\models\{
     Profile, ProfileLang
@@ -55,14 +56,20 @@ class ProfileController extends BaseController
      */
     public function actions()
     {
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
+            $module = Yii::$app->getModule('catalog');
+            $path = $module->getFactoryUploadPath();
+        } else {
+            $path = $this->module->getAvatarUploadPath(Yii::$app->getUser()->getId());
+        }
         return [
             'fileupload' => [
                 'class' => UploadAction::class,
-                'path' => $this->module->getAvatarUploadPath(Yii::$app->getUser()->getId())
+                'path' => $path
             ],
             'filedelete' => [
                 'class' => DeleteAction::class,
-                'path' => $this->module->getAvatarUploadPath(Yii::$app->getUser()->getId())
+                'path' => $path
             ],
         ];
     }
@@ -84,20 +91,21 @@ class ProfileController extends BaseController
     }
 
     /**
-     * @return string
+     * @return string|\yii\web\Response
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionUpdate()
     {
         /** @var $model Profile */
         /** @var $modelLang ProfileLang */
         /** @var $profile Profile */
+
         $model = new $this->model();
         $modelLang = new $this->modelLang();
 
         $profile = $model::findByUserId(Yii::$app->getUser()->id);
         $profileLang = $modelLang::find()->where(['rid' => Yii::$app->getUser()->id])->one();
-
-        $profile->setScenario('ownEdit');
 
         if ($profileLang == null) {
             $profileLang = new ProfileLang([
@@ -106,7 +114,35 @@ class ProfileController extends BaseController
             ]);
         }
 
+        $profile->setScenario('ownEdit');
         $profileLang->setScenario('ownEdit');
+
+        /**
+         * factory
+         */
+        $modelFactory = null;
+
+        if (Yii::$app->user->identity->group->role == 'factory' && Yii::$app->user->identity->profile->factory_id) {
+            $modelFactory = Factory::findById(Yii::$app->user->identity->profile->factory_id);
+            /** @var $modelFactory Factory */
+            if ($modelFactory != null) {
+                $modelFactory->setScenario('setImages');
+
+                if ($modelFactory->load(Yii::$app->getRequest()->post())) {
+                    $transaction = $modelFactory::getDb()->beginTransaction();
+                    try {
+                        $save = $modelFactory->save();
+                        if ($save) {
+                            $transaction->commit();
+                        } else {
+                            $transaction->rollBack();
+                        }
+                    } catch (Exception $e) {
+                        $transaction->rollBack();
+                    }
+                }
+            }
+        }
 
         if ($profile->load(Yii::$app->getRequest()->post()) &&
             $profileLang->load(Yii::$app->getRequest()->post())
@@ -145,6 +181,7 @@ class ProfileController extends BaseController
         return $this->render('_form', [
             'model' => $profile,
             'modelLang' => $profileLang,
+            'modelFactory' => $modelFactory,
         ]);
     }
 }
