@@ -2049,7 +2049,8 @@ h1 {
   .field-salerequest-user_agreement .jq-checkbox,
   .field-italianproduct-published  .jq-checkbox,
   .field-cartcustomerform-user_agreement .jq-checkbox,
-  .feedback-box .jq-checkbox {
+  .feedback-box .jq-checkbox,
+  .largex-container .jq-checkbox {
     width: 24px;
     height: 24px;
     background: #FFFFFF;
@@ -2064,7 +2065,8 @@ h1 {
     .field-salerequest-user_agreement .jq-checkbox.checked .jq-checkbox__div,
     .field-italianproduct-published .jq-checkbox.checked .jq-checkbox__div,
     .field-cartcustomerform-user_agreement .jq-checkbox.checked .jq-checkbox__div,
-    .feedback-box .jq-checkbox.checked .jq-checkbox__div {
+    .feedback-box .jq-checkbox.checked .jq-checkbox__div,
+    .largex-container .jq-checkbox.checked .jq-checkbox__div {
       background: none;
       box-shadow: none;
       margin: 0;
@@ -2075,7 +2077,8 @@ h1 {
       .field-salerequest-user_agreement .jq-checkbox.checked .jq-checkbox__div:after,
       .field-italianproduct-published .jq-checkbox.checked .jq-checkbox__div:after,
       .field-cartcustomerform-user_agreement .jq-checkbox.checked .jq-checkbox__div:after,
-      .feedback-box .jq-checkbox.checked .jq-checkbox__div:after {
+      .feedback-box .jq-checkbox.checked .jq-checkbox__div:after,
+      .largex-container .jq-checkbox.checked .jq-checkbox__div:after {
         content: '\f00c';
         font-family: 'FontAwesome';
         position: absolute;
