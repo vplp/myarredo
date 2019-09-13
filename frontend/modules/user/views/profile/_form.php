@@ -67,6 +67,12 @@ $this->title = Yii::t('app', 'Profile');
                             <?= $form->field($modelLang, 'address') ?>
                             <?= $form->field($model, 'website') ?>
                         </div>
+                        <div class="col-md-4 col-lg-4 one-row">
+                            <?= $form
+                                ->field($model, 'image_link')
+                                ->label(Yii::t('app', 'Логотип'))
+                                ->imageOne($model->getImageLink()) ?>
+                        </div>
                     <?php } ?>
 
                     <?php
@@ -96,7 +102,7 @@ $this->title = Yii::t('app', 'Profile');
                         <div class="col-md-4 col-lg-4 one-row">
                             <?= $form
                                 ->field($model, 'image_link')
-                                ->label('Фото салона')
+                                ->label(Yii::t('app', 'Фото салона'))
                                 ->imageOne($model->getImageLink()) ?>
                         </div>
                     <?php } ?>
@@ -130,7 +136,7 @@ $this->title = Yii::t('app', 'Profile');
                         <div class="col-md-4 col-lg-4 one-row">
                             <?= $form
                                 ->field($model, 'image_link')
-                                ->label('Логотип')
+                                ->label(Yii::t('app', 'Логотип'))
                                 ->imageOne($model->getImageLink()) ?>
                         </div>
                     <?php } ?>
