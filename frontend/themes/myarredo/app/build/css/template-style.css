@@ -2057,7 +2057,9 @@ h1 {
     border: none;
     display: inline-flex !important;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  }
     .field-salerequest-user_agreement .jq-checkbox {
       border: 1px solid #ccc;
     }
