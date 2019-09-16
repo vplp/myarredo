@@ -140,8 +140,9 @@ class ElasticSearchProduct extends ActiveRecord
     {
         try {
             $record = self::get($product_id);
-            $record->delete();
-
+            if ($record != null) {
+                $record->delete();
+            }
             return 1;
         } catch (\Exception $e) {
             return false;
