@@ -67,6 +67,8 @@ class ElasticSearchController extends Controller
 
                     $saveLang = [];
 
+                    $this->stdout("add ID=" . $model->id . " \n", Console::FG_GREEN);
+
                     foreach ($languages as $lang) {
                         Yii::$app->language = $lang['local'];
 
@@ -80,7 +82,6 @@ class ElasticSearchController extends Controller
 
                     if ($model->save() && !in_array(0, array_values($saveLang))) {
                         $transaction->commit();
-                        $this->stdout("add ID=" . $model->id . " \n", Console::FG_GREEN);
                     } else {
                         $transaction->rollBack();
                     }
