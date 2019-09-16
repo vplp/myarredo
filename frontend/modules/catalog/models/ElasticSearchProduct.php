@@ -213,7 +213,7 @@ class ElasticSearchProduct extends ActiveRecord
     {
         $lang = substr(Yii::$app->language, 0, 2);
 
-        $query = self::find()->with(['product', 'factory']);
+        $query = self::find()->innerJoinWith(['product', 'factory']);
 
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
