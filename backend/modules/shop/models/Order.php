@@ -3,6 +3,7 @@
 namespace backend\modules\shop\models;
 
 use thread\app\model\interfaces\BaseBackendModel;
+//
 use common\modules\shop\models\Order as CommonOrderModel;
 
 /**
@@ -37,5 +38,4 @@ class Order extends CommonOrderModel implements BaseBackendModel
     {
         return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
     }
-
 }

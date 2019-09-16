@@ -21,12 +21,12 @@ class PaymentModule extends \common\modules\payment\PaymentModule
         $menuItems = [];
 
         if (in_array(Yii::$app->user->identity->group->role, ['admin'])) {
-            /*$menuItems = [
+            $menuItems = [
                 'label' => Yii::t('app', 'Payment'),
-                'icon' => 'fa-sitemap',
+                'icon' => 'fa-file-text',
                 'url' => ['/payment/payment/list'],
                 'position' => 4,
-            ];*/
+            ];
         }
 
         return $menuItems;

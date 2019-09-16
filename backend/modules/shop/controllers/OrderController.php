@@ -339,5 +339,4 @@ class OrderController extends BackendController
             }
         }
     }
-
 }
