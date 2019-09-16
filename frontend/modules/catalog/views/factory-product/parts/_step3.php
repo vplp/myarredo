@@ -43,11 +43,13 @@ use yii\helpers\Url;
             ['class' => 'btn btn-primary']
         ) ?>
 
-        <?= Html::a(
-            Yii::t('app', 'Опубликовать'),
-            ['/catalog/factory-promotion/create', 'product_id' => $model->id],
-            ['class' => 'btn btn-goods']
-        ) ?>
+        <?php if (!$model->published) {
+            echo Html::a(
+                Yii::t('app', 'Опубликовать'),
+                ['/catalog/factory-product/published', 'id' => $model->id],
+                ['class' => 'btn btn-goods']
+            );
+        } ?>
     </div>
 
 </div>

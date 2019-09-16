@@ -86,6 +86,7 @@ return [
     'catalog/factory-product/ajax-get-category' => 'catalog/factory-product/ajax-get-category',
     'factory-product/update/<id:[\d\-]+>/<step:(photo|check)>' => 'catalog/factory-product/update',
     'factory-product/update/<id:[\d\-]+>' => 'catalog/factory-product/update',
+    'factory-product/published/<id:[\d\-]+>' => 'catalog/factory-product/published',
     'factory-product/intrash/<id:[\d\-]+>' => 'catalog/factory-product/intrash',
     'catalog/factory-product/fileupload' => 'catalog/factory-product/fileupload',
     'catalog/factory-product/filedelete' => 'catalog/factory-product/filedelete',
