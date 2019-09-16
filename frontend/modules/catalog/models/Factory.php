@@ -27,14 +27,6 @@ class Factory extends \common\modules\catalog\models\Factory
         return [];
     }
 
-//    /**
-//     * @return array
-//     */
-//    public function scenarios()
-//    {
-//        return ['setImages' => ['image_link'],];
-//    }
-
     /**
      * @return array
      */
