@@ -26,6 +26,9 @@ class ElasticSearchController extends BaseController
      */
     public function actionSearch()
     {
+        defined('YII_DEBUG') or define('YII_DEBUG', true);
+        defined('YII_ENV') or define('YII_ENV', 'dev');
+
         //ElasticSearchProduct::updateMapping();
         $this->title = Yii::t('app', 'Search');
 
