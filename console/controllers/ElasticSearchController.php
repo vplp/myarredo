@@ -43,49 +43,58 @@ class ElasticSearchController extends Controller
         $this->stdout("ElasticSearch: start. \n", Console::FG_GREEN);
 
         $models = Product::find()
+            ->innerJoinWith(['factory'])
             ->andFilterWhere([
-                Product::tableName() . '.removed' => '0',
                 Product::tableName() . '.mark1' => '0',
             ])
             ->orderBy(Product::tableName() . '.id ASC')
             ->limit(100)
-            ->enabled()
             ->all();
 
         foreach ($models as $model) {
-            /** @var PDO $transaction */
             /** @var $model Product */
-            $transaction = $model::getDb()->beginTransaction();
-            try {
-                $model->setScenario('setMark1');
 
-                $model->mark1 = '0';
+            if ($model->removed == 0 && $model->published == 1 && $model->deleted == 0 &&
+                $model->factory->published == 1 && $model->factory->deleted == 0) {
+                /** @var PDO $transaction */
+                $transaction = $model::getDb()->beginTransaction();
+                try {
+                    $model->setScenario('setMark1');
+                    $model->mark1 = '1';
 
-                $modelLanguage = new Language();
-                $languages = $modelLanguage->getLanguages();
+                    $modelLanguage = new Language();
+                    $languages = $modelLanguage->getLanguages();
 
-                $saveLang = [];
+                    $saveLang = [];
 
-                foreach ($languages as $lang) {
-                    Yii::$app->language = $lang['local'];
+                    foreach ($languages as $lang) {
+                        Yii::$app->language = $lang['local'];
 
-                    /** @var $product Product */
-                    $product = Product::findByID($model->id);
+                        /** @var $product Product */
+                        $product = Product::findByID($model->id);
 
-                    if (!empty($product->lang)) {
-                        $saveLang[] = ElasticSearchProduct::addRecord($product);
+                        if (!empty($product->lang)) {
+                            $saveLang[] = ElasticSearchProduct::addRecord($product);
+                        }
                     }
-                }
 
-                if ($model->save() && !in_array(0, array_values($saveLang))) {
-                    $transaction->commit();
-                    $this->stdout("add ID=" . $model->id . " \n", Console::FG_GREEN);
-                } else {
+                    if ($model->save() && !in_array(0, array_values($saveLang))) {
+                        $transaction->commit();
+                        $this->stdout("add ID=" . $model->id . " \n", Console::FG_GREEN);
+                    } else {
+                        $transaction->rollBack();
+                    }
+                } catch (\Exception $e) {
                     $transaction->rollBack();
+                    throw new \Exception($e);
                 }
-            } catch (\Exception $e) {
-                $transaction->rollBack();
-                throw new \Exception($e);
+            } else {
+                $model->setScenario('setMark1');
+                $model->mark1 = '1';
+
+                if ($model->save() && ElasticSearchProduct::deleteRecord($model->id)) {
+                    $this->stdout("delete ID=" . $model->id . " \n", Console::FG_GREEN);
+                }
             }
         }
 
