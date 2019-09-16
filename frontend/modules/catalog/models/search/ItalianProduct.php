@@ -148,15 +148,7 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
     {
         $query = ItalianProductModel::findBase()
             ->select([
-                self::tableName() . '.id',
-                self::tableName() . '.alias',
-                self::tableName() . '.image_link',
-                self::tableName() . '.factory_id',
-                self::tableName() . '.price',
-                self::tableName() . '.price_new',
-                self::tableName() . '.currency',
-                self::tableName() . '.position',
-                self::tableName() . '.create_mode',
+                self::tableName() . '.*',
                 ItalianProductLang::tableName() . '.title',
             ]);
 
