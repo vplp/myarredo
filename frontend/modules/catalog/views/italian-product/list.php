@@ -175,7 +175,15 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'format' => 'raw',
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
-                                                return Html::tag('span', $model->getCountViews(), ['class' => 'viewscount']);
+                                                return ($model->published && $model->getCountViews() > 0)
+                                                    ? Html::a(
+                                                        Html::tag('span', $model->getCountViews(), ['class' => 'viewscount']),
+                                                        Url::toRoute([
+                                                            '/catalog/sale-italy-stats/view',
+                                                            'id' => $model['id']
+                                                        ])
+                                                    )
+                                                    : Html::tag('span', $model->getCountViews(), ['class' => 'viewscount']);
                                             },
                                         ],
                                         [
@@ -183,7 +191,15 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'label' => Yii::t('app', 'Количество запросов'),
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
-                                                return Html::tag('span', $model->getCountRequests(), ['class' => 'requestcount']);
+                                                return ($model->published && $model->getCountRequests() > 0)
+                                                    ? Html::a(
+                                                        Html::tag('span', $model->getCountRequests(), ['class' => 'requestcount']),
+                                                        Url::toRoute([
+                                                            '/catalog/sale-italy-stats/view',
+                                                            'id' => $model['id']
+                                                        ])
+                                                    )
+                                                    : Html::tag('span', $model->getCountRequests(), ['class' => 'requestcount']);
                                             },
                                         ],
                                         [
