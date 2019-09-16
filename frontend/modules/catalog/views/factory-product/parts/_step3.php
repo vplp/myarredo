@@ -13,56 +13,54 @@ use yii\helpers\Url;
  */
 
 ?>
-<div class="form-horizontal add-itprod-content">
-<!-- steps box -->
-<div class="progress-steps-box">
-    <div class="progress-steps-step<?= !Yii::$app->request->get('step') ? ' active' : '' ?>">
-        <span class="step-numb">1</span>
-        <span class="step-text"><?= Yii::t('app', 'Информация про товар') ?></span>
-    </div>
-    <div class="progress-steps-step<?= Yii::$app->request->get('step') == 'photo' ? ' active' : '' ?>">
-        <span class="step-numb">2</span>
-        <span class="step-text"><?= Yii::t('app', 'Фото товара') ?></span>
-    </div>
-    <div class="progress-steps-step<?= Yii::$app->request->get('step') == 'check' ? ' active' : '' ?>">
-        <span class="step-numb">3</span>
-        <span class="step-text"><?= Yii::t('app', 'Проверка товара') ?></span>
-    </div>
-</div>
-<!-- steps box end -->
+    <div class="form-horizontal add-itprod-content">
+        <!-- steps box -->
+        <div class="progress-steps-box">
+            <div class="progress-steps-step<?= !Yii::$app->request->get('step') ? ' active' : '' ?>">
+                <span class="step-numb">1</span>
+                <span class="step-text"><?= Yii::t('app', 'Информация про товар') ?></span>
+            </div>
+            <div class="progress-steps-step<?= Yii::$app->request->get('step') == 'photo' ? ' active' : '' ?>">
+                <span class="step-numb">2</span>
+                <span class="step-text"><?= Yii::t('app', 'Фото товара') ?></span>
+            </div>
+            <div class="progress-steps-step<?= Yii::$app->request->get('step') == 'check' ? ' active' : '' ?>">
+                <span class="step-numb">3</span>
+                <span class="step-text"><?= Yii::t('app', 'Проверка товара') ?></span>
+            </div>
+        </div>
+        <!-- steps box end -->
 
-    <?= $this->render('../../product/view', [
-        'model' => $model,
-        'modelLang' => $modelLang
-    ]) ?>
+        <?= $this->render('../../product/view', [
+            'model' => $model,
+            'modelLang' => $modelLang
+        ]) ?>
 
-    <div class="buttons-cont">
-        <?= Html::a(
-            Yii::t('app', 'Edit'),
-            ['/catalog/factory-product/update', 'id' => $model->id],
-            ['class' => 'btn btn-primary']
-        ) ?>
+        <div class="buttons-cont">
+            <?= Html::a(
+                Yii::t('app', 'Edit'),
+                ['/catalog/factory-product/update', 'id' => $model->id],
+                ['class' => 'btn btn-primary']
+            ) ?>
 
-        <?php if (!$model->published) {
-            echo Html::a(
+            <?= Html::a(
                 Yii::t('app', 'Опубликовать'),
-                ['/catalog/factory-product/published', 'id' => $model->id],
+                ['/catalog/factory-product/list'],
                 ['class' => 'btn btn-goods']
-            );
-        } ?>
-    </div>
-
-</div>
-
-<!-- rules box -->
-<div class="add-itprod-rules">
-    <div class="add-itprod-rules-item">
-
-        <?= Yii::$app->param->getByName('PARTNER_SALE_TEXT') ?>
+            ) ?>
+        </div>
 
     </div>
-</div>
-<!-- rules box end -->
+
+    <!-- rules box -->
+    <div class="add-itprod-rules">
+        <div class="add-itprod-rules-item">
+
+            <?= Yii::$app->param->getByName('PARTNER_SALE_TEXT') ?>
+
+        </div>
+    </div>
+    <!-- rules box end -->
 
 <?php
 $script = <<<JS

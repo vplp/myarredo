@@ -119,12 +119,6 @@ class FactoryProductController extends BaseController
                     'scenario' => $scenario,
                     'redirect' => $link
                 ],
-                'published' => [
-                    'class' => AttributeSwitch::class,
-                    'modelClass' => $this->model,
-                    'attribute' => 'published',
-                    'redirect' => $this->defaultAction,
-                ],
                 'intrash' => [
                     'class' => AttributeSwitch::class,
                     'modelClass' => $this->model,
