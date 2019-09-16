@@ -31,24 +31,24 @@ use yii\helpers\Url;
 </div>
 <!-- steps box end -->
 
-<div class="buttons-cont">
-    <?= Html::a(
-        Yii::t('app', 'Edit'),
-        ['/catalog/factory-product/update', 'id' => $model->id],
-        ['class' => 'btn btn-primary']
-    ) ?>
-
-    <?= Html::a(
-        Yii::t('app', 'Опубликовать'),
-        ['/catalog/factory-promotion/create', 'product_id' => $model->id],
-        ['class' => 'btn btn-primary']
-    ) ?>
-</div>
-
     <?= $this->render('../../product/view', [
         'model' => $model,
         'modelLang' => $modelLang
     ]) ?>
+
+    <div class="buttons-cont">
+        <?= Html::a(
+            Yii::t('app', 'Edit'),
+            ['/catalog/factory-product/update', 'id' => $model->id],
+            ['class' => 'btn btn-primary']
+        ) ?>
+
+        <?= Html::a(
+            Yii::t('app', 'Опубликовать'),
+            ['/catalog/factory-promotion/create', 'product_id' => $model->id],
+            ['class' => 'btn btn-goods']
+        ) ?>
+    </div>
 
 </div>
 
