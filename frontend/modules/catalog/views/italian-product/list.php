@@ -162,7 +162,11 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'label' => Yii::t('app', 'Amount to pay'),
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
-                                                $modelCostProduct = ItalianProduct::getCostPlacementProduct(1);
+                                                if ($model->create_mode == 'paid') {
+                                                    $modelCostProduct = ItalianProduct::getCostPlacementProduct();
+                                                } elseif ($model->create_mode == 'free') {
+                                                    $modelCostProduct = ItalianProduct::getFreeCostPlacementProduct($model);
+                                                }
                                                 return $modelCostProduct['amount'] . ' ' . $modelCostProduct['currency'];
                                             },
                                         ],
