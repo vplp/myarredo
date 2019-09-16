@@ -65,6 +65,8 @@ use yii\helpers\Url;
 <?php
 $script = <<<JS
 $('.best-price-form').parent().hide();
+$('.best-price').hide();
+$('.rec-slider-wrap').hide();
 JS;
 
 $this->registerJs($script);
