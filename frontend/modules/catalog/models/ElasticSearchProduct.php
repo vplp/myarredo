@@ -205,13 +205,7 @@ class ElasticSearchProduct extends ActiveRecord
     {
         $lang = substr(Yii::$app->language, 0, 2);
 
-        $query = self::find()
-            ->with(['product', 'product.factory'])
-            ->andWhere([
-                Product::tableName() . '.published' => '1',
-                Product::tableName() . '.deleted' => '0',
-                Product::tableName() . '.removed' => '0'
-            ]);
+        $query = self::find()->with(['product', 'product.factory']);
 
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
