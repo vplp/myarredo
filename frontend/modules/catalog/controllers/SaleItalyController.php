@@ -129,6 +129,8 @@ class SaleItalyController extends BaseController
      * @param string $alias
      * @return string
      * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionView(string $alias)
     {

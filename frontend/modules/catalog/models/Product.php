@@ -114,16 +114,12 @@ class Product extends \common\modules\catalog\models\Product
      */
     public static function findByAlias($alias)
     {
-        $result = self::getDb()->cache(function ($db) use ($alias) {
-            return self::find()
-                ->innerJoinWith(['lang', 'factory'])
-                ->orderBy('position DESC')
-                ->byAlias($alias)
-                ->enabled()
-                ->one();
-        });
-
-        return $result;
+        return self::find()
+            ->innerJoinWith(['lang', 'factory'])
+            ->orderBy('position DESC')
+            ->byAlias($alias)
+            ->enabled()
+            ->one();
     }
 
     /**
