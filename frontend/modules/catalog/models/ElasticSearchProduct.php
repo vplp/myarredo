@@ -202,7 +202,7 @@ class ElasticSearchProduct extends ActiveRecord
      */
     public function getFactory()
     {
-        return $this->hasOne(Factory::class, ['id' => 'factory_id'])->enabled();
+        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
     }
 
     /**
@@ -213,7 +213,7 @@ class ElasticSearchProduct extends ActiveRecord
     {
         $lang = substr(Yii::$app->language, 0, 2);
 
-        $query = self::find()->innerJoinWith(['product', 'factory']);
+        $query = self::find()->with(['product', 'factory']);
 
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
