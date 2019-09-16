@@ -206,15 +206,7 @@ class ElasticSearchProduct extends ActiveRecord
         $lang = substr(Yii::$app->language, 0, 2);
 
         $query = self::find()
-            ->with(['product', 'product.factory'])
-            ->andFilterWhere([
-                Product::tableName() . '.published' => '1',
-                Product::tableName() . '.deleted' => '0',
-                Product::tableName() . '.removed' => '0',
-                Factory::tableName() . '.published' => '1',
-                Factory::tableName() . '.deleted' => '0',
-                Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
-            ]);
+            ->innerJoinWith(['product', 'product.factory']);
 
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
