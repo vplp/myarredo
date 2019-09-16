@@ -142,6 +142,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                         // ],
                                         [
                                             'attribute' => 'price_new',
+                                            'label' => Yii::t('app', 'Price'),
                                             'format' => 'raw',
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
@@ -155,6 +156,14 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
                                                 return ItalianProduct::createModeRange($model->create_mode);
+                                            },
+                                        ],
+                                        [
+                                            'label' => Yii::t('app', 'Amount to pay'),
+                                            'value' => function ($model) {
+                                                /** @var $model ItalianProduct */
+                                                $modelCostProduct = ItalianProduct::getCostPlacementProduct(1);
+                                                return $modelCostProduct['amount'] . ' ' . $modelCostProduct['currency'];
                                             },
                                         ],
                                         [
