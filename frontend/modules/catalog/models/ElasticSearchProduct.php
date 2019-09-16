@@ -202,7 +202,7 @@ class ElasticSearchProduct extends ActiveRecord
      */
     public function getFactory()
     {
-        return $this->hasOne(Factory::class, ['id' => 'factory_id']);
+        return $this->hasOne(Factory::class, ['id' => 'product.factory_id']);
     }
 
     /**
