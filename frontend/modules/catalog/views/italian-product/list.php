@@ -336,7 +336,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                         ],
                                         [
                                             'class' => yii\grid\ActionColumn::class,
-                                            'template' => '{update} {delete}{sold}',
+                                            'template' => '{update}{delete}{sold}',
                                             'buttons' => [
                                                 'update' => function ($url, $model) {
                                                     /** @var $model ItalianProduct */
@@ -387,7 +387,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'name' => 'id',
                                             'checkboxOptions' => function ($model) {
                                                 /** @var $model ItalianProduct */
-                                                if ($model->published) {
+                                                if ($model->published || $model->create_mode == 'free') {
                                                     return ['disabled' => true];
                                                 } else {
                                                     return [];
