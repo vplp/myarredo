@@ -21,6 +21,7 @@ echo GridView::widget([
             'headerOptions' => ['class' => 'text-center'],
             'contentOptions' => ['class' => 'text-center'],
         ],
+        'change_tariff',
         'amount',
         'currency',
         'payment_status',

@@ -180,7 +180,7 @@ class Payment extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User'),
             'type',
-            'change_tariff',
+            'change_tariff' => Yii::t('app', 'Смена тарифа'),
             'amount' => Yii::t('app', 'Amount'),
             'currency' => Yii::t('app', 'Currency'),
             'payment_status' => Yii::t('app', 'Payment status'),
