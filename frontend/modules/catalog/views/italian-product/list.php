@@ -210,13 +210,9 @@ $this->title = Yii::t('app', 'Furniture in Italy');
 
                                                 if ($model->is_sold) {
                                                     $status = Yii::t('app', 'Item sold');
-                                                } elseif ($model->payment &&
-                                                    $model->payment->payment_status == 'success' &&
-                                                    $model->create_mode == 'paid' &&
-                                                    $model->published == 0) {
+                                                } elseif ($model->payment && $model->payment->payment_status == 'success' && $model->create_mode == 'paid' && $model->published == 0) {
                                                     $status = Yii::t('app', 'На модерации');
-                                                } elseif ($model->status == 'on_moderation' &&
-                                                    $model->published == 0) {
+                                                } elseif ($model->status == 'on_moderation' && $model->published == 0) {
                                                     $status = Yii::t('app', 'На модерации');
                                                 } elseif ($model->published == 1 && $model->create_mode == 'paid') {
                                                     $status = Html::tag('div', Yii::t('app', 'Оплачено'))
@@ -245,8 +241,8 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                 } elseif ($model->published == 1 && $model->create_mode == 'free') {
                                                     $status = '';
 
-                                                    if ($model->payment && $model->payment->payment_status != 'success') {
-                                                        $status = Html::tag('div', Yii::t('app', 'Долг') . ':' . ItalianProduct::getFreeCostPlacementProduct($model)['amount']) .
+                                                    if (!$model->payment || $model->payment->payment_status != 'success') {
+                                                        $status .= Html::tag('div', Yii::t('app', 'Долг') . ':' . ItalianProduct::getFreeCostPlacementProduct($model)['amount']) .
                                                             Html::a(
                                                                 Yii::t('app', 'Оплатить'),
                                                                 ['/catalog/italian-product/interest-payment', 'id' => $model->id],

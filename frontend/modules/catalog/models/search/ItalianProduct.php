@@ -146,11 +146,14 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
      */
     public function search($params)
     {
-        $query = ItalianProductModel::findBase()
-            ->select([
+        $query = ItalianProductModel::findBase();
+
+        if (Yii::$app->controller->id == 'sale-italy') {
+            $query->select([
                 self::tableName() . '.*',
                 ItalianProductLang::tableName() . '.title',
             ]);
+        }
 
         return $this->baseSearch($query, $params);
     }
