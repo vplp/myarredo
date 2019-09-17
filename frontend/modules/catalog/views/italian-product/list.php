@@ -339,7 +339,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                 },
                                                 'sold' => function ($url, $model) {
                                                     /** @var $model ItalianProduct */
-                                                    return $model->user->group->role == 'admin'
+                                                    return $model->published == 1
                                                         ? Html::a(
                                                             '<span class="glyphicon glyphicon-shopping-cart"></span> ' . Yii::t('app', 'Item sold'),
                                                             Url::toRoute(
