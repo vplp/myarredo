@@ -198,7 +198,7 @@ class Payment extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->orderBy('id DESC');
+        return self::find()->orderBy('id ASC');
     }
 
     /**
