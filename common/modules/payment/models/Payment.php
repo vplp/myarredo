@@ -22,6 +22,7 @@ use thread\app\base\models\ActiveRecord;
  * @property integer $id
  * @property integer $user_id
  * @property string $type
+ * @property boolean $change_tariff
  * @property integer $amount
  * @property string $currency
  * @property string $payment_status
@@ -97,18 +98,17 @@ class Payment extends ActiveRecord
         parent::afterSave($insert, $changedAttributes);
 
         /**
-         * if italian_product->create_mode = free change to paid
+         * if change_tariff = 1 change create_mode
          */
         if (isset($changedAttributes['payment_status']) &&
             $this->payment_status == self::PAYMENT_STATUS_SUCCESS &&
-            $this->type == 'italian_item') {
+            $this->type == 'italian_item' &&
+            $this->change_tariff == 1) {
             foreach ($this->items as $item) {
                 /** @var $item ItalianProduct */
-                if ($item->create_mode == 'free') {
-                    $item->setScenario('create_mode');
-                    $item->create_mode = 'paid';
-                    $item->save();
-                }
+                $item->setScenario('create_mode');
+                $item->create_mode = $item->create_mode == 'paid' ? 'free' : 'paid';
+                $item->save();
             }
         }
     }
@@ -125,7 +125,8 @@ class Payment extends ActiveRecord
             [['payment_status'], 'in', 'range' => array_keys(static::getPaymentStatusKeyRange())],
             [['amount'], 'double'],
             [['user_id', 'payment_time', 'create_time', 'update_time'], 'integer'],
-            [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
+            [['change_tariff', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
+            [['change_tariff'], 'default', 'value' => 0],
             [
                 'items_ids',
                 'each',
@@ -149,6 +150,7 @@ class Payment extends ActiveRecord
             'backend' => [
                 'user_id',
                 'type',
+                'change_tariff',
                 'amount',
                 'currency',
                 'payment_status',
@@ -159,6 +161,7 @@ class Payment extends ActiveRecord
             'frontend' => [
                 'user_id',
                 'type',
+                'change_tariff',
                 'amount',
                 'currency',
                 'payment_status',
@@ -177,6 +180,7 @@ class Payment extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User'),
             'type',
+            'change_tariff',
             'amount' => Yii::t('app', 'Amount'),
             'currency' => Yii::t('app', 'Currency'),
             'payment_status' => Yii::t('app', 'Payment status'),

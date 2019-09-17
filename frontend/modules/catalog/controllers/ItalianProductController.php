@@ -62,7 +62,10 @@ class ItalianProductController extends BaseController
     }
 
     /**
-     * @inheritdoc
+     * @return string
+     * @throws ForbiddenHttpException
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionPayment()
     {
@@ -80,6 +83,7 @@ class ItalianProductController extends BaseController
 
             $modelPayment->user_id = Yii::$app->user->id;
             $modelPayment->type = 'italian_item';
+            $modelPayment->change_tariff = Yii::$app->getRequest()->get('change_tariff') ? 1 : 0;
 
             $count = count($models);
 
@@ -103,6 +107,13 @@ class ItalianProductController extends BaseController
         }
     }
 
+    /**
+     * @param $id
+     * @return string
+     * @throws ForbiddenHttpException
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
     public function actionInterestPayment($id)
     {
         $this->title = Yii::t('app', 'Furniture in Italy');

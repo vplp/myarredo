@@ -299,6 +299,36 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                     $status = '';
                                                 }
 
+                                                if ($model->create_mode == 'free') {
+                                                    $status .= Html::a(
+                                                        Yii::t('app', 'Смена тарифа'),
+                                                        ['/catalog/italian-product/payment'],
+                                                        [
+                                                            'data-method' => 'GET',
+                                                            'data-params' => [
+                                                                '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
+                                                                'id[]' => $model->id,
+                                                                'change_tariff' => 1,
+                                                            ],
+                                                            'class' => 'btn-puplished btn-xs'
+                                                        ]
+                                                    );
+                                                } elseif ($model->create_mode == 'paid' && $model->published == 0) {
+                                                    $status .= Html::a(
+                                                        Yii::t('app', 'Смена тарифа'),
+                                                        ['/catalog/italian-product/payment'],
+                                                        [
+                                                            'data-method' => 'GET',
+                                                            'data-params' => [
+                                                                '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
+                                                                'id[]' => $model->id,
+                                                                'change_tariff' => 1,
+                                                            ],
+                                                            'class' => 'btn-puplished btn-xs'
+                                                        ]
+                                                    );
+                                                }
+
                                                 return $status;
                                             },
                                             'headerOptions' => ['class' => 'col-sm-2'],

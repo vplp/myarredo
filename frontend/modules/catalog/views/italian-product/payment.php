@@ -71,16 +71,20 @@ $this->title = $this->context->title;
                     </div>
                     <div class="total-box">
                         <div>
-                            <span class="for-total"><?= Yii::t('app', 'Итого') ?>:</span> <span class="for-styles"><?= $total . ' ' . $modelPayment->currency ?></span>
+                            <span class="for-total"><?= Yii::t('app', 'Итого') ?>:</span> <span
+                                    class="for-styles"><?= $total . ' ' . $modelPayment->currency ?></span>
                         </div>
                         <div>
-                            <span class="for-total"><?= Yii::t('app', 'В том числе НДС') ?> :</span> <span class="for-styles"><?= $nds . ' ' . $modelPayment->currency ?></span>
+                            <span class="for-total"><?= Yii::t('app', 'В том числе НДС') ?> :</span> <span
+                                    class="for-styles"><?= $nds . ' ' . $modelPayment->currency ?></span>
                         </div>
                         <div>
-                            <span class="for-total"><?= Yii::t('app', 'Скидка') . ' ' . $discount_percent . '%'; ?> :</span> <span class="for-styles"><?= $discount_money . ' ' . $modelPayment->currency ?></span>
+                            <span class="for-total"><?= Yii::t('app', 'Скидка') . ' ' . $discount_percent . '%'; ?> :</span>
+                            <span class="for-styles"><?= $discount_money . ' ' . $modelPayment->currency ?></span>
                         </div>
                         <div>
-                            <span class="for-total"><?= Yii::t('app', 'Всего к оплате') ?> :</span> <span class="for-styles"><?= $modelPayment->amount . ' ' . $modelPayment->currency ?></span>
+                            <span class="for-total"><?= Yii::t('app', 'Всего к оплате') ?> :</span> <span
+                                    class="for-styles"><?= $modelPayment->amount . ' ' . $modelPayment->currency ?></span>
                         </div>
                     </div>
 
@@ -95,6 +99,10 @@ $this->title = $this->context->title;
                             ->input('hidden') .
                         $form
                             ->field($modelPayment, 'type')
+                            ->label(false)
+                            ->input('hidden') .
+                        $form
+                            ->field($modelPayment, 'change_tariff')
                             ->label(false)
                             ->input('hidden') .
                         $form
