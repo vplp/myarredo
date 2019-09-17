@@ -68,7 +68,7 @@ class Payment extends PaymentModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = PaymentModel::find()->undeleted();
+        $query = PaymentModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -78,7 +78,7 @@ class Payment extends PaymentModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = PaymentModel::find()->deleted();
+        $query = PaymentModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }
