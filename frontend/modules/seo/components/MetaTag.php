@@ -142,12 +142,12 @@ class MetaTag extends Component
 
     /**
      * @return $this
+     * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
     protected function getDirectModel()
     {
         if (!empty($this->local_url)) {
-            //$this->direct_model = Directlink::find()->url($this->local_url)->enabled()->one();
             $this->direct_model = Directlink::getInfo();
         }
 
@@ -260,6 +260,7 @@ class MetaTag extends Component
 
     /**
      * @return $this
+     * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
     public function render()
@@ -314,10 +315,13 @@ class MetaTag extends Component
 
     /**
      * @return $this
+     * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
     public function renderGraph()
     {
+        $lang = strtolower(substr(Yii::$app->language, 3, 2));
+
         $this->getDirectModel()->analyze();
         $view = Yii::$app->getView();
 
@@ -333,13 +337,21 @@ class MetaTag extends Component
             'content' => 'website',
         ]);
 
-        // og_url_register
+        // og_site_name_register
         $view->registerMetaTag([
-            'property' => 'og:url',
-            'content' => Yii::$app->getRequest()->getAbsoluteUrl(),
+            'property' => 'og:site_name',
+            'content' => 'Myarredo Family',
         ]);
 
         // og_url_register
+        $view->registerMetaTag([
+            'property' => 'og:url',
+            'content' => Yii::$app->request->hostInfo . '/' .
+                ($lang != 'ru' ? $lang . '/' : '') .
+                Yii::$app->request->pathInfo
+        ]);
+
+        // og_description_register
         $view->registerMetaTag([
             'property' => 'og:description',
             'content' => $this->seo_description,
@@ -349,6 +361,14 @@ class MetaTag extends Component
         $view->registerMetaTag([
             'property' => 'og:image',
             'content' => $this->seo_image_url,
+        ]);
+
+        $locale = $lang . '_' . strtoupper(Yii::$app->city->domain);
+
+        // og_locale_register
+        $view->registerMetaTag([
+            'property' => 'og:locale',
+            'content' => $locale,
         ]);
 
         return $this;

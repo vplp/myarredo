@@ -6,6 +6,7 @@ use Yii;
 use yii\web\ErrorAction;
 //
 use frontend\components\BaseController;
+use frontend\themes\myarredo\assets\AppAsset;
 
 /**
  * Class HomeController
@@ -34,7 +35,10 @@ class HomeController extends BaseController
      */
     public function actionIndex()
     {
-        Yii::$app->metatag->render();
+        Yii::$app->metatag
+            ->render()
+            ->setImageUrl(Yii::$app->request->hostInfo . AppAsset::register(Yii::$app->view)->baseUrl . 'img/logo.svg')
+            ->renderGraph();
 
         return $this->render('index');
     }

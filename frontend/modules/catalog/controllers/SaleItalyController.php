@@ -23,6 +23,7 @@ use frontend\modules\catalog\models\{
     Specification,
     Colors
 };
+use frontend\themes\myarredo\assets\AppAsset;
 
 /**
  * Class SaleItalyController
@@ -102,7 +103,10 @@ class SaleItalyController extends BaseController
         $params['defaultPageSize'] = 24;
         $models = $model->search($params);
 
-        Yii::$app->metatag->render();
+        Yii::$app->metatag
+            ->render()
+            ->setImageUrl(Yii::$app->request->hostInfo . AppAsset::register(Yii::$app->view)->baseUrl . 'img/logo.svg')
+            ->renderGraph();
 
         if (!empty($models->getModels())) {
             $this->listSeo();

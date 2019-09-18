@@ -11,6 +11,7 @@ use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
     Collection, Product, Category, Factory, Types, SubTypes, Specification, Colors
 };
+use frontend\themes\myarredo\assets\AppAsset;
 
 /**
  * Class CategoryController
@@ -85,7 +86,10 @@ class CategoryController extends BaseController
         $queryParams['defaultPageSize'] = 33;
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
-        Yii::$app->metatag->render();
+        Yii::$app->metatag
+            ->render()
+            ->setImageUrl(Yii::$app->request->hostInfo . AppAsset::register(Yii::$app->view)->baseUrl . 'img/logo.svg')
+            ->renderGraph();
 
         if (!empty($models->getModels()) && !empty($queryParams[$keys['colors']])) {
             $this->listSeoColors();
