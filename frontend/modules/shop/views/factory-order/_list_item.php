@@ -23,17 +23,19 @@ use frontend\modules\shop\models\Order;
     </div>
     <div class="form-wrap">
         <div class="form-group">
-            <div><?= Yii::t('app', 'Response time') ?>:</div>
-            <?php foreach ($modelOrder->orderAnswers as $key => $answer) {
-                echo '<div><strong>' . $answer['user']['profile']['lang']['name_company'] . '</strong></div>';
+            <?php if ($modelOrder->orderAnswers) { ?>
+                <div><?= Yii::t('app', 'Response time') ?>:</div>
+                <?php foreach ($modelOrder->orderAnswers as $key => $answer) {
+                    echo '<div><strong>' . $answer['user']['profile']['lang']['name_company'] . '</strong></div>';
 
-                if (in_array(substr($modelOrder->lang, 0, 2), ['en', 'it'])) {
-                    echo '<div>' . $answer['user']['email'] . '</div>' .
-                        '<div>' . $answer['user']['profile']['phone'] . '</div>';
-                }
+                    if (in_array(substr($modelOrder->lang, 0, 2), ['en', 'it'])) {
+                        echo '<div>' . $answer['user']['email'] . '</div>' .
+                            '<div>' . $answer['user']['profile']['phone'] . '</div>';
+                    }
 
-                echo '<div>' . ($key + 1) . ') ' . $answer->getAnswerTime() . '</div>';
-            } ?>
+                    echo '<div>' . ($key + 1) . ') ' . $answer->getAnswerTime() . '</div>';
+                } ?>
+            <?php } ?>
         </div>
     </div>
 </div>
