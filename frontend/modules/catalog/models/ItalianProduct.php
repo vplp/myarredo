@@ -314,10 +314,11 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
         $amount = $cost + ($cost * 0.02);
         $amount = number_format($amount, 2, '.', '');
         $total = $count * $amount;
-        $nds = number_format($amount / 100 * 20, 2, '.', '');
+
+        $nds = number_format($total / 100 * 20, 2, '.', '');
 
         $discount_percent = 50;
-        $discount_money = number_format($total / 100 * $discount_percent, 2, '.', '');
+        $discount_money = number_format(($total + $nds) / 100 * $discount_percent, 2, '.', '');
 
         $amount = number_format($total + $nds - $discount_money, 2, '.', '');
 
@@ -333,7 +334,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
 
     /**
      * @param $model
-     * @return float|int|string
+     * @return array
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
