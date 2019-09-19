@@ -18,7 +18,7 @@ use frontend\modules\catalog\models\Product;
                     </h2>
                     <?= Html::a(
                         Yii::t('app', 'Смотреть все категории'),
-                        null,
+                        ['/catalog/category/list'],
                         ['class' => 'sticker']
                     ) ?>
                 </div>
