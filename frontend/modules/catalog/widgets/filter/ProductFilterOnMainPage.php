@@ -54,6 +54,8 @@ class ProductFilterOnMainPage extends Widget
                 $params[$keys['price']] = $price;
             }
 
+            Yii::$app->session->set('currency', $price['currency']);
+
             $link = Yii::$app->catalogFilter->createUrl($params, ['/catalog/category/list']);
 
             Yii::$app->response->redirect($link, 301);
