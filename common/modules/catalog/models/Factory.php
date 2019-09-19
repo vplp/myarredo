@@ -221,7 +221,7 @@ class Factory extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->innerJoinWith(['lang'])->orderBy(self::tableName() . '.title');
+        return self::find()->joinWith(['lang'])->orderBy(self::tableName() . '.title');
     }
 
     /**
