@@ -67,14 +67,6 @@ if ($count) {
                     class="for-styles"><?= $modelCostProduct['total'] . ' ' . $modelCostProduct['currency'] ?></span>
         </div>
         <div>
-            <span class="for-total"><?= Yii::t('app', 'В том числе НДС') ?> :</span> <span
-                    class="for-styles"><?= $modelCostProduct['nds'] . ' ' . $modelCostProduct['currency'] ?></span>
-        </div>
-        <div>
-            <span class="for-total"><?= Yii::t('app', 'Скидка') . ' ' . $modelCostProduct['discount_percent'] . '%'; ?> :</span>
-            <span class="for-styles"><?= $modelCostProduct['discount_money'] . ' ' . $modelCostProduct['currency'] ?></span>
-        </div>
-        <div>
             <span class="for-total"><?= Yii::t('app', 'Всего к оплате') ?> :</span> <span
                     class="for-styles"><?= $modelCostProduct['amount'] . ' ' . $modelCostProduct['currency'] ?></span>
         </div>
