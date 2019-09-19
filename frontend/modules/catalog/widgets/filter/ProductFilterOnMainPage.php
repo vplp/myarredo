@@ -23,9 +23,7 @@ class ProductFilterOnMainPage extends Widget
 
     /**
      * @return string
-     * @throws \Throwable
      * @throws \yii\base\ExitException
-     * @throws \yii\base\InvalidConfigException
      */
     public function run()
     {

@@ -4,6 +4,18 @@ use yii\widgets\ActiveForm;
 use yii\helpers\{
     Html, Url
 };
+//
+use frontend\modules\catalog\models\Category;
+
+/** @var $route string */
+/** @var $category Category */
+/** @var $types [] */
+/** @var $subtypes [] */
+/** @var $style [] */
+/** @var $factory [] */
+/** @var $factory_first_show [] */
+/** @var $colors [] */
+/** @var $price_range [] */
 
 ?>
 
@@ -44,7 +56,8 @@ use yii\helpers\{
         <div class="filter-price">
             <div class="left">
                 <input type="number" name="price[from]" class="price-diap" placeholder="<?= Yii::t('app', 'от') ?>">
-                <input type="number" name="price[to]" class="price-diap" placeholder="<?= Yii::t('app', 'до') ?>">€
+                <input type="number" name="price[to]" class="price-diap" placeholder="<?= Yii::t('app', 'до') ?>"><?= Yii::$app->currency->symbol ?>
+                <input type="hidden" name="price[currency]" value="<?= Yii::$app->currency->code ?>">
             </div>
 
             <?= Html::submitButton(

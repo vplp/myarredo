@@ -39,7 +39,6 @@ $.post('$url', {_csrf: $('#token').val()}, function(data){
     $('select#filter_by_types').change(function(){
         var category_alias = $('select#filter_by_category option:selected').val();
         var type_alias = $(this).val();
-         console.log(category_alias);
         
         $.post('$ajax_get_category', {_csrf: $('#token').val(),type_alias:type_alias}, function(data){
             var select = $('select#filter_by_category');
