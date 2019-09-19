@@ -56,8 +56,8 @@ use frontend\modules\catalog\models\Category;
         <div class="filter-price">
             <div class="left">
                 <input type="number" name="price[from]" class="price-diap" placeholder="<?= Yii::t('app', 'от') ?>">
-                <input type="number" name="price[to]" class="price-diap" placeholder="<?= Yii::t('app', 'до') ?>"><?= Yii::$app->currency->symbol ?>
-                <input type="hidden" name="price[currency]" value="<?= Yii::$app->currency->code ?>">
+                <input type="number" name="price[to]" class="price-diap" placeholder="<?= Yii::t('app', 'до') ?>">€
+                <input type="hidden" name="price[currency]" value="EUR">
             </div>
 
             <?= Html::submitButton(
