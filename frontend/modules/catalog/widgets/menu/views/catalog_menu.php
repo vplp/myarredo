@@ -66,34 +66,32 @@ use frontend\modules\catalog\models\Category;
         </div>
     </li>
 
-    <?php if (Yii::$app->city->domain == 'ru') { ?>
-        <li <?= (Yii::$app->controller->id == 'sale-italy') ? ' class="js-has-list has-list third-link"' : ' class="js-has-list third-link"' ?>>
-            <?= Html::a(
-                Yii::t('app', 'Sale in Italy'),
-                Url::toRoute(['/catalog/sale-italy/list'])
-            ) ?>
+    <li <?= (Yii::$app->controller->id == 'sale-italy') ? ' class="js-has-list has-list third-link"' : ' class="js-has-list third-link"' ?>>
+        <?= Html::a(
+            Yii::t('app', 'Sale in Italy'),
+            Url::toRoute(['/catalog/sale-italy/list'])
+        ) ?>
 
-            <div class="list-level-wrap">
-                <ul class="list-level">
+        <div class="list-level-wrap">
+            <ul class="list-level">
 
-                    <?php foreach ($categorySaleItaly as $model) { ?>
-                        <li>
-                            <a href="<?= Category::getUrl($model['alias'], '/catalog/sale-italy/list') ?>">
-                                <div class="img-cont">
-                                    <?= Html::img(Category::getImage($model['image_link3'])); ?>
-                                </div>
-                                <?= $model['lang']['title'] ?>
-                            </a>
-                            <span class="count">
+                <?php foreach ($categorySaleItaly as $model) { ?>
+                    <li>
+                        <a href="<?= Category::getUrl($model['alias'], '/catalog/sale-italy/list') ?>">
+                            <div class="img-cont">
+                                <?= Html::img(Category::getImage($model['image_link3'])); ?>
+                            </div>
+                            <?= $model['lang']['title'] ?>
+                        </a>
+                        <span class="count">
                             <?= $model['count'] ?>
                         </span>
-                        </li>
-                    <?php } ?>
+                    </li>
+                <?php } ?>
 
-                </ul>
-            </div>
-        </li>
-    <?php } ?>
+            </ul>
+        </div>
+    </li>
 
     <li <?= (Yii::$app->controller->id == 'factory') ? ' class="has-list"' : '' ?>>
         <?= Html::a(
