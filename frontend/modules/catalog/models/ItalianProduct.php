@@ -373,6 +373,6 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
      */
     public static function getSavingPercentage($model)
     {
-        return '-' . ceil(($model['price_new'] * 100) / $model['price']) . '%';
+        return 100 - ceil(($model['price_new'] * 100) / $model['price']) . '%';
     }
 }
