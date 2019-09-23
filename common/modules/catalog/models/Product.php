@@ -286,8 +286,8 @@ class Product extends ActiveRecord implements iProduct
             'factory_prices_files_ids' => Yii::t('app', 'Factory prices files'),
             'specification_value_ids',
             'mark',
+            'mark1',
             'language_editing',
-            'mark1'
         ];
     }
 

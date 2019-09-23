@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    ElasticSearchProduct
+    ElasticSearchProduct, ElasticSearchSale, ElasticSearchItalianProduct
 };
 
 /**
@@ -27,18 +27,24 @@ class ElasticSearchController extends BaseController
     public function actionSearch()
     {
         //ElasticSearchProduct::updateMapping();
+
         $this->title = Yii::t('app', 'Search');
 
         $model = new ElasticSearchProduct();
+        $modelSale = new ElasticSearchSale();
+        $modelItalianProduct = new ElasticSearchItalianProduct();
 
         $queryParams = ArrayHelper::merge(['search' => ''], Yii::$app->request->queryParams);
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+        $modelsSale = $modelSale->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+        $modelsItalianProduct = $modelItalianProduct->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         return $this->render('search', [
             'queryParams' => $queryParams,
-            'models' => $models->getModels(),
-            'pages' => $models->getPagination(),
+            'models' => $models,
+            'modelsSale' => $modelsSale,
+            'modelsItalianProduct' => $modelsItalianProduct,
         ]);
     }
 }
