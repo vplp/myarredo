@@ -107,6 +107,7 @@ return [
     'italian-product/is-sold/<id:[\d\-]+>' => 'catalog/italian-product/is-sold',
     'italian-product/on-moderation/<id:[\d\-]+>' => 'catalog/italian-product/on-moderation',
     'italian-product/intrash/<id:[\d\-]+>' => 'catalog/italian-product/intrash',
+    'italian-product/change-tariff/<id:[\d\-]+>' => 'catalog/italian-product/change-tariff',
 
     'catalog/italian-product/fileupload' => 'catalog/italian-product/fileupload',
     'catalog/italian-product/filedelete' => 'catalog/italian-product/filedelete',

@@ -54,9 +54,7 @@ $this->title = $this->context->title;
                                             <?= frontend\components\LinkPager::widget(['pagination' => $modelsSale->getPagination()]) ?>
                                         </div>
                                     </div>
-                                <?php } else {
-                                    echo Yii::t('app', 'К сожалению по данному запросу товаров не найдено');
-                                } ?>
+                                <?php } ?>
 
                                 <?php if ($modelsItalianProduct->getModels()) { ?>
                                     <h3><?= Yii::t('app', 'Sale in Italy') ?></h3>
@@ -81,9 +79,7 @@ $this->title = $this->context->title;
                                             <?= frontend\components\LinkPager::widget(['pagination' => $modelsItalianProduct->getPagination()]) ?>
                                         </div>
                                     </div>
-                                <?php } else {
-                                    echo Yii::t('app', 'К сожалению по данному запросу товаров не найдено');
-                                } ?>
+                                <?php } ?>
 
                                 <?php if ($models->getModels()) { ?>
                                     <h3><?= Yii::t('app', 'Catalog of furniture') ?></h3>
@@ -108,10 +104,11 @@ $this->title = $this->context->title;
                                             <?= frontend\components\LinkPager::widget(['pagination' => $models->getPagination()]) ?>
                                         </div>
                                     </div>
-                                <?php } else {
+                                <?php } ?>
+
+                                <?php if (!$modelsSale->getModels() && !$modelsItalianProduct->getModels() && !$models->getModels()) {
                                     echo Yii::t('app', 'К сожалению по данному запросу товаров не найдено');
                                 } ?>
-
                             </div>
 
                         </div>
