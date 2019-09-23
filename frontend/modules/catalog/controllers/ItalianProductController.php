@@ -254,6 +254,12 @@ class ItalianProductController extends BaseController
 //                    'attribute' => 'published',
 //                    'redirect' => $this->defaultAction,
 //                ],
+//                'change-tariff' => [
+//                    'class' => AttributeSwitch::class,
+//                    'modelClass' => $this->model,
+//                    'attribute' => 'create_mode',
+//                    'redirect' => $this->defaultAction,
+//                ],
                 'intrash' => [
                     'class' => AttributeSwitch::class,
                     'modelClass' => $this->model,

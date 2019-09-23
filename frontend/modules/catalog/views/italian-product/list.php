@@ -209,11 +209,11 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                 /** @var $model ItalianProduct */
 
                                                 if ($model->is_sold) {
-                                                    $status = Yii::t('app', 'Item sold');
+                                                    $status = Html::tag('div', Yii::t('app', 'Item sold'));
                                                 } elseif ($model->payment && $model->payment->payment_status == 'success' && $model->create_mode == 'paid' && $model->published == 0) {
-                                                    $status = Yii::t('app', 'На модерации');
+                                                    $status = Html::tag('div', Yii::t('app', 'На модерации'));
                                                 } elseif ($model->status == 'on_moderation' && $model->published == 0) {
-                                                    $status = Yii::t('app', 'На модерации');
+                                                    $status = Html::tag('div', Yii::t('app', 'На модерации'));
                                                 } elseif ($model->published == 1 && $model->create_mode == 'paid') {
                                                     $status = Html::tag('div', Yii::t('app', 'Оплачено'))
                                                         .
@@ -316,14 +316,14 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                 } elseif ($model->create_mode == 'paid' && $model->published == 0) {
                                                     $status .= Html::a(
                                                         Yii::t('app', 'Смена тарифа'),
-                                                        ['/catalog/italian-product/payment'],
+                                                        ['/catalog/italian-product/change-tariff', 'id' => $model->id],
                                                         [
-                                                            'data-method' => 'GET',
-                                                            'data-params' => [
-                                                                '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
-                                                                'id[]' => $model->id,
-                                                                'change_tariff' => 1,
-                                                            ],
+//                                                            'data-method' => 'GET',
+//                                                            'data-params' => [
+//                                                                '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
+//                                                                'id[]' => $model->id,
+//                                                                'change_tariff' => 1,
+//                                                            ],
                                                             'class' => 'btn-puplished btn-xs'
                                                         ]
                                                     );

@@ -46,6 +46,7 @@ use common\modules\user\models\User;
  * @property string $image_link
  * @property string $gallery_image
  * @property integer $mark
+ * @property integer $mark1
  * @property string $language_editing
  *
  * @property SaleLang $lang
@@ -134,6 +135,7 @@ class Sale extends ActiveRecord
                     'published',
                     'deleted',
                     'mark',
+                    'mark1',
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
@@ -183,6 +185,7 @@ class Sale extends ActiveRecord
             'on_main' => ['on_main'],
             'setImages' => ['image_link', 'gallery_image'],
             'setMark' => ['mark'],
+            'setMark1' => ['mark1'],
             'backend' => [
                 'country_id',
                 'city_id',
@@ -208,6 +211,7 @@ class Sale extends ActiveRecord
                 'subtypes_ids',
                 'colors_ids',
                 'mark',
+                'mark1',
                 'language_editing'
             ],
             'frontend' => [
@@ -235,6 +239,7 @@ class Sale extends ActiveRecord
                 'subtypes_ids',
                 'colors_ids',
                 'mark',
+                'mark1',
                 'language_editing'
             ]
         ];
@@ -273,6 +278,7 @@ class Sale extends ActiveRecord
             'subtypes_ids' => Yii::t('app', 'Типы'),
             'colors_ids' => Yii::t('app', 'Colors'),
             'mark',
+            'mark1',
             'language_editing'
         ];
     }
@@ -290,7 +296,13 @@ class Sale extends ActiveRecord
 
         if (in_array($this->scenario, ['frontend', 'backend'])) {
             $this->mark = '0';
+            $this->mark1 = '0';
             $this->language_editing = Yii::$app->language;
+
+            if ($this->factory_name) {
+                $this->factory_id = Factory::createByName($this->factory_name);
+                $this->factory_name = '';
+            }
         }
 
         if (YII_ENV_PROD) {
@@ -311,11 +323,6 @@ class Sale extends ActiveRecord
             }
 
             $this->gallery_image = implode(',', $imagesSources);
-        }
-
-        if ($this->factory_name) {
-            $this->factory_id = Factory::createByName($this->factory_name);
-            $this->factory_name = '';
         }
 
         return parent::beforeSave($insert);
@@ -382,6 +389,15 @@ class Sale extends ActiveRecord
     public static function findBase()
     {
         return self::find()->joinWith(['lang']);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findByID($id)
+    {
+        return self::findBase()->byID($id)->one();
     }
 
     /**

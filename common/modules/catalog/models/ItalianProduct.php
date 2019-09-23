@@ -62,6 +62,7 @@ use common\modules\shop\models\{
  * @property integer $published_date_to
  * @property integer $deleted
  * @property integer $mark
+ * @property integer $mark1
  * @property string $language_editing
  * @property integer $status
  * @property string $create_mode
@@ -167,6 +168,7 @@ class ItalianProduct extends ActiveRecord
                     'published',
                     'deleted',
                     'mark',
+                    'mark1',
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
@@ -234,6 +236,7 @@ class ItalianProduct extends ActiveRecord
             'is_sold' => ['is_sold'],
             'setImages' => ['image_link', 'gallery_image', 'file_link'],
             'setMark' => ['mark'],
+            'setMark1' => ['mark1'],
             'setStatus' => ['status'],
             'create_mode' => ['create_mode'],
             'backend' => [
@@ -265,6 +268,7 @@ class ItalianProduct extends ActiveRecord
                 'bestseller',
                 'is_sold',
                 'mark',
+                'mark1',
                 'language_editing',
                 'create_mode',
                 'status',
@@ -297,6 +301,7 @@ class ItalianProduct extends ActiveRecord
                 'position',
                 'is_sold',
                 'mark',
+                'mark1',
                 'language_editing',
                 'create_mode',
                 'category_ids',
@@ -345,6 +350,7 @@ class ItalianProduct extends ActiveRecord
             'published_date_to' => Yii::t('app', 'Published date to'),
             'deleted' => Yii::t('app', 'Deleted'),
             'mark',
+            'mark1',
             'language_editing',
             'create_mode' => Yii::t('app', 'Placement option'),
             'status' => Yii::t('app', 'Status'),
@@ -367,6 +373,7 @@ class ItalianProduct extends ActiveRecord
 
         if (in_array($this->scenario, ['frontend', 'backend'])) {
             $this->mark = '0';
+            $this->mark1 = '0';
             $this->language_editing = Yii::$app->language;
         }
 
@@ -377,6 +384,11 @@ class ItalianProduct extends ActiveRecord
             } elseif ($this->published == '0' && $this->published_date_from > 0) {
                 $this->published_date_from = 0;
                 $this->published_date_to = 0;
+            }
+
+            if ($this->factory_name) {
+                $this->factory_id = Factory::createByName($this->factory_name);
+                $this->factory_name = '';
             }
         }
 
@@ -398,11 +410,6 @@ class ItalianProduct extends ActiveRecord
             }
 
             $this->gallery_image = implode(',', $imagesSources);
-        }
-
-        if ($this->factory_name) {
-            $this->factory_id = Factory::createByName($this->factory_name);
-            $this->factory_name = '';
         }
 
         return parent::beforeSave($insert);

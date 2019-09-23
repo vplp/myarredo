@@ -326,7 +326,7 @@ class Factory extends ActiveRecord
             $model->title = $name;
             $model->alias = $name;
 
-            $model->user_id = Yii::$app->getUser()->id;
+            $model->user_id = (!Yii::$app->getUser()->isGuest) ? Yii::$app->getUser()->id : 0;
 
             $model->published = self::STATUS_KEY_ON;
             $model->deleted = self::STATUS_KEY_OFF;
