@@ -822,4 +822,11 @@ $(document).ready(function () {
         }, 1000);
     })();
 
+    // Функция для валидации ввода в поля фильтров на главной странице
+    $(document).on('input', '.filter-bot .filter-price input[type="text"]', function(ev) {
+        if (isNaN(ev.originalEvent.data) && ev.target.value != "") {
+            ev.target.value = "";
+        }
+    });
+
 });
