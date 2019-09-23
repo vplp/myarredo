@@ -823,9 +823,25 @@ $(document).ready(function () {
     })();
 
     // Функция для валидации ввода в поля фильтров на главной странице
+    // отлавливаем ввод данных в полях фильтра
     $(document).on('input', '.filter-bot .filter-price input[type="text"]', function(ev) {
+        // если значение поля не пустое и если введенный символ не являеться числом
         if (isNaN(ev.originalEvent.data) && ev.target.value != "") {
-            ev.target.value = "";
+            // и если значение поля не являеться числом
+            if (!isNaN(parseFloat(ev.target.value))) {
+                // и если это число больше 0
+                if (parseFloat(ev.target.value) > 0) {
+                    ev.target.value = parseFloat(ev.target.value);
+                }
+                // иначе присваиваем полю 0
+                else {
+                    ev.target.value = 0;
+                }
+            }
+            // иначе очищаем поле
+            else {
+                ev.target.value = "";
+            }
         }
     });
 
