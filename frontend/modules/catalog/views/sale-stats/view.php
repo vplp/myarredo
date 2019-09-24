@@ -54,23 +54,12 @@ $js_data_requests = implode(',', $dataRequests);
                     ]); ?>
 
                     <div>
-                        <?= Html::img(Sale::getImageThumb($model['image_link'])) ?>
-                    </div>
-
-                    <?php /*
-                    <div>
                         <?= Html::a(
-                            Yii::t('app', 'Factory statistics'),
-                            [
-                                '/catalog/factory-stats/view',
-                                'alias' => $model['factory']['alias'],
-                                'start_date' => Yii::$app->request->get('start_date'),
-                                'end_date' => Yii::$app->request->get('end_date'),
-
-                            ]
+                            Html::img(Sale::getImageThumb($model['image_link']), ['style' => 'height: 320px;']),
+                            Sale::getUrl($model['alias']),
+                            ['target' => '_blank', 'style' => 'height: 320px;']
                         ) ?>
                     </div>
-                    */ ?>
 
                     <div>
                         <?= Html::a(

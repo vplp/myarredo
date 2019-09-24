@@ -179,7 +179,7 @@ class ItalianProductStatsDays extends ActiveRecord
     public static function findBase()
     {
         return self::find()
-            ->innerJoinWith(['italianProduct'])
+            ->innerJoinWith(['italianProduct', 'factory'])
             ->orderBy('requests DESC');
     }
 
