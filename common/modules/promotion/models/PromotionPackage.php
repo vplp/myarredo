@@ -65,6 +65,7 @@ class PromotionPackage extends ActiveRecord
             [['currency'], 'default', 'value' => 'EUR'],
             [['image_link'], 'string', 'max' => 255],
             [['position', 'created_at', 'updated_at'], 'integer'],
+            [['position'], 'default', 'value' => 0],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
         ];
     }
