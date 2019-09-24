@@ -33,6 +33,10 @@ use frontend\modules\catalog\models\{
             <span class="step-numb">4</span>
             <span class="step-text"><?= Yii::t('app', 'Оплата') ?></span>
         </div>
+        <div class="progress-steps-step<?= Yii::$app->request->get('step') == 'promotion' ? ' active' : '' ?>">
+            <span class="step-numb">5</span>
+            <span class="step-text"><?= Yii::t('app', 'Больше просмотров') ?></span>
+        </div>
     </div>
     <!-- steps box end -->
 

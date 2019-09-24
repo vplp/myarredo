@@ -5,12 +5,13 @@ use yii\helpers\Html;
 use frontend\modules\catalog\models\{
     Sale, SaleLang
 };
+use frontend\modules\promotion\models\PromotionPackage;
 
 /**
  * @var $model Sale
  * @var $modelLang SaleLang
  */
-
+$modelPromotionPackage = PromotionPackage::findBase()->all();
 ?>
 
 <!-- steps box -->
@@ -34,15 +35,20 @@ use frontend\modules\catalog\models\{
 </div>
 <!-- steps box end -->
 
-<?= $this->render('../../sale/view', [
-    'model' => $model,
-    'modelLang' => $modelLang
-]) ?>
+<div class="page create-sale page-reclamations">
+    <div class="largex-container">
 
-<div class="buttons-cont">
-    <?= Html::a(
-        Yii::t('app', 'Edit'),
-        ['/catalog/partner-sale/update', 'id' => $model->id],
-        ['class' => 'btn btn-primary']
-    ) ?>
+        <div class="column-center">
+            <div class="form-horizontal">
+
+                <?php foreach ($modelPromotionPackage as $model) { ?>
+                    <div>
+                        <?= $model['lang']['title'] ?>
+                        <?= $model['price'] ?>€
+                    </div>
+                <?php } ?>
+
+            </div>
+        </div>
+    </div>
 </div>

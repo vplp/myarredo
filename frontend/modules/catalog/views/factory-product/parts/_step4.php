@@ -3,20 +3,17 @@
 use yii\helpers\Html;
 //
 use frontend\modules\catalog\models\{
-    Sale, SaleLang
+    FactoryProduct, FactoryProductLang
 };
-//
-use backend\app\bootstrap\ActiveForm;
+use frontend\modules\promotion\models\PromotionPackage;
 
 /**
- * @var $model Sale
- * @var $modelLang SaleLang
+ * @var FactoryProduct $model
+ * @var FactoryProductLang $modelLang
  */
-
+$modelPromotionPackage = PromotionPackage::findBase()->all();
 ?>
-
 <div class="form-horizontal add-itprod-content">
-
     <!-- steps box -->
     <div class="progress-steps-box">
         <div class="progress-steps-step<?= !Yii::$app->request->get('step') ? ' active' : '' ?>">
@@ -38,34 +35,32 @@ use backend\app\bootstrap\ActiveForm;
     </div>
     <!-- steps box end -->
 
-    <?php $form = ActiveForm::begin([
-        'fieldConfig' => [
-            'template' => "{label}<div class=\"col-sm-9\">{input}</div>\n{hint}\n{error}",
-            'labelOptions' => ['class' => 'col-sm-3 col-form-label'],
-        ],
-    ]) ?>
+    <div class="page create-sale page-reclamations">
+        <div class="largex-container">
 
-    <?= $form
-        ->field($model, 'image_link')
-        ->imageOne($model->getImageLink()) ?>
+            <div class="column-center">
+                <div class="form-horizontal">
 
-    <?= $form
-        ->field($model, 'gallery_image')
-        ->imageSeveral(['initialPreview' => $model->getGalleryImage()]) ?>
+                    <?php foreach ($modelPromotionPackage as $model) { ?>
+                        <div>
+                            <?= $model['lang']['title'] ?>
+                            <?= $model['price'] ?>€
+                        </div>
+                    <?php } ?>
 
-    <div class="buttons-cont">
-        <?= Html::submitButton(
-            Yii::t('app', 'Save'),
-            ['class' => 'btn btn-success']
-        ) ?>
-
-        <?= Html::a(
-            Yii::t('app', 'Cancel'),
-            ['/catalog/partner-sale/list'],
-            ['class' => 'btn btn-primary']
-        ) ?>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <?php ActiveForm::end(); ?>
-
 </div>
+
+<!-- rules box -->
+<div class="add-itprod-rules">
+    <div class="add-itprod-rules-item">
+
+        <?= Yii::$app->param->getByName('PARTNER_SALE_TEXT') ?>
+
+    </div>
+</div>
+<!-- rules box end -->

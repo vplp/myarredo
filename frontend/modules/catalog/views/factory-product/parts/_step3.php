@@ -28,6 +28,10 @@ use yii\helpers\Url;
                 <span class="step-numb">3</span>
                 <span class="step-text"><?= Yii::t('app', 'Проверка товара') ?></span>
             </div>
+            <div class="progress-steps-step<?= Yii::$app->request->get('step') == 'promotion' ? ' active' : '' ?>">
+                <span class="step-numb">4</span>
+                <span class="step-text"><?= Yii::t('app', 'Больше просмотров') ?></span>
+            </div>
         </div>
         <!-- steps box end -->
 

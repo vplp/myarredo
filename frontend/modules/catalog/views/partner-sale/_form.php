@@ -36,6 +36,11 @@ $this->title = ($model->isNewRecord)
                         'model' => $model,
                         'modelLang' => $modelLang
                     ]);
+                } elseif (Yii::$app->request->get('step') == 'promotion') {
+                    echo $this->render('parts/_step4', [
+                        'model' => $model,
+                        'modelLang' => $modelLang
+                    ]);
                 } else {
                     echo $this->render('parts/_step1', [
                         'model' => $model,
