@@ -144,6 +144,11 @@ class ItalianProductController extends BaseController
         ]);
     }
 
+    /**
+     * @param $id
+     * @return \yii\web\Response
+     * @throws \yii\base\InvalidConfigException
+     */
     public function actionOnModeration($id)
     {
         /** @var $model ItalianProduct */
@@ -181,6 +186,38 @@ class ItalianProductController extends BaseController
                         ->setSubject($title)
                         ->send();
                 }
+
+                $transaction->commit();
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+            }
+        }
+
+        return $this->redirect([$this->defaultAction]);
+    }
+
+    /**
+     * @param $id
+     * @return \yii\web\Response
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionChangeTariff($id)
+    {
+        /** @var $model ItalianProduct */
+        $model = ItalianProduct::findById($id);
+
+        if ($model == null) {
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+        }
+
+        $model->scenario = 'create_mode';
+
+        if ($model->create_mode == 'paid' && $model->user_id = Yii::$app->getUser()->id) {
+            $transaction = $model::getDb()->beginTransaction();
+            try {
+                $model->create_mode = 'free';
+
+                $model->save();
 
                 $transaction->commit();
             } catch (\Exception $e) {
@@ -248,18 +285,6 @@ class ItalianProductController extends BaseController
                     'scenario' => $scenario,
                     'redirect' => $link
                 ],
-//                'on-moderation' => [
-//                    'class' => AttributeSwitch::class,
-//                    'modelClass' => $this->model,
-//                    'attribute' => 'published',
-//                    'redirect' => $this->defaultAction,
-//                ],
-//                'change-tariff' => [
-//                    'class' => AttributeSwitch::class,
-//                    'modelClass' => $this->model,
-//                    'attribute' => 'create_mode',
-//                    'redirect' => $this->defaultAction,
-//                ],
                 'intrash' => [
                     'class' => AttributeSwitch::class,
                     'modelClass' => $this->model,
