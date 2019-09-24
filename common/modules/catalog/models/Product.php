@@ -415,7 +415,7 @@ class Product extends ActiveRecord implements iProduct
      */
     public function getTitle()
     {
-        $title = $this->lang->title ?? '{}';
+        $title = $this->lang->title ?? '{{-}}';
 
         return $title;
     }

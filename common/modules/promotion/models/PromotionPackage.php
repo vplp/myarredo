@@ -1,29 +1,32 @@
 <?php
 
-namespace common\modules\rules\models;
+namespace common\modules\promotion\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 //
-use common\modules\rules\RulesModule;
+use common\modules\promotion\PromotionModule;
 //
 use thread\app\base\models\ActiveRecord;
 
 /**
- * Class Rules
+ * Class PromotionPackage
  *
  * @property integer $id
- * @property integer position
+ * @property integer $image_link
+ * @property integer $price
+ * @property integer $currency
+ * @property integer $position
  * @property integer $created_at
  * @property integer $updated_at
  * @property boolean $published
  * @property boolean $deleted
  *
- * @property RulesLang $lang
+ * @property PromotionPackageLang $lang
  *
- * @package common\modules\rules\models
+ * @package common\modules\promotion\models
  */
-class Rules extends ActiveRecord
+class PromotionPackage extends ActiveRecord
 {
     /**
      * @return object|string|\yii\db\Connection|null
@@ -31,7 +34,7 @@ class Rules extends ActiveRecord
      */
     public static function getDb()
     {
-        return RulesModule::getDb();
+        return PromotionModule::getDb();
     }
 
     /**
@@ -39,7 +42,7 @@ class Rules extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%rules}}';
+        return '{{%promotion_package}}';
     }
 
     /**
@@ -56,6 +59,11 @@ class Rules extends ActiveRecord
     public function rules()
     {
         return [
+            [['price'], 'double'],
+            [['price'], 'default', 'value' => 0.00],
+            [['currency'], 'in', 'range' => array_keys(static::currencyRange())],
+            [['currency'], 'default', 'value' => 'EUR'],
+            [['image_link'], 'string', 'max' => 255],
             [['position', 'created_at', 'updated_at'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
         ];
@@ -70,6 +78,9 @@ class Rules extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'backend' => [
+                'price',
+                'currency',
+                'image_link',
                 'position',
                 'published',
                 'deleted',
@@ -84,11 +95,25 @@ class Rules extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'image_link' => Yii::t('app', 'Image link'),
+            'price' => Yii::t('app', 'Price'),
+            'currency' => Yii::t('app', 'Currency'),
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function currencyRange()
+    {
+        return [
+            'EUR' => 'EUR',
+            'RUB' => 'RUB'
         ];
     }
 
@@ -105,7 +130,7 @@ class Rules extends ActiveRecord
      */
     public function getLang()
     {
-        return $this->hasOne(RulesLang::class, ['rid' => 'id']);
+        return $this->hasOne(PromotionPackageLang::class, ['rid' => 'id']);
     }
 
     /**
@@ -118,5 +143,25 @@ class Rules extends ActiveRecord
         $title = $this->lang->title ?? '{{-}}';
 
         return $title;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getImageLink()
+    {
+        /** @var PromotionModule $module */
+        $module = Yii::$app->getModule('promotion');
+
+        $path = $module->getUploadPath();
+        $url = $module->getUploadUrl();
+
+        $image = null;
+
+        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
+            $image = $url . '/' . $this->image_link;
+        }
+
+        return $image;
     }
 }
