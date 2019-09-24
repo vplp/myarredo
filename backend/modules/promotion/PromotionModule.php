@@ -22,10 +22,16 @@ class PromotionModule extends \common\modules\promotion\PromotionModule
 
         if (in_array(Yii::$app->user->identity->group->role, ['admin'])) {
             $menuItems = [
-                'label' => Yii::t('app', 'Promotion package'),
+                'label' => Yii::t('app', 'Promotion'),
                 'icon' => 'fa-file-text',
-                'url' => ['/promotion/promotion-package/list'],
                 'position' => 4,
+                'items' => [
+                    [
+                        'label' => Yii::t('app', 'Promotion package'),
+                        'url' => ['/promotion/promotion-package/list'],
+                        'position' => 4,
+                    ]
+                ]
             ];
         }
 
