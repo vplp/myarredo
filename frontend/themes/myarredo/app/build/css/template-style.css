@@ -1069,13 +1069,14 @@ h1 {
       padding-left: 15px; }
     .home-main .filter-price input[type="text"] {
       background: #E3E0D5;
-      height: 32px;
+      height: 40px;
       width: 110px;
       border: none;
       padding-left: 7px;
-      margin-right: 1px;
+      margin-right: 3px;
       font-size: 14px;
-      color: #535351; }
+      color: #535351; 
+    }
       .home-main .filter-price input[type="text"]:last-child {
         margin-right: 8px; }
       .home-main .filter-price input[type="text"]::placeholder {
