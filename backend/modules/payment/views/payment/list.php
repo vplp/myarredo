@@ -2,6 +2,7 @@
 
 use backend\widgets\GridView\GridView;
 use backend\modules\payment\models\Payment;
+use thread\widgets\grid\GridViewFilter;
 
 /**
  * @var $model Payment
@@ -9,6 +10,7 @@ use backend\modules\payment\models\Payment;
 
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->getRequest()->queryParams),
+    'filterModel' => $filter,
     'columns' => [
         'id',
         'user_id',
@@ -18,13 +20,19 @@ echo GridView::widget([
                 /** @var $model Payment */
                 return $model->getInvDesc();
             },
-            'headerOptions' => ['class' => 'text-center'],
-            'contentOptions' => ['class' => 'text-center'],
+            'filter' => GridViewFilter::selectOne($filter, 'type', Payment::getTypeKeyRange()),
         ],
         'change_tariff',
         'amount',
         'currency',
-        'payment_status',
+        [
+            'attribute' => 'payment_status',
+            'value' => function ($model) {
+                /** @var $model Payment */
+                return $model->payment_status;
+            },
+            'filter' => GridViewFilter::selectOne($filter, 'payment_status', Payment::getPaymentStatusKeyRange()),
+        ],
         [
             'attribute' => 'payment_time',
             'value' => function ($model) {

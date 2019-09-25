@@ -5,6 +5,10 @@ namespace common\modules\promotion\models;
 use Yii;
 use yii\helpers\ArrayHelper;
 //
+use common\modules\payment\models\{
+    Payment, PaymentRelItem
+};
+use common\modules\location\models\Currency;
 use common\modules\promotion\PromotionModule;
 //
 use thread\app\base\models\ActiveRecord;
@@ -23,6 +27,7 @@ use thread\app\base\models\ActiveRecord;
  * @property boolean $deleted
  *
  * @property PromotionPackageLang $lang
+ * @property Payment $payment
  *
  * @package common\modules\promotion\models
  */
@@ -135,6 +140,19 @@ class PromotionPackage extends ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getPayment()
+    {
+        return $this
+            ->hasOne(Payment::class, ['id' => 'payment_id'])
+            ->viaTable(PaymentRelItem::tableName(), ['item_id' => 'id'])
+            ->andWhere([Payment::tableName() . '.type' => 'promotion'])
+            ->orderBy(Payment::tableName() . '.id DESC');
+    }
+
+    /**
      * Title
      *
      * @return string
@@ -164,5 +182,17 @@ class PromotionPackage extends ActiveRecord
         }
 
         return $image;
+    }
+
+    public function getPriceInRub()
+    {
+        $currency = Currency::findByCode2('EUR');
+
+        $cost = $this->price * $currency['course'];
+
+        $amount = $cost + ($cost * 0.02);
+        $amount = number_format($amount, 2, '.', '');
+
+        return $amount;
     }
 }

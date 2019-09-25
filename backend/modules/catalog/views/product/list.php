@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use backend\widgets\GridView\GridView;
 //
 use backend\modules\catalog\models\{
-    Category, Factory
+    Product, Category, Factory
 };
 //
 use thread\widgets\grid\{
@@ -13,7 +13,7 @@ use thread\widgets\grid\{
 };
 
 /**
- * @var \backend\modules\catalog\models\Product $model
+ * @var $model Product
  */
 
 echo GridView::widget([
@@ -24,7 +24,7 @@ echo GridView::widget([
         [
             'attribute' => 'image_link',
             'value' => function ($model) {
-                /** @var \backend\modules\catalog\models\Product $model */
+                /** @var $model Product */
                 return Html::img($model->getImageLink(), ['width' => 50]);
             },
             'label' => Yii::t('app', 'Image'),
@@ -39,6 +39,7 @@ echo GridView::widget([
         [
             'attribute' => 'updated_at',
             'value' => function ($model) {
+                /** @var $model Product */
                 return date('j.m.Y H:i', $model->updated_at);
             },
             'format' => 'raw',
@@ -47,6 +48,8 @@ echo GridView::widget([
         [
             'attribute' => 'category',
             'value' => function ($model) {
+                /** @var $model Product */
+                /** @var $category Category */
                 $result = [];
                 foreach ($model->category as $category) {
                     $result[] = ($category->lang) ? $category->lang->title : '(не задано)';

@@ -1,17 +1,33 @@
 <?php
 
-use yii\helpers\Html;
+use yii\helpers\{
+    Html, Url
+};
+use yii\widgets\ActiveForm;
 //
 use frontend\modules\catalog\models\{
     Sale, SaleLang
 };
+use frontend\modules\payment\models\Payment;
 use frontend\modules\promotion\models\PromotionPackage;
 
 /**
  * @var $model Sale
  * @var $modelLang SaleLang
+ * @var PromotionPackage $modelPromotionPackage
+ * @var Payment $modelPayment
  */
-$modelPromotionPackage = PromotionPackage::findBase()->all();
+
+$modelsPromotionPackage = PromotionPackage::findBase()->all();
+
+$modelPayment = new Payment();
+$modelPayment->setScenario('frontend');
+
+$modelPayment->user_id = Yii::$app->user->id;
+$modelPayment->type = 'promotion_sale_item';
+$modelPayment->promotion_package_id = 0;
+$modelPayment->amount = 0;
+$modelPayment->currency = 'RUB';
 ?>
 
 <!-- steps box -->
@@ -41,14 +57,83 @@ $modelPromotionPackage = PromotionPackage::findBase()->all();
         <div class="column-center">
             <div class="form-horizontal">
 
-                <?php foreach ($modelPromotionPackage as $model) { ?>
+                <?php $form = ActiveForm::begin([
+                    'action' => Url::toRoute(['/payment/payment/invoice']),
+                ]); ?>
+
+                <?php foreach ($modelsPromotionPackage as $key => $modelPromotionPackage) { ?>
                     <div>
-                        <?= $model['lang']['title'] ?>
-                        <?= $model['price'] ?>€
+                        <?= $modelPromotionPackage['lang']['title'] ?>
+                        <?= Html::radio('PromotionPackage[id]', ($key == 0 ? true : false), [
+                            'value' => $modelPromotionPackage['id'],
+                            'data-price' => $modelPromotionPackage->getPriceInRub()
+                        ]) ?>
+                        <?= $modelPromotionPackage->getPriceInRub() ?> RUB
                     </div>
                 <?php } ?>
+
+                <?php
+                echo $form
+                        ->field($modelPayment, 'amount')
+                        ->label(false)
+                        ->input('hidden') .
+                    $form
+                        ->field($modelPayment, 'user_id')
+                        ->label(false)
+                        ->input('hidden') .
+                    $form
+                        ->field($modelPayment, 'promotion_package_id')
+                        ->label(false)
+                        ->input('hidden') .
+                    $form
+                        ->field($modelPayment, 'type')
+                        ->label(false)
+                        ->input('hidden') .
+                    $form
+                        ->field($modelPayment, 'currency')
+                        ->label(false)
+                        ->input('hidden') .
+                    Html::input(
+                        'hidden',
+                        'Payment[items_ids][]',
+                        $model->id
+                    );
+                ?>
+
+                <div class="buttons-cont">
+                    <?= Html::submitButton(
+                        Yii::t('app', 'Оплатить'),
+                        ['class' => 'btn btn-success']
+                    ) ?>
+
+                    <?= Html::a(
+                        Yii::t('app', 'Cancel'),
+                        ['/catalog/italian-product/list'],
+                        ['class' => 'btn btn-primary']
+                    ) ?>
+                </div>
+
+                <?php ActiveForm::end(); ?>
+
 
             </div>
         </div>
     </div>
 </div>
+
+<?php
+$script = <<<JS
+var promotion_package_id = $('input[name="PromotionPackage[id]"]:checked').val();
+var amount = $('input[name="PromotionPackage[id]"]:checked').data('price');
+$('input[name="Payment[amount]"]').val(amount);
+$('input[name="Payment[promotion_package_id]"]').val(promotion_package_id);
+
+$('input[name="PromotionPackage[id]"]').on('change', function () {
+    var promotion_package_id = $(this).val();
+    var amount = $(this).data('price');
+    $('input[name="Payment[amount]"]').val(amount);
+    $('input[name="Payment[promotion_package_id]"]').val(promotion_package_id);
+});
+JS;
+
+$this->registerJs($script);

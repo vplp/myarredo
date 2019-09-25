@@ -26,6 +26,9 @@ class Payment extends PaymentModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
+            [['user_id'], 'integer'],
+            [['payment_status'], 'in', 'range' => array_keys(self::getPaymentStatusKeyRange())],
+            [['type'], 'in', 'range' => array_keys(self::getTypeKeyRange())],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
@@ -58,6 +61,16 @@ class Payment extends PaymentModel implements BaseBackendSearchModel
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
+
+        $query->andFilterWhere([
+            self::tableName() . '.id' => $this->id,
+            self::tableName() . '.user_id' => $this->user_id,
+        ]);
+
+        $query
+            ->andFilterWhere(['=', self::tableName() . '.payment_status', $this->payment_status])
+            ->andFilterWhere(['=', self::tableName() . '.type', $this->type]);
+
 
         return $dataProvider;
     }
