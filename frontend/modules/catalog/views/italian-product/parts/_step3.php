@@ -57,6 +57,12 @@ use frontend\modules\catalog\models\{
             ['/catalog/italian-product/update', 'id' => $model->id, 'step' => 'payment'],
             ['class' => 'btn btn-primary']
         ) ?>
+
+        <?= Html::a(
+            Yii::t('app', 'Больше просмотров'),
+            ['/catalog/italian-product/update', 'id' => $model->id, 'step' => 'promotion'],
+            ['class' => 'btn btn-goods']
+        ) ?>
     </div>
 
 </div>

@@ -48,7 +48,7 @@ use yii\helpers\Url;
             ) ?>
 
             <?= Html::a(
-                Yii::t('app', 'Опубликовать'),
+                Yii::t('app', 'Больше просмотров'),
                 ['/catalog/factory-product/update', 'id' => $model->id, 'step' => 'promotion'],
                 ['class' => 'btn btn-goods']
             ) ?>

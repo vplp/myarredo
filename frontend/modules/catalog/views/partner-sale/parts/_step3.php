@@ -45,4 +45,10 @@ use frontend\modules\catalog\models\{
         ['/catalog/partner-sale/update', 'id' => $model->id],
         ['class' => 'btn btn-primary']
     ) ?>
+
+    <?= Html::a(
+        Yii::t('app', 'Больше просмотров'),
+        ['/catalog/partner-sale/update', 'id' => $model->id, 'step' => 'promotion'],
+        ['class' => 'btn btn-goods']
+    ) ?>
 </div>
