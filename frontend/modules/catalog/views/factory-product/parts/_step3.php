@@ -49,7 +49,7 @@ use yii\helpers\Url;
 
             <?= Html::a(
                 Yii::t('app', 'Опубликовать'),
-                ['/catalog/factory-product/list'],
+                ['/catalog/factory-product/update', 'id' => $model->id, 'step' => 'promotion'],
                 ['class' => 'btn btn-goods']
             ) ?>
         </div>
