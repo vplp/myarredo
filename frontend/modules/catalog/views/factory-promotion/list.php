@@ -64,7 +64,8 @@ $this->title = $this->context->title;
                                             'attribute' => 'updated_at',
                                             'label' => Yii::t('app', 'Дата'),
                                             'value' => function ($model) {
-                                                return date('j.m.Y', $model->updated_at);
+                                                /** @var $model FactoryPromotion */
+                                                return date('j.m.Y', $model->created_at);
                                             },
                                             'filter' => false
                                         ],
@@ -72,7 +73,7 @@ $this->title = $this->context->title;
                                             'format' => 'raw',
                                             'label' => Yii::t('app', 'Список товаров'),
                                             'value' => function ($model) {
-                                                /** @var FactoryPromotion $model */
+                                                /** @var $model FactoryPromotion */
                                                 $result = [];
                                                 foreach ($model->products as $product) {
                                                     $result[] = $product->lang->title;
@@ -84,7 +85,7 @@ $this->title = $this->context->title;
                                             'format' => 'raw',
                                             'label' => Yii::t('app', 'Кол-во городов'),
                                             'value' => function ($model) {
-                                                /** @var FactoryPromotion $model */
+                                                /** @var $model FactoryPromotion */
                                                 return count($model->cities);
                                             },
                                         ],
@@ -95,7 +96,7 @@ $this->title = $this->context->title;
                                         [
                                             'attribute' => 'payment_status',
                                             'value' => function ($model) {
-                                                /** @var FactoryPromotion $model */
+                                                /** @var $model FactoryPromotion */
                                                 return $model->getPaymentStatusTitle();
                                             },
                                             'filter' => GridViewFilter::selectOne(
@@ -107,7 +108,7 @@ $this->title = $this->context->title;
                                         [
                                             'attribute' => 'status',
                                             'value' => function ($model) {
-                                                /** @var FactoryPromotion $model */
+                                                /** @var $model FactoryPromotion */
                                                 return $model->getStatusTitle();
                                             },
                                             'filter' => GridViewFilter::selectOne(
