@@ -179,14 +179,13 @@ class ElasticSearchProduct extends ActiveRecord
 
         $record->$title = $product['lang']['title'];
         $record->$description = $product['lang']['description'];
-        /* !!! */ echo  '<pre style="color:red;">'; print_r($record->attributes); echo '</pre>'; /* !!! */
+
         try {
             if (!$isExist) {
                 $result = $record->insert();
             } else {
                 $result = $record->update();
             }
-            /* !!! */ echo  '<pre style="color:red;">'; print_r($result); echo '</pre>'; /* !!! */
         } catch (\Exception $e) {
             $result = false;
         }
