@@ -29,7 +29,7 @@ class ElasticSearchProduct extends ActiveRecord
      */
     public static function index()
     {
-        return 'c1myarredo';
+        return 'catalog_item';
     }
 
     /**
