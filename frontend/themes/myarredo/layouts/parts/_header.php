@@ -360,10 +360,8 @@ use frontend\modules\user\widgets\menu\UserMenu;
 
                 <?php
                 if (!Yii::$app->getUser()->isGuest &&
-                    (
-                        Yii::$app->user->identity->group->role == 'factory' ||
-                        (Yii::$app->user->identity->group->role == 'partner' && Yii::$app->user->identity->profile->country_id == 4)
-                    )
+                    Yii::$app->user->identity->group->role == 'partner' &&
+                    Yii::$app->user->identity->profile->country_id == 4
                 ) {
                     ?>
                     <div class="header-addprodbox">
