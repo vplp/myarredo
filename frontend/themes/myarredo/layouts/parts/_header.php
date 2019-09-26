@@ -378,7 +378,7 @@ use frontend\modules\user\widgets\menu\UserMenu;
                         ) ?>
                     </div>
                     <?php
-                } else { ?>
+                } elseif (Yii::$app->getUser()->isGuest) { ?>
                     <?= CatalogMenu::widget([]); ?>
 
                     <div class="search-cont">
