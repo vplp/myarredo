@@ -99,11 +99,6 @@ $this->title = $this->context->title;
                                                 /** @var $model FactoryPromotion */
                                                 return $model->getPaymentStatusTitle();
                                             },
-                                            'filter' => GridViewFilter::selectOne(
-                                                $filter,
-                                                'payment_status',
-                                                $model::paymentStatusKeyRange()
-                                            ),
                                         ],
                                         [
                                             'attribute' => 'status',
@@ -111,14 +106,6 @@ $this->title = $this->context->title;
                                                 /** @var $model FactoryPromotion */
                                                 return $model->getStatusTitle();
                                             },
-                                            'filter' => GridViewFilter::selectOne(
-                                                $filter,
-                                                'status',
-                                                [
-                                                    0 => Yii::t('app', 'Завершена'),
-                                                    1 => Yii::t('app', 'Активная')
-                                                ]
-                                            ),
                                         ],
                                         [
                                             'class' => yii\grid\ActionColumn::class,
