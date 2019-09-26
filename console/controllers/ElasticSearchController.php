@@ -58,7 +58,7 @@ class ElasticSearchController extends Controller
                 Product::tableName() . '.mark1' => '0',
             ])
             ->orderBy(Product::tableName() . '.id ASC')
-            ->limit(100)
+            ->limit(1)
             ->all();
 
         foreach ($models as $model) {
