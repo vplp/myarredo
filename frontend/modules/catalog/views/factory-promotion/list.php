@@ -99,6 +99,7 @@ $this->title = $this->context->title;
                                                 /** @var $model FactoryPromotion */
                                                 return $model->getPaymentStatusTitle();
                                             },
+                                            'filter' => false
                                         ],
                                         [
                                             'attribute' => 'status',
@@ -106,6 +107,7 @@ $this->title = $this->context->title;
                                                 /** @var $model FactoryPromotion */
                                                 return $model->getStatusTitle();
                                             },
+                                            'filter' => false
                                         ],
                                         [
                                             'class' => yii\grid\ActionColumn::class,
