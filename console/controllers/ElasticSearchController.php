@@ -78,7 +78,7 @@ class ElasticSearchController extends Controller
                 Product::tableName() . '.mark1' => '0',
             ])
             ->orderBy(Product::tableName() . '.id ASC')
-            ->limit(100)
+            ->limit(1)
             ->all();
 
         foreach ($models as $model) {
@@ -107,7 +107,7 @@ class ElasticSearchController extends Controller
                             $saveLang[] = ElasticSearchProduct::addRecord($product);
                         }
                     }
-
+/* !!! */ echo  '<pre style="color:red;">'; print_r($saveLang); echo '</pre>'; /* !!! */
                     if ($model->save() && !in_array(0, array_values($saveLang))) {
                         $transaction->commit();
                         $this->stdout("add ID=" . $model->id . " \n", Console::FG_GREEN);
