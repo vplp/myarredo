@@ -5,8 +5,9 @@ namespace console\controllers;
 use Yii;
 use yii\helpers\Console;
 use yii\console\Controller;
-
+//
 use frontend\modules\location\models\City;
+use frontend\modules\catalog\models\{Category, Product, Types, Factory};
 
 /**
  * Class SitemapController
@@ -45,7 +46,10 @@ class SitemapController extends Controller
         array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
 
         // list of cities
-        $cities = City::findBase()->joinWith(['country', 'country.lang'])->all();
+        $cities = City::findBase()
+            ->joinWith(['country', 'country.lang'])
+            ->andFilterWhere(['IN', 'country_id', [1, 2, 3]])
+            ->all();
 
         // urls
         $urls = $this->urls;
@@ -61,6 +65,25 @@ class SitemapController extends Controller
             }
 
             $query = $model::findBase();
+
+            if (in_array($model::className(), [Types::className(), Category::className()])) {
+                $query
+                    ->innerJoinWith(["product"], false)
+                    ->innerJoinWith(["product.factory"], false)
+                    ->andFilterWhere([
+                        Product::tableName() . '.published' => '1',
+                        Product::tableName() . '.deleted' => '0',
+                        Product::tableName() . '.removed' => '0',
+                        Factory::tableName() . '.published' => '1',
+                        Factory::tableName() . '.deleted' => '0',
+                    ]);
+            }
+
+            $query->select([
+                $model::tableName() . '.id',
+                $model::tableName() . '.alias',
+                $model::tableName() . '.updated_at',
+            ]);
 
             foreach ($query->batch(1000) as $models) {
                 foreach ($models as $model) {
@@ -112,6 +135,20 @@ class SitemapController extends Controller
                             "\t</url>" . PHP_EOL;
 
                         fwrite($handle, $str);
+
+                        if ($city['id'] == 4) {
+                            $languages = ['en', 'it'];
+                            foreach ($languages as $lang) {
+                                $str = "\t<url>" . PHP_EOL .
+                                    "\t\t<loc>" . City::getSubDomainUrl($city) . "/" . $lang . $url['loc'] . "</loc>" . PHP_EOL .
+                                    "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
+                                    "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
+                                    "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
+                                    "\t</url>" . PHP_EOL;
+
+                                fwrite($handle, $str);
+                            }
+                        }
                     }
                 }
 
@@ -143,6 +180,14 @@ class SitemapController extends Controller
 
             // Add sale file
             $link = '/sitemap/sale/sitemap_sale_' . $city['alias'] . '.xml';
+            $str = PHP_EOL . "\t<sitemap>"
+                . PHP_EOL . "\t\t<loc>" . City::getSubDomainUrl($city) . $link . "</loc>"
+                . PHP_EOL . "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>"
+                . PHP_EOL . "\t</sitemap>";
+            fwrite($handle, $str);
+
+            // Add italian product file
+            $link = '/sitemap/italian_product/sitemap_italian_product_' . $city['alias'] . '.xml';
             $str = PHP_EOL . "\t<sitemap>"
                 . PHP_EOL . "\t\t<loc>" . City::getSubDomainUrl($city) . $link . "</loc>"
                 . PHP_EOL . "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>"
