@@ -95,6 +95,7 @@ class SitemapController extends Controller
 
         foreach ($cities as $city) {
             $urlsNew = $urls;
+
             // for msk
             if ($city['id'] == 4) {
                 $languages = ['en', 'it'];
