@@ -169,7 +169,7 @@ class ElasticSearchProduct extends ActiveRecord
             $record = new self();
             $record->setPrimaryKey($product['id']);
         }
-var_dump($isExist);
+
         $lang = substr($product['lang']['lang'], 0, 2);
 
         $title = 'title_' . $lang;
@@ -184,9 +184,8 @@ var_dump($isExist);
             if (!$isExist) {
                 $result = $record->insert();
             } else {
-                $result = $record->update();
+                $result = $record->update(false);
             }
-            var_dump($record);
         } catch (\Exception $e) {
             $result = false;
         }
