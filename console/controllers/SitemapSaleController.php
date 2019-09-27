@@ -84,7 +84,8 @@ class SitemapSaleController extends Controller
                         ->andFilterWhere([
                             Sale::tableName() . '.published' => '1',
                             Sale::tableName() . '.deleted' => '0',
-                        ]);
+                        ])
+                        ->groupBy($model::tableName() . '.id');
 
                     $query
                         ->innerJoinWith(["sale.city saleCity"], false)

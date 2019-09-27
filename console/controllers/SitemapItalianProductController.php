@@ -75,7 +75,8 @@ class SitemapItalianProductController extends Controller
                     ->andFilterWhere([
                         ItalianProduct::tableName() . '.published' => '1',
                         ItalianProduct::tableName() . '.deleted' => '0',
-                    ]);
+                    ])
+                    ->groupBy($model::tableName() . '.id');
             }
 
             $query->select([
