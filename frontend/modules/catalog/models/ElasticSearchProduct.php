@@ -186,7 +186,7 @@ var_dump($isExist);
             } else {
                 $result = $record->update();
             }
-            var_dump($record->errors);
+            var_dump($record);
         } catch (\Exception $e) {
             $result = false;
         }
