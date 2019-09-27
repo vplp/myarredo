@@ -30,93 +30,96 @@ $modelPayment->amount = 0;
 $modelPayment->currency = 'RUB';
 ?>
 
-<div class="form-horizontal add-itprod-content">
-    <!-- steps box -->
+    <div class="form-horizontal add-itprod-content">
+        <!-- steps box -->
 
-    <?= $this->render('_steps_box') ?>
+        <?= $this->render('_steps_box') ?>
 
-    <!-- steps box end -->
+        <!-- steps box end -->
 
-    <div class="page create-sale page-reclamations">
-        <div class="largex-container">
+        <div class="page create-sale page-reclamations">
+            <div class="largex-container">
 
-            <div class="column-center">
-                <div class="form-horizontal">
+                <div class="column-center">
+                    <div class="form-horizontal">
 
-                    <?php $form = ActiveForm::begin([
-                        'action' => Url::toRoute(['/payment/payment/invoice']),
-                    ]); ?>
+                        <?php $form = ActiveForm::begin([
+                            'action' => Url::toRoute(['/payment/payment/invoice']),
+                        ]); ?>
 
-                    <?php foreach ($modelsPromotionPackage as $key => $modelPromotionPackage) { ?>
-                        <div>
-                            <?= $modelPromotionPackage['lang']['title'] ?>
-                            <?= Html::radio('PromotionPackage[id]', ($key == 0 ? true : false), [
-                                'value' => $modelPromotionPackage['id'],
-                                'data-price' => $modelPromotionPackage->getPriceInRub()
-                            ]) ?>
-                            <?= $modelPromotionPackage->getPriceInRub() ?> RUB
+                        <?php foreach ($modelsPromotionPackage as $key => $modelPromotionPackage) { ?>
+                            <div>
+                                <div><?= $modelPromotionPackage['lang']['title'] ?>
+                                    <?= Html::radio('PromotionPackage[id]', ($key == 0 ? true : false), [
+                                        'value' => $modelPromotionPackage['id'],
+                                        'data-price' => $modelPromotionPackage->getPriceInRub()
+                                    ]) ?>
+                                    <?= $modelPromotionPackage->getPriceInRub() ?> RUB
+                                </div>
+                                <div><?= $modelPromotionPackage['lang']['description'] ?></div>
+                                <div><?= $modelPromotionPackage['lang']['content'] ?></div>
+                            </div>
+                        <?php } ?>
+
+                        <?php
+                        echo $form
+                                ->field($modelPayment, 'amount')
+                                ->label(false)
+                                ->input('hidden') .
+                            $form
+                                ->field($modelPayment, 'user_id')
+                                ->label(false)
+                                ->input('hidden') .
+                            $form
+                                ->field($modelPayment, 'promotion_package_id')
+                                ->label(false)
+                                ->input('hidden') .
+                            $form
+                                ->field($modelPayment, 'type')
+                                ->label(false)
+                                ->input('hidden') .
+                            $form
+                                ->field($modelPayment, 'currency')
+                                ->label(false)
+                                ->input('hidden') .
+                            Html::input(
+                                'hidden',
+                                'Payment[items_ids][]',
+                                $model->id
+                            );
+                        ?>
+
+                        <div class="buttons-cont">
+                            <?= Html::submitButton(
+                                Yii::t('app', 'Оплатить'),
+                                ['class' => 'btn btn-success']
+                            ) ?>
+
+                            <?= Html::a(
+                                Yii::t('app', 'Cancel'),
+                                ['/catalog/italian-product/list'],
+                                ['class' => 'btn btn-primary']
+                            ) ?>
                         </div>
-                    <?php } ?>
 
-                    <?php
-                    echo $form
-                            ->field($modelPayment, 'amount')
-                            ->label(false)
-                            ->input('hidden') .
-                        $form
-                            ->field($modelPayment, 'user_id')
-                            ->label(false)
-                            ->input('hidden') .
-                        $form
-                            ->field($modelPayment, 'promotion_package_id')
-                            ->label(false)
-                            ->input('hidden') .
-                        $form
-                            ->field($modelPayment, 'type')
-                            ->label(false)
-                            ->input('hidden') .
-                        $form
-                            ->field($modelPayment, 'currency')
-                            ->label(false)
-                            ->input('hidden') .
-                        Html::input(
-                            'hidden',
-                            'Payment[items_ids][]',
-                            $model->id
-                        );
-                    ?>
+                        <?php ActiveForm::end(); ?>
 
-                    <div class="buttons-cont">
-                        <?= Html::submitButton(
-                            Yii::t('app', 'Оплатить'),
-                            ['class' => 'btn btn-success']
-                        ) ?>
-
-                        <?= Html::a(
-                            Yii::t('app', 'Cancel'),
-                            ['/catalog/italian-product/list'],
-                            ['class' => 'btn btn-primary']
-                        ) ?>
                     </div>
-
-                    <?php ActiveForm::end(); ?>
-
                 </div>
             </div>
         </div>
-    </div>
-
-</div>
-
-<!-- rules box -->
-<div class="add-itprod-rules">
-    <div class="add-itprod-rules-item">
-
-        <?= Yii::$app->param->getByName('PARTNER_SALE_TEXT') ?>
 
     </div>
-</div>
-<!-- rules box end -->
+
+    <!-- rules box -->
+    <div class="add-itprod-rules">
+        <div class="add-itprod-rules-item">
+
+            <?= Yii::$app->param->getByName('PARTNER_SALE_TEXT') ?>
+
+        </div>
+    </div>
+    <!-- rules box end -->
 
 <?php
 $script = <<<JS
