@@ -262,10 +262,10 @@ class Payment extends ActiveRecord
     public static function getPaymentStatusKeyRange()
     {
         return [
-            static::PAYMENT_STATUS_PENDING => 'Pending',
-            static::PAYMENT_STATUS_ACCEPTED => 'Accepted',
-            static::PAYMENT_STATUS_SUCCESS => 'Success',
-            static::PAYMENT_STATUS_FAIL => 'Fail',
+            static::PAYMENT_STATUS_PENDING => Yii::t('app', 'Pending'),
+            static::PAYMENT_STATUS_ACCEPTED => Yii::t('app', 'Accepted'),
+            static::PAYMENT_STATUS_SUCCESS => Yii::t('app', 'Success'),
+            static::PAYMENT_STATUS_FAIL => Yii::t('app', 'Fail'),
         ];
     }
 
