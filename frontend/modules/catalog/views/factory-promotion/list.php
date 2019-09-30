@@ -103,15 +103,15 @@ $this->title = $this->context->title;
                                         ],
                                         [
                                             'format' => 'html',
-                                            'label' => Yii::t('app', 'Product statistics'),
+                                            'label' => Yii::t('app', 'Factory statistics'),
                                             'value' => function ($model) {
                                                 /** @var $model FactoryPromotion */
-                                                if ($model['products'] && $model->status == 0) {
+                                                if ($model->status == 0) {
                                                     return Html::a(
                                                         Yii::t('app', 'View'),
                                                         Url::toRoute([
-                                                            '/catalog/product-stats/view',
-                                                            'id' => $model['products'][0]['id'],
+                                                            '/catalog/factory-stats/view',
+                                                            'alias' => $model['factory']['alias'],
                                                             'start_date' => date('j-m-Y', $model->start_date_promotion),
                                                             'end_date' => date('j-m-Y', $model->end_date_promotion),
                                                         ])

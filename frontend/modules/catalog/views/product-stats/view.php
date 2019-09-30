@@ -69,7 +69,6 @@ $js_data_requests = implode(',', $dataRequests);
                                     'alias' => $model['factory']['alias'],
                                     'start_date' => Yii::$app->request->get('start_date'),
                                     'end_date' => Yii::$app->request->get('end_date'),
-
                                 ]
                             ) ?>
                         </div>
