@@ -358,12 +358,9 @@ use frontend\modules\user\widgets\menu\UserMenu;
                     ['class' => 'logo']
                 ) ?>
 
-                <?php
-                if (!Yii::$app->getUser()->isGuest &&
+                <?php if (!Yii::$app->getUser()->isGuest &&
                     Yii::$app->user->identity->group->role == 'partner' &&
-                    Yii::$app->user->identity->profile->country_id == 4
-                ) {
-                    ?>
+                    Yii::$app->user->identity->profile->country_id == 4) { ?>
                     <div class="header-addprodbox">
                         <?= Html::a(
                             '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Добавить товар платно'),
@@ -378,37 +375,34 @@ use frontend\modules\user\widgets\menu\UserMenu;
                         ) ?>
                     </div>
                     <?php
-                } elseif (Yii::$app->getUser()->isGuest ||
-                    (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin']))
-                ) { ?>
-                    <?= CatalogMenu::widget([]); ?>
+                } ?>
+                <?= CatalogMenu::widget([]); ?>
 
-                    <div class="search-cont">
-                        <?php $form = ActiveForm::begin([
-                            'action' => ['/catalog/elastic-search/search'],
-                            'method' => 'get',
-                            'options' => ['class' => 'form-inline'],
-                        ]); ?>
+                <div class="search-cont">
+                    <?php $form = ActiveForm::begin([
+                        'action' => ['/catalog/elastic-search/search'],
+                        'method' => 'get',
+                        'options' => ['class' => 'form-inline'],
+                    ]); ?>
 
-                        <div class="search-group">
-                            <?= Html::input(
-                                'text',
-                                'search',
-                                null,
-                                [
-                                    'class' => 'form-control input-md',
-                                    'placeholder' => Yii::t('app', 'Поиск'),
-                                ]
-                            ) ?>
-                            <?= Html::submitButton(
-                                '<i class="fa fa-search" aria-hidden="true"></i>',
-                                ['class' => 'search-button']
-                            ) ?>
-                        </div>
-
-                        <?php ActiveForm::end(); ?>
+                    <div class="search-group">
+                        <?= Html::input(
+                            'text',
+                            'search',
+                            null,
+                            [
+                                'class' => 'form-control input-md',
+                                'placeholder' => Yii::t('app', 'Поиск'),
+                            ]
+                        ) ?>
+                        <?= Html::submitButton(
+                            '<i class="fa fa-search" aria-hidden="true"></i>',
+                            ['class' => 'search-button']
+                        ) ?>
                     </div>
-                <?php } ?>
+
+                    <?php ActiveForm::end(); ?>
+                </div>
 
             </div>
         </div>
