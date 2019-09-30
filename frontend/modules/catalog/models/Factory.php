@@ -556,6 +556,9 @@ class Factory extends \common\modules\catalog\models\Factory
 
         $params[$keys['factory']] = [$this->alias];
 
+        $params['country'] = Yii::$app->city->getCountryId();
+        $params['city'] = Yii::$app->city->getCityId();
+
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
 
         return $models->totalCount > 1 ? $models->totalCount : 0;
