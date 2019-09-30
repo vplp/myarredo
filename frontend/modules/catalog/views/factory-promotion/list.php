@@ -61,28 +61,6 @@ $this->title = $this->context->title;
                                     'columns' => [
                                         [
                                             'format' => 'raw',
-                                            'attribute' => 'updated_at',
-                                            'label' => Yii::t('app', 'Дата'),
-                                            'value' => function ($model) {
-                                                /** @var $model FactoryPromotion */
-                                                return date('j.m.Y', $model->created_at);
-                                            },
-                                            'filter' => false
-                                        ],
-                                        [
-                                            'format' => 'raw',
-                                            'label' => Yii::t('app', 'Список товаров'),
-                                            'value' => function ($model) {
-                                                /** @var $model FactoryPromotion */
-                                                $result = [];
-                                                foreach ($model->products as $product) {
-                                                    $result[] = $product->lang->title;
-                                                }
-                                                return implode(' | ', $result);
-                                            },
-                                        ],
-                                        [
-                                            'format' => 'raw',
                                             'attribute' => 'start_date_promotion',
                                             'value' => function ($model) {
                                                 /** @var $model FactoryPromotion */
@@ -102,6 +80,18 @@ $this->title = $this->context->title;
                                                     : '';
                                             },
                                             'filter' => false
+                                        ],
+                                        [
+                                            'format' => 'raw',
+                                            'label' => Yii::t('app', 'Список товаров'),
+                                            'value' => function ($model) {
+                                                /** @var $model FactoryPromotion */
+                                                $result = [];
+                                                foreach ($model->products as $product) {
+                                                    $result[] = $product->lang->title;
+                                                }
+                                                return implode(' | ', $result);
+                                            },
                                         ],
                                         [
                                             'format' => 'raw',
