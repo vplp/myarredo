@@ -83,10 +83,52 @@ $this->title = $this->context->title;
                                         ],
                                         [
                                             'format' => 'raw',
+                                            'attribute' => 'start_date_promotion',
+                                            'value' => function ($model) {
+                                                /** @var $model FactoryPromotion */
+                                                return $model->start_date_promotion
+                                                    ? date('j.m.Y', $model->start_date_promotion)
+                                                    : '';
+                                            },
+                                            'filter' => false
+                                        ],
+                                        [
+                                            'format' => 'raw',
+                                            'attribute' => 'end_date_promotion',
+                                            'value' => function ($model) {
+                                                /** @var $model FactoryPromotion */
+                                                return $model->end_date_promotion
+                                                    ? date('j.m.Y', $model->end_date_promotion)
+                                                    : '';
+                                            },
+                                            'filter' => false
+                                        ],
+                                        [
+                                            'format' => 'raw',
                                             'label' => Yii::t('app', 'Кол-во городов'),
                                             'value' => function ($model) {
                                                 /** @var $model FactoryPromotion */
                                                 return count($model->cities);
+                                            },
+                                        ],
+                                        [
+                                            'format' => 'html',
+                                            'label' => Yii::t('app', 'Product statistics'),
+                                            'value' => function ($model) {
+                                                /** @var $model FactoryPromotion */
+                                                if ($model['products'] && $model->status == 0) {
+                                                    return Html::a(
+                                                        Yii::t('app', 'View'),
+                                                        Url::toRoute([
+                                                            '/catalog/product-stats/view',
+                                                            'id' => $model['products'][0]['id'],
+                                                            'start_date' => date('j-m-Y', $model->start_date_promotion),
+                                                            'end_date' => date('j-m-Y', $model->end_date_promotion),
+                                                        ])
+                                                    );
+                                                } else {
+                                                    return false;
+                                                }
                                             },
                                         ],
                                         [
