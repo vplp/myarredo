@@ -50,9 +50,11 @@ $this->title = $this->context->title;
                                                 }
                                             } ?>
                                         </div>
-                                        <div class="pagi-wrap">
-                                            <?= frontend\components\LinkPager::widget(['pagination' => $modelsSale->getPagination()]) ?>
-                                        </div>
+                                        <?php if ($modelsSale->getPagination()->getPageCount() >= Yii::$app->getRequest()->get('page')) { ?>
+                                            <div class="pagi-wrap">
+                                                <?= frontend\components\LinkPager::widget(['pagination' => $modelsSale->getPagination()]) ?>
+                                            </div>
+                                        <?php } ?>
                                     </div>
                                 <?php } ?>
 
@@ -75,9 +77,11 @@ $this->title = $this->context->title;
                                                 }
                                             } ?>
                                         </div>
-                                        <div class="pagi-wrap">
-                                            <?= frontend\components\LinkPager::widget(['pagination' => $modelsItalianProduct->getPagination()]) ?>
-                                        </div>
+                                        <?php if ($modelsItalianProduct->getPagination()->getPageCount() >= Yii::$app->getRequest()->get('page')) { ?>
+                                            <div class="pagi-wrap">
+                                                <?= frontend\components\LinkPager::widget(['pagination' => $modelsItalianProduct->getPagination()]) ?>
+                                            </div>
+                                        <?php } ?>
                                     </div>
                                 <?php } ?>
 
@@ -100,9 +104,13 @@ $this->title = $this->context->title;
                                                 }
                                             } ?>
                                         </div>
-                                        <div class="pagi-wrap">
-                                            <?= frontend\components\LinkPager::widget(['pagination' => $models->getPagination()]) ?>
-                                        </div>
+                                        <?php if ($models->getPagination()->getPageCount() >= Yii::$app->getRequest()->get('page')) { ?>
+                                            <div class="pagi-wrap">
+                                                <?= frontend\components\LinkPager::widget([
+                                                    'pagination' => $models->getPagination()
+                                                ]) ?>
+                                            </div>
+                                        <?php } ?>
                                     </div>
                                 <?php } ?>
 
