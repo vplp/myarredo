@@ -31,7 +31,7 @@ $this->title = $this->context->title;
                                         </span>
                                 </h3>
 
-                                <?php if ($modelsSale->getModels()) { ?>
+                                <?php if ($modelsSale->getModels() && $modelsSale->getPagination()->getPageCount() >= Yii::$app->getRequest()->get('page')) { ?>
                                     <h3><?= Yii::t('app', 'Sale') ?></h3>
                                     <div class="cat-prod-wrap">
                                         <div class="cat-prod">
@@ -50,17 +50,15 @@ $this->title = $this->context->title;
                                                 }
                                             } ?>
                                         </div>
-                                        <?php if ($modelsSale->getPagination()->getPageCount() >= Yii::$app->getRequest()->get('page')) { ?>
-                                            <div class="pagi-wrap">
-                                                <?= frontend\components\LinkPager::widget([
-                                                    'pagination' => $modelsSale->getPagination()
-                                                ]) ?>
-                                            </div>
-                                        <?php } ?>
+                                        <div class="pagi-wrap">
+                                            <?= frontend\components\LinkPager::widget([
+                                                'pagination' => $modelsSale->getPagination()
+                                            ]) ?>
+                                        </div>
                                     </div>
                                 <?php } ?>
 
-                                <?php if ($modelsItalianProduct->getModels()) { ?>
+                                <?php if ($modelsItalianProduct->getModels() && $modelsItalianProduct->getPagination()->getPageCount() >= Yii::$app->getRequest()->get('page')) { ?>
                                     <h3><?= Yii::t('app', 'Sale in Italy') ?></h3>
                                     <div class="cat-prod-wrap">
                                         <div class="cat-prod">
@@ -79,17 +77,15 @@ $this->title = $this->context->title;
                                                 }
                                             } ?>
                                         </div>
-                                        <?php if ($modelsItalianProduct->getPagination()->getPageCount() >= Yii::$app->getRequest()->get('page')) { ?>
-                                            <div class="pagi-wrap">
-                                                <?= frontend\components\LinkPager::widget([
-                                                    'pagination' => $modelsItalianProduct->getPagination()
-                                                ]) ?>
-                                            </div>
-                                        <?php } ?>
+                                        <div class="pagi-wrap">
+                                            <?= frontend\components\LinkPager::widget([
+                                                'pagination' => $modelsItalianProduct->getPagination()
+                                            ]) ?>
+                                        </div>
                                     </div>
                                 <?php } ?>
 
-                                <?php if ($models->getModels()) { ?>
+                                <?php if ($models->getModels() && $models->getPagination()->getPageCount() >= Yii::$app->getRequest()->get('page')) { ?>
                                     <h3><?= Yii::t('app', 'Catalog of furniture') ?></h3>
                                     <div class="cat-prod-wrap">
                                         <div class="cat-prod">
@@ -108,13 +104,11 @@ $this->title = $this->context->title;
                                                 }
                                             } ?>
                                         </div>
-                                        <?php if ($models->getPagination()->getPageCount() >= Yii::$app->getRequest()->get('page')) { ?>
-                                            <div class="pagi-wrap">
-                                                <?= frontend\components\LinkPager::widget([
-                                                    'pagination' => $models->getPagination()
-                                                ]) ?>
-                                            </div>
-                                        <?php } ?>
+                                        <div class="pagi-wrap">
+                                            <?= frontend\components\LinkPager::widget([
+                                                'pagination' => $models->getPagination()
+                                            ]) ?>
+                                        </div>
                                     </div>
                                 <?php } ?>
 
