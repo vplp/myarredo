@@ -381,7 +381,8 @@ use frontend\modules\user\widgets\menu\UserMenu;
                         (Yii::$app->user->identity->group->role == 'partner' && Yii::$app->user->identity->profile->country_id == 4) ||
                         Yii::$app->user->identity->group->role == 'factory'
                     )
-                ) { ?>
+                ) {
+                } else { ?>
                     <?= CatalogMenu::widget([]); ?>
 
                     <div class="search-cont">
