@@ -374,36 +374,42 @@ use frontend\modules\user\widgets\menu\UserMenu;
                             ['class' => 'btn-myarredo']
                         ) ?>
                     </div>
-                    <?php
-                } ?>
-                <?= CatalogMenu::widget([]); ?>
+                <?php } ?>
 
-                <div class="search-cont">
-                    <?php $form = ActiveForm::begin([
-                        'action' => ['/catalog/elastic-search/search'],
-                        'method' => 'get',
-                        'options' => ['class' => 'form-inline'],
-                    ]); ?>
+                <?php if (!Yii::$app->getUser()->isGuest &&
+                    (
+                        (Yii::$app->user->identity->group->role == 'partner' && Yii::$app->user->identity->profile->country_id == 4) ||
+                        Yii::$app->user->identity->group->role == 'factory'
+                    )
+                ) { ?>
+                    <?= CatalogMenu::widget([]); ?>
 
-                    <div class="search-group">
-                        <?= Html::input(
-                            'text',
-                            'search',
-                            null,
-                            [
-                                'class' => 'form-control input-md',
-                                'placeholder' => Yii::t('app', 'Поиск'),
-                            ]
-                        ) ?>
-                        <?= Html::submitButton(
-                            '<i class="fa fa-search" aria-hidden="true"></i>',
-                            ['class' => 'search-button']
-                        ) ?>
+                    <div class="search-cont">
+                        <?php $form = ActiveForm::begin([
+                            'action' => ['/catalog/elastic-search/search'],
+                            'method' => 'get',
+                            'options' => ['class' => 'form-inline'],
+                        ]); ?>
+
+                        <div class="search-group">
+                            <?= Html::input(
+                                'text',
+                                'search',
+                                null,
+                                [
+                                    'class' => 'form-control input-md',
+                                    'placeholder' => Yii::t('app', 'Поиск'),
+                                ]
+                            ) ?>
+                            <?= Html::submitButton(
+                                '<i class="fa fa-search" aria-hidden="true"></i>',
+                                ['class' => 'search-button']
+                            ) ?>
+                        </div>
+
+                        <?php ActiveForm::end(); ?>
                     </div>
-
-                    <?php ActiveForm::end(); ?>
-                </div>
-
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -431,21 +437,17 @@ use frontend\modules\user\widgets\menu\UserMenu;
     </div>
 
     <div class="mobsearch-box">
-        <?php $form = ActiveForm::begin([
-            'action' => ['/catalog/elastic-search/search'],
+        <?php $form = ActiveForm::begin(['action' => ['/catalog/elastic-search/search'],
             'method' => 'get',
-            'options' => ['class' => 'mobsearch-form'],
-        ]); ?>
+            'options' => ['class' => 'mobsearch-form'],]); ?>
 
         <div class="mobsearch-group">
             <?= Html::input(
                 'text',
                 'search',
                 null,
-                [
-                    'class' => 'form-control mobsearch-fld',
-                    'placeholder' => Yii::t('app', 'Поиск'),
-                ]
+                ['class' => 'form-control mobsearch-fld',
+                    'placeholder' => Yii::t('app', 'Поиск'),]
             ) ?>
             <?= Html::submitButton(
                 'Поиск',
@@ -466,19 +468,15 @@ use frontend\modules\user\widgets\menu\UserMenu;
                     '<i class="fa fa-sign-in" aria-hidden="true"></i>' .
                     Yii::t('app', 'Sign In'),
                     ['/user/login/index'],
-                    [
-                        'class' => 'mobile-btn',
-                        'rel' => 'nofollow'
-                    ]
+                    ['class' => 'mobile-btn',
+                        'rel' => 'nofollow']
                 );
             } else {
                 echo Html::a(
                     Yii::t('app', 'Sign Up'),
                     ['/user/logout/index'],
-                    [
-                        'class' => 'mobile-btn',
-                        'rel' => 'nofollow'
-                    ]
+                    ['class' => 'mobile-btn',
+                        'rel' => 'nofollow']
                 );
             } ?>
 
