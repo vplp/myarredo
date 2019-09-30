@@ -378,7 +378,9 @@ use frontend\modules\user\widgets\menu\UserMenu;
                         ) ?>
                     </div>
                     <?php
-                } elseif (Yii::$app->getUser()->isGuest) { ?>
+                } elseif (Yii::$app->getUser()->isGuest ||
+                    (!Yii::$app->getUser()->isGuest && in_array(Yii::$app->user->identity->group->role, ['admin']))
+                ) { ?>
                     <?= CatalogMenu::widget([]); ?>
 
                     <div class="search-cont">
