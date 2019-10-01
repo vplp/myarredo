@@ -1,9 +1,11 @@
 <?php
 
 use yii\helpers\ArrayHelper;
-use frontend\modules\catalog\models\Category;
+use frontend\modules\catalog\models\{
+    Category, Types
+};
 use console\models\{
-    Product, Factory, Sale
+    Product, Factory, Sale, ItalianProduct
 };
 
 $main = require(dirname(__DIR__, 2) . '/common/config/main.php');
@@ -116,6 +118,17 @@ return ArrayHelper::merge(
                         }
                     ],
                     [
+                        'class' => Types::class,
+                        'dataClosure' => function ($model) {
+                            return [
+                                'loc' => '/catalog/c--' . $model['alias'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.8
+                            ];
+                        }
+                    ],
+                    [
                         'class' => Product::class,
                         'dataClosure' => function ($model) {
                             return [
@@ -161,16 +174,78 @@ return ArrayHelper::merge(
             ],
             'sitemap-sale' => [
                 'class' => \console\controllers\SitemapSaleController::class,
-                'modelName' => [
-                    'class' => Sale::class,
-                    'dataClosure' => function ($model) {
-                        return [
-                            'loc' => '/sale-product/' . $model['alias'] . '/',
-                            'lastmod' => date('c', $model['updated_at']),
-                            'changefreq' => 'daily',
-                            'priority' => 0.5
-                        ];
-                    }
+                'models' => [
+                    [
+                        'class' => Category::class,
+                        'dataClosure' => function ($model) {
+                            return [
+                                'loc' => '/sale/' . $model['alias'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.8
+                            ];
+                        }
+                    ],
+                    [
+                        'class' => Types::class,
+                        'dataClosure' => function ($model) {
+                            return [
+                                'loc' => '/sale/c--' . $model['alias'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.8
+                            ];
+                        }
+                    ],
+                    [
+                        'class' => Sale::class,
+                        'dataClosure' => function ($model) {
+                            return [
+                                'loc' => '/sale-product/' . $model['alias'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.5
+                            ];
+                        }
+                    ],
+                ],
+            ],
+            'sitemap-italian-product' => [
+                'class' => \console\controllers\SitemapItalianProductController::class,
+                'models' => [
+                    [
+                        'class' => Category::class,
+                        'dataClosure' => function ($model) {
+                            return [
+                                'loc' => '/sale-italy/' . $model['alias'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.8
+                            ];
+                        }
+                    ],
+                    [
+                        'class' => Types::class,
+                        'dataClosure' => function ($model) {
+                            return [
+                                'loc' => '/sale-italy/c--' . $model['alias'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.8
+                            ];
+                        }
+                    ],
+                    [
+                        'class' => ItalianProduct::class,
+                        'dataClosure' => function ($model) {
+                            return [
+                                'loc' => '/sale-italy-product/' . $model['alias'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.5
+                            ];
+                        }
+                    ],
                 ],
             ],
             'sitemap-image' => [

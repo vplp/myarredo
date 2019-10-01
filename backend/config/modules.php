@@ -46,4 +46,7 @@ return [
     'rules' => [
         'class' => \backend\modules\rules\RulesModule::class,
     ],
+    'promotion' => [
+        'class' => \backend\modules\promotion\PromotionModule::class,
+    ],
 ];

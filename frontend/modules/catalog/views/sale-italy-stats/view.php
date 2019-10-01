@@ -54,7 +54,11 @@ $js_data_requests = implode(',', $dataRequests);
                     ]); ?>
 
                     <div>
-                        <?= Html::img(ItalianProduct::getImageThumb($model['image_link'])) ?>
+                        <?= Html::a(
+                            Html::img(ItalianProduct::getImageThumb($model['image_link']), ['style' => 'height: 320px;']),
+                            ItalianProduct::getUrl($model['alias']),
+                            ['target' => '_blank', 'style' => 'height: 320px;']
+                        ) ?>
                     </div>
 
                     <?php /*

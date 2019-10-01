@@ -29,7 +29,7 @@ class ElasticSearchProduct extends ActiveRecord
      */
     public static function index()
     {
-        return 'c1myarredo';
+        return 'catalog_item';
     }
 
     /**
@@ -184,7 +184,7 @@ class ElasticSearchProduct extends ActiveRecord
             if (!$isExist) {
                 $result = $record->insert();
             } else {
-                $result = $record->update();
+                $result = $record->update(false);
             }
         } catch (\Exception $e) {
             $result = false;

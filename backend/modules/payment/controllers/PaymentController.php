@@ -28,7 +28,8 @@ class PaymentController extends BackendController
         return [
             'list' => [
                 'class' => ListModel::class,
-                'modelClass' => $this->model
+                'modelClass' => $this->model,
+                'filterModel' => $this->filterModel,
             ],
         ];
     }

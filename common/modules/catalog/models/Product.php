@@ -55,6 +55,10 @@ use common\modules\user\models\{
  * @property string $language_editing
  * @property integer $mark1
  * @property integer $in_stock
+ * @property integer $time_promotion_in_catalog
+ * @property integer $time_promotion_in_category
+ * @property integer $time_vip_promotion_in_catalog
+ * @property integer $time_vip_promotion_in_category
  *
  * @property ProductLang $title
  * @property ProductLang $lang
@@ -133,12 +137,16 @@ class Product extends ActiveRecord implements iProduct
                     'collections_id',
                     'created_at',
                     'updated_at',
-                    'position'
+                    'position',
+                    'time_promotion_in_catalog',
+                    'time_promotion_in_category',
+                    'time_vip_promotion_in_catalog',
+                    'time_vip_promotion_in_category'
                 ],
                 'integer'
             ],
-            [[/*'price',*/ 'volume', 'factory_price', 'price_from'], 'double'],
-            [[/*'price',*/ 'volume', 'factory_price', 'price_from'], 'default', 'value' => 0.00],
+            [['volume', 'factory_price', 'price_from'], 'double'],
+            [['volume', 'factory_price', 'price_from'], 'default', 'value' => 0.00],
             [
                 [
                     'is_composition',
@@ -203,6 +211,11 @@ class Product extends ActiveRecord implements iProduct
             'setAlias' => ['alias', 'mark'],
             'setMark' => ['mark'],
             'setMark1' => ['mark1'],
+            'time_promotion_in_catalog' => ['time_promotion_in_catalog'],
+            'time_promotion_in_category' => ['time_promotion_in_category'],
+            'time_vip_promotion_in_catalog' => ['time_vip_promotion_in_catalog'],
+            'time_vip_promotion_in_category' => ['time_vip_promotion_in_category'],
+            'turbo_sale_2in1' => ['time_vip_promotion_in_catalog', 'time_vip_promotion_in_category'],
             'backend' => [
                 'catalog_type_id',
                 'user_id',
@@ -288,6 +301,10 @@ class Product extends ActiveRecord implements iProduct
             'mark',
             'mark1',
             'language_editing',
+            'time_promotion_in_catalog',
+            'time_promotion_in_category',
+            'time_vip_promotion_in_catalog',
+            'time_vip_promotion_in_category',
         ];
     }
 
@@ -415,7 +432,7 @@ class Product extends ActiveRecord implements iProduct
      */
     public function getTitle()
     {
-        $title = $this->lang->title ?? '{}';
+        $title = $this->lang->title ?? '{{-}}';
 
         return $title;
     }

@@ -1,12 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-
+use backend\app\bootstrap\ActiveForm;
 use backend\modules\catalog\models\FactoryPromotion;
 
 /**
- * @var \backend\modules\catalog\models\FactoryPromotion $model
- * @var \backend\app\bootstrap\ActiveForm $form
+ * @var FactoryPromotion $model
+ * @var ActiveForm $form
  */
 ?>
 
@@ -61,7 +61,7 @@ use backend\modules\catalog\models\FactoryPromotion;
         <?= $form->field($model, 'status')->dropDownList(FactoryPromotion::statusKeyRange()) ?>
     </div>
     <div class="col-md-3">
-        <?= $form->field($model, 'payment_status')->dropDownList(FactoryPromotion::paymentStatusKeyRange()) ?>
+        <?= $form->field($model, 'payment_status')->dropDownList(FactoryPromotion::paymentStatusKeyRange(), ['disabled' => true]) ?>
     </div>
 </div>
 

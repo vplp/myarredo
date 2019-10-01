@@ -34,54 +34,57 @@ $js_data_views = implode(',', $dataViews);
 $js_data_requests = implode(',', $dataRequests);
 ?>
 
-<main>
-    <div class="prod-card-page page">
-        <div class="container large-container">
-            <div class="row">
-                <div class="product-title">
-                    <?= Html::tag(
-                        'h1',
-                        '',
-                        ['class' => 'prod-model', 'itemprop' => 'name']
-                    ); ?>
-                </div>
-
-                <div class="col-md-12 adding-product-page">
-
-                    <?= $this->render('_form_filter', [
-                        'model' => $modelProductStatsDays,
-                        'params' => $params,
-                    ]); ?>
-
-                    <div>
-                        <?= Html::img(Product::getImageThumb($model['image_link'])) ?>
+    <main>
+        <div class="prod-card-page page">
+            <div class="container large-container">
+                <div class="row">
+                    <div class="product-title">
+                        <?= Html::tag(
+                            'h1',
+                            '',
+                            ['class' => 'prod-model', 'itemprop' => 'name']
+                        ); ?>
                     </div>
 
-                    <div>
-                        <?= Html::a(
-                            Yii::t('app', 'Factory statistics'),
-                            [
-                                '/catalog/factory-stats/view',
-                                'alias' => $model['factory']['alias'],
-                                'start_date' => Yii::$app->request->get('start_date'),
-                                'end_date' => Yii::$app->request->get('end_date'),
+                    <div class="col-md-12 adding-product-page">
 
-                            ]
-                        ) ?>
-                    </div>
+                        <?= $this->render('_form_filter', [
+                            'model' => $modelProductStatsDays,
+                            'params' => $params,
+                        ]); ?>
 
-                    <div>
-                        <?= Html::a(
-                            Yii::t('app', 'Product statistics'),
-                            [
-                                '/catalog/product-stats/list',
-                                'start_date' => Yii::$app->request->get('start_date'),
-                                'end_date' => Yii::$app->request->get('end_date'),
-                            ]
-                        ) ?>
-                    </div>
+                        <div>
+                            <?= Html::a(
+                                Html::img(Product::getImageThumb($model['image_link']), ['style' => 'height: 320px;']),
+                                Product::getUrl($model['alias']),
+                                ['target' => '_blank']
+                            ) ?>
+                        </div>
 
-                    <?php /*
+                        <div>
+                            <?= Html::a(
+                                Yii::t('app', 'Factory statistics'),
+                                [
+                                    '/catalog/factory-stats/view',
+                                    'alias' => $model['factory']['alias'],
+                                    'start_date' => Yii::$app->request->get('start_date'),
+                                    'end_date' => Yii::$app->request->get('end_date'),
+                                ]
+                            ) ?>
+                        </div>
+
+                        <div>
+                            <?= Html::a(
+                                Yii::t('app', 'Product statistics'),
+                                [
+                                    '/catalog/product-stats/list',
+                                    'start_date' => Yii::$app->request->get('start_date'),
+                                    'end_date' => Yii::$app->request->get('end_date'),
+                                ]
+                            ) ?>
+                        </div>
+
+                        <?php /*
                     <table border="1">
                         <tr>
                             <!--<td>Город</td>
@@ -100,13 +103,13 @@ $js_data_requests = implode(',', $dataRequests);
                     </table>
                     */ ?>
 
-                    <canvas id="myChart"></canvas>
+                        <canvas id="myChart"></canvas>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 
 <?php
 $this->registerJsFile(

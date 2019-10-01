@@ -36,12 +36,14 @@ $this->title = $this->context->title;
 
                 </div>
 
-                <?php if (Yii::$app->request->get('filter') == false) {
+                <?php //if (Yii::$app->request->get('filter') == false) {
                     echo ProductsNovelties::widget([
+                        'modelPromotionItemClass' => Product::class,
+                        'modelPromotionItemLangClass' => ProductLang::class,
                         'modelClass' => ItalianProduct::class,
                         'modelLangClass' => ItalianProductLang::class,
                     ]);
-                } ?>
+                //} ?>
 
                 <div class="cat-content">
                     <?= Html::a(

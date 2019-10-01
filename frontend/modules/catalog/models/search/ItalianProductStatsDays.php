@@ -114,6 +114,8 @@ class ItalianProductStatsDays extends ItalianProductStatsModel
 
         if (isset($params['type']) && in_array($params['type'], ['views', 'requests'])) {
             $query->orderBy($params['type'] . ' DESC');
+        } elseif (Yii::$app->controller->action->id != 'view') {
+            $query->orderBy(['views' => SORT_DESC]);
         }
 
         return $dataProvider;
@@ -203,6 +205,8 @@ class ItalianProductStatsDays extends ItalianProductStatsModel
 
         if (isset($params['type']) && in_array($params['type'], ['views', 'requests'])) {
             $query->orderBy($params['type'] . ' DESC');
+        } elseif (Yii::$app->controller->action->id != 'view') {
+            $query->orderBy(['views' => SORT_DESC]);
         }
 
         return $dataProvider;

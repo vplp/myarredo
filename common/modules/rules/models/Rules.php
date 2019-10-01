@@ -115,7 +115,7 @@ class Rules extends ActiveRecord
      */
     public function getTitle()
     {
-        $title = $this->lang->title ?? '{}';
+        $title = $this->lang->title ?? '{{-}}';
 
         return $title;
     }

@@ -25,32 +25,52 @@ class ElasticSearchController extends Controller
     /**
      * @throws \yii\db\Exception
      */
-    public function actionResetMark()
+    public function actionResetProductMark()
     {
-        $this->stdout("ResetMark: start. \n", Console::FG_GREEN);
+        $this->stdout("ResetProductMark: start. \n", Console::FG_GREEN);
 
         Yii::$app->db->createCommand()
             ->update(Product::tableName(), ['mark1' => '0'], "`mark1`='1'")
             ->execute();
 
+        $this->stdout("ResetProductMark: finish. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * @throws \yii\db\Exception
+     */
+    public function actionResetSaleMark()
+    {
+        $this->stdout("ResetSaleMark: start. \n", Console::FG_GREEN);
+
         Yii::$app->db->createCommand()
             ->update(Sale::tableName(), ['mark1' => '0'], "`mark1`='1'")
             ->execute();
+
+        $this->stdout("ResetSaleMark: finish. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * @throws \yii\db\Exception
+     */
+    public function actionResetItalianProductMark()
+    {
+        $this->stdout("ResetItalianProductMark: start. \n", Console::FG_GREEN);
 
         Yii::$app->db->createCommand()
             ->update(ItalianProduct::tableName(), ['mark1' => '0'], "`mark1`='1'")
             ->execute();
 
-        $this->stdout("ResetMark: finish. \n", Console::FG_GREEN);
+        $this->stdout("ResetItalianProductMark: finish. \n", Console::FG_GREEN);
     }
 
     /**
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
-    public function actionAdd()
+    public function actionAddProduct()
     {
-        $this->stdout("ElasticSearch: start. \n", Console::FG_GREEN);
+        $this->stdout("AddProduct: start. \n", Console::FG_GREEN);
 
         $models = Product::find()
             ->innerJoinWith(['factory'])
@@ -88,7 +108,7 @@ class ElasticSearchController extends Controller
                         }
                     }
 
-                    if ($model->save() && !in_array(0, array_values($saveLang))) {
+                    if ($model->save()/* && !in_array(0, array_values($saveLang))*/) {
                         $transaction->commit();
                         $this->stdout("add ID=" . $model->id . " \n", Console::FG_GREEN);
                     } else {
@@ -108,7 +128,7 @@ class ElasticSearchController extends Controller
             }
         }
 
-        $this->stdout("ElasticSearch: finish. \n", Console::FG_GREEN);
+        $this->stdout("AddProduct: finish. \n", Console::FG_GREEN);
     }
 
     /**
@@ -117,7 +137,7 @@ class ElasticSearchController extends Controller
      */
     public function actionAddSale()
     {
-        $this->stdout("ElasticSearch: start. \n", Console::FG_GREEN);
+        $this->stdout("AddSale: start. \n", Console::FG_GREEN);
 
         $models = Sale::find()
             ->andFilterWhere([
@@ -173,7 +193,7 @@ class ElasticSearchController extends Controller
             }
         }
 
-        $this->stdout("ElasticSearch: finish. \n", Console::FG_GREEN);
+        $this->stdout("AddSale: finish. \n", Console::FG_GREEN);
     }
 
     /**
@@ -182,7 +202,7 @@ class ElasticSearchController extends Controller
      */
     public function actionAddItalianProduct()
     {
-        $this->stdout("ElasticSearch: start. \n", Console::FG_GREEN);
+        $this->stdout("AddItalianProduct: start. \n", Console::FG_GREEN);
 
         $models = ItalianProduct::find()
             ->andFilterWhere([
@@ -238,6 +258,6 @@ class ElasticSearchController extends Controller
             }
         }
 
-        $this->stdout("ElasticSearch: finish. \n", Console::FG_GREEN);
+        $this->stdout("AddItalianProduct: finish. \n", Console::FG_GREEN);
     }
 }

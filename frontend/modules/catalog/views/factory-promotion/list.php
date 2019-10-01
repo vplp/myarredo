@@ -61,10 +61,23 @@ $this->title = $this->context->title;
                                     'columns' => [
                                         [
                                             'format' => 'raw',
-                                            'attribute' => 'updated_at',
-                                            'label' => Yii::t('app', 'Дата'),
+                                            'attribute' => 'start_date_promotion',
                                             'value' => function ($model) {
-                                                return date('j.m.Y', $model->updated_at);
+                                                /** @var $model FactoryPromotion */
+                                                return $model->start_date_promotion
+                                                    ? date('j.m.Y', $model->start_date_promotion)
+                                                    : '';
+                                            },
+                                            'filter' => false
+                                        ],
+                                        [
+                                            'format' => 'raw',
+                                            'attribute' => 'end_date_promotion',
+                                            'value' => function ($model) {
+                                                /** @var $model FactoryPromotion */
+                                                return $model->end_date_promotion
+                                                    ? date('j.m.Y', $model->end_date_promotion)
+                                                    : '';
                                             },
                                             'filter' => false
                                         ],
@@ -72,7 +85,7 @@ $this->title = $this->context->title;
                                             'format' => 'raw',
                                             'label' => Yii::t('app', 'Список товаров'),
                                             'value' => function ($model) {
-                                                /** @var FactoryPromotion $model */
+                                                /** @var $model FactoryPromotion */
                                                 $result = [];
                                                 foreach ($model->products as $product) {
                                                     $result[] = $product->lang->title;
@@ -84,8 +97,28 @@ $this->title = $this->context->title;
                                             'format' => 'raw',
                                             'label' => Yii::t('app', 'Кол-во городов'),
                                             'value' => function ($model) {
-                                                /** @var FactoryPromotion $model */
+                                                /** @var $model FactoryPromotion */
                                                 return count($model->cities);
+                                            },
+                                        ],
+                                        [
+                                            'format' => 'html',
+                                            'label' => Yii::t('app', 'Factory statistics'),
+                                            'value' => function ($model) {
+                                                /** @var $model FactoryPromotion */
+                                                if ($model->status == 0) {
+                                                    return Html::a(
+                                                        Yii::t('app', 'View'),
+                                                        Url::toRoute([
+                                                            '/catalog/factory-stats/view',
+                                                            'alias' => $model['factory']['alias'],
+                                                            'start_date' => date('j-m-Y', $model->start_date_promotion),
+                                                            'end_date' => date('j-m-Y', $model->end_date_promotion),
+                                                        ])
+                                                    );
+                                                } else {
+                                                    return false;
+                                                }
                                             },
                                         ],
                                         [
@@ -95,29 +128,18 @@ $this->title = $this->context->title;
                                         [
                                             'attribute' => 'payment_status',
                                             'value' => function ($model) {
-                                                /** @var FactoryPromotion $model */
+                                                /** @var $model FactoryPromotion */
                                                 return $model->getPaymentStatusTitle();
                                             },
-                                            'filter' => GridViewFilter::selectOne(
-                                                $filter,
-                                                'payment_status',
-                                                $model::paymentStatusKeyRange()
-                                            ),
+                                            'filter' => false
                                         ],
                                         [
                                             'attribute' => 'status',
                                             'value' => function ($model) {
-                                                /** @var FactoryPromotion $model */
+                                                /** @var $model FactoryPromotion */
                                                 return $model->getStatusTitle();
                                             },
-                                            'filter' => GridViewFilter::selectOne(
-                                                $filter,
-                                                'status',
-                                                [
-                                                    0 => Yii::t('app', 'Завершена'),
-                                                    1 => Yii::t('app', 'Активная')
-                                                ]
-                                            ),
+                                            'filter' => false
                                         ],
                                         [
                                             'class' => yii\grid\ActionColumn::class,

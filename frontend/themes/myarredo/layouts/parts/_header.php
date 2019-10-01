@@ -358,14 +358,9 @@ use frontend\modules\user\widgets\menu\UserMenu;
                     ['class' => 'logo']
                 ) ?>
 
-                <?php
-                if (!Yii::$app->getUser()->isGuest &&
-                    (
-                        Yii::$app->user->identity->group->role == 'factory' ||
-                        (Yii::$app->user->identity->group->role == 'partner' && Yii::$app->user->identity->profile->country_id == 4)
-                    )
-                ) {
-                    ?>
+                <?php if (!Yii::$app->getUser()->isGuest &&
+                    Yii::$app->user->identity->group->role == 'partner' &&
+                    Yii::$app->user->identity->profile->country_id == 4) { ?>
                     <div class="header-addprodbox">
                         <?= Html::a(
                             '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Добавить товар платно'),
@@ -379,7 +374,14 @@ use frontend\modules\user\widgets\menu\UserMenu;
                             ['class' => 'btn-myarredo']
                         ) ?>
                     </div>
-                    <?php
+                <?php } ?>
+
+                <?php if (!Yii::$app->getUser()->isGuest &&
+                    (
+                        (Yii::$app->user->identity->group->role == 'partner' && Yii::$app->user->identity->profile->country_id == 4) ||
+                        Yii::$app->user->identity->group->role == 'factory'
+                    )
+                ) {
                 } else { ?>
                     <?= CatalogMenu::widget([]); ?>
 
@@ -409,7 +411,6 @@ use frontend\modules\user\widgets\menu\UserMenu;
                         <?php ActiveForm::end(); ?>
                     </div>
                 <?php } ?>
-
             </div>
         </div>
     </div>
@@ -437,21 +438,17 @@ use frontend\modules\user\widgets\menu\UserMenu;
     </div>
 
     <div class="mobsearch-box">
-        <?php $form = ActiveForm::begin([
-            'action' => ['/catalog/elastic-search/search'],
+        <?php $form = ActiveForm::begin(['action' => ['/catalog/elastic-search/search'],
             'method' => 'get',
-            'options' => ['class' => 'mobsearch-form'],
-        ]); ?>
+            'options' => ['class' => 'mobsearch-form'],]); ?>
 
         <div class="mobsearch-group">
             <?= Html::input(
                 'text',
                 'search',
                 null,
-                [
-                    'class' => 'form-control mobsearch-fld',
-                    'placeholder' => Yii::t('app', 'Поиск'),
-                ]
+                ['class' => 'form-control mobsearch-fld',
+                    'placeholder' => Yii::t('app', 'Поиск'),]
             ) ?>
             <?= Html::submitButton(
                 'Поиск',
@@ -472,19 +469,15 @@ use frontend\modules\user\widgets\menu\UserMenu;
                     '<i class="fa fa-sign-in" aria-hidden="true"></i>' .
                     Yii::t('app', 'Sign In'),
                     ['/user/login/index'],
-                    [
-                        'class' => 'mobile-btn',
-                        'rel' => 'nofollow'
-                    ]
+                    ['class' => 'mobile-btn',
+                        'rel' => 'nofollow']
                 );
             } else {
                 echo Html::a(
                     Yii::t('app', 'Sign Up'),
                     ['/user/logout/index'],
-                    [
-                        'class' => 'mobile-btn',
-                        'rel' => 'nofollow'
-                    ]
+                    ['class' => 'mobile-btn',
+                        'rel' => 'nofollow']
                 );
             } ?>
 

@@ -11,7 +11,7 @@ use voskobovich\behaviors\ManyToManyBehavior;
 //
 use common\modules\payment\PaymentModule;
 use common\modules\catalog\models\{
-    ItalianProduct, FactoryPromotion
+    Product, Sale, ItalianProduct, FactoryPromotion
 };
 //
 use thread\app\base\models\ActiveRecord;
@@ -22,6 +22,7 @@ use thread\app\base\models\ActiveRecord;
  * @property integer $id
  * @property integer $user_id
  * @property string $type
+ * @property integer $promotion_package_id
  * @property boolean $change_tariff
  * @property integer $amount
  * @property string $currency
@@ -124,9 +125,9 @@ class Payment extends ActiveRecord
             [['currency'], 'in', 'range' => array_keys(static::getCurrencyKeyRange())],
             [['payment_status'], 'in', 'range' => array_keys(static::getPaymentStatusKeyRange())],
             [['amount'], 'double'],
-            [['user_id', 'payment_time', 'create_time', 'update_time'], 'integer'],
+            [['user_id', 'promotion_package_id', 'payment_time', 'create_time', 'update_time'], 'integer'],
             [['change_tariff', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['change_tariff'], 'default', 'value' => 0],
+            [['promotion_package_id', 'change_tariff'], 'default', 'value' => 0],
             [
                 'items_ids',
                 'each',
@@ -150,6 +151,7 @@ class Payment extends ActiveRecord
             'backend' => [
                 'user_id',
                 'type',
+                'promotion_package_id',
                 'change_tariff',
                 'amount',
                 'currency',
@@ -161,6 +163,7 @@ class Payment extends ActiveRecord
             'frontend' => [
                 'user_id',
                 'type',
+                'promotion_package_id',
                 'change_tariff',
                 'amount',
                 'currency',
@@ -179,7 +182,8 @@ class Payment extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User'),
-            'type',
+            'type' => Yii::t('app', 'Payment type'),
+            'promotion_package_id' => Yii::t('app', 'Promotion package'),
             'change_tariff' => Yii::t('app', 'Смена тарифа'),
             'amount' => Yii::t('app', 'Amount'),
             'currency' => Yii::t('app', 'Currency'),
@@ -214,6 +218,12 @@ class Payment extends ActiveRecord
             $desc = Yii::t('app', 'Оплата товаров');
         } elseif ($this->type == 'italian_item_delivery') {
             $desc = Yii::t('app', 'Оплата заявки на доставку');
+        } elseif ($this->type == 'promotion_item') {
+            $desc = 'promotion_item';
+        } elseif ($this->type == 'promotion_sale_item') {
+            $desc = 'promotion_sale_item';
+        } elseif ($this->type == 'promotion_italian_item') {
+            $desc = 'promotion_italian_item';
         }
 
         return $desc;
@@ -233,6 +243,12 @@ class Payment extends ActiveRecord
             $class = ItalianProduct::class;
         } elseif ($this->type == 'italian_item_delivery') {
             $class = ItalianProduct::class;
+        } elseif ($this->type == 'promotion_item') {
+            $class = Product::class;
+        } elseif ($this->type == 'promotion_sale_item') {
+            $class = Sale::class;
+        } elseif ($this->type == 'promotion_italian_item') {
+            $class = ItalianProduct::class;
         }
 
         return $this
@@ -246,10 +262,10 @@ class Payment extends ActiveRecord
     public static function getPaymentStatusKeyRange()
     {
         return [
-            static::PAYMENT_STATUS_PENDING => 'pending',
-            static::PAYMENT_STATUS_ACCEPTED => 'accepted',
-            static::PAYMENT_STATUS_SUCCESS => 'success',
-            static::PAYMENT_STATUS_FAIL => 'fail',
+            static::PAYMENT_STATUS_PENDING => Yii::t('app', 'Pending'),
+            static::PAYMENT_STATUS_ACCEPTED => Yii::t('app', 'Accepted'),
+            static::PAYMENT_STATUS_SUCCESS => Yii::t('app', 'Success'),
+            static::PAYMENT_STATUS_FAIL => Yii::t('app', 'Fail'),
         ];
     }
 
@@ -271,9 +287,12 @@ class Payment extends ActiveRecord
     public static function getTypeKeyRange()
     {
         return [
-            'factory_promotion' => 'factory_promotion',
-            'italian_item' => 'italian_item',
-            'italian_item_delivery' => 'italian_item_delivery'
+            'factory_promotion' => Yii::t('app', 'Оплата рекламной кампании'),
+            'italian_item' => Yii::t('app', 'Оплата товаров'),
+            'italian_item_delivery' => Yii::t('app', 'Оплата заявки на доставку'),
+            'promotion_item' => 'promotion_item',
+            'promotion_sale_item' => 'promotion_item',
+            'promotion_italian_item' => 'promotion_italian_item',
         ];
     }
 }
