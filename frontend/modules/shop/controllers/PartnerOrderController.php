@@ -264,6 +264,9 @@ class PartnerOrderController extends BaseController
                                 $viewMail = '/../mail/answer_order_italy_user_letter';
                             }
 
+                            $currentLanguage = Yii::$app->language;
+                            Yii::$app->language = $modelOrder->lang;
+
                             // send user letter
                             Yii::$app
                                 ->mailer
@@ -275,13 +278,15 @@ class PartnerOrderController extends BaseController
                                     ]
                                 )
                                 ->setTo($modelOrder->customer['email'])
-                                ->setSubject('Ответ за заказ № ' . $modelOrder['id'])
+                                ->setSubject(Yii::t('app', 'Ответ за заказ') . ' № ' . $modelOrder['id'])
                                 ->send();
+
+                            Yii::$app->language = $currentLanguage;
 
                             // message
                             Yii::$app->getSession()->setFlash(
                                 'success',
-                                'Отправлено'
+                                Yii::t('app', 'Отправлено')
                             );
                         } else {
                             $transaction->rollBack();

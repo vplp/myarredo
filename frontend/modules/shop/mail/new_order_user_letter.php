@@ -1,11 +1,13 @@
 <?php
 
 use yii\helpers\Html;
+//
 use frontend\modules\catalog\models\Product;
+use frontend\modules\shop\models\CartItem;
 
 /* @var $this yii\web\View */
-/* @var $item \frontend\modules\catalog\models\Product */
-/* @var $product \frontend\modules\shop\models\CartItem */
+/* @var $item Product */
+/* @var $product CartItem */
 
 $search = ['#full_name#', '#order_id#'];
 
