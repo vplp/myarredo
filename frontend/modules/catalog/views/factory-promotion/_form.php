@@ -383,58 +383,64 @@ function newCost() {
 
     if (selectedCountry === "2") {
         switch (numberViews) {
+            case 500:
+            cost_of_views = 10000;
+            break;
             case 1000:
-            cost_of_views = 24000;
+            cost_of_views = 19000;
             break;
-            case 1400:
-            cost_of_views = 32000;
+            case 1500:
+            cost_of_views = 27000;
             break;
-            case 1900:
-            cost_of_views = 40000;
+            case 2000:
+            cost_of_views = 34000;
             break;
             case 2500:
-            cost_of_views = 48000;
+            cost_of_views = 40000;
             break;
-            case 3100:
-            cost_of_views = 56000;
+            case 3000:
+            cost_of_views = 45000;
             break;
-            case 3600:
-            cost_of_views = 64000;
+            case 3500:
+            cost_of_views = 49000;
             break;
-            case 4200:
-            cost_of_views = 72000;
+            case 4000:
+            cost_of_views = 52000;
             break;
-            case 5000:
-            cost_of_views = 80000;
+            case 4500:
+            cost_of_views = 54000;
             break;
             default:
             cost_of_views = 0;
         }  
     } else if (selectedCountry === "3") {
         switch (numberViews) {
+            case 500:
+            cost_of_views = 7500;
+            break;
             case 1000:
-            cost_of_views = 20400;
+            cost_of_views = 14000;
             break;
-            case 1400:
-            cost_of_views = 27200;
+            case 1500:
+            cost_of_views = 19500;
             break;
-            case 1900:
-            cost_of_views = 34000;
+            case 2000:
+            cost_of_views = 24000;
             break;
             case 2500:
-            cost_of_views = 40800;
+            cost_of_views = 27500;
             break;
-            case 3100:
-            cost_of_views = 47600;
+            case 3000:
+            cost_of_views = 30000;
             break;
-            case 3600:
-            cost_of_views = 54400;
+            case 3500:
+            cost_of_views = 31500;
             break;
-            case 4200:
-            cost_of_views = 61200;
+            case 4000:
+            cost_of_views = 32000;
             break;
-            case 5000:
-            cost_of_views = 68000;
+            case 4500:
+            cost_of_views = 31500;
             break;
             default:
             cost_of_views = 0;
