@@ -12,9 +12,12 @@ use frontend\modules\catalog\models\Category;
  * Class ProductsNovelties
  *
  * @property string $view
+ * @property string $modelPromotionItemClass
+ * @property string $modelPromotionItemLangClass
  * @property string $modelClass
  * @property string $modelLangClass
  * @property object $models
+ * @property object $modelsPromotions
  *
  * @package frontend\modules\catalog\widgets\product
  */
@@ -24,6 +27,16 @@ class ProductsNovelties extends Widget
      * @var string
      */
     public $view = 'products_novelties';
+
+    /**
+     * @var string
+     */
+    public $modelPromotionItemClass = null;
+
+    /**
+     * @var string
+     */
+    public $modelPromotionItemLangClass = null;
 
     /**
      * @var string
@@ -41,6 +54,11 @@ class ProductsNovelties extends Widget
     protected $models = [];
 
     /**
+     * @var object
+     */
+    protected $modelsPromotions = [];
+
+    /**
      * Init model for run method
      */
     public function init()
@@ -54,7 +72,6 @@ class ProductsNovelties extends Widget
 
         $keys = Yii::$app->catalogFilter->keys;
         $params = Yii::$app->catalogFilter->params;
-
 
         $query = $modelClass::findBaseArray()
             ->select([
@@ -77,6 +94,31 @@ class ProductsNovelties extends Widget
         }
 
         $this->models = $query->all();
+
+        if ($this->modelPromotionItemClass != null && $this->modelPromotionItemLangClass != null) {
+            $modelPromotionItemClass = new $this->modelPromotionItemClass();
+            $modelPromotionItemLangClass = new $this->modelPromotionItemLangClass();
+
+            $query = $modelPromotionItemClass::findBaseArray()
+                ->select([
+                    $modelPromotionItemClass::tableName() . '.id',
+                    $modelPromotionItemClass::tableName() . '.alias',
+                    $modelPromotionItemClass::tableName() . '.image_link',
+                    $modelPromotionItemClass::tableName() . '.factory_id',
+                    $modelPromotionItemClass::tableName() . '.bestseller',
+                    $modelPromotionItemClass::tableName() . '.price',
+                    $modelPromotionItemLangClass::tableName() . '.title',
+                ])
+                ->limit(8);
+
+            if (!isset($params[$keys['category']])) {
+                $query->andWhere(['>', $modelPromotionItemClass::tableName() . '.time_promotion_in_catalog', 0]);
+            } else {
+                $query->andWhere(['>', $modelPromotionItemClass::tableName() . '.time_promotion_in_category', 0]);
+            }
+
+            $this->modelsPromotions = $query->all();
+        }
     }
 
     /**
@@ -88,8 +130,10 @@ class ProductsNovelties extends Widget
             return $this->render(
                 $this->view,
                 [
+                    'promotions' => $this->modelsPromotions,
+                    'modelPromotionItemClass' => $this->modelPromotionItemClass,
                     'products' => $this->models,
-                    'modelClass' => $this->modelClass
+                    'modelClass' => $this->modelClass,
                 ]
             );
         }

@@ -2,11 +2,44 @@
 
 use yii\helpers\Html;
 
-if (!empty($products)) { ?>
+/**
+ * @var $promotions array
+ * @var $products array
+ */
+
+if (!empty($products) || !empty($promotions)) { ?>
     <div class="rec-slider-wrap novetly-sliderbox">
         <div class="container large-container">
             <div class="row">
                 <div class="std-slider" id="rec-slider">
+
+                    <?php foreach ($promotions as $model) { ?>
+                        <div class="item" data-dominant-color>
+                            <?= Html::beginTag(
+                                'a',
+                                [
+                                    'href' => $modelPromotionItemClass::getUrl($model['alias']),
+                                    'class' => 'tile',
+                                    'target' => '_blank'
+                                ]
+                            ) ?>
+
+                            <div class="prod-saving-percentage">vip</div>
+
+                            <div class="img-cont">
+                                <?= Html::img($modelPromotionItemClass::getImageThumb($model['image_link'])) ?>
+                                <span class="background"></span>
+                            </div>
+
+                            <div class="add-item-text">
+                                <?= $model['lang']['title'] ?>
+                            </div>
+
+                            <?= Html::endTag('a') ?>
+
+                        </div>
+
+                    <?php } ?>
 
                     <?php foreach ($products as $model) { ?>
                         <div class="item" data-dominant-color>
