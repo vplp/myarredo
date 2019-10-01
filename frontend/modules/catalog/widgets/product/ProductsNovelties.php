@@ -112,9 +112,15 @@ class ProductsNovelties extends Widget
                 ->limit(8);
 
             if (!isset($params[$keys['category']])) {
-                $query->andWhere(['>', $modelPromotionItemClass::tableName() . '.time_promotion_in_catalog', 0]);
+                $query->andWhere(['>', $modelPromotionItemClass::tableName() . '.time_vip_promotion_in_catalog', 0]);
+                $query->andWhere('(FROM_UNIXTIME(' . $modelPromotionItemClass::tableName() . '.time_vip_promotion_in_catalog) + interval :days day) >= now()', [
+                    ':days' => 10
+                ]);
             } else {
-                $query->andWhere(['>', $modelPromotionItemClass::tableName() . '.time_promotion_in_category', 0]);
+                $query->andWhere(['>', $modelPromotionItemClass::tableName() . '.time_vip_promotion_in_category', 0]);
+                $query->andWhere('(FROM_UNIXTIME(' . $modelPromotionItemClass::tableName() . '.time_vip_promotion_in_category) + interval :days day) >= now()', [
+                    ':days' => 10
+                ]);
             }
 
             $this->modelsPromotions = $query->all();
