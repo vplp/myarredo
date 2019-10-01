@@ -136,6 +136,15 @@ class Product extends ProductModel
 
         $order = [];
 
+        /**
+         * Promotion
+         */
+        if (!isset($params[$keys['category']])) {
+            $order[] = self::tableName() . '.time_promotion_in_catalog DESC';
+        } else {
+            $order[] = self::tableName() . '.time_promotion_in_category DESC';
+        }
+
         if (isset($params['sort']) && $params['sort'] == 'asc') {
             $order[] = self::tableName() . '.price_from ASC';
         } elseif (isset($params['sort']) && $params['sort'] == 'desc') {

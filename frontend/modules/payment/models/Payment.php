@@ -21,6 +21,7 @@ class Payment extends \common\modules\payment\models\Payment
         parent::init();
 
         $this->on(self::EVENT_AFTER_UPDATE, [$this, 'sendLetterNotificationPaidForAdmin']);
+        $this->on(self::EVENT_AFTER_UPDATE, [$this, 'setTimePromotion']);
     }
 
     /**
@@ -42,6 +43,50 @@ class Payment extends \common\modules\payment\models\Payment
         return (new search\Payment())->search($params);
     }
 
+    public function setTimePromotion()
+    {
+        if ($this->payment_status == 'success' && in_array($this->type, ['promotion_item', 'promotion_sale_item', 'promotion_italian_item'])) {
+            switch ($this->promotion_package_id) {
+                case 1:
+                    foreach ($this->items as $item) {
+                        $item->setScenario('turbo_sale_2in1');
+                        $item->time_vip_promotion_in_catalog = time();
+                        $item->time_vip_promotion_in_category = time();
+                        $item->save();
+                    }
+                    break;
+                case 2:
+                    foreach ($this->items as $item) {
+                        $item->setScenario('time_promotion_in_catalog');
+                        $item->time_promotion_in_catalog = time();
+                        $item->save();
+                    }
+                    break;
+                case 3:
+                    foreach ($this->items as $item) {
+                        $item->setScenario('time_promotion_in_category');
+                        $item->time_promotion_in_category = time();
+                        $item->save();
+                    }
+                    break;
+                case 4:
+                    foreach ($this->items as $item) {
+                        $item->setScenario('time_vip_promotion_in_catalog');
+                        $item->time_vip_promotion_in_catalog = time();
+                        $item->save();
+                    }
+                    break;
+                case 5:
+                    foreach ($this->items as $item) {
+                        $item->setScenario('time_vip_promotion_in_category');
+                        $item->time_vip_promotion_in_category = time();
+                        $item->save();
+                    }
+                    break;
+            }
+        }
+    }
+
     /**
      * sendLetterNotificationForAdmin
      */
@@ -50,15 +95,17 @@ class Payment extends \common\modules\payment\models\Payment
         /** send mail to admin */
 
         if ($this->payment_status == 'success') {
-            $title = ($this->type == 'factory_promotion')
-                ? Yii::t('app', 'Оплата рекламной кампании')
-                : Yii::t('app', 'Оплата товаров');
+            $title = $this->getInvDesc();
 
             $message = $this->amount . ' ' . $this->currency;
 
-            $url = ($this->type == 'factory_promotion')
-                ? Url::home(true) . 'backend/catalog/factory-promotion/update?id=' . $this->id
-                : Url::home(true) . 'backend/catalog/sale-italy/update?id=' . $this->id;
+            $url = '';
+
+            if ($this->type == 'factory_promotion') {
+                $url = Url::home(true) . 'backend/catalog/factory-promotion/update?id=' . $this->id;
+            } elseif ($this->type == 'italian_item') {
+                $url = Url::home(true) . 'backend/catalog/sale-italy/update?id=' . $this->id;
+            }
 
             Yii::$app
                 ->mailer
