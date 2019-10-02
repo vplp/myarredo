@@ -102,7 +102,7 @@ class SaleStatsDays extends SaleStatsModel
                 'sum(' . self::tableName() . '.requests) as requests'
             ]);
             $query->groupBy(self::tableName() . '.date')->orderBy(self::tableName() . '.date');
-        } elseif ($params['action'] == 'list' && isset($params['city_id']) && $params['city_id'] == 0) {
+        } elseif ($params['action'] == 'list') {
             $query->select([
                 self::tableName() . '.product_id',
                 'count(' . self::tableName() . '.product_id) as count',
