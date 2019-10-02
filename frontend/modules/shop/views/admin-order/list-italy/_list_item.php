@@ -35,7 +35,7 @@ use frontend\modules\catalog\models\ItalianProduct;
                         <td><?= Yii::t('app', 'Предмет') ?></td>
                         <td>
                             <?php if (ItalianProduct::isPublished($orderItem->product['alias'])) {
-                                Html::a(
+                                echo Html::a(
                                     $orderItem->product['lang']['title'],
                                     ItalianProduct::getUrl($orderItem->product['alias']),
                                     ['class' => 'productlink']
@@ -47,25 +47,15 @@ use frontend\modules\catalog\models\ItalianProduct;
                     </tr>
                     <tr>
                         <td><?= Yii::t('app', 'Артикул') ?></td>
-                        <td>
-                            <?= $orderItem->product['article'] ?>
-                        </td>
+                        <td><?= $orderItem->product['article'] ?? '-' ?></td>
                     </tr>
                     <tr>
                         <td><?= Yii::t('app', 'Factory') ?></td>
-                        <td><?= $orderItem->product['factory']['title'] ?></td>
-                    </tr>
-                    <tr class="noborder">
-                        <td colspan="2" class="spec-pad">
-                                <span class="for-ordertable">
-                                    <?= Yii::t('app', 'Region') ?>
-                                </span>
-                        </td>
+                        <td><?= $orderItem->product['factory']['title'] ?? $orderItem->product['factory_name'] ?></td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="spec-pad2">
-                            <?= $orderItem->product['region']['title'] ?>
-                        </td>
+                        <td><?= Yii::t('app', 'Region') ?></td>
+                        <td><?= $orderItem->product['region']['title'] ?? '-' ?></td>
                     </tr>
                     <tr>
                         <td><?= Yii::t('app', 'Цена доставки') ?></td>
