@@ -237,7 +237,13 @@ class ElasticSearchItalianProduct extends ActiveRecord
             ]
         ];
 
-        $query->query($queryBool);
+        $query1 = [
+            'match' => [
+                'title_' . $lang => $params['search'],
+            ]
+        ];
+
+        $query->query($query1);
 
         $query->limit(10000);
 
