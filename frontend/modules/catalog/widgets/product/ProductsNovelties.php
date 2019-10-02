@@ -132,7 +132,7 @@ class ProductsNovelties extends Widget
      */
     public function run()
     {
-        if (!empty($this->models)) {
+        if (!empty($this->models) || !empty($this->modelsPromotions)) {
             return $this->render(
                 $this->view,
                 [

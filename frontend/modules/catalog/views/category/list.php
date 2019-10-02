@@ -36,14 +36,18 @@ $this->title = $this->context->title;
 
                 </div>
 
-                <?php //if (Yii::$app->request->get('filter') == false) {
+                <?php
+                $keys = Yii::$app->catalogFilter->keys;
+                $params = Yii::$app->catalogFilter->params;
+
+                if (empty($params) || (count($params) == 1 && isset($params[$keys['category']]))) {
                     echo ProductsNovelties::widget([
                         'modelPromotionItemClass' => Product::class,
                         'modelPromotionItemLangClass' => ProductLang::class,
                         'modelClass' => ItalianProduct::class,
                         'modelLangClass' => ItalianProductLang::class,
                     ]);
-                //} ?>
+                } ?>
 
                 <div class="cat-content">
                     <?= Html::a(
