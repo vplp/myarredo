@@ -215,52 +215,26 @@ class ElasticSearchItalianProduct extends ActiveRecord
             'bool' => [
                 'should' => [
                     [
-                        'multi_match' => [
-                            'fields' => ['title_' . $lang, 'description_' . $lang],
-                            "query" => $params['search'],
-                            "type" => "best_fields",
-                            'fuzziness' => 'AUTO',
-                            "minimum_should_match" => "80%",
-                            'boost' => 10
-                        ]
-                    ],
-                    [
-                        'query_string' => [
-                            'fields' => ['title_' . $lang, 'description_' . $lang],
-                            "query" => '*' . $params['search'] . '*',
-                            'fuzziness' => 'AUTO',
-                            "minimum_should_match" => "80%",
-                            'boost' => 5
-                        ]
-                    ]
-                ]
-            ]
-        ];
-
-        $query1 = [
-            'bool' => [
-                'should' => [
-                    [
                         'match' => [
                             'title_' . $lang => [
                                 'query' => $params['search'],
                                 'operator' => 'AND'
-                            ],
-                        ],
+                            ]
+                        ]
                     ],
                     [
                         'match' => [
                             'description_' . $lang => [
                                 'query' => $params['search'],
                                 'operator' => 'AND'
-                            ],
+                            ]
                         ]
                     ]
                 ]
             ]
         ];
 
-        $query->query($query1);
+        $query->query($queryBool);
 
         $query->limit(10000);
 
