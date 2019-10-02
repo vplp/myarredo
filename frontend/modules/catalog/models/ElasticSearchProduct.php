@@ -237,12 +237,35 @@ class ElasticSearchProduct extends ActiveRecord
             ]
         ];
 
-        $query1 = [
+        $query2 = [
             'match' => [
                 'title_' . $lang => [
                     'query' => $params['search'],
                     'operator' => 'AND'
                 ],
+            ]
+        ];
+
+        $query1 = [
+            'bool' => [
+                'should' => [
+                    [
+                        'match' => [
+                            'title_' . $lang => [
+                                'query' => $params['search'],
+                                'operator' => 'AND'
+                            ],
+                        ],
+                    ],
+                    [
+                        'match' => [
+                            'description_' . $lang => [
+                                'query' => $params['search'],
+                                'operator' => 'AND'
+                            ],
+                        ]
+                    ]
+                ]
             ]
         ];
 
