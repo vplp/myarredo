@@ -212,30 +212,32 @@ class ElasticSearchProduct extends ActiveRecord
         $module = Yii::$app->getModule('catalog');
 
         $queryBool = [
-            'should' => [
-                [
-                    'multi_match' => [
-                        'fields' => ['title_' . $lang, 'description_' . $lang],
-                        "query" => $params['search'],
-                        "type" => "best_fields",
-                        'fuzziness' => 'AUTO',
-                        "minimum_should_match" => "70%",
-                        'boost' => 10
+            'bool' => [
+                'should' => [
+                    [
+                        'multi_match' => [
+                            'fields' => ['title_' . $lang, 'description_' . $lang],
+                            "query" => $params['search'],
+                            "type" => "best_fields",
+                            'fuzziness' => 'AUTO',
+                            "minimum_should_match" => "80%",
+                            'boost' => 10
+                        ]
                     ],
-                ],
-                [
-                    'query_string' => [
-                        'fields' => ['title_' . $lang, 'description_' . $lang],
-                        "query" => '*' . $params['search'] . '*',
-                        'fuzziness' => 'AUTO',
-                        "minimum_should_match" => "60%",
-                        'boost' => 5
-                    ],
+                    [
+                        'query_string' => [
+                            'fields' => ['title_' . $lang, 'description_' . $lang],
+                            "query" => '*' . $params['search'] . '*',
+                            'fuzziness' => 'AUTO',
+                            "minimum_should_match" => "80%",
+                            'boost' => 5
+                        ]
+                    ]
                 ]
-            ],
+            ]
         ];
 
-        $query->query(['bool' => $queryBool]);
+        $query->query($queryBool);
 
         $query->limit(10000);
 
