@@ -5,6 +5,7 @@ namespace frontend\modules\catalog\controllers;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 //
 use frontend\modules\catalog\models\{
     Product, ProductStats
@@ -31,6 +32,7 @@ class ProductController extends BaseController
                 'class' => VerbFilter::class,
                 'actions' => [
                     'view' => ['get'],
+                    'ajax-get-compositions' => ['get', 'post'],
                 ],
             ],
         ];
@@ -182,17 +184,24 @@ class ProductController extends BaseController
 
     /**
      * @return array
-     * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
     public function actionAjaxGetCompositions()
     {
-        if (Yii::$app->request->isAjax) {
+        if (Yii::$app->request->isAjax && Yii::$app->getRequest()->post('product_id')) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
-            $html = $this->renderPartial('ajax_get_compositions', [
+            $html = '';
 
-            ]);
+            $model = Product::findBase()->byID(Yii::$app->getRequest()->post('product_id'))->one();
+            /** @var $model Product */
+            if ($model != null) {
+                $html = $this->renderPartial('ajax_get_compositions', [
+                    'model' => $model,
+                    'elementsComposition' => $model->getElementsComposition(),
+                    'samples' => $model->samples
+                ]);
+            }
 
             return ['success' => 1, 'html' => $html];
         }
