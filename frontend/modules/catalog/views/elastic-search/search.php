@@ -33,7 +33,7 @@ $this->title = $this->context->title;
 
                                 <?php if ($modelsSale->getModels() && $modelsSale->getPagination()->getPageCount() >= Yii::$app->getRequest()->get('page')) { ?>
                                     <h3><?= Yii::t('app', 'Sale') ?></h3>
-                                    <div class="cat-prod-wrap">
+                                    <div class="cat-prod-wrap cat-prod-sale">
                                         <div class="cat-prod">
                                             <?php
                                             foreach ($modelsSale->getModels() as $model) {
@@ -60,7 +60,7 @@ $this->title = $this->context->title;
 
                                 <?php if ($modelsItalianProduct->getModels() && $modelsItalianProduct->getPagination()->getPageCount() >= Yii::$app->getRequest()->get('page')) { ?>
                                     <h3><?= Yii::t('app', 'Sale in Italy') ?></h3>
-                                    <div class="cat-prod-wrap">
+                                    <div class="cat-prod-wrap cat-prod-sale">
                                         <div class="cat-prod">
                                             <?php
                                             foreach ($modelsItalianProduct->getModels() as $model) {

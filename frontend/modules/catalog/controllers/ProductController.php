@@ -184,7 +184,6 @@ class ProductController extends BaseController
 
     /**
      * @return array
-     * @throws \yii\base\InvalidConfigException
      */
     public function actionAjaxGetCompositions()
     {
