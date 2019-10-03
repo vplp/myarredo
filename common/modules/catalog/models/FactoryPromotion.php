@@ -210,7 +210,7 @@ class FactoryPromotion extends ActiveRecord// implements OrderInterface
     public static function statusKeyRange()
     {
         return [
-            static::STATUS_KEY_ON => Yii::t('app', 'Активная'),
+            static::STATUS_KEY_ON => Yii::t('app', 'Не активная'),
             static::STATUS_KEY_OFF => Yii::t('app', 'Завершена')
         ];
     }
@@ -278,7 +278,7 @@ class FactoryPromotion extends ActiveRecord// implements OrderInterface
     public function getStatusTitle()
     {
         return $this->status
-            ? Yii::t('app', 'Активная')
+            ? Yii::t('app', 'Не активная')
             : Yii::t('app', 'Завершена');
     }
 

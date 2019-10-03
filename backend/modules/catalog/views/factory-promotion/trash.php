@@ -86,7 +86,7 @@ echo GridView::widget([
                 'status',
                 [
                     0 => Yii::t('app', 'Завершена'),
-                    1 => Yii::t('app', 'Активная')
+                    1 => Yii::t('app', 'Не активная')
                 ]
             ),
         ],
