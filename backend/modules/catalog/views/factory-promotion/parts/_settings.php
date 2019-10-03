@@ -58,7 +58,7 @@ use backend\modules\catalog\models\FactoryPromotion;
         <?= $form->switcher($model, 'published') ?>
     </div>
     <div class="col-md-3">
-        <?= $form->field($model, 'status')->dropDownList(FactoryPromotion::statusKeyRange()) ?>
+        <?= $form->field($model, 'status')->dropDownList(FactoryPromotion::statusRange()) ?>
     </div>
     <div class="col-md-3">
         <?= $form->field($model, 'payment_status')->dropDownList(FactoryPromotion::paymentStatusKeyRange()) ?>

@@ -8,18 +8,17 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
-use frontend\modules\catalog\models\{
-    Collection,
+use frontend\modules\catalog\models\{Collection,
     Colors,
     Product,
     Category,
     Factory,
     ProductStats,
     Sale,
+    SaleStats,
     SubTypes,
     Types,
-    Specification
-};
+    Specification};
 use frontend\modules\user\models\User;
 
 /**
@@ -299,6 +298,9 @@ class TemplateFactoryController extends BaseController
         if ($model == null) {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
+
+        // SaleStats
+        SaleStats::create($model->id);
 
         $this->breadcrumbs[] = [
             'label' => Yii::t('app', 'Каталог итальянской мебели'),
