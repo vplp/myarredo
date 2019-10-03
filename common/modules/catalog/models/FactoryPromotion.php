@@ -343,7 +343,7 @@ class FactoryPromotion extends ActiveRecord// implements OrderInterface
     public static function findBase()
     {
         return self::find()
-            ->orderBy(self::tableName() . '.updated_at DESC');
+            ->orderBy(self::tableName() . '.start_date_promotion DESC');
     }
 
     /**
