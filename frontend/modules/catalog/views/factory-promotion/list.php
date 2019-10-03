@@ -106,7 +106,7 @@ $this->title = $this->context->title;
                                             'label' => Yii::t('app', 'Factory statistics'),
                                             'value' => function ($model) {
                                                 /** @var $model FactoryPromotion */
-                                                if ($model->status == 0) {
+                                                if ($model->status == FactoryPromotion::STATUS_COMPLETED) {
                                                     return Html::a(
                                                         Yii::t('app', 'View'),
                                                         Url::toRoute([

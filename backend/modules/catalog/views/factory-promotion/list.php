@@ -1,8 +1,9 @@
 <?php
 
+use backend\app\bootstrap\ActiveForm;
 use backend\widgets\GridView\GridView;
 use backend\modules\catalog\models\{
-    Factory
+    Factory, FactoryPromotion, Sale
 };
 //
 use thread\widgets\grid\{
@@ -10,8 +11,8 @@ use thread\widgets\grid\{
 };
 
 /**
- * @var \backend\modules\catalog\models\FactoryPromotion $model
- * @var \backend\app\bootstrap\ActiveForm $form
+ * @var FactoryPromotion $model
+ * @var ActiveForm $form
  */
 
 echo GridView::widget([
@@ -24,13 +25,14 @@ echo GridView::widget([
             'attribute' => 'updated_at',
             'label' => Yii::t('app', 'Дата'),
             'value' => function ($model) {
+                /** @var FactoryPromotion $model */
                 return date('j.m.Y', $model->updated_at);
             }
         ],
         [
             'attribute' => Yii::t('app', 'Factory'),
             'value' => function ($model) {
-                /** @var $model \backend\modules\catalog\models\Sale */
+                /** @var Sale $model */
                 return ($model['factory']) ? $model['factory']['title'] : '';
             },
             'filter' => GridViewFilter::selectOne($filter, 'factory_id', Factory::dropDownList()),
@@ -39,7 +41,7 @@ echo GridView::widget([
             'format' => 'raw',
             'label' => Yii::t('app', 'Список товаров'),
             'value' => function ($model) {
-                /** @var \backend\modules\catalog\models\FactoryPromotion $model */
+                /** @var FactoryPromotion $model */
                 $result = [];
                 foreach ($model->products as $product) {
                     $result[] = $product->lang->title;
@@ -51,7 +53,7 @@ echo GridView::widget([
             'format' => 'raw',
             'label' => Yii::t('app', 'Кол-во городов'),
             'value' => function ($model) {
-                /** @var \backend\modules\catalog\models\FactoryPromotion $model */
+                /** @var FactoryPromotion $model */
                 return count($model->cities);
             },
         ],
@@ -62,6 +64,7 @@ echo GridView::widget([
         [
             'attribute' => 'start_date_promotion',
             'value' => function ($model) {
+                /** @var FactoryPromotion $model */
                 return $model->payment_status == 'success'
                     ? date('j.m.Y H:i', $model->start_date_promotion)
                     : '-';
@@ -72,6 +75,7 @@ echo GridView::widget([
         [
             'attribute' => 'end_date_promotion',
             'value' => function ($model) {
+                /** @var FactoryPromotion $model */
                 return $model->payment_status == 'success'
                     ? date('j.m.Y H:i', $model->end_date_promotion)
                     : '-';
@@ -82,7 +86,7 @@ echo GridView::widget([
         [
             'attribute' => 'payment_status',
             'value' => function ($model) {
-                /** @var \backend\modules\catalog\models\FactoryPromotion $model */
+                /** @var FactoryPromotion $model */
                 return $model->getPaymentStatusTitle();
             },
             'filter' => GridViewFilter::selectOne(
@@ -94,16 +98,13 @@ echo GridView::widget([
         [
             'attribute' => 'status',
             'value' => function ($model) {
-                /** @var \backend\modules\catalog\models\FactoryPromotion $model */
+                /** @var FactoryPromotion $model */
                 return $model->getStatusTitle();
             },
             'filter' => GridViewFilter::selectOne(
                 $filter,
                 'status',
-                [
-                    0 => Yii::t('app', 'Завершена'),
-                    1 => Yii::t('app', 'Не активная')
-                ]
+                FactoryPromotion::statusRange()
             ),
         ],
         [

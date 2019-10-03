@@ -49,12 +49,16 @@ use common\components\YandexKassaAPI\interfaces\OrderInterface;
  *
  * @package common\modules\catalog\models
  */
-class FactoryPromotion extends ActiveRecord// implements OrderInterface
+class FactoryPromotion extends ActiveRecord
 {
     const PAYMENT_STATUS_PENDING = 'pending';
     const PAYMENT_STATUS_ACCEPTED = 'accepted';
     const PAYMENT_STATUS_SUCCESS = 'success';
     const PAYMENT_STATUS_FAIL = 'fail';
+
+    const STATUS_NOT_ACTIVE = 'not_active';
+    const STATUS_ACTIVE = 'active';
+    const STATUS_COMPLETED = 'completed';
 
     /**
      * @return mixed|null|object|string|\yii\db\Connection
@@ -127,7 +131,8 @@ class FactoryPromotion extends ActiveRecord// implements OrderInterface
             [['invoice_id'], 'string', 'max' => 255],
             [['payment_object'], 'string'],
             [['amount', 'amount_with_vat'], 'double'],
-            [['status', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
+            [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
+            [['status'], 'in', 'range' => array_keys(static::statusRange())],
             [['payment_status'], 'in', 'range' => array_keys(static::paymentStatusKeyRange())],
             [['amount', 'amount_with_vat', 'views'], 'default', 'value' => '0'],
             [['payment_object'], 'default', 'value' => ''],
@@ -207,12 +212,19 @@ class FactoryPromotion extends ActiveRecord// implements OrderInterface
         ];
     }
 
-    public static function statusKeyRange()
+    /**
+     * @param string $key
+     * @return array|mixed
+     */
+    public static function statusRange($key = '')
     {
-        return [
-            static::STATUS_KEY_ON => Yii::t('app', 'Не активная'),
-            static::STATUS_KEY_OFF => Yii::t('app', 'Завершена')
+        $data = [
+            static::STATUS_NOT_ACTIVE => Yii::t('app', 'Not active'),
+            static::STATUS_ACTIVE => Yii::t('app', 'Active'),
+            static::STATUS_COMPLETED => Yii::t('app', 'Completed'),
         ];
+
+        return $key ? $data[$key] : $data;
     }
 
     /**
@@ -277,9 +289,7 @@ class FactoryPromotion extends ActiveRecord// implements OrderInterface
      */
     public function getStatusTitle()
     {
-        return $this->status
-            ? Yii::t('app', 'Не активная')
-            : Yii::t('app', 'Завершена');
+        return self::statusRange($this->status);
     }
 
     /**

@@ -517,7 +517,6 @@ class ItalianProduct extends ActiveRecord
      */
     public static function statusRange($key = '')
     {
-
         $data = [
             'not_considered' => Yii::t('app', 'Not considered'),
             'not_approved' => Yii::t('app', 'Not approved'),
