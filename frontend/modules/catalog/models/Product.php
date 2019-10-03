@@ -449,7 +449,7 @@ class Product extends \common\modules\catalog\models\Product
     public function getElementsComposition()
     {
         if ($this->is_composition) {
-            return $this->getProductsByCompositionId();
+            return $this->getProductsByCompositionId()->all();
         } else {
             $composition = $this->getCompositionByProductId()->all();
 
