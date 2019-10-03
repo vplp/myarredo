@@ -561,6 +561,6 @@ class Factory extends \common\modules\catalog\models\Factory
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $params));
 
-        return $models->totalCount > 1 ? $models->totalCount : 0;
+        return $models->totalCount >= 1 ? $models->totalCount : 0;
     }
 }
