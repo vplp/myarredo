@@ -63,7 +63,6 @@ $bundle = AppAsset::register($this);
                                 ); ?>
                             </div>
 
-
                             <div class="fact-assort-wrap">
 
                                 <?= $this->render('parts/_tabs', [
@@ -131,6 +130,31 @@ $bundle = AppAsset::register($this);
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-9">
                         <div class="cat-prod catalog-wrap">
+                            <?php foreach ($italianProduct as $key => $item) {
+                                if ($key == 5) { ?>
+                                    <div class="one-prod-tile last">
+                                        <div class="img-cont">
+                                            <?= Html::img($bundle->baseUrl . '/img/factory.svg') ?>
+                                        </div>
+
+                                        <?= Html::a(
+                                            Yii::t('app', 'Смотреть полный каталог'),
+                                            Yii::$app->catalogFilter->createUrl(
+                                                Yii::$app->catalogFilter->params +
+                                                [$keys['factory'] => $model['alias']],
+                                                '/catalog/sale-italy/list'
+                                            ),
+                                            ['class' => 'view-all', 'rel' => 'nofollow']
+                                        ) ?>
+                                    </div>
+                                <?php } else {
+                                    echo $this->render('/sale-italy/_list_item', [
+                                        'model' => $item,
+                                        'factory' => [$model->id => $model]
+                                    ]);
+                                }
+                            } ?>
+
                             <?php
                             foreach ($product as $item) {
                                 echo $this->render('/category/_list_item', [
@@ -153,6 +177,7 @@ $bundle = AppAsset::register($this);
                                     ['class' => 'view-all', 'rel' => 'nofollow']
                                 ) ?>
                             </div>
+
                         </div>
                     </div>
                 </div>

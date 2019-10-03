@@ -9,7 +9,7 @@ use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Product, Factory
+    Product, Factory, ItalianProduct
 };
 
 /**
@@ -136,6 +136,14 @@ class FactoryController extends BaseController
             ]
         ]);
 
+        $modelItalianProduct = new ItalianProduct();
+        $italianProduct = $modelItalianProduct->search([
+            'defaultPageSize' => 6,
+            $keys['factory'] => [
+                $model['alias']
+            ]
+        ]);
+
         $this->breadcrumbs[] = [
             'label' => Yii::t('app', 'Итальянские фабрики мебели'),
             'url' => ['/catalog/factory/list']
@@ -166,6 +174,7 @@ class FactoryController extends BaseController
         return $this->render('view', [
             'model' => $model,
             'product' => $product->getModels(),
+            'italianProduct' => $italianProduct->getModels(),
         ]);
     }
 }
