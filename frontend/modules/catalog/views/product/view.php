@@ -1,6 +1,8 @@
 <?php
 
-use yii\helpers\Html;
+use yii\helpers\{
+    Html, Url
+};
 //
 use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{Factory, Product, ProductLang};
@@ -485,3 +487,14 @@ $this->title = $this->context->title;
     </div>
 
 </main>
+
+<?php
+//$url = Url::to(['/catalog/product/ajax-get-compositions']);
+//
+//$script = <<<JS
+//$.post('$url', {_csrf: $('#token').val(),id:{$model['factory_id']}}, function(data){
+//    $('.composition').html(data.html);
+//});
+//JS;
+
+$this->registerJs($script);

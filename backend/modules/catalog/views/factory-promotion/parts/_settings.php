@@ -61,7 +61,7 @@ use backend\modules\catalog\models\FactoryPromotion;
         <?= $form->field($model, 'status')->dropDownList(FactoryPromotion::statusKeyRange()) ?>
     </div>
     <div class="col-md-3">
-        <?= $form->field($model, 'payment_status')->dropDownList(FactoryPromotion::paymentStatusKeyRange(), ['disabled' => true]) ?>
+        <?= $form->field($model, 'payment_status')->dropDownList(FactoryPromotion::paymentStatusKeyRange()) ?>
     </div>
 </div>
 

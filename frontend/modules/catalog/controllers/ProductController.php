@@ -179,4 +179,22 @@ class ProductController extends BaseController
             'model' => $model,
         ]);
     }
+
+    /**
+     * @return array
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionAjaxGetCompositions()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            $html = $this->renderPartial('ajax_get_compositions', [
+
+            ]);
+
+            return ['success' => 1, 'html' => $html];
+        }
+    }
 }
