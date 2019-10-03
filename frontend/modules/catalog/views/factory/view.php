@@ -154,7 +154,8 @@ $bundle = AppAsset::register($this);
                                     ]);
                                 }
                             } ?>
-
+                        </div>
+                        <div class="cat-prod catalog-wrap">
                             <?php
                             foreach ($product as $item) {
                                 echo $this->render('/category/_list_item', [
