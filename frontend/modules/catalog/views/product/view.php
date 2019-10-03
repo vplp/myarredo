@@ -489,12 +489,12 @@ $this->title = $this->context->title;
 </main>
 
 <?php
-//$url = Url::to(['/catalog/product/ajax-get-compositions']);
-//
-//$script = <<<JS
-//$.post('$url', {_csrf: $('#token').val(),id:{$model['factory_id']}}, function(data){
-//    $('.composition').html(data.html);
-//});
-//JS;
+$url = Url::to(['/catalog/product/ajax-get-compositions']);
+
+$script = <<<JS
+$.post('$url', {_csrf: $('#token').val(),id:{$model['factory_id']}}, function(data){
+    $('.composition').html(data.html);
+});
+JS;
 
 $this->registerJs($script);
