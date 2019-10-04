@@ -35,6 +35,60 @@ class SitemapSaleController extends Controller
     /** @var array */
     private $urls = [];
 
+    private function getUrls($city, $language = 'ru-RU')
+    {
+        $_urls = $this->urls;
+
+        $currentLanguage = Yii::$app->language;
+        Yii::$app->language = $language;
+
+        foreach ($this->models as $modelName) {
+            if (is_array($modelName)) {
+                $model = new $modelName['class']();
+                if (isset($modelName['behaviors'])) {
+                    $model->attachBehaviors($modelName['behaviors']);
+                }
+            } else {
+                $model = new $modelName();
+            }
+
+            $query = $model::findBase();
+
+            if (in_array($model::className(), [Sale::className()])) {
+                $query->andWhere(['city_id' => $city['id']]);
+            }
+
+            if (in_array($model::className(), [Types::className(), Category::className()])) {
+                $query->innerJoinWith(["sale"], false)
+                    ->andFilterWhere([
+                        Sale::tableName() . '.published' => '1',
+                        Sale::tableName() . '.deleted' => '0',
+                    ])
+                    ->groupBy($model::tableName() . '.id');
+
+                $query
+                    ->innerJoinWith(["sale.city saleCity"], false)
+                    ->andFilterWhere(['IN', 'saleCity.id', $city['id']]);
+            }
+
+            $query->select([
+                $model::tableName() . '.id',
+                $model::tableName() . '.alias',
+                $model::tableName() . '.updated_at',
+            ]);
+
+            foreach ($query->batch(1000) as $models) {
+                foreach ($models as $model) {
+                    $_urls[] = call_user_func($modelName['dataClosure'], $model);
+                }
+            }
+        }
+
+        Yii::$app->language = $currentLanguage;
+
+        return $_urls;
+    }
+
     /**
      * Create
      */
@@ -61,49 +115,7 @@ class SitemapSaleController extends Controller
         /** @var $city City */
         foreach ($cities as $city) {
             // urls
-            $urls = $this->urls;
-
-            foreach ($this->models as $modelName) {
-                if (is_array($modelName)) {
-                    $model = new $modelName['class']();
-                    if (isset($modelName['behaviors'])) {
-                        $model->attachBehaviors($modelName['behaviors']);
-                    }
-                } else {
-                    $model = new $modelName();
-                }
-
-                $query = $model::findBase();
-
-                if (in_array($model::className(), [Sale::className()])) {
-                    $query->andWhere(['city_id' => $city['id']]);
-                }
-
-                if (in_array($model::className(), [Types::className(), Category::className()])) {
-                    $query->innerJoinWith(["sale"], false)
-                        ->andFilterWhere([
-                            Sale::tableName() . '.published' => '1',
-                            Sale::tableName() . '.deleted' => '0',
-                        ])
-                        ->groupBy($model::tableName() . '.id');
-
-                    $query
-                        ->innerJoinWith(["sale.city saleCity"], false)
-                        ->andFilterWhere(['IN', 'saleCity.id', $city['id']]);
-                }
-
-                $query->select([
-                    $model::tableName() . '.id',
-                    $model::tableName() . '.alias',
-                    $model::tableName() . '.updated_at',
-                ]);
-
-                foreach ($query->batch(1000) as $models) {
-                    foreach ($models as $model) {
-                        $urls[] = call_user_func($modelName['dataClosure'], $model);
-                    }
-                }
-            }
+            $urls = self::getUrls($city);
 
             // create the sitemap file
             if ($urls) {
@@ -128,19 +140,37 @@ class SitemapSaleController extends Controller
                         "\t</url>";
 
                     fwrite($handle, $str);
+                }
 
-                    if ($city['id'] == 4) {
-                        $languages = ['en', 'it'];
-                        foreach ($languages as $lang) {
-                            $str = PHP_EOL . "\t<url>" . PHP_EOL .
-                                "\t\t<loc>" . City::getSubDomainUrl($city) . "/" . $lang . $url['loc'] . "</loc>" . PHP_EOL .
-                                "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
-                                "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
-                                "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
-                                "\t</url>";
+                if ($city['id'] == 4) {
+                    $urlsIt = self::getUrls($city, 'it-IT');
 
-                            fwrite($handle, $str);
-                        }
+                    $urlsEn = self::getUrls($city, 'en-EN');
+
+                    for ($i = 0; $i < count($urlsIt); $i++) {
+                        $url = $urlsIt[$i];
+
+                        $str = PHP_EOL . "\t<url>" . PHP_EOL .
+                            "\t\t<loc>" . City::getSubDomainUrl($city) . "/it" . $url['loc'] . "</loc>" . PHP_EOL .
+                            "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
+                            "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
+                            "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
+                            "\t</url>";
+
+                        fwrite($handle, $str);
+                    }
+
+                    for ($i = 0; $i < count($urlsEn); $i++) {
+                        $url = $urlsEn[$i];
+
+                        $str = PHP_EOL . "\t<url>" . PHP_EOL .
+                            "\t\t<loc>" . City::getSubDomainUrl($city) . "/en" . $url['loc'] . "</loc>" . PHP_EOL .
+                            "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
+                            "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
+                            "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
+                            "\t</url>";
+
+                        fwrite($handle, $str);
                     }
                 }
 

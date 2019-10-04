@@ -32,27 +32,12 @@ class SitemapController extends Controller
     /** @var array */
     public $urls = [];
 
-    /**
-     * Create
-     */
-    public function actionCreate()
+    private function getUrls($language = 'ru-RU')
     {
-        $this->stdout("Sitemap: start create. \n", Console::FG_GREEN);
+        $_urls = $this->urls;
 
-        ini_set("memory_limit", "-1");
-        set_time_limit(0);
-
-        // delete files
-        array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
-
-        // list of cities
-        $cities = City::findBase()
-            ->joinWith(['country', 'country.lang'])
-            ->andFilterWhere(['IN', 'country_id', [1, 2, 3]])
-            ->all();
-
-        // urls
-        $urls = $this->urls;
+        $currentLanguage = Yii::$app->language;
+        Yii::$app->language = $language;
 
         foreach ($this->models as $modelName) {
             if (is_array($modelName)) {
@@ -88,21 +73,51 @@ class SitemapController extends Controller
 
             foreach ($query->batch(1000) as $models) {
                 foreach ($models as $model) {
-                    $urls[] = call_user_func($modelName['dataClosure'], $model);
+                    $_urls[] = call_user_func($modelName['dataClosure'], $model);
                 }
             }
         }
+
+        Yii::$app->language = $currentLanguage;
+
+        return $_urls;
+    }
+
+    /**
+     * Create
+     */
+    public function actionCreate()
+    {
+        $this->stdout("Sitemap: start create. \n", Console::FG_GREEN);
+
+        ini_set("memory_limit", "-1");
+        set_time_limit(0);
+
+        // delete files
+        array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
+
+        // list of cities
+        $cities = City::findBase()
+            ->joinWith(['country', 'country.lang'])
+            ->andFilterWhere(['IN', 'country_id', [1, 2, 3]])
+            ->all();
+
+        // urls
+        $urls = self::getUrls();
 
         foreach ($cities as $city) {
             $urlsNew = $urls;
 
             // for msk
             if ($city['id'] == 4) {
-                $languages = ['en', 'it'];
-                foreach ($languages as $lang) {
-                    foreach ($urls as $url) {
-                        $urlsNew[] = array_merge($url, ['loc' => "/" . $lang . $url['loc']]);
-                    }
+                $urlsIt = self::getUrls('it-IT');
+                foreach ($urlsIt as $url) {
+                    $urlsNew[] = array_merge($url, ['loc' => "/it" . $url['loc']]);
+                }
+
+                $urlsEn = self::getUrls('en-EN');
+                foreach ($urlsEn as $url) {
+                    $urlsNew[] = array_merge($url, ['loc' => "/en" . $url['loc']]);
                 }
             }
 

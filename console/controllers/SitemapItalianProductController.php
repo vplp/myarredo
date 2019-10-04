@@ -32,31 +32,12 @@ class SitemapItalianProductController extends Controller
     /** @var array */
     private $urls = [];
 
-    /**
-     * Create
-     */
-    public function actionCreate()
+    private function getUrls($language = 'ru-RU')
     {
-        $this->stdout("SitemapItalianProduct: start create. \n", Console::FG_GREEN);
+        $_urls = $this->urls;
 
-        ini_set("memory_limit", "-1");
-        set_time_limit(0);
-
-        if (!is_dir(Yii::getAlias($this->filePath))) {
-            mkdir(Yii::getAlias($this->filePath), 0777, true);
-        }
-
-        // delete files
-        array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
-
-        // list of cities
-        $cities = City::findBase()
-            ->joinWith(['country', 'country.lang'])
-            ->andFilterWhere(['IN', 'country_id', [1, 2, 3]])
-            ->all();
-
-        // urls
-        $urls = $this->urls;
+        $currentLanguage = Yii::$app->language;
+        Yii::$app->language = $language;
 
         foreach ($this->models as $modelName) {
             if (is_array($modelName)) {
@@ -87,10 +68,45 @@ class SitemapItalianProductController extends Controller
 
             foreach ($query->batch(1000) as $models) {
                 foreach ($models as $model) {
-                    $urls[] = call_user_func($modelName['dataClosure'], $model);
+                    $_urls[] = call_user_func($modelName['dataClosure'], $model);
                 }
             }
         }
+
+        Yii::$app->language = $currentLanguage;
+
+        return $_urls;
+    }
+
+    /**
+     * Create
+     */
+    public function actionCreate()
+    {
+        $this->stdout("SitemapItalianProduct: start create. \n", Console::FG_GREEN);
+
+        ini_set("memory_limit", "-1");
+        set_time_limit(0);
+
+        if (!is_dir(Yii::getAlias($this->filePath))) {
+            mkdir(Yii::getAlias($this->filePath), 0777, true);
+        }
+
+        // delete files
+        array_map('unlink', glob(Yii::getAlias($this->filePath) . '/*.xml'));
+
+        // list of cities
+        $cities = City::findBase()
+            ->joinWith(['country', 'country.lang'])
+            ->andFilterWhere(['IN', 'country_id', [1, 2, 3]])
+            ->all();
+
+        // urls
+        $urls = self::getUrls();
+
+        $urlsIt = self::getUrls('it-IT');
+
+        $urlsEn = self::getUrls('en-EN');
 
         /** @var $city City */
         foreach ($cities as $city) {
@@ -117,19 +133,33 @@ class SitemapItalianProductController extends Controller
                         "\t</url>";
 
                     fwrite($handle, $str);
+                }
 
-                    if ($city['id'] == 4) {
-                        $languages = ['en', 'it'];
-                        foreach ($languages as $lang) {
-                            $str = PHP_EOL . "\t<url>" . PHP_EOL .
-                                "\t\t<loc>" . City::getSubDomainUrl($city) . "/" . $lang . $url['loc'] . "</loc>" . PHP_EOL .
-                                "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
-                                "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
-                                "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
-                                "\t</url>";
+                if ($city['id'] == 4) {
+                    for ($i = 0; $i < count($urlsIt); $i++) {
+                        $url = $urlsIt[$i];
 
-                            fwrite($handle, $str);
-                        }
+                        $str = PHP_EOL . "\t<url>" . PHP_EOL .
+                            "\t\t<loc>" . City::getSubDomainUrl($city) . "/it" . $url['loc'] . "</loc>" . PHP_EOL .
+                            "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
+                            "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
+                            "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
+                            "\t</url>";
+
+                        fwrite($handle, $str);
+                    }
+
+                    for ($i = 0; $i < count($urlsEn); $i++) {
+                        $url = $urlsEn[$i];
+
+                        $str = PHP_EOL . "\t<url>" . PHP_EOL .
+                            "\t\t<loc>" . City::getSubDomainUrl($city) . "/en" . $url['loc'] . "</loc>" . PHP_EOL .
+                            "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
+                            "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
+                            "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
+                            "\t</url>";
+
+                        fwrite($handle, $str);
                     }
                 }
 
