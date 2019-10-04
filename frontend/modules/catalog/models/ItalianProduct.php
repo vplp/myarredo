@@ -102,6 +102,26 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
 
     /**
      * @param $params
+     * @return \yii\data\ActiveDataProvider
+     * @throws \Throwable
+     */
+    public static function minPrice($params)
+    {
+        return search\ItalianProduct::minPrice($params);
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     * @throws \Throwable
+     */
+    public static function maxPrice($params)
+    {
+        return search\ItalianProduct::maxPrice($params);
+    }
+
+    /**
+     * @param $params
      * @return mixed|\yii\data\ActiveDataProvider
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException

@@ -182,6 +182,43 @@ use frontend\modules\catalog\models\{
             </div>
         <?php } ?>
 
+        <?php if (YII_ENV_DEV && $price_range && $price_range['min']['default'] != $price_range['max']['default']) { ?>
+            <div class="one-filter filter-range-slider">
+                <?= Html::a(
+                    Yii::t('app', 'Цена'),
+                    'javascript:void(0);',
+                    ['class' => 'filt-but']
+                ) ?>
+                <div class="price-slider-cont">
+                    <div id="price-slider"
+                         data-min="<?= $price_range['min']['current'] ?>"
+                         data-max="<?= $price_range['max']['current'] ?>"></div>
+                    <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
+                        <div class="cur">
+                            <?= Html::input(
+                                'text',
+                                'price[min]',
+                                $price_range['min']['default'],
+                                ['id' => 'min-price']
+                            ) ?>
+                            <span class="for-curicon"><?= Yii::$app->currency->symbol ?></span>
+                        </div>
+                        <span class="indent"> - </span>
+                        <div class="cur">
+                            <?= Html::input(
+                                'text',
+                                'price[max]',
+                                $price_range['max']['default'],
+                                ['id' => 'max-price']
+                            ) ?>
+                            <span class="for-curicon"><?= Yii::$app->currency->symbol ?></span>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0);" class="submit">OK</a>
+                </div>
+            </div>
+        <?php } ?>
+
         <?= Html::hiddenInput('sort', Yii::$app->request->get('sort') ?? null) ?>
         <?= Html::hiddenInput('object', Yii::$app->request->get('object') ?? null) ?>
 
@@ -190,6 +227,25 @@ use frontend\modules\catalog\models\{
     </div>
 
 <?php
+if (!empty($price_range) && $price_range['link']) {
+    $link_for_price = $price_range['link'];
+
+    $script = <<<JS
+$('.submit').on('click', function () {
+    var link = '$link_for_price',
+        min = $('input[name="price[min]"]').val(),
+        max = $('input[name="price[max]"]').val();
+    
+    link = link.replace('{MIN}', min);
+    link = link.replace('{MAX}', max);
+
+    window.location.href = link;
+});
+JS;
+
+    $this->registerJs($script);
+}
+
 $script = <<<JS
 $('.category-filter label').on('click', function () {
     var checkbox = $(this).parent().find('input[type=checkbox]');  

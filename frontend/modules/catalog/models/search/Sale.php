@@ -118,7 +118,13 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         }
 
         if (isset($params[$keys['price']])) {
-            $query->andFilterWhere(['between', self::tableName() . '.price', $params[$keys['price']][0], $params[$keys['price']][1]]);
+//            $query->andFilterWhere(['between', self::tableName() . '.price_new', $params[$keys['price']][0], $params[$keys['price']][1]]);
+            $query->andFilterWhere([self::tableName() . '.currency' => $params[$keys['price']][2]]);
+
+            $min = Yii::$app->currency->getReversValue($params[$keys['price']][0], Yii::$app->currency->code, 'EUR');
+            $max = Yii::$app->currency->getReversValue($params[$keys['price']][1], Yii::$app->currency->code, 'EUR');
+
+            $query->andFilterWhere(['between', self::tableName() . '.price_new', $min, $max]);
         }
 
         if (isset($params['country'])) {
@@ -181,5 +187,133 @@ class Sale extends SaleModel implements BaseBackendSearchModel
     {
         $query = SaleModel::findBase();
         return $this->baseSearch($query, $params);
+    }
+
+    /**
+     * @param $params
+     * @return ActiveDataProvider
+     * @throws \Throwable
+     */
+    public static function minPrice($params)
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = SaleModel::findBase();
+
+        $query->andFilterWhere([self::tableName() . '.currency' => Yii::$app->currency->code]);
+
+        if (isset($params[$keys['category']])) {
+            $query
+                ->innerJoinWith(["category"])
+                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params[$keys['category']]]);
+        }
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["types"])
+                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["subTypes"])
+                ->andFilterWhere(['IN', SubTypes::tableName() . '.alias', $params[$keys['subtypes']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["specification"])
+                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params[$keys['style']]]);
+        }
+
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["factory"])
+                ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
+        }
+
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["colors"])
+                ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
+        }
+
+        if (isset($params['country'])) {
+            $query
+                ->innerJoinWith(["country"])
+                ->andFilterWhere(['IN', Country::tableName() . '.id', $params['country']]);
+        }
+
+        if (isset($params['city'])) {
+            $query
+                ->innerJoinWith(["city"])
+                ->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
+        }
+
+        return $query->min(self::tableName() . '.price_new');
+    }
+
+    /**
+     * @param $params
+     * @return ActiveDataProvider
+     * @throws \Throwable
+     */
+    public static function maxPrice($params)
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = SaleModel::findBase();
+
+        $query->andFilterWhere([self::tableName() . '.currency' => Yii::$app->currency->code]);
+
+        if (isset($params[$keys['category']])) {
+            $query
+                ->innerJoinWith(["category"])
+                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params[$keys['category']]]);
+        }
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["types"])
+                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
+        }
+
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["subTypes"])
+                ->andFilterWhere(['IN', SubTypes::tableName() . '.alias', $params[$keys['subtypes']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["specification"])
+                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params[$keys['style']]]);
+        }
+
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["factory"])
+                ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
+        }
+
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["colors"])
+                ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
+        }
+
+        if (isset($params['country'])) {
+            $query
+                ->innerJoinWith(["country"])
+                ->andFilterWhere(['IN', Country::tableName() . '.id', $params['country']]);
+        }
+
+        if (isset($params['city'])) {
+            $query
+                ->innerJoinWith(["city"])
+                ->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
+        }
+
+        return $query->max(self::tableName() . '.price_new');
     }
 }

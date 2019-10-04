@@ -58,14 +58,16 @@ $this->title = $this->context->title;
                     <div class="row">
                         <div class="col-md-3 col-lg-3 js-filter-modal">
 
-                            <?= ProductFilter::widget(['route' => '/catalog/category/list',
+                            <?= ProductFilter::widget([
+                                'route' => '/catalog/category/list',
                                 'category' => $category,
                                 'types' => $types,
                                 'subtypes' => $subtypes,
                                 'style' => $style,
                                 'factory' => $factory,
                                 'colors' => $colors,
-                                'price_range' => $price_range,]); ?>
+                                'price_range' => $price_range,
+                            ]); ?>
 
                         </div>
                         <div class="col-md-9 col-lg-9">

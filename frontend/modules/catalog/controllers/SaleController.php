@@ -109,6 +109,14 @@ class SaleController extends BaseController
         $countries = Country::getWithSale($queryParams);
         $cities = City::getWithSale($queryParams);
 
+        $min = Sale::minPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+        $max = Sale::maxPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+
+        $price_range = [
+            'min' => $min,
+            'max' => $max
+        ];
+
         $queryParams['defaultPageSize'] = 24;
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
@@ -136,6 +144,7 @@ class SaleController extends BaseController
             'countries' => $countries,
             'cities' => $cities,
             'models' => $models->getModels(),
+            'price_range' => $price_range,
             'pages' => $models->getPagination()
         ]);
     }

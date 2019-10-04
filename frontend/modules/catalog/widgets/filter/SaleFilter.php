@@ -67,22 +67,12 @@ class SaleFilter extends Widget
     /**
      * @var object
      */
-    public $price_range = [];
+    public $price_range = ['min' => 0, 'max' => 99];
 
     /**
      * @var object
      */
     public $colors = [];
-
-    /**
-     * @inheritDoc
-     */
-    public function init()
-    {
-        parent::init();
-
-        $this->price_range = ['max' => 0, 'min' => 0];
-    }
 
     /**
      * @return string
@@ -394,6 +384,49 @@ class SaleFilter extends Widget
             );
         }
 
+        /**
+         * Price range
+         */
+        $price_range = [];
+
+        // min
+        if ($this->price_range['min']) {
+            $price_range['min'] = [
+                'current' => !empty($params[$keys['price']])
+                    ? $params[$keys['price']][0]
+                    : $this->price_range['min'],
+                'default' => $this->price_range['min'],
+            ];
+        }
+
+        // max
+        if ($this->price_range['max']) {
+            $price_range['max'] = [
+                'current' => !empty($params[$keys['price']])
+                    ? $params[$keys['price']][1]
+                    : $this->price_range['max'],
+                'default' => $this->price_range['max'],
+            ];
+        }
+
+        if (!empty($price_range['min']) && !empty($price_range['max'])) {
+            $params = Yii::$app->catalogFilter->params;
+
+            // calculate
+            if (isset($params[$keys['price']]) && $params[$keys['price']][2] == Yii::$app->currency->code) {
+                $price_range['min']['default'] = Yii::$app->currency->getValue($price_range['min']['default'], 'EUR', '');
+                $price_range['max']['default'] = Yii::$app->currency->getValue($price_range['max']['default'], 'EUR', '');
+            } else {
+                $price_range['min']['current'] = Yii::$app->currency->getValue($price_range['min']['current'], 'EUR', '');
+                $price_range['max']['current'] = Yii::$app->currency->getValue($price_range['max']['current'], 'EUR', '');
+                $price_range['min']['default'] = Yii::$app->currency->getValue($price_range['min']['default'], 'EUR', '');
+                $price_range['max']['default'] = Yii::$app->currency->getValue($price_range['max']['default'], 'EUR', '');
+            }
+
+            $params[$keys['price']] = ['{MIN}', '{MAX}', Yii::$app->currency->code];
+            $price_range['link'] = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
+        }
+
         return $this->render($this->view, [
             'route' => $this->route,
             'category' => $category,
@@ -405,7 +438,7 @@ class SaleFilter extends Widget
             'countries' => $countries,
             'cities' => $cities,
             'factory_first_show' => $factory_first_show,
-            'price_range' => !empty($this->price_range) ? $this->price_range : ['max' => 0, 'min' => 0],
+            'price_range' => $price_range,
             'filter' => Yii::$app->catalogFilter->params
         ]);
     }

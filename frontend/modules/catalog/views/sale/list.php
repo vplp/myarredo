@@ -48,6 +48,7 @@ $this->title = $this->context->title;
                                 'colors' => $colors,
                                 'countries' => $countries,
                                 'cities' => $cities,
+                                'price_range' => $price_range,
                             ]); ?>
 
                         </div>

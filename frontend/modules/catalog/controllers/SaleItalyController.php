@@ -98,7 +98,13 @@ class SaleItalyController extends BaseController
 
         $params = ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams);
 
-        //* !!! */ $params['status'] = 'approved';
+        $min = ItalianProduct::minPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+        $max = ItalianProduct::maxPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+
+        $price_range = [
+            'min' => $min,
+            'max' => $max
+        ];
 
         $params['defaultPageSize'] = 24;
         $models = $model->search($params);
@@ -124,6 +130,7 @@ class SaleItalyController extends BaseController
             'style' => $style,
             'factory' => $factory,
             'colors' => $colors,
+            'price_range' => $price_range,
             'models' => $models->getModels(),
             'pages' => $models->getPagination()
         ]);
