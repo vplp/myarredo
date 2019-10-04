@@ -15,6 +15,7 @@ class Sale extends \frontend\modules\catalog\models\Sale
     public static function findBase()
     {
         return self::find()
+            ->joinWith(['lang'])
             ->enabled();
     }
 

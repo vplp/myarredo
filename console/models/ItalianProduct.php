@@ -15,6 +15,7 @@ class ItalianProduct extends \frontend\modules\catalog\models\ItalianProduct
     public static function findBase()
     {
         return self::find()
+            ->joinWith(['lang'])
             ->enabled();
     }
 
