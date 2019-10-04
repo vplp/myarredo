@@ -7,7 +7,7 @@ use frontend\modules\catalog\models\Factory;
 
 /**
  * @var \yii\data\Pagination $pages
- * @var \frontend\modules\catalog\models\Factory $model
+ * @var Factory $model
  */
 
 $this->title = $this->context->title;

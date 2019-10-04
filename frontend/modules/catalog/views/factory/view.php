@@ -36,7 +36,7 @@ $bundle = AppAsset::register($this);
                 <div class="row factory-det">
                     <div class="col-xs-12 col-sm-4 col-md-3">
                         <div class="fact-img">
-                            <?= Html::img(Factory::getImage($model['image_link'])); ?>
+                            <?= Html::img(Factory::getImage($model['image_link'])) ?>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-9">
@@ -129,6 +129,7 @@ $bundle = AppAsset::register($this);
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-9">
+                        <?= Html::tag('h2', Yii::t('app', 'Sale')) ?>
                         <div class="cat-prod catalog-wrap">
                             <?php foreach ($italianProduct as $key => $item) {
                                 if ($key == 5) { ?>
@@ -155,6 +156,7 @@ $bundle = AppAsset::register($this);
                                 }
                             } ?>
                         </div>
+                        <?= Html::tag('h2', Yii::t('app', 'Catalog of furniture')) ?>
                         <div class="cat-prod catalog-wrap">
                             <?php
                             foreach ($product as $item) {
