@@ -462,7 +462,7 @@ class Product extends \common\modules\catalog\models\Product
                     $id_compos = $composition[key($composition)]->id;
                 }
 
-                $model = self::findByID($id_compos);
+                $model = self::findBase()->byID($id_compos)->one();
 
                 if ($model != null && !empty($model->elementsComposition)) {
                     return $model->elementsComposition;
