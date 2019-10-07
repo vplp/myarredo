@@ -8,6 +8,9 @@ use yii\console\Controller;
 //
 use frontend\modules\location\models\City;
 use frontend\modules\catalog\models\{Category, Product, Types, Factory};
+use console\models\{
+    Sale
+};
 
 /**
  * Class SitemapController
@@ -191,13 +194,23 @@ class SitemapController extends Controller
                 fwrite($handle, $str);
             }
 
-            // Add sale file
-            $link = '/sitemap/sale/sitemap_sale_' . $city['alias'] . '.xml';
-            $str = PHP_EOL . "\t<sitemap>"
-                . PHP_EOL . "\t\t<loc>" . City::getSubDomainUrl($city) . $link . "</loc>"
-                . PHP_EOL . "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>"
-                . PHP_EOL . "\t</sitemap>";
-            fwrite($handle, $str);
+            $query = Sale::findBaseArray();
+            $query->andWhere(['city_id' => $city['id']]);
+            $query->select([
+                Sale::tableName() . '.id',
+                Sale::tableName() . '.alias',
+                Sale::tableName() . '.updated_at',
+            ]);
+
+            if ($query->count()) {
+                // Add sale file
+                $link = '/sitemap/sale/sitemap_sale_' . $city['alias'] . '.xml';
+                $str = PHP_EOL . "\t<sitemap>"
+                    . PHP_EOL . "\t\t<loc>" . City::getSubDomainUrl($city) . $link . "</loc>"
+                    . PHP_EOL . "\t\t<lastmod>" . date(DATE_W3C) . "</lastmod>"
+                    . PHP_EOL . "\t</sitemap>";
+                fwrite($handle, $str);
+            }
 
             // Add italian product file
             $link = '/sitemap/italian_product/sitemap_italian_product_' . $city['alias'] . '.xml';
