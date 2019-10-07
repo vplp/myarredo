@@ -33,7 +33,6 @@ echo GridView::widget([
                 );
             },
         ],
-        'sale_item_id',
         'offer_price',
         'user_name',
         'phone',
