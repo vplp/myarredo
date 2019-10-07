@@ -25,6 +25,8 @@ use common\modules\catalog\Catalog;
  * @property integer $created_at
  * @property integer $updated_at
  *
+ * @property Sale $sale
+ *
  * @package common\modules\catalog\models
  */
 class SaleRequest extends ActiveRecord
@@ -178,6 +180,6 @@ class SaleRequest extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find();
+        return self::find()->orderBy(self::tableName() . '.id DESC');
     }
 }

@@ -55,5 +55,6 @@ return [
     'Banners for catalog' => 'Баннера для каталога',
     'Factory product' => 'Товары фабрики',
     'Factory promotion' => 'Рекламные кампании',
-    'Information for partners' => 'Информация для партнеров'
+    'Information for partners' => 'Информация для партнеров',
+    'Sale request' => 'Предложения цены',
 ];

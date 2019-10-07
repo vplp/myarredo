@@ -23,24 +23,19 @@ class Shop extends \common\modules\shop\Shop
                 'icon' => 'fa-map-marker',
                 'position' => 6,
                 'items' => [
-//            [
-//                'label' => 'Delivery Methods',
-//                'icon' => 'fa-tasks',
-//                'url' => ['/shop/delivery-methods/list'],
-//            ],
-//            [
-//                'label' => 'Payment Methods',
-//                'icon' => 'fa-tasks',
-//                'url' => ['/shop/payment-methods/list'],
-//            ],
                     [
                         'label' => 'Factory promotion',
                         'position' => 1,
                         'url' => ['/catalog/factory-promotion/list'],
                     ],
                     [
-                        'label' => 'Orders',
+                        'label' => 'Sale request',
                         'position' => 2,
+                        'url' => ['/catalog/sale-request/list'],
+                    ],
+                    [
+                        'label' => 'Orders',
+                        'position' => 3,
                         'url' => ['/shop/order/list'],
                     ]
                 ]
