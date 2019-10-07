@@ -26,14 +26,28 @@ echo GridView::widget([
             'attribute' => 'sale_item_id',
             'value' => function ($model) {
                 /** @var SaleRequest $model */
+                if ($model->city == null || in_array($model->city['id'], [1, 2, 4])) {
+                    $url = 'https://' . 'www.myarredo.' . $model->city->country['alias'];
+                } else {
+                    $url = 'https://' . $model->city['alias'] . '.myarredo.' . $model->city->country['alias'];
+                }
+
                 return Html::a(
                     $model->sale->lang->title,
-                    'https://www.myarredo.ru/sale-product/' . $model->sale->alias,
+                    $url . '/sale-product/' . $model->sale->alias,
                     ['target' => '_blank']
                 );
             },
         ],
         'offer_price',
+        [
+            'format' => 'raw',
+            'attribute' => 'city_id',
+            'value' => function ($model) {
+                /** @var SaleRequest $model */
+                return $model->city->lang->title;
+            },
+        ],
         'user_name',
         'phone',
         'email',

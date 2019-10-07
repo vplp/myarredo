@@ -7,6 +7,7 @@ use Yii;
 use thread\app\base\models\ActiveRecord;
 //
 use common\modules\catalog\Catalog;
+use common\modules\location\models\City;
 
 /**
  * Class SaleRequest
@@ -25,6 +26,7 @@ use common\modules\catalog\Catalog;
  * @property integer $created_at
  * @property integer $updated_at
  *
+ * @property City $city
  * @property Sale $sale
  *
  * @package common\modules\catalog\models
@@ -173,6 +175,14 @@ class SaleRequest extends ActiveRecord
     public function getSale()
     {
         return $this->hasOne(Sale::class, ['id' => 'sale_item_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCity()
+    {
+        return $this->hasOne(City::class, ['id' => 'city_id']);
     }
 
     /**
