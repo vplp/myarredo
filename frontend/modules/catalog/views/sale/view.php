@@ -54,7 +54,7 @@ $this->title = $this->context->title;
 
                                 <?php if (Sale::getSavingPrice($model) > 0) { ?>
                                     <div class="old-price">
-                                        <?= $model->price . ' ' . $model->currency; ?>
+                                        <?= Yii::$app->currency->getValue($model['price'], $model['currency']) . ' ' . Yii::$app->currency->symbol; ?>
                                     </div>
                                 <?php } ?>
 
@@ -62,7 +62,7 @@ $this->title = $this->context->title;
                                     <div class="price">
                                         <?= Yii::t('app', 'Цена') ?>:
                                         <span>
-                                        <?= $model->price_new . ' ' . $model->currency; ?>
+                                        <?= Yii::$app->currency->getValue($model['price_new'], $model['currency']) . ' ' . Yii::$app->currency->symbol; ?>
                                             <meta itemprop="price" content="<?= $model->price_new ?>">
                                             <meta itemprop="priceCurrency" content="<?= $model->currency ?>"/>
                                             <meta itemprop="availability" content="InStock"/>
@@ -74,7 +74,7 @@ $this->title = $this->context->title;
                                         <div class="price economy">
                                             <?= Yii::t('app', 'Экономия') ?>:
                                             <span>
-                                            <?= Sale::getSavingPrice($model) . ' ' . $model->currency; ?>
+                                            <?= Yii::$app->currency->getValue(Sale::getSavingPrice($model), $model['currency']) . ' ' . Yii::$app->currency->symbol; ?>
                                         </span>
                                         </div>
                                     <?php } ?>
