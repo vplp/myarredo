@@ -76,7 +76,7 @@ $bundle = AppAsset::register($this);
 
                         <?= topBarInfo::widget() ?>
 
-                        <?= ''//FormFeedback::widget() ?>
+                        <?= FormFeedback::widget() ?>
 
                     </div>
                     <div class="menu-items">
