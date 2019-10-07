@@ -126,6 +126,11 @@ $this->title = $this->context->title;
                                             'value' => 'amount',
                                         ],
                                         [
+                                            'attribute' => 'views',
+                                            'label' => Yii::t('app', 'Заказано просмотров'),
+                                            'value' => 'views',
+                                        ],
+                                        [
                                             'attribute' => 'payment_status',
                                             'value' => function ($model) {
                                                 /** @var $model FactoryPromotion */
