@@ -205,7 +205,10 @@ function changeInputmaskByCountry(country_id) {
     inputmask[1] = {"clearIncomplete":true,"mask":["+380 (99) 999-99-99"]};
     inputmask[2] = {"clearIncomplete":true,"mask":["+7 (999) 999-99-99"]};
     inputmask[3] = {"clearIncomplete":true,"mask":["+375 (99) 999-99-99"]};
-    inputmask[4] = {"clearIncomplete":true,"mask":["+39 (99) 999-99-99","+39 (9999) 999-999","+39 (9999) 999-9999"]};
+    inputmask[4] = {"clearIncomplete":true,"mask":['+39 (99) 999-999',
+                '+39 (999) 999-999',
+                '+39 (9999) 999-999',
+                '+39 (9999) 999-9999']};
 
     var mask;
     
