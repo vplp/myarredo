@@ -20,9 +20,9 @@ use frontend\modules\catalog\models\{
             ) ?>
         </div>
         <div>
-            <span style="color: #fff; font:bold 16px Arial,sans-serif;">
+            <p style="color: #fff; font:bold 16px Arial,sans-serif;">
                 <?= Yii::t('app', 'Мы помогаем купить итальянскую мебель по лучшим ценам.') ?>
-            </span>
+            </p>
         </div>
     </div>
     <div style="background-color:#fff9ea; text-align: left; padding: 10px 0 40px 10px;">

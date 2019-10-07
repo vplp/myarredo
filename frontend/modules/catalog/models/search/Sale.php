@@ -118,12 +118,9 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         }
 
         if (isset($params[$keys['price']])) {
-//            $query->andFilterWhere(['between', self::tableName() . '.price_new', $params[$keys['price']][0], $params[$keys['price']][1]]);
             $query->andFilterWhere([self::tableName() . '.currency' => $params[$keys['price']][2]]);
-
             $min = Yii::$app->currency->getReversValue($params[$keys['price']][0], Yii::$app->currency->code, 'EUR');
             $max = Yii::$app->currency->getReversValue($params[$keys['price']][1], Yii::$app->currency->code, 'EUR');
-
             $query->andFilterWhere(['between', self::tableName() . '.price_new', $min, $max]);
         }
 

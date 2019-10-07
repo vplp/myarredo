@@ -153,6 +153,12 @@ class Colors extends \common\modules\catalog\models\Colors
                 ->andFilterWhere(['IN', 'productCollection.id', $params[$keys['collection']]]);
         }
 
+        if (isset($params[$keys['price']])) {
+            $min = Yii::$app->currency->getReversValue($params[$keys['price']][0], Yii::$app->currency->code, 'EUR');
+            $max = Yii::$app->currency->getReversValue($params[$keys['price']][1], Yii::$app->currency->code, 'EUR');
+            $query->andFilterWhere(['between', Product::tableName() . '.price_from', $min, $max]);
+        }
+
         if (Yii::$app->request->get('show') == 'in_stock') {
             $query->andWhere([
                 Product::tableName() . '.in_stock' => '1'
@@ -236,6 +242,13 @@ class Colors extends \common\modules\catalog\models\Colors
                 ->andFilterWhere(['IN', 'saleCity.id', $params['city']]);
         }
 
+        if (isset($params[$keys['price']])) {
+            $query->andFilterWhere([Sale::tableName() . '.currency' => $params[$keys['price']][2]]);
+            $min = Yii::$app->currency->getReversValue($params[$keys['price']][0], Yii::$app->currency->code, 'EUR');
+            $max = Yii::$app->currency->getReversValue($params[$keys['price']][1], Yii::$app->currency->code, 'EUR');
+            $query->andFilterWhere(['between', Sale::tableName() . '.price_new', $min, $max]);
+        }
+
         $result = self::getDb()->cache(function ($db) use ($query) {
             return $query
                 ->select([
@@ -299,6 +312,12 @@ class Colors extends \common\modules\catalog\models\Colors
             $query
                 ->innerJoinWith(["italianProduct.factory italianProductFactory"], false)
                 ->andFilterWhere(['IN', 'italianProductFactory.alias', $params[$keys['factory']]]);
+        }
+
+        if (isset($params[$keys['price']])) {
+            $min = Yii::$app->currency->getReversValue($params[$keys['price']][0], Yii::$app->currency->code, 'EUR');
+            $max = Yii::$app->currency->getReversValue($params[$keys['price']][1], Yii::$app->currency->code, 'EUR');
+            $query->andFilterWhere(['between', ItalianProduct::tableName() . '.price_new', $min, $max]);
         }
 
         $result = self::getDb()->cache(function ($db) use ($query) {

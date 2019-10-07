@@ -197,6 +197,14 @@ class City extends \common\modules\location\models\City
                 ->andFilterWhere(['IN', 'country.id', $params['country']]);
         }
 
+        if (isset($params[$keys['price']])) {
+            $query->andFilterWhere([Sale::tableName() . '.currency' => $params[$keys['price']][2]]);
+            $min = Yii::$app->currency->getReversValue($params[$keys['price']][0], Yii::$app->currency->code, 'EUR');
+            $max = Yii::$app->currency->getReversValue($params[$keys['price']][1], Yii::$app->currency->code, 'EUR');
+            $query->andFilterWhere(['between', Sale::tableName() . '.price_new', $min, $max]);
+        }
+
+
         return $query
             ->select([
                 self::tableName() . '.id',

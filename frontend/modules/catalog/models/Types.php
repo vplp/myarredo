@@ -183,6 +183,12 @@ class Types extends \common\modules\catalog\models\Types
                 ->andFilterWhere(['IN', 'productColors.alias', $params[$keys['colors']]]);
         }
 
+        if (isset($params[$keys['price']])) {
+            $min = Yii::$app->currency->getReversValue($params[$keys['price']][0], Yii::$app->currency->code, 'EUR');
+            $max = Yii::$app->currency->getReversValue($params[$keys['price']][1], Yii::$app->currency->code, 'EUR');
+            $query->andFilterWhere(['between', Product::tableName() . '.price_from', $min, $max]);
+        }
+
         if (Yii::$app->request->get('show') == 'in_stock') {
             $query->andWhere([
                 Product::tableName() . '.in_stock' => '1'
@@ -263,6 +269,13 @@ class Types extends \common\modules\catalog\models\Types
                 ->andFilterWhere(['IN', 'saleCity.id', $params['city']]);
         }
 
+        if (isset($params[$keys['price']])) {
+            $query->andFilterWhere([Sale::tableName() . '.currency' => $params[$keys['price']][2]]);
+            $min = Yii::$app->currency->getReversValue($params[$keys['price']][0], Yii::$app->currency->code, 'EUR');
+            $max = Yii::$app->currency->getReversValue($params[$keys['price']][1], Yii::$app->currency->code, 'EUR');
+            $query->andFilterWhere(['between', Sale::tableName() . '.price_new', $min, $max]);
+        }
+
         return $query
             ->select([
                 self::tableName() . '.id',
@@ -319,6 +332,12 @@ class Types extends \common\modules\catalog\models\Types
             $query
                 ->innerJoinWith(["italianProduct.colors as italianProductColors"], false)
                 ->andFilterWhere(['IN', 'italianProductColors.alias', $params[$keys['colors']]]);
+        }
+
+        if (isset($params[$keys['price']])) {
+            $min = Yii::$app->currency->getReversValue($params[$keys['price']][0], Yii::$app->currency->code, 'EUR');
+            $max = Yii::$app->currency->getReversValue($params[$keys['price']][1], Yii::$app->currency->code, 'EUR');
+            $query->andFilterWhere(['between', ItalianProduct::tableName() . '.price_new', $min, $max]);
         }
 
         return $query
