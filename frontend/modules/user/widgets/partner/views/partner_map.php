@@ -137,8 +137,6 @@ var styleArray = [
                     }
                 ];
 
-initMap();
-
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: $zoom,
@@ -197,6 +195,12 @@ function initMap() {
         return addMarker(item);
     });
 }
+// Вызов функции инициализации карты с некоторым выжиданием, для избежания ошибок - google is not defined
+(function() {
+    setTimeout(function() {
+        initMap();
+    }, 1000);
+})();
 JS;
 
 $this->registerJs($script);
