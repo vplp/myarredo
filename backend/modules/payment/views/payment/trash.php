@@ -1,16 +1,19 @@
 <?php
 
 use backend\widgets\GridView\GridView;
-use backend\widgets\GridView\gridColumns\ActionColumn;
+//
+use thread\widgets\grid\{
+    ActionDeleteColumn, ActionRestoreColumn
+};
 use backend\modules\payment\models\Payment;
-use thread\widgets\grid\GridViewFilter;
 
 /**
  * @var $model Payment
  */
 
+
 echo GridView::widget([
-    'dataProvider' => $model->search(Yii::$app->getRequest()->queryParams),
+    'dataProvider' => $model->trash(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
         'id',
@@ -21,7 +24,6 @@ echo GridView::widget([
                 /** @var $model Payment */
                 return $model->getInvDesc();
             },
-            'filter' => GridViewFilter::selectOne($filter, 'type', Payment::getTypeKeyRange()),
         ],
         'change_tariff',
         'amount',
@@ -32,7 +34,6 @@ echo GridView::widget([
                 /** @var $model Payment */
                 return $model->payment_status;
             },
-            'filter' => GridViewFilter::selectOne($filter, 'payment_status', Payment::paymentStatusRange()),
         ],
         [
             'attribute' => 'payment_time',
@@ -49,8 +50,10 @@ echo GridView::widget([
             }
         ],
         [
-            'class' => ActionColumn::class,
-            'updateLink' => false,
+            'class' => ActionDeleteColumn::class,
         ],
-    ],
+        [
+            'class' => ActionRestoreColumn::class
+        ],
+    ]
 ]);

@@ -25,12 +25,16 @@ class PaymentController extends BackendController
 
     public function actions()
     {
-        return [
-            'list' => [
-                'class' => ListModel::class,
-                'modelClass' => $this->model,
-                'filterModel' => $this->filterModel,
-            ],
-        ];
+        return ArrayHelper::merge(
+            parent::actions(),
+            [
+                'list' => [
+                    'class' => ListModel::class,
+                    'modelClass' => $this->model,
+                    'layout' => 'list',
+                    'filterModel' => $this->filterModel,
+                ],
+            ]
+        );
     }
 }

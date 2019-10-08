@@ -57,7 +57,7 @@ class PartnerPaymentController extends BaseController
         $params = Yii::$app->request->queryParams ?? [];
 
         $params['user_id'] = Yii::$app->getUser()->id;
-        $params['type'] = 'italian_item';
+        //$params['type'] = 'italian_item';
 
         $models = $model->search($params);
 

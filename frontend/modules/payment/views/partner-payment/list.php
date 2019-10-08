@@ -56,6 +56,14 @@ $this->title = Yii::t('app', 'Платежная информация');
                                 ],
                                 'columns' => [
                                     [
+                                        'attribute' => 'type',
+                                        'value' => function ($model) {
+                                            /** @var $model Payment */
+                                            return $model->getInvDesc();
+                                        },
+                                        'filter' => false,
+                                    ],
+                                    [
                                         'label' => Yii::t('app', 'Title'),
                                         'value' => function ($model) {
                                             /** @var $model Payment */
@@ -110,7 +118,7 @@ $this->title = Yii::t('app', 'Платежная информация');
                                         'attribute' => 'payment_status',
                                         'value' => function ($model) {
                                             /** @var $model Payment */
-                                            return $model['payment_status'];
+                                            return $model::paymentStatusRange($model['payment_status']);
                                         },
                                         'headerOptions' => ['class' => 'text-center'],
                                         'contentOptions' => ['class' => 'text-center'],

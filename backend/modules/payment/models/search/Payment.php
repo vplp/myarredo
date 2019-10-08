@@ -27,7 +27,7 @@ class Payment extends PaymentModel implements BaseBackendSearchModel
     {
         return [
             [['user_id'], 'integer'],
-            [['payment_status'], 'in', 'range' => array_keys(self::getPaymentStatusKeyRange())],
+            [['payment_status'], 'in', 'range' => array_keys(self::paymentStatusRange())],
             [['type'], 'in', 'range' => array_keys(self::getTypeKeyRange())],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];

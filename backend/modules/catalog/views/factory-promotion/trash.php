@@ -73,7 +73,7 @@ echo GridView::widget([
             'filter' => GridViewFilter::selectOne(
                 $filter,
                 'payment_status',
-                $model::paymentStatusKeyRange()
+                $model::paymentStatusRange()
             ),
         ],
         [

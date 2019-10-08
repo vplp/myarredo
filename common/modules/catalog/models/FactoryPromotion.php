@@ -133,7 +133,7 @@ class FactoryPromotion extends ActiveRecord
             [['amount', 'amount_with_vat'], 'double'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['status'], 'in', 'range' => array_keys(static::statusRange())],
-            [['payment_status'], 'in', 'range' => array_keys(static::paymentStatusKeyRange())],
+            [['payment_status'], 'in', 'range' => array_keys(static::paymentStatusRange())],
             [['amount', 'amount_with_vat', 'views'], 'default', 'value' => '0'],
             [['payment_object'], 'default', 'value' => ''],
             [['city_ids', 'product_ids'], 'each', 'rule' => ['integer']],
@@ -228,16 +228,19 @@ class FactoryPromotion extends ActiveRecord
     }
 
     /**
-     * @return array
+     * @param string $key
+     * @return array|mixed
      */
-    public static function paymentStatusKeyRange()
+    public static function paymentStatusRange($key = '')
     {
-        return [
+        $data = [
             static::PAYMENT_STATUS_PENDING => Yii::t('app', 'Pending'),
             static::PAYMENT_STATUS_ACCEPTED => Yii::t('app', 'Accepted'),
             static::PAYMENT_STATUS_SUCCESS => Yii::t('app', 'Success'),
             static::PAYMENT_STATUS_FAIL => Yii::t('app', 'Fail'),
         ];
+
+        return $key ? $data[$key] : $data;
     }
 
     /**
