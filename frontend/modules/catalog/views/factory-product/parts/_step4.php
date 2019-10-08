@@ -48,16 +48,37 @@ $modelPayment->currency = 'RUB';
                         ]); ?>
 
                         <?php foreach ($modelsPromotionPackage as $key => $modelPromotionPackage) { ?>
-                            <div>
-                                <div><?= $modelPromotionPackage['lang']['title'] ?>
-                                    <?= Html::radio('PromotionPackage[id]', ($key == 0 ? true : false), [
-                                        'value' => $modelPromotionPackage['id'],
-                                        'data-price' => $modelPromotionPackage->getPriceInRub()
-                                    ]) ?>
-                                    <?= $modelPromotionPackage->getPriceInRub() ?> RUB
+                            <div class="package-item">
+                                <div class="package-name">
+                                    <div class="left">
+                                        <?= $modelPromotionPackage['lang']['title'] ?>
+                                        <div class="package-question"></div>
+                                        <div class="package-comment">
+                                            <?= $modelPromotionPackage['lang']['content'] ?>
+                                        </div>
+                                    </div>
+                                    <div class="right package-check-box">
+                                        <?php 
+                                        // Html::radio('PromotionPackage[id]', ($key == 0 ? true : false), [
+                                        //     'value' => $modelPromotionPackage['id'],
+                                        //     'data-price' => $modelPromotionPackage->getPriceInRub(),
+                                        //     'label' => ''
+                                        // ]) 
+                                        ?>
+                                        <span class="for-checkbox">
+                                            <input type="radio" class="radio" id="radio<?= $key;?>" name="PromotionPackage[id]" value="1" checked="" data-price="1494.52">
+                                            <label for="radio<?= $key;?>"></label>
+                                        </span>
+                                        <span class="for-price">
+                                            <?= $modelPromotionPackage->getPriceInRub() ?> RUB
+                                        </span>
+                                    </div>
                                 </div>
-                                <div><?= $modelPromotionPackage['lang']['description'] ?></div>
-                                <div><?= $modelPromotionPackage['lang']['content'] ?></div>
+                                <div class="package-descr">
+                                    <div class="left">
+                                        <?= $modelPromotionPackage['lang']['description'] ?>
+                                    </div>
+                                </div>
                             </div>
                         <?php } ?>
 
@@ -134,6 +155,21 @@ $('input[name="PromotionPackage[id]"]').on('change', function () {
     $('input[name="Payment[amount]"]').val(amount);
     $('input[name="Payment[promotion_package_id]"]').val(promotion_package_id);
 });
+// js for info tooltip
+// если блок с коментарием не пустой - активизируем механизм его показа по наведению на иконку
+(function() {
+    // если на странице существует хоча бы один блок с коментами
+    if ($('.package-comment').length > 0) {
+        // проходим по всем
+        $('.package-comment').each(function(i, elem) {
+            // и если данный блок  не пустой
+            if ($(elem).children().length > 0) {
+                // показываем для него иконку
+                $(elem).siblings('.package-question').addClass('isset');
+            }
+        });
+    }
+})()
 JS;
 
 $this->registerJs($script);

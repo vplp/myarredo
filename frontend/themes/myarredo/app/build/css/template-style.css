@@ -4238,7 +4238,6 @@ h1 {
   }
   #factorypromotion-city_ids .jq-checkbox,
   .check-all,
-  .factory-prom .table .jq-checkbox,
   .field-sale-published .jq-checkbox {
     border-radius: 0;
     background: none;
@@ -4258,9 +4257,8 @@ h1 {
   .factory-prom .table .jq-checkbox {
     background-color: #ffffff;
     border: 1px solid #C6C6C2;
+    box-shadow: none;
   }
-  .check-all.jq-checkbox.checked .jq-checkbox__div,
-  .factory-prom .table .jq-checkbox.checked .jq-checkbox__div,
   .field-sale-published .jq-checkbox.checked .jq-checkbox__div {
     width: 11px;
     height: 9px;
@@ -8720,6 +8718,117 @@ h1 {
   min-height: 100%;
   object-fit: cover;
 }
+.package-item {
+  max-width: 600px;
+  margin-bottom: 18px;
+}
+.package-item .package-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.package-item .package-descr {
+  font-size: 14px;
+  color: #666666;
+}
+.package-item .package-descr .left {
+  max-width: 60%;
+}
+.package-item .package-comment {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  color: #444444;
+  padding: 12px;
+  background-color: #ffffff;
+  border: 1px solid #CDD1DA;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: 0.3s;
+  z-index: 9;
+}
+.package-item .package-comment p {
+  margin-bottom: 0;
+}
+.package-item .package-name .package-check-box {
+  max-width: 170px;
+  min-width: 170px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+}
+.package-item .package-name .left {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.package-item .package-name .left .package-question {
+  display: none;
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-image: url('../img/question.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  cursor: help;
+  margin-left: 6px;
+}
+.package-item .package-name .left .package-question.isset {
+  display: inline-block;
+}
+.package-item .package-name .left .package-question:hover + .package-comment {
+  opacity: 1;
+}
+
+/* For Radio buttons */
+.radio {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+	margin: 10px 0 0 7px;
+}
+.radio + label {
+	position: relative;
+	padding: 0 0 0 35px;
+	cursor: pointer;
+}
+.radio + label:before {
+	content: '';
+	position: absolute;
+	top: -12px;
+	left: 0;
+	width: 22px;
+	height: 22px;
+	border: 1px solid #CDD1DA;
+	border-radius: 50%;
+	background: #FFF;
+}
+.radio + label:after {
+	content: '';
+	position: absolute;
+	top: -8px;
+	left: 4px;
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	background: #448339;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.5);
+	opacity: 0;
+	transition: .2s;
+}
+.radio:checked + label:after {
+	opacity: 1;
+}
+.radio:focus + label:before {
+	box-shadow: 0 0 0 3px rgba(68,131,57,.1);
+}
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
 /* ---------------------------------------------------------------------------------------------------- */
@@ -8955,6 +9064,7 @@ h1 {
     width: 100%;
   }
 }
+/* max 600px */
 @media (max-width: 599px) {
   .part-contact-left {
     flex-wrap: wrap;
@@ -8976,6 +9086,21 @@ h1 {
   }
   .profile-gencont .part-contact-left {
     max-width: 500px;
+  }
+  .package-item .package-name {
+    flex-wrap: wrap;
+  }
+  .package-item .package-name .left,
+  .package-item .package-name .right {
+    width: 100%;
+    margin-bottom: 4px;
+  }
+  .package-item .package-descr .left {
+    max-width: 90%;
+  }
+  .package-item .package-comment {
+    top: 60px;
+    left: 0;
   }
 }
 @media (max-width: 540px) {
@@ -9034,6 +9159,10 @@ h1 {
   }
   .concact-page .mob-fulwidth .map-cont {
     padding: 16px 5px;
+  }
+  .create-sale .largex-container .column-center.add-itprod-box {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 @media (max-width: 355px) {

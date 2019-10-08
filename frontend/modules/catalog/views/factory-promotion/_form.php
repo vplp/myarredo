@@ -447,7 +447,7 @@ function newCost() {
         }
     }
 
-    cost_products = count_products * 1000 * 0;
+    cost_products = count_products * 1000;
     cost = cost_products + cost_of_views;
     nds = (cost * 19) / 100;
     totalNds = cost + nds;
