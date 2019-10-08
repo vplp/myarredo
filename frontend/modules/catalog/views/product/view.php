@@ -458,6 +458,36 @@ $script = <<<JS
 $.post('$url', {_csrf: $('#token').val(), product_id:{$model['id']}}, function(data){
     $('.composition').html(data.html);
     $(".prod-card-page .nav-tabs li a").eq(0).click();
+    // Выжидаем некоторое время
+    setTimeout(function() {
+            // если слайдер композиции существует на странице
+            if ($('#comp-slider').length > 0) {
+                // Инициализируем слайдер композиции
+                $('#comp-slider').slick({
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    dots: false,
+                    prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
+                    nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>', responsive: [
+                        {
+                            breakpoint: 992,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 1,
+                            }
+                        },
+                        {
+                            breakpoint: 540,
+                            arrows: false,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        }
+                    ]
+                });
+            }
+    },1000);
 });
 JS;
 

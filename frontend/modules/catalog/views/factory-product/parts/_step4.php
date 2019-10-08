@@ -169,7 +169,7 @@ $('input[name="PromotionPackage[id]"]').on('change', function () {
             }
         });
     }
-})()
+})();
 JS;
 
 $this->registerJs($script);
