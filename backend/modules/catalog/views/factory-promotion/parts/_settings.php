@@ -61,7 +61,7 @@ use backend\modules\catalog\models\FactoryPromotion;
         <?= $form->field($model, 'status')->dropDownList(FactoryPromotion::statusRange()) ?>
     </div>
     <div class="col-md-3">
-        <?= $form->field($model, 'payment_status')->dropDownList(FactoryPromotion::paymentStatusKeyRange()) ?>
+        <?= $form->field($model, 'payment_status')->dropDownList(FactoryPromotion::paymentStatusRange()) ?>
     </div>
 </div>
 

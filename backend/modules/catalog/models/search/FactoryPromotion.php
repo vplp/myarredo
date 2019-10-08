@@ -30,7 +30,7 @@ class FactoryPromotion extends FactoryPromotionModel implements BaseBackendSearc
         return [
             [['id', 'factory_id', 'user_id'], 'integer'],
             [['status', 'published'], 'in', 'range' => array_keys(self::statusKeyRange())],
-            [['payment_status'], 'in', 'range' => array_keys(static::paymentStatusKeyRange())],
+            [['payment_status'], 'in', 'range' => array_keys(static::paymentStatusRange())],
         ];
     }
 

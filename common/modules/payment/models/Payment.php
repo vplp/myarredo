@@ -123,7 +123,7 @@ class Payment extends ActiveRecord
             [['type', 'amount', 'currency'], 'required'],
             [['type'], 'in', 'range' => array_keys(static::getTypeKeyRange())],
             [['currency'], 'in', 'range' => array_keys(static::getCurrencyKeyRange())],
-            [['payment_status'], 'in', 'range' => array_keys(static::getPaymentStatusKeyRange())],
+            [['payment_status'], 'in', 'range' => array_keys(static::paymentStatusRange())],
             [['amount'], 'double'],
             [['user_id', 'promotion_package_id', 'payment_time', 'create_time', 'update_time'], 'integer'],
             [['change_tariff', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
@@ -257,16 +257,19 @@ class Payment extends ActiveRecord
     }
 
     /**
-     * @return array
+     * @param string $key
+     * @return array|mixed
      */
-    public static function getPaymentStatusKeyRange()
+    public static function paymentStatusRange($key = '')
     {
-        return [
+        $data = [
             static::PAYMENT_STATUS_PENDING => Yii::t('app', 'Pending'),
             static::PAYMENT_STATUS_ACCEPTED => Yii::t('app', 'Accepted'),
             static::PAYMENT_STATUS_SUCCESS => Yii::t('app', 'Success'),
             static::PAYMENT_STATUS_FAIL => Yii::t('app', 'Fail'),
         ];
+
+        return $key ? $data[$key] : $data;
     }
 
     /**
