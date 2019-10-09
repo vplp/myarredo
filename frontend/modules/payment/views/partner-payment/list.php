@@ -78,6 +78,7 @@ $this->title = Yii::t('app', 'Платежная информация');
                                         },
                                         'headerOptions' => ['class' => 'text-center'],
                                         'contentOptions' => ['class' => 'text-center'],
+                                        'visible' => false
                                     ],
                                     [
                                         'label' => Yii::t('app', 'Image'),
@@ -104,6 +105,7 @@ $this->title = Yii::t('app', 'Платежная информация');
                                         },
                                         'headerOptions' => ['class' => 'col-sm-1'],
                                         'contentOptions' => ['class' => 'text-center'],
+                                        'visible' => false
                                     ],
                                     [
                                         'attribute' => 'created_at',
@@ -139,7 +141,7 @@ $this->title = Yii::t('app', 'Платежная информация');
                                         'attribute' => 'amount',
                                         'value' => function ($model) {
                                             /** @var $model Payment */
-                                            return $model->amount;
+                                            return $model->amount . ' ' . $model->currency;
                                         },
                                         'headerOptions' => ['class' => 'col-sm-1'],
                                         'contentOptions' => ['class' => 'text-center'],
