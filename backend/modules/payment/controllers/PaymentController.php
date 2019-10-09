@@ -4,7 +4,7 @@ namespace backend\modules\payment\controllers;
 
 use yii\helpers\ArrayHelper;
 //
-use thread\actions\{ListModel};
+use thread\actions\{Create, ListModel, Update};
 use thread\app\base\controllers\BackendController;
 //
 use backend\modules\payment\models\{
@@ -28,10 +28,15 @@ class PaymentController extends BackendController
         return ArrayHelper::merge(
             parent::actions(),
             [
+                'create' => [
+                    'class' => Create::class,
+                ],
+                'update' => [
+                    'class' => Update::class,
+                ],
                 'list' => [
                     'class' => ListModel::class,
                     'modelClass' => $this->model,
-                    'layout' => 'list',
                     'filterModel' => $this->filterModel,
                 ],
             ]

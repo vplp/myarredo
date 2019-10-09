@@ -3,6 +3,7 @@
 use backend\widgets\GridView\GridView;
 use backend\widgets\GridView\gridColumns\ActionColumn;
 use backend\modules\payment\models\Payment;
+//
 use thread\widgets\grid\GridViewFilter;
 
 /**
@@ -50,7 +51,6 @@ echo GridView::widget([
         ],
         [
             'class' => ActionColumn::class,
-            'updateLink' => false,
         ],
     ],
 ]);

@@ -125,7 +125,13 @@ class Payment extends ActiveRecord
             [['currency'], 'in', 'range' => array_keys(static::getCurrencyKeyRange())],
             [['payment_status'], 'in', 'range' => array_keys(static::paymentStatusRange())],
             [['amount'], 'double'],
-            [['user_id', 'promotion_package_id', 'payment_time', 'create_time', 'update_time'], 'integer'],
+            [
+                ['payment_time'],
+                'date',
+                'format' => 'php:d.m.Y H:i',
+                'timestampAttribute' => 'payment_time'
+            ],
+            [['user_id', 'promotion_package_id', 'create_time', 'update_time'], 'integer'],
             [['change_tariff', 'published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['promotion_package_id', 'change_tariff'], 'default', 'value' => 0],
             [

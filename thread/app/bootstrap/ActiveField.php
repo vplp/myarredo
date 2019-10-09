@@ -6,9 +6,7 @@ use yii\helpers\{
     Html, Url
 };
 //
-use kartik\widgets\{
-    DatePicker, FileInput, ColorInput, Select2
-};
+use kartik\widgets\{DatePicker, DateTimePicker, FileInput, ColorInput, Select2};
 //
 use thread\widgets\editors\Editor;
 
@@ -90,6 +88,34 @@ class ActiveField extends \yii\bootstrap\ActiveField
         $config['attribute'] = $this->attribute;
         $config['view'] = $this->form->getView();
         $this->parts['{input}'] = DatePicker::widget([
+            'model' => $this->model,
+            'attribute' => $this->attribute,
+            'options' => [
+                'placeholder' => $format,
+                'value' => $value,
+            ],
+            'pluginOptions' => [
+                'autoclose' => true,
+                'format' => $format
+            ]
+        ]);
+        return $this;
+    }
+
+    /**
+     * DateTimePicker form field widget
+     *
+     * @param $value
+     * @param string $format
+     * @return $this
+     */
+    public function dateTimePicker($value, $format = null)
+    {
+        /* @var $class \yii\base\Widget */
+        $config['model'] = $this->model;
+        $config['attribute'] = $this->attribute;
+        $config['view'] = $this->form->getView();
+        $this->parts['{input}'] = DateTimePicker::widget([
             'model' => $this->model,
             'attribute' => $this->attribute,
             'options' => [
