@@ -162,7 +162,7 @@ $bundle = AppAsset::register($this);
                             </div>
                         <?php } ?>
 
-                        <?php if ($italianProduct) { ?>
+                        <?php if ($product) { ?>
                             <?= Html::tag('h2', Yii::t('app', 'Catalog of furniture')) ?>
                             <div class="cat-prod catalog-wrap">
                                 <?php foreach ($product as $item) {
