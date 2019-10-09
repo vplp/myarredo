@@ -115,6 +115,7 @@ $this->title = Yii::t('app', 'Платежная информация');
                                         },
                                         'headerOptions' => ['class' => 'text-center'],
                                         'contentOptions' => ['class' => 'text-center'],
+                                        'visible' => false
                                     ],
                                     [
                                         'attribute' => 'payment_status',
