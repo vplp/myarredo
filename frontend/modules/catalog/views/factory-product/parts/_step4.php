@@ -58,16 +58,16 @@ $modelPayment->currency = 'RUB';
                                         </div>
                                     </div>
                                     <div class="right package-check-box">
-                                        <?php 
-                                        // Html::radio('PromotionPackage[id]', ($key == 0 ? true : false), [
-                                        //     'value' => $modelPromotionPackage['id'],
-                                        //     'data-price' => $modelPromotionPackage->getPriceInRub(),
-                                        //     'label' => ''
-                                        // ]) 
-                                        ?>
+
                                         <span class="for-checkbox">
-                                            <input type="radio" class="radio" id="radio<?= $key;?>" name="PromotionPackage[id]" value="1" checked="" data-price="1494.52">
-                                            <label for="radio<?= $key;?>"></label>
+                                            <?= Html::radio('PromotionPackage[id]', ($key == 0 ? true : false), [
+                                                'value' => $modelPromotionPackage['id'],
+                                                'data-price' => $modelPromotionPackage->getPriceInRub(),
+                                                'id' => 'radio' . $key,
+                                                'class' => 'radio',
+                                                'enableLabel' => false,
+                                            ]) . Html::label(null, 'radio' . $key)
+                                            ?>
                                         </span>
                                         <span class="for-price">
                                             <?= $modelPromotionPackage->getPriceInRub() ?> RUB
