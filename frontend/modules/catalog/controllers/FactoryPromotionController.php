@@ -148,7 +148,7 @@ class FactoryPromotionController extends BaseController
             /** @var Transaction $transaction */
             $transaction = $model::getDb()->beginTransaction();
             try {
-                $model->status = 1;
+                $model->status = $model::STATUS_NOT_ACTIVE;
                 $model->published = 1;
 
                 $save = $model->save();
