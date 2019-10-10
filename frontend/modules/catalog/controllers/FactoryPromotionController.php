@@ -159,10 +159,7 @@ class FactoryPromotionController extends BaseController
                     if (Yii::$app->getRequest()->post('payment')) {
                         $this->crateInvoice($model);
                     } else {
-                        return $this->redirect(Url::toRoute([
-                            '/catalog/factory-promotion/update',
-                            'id' => $model->id
-                        ]));
+                        return $this->redirect(Url::toRoute(['/catalog/factory-promotion/list']));
                     }
                 } else {
                     $transaction->rollBack();
