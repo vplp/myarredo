@@ -118,7 +118,7 @@ $modelPayment->currency = 'RUB';
 
                             <?= Html::a(
                                 Yii::t('app', 'Cancel'),
-                                ['/catalog/italian-product/list'],
+                                ['/catalog/factory-product/list'],
                                 ['class' => 'btn btn-primary']
                             ) ?>
                         </div>
