@@ -14,8 +14,8 @@ use frontend\modules\location\widgets\{
 };
 use frontend\modules\user\widgets\menu\UserMenu;
 
-$a = Yii::$app->yandexTranslator->getTranslate('Hello', 'ru');
-/* !!! */ echo  '<pre style="color:red;">'; print_r($a); echo '</pre>'; /* !!! */
+//$a = Yii::$app->yandexTranslator->getTranslate('Hello', 'ru');
+///* !!! */ echo  '<pre style="color:red;">'; print_r($a); echo '</pre>'; /* !!! */
 ?>
 
 <!-- preloader start -->
