@@ -1,6 +1,6 @@
 <?php
 
-namespace common\components\yandex;
+namespace common\components\translate;
 
 /**
  * Translation

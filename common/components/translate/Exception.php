@@ -1,6 +1,6 @@
 <?php
 
-namespace common\components\yandex;
+namespace common\components\translate;
 
 /**
  * Exception
@@ -9,4 +9,4 @@ namespace common\components\yandex;
 class Exception extends \Exception
 {
 
-} 
+}

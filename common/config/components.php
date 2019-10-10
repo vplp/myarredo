@@ -90,6 +90,10 @@ return [
         'class' => \common\components\YandexTranslator::class,
         'key' => \getenv('YANDEX_TRANSLATOR_KEY'),
     ],
+    'yandexTranslator' => [
+        'class' => \common\components\translate\YandexTranslation::class,
+        'folder_id' => 'b1gi4aabjn0khc57n7p1',
+    ],
     'yandexKassa' => [
         'class' => \common\components\YandexKassaAPI\YandexKassaAPI::class,
         'returnUrl' => 'https://www.myarredo.ru/',

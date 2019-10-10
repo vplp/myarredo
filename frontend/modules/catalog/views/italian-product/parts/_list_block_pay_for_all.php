@@ -57,17 +57,17 @@ if ($count) {
     ?>
     <div class="total-box">
         <div>
-            <span class="for-total">Кол. товаров платно:</span> <span class="for-styles"><?= $paidCount ?></span>
+            <span class="for-total"><?= Yii::t('app', 'Кол. товаров платно') ?>:</span> <span class="for-styles"><?= $paidCount ?></span>
         </div>
         <div>
-            <span class="for-total">Кол. товаров бесплатно:</span> <span class="for-styles"><?= $freeCount ?></span>
+            <span class="for-total"><?= Yii::t('app', 'Кол. товаров бесплатно') ?>:</span> <span class="for-styles"><?= $freeCount ?></span>
         </div>
         <div>
             <span class="for-total"><?= Yii::t('app', 'Итого') ?>:</span> <span
                     class="for-styles"><?= $modelCostProduct['total'] . ' ' . $modelCostProduct['currency'] ?></span>
         </div>
         <div>
-            <span class="for-total"><?= Yii::t('app', 'Всего к оплате') ?> :</span> <span
+            <span class="for-total"><?= Yii::t('app', 'Всего к оплате') ?>:</span> <span
                     class="for-styles"><?= $modelCostProduct['amount'] . ' ' . $modelCostProduct['currency'] ?></span>
         </div>
     </div>
