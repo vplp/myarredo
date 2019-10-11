@@ -39,7 +39,7 @@ class PartnerMap extends Widget
 
             $lat = 55.742130;
             $lng = 37.613583;
-            $zoom = 4;
+            $zoom = 3;
         }
 
         $dataJS = [];
