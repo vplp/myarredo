@@ -146,23 +146,23 @@ $this->title = Yii::t('app', 'Рекламировать');
                             <?php
                             foreach ($model->products as $product) {
                                 echo '<div class="list-product-item">' .
-                                Html::input(
-                                    'hidden',
-                                    'FactoryPromotion[product_ids][]',
-                                    $product->id
-                                ) . Html::a(
-                                    '<i class="fa fa-times"></i></a>',
-                                    "javascript:void(0);",
-                                    [
-                                        'id' => 'del-product',
-                                        'class' => 'close',
-                                        'data-id' => $product->id
-                                    ]
-                                ) . '<div class="list-product-img">' .
+                                    Html::input(
+                                        'hidden',
+                                        'FactoryPromotion[product_ids][]',
+                                        $product->id
+                                    ) . Html::a(
+                                        '<i class="fa fa-times"></i></a>',
+                                        "javascript:void(0);",
+                                        [
+                                            'id' => 'del-product',
+                                            'class' => 'close',
+                                            'data-id' => $product->id
+                                        ]
+                                    ) . '<div class="list-product-img">' .
                                     Html::img(Product::getImageThumb($product['image_link']), ['width' => 50]) .
                                     '</div>' .
-                                    '<div class="product-list-descr">' . 
-                                        $product->lang->title .
+                                    '<div class="product-list-descr">' .
+                                    $product->lang->title .
                                     '</div>' .
                                     '</div>';
                             } ?>
@@ -219,28 +219,28 @@ $this->title = Yii::t('app', 'Рекламировать');
 
                         <table class="table table-bordered table-totalorder">
                             <thead>
-                                <tr>
-                                    <th><?= Yii::t('app', 'Наименование услуг') ?></th>
-                                    <th><?= Yii::t('app', 'Цена') ?></th>
-                                    <th><?= Yii::t('app', 'Валюта') ?></th>
-                                </tr>
+                            <tr>
+                                <th><?= Yii::t('app', 'Наименование услуг') ?></th>
+                                <th><?= Yii::t('app', 'Цена') ?></th>
+                                <th><?= Yii::t('app', 'Валюта') ?></th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><?= Yii::t('app', 'Стоимость размещения товара в рекламе') ?></td>
-                                    <td><span id="cost_products">0</span></td>
-                                    <td><span class="current-item"> <?= Yii::t('app', 'руб') ?></td>
-                                </tr>
-                                <tr>
-                                    <td><?= Yii::t('app', 'Стоимость размещения рекламы в поиске') ?></td>
-                                    <td><span id="cost_of_views">0</span></td>
-                                    <td><span class="current-item"> <?= Yii::t('app', 'руб') ?> </span></td>
-                                </tr>
-                                <tr>
-                                    <td><?= Yii::t('app', 'Общая стоимость рекламной кампании') ?></td>
-                                    <td><span id="cost">0</span></td>
-                                    <td><span class="current-item"> <?= Yii::t('app', 'руб') ?> </span></td>
-                                </tr>
+                            <tr>
+                                <td><?= Yii::t('app', 'Стоимость размещения товара в рекламе') ?></td>
+                                <td><span id="cost_products">0</span></td>
+                                <td><span class="current-item"> <?= Yii::t('app', 'руб') ?></td>
+                            </tr>
+                            <tr>
+                                <td><?= Yii::t('app', 'Стоимость размещения рекламы в поиске') ?></td>
+                                <td><span id="cost_of_views">0</span></td>
+                                <td><span class="current-item"> <?= Yii::t('app', 'руб') ?> </span></td>
+                            </tr>
+                            <tr>
+                                <td><?= Yii::t('app', 'Общая стоимость рекламной кампании') ?></td>
+                                <td><span id="cost">0</span></td>
+                                <td><span class="current-item"> <?= Yii::t('app', 'руб') ?> </span></td>
+                            </tr>
                             </tbody>
                         </table>
                         <div class="promotion-title-label">
