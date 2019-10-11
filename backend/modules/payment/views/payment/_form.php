@@ -42,7 +42,7 @@ use backend\modules\payment\models\Payment;
         <div class="col-md-3">
             <?= $form
                 ->field($model, 'payment_time')
-                ->dateTimePicker(date('d.m.Y H:i', $model->payment_time)) ?>
+                ->dateTimePicker(date('d.m.Y H:i', $model->payment_time), 'dd.mm.yyyy hh:ii') ?>
         </div>
     </div>
     <div class="row control-group">

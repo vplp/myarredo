@@ -24,7 +24,7 @@ class YandexTranslation extends Component
     /**
      * @var string
      */
-    public $token = '';
+    public $token = 'AgAAAAAPNY4fAATuwehG34pUnEg4lwp6O3970qY';
 
     /**
      * @var resource
