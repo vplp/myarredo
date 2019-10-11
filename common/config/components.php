@@ -90,7 +90,7 @@ return [
         'class' => \common\components\YandexTranslator::class,
         'key' => \getenv('YANDEX_TRANSLATOR_KEY'),
     ],
-    'yandexTranslator' => [
+    'yandexTranslation' => [
         'class' => \common\components\translate\YandexTranslation::class,
         'folder_id' => 'b1gi4aabjn0khc57n7p1',
     ],

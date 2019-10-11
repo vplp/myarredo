@@ -22,6 +22,21 @@ class CatalogProductController extends Controller
     /**
      * Reset mark
      */
+    public function actionTest()
+    {
+        $this->stdout("ResetMark: start. \n", Console::FG_GREEN);
+
+        $translate = Yii::$app->yandexTranslation->translate('Hello', 'en', 'ru');
+        //$translate = Yii::$app->yandexTranslator->getTranslate('Hello', 'ru');
+
+        /* !!! */ echo  '<pre style="color:red;">'; print_r($translate); echo '</pre>'; /* !!! */
+
+        $this->stdout("ResetMark: finish. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * Reset mark
+     */
     public function actionResetMark()
     {
         $this->stdout("ResetMark: start. \n", Console::FG_GREEN);
