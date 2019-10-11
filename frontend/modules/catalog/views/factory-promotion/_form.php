@@ -146,22 +146,24 @@ $this->title = Yii::t('app', 'Рекламировать');
                             <?php
                             foreach ($model->products as $product) {
                                 echo '<div class="list-product-item">' .
-                                    $product->lang->title .
-                                    Html::input(
-                                        'hidden',
-                                        'FactoryPromotion[product_ids][]',
-                                        $product->id
-                                    ) .
+                                Html::input(
+                                    'hidden',
+                                    'FactoryPromotion[product_ids][]',
+                                    $product->id
+                                ) . Html::a(
+                                    '<i class="fa fa-times"></i></a>',
+                                    "javascript:void(0);",
+                                    [
+                                        'id' => 'del-product',
+                                        'class' => 'close',
+                                        'data-id' => $product->id
+                                    ]
+                                ) . '<div class="list-product-img">' .
                                     Html::img(Product::getImageThumb($product['image_link']), ['width' => 50]) .
-                                    Html::a(
-                                        '<i class="fa fa-times"></i></a>',
-                                        "javascript:void(0);",
-                                        [
-                                            'id' => 'del-product',
-                                            'class' => 'close',
-                                            'data-id' => $product->id
-                                        ]
-                                    ) .
+                                    '</div>' .
+                                    '<div class="product-list-descr">' . 
+                                        $product->lang->title .
+                                    '</div>' .
                                     '</div>';
                             } ?>
                         </div>
@@ -490,10 +492,14 @@ $('.factory-prom').on('change', 'input[type="checkbox"][name="product_ids[]"]', 
         }
         if (indicator !== "yes") {
             str += '<div class="list-product-item">' + 
-                    product.data('title') + 
                     '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
-                    '<img src="' + product.data('image') + '" width="50">' +
                     '<a id="del-product" class="close" href="javascript:void(0);" data-id="' + product.val() + '"><i class="fa fa-times"></i></a>' +
+                    '<div class="list-product-img">' +
+                        '<img src="' + product.data('image') + '" width="50">' +
+                    '</div>' +
+                    '<div class="product-list-descr">' +
+                        product.data('title') + 
+                    '</div>' +
                     '</div>';
         }
     }
