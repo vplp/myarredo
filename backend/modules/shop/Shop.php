@@ -34,8 +34,13 @@ class Shop extends \common\modules\shop\Shop
                         'url' => ['/catalog/sale-request/list'],
                     ],
                     [
-                        'label' => 'Orders',
+                        'label' => 'Sale in Italy request',
                         'position' => 3,
+                        'url' => ['/catalog/italian-product-request/list'],
+                    ],
+                    [
+                        'label' => 'Orders',
+                        'position' => 4,
                         'url' => ['/shop/order/list'],
                     ]
                 ]

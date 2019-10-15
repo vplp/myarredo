@@ -16,4 +16,5 @@ return [
     'Factory promotion' => 'Рекламные кампании',
     'Sale in Italy' => 'Распродажа в Италии',
     'Sale request' => 'Предложения цены',
+    'Sale in Italy request' => 'Предложения цены в Италии',
 ];

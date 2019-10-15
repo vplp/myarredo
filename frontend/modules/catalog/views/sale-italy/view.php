@@ -8,7 +8,9 @@ use frontend\components\Breadcrumbs;
 use frontend\modules\catalog\models\{Factory, ItalianProduct, ItalianProductLang, Product};
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\shop\widgets\request\RequestPrice;
-use frontend\modules\catalog\widgets\sale\SaleRequestForm;
+use frontend\modules\catalog\widgets\sale\{
+    SaleRequestForm, SaleItalyOfferPriceForm
+};
 use frontend\modules\catalog\widgets\product\ViewedProducts;
 
 $bundle = AppAsset::register($this);
@@ -84,6 +86,18 @@ $this->title = $this->context->title;
 
                                 <?php if ($model->is_sold) { ?>
                                     <div class="prod-is-sold"><?= Yii::t('app', 'Item sold') ?></div>
+                                <?php } ?>
+
+                                <?php if ($model->is_sold == 0) { ?>
+                                    <?= Html::a(
+                                        Yii::t('app', 'Предложите свою цену'),
+                                        'javascript:void(0);',
+                                        [
+                                            'class' => 'btn btn-offerprice',
+                                            'data-toggle' => 'modal',
+                                            'data-target' => '#modalSaleItalyOfferPrice'
+                                        ]
+                                    ) ?>
                                 <?php } ?>
 
                                 <div class="alert" role="alert">
@@ -394,6 +408,7 @@ $this->title = $this->context->title;
 
 <?php if (Yii::$app->controller->id == 'sale-italy') {
     echo SaleRequestForm::widget(['sale_item_id' => $model['id']]);
+    echo SaleItalyOfferPriceForm::widget(['item_id' => $model['id']]);
 } ?>
 
 <?php
