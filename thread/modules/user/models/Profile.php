@@ -34,7 +34,8 @@ class Profile extends ActiveRecord
     public static $commonQuery = query\ProfileQuery::class;
 
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

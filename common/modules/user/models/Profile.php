@@ -36,6 +36,8 @@ use common\modules\catalog\models\Factory;
  * @property int $factory_package
  * @property string $cape_index
  * @property string $image_link
+ * @property integer $mark
+ * @property string $language_editing
  *
  * @property Country $country
  * @property City $city
@@ -100,7 +102,8 @@ class Profile extends \thread\modules\user\models\Profile
                     'partner_in_city',
                     'possibility_to_answer',
                     'pdf_access',
-                    'show_contacts'
+                    'show_contacts',
+                    'mark'
                 ],
                 'in',
                 'range' => array_keys(self::statusKeyRange())
@@ -119,6 +122,8 @@ class Profile extends \thread\modules\user\models\Profile
                 'each',
                 'rule' => ['integer']
             ],
+            [['language_editing'], 'string', 'max' => 5],
+            [['language_editing'], 'default', 'value' => ''],
         ]);
     }
 
@@ -128,6 +133,7 @@ class Profile extends \thread\modules\user\models\Profile
     public function scenarios()
     {
         return ArrayHelper::merge(parent::scenarios(), [
+            'setMark' => ['mark'],
             'ownEdit' => [
                 'first_name',
                 'last_name',
@@ -148,7 +154,9 @@ class Profile extends \thread\modules\user\models\Profile
                 'pdf_access',
                 'show_contacts',
                 'cape_index',
-                'image_link'
+                'image_link',
+                'mark',
+                'language_editing',
             ],
             'basicCreate' => [
                 'phone',
@@ -170,7 +178,9 @@ class Profile extends \thread\modules\user\models\Profile
                 'preferred_language',
                 'factory_package',
                 'cape_index',
-                'image_link'
+                'image_link',
+                'mark',
+                'language_editing',
             ],
             'backend' => [
                 'first_name',
@@ -194,7 +204,9 @@ class Profile extends \thread\modules\user\models\Profile
                 'show_contacts',
                 'city_ids',
                 'cape_index',
-                'image_link'
+                'image_link',
+                'mark',
+                'language_editing',
             ]
         ]);
     }
@@ -226,9 +238,25 @@ class Profile extends \thread\modules\user\models\Profile
             'factory_package' => Yii::t('app', 'Package'),
             'cape_index' => Yii::t('app', 'CAPE index'),
             'image_link' => Yii::t('app', 'Image link'),
+            'mark',
+            'language_editing',
         ]);
     }
 
+    /**
+     * @param bool $insert
+     * @return bool
+     * @throws \Throwable
+     */
+    public function beforeSave($insert)
+    {
+        if (in_array($this->scenario, ['frontend', 'backend', 'basicCreate'])) {
+            $this->mark = '0';
+            $this->language_editing = Yii::$app->language;
+        }
+
+        return parent::beforeSave($insert);
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
