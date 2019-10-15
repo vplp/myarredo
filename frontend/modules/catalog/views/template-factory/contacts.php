@@ -27,7 +27,7 @@ $this->title = $this->context->title;
                             <?= Html::tag('h4', $partner->profile->getNameCompany()); ?>
                             <div class="adres">
                                 <?= isset($partner->profile->city) ? $partner->profile->city->lang->title . '<br>' : '' ?>
-                                <?= $partner->profile->lang->address ?>
+                                <?= $partner->profile->lang->address ?? '' ?>
                             </div>
                             <?= Html::a(
                                 $partner->profile->getPhone(),

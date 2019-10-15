@@ -79,7 +79,7 @@ use frontend\modules\shop\models\{
         <p style="color: #591612; margin-bottom: 1px;">
             <?= $modelOrder->orderAnswer->user->profile->getNameCompany(); ?><br>
             <?= $modelOrder->orderAnswer->user->profile->city->lang->title ?? null; ?><br>
-            <?= $modelOrder->orderAnswer->user->profile->lang->address; ?>
+            <?= $modelOrder->orderAnswer->user->profile->lang->address ?? ''; ?>
         </p>
         <span style="display: block; color: #591612; margin-bottom: 5px;">
             <?= $modelOrder->orderAnswer->user->email; ?>
