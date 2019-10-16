@@ -162,7 +162,7 @@ class FactoryProductController extends BaseController
             }
         }
 
-        if ($id !== null) {
+        if ($id !== null && Yii::$app->getRequest()->get('step') != 'promotion') {
             $model = FactoryProduct::findById($id);
 
             if (!Yii::$app->getUser()->isGuest &&
