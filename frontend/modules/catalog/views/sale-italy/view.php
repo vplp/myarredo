@@ -88,7 +88,7 @@ $this->title = $this->context->title;
                                     <div class="prod-is-sold"><?= Yii::t('app', 'Item sold') ?></div>
                                 <?php } ?>
 
-                                <?php if ($model->is_sold == 0) { ?>
+                                <?php if (Yii::$app->controller->id == 'sale-italy' && $model->is_sold == 0) { ?>
                                     <?= Html::a(
                                         Yii::t('app', 'Предложите свою цену'),
                                         'javascript:void(0);',
