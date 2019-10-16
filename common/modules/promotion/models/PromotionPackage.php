@@ -128,7 +128,7 @@ class PromotionPackage extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->innerJoinWith(["lang"])->orderBy(['position' => SORT_DESC]);
+        return self::find()->joinWith(["lang"])->orderBy(['position' => SORT_DESC]);
     }
 
     /**
