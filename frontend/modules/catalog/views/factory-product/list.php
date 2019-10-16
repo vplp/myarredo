@@ -147,6 +147,27 @@ $this->title = $this->context->title;
                                         ],
                                         [
                                             'format' => 'raw',
+                                            'value' => function ($model) {
+                                                /** @var $model FactoryProduct */
+                                                if ((Yii::$app->user->identity->id == $model->user_id)) {
+                                                    return ($model->payment && $model->payment->payment_status == 'success')
+                                                        ? $model->payment->promotionPackage->lang->title . ' ' .
+                                                        Yii::t('app', 'до') . ' ' .
+                                                        $model->payment->getTimePromotion()
+                                                        : Html::a(
+                                                            Yii::t('app', 'Больше просмотров'),
+                                                            Url::toRoute(['/catalog/factory-product/update', 'id' => $model->id, 'step' => 'promotion']),
+                                                            ['class' => 'btn btn-goods']
+                                                        );
+                                                } else {
+                                                    return '';
+                                                }
+                                            },
+                                            'label' => Yii::t('app', 'Больше просмотров'),
+                                            'filter' => false
+                                        ],
+                                        [
+                                            'format' => 'raw',
                                             'attribute' => 'published',
                                             'value' => function ($model) {
                                                 /** @var $model FactoryProduct */

@@ -7,12 +7,16 @@ use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 //
 use common\modules\catalog\models\Product as CommonProduct;
+//
+use frontend\modules\payment\models\{
+    Payment, PaymentRelItem
+};
 use frontend\modules\catalog\models\Product as FrontendProduct;
 
 /**
  * Class FactoryProduct
  *
- *
+ * @property Payment $payment
  * @property FactoryPromotionRelProduct[] $factoryPromotionRelProduct
  *
  * @package frontend\modules\catalog\models
@@ -135,6 +139,19 @@ class FactoryProduct extends FrontendProduct
             ->hasOne(FactoryPromotion::class, ['id' => 'promotion_id'])
             ->viaTable(FactoryPromotionRelProduct::tableName(), ['catalog_item_id' => 'id'])
             ->cache(7200);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getPayment()
+    {
+        return $this
+            ->hasOne(Payment::class, ['id' => 'payment_id'])
+            ->viaTable(PaymentRelItem::tableName(), ['item_id' => 'id'])
+            ->andWhere([Payment::tableName() . '.type' => 'promotion_item'])
+            ->orderBy(Payment::tableName() . '.id DESC');
     }
 
     /**

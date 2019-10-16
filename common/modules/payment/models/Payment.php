@@ -10,6 +10,7 @@ use yii\helpers\{
 use voskobovich\behaviors\ManyToManyBehavior;
 //
 use common\modules\payment\PaymentModule;
+use common\modules\promotion\models\PromotionPackage;
 use common\modules\catalog\models\{
     Product, Sale, ItalianProduct, FactoryPromotion
 };
@@ -35,6 +36,7 @@ use thread\app\base\models\ActiveRecord;
  *
  * @property array $items_ids
  *
+ * @property PromotionPackage $promotionPackage
  * @property PaymentRelItem[] $items
  *
  * @package common\modules\payment\models
@@ -260,6 +262,14 @@ class Payment extends ActiveRecord
         return $this
             ->hasMany($class, ['id' => 'item_id'])
             ->viaTable(PaymentRelItem::tableName(), ['payment_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPromotionPackage()
+    {
+        return $this->hasOne(PromotionPackage::class, ['id' => 'promotion_package_id']);
     }
 
     /**
