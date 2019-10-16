@@ -50,7 +50,7 @@
     "yiisoft/yii2-gii": "*",
     "yiisoft/yii2-faker": "*",
     "cedx/yii2-mustache": "^0.5.2",
-    "squizlabs/php_codesniffer": "^3.5"
+    "squizlabs/php_codesniffer": "*"
   },
   "config": {
     "fxp-asset": {
