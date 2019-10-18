@@ -2,10 +2,18 @@
 
 namespace common\components\translate;
 
+use Yii;
 use yii\base\Component;
 use yii\helpers\{
     Html, Json
 };
+//
+use Jose\Component\Core\AlgorithmManager;
+use Jose\Component\Core\Converter\StandardConverter;
+use Jose\Component\KeyManagement\JWKFactory;
+use Jose\Component\Signature\JWSBuilder;
+use Jose\Component\Signature\Algorithm\PS256;
+use Jose\Component\Signature\Serializer\CompactSerializer;
 
 /**
  * Class YandexTranslation
@@ -24,7 +32,7 @@ class YandexTranslation extends Component
     /**
      * @var string
      */
-    public $token = 'AgAAAAAPNY4fAATuwehG34pUnEg4lwp6O3970qY';
+    public $token = '';
 
     /**
      * @var resource
@@ -33,8 +41,52 @@ class YandexTranslation extends Component
 
     public function translate($text, $sourceLanguageCode, $targetLanguageCode)
     {
+        $service_account_id = 'ajefihkpokcn0i8q8oao';
+        $key_id = 'b1gi4aabjn0khc57n7p1';
+
+        $jsonConverter = new StandardConverter();
+        $algorithmManager = AlgorithmManager::create([
+            new PS256()
+        ]);
+
+        $jwsBuilder = new JWSBuilder($jsonConverter, $algorithmManager);
+
+        $now = time();
+
+        $claims = [
+            'aud' => 'https://iam.api.cloud.yandex.net/iam/v1/tokens',
+            'iss' => $service_account_id,
+            'iat' => $now,
+            'exp' => $now + 360
+        ];
+
+        $header = [
+            'alg' => 'PS256',
+            'typ' => 'JWT',
+            'kid' => $key_id
+        ];
+
+        $key = JWKFactory::createFromKeyFile(Yii::getAlias('@uploads') . '/private.pem');
+
+        $payload = $jsonConverter->encode($claims);
+
+        // Формирование подписи.
+        $jws = $jwsBuilder
+            ->create()
+            ->withPayload($payload)
+            ->addSignature($key, $header)
+            ->build();
+
+        $serializer = new CompactSerializer($jsonConverter);
+
+        // Формирование JWT.
+        $token = $serializer->serialize($jws);
+
+        /* !!! */ echo  '<pre style="color:red;">'; print_r($token); echo '</pre>'; /* !!! */
+        //die;
+
         $headers = array(
-            "Authorization: Bearer $this->token",                   // OAuth-токен. Использование слова Bearer обязательно
+            "Authorization: Bearer $token",                   // OAuth-токен. Использование слова Bearer обязательно
             //"Client-Login: $clientLogin",                     // Логин клиента рекламного агентства
             //"Accept-Language: ru",                            // Язык ответных сообщений
             "Content-Type: application/json; charset=utf-8"   // Тип данных и кодировка запроса

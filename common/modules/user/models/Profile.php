@@ -33,6 +33,7 @@ use common\modules\catalog\models\Factory;
  * @property int $possibility_to_answer
  * @property int $pdf_access
  * @property int $show_contacts
+ * @property int $show_contacts_on_sale
  * @property int $factory_package
  * @property string $cape_index
  * @property string $image_link
@@ -103,6 +104,7 @@ class Profile extends \thread\modules\user\models\Profile
                     'possibility_to_answer',
                     'pdf_access',
                     'show_contacts',
+                    'show_contacts_on_sale',
                     'mark'
                 ],
                 'in',
@@ -153,6 +155,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'possibility_to_answer',
                 'pdf_access',
                 'show_contacts',
+                'show_contacts_on_sale',
                 'cape_index',
                 'image_link',
                 'mark',
@@ -175,6 +178,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'possibility_to_answer',
                 'pdf_access',
                 'show_contacts',
+                'show_contacts_on_sale',
                 'preferred_language',
                 'factory_package',
                 'cape_index',
@@ -202,6 +206,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'possibility_to_answer',
                 'pdf_access',
                 'show_contacts',
+                'show_contacts_on_sale',
                 'city_ids',
                 'cape_index',
                 'image_link',
@@ -234,6 +239,7 @@ class Profile extends \thread\modules\user\models\Profile
             'possibility_to_answer' => Yii::t('app', 'Отвечает без установки кода на сайт'),
             'pdf_access' => Yii::t('app', 'Доступ к прайсам и каталогам'),
             'show_contacts' => Yii::t('app', 'Показывать в контактах'),
+            'show_contacts_on_sale' => Yii::t('app', 'Показывать контакты в распродаже'),
             'city_ids' => Yii::t('app', 'Ответы в городах'),
             'factory_package' => Yii::t('app', 'Package'),
             'cape_index' => Yii::t('app', 'CAPE index'),

@@ -18,6 +18,11 @@
     "source": "https://github.com/yiisoft/yii2"
   },
   "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Jose\\": "common/components/translate/jwt-framework/src"
+    }
+  },
   "require": {
     "php": ">=7.1",
     "yiisoft/yii2": "*",
@@ -43,7 +48,8 @@
     "yandex/translate-api": "1.5.x",
     "yandex-money/yandex-checkout-sdk-php": "^1.0",
     "himiklab/yii2-recaptcha-widget": "*",
-    "vlucas/phpdotenv": "^3.4"
+    "vlucas/phpdotenv": "^3.4",
+    "spomky-labs/base64url": "^1.0|^2.0"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",

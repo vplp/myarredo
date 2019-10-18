@@ -37,7 +37,7 @@ $this->title = $this->context->title;
 
                             <?= $this->render('parts/_carousel', [
                                 'model' => $model
-                            ]); ?>
+                            ]) ?>
 
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-4">
@@ -218,59 +218,12 @@ $this->title = $this->context->title;
 
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 sellout-cont">
 
-                            <?php if (!empty($model['user'])) { ?>
-                                <div class="brand-info">
-                                    <div class="white-area">
-                                        <div class="image-container">
-                                            <?= Html::img($bundle->baseUrl . '/img/brand.png') ?>
-                                        </div>
-                                        <div class="brand-info">
-                                            <p class="text-center">
-                                                <?= Yii::t('app', 'Контакты продавца') ?>
-                                            </p>
-                                            <h4 class="text-center">
-                                                <?= $model['user']['profile']['lang']['name_company']; ?>
-                                            </h4>
-                                            <div class="ico">
-                                                <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
-                                            </div>
-                                            <div class="tel-num js-show-num">
-                                                (XXX) XXX-XX-XX
-                                            </div>
-
-                                            <?= Html::a(
-                                                Yii::t('app', 'Узнать номер'),
-                                                'javascript:void(0);',
-                                                ['class' => 'js-show-num-btn']
-                                            ) ?>
-
-                                            <div class="ico">
-                                                <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
-                                            </div>
-                                            <div class="text-center adress">
-                                                <?= $model['user']['profile']['city']['lang']['title']; ?>,<br>
-                                                <?= $model['user']['profile']['lang']['address']; ?>
-                                            </div>
-
-                                            <div class="ico">
-                                                <?= Html::img($bundle->baseUrl . '/img/conv.svg') ?>
-                                            </div>
-
-                                            <?= Html::a(
-                                                Yii::t('app', 'Написать продавцу'),
-                                                'javascript:void(0);',
-                                                [
-                                                    'class' => 'write-seller',
-                                                    'data-toggle' => 'modal',
-                                                    'data-target' => '#modalSaleRequestForm'
-                                                ]
-                                            ) ?>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            <?php } ?>
+                            <?php if (!empty($model['user'])) {
+                                echo $this->render('parts/_seller', [
+                                    'model' => $model,
+                                    'bundle' => $bundle
+                                ]);
+                            } ?>
 
                         </div>
 
@@ -306,7 +259,6 @@ $this->title = $this->context->title;
         </div>
     </main>
 
-<?= SaleRequestForm::widget(['sale_item_id' => $model['id']]) ?>
 <?= SaleOfferPriceForm::widget(['sale_item_id' => $model['id']]) ?>
 
 

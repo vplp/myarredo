@@ -40,6 +40,7 @@ class SaleRequestForm extends Widget
         $model->setScenario('requestForm');
 
         $modelSale = Sale::findById($this->sale_item_id);
+        /** @var $modelSale Sale */
 
         if ($modelSale != null && $model->load(Yii::$app->getRequest()->post())) {
             $model->user_id = Yii::$app->getUser()->id ?? 0;
@@ -55,6 +56,12 @@ class SaleRequestForm extends Widget
                 if ($save) {
                     $transaction->commit();
 
+                    $to[] = 'info@myarredo.ru';
+
+                    if ($modelSale->user->profile->show_contacts_on_sale) {
+                        $to[] = $modelSale->user['email'];
+                    }
+
                     // send letter
                     Yii::$app
                         ->mailer
@@ -65,7 +72,7 @@ class SaleRequestForm extends Widget
                                 'modelSale' => $modelSale,
                             ]
                         )
-                        ->setTo([$modelSale->user['email'], 'info@myarredo.ru'])
+                        ->setTo($to)
                         ->setSubject('Поступил новый вопрос на товар')
                         ->send();
 

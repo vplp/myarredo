@@ -20,17 +20,26 @@ if (in_array($model['user']['group_id'], [4, 7])) {
     echo $form->text_line($model, 'website');
 
     echo $form->text_line($model, 'cape_index');
+    ?>
 
-    echo $form->field($model, 'country_id')
-        ->selectOne([0 => '--'] + Country::dropDownList());
+    <div class="row control-group">
+        <div class="col-md-3">
+            <?= $form->field($model, 'country_id')
+                ->selectOne([0 => '--'] + Country::dropDownList()) ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->field($model, 'city_id')
+                ->selectOne([0 => '--'] + City::dropDownList($model->country_id)) ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->text_line($model, 'latitude') ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->text_line($model, 'longitude') ?>
+        </div>
+    </div>
 
-    echo $form->field($model, 'city_id')
-        ->selectOne([0 => '--'] + City::dropDownList($model->country_id));
-
-    echo $form->text_line($model, 'latitude');
-
-    echo $form->text_line($model, 'longitude');
-
+    <?php
     echo $form->text_line($modelLang, 'address');
 
     echo $form
@@ -50,6 +59,8 @@ if (in_array($model['user']['group_id'], [4, 7])) {
     echo $form->switcher($model, 'pdf_access');
 
     echo $form->switcher($model, 'show_contacts');
+
+    echo $form->switcher($model, 'show_contacts_on_sale');
 
     echo $form
         ->field($model, 'image_link')
