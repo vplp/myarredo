@@ -96,17 +96,22 @@ class UserController extends Controller
                                 $modelProfileLang2->rid = $model->profile->id;
                                 $modelProfileLang2->lang = Yii::$app->language;
 
+                                $sourceLanguageCode = substr($currentLanguage, 0, 2);
+                                $targetLanguageCode = substr($language2['local'], 0, 2);
 
-                                $translateLanguage = substr($currentLanguage, 0, 2) . '-' . substr($language2['local'], 0, 2);
-                                $translateLanguage = substr($currentLanguage, 0, 2) . '-' . substr($language2['local'], 0, 2);
+                                $this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
 
-                                $this->stdout("translate " . $translateLanguage . " \n", Console::FG_GREEN);
+                                $address = (string)Yii::$app->yandexTranslation->getTranslate(
+                                    $modelProfileLang->address,
+                                    $sourceLanguageCode,
+                                    $targetLanguageCode
+                                );
 
-                                $address = (string)Yii::$app->yandexTranslator
-                                    ->getTranslate($modelProfileLang->address, $translateLanguage);
-
-                                $name_company = (string)Yii::$app->yandexTranslator
-                                    ->getTranslate(strip_tags($modelProfileLang->name_company), $translateLanguage);
+                                $name_company = (string)Yii::$app->yandexTranslation->getTranslate(
+                                    strip_tags($modelProfileLang->name_company),
+                                    $sourceLanguageCode,
+                                    $targetLanguageCode
+                                );
 
                                 if ($address != '' && $name_company != '') {
                                     $transaction = $modelProfileLang2::getDb()->beginTransaction();
@@ -118,7 +123,7 @@ class UserController extends Controller
 
                                         if ($saveLang[] = intval($modelProfileLang2->save())) {
                                             $transaction->commit();
-                                            $this->stdout("save " . $translateLanguage . " \n", Console::FG_GREEN);
+                                            $this->stdout("save " . $targetLanguageCode . " \n", Console::FG_GREEN);
                                         } else {
                                             foreach ($modelProfileLang2->errors as $attribute => $errors) {
                                                 $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
@@ -166,15 +171,22 @@ class UserController extends Controller
                                     $modelProfileLang2->rid = $model->profile->id;
                                     $modelProfileLang2->lang = Yii::$app->language;
 
-                                    $translateLanguage = substr($currentLanguage, 0, 2) . '-' . substr($language2['local'], 0, 2);
+                                    $sourceLanguageCode = substr($currentLanguage, 0, 2);
+                                    $targetLanguageCode = substr($language2['local'], 0, 2);
 
-                                    $this->stdout("translate " . $translateLanguage . " \n", Console::FG_GREEN);
+                                    $this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
 
-                                    $address = (string)Yii::$app->yandexTranslator
-                                        ->getTranslate($modelProfileLang->address, $translateLanguage);
+                                    $address = (string)Yii::$app->yandexTranslation->getTranslate(
+                                        $modelProfileLang->address,
+                                        $sourceLanguageCode,
+                                        $targetLanguageCode
+                                    );
 
-                                    $name_company = (string)Yii::$app->yandexTranslator
-                                        ->getTranslate(strip_tags($modelProfileLang->name_company), $translateLanguage);
+                                    $name_company = (string)Yii::$app->yandexTranslation->getTranslate(
+                                        strip_tags($modelProfileLang->name_company),
+                                        $sourceLanguageCode,
+                                        $targetLanguageCode
+                                    );
 
                                     if ($address != '' && $name_company != '') {
                                         $transaction = $modelProfileLang2::getDb()->beginTransaction();
@@ -186,7 +198,7 @@ class UserController extends Controller
 
                                             if ($saveLang[] = intval($modelProfileLang2->save())) {
                                                 $transaction->commit();
-                                                $this->stdout("save " . $translateLanguage . " \n", Console::FG_GREEN);
+                                                $this->stdout("save " . $targetLanguageCode . " \n", Console::FG_GREEN);
                                             } else {
                                                 foreach ($modelProfileLang2->errors as $attribute => $errors) {
                                                     $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);

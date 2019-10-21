@@ -86,13 +86,12 @@ return [
             ['http_address' => \getenv('ELASTIC_SEARCH_HTTP_ADDRESS')],
         ],
     ],
-    'yandexTranslator' => [
-        'class' => \common\components\YandexTranslator::class,
-        'key' => \getenv('YANDEX_TRANSLATOR_KEY'),
-    ],
     'yandexTranslation' => [
-        'class' => \common\components\translate\YandexTranslation::class,
-        'folder_id' => 'b1gi4aabjn0khc57n7p1',
+        'class' => \common\components\translation\YandexTranslation::class,
+        'key' => \getenv('YANDEX_TRANSLATOR_KEY'),
+        'folder_id' => \getenv('YANDEX_TRANSLATION_FOLDER_ID'),
+        'service_account_id' => \getenv('YANDEX_TRANSLATION_SERVICE_ACCOUNT_ID'),
+        'service_account_key_id' => \getenv('YANDEX_TRANSLATION_SERVICE_ACCOUNT_KEY_ID'),
     ],
     'yandexKassa' => [
         'class' => \common\components\YandexKassaAPI\YandexKassaAPI::class,

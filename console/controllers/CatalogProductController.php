@@ -22,21 +22,6 @@ class CatalogProductController extends Controller
     /**
      * Reset mark
      */
-    public function actionTest()
-    {
-        $this->stdout("ResetMark: start. \n", Console::FG_GREEN);
-
-        $translate = Yii::$app->yandexTranslation->translate('Hello', 'en', 'ru');
-        //$translate = Yii::$app->yandexTranslator->getTranslate('Hello', 'ru');
-
-        /* !!! */ echo  '<pre style="color:red;">'; print_r($translate); echo '</pre>'; /* !!! */
-
-        $this->stdout("ResetMark: finish. \n", Console::FG_GREEN);
-    }
-
-    /**
-     * Reset mark
-     */
     public function actionResetMark()
     {
         $this->stdout("ResetMark: start. \n", Console::FG_GREEN);
@@ -109,15 +94,22 @@ class CatalogProductController extends Controller
                                 $modelLang2->rid = $model->id;
                                 $modelLang2->lang = Yii::$app->language;
 
-                                $translateLanguage = substr($currentLanguage, 0, 2) . '-' . substr($language2['local'], 0, 2);
+                                $sourceLanguageCode = substr($currentLanguage, 0, 2);
+                                $targetLanguageCode = substr($language2['local'], 0, 2);
 
-                                $this->stdout("translate " . $translateLanguage . " \n", Console::FG_GREEN);
+                                $this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
 
-                                $translateTitle = (string)Yii::$app->yandexTranslator
-                                    ->getTranslate($modelLang->title, $translateLanguage);
+                                $translateTitle = (string)Yii::$app->yandexTranslation->getTranslate(
+                                    $modelLang->title,
+                                    $sourceLanguageCode,
+                                    $targetLanguageCode
+                                );
 
-                                $translateDescription = (string)Yii::$app->yandexTranslator
-                                    ->getTranslate(strip_tags($modelLang->description), $translateLanguage);
+                                $translateDescription = (string)Yii::$app->yandexTranslation->getTranslate(
+                                    strip_tags($modelLang->description),
+                                    $sourceLanguageCode,
+                                    $targetLanguageCode
+                                );
 
                                 if ($translateTitle != '') {
                                     $transaction = $modelLang2::getDb()->beginTransaction();
@@ -129,7 +121,7 @@ class CatalogProductController extends Controller
 
                                         if ($saveLang[] = intval($modelLang2->save())) {
                                             $transaction->commit();
-                                            $this->stdout("save " . $translateLanguage . " \n", Console::FG_GREEN);
+                                            $this->stdout("save " . $targetLanguageCode . " \n", Console::FG_GREEN);
                                         } else {
                                             foreach ($modelLang2->errors as $attribute => $errors) {
                                                 $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
@@ -177,15 +169,22 @@ class CatalogProductController extends Controller
                                     $modelLang2->rid = $model->id;
                                     $modelLang2->lang = Yii::$app->language;
 
-                                    $translateLanguage = substr($currentLanguage, 0, 2) . '-' . substr($language2['local'], 0, 2);
+                                    $sourceLanguageCode = substr($currentLanguage, 0, 2);
+                                    $targetLanguageCode = substr($language2['local'], 0, 2);
 
-                                    $this->stdout("translate " . $translateLanguage . " \n", Console::FG_GREEN);
+                                    $this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
 
-                                    $translateTitle = (string)Yii::$app->yandexTranslator
-                                        ->getTranslate($modelLang->title, $translateLanguage);
+                                    $translateTitle = (string)Yii::$app->yandexTranslation->getTranslate(
+                                        $modelLang->title,
+                                        $sourceLanguageCode,
+                                        $targetLanguageCode
+                                    );
 
-                                    $translateDescription = (string)Yii::$app->yandexTranslator
-                                        ->getTranslate(strip_tags($modelLang->description), $translateLanguage);
+                                    $translateDescription = (string)Yii::$app->yandexTranslation->getTranslate(
+                                        strip_tags($modelLang->description),
+                                        $sourceLanguageCode,
+                                        $targetLanguageCode
+                                    );
 
                                     if ($translateTitle != '') {
                                         $transaction = $modelLang2::getDb()->beginTransaction();
@@ -197,7 +196,7 @@ class CatalogProductController extends Controller
 
                                             if ($saveLang[] = intval($modelLang2->save())) {
                                                 $transaction->commit();
-                                                $this->stdout("save " . $translateLanguage . " \n", Console::FG_GREEN);
+                                                $this->stdout("save " . $targetLanguageCode . " \n", Console::FG_GREEN);
                                             } else {
                                                 foreach ($modelLang2->errors as $attribute => $errors) {
                                                     $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);

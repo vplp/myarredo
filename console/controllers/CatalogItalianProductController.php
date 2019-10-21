@@ -94,19 +94,28 @@ class CatalogItalianProductController extends Controller
                                 $modelLang2->rid = $model->id;
                                 $modelLang2->lang = Yii::$app->language;
 
+                                $sourceLanguageCode = substr($currentLanguage, 0, 2);
+                                $targetLanguageCode = substr($language2['local'], 0, 2);
 
-                                $translateLanguage = substr($currentLanguage, 0, 2) . '-' . substr($language2['local'], 0, 2);
+                                $this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
 
-                                $this->stdout("translate " . $translateLanguage . " \n", Console::FG_GREEN);
+                                $translateTitle = (string)Yii::$app->yandexTranslation->getTranslate(
+                                    $modelLang->title,
+                                    $sourceLanguageCode,
+                                    $targetLanguageCode
+                                );
 
-                                $translateTitle = (string)Yii::$app->yandexTranslator
-                                    ->getTranslate($modelLang->title, $translateLanguage);
+                                $translateDescription = (string)Yii::$app->yandexTranslation->getTranslate(
+                                    strip_tags($modelLang->description),
+                                    $sourceLanguageCode,
+                                    $targetLanguageCode
+                                );
 
-                                $translateDescription = (string)Yii::$app->yandexTranslator
-                                    ->getTranslate(strip_tags($modelLang->description), $translateLanguage);
-
-                                $translateDefects = (string)Yii::$app->yandexTranslator
-                                    ->getTranslate(strip_tags($modelLang->defects), $translateLanguage);
+                                $translateDefects = (string)Yii::$app->yandexTranslation->getTranslate(
+                                    strip_tags($modelLang->defects),
+                                    $sourceLanguageCode,
+                                    $targetLanguageCode
+                                );
 
                                 if ($translateTitle != '') {
                                     $transaction = $modelLang2::getDb()->beginTransaction();
@@ -119,7 +128,7 @@ class CatalogItalianProductController extends Controller
 
                                         if ($saveLang[] = intval($modelLang2->save())) {
                                             $transaction->commit();
-                                            $this->stdout("save " . $translateLanguage . " \n", Console::FG_GREEN);
+                                            $this->stdout("save " . $targetLanguageCode . " \n", Console::FG_GREEN);
                                         } else {
                                             foreach ($modelLang2->errors as $attribute => $errors) {
                                                 $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
@@ -167,18 +176,28 @@ class CatalogItalianProductController extends Controller
                                     $modelLang2->rid = $model->id;
                                     $modelLang2->lang = Yii::$app->language;
 
-                                    $translateLanguage = substr($currentLanguage, 0, 2) . '-' . substr($language2['local'], 0, 2);
+                                    $sourceLanguageCode = substr($currentLanguage, 0, 2);
+                                    $targetLanguageCode = substr($language2['local'], 0, 2);
 
-                                    $this->stdout("translate " . $translateLanguage . " \n", Console::FG_GREEN);
+                                    $this->stdout("targetLanguageCode " . $targetLanguageCode . " \n", Console::FG_GREEN);
 
-                                    $translateTitle = (string)Yii::$app->yandexTranslator
-                                        ->getTranslate($modelLang->title, $translateLanguage);
+                                    $translateTitle = (string)Yii::$app->yandexTranslation->getTranslate(
+                                        $modelLang->title,
+                                        $sourceLanguageCode,
+                                        $targetLanguageCode
+                                    );
 
-                                    $translateDescription = (string)Yii::$app->yandexTranslator
-                                        ->getTranslate(strip_tags($modelLang->description), $translateLanguage);
+                                    $translateDescription = (string)Yii::$app->yandexTranslation->getTranslate(
+                                        strip_tags($modelLang->description),
+                                        $sourceLanguageCode,
+                                        $targetLanguageCode
+                                    );
 
-                                    $translateDefects = (string)Yii::$app->yandexTranslator
-                                        ->getTranslate(strip_tags($modelLang->defects), $translateLanguage);
+                                    $translateDefects = (string)Yii::$app->yandexTranslation->getTranslate(
+                                        strip_tags($modelLang->defects),
+                                        $sourceLanguageCode,
+                                        $targetLanguageCode
+                                    );
 
                                     if ($translateTitle != '') {
                                         $transaction = $modelLang2::getDb()->beginTransaction();
@@ -191,7 +210,7 @@ class CatalogItalianProductController extends Controller
 
                                             if ($saveLang[] = intval($modelLang2->save())) {
                                                 $transaction->commit();
-                                                $this->stdout("save " . $translateLanguage . " \n", Console::FG_GREEN);
+                                                $this->stdout("save " . $targetLanguageCode . " \n", Console::FG_GREEN);
                                             } else {
                                                 foreach ($modelLang2->errors as $attribute => $errors) {
                                                     $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);

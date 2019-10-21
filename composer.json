@@ -20,7 +20,7 @@
   "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
-      "Jose\\": "common/components/translate/jwt-framework/src"
+      "Jose\\": "common/components/translation/jwt-framework/src"
     }
   },
   "require": {
