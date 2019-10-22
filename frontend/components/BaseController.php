@@ -84,6 +84,8 @@ abstract class BaseController extends Controller
         } elseif (!$session->has('currency')) {
             $session->set('currency', 'EUR');
         }
+
+        /* !!! */ echo  '<pre style="color:red;">'; print_r($session->get('currency')); echo '</pre>'; /* !!! */
     }
 
     /**
