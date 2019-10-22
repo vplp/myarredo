@@ -36,7 +36,8 @@ abstract class BaseController extends Controller
         $lang = substr(Yii::$app->language, 0, 2);
 
         if (Yii::$app->city->domain == 'com' && !in_array($lang, ['it', 'en'])) {
-            return $this->redirect('https://' . 'www.myarredo.ru', 301);
+            //return $this->redirect('https://' . 'www.myarredo.ru', 301);
+            Yii::$app->language = 'it-IT';
         } elseif (Yii::$app->city->domain != 'com' && in_array($lang, ['it', 'en'])) {
             return $this->redirect('https://' . 'www.myarredo.com/it/', 301);
         }
