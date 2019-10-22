@@ -39,32 +39,34 @@ use frontend\modules\catalog\models\Category;
         </div>
     </li>
 
-    <li <?= (Yii::$app->controller->id == 'sale') ? ' class="js-has-list has-list second-link"' : ' class="js-has-list second-link"' ?>>
-        <?= Html::a(
-            Yii::t('app', 'Sale'),
-            Url::toRoute(['/catalog/sale/list'])
-        ) ?>
+    <?php if (Yii::$app->city->domain != 'com') { ?>
+        <li <?= (Yii::$app->controller->id == 'sale') ? ' class="js-has-list has-list second-link"' : ' class="js-has-list second-link"' ?>>
+            <?= Html::a(
+                Yii::t('app', 'Sale'),
+                Url::toRoute(['/catalog/sale/list'])
+            ) ?>
 
-        <div class="list-level-wrap">
-            <ul class="list-level">
+            <div class="list-level-wrap">
+                <ul class="list-level">
 
-                <?php foreach ($categorySale as $model) { ?>
-                    <li>
-                        <a href="<?= Category::getUrl($model['alias'], '/catalog/sale/list') ?>">
-                            <div class="img-cont">
-                                <?= Html::img(Category::getImage($model['image_link3'])); ?>
-                            </div>
-                            <?= $model['lang']['title'] ?>
-                        </a>
-                        <span class="count">
+                    <?php foreach ($categorySale as $model) { ?>
+                        <li>
+                            <a href="<?= Category::getUrl($model['alias'], '/catalog/sale/list') ?>">
+                                <div class="img-cont">
+                                    <?= Html::img(Category::getImage($model['image_link3'])); ?>
+                                </div>
+                                <?= $model['lang']['title'] ?>
+                            </a>
+                            <span class="count">
                             <?= $model['count'] ?>
                         </span>
-                    </li>
-                <?php } ?>
+                        </li>
+                    <?php } ?>
 
-            </ul>
-        </div>
-    </li>
+                </ul>
+            </div>
+        </li>
+    <?php } ?>
 
     <li <?= (Yii::$app->controller->id == 'sale-italy') ? ' class="js-has-list has-list third-link"' : ' class="js-has-list third-link"' ?>>
         <?= Html::a(
@@ -100,10 +102,12 @@ use frontend\modules\catalog\models\Category;
         ) ?>
     </li>
 
-    <li <?= (Yii::$app->controller->id == 'contacts') ? ' class="has-list"' : '' ?>>
-        <?= Html::a(
-            Yii::t('app', 'Где купить'),
-            Url::toRoute(['/page/page/view', 'alias' => 'contacts'])
-        ) ?>
-    </li>
+    <?php if (Yii::$app->city->domain != 'com') { ?>
+        <li <?= (Yii::$app->controller->id == 'contacts') ? ' class="has-list"' : '' ?>>
+            <?= Html::a(
+                Yii::t('app', 'Где купить'),
+                Url::toRoute(['/page/page/view', 'alias' => 'contacts'])
+            ) ?>
+        </li>
+    <?php } ?>
 </ul>
