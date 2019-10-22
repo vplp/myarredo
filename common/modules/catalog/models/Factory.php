@@ -43,6 +43,7 @@ use common\helpers\Inflector;
  * @property boolean $show_for_ru
  * @property boolean $show_for_by
  * @property boolean $show_for_ua
+ * @property boolean $show_for_com
  *
  * @property FactoryLang $lang
  * @property User $user
@@ -111,7 +112,8 @@ class Factory extends ActiveRecord
                     'new_price',
                     'show_for_ru',
                     'show_for_by',
-                    'show_for_ua'
+                    'show_for_ua',
+                    'show_for_com',
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
@@ -166,7 +168,8 @@ class Factory extends ActiveRecord
                 'new_price',
                 'show_for_ru',
                 'show_for_by',
-                'show_for_ua'
+                'show_for_ua',
+                'show_for_com',
             ],
         ];
     }
@@ -202,6 +205,7 @@ class Factory extends ActiveRecord
             'show_for_ru' => 'Показывать на ru',
             'show_for_by' => 'Показывать на by',
             'show_for_ua' => 'Показывать на ua',
+            'show_for_com' => 'Показывать на com',
         ];
     }
 
@@ -334,6 +338,7 @@ class Factory extends ActiveRecord
             $model->show_for_ru = 1;
             $model->show_for_by = 1;
             $model->show_for_ua = 1;
+            $model->show_for_com = 1;
 
             Yii::$app->session->setFlash('success', Yii::t('app', 'Создана новая фабрика'));
 

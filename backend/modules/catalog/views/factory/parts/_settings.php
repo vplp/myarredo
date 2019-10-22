@@ -72,6 +72,9 @@ $visible = in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEd
         <div class="col-md-3">
             <?= $form->switcher($model, 'show_for_ua') ?>
         </div>
+        <div class="col-md-3">
+            <?= $form->switcher($model, 'show_for_com') ?>
+        </div>
     </div>
 
 <?php } ?>
