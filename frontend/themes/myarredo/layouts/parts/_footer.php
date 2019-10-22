@@ -18,7 +18,7 @@ $bundle = AppAsset::register($this);
 <div class="footer">
     <div class="container-wrap">
 
-        <?php if (!in_array(Yii::$app->controller->id, ['sale'])) { ?>
+        <?php if (Yii::$app->city->domain != 'com' && !in_array(Yii::$app->controller->id, ['sale'])) { ?>
             <div class="contacts">
                 <div class="cont-flex">
                     <?php if (!in_array(Yii::$app->controller->id, ['sale-italy'])) {
@@ -50,19 +50,9 @@ $bundle = AppAsset::register($this);
         <?php } ?>
 
         <?php
-        if (!Yii::$app->getUser()->isGuest &&
-            Yii::$app->user->identity->group->role == 'factory' &&
-            Yii::$app->controller->action->id != 'list-partners'
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory'
         ) {
-        } else {
-            //echo PartnerMap::widget(['city' => Yii::$app->city->getCity()]);
-        } ?>
-
-        <?php
-        if (!Yii::$app->getUser()->isGuest &&
-            Yii::$app->user->identity->group->role == 'factory'
-        ) {
-        } else { ?>
+        } else if (Yii::$app->city->domain != 'com') { ?>
             <?= Cities::widget() ?>
         <?php } ?>
 

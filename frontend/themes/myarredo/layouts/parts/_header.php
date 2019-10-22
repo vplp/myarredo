@@ -249,7 +249,7 @@ use frontend\modules\user\widgets\menu\UserMenu;
                 <div class="container large-container">
 
                     <div class="left-part">
-                        <?php if (!in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
+                        <?php if (Yii::$app->city->domain != 'com' && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
                             <a class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
@@ -264,15 +264,17 @@ use frontend\modules\user\widgets\menu\UserMenu;
                             <?= Yii::t('app', 'Feedback form') ?>
                         </a> */ ?>
 
-                        <div class="select-city">
-                            <a href="javascript:void(0)" class="js-select-city">
-                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                <?= Yii::$app->city->getCountryTitle() ?> | <?= Yii::$app->city->getCitytitle() ?>
-                            </a>
-                            <div class="city-list-cont">
-                                <?= ChangeCity::widget() ?>
+                        <?php if (Yii::$app->city->domain != 'com') { ?>
+                            <div class="select-city">
+                                <a href="javascript:void(0)" class="js-select-city">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <?= Yii::$app->city->getCountryTitle() ?> | <?= Yii::$app->city->getCitytitle() ?>
+                                </a>
+                                <div class="city-list-cont">
+                                    <?= ChangeCity::widget() ?>
+                                </div>
                             </div>
-                        </div>
+                        <?php } ?>
 
                         <div class="lang-selector">
                             <?= LangSwitch::widget() ?>
