@@ -141,7 +141,7 @@ class CityComponent extends Component
         $exp_host = explode('myarredo.', $_SERVER["HTTP_HOST"]);
 
         // set domain
-        $this->domain = (in_array($exp_host[1], ['ru', 'ua', 'by'])) ? $exp_host[1] : 'ru';
+        $this->domain = (in_array($exp_host[1], ['ru', 'ua', 'by', 'com'])) ? $exp_host[1] : 'ru';
 
         $exp_host = explode('.', $_SERVER['HTTP_HOST']);
 
@@ -155,7 +155,7 @@ class CityComponent extends Component
             $_SERVER["HTTP_HOST"]
         );
 
-        if ($cityAlias) {
+        if ($cityAlias && $this->domain != 'com') {
             $this->city = City::findByAlias($cityAlias);
 
             if ($this->city == null || in_array($this->city['id'], [1, 2, 4])) {

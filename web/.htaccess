@@ -11,6 +11,7 @@ AddDefaultCharset UTF-8
     RewriteEngine On
 
     RewriteRule ^backend(.*)$ backend/$1 [L]
+    RewriteRule ^promo1(.*)$ promo1/$1 [L]
 
     # Переадресацыя на www
     RewriteCond %{HTTP_HOST} ^myarredo.ru [NC]

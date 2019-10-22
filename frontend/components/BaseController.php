@@ -4,6 +4,7 @@ namespace frontend\components;
 
 use frontend\modules\catalog\Catalog;
 use Yii;
+use yii\helpers\Url;
 use yii\web\Controller;
 //
 use frontend\modules\sys\models\Language;
@@ -32,6 +33,14 @@ abstract class BaseController extends Controller
 
     public function beforeAction($action)
     {
+        $lang = substr(Yii::$app->language, 0, 2);
+
+        if (Yii::$app->city->domain == 'com' && !in_array($lang, ['it', 'en'])) {
+            return $this->redirect('https://' . 'www.myarredo.ru' . Url::current(), 301);
+        } elseif (Yii::$app->city->domain != 'com' && in_array($lang, ['it', 'en'])) {
+            return $this->redirect('https://' . 'www.myarredo.com' . Url::current(), 301);
+        }
+
         if (preg_match('!/{2,}!', $_SERVER['REQUEST_URI'])) {
             $url = preg_replace('!/{2,}!', '/', $_SERVER['REQUEST_URI']);
             header('Location: ' . $url, false, 301);
