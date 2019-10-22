@@ -38,7 +38,7 @@ abstract class BaseController extends Controller
         if (Yii::$app->city->domain == 'com' && !in_array($lang, ['it', 'en'])) {
             return $this->redirect('https://' . 'www.myarredo.ru', 301);
         } elseif (Yii::$app->city->domain != 'com' && in_array($lang, ['it', 'en'])) {
-            return $this->redirect('https://' . 'www.myarredo.com', 301);
+            return $this->redirect('https://' . 'www.myarredo.com/it/', 301);
         }
 
         if (preg_match('!/{2,}!', $_SERVER['REQUEST_URI'])) {
