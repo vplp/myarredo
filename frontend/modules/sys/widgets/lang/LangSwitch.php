@@ -57,14 +57,22 @@ class LangSwitch extends Widget
         foreach ($this->items as $lang) {
             $path = Yii::$app->request->url;
 
-            $image =  Language::isImage($lang['img_flag'])
+            $image = Language::isImage($lang['img_flag'])
                 ? Html::img(Language::getImage($lang['img_flag']))
                 : '<i class="fa fa-globe" aria-hidden="true"></i>';
+
+            if (in_array($lang['alias'], ['it', 'en'])) {
+                $url = 'https://www.myarredo.com';
+            } elseif (!in_array($lang['alias'], ['it', 'en']) && Yii::$app->city->domain == 'com') {
+                $url = 'https://www.myarredo.ru';
+            } else {
+                $url = Yii::$app->request->hostInfo;
+            }
 
             if ($lang['local'] == Yii::$app->language) {
                 $this->current = [
                     'label' => $lang['label'],
-                    'url' => Yii::$app->request->hostInfo . '/' . $lang['alias'] . $path,
+                    'url' => $url . '/' . $lang['alias'] . $path,
                     'image' => $image,
                     'alias' => $lang['alias'],
                     'model' => $lang,
@@ -74,7 +82,7 @@ class LangSwitch extends Widget
             if (!$lang['by_default']) {
                 $items[] = [
                     'label' => $lang['label'],
-                    'url' => Yii::$app->request->hostInfo . '/' . $lang['alias'] . $path,
+                    'url' => $url . '/' . $lang['alias'] . $path,
                     'image' => $image,
                     'alias' => $lang['alias'],
                     'model' => $lang,
@@ -82,7 +90,7 @@ class LangSwitch extends Widget
             } else {
                 $items[] = [
                     'label' => $lang['label'],
-                    'url' => Yii::$app->request->hostInfo . $path,
+                    'url' => $url . $path,
                     'image' => $image,
                     'alias' => $lang['alias'],
                     'model' => $lang,
