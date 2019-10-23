@@ -49,7 +49,7 @@ $text = str_replace($search, $replace, $text);
                 <div style="float: left;">
 
                     <?= Html::img(
-                        'https://www.myarredo.' . $order->city->country->alias . Product::getImageThumb($item->product['image_link']),
+                        'https://www.myarredo.' . Yii::$app->city->domain . Product::getImageThumb($item->product['image_link']),
                         ['class' => 'width: 140px; max-height: 100px;']
                     ) ?>
 
