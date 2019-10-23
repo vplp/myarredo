@@ -10,7 +10,7 @@ use frontend\modules\shop\models\CartCustomerForm;
 /** @var $model CartCustomerForm */
 
 $model->user_agreement = 1;
-$model->city_id = Yii::$app->city->getCityId();
+$model->city_id = Yii::$app->city->domain == 'com' ? 0 : Yii::$app->city->getCityId();
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -59,7 +59,7 @@ $model->city_id = Yii::$app->city->getCityId();
     ->field($model, 'reCaptcha')
     ->widget(
         \himiklab\yii2\recaptcha\ReCaptcha2::class
-        //['action' => 'request_price_product']
+    //['action' => 'request_price_product']
     )
     ->label(false) ?>
 
