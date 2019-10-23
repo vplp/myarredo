@@ -6,7 +6,7 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\base\Model;
 //
-use frontend\modules\catalog\models\{Factory as FactoryModel, FactoryLang, Product};
+use frontend\modules\catalog\models\{Factory as FactoryModel, Product};
 
 /**
  * Class Factory
@@ -15,7 +15,6 @@ use frontend\modules\catalog\models\{Factory as FactoryModel, FactoryLang, Produ
  */
 class Factory extends FactoryModel
 {
-    public $title;
     public $letter;
 
     /**
@@ -64,7 +63,7 @@ class Factory extends FactoryModel
 
         $query->andFilterWhere(['like', 'alias', $this->alias]);
 
-        $query->andFilterWhere(['like', FactoryLang::tableName() . '.title', $this->title]);
+        $query->andFilterWhere(['like', 'title', $this->title]);
         $query->andFilterWhere(['like', 'first_letter', $this->letter]);
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
@@ -91,7 +90,6 @@ class Factory extends FactoryModel
                 Factory::tableName() . '.image_link',
                 Factory::tableName() . '.title',
             ])
-            ->innerJoinWith(['lang'], false)
             ->innerJoinWith(["product"], false)
             ->innerJoinWith(["product.lang"], false)
             ->andFilterWhere([
