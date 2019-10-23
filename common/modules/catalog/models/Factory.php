@@ -225,7 +225,7 @@ class Factory extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->with(['lang'])->orderBy(self::tableName() . '.title');
+        return self::find()->orderBy(self::tableName() . '.title');
     }
 
     /**
