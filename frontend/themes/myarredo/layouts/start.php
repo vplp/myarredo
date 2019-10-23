@@ -10,6 +10,7 @@ use frontend\modules\catalog\widgets\{
     category\CategoryOnMainPage,
     product\ProductsNoveltiesOnMain,
     sale\SaleOnMainPage,
+    sale\SaleItalyOnMainPage,
     filter\ProductFilterOnMainPage
 };
 use frontend\modules\articles\widgets\articles\ArticlesList;
@@ -113,7 +114,7 @@ $bundle = AppAsset::register($this);
                             Yii::t('app', 'Смотреть все категории'),
                             Url::toRoute(['/catalog/category/list']),
                             ['class' => 'sticker']
-                        ); ?>
+                        ) ?>
                     </div>
 
                     <?= CategoryOnMainPage::widget(); ?>
@@ -121,7 +122,11 @@ $bundle = AppAsset::register($this);
                 </div>
             </div>
 
-            <?= SaleOnMainPage::widget(); ?>
+            <?php if (Yii::$app->city->domain == 'com') {
+                echo SaleItalyOnMainPage::widget();
+            } else {
+                echo SaleOnMainPage::widget();
+            } ?>
 
             <?= ProductsNoveltiesOnMain::widget(); ?>
 
