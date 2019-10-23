@@ -37,7 +37,7 @@ abstract class BaseController extends Controller
         $current_url = str_replace('/' . $lang . '/', '', Yii::$app->request->url);
 
         if (Yii::$app->city->domain == 'com' && !in_array($lang, ['it', 'en'])) {
-            return $this->redirect('https://' . 'www.myarredo.ru' . $current_url, 301);
+            return $this->redirect('https://' . 'www.myarredo.com/it/' . $current_url, 301);
         } elseif (Yii::$app->city->domain != 'com' && in_array($lang, ['it', 'en'])) {
             return $this->redirect('https://' . 'www.myarredo.com/it/' . $current_url, 301);
         }
