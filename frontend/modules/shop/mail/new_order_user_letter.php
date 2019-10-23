@@ -3,10 +3,11 @@
 use yii\helpers\Html;
 //
 use frontend\modules\catalog\models\Product;
-use frontend\modules\shop\models\CartItem;
+use frontend\modules\shop\models\{CartItem, Order};
 
 /* @var $this yii\web\View */
 /* @var $item Product */
+/* @var $order Order */
 /* @var $product CartItem */
 
 $search = ['#full_name#', '#order_id#'];
@@ -23,9 +24,7 @@ $text = str_replace($search, $replace, $text);
 <div style="width:540px; font: 16px Arial,sans-serif;">
     <div style="background-color: #c4c0b8; padding:15px 0; text-align:center;">
         <div>
-            <?= Html::img(
-                'https://www.myarredo.ru/uploads/mailer/logo_note.png'
-            ) ?>
+            <?= Html::img('https://www.myarredo.ru/uploads/mailer/logo_note.png') ?>
         </div>
         <div>
             <span style="color: #fff; font:bold 16px Arial,sans-serif;">
