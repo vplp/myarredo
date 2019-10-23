@@ -65,6 +65,14 @@ class Order extends OrderModel
             ],
         ]);
 
+        $user = Yii::$app->user->identity;
+
+        if (in_array($user->group->role, ['partner', 'factory']) && $user->profile->country_id && $user->profile->country_id == 4) {
+            $query->andFilterWhere(['IN', self::tableName() . '.lang', ['it-IT', 'en-EN']]);
+        } elseif (in_array($user->group->role, ['partner', 'factory']) && $user->profile->country_id && $user->profile->country_id != 4) {
+            $query->andFilterWhere(['IN', self::tableName() . '.lang', ['ru-RU']]);
+        }
+
         if (!($this->load($params, ''))) {
             return $dataProvider;
         }
@@ -94,16 +102,10 @@ class Order extends OrderModel
         $query
             ->groupBy(self::tableName() . '.id');
 
-        if (Yii::$app->user->identity->group->role == 'factory') {
+        if ($user->group->role == 'factory') {
             $query
                 ->innerJoinWith(["items.product product"], false)
-                ->andFilterWhere(['IN', 'product.factory_id', Yii::$app->user->identity->profile->factory_id]);
-        }
-
-        if (Yii::$app->user->identity->group->role == 'partner' &&
-            Yii::$app->user->identity->profile->country_id &&
-            Yii::$app->user->identity->profile->country_id == 4) {
-            $query->andFilterWhere(['IN', self::tableName() . '.lang', ['it-IT', 'en-EN']]);
+                ->andFilterWhere(['IN', 'product.factory_id', $user->profile->factory_id]);
         }
 
         if (isset($params['factory_id']) && $params['factory_id'] > 0) {
