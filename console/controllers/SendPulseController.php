@@ -186,7 +186,12 @@ class SendPulseController extends Controller
         /** @var Order $modelOrder */
 
         if ($modelOrder !== null) {
-            $bookId = $modelOrder->city->country->bookId;
+            if ($modelOrder->city && in_array($modelOrder->lang, ['ru-RU'])) {
+                $bookId = $modelOrder->city->country->bookId;
+            } else if (in_array($modelOrder->lang, ['en-EN', 'it-IT'])) {
+                $bookId = '88910536';
+            }
+
             $senderName = 'myarredo';
             $senderEmail = 'info@myarredo.ru';
             $subject = 'Новая заявка №' . $modelOrder['id'];
