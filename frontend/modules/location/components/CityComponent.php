@@ -158,7 +158,7 @@ class CityComponent extends Component
         if ($cityAlias && $this->domain != 'com') {
             $this->city = City::findByAlias($cityAlias);
 
-            if ($this->city == null || in_array($this->city['id'], [1, 2, 4])) {
+            if ($this->city == null || in_array($this->city['id'], [1, 2, 4, 159])) {
                 Yii::$app->response->redirect(
                     'https://' . 'www.myarredo.' . $this->domain . Yii::$app->request->url,
                     301

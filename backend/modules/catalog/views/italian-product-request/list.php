@@ -26,7 +26,7 @@ echo GridView::widget([
             'attribute' => 'item_id',
             'value' => function ($model) {
                 /** @var ItalianProductRequest $model */
-                if ($model->city == null || in_array($model->city['id'], [1, 2, 4])) {
+                if ($model->city == null || in_array($model->city['id'], [1, 2, 4, 159])) {
                     $url = 'https://' . 'www.myarredo.' . $model->city->country['alias'];
                 } else {
                     $url = 'https://' . $model->city['alias'] . '.myarredo.' . $model->city->country['alias'];

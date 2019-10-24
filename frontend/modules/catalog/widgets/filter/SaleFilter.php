@@ -328,7 +328,7 @@ class SaleFilter extends Widget
 
             $city = City::findByAlias($obj['alias']);
 
-            if ($city == null || in_array($city['id'], [1, 2, 4])) {
+            if ($city == null || in_array($city['id'], [1, 2, 4, 159])) {
                 $baseUrl = 'https://' . 'www.myarredo.' . Yii::$app->city->domain;
             } else {
                 $baseUrl = 'https://' . $city['alias'] . '.myarredo.' . Yii::$app->city->domain;
