@@ -100,16 +100,12 @@ class Order extends OrderModel
                 ->andFilterWhere(['IN', 'product.factory_id', Yii::$app->user->identity->profile->factory_id]);
         }
 
-        if (Yii::$app->user->identity->group->role == 'factory' && Yii::$app->user->identity->profile->preferred_language != 'ru-RU') {
-            $query->andFilterWhere(['IN', self::tableName() . '.lang', ['it-IT', 'en-EN']]);
-        } else if (Yii::$app->user->identity->group->role == 'factory') {
-            $query->andFilterWhere(['IN', self::tableName() . '.lang', ['ru-RU']]);
-        }
-
         if (Yii::$app->user->identity->group->role == 'partner' &&
             Yii::$app->user->identity->profile->country_id &&
             Yii::$app->user->identity->profile->country_id == 4) {
             $query->andFilterWhere(['IN', self::tableName() . '.lang', ['it-IT', 'en-EN']]);
+        } else if (Yii::$app->user->identity->group->role == 'partner') {
+            $query->andFilterWhere(['IN', self::tableName() . '.lang', ['ru-RU']]);
         }
 
         if (isset($params['factory_id']) && $params['factory_id'] > 0) {
