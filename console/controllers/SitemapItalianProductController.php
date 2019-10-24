@@ -104,71 +104,67 @@ class SitemapItalianProductController extends Controller
         // urls
         $urls = self::getUrls();
 
-        $urlsIt = self::getUrls('it-IT');
-
-        $urlsEn = self::getUrls('en-EN');
-
         /** @var $city City */
         foreach ($cities as $city) {
-            // create the sitemap file
-            if ($urls) {
-                $filePath = Yii::getAlias($this->filePath . '/sitemap_italian_product_' . $city['alias'] . '.xml');
-                $handle = fopen($filePath, "w");
-
-                fwrite(
-                    $handle,
-                    '<?xml version="1.0" encoding="UTF-8"?>' .
-                    PHP_EOL .
-                    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL
-                );
-
-                for ($i = 0; $i < count($urls); $i++) {
-                    $url = $urls[$i];
-
-                    $str = PHP_EOL . "\t<url>" . PHP_EOL .
-                        "\t\t<loc>" . City::getSubDomainUrl($city) . $url['loc'] . "</loc>" . PHP_EOL .
-                        "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
-                        "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
-                        "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
-                        "\t</url>";
-
-                    fwrite($handle, $str);
-                }
-
-                if ($city['id'] == 4) {
-                    for ($i = 0; $i < count($urlsIt); $i++) {
-                        $url = $urlsIt[$i];
-
-                        $str = PHP_EOL . "\t<url>" . PHP_EOL .
-                            "\t\t<loc>" . City::getSubDomainUrl($city) . "/it" . $url['loc'] . "</loc>" . PHP_EOL .
-                            "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
-                            "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
-                            "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
-                            "\t</url>";
-
-                        fwrite($handle, $str);
-                    }
-
-                    for ($i = 0; $i < count($urlsEn); $i++) {
-                        $url = $urlsEn[$i];
-
-                        $str = PHP_EOL . "\t<url>" . PHP_EOL .
-                            "\t\t<loc>" . City::getSubDomainUrl($city) . "/en" . $url['loc'] . "</loc>" . PHP_EOL .
-                            "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
-                            "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
-                            "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
-                            "\t</url>";
-
-                        fwrite($handle, $str);
-                    }
-                }
-
-                fwrite($handle, PHP_EOL . '</urlset>');
-                fclose($handle);
-                chmod($filePath, 0777);
-            }
+            $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
         }
 
+        $this->createSitemapFile($urls, 'https://' . 'www.myarredo.com', false);
+
         $this->stdout("SitemapItalianProduct: end create. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * @param array $urls
+     * @param string $baseUrl
+     * @param bool $city
+     */
+    private function createSitemapFile(array $urls, string $baseUrl, $city = false)
+    {
+        if ($city == false) {
+            $urls = [];
+            $urlsIt = self::getUrls('it-IT');
+            foreach ($urlsIt as $url) {
+                $urls[] = array_merge($url, ['loc' => "/it" . $url['loc']]);
+            }
+
+            $urlsEn = self::getUrls('en-EN');
+            foreach ($urlsEn as $url) {
+                $urls[] = array_merge($url, ['loc' => "/en" . $url['loc']]);
+            }
+
+            $templateName = '';
+        } else {
+            $templateName = '_' . $city['alias'];
+        }
+
+        if ($urls) {
+            $filePath = Yii::getAlias($this->filePath . '/sitemap_italian_product' . $templateName . '.xml');
+            $handle = fopen($filePath, "w");
+
+            fwrite(
+                $handle,
+                '<?xml version="1.0" encoding="UTF-8"?>' .
+                PHP_EOL .
+                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL
+            );
+
+            for ($i = 0; $i < count($urls); $i++) {
+                $url = $urls[$i];
+
+                $str = PHP_EOL . "\t<url>" . PHP_EOL .
+                    "\t\t<loc>" . $baseUrl . $url['loc'] . "</loc>" . PHP_EOL .
+                    "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
+                    "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
+                    "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
+                    "\t</url>";
+
+                fwrite($handle, $str);
+            }
+
+            fwrite($handle, PHP_EOL . '</urlset>');
+            fclose($handle);
+            chmod($filePath, 0777);
+        }
     }
 }

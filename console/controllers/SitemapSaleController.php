@@ -142,38 +142,6 @@ class SitemapSaleController extends Controller
                     fwrite($handle, $str);
                 }
 
-                if ($city['id'] == 4) {
-                    $urlsIt = self::getUrls($city, 'it-IT');
-
-                    $urlsEn = self::getUrls($city, 'en-EN');
-
-                    for ($i = 0; $i < count($urlsIt); $i++) {
-                        $url = $urlsIt[$i];
-
-                        $str = PHP_EOL . "\t<url>" . PHP_EOL .
-                            "\t\t<loc>" . City::getSubDomainUrl($city) . "/it" . $url['loc'] . "</loc>" . PHP_EOL .
-                            "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
-                            "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
-                            "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
-                            "\t</url>";
-
-                        fwrite($handle, $str);
-                    }
-
-                    for ($i = 0; $i < count($urlsEn); $i++) {
-                        $url = $urlsEn[$i];
-
-                        $str = PHP_EOL . "\t<url>" . PHP_EOL .
-                            "\t\t<loc>" . City::getSubDomainUrl($city) . "/en" . $url['loc'] . "</loc>" . PHP_EOL .
-                            "\t\t<lastmod>" . $url['lastmod'] . "</lastmod>" . PHP_EOL .
-                            "\t\t<changefreq>" . $url['changefreq'] . "</changefreq>" . PHP_EOL .
-                            "\t\t<priority>" . $url['priority'] . "</priority>" . PHP_EOL .
-                            "\t</url>";
-
-                        fwrite($handle, $str);
-                    }
-                }
-
                 fwrite($handle, PHP_EOL . '</urlset>');
                 fclose($handle);
                 chmod($filePath, 0777);
