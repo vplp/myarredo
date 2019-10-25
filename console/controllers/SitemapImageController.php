@@ -78,7 +78,7 @@ class SitemapImageController extends Controller
 
             // create multiple SitemapImage files
 
-            for ($i = 0; $i < $count_files; $i++) {
+            for ($i = 0; $i <= $count_files; $i++) {
                 $filePath = Yii::getAlias($this->filePath . '/sitemap_image_' . $city['alias'] . '_' . $i . '.xml');
 
                 $handle = fopen($filePath, "w");
