@@ -63,8 +63,10 @@ class FactoryController extends BaseController
             $pageDescription[] = Yii::t('app', 'название на букву') . ' ' . strtoupper(Yii::$app->request->get('letter'));
         }
 
-        $pageTitle[] = Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
-        $pageDescription[] = Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
+        if (Yii::$app->city->domain !== 'com') {
+            $pageTitle[] = Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
+            $pageDescription[] = Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
+        }
 
         if ($view && $view !== 'three') {
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
@@ -150,7 +152,8 @@ class FactoryController extends BaseController
         ];
 
         $this->breadcrumbs[] = [
-            'label' => $model['title'] . ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere(),
+            'label' => $model['title'] . ' ' .
+                (Yii::$app->city->domain == 'com' ? (Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere()) : ''),
             'url' => ['/catalog/factory/view', 'alias' => $model['alias']]
         ];
 

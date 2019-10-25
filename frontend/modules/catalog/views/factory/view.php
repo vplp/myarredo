@@ -22,6 +22,9 @@ $this->title = $this->context->title;
 
 $bundle = AppAsset::register($this);
 
+$h1 = Yii::$app->metatag->seo_h1 ? Yii::$app->metatag->seo_h1 : Yii::t('app', 'Мебель') . ' ' . $model['title'];
+$h1 .= Yii::$app->city->domain != 'com' ? Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere() : '';
+
 ?>
 
 <main>
@@ -46,11 +49,7 @@ $bundle = AppAsset::register($this);
 
                             <?= Html::tag(
                                 'h1',
-                                ((Yii::$app->metatag->seo_h1)
-                                    ? Yii::$app->metatag->seo_h1
-                                    : Yii::t('app', 'Мебель') . ' ' .
-                                    $model['title'] . ' ' . Yii::t('app', 'в') . ' ' .
-                                    Yii::$app->city->getCityTitleWhere()),
+                                $h1,
                                 ['class' => 'title-text']
                             ); ?>
 

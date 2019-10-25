@@ -378,17 +378,20 @@ class CategoryController extends BaseController
             ' | ' .
             Yii::t('app', 'Купить') .
             ' ' .
-            implode(' ', $pageTitle) .
-            ' ' .
-            Yii::t('app', 'в') .
-            ' ' .
-            Yii::$app->city->getCityTitleWhere();
+            implode(' ', $pageTitle);
 
-        $pageDescription[] = Yii::t('app', 'в') .
-            ' ' .
-            Yii::$app->city->getCityTitleWhere() .
-            '? ' .
-            Yii::t(
+        if (Yii::$app->city->domain != 'com') {
+            $seo_title .= Yii::t('app', 'в') .
+                ' ' .
+                Yii::$app->city->getCityTitleWhere();
+
+            $pageDescription[] = Yii::t('app', 'в') .
+                ' ' .
+                Yii::$app->city->getCityTitleWhere() .
+                '? ';
+        }
+
+        $pageDescription[] = Yii::t(
                 'app',
                 'Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo'
             ) .
@@ -455,7 +458,9 @@ class CategoryController extends BaseController
             ];
         }
 
-        $pageDescription[] = Yii::$app->city->getCityTitle() . ': ' . Yii::t('app', 'Заказать');
+        if (Yii::$app->city->domain != 'com') {
+            $pageDescription[] = Yii::$app->city->getCityTitle() . ': ' . Yii::t('app', 'Заказать');
+        }
 
         /**
          * type
@@ -634,7 +639,10 @@ class CategoryController extends BaseController
          * set options
          */
 
-        $pageTitle[] = Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
+        if (Yii::$app->city->domain != 'com') {
+            $pageTitle[] = Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
+        }
+
         $pageDescription[] = '. ' .
             Yii::t(
                 'app',
