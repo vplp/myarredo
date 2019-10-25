@@ -139,9 +139,11 @@ class ProductController extends BaseController
             $pageDescription[] = implode(', ', $array);
         }
 
-        $pageTitle[] = Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
-        $pageDescription[] = Yii::t('app', 'Купить в интернет-магазине Myarredo в') .
-            ' ' . Yii::$app->city->getCityTitleWhere();
+        if (Yii::$app->city->domain != 'com') {
+            $pageTitle[] = Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
+            $pageDescription[] = Yii::t('app', 'Купить в интернет-магазине Myarredo в') .
+                ' ' . Yii::$app->city->getCityTitleWhere();
+        }
 
         $pageTitle = implode('. ', $pageTitle);
         $pageDescription = implode('. ', $pageDescription);

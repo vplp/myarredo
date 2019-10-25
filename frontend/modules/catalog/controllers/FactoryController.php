@@ -152,8 +152,8 @@ class FactoryController extends BaseController
         ];
 
         $this->breadcrumbs[] = [
-            'label' => $model['title'] . ' ' .
-                (Yii::$app->city->domain == 'com' ? (Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere()) : ''),
+            'label' => $model['title'] .
+                (Yii::$app->city->domain == 'com' ? ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere() : ''),
             'url' => ['/catalog/factory/view', 'alias' => $model['alias']]
         ];
 
@@ -162,15 +162,13 @@ class FactoryController extends BaseController
         $this->title = Yii::$app->metatag->seo_title
             ? Yii::$app->metatag->seo_title
             : $model['title'] .
-            ' - ' . Yii::t('app', 'мебели из Италии в') . ' ' .
-            Yii::$app->city->getCityTitleWhere();
+            (Yii::$app->city->domain == 'com' ? ' - ' . Yii::t('app', 'мебели из Италии в') . ' ' . Yii::$app->city->getCityTitleWhere() : '');
 
         if (!Yii::$app->metatag->seo_description) {
             Yii::$app->view->registerMetaTag([
                 'name' => 'description',
-                'content' => Yii::t('app', 'Каталог итальянской мебели от фабрики') . ' ' . $model['title']
-                    . ' ' . Yii::t('app', 'в интернет-магазине Myarredo. Заказать мебель из Италии в')
-                    . ' ' . Yii::$app->city->getCityTitleWhere(),
+                'content' => Yii::t('app', 'Каталог итальянской мебели от фабрики') . ' ' . $model['title'] .
+                    (Yii::$app->city->domain == 'com' ? ' ' . Yii::t('app', 'в интернет-магазине Myarredo. Заказать мебель из Италии в') . ' ' . Yii::$app->city->getCityTitleWhere() : ''),
             ]);
         }
 

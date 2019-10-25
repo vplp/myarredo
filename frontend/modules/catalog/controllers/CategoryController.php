@@ -381,14 +381,8 @@ class CategoryController extends BaseController
             implode(' ', $pageTitle);
 
         if (Yii::$app->city->domain != 'com') {
-            $seo_title .= Yii::t('app', 'в') .
-                ' ' .
-                Yii::$app->city->getCityTitleWhere();
-
-            $pageDescription[] = Yii::t('app', 'в') .
-                ' ' .
-                Yii::$app->city->getCityTitleWhere() .
-                '? ';
+            $seo_title .= Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
+            $pageDescription[] = Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere() . '? ';
         }
 
         $pageDescription[] = Yii::t(

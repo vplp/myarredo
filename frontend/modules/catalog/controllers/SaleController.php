@@ -196,13 +196,13 @@ class SaleController extends BaseController
 
         $pageTitle[] = Yii::t('app', 'Sale') . ' ' .
             $model['lang']['title'] . ' ' .
-            Yii::t('app', 'в наличии') . ' ' .
-            Yii::$app->city->getCityTitle() . ' MyArredo';
+            Yii::t('app', 'в наличии') .
+            (Yii::$app->city->domain != 'com' ? ' ' . Yii::$app->city->getCityTitle() : '') . ' MyArredo';
 
         $pageDescription[] = Yii::t('app', 'Купить') . ' ' .
             $model['lang']['title'] . ' ' .
-            Yii::t('app', 'со скидкой на распродаже') . ' ' .
-            Yii::$app->city->getCityTitle() . ' MyArredo';
+            Yii::t('app', 'со скидкой на распродаже') .
+            (Yii::$app->city->domain != 'com' ? ' ' . Yii::$app->city->getCityTitle() : '') . ' MyArredo';
 
         // [Товар из ХК]
         $array = [];
@@ -372,12 +372,12 @@ class SaleController extends BaseController
          * set options
          */
 
-        $pageTitle[] = Yii::t('app', 'из Италии в наличии') . ' ' .
-            Yii::$app->city->getCityTitle() . ' | ' .
+        $pageTitle[] = Yii::t('app', 'из Италии в наличии') .
+            (Yii::$app->city->domain != 'com' ? ' ' . Yii::$app->city->getCityTitle() : '') . ' | ' .
             Yii::t('app', 'MyArredo итальянская мебель со скидками');
 
-        $pageDescription[] = Yii::t('app', 'со скидкой') . ' ' .
-            Yii::$app->city->getCityTitle() . '. ' .
+        $pageDescription[] = Yii::t('app', 'со скидкой') .
+            (Yii::$app->city->domain != 'com' ? ' ' . Yii::$app->city->getCityTitle() : '') . '. ' .
             Yii::t(
                 'app',
                 'Воспользуйтесь возможностью приобрести мебель из Италии с экспозиции в салонах-партнерах Myarredo - портал проверенных поставщиков итальянской мебели.'

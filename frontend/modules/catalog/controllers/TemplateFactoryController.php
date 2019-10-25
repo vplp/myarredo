@@ -68,15 +68,14 @@ class TemplateFactoryController extends BaseController
         ];
 
         $this->breadcrumbs[] = [
-            'label' => $model['title'] . ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere(),
+            'label' => $model['title'] .
+                (Yii::$app->city->domain != 'com' ? ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere() : ''),
             'url' => ['/catalog/factory/view', 'alias' => $model['alias']]
         ];
 
         $this->title = Yii::t('app', 'Итальянская мебель') . ' ' .
             $model['title'] . '. ' .
-            Yii::t('app', 'Купить в') . ' ' .
-            Yii::$app->city->getCityTitleWhere() . ' ' .
-            Yii::t('app', 'по лучшей цене');
+            (Yii::$app->city->domain != 'com' ? Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere() . ' ' . Yii::t('app', 'по лучшей цене') : '');
 
         $this->factory = $model;
 
@@ -161,9 +160,7 @@ class TemplateFactoryController extends BaseController
 
         $this->title = Yii::t('app', 'Каталог итальянской мебели') . ' ' .
             $factory['title'] . '. ' .
-            Yii::t('app', 'Купить в') . ' ' .
-            Yii::$app->city->getCityTitleWhere() . ' ' .
-            Yii::t('app', 'по лучшей цене');
+            (Yii::$app->city->domain != 'com' ? Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere() . ' ' . Yii::t('app', 'по лучшей цене') : '');
 
         return $this->render('catalog', [
             'category' => $category,
@@ -233,7 +230,8 @@ class TemplateFactoryController extends BaseController
             ];
         }
 
-        $this->title = $model['lang']['title'] . '. ' . Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
+        $this->title = $model['lang']['title'] . '. ' .
+            (Yii::$app->city->domain != 'com' ? Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere() : '');
 
         return $this->render('/product/view', [
             'model' => $model,
