@@ -4260,8 +4260,7 @@ h1 {
     font-weight: normal;
   }
   #factorypromotion-city_ids .jq-checkbox,
-  .check-all,
-  .field-sale-published .jq-checkbox {
+  .check-all {
     border-radius: 0;
     background: none;
     background-color: #f3f2f0;
@@ -4280,16 +4279,6 @@ h1 {
   .factory-prom .table .jq-checkbox {
     background-color: #ffffff;
     border: 1px solid #C6C6C2;
-    box-shadow: none;
-  }
-  .field-sale-published .jq-checkbox.checked .jq-checkbox__div {
-    width: 11px;
-    height: 9px;
-    margin: 4px 0 0 5px;
-    border-bottom: 3px solid #535351;
-    border-left: 3px solid #535351;
-    transform: rotate(-50deg);
-    background-color: transparent;
     box-shadow: none;
   }
   #factorypromotion-city_ids {
