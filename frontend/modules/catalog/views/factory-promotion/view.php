@@ -39,9 +39,13 @@ $this->title = Yii::t('app', 'Рекламировать');
 
                     <div id="list-product">
                         <?php foreach ($model->products as $product) :
-                            echo '<div>' .
-                                $product->lang->title .
-                                Html::img(Product::getImageThumb($product['image_link']), ['width' => 50]) .
+                            echo '<div class="list-product-item">' .
+                                    '<div class="list-product-img">' .
+                                        Html::img(Product::getImageThumb($product['image_link']), ['width' => 50]) .
+                                    '</div>' .
+                                    '<div class="product-list-descr">' . 
+                                        $product->lang->title .
+                                    '</div>' .
                                 '</div>';
                         endforeach; ?>
                     </div>
@@ -72,21 +76,35 @@ $this->title = Yii::t('app', 'Рекламировать');
                             <?= $model->views ?>
                         </div>
                     </div>
+                    <div class="form-group total-stats">
+                        <table class="table table-bordered table-totalorder">
+                            <thead>
+                                <tr>
+                                    <th><?= Yii::t('app', 'Наименование услуг') ?></th>
+                                    <th><?= Yii::t('app', 'Цена') ?></th>
+                                    <th><?= Yii::t('app', 'Валюта') ?></th>
+                                </tr>
+                            </thead>
 
-                    <div class="promotion-title-label">
-                        <?= Yii::t('app', 'Стоимость размещения товара в рекламе') ?>
-                        <span id="cost_products"><?= 1000 * count($model->products) ?></span>
-                        <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
-                    </div>
-                    <div class="promotion-title-label">
-                        <?= Yii::t('app', 'Стоимость размещения рекламы в поиске') ?>
-                        <span id="cost_of_views"><?= FactoryPromotion::getCountOfViews($model->views, $model->country_id) ?></span>
-                        <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
-                    </div>
-                    <div class="promotion-title-label">
-                        <?= Yii::t('app', 'Общая стоимость рекламной кампании') ?>
-                        <span id="cost"><?= $model->amount ?></span>
-                        <span class="current-item"> <?= Yii::t('app', 'руб') ?> </span>
+                            <tbody>
+                                <tr>
+                                    <td><?= Yii::t('app', 'Стоимость размещения товара в рекламе') ?></td>
+                                    <td><span id="cost_products"><?= 1000 * count($model->products) ?></span></td>
+                                    <td><span class="current-item"> <?= Yii::t('app', 'руб') ?> </span></td>
+                                </tr>
+                                <tr>
+                                    <td><?= Yii::t('app', 'Стоимость размещения рекламы в поиске') ?></td>
+                                    <td><span id="cost_of_views"><?= FactoryPromotion::getCountOfViews($model->views, $model->country_id) ?></span></td>
+                                    <td><span class="current-item"> <?= Yii::t('app', 'руб') ?> </span></td>
+                                </tr>
+                                <tr>
+                                    <td> <?= Yii::t('app', 'Общая стоимость рекламной кампании') ?></td>
+                                    <td><strong><span id="cost"><?= $model->amount ?></span></strong></td>
+                                    <td><span class="current-item"> <?= Yii::t('app', 'руб') ?> </span></td>
+                                </tr>
+                            </tbody>
+                        
+                        </table>
                     </div>
 
                 </div>
