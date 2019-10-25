@@ -149,7 +149,7 @@ class SitemapController extends Controller
             '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
         );
 
-        for ($i = 0; $i < $count_files; $i++) {
+        for ($i = 0; $i <= $count_files; $i++) {
             $link = '/sitemap/sitemap' . $templateName . '_' . $i . '.xml';
             $str = PHP_EOL . "\t<sitemap>"
                 . PHP_EOL . "\t\t<loc>" . $baseUrl . $link . "</loc>"
