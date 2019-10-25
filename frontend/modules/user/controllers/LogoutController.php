@@ -54,6 +54,12 @@ class LogoutController extends BaseController
     {
         Yii::$app->getUser()->logout();
 
-        return $this->redirect(City::getSubDomainUrl(Yii::$app->city->getCity()));
+        $model = Yii::$app->city->getCity();
+
+        $url = (!in_array($model['id'], array(1, 2, 4, 159)))
+            ? 'https://' . $model['alias'] . '.myarredo.' . Yii::$app->city->domain
+            : 'https://' . 'www.myarredo.' . Yii::$app->city->domain;
+
+        return $this->redirect($url);
     }
 }
