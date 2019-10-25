@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 //
+use frontend\modules\location\models\City;
 use frontend\components\BaseController;
 
 /**
@@ -52,6 +53,7 @@ class LogoutController extends BaseController
     public function actionIndex()
     {
         Yii::$app->getUser()->logout();
-        return $this->redirect(Url::toRoute('/home/home/index'));
+
+        return $this->redirect(City::getSubDomainUrl(Yii::$app->city->getCity()));
     }
 }

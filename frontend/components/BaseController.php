@@ -35,9 +35,8 @@ abstract class BaseController extends Controller
     {
         $lang = substr(Yii::$app->language, 0, 2);
 
-        //* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->request->url); echo '</pre>'; /* !!! */
         $current_url = Yii::$app->request->url != '/' ? str_replace('/' . $lang . '/', '', Yii::$app->request->url) : '';
-//* !!! */ echo  '<pre style="color:red;">'; print_r($current_url); echo '</pre>'; /* !!! */
+
         if (Yii::$app->city->domain == 'com' && !in_array($lang, ['it', 'en'])) {
             return $this->redirect('https://' . 'www.myarredo.com/it/' . $current_url, 301);
         } elseif (Yii::$app->city->domain != 'com' && in_array($lang, ['it', 'en'])) {
