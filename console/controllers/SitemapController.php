@@ -93,7 +93,7 @@ class SitemapController extends Controller
 
         /** @var $city City */
         // create multiple sitemap files
-        for ($i = 0; $i < $count_files; $i++) {
+        for ($i = 0; $i <= $count_files; $i++) {
             $filePath = Yii::getAlias($this->filePath . '/sitemap' . $templateName . '_' . $i . '.xml');
 
             $handle = fopen($filePath, "w");
