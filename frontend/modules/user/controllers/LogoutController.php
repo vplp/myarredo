@@ -6,7 +6,6 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 //
-use frontend\modules\location\models\City;
 use frontend\components\BaseController;
 
 /**
@@ -53,13 +52,6 @@ class LogoutController extends BaseController
     public function actionIndex()
     {
         Yii::$app->getUser()->logout();
-
-        $model = Yii::$app->city->getCity();
-
-        $url = (!in_array($model['id'], array(1, 2, 4, 159)))
-            ? 'https://' . $model['alias'] . '.myarredo.' . Yii::$app->city->domain
-            : 'https://' . 'www.myarredo.' . Yii::$app->city->domain;
-
-        return $this->redirect($url);
+        return $this->redirect(Url::toRoute('/home/home/index'));
     }
 }
