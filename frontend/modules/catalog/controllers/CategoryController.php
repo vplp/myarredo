@@ -378,17 +378,20 @@ class CategoryController extends BaseController
             ' | ' .
             Yii::t('app', 'Купить') .
             ' ' .
-            implode(' ', $pageTitle) .
-            ' ' .
-            Yii::t('app', 'в') .
-            ' ' .
-            Yii::$app->city->getCityTitleWhere();
+            implode(' ', $pageTitle);
 
-        $pageDescription[] = Yii::t('app', 'в') .
-            ' ' .
-            Yii::$app->city->getCityTitleWhere() .
-            '? ' .
-            Yii::t(
+        if (Yii::$app->city->domain !== 'com') {
+            $seo_title .= Yii::t('app', 'в') .
+                ' ' .
+                Yii::$app->city->getCityTitleWhere();
+
+            $pageDescription[] = Yii::t('app', 'в') .
+                ' ' .
+                Yii::$app->city->getCityTitleWhere() .
+                '? ';
+        }
+
+        $pageDescription[] = Yii::t(
                 'app',
                 'Широкий выбор мебели от итальянских производителей в интернет-магазине Myarredo'
             ) .
