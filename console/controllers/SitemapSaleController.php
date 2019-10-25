@@ -77,7 +77,7 @@ class SitemapSaleController extends Controller
                 $model::tableName() . '.updated_at',
             ]);
 
-            foreach ($query->batch(1000) as $models) {
+            foreach ($query->batch(100) as $models) {
                 foreach ($models as $model) {
                     $_urls[] = call_user_func($modelName['dataClosure'], $model);
                 }
