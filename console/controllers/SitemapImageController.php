@@ -78,7 +78,7 @@ class SitemapImageController extends Controller
 
             // create multiple SitemapImage files
 
-            for ($i = 0; $i <= $count_files; $i++) {
+            for ($i = 0; $i < $count_files; $i++) {
                 $filePath = Yii::getAlias($this->filePath . '/sitemap_image_' . $city['alias'] . '_' . $i . '.xml');
 
                 $handle = fopen($filePath, "w");
@@ -91,7 +91,7 @@ class SitemapImageController extends Controller
                     'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">' . PHP_EOL
                 );
 
-                for ($j = $i * $this->countUrlInSitemapImage; $j < ($i + 1) * $this->countUrlInSitemapImage; $j++) {
+                for ($j = $i * $this->countUrlInSitemapImage; $j <= ($i + 1) * $this->countUrlInSitemapImage; $j++) {
                     if (isset($urls[$j])) {
                         $url = $urls[$j];
 
@@ -125,7 +125,7 @@ class SitemapImageController extends Controller
                 '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
             );
 
-            for ($i = 0; $i <= $count_files; $i++) {
+            for ($i = 0; $i < $count_files; $i++) {
                 $link = '/sitemap-image/sitemap_image_' . $city['alias'] . '_' . $i . '.xml';
                 $str = PHP_EOL . "\t<sitemap>"
                     . PHP_EOL . "\t\t<loc>" . City::getSubDomainUrl($city) . $link . "</loc>"

@@ -58,7 +58,9 @@ class SitemapController extends Controller
         $urls = self::getUrls();
 
         foreach ($cities as $city) {
-            $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
+            //if ($city['id'] == 4) {
+                $this->createSitemapFile($urls, City::getSubDomainUrl($city), $city);
+            //}
         }
 
         $this->createSitemapFile($urls, 'https://' . 'www.myarredo.com', false);
@@ -88,12 +90,13 @@ class SitemapController extends Controller
 
         $count = count($urls);
         $count_files = ceil($count / $this->countUrlInSitemap);
-
+        $this->stdout("count = " . $count . " \n", Console::FG_GREEN);
+        $this->stdout("count = " . $count_files . " \n", Console::FG_GREEN);
         $templateName = ($city) ? '_' . $city['alias'] : '';
 
         /** @var $city City */
         // create multiple sitemap files
-        for ($i = 0; $i <= $count_files; $i++) {
+        for ($i = 0; $i < $count_files; $i++) {
             $filePath = Yii::getAlias($this->filePath . '/sitemap' . $templateName . '_' . $i . '.xml');
 
             $handle = fopen($filePath, "w");
@@ -117,7 +120,7 @@ class SitemapController extends Controller
                 fwrite($handle, $str);
             }
 
-            for ($j = $i * $this->countUrlInSitemap; $j < ($i + 1) * $this->countUrlInSitemap; $j++) {
+            for ($j = $i * $this->countUrlInSitemap; $j <= ($i + 1) * $this->countUrlInSitemap; $j++) {
                 if (isset($urls[$j])) {
                     $url = $urls[$j];
 
@@ -149,7 +152,7 @@ class SitemapController extends Controller
             '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
         );
 
-        for ($i = 0; $i <= $count_files; $i++) {
+        for ($i = 0; $i < $count_files; $i++) {
             $link = '/sitemap/sitemap' . $templateName . '_' . $i . '.xml';
             $str = PHP_EOL . "\t<sitemap>"
                 . PHP_EOL . "\t\t<loc>" . $baseUrl . $link . "</loc>"
