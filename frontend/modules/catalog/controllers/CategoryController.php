@@ -458,7 +458,9 @@ class CategoryController extends BaseController
             ];
         }
 
-        $pageDescription[] = Yii::$app->city->getCityTitle() . ': ' . Yii::t('app', 'Заказать');
+        if (Yii::$app->city->domain != 'com') {
+            $pageDescription[] = Yii::$app->city->getCityTitle() . ': ' . Yii::t('app', 'Заказать');
+        }
 
         /**
          * type
@@ -637,7 +639,10 @@ class CategoryController extends BaseController
          * set options
          */
 
-        $pageTitle[] = Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
+        if (Yii::$app->city->domain != 'com') {
+            $pageTitle[] = Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere();
+        }
+
         $pageDescription[] = '. ' .
             Yii::t(
                 'app',
