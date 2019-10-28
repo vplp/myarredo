@@ -11,7 +11,7 @@ return [
         'cookieParams' => [
             'domain' => '.' . $domain,
             'httpOnly' => true,
-            //'path' => '/',
+            'path' => '/',
         ],
         'name' => 'PHPBACKSESSID',
     ],
@@ -19,9 +19,9 @@ return [
         'enableAutoLogin' => false,
         'identityCookie' => [
             'name' => '_identity',
-            'httpOnly' => true,
-            //'path' => '/',
             'domain' => '.' . $domain,
+            'httpOnly' => true,
+            'path' => '/',
         ],
     ],
     'urlManager' => [
@@ -36,6 +36,11 @@ return [
         'enableCsrfValidation' => true,
         'enableCookieValidation' => true,
         'cookieValidationKey' => \getenv('THREAD_COOKIE_VALIDATION_KEY'),
+        'csrfCookie' => [
+            'name' => '_csrf',
+            'path' => '/',
+            'domain' => '.' . $domain,
+        ],
     ],
     'view' => [
         'class' => \thread\app\web\View::class,
