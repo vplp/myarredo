@@ -5,29 +5,12 @@ return [
         'class' => \thread\app\model\Languages::class,
         'languageModel' => \common\modules\sys\models\Language::class,
     ],
-    'session' => [
-        // ...
-        'name' => 'myarredo',
-    ],
     'user' => [
         'class' => \yii\web\User::class,
         'identityClass' => \common\modules\user\models\User::class,
         'enableAutoLogin' => false,
         'loginUrl' => ['/user/login'],
-//        'identityCookie' => [
-//            'name' => '_identity',
-//            'path' => '/',
-//            'domain' => '.myarredo.test',
-//        ],
     ],
-//    'request' => [
-//        // ...
-//        'csrfCookie' => [
-//            'name' => '_csrf',
-//            'path' => '/',
-//            'domain' => '.' . DOMAIN,
-//        ],
-//    ],
     'view' => [
         'class' => \yii\web\View::class,
         'renderers' => [

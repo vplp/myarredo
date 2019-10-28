@@ -5,8 +5,22 @@ return [
         'class' => \thread\app\model\Languages::class,
         'languageModel' => \frontend\modules\sys\models\Language::class,
     ],
+    'session' => [
+        'cookieParams' => [
+            'domain' => '.myarredo.ru',
+            'httpOnly' => true,
+            //'path' => '/',
+        ],
+        'name' => 'PHPBACKSESSID',
+    ],
     'user' => [
         'enableAutoLogin' => false,
+        'identityCookie' => [
+            'name' => '_identity',
+            'httpOnly' => true,
+            //'path' => '/',
+            'domain' => '.myarredo.ru',
+        ],
     ],
     'urlManager' => [
         'suffix' => '/',
