@@ -1,5 +1,10 @@
 <?php
 
+$exp = explode('.', $_SERVER['HTTP_HOST']);
+$host = $exp[2];
+
+defined('DOMAIN') or define('DOMAIN', $host);
+
 $baseDirExecPath = dirname(__DIR__, 1);
 //
 defined('YII_DEBUG') or define('YII_DEBUG', true);

@@ -7,7 +7,7 @@ return [
     ],
     'session' => [
         'cookieParams' => [
-            'domain' => '.myarredo.' . HOST,
+            'domain' => '.myarredo.' . DOMAIN,
             //'httpOnly' => true,
             'path' => '/',
         ],
@@ -17,7 +17,7 @@ return [
         'enableAutoLogin' => false,
         'identityCookie' => [
             'name' => '_identity',
-            'domain' => '.myarredo.' . HOST,
+            'domain' => '.myarredo.' . DOMAIN,
             //'httpOnly' => true,
             'path' => '/',
         ],
@@ -37,7 +37,7 @@ return [
         'csrfCookie' => [
             'name' => '_csrf',
             'path' => '/',
-            'domain' => '.myarredo.' . HOST,
+            'domain' => '.myarredo.' . DOMAIN,
         ],
     ],
     'view' => [
