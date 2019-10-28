@@ -1,5 +1,5 @@
 <?php
-/* !!! */ echo  '<pre style="color:red;">'; print_r(HOST); echo '</pre>'; /* !!! */
+
 return [
     'languages' => [
         'class' => \thread\app\model\Languages::class,
