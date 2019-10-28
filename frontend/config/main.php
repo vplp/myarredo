@@ -19,7 +19,7 @@ return ArrayHelper::merge(
                 $pathInfo = Yii::$app->request->pathInfo;
 
                 if (in_array($_SERVER['HTTP_HOST'], ['myarredo.com', 'www.myarredo.com'])) {
-                    Yii::$app->response->redirect('www.myarredo.com/it/', 301)->send();
+                    Yii::$app->response->redirect('/it/', 301)->send();
                     die;
                 } elseif (strripos($pathInfo, '.txt') ||
                     strripos($pathInfo, '.xml') ||
