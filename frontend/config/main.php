@@ -18,7 +18,10 @@ return ArrayHelper::merge(
             'on beforeRequest' => function () {
                 $pathInfo = Yii::$app->request->pathInfo;
 
-                if (strripos($pathInfo, '.txt') ||
+                if (in_array($_SERVER['HTTP_HOST'], ['myarredo.com', 'www.myarredo.com'])) {
+                    Yii::$app->response->redirect('www.myarredo.com/it/', 301)->send();
+                    die;
+                } elseif (strripos($pathInfo, '.txt') ||
                     strripos($pathInfo, '.xml') ||
                     strripos($pathInfo, '.jpg') ||
                     strripos($pathInfo, '.png')

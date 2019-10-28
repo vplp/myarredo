@@ -1,5 +1,5 @@
 <?php
-
+/* !!! */ echo  '<pre style="color:red;">'; print_r($_SERVER['HTTP_HOST']); echo '</pre>'; /* !!! */
 $domain = str_replace('www.', '', $_SERVER['HTTP_HOST']);
 
 return [
