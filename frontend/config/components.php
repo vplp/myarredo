@@ -1,7 +1,5 @@
 <?php
 
-$domain = str_replace('www.', '', $_SERVER['HTTP_HOST']);
-
 return [
     'languages' => [
         'class' => \thread\app\model\Languages::class,
@@ -9,7 +7,7 @@ return [
     ],
     'session' => [
         'cookieParams' => [
-            'domain' => '.' . $domain,
+            'domain' => '.myarredo' . HOST,
             'httpOnly' => true,
             'path' => '/',
         ],
@@ -19,7 +17,7 @@ return [
         'enableAutoLogin' => false,
         'identityCookie' => [
             'name' => '_identity',
-            'domain' => '.' . $domain,
+            'domain' => '.myarredo' . HOST,
             'httpOnly' => true,
             'path' => '/',
         ],
@@ -39,7 +37,7 @@ return [
         'csrfCookie' => [
             'name' => '_csrf',
             'path' => '/',
-            'domain' => '.' . $domain,
+            'domain' => '.myarredo' . HOST,
         ],
     ],
     'view' => [

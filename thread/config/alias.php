@@ -4,6 +4,12 @@
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c) 2016, Thread
  */
+
+$exp =  explode('.', $_SERVER['HTTP_HOST']);
+$host = $exp[array_key_last($exp)];
+
+defined('HOST') or define('HOST', $host);
+
 $rootDir = dirname(__DIR__, 2);
 Yii::setAlias('root', $rootDir);
 /**
