@@ -70,6 +70,7 @@ class Catalog extends \common\modules\catalog\Catalog
         if (!isset(Yii::$app->request->cookies[$cookieName])) {
             Yii::$app->response->cookies->add(new Cookie([
                 'name' => $cookieName,
+                'domain' => '.' . str_replace('www.', '', $_SERVER['HTTP_HOST']),
                 'value' => serialize([$ID]),
                 'expire' => time() + 86400 * 7,
             ]));
@@ -87,6 +88,7 @@ class Catalog extends \common\modules\catalog\Catalog
 
             Yii::$app->response->cookies->add(new Cookie([
                 'name' => $cookieName,
+                'domain' => '.' . str_replace('www.', '', $_SERVER['HTTP_HOST']),
                 'value' => $viewed,
                 'expire' => time() + 86400 * 7,
             ]));
