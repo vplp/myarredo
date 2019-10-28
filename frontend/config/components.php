@@ -6,21 +6,21 @@ return [
         'languageModel' => \frontend\modules\sys\models\Language::class,
     ],
     'session' => [
-        'cookieParams' => [
-            'domain' => '.myarredo.' . HOST,
-            'httpOnly' => true,
-            'path' => '/',
-        ],
+//        'cookieParams' => [
+//            'domain' => '.myarredo.' . HOST,
+//            'httpOnly' => true,
+//            'path' => '/',
+//        ],
         'name' => 'PHPBACKSESSID',
     ],
     'user' => [
         'enableAutoLogin' => false,
-        'identityCookie' => [
-            'name' => '_identity',
-            'domain' => '.myarredo.' . HOST,
-            'httpOnly' => true,
-            'path' => '/',
-        ],
+//        'identityCookie' => [
+//            'name' => '_identity',
+//            'domain' => '.myarredo.' . HOST,
+//            'httpOnly' => true,
+//            'path' => '/',
+//        ],
     ],
     'urlManager' => [
         'suffix' => '/',
