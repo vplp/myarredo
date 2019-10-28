@@ -11,7 +11,7 @@ return [
     'session' => [
         'cookieParams' => [
             'domain' => '.myarredo.' . $host,
-            'httpOnly' => true,
+            //'httpOnly' => true,
             'path' => '/',
         ],
         'name' => 'PHPBACKSESSID',
@@ -21,7 +21,7 @@ return [
         'identityCookie' => [
             'name' => '_identity',
             'domain' => '.myarredo.' . $host,
-            'httpOnly' => true,
+            //'httpOnly' => true,
             'path' => '/',
         ],
     ],
