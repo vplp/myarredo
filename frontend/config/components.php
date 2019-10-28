@@ -1,5 +1,7 @@
 <?php
 
+$domain = str_replace('www.', '', $_SERVER['HTTP_HOST']);
+
 return [
     'languages' => [
         'class' => \thread\app\model\Languages::class,
@@ -7,7 +9,7 @@ return [
     ],
     'session' => [
         'cookieParams' => [
-            'domain' => '.myarredo.ru',
+            'domain' => '.' . $domain,
             'httpOnly' => true,
             //'path' => '/',
         ],
@@ -19,7 +21,7 @@ return [
             'name' => '_identity',
             'httpOnly' => true,
             //'path' => '/',
-            'domain' => '.myarredo.ru',
+            'domain' => '.' . $domain,
         ],
     ],
     'urlManager' => [
