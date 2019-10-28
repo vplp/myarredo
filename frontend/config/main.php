@@ -18,7 +18,7 @@ return ArrayHelper::merge(
             'on beforeRequest' => function () {
                 $pathInfo = Yii::$app->request->pathInfo;
 
-                if (in_array($_SERVER['HTTP_HOST'], ['myarredo.com', 'www.myarredo.com'])) {
+                if (in_array($_SERVER['HTTP_HOST'], ['myarredo.com', 'www.myarredo.com']) && $_SERVER['REQUEST_URI'] == '/') {
                     Yii::$app->response->redirect('/it/', 301)->send();
                     die;
                 } elseif (strripos($pathInfo, '.txt') ||
