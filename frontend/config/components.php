@@ -8,22 +8,22 @@ return [
         'class' => \thread\app\model\Languages::class,
         'languageModel' => \frontend\modules\sys\models\Language::class,
     ],
-    'session' => [
-        'cookieParams' => [
-            'domain' => '.myarredo.' . $host,
-            //'httpOnly' => true,
-            'path' => '/',
-        ],
-        'name' => 'PHPBACKSESSID',
-    ],
+//    'session' => [
+//        'cookieParams' => [
+//            'domain' => '.myarredo.' . $host,
+//            //'httpOnly' => true,
+//            'path' => '/',
+//        ],
+//        'name' => 'PHPBACKSESSID',
+//    ],
     'user' => [
         'enableAutoLogin' => false,
-        'identityCookie' => [
-            'name' => '_identity',
-            'domain' => '.myarredo.' . $host,
-            //'httpOnly' => true,
-            'path' => '/',
-        ],
+//        'identityCookie' => [
+//            'name' => '_identity',
+//            'domain' => '.myarredo.' . $host,
+//            //'httpOnly' => true,
+//            'path' => '/',
+//        ],
     ],
     'urlManager' => [
         'suffix' => '/',
@@ -37,11 +37,11 @@ return [
         'enableCsrfValidation' => true,
         'enableCookieValidation' => true,
         'cookieValidationKey' => \getenv('THREAD_COOKIE_VALIDATION_KEY'),
-        'csrfCookie' => [
-            'name' => '_csrf',
-            'path' => '/',
-            'domain' => '.myarredo.' . $host,
-        ],
+//        'csrfCookie' => [
+//            'name' => '_csrf',
+//            'path' => '/',
+//            'domain' => '.myarredo.' . $host,
+//        ],
     ],
     'view' => [
         'class' => \thread\app\web\View::class,
