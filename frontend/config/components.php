@@ -1,8 +1,5 @@
 <?php
 
-//$exp = explode('.', $_SERVER['HTTP_HOST']);
-//$host = $exp[2];
-
 return [
     'languages' => [
         'class' => \thread\app\model\Languages::class,
