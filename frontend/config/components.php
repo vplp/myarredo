@@ -7,7 +7,7 @@ return [
     ],
     'session' => [
         'cookieParams' => [
-            'domain' => '.myarredo.' . DOMAIN,
+            'domain' => '.myarredo.ru',
             //'httpOnly' => true,
             'path' => '/',
         ],
