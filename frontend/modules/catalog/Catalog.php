@@ -67,8 +67,8 @@ class Catalog extends \common\modules\catalog\Catalog
      */
     public function getViewedProducts($ID, $cookieName)
     {
-        $exp = explode('.', $_SERVER['HTTP_HOST']);
-        $host = $exp[array_key_last($exp)];
+//        $exp = explode('.', $_SERVER['HTTP_HOST']);
+//        $host = $exp[array_key_last($exp)];
 
         if (!isset(Yii::$app->request->cookies[$cookieName])) {
             Yii::$app->response->cookies->add(new Cookie([

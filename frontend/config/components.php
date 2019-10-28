@@ -1,7 +1,7 @@
 <?php
 
-$exp = explode('.', $_SERVER['HTTP_HOST']);
-$host = $exp[array_key_last($exp)];
+//$exp = explode('.', $_SERVER['HTTP_HOST']);
+//$host = $exp[array_key_last($exp)];
 
 return [
     'languages' => [
