@@ -1,5 +1,5 @@
 <?php
-
+/* !!! */ echo  '<pre style="color:red;">'; print_r(HOST); echo '</pre>'; /* !!! */
 return [
     'languages' => [
         'class' => \thread\app\model\Languages::class,
@@ -34,11 +34,11 @@ return [
         'enableCsrfValidation' => true,
         'enableCookieValidation' => true,
         'cookieValidationKey' => \getenv('THREAD_COOKIE_VALIDATION_KEY'),
-        'csrfCookie' => [
-            'name' => '_csrf',
-            'path' => '/',
-            'domain' => '.myarredo.' . HOST,
-        ],
+//        'csrfCookie' => [
+//            'name' => '_csrf',
+//            'path' => '/',
+//            'domain' => '.myarredo.' . HOST,
+//        ],
     ],
     'view' => [
         'class' => \thread\app\web\View::class,
