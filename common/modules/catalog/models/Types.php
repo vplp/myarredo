@@ -19,6 +19,7 @@ use common\modules\catalog\Catalog;
  *
  * @property integer $id
  * @property string $alias
+ * @property string $alias2
  * @property integer $position
  * @property integer $created_at
  * @property integer $updated_at
@@ -83,11 +84,11 @@ class Types extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias'], 'required'],
+            [['alias', 'alias2'], 'required'],
             [['created_at', 'updated_at', 'position'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['alias'], 'string', 'max' => 255],
-            [['alias'], 'unique'],
+            [['alias', 'alias2'], 'string', 'max' => 255],
+            [['alias', 'alias2'], 'unique'],
             [['position'], 'default', 'value' => '0'],
             [['category_ids'], 'each', 'rule' => ['integer']],
         ];
@@ -102,7 +103,7 @@ class Types extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'position' => ['position'],
-            'backend' => ['alias', 'position', 'published', 'deleted', 'category_ids'],
+            'backend' => ['alias', 'alias2', 'position', 'published', 'deleted', 'category_ids'],
         ];
     }
 
@@ -114,6 +115,7 @@ class Types extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
+            'alias2' => Yii::t('app', 'Alias for .com'),
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),

@@ -1,10 +1,12 @@
 <?php
 
-use backend\modules\catalog\models\Specification;
+use backend\modules\catalog\models\{
+    Specification, SpecificationLang
+};
 
 /**
- * @var \backend\modules\news\models\Specification $model
- * @var \backend\modules\news\models\SpecificationLang $modelLang
+ * @var Specification $model
+ * @var SpecificationLang $modelLang
  */
 
 ?>
@@ -15,7 +17,16 @@ use backend\modules\catalog\models\Specification;
         [0 => '--' . Yii::t('app', 'Parent') . '--'] + Specification::dropDownListParents(0)
     ) ?>
 <?= $form->text_line_lang($modelLang, 'title') ?>
-<?= $form->field($model, 'alias')->input('text', ['disabled' => ($model->readonly == '1') ? true : false]) ?>
+
+<div class="row control-group">
+    <div class="col-md-6">
+        <?= $form->field($model, 'alias')->input('text', ['disabled' => ($model->readonly == '1') ? true : false]) ?>
+    </div>
+    <div class="col-md-6">
+        <?= $form->field($model, 'alias2')->input('text', ['disabled' => ($model->readonly == '1') ? true : false]) ?>
+    </div>
+</div>
+
 <div class="row control-group">
     <div class="col-md-3">
         <?= $form->switcher($model, 'published') ?>

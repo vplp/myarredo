@@ -18,6 +18,7 @@ use thread\app\base\models\ActiveRecord;
  *
  * @property integer $id
  * @property string $alias
+ * @property string $alias2
  * @property string $image_link
  * @property string $image_link2
  * @property string $image_link3
@@ -94,11 +95,11 @@ class Category extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias'], 'required'],
+            [['alias', 'alias2'], 'required'],
             [['created_at', 'updated_at', 'position', 'product_count'], 'integer'],
             [['published', 'deleted', 'popular', 'popular_by'], 'in', 'range' => array_keys(static::statusKeyRange())],
-            [['alias', 'image_link', 'image_link2', 'image_link3'], 'string', 'max' => 255],
-            [['alias'], 'unique'],
+            [['alias', 'alias2', 'image_link', 'image_link2', 'image_link3'], 'string', 'max' => 255],
+            [['alias', 'alias2'], 'unique'],
             [['position', 'product_count'], 'default', 'value' => '0'],
             [['types_ids'], 'each', 'rule' => ['integer']],
         ];
@@ -119,6 +120,7 @@ class Category extends ActiveRecord
             'backend' => [
                 'product_count',
                 'alias',
+                'alias2',
                 'image_link',
                 'image_link2',
                 'image_link3',
@@ -140,6 +142,7 @@ class Category extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'alias' => Yii::t('app', 'Alias'),
+            'alias2' => Yii::t('app', 'Alias for .com'),
             'image_link' => Yii::t('app', 'Image link'),
             'image_link2' => 'Вторая картинка',
             'image_link3' => 'Иконка для главного меню',

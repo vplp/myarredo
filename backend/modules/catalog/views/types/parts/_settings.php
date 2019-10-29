@@ -17,7 +17,15 @@ use backend\modules\catalog\models\{
 
 <?= $form->text_line_lang($modelLang, 'title') ?>
 <?= $form->text_line_lang($modelLang, 'plural_name') ?>
-<?= $form->text_line($model, 'alias') ?>
+
+<div class="row control-group">
+    <div class="col-md-6">
+        <?= $form->text_line($model, 'alias') ?>
+    </div>
+    <div class="col-md-6">
+        <?= $form->text_line($model, 'alias2') ?>
+    </div>
+</div>
 
 <?= $form
         ->field($model, 'category_ids')
