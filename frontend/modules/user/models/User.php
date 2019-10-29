@@ -63,4 +63,15 @@ class User extends \common\modules\user\models\User
 
         return $query->one();
     }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function search($params)
+    {
+        return (new search\User())->search($params);
+    }
 }

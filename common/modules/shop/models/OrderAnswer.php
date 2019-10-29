@@ -113,8 +113,8 @@ class OrderAnswer extends ActiveRecord
     {
         return self::findBase()
             ->andWhere([
-                self::tableName().'.order_id' => $order_id,
-                self::tableName().'.user_id' => $user_id
+                self::tableName() . '.order_id' => $order_id,
+                self::tableName() . '.user_id' => $user_id
             ])
             ->one();
     }

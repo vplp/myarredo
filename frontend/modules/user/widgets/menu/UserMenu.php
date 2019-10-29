@@ -101,6 +101,10 @@ class UserMenu extends Widget
                     'url' => ['/shop/admin-order/list-italy']
                 ],
                 [
+                    'label' => Yii::t('app', 'Answers statistics'),
+                    'url' => ['/shop/order-answer-stats/list']
+                ],
+                [
                     'label' => Yii::t('app', 'Product statistics'),
                     'url' => ['/catalog/product-stats/list']
                 ],

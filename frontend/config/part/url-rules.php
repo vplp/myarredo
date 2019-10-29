@@ -177,6 +177,8 @@ return [
     'shop/cart/add-to-cart' => 'shop/cart/add-to-cart',
     'shop/cart/delete-from-cart' => 'shop/cart/delete-from-cart',
     'shop/cart/delete-from-cart-popup' => 'shop/cart/delete-from-cart-popup',
+    'shop/order-answer-stats/list' => 'shop/order-answer-stats/list',
+    'shop/order-answer-stats/view/<id:[\d\-]+>' => 'shop/order-answer-stats/view',
 
     'shop/factory/orders' => 'shop/factory-order/list',
     'shop/factory/orders-italy' => 'shop/factory-order/list-italy',
