@@ -75,7 +75,8 @@ class User extends \thread\modules\user\models\User
             ->joinWith([
                 'group',
                 'group.lang',
-                'profile'
+                'profile',
+                'profile.lang'
             ]);
     }
 }

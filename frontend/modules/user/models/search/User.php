@@ -8,7 +8,7 @@ use yii\db\ActiveQuery;
 use yii\data\ActiveDataProvider;
 //
 use frontend\modules\user\models\{
-    User as UserModel, Profile
+    User as UserModel, Profile, ProfileLang
 };
 
 /**
@@ -79,7 +79,7 @@ class User extends UserModel
             ]);
         }
 
-        $query->orderBy(Profile::tableName() . '.name_company ASC');
+        $query->orderBy(ProfileLang::tableName() . '.name_company ASC');
 
         return $dataProvider;
     }
