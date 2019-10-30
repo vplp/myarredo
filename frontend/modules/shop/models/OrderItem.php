@@ -79,6 +79,15 @@ class OrderItem extends \common\modules\shop\models\OrderItem
         }
     }
 
+    public function getProductUrl()
+    {
+        if ($this->order && $this->order->product_type == 'sale-italy') {
+            return ItalianProduct::class;
+        } else {
+            return Product::class;
+        }
+    }
+
     /**
      * @return mixed
      */

@@ -64,6 +64,7 @@ class OrderAnswer extends OrderAnswerModel
                 ->andFilterWhere([self::tableName() . '.user_id' => $params['user_id']]);
         }
 
+        $query->orderBy(self::tableName() . '.answer_time DESC');
 
         return $dataProvider;
     }

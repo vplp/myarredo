@@ -22,6 +22,9 @@ use common\modules\user\models\User;
  * @property integer $published
  * @property integer $deleted
  *
+ * @property User $user
+ * @property Order $order
+ *
  * @package common\modules\shop\models
  */
 class OrderAnswer extends ActiveRecord
@@ -133,7 +136,14 @@ class OrderAnswer extends ActiveRecord
      */
     public function getUser()
     {
-        return $this
-            ->hasOne(User::class, ['id' => 'user_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrder()
+    {
+        return $this->hasOne(Order::class, ['id' => 'order_id']);
     }
 }

@@ -7,6 +7,7 @@ use yii\helpers\{
 use frontend\modules\shop\models\{
     OrderAnswer, OrderItemPrice
 };
+
 /**
  * @var $pages \yii\data\Pagination
  * @var $models OrderAnswer[]
@@ -32,6 +33,9 @@ $this->title = $this->context->title;
                             <span>answer</span>
                         </li>
                         <li>
+                            <span>products</span>
+                        </li>
+                        <li>
                             <span>answer_time</span>
                         </li>
                     </ul>
@@ -48,7 +52,21 @@ $this->title = $this->context->title;
                                     <span><?= $model->answer ?></span>
                                 </li>
                                 <li>
-                                    <span><?= date('d-m-Y', $model->answer_time)?></span>
+                                    <span>
+                                        <?php
+                                        $result = [];
+                                        foreach ($model->order->items as $item) {
+                                            $result[] = Html::a(
+                                                $item->product->lang->title,
+                                                $item->product::getUrl($item->product->alias)
+                                            );
+                                        }
+                                        echo implode('<br>', $result);
+                                        ?>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span><?= date('d-m-Y', $model->answer_time) ?></span>
                                 </li>
                             </ul>
                         </div>
