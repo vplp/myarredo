@@ -58,7 +58,8 @@ $this->title = $this->context->title;
                                         foreach ($model->order->items as $item) {
                                             $result[] = Html::a(
                                                 $item->product->lang->title,
-                                                $item->product::getUrl($item->product->alias)
+                                                $item->product::getUrl($item->product->alias),
+                                                ['target' => '_blank']
                                             );
                                         }
                                         echo implode('<br>', $result);
