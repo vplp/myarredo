@@ -73,14 +73,16 @@ class ProductFilter extends Widget
         foreach ($this->category as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (!empty($params[$keys['category']]) &&
-                in_array($obj['alias'], $params[$keys['category']])
-            ) {
+            $alias = Yii::$app->city->domain != 'com'
+                ? $obj['alias']
+                : $obj['alias2'];
+
+            if (!empty($params[$keys['category']]) && in_array($alias, $params[$keys['category']])) {
                 $checked = 1;
                 $params[$keys['category']] = '';
             } else {
                 $checked = 0;
-                $params[$keys['category']] = $obj['alias'];
+                $params[$keys['category']] = $alias;
             }
 
             $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);

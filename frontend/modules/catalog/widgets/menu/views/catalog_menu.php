@@ -23,7 +23,7 @@ use frontend\modules\catalog\models\Category;
 
                 <?php foreach ($category as $model) { ?>
                     <li>
-                        <a href="<?= Category::getUrl($model['alias']) ?>">
+                        <a href="<?= Category::getUrl(Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2']) ?>">
                             <div class="img-cont">
                                 <?= Html::img(Category::getImage($model['image_link3'])); ?>
                             </div>
@@ -51,7 +51,7 @@ use frontend\modules\catalog\models\Category;
 
                     <?php foreach ($categorySale as $model) { ?>
                         <li>
-                            <a href="<?= Category::getUrl($model['alias'], '/catalog/sale/list') ?>">
+                            <a href="<?= Category::getUrl(Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'], '/catalog/sale/list') ?>">
                                 <div class="img-cont">
                                     <?= Html::img(Category::getImage($model['image_link3'])); ?>
                                 </div>
@@ -79,7 +79,7 @@ use frontend\modules\catalog\models\Category;
 
                 <?php foreach ($categorySaleItaly as $model) { ?>
                     <li>
-                        <a href="<?= Category::getUrl($model['alias'], '/catalog/sale-italy/list') ?>">
+                        <a href="<?= Category::getUrl(Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'], '/catalog/sale-italy/list') ?>">
                             <div class="img-cont">
                                 <?= Html::img(Category::getImage($model['image_link3'])); ?>
                             </div>

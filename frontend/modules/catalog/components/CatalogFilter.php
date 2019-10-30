@@ -247,7 +247,11 @@ class CatalogFilter extends Component
                 throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
             }
 
-            self::$_parameters[self::$keys['category']][] = $model['alias'];
+            $alias = Yii::$app->city->domain != 'com'
+                ? $model['alias']
+                : $model['alias2'];
+
+            self::$_parameters[self::$keys['category']][] = $alias;
         }
 
         /**

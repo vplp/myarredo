@@ -222,7 +222,11 @@ class Factory extends \common\modules\catalog\models\Factory
         if (isset($params[$keys['category']])) {
             $query
                 ->innerJoinWith(["product.category productCategory"], false)
-                ->andFilterWhere(['IN', 'productCategory.alias', $params[$keys['category']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'productCategory.alias' : 'productCategory.alias2',
+                    $params[$keys['category']]
+                ]);
         }
 
         if (isset($params[$keys['type']])) {
@@ -306,7 +310,11 @@ class Factory extends \common\modules\catalog\models\Factory
         if (isset($params[$keys['category']])) {
             $query
                 ->innerJoinWith(["sale.category saleCategory"], false)
-                ->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'saleCategory.alias' : 'saleCategory.alias2',
+                    $params[$keys['category']]
+                ]);
         }
 
         if (isset($params[$keys['type']])) {
@@ -389,7 +397,11 @@ class Factory extends \common\modules\catalog\models\Factory
         if (isset($params[$keys['category']])) {
             $query
                 ->innerJoinWith(["italianProduct.category italianProductCategory"], false)
-                ->andFilterWhere(['IN', 'italianProductCategory.alias', $params[$keys['category']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'italianProductCategory.alias' : 'italianProductCategory.alias2',
+                    $params[$keys['category']]
+                ]);
         }
 
         if (isset($params[$keys['type']])) {
@@ -462,6 +474,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 category.id AS category_id,
                 category.image_link3 as image_link3,
                 category.alias AS alias,
+                category.alias2 AS alias2,
                 categoryLang.title AS title
             FROM
                 " . self::tableName() . " factory
@@ -503,6 +516,7 @@ class Factory extends \common\modules\catalog\models\Factory
                 COUNT(types.id) as count, 
                 types.id, 
                 types.alias,
+                types.alias2,
                 typesLang.title AS title
             FROM
                 " . Types::tableName() . " types

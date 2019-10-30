@@ -1,11 +1,11 @@
 <?php
 
-
 use yii\helpers\Html;
+//
 use frontend\modules\catalog\models\Factory;
 
 /**
- * @var \frontend\modules\catalog\models\Factory $model
+ * @var Factory $model
  */
 
 $keys = Yii::$app->catalogFilter->keys;
@@ -36,7 +36,7 @@ $keys = Yii::$app->catalogFilter->keys;
                         $item['title'],
                         Yii::$app->catalogFilter->createUrl(
                             Yii::$app->catalogFilter->params +
-                            [$keys['category'] => $item['alias']] +
+                            [$keys['category'] => Yii::$app->city->domain != 'com' ? $item['alias'] : $item['alias2']] +
                             [$keys['factory'] => $model['alias']]
                         )
                     ) .

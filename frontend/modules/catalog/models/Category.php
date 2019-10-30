@@ -83,7 +83,14 @@ class Category extends \common\modules\catalog\models\Category
     public static function findByAlias($alias)
     {
         $result = self::getDb()->cache(function ($db) use ($alias) {
-            return self::findBase()->byAlias($alias)->one();
+            return self::findBase()
+                //->byAlias($alias)
+                ->andWhere(
+                    Yii::$app->city->domain != 'com'
+                    ? [self::tableName() . '.alias' => $alias]
+                    : [self::tableName() . '.alias2' => $alias]
+                )
+                ->one();
         });
 
         return $result;
@@ -260,6 +267,7 @@ class Category extends \common\modules\catalog\models\Category
                 ->select([
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
+                    self::tableName() . '.alias2',
                     self::tableName() . '.image_link',
                     self::tableName() . '.image_link2',
                     self::tableName() . '.image_link3',
@@ -345,6 +353,7 @@ class Category extends \common\modules\catalog\models\Category
                 ->select([
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
+                    self::tableName() . '.alias2',
                     self::tableName() . '.position',
                     self::tableName() . '.image_link',
                     self::tableName() . '.image_link2',
@@ -417,6 +426,7 @@ class Category extends \common\modules\catalog\models\Category
                 ->select([
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
+                    self::tableName() . '.alias2',
                     self::tableName() . '.position',
                     self::tableName() . '.image_link',
                     self::tableName() . '.image_link2',

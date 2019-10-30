@@ -84,7 +84,11 @@ class Product extends ProductModel
         if (isset($params[$keys['category']])) {
             $query
                 ->innerJoinWith(["category"])
-                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params[$keys['category']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
+                    $params[$keys['category']]
+                ]);
         }
 
         if (isset($params[$keys['type']])) {
@@ -196,7 +200,11 @@ class Product extends ProductModel
         if (isset($params[$keys['category']])) {
             $query
                 ->innerJoinWith(["category"])
-                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params[$keys['category']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
+                    $params[$keys['category']]
+                ]);
         }
 
         if (isset($params[$keys['types']])) {
@@ -270,7 +278,11 @@ class Product extends ProductModel
         if (isset($params[$keys['category']])) {
             $query
                 ->innerJoinWith(["category"])
-                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params[$keys['category']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
+                    $params[$keys['category']]
+                ]);
         }
 
         if (isset($params[$keys['type']])) {
@@ -326,7 +338,11 @@ class Product extends ProductModel
         if (isset($params[$keys['category']])) {
             $query
                 ->innerJoinWith(["category"])
-                ->andFilterWhere(['IN', Category::tableName() . '.alias', $params[$keys['category']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
+                    $params[$keys['category']]
+                ]);
         }
 
         if (isset($params[$keys['type']])) {

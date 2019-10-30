@@ -31,7 +31,7 @@ use frontend\modules\catalog\models\{
                         'class' => 'is-hover lazy',
                         'data-src' => Category::getImage($model['image_link2'])
                     ]),
-                    Category::getUrl($model['alias']),
+                    Category::getUrl(Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2']),
                     ['class' => 'img-cont']
                 ) ?>
                 <ul class="cat-list">
@@ -56,7 +56,7 @@ use frontend\modules\catalog\models\{
                 </ul>
                 <?= Html::a(
                     Yii::t('app', 'Смотреть все'),
-                    Category::getUrl($model['alias']),
+                    Category::getUrl(Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2']),
                     ['class' => 'view-all']
                 ) ?>
             </div>

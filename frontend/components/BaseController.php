@@ -37,9 +37,9 @@ abstract class BaseController extends Controller
 
         //$current_url = Yii::$app->request->url != '/' ? str_replace('/' . $lang . '/', '', Yii::$app->request->url) : '';
 
-        if (Yii::$app->city->domain == 'com' && !in_array($lang, ['it', 'en'])) {
+        if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && Yii::$app->city->domain == 'com' && !in_array($lang, ['it', 'en'])) {
             return $this->redirect('https://' . 'www.myarredo.com/it/', 301);
-        } elseif (in_array(Yii::$app->city->domain, ['ru', 'ua', 'by']) && in_array($lang, ['it', 'en'])) {
+        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(Yii::$app->city->domain, ['ru', 'ua', 'by']) && in_array($lang, ['it', 'en'])) {
             return $this->redirect('https://' . 'www.myarredo.com/it/', 301);
         }
 

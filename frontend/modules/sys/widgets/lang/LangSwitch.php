@@ -55,18 +55,32 @@ class LangSwitch extends Widget
         $items = [];
 
         foreach ($this->items as $lang) {
-            $path = Yii::$app->request->url;
-
             $image = Language::isImage($lang['img_flag'])
                 ? Html::img(Language::getImage($lang['img_flag']))
                 : '<i class="fa fa-globe" aria-hidden="true"></i>';
 
+            /**
+             * $url
+             */
             if (in_array($lang['alias'], ['it', 'en'])) {
                 $url = 'https://www.myarredo.com';
             } elseif (!in_array($lang['alias'], ['it', 'en']) && Yii::$app->city->domain == 'com') {
                 $url = 'https://www.myarredo.ru';
             } else {
                 $url = Yii::$app->request->hostInfo;
+            }
+
+            /**
+             * $path
+             */
+            if (in_array($lang['alias'], ['it', 'en']) && Yii::$app->city->domain != 'com' && in_array(Yii::$app->controller->id, ['category', 'sale', 'sale-italy']) &&
+                Yii::$app->controller->action->id == 'list') {
+                $path = '/';
+            } elseif (!in_array($lang['alias'], ['it', 'en']) && Yii::$app->city->domain == 'com' && in_array(Yii::$app->controller->id, ['category', 'sale', 'sale-italy']) &&
+                Yii::$app->controller->action->id == 'list') {
+                $path = '/';
+            } else {
+                $path = Yii::$app->request->url;
             }
 
             if ($lang['local'] == Yii::$app->language) {

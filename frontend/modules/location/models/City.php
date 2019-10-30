@@ -158,7 +158,11 @@ class City extends \common\modules\location\models\City
         if (isset($params[$keys['category']])) {
             $query
                 ->innerJoinWith(["sale.category saleCategory"], false)
-                ->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'saleCategory.alias' : 'saleCategory.alias2',
+                    $params[$keys['category']]
+                ]);
         }
 
         if (isset($params[$keys['type']])) {

@@ -165,7 +165,11 @@ class Specification extends \common\modules\catalog\models\Specification
         if (isset($params[$keys['category']])) {
             $query
                 ->innerJoinWith(["product.category productCategory"], false)
-                ->andFilterWhere(['IN', 'productCategory.alias', $params[$keys['category']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'productCategory.alias' : 'productCategory.alias2',
+                    $params[$keys['category']]
+                ]);
         }
 
         if (isset($params[$keys['type']])) {
@@ -248,7 +252,11 @@ class Specification extends \common\modules\catalog\models\Specification
         if (isset($params[$keys['category']])) {
             $query
                 ->innerJoinWith(["sale.category saleCategory"], false)
-                ->andFilterWhere(['IN', 'saleCategory.alias', $params[$keys['category']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'saleCategory.alias' : 'saleCategory.alias2',
+                    $params[$keys['category']]
+                ]);
         }
 
         if (isset($params[$keys['type']])) {
@@ -327,7 +335,11 @@ class Specification extends \common\modules\catalog\models\Specification
         if (isset($params[$keys['category']])) {
             $query
                 ->innerJoinWith(["italianProduct.category italianProductCategory"], false)
-                ->andFilterWhere(['IN', 'italianProductCategory.alias', $params[$keys['category']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'italianProductCategory.alias' : 'italianProductCategory.alias2',
+                    $params[$keys['category']]
+                ]);
         }
 
         if (isset($params[$keys['type']])) {
