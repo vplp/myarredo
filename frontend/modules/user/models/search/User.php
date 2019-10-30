@@ -79,6 +79,8 @@ class User extends UserModel
             ]);
         }
 
+        $query->orderBy(Profile::tableName() . '.name_company ASC');
+
         return $dataProvider;
     }
 

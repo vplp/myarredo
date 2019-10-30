@@ -34,7 +34,7 @@ $this->title = $this->context->title;
                             <span>User ID</span>
                         </li>
                         <li>
-                            <span><?= Yii::t('app', 'Name') ?></span>
+                            <span><?= Yii::t('app', 'Company') ?></span>
                         </li>
                         <li>
                             <span><?= Yii::t('app', 'City') ?></span>
@@ -65,7 +65,7 @@ $this->title = $this->context->title;
                                     </span>
                                 </li>
                                 <li>
-                                    <span><?= $model->profile->getFullName() ?></span>
+                                    <span><?= $model->profile->getNameCompany() ?></span>
                                 </li>
                                 <li>
                                     <span><?= isset($model->profile->city) ? $model->profile->city->lang->title : '' ?></span>
