@@ -45,7 +45,7 @@ class Order extends \thread\modules\shop\models\Order
     {
         return [
             ['lang', 'string', 'min' => 5, 'max' => 5],
-            [['customer_id'], 'required'],
+            [['customer_id', 'city_id'], 'required'],
             [['comment'], 'string', 'max' => 512],
             [['token'], 'string', 'max' => 255],
             [['customer_id', 'city_id', 'items_count', 'items_total_count'], 'integer'],
@@ -71,7 +71,8 @@ class Order extends \thread\modules\shop\models\Order
             'backend' => [
                 'customer_id',
                 'city_id',
-                'delivery_method_id', 'payment_method_id',
+                'delivery_method_id',
+                'payment_method_id',
                 'items_count',
                 'items_total_count',
                 'order_status',
