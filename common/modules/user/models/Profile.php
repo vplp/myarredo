@@ -18,8 +18,6 @@ use common\modules\catalog\models\Factory;
  *
  * @property string $phone
  * @property string $additional_phone
- * @property string $address
- * @property string $name_company
  * @property string $email_company
  * @property string $website
  * @property string $exp_with_italian
@@ -85,8 +83,6 @@ class Profile extends \thread\modules\user\models\Profile
                 [
                     'phone',
                     'additional_phone',
-                    'address',
-                    'name_company',
                     'email_company',
                     'website',
                     'exp_with_italian',
@@ -140,8 +136,6 @@ class Profile extends \thread\modules\user\models\Profile
                 'first_name',
                 'last_name',
                 'phone',
-                'address',
-                'name_company',
                 'email_company',
                 'website',
                 'exp_with_italian',
@@ -163,8 +157,6 @@ class Profile extends \thread\modules\user\models\Profile
             ],
             'basicCreate' => [
                 'phone',
-                'address',
-                'name_company',
                 'email_company',
                 'website',
                 'exp_with_italian',
@@ -191,8 +183,6 @@ class Profile extends \thread\modules\user\models\Profile
                 'last_name',
                 'phone',
                 'additional_phone',
-                'address',
-                'name_company',
                 'email_company',
                 'website',
                 'exp_with_italian',
@@ -224,8 +214,6 @@ class Profile extends \thread\modules\user\models\Profile
         return ArrayHelper::merge(parent::attributeLabels(), [
             'phone' => Yii::t('app', 'Phone'),
             'additional_phone' => Yii::t('app', 'Телефон для подмены'),
-            'address' => Yii::t('app', 'Address'),
-            'name_company' => Yii::t('app', 'Название компании'),
             'email_company' => Yii::t('app', 'E-mail'),
             'website' => Yii::t('app', 'Адресс сайта'),
             'exp_with_italian' => Yii::t('app', 'Опыт работы с итальянской мебелью, лет'),
