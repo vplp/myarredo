@@ -74,6 +74,12 @@ class OrderAnswerStatsController extends BaseController
 
         $models = $model->search($params);
 
+        $this->title = Yii::t('app', 'Answers statistics');
+
+        $this->breadcrumbs[] = [
+            'label' => $this->title,
+        ];
+
         return $this->render('list', [
             'models' => $models,
             'model' => $model,
@@ -95,6 +101,12 @@ class OrderAnswerStatsController extends BaseController
         $params['user_id'] = $id;
 
         $models = $model->search($params);
+
+        $this->title = Yii::t('app', 'Answers statistics');
+
+        $this->breadcrumbs[] = [
+            'label' => $this->title,
+        ];
 
         return $this->render('view', [
             'models' => $models,
