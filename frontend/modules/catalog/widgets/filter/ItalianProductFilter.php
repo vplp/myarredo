@@ -118,14 +118,18 @@ class ItalianProductFilter extends Widget
         foreach ($this->types as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
+            $alias = Yii::$app->city->domain != 'com'
+                ? $obj['alias']
+                : $obj['alias2'];
+
             if (!empty($params[$keys['type']]) &&
-                in_array($obj['alias'], $params[$keys['type']])
+                in_array($alias, $params[$keys['type']])
             ) {
                 $checked = 1;
-                $params[$keys['type']] = array_diff($params[$keys['type']], [$obj['alias']]);
+                $params[$keys['type']] = array_diff($params[$keys['type']], [$alias]);
             } else {
                 $checked = 0;
-                $params[$keys['type']][] = $obj['alias'];
+                $params[$keys['type']][] = $alias;
             }
 
             // sort value
@@ -139,7 +143,7 @@ class ItalianProductFilter extends Widget
                 'link' => $link,
                 'title' => $obj['lang']['title'],
                 'count' => $obj['count'],
-                'alias' => $obj['alias'],
+                'alias' => $alias
             );
         }
 

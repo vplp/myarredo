@@ -91,14 +91,18 @@ class SaleFilter extends Widget
         foreach ($this->category as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
+            $alias = Yii::$app->city->domain != 'com'
+                ? $obj['alias']
+                : $obj['alias2'];
+
             if (!empty($params[$keys['category']]) &&
-                in_array($obj['alias'], $params[$keys['category']])
+                in_array($alias, $params[$keys['category']])
             ) {
                 $checked = 1;
                 $params[$keys['category']] = '';
             } else {
                 $checked = 0;
-                $params[$keys['category']] = $obj['alias'];
+                $params[$keys['category']] = $alias;
             }
 
             $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
@@ -124,14 +128,18 @@ class SaleFilter extends Widget
         foreach ($this->types as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
+            $alias = Yii::$app->city->domain != 'com'
+                ? $obj['alias']
+                : $obj['alias2'];
+
             if (!empty($params[$keys['type']]) &&
-                in_array($obj['alias'], $params[$keys['type']])
+                in_array($alias, $params[$keys['type']])
             ) {
                 $checked = 1;
-                $params[$keys['type']] = array_diff($params[$keys['type']], [$obj['alias']]);
+                $params[$keys['type']] = array_diff($params[$keys['type']], [$alias]);
             } else {
                 $checked = 0;
-                $params[$keys['type']][] = $obj['alias'];
+                $params[$keys['type']][] = $alias;
             }
 
             // sort value
@@ -145,7 +153,7 @@ class SaleFilter extends Widget
                 'link' => $link,
                 'title' => $obj['lang']['title'],
                 'count' => $obj['count'],
-                'alias' => $obj['alias'],
+                'alias' => $alias,
             );
         }
 

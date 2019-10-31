@@ -130,7 +130,11 @@ class Colors extends \common\modules\catalog\models\Colors
         if (isset($params[$keys['type']])) {
             $query
                 ->innerJoinWith(["product.types productTypes"], false)
-                ->andFilterWhere(['IN', 'productTypes.alias', $params[$keys['type']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'productTypes.alias' : 'productTypes.alias2',
+                    $params[$keys['type']]
+                ]);
         }
 
         if (isset($params[$keys['subtypes']])) {
@@ -217,7 +221,11 @@ class Colors extends \common\modules\catalog\models\Colors
         if (isset($params[$keys['type']])) {
             $query
                 ->innerJoinWith(["sale.types saleTypes"], false)
-                ->andFilterWhere(['IN', 'saleTypes.alias', $params[$keys['type']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'saleTypes.alias' : 'saleTypes.alias2',
+                    $params[$keys['type']]
+                ]);
         }
 
         if (isset($params[$keys['subtypes']])) {
@@ -305,7 +313,11 @@ class Colors extends \common\modules\catalog\models\Colors
         if (isset($params[$keys['type']])) {
             $query
                 ->innerJoinWith(["italianProduct.types italianProductTypes"], false)
-                ->andFilterWhere(['IN', 'italianProductTypes.alias', $params[$keys['type']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'italianProductTypes.alias' : 'italianProductTypes.alias2',
+                    $params[$keys['type']]
+                ]);
         }
 
         if (isset($params[$keys['subtypes']])) {

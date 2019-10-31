@@ -260,9 +260,13 @@ class CatalogFilter extends Component
 
         if (!empty(self::$_structure['type'])) {
             $model = Types::findBase()
-                ->andWhere(['IN', Types::tableName() . '.alias', self::$_structure['type']])
+                ->andWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    self::$_structure['type']
+                ])
                 ->indexBy('id')
-                ->orderBy(Types::tableName() . '.alias')
+                ->orderBy(Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2')
                 ->all();
 
             if (count(self::$_structure['type']) != count($model) || $model == null) {
@@ -272,7 +276,7 @@ class CatalogFilter extends Component
             // sort value
 
             foreach ($model as $obj) {
-                self::setParam(self::$keys['type'], $obj['alias']);
+                self::setParam(self::$keys['type'], Yii::$app->city->domain != 'com' ? $obj['alias'] : $obj['alias2']);
             }
 
             // check value

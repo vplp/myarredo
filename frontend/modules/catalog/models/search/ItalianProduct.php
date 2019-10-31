@@ -100,7 +100,11 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
         if (isset($params[$keys['type']])) {
             $query
                 ->innerJoinWith(["types"])
-                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    $params[$keys['type']]
+                ]);
         }
 
         if (isset($params[$keys['subtypes']])) {
@@ -235,7 +239,11 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
         if (isset($params[$keys['type']])) {
             $query
                 ->innerJoinWith(["types"])
-                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    $params[$keys['type']]
+                ]);
         }
 
         if (isset($params[$keys['subtypes']])) {
@@ -291,7 +299,11 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
         if (isset($params[$keys['type']])) {
             $query
                 ->innerJoinWith(["types"])
-                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    $params[$keys['type']]
+                ]);
         }
 
         if (isset($params[$keys['subtypes']])) {

@@ -87,8 +87,8 @@ class Category extends \common\modules\catalog\models\Category
                 //->byAlias($alias)
                 ->andWhere(
                     Yii::$app->city->domain != 'com'
-                    ? [self::tableName() . '.alias' => $alias]
-                    : [self::tableName() . '.alias2' => $alias]
+                        ? [self::tableName() . '.alias' => $alias]
+                        : [self::tableName() . '.alias2' => $alias]
                 )
                 ->one();
         });
@@ -206,7 +206,11 @@ class Category extends \common\modules\catalog\models\Category
         if (isset($params[$keys['type']])) {
             $query
                 ->innerJoinWith(["product.types productTypes"], false)
-                ->andFilterWhere(['IN', 'productTypes.alias', $params[$keys['type']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'productTypes.alias' : 'productTypes.alias2',
+                    $params[$keys['type']]
+                ]);
         }
 
         if (isset($params[$keys['subtypes']])) {
@@ -297,7 +301,11 @@ class Category extends \common\modules\catalog\models\Category
         if (isset($params[$keys['type']])) {
             $query
                 ->innerJoinWith(["sale.types saleTypes"], false)
-                ->andFilterWhere(['IN', 'saleTypes.alias', $params[$keys['type']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'saleTypes.alias' : 'saleTypes.alias2',
+                    $params[$keys['type']]
+                ]);
         }
 
         if (isset($params[$keys['subtypes']])) {
@@ -383,7 +391,11 @@ class Category extends \common\modules\catalog\models\Category
         if (isset($params[$keys['type']])) {
             $query
                 ->innerJoinWith(["italianProduct.types italianProductTypes"], false)
-                ->andFilterWhere(['IN', 'italianProductTypes.alias', $params[$keys['type']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'italianProductTypes.alias' : 'italianProductTypes.alias2',
+                    $params[$keys['type']]
+                ]);
         }
 
         if (isset($params[$keys['subtypes']])) {

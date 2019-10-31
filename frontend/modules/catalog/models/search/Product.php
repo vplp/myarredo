@@ -94,7 +94,11 @@ class Product extends ProductModel
         if (isset($params[$keys['type']])) {
             $query
                 ->innerJoinWith(["types"])
-                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    $params[$keys['type']]
+                ]);
         }
 
         if (isset($params[$keys['subtypes']])) {
@@ -210,7 +214,11 @@ class Product extends ProductModel
         if (isset($params[$keys['types']])) {
             $query
                 ->innerJoinWith(["types"])
-                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['types']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    $params[$keys['types']]
+                ]);
         }
 
         if (isset($params[$keys['subtypes']])) {
@@ -288,7 +296,11 @@ class Product extends ProductModel
         if (isset($params[$keys['type']])) {
             $query
                 ->innerJoinWith(["types"])
-                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    $params[$keys['type']]
+                ]);
         }
 
         if (isset($params[$keys['subtypes']])) {
@@ -348,7 +360,11 @@ class Product extends ProductModel
         if (isset($params[$keys['type']])) {
             $query
                 ->innerJoinWith(["types"])
-                ->andFilterWhere(['IN', Types::tableName() . '.alias', $params[$keys['type']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    $params[$keys['type']]
+                ]);
         }
 
         if (isset($params[$keys['subtypes']])) {

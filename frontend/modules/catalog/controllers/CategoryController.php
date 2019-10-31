@@ -140,7 +140,7 @@ class CategoryController extends BaseController
 
             $types = ArrayHelper::map(
                 Types::getWithProduct($params),
-                'alias',
+                Yii::$app->city->domain != 'com' ? 'alias' : 'alias2',
                 'lang.title'
             );
 
@@ -165,9 +165,10 @@ class CategoryController extends BaseController
             $category = ArrayHelper::map(
                 Category::findBase()
                     ->innerJoinWith(["types"])
-                    ->andFilterWhere([Types::tableName() . '.alias' => Yii::$app->getRequest()->post('type_alias')])
+                    ->andFilterWhere([
+                        Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2' => Yii::$app->getRequest()->post('type_alias')])
                     ->all(),
-                'alias',
+                (Yii::$app->city->domain != 'com' ? 'alias' : 'alias2'),
                 'lang.title'
             );
 

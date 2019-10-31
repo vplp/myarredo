@@ -204,6 +204,7 @@ class Types extends \common\modules\catalog\models\Types
                 ->select([
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
+                    self::tableName() . '.alias2',
                     TypesLang::tableName() . '.title',
                     'count(' . self::tableName() . '.id) as count'
                 ])
@@ -288,6 +289,7 @@ class Types extends \common\modules\catalog\models\Types
             ->select([
                 self::tableName() . '.id',
                 self::tableName() . '.alias',
+                self::tableName() . '.alias2',
                 TypesLang::tableName() . '.title',
                 'count(' . self::tableName() . '.id) as count'
             ])
@@ -356,6 +358,7 @@ class Types extends \common\modules\catalog\models\Types
             ->select([
                 self::tableName() . '.id',
                 self::tableName() . '.alias',
+                self::tableName() . '.alias2',
                 TypesLang::tableName() . '.title',
                 'count(' . self::tableName() . '.id) as count'
             ])
