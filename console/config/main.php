@@ -115,6 +115,14 @@ return ArrayHelper::merge(
                                 'changefreq' => 'daily',
                                 'priority' => 0.8
                             ];
+                        },
+                        'dataClosureCom' => function ($model) {
+                            return [
+                                'loc' => '/catalog/' . $model['alias2'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.8
+                            ];
                         }
                     ],
                     [
@@ -122,6 +130,14 @@ return ArrayHelper::merge(
                         'dataClosure' => function ($model) {
                             return [
                                 'loc' => '/catalog/c--' . $model['alias'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.8
+                            ];
+                        },
+                        'dataClosureCom' => function ($model) {
+                            return [
+                                'loc' => '/catalog/c--' . $model['alias2'] . '/',
                                 'lastmod' => date('c', $model['updated_at']),
                                 'changefreq' => 'daily',
                                 'priority' => 0.8
@@ -184,6 +200,14 @@ return ArrayHelper::merge(
                                 'changefreq' => 'daily',
                                 'priority' => 0.8
                             ];
+                        },
+                        'dataClosureCom' => function ($model) {
+                            return [
+                                'loc' => '/sale/' . $model['alias2'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.8
+                            ];
                         }
                     ],
                     [
@@ -191,6 +215,14 @@ return ArrayHelper::merge(
                         'dataClosure' => function ($model) {
                             return [
                                 'loc' => '/sale/c--' . $model['alias'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.8
+                            ];
+                        },
+                        'dataClosureCom' => function ($model) {
+                            return [
+                                'loc' => '/sale/c--' . $model['alias2'] . '/',
                                 'lastmod' => date('c', $model['updated_at']),
                                 'changefreq' => 'daily',
                                 'priority' => 0.8
@@ -222,6 +254,14 @@ return ArrayHelper::merge(
                                 'changefreq' => 'daily',
                                 'priority' => 0.8
                             ];
+                        },
+                        'dataClosureCom' => function ($model) {
+                            return [
+                                'loc' => '/sale-italy/' . $model['alias2'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.8
+                            ];
                         }
                     ],
                     [
@@ -229,6 +269,14 @@ return ArrayHelper::merge(
                         'dataClosure' => function ($model) {
                             return [
                                 'loc' => '/sale-italy/c--' . $model['alias'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.8
+                            ];
+                        },
+                        'dataClosureCom' => function ($model) {
+                            return [
+                                'loc' => '/sale-italy/c--' . $model['alias2'] . '/',
                                 'lastmod' => date('c', $model['updated_at']),
                                 'changefreq' => 'daily',
                                 'priority' => 0.8

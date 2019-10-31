@@ -58,17 +58,28 @@ class SitemapItalianProductController extends Controller
                         ItalianProduct::tableName() . '.deleted' => '0',
                     ])
                     ->groupBy($model::tableName() . '.id');
+
+                $query->select([
+                    $model::tableName() . '.id',
+                    $model::tableName() . '.alias',
+                    $model::tableName() . '.alias2',
+                    $model::tableName() . '.updated_at',
+                ]);
+            } else {
+                $query->select([
+                    $model::tableName() . '.id',
+                    $model::tableName() . '.alias',
+                    $model::tableName() . '.updated_at',
+                ]);
             }
 
-            $query->select([
-                $model::tableName() . '.id',
-                $model::tableName() . '.alias',
-                $model::tableName() . '.updated_at',
-            ]);
-
             foreach ($query->batch(100) as $models) {
-                foreach ($models as $model) {
-                    $_urls[] = call_user_func($modelName['dataClosure'], $model);
+                foreach ($models as $item) {
+                    if ($language != 'ru-RU' && in_array($model::className(), [Types::className(), Category::className()])) {
+                        $_urls[] = call_user_func($modelName['dataClosureCom'], $item);
+                    } else {
+                        $_urls[] = call_user_func($modelName['dataClosure'], $item);
+                    }
                 }
             }
         }
