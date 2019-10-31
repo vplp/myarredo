@@ -180,7 +180,11 @@ class Country extends \common\modules\location\models\Country
         if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["sale.specification saleSpecification"], false)
-                ->andFilterWhere(['IN', 'saleSpecification.alias', $params[$keys['style']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'saleSpecification.alias' : 'saleSpecification.alias2',
+                    $params[$keys['style']]
+                ]);
         }
 
         if (isset($params[$keys['factory']])) {

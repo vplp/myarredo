@@ -140,7 +140,7 @@ $this->title = $this->context->title;
                                         if ($item['specification']['parent_id'] == 9) {
                                             $keys = Yii::$app->catalogFilter->keys;
                                             $params = Yii::$app->catalogFilter->params;
-                                            $params[$keys['style']] = $item['specification']['alias'];
+                                            $params[$keys['style']] = Yii::$app->city->domain != 'com' ? $item['specification']['alias'] : $item['specification']['alias2'];
 
                                             ($model['factory'])
                                                 ? $params[$keys['factory']] = $model['factory']['alias']

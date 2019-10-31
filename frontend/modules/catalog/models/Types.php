@@ -166,7 +166,11 @@ class Types extends \common\modules\catalog\models\Types
         if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["product.specification productSpecification"], false)
-                ->andFilterWhere(['IN', 'productSpecification.alias', $params[$keys['style']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'productSpecification.alias' : 'productSpecification.alias2',
+                    $params[$keys['style']]
+                ]);
         }
 
         if (isset($params[$keys['factory']])) {
@@ -251,7 +255,11 @@ class Types extends \common\modules\catalog\models\Types
         if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["sale.specification saleSpecification"], false)
-                ->andFilterWhere(['IN', 'saleSpecification.alias', $params[$keys['style']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'saleSpecification.alias' : 'saleSpecification.alias2',
+                    $params[$keys['style']]
+                ]);
         }
 
         if (isset($params[$keys['factory']])) {
@@ -333,7 +341,11 @@ class Types extends \common\modules\catalog\models\Types
         if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["italianProduct.specification italianProductSpecification"], false)
-                ->andFilterWhere(['IN', 'italianProductSpecification.alias', $params[$keys['style']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'italianProductSpecification.alias' : 'italianProductSpecification.alias2',
+                    $params[$keys['style']]
+                ]);
         }
 
         if (isset($params[$keys['factory']])) {

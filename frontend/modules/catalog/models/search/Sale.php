@@ -110,7 +110,11 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["specification"])
-                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params[$keys['style']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Specification::tableName() . '.alias' : Specification::tableName() . '.alias2',
+                    $params[$keys['style']]
+                ]);
         }
 
         if (isset($params[$keys['factory']])) {
@@ -236,7 +240,11 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["specification"])
-                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params[$keys['style']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Specification::tableName() . '.alias' : Specification::tableName() . '.alias2',
+                    $params[$keys['style']]
+                ]);
         }
 
         if (isset($params[$keys['factory']])) {
@@ -308,7 +316,11 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         if (isset($params[$keys['style']])) {
             $query
                 ->innerJoinWith(["specification"])
-                ->andFilterWhere(['IN', Specification::tableName() . '.alias', $params[$keys['style']]]);
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Specification::tableName() . '.alias' : Specification::tableName() . '.alias2',
+                    $params[$keys['style']]
+                ]);
         }
 
         if (isset($params[$keys['factory']])) {

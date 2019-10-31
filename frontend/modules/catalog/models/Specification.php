@@ -223,6 +223,7 @@ class Specification extends \common\modules\catalog\models\Specification
                 ->select([
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
+                    self::tableName() . '.alias2',
                     self::tableName() . '.position',
                     SpecificationLang::tableName() . '.title',
                     'count(' . self::tableName() . '.id) as count'
@@ -314,6 +315,7 @@ class Specification extends \common\modules\catalog\models\Specification
             ->select([
                 self::tableName() . '.id',
                 self::tableName() . '.alias',
+                self::tableName() . '.alias2',
                 SpecificationLang::tableName() . '.title',
                 'count(' . self::tableName() . '.id) as count'
             ])
@@ -388,6 +390,7 @@ class Specification extends \common\modules\catalog\models\Specification
             ->select([
                 self::tableName() . '.id',
                 self::tableName() . '.alias',
+                self::tableName() . '.alias2',
                 SpecificationLang::tableName() . '.title',
                 'count(' . self::tableName() . '.id) as count'
             ])

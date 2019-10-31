@@ -179,14 +179,18 @@ class ProductFilter extends Widget
         foreach ($this->style as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
+            $alias = Yii::$app->city->domain != 'com'
+                ? $obj['alias']
+                : $obj['alias2'];
+
             if (!empty($params[$keys['style']]) &&
-                in_array($obj['alias'], $params[$keys['style']])
+                in_array($alias, $params[$keys['style']])
             ) {
                 $checked = 1;
-                $params[$keys['style']] = array_diff($params[$keys['style']], [$obj['alias']]);
+                $params[$keys['style']] = array_diff($params[$keys['style']], [$alias]);
             } else {
                 $checked = 0;
-                $params[$keys['style']][] = $obj['alias'];
+                $params[$keys['style']][] = $alias;
             }
 
             // sort value
@@ -200,7 +204,7 @@ class ProductFilter extends Widget
                 'link' => $link,
                 'title' => $obj['lang']['title'],
                 'count' => $obj['count'],
-                'alias' => $obj['alias'],
+                'alias' => $alias,
             );
         }
 

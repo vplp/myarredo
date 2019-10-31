@@ -324,7 +324,11 @@ class CatalogFilter extends Component
 
         if (!empty(self::$_structure['style'])) {
             $model = Specification::findBase()
-                ->andFilterWhere(['IN', 'alias', self::$_structure['style']])
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'alias' : 'alias2',
+                    self::$_structure['style']
+                ])
                 ->indexBy('id')
                 ->all();
 
@@ -335,7 +339,7 @@ class CatalogFilter extends Component
             // sort value
 
             foreach ($model as $obj) {
-                self::$_parameters[self::$keys['style']][] = $obj['alias'];
+                self::$_parameters[self::$keys['style']][] = Yii::$app->city->domain != 'com' ? $obj['alias'] : $obj['alias2'];
             }
 
             // check value
