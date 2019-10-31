@@ -27,16 +27,19 @@ $this->title = $this->context->title;
                 <div class="manager-history-header">
                     <ul class="orders-title-block flex">
                         <li class="order-id">
-                            <span>order_id</span>
+                            <span><?= Yii::t('app', 'Order id') ?></span>
                         </li>
                         <li>
-                            <span>answer</span>
+                            <span><?= Yii::t('app', 'City') ?></span>
                         </li>
                         <li>
-                            <span>products</span>
+                            <span><?= Yii::t('app', 'Answer') ?></span>
                         </li>
                         <li>
-                            <span>answer_time</span>
+                            <span><?= Yii::t('app', 'Products') ?></span>
+                        </li>
+                        <li>
+                            <span><?= Yii::t('app', 'Answer time') ?></span>
                         </li>
                     </ul>
                 </div>
@@ -49,22 +52,33 @@ $this->title = $this->context->title;
                                     <span><?= $model->order_id ?></span>
                                 </li>
                                 <li>
+                                    <span><?= $model->order->city->lang->title ?></span>
+                                </li>
+                                <li>
                                     <span><?= $model->answer ?></span>
                                 </li>
                                 <li>
-                                    <span>
+                                    <table>
                                         <?php
                                         $result = [];
                                         foreach ($model->order->items as $item) {
-                                            $result[] = Html::a(
-                                                $item->product->lang->title,
-                                                $item->product::getUrl($item->product->alias),
-                                                ['target' => '_blank']
+                                            echo Html::tag(
+                                                'tr',
+                                                Html::tag(
+                                                    'td',
+                                                    Html::a(
+                                                        $item->product->lang->title,
+                                                        $item->product::getUrl($item->product->alias),
+                                                        ['target' => '_blank']
+                                                    )
+                                                ) . Html::tag(
+                                                    'td',
+                                                    $item->price
+                                                )
                                             );
                                         }
-                                        echo implode('<br>', $result);
                                         ?>
-                                    </span>
+                                    </table>
                                 </li>
                                 <li>
                                     <span><?= date('d-m-Y', $model->answer_time) ?></span>
