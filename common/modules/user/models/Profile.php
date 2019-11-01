@@ -37,6 +37,7 @@ use common\modules\catalog\models\Factory;
  * @property string $image_link
  * @property integer $mark
  * @property string $language_editing
+ * @property boolean $answers_per_month
  *
  * @property Country $country
  * @property City $city
@@ -101,6 +102,7 @@ class Profile extends \thread\modules\user\models\Profile
                     'pdf_access',
                     'show_contacts',
                     'show_contacts_on_sale',
+                    'answers_per_month',
                     'mark'
                 ],
                 'in',
@@ -202,6 +204,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'image_link',
                 'mark',
                 'language_editing',
+                'answers_per_month'
             ]
         ]);
     }
@@ -234,6 +237,7 @@ class Profile extends \thread\modules\user\models\Profile
             'image_link' => Yii::t('app', 'Image link'),
             'mark',
             'language_editing',
+            'answers_per_month' => Yii::t('app', '{amount} Answers per month', ['amount' => 3])
         ]);
     }
 
@@ -251,6 +255,7 @@ class Profile extends \thread\modules\user\models\Profile
 
         return parent::beforeSave($insert);
     }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -401,11 +406,17 @@ class Profile extends \thread\modules\user\models\Profile
      */
     public function getPossibilityToSaveAnswer($city_id = 0)
     {
+        //answers_per_month
         if (in_array(Yii::$app->user->identity->group->role, ['partner']) &&
+            Yii::$app->user->identity->profile->answers_per_month) {
+            return false;
+        }
+        
+        if (in_array(Yii::$app->user->identity->group->role, ['logistician'])) {
+            return true;
+        } elseif (in_array(Yii::$app->user->identity->group->role, ['partner']) &&
             Yii::$app->user->identity->profile->country_id &&
             Yii::$app->user->identity->profile->country_id == 4) {
-            return true;
-        } elseif (in_array(Yii::$app->user->identity->group->role, ['logistician'])) {
             return true;
         }
 
