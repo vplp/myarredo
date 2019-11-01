@@ -39,15 +39,15 @@ use frontend\modules\catalog\models\{
                     $keys = Yii::$app->catalogFilter->keys;
                     $params = Yii::$app->catalogFilter->params;
 
-                    $params[$keys['category']] = $model['alias'];
+                    $params[$keys['category']] = Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'];
 
                     $types = Types::getWithProduct($params);
 
                     foreach ($types as $item) {
                         $params = Yii::$app->catalogFilter->params;
 
-                        $params[$keys['category']] = $model['alias'];
-                        $params[$keys['type']][] = $item['alias'];
+                        $params[$keys['category']] = Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'];
+                        $params[$keys['type']][] = Yii::$app->city->domain != 'com' ? $item['alias'] : $item['alias2'];
                         $link = Yii::$app->catalogFilter->createUrl($params, ['/catalog/category/list']);
 
                         echo '<li>' . Html::a($item['lang']['title'], $link) . '<span>' . $item['count'] . '</span></li>';
