@@ -10,6 +10,7 @@ use yii\data\ActiveDataProvider;
 use frontend\modules\user\models\{
     User as UserModel, Profile, ProfileLang
 };
+use frontend\modules\shop\models\OrderAnswer;
 
 /**
  * Class User
@@ -46,7 +47,7 @@ class User extends UserModel
      * @param array $params
      * @return ActiveDataProvider
      */
-    public function baseSearch($query, $params)
+    public function baseSearchOrderAnswerStats($query, $params)
     {
         $module = Yii::$app->getModule('user');
 
@@ -79,7 +80,17 @@ class User extends UserModel
             ]);
         }
 
-        $query->orderBy(ProfileLang::tableName() . '.name_company ASC');
+        $query->innerJoinWith(['orderAnswer orderAnswer'], false);
+
+        $query->select([
+            self::tableName() . '.id',
+            ProfileLang::tableName() . '.name_company',
+            'count(orderAnswer.user_id) as answerCount',
+        ]);
+
+        $query->groupBy('orderAnswer.user_id');
+
+        $query->orderBy('answerCount DESC');
 
         return $dataProvider;
     }
@@ -90,9 +101,9 @@ class User extends UserModel
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
-    public function search($params)
+    public function searchOrderAnswerStats($params)
     {
         $query = UserModel::findBase();
-        return $this->baseSearch($query, $params);
+        return $this->baseSearchOrderAnswerStats($query, $params);
     }
 }

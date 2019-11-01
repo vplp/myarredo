@@ -71,7 +71,7 @@ $this->title = $this->context->title;
                                     <span><?= isset($model->profile->city) ? $model->profile->city->lang->title : '' ?></span>
                                 </li>
                                 <li>
-                                    <span><?= $model->getOrderAnswerCount() ?></span>
+                                    <span><?= $model->answerCount; //$model->getOrderAnswerCount() ?></span>
                                 </li>
                                 <li>
                                     <span><?= $model->getOrderItemPriceTotalCost() ?></span>

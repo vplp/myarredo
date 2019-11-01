@@ -72,7 +72,7 @@ class OrderAnswerStatsController extends BaseController
             $params['city_id'] = 0;
         }
 
-        $models = $model->search($params);
+        $models = $model->searchOrderAnswerStats($params);
 
         $this->title = Yii::t('app', 'Answers statistics');
 

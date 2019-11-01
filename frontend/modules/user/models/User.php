@@ -9,6 +9,8 @@ namespace frontend\modules\user\models;
  */
 class User extends \common\modules\user\models\User
 {
+    public $answerCount;
+
     /**
      * findBase
      *
@@ -70,8 +72,8 @@ class User extends \common\modules\user\models\User
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
-    public function search($params)
+    public function searchOrderAnswerStats($params)
     {
-        return (new search\User())->search($params);
+        return (new search\User())->searchOrderAnswerStats($params);
     }
 }
