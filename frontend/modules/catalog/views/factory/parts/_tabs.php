@@ -85,7 +85,7 @@ $keys = Yii::$app->catalogFilter->keys;
                 $params = Yii::$app->catalogFilter->params;
 
                 $params[$keys['factory']][] = $model['alias'];
-                $params[$keys['type']][] = $item['alias'];
+                $params[$keys['type']][] = Yii::$app->city->domain != 'com' ?  $item['alias'] : $item['alias2'];
 
                 echo Html::beginTag('li') .
                     Html::a(

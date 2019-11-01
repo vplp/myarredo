@@ -109,7 +109,7 @@ $h1 .= Yii::$app->city->domain != 'com' ? Yii::t('app', 'в') . ' ' . Yii::$app-
                                     $params = Yii::$app->catalogFilter->params;
 
                                     $params[$keys['factory']][] = $model['alias'];
-                                    $params[$keys['category']][] = $item['alias'];
+                                    $params[$keys['category']][] = Yii::$app->city->domain != 'com' ? $item['alias'] : $item['alias2'];
 
                                     ?>
                                     <li>
