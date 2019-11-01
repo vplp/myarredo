@@ -367,7 +367,7 @@ class CategoryController extends BaseController
             $noIndex = 1;
         }
 
-        if (count($params) > 3) {
+        if (count($params) >= 3) {
             $noIndex = 1;
         }
 
