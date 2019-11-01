@@ -566,6 +566,7 @@ class CategoryController extends BaseController
 
             $pageTitle[] = $model['lang']['title'];
             $pageH1[] = $model['lang']['title'];
+            $pageDescription[] = $model['lang']['title'];
         }
 
         /**
