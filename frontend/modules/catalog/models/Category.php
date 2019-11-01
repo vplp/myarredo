@@ -83,14 +83,22 @@ class Category extends \common\modules\catalog\models\Category
     public static function findByAlias($alias)
     {
         $result = self::getDb()->cache(function ($db) use ($alias) {
-            return self::findBase()
-                //->byAlias($alias)
-                ->andWhere(
-                    Yii::$app->city->domain != 'com'
-                        ? [self::tableName() . '.alias' => $alias]
-                        : [self::tableName() . '.alias2' => $alias]
-                )
-                ->one();
+            if (is_array($alias)) {
+                return self::findBase()
+                    ->andWhere([
+                        'IN',
+                        Yii::$app->city->domain != 'com' ? self::tableName() . '.alias' : self::tableName() . '.alias2',
+                        $alias
+                    ])
+                    ->all();
+            } else {
+                return self::findBase()
+                    ->andWhere(
+                        Yii::$app->city->domain != 'com' ? self::tableName() . '.alias = :alias' : self::tableName() . '.alias2 = :alias',
+                        [':alias' => $alias]
+                    )
+                    ->one();
+            }
         });
 
         return $result;

@@ -106,9 +106,20 @@ class Specification extends \common\modules\catalog\models\Specification
     {
         $result = self::getDb()->cache(function ($db) use ($alias) {
             if (is_array($alias)) {
-                return self::findBase()->byAlias($alias)->all();
+                return self::findBase()
+                    ->andWhere([
+                        'IN',
+                        Yii::$app->city->domain != 'com' ? self::tableName() . '.alias' : self::tableName() . '.alias2',
+                        $alias
+                    ])
+                    ->all();
             } else {
-                return self::findBase()->byAlias($alias)->one();
+                return self::findBase()
+                    ->andWhere(
+                        Yii::$app->city->domain != 'com' ? self::tableName() . '.alias = :alias' : self::tableName() . '.alias2 = :alias',
+                        [':alias' => $alias]
+                    )
+                    ->one();
             }
         });
 
