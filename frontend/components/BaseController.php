@@ -92,28 +92,32 @@ abstract class BaseController extends Controller
      */
     protected function getAlternateHreflang()
     {
-        $languages = Language::getAllByLocate();
-        $current_url = Yii::$app->request->url;
+        if (Yii::$app->city->domain == 'com') {
+            $languages = Language::getAllByLocate();
+            $current_url = Yii::$app->request->url;
 
-        foreach ($languages as $alternate) {
-            $alternatePages[$alternate['local']] = [
-                'href' => Yii::$app->request->hostInfo .
-                    ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') .
-                    str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
-                'lang' => substr($alternate['local'], 0, 2),
-                'current' => (Yii::$app->language == $alternate['local']) ? true : false
-            ];
-        }
-
-        if (!empty($alternatePages)) {
-            foreach ($alternatePages as $page) {
-                Yii::$app->view->registerLinkTag([
-                    'rel' => 'alternate',
-                    'href' => $page['href'],
-                    'hreflang' => $page['lang']
-                ]);
+            foreach ($languages as $alternate) {
+                if (in_array($alternate['alias'], ['it', 'en'])) {
+                    $alternatePages[$alternate['local']] = [
+                        'href' => Yii::$app->request->hostInfo .
+                            ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') .
+                            str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
+                        'lang' => substr($alternate['local'], 0, 2),
+                        'current' => (Yii::$app->language == $alternate['local']) ? true : false
+                    ];
+                }
             }
-            unset($alternatePages);
+
+            if (!empty($alternatePages)) {
+                foreach ($alternatePages as $page) {
+                    Yii::$app->view->registerLinkTag([
+                        'rel' => 'alternate',
+                        'href' => $page['href'],
+                        'hreflang' => $page['lang']
+                    ]);
+                }
+                unset($alternatePages);
+            }
         }
     }
 
