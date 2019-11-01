@@ -315,8 +315,13 @@ class SaleItalyController extends BaseController
             ];
         }
 
-        if (count($params) > 3) {
-            $noIndexFollow = 1;
+        $countParams = 0;
+        foreach ($params as $arr) {
+            $countParams += count($arr);
+        }
+
+        if ($countParams > 3) {
+            $noIndex = 1;
         }
 
         /**

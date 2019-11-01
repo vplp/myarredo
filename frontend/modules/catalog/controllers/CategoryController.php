@@ -367,7 +367,12 @@ class CategoryController extends BaseController
             $noIndex = 1;
         }
 
-        if (count($params) >= 3) {
+        $countParams = 0;
+        foreach ($params as $arr) {
+            $countParams += count($arr);
+        }
+
+        if ($countParams > 3) {
             $noIndex = 1;
         }
 
@@ -601,7 +606,12 @@ class CategoryController extends BaseController
             $noIndex = 1;
         }
 
-        if (count($params) > 3) {
+        $countParams = 0;
+        foreach ($params as $arr) {
+            $countParams += count($arr);
+        }
+
+        if ($countParams > 3) {
             $noIndex = 1;
         }
 
