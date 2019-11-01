@@ -74,10 +74,6 @@ class UserMenu extends Widget
                     'url' => ['/shop/partner-order/list']
                 ],
                 [
-                    'label' => Yii::t('app', 'Orders italy'),
-                    'url' => ['/shop/partner-order/list-italy']
-                ],
-                [
                     'label' => Yii::t('app', 'Размещение кода'),
                     'url' => ['/page/page/view', 'alias' => 'razmeshchenie-koda']
                 ],

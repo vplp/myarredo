@@ -37,7 +37,6 @@ class PartnerOrderController extends BaseController
                         'allow' => true,
                         'actions' => [
                             'list',
-                            'list-italy',
                             'delivery-italian-orders',
                             'pjax-save'
                         ],
