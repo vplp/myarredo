@@ -66,7 +66,7 @@ $this->title = $this->context->title;
                             <div class="price-availability" itemprop="offers" itemscope
                                  itemtype="http://schema.org/Offer">
 
-                                <?php if (!$model['removed'] && $model['price_from'] > 0) { ?>
+                                <?php if (Yii::$app->city->isShowPrice() && !$model['removed'] && $model['price_from'] > 0) { ?>
                                     <div class="price-sticker">
                                         <?= Yii::t('app', 'Цена от') ?><span>&#126;</span>
                                         <span>

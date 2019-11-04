@@ -6,10 +6,12 @@ use thread\widgets\grid\{
     ActionCheckboxColumn, GridViewFilter
 };
 //
-use backend\modules\location\models\Country;
+use backend\modules\location\models\{
+    Country, City
+};
 
 /**
- * @var \backend\modules\location\models\City $model
+ * @var City $model
  */
 
 echo GridView::widget([
@@ -31,6 +33,11 @@ echo GridView::widget([
             'filter' => GridViewFilter::selectOne($filter, 'country_id', Country::dropDownList())
         ],
         'position',
+        [
+            'class' => ActionCheckboxColumn::class,
+            'attribute' => 'show_price',
+            'action' => 'show_price'
+        ],
         [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',

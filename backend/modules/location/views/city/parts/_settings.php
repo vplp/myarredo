@@ -1,11 +1,14 @@
 <?php
 
-use backend\modules\location\models\Country;
+use backend\widgets\forms\ActiveForm;
+use backend\modules\location\models\{
+    Country, City, CityLang
+};
 
 /**
- * @var $model \backend\modules\location\models\City
- * @var $modelLang \backend\modules\location\models\CityLang
- * @var $form \backend\widgets\forms\ActiveForm
+ * @var City $model
+ * @var CityLang $modelLang
+ * @var ActiveForm $form
  */
 
 ?>
@@ -21,5 +24,8 @@ use backend\modules\location\models\Country;
     </div>
     <div class="col-md-3">
         <?= $form->text_line($model, 'position') ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->switcher($model, 'show_price') ?>
     </div>
 </div>

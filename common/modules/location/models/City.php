@@ -22,6 +22,7 @@ use yii\helpers\ArrayHelper;
  * @property boolean $published
  * @property boolean $deleted
  * @property integer $position
+ * @property integer $show_price
  *
  * @package common\modules\location\models
  */
@@ -34,7 +35,8 @@ class City extends \thread\modules\location\models\City
     {
         $rules = [
             [['lat', 'lng'], 'double'],
-            [['geo_placename', 'geo_position', 'geo_region', 'icbm'], 'string', 'max' => 128]
+            [['geo_placename', 'geo_position', 'geo_region', 'icbm'], 'string', 'max' => 128],
+            [['show_price'], 'in', 'range' => array_keys(static::statusKeyRange())]
         ];
 
         return ArrayHelper::merge($rules, parent::rules());
@@ -46,8 +48,9 @@ class City extends \thread\modules\location\models\City
     public function scenarios()
     {
         $scenarios = [
+            'show_price' => ['show_price'],
             'backend' => [
-                'lat', 'lng', 'geo_placename', 'geo_position', 'geo_region', 'icbm'
+                'lat', 'lng', 'geo_placename', 'geo_position', 'geo_region', 'icbm', 'show_price'
             ]
         ];
 
@@ -63,9 +66,10 @@ class City extends \thread\modules\location\models\City
             'lat' => Yii::t('app', 'Latitude'),
             'lng' => Yii::t('app', 'Longitude'),
             'geo_placename' => 'geo.placename',
-            'geo_position'  => 'geo.position',
-            'geo_region'  => 'geo.region',
-            'icbm'  => 'ICBM',
+            'geo_position' => 'geo.position',
+            'geo_region' => 'geo.region',
+            'icbm' => 'ICBM',
+            'show_price' => Yii::t('app', 'Show price')
         ];
 
         return ArrayHelper::merge($attributeLabels, parent::attributeLabels());

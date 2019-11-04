@@ -6,7 +6,6 @@ use yii\helpers\ArrayHelper;
 //
 use thread\app\model\interfaces\BaseBackendModel;
 
-
 /**
  * Class City
  *

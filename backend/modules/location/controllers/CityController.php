@@ -13,6 +13,7 @@ use backend\modules\location\models\{
     search\City as filterCityModel
 };
 //
+use thread\actions\AttributeSwitch;
 use thread\actions\EditableAttributeSaveLang;
 use thread\app\base\controllers\BackendController;
 
@@ -68,7 +69,13 @@ class CityController extends BackendController
                     'class' => EditableAttributeSaveLang::class,
                     'modelClass' => $this->modelLang,
                     'attribute' => 'title',
-                ]
+                ],
+                'show_price' => [
+                    'class' => AttributeSwitch::class,
+                    'modelClass' => $this->model,
+                    'attribute' => 'show_price',
+                    'redirect' => $this->defaultAction,
+                ],
             ]
         );
     }

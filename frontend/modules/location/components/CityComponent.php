@@ -78,6 +78,14 @@ class CityComponent extends Component
     /**
      * @return string
      */
+    public function isShowPrice()
+    {
+        return $this->city['show_price'];
+    }
+
+    /**
+     * @return string
+     */
     public function getDomain()
     {
         return $this->domain;
@@ -141,7 +149,7 @@ class CityComponent extends Component
         $exp_host = explode('myarredo.', $_SERVER["HTTP_HOST"]);
 
         // set domain
-        $this->domain = (in_array($exp_host[1], ['ru', 'ua', 'by', 'com'])) ? $exp_host[1] : 'com';
+        $this->domain = (in_array($exp_host[1], ['ru', 'ua', 'by', 'com'])) ? $exp_host[1] : 'ru';
 
         $exp_host = explode('.', $_SERVER['HTTP_HOST']);
 
