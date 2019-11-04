@@ -53,9 +53,16 @@ class User extends \thread\modules\user\models\User
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOrderAnswerCount()
+    public function getOrderAnswerCountPerMonth()
     {
-        return $this->getOrderAnswer()->count();
+        $timestamp = time();
+        $date_from = mktime(0, 0, 0, date("m", $timestamp), 1, date("Y", $timestamp));
+        $date_to = mktime(23, 59, 0, date("m", $timestamp), date("t", $timestamp), date("Y", $timestamp));
+
+        return $this->getOrderAnswer()
+            ->andFilterWhere(['>=', 'answer_time', $date_from])
+            ->andFilterWhere(['<=', 'answer_time', $date_to])
+            ->count();
     }
 
     /**

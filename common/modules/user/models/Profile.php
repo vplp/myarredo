@@ -406,12 +406,15 @@ class Profile extends \thread\modules\user\models\Profile
      */
     public function getPossibilityToSaveAnswer($city_id = 0)
     {
-        //answers_per_month
+        /**
+         * Answers per month
+         */
         if (in_array(Yii::$app->user->identity->group->role, ['partner']) &&
-            Yii::$app->user->identity->profile->answers_per_month) {
+            Yii::$app->user->identity->profile->answers_per_month &&
+            Yii::$app->user->identity->getOrderAnswerCountPerMonth() >= 3) {
             return false;
         }
-        
+
         if (in_array(Yii::$app->user->identity->group->role, ['logistician'])) {
             return true;
         } elseif (in_array(Yii::$app->user->identity->group->role, ['partner']) &&
