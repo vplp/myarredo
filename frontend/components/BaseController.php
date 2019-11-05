@@ -92,32 +92,48 @@ abstract class BaseController extends Controller
      */
     protected function getAlternateHreflang()
     {
-        if (Yii::$app->city->domain == 'com') {
-            $languages = Language::getAllByLocate();
-            $current_url = Yii::$app->request->url;
+        $languages = Language::getAllByLocate();
+        $current_url = Yii::$app->request->url;
 
-            foreach ($languages as $alternate) {
-                if (in_array($alternate['alias'], ['it', 'en'])) {
-                    $alternatePages[$alternate['local']] = [
-                        'href' => Yii::$app->request->hostInfo .
-                            ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') .
-                            str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
-                        'lang' => substr($alternate['local'], 0, 2),
-                        'current' => (Yii::$app->language == $alternate['local']) ? true : false
-                    ];
-                }
+        foreach ($languages as $alternate) {
+            if (Yii::$app->city->domain == 'com' && in_array($alternate['alias'], ['it', 'en'])) {
+                $alternatePages[$alternate['local']] = [
+                    'href' => Yii::$app->request->hostInfo .
+                        ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') .
+                        str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
+                    'lang' => substr($alternate['local'], 0, 2),
+                    'current' => (Yii::$app->language == $alternate['local']) ? true : false
+                ];
             }
 
-            if (!empty($alternatePages)) {
-                foreach ($alternatePages as $page) {
-                    Yii::$app->view->registerLinkTag([
-                        'rel' => 'alternate',
-                        'href' => $page['href'],
-                        'hreflang' => $page['lang']
-                    ]);
-                }
-                unset($alternatePages);
+            if (Yii::$app->controller->id != 'category' && Yii::$app->city->getCityId() == 4 && in_array($alternate['alias'], ['it', 'en'])) {
+                $alternatePages[$alternate['local']] = [
+                    'href' => 'https://www.myarredo.com' .
+                        ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') .
+                        str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
+                    'lang' => substr($alternate['local'], 0, 2),
+                    'current' => (Yii::$app->language == $alternate['local']) ? true : false
+                ];
+            } elseif (Yii::$app->controller->id != 'category' && Yii::$app->city->getCityId() == 4 && in_array($alternate['alias'], ['ru'])) {
+                $alternatePages[$alternate['local']] = [
+                    'href' => 'https://www.myarredo.ru' .
+                        ($alternate['alias'] != 'ru' ? '/' . $alternate['alias'] : '') .
+                        str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
+                    'lang' => substr($alternate['local'], 0, 2),
+                    'current' => (Yii::$app->language == $alternate['local']) ? true : false
+                ];
             }
+        }
+
+        if (!empty($alternatePages)) {
+            foreach ($alternatePages as $page) {
+                Yii::$app->view->registerLinkTag([
+                    'rel' => 'alternate',
+                    'href' => $page['href'],
+                    'hreflang' => $page['lang']
+                ]);
+            }
+            unset($alternatePages);
         }
     }
 
