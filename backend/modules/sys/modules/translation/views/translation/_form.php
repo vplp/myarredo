@@ -1,17 +1,23 @@
 <?php
 
 use backend\app\bootstrap\ActiveForm;
+use backend\modules\sys\modules\translation\models\{
+    Source, Message
+};
 
-/** @var  \common\modules\sys\modules\translation\models\Source $model */
-/** @var  \common\modules\sys\modules\translation\models\Message $modelLang */
-?>
-<?php $form = ActiveForm::begin(); ?>
+/** @var $model Source */
+/** @var $modelLang Message */
 
-<?= $form->submit($model, $this) ?>
+$form = ActiveForm::begin();
 
-<?= $form->field($model, 'key')->textInput(['disabled' => true]) ?>
-<?= $form->text_line_lang($modelLang, 'translation') ?>
-<?= $form->switcher($model, 'published') ?>
+echo $form->submit($model, $this);
 
-<?= $form->submit($model, $this) ?>
-<?php ActiveForm::end();
+echo $form->text_line($model, 'key');
+
+echo $form->text_line_lang($modelLang, 'translation');
+
+echo $form->switcher($model, 'published');
+
+echo $form->submit($model, $this);
+
+ActiveForm::end();

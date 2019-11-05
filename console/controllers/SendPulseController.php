@@ -192,11 +192,16 @@ class SendPulseController extends Controller
                 $bookId = '88910536';
             }
 
+            $currentLanguage = Yii::$app->language;
+            Yii::$app->language = $modelOrder->lang;
+
             $senderName = 'myarredo';
             $senderEmail = 'info@myarredo.ru';
-            $subject = 'Новая заявка №' . $modelOrder['id'];
+            $subject = Yii::t('app', 'Новая заявка') . '№' . $modelOrder['id'];
             $body = $this->renderPartial('letter_new_order', ['order' => $modelOrder]);
-            $name = 'Новая заявка №' . $modelOrder['id'];
+            $name = Yii::t('app', 'Новая заявка') . '№' . $modelOrder['id'];
+
+            Yii::$app->language = $currentLanguage;
 
             /**
              * send partner campaign
@@ -249,12 +254,17 @@ class SendPulseController extends Controller
             ->one();
 
         if ($modelOrder !== null) {
+            $currentLanguage = Yii::$app->language;
+            Yii::$app->language = $modelOrder->lang;
+
             $bookId = 2289833;
             $senderName = 'myarredo';
             $senderEmail = 'info@myarredo.ru';
-            $subject = 'Новая заявка №' . $modelOrder['id'];
+            $subject = Yii::t('app', 'Новая заявка') . '№' . $modelOrder['id'];
             $body = $this->renderPartial('letter_new_order_sale_italy', ['order' => $modelOrder]);
-            $name = 'Новая заявка №' . $modelOrder['id'];
+            $name = Yii::t('app', 'Новая заявка') . '№' . $modelOrder['id'];
+
+            Yii::$app->language = $currentLanguage;
 
             /**
              * send partner campaign
@@ -294,11 +304,11 @@ class SendPulseController extends Controller
      */
     private function sendNewRequestForFactory($modelOrder)
     {
+        $currentLanguage = Yii::$app->language;
+        Yii::$app->language = $modelOrder->lang;
+
         foreach ($modelOrder->items as $item) {
-            if ($item->product['factory_id'] &&
-                $item->product['factory'] &&
-                $item->product['factory']['email'] != ''
-            ) {
+            if ($item->product['factory_id'] && $item->product['factory'] && $item->product['factory']['email'] != '') {
                 // use factory email
                 $senderEmail = $item->product['factory']['email'];
 
@@ -314,9 +324,8 @@ class SendPulseController extends Controller
                         ]
                     )
                     ->setTo($senderEmail)
-                    ->setSubject('Новый запрос на товар')
+                    ->setSubject(Yii::t('app', 'Новый запрос на товар'))
                     ->send();
-
             }
 
             if ($item->product['factory_id']) {
@@ -343,10 +352,12 @@ class SendPulseController extends Controller
                             ]
                         )
                         ->setTo($senderEmail)
-                        ->setSubject('Новый запрос на товар')
+                        ->setSubject(Yii::t('app', 'Новый запрос на товар'))
                         ->send();
                 }
             }
         }
+
+        Yii::$app->language = $currentLanguage;
     }
 }

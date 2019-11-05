@@ -1,24 +1,30 @@
 <?php
 
 use backend\app\bootstrap\ActiveForm;
-//
-use backend\modules\sys\modules\configs\models\Group;
+use backend\modules\sys\modules\configs\models\{
+    Group, Params, ParamsLang
+};
 
 /**
- * @var $model \backend\modules\sys\modules\configs\models\Params
- * @var $modelLang \backend\modules\sys\modules\configs\models\ParamsLang
+ * @var $model Params
+ * @var $modelLang ParamsLang
  */
-?>
 
-<?php $form = ActiveForm::begin(); ?>
+$form = ActiveForm::begin();
 
-<?= $form->submit($model, $this) ?>
+echo $form->submit($model, $this);
 
-<?= $form->field($model, 'group_id')->dropDownList(Group::dropDownList(), ['promt' => '---' . Yii::t('app', 'Choose group') . '---']) ?>
-<?= $form->text_line_lang($modelLang, 'title') ?>
-<?= $form->text_line($model, 'alias') ?>
-<?= $form->text_editor($modelLang, 'content') ?>
+echo $form
+    ->field($model, 'group_id')
+    ->dropDownList(
+        Group::dropDownList(),
+        ['promt' => '---' . Yii::t('app', 'Choose group') . '---']
+    );
 
-<?= $form->submit($model, $this) ?>
+echo $form->text_line_lang($modelLang, 'title');
+echo $form->text_line($model, 'alias');
+echo $form->text_editor($modelLang, 'content');
 
-<?php ActiveForm::end(); ?>
+echo $form->submit($model, $this);
+
+ActiveForm::end();
