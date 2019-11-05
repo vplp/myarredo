@@ -34,7 +34,7 @@ if (in_array($order->lang, ['ru-RU'])) {
 
             <?php if (in_array($order->lang, ['ru-RU'])) { ?>
                 <span style="display:block;">
-                    <?= Yii::t('app', 'Клиент из г.') .  $order->city->lang->title ?>
+                    <?= Yii::t('app', 'Клиент из г.') . $order->city->lang->title ?>
                 </span>
             <?php } ?>
         </p>
@@ -76,7 +76,9 @@ if (in_array($order->lang, ['ru-RU'])) {
 
     </div>
     <div style="background-color:#c4c0b8; padding:15px 60px;">
-        <span style="display: block; color: #000; font-style: italic; padding-bottom: 10px;">Телефон для связи с администрацией проекта</span>
+        <span style="display: block; color: #000; font-style: italic; padding-bottom: 10px;">
+            <?= Yii::t('app', 'Телефон для связи с администрацией проекта') ?>
+        </span>
         <span style="text-align: left; color: #0077ca; border-bottom: 1px dotted #0077ca;"><?= $phone ?></span>
     </div>
 </div>
