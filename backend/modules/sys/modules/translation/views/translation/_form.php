@@ -12,6 +12,8 @@ $form = ActiveForm::begin();
 
 echo $form->submit($model, $this);
 
+echo $form->text_line($model, 'category');
+
 echo $form->text_line($model, 'key');
 
 echo $form->text_line_lang($modelLang, 'translation');
