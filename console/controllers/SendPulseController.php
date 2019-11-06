@@ -197,9 +197,9 @@ class SendPulseController extends Controller
 
             $senderName = 'myarredo';
             $senderEmail = 'info@myarredo.ru';
-            $subject = Yii::t('app', 'Новая заявка') . '№' . $modelOrder['id'];
+            $subject = Yii::t('app', 'Новая заявка') . ' №' . $modelOrder['id'];
             $body = $this->renderPartial('letter_new_order', ['order' => $modelOrder]);
-            $name = Yii::t('app', 'Новая заявка') . '№' . $modelOrder['id'];
+            $name = Yii::t('app', 'Новая заявка') . ' №' . $modelOrder['id'];
 
             Yii::$app->language = $currentLanguage;
 
@@ -260,9 +260,9 @@ class SendPulseController extends Controller
             $bookId = 2289833;
             $senderName = 'myarredo';
             $senderEmail = 'info@myarredo.ru';
-            $subject = Yii::t('app', 'Новая заявка') . '№' . $modelOrder['id'];
+            $subject = Yii::t('app', 'Новая заявка') . ' №' . $modelOrder['id'];
             $body = $this->renderPartial('letter_new_order_sale_italy', ['order' => $modelOrder]);
-            $name = Yii::t('app', 'Новая заявка') . '№' . $modelOrder['id'];
+            $name = Yii::t('app', 'Новая заявка') . ' №' . $modelOrder['id'];
 
             Yii::$app->language = $currentLanguage;
 
