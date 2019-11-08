@@ -49,6 +49,26 @@ $bundle = AppAsset::register($this);
                                         <?= isset($mainPartner->profile->city) ? $mainPartner->profile->city->lang->title . '<br>' : '' ?>
                                         <?= $mainPartner->profile->lang->address ?>
                                     </div>
+
+                                    <?php if ($mainPartner->profile->phone2 || $mainPartner->profile->lang->address2) { ?>
+                                        <div class="ico">
+                                            <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
+                                        </div>
+
+                                        <?= Html::a(
+                                            $mainPartner->profile->phone2,
+                                            'tel:' . $mainPartner->profile->phone2,
+                                            []
+                                        ) ?>
+
+                                        <div class="ico">
+                                            <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
+                                        </div>
+                                        <div class="adres">
+                                            <?= isset($mainPartner->profile->city) ? $mainPartner->profile->city->lang->title . '<br>' : '' ?>
+                                            <?= $mainPartner->profile->lang->address2 ?>
+                                        </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                         <?php } ?>
