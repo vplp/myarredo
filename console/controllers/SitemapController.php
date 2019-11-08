@@ -8,6 +8,7 @@ use yii\console\Controller;
 //
 use frontend\modules\location\models\City;
 use frontend\modules\catalog\models\{Category, Product, Types, Factory};
+use frontend\modules\seo\modules\directlink\models\Directlink;
 use console\models\{
     Sale
 };
@@ -229,6 +230,25 @@ class SitemapController extends Controller
                         Factory::tableName() . '.deleted' => '0',
                     ])
                     ->groupBy($model::tableName() . '.id');
+
+                $query->select([
+                    $model::tableName() . '.id',
+                    $model::tableName() . '.alias',
+                    $model::tableName() . '.alias2',
+                    $model::tableName() . '.updated_at',
+                ]);
+            } elseif ($model::className() == Directlink::className()) {
+                $query->select([
+                    $model::tableName() . '.id',
+                    $model::tableName() . '.alias',
+                    $model::tableName() . '.updated_at',
+                ]);
+            } else {
+                $query->select([
+                    $model::tableName() . '.id',
+                    $model::tableName() . '.alias',
+                    $model::tableName() . '.updated_at',
+                ]);
             }
 
             foreach ($query->batch(100) as $models) {
