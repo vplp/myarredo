@@ -237,7 +237,7 @@ class SitemapController extends Controller
                     $model::tableName() . '.alias2',
                     $model::tableName() . '.updated_at',
                 ]);
-            } elseif ($model::className() == Directlink::className()) {
+            } elseif ($language == 'ru-RU' && $model::className() == Directlink::className()) {
                 $query->select([
                     $model::tableName() . '.id',
                     $model::tableName() . '.url',
