@@ -7,6 +7,7 @@ use frontend\modules\catalog\models\{
 use console\models\{
     Product, Factory, Sale, ItalianProduct
 };
+use frontend\modules\seo\modules\directlink\models\Directlink;
 
 $main = require(dirname(__DIR__, 2) . '/common/config/main.php');
 
@@ -145,8 +146,27 @@ return ArrayHelper::merge(
                         }
                     ],
                     [
+                        'class' => Directlink::class,
+                        'dataClosure' => function ($model) {
+                            return [
+                                'loc' => $model['url'],
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.8
+                            ];
+                        },
+                    ],
+                    [
                         'class' => Product::class,
                         'dataClosure' => function ($model) {
+                            return [
+                                'loc' => '/product/' . $model['alias'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.5
+                            ];
+                        },
+                        'dataClosureCom' => function ($model) {
                             return [
                                 'loc' => '/product/' . $model['alias'] . '/',
                                 'lastmod' => date('c', $model['updated_at']),
@@ -158,6 +178,14 @@ return ArrayHelper::merge(
                     [
                         'class' => Factory::class,
                         'dataClosure' => function ($model) {
+                            return [
+                                'loc' => '/factory/' . $model['alias'] . '/',
+                                'lastmod' => date('c', $model['updated_at']),
+                                'changefreq' => 'daily',
+                                'priority' => 0.5
+                            ];
+                        },
+                        'dataClosureCom' => function ($model) {
                             return [
                                 'loc' => '/factory/' . $model['alias'] . '/',
                                 'lastmod' => date('c', $model['updated_at']),

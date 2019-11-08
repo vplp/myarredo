@@ -229,26 +229,13 @@ class SitemapController extends Controller
                         Factory::tableName() . '.deleted' => '0',
                     ])
                     ->groupBy($model::tableName() . '.id');
-
-                $query->select([
-                    $model::tableName() . '.id',
-                    $model::tableName() . '.alias',
-                    $model::tableName() . '.alias2',
-                    $model::tableName() . '.updated_at',
-                ]);
-            } else {
-                $query->select([
-                    $model::tableName() . '.id',
-                    $model::tableName() . '.alias',
-                    $model::tableName() . '.updated_at',
-                ]);
             }
 
             foreach ($query->batch(100) as $models) {
                 foreach ($models as $item) {
-                    if ($language != 'ru-RU' && in_array($model::className(), [Types::className(), Category::className()])) {
+                    if ($language != 'ru-RU' && isset($modelName['dataClosureCom'])) {
                         $_urls[] = call_user_func($modelName['dataClosureCom'], $item);
-                    } else {
+                    } else if ($language == 'ru-RU' && isset($modelName['dataClosure'])) {
                         $_urls[] = call_user_func($modelName['dataClosure'], $item);
                     }
                 }
