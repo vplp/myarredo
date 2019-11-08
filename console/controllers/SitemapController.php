@@ -206,9 +206,9 @@ class SitemapController extends Controller
         $currentLanguage = Yii::$app->language;
         Yii::$app->language = $language;
 
-        $baseModels = ($language == 'ru-RU') ? $this->models['ru'] : $this->models['en'];
+        $languageModels = ($language == 'ru-RU') ? $this->models['ru'] : $this->models['en'];
 
-        foreach ($baseModels as $modelName) {
+        foreach ($languageModels as $modelName) {
             if (is_array($modelName)) {
                 $model = new $modelName['class']();
                 if (isset($modelName['behaviors'])) {

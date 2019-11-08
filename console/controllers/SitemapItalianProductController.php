@@ -39,7 +39,9 @@ class SitemapItalianProductController extends Controller
         $currentLanguage = Yii::$app->language;
         Yii::$app->language = $language;
 
-        foreach ($this->models as $modelName) {
+        $languageModels = ($language == 'ru-RU') ? $this->models['ru'] : $this->models['en'];
+
+        foreach ($languageModels as $modelName) {
             if (is_array($modelName)) {
                 $model = new $modelName['class']();
                 if (isset($modelName['behaviors'])) {
@@ -75,11 +77,7 @@ class SitemapItalianProductController extends Controller
 
             foreach ($query->batch(100) as $models) {
                 foreach ($models as $item) {
-                    if ($language != 'ru-RU' && in_array($model::className(), [Types::className(), Category::className()])) {
-                        $_urls[] = call_user_func($modelName['dataClosureCom'], $item);
-                    } else {
-                        $_urls[] = call_user_func($modelName['dataClosure'], $item);
-                    }
+                    $_urls[] = call_user_func($modelName['dataClosure'], $item);
                 }
             }
         }

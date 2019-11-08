@@ -235,108 +235,150 @@ return ArrayHelper::merge(
             'sitemap-sale' => [
                 'class' => \console\controllers\SitemapSaleController::class,
                 'models' => [
-                    [
-                        'class' => Category::class,
-                        'dataClosure' => function ($model) {
-                            return [
-                                'loc' => '/sale/' . $model['alias'] . '/',
-                                'lastmod' => date('c', $model['updated_at']),
-                                'changefreq' => 'daily',
-                                'priority' => 0.8
-                            ];
-                        },
-                        'dataClosureCom' => function ($model) {
-                            return [
-                                'loc' => '/sale/' . $model['alias2'] . '/',
-                                'lastmod' => date('c', $model['updated_at']),
-                                'changefreq' => 'daily',
-                                'priority' => 0.8
-                            ];
-                        }
+                    'ru' => [
+                        [
+                            'class' => Category::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => Types::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale/c--' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => Sale::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale-product/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            }
+                        ],
                     ],
-                    [
-                        'class' => Types::class,
-                        'dataClosure' => function ($model) {
-                            return [
-                                'loc' => '/sale/c--' . $model['alias'] . '/',
-                                'lastmod' => date('c', $model['updated_at']),
-                                'changefreq' => 'daily',
-                                'priority' => 0.8
-                            ];
-                        },
-                        'dataClosureCom' => function ($model) {
-                            return [
-                                'loc' => '/sale/c--' . $model['alias2'] . '/',
-                                'lastmod' => date('c', $model['updated_at']),
-                                'changefreq' => 'daily',
-                                'priority' => 0.8
-                            ];
-                        }
-                    ],
-                    [
-                        'class' => Sale::class,
-                        'dataClosure' => function ($model) {
-                            return [
-                                'loc' => '/sale-product/' . $model['alias'] . '/',
-                                'lastmod' => date('c', $model['updated_at']),
-                                'changefreq' => 'daily',
-                                'priority' => 0.5
-                            ];
-                        }
+                    'en' => [
+                        [
+                            'class' => Category::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale/' . $model['alias2'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
+                        ],
+                        [
+                            'class' => Types::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale/c--' . $model['alias2'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
+                        ],
+                        [
+                            'class' => Sale::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale-product/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            }
+                        ],
                     ],
                 ],
             ],
             'sitemap-italian-product' => [
                 'class' => \console\controllers\SitemapItalianProductController::class,
                 'models' => [
-                    [
-                        'class' => Category::class,
-                        'dataClosure' => function ($model) {
-                            return [
-                                'loc' => '/sale-italy/' . $model['alias'] . '/',
-                                'lastmod' => date('c', $model['updated_at']),
-                                'changefreq' => 'daily',
-                                'priority' => 0.8
-                            ];
-                        },
-                        'dataClosureCom' => function ($model) {
-                            return [
-                                'loc' => '/sale-italy/' . $model['alias2'] . '/',
-                                'lastmod' => date('c', $model['updated_at']),
-                                'changefreq' => 'daily',
-                                'priority' => 0.8
-                            ];
-                        }
+                    'ru' => [
+                        [
+                            'class' => Category::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale-italy/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => Types::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale-italy/c--' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            },
+                        ],
+                        [
+                            'class' => ItalianProduct::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale-italy-product/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            }
+                        ],
                     ],
-                    [
-                        'class' => Types::class,
-                        'dataClosure' => function ($model) {
-                            return [
-                                'loc' => '/sale-italy/c--' . $model['alias'] . '/',
-                                'lastmod' => date('c', $model['updated_at']),
-                                'changefreq' => 'daily',
-                                'priority' => 0.8
-                            ];
-                        },
-                        'dataClosureCom' => function ($model) {
-                            return [
-                                'loc' => '/sale-italy/c--' . $model['alias2'] . '/',
-                                'lastmod' => date('c', $model['updated_at']),
-                                'changefreq' => 'daily',
-                                'priority' => 0.8
-                            ];
-                        }
-                    ],
-                    [
-                        'class' => ItalianProduct::class,
-                        'dataClosure' => function ($model) {
-                            return [
-                                'loc' => '/sale-italy-product/' . $model['alias'] . '/',
-                                'lastmod' => date('c', $model['updated_at']),
-                                'changefreq' => 'daily',
-                                'priority' => 0.5
-                            ];
-                        }
+                    'en' => [
+                        [
+                            'class' => Category::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale-italy/' . $model['alias2'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
+                        ],
+                        [
+                            'class' => Types::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale-italy/c--' . $model['alias2'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.8
+                                ];
+                            }
+                        ],
+                        [
+                            'class' => ItalianProduct::class,
+                            'dataClosure' => function ($model) {
+                                return [
+                                    'loc' => '/sale-italy-product/' . $model['alias'] . '/',
+                                    'lastmod' => date('c', $model['updated_at']),
+                                    'changefreq' => 'daily',
+                                    'priority' => 0.5
+                                ];
+                            }
+                        ],
                     ],
                 ],
             ],
