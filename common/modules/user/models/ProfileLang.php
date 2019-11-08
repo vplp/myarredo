@@ -15,6 +15,7 @@ use thread\app\base\models\ActiveRecordLang;
  * @property integer $rid
  * @property string $lang
  * @property string $address
+ * @property string $address2
  * @property string $name_company
  * @property string $about_company
  *
@@ -46,9 +47,9 @@ class ProfileLang extends ActiveRecordLang
     {
         return ArrayHelper::merge(parent::rules(), [
             ['rid', 'exist', 'targetClass' => Profile::class, 'targetAttribute' => 'id'],
-            [['address', 'name_company'], 'string', 'max' => 255],
+            [['address', 'address2', 'name_company'], 'string', 'max' => 255],
             [['about_company'], 'string'],
-            [['address', 'name_company', 'about_company'], 'default', 'value' => ''],
+            [['address', 'address2', 'name_company', 'about_company'], 'default', 'value' => ''],
         ]);
     }
 
@@ -58,9 +59,9 @@ class ProfileLang extends ActiveRecordLang
     public function scenarios()
     {
         return [
-            'backend' => ['address', 'name_company', 'about_company'],
-            'basicCreate' => ['address', 'name_company', 'about_company'],
-            'ownEdit' => ['address', 'name_company', 'about_company'],
+            'backend' => ['address','address2', 'name_company', 'about_company'],
+            'basicCreate' => ['address','address2', 'name_company', 'about_company'],
+            'ownEdit' => ['address','address2', 'name_company', 'about_company'],
         ];
     }
 
@@ -71,6 +72,7 @@ class ProfileLang extends ActiveRecordLang
     {
         return [
             'address' => Yii::t('app', 'Address'),
+            'address2' => Yii::t('app', 'Адрес 2-го салона'),
             'name_company' => Yii::t('app', 'Название компании'),
             'about_company' => 'Описание о компании',
         ];

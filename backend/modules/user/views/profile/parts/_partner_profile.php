@@ -15,6 +15,8 @@ use backend\modules\user\models\{
 if (in_array($model['user']['group_id'], [4, 7])) {
     echo $form->text_line($model, 'additional_phone');
 
+    echo $form->text_line($model, 'phone');
+
     echo $form->text_line($modelLang, 'name_company');
 
     echo $form->text_line($model, 'website');
@@ -41,6 +43,7 @@ if (in_array($model['user']['group_id'], [4, 7])) {
 
     <?php
     echo $form->text_line($modelLang, 'address');
+    echo $form->text_line($modelLang, 'address2');
 
     echo $form
         ->field($model, 'city_ids')

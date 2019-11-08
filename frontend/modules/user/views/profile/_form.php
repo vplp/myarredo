@@ -51,6 +51,18 @@ $this->title = Yii::t('app', 'Profile');
                                 ]
                             ]) ?>
 
+                        <?php if (Yii::$app->user->identity->group->role == 'partner' && $model->partner_in_city) {
+                            echo $form->field($model, 'phone2')
+                                ->widget(\yii\widgets\MaskedInput::class, [
+                                    'mask' => $model->country_id
+                                        ? Yii::$app->city->getPhoneMask($model->country->alias)
+                                        : Yii::$app->city->getPhoneMask(),
+                                    'clientOptions' => [
+                                        'clearIncomplete' => true
+                                    ]
+                                ]);
+                        } ?>
+
                         <?= $form->field($model, 'preferred_language')
                             ->dropDownList(
                                 Language::dropDownList(),
@@ -102,6 +114,11 @@ $this->title = Yii::t('app', 'Profile');
                                     ['class' => 'selectpicker']
                                 ) ?>
                             <?= $form->field($modelLang, 'address') ?>
+
+                            <?php if ($model->partner_in_city) {
+                                echo $form->field($modelLang, 'address2');
+                            } ?>
+
                             <?= $form->field($model, 'website') ?>
                         </div>
 

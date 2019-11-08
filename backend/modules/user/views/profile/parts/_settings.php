@@ -1,9 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+//
+use backend\modules\user\models\Profile;
 
 /**
- * @var $model \backend\modules\user\models\Profile
+ * @var $model Profile
  */
 
 ?>
