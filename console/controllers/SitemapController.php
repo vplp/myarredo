@@ -206,7 +206,9 @@ class SitemapController extends Controller
         $currentLanguage = Yii::$app->language;
         Yii::$app->language = $language;
 
-        foreach ($this->models as $modelName) {
+        $baseModels = $language = 'ru-RU' ? $this->models['ru'] : $this->models['en'];
+
+        foreach ($baseModels as $modelName) {
             if (is_array($modelName)) {
                 $model = new $modelName['class']();
                 if (isset($modelName['behaviors'])) {
@@ -253,11 +255,7 @@ class SitemapController extends Controller
 
             foreach ($query->batch(100) as $models) {
                 foreach ($models as $item) {
-                    if ($language != 'ru-RU' && isset($modelName['dataClosureCom'])) {
-                        $_urls[] = call_user_func($modelName['dataClosureCom'], $item);
-                    } else if ($language == 'ru-RU' && isset($modelName['dataClosure'])) {
-                        $_urls[] = call_user_func($modelName['dataClosure'], $item);
-                    }
+                    $_urls[] = call_user_func($modelName['dataClosure'], $item);
                 }
             }
         }

@@ -78,7 +78,7 @@ class Directlink extends \thread\modules\seo\modules\directlink\models\Directlin
      */
     public static function findBase()
     {
-        return self::find()->innerJoinWith(['lang']);
+        return self::find()->joinWith(['lang']);
     }
 
     /**
