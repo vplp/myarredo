@@ -41,7 +41,6 @@ class FactoryController extends BaseController
 
     /**
      * @return string
-     * @throws NotFoundHttpException
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
@@ -56,8 +55,6 @@ class FactoryController extends BaseController
 
         $models = $model->search(ArrayHelper::merge($params, Yii::$app->request->queryParams));
 
-        $view = Yii::$app->request->get('view');
-
         if (Yii::$app->request->get('letter')) {
             $pageTitle[] = Yii::t('app', 'на букву') . ' ' . strtoupper(Yii::$app->request->get('letter'));
             $pageDescription[] = Yii::t('app', 'название на букву') . ' ' . strtoupper(Yii::$app->request->get('letter'));
@@ -66,10 +63,6 @@ class FactoryController extends BaseController
         if (Yii::$app->city->domain !== 'com') {
             $pageTitle[] = Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
             $pageDescription[] = Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere();
-        }
-
-        if ($view && $view !== 'three') {
-            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
         $this->title = implode(' ', $pageTitle);
@@ -81,33 +74,22 @@ class FactoryController extends BaseController
 
         Yii::$app->metatag->render();
 
-        if ($view == 'three') {
-            foreach ($models->getModels() as $obj) {
-                $_models[$obj['first_letter']][] = $obj;
-            }
-
-            return $this->render('list_three', [
-                'models' => $_models,
-                'pages' => $models->getPagination(),
-            ]);
-        } else {
-            $factory_ids = [];
-            foreach ($models->getModels() as $obj) {
-                $factory_ids[] = $obj['id'];
-            }
-
-            $categories = Factory::getFactoryCategory($factory_ids);
-            $factory_categories = [];
-            foreach ($categories as $item) {
-                $factory_categories[$item['factory_id']][] = $item;
-            }
-
-            return $this->render('list', [
-                'models' => $models->getModels(),
-                'pages' => $models->getPagination(),
-                'factory_categories' => $factory_categories
-            ]);
+        $factory_ids = [];
+        foreach ($models->getModels() as $obj) {
+            $factory_ids[] = $obj['id'];
         }
+
+        $categories = Factory::getFactoryCategory($factory_ids);
+        $factory_categories = [];
+        foreach ($categories as $item) {
+            $factory_categories[$item['factory_id']][] = $item;
+        }
+
+        return $this->render('list', [
+            'models' => $models->getModels(),
+            'pages' => $models->getPagination(),
+            'factory_categories' => $factory_categories
+        ]);
     }
 
     /**
@@ -133,6 +115,7 @@ class FactoryController extends BaseController
 
         $modelProduct = new Product();
         $product = $modelProduct->search([
+            'defaultPageSize' => 20,
             $keys['factory'] => [
                 $model['alias']
             ]

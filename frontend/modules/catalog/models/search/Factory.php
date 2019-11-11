@@ -62,7 +62,6 @@ class Factory extends FactoryModel
         }
 
         $query->andFilterWhere(['like', 'alias', $this->alias]);
-
         $query->andFilterWhere(['like', 'title', $this->title]);
         $query->andFilterWhere(['like', 'first_letter', $this->letter]);
 
@@ -85,19 +84,22 @@ class Factory extends FactoryModel
 
         $query
             ->select([
-                Factory::tableName() . '.id',
-                Factory::tableName() . '.alias',
-                Factory::tableName() . '.image_link',
-                Factory::tableName() . '.title',
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                self::tableName() . '.image_link',
+                self::tableName() . '.title',
             ])
+
             ->innerJoinWith(["product"], false)
-            ->innerJoinWith(["product.lang"], false)
+            //->innerJoinWith(["product.lang"], false)
             ->andFilterWhere([
                 Product::tableName() . '.published' => '1',
                 Product::tableName() . '.deleted' => '0',
                 Product::tableName() . '.removed' => '0',
             ])
-            ->groupBy(self::tableName() . '.id');
+
+            ->groupBy(self::tableName() . '.id')
+            ->asArray();
 
         return $this->baseSearch($query, $params);
     }
