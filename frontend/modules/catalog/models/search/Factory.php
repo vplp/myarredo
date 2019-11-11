@@ -91,7 +91,7 @@ class Factory extends FactoryModel
             ])
 
             ->innerJoinWith(["product"], false)
-            //->innerJoinWith(["product.lang"], false)
+            ->innerJoinWith(["product.lang"], false)
             ->andFilterWhere([
                 Product::tableName() . '.published' => '1',
                 Product::tableName() . '.deleted' => '0',

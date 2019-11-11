@@ -117,7 +117,7 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
 
         $query
             ->innerJoinWith(["product"], false)
-            //->innerJoinWith(["product.lang"], false)
+            ->innerJoinWith(["product.lang"], false)
             ->innerJoinWith(["product.factory"], false)
             ->andFilterWhere([
                 Product::tableName() . '.published' => '1',

@@ -261,7 +261,7 @@ class Category extends \common\modules\catalog\models\Category
         $result = self::getDb()->cache(function ($db) use ($query) {
             return $query
                 ->innerJoinWith(["product"], false)
-                //->innerJoinWith(["product.lang"], false)
+                ->innerJoinWith(["product.lang"], false)
                 ->innerJoinWith(["product.factory"], false)
                 ->andFilterWhere([
                     Product::tableName() . '.published' => '1',

@@ -212,7 +212,7 @@ class Factory extends \common\modules\catalog\models\Factory
 
         $query
             ->innerJoinWith(["product"], false)
-            //->innerJoinWith(["product.lang"], false)
+            ->innerJoinWith(["product.lang"], false)
             ->andFilterWhere([
                 Product::tableName() . '.published' => '1',
                 Product::tableName() . '.deleted' => '0',
