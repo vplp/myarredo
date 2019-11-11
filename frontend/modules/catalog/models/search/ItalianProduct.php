@@ -278,7 +278,11 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
                 ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
         }
 
-        return $query->min(self::tableName() . '.price_new');
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query->min(self::tableName() . '.price_new');
+        });
+
+        return $result;
     }
 
     /**
@@ -342,6 +346,10 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
                 ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
         }
 
-        return $query->max(self::tableName() . '.price_new');
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query->max(self::tableName() . '.price_new');
+        });
+
+        return $result;
     }
 }

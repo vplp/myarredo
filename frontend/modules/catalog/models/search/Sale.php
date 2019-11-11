@@ -271,7 +271,11 @@ class Sale extends SaleModel implements BaseBackendSearchModel
                 ->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
         }
 
-        return $query->min(self::tableName() . '.price_new');
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query->min(self::tableName() . '.price_new');
+        });
+
+        return $result;
     }
 
     /**
@@ -347,6 +351,10 @@ class Sale extends SaleModel implements BaseBackendSearchModel
                 ->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
         }
 
-        return $query->max(self::tableName() . '.price_new');
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query->max(self::tableName() . '.price_new');
+        });
+
+        return $result;
     }
 }

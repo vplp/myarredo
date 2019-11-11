@@ -289,7 +289,7 @@ class Product extends ProductModel
     {
         $keys = Yii::$app->catalogFilter->keys;
 
-        $query = ProductModel::findBase();
+        $query = ProductModel::findBaseWithoutLang();
 
         if (isset($params[$keys['category']])) {
             $query
@@ -345,7 +345,11 @@ class Product extends ProductModel
                 ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
         }
 
-        return $query->min(self::tableName() . '.price_from');
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query->min(self::tableName() . '.price_from');
+        });
+
+        return $result;
     }
 
     /**
@@ -357,7 +361,7 @@ class Product extends ProductModel
     {
         $keys = Yii::$app->catalogFilter->keys;
 
-        $query = ProductModel::findBase();
+        $query = ProductModel::findBaseWithoutLang();
 
         if (isset($params[$keys['category']])) {
             $query
@@ -413,6 +417,10 @@ class Product extends ProductModel
                 ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
         }
 
-        return $query->max(self::tableName() . '.price_from');
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query->max(self::tableName() . '.price_from');
+        });
+
+        return $result;
     }
 }

@@ -66,6 +66,23 @@ class Product extends \common\modules\catalog\models\Product
     /**
      * @return mixed
      */
+    public static function findBaseWithoutLang()
+    {
+        return self::find()
+            ->innerJoinWith(['factory'])
+            ->andFilterWhere([
+                Product::tableName() . '.removed' => '0',
+                Factory::tableName() . '.published' => '1',
+                Factory::tableName() . '.deleted' => '0',
+                Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
+            ])
+            ->enabled()
+            ->orderBy(self::tableName() . '.updated_at DESC');
+    }
+
+    /**
+     * @return mixed
+     */
     public static function findBaseArray()
     {
         return self::findBase()
