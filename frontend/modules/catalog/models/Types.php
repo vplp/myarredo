@@ -147,7 +147,7 @@ class Types extends \common\modules\catalog\models\Types
 
         $query
             ->innerJoinWith(["product"], false)
-            ->innerJoinWith(["product.lang"], false)
+            //->innerJoinWith(["product.lang"], false)
             ->innerJoinWith(["product.factory"], false)
             ->andFilterWhere([
                 Product::tableName() . '.published' => '1',
