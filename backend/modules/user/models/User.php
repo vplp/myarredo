@@ -34,7 +34,7 @@ class User extends \common\modules\user\models\User implements BaseBackendModel
             ->enabled()
             ->all();
 
-        return ArrayHelper::map($query, 'id', 'profile.name_company');
+        return ArrayHelper::map($query, 'id', 'profile.lang.name_company');
     }
 
     /**

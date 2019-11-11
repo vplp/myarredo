@@ -46,7 +46,7 @@ echo GridView::widget([
         ],
         [
             'value' => function ($model) {
-                return ($model->user) ? $model->user->profile->name_company : '';
+                return ($model->user) ? $model->user->profile->lang->name_company : '';
             },
             'filter' => GridViewFilter::selectOne(
                 $filter,

@@ -50,7 +50,7 @@ echo GridView::widget([
         [
             'value' => function ($model) {
                 /** @var $model ItalianProduct */
-                return ($model->user) ? $model->user->profile->name_company : '';
+                return ($model->user) ? $model->user->profile->lang->name_company : '';
             },
             'filter' => GridViewFilter::selectOne(
                 $filter,
