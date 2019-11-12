@@ -320,7 +320,7 @@ class Factory extends ActiveRecord
     public static function createByName(string $name)
     {
         /** @var Factory $model */
-        $model = self::findBase()->where(['title' => $name])->one();
+        $model = self::find()->where(['title' => $name])->one();
 
         if ($model == null) {
             $model = new self();
