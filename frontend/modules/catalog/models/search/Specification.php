@@ -66,7 +66,7 @@ class Specification extends SpecificationModel
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();
-        });
+        }, 3600);
 
         return $dataProvider;
     }

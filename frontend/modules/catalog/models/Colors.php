@@ -76,7 +76,7 @@ class Colors extends \common\modules\catalog\models\Colors
             } else {
                 return self::findBase()->byAlias($alias)->one();
             }
-        });
+        }, 3600);
 
         return $result;
     }
@@ -188,7 +188,7 @@ class Colors extends \common\modules\catalog\models\Colors
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        });
+        }, 3600);
 
         return $result;
     }
@@ -284,7 +284,7 @@ class Colors extends \common\modules\catalog\models\Colors
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        });
+        }, 3600);
 
         return $result;
     }
@@ -367,7 +367,7 @@ class Colors extends \common\modules\catalog\models\Colors
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        });
+        }, 3600);
 
         return $result;
     }

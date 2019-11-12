@@ -61,7 +61,7 @@ class Category extends CategoryModel
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();
-        });
+        }, 3600);
 
         return $dataProvider;
     }

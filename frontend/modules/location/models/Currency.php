@@ -61,7 +61,7 @@ class Currency extends \common\modules\location\models\Currency
     {
         $result = self::getDb()->cache(function ($db) use ($code2) {
             return self::findBase()->andWhere(['code2' => $code2])->one();
-        });
+        }, 3600);
 
         return $result;
     }
@@ -75,7 +75,7 @@ class Currency extends \common\modules\location\models\Currency
     {
         $result = self::getDb()->cache(function ($db) {
             return self::findBase()->all();
-        });
+        }, 3600);
 
         return ArrayHelper::map($result, 'code2', 'course');
     }

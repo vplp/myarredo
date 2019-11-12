@@ -45,7 +45,7 @@ class SaleItalyOnMainPage extends Widget
                 ])
                 ->limit(8)
                 ->all();
-        });
+        }, 3600);
 
 
         if ($this->models != null) {

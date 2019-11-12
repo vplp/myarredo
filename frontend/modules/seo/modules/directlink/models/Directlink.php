@@ -48,7 +48,7 @@ class Directlink extends \common\modules\seo\modules\directlink\models\Directlin
                 }
 
                 return $query->one();
-            });
+            }, 3600);
         }
 
         return $result;

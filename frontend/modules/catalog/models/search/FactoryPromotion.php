@@ -68,7 +68,7 @@ class FactoryPromotion extends FactoryPromotionModel implements BaseBackendSearc
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();
-        });
+        }, 3600);
 
         return $dataProvider;
     }

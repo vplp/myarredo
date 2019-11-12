@@ -84,7 +84,7 @@ class Sale extends \common\modules\catalog\models\Sale
                 ])
                 ->byAlias($alias)
                 ->one();
-        });
+        }, 3600);
 
         return $result;
     }

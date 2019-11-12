@@ -84,7 +84,7 @@ class Country extends \common\modules\location\models\Country
                 ->joinWith(['cities', 'cities.country citiesCountry'])
                 ->byAlias($alias)
                 ->one();
-        });
+        }, 3600);
 
         return $result;
     }
@@ -100,7 +100,7 @@ class Country extends \common\modules\location\models\Country
                 ->byId($id)
                 ->joinWith(['cities', 'cities.country citiesCountry'])
                 ->one();
-        });
+        }, 3600);
 
         return $result;
     }
@@ -121,7 +121,7 @@ class Country extends \common\modules\location\models\Country
             }
 
             return $query->all();
-        });
+        }, 3600);
 
         return ArrayHelper::map($data, 'id', 'lang.title');
     }
@@ -209,7 +209,7 @@ class Country extends \common\modules\location\models\Country
                 ])
                 ->groupBy(self::tableName() . '.id')
                 ->all();
-        });
+        }, 3600);
 
         return $result;
     }

@@ -150,7 +150,7 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
         if (Yii::$app->controller->id == 'sale-italy') {
             self::getDb()->cache(function ($db) use ($dataProvider) {
                 $dataProvider->prepare();
-            });
+            }, 3600);
         }
 
         return $dataProvider;
@@ -280,7 +280,7 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
 
         $result = self::getDb()->cache(function ($db) use ($query) {
             return $query->min(self::tableName() . '.price_new');
-        });
+        }, 3600);
 
         return $result;
     }
@@ -348,7 +348,7 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
 
         $result = self::getDb()->cache(function ($db) use ($query) {
             return $query->max(self::tableName() . '.price_new');
-        });
+        }, 3600);
 
         return $result;
     }

@@ -39,7 +39,7 @@ class ChangeCurrency extends Widget
 
         $this->items = Currency::getDb()->cache(function ($db) {
             return Currency::findBase()->all();
-        });
+        }, 3600);
     }
 
     /**

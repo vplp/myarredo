@@ -182,7 +182,7 @@ class Product extends ProductModel
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();
-        });
+        }, 3600);
 
         return $dataProvider;
     }
@@ -347,7 +347,7 @@ class Product extends ProductModel
 
         $result = self::getDb()->cache(function ($db) use ($query) {
             return $query->min(self::tableName() . '.price_from');
-        });
+        }, 3600);
 
         return $result;
     }
@@ -419,7 +419,7 @@ class Product extends ProductModel
 
         $result = self::getDb()->cache(function ($db) use ($query) {
             return $query->max(self::tableName() . '.price_from');
-        });
+        }, 3600);
 
         return $result;
     }

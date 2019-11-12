@@ -34,7 +34,7 @@ class Language extends \common\modules\sys\models\Language
     {
         $result = self::getDb()->cache(function ($db) {
             return self::findBase()->asArray()->all();
-        });
+        }, 3600);
 
         return $result;
     }
@@ -48,7 +48,7 @@ class Language extends \common\modules\sys\models\Language
     {
         $result = self::getDb()->cache(function ($db) {
             return self::findBase()->andWhere(['local' => \Yii::$app->language])->asArray()->one();
-        });
+        }, 3600);
 
         return $result;
     }
@@ -62,7 +62,7 @@ class Language extends \common\modules\sys\models\Language
     {
         $result = self::getDb()->cache(function ($db) {
             return self::findBase()->indexBy('local')->asArray()->all();
-        });
+        }, 3600);
 
         return $result;
     }
