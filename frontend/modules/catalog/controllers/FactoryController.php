@@ -29,6 +29,14 @@ class FactoryController extends BaseController
     public function behaviors()
     {
         return [
+            [
+                'class' => \yii\filters\HttpCache::class,
+                'only' => ['index'],
+                'lastModified' => function ($action, $params) {
+                    $q = new \yii\db\Query();
+                    return $q->from(Factory::tableName())->max('updated_at');
+                },
+            ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
