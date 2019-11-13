@@ -71,7 +71,7 @@ class Payment extends PaymentModel
 
 //        self::getDb()->cache(function ($db) use ($dataProvider) {
 //            $dataProvider->prepare();
-//        });
+//        }, 60 * 60, self::generateDependency(self::find()));
 
         return $dataProvider;
     }
