@@ -13,6 +13,7 @@ use frontend\modules\catalog\models\{
 /**
  * @var $model Factory
  * @var $italianProduct array
+ * @var $saleProduct array
  * @var $product array
  */
 
@@ -131,8 +132,8 @@ $h1 .= Yii::$app->city->domain != 'com' ? Yii::t('app', 'в') . ' ' . Yii::$app-
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-9">
 
-                        <?php if ($italianProduct) { ?>
-                            <?= Html::tag('h2', Yii::t('app', 'Sale')) ?>
+                        <?php /*if ($italianProduct) { ?>
+                            <?= Html::tag('h2', Yii::t('app', 'Sale in Italy')) ?>
                             <div class="cat-prod catalog-wrap">
                                 <?php foreach ($italianProduct as $key => $item) {
                                     if ($key == 5) { ?>
@@ -153,6 +154,36 @@ $h1 .= Yii::$app->city->domain != 'com' ? Yii::t('app', 'в') . ' ' . Yii::$app-
                                         </div>
                                     <?php } else {
                                         echo $this->render('/sale-italy/_list_item', [
+                                            'model' => $item,
+                                            'factory' => [$model->id => $model]
+                                        ]);
+                                    }
+                                } ?>
+                            </div>
+                        <?php }*/ ?>
+
+                        <?php if ($saleProduct) { ?>
+                            <?= Html::tag('h2', Yii::t('app', 'Sale')) ?>
+                            <div class="cat-prod catalog-wrap">
+                                <?php foreach ($saleProduct as $key => $item) {
+                                    if ($key == 5) { ?>
+                                        <div class="one-prod-tile last">
+                                            <div class="img-cont">
+                                                <?= Html::img($bundle->baseUrl . '/img/factory.svg') ?>
+                                            </div>
+
+                                            <?= Html::a(
+                                                Yii::t('app', 'Смотреть полный каталог'),
+                                                Yii::$app->catalogFilter->createUrl(
+                                                    Yii::$app->catalogFilter->params +
+                                                    [$keys['factory'] => $model['alias']],
+                                                    '/catalog/sale/list'
+                                                ),
+                                                ['class' => 'view-all', 'rel' => 'nofollow']
+                                            ) ?>
+                                        </div>
+                                    <?php } else {
+                                        echo $this->render('/sale/_list_item', [
                                             'model' => $item,
                                             'factory' => [$model->id => $model]
                                         ]);

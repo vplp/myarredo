@@ -36,6 +36,14 @@ class PartnerComponent extends Component
     }
 
     /**
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->partner['id'];
+    }
+
+    /**
      * @return object
      */
     public function getPartnerPhone()

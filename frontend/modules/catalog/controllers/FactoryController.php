@@ -8,9 +8,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
-use frontend\modules\catalog\models\{
-    Product, Factory, ItalianProduct
-};
+use frontend\modules\catalog\models\{Product, Factory, ItalianProduct, Sale};
 
 /**
  * Class FactoryController
@@ -129,6 +127,15 @@ class FactoryController extends BaseController
             ]
         ]);
 
+        $modelSale = new Sale();
+        $saleProduct = $modelSale->search([
+            'defaultPageSize' => 6,
+            $keys['factory'] => [
+                $model['alias']
+            ],
+            'user_id' => Yii::$app->partner->id
+        ]);
+
         $modelItalianProduct = new ItalianProduct();
         $italianProduct = $modelItalianProduct->search([
             'defaultPageSize' => 6,
@@ -166,6 +173,7 @@ class FactoryController extends BaseController
         return $this->render('view', [
             'model' => $model,
             'product' => $product->getModels(),
+            'saleProduct' => $saleProduct->getModels(),
             'italianProduct' => $italianProduct->getModels(),
         ]);
     }
