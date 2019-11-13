@@ -136,13 +136,13 @@ class FactoryController extends BaseController
             'user_id' => Yii::$app->partner->id
         ]);
 
-        $modelItalianProduct = new ItalianProduct();
+        /*$modelItalianProduct = new ItalianProduct();
         $italianProduct = $modelItalianProduct->search([
             'defaultPageSize' => 6,
             $keys['factory'] => [
                 $model['alias']
             ]
-        ]);
+        ]);*/
 
         $this->breadcrumbs[] = [
             'label' => Yii::t('app', 'Итальянские фабрики мебели'),
@@ -174,7 +174,7 @@ class FactoryController extends BaseController
             'model' => $model,
             'product' => $product->getModels(),
             'saleProduct' => $saleProduct->getModels(),
-            'italianProduct' => $italianProduct->getModels(),
+            //'italianProduct' => $italianProduct->getModels(),
         ]);
     }
 }
