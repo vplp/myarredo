@@ -68,7 +68,7 @@ class City extends \common\modules\location\models\City
                 ->joinWith(['country', 'country.lang'])
                 ->byAlias($alias)
                 ->one();
-        }, 3600);
+        }, 60 * 60);
 
         return $result;
     }
@@ -84,7 +84,7 @@ class City extends \common\modules\location\models\City
             return self::findBase()
                 ->joinWith(['country', 'country.lang'])
                 ->byId($id)->one();
-        }, 3600);
+        }, 60 * 60);
 
         return $result;
     }
@@ -104,7 +104,7 @@ class City extends \common\modules\location\models\City
             }
 
             return $query->all();
-        }, 3600);
+        }, 60 * 60);
 
         return ArrayHelper::map($data, 'id', 'lang.title');
     }

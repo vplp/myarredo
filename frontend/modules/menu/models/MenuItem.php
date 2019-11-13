@@ -61,7 +61,7 @@ final class MenuItem extends \common\modules\menu\models\MenuItem implements Bas
     {
         $result = self::getDb()->cache(function ($db) use ($alias) {
             return self::findBase()->byAlias($alias)->one();
-        }, 3600);
+        }, 60 * 60);
 
         return $result;
     }
@@ -75,7 +75,7 @@ final class MenuItem extends \common\modules\menu\models\MenuItem implements Bas
     {
         $result = self::getDb()->cache(function ($db) use ($id) {
             return self::findBase()->byId($id)->one();
-        }, 3600);
+        }, 60 * 60);
 
         return $result;
     }
@@ -91,7 +91,7 @@ final class MenuItem extends \common\modules\menu\models\MenuItem implements Bas
     {
         $result = self::getDb()->cache(function ($db) use ($group, $parent) {
             return self::findBase()->group_id($group)->parent_id($parent)->all();
-        }, 3600);
+        }, 60 * 60);
 
         return $result;
     }

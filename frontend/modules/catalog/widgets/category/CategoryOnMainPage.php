@@ -30,7 +30,7 @@ class CategoryOnMainPage extends Widget
     {
         $this->models = Category::getDb()->cache(function ($db) {
             return Category::findBase()->andWhere(['popular' => '1'])->all();
-        }, 3600);
+        }, 60 * 60);
     }
 
     /**

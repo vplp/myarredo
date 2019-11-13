@@ -64,7 +64,7 @@ class Collection extends CollectionModel
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();
-        }, 3600);
+        }, 60 * 60);
 
         return $dataProvider;
     }

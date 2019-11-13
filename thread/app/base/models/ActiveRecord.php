@@ -3,6 +3,7 @@
 namespace thread\app\base\models;
 
 use Yii;
+use yii\caching\DbDependency;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord as dbActiveRecord;
@@ -91,5 +92,23 @@ abstract class ActiveRecord extends dbActiveRecord
     public function isScenario($scenario)
     {
         return (array_key_exists($scenario, $this->scenarios())) ? true : false;
+    }
+
+    /**
+     * @param $query
+     * @return DbDependency
+     */
+    public static function generateDependency($query)
+    {
+        $dependencyQuery = clone $query;
+        $modelClass = $query->modelClass;
+
+        $dependencyQuery->select(['MAX(' . $modelClass::tableName() . '.updated_at)']);
+        $dependencySql = $dependencyQuery->createCommand()->getRawSql();
+
+        $dependency = new DbDependency(['sql' => $dependencySql]);
+        $dependency->reusable = true;
+
+        return $dependency;
     }
 }

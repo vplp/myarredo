@@ -60,7 +60,7 @@ class Region extends \common\modules\location\models\Region
     {
         $result = self::getDb()->cache(function ($db) use ($alias) {
             return self::findBase()->byAlias($alias)->one();
-        }, 3600);
+        }, 60 * 60);
 
         return $result;
     }
@@ -74,7 +74,7 @@ class Region extends \common\modules\location\models\Region
     {
         $result = self::getDb()->cache(function ($db) use ($id) {
             return self::findBase()->byId($id)->one();
-        }, 3600);
+        }, 60 * 60);
 
         return $result;
     }
@@ -95,7 +95,7 @@ class Region extends \common\modules\location\models\Region
             }
 
             return $query->all();
-        }, 3600);
+        }, 60 * 60);
 
         return ArrayHelper::map($data, 'id', 'lang.title');
     }

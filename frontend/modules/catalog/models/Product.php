@@ -397,7 +397,7 @@ class Product extends \common\modules\catalog\models\Product
                 ])
                 ->limit(12)
                 ->all();
-        }, 3600);
+        }, 60 * 60);
 
         return $result;
     }
@@ -427,7 +427,7 @@ class Product extends \common\modules\catalog\models\Product
                 ])
                 ->limit(12)
                 ->all();
-        }, 3600);
+        }, 60 * 60);
 
         return $result;
     }

@@ -86,7 +86,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
                 ])
                 ->byAlias($alias)
                 ->one();
-        }, 3600);
+        }, 60 * 60);
 
         return $result;
     }
