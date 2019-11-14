@@ -381,7 +381,7 @@ class Product extends ActiveRecord implements iProduct
 
             // Update Product Count In to Group
             Category::updateEnabledProductCount($this->category_ids);
-            Factory::updateEnabledProductCount(/*$this->factory_id*/);
+            Factory::updateEnabledProductCount($this->factory_id);
         }
 
         parent::afterSave($insert, $changedAttributes);
