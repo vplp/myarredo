@@ -112,6 +112,18 @@ class Order extends \common\modules\shop\models\Order
     }
 
     /**
+     * @return mixed
+     */
+    public static function dropDownListOrdersYears()
+    {
+        $query = self::find()->select(['DISTINCT YEAR(FROM_UNIXTIME(created_at)) as years']);
+
+        $data = $query->asArray()->all();
+
+        return ArrayHelper::map($data, 'years', 'years');
+    }
+
+    /**
      * @param $id
      * @return mixed
      */

@@ -70,6 +70,10 @@ class AdminOrderController extends BaseController
             }
         }
 
+        if (!isset($params['year'])) {
+            $params['year'] = 0;
+        }
+
         if (!isset($params['country_id'])) {
             $params['country_id'] = 0;
         }

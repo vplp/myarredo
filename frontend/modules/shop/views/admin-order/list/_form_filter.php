@@ -8,6 +8,7 @@ use kartik\widgets\Select2;
 use frontend\modules\location\models\{
     Country, City
 };
+use frontend\modules\shop\models\Order;
 use frontend\modules\catalog\models\Factory;
 use frontend\modules\sys\models\Language;
 
@@ -21,6 +22,18 @@ use frontend\modules\sys\models\Language;
         'class' => 'form-filter-date-cont flex'
     ]
 ]); ?>
+
+    <div class="form-group">
+        <?= Select2::widget([
+            'name' => 'year',
+            'value' => $params['year'],
+            'data' => [0 => Yii::t('app', 'Все года')] + Order::dropDownListOrdersYears(),
+            'options' => [
+                'id' => 'year',
+                'multiple' => false,
+            ]
+        ]); ?>
+    </div>
 
     <div class="form-group">
         <?= Select2::widget([
@@ -82,6 +95,9 @@ use frontend\modules\sys\models\Language;
 <?php
 
 $script = <<<JS
+$('select#year').change(function(){
+    $('#form-stats').submit();
+});
 $('select#country_id').change(function(){
     $('select#city_id').val(0);
     $('#form-stats').submit();

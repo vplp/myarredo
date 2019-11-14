@@ -26,6 +26,8 @@ class Order extends OrderModel
 {
     public $factory_id;
 
+    public $year;
+
     /**
      * @return array
      */
@@ -34,7 +36,7 @@ class Order extends OrderModel
         return [
             ['lang', 'string', 'min' => 5, 'max' => 5],
             [['product_type'], 'in', 'range' => array_keys(self::productTypeKeyRange())],
-            [['id', 'customer_id', 'city_id', 'factory_id'], 'integer'],
+            [['id', 'customer_id', 'city_id', 'factory_id', 'year'], 'integer'],
         ];
     }
 
@@ -69,30 +71,33 @@ class Order extends OrderModel
             return $dataProvider;
         }
 
-        $query
-            ->andFilterWhere([
-                'id' => $this->id,
-                self::tableName() . '.customer_id' => $this->customer_id,
-                self::tableName() . '.product_type' => $this->product_type,
-            ]);
+        $query->andFilterWhere([
+            'id' => $this->id,
+            self::tableName() . '.customer_id' => $this->customer_id,
+            self::tableName() . '.product_type' => $this->product_type,
+        ]);
 
         if (isset($params['city_id']) && is_array($params['city_id'])) {
-            $query
-                ->andFilterWhere(['IN', self::tableName() . '.city_id', $params['city_id']]);
+            $query->andFilterWhere(['IN', self::tableName() . '.city_id', $params['city_id']]);
         } elseif (isset($params['city_id']) && $params['city_id'] > 0) {
-            $query
-                ->andFilterWhere([
-                    self::tableName() . '.city_id' => $params['city_id'],
-                ]);
+            $query->andFilterWhere([
+                self::tableName() . '.city_id' => $params['city_id'],
+            ]);
         }
 
         if (isset($params['lang'])) {
-            $query
-                ->andFilterWhere([self::tableName() . '.lang' => $params['lang']]);
+            $query->andFilterWhere([self::tableName() . '.lang' => $params['lang']]);
         }
 
-        $query
-            ->groupBy(self::tableName() . '.id');
+        if (isset($params['year'])) {
+            $date_from = mktime(0, 0, 0, 1, 1, $params['year']);
+            $date_to = mktime(23, 59, 0, 12, 31, $params['year']);
+
+            $query->andFilterWhere(['>=', self::tableName() . '.created_at', $date_from]);
+            $query->andFilterWhere(['<=', self::tableName() . '.created_at', $date_to]);
+        }
+
+        $query->groupBy(self::tableName() . '.id');
 
         if (Yii::$app->user->identity->group->role == 'factory') {
             $query
