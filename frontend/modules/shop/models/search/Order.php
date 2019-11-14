@@ -89,7 +89,7 @@ class Order extends OrderModel
             $query->andFilterWhere([self::tableName() . '.lang' => $params['lang']]);
         }
 
-        if (isset($params['year'])) {
+        if (isset($params['year']) && in_array($params['year'], self::dropDownListOrderYears())) {
             $date_from = mktime(0, 0, 0, 1, 1, $params['year']);
             $date_to = mktime(23, 59, 0, 12, 31, $params['year']);
 
