@@ -371,8 +371,12 @@ class ItalianProduct extends ActiveRecord
             $this->alias = time();
         }
 
-        if ($this->factory_name == '') {
+        if ($this->factory_name) {
             $this->factory_name = trim($this->factory_name);
+        }
+
+        if ($this->article) {
+            $this->article = trim($this->article);
         }
 
         if (in_array($this->scenario, ['frontend', 'backend'])) {
