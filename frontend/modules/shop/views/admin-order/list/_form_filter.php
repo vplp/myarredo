@@ -27,7 +27,7 @@ use frontend\modules\sys\models\Language;
         <?= Select2::widget([
             'name' => 'year',
             'value' => $params['year'],
-            'data' => [0 => Yii::t('app', 'Все года')] + Order::dropDownListOrdersYears(),
+            'data' => [0 => Yii::t('app', 'Все года')] + Order::dropDownListOrderYears(),
             'options' => [
                 'id' => 'year',
                 'multiple' => false,
