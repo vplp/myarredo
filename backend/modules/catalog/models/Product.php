@@ -50,7 +50,8 @@ class Product extends CommonProductModel implements BaseBackendModel
     public function afterDelete()
     {
         // Update Product Count In to Group
-        Category::updateEnabledProductCounts();
+        Category::updateEnabledProductCount($this->category_ids);
+        Factory::updateEnabledProductCount($this->factory_id);
 
         parent::afterDelete();
     }

@@ -89,15 +89,7 @@ class Factory extends FactoryModel
                 self::tableName() . '.image_link',
                 self::tableName() . '.title',
             ])
-
-            ->innerJoinWith(["product"], false)
-            ->innerJoinWith(["product.lang"], false)
-            ->andFilterWhere([
-                Product::tableName() . '.published' => '1',
-                Product::tableName() . '.deleted' => '0',
-                Product::tableName() . '.removed' => '0',
-            ])
-
+            ->andFilterWhere(['<>', self::tableName() . '.product_count', 0])
             ->groupBy(self::tableName() . '.id')
             ->asArray();
 

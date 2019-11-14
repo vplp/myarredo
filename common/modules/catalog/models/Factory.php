@@ -44,6 +44,7 @@ use common\helpers\Inflector;
  * @property boolean $show_for_by
  * @property boolean $show_for_ua
  * @property boolean $show_for_com
+ * @property integer $product_count
  *
  * @property FactoryLang $lang
  * @property User $user
@@ -99,7 +100,7 @@ class Factory extends ActiveRecord
     {
         return [
             [['alias', 'title'], 'required', 'on' => 'backend'],
-            [['user_id', 'created_at', 'updated_at', 'position', 'partner_id'], 'integer'],
+            [['user_id', 'created_at', 'updated_at', 'position', 'partner_id', 'product_count'], 'integer'],
             [
                 [
                     'published',
@@ -126,7 +127,7 @@ class Factory extends ActiveRecord
             ['video', 'string', 'max' => 1024],
             [['first_letter'], 'string', 'max' => 2],
             [['alias'], 'unique'],
-            [['user_id', 'position', 'partner_id'], 'default', 'value' => '0'],
+            [['user_id', 'position', 'partner_id', 'product_count'], 'default', 'value' => '0'],
             [['country_code'], 'default', 'value' => '//'],
             [['url', 'email', 'novelty_url'], 'default', 'value' => '']
         ];
@@ -145,6 +146,7 @@ class Factory extends ActiveRecord
             'popular_by' => ['popular_by'],
             'popular_ua' => ['popular_ua'],
             'setImages' => ['image_link'],
+            'product_count' => ['product_count'],
             'backend' => [
                 'user_id',
                 'title',
@@ -206,6 +208,7 @@ class Factory extends ActiveRecord
             'show_for_by' => 'Показывать на by',
             'show_for_ua' => 'Показывать на ua',
             'show_for_com' => 'Показывать на com',
+            'product_count' => 'product_count',
         ];
     }
 
@@ -218,6 +221,35 @@ class Factory extends ActiveRecord
         $this->alias = $this->title;
 
         return parent::beforeValidate();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function updateEnabledProductCount($id = 0)
+    {
+        $query = self::find();
+
+        if ($id) {
+            $query->andFilterWhere([
+                self::tableName() . '.id' => $id,
+            ]);
+        }
+
+        $factories = $query->all();
+
+        foreach ($factories as $factory) {
+            /** @var $factory self */
+            $factory['product_count'] = $factory
+                    ->getProduct()
+                    ->andFilterWhere([
+                        Product::tableName() . '.removed' => '0',
+                    ])
+                    ->enabled()
+                    ->count() ?? 0;
+
+            $factory->save(false);
+        }
     }
 
     /**

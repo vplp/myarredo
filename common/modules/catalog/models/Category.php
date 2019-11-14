@@ -279,13 +279,30 @@ class Category extends ActiveRecord
     }
 
     /**
-     *
+     * @inheritDoc
      */
-    public static function updateEnabledProductCounts()
+    public static function updateEnabledProductCount($id = 0)
     {
-        $groups = self::find()->all();
+        $query = self::find();
+
+        if ($id) {
+            $query->andFilterWhere([
+                self::tableName() . '.id' => $id,
+            ]);
+        }
+
+        $groups = $query->all();
+
         foreach ($groups as $group) {
-            $group['product_count'] = $group->getProduct()->enabled()->count() ?? 0;
+            /** @var $group self */
+            $group['product_count'] = $group
+                    ->getProduct()
+                    ->enabled()
+                    ->andFilterWhere([
+                        Product::tableName() . '.removed' => '0',
+                    ])
+                    ->count() ?? 0;
+
             $group->save(false);
         }
     }

@@ -8,6 +8,7 @@ use frontend\modules\catalog\models\Factory;
 /**
  * @var \yii\data\Pagination $pages
  * @var Factory $model
+ * @var Factory $models
  */
 
 $this->title = $this->context->title;
@@ -27,14 +28,11 @@ $this->title = $this->context->title;
                         )
                     </span>
                 </div>
-
                 <div class="title-mark">
                     <div class="letter-nav">
                         <div class="container large-container">
                             <ul class="letter-select">
-
-                                <?php
-                                foreach (Factory::getListLetters() as $letter) {
+                                <?php foreach (Factory::getListLetters() as $letter) {
                                     echo Html::beginTag('li') .
                                         Html::a(
                                             $letter['first_letter'],
@@ -45,12 +43,10 @@ $this->title = $this->context->title;
                                         ) .
                                         Html::endTag('li');
                                 } ?>
-
                             </ul>
                             <?php // Html::a('Все', Url::toRoute(['/catalog/factory/list']), ['class' => 'all']); ?>
                         </div>
                     </div>
-
                     <?php
                     /*
                     ?>
@@ -64,30 +60,20 @@ $this->title = $this->context->title;
                     </div>
                     */
                     ?>
-
                 </div>
-
                 <div class="factory-tiles flex">
-
-                    <?php
-                    foreach ($models as $model) {
-                        echo $this->render(
-                            '_list_item',
-                            [
-                                'model' => $model,
-                                'categories' => $factory_categories[$model['id']] ?? []
-                            ]
-                        );
+                    <?php foreach ($models as $model) {
+                        echo $this->render('_list_item', [
+                            'model' => $model,
+                            'categories' => $factory_categories[$model['id']] ?? []
+                        ]);
                     } ?>
-
                 </div>
-
                 <div class="pagi-wrap">
                     <?= frontend\components\LinkPager::widget([
                         'pagination' => $pages,
                     ]); ?>
                 </div>
-
             </div>
         </div>
     </div>
