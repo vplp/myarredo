@@ -15,6 +15,7 @@ use frontend\modules\catalog\models\{
  * @var $italianProduct array
  * @var $saleProduct array
  * @var $product array
+ * @var $hostInfoSale string
  */
 
 $keys = Yii::$app->catalogFilter->keys;
@@ -185,7 +186,8 @@ $h1 .= Yii::$app->city->domain != 'com' ? Yii::t('app', 'в') . ' ' . Yii::$app-
                                     <?php } else {
                                         echo $this->render('/sale/_list_item', [
                                             'model' => $item,
-                                            'factory' => [$model->id => $model]
+                                            'factory' => [$model->id => $model],
+                                            'hostInfo' => $hostInfoSale
                                         ]);
                                     }
                                 } ?>

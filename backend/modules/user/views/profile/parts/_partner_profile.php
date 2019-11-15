@@ -57,6 +57,8 @@ if (in_array($model['user']['group_id'], [4, 7])) {
 
     echo $form->switcher($model, 'partner_in_city');
 
+    echo $form->switcher($model, 'partner_in_city_paid');
+
     echo $form->switcher($model, 'possibility_to_answer');
 
     echo $form->switcher($model, 'pdf_access');

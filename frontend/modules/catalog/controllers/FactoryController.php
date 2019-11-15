@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\controllers;
 
+use frontend\modules\user\models\User;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
@@ -128,13 +129,35 @@ class FactoryController extends BaseController
         ]);
 
         $modelSale = new Sale();
-        $saleProduct = $modelSale->search([
-            'defaultPageSize' => 6,
-            $keys['factory'] => [
-                $model['alias']
-            ],
-            'user_id' => Yii::$app->partner->id
-        ]);
+        $saleProduct = null;
+
+        if (Yii::$app->partner->profile->partner_in_city_paid) {
+            $saleProduct = $modelSale->search([
+                'defaultPageSize' => 6,
+                $keys['factory'] => [
+                    $model['alias']
+                ],
+                'user_id' => Yii::$app->partner->id,
+                'city' => Yii::$app->partner->profile->city_id
+            ]);
+
+            $hostInfoSale = Yii::$app->request->hostInfo;
+        }
+
+        if ($saleProduct == null) {
+            $partner = User::getPartner(4);
+
+            $saleProduct = $modelSale->search([
+                'defaultPageSize' => 6,
+                $keys['factory'] => [
+                    $model['alias']
+                ],
+                'user_id' => $partner->id,
+                'city' => $partner->profile->city_id
+            ]);
+
+            $hostInfoSale = 'https://www.myarredo.ru';
+        }
 
         /*$modelItalianProduct = new ItalianProduct();
         $italianProduct = $modelItalianProduct->search([
@@ -174,6 +197,7 @@ class FactoryController extends BaseController
             'model' => $model,
             'product' => $product->getModels(),
             'saleProduct' => $saleProduct->getModels(),
+            'hostInfoSale' => $hostInfoSale,
             //'italianProduct' => $italianProduct->getModels(),
         ]);
     }

@@ -29,6 +29,7 @@ use common\modules\catalog\models\Factory;
  * @property float $latitude
  * @property float $longitude
  * @property int $partner_in_city
+ * @property int $partner_in_city_paid
  * @property int $possibility_to_answer
  * @property int $pdf_access
  * @property int $show_contacts
@@ -100,6 +101,7 @@ class Profile extends \thread\modules\user\models\Profile
                 [
                     'delivery_to_other_cities',
                     'partner_in_city',
+                    'partner_in_city_paid',
                     'possibility_to_answer',
                     'pdf_access',
                     'show_contacts',
@@ -151,6 +153,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'latitude',
                 'longitude',
                 'partner_in_city',
+                'partner_in_city_paid',
                 'possibility_to_answer',
                 'pdf_access',
                 'show_contacts',
@@ -173,6 +176,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'latitude',
                 'longitude',
                 'partner_in_city',
+                'partner_in_city_paid',
                 'possibility_to_answer',
                 'pdf_access',
                 'show_contacts',
@@ -200,6 +204,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'latitude',
                 'longitude',
                 'partner_in_city',
+                'partner_in_city_paid',
                 'possibility_to_answer',
                 'pdf_access',
                 'show_contacts',
@@ -233,6 +238,7 @@ class Profile extends \thread\modules\user\models\Profile
             'latitude' => Yii::t('app', 'Latitude'),
             'longitude' => Yii::t('app', 'Longitude'),
             'partner_in_city' => Yii::t('app', 'Partner in city'),
+            'partner_in_city_paid' => Yii::t('app', 'Partner in city paid'),
             'possibility_to_answer' => Yii::t('app', 'Отвечает без установки кода на сайт'),
             'pdf_access' => Yii::t('app', 'Доступ к прайсам и каталогам'),
             'show_contacts' => Yii::t('app', 'Показывать в контактах'),

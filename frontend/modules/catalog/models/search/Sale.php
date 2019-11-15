@@ -83,7 +83,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
 
         if (isset($params[$keys['category']])) {
             $query
-                ->innerJoinWith(["category"])
+                ->innerJoinWith(['category'])
                 ->andFilterWhere([
                     'IN',
                     Yii::$app->city->domain != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
@@ -93,7 +93,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
 
         if (isset($params[$keys['type']])) {
             $query
-                ->innerJoinWith(["types"])
+                ->innerJoinWith(['types'])
                 ->andFilterWhere([
                     'IN',
                     Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
@@ -103,13 +103,13 @@ class Sale extends SaleModel implements BaseBackendSearchModel
 
         if (isset($params[$keys['subtypes']])) {
             $query
-                ->innerJoinWith(["subTypes"])
+                ->innerJoinWith(['subTypes'])
                 ->andFilterWhere(['IN', SubTypes::tableName() . '.alias', $params[$keys['subtypes']]]);
         }
 
         if (isset($params[$keys['style']])) {
             $query
-                ->innerJoinWith(["specification"])
+                ->innerJoinWith(['specification'])
                 ->andFilterWhere([
                     'IN',
                     Yii::$app->city->domain != 'com' ? Specification::tableName() . '.alias' : Specification::tableName() . '.alias2',
@@ -119,13 +119,13 @@ class Sale extends SaleModel implements BaseBackendSearchModel
 
         if (isset($params[$keys['factory']])) {
             $query
-                ->innerJoinWith(["factory"])
+                ->innerJoinWith(['factory'])
                 ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
         }
 
         if (isset($params[$keys['colors']])) {
             $query
-                ->innerJoinWith(["colors"])
+                ->innerJoinWith(['colors'])
                 ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
         }
 
@@ -138,13 +138,13 @@ class Sale extends SaleModel implements BaseBackendSearchModel
 
         if (isset($params['country'])) {
             $query
-                ->innerJoinWith(["country"])
+                ->innerJoinWith(['country'])
                 ->andFilterWhere(['IN', Country::tableName() . '.id', $params['country']]);
         }
 
         if (isset($params['city'])) {
             $query
-                ->innerJoinWith(["city"])
+                ->innerJoinWith(['city'])
                 ->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
         }
 

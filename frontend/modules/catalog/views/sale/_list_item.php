@@ -8,10 +8,11 @@ use frontend\modules\catalog\models\Sale;
  * @var $model Sale
  */
 
+$hostInfo = $hostInfo ?? Yii::$app->request->hostInfo;
 ?>
 
 <?= Html::beginTag('a', [
-    'href' => Sale::getUrl($model['alias']),
+    'href' => $hostInfo . Sale::getUrl($model['alias'], false),
     'class' => 'one-prod-tile',
 ]) ?>
 

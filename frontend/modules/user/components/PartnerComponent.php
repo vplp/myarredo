@@ -36,11 +36,12 @@ class PartnerComponent extends Component
     }
 
     /**
-     * @return integer
+     * @param string $name
+     * @return mixed
      */
-    public function getId()
+    public function __get($name)
     {
-        return $this->partner['id'];
+        return $this->partner[$name];
     }
 
     /**

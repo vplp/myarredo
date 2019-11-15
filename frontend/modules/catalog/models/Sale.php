@@ -142,21 +142,22 @@ class Sale extends \common\modules\catalog\models\Sale
 
     /**
      * @param string $alias
+     * @param bool $scheme
      * @return string
      */
-    public static function getUrl(string $alias)
+    public static function getUrl(string $alias, $scheme = true)
     {
         if (isset(Yii::$app->controller->factory)) {
             return Url::toRoute([
                 '/catalog/template-factory/sale-product',
                 'alias' => Yii::$app->controller->factory->alias,
                 'product' => $alias
-            ], true);
+            ], $scheme);
         } else {
             return Url::toRoute([
                 '/catalog/sale/view',
                 'alias' => $alias
-            ], true);
+            ], $scheme);
         }
     }
 
