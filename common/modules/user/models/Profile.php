@@ -413,6 +413,21 @@ class Profile extends \thread\modules\user\models\Profile
     /**
      * @param int $city_id
      * @return bool
+     */
+    public function getPossibilityToSaveAnswerPerMonth()
+    {
+        if (in_array(Yii::$app->user->identity->group->role, ['partner']) &&
+            Yii::$app->user->identity->profile->answers_per_month &&
+            Yii::$app->user->identity->getOrderAnswerCountPerMonth() >= 3) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * @param int $city_id
+     * @return bool
      * @throws \Exception
      * @throws \Throwable
      */
@@ -421,9 +436,7 @@ class Profile extends \thread\modules\user\models\Profile
         /**
          * Answers per month
          */
-        if (in_array(Yii::$app->user->identity->group->role, ['partner']) &&
-            Yii::$app->user->identity->profile->answers_per_month &&
-            Yii::$app->user->identity->getOrderAnswerCountPerMonth() >= 3) {
+        if ($this->getPossibilityToSaveAnswerPerMonth() == false) {
             return false;
         }
 

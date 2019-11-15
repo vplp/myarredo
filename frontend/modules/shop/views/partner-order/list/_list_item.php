@@ -158,6 +158,8 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                 ]
             );
         }
+    } elseif (Yii::$app->user->identity->profile->getPossibilityToSaveAnswerPerMonth() == false) {
+        echo Html::tag('p', Yii::t('app', 'Вы исчерпали бесплатный месячный лимит ответов на заявки. Для продления свяжитесь с оператором сайта.'));
     } else {
         echo Html::tag('p', Yii::t('app', 'Оплатите возможность отвечать на заявки из этого города!'));
     } ?>
