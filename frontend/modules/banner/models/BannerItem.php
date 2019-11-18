@@ -48,7 +48,10 @@ class BannerItem extends \common\modules\banner\models\BannerItem
     public static function findByFactoryId($factory_id)
     {
         return self::findBase()
-            ->andWhere([self::tableName() . '.factory_id' => $factory_id])
+            ->andWhere([
+                self::tableName() . '.factory_id' => $factory_id,
+                self::tableName() . '.type' => 'factory'
+            ])
             ->all();
     }
 
