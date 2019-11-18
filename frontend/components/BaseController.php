@@ -103,7 +103,7 @@ abstract class BaseController extends Controller
                     'lang' => substr($alternate['local'], 0, 2),
                     'current' => (Yii::$app->language == $alternate['local']) ? true : false
                 ];
-            } elseif (Yii::$app->controller->id != 'category' && Yii::$app->city->domain == 'com' && in_array($alternate['alias'], ['ru'])) {
+            } elseif (!in_array(Yii::$app->controller->id, ['category', 'sale']) && Yii::$app->city->domain == 'com' && in_array($alternate['alias'], ['ru'])) {
                 $alternatePages[$alternate['local']] = [
                     'href' => 'https://www.myarredo.ru' .
                         str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
@@ -112,7 +112,7 @@ abstract class BaseController extends Controller
                 ];
             }
 
-            if (Yii::$app->controller->id != 'category' && Yii::$app->city->getCityId() == 4 && in_array($alternate['alias'], ['it', 'en'])) {
+            if (!in_array(Yii::$app->controller->id, ['category', 'sale']) && Yii::$app->city->getCityId() == 4 && in_array($alternate['alias'], ['it', 'en'])) {
                 $alternatePages[$alternate['local']] = [
                     'href' => 'https://www.myarredo.com' . '/' . $alternate['alias'] .
                         str_replace('/' . $languages[Yii::$app->language]['alias'], '', $current_url),
