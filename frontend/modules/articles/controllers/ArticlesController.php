@@ -9,16 +9,20 @@ use yii\filters\VerbFilter;
 use frontend\components\BaseController;
 use frontend\modules\articles\models\Article;
 //
-use thread\actions\RecordView;
+use thread\actions\{
+    ListQuery, RecordView
+};
 
 /**
- * Class ArticleController
+ * Class ArticlesController
  *
  * @package frontend\modules\articles\controllers
  */
-class ArticleController extends BaseController
+class ArticlesController extends BaseController
 {
-    public $title = "Article";
+    public $label = "Articles";
+
+    public $title = "Articles";
 
     public $defaultAction = 'index';
 
@@ -43,11 +47,16 @@ class ArticleController extends BaseController
     public function actions()
     {
         return [
-            'index' => [
+            'list' => [
+                'class' => ListQuery::class,
+                'query' => Article::findBase(),
+                'recordOnPage' => $this->module->itemOnPage,
+            ],
+            'view' => [
                 'class' => RecordView::class,
                 'modelClass' => Article::class,
                 'methodName' => 'findByAlias',
-                'view' => 'article',
+                //'view' => 'article',
             ],
         ];
     }
@@ -59,8 +68,10 @@ class ArticleController extends BaseController
     public function beforeAction($action)
     {
         if (Yii::$app->city->getCityId() != 4) {
-            return $this->redirect('https://' . 'www.myarredo.ru' . Url::current(), 301);
+            return $this->redirect('https://' . 'www.myarredo.ru' . Url::toRoute('/articles/articles/list'), 301);
         }
+
+        $this->title = Yii::t('app', 'Articles');
 
         return parent::beforeAction($action);
     }

@@ -10,8 +10,8 @@ return [
     ],
 
     // Module [[Articles]]
-    'articles' => 'articles/list/index',
-    'articles/<alias:[\w\-]+>' => 'articles/article/index',
+    'articles' => 'articles/articles/list',
+    'articles/<alias:[\w\-]+>' => 'articles/articles/view',
 
     // Module [[Home]]
     '' => 'home/home/index',

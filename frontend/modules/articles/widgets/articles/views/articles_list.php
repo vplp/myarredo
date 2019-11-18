@@ -17,7 +17,7 @@ use frontend\modules\articles\models\Article;
             <h3><?= Yii::t('front', 'Articles') ?></h3>
             <?= Html::a(
                 Yii::t('front', 'All articles'),
-                Url::toRoute(['/articles/list/index']),
+                Url::toRoute(['/articles/articles/list']),
                 ['class' => 'more-page']
             ) ?>
             <div class="articles_cnt">
@@ -30,7 +30,7 @@ use frontend\modules\articles\models\Article;
             <div class="articles_b_mobile cf">
                 <?= Html::a(
                     Yii::t('front', 'All articles'),
-                    Url::toRoute(['/articles/list/index']),
+                    Url::toRoute(['/articles/articles/list']),
                     ['class' => 'more-page']
                 ) ?>
             </div>

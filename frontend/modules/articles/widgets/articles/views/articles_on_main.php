@@ -22,7 +22,7 @@ use frontend\modules\articles\models\Article;
                         </h2>
                         <?= Html::a(
                             Yii::t('app', 'Смотреть все статьи'),
-                            Url::toRoute('/articles/list/index'),
+                            Url::toRoute('/articles/articles/list'),
                             ['class' => 'sticker']
                         ) ?>
                     </div>

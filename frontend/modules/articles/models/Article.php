@@ -78,7 +78,7 @@ class Article extends \common\modules\articles\models\Article
      */
     public function getUrl()
     {
-        return Url::toRoute(['/articles/article/index', 'alias' => $this->alias]);
+        return Url::toRoute(['/articles/articles/view', 'alias' => $this->alias]);
     }
 
     /**

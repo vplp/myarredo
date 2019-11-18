@@ -41,6 +41,8 @@ class ArticlesList extends Widget
                 Article::tableName() . '.id',
                 Article::tableName() . '.alias',
                 Article::tableName() . '.image_link',
+                Article::tableName() . '.published_time',
+                Article::tableName() . '.updated_at',
                 ArticleLang::tableName() . '.title',
                 ArticleLang::tableName() . '.description',
             ])

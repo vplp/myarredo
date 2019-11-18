@@ -214,7 +214,7 @@ class Article extends ActiveRecord
     public function getPublishedTime()
     {
         $format = ArticlesModule::getFormatDate();
-        return $this->published_time == 0 ? date($format) : date($format, $this->published_time);
+        return $this->published_time == 0 ? date($format, $this->updated_at) : date($format, $this->published_time);
     }
 
     /**
