@@ -40,7 +40,7 @@ class CategoryController extends BaseController
             ],
             [
                 'class' => \yii\filters\HttpCache::class,
-                //'only' => ['list'],
+                'only' => ['list'],
                 'lastModified' => function ($action, $params) {
                     $q = new \yii\db\Query();
                     return $q->from(Product::tableName())->max('updated_at');
