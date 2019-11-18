@@ -75,8 +75,6 @@ $this->title = $this->context->title;
                                     <?php } ?>
                                 </div>
 
-                                <div class="prod-price"><?= Yii::t('app', 'Без учета НДС') ?></div>
-
                                 <?php if ($model->catalog_type_id == 3 && $model->price_without_technology) { ?>
                                     <div class="prod-price">
                                         <div class="price economy">
