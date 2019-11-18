@@ -36,6 +36,7 @@ class CategoryController extends BaseController
                     'list' => ['get'],
                     'ajax-get-types' => ['post'],
                     'ajax-get-category' => ['post'],
+                    'ajax-get-filter' => ['post'],
                 ],
             ],
             [
