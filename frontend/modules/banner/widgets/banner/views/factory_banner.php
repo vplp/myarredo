@@ -8,7 +8,6 @@ use frontend\modules\banner\models\BannerItem;
  * @var $model BannerItem
  */
 
-
 if (!empty($items)) { ?>
     <div class="fact-slider">
 

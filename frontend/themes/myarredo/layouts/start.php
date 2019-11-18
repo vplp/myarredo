@@ -13,6 +13,7 @@ use frontend\modules\catalog\widgets\{
     sale\SaleItalyOnMainPage,
     filter\ProductFilterOnMainPage
 };
+use frontend\modules\banner\widgets\banner\BannerList;
 use frontend\modules\articles\widgets\articles\ArticlesList;
 
 $bundle = AppAsset::register($this);
@@ -23,6 +24,11 @@ $bundle = AppAsset::register($this);
 <main>
     <div class="home-main">
         <div class="container-wrap">
+
+            <?php if (in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1'))) {
+                echo BannerList::widget([]);
+            } ?>
+
             <div class="top-home-img">
 
                 <?= ProductFilterOnMainPage::widget(); ?>
