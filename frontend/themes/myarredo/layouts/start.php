@@ -10,9 +10,9 @@ use frontend\modules\catalog\widgets\{
     category\CategoryOnMainPage,
     product\ProductsNoveltiesOnMain,
     sale\SaleOnMainPage,
-    sale\SaleItalyOnMainPage,
-    filter\ProductFilterOnMainPage
+    sale\SaleItalyOnMainPage
 };
+use frontend\modules\banner\widgets\banner\BannerList;
 use frontend\modules\articles\widgets\articles\ArticlesList;
 
 $bundle = AppAsset::register($this);
@@ -53,9 +53,7 @@ $bundle = AppAsset::register($this);
 
             <div class="top-home-img">
 
-                <?= ProductFilterOnMainPage::widget(); ?>
-
-            </div>
+            <?= BannerList::widget(['type' => 'main']); ?>
 
             <div class="best-price">
                 <div class="container large-container">

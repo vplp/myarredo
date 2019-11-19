@@ -1,21 +1,34 @@
 <?php
 
+use yii\helpers\Html;
+//
+use frontend\modules\banner\models\BannerItem;
+use frontend\modules\catalog\widgets\filter\ProductFilterOnMainPage;
+
 /**
- * @var \frontend\modules\banner\models\BannerItem $model
+ * @var $model BannerItem
  */
 
-?>
+if (!empty($items)) { ?>
+    <div class="fact-slider">
 
-<?php if (!empty($items)): ?>
-    <div id="general-slider_cnt" class="general-slider_cnt">
-        <?php foreach ($items as $item): ?>
-            <div class="general-slider_i">
-                <?php if ($item->lang->link): ?>
-                    <?= Html::a(Html::img($item->getBannerImage()), $item->lang->link) ?>
-                <?php else: ?>
-                    <?= Html::img($item->getBannerImage()) ?>
-                <?php endif; ?>
+        <?php foreach ($items as $model) { ?>
+            <div class="img-cont">
+                <?php if ($model['lang']['link'] != '') {
+                    echo Html::a(Html::img($model->getImageLink()), $model['lang']['link'], []);
+                } else {
+                    echo Html::img($model->getImageLink());
+                } ?>
+                <span><?= $model['lang']['title']; ?></span>
             </div>
-        <?php endforeach; ?>
+        <?php } ?>
+
     </div>
-<?php endif; ?>
+
+<?php } elseif ($type == 'main') { ?>
+    <div class="top-home-img">
+
+        <?= ProductFilterOnMainPage::widget(); ?>
+
+    </div>
+<?php }

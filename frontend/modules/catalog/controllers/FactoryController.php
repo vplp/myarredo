@@ -131,7 +131,7 @@ class FactoryController extends BaseController
         $modelSale = new Sale();
         $saleProduct = null;
 
-        if (Yii::$app->partner->profile->partner_in_city_paid) {
+        if (isset(Yii::$app->partner->profile) && Yii::$app->partner->profile->partner_in_city_paid) {
             $saleProduct = $modelSale->search([
                 'defaultPageSize' => 6,
                 $keys['factory'] => [

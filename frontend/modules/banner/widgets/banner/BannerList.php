@@ -3,10 +3,15 @@
 namespace frontend\modules\banner\widgets\banner;
 
 use yii\base\Widget;
+//
 use frontend\modules\banner\models\BannerItem;
 
 /**
  * Class BannerList
+ *
+ * @property string $view
+ * @property string $type
+ * @property object $model
  *
  * @package frontend\modules\banner\widgets\banner
  */
@@ -18,6 +23,11 @@ class BannerList extends Widget
     public $view = 'banner_list';
 
     /**
+     * @var string
+     */
+    public $type = 'main';
+
+    /**
      * @var object
      */
     protected $model = [];
@@ -27,7 +37,11 @@ class BannerList extends Widget
      */
     public function init()
     {
-        $this->model = BannerItem::findBase()->all();
+        $this->model = BannerItem::findBase()
+            ->andWhere([
+                BannerItem::tableName() . '.type' => $this->type
+            ])
+            ->all();
     }
 
     /**
@@ -38,7 +52,8 @@ class BannerList extends Widget
         return $this->render(
             $this->view,
             [
-                'items' => $this->model
+                'items' => $this->model,
+                'type' => $this->type
             ]
         );
     }

@@ -23,7 +23,7 @@ class SitemapImageController extends Controller
      * Количество URL в SitemapImage (не более 50 000)
      * @var int
      */
-    public $countUrlInSitemapImage = 25000;
+    public $countUrlInSitemapImage = 20000;
 
     /** @var array */
     public $models = [];

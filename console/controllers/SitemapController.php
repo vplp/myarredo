@@ -28,7 +28,7 @@ class SitemapController extends Controller
      * Количество URL в Sitemap (не более 50 000)
      * @var int
      */
-    public $countUrlInSitemap = 25000;
+    public $countUrlInSitemap = 20000;
 
     /** @var array */
     public $models = [];
