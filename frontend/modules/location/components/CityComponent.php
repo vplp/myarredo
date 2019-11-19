@@ -149,7 +149,7 @@ class CityComponent extends Component
         $exp_host = explode('myarredo.', $_SERVER["HTTP_HOST"]);
 
         // set domain
-        $this->domain = (in_array($exp_host[1], ['ru', 'ua', 'by', 'com'])) ? $exp_host[1] : 'ru';
+        $this->domain = (in_array($exp_host[1], ['ru', 'ua', 'by', 'com'])) ? $exp_host[1] : 'com';
 
         $exp_host = explode('.', $_SERVER['HTTP_HOST']);
 
