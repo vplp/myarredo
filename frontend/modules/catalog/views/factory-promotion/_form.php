@@ -547,11 +547,15 @@ if (product_id) {
     product.prop({checked: true });
     product.parent('.jq-checkbox').addClass('checked');
    
-    var str = '<div>' + 
-            product.data('title') + 
+    var str = '<div class="list-product-item">' + 
             '<input type="hidden" name="FactoryPromotion[product_ids][]" value="' + product.val() + '">' +
-            '<img src="' + product.data('image') + '" width="50">' +
             '<a id="del-product" class="close" href="javascript:void(0);" data-id="' + product.val() + '"><i class="fa fa-times"></i></a>' +
+            '<div class="list-product-img">' +
+            '<img src="' + product.data('image') + '" width="50">' +
+            '</div>' +
+            '<div class="product-list-descr">' +
+            product.data('title') + 
+            '</div>' +
             '</div>';
    
     $('#list-product').html(str);

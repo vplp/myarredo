@@ -23,6 +23,34 @@ $bundle = AppAsset::register($this);
 <main>
     <div class="home-main">
         <div class="container-wrap">
+            <!-- Top-home slider box -->
+            <div class="top-home-sliderbox">
+
+                <!-- slider container -->
+                <div class="home-top-slider">
+
+                    <!-- item -->
+                    <div class="img-cont">
+                        <a href="#">
+                            <img src="https://www.myarredo.ru/uploads/banner/5a30036205e5d.jpg" alt="banner1">
+                        </a>
+                        <span>Элегантные решения</span>
+                    </div>
+
+                    <!-- item -->
+                    <div class="img-cont">
+                        <a href="#">
+                            <img src="https://www.myarredo.ru/uploads/banner/5a30036205e5d.jpg" alt="banner1">
+                        </a>
+                        <span>Другие решения</span>
+                    </div>
+
+                </div>
+                <!-- end slider container  -->
+
+            </div>
+            <!-- end Top-home slider box -->
+
             <div class="top-home-img">
 
                 <?= ProductFilterOnMainPage::widget(); ?>

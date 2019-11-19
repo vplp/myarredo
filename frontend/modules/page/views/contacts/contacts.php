@@ -5,6 +5,7 @@ use yii\helpers\{
 };
 //
 use frontend\themes\myarredo\assets\AppAsset;
+use frontend\modules\user\widgets\partner\PartnerMap;
 
 $this->title = $this->context->title;
 $bundle = AppAsset::register($this);
@@ -16,16 +17,17 @@ $bundle = AppAsset::register($this);
             <div class="container large-container">
                 <div class="col-md-12">
                     <?= Html::tag('h1', $this->context->title); ?>
-                    <div class="of-conts">
+                    <div class="of-conts ">
                         <?php
                         if ($partners[0]['profile']['partner_in_city']) {
                             $mainPartner = array_shift($partners);
                             ?>
+                            <!-- main partner -->
                             <div class="one-cont double-cont">
                                 <div class="img-part">
                                     <?= Html::img($bundle->baseUrl . '/img/cont1.svg') ?>
                                 </div>
-                                <div class="info-part">
+                                <div class="info-part infopart">
                                     <div class="main-sticker">
                                         <?= Yii::t('app', 'Главный партнер') ?>
                                     </div>
@@ -70,7 +72,16 @@ $bundle = AppAsset::register($this);
                                         </div>
                                     <?php } ?>
                                 </div>
+                                <div class="partner-formbox">
+                                    <!-- ---------------------------- -->
+                                    <!-- Сюда ложить форму!!! -->
+                                    <!-- ---------------------------- -->
+                                </div>
                             </div>
+                            <div class="one-cont double-cont map-cont">
+                                <?= PartnerMap::widget(['city' => 2]) ?>
+                            </div>
+                            <!-- end main partner -->
                         <?php } ?>
 
                         <?php foreach ($partners as $partner) { ?>

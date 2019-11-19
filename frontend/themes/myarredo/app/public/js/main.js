@@ -800,6 +800,22 @@ $(document).ready(function () {
         });
     }
 
+    // Инициализация главного верхнего слайдера на домашней странице
+    (function () {
+        setTimeout(function () {
+            if ($('.home-top-slider').length) {
+                $('.home-top-slider').slick({
+                    autoplay: true,
+                    dots: true,
+                    arrows: true,
+                    fade: true,
+                    cssEase: 'linear',
+                    autoplaySpeed: 3000
+                });
+            }
+        }, 400);
+    })();
+
     // Инициализация слайдера на странице фабрики
     (function () {
         setTimeout(function () {
