@@ -21,40 +21,17 @@ $bundle = AppAsset::register($this);
 <?php $this->beginContent('@app/layouts/main.php'); ?>
 
 <main>
+    <!-- home-main -->
     <div class="home-main">
+
+        <!-- container-wrap -->
         <div class="container-wrap">
-            <!-- Top-home slider box -->
-            <div class="top-home-sliderbox">
-
-                <!-- slider container -->
-                <div class="home-top-slider">
-
-                    <!-- item -->
-                    <div class="img-cont">
-                        <a href="#">
-                            <img src="https://www.myarredo.ru/uploads/banner/5a30036205e5d.jpg" alt="banner1">
-                        </a>
-                        <span>Элегантные решения</span>
-                    </div>
-
-                    <!-- item -->
-                    <div class="img-cont">
-                        <a href="#">
-                            <img src="https://www.myarredo.ru/uploads/banner/5a30036205e5d.jpg" alt="banner1">
-                        </a>
-                        <span>Другие решения</span>
-                    </div>
-
-                </div>
-                <!-- end slider container  -->
-
-            </div>
-            <!-- end Top-home slider box -->
 
             <div class="top-home-img">
+                <?= BannerList::widget(['type' => 'main']); ?>
+            </div>
 
-            <?= BannerList::widget(['type' => 'main']); ?>
-
+            <!-- best-price -->
             <div class="best-price">
                 <div class="container large-container">
                     <div class="section-header">
@@ -129,6 +106,7 @@ $bundle = AppAsset::register($this);
                     </div>
                 </div>
             </div>
+            <!-- end best-price -->
 
             <div class="categories-sect">
                 <div class="container large-container">
@@ -171,8 +149,10 @@ $bundle = AppAsset::register($this);
             } ?>
 
         </div>
+        <!-- end container-wrap -->
 
     </div>
+    <!-- end home-main -->
 
 </main>
 

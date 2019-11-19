@@ -10,9 +10,12 @@ use frontend\modules\catalog\widgets\filter\ProductFilterOnMainPage;
  */
 
 if (!empty($items)) { ?>
-    <div class="fact-slider">
+    <!-- slider container -->
+    <div class="home-top-slider">
 
         <?php foreach ($items as $model) { ?>
+
+            <!-- item -->
             <div class="img-cont">
                 <?php if ($model['lang']['link'] != '') {
                     echo Html::a(Html::img($model->getImageLink()), $model['lang']['link'], []);
@@ -21,9 +24,12 @@ if (!empty($items)) { ?>
                 } ?>
                 <span><?= $model['lang']['title']; ?></span>
             </div>
+            <!-- end item -->
+            
         <?php } ?>
 
     </div>
+    <!-- end slider container  -->
 
 <?php } elseif ($type == 'main') { ?>
     <div class="top-home-img">

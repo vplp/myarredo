@@ -8892,6 +8892,7 @@ h1 {
   width: 100%;
   height: auto;
   min-height: 560px;
+  max-height: 560px;
   object-fit: cover;
 }
 .home-top-slider .slick-dots {
@@ -8902,14 +8903,14 @@ h1 {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 30px;
+  bottom: 0;
 }
 .home-top-slider .slick-dots li {
   width: 10px;
   height: 10px;
   border-radius: 5px;
   overflow: hidden;
-  margin-right: 30px;
+  margin-right: 15px;
 }
 .home-top-slider .slick-dots li button {
   height: 100%;
@@ -9030,9 +9031,36 @@ h1 {
     padding: 10px 0 20px;
   }
 }
+/* max 1300 */
 @media (max-width: 1300px) {
   .progress-steps-step {
     padding-right: 20px;
+  }
+  .home-main .top-home-img,
+  .home-top-slider, 
+  .home-top-slider .img-cont img {
+    min-height: 43vw;
+    max-height: 43vw;
+  }
+  .home-top-slider .img-cont span {
+    font-size: 2.69vw;
+  }
+  .home-top-slider .slick-arrow {
+    width: 3.076vw;
+    height: 3.076vw;
+    margin-top: -1.538vw;
+  }
+  .home-top-slider .slick-arrow.slick-prev {
+    padding-right: 0.461vw;
+    padding-left: 0.23vw;
+  }
+  .home-top-slider .slick-arrow.slick-next {
+    padding-right: 0.23vw;
+    padding-left: 0.461vw;
+  }
+  .home-top-slider .slick-arrow.slick-next:before, 
+  .home-top-slider .slick-arrow.slick-prev:before {
+    font-size: 1.538vw;
   }
 }
 @media (max-width: 1280px) {
