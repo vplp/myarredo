@@ -3,13 +3,17 @@
 namespace common\modules\forms\models;
 
 use Yii;
+//
 use thread\app\base\models\ActiveRecord;
+//
 use common\modules\forms\Forms as FormsModule;
+use common\modules\user\models\User;
 
 /**
  * Class Forms
  *
  * @property integer $id
+ * @property integer $partner_id
  * @property string $name
  * @property string $email
  * @property string $phone
@@ -18,6 +22,8 @@ use common\modules\forms\Forms as FormsModule;
  * @property integer $updated_at
  * @property integer $published
  * @property integer $deleted
+ *
+ * @property User $partner
  *
  * @package common\modules\forms\models
  */
@@ -44,6 +50,7 @@ class FormsFeedback extends ActiveRecord
             [['user_agreement', 'reCaptcha'], 'required', 'on' => 'frontend'],
             [['name', 'phone'], 'string', 'max' => 255],
             [['comment'], 'string', 'max' => 2048],
+            [['partner_id'], 'integer'],
             [['email'], 'email'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['created_at', 'updated_at', 'published', 'deleted'], 'integer'],
@@ -68,7 +75,16 @@ class FormsFeedback extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'backend' => ['name', 'email', 'phone', 'comment', 'published'],
-            'frontend' => ['name', 'email', 'phone', 'comment', 'published', 'user_agreement', 'reCaptcha'],
+            'frontend' => [
+                'partner_id',
+                'name',
+                'email',
+                'phone',
+                'comment',
+                'published',
+                'user_agreement',
+                'reCaptcha'
+            ],
         ];
     }
 
@@ -78,6 +94,7 @@ class FormsFeedback extends ActiveRecord
     public function attributeLabels()
     {
         return [
+            'partner_id',
             'name' => Yii::t('app', 'Name'),
             'email' => Yii::t('app', 'Email'),
             'phone' => Yii::t('app', 'Phone'),
@@ -89,6 +106,14 @@ class FormsFeedback extends ActiveRecord
             'user_agreement' => Yii::t('app', 'Подтверждаю <a href="/terms-of-use/" target="_blank">пользовательское соглашение</a>'),
             'reCaptcha' => 'Captcha',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPartner()
+    {
+        return $this->hasOne(User::class, ['id' => 'partner_id']);
     }
 
     /**

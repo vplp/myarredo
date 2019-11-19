@@ -23,7 +23,7 @@ use frontend\modules\forms\models\FormsFeedback;
         </div>
     </div>
     <div style="background-color:#fff9ea; text-align: left; padding: 10px 0 40px 10px;">
-        <p>Поступил новый вопрос на связаться с оператором сайта:</p>
+        <p>Поступил новый вопрос:</p>
         <p><?= $model->getAttributeLabel('email') ?>: <?= $model->email ?></p>
         <p><?= $model->getAttributeLabel('user_name') ?>: <?= $model->name ?></p>
         <p><?= $model->getAttributeLabel('phone') ?>: <?= $model->phone ?></p>

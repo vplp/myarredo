@@ -56,6 +56,7 @@ class FormsController extends BaseController
                 $save ? $transaction->commit() : $transaction->rollBack();
 
                 if ($save) {
+                    $subject = 'Связаться с оператором сайта';
                     /**
                      * send letter
                      */
@@ -64,11 +65,12 @@ class FormsController extends BaseController
                         ->compose(
                             '@app/modules/forms/mail/form_feedback_letter.php',
                             [
+                                'subject' => $subject,
                                 'model' => $model,
                             ]
                         )
                         ->setTo(Yii::$app->params['form_feedback']['setTo'])
-                        ->setSubject('Связаться с оператором сайта')
+                        ->setSubject($subject)
                         ->send();
 
                     /**
@@ -109,6 +111,7 @@ class FormsController extends BaseController
                 $save ? $transaction->commit() : $transaction->rollBack();
 
                 if ($save) {
+                    $subject = 'Связаться с салоном';
                     /**
                      * send letter
                      */
@@ -117,11 +120,12 @@ class FormsController extends BaseController
                         ->compose(
                             '@app/modules/forms/mail/form_feedback_letter.php',
                             [
+                                'subject' => $subject,
                                 'model' => $model,
                             ]
                         )
-                        ->setTo(Yii::$app->params['form_feedback']['setTo'])
-                        ->setSubject('Связаться с оператором сайта')
+                        ->setTo($model->partner->email)
+                        ->setSubject($subject)
                         ->send();
 
                     /**

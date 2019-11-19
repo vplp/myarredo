@@ -21,7 +21,7 @@ class FormFeedback extends Widget
     /**
      * @var string
      */
-    public $user;
+    public $partner_id = 0;
 
     /**
      * @return string
@@ -32,7 +32,7 @@ class FormFeedback extends Widget
 
         return $this->render($this->view, [
             'model' => $model,
-            'user' => $this->user
+            'partner_id' => $this->partner_id
         ]);
     }
 }

@@ -10,6 +10,7 @@ use forntend\modules\forms\models\FormsFeedback;
 
 /**
  * @var $model FormsFeedback
+ * @var $partner_id integer
  */
 $bundle = AppAsset::register($this);
 
@@ -29,7 +30,7 @@ $image_link = $partner['profile']['image_link']
 
             <?php $form = ActiveForm::begin([
                 'method' => 'post',
-                'action' => Url::toRoute(['/forms/forms/feedback'], true)
+                'action' => Url::toRoute(['/forms/forms/feedback-partner'], true)
             ]); ?>
 
             <?= $form
@@ -62,6 +63,11 @@ $image_link = $partner['profile']['image_link']
                 ->field($model, 'user_agreement', ['template' => '{input}{label}{error}{hint}'])
                 ->checkbox([], false)
                 ->label('&nbsp;' . $model->getAttributeLabel('user_agreement')); ?>
+
+            <?= $form
+                ->field($model, 'partner_id')
+                ->input('hidden', ['value' => $partner_id])
+                ->label(false) ?>
 
             <?= $form
                 ->field($model, 'reCaptcha')
