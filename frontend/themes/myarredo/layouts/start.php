@@ -10,8 +10,7 @@ use frontend\modules\catalog\widgets\{
     category\CategoryOnMainPage,
     product\ProductsNoveltiesOnMain,
     sale\SaleOnMainPage,
-    sale\SaleItalyOnMainPage,
-    filter\ProductFilterOnMainPage
+    sale\SaleItalyOnMainPage
 };
 use frontend\modules\banner\widgets\banner\BannerList;
 use frontend\modules\articles\widgets\articles\ArticlesList;
@@ -25,15 +24,7 @@ $bundle = AppAsset::register($this);
     <div class="home-main">
         <div class="container-wrap">
 
-            <?php if (in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1'))) {
-                echo BannerList::widget(['type' => 'main']);
-            } ?>
-
-            <div class="top-home-img">
-
-                <?= ProductFilterOnMainPage::widget(); ?>
-
-            </div>
+            <?= BannerList::widget(['type' => 'main']); ?>
 
             <div class="best-price">
                 <div class="container large-container">

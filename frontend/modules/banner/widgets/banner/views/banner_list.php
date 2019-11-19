@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 //
 use frontend\modules\banner\models\BannerItem;
+use frontend\modules\catalog\widgets\filter\ProductFilterOnMainPage;
 
 /**
  * @var $model BannerItem
@@ -24,5 +25,10 @@ if (!empty($items)) { ?>
 
     </div>
 
-    <?php
-}
+<?php } else { ?>
+    <div class="top-home-img">
+
+        <?= ProductFilterOnMainPage::widget(); ?>
+
+    </div>
+<?php }
