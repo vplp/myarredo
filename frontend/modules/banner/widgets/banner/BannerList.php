@@ -3,6 +3,7 @@
 namespace frontend\modules\banner\widgets\banner;
 
 use yii\base\Widget;
+//
 use frontend\modules\banner\models\BannerItem;
 
 /**
@@ -51,7 +52,8 @@ class BannerList extends Widget
         return $this->render(
             $this->view,
             [
-                'items' => $this->model
+                'items' => $this->model,
+                'type' => $this->type
             ]
         );
     }

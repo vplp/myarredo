@@ -25,7 +25,7 @@ if (!empty($items)) { ?>
 
     </div>
 
-<?php } else { ?>
+<?php } elseif ($type == 'main') { ?>
     <div class="top-home-img">
 
         <?= ProductFilterOnMainPage::widget(); ?>
