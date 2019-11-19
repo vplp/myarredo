@@ -5,10 +5,14 @@ use yii\helpers\{
 };
 //
 use frontend\themes\myarredo\assets\AppAsset;
-use frontend\modules\user\widgets\partner\PartnerMap;
+use frontend\modules\user\widgets\partner\MainPartnerMap;
+use frontend\modules\forms\widgets\FormFeedback;
 
 $this->title = $this->context->title;
 $bundle = AppAsset::register($this);
+
+
+/** @var $partners array */
 ?>
 
 <main>
@@ -48,7 +52,9 @@ $bundle = AppAsset::register($this);
                                         <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
                                     </div>
                                     <div class="adres">
-                                        <?= isset($mainPartner->profile->city) ? $mainPartner->profile->city->lang->title . '<br>' : '' ?>
+                                        <?= isset($mainPartner->profile->city)
+                                            ? $mainPartner->profile->city->lang->title . '<br>'
+                                            : '' ?>
                                         <?= $mainPartner->profile->lang->address ?>
                                     </div>
 
@@ -61,25 +67,28 @@ $bundle = AppAsset::register($this);
                                             $mainPartner->profile->phone2,
                                             'tel:' . $mainPartner->profile->phone2,
                                             []
-                                        ) ?>
+                                        ); ?>
 
                                         <div class="ico">
                                             <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
                                         </div>
                                         <div class="adres">
-                                            <?= isset($mainPartner->profile->city) ? $mainPartner->profile->city->lang->title . '<br>' : '' ?>
+                                            <?= isset($mainPartner->profile->city)
+                                                ? $mainPartner->profile->city->lang->title . '<br>'
+                                                : '' ?>
                                             <?= $mainPartner->profile->lang->address2 ?>
                                         </div>
                                     <?php } ?>
                                 </div>
                                 <div class="partner-formbox">
-                                    <!-- ---------------------------- -->
-                                    <!-- Сюда ложить форму!!! -->
-                                    <!-- ---------------------------- -->
+                                    <?= FormFeedback::widget([
+                                        'user' => $mainPartner,
+                                        'view' => 'form_feedback_partner'
+                                    ]); ?>
                                 </div>
                             </div>
                             <div class="one-cont double-cont map-cont">
-                                <?= PartnerMap::widget(['city' => 2]) ?>
+                                <?= MainPartnerMap::widget(['id' => $mainPartner->id]) ?>
                             </div>
                             <!-- end main partner -->
                         <?php } ?>
@@ -101,7 +110,9 @@ $bundle = AppAsset::register($this);
                                     <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
                                 </div>
                                 <div class="adres">
-                                    <?= isset($partner->profile->city) ? $partner->profile->city->lang->title . '<br>' : '' ?>
+                                    <?= isset($partner->profile->city)
+                                        ? $partner->profile->city->lang->title . '<br>'
+                                        : '' ?>
                                     <?= $partner->profile->lang->address ?? '' ?>
                                 </div>
                             </div>

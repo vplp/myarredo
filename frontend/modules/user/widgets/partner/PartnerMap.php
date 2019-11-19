@@ -44,15 +44,15 @@ class PartnerMap extends Widget
 
         $dataJS = [];
 
-        foreach ($partners as $k => $obj) {
-            /** @var $obj User */
-            $dataJS[$k]['lat'] = (float)$obj->profile->latitude;
-            $dataJS[$k]['lng'] = (float)$obj->profile->longitude;
-            $dataJS[$k]['address'] = isset($obj->profile->lang) ? $obj->profile->lang->address : '';
-            $dataJS[$k]['city'] = isset($obj->profile->city) ? $obj->profile->city->lang->title : '';
-            $dataJS[$k]['country'] = isset($obj->profile->country) ? $obj->profile->country->lang->title : '';
-            $dataJS[$k]['phone'] = $obj->profile->phone;
-            $dataJS[$k]['image'] = $obj->profile->partner_in_city ? '/img/marker-main.png' : '/img/marker.png';
+        foreach ($partners as $k => $partner) {
+            /** @var $partner User */
+            $dataJS[$k]['lat'] = (float)$partner->profile->latitude;
+            $dataJS[$k]['lng'] = (float)$partner->profile->longitude;
+            $dataJS[$k]['address'] = isset($partner->profile->lang) ? $partner->profile->lang->address : '';
+            $dataJS[$k]['city'] = isset($partner->profile->city) ? $partner->profile->city->lang->title : '';
+            $dataJS[$k]['country'] = isset($partner->profile->country) ? $partner->profile->country->lang->title : '';
+            $dataJS[$k]['phone'] = $partner->profile->phone;
+            $dataJS[$k]['image'] = $partner->profile->partner_in_city ? '/img/marker-main.png' : '/img/marker.png';
         }
 
         $dataJS = json_encode($dataJS);

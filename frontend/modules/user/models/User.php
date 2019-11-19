@@ -22,6 +22,15 @@ class User extends \common\modules\user\models\User
     }
 
     /**
+     * @param $id
+     * @return mixed
+     */
+    public static function findById($id)
+    {
+        return self::findBase()->byID($id)->one();
+    }
+
+    /**
      * @param integer $city_id
      * @return mixed
      */

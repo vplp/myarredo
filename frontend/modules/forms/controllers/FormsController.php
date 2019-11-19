@@ -31,13 +31,14 @@ class FormsController extends BaseController
                 'class' => VerbFilter::class,
                 'actions' => [
                     'feedback' => ['post', 'get'],
+                    'feedback-partner' => ['post'],
                 ],
             ],
         ];
     }
 
     /**
-     * @inheritdoc
+     * @return string|\yii\web\Response
      */
     public function actionFeedback()
     {
@@ -89,5 +90,54 @@ class FormsController extends BaseController
         return $this->render('feedback', [
             'model' => $model
         ]);
+    }
+
+    /**
+     * @return string|\yii\web\Response
+     */
+    public function actionFeedbackPartner()
+    {
+        $model = new FormsFeedback(['scenario' => 'frontend']);
+
+        if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
+            $transaction = $model::getDb()->beginTransaction();
+            try {
+                $model->published = '1';
+
+                $save = $model->save();
+
+                $save ? $transaction->commit() : $transaction->rollBack();
+
+                if ($save) {
+                    /**
+                     * send letter
+                     */
+                    Yii::$app
+                        ->mailer
+                        ->compose(
+                            '@app/modules/forms/mail/form_feedback_letter.php',
+                            [
+                                'model' => $model,
+                            ]
+                        )
+                        ->setTo(Yii::$app->params['form_feedback']['setTo'])
+                        ->setSubject('Связаться с оператором сайта')
+                        ->send();
+
+                    /**
+                     * message
+                     */
+                    Yii::$app->session->setFlash(
+                        'success',
+                        Yii::t('app', 'Отправлено')
+                    );
+
+                    return $this->redirect(Yii::$app->request->referrer);
+                }
+            } catch (Exception $e) {
+                Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
+                $transaction->rollBack();
+            }
+        }
     }
 }

@@ -159,6 +159,7 @@ return [
 
     // Module [[Forms]]
     'forms/feedback' => 'forms/forms/feedback',
+    'forms/feedback-partner' => 'forms/forms/feedback-partner',
 
     // Module [[SEO]]
     'page/sitemap' => 'seo/sitemap-html/index',

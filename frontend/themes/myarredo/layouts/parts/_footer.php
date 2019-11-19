@@ -24,14 +24,12 @@ $bundle = AppAsset::register($this);
                     <?php if (!in_array(Yii::$app->controller->id, ['sale-italy'])) {
                         echo PartnerInfo::widget();
                     } else {
-                        echo FormFeedback::widget(['view' => 'sale_italy_form_feedback']);
+                        echo FormFeedback::widget(['view' => 'form_feedback_sale_italy']);
                     } ?>
                 </div>
 
                 <?php
-                if (!Yii::$app->getUser()->isGuest &&
-                    Yii::$app->user->identity->group->role == 'factory'
-                ) {
+                if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
                 } else { ?>
                     <div class="white-stripe">
                         <div class="icon">
@@ -50,11 +48,10 @@ $bundle = AppAsset::register($this);
         <?php } ?>
 
         <?php
-        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory'
-        ) {
-        } else if (Yii::$app->city->domain != 'com') { ?>
-            <?= Cities::widget() ?>
-        <?php } ?>
+        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
+        } else if (Yii::$app->city->domain != 'com') {
+            echo Cities::widget();
+        } ?>
 
         <div class="bot-footer">
             <div class="container large-container">
@@ -64,20 +61,18 @@ $bundle = AppAsset::register($this);
                             <img src="<?= $bundle->baseUrl ?>/img/logo.svg" alt="">
                         </a>
 
-                        <?= topBarInfo::widget() ?>
+                        <?= topBarInfo::widget(); ?>
 
-                        <?= FormFeedback::widget() ?>
+                        <?= FormFeedback::widget(); ?>
 
                     </div>
                     <div class="menu-items">
 
                         <?php
-                        if (!Yii::$app->getUser()->isGuest &&
-                            Yii::$app->user->identity->group->role == 'factory'
-                        ) {
-                        } else { ?>
-                            <?= Menu::widget(['alias' => 'footer']) ?>
-                        <?php } ?>
+                        if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
+                        } else {
+                            echo Menu::widget(['alias' => 'footer']);
+                        } ?>
 
                     </div>
                     <div class="soc-copy">

@@ -19,6 +19,11 @@ class FormFeedback extends Widget
     public $view = 'form_feedback';
 
     /**
+     * @var string
+     */
+    public $user;
+
+    /**
      * @return string
      */
     public function run()
@@ -26,7 +31,8 @@ class FormFeedback extends Widget
         $model = new FormsFeedback(['scenario' => 'frontend']);
 
         return $this->render($this->view, [
-            'model' => $model
+            'model' => $model,
+            'user' => $this->user
         ]);
     }
 }
