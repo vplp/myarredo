@@ -21,6 +21,9 @@ $city = Yii::$app->city->getCity();
 $image_link = $partner['profile']['image_link']
     ? $partner['profile']['imageLink']
     : $bundle->baseUrl . '/img/cont-photo-bg.jpg';
+
+$model->user_agreement = 1;
+
 ?>
 
 <div class="cont-info feedback-container">
