@@ -5,7 +5,7 @@ use frontend\themes\myarredo\assets\AppAsset;
 $bundle = AppAsset::register($this);
 
 ?>
-<div id="partner-map"></div>
+<div id="map"></div>
 
 <?php
 $template = '`<div class="info-buble"><h4>${marker.city}</h4><div>${marker.address}</div><div>${marker.phone}</div><div class="country">${marker.country}</div></div>`';
@@ -138,7 +138,7 @@ var styleArray = [
                 ];
 
 function initMap() {
-    var map = new google.maps.Map(document.getElementById('partner-map'), {
+    var map = new google.maps.Map(document.getElementById('map'), {
         zoom: $zoom,
         center: new google.maps.LatLng('$lat', '$lng'),
         mapTypeControl: true,
