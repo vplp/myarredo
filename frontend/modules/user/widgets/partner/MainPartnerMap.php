@@ -37,13 +37,13 @@ class MainPartnerMap extends Widget
         $dataJS = [];
 
         /** @var $partner User */
-        $dataJS[]['lat'] = (float)$partner->profile->latitude;
-        $dataJS[]['lng'] = (float)$partner->profile->longitude;
-        $dataJS[]['address'] = isset($partner->profile->lang) ? $partner->profile->lang->address : '';
-        $dataJS[]['city'] = isset($partner->profile->city) ? $partner->profile->city->lang->title : '';
-        $dataJS[]['country'] = isset($partner->profile->country) ? $partner->profile->country->lang->title : '';
-        $dataJS[]['phone'] = $partner->profile->phone;
-        $dataJS[]['image'] = $partner->profile->partner_in_city ? '/img/marker-main.png' : '/img/marker.png';
+        $dataJS[0]['lat'] = (float)$partner->profile->latitude;
+        $dataJS[0]['lng'] = (float)$partner->profile->longitude;
+        $dataJS[0]['address'] = isset($partner->profile->lang) ? $partner->profile->lang->address : '';
+        $dataJS[0]['city'] = isset($partner->profile->city) ? $partner->profile->city->lang->title : '';
+        $dataJS[0]['country'] = isset($partner->profile->country) ? $partner->profile->country->lang->title : '';
+        $dataJS[0]['phone'] = $partner->profile->phone;
+        $dataJS[0]['image'] = $partner->profile->partner_in_city ? '/img/marker-main.png' : '/img/marker.png';
 
         $dataJS = json_encode($dataJS);
 
