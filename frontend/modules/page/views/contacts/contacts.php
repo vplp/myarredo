@@ -81,7 +81,7 @@ $bundle = AppAsset::register($this);
                                     <?php } ?>
                                 </div>
                                 <div class="partner-formbox">
-                                    <?php FormFeedback::widget([
+                                    <?= FormFeedback::widget([
                                         'partner_id' => $mainPartner->id,
                                         'view' => 'form_feedback_partner'
                                     ]); ?>

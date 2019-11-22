@@ -8970,6 +8970,49 @@ h1 {
 .concact-page .one-cont.double-cont .infopart {
   max-height: 220px;
 }
+.partner-formbox {
+  padding-top: 25px;
+}
+.partner-formbox form {
+  max-width: 660px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.partner-formbox form .leftbox,
+.partner-formbox form .rightbox {
+  width: 48%;
+}
+.partner-formbox form .bottombox,
+.partner-formbox form .bottom-panel {
+  width: 100%;
+}
+.partner-formbox form textarea {
+  min-height: 132px;
+}
+.partner-formbox .feedback-title {
+  font-family: 'Roboto', sans-serif;
+  color: #535351;
+  font-size: 17px;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+.partner-formbox form .field-formsfeedback-user_agreement a {
+  display: inline;
+  color: #448339;
+  text-decoration: underline;
+}
+.partner-formbox form .field-formsfeedback-user_agreement .control-label {
+  text-align: left;
+}
+.partner-formbox form .bottom-panel {
+  text-align: left;
+}
+.partner-formbox .feedback-box .field-formsfeedback-recaptcha {
+  margin-left: 0;
+}
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
 /* ---------------------------------------------------------------------------------------------------- */
@@ -9232,7 +9275,7 @@ h1 {
     width: 100%;
   }
 }
-/* max 600px */
+/* max 599px */
 @media (max-width: 599px) {
   .part-contact-left {
     flex-wrap: wrap;
@@ -9270,6 +9313,16 @@ h1 {
     top: 60px;
     left: 0;
   }
+  .partner-formbox form .leftbox,
+  .partner-formbox form .rightbox {
+    width: 100%;
+  }
+  .partner-formbox form .bottombox {
+    overflow: hidden;
+  }
+  .partner-formbox form textarea {
+    min-height: auto;
+  }
 }
 @media (max-width: 540px) {
   .factory-list-page .title-mark .letter-nav {
@@ -9288,6 +9341,9 @@ h1 {
     height: auto;
   }
   .sitemap-list li {
+    width: 100%;
+  }
+  .concact-page .container.large-container {
     width: 100%;
   }
 }
