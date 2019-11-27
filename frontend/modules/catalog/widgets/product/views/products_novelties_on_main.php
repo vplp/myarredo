@@ -26,11 +26,12 @@ use frontend\modules\catalog\models\Product;
                 <div id="novelties-slider" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
 
-                        <?php foreach ($models as $k => $level) { ?>
-                            <div class="item<?= ($k == 1) ? ' active' : '' ?>">
+                        <?php foreach ($models as $k => $level) {
+                            if (count($level) == 8) { ?>
+                                <div class="item<?= ($k == 1) ? ' active' : '' ?>">
 
-                                <div class="item-in">
-                                    <?php /*
+                                    <div class="item-in">
+                                        <?php /*
                                     <div class="left">
 
                                         <?php foreach ($level as $key => $model) {
@@ -49,38 +50,39 @@ use frontend\modules\catalog\models\Product;
                                     </div>
                                     */ ?>
 
-                                    <div class="right">
-                                        <?php foreach ($level as $key => $model) {
-                                            if ($key < 4) {
-                                                echo Html::a(
-                                                    Html::img(
-                                                        '',
-                                                        ['alt' => Product::getStaticTitle($model), 'class' => 'lazy', 'data-src' => Product::getImageThumb($model['image_link'])]
-                                                    ),
-                                                    Product::getUrl($model['alias']),
-                                                    ['class' => 'smaller']
-                                                );
-                                            }
-                                        } ?>
-                                    </div>
-                                    <div class="right">
-                                        <?php foreach ($level as $key => $model) {
-                                            if ($key >= 4) {
-                                                echo Html::a(
-                                                    Html::img(
-                                                        '',
-                                                        ['alt' => Product::getStaticTitle($model), 'class' => 'lazy', 'data-src' => Product::getImageThumb($model['image_link'])]
-                                                    ),
-                                                    Product::getUrl($model['alias']),
-                                                    ['class' => 'smaller']
-                                                );
-                                            }
-                                        } ?>
+                                        <div class="right">
+                                            <?php foreach ($level as $key => $model) {
+                                                if ($key < 4) {
+                                                    echo Html::a(
+                                                        Html::img(
+                                                            '',
+                                                            ['alt' => Product::getStaticTitle($model), 'class' => 'lazy', 'data-src' => Product::getImageThumb($model['image_link'])]
+                                                        ),
+                                                        Product::getUrl($model['alias']),
+                                                        ['class' => 'smaller']
+                                                    );
+                                                }
+                                            } ?>
+                                        </div>
+                                        <div class="right">
+                                            <?php foreach ($level as $key => $model) {
+                                                if ($key >= 4) {
+                                                    echo Html::a(
+                                                        Html::img(
+                                                            '',
+                                                            ['alt' => Product::getStaticTitle($model), 'class' => 'lazy', 'data-src' => Product::getImageThumb($model['image_link'])]
+                                                        ),
+                                                        Product::getUrl($model['alias']),
+                                                        ['class' => 'smaller']
+                                                    );
+                                                }
+                                            } ?>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        <?php } ?>
+                            <?php }
+                        } ?>
 
                     </div>
 
