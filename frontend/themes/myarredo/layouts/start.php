@@ -28,7 +28,7 @@ $bundle = AppAsset::register($this);
         <div class="container-wrap">
 
             <div class="top-home-img">
-                <?= BannerList::widget(['type' => 'main']); ?>
+                <?= BannerList::widget(['type' => 'main', 'city_id' => Yii::$app->city->getCityId()]); ?>
             </div>
 
             <!-- best-price -->
