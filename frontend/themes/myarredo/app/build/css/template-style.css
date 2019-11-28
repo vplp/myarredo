@@ -4438,6 +4438,7 @@ h1 {
 .adding-product-page #form-stats {
   max-width: 1400px;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 .adding-product-page .manager-history {
   max-width: 1400px;
@@ -8871,6 +8872,7 @@ h1 {
 .home-top-slider {
   min-height: 560px;
   max-height: 560px;
+  overflow: hidden;
   width: 100%;
 }
 .home-top-slider .img-cont span {
