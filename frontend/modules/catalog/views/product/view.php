@@ -66,7 +66,7 @@ $this->title = $this->context->title;
                             <div class="price-availability" itemprop="offers" itemscope
                                  itemtype="http://schema.org/Offer">
 
-                                <?php if (Yii::$app->city->isShowPrice() && !$model['removed'] && $model['price_from'] > 0) { ?>
+                                <?php /*if (Yii::$app->city->isShowPrice() && !$model['removed'] && $model['price_from'] > 0) { ?>
                                     <div class="price-sticker">
                                         <?= Yii::t('app', 'Цена от') ?><span>&#126;</span>
                                         <span>
@@ -80,7 +80,10 @@ $this->title = $this->context->title;
                                 <?php } else { ?>
                                     <meta itemprop="price" content="0"/>
                                     <meta itemprop="priceCurrency" content="EUR"/>
-                                <?php } ?>
+                                <?php }*/ ?>
+
+                                <meta itemprop="price" content="0"/>
+                                <meta itemprop="priceCurrency" content="EUR"/>
 
                                 <div class="availability">
                                     <?= Yii::t('app', 'Наличие') ?>:
@@ -102,17 +105,17 @@ $this->title = $this->context->title;
                                 <meta itemprop="reviewCount" content="1"/>
                             </div>
 
-                            <div class="alert" role="alert">
+                            <!--<div class="alert" role="alert">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 <?= Yii::t('app', 'Окончательная цена согласовывается с продавцом.') ?>
-                            </div>
+                            </div>-->
 
-                            <?php if (!Yii::$app->getUser()->isGuest && $model['factory']['new_price']) { ?>
+                            <?php /*if (!Yii::$app->getUser()->isGuest && $model['factory']['new_price']) { ?>
                                 <div class="alert alert-danger" role="alert">
                                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                     <?= Yii::t('app', 'Цена требует проверки, есть новый прайс') ?>
                                 </div>
-                            <?php } ?>
+                            <?php }*/ ?>
 
                             <table class="info-table">
                                 <?php if ($model['subTypes'] != null) { ?>

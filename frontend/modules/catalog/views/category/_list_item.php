@@ -54,7 +54,7 @@ use frontend\modules\catalog\models\{
             </div>
         </div>
 
-        <?php if (Yii::$app->city->isShowPrice() && !$model['removed'] && $model['price_from'] > 0) { ?>
+        <?php if (Yii::$app->request->get('page') == false && Yii::$app->city->isShowPrice() && !$model['removed'] && $model['price_from'] > 0) { ?>
             <div class="prod-pricebox">
                 <?= Yii::t('app', 'Цена от') ?><span>&#126;</span>
                 <span class="for-green">
