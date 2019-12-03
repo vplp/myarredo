@@ -56,6 +56,10 @@ $bundle = AppAsset::register($this);
                                             ? $mainPartner->profile->city->lang->title . '<br>'
                                             : '' ?>
                                         <?= $mainPartner->profile->lang->address ?>
+
+                                        <?= ($mainPartner->profile->working_hours_start && $mainPartner->profile->working_hours_end)
+                                            ? '<br>' . $mainPartner->profile->working_hours_start . ' - ' . $mainPartner->profile->working_hours_end
+                                            : '' ?>
                                     </div>
 
                                     <?php if ($mainPartner->profile->phone2 != '' || $mainPartner->profile->lang->address2 != '') { ?>
@@ -77,6 +81,9 @@ $bundle = AppAsset::register($this);
                                                 ? $mainPartner->profile->city->lang->title . '<br>'
                                                 : '' ?>
                                             <?= $mainPartner->profile->lang->address2 ?>
+                                            <?= ($mainPartner->profile->working_hours_start2 && $mainPartner->profile->working_hours_end2)
+                                                ? '<br>' . $mainPartner->profile->working_hours_start2 . ' - ' . $mainPartner->profile->working_hours_end2
+                                                : '' ?>
                                         </div>
                                     <?php } ?>
                                 </div>
