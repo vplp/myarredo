@@ -89,14 +89,14 @@ $bundle = AppAsset::register($this);
                                         </div>
                                     <?php } ?>
                                 </div>
-                                <div class="partner-formbox">
+                                <div class="partner-formbox hidden">
                                     <?php /*echo FormFeedback::widget([
                                         'partner_id' => $mainPartner->id,
                                         'view' => 'form_feedback_partner'
                                     ]);*/ ?>
                                 </div>
                             </div>
-                            <div class="one-cont double-cont map-cont">
+                            <div class="one-cont double-cont map-cont contact-mapbox">
                                 <?= MainPartnerMap::widget(['id' => $mainPartner->id]) ?>
                             </div>
                             <!-- end main partner -->
