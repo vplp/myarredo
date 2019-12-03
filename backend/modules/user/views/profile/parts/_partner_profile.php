@@ -16,6 +16,7 @@ if (in_array($model['user']['group_id'], [4, 7])) {
     echo $form->text_line($model, 'additional_phone');
 
     echo $form->text_line($model, 'phone');
+    echo $form->text_line($model, 'phone2');
 
     echo $form->text_line($modelLang, 'name_company');
 
@@ -33,18 +34,44 @@ if (in_array($model['user']['group_id'], [4, 7])) {
             <?= $form->field($model, 'city_id')
                 ->selectOne([0 => '--'] + City::dropDownList($model->country_id)) ?>
         </div>
-        <div class="col-md-3">
+    </div>
+
+    <div class="row control-group">
+        <div class="col-md-4">
+            <?= $form->text_line($modelLang, 'address') ?>
+        </div>
+        <div class="col-md-2">
             <?= $form->text_line($model, 'latitude') ?>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <?= $form->text_line($model, 'longitude') ?>
+        </div>
+        <div class="col-md-2">
+            <?= $form->text_line($model, 'working_hours_start') ?>
+        </div>
+        <div class="col-md-2">
+            <?= $form->text_line($model, 'working_hours_end') ?>
+        </div>
+    </div>
+    <div class="row control-group">
+        <div class="col-md-4">
+            <?= $form->text_line($modelLang, 'address2') ?>
+        </div>
+        <div class="col-md-2">
+            <?= $form->text_line($model, 'latitude2') ?>
+        </div>
+        <div class="col-md-2">
+            <?= $form->text_line($model, 'longitude2') ?>
+        </div>
+        <div class="col-md-2">
+            <?= $form->text_line($model, 'working_hours_start2') ?>
+        </div>
+        <div class="col-md-2">
+            <?= $form->text_line($model, 'working_hours_end2') ?>
         </div>
     </div>
 
     <?php
-    echo $form->text_line($modelLang, 'address');
-    echo $form->text_line($modelLang, 'address2');
-
     echo $form
         ->field($model, 'city_ids')
         ->widget(Select2::class, [

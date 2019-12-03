@@ -58,7 +58,7 @@ $bundle = AppAsset::register($this);
                                         <?= $mainPartner->profile->lang->address ?>
                                     </div>
 
-                                    <?php if ($mainPartner->profile->phone2 || $mainPartner->profile->lang->address2) { ?>
+                                    <?php if ($mainPartner->profile->phone2 != '' || $mainPartner->profile->lang->address2 != '') { ?>
                                         <div class="ico">
                                             <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
                                         </div>
@@ -81,10 +81,10 @@ $bundle = AppAsset::register($this);
                                     <?php } ?>
                                 </div>
                                 <div class="partner-formbox">
-                                    <?= FormFeedback::widget([
+                                    <?php /*echo FormFeedback::widget([
                                         'partner_id' => $mainPartner->id,
                                         'view' => 'form_feedback_partner'
-                                    ]); ?>
+                                    ]);*/ ?>
                                 </div>
                             </div>
                             <div class="one-cont double-cont map-cont">

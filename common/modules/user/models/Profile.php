@@ -28,6 +28,12 @@ use common\modules\catalog\models\Factory;
  * @property int $factory_id
  * @property float $latitude
  * @property float $longitude
+ * @property float $latitude2
+ * @property float $longitude2
+ * @property string $working_hours_start
+ * @property string $working_hours_end
+ * @property string $working_hours_start2
+ * @property string $working_hours_end2
  * @property int $partner_in_city
  * @property int $partner_in_city_paid
  * @property int $possibility_to_answer
@@ -91,7 +97,11 @@ class Profile extends \thread\modules\user\models\Profile
                     'website',
                     'exp_with_italian',
                     'cape_index',
-                    'image_link'
+                    'image_link',
+                    'working_hours_start',
+                    'working_hours_end',
+                    'working_hours_start2',
+                    'working_hours_end2'
                 ],
                 'string',
                 'max' => 255
@@ -118,7 +128,7 @@ class Profile extends \thread\modules\user\models\Profile
                 'range' => array_keys(self::factoryPackageKeyRange())
             ],
             [['country_id', 'city_id', 'factory_id'], 'integer'],
-            [['latitude', 'longitude'], 'double'],
+            [['latitude', 'longitude', 'latitude2', 'longitude2'], 'double'],
             [
                 [
                     'city_ids',
@@ -152,6 +162,12 @@ class Profile extends \thread\modules\user\models\Profile
                 'delivery_to_other_cities',
                 'latitude',
                 'longitude',
+                'latitude2',
+                'longitude2',
+                'working_hours_start',
+                'working_hours_end',
+                'working_hours_start2',
+                'working_hours_end2',
                 'partner_in_city',
                 'partner_in_city_paid',
                 'possibility_to_answer',
@@ -175,6 +191,12 @@ class Profile extends \thread\modules\user\models\Profile
                 'delivery_to_other_cities',
                 'latitude',
                 'longitude',
+                'latitude2',
+                'longitude2',
+                'working_hours_start',
+                'working_hours_end',
+                'working_hours_start2',
+                'working_hours_end2',
                 'partner_in_city',
                 'partner_in_city_paid',
                 'possibility_to_answer',
@@ -203,6 +225,12 @@ class Profile extends \thread\modules\user\models\Profile
                 'delivery_to_other_cities',
                 'latitude',
                 'longitude',
+                'latitude2',
+                'longitude2',
+                'working_hours_start',
+                'working_hours_end',
+                'working_hours_start2',
+                'working_hours_end2',
                 'partner_in_city',
                 'partner_in_city_paid',
                 'possibility_to_answer',
@@ -237,6 +265,12 @@ class Profile extends \thread\modules\user\models\Profile
             'delivery_to_other_cities' => Yii::t('app', 'Готов к поставкам мебели в другие города'),
             'latitude' => Yii::t('app', 'Latitude'),
             'longitude' => Yii::t('app', 'Longitude'),
+            'latitude2' => Yii::t('app', 'Latitude'),
+            'longitude2' => Yii::t('app', 'Longitude'),
+            'working_hours_start' => Yii::t('app', 'Working hours start'),
+            'working_hours_end' => Yii::t('app', 'Working hours end'),
+            'working_hours_start2' => Yii::t('app', 'Working hours start'),
+            'working_hours_end2' => Yii::t('app', 'Working hours end'),
             'partner_in_city' => Yii::t('app', 'Partner in city'),
             'partner_in_city_paid' => Yii::t('app', 'Partner in city paid'),
             'possibility_to_answer' => Yii::t('app', 'Отвечает без установки кода на сайт'),

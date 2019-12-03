@@ -113,10 +113,15 @@ $this->title = Yii::t('app', 'Profile');
                                     [null => '--'] + City::dropDownList($model->country_id),
                                     ['class' => 'selectpicker']
                                 ) ?>
+
                             <?= $form->field($modelLang, 'address') ?>
+                            <?= $form->field($model, 'working_hours_start') ?>
+                            <?= $form->field($model, 'working_hours_end') ?>
 
                             <?php if ($model->partner_in_city) {
                                 echo $form->field($modelLang, 'address2');
+                                echo $form->field($model, 'working_hours_start');
+                                echo $form->field($model, 'working_hours_end');
                             } ?>
 
                             <?= $form->field($model, 'website') ?>

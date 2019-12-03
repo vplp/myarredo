@@ -32,7 +32,7 @@ class MainPartnerMap extends Widget
 
         $lat = (float)$partner->profile->latitude;
         $lng = (float)$partner->profile->longitude;
-        $zoom = 10;
+        $zoom = 12;
 
         $dataJS = [];
 
@@ -44,6 +44,16 @@ class MainPartnerMap extends Widget
         $dataJS[0]['country'] = isset($partner->profile->country) ? $partner->profile->country->lang->title : '';
         $dataJS[0]['phone'] = $partner->profile->phone;
         $dataJS[0]['image'] = $partner->profile->partner_in_city ? '/img/marker.png' : '/img/marker-main.png';
+
+        if ($partner->profile->latitude2 && $partner->profile->longitude2 && $partner->profile->lang->address2) {
+            $dataJS[1]['lat'] = (float)$partner->profile->latitude2;
+            $dataJS[1]['lng'] = (float)$partner->profile->longitude2;
+            $dataJS[1]['address'] = isset($partner->profile->lang) ? $partner->profile->lang->address2 : '';
+            $dataJS[1]['city'] = isset($partner->profile->city) ? $partner->profile->city->lang->title : '';
+            $dataJS[1]['country'] = isset($partner->profile->country) ? $partner->profile->country->lang->title : '';
+            $dataJS[1]['phone'] = $partner->profile->phone;
+            $dataJS[1]['image'] = $partner->profile->partner_in_city ? '/img/marker.png' : '/img/marker-main.png';
+        }
 
         $dataJS = json_encode($dataJS);
 
