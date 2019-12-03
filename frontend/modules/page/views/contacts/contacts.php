@@ -62,7 +62,7 @@ $bundle = AppAsset::register($this);
                                             : '' ?>
                                     </div>
 
-                                    <?php if ($mainPartner->profile->phone2 != null || $mainPartner->profile->lang->address2) { ?>
+                                    <?php if ($mainPartner->profile->phone2) { ?>
                                         <div class="ico">
                                             <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
                                         </div>
@@ -72,7 +72,9 @@ $bundle = AppAsset::register($this);
                                             'tel:' . $mainPartner->profile->phone2,
                                             []
                                         ); ?>
+                                    <?php } ?>
 
+                                    <?php if ($mainPartner->profile->lang->address2) { ?>
                                         <div class="ico">
                                             <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
                                         </div>
