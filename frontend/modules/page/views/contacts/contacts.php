@@ -62,7 +62,7 @@ $bundle = AppAsset::register($this);
                                             : '' ?>
                                     </div>
 
-                                    <?php if ($mainPartner->profile->phone2 != '' || $mainPartner->profile->lang->address2 != '') { ?>
+                                    <?php if ($mainPartner->profile->phone2 || $mainPartner->profile->lang->address2) { ?>
                                         <div class="ico">
                                             <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
                                         </div>
