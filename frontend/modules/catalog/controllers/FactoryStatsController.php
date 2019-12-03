@@ -69,6 +69,9 @@ class FactoryStatsController extends BaseController
      */
     public function actionList()
     {
+        ini_set("memory_limit", "-1");
+        set_time_limit(0);
+
         $model = new ProductStatsDays();
 
         $params = Yii::$app->request->get() ?? [];
