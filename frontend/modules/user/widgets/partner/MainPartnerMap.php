@@ -32,7 +32,7 @@ class MainPartnerMap extends Widget
 
         $lat = (float)$partner->profile->latitude;
         $lng = (float)$partner->profile->longitude;
-        $zoom = 12;
+        $zoom = 10;
 
         $dataJS = [];
 
