@@ -5835,7 +5835,9 @@ h1 {
     width: 100%;
     margin: 0 auto;
     border-left: none; } }
-
+  .prod-card-page #prod-slider {
+    margin-left: 0;
+  }
 /*--Новые стили--*/
 @media screen and (max-width: 768px) {
   .category-page .cat-prod .one-prod-tile {
@@ -5857,7 +5859,6 @@ h1 {
   .prod-card-page .text-contain {
     text-align: center; }
   .prod-card-page #prod-slider {
-    margin-left: 0;
     padding-bottom: 15px; }
     .prod-card-page #prod-slider .nav-cont {
       display: none; }
