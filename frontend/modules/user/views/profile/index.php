@@ -161,15 +161,6 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Yii::t('app', 'Orders') ?>
                                     </div>
                                 </a>
-                                <a href="<?= Url::toRoute(['/shop/partner-order/delivery-italian-orders'], true) ?>"
-                                   class="profile-quadrlink">
-                                    <div class="profile-quadrlink-img">
-
-                                    </div>
-                                    <div class="profile-quadrlink-text">
-                                        <?= Yii::t('app', 'Оплатить заявки на доставку') ?>
-                                    </div>
-                                </a>
                             <?php } elseif (Yii::$app->user->identity->group->role == 'admin') { ?>
                                 <a href="<?= Url::toRoute(['/shop/admin-order/list'], true) ?>"
                                    class="profile-quadrlink">
