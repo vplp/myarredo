@@ -30,13 +30,12 @@ $this->title = $this->context->title;
     <div class="prod-card-page page">
         <div class="container-wrap">
             <div class="container large-container">
+                <?php if (!isset($this->context->factory)) { ?>
+                    <?= Breadcrumbs::widget([
+                        'links' => $this->context->breadcrumbs,
+                    ]) ?>
+                <?php } ?>
                 <div class="row" itemscope itemtype="http://schema.org/Product">
-
-                    <?php if (!isset($this->context->factory)) { ?>
-                        <?= Breadcrumbs::widget([
-                            'links' => $this->context->breadcrumbs,
-                        ]) ?>
-                    <?php } ?>
 
                     <div class="col-sm-6 col-md-6 col-lg-5">
 

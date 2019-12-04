@@ -50,6 +50,9 @@ h1 {
     .header .top-header .right-part {
       display: flex;
       height: 100%; }
+      .header .top-header .right-part .navbar-right {
+        margin-right: 0;
+      }
     .header .top-header a {
       font-family: "Open Sans";
       color: #535351; }
@@ -342,6 +345,9 @@ h1 {
   .header .lang-selector {
     border-right: 1px solid #BDBCB3;
     position: relative; }
+    .header .left-part .lang-selector:first-child .js-select-lang {
+      padding-left: 1px;
+    }
     .header .lang-selector.opened .fa-chevron-down {
       transform: perspective(600px) rotate3d(20, 0, 0, 180deg);
       position: relative;
@@ -7428,6 +7434,9 @@ h1 {
 .total-stats .table.table-totalorder {
   margin-top: 0;
 }
+#prod-slider .img-cont img {
+  width: 100%;
+}
 
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------blog-news styles-------------------------------------- */
@@ -9084,7 +9093,6 @@ h1 {
   .progress-steps-step {
     padding-right: 20px;
   }
-  .home-main .top-home-img,
   .home-top-slider, 
   .home-top-slider .img-cont img {
     min-height: 43vw;
@@ -9349,6 +9357,9 @@ h1 {
     width: 100%;
   }
   .concact-page .container.large-container {
+    width: 100%;
+  }
+  .prod-card-page.page .container {
     width: 100%;
   }
 }

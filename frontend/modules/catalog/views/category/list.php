@@ -26,7 +26,7 @@ $this->title = $this->context->title;
     <div class="page category-page">
         <div class="container-wrap">
             <div class="container large-container">
-                <div class="row">
+                <div>
 
                     <?= Html::tag('h1', Yii::$app->metatag->seo_h1) ?>
 
@@ -55,7 +55,7 @@ $this->title = $this->context->title;
                         'javascript:void(0);',
                         ['class' => 'js-filter-btn']
                     ) ?>
-                    <div class="row">
+                    <div>
                         <div class="col-md-3 col-lg-3 js-filter-modal">
 
                             <?= ProductFilter::widget([
@@ -107,7 +107,7 @@ $this->title = $this->context->title;
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div>
                         <div class="comp-advanteges">
 
                             <?php if (!Yii::$app->request->get('page')) { ?>
