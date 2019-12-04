@@ -38,6 +38,12 @@ $bundle = AppAsset::register($this);
 
                                     <?= Html::tag('h2', $mainPartner->profile->getNameCompany()); ?>
 
+                                    <?= Html::a(
+                                        $mainPartner->profile->website,
+                                        $mainPartner->profile->website,
+                                        ['target' => '_blank', 'rel' => 'nofollow']
+                                    ) ?>
+
                                     <div class="ico">
                                         <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
                                     </div>
