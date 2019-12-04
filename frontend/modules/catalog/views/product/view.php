@@ -289,7 +289,7 @@ $this->title = $this->context->title;
                 <div class="row composition"></div>
 
                 <div class="best-price">
-                    <div class="container large-container">
+                    <div>
                         <div class="section-header">
                             <h3 class="section-title">
                                 <?= Yii::t('app', 'Как мы получаем лучшие цены для вас?') ?>
@@ -362,7 +362,7 @@ $this->title = $this->context->title;
                 </div>
 
                 <div class="best-price">
-                    <div class="container large-container">
+                    <div>
                         <div class="after-text">
                             <div class="img-container">
                                 <?= Html::img($bundle->baseUrl . '/img/hand.svg') ?>
