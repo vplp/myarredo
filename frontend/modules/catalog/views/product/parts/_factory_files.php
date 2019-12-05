@@ -18,12 +18,20 @@ use yii\helpers\Html;
     <div class="downloads">
 
         <?php if (!empty($model->factoryCatalogsFiles)): ?>
-            <p class="title-small"><?= Yii::t('app','Посмотреть каталоги') ?></p>
+            <p class="title-small"><?= Yii::t('app', 'Посмотреть каталоги') ?></p>
             <ul>
                 <?php foreach ($model->factoryCatalogsFiles as $catalogFile): ?>
                     <?php if ($fileLink = $catalogFile->getFileLink()): ?>
                         <li>
-                            <?= Html::a($catalogFile->title, $fileLink, ['target' => '_blank']) ?>
+                            <?= Html::a(
+                                $catalogFile->title,
+                                $fileLink,
+                                [
+                                    'target' => '_blank',
+                                    'class' => 'click-by-factory-file',
+                                    'data-id' => $catalogFile->id
+                                ]
+                            ) ?>
                         </li>
                     <?php endif; ?>
                 <?php endforeach; ?>
@@ -31,12 +39,20 @@ use yii\helpers\Html;
         <?php endif; ?>
 
         <?php if (!empty($model->factoryPricesFiles)): ?>
-            <p class="title-small"><?= Yii::t('app','Посмотреть прайс листы') ?></p>
+            <p class="title-small"><?= Yii::t('app', 'Посмотреть прайс листы') ?></p>
             <ul>
                 <?php foreach ($model->factoryPricesFiles as $priceFile): ?>
                     <?php if ($fileLink = $priceFile->getFileLink()): ?>
                         <li>
-                            <?= Html::a($priceFile->title, $fileLink, ['target' => '_blank']) ?>
+                            <?= Html::a(
+                                $priceFile->title,
+                                $fileLink,
+                                [
+                                    'target' => '_blank',
+                                    'class' => 'click-by-factory-file',
+                                    'data-id' => $priceFile->id
+                                ]
+                            ) ?>
                         </li>
                     <?php endif; ?>
                 <?php endforeach; ?>

@@ -3,8 +3,6 @@
 namespace frontend\modules\catalog\models;
 
 use Yii;
-//
-use frontend\modules\catalog\Catalog;
 
 /**
  * Class FactoryFileClickStats
@@ -18,14 +16,31 @@ class FactoryFileClickStats extends \common\modules\catalog\models\FactoryFileCl
      */
     public static function create($factory_file_id)
     {
-            $model = new self();
+        $model = FactoryFileClickStats::find()
+            ->andWhere([
+                'user_id' => Yii::$app->user->identity->id,
+                'factory_file_id' => $factory_file_id
+            ])
+            ->one();
+
+        /** @var $model FactoryFileClickStats */
+
+        if ($model != null) {
+            $model->setScenario('frontend');
+
+            ++$model->views;
+
+            $model->save();
+        } else {
+            $model = new FactoryFileClickStats();
 
             $model->setScenario('frontend');
 
-            $model->user_id = Yii::$app->getUser()->id ?? 0;
+            $model->user_id = Yii::$app->getUser()->id;
             $model->factory_file_id = $factory_file_id;
             $model->views = 1;
 
             $model->save();
+        }
     }
 }

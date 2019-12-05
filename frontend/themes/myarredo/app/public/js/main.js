@@ -11,9 +11,9 @@ $(document).ready(function () {
 
     // footer custom-lazy init
     if ($('.custom-lazy').length > 0) {
-        setTimeout(function() {
+        setTimeout(function () {
             var custlazyUrl = $('.custom-lazy').attr('data-background');
-            $('.custom-lazy').css('background-image', 'url('+ custlazyUrl +')');
+            $('.custom-lazy').css('background-image', 'url(' + custlazyUrl + ')');
         }, 1000);
     }
 
@@ -47,12 +47,11 @@ $(document).ready(function () {
             });
         } // End if
     });
-    $(window).scroll(function(ev) {
+    $(window).scroll(function (ev) {
         // add to top button
         if ($(this).scrollTop() > 500) {
             $('.totopbox').show();
-        }
-        else {
+        } else {
             $('.totopbox').hide();
         }
     });
@@ -151,17 +150,17 @@ $(document).ready(function () {
     function runDesctop() {
 
         // $('.filters .one-filter').addClass('open');    
-        setTimeout(function() {
+        setTimeout(function () {
             // Запускаем цыкл по всем элементам всех фильтров
-            $('.filters').find('.one-filter').find('.list-item').children('a').each(function(i, elem) {
+            $('.filters').find('.one-filter').find('.list-item').children('a').each(function (i, elem) {
                 // Если обнаруживаем выбраный элемент в фильтре
                 if ($(elem).hasClass('selected')) {
                     // оставляем фильтр открытым
                     $(elem).closest('.one-filter').addClass('open');
                 }
             });
-        }, 500);   
-        
+        }, 500);
+
         if ($('.js-numbers').hasClass('slick-slider')) {
             $('.js-numbers').slick('unslick');
         }
@@ -170,9 +169,9 @@ $(document).ready(function () {
         }
     }
 
-    (function() {
+    (function () {
         // Запускаем цыкл по всем элементам всех фильтров
-        $('.filters').find('.one-filter').find('.list-item').children('a').each(function(i, elem) {
+        $('.filters').find('.one-filter').find('.list-item').children('a').each(function (i, elem) {
             // Если обнаруживаем выбраный элемент в фильтре
             if ($(elem).hasClass('selected')) {
                 // оставляем фильтр открытым
@@ -840,7 +839,7 @@ $(document).ready(function () {
 
     // Функция для валидации ввода в поля фильтров на главной странице
     // отлавливаем ввод данных в полях фильтра
-    $(document).on('input', '.filter-bot .filter-price input[type="text"]', function(ev) {
+    $(document).on('input', '.filter-bot .filter-price input[type="text"]', function (ev) {
         // если значение поля не пустое и если введенный символ не являеться числом
         if (isNaN(ev.originalEvent.data) && ev.target.value != "") {
             // и если значение поля не являеться числом
@@ -859,6 +858,13 @@ $(document).ready(function () {
                 ev.target.value = "";
             }
         }
+    });
+
+    $(document).on('click', '.click-by-factory-file', function () {
+        $.post(baseUrl + 'catalog/factory/click-by-file/', {
+            _csrf: $('#token').val(),
+            id: $(this).data('id'),
+        });
     });
 
 });

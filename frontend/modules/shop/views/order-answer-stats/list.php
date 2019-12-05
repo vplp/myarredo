@@ -40,6 +40,9 @@ $this->title = $this->context->title;
                             <span><?= Yii::t('app', 'City') ?></span>
                         </li>
                         <li>
+                            <span>количество просмотра PDF</span>
+                        </li>
+                        <li>
                             <span>количество ответов</span>
                         </li>
                         <li>
@@ -53,11 +56,11 @@ $this->title = $this->context->title;
                         <div class="item">
 
                             <?= Html::beginTag('a', [
-                                    'href' => Url::toRoute([
-                                        '/shop/order-answer-stats/view',
-                                        'id' => $model->id
-                                    ])
-                            ])?>
+                                'href' => Url::toRoute([
+                                    '/shop/order-answer-stats/view',
+                                    'id' => $model->id
+                                ])
+                            ]) ?>
                             <ul class="orders-title-block flex">
                                 <li class="order-id">
                                     <span>
@@ -71,13 +74,16 @@ $this->title = $this->context->title;
                                     <span><?= isset($model->profile->city) ? $model->profile->city->lang->title : '' ?></span>
                                 </li>
                                 <li>
+                                    <span><?= $model->getFactoryFileClickStatsCount() ?></span>
+                                </li>
+                                <li>
                                     <span><?= $model->answerCount ?></span>
                                 </li>
                                 <li>
                                     <span><?= $model->getOrderItemPriceTotalCost() ?></span>
                                 </li>
                             </ul>
-                            <?= Html::endTag('a')?>
+                            <?= Html::endTag('a') ?>
                         </div>
 
                     <?php } ?>

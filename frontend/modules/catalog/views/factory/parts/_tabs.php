@@ -39,10 +39,7 @@ $keys = Yii::$app->catalogFilter->keys;
         </li>
     <?php } ?>
 
-    <?php if (!Yii::$app->getUser()->isGuest &&
-        Yii::$app->user->identity->profile->isPdfAccess() &&
-        !empty($model->pricesFiles)
-    ) { ?>
+    <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->isPdfAccess() && !empty($model->pricesFiles)) { ?>
         <li>
             <a data-toggle="tab" href="#pricelists">
                 <?= Yii::t('app', 'Прайс листы') ?>
@@ -50,8 +47,7 @@ $keys = Yii::$app->catalogFilter->keys;
         </li>
     <?php } ?>
 
-    <?php
-    if ($model->getFactoryTotalCountSale()) {
+    <?php if ($model->getFactoryTotalCountSale()) {
         echo Html::tag(
             'li',
             Html::a(
@@ -85,7 +81,7 @@ $keys = Yii::$app->catalogFilter->keys;
                 $params = Yii::$app->catalogFilter->params;
 
                 $params[$keys['factory']][] = $model['alias'];
-                $params[$keys['type']][] = Yii::$app->city->domain != 'com' ?  $item['alias'] : $item['alias2'];
+                $params[$keys['type']][] = Yii::$app->city->domain != 'com' ? $item['alias'] : $item['alias2'];
 
                 echo Html::beginTag('li') .
                     Html::a(
@@ -137,7 +133,7 @@ $keys = Yii::$app->catalogFilter->keys;
                             ) .
                             Html::tag('span', $catalogFile->title, ['class' => 'for-catalog-list']),
                             $catalogFile->getFileLink(),
-                            ['target' => '_blank']
+                            ['target' => '_blank', 'class' => 'click-by-factory-file', 'data-id' => $catalogFile->id]
                         ) .
                         Html::endTag('li');
                 } ?>
@@ -145,10 +141,7 @@ $keys = Yii::$app->catalogFilter->keys;
         </div>
     <?php } ?>
 
-    <?php if (!Yii::$app->getUser()->isGuest &&
-        Yii::$app->user->identity->profile->isPdfAccess() &&
-        !empty($model->pricesFiles)
-    ) { ?>
+    <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->isPdfAccess() && !empty($model->pricesFiles)) { ?>
         <div id="pricelists" class="tab-pane fade">
             <ul class="list">
                 <?php
@@ -161,7 +154,7 @@ $keys = Yii::$app->catalogFilter->keys;
                             ) .
                             Html::tag('span', $priceFile->title, ['class' => 'for-catalog-list']),
                             $priceFile->getFileLink(),
-                            ['target' => '_blank']
+                            ['target' => '_blank', 'class' => 'click-by-factory-file', 'data-id' => $priceFile->id]
                         ) .
                         Html::endTag('li');
                 } ?>

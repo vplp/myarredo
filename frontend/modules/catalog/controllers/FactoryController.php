@@ -2,14 +2,15 @@
 
 namespace frontend\modules\catalog\controllers;
 
-use frontend\modules\user\models\User;
 use Yii;
+use yii\web\Response;
+use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
-use frontend\modules\catalog\models\{Product, Factory, ItalianProduct, Sale};
+use frontend\modules\user\models\User;
+use frontend\modules\catalog\models\{Product, Factory, Sale, FactoryFileClickStats};
 
 /**
  * Class FactoryController
@@ -41,6 +42,7 @@ class FactoryController extends BaseController
                 'actions' => [
                     'list' => ['get'],
                     'view' => ['get'],
+                    'click-by-file' => ['post'],
                 ],
             ],
         ];
@@ -200,5 +202,21 @@ class FactoryController extends BaseController
             'hostInfoSale' => $hostInfoSale,
             //'italianProduct' => $italianProduct->getModels(),
         ]);
+    }
+
+    /**
+     * @return array
+     */
+    public function actionClickByFile()
+    {
+        $response = ['success' => 0];
+        Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+        if (Yii::$app->request->isAjax && Yii::$app->getRequest()->post('id') && !Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'partner') {
+            FactoryFileClickStats::create(Yii::$app->getRequest()->post('id'));
+            $response['success'] = 1;
+        }
+
+        return $response;
     }
 }

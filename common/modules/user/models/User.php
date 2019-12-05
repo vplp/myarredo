@@ -5,6 +5,7 @@ namespace common\modules\user\models;
 use common\modules\shop\models\{
     OrderAnswer, OrderItemPrice
 };
+use common\modules\catalog\models\FactoryFileClickStats;
 
 /**
  * Class User
@@ -26,6 +27,8 @@ class User extends \thread\modules\user\models\User
         return $this->hasOne(Group::class, ['id' => 'group_id']);
     }
 
+
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -40,6 +43,22 @@ class User extends \thread\modules\user\models\User
     public function getOrderAnswer()
     {
         return $this->hasMany(OrderAnswer::class, ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactoryFileClickStats()
+    {
+        return $this->hasMany(FactoryFileClickStats::class, ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactoryFileClickStatsCount()
+    {
+        return self::getFactoryFileClickStats()->count();
     }
 
     /**

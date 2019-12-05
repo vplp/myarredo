@@ -76,7 +76,15 @@ use frontend\modules\catalog\models\Product;
                             <?php foreach ($pricesFiles as $priceFile) {
                                 if ($fileLink = $priceFile->getFileLink()) { ?>
                                     <li>
-                                        <?= Html::a($priceFile->title, $fileLink, ['target' => '_blank']) ?>
+                                        <?= Html::a(
+                                            $priceFile->title,
+                                            $fileLink,
+                                            [
+                                                'target' => '_blank',
+                                                'class' => 'click-by-factory-file',
+                                                'data-id' => $priceFile->id
+                                            ]
+                                        ) ?>
                                     </li>
                                 <?php }
                             } ?>

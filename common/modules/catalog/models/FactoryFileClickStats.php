@@ -72,7 +72,6 @@ class FactoryFileClickStats extends ActiveRecord
     public function scenarios()
     {
         return [
-            'setMark' => ['mark'],
             'frontend' => [
                 'user_id',
                 'factory_file_id',
