@@ -50,9 +50,9 @@ class PageController extends BaseController
             throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
-        $this->title = $model['lang']['title'];
+        Yii::$app->metatag->registerModel($model)->render();
 
-        Yii::$app->metatag->registerModel($model);
+        $this->title = Yii::$app->metatag->seo_title ?? $model['lang']['title'];
 
         return $this->render('view', [
             'model' => $model,

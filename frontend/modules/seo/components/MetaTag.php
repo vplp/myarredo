@@ -165,11 +165,11 @@ class MetaTag extends Component
 
             $model = $this->model;
 
-            $this->seo_title = $model['lang']['title'];
-            $this->seo_description = $model['lang']['description'];
-            $this->seo_h1 = $model['lang']['h1'];
-            $this->seo_content = $model['lang']['content'];
-            $this->seo_keywords = $model['lang']['keywords'];
+            $this->seo_title = $model['title'];
+            $this->seo_description = $model['description'];
+            //$this->seo_h1 = $model['lang']['h1'];
+            //$this->seo_content = $model['lang']['content'];
+            $this->seo_keywords = $model['keywords'];
             $this->seo_robots = Modellink::statusMetaRobotsRange()[$model['meta_robots']];
             $this->seo_image_url = $model['image_url'];
         }
