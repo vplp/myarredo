@@ -192,7 +192,7 @@ class ProductStatsDays extends ProductStatsModel
             $query->select([
                 self::tableName() . '.factory_id',
                 self::tableName() . '.date',
-                'count(' . self::tableName() . '.date) as count',
+                //'count(' . self::tableName() . '.date) as count',
                 'sum(' . self::tableName() . '.views) as views',
                 'sum(' . self::tableName() . '.requests) as requests'
             ]);
@@ -202,7 +202,7 @@ class ProductStatsDays extends ProductStatsModel
         } elseif ($params['action'] == 'list') {
             $query->select([
                 self::tableName() . '.factory_id',
-                'count(' . self::tableName() . '.factory_id) as count',
+                //'count(' . self::tableName() . '.factory_id) as count',
                 'sum(' . self::tableName() . '.views) as views',
                 'sum(' . self::tableName() . '.requests) as requests'
             ]);
