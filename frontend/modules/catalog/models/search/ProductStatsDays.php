@@ -156,16 +156,22 @@ class ProductStatsDays extends ProductStatsModel
         }
 
         if (isset($params['factory_id']) && $params['factory_id'] > 0) {
-            $query->andWhere([self::tableName() . '.factory_id' => $params['factory_id']]);
+            $query->andFilterWhere([self::tableName() . '.factory_id' => $params['factory_id']]);
         }
 
         if (isset($params['product_id']) && $params['product_id'] > 0) {
-            $query->andWhere([self::tableName() . '.product_id' => $params['product_id']]);
+            $query->andFilterWhere([self::tableName() . '.product_id' => $params['product_id']]);
         }
 
         if (isset($params['start_date']) && $params['start_date'] != '' && isset($params['end_date']) && $params['end_date'] != '') {
-            $query->andWhere(['>=', self::tableName() . '.date', strtotime($params['start_date'] . ' 0:00')]);
-            $query->andWhere(['<=', self::tableName() . '.date', strtotime($params['end_date'] . ' 23:59')]);
+            $query->andFilterWhere([
+                'between',
+                self::tableName() . '.date',
+                strtotime($params['start_date'] . ' 0:00'),
+                strtotime($params['end_date'] . ' 23:59')
+            ]);
+            //$query->andWhere(['>=', self::tableName() . '.date', strtotime($params['start_date'] . ' 0:00')]);
+            //$query->andWhere(['<=', self::tableName() . '.date', strtotime($params['end_date'] . ' 23:59')]);
         }
 
         if (isset($params['country_id']) && $params['country_id'] > 0 && !$params['city_id']) {
