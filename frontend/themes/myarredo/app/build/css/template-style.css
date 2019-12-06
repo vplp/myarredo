@@ -2998,8 +2998,13 @@ h1 {
       text-align: center;
       flex-wrap: wrap;
      }
-      .concact-page .one-cont.double-cont > div {
-        width: 50%; }
+    .concact-page .one-cont.double-cont > div {
+      width: 50%; 
+    }
+    .concact-page .one-cont.double-cont > div.top-mainpart,
+    .concact-page .one-cont.double-cont > div.bottom-mainpart {
+      width: 100%;
+    }
       .concact-page .one-cont.double-cont .img-part {
         border-right: 1px dashed #BDBCB3;
         height: 165px; }
@@ -9026,7 +9031,31 @@ h1 {
   margin-left: 0;
 }
 .concact-page .map-cont.contact-mapbox #map {
-  height: 200px;
+  height: 100%;
+}
+.adress-mainpart {
+  margin: 0 auto 12px;
+}
+.partner-adressbox {
+  max-width: 200px;
+  margin: 0 auto;
+}
+.partner-adressbox .adres {
+  margin-bottom: 12px;
+}
+.adress-mainpart:nth-child(3) {
+  border-left: 1px dashed #BDBCB3;
+}
+.partner-phonebox .for-phone,
+.partner-adressbox .for-adress,
+.partner-adressbox .for-mode,
+.partner-sitebox .for-site  {
+  display: block;
+  font-size: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #676767;
 }
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
