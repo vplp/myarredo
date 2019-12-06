@@ -129,9 +129,9 @@ $this->title = Yii::t('app', 'Profile');
 
                         <div class="col-md-4 col-lg-4 one-row">
                             <?= $form
-                                ->field($model, 'image_link')
+                                ->field($model, 'image_salon')
                                 ->label(Yii::t('app', 'Фото салона') . ' (1070х800 px)')
-                                ->imageOne($model->getImageLink()) ?>
+                                ->imageOne($model->getImageLink('image_salon')) ?>
                         </div>
                     <?php } ?>
 
