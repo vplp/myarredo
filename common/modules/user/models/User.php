@@ -58,7 +58,7 @@ class User extends \thread\modules\user\models\User
      */
     public function getFactoryFileClickStatsCount()
     {
-        return self::getFactoryFileClickStats()->count();
+        return self::getFactoryFileClickStats()->sum('views');
     }
 
     /**
