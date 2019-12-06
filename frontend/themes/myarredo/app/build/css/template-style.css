@@ -9061,9 +9061,6 @@ h1 {
 .partner-adressbox .adres {
   margin-bottom: 12px;
 }
-.adress-mainpart:nth-child(3) {
-  border-left: 1px dashed #BDBCB3;
-}
 .partner-phonebox .for-phone,
 .partner-adressbox .for-adress,
 .partner-adressbox .for-mode,
@@ -9121,6 +9118,12 @@ h1 {
   }
   .add-itprod-content .sale-page .prod-info h1 {
     margin-top: -6px;
+  }
+}
+/* min 600px */
+@media(min-width: 600px) {
+  .adress-mainpart:nth-child(3) {
+    border-left: 1px dashed #BDBCB3;
   }
 }
 
@@ -9383,6 +9386,14 @@ h1 {
   }
   .partner-formbox form textarea {
     min-height: auto;
+  }
+  .concact-page .one-cont.double-cont>div.adress-mainpart {
+    width: 100%;
+  }
+  .contact-partner-slider,
+  .contact-partner-slider .img-cont img {
+    min-height: 200px;
+    max-height: 200px;
   }
 }
 @media (max-width: 540px) {
