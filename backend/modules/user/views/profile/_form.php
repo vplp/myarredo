@@ -35,8 +35,17 @@ use backend\modules\user\models\{
             'visible' => ($model->user->group_id == 4) ? 1 : 0
         ],
         [
-            'label' => Yii::t('app', 'Image'),
-            'content' => $this->render('parts/_partner_image', [
+            'label' => Yii::t('app', 'Главное фото'),
+            'content' => $this->render('parts/_partner_image_main', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang,
+            ]),
+            'visible' => ($model->user->group_id == 4) ? 1 : 0
+        ],
+        [
+            'label' => Yii::t('app', 'Фото салонов'),
+            'content' => $this->render('parts/_partner_image_salon', [
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang,
