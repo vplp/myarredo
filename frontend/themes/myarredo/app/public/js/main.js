@@ -815,6 +815,22 @@ $(document).ready(function () {
         }, 400);
     })();
 
+    // Инициализация слайдера фото партнеров на странице партнеров
+    (function () {
+        setTimeout(function () {
+            if ($('.contact-partner-slider').length > 0) {
+                $('.contact-partner-slider').slick({
+                    autoplay: true,
+                    dots: false,
+                    arrows: true,
+                    fade: true,
+                    cssEase: 'linear',
+                    autoplaySpeed: 3000
+                });
+            }
+        }, 400);
+    })();
+
     // Инициализация слайдера на странице фабрики
     (function () {
         setTimeout(function () {

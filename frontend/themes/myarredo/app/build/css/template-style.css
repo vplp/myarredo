@@ -3002,7 +3002,8 @@ h1 {
       width: 50%; 
     }
     .concact-page .one-cont.double-cont > div.top-mainpart,
-    .concact-page .one-cont.double-cont > div.bottom-mainpart {
+    .concact-page .one-cont.double-cont > div.bottom-mainpart,
+    .concact-page .one-cont.double-cont > div.partner-imagepart {
       width: 100%;
     }
       .concact-page .one-cont.double-cont .img-part {
@@ -8935,7 +8936,8 @@ h1 {
   border: none;
   background: #FFF;
 }
-.home-top-slider .slick-arrow {
+.home-top-slider .slick-arrow,
+.contact-partner-slider .slick-arrow {
   position: absolute;
   top: 50%;
   z-index: 99;
@@ -8957,15 +8959,18 @@ h1 {
   margin-top: -20px;
   outline: transparent;
 }
-.home-top-slider .slick-arrow.slick-prev {
+.home-top-slider .slick-arrow.slick-prev,
+.contact-partner-slider .slick-arrow.slick-prev {
   left: 10px;
   padding-left: 3px;
 }
-.home-top-slider .slick-arrow.slick-next {
+.home-top-slider .slick-arrow.slick-next,
+.contact-partner-slider .slick-arrow.slick-next {
   right: 10px;
   padding-right: 3px;
 }
-.home-top-slider .slick-arrow.slick-prev:before {
+.home-top-slider .slick-arrow.slick-prev:before,
+.contact-partner-slider .slick-arrow.slick-prev:before {
   font-family: 'FontAwesome';
   content: "\f053";
   font-size: 20px;
@@ -8973,13 +8978,26 @@ h1 {
   opacity: .75;
   color: #000000;
 }
-.home-top-slider .slick-arrow.slick-next:before {
+.home-top-slider .slick-arrow.slick-next:before,
+.contact-partner-slider .slick-arrow.slick-next:before {
   font-family: 'FontAwesome';
   content: "\f054";
   font-size: 20px;
   line-height: 1;
   opacity: .75;
   color: #000000;
+}
+.contact-partner-slider {
+  width: 100%;
+  min-height: 250px;
+  max-height: 250px;
+  overflow: hidden;
+}
+.contact-partner-slider .img-cont img {
+  width: 100%;
+  min-height: 250px;
+  max-height: 250px;
+  object-fit: cover;
 }
 .concact-page .one-cont.double-cont .partner-formbox {
   width: 100%;

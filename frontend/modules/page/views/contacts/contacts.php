@@ -107,6 +107,26 @@ $bundle = AppAsset::register($this);
                                     </div>
                                 </div>
 
+                                <div class="partner-imagepart">
+                                    <!-- slider container -->
+                                    <div class="contact-partner-slider">
+
+                                        <!-- item -->
+                                        <div class="img-cont">
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH2538PqPZ7Pfpl_ORCT9j_9IcnVAQ3bXnRg6C0Rbo1SB_sl3t&s" alt="partner photo">
+                                        </div>
+                                        <!-- end item -->
+
+                                        <!-- item -->
+                                        <div class="img-cont">
+                                            <img src="http://www.sedietavolipalazzo.it/images/fotoindex1.jpg" alt="partner photo">
+                                        </div>
+                                        <!-- end item -->
+
+                                    </div>
+                                    <!-- end slider container -->
+                                </div>
+
                                 <div class="partner-formbox hidden">
                                     <?php /*echo FormFeedback::widget([
                                         'partner_id' => $mainPartner->id,
