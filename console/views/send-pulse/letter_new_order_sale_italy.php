@@ -34,7 +34,7 @@ if (in_array($order->lang, ['ru-RU'])) {
 
             <?php if (in_array($order->lang, ['ru-RU'])) { ?>
                 <span style="display:block;">
-                    <?= Yii::t('app', 'Клиент из г.') .  $order->city->lang->title ?>
+                    <?= Yii::t('app', 'Клиент из г.') . $order->city->lang->title ?>
                 </span>
             <?php } ?>
         </p>
@@ -47,14 +47,14 @@ if (in_array($order->lang, ['ru-RU'])) {
 
             if (ItalianProduct::isImage($item->product['image_link'])) {
                 echo Html::img(
-                    'https://www.myarredo.' . $order->city->country->alias . ItalianProduct::getImageThumb($item->product['image_link']),
+                    'https://www.myarredo.' . $domain . '/' . ItalianProduct::getImageThumb($item->product['image_link']),
                     ['class' => 'width: 140px; max-height: 100px;']
                 );
             }
 
             echo Html::a(
                 $item->product['lang']['title'],
-                'https://www.myarredo.' . $order->city->country->alias . '/sale-italy-product/' . $item->product['alias'] . '/',
+                'https://www.myarredo.' . $domain . '/sale-italy-product/' . $item->product['alias'] . '/',
                 ['style' => 'font-weight:bold; display: block; color: #000; text-transform: uppercase; text-decoration: underline;']
             );
 
@@ -71,7 +71,7 @@ if (in_array($order->lang, ['ru-RU'])) {
 
         <p><?= Yii::t('app', 'Удачи в продажах!') ?></p>
 
-        <a href="https://www.myarredo.<?= $order->city->country->alias ?>/partner/orders-italy/"
+        <a href="https://www.myarredo.<?= $domain ?>/partner/orders-italy/"
            style="text-decoration: none; color:#fff;">
             <div style="background-color:#00b05a; width: 80%; font-size: 18px; padding:20px; color: #fff; margin: 35px auto 20px; text-align: center;">
                 <span style="display: block;"><?= Yii::t('app', 'Получить клиента') ?></span>
