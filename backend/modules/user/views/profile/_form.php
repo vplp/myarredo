@@ -35,6 +35,15 @@ use backend\modules\user\models\{
             'visible' => ($model->user->group_id == 4) ? 1 : 0
         ],
         [
+            'label' => Yii::t('app', 'Image'),
+            'content' => $this->render('parts/_partner_image', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang,
+            ]),
+            'visible' => ($model->user->group_id == 4) ? 1 : 0
+        ],
+        [
             'label' => Yii::t('app', 'Factory'),
             'content' => $this->render('parts/_factory_profile', [
                 'form' => $form,

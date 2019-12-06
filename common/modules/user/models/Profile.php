@@ -43,6 +43,8 @@ use common\modules\catalog\models\Factory;
  * @property int $factory_package
  * @property string $cape_index
  * @property string $image_link
+ * @property string $image_salon
+ * @property string $image_salon2
  * @property integer $mark
  * @property string $language_editing
  * @property boolean $answers_per_month
@@ -98,6 +100,8 @@ class Profile extends \thread\modules\user\models\Profile
                     'exp_with_italian',
                     'cape_index',
                     'image_link',
+                    'image_salon',
+                    'image_salon2',
                     'working_hours_start',
                     'working_hours_end',
                     'working_hours_start2',
@@ -176,6 +180,8 @@ class Profile extends \thread\modules\user\models\Profile
                 'show_contacts_on_sale',
                 'cape_index',
                 'image_link',
+                'image_salon',
+                'image_salon2',
                 'mark',
                 'language_editing',
             ],
@@ -207,6 +213,8 @@ class Profile extends \thread\modules\user\models\Profile
                 'factory_package',
                 'cape_index',
                 'image_link',
+                'image_salon',
+                'image_salon2',
                 'mark',
                 'language_editing',
             ],
@@ -240,6 +248,8 @@ class Profile extends \thread\modules\user\models\Profile
                 'city_ids',
                 'cape_index',
                 'image_link',
+                'image_salon',
+                'image_salon2',
                 'mark',
                 'language_editing',
                 'answers_per_month'
@@ -281,6 +291,8 @@ class Profile extends \thread\modules\user\models\Profile
             'factory_package' => Yii::t('app', 'Package'),
             'cape_index' => Yii::t('app', 'CAPE index'),
             'image_link' => Yii::t('app', 'Image link'),
+            'image_salon' => Yii::t('app', 'Image link'),
+            'image_salon2' => Yii::t('app', 'Image link'),
             'mark',
             'language_editing',
             'answers_per_month' => Yii::t('app', '{amount} Answers per month', ['amount' => 3])
@@ -517,9 +529,10 @@ class Profile extends \thread\modules\user\models\Profile
     }
 
     /**
-     * @return null|string
+     * @param string $field
+     * @return string|null
      */
-    public function getImageLink()
+    public function getImageLink($field = 'image_link')
     {
         /** @var UserModule $module */
         $module = Yii::$app->getModule('user');
@@ -529,8 +542,8 @@ class Profile extends \thread\modules\user\models\Profile
 
         $image = null;
 
-        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
-            $image = $url . '/' . $this->image_link;
+        if (!empty($this->$field) && is_file($path . '/' . $this->$field)) {
+            $image = $url . '/' . $this->$field;
         }
 
         return $image;
