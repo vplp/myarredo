@@ -31,7 +31,7 @@ $bundle = AppAsset::register($this);
                                 <div class="img-part">
                                     <?= Html::img($bundle->baseUrl . '/img/cont1.svg') ?>
                                 </div>
-                                <div class="info-part infopart">
+                                <div class="info-part">
                                     <div class="main-sticker">
                                         <?= Yii::t('app', 'Главный партнер') ?>
                                     </div>
