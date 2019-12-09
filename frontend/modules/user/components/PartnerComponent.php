@@ -49,9 +49,15 @@ class PartnerComponent extends Component
      */
     public function getPartnerPhone()
     {
-        return ($this->partner['profile']['additional_phone'] != '')
-            ? $this->partner['profile']['additional_phone']
-            : $this->partner['profile']['phone'];
+        if ($this->partner) {
+            return ($this->partner['profile']['additional_phone'] != '')
+                ? $this->partner['profile']['additional_phone']
+                : $this->partner['profile']['phone'];
+        } elseif (Yii::$app->city->domain == 'ru') {
+            return '+8 (800) 302 92 95';
+        }
+
+        return '';
     }
 
     /**

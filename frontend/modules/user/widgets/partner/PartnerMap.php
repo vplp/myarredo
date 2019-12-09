@@ -16,6 +16,11 @@ class PartnerMap extends Widget
     /**
      * @var string
      */
+    public $defaultMarker = '/img/marker.png';
+
+    /**
+     * @var string
+     */
     public $view = 'partner_map';
 
     /**
@@ -52,7 +57,7 @@ class PartnerMap extends Widget
             $dataJS[$k]['city'] = isset($partner->profile->city) ? $partner->profile->city->lang->title : '';
             $dataJS[$k]['country'] = isset($partner->profile->country) ? $partner->profile->country->lang->title : '';
             $dataJS[$k]['phone'] = $partner->profile->phone;
-            $dataJS[$k]['image'] = $partner->profile->partner_in_city ? '/img/marker-main.png' : '/img/marker.png';
+            $dataJS[$k]['image'] = $partner->profile->partner_in_city ? '/img/marker-main.png' : $this->defaultMarker;
         }
 
         $dataJS = json_encode($dataJS);
