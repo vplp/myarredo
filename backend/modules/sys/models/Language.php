@@ -15,9 +15,9 @@ class Language extends CommonLanguageModel
      * @return mixed
      * выводим только те языки, которые опубликованы
      */
-    public function getLanguages():array
+    public function getLanguages(): array
     {
-        return self::findBase()->enabled()->asArray()->all();
+        return self::findBase()->undeleted()->asArray()->all();
     }
 
     /**

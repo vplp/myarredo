@@ -14,7 +14,7 @@ $user = Yii::$app->user->identity;
                 <span class="block m-t-xs">
                     <strong class="font-bold text-uppercase"><?= $user->username ?></strong>
                 </span>
-            <span class="text-muted text-xs block"><?= $user->group->lang->title ?> <b class="caret"></b></span>
+            <span class="text-muted text-xs block"><?= $user->group->getTitle() ?> <b class="caret"></b></span>
             </span>
         </a>
         <?= \yii\bootstrap\Dropdown::widget([

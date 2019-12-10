@@ -20,4 +20,9 @@ class Group extends \thread\modules\user\models\Group
     {
         return self::find()->joinWith(['lang']);
     }
+
+    public function getTitle()
+    {
+        return (isset($this->lang->title)) ? $this->lang->title : "{{$this->alias}}";
+    }
 }

@@ -39,7 +39,8 @@ class Group extends ActiveRecord
     public static $commonQuery = query\GroupQuery::class;
 
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -89,7 +90,6 @@ class Group extends ActiveRecord
         ];
     }
 
-
     /**
      * @return array
      */
@@ -101,7 +101,6 @@ class Group extends ActiveRecord
             'backend' => ['alias', 'role', 'published', 'deleted'],
         ];
     }
-
 
     /**
      * @return array
