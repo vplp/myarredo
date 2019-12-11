@@ -11,20 +11,22 @@ use frontend\modules\user\widgets\partner\PartnerMap;
 ?>
 
 <!-- main partner -->
-<div class="one-cont double-cont">
+<div class="one-cont double-cont no-partner">
     <div class="top-mainpart">
         <div class="main-sticker">
             <?= Yii::t('app', 'Главный партнер') ?>
         </div>
-    </div>
-
-    <div class="partner-phonebox">
-        <span class="for-phone">Телефон:</span>
-        <?= Html::a(
-            Yii::$app->partner->getPartnerPhone(),
-            'tel:' . Yii::$app->partner->getPartnerPhone(),
-            []
-        ); ?>
+        <div class="partner-phonebox">
+            <span class="for-phone">Здесь может быть ваша реклама:</span>
+            <?= Html::a(
+                Yii::$app->partner->getPartnerPhone(),
+                'tel:' . Yii::$app->partner->getPartnerPhone(),
+                []
+            ); ?>
+        </div>
+        <div class="partner-maybyphoto">
+            <span class="for-mayby">Здесь может быть фото Вашего салона</span>
+        </div>
     </div>
 </div>
 <div class="one-cont double-cont map-cont contact-mapbox">

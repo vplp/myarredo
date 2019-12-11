@@ -9072,6 +9072,22 @@ h1 {
   font-weight: 600;
   color: #676767;
 }
+.no-partner .top-mainpart .partner-phonebox {
+  margin: 45px auto 75px;
+}
+.partner-maybyphoto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 220px;
+  background-color: #E9E9E7;
+}
+.partner-maybyphoto .for-mayby {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
 /* ---------------------------------------------------------------------------------------------------- */
