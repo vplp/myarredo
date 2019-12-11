@@ -76,7 +76,13 @@ $model->user_agreement = 1;
                                         ]
                                     ]) ?>
 
-                                <?= $form->field($model, 'website') ?>
+                                <?= $form
+                                    ->field($model, 'website')
+                                    ->widget(\yii\widgets\MaskedInput::class, [
+                                        'clientOptions' => [
+                                            'alias' => 'url',
+                                        ],
+                                    ]) ?>
 
                                 <?= $form->field($model, 'last_name') ?>
 
