@@ -68,7 +68,10 @@ $image_link = $partner['profile']['image_link']
                     <p><?= $city['lang']['title'] ?></p>
                     <meta itemprop="streetAddress" content="<?= $partner['profile']['lang']['address'] ?></"/>
                     <p><?= $partner['profile']['lang']['address'] ?></p>
-                    <p><?= $partner['profile']['phone'] ?></p>
+                    <p class="timework">
+                        <span class="for-mode">Режим работы салона:</span>
+                        <span class="for-time">10:00 - 19:00 </span>
+                    </p>
                 </div>
 
             <?php } ?>
