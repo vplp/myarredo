@@ -14,7 +14,11 @@ if (in_array($model['user']['group_id'], [3])) {
 
     echo $form->text_line($model, 'email_company');
 
-    echo $form->text_line($model, 'website');
+    echo $form->text_line($model, 'website')->widget(\yii\widgets\MaskedInput::class, [
+        'clientOptions' => [
+            'alias' => 'url',
+        ],
+    ]);
 
     echo $form->text_line($modelLang, 'address');
 }

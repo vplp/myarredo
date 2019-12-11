@@ -75,7 +75,13 @@ $model->user_confirm_offers = 1;
                                         ]
                                     ]) ?>
 
-                                <?= $form->field($model, 'website') ?>
+                                <?= $form
+                                    ->field($model, 'website')
+                                    ->widget(\yii\widgets\MaskedInput::class, [
+                                        'clientOptions' => [
+                                            'alias' => 'url',
+                                        ],
+                                    ]) ?>
 
                                 <?= $form->field($model, 'last_name') ?>
 
@@ -109,7 +115,7 @@ $model->user_confirm_offers = 1;
                                     ->field($model, 'reCaptcha')
                                     ->widget(
                                         \himiklab\yii2\recaptcha\ReCaptcha2::class
-                                        //['action' => 'register_factory']
+                                    //['action' => 'register_factory']
                                     )
                                     ->label(false) ?>
 

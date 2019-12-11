@@ -79,7 +79,13 @@ $this->title = Yii::t('app', 'Profile');
                         <div class="col-md-4 col-lg-4 one-row">
                             <?= $form->field($model, 'email_company') ?>
                             <?= $form->field($modelLang, 'address') ?>
-                            <?= $form->field($model, 'website') ?>
+                            <?= $form
+                                ->field($model, 'website')
+                                ->widget(\yii\widgets\MaskedInput::class, [
+                                    'clientOptions' => [
+                                        'alias' => 'url',
+                                    ],
+                                ]) ?>
                         </div>
 
                         <?php if ($modelFactory) { ?>
@@ -124,7 +130,13 @@ $this->title = Yii::t('app', 'Profile');
                                 echo $form->field($model, 'working_hours_end');
                             } ?>
 
-                            <?= $form->field($model, 'website') ?>
+                            <?= $form
+                                ->field($model, 'website')
+                                ->widget(\yii\widgets\MaskedInput::class, [
+                                    'clientOptions' => [
+                                        'alias' => 'url',
+                                    ],
+                                ]) ?>
                         </div>
 
                         <div class="col-md-4 col-lg-4 one-row">
@@ -156,7 +168,14 @@ $this->title = Yii::t('app', 'Profile');
                                     ['class' => 'selectpicker']
                                 ) ?>
                             <?= $form->field($modelLang, 'address') ?>
-                            <?= $form->field($model, 'website') ?>
+
+                            <?= $form
+                                ->field($model, 'website')
+                                ->widget(\yii\widgets\MaskedInput::class, [
+                                    'clientOptions' => [
+                                        'alias' => 'url',
+                                    ],
+                                ]) ?>
 
                             <?= $form->field($modelLang, 'about_company')->textarea(['rows' => 10]) ?>
                         </div>
