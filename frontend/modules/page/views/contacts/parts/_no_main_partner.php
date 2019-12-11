@@ -17,7 +17,7 @@ use frontend\modules\user\widgets\partner\PartnerMap;
             <?= Yii::t('app', 'Главный партнер') ?>
         </div>
         <div class="partner-phonebox">
-            <span class="for-phone">Здесь может быть ваша реклама:</span>
+            <span class="for-phone"> <?= Yii::t('app', 'Здесь может быть ваша реклама') ?>:</span>
             <?= Html::a(
                 Yii::$app->partner->getPartnerPhone(),
                 'tel:' . Yii::$app->partner->getPartnerPhone(),
@@ -25,7 +25,7 @@ use frontend\modules\user\widgets\partner\PartnerMap;
             ); ?>
         </div>
         <div class="partner-maybyphoto">
-            <span class="for-mayby">Здесь может быть фото Вашего салона</span>
+            <span class="for-mayby"><?= Yii::t('app', 'Здесь может быть фото Вашего салона') ?></span>
         </div>
     </div>
 </div>
