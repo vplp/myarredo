@@ -55,7 +55,7 @@ $this->title = $this->context->title;
                         'javascript:void(0);',
                         ['class' => 'js-filter-btn']
                     ) ?>
-                    <div>
+                    <div class="clearfix">
                         <div class="col-md-3 col-lg-3 js-filter-modal">
 
                             <?= ProductFilter::widget([
@@ -107,7 +107,7 @@ $this->title = $this->context->title;
                         </div>
                     </div>
 
-                    <div>
+                    <div class="clearfix">
                         <div class="comp-advanteges">
 
                             <?php if (!Yii::$app->request->get('page')) { ?>

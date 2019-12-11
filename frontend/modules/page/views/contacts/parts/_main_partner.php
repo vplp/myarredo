@@ -19,18 +19,6 @@ $mainPartner = array_shift($partners);
             <?= Yii::t('app', 'Главный партнер') ?>
         </div>
         <?= Html::tag('h2', $mainPartner->profile->getNameCompany()); ?>
-
-        <?php if ($mainPartner->profile->phone2) { ?>
-            <div class="partner-phonebox">
-                <span class="for-phone"><?= Yii::t('app', 'Phone') ?>:</span>
-                <?= Html::a(
-                    $mainPartner->profile->phone2,
-                    'tel:' . $mainPartner->profile->phone2,
-                    []
-                ); ?>
-            </div>
-
-        <?php } ?>
     </div>
 
     <div class="adress-mainpart">
@@ -76,6 +64,18 @@ $mainPartner = array_shift($partners);
                         ? '<span class="for-mode">' . Yii::t('app', 'Режим работы салона') . ':</span>' . $mainPartner->profile->working_hours_start2 . ' - ' . $mainPartner->profile->working_hours_end2
                         : '' ?>
                 </div>
+
+                <?php if ($mainPartner->profile->phone2) { ?>
+                <div class="partner-phonebox">
+                    <span class="for-phone"><?= Yii::t('app', 'Phone') ?>:</span>
+                    <?= Html::a(
+                        $mainPartner->profile->phone2,
+                        'tel:' . $mainPartner->profile->phone2,
+                        []
+                    ); ?>
+                </div>
+
+            <?php } ?>
 
             </div>
         </div>
