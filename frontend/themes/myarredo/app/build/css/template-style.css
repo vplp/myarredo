@@ -7391,8 +7391,14 @@ h1 {
 }
 .sale-page .prod-is-sold {
   text-align: left;
-  padding: 0;
+  padding: 3px 10px;
   margin-top: -6px;
+}
+.cat-prod .prod-is-sold {
+  position: absolute;
+  width: 100%;
+  top: 288px;
+  left: 0;
 }
 .sale-page .prod-info .alert {
   padding-left: 0;
@@ -7446,6 +7452,9 @@ h1 {
 }
 .total-stats .table.table-totalorder {
   margin-top: 0;
+}
+.factory-tiles {
+  justify-content: flex-start;
 }
 
 /* --------------------------------------------------------------------------------------------------------- */
