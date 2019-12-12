@@ -6,136 +6,44 @@ $bundle = AppAsset::register($this);
 
 ?>
 <div id="map"></div>
+<?php 
+    // формируем массив меток для карты главного партнера
+    // если данные с JSON не пустые
+    if (!empty($dataJS)) {
+        $arr_map_data = json_decode($dataJS);
+        // если после преобразования массив не пустой
+        if (!empty($arr_map_data)) {
+            foreach($arr_map_data as $oneitem) {
+                // добавляем метки в наш массив
+                $arr_location[] = array(
+                    'lat' => $oneitem->lat,
+                    'lng' => $oneitem->lng
+                );
+            }
 
+            $arr_location = json_encode($arr_location);
+        }
+        // иначе присваиваем 0
+        else {
+            $arr_location = 0;
+        }
+    }
+    // иначе присваиваем 0
+    else {
+        $arr_location = 0;
+    }
+?>
 <?php
 $template = '`<div class="info-buble"><h4>${marker.city}</h4><div>${marker.address}</div><div>${marker.phone}</div><div class="country">${marker.country}</div></div>`';
 
 $script = <<<JS
+// массив для стилей пользовательской карты
 var styleArray = [
-                    {
-                        "featureType": "administrative",
-                        "elementType": "all",
-                        "stylers": [
-                            {
-                                "saturation": "-100"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "administrative.province",
-                        "elementType": "all",
-                        "stylers": [
-                            {
-                                "visibility": "off"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "landscape",
-                        "elementType": "all",
-                        "stylers": [
-                            {
-                                "saturation": -100
-                            },
-                            {
-                                "lightness": 65
-                            },
-                            {
-                                "visibility": "on"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "poi",
-                        "elementType": "all",
-                        "stylers": [
-                            {
-                                "saturation": -100
-                            },
-                            {
-                                "lightness": "50"
-                            },
-                            {
-                                "visibility": "simplified"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "all",
-                        "stylers": [
-                            {
-                                "saturation": "-100"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road.highway",
-                        "elementType": "all",
-                        "stylers": [
-                            {
-                                "visibility": "simplified"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road.arterial",
-                        "elementType": "all",
-                        "stylers": [
-                            {
-                                "lightness": "30"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road.local",
-                        "elementType": "all",
-                        "stylers": [
-                            {
-                                "lightness": "40"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "transit",
-                        "elementType": "all",
-                        "stylers": [
-                            {
-                                "saturation": -100
-                            },
-                            {
-                                "visibility": "simplified"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "water",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "hue": "#ffff00"
-                            },
-                            {
-                                "lightness": -25
-                            },
-                            {
-                                "saturation": -97
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "water",
-                        "elementType": "labels",
-                        "stylers": [
-                            {
-                                "lightness": -25
-                            },
-                            {
-                                "saturation": -100
-                            }
-                        ]
-                    }
+            
                 ];
+
+// если массив с метками существует то присваиваем его иначе записываем как false
+var arrMapsData = $arr_location || false;
 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -165,6 +73,16 @@ function initMap() {
         arrowPosition: 55,
         padding: 0
     });
+
+    // если массив с метками существует, и если в этом массиве более 1 елемент
+    if (arrMapsData && arrMapsData.length > 1) {
+        // запускаем функционал отцентровки карты с несколькими метками
+        var latlngbounds = new google.maps.LatLngBounds();
+        for ( var i=0; i<arrMapsData.length; i++ ){
+            latlngbounds.extend(arrMapsData[i]);
+        }
+        map.setCenter(latlngbounds.getCenter(), map.fitBounds(latlngbounds));
+    }
 
     function addMarker(marker) {
         var template = $template;

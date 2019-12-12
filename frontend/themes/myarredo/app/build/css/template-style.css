@@ -2993,6 +2993,9 @@ h1 {
     padding-top: 30px;
     padding-bottom: 35px; }
     .concact-page .one-cont.double-cont {
+      border-color: #C4242E;
+    }
+    .concact-page .one-cont.double-cont {
       width: calc( 50% - 16px);
       display: flex;
       text-align: center;
