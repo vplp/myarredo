@@ -15,7 +15,7 @@ $country_id = 0;
 
 $getUser = Yii::$app->getRequest()->get('User');
 
-if(isset($getUser['country_id'])) {
+if (isset($getUser['country_id'])) {
     $country_id = $getUser['country_id'];
 }
 
@@ -35,8 +35,12 @@ echo GridView::widget([
         ],
         'email',
         [
+            'format' => 'raw',
             'value' => function ($model) {
-                return $model->profile->getFullName();
+                $str = $model->profile->partner_in_city
+                    ? '<br><span style="font-size: 80%;">(' . Yii::t('app', 'Главный партнер') . ')</span>'
+                    : '';
+                return $model->profile->getFullName() . $str;
             },
         ],
         [
