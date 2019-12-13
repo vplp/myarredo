@@ -45,7 +45,7 @@ echo GridView::widget([
             'attribute' => 'city_id',
             'value' => function ($model) {
                 /** @var SaleRequest $model */
-                return $model->city->lang->title;
+                return $model->city->getTitle();
             },
         ],
         'user_name',

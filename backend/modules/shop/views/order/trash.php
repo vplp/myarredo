@@ -38,7 +38,7 @@ echo GridView::widget([
         [
             'attribute' => Yii::t('app', 'City'),
             'value' => function ($model) {
-                return $model->city->lang->title ?? '';
+                return $model->city->getTitle();
             }
         ],
         [

@@ -20,7 +20,7 @@ echo GridView::widget([
                 /** @var $model Directlink */
                 $result = [];
                 foreach ($model->cities as $city) {
-                    $result[] = $city->lang->title;
+                    $result[] = $city->getTitle();
                 }
                 return ($result) ? implode(' | ', $result) : '-';
             },

@@ -63,7 +63,7 @@ echo GridView::widget([
         [
             'value' => function ($model) {
                 /** @var $model ItalianProduct */
-                return ($model->city) ? $model->city->lang->title : '-';
+                return ($model->city) ? $model->city->getTitle() : '-';
             },
             'label' => Yii::t('app', 'City'),
             'filter' => GridViewFilter::selectOne($filter, 'city_id', City::dropDownList()),

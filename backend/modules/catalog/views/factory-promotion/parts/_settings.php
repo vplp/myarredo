@@ -30,7 +30,7 @@ use backend\modules\catalog\models\FactoryPromotion;
         <?php
         $result = [];
         foreach ($model->cities as $city) {
-            $result[] = $city->lang->title;
+            $result[] = $city->getTitle();
         }
         echo implode(' | ', $result);
         ?>
