@@ -76,6 +76,14 @@ class City extends \thread\modules\location\models\City
     }
 
     /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return (isset($this->lang->title)) ? $this->lang->title : "{{$this->alias}}";
+    }
+
+    /**
      * @return mixed
      */
     public static function findBase()

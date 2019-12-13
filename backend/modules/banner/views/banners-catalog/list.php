@@ -18,8 +18,11 @@ echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
-        'lang.title',
-        'lang.description',
+        [
+            'attribute' => 'title',
+            'value' => 'lang.title',
+            'label' => Yii::t('app', 'Title'),
+        ],
         'position',
         [
             'class' => ActionStatusColumn::class,

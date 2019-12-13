@@ -19,7 +19,11 @@ echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
-        'lang.title',
+        [
+            'attribute' => 'title',
+            'value' => 'lang.title',
+            'label' => Yii::t('app', 'Title'),
+        ],
         [
             'attribute' => Yii::t('app', 'Factory'),
             'value' => 'factory.title',

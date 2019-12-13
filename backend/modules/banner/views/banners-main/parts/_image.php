@@ -11,4 +11,7 @@ use backend\modules\banner\models\{
  * @var $form ActiveForm
  */
 
-echo $form->field($model, 'image_link')->imageOne($model->getImageLink());
+echo $form
+    ->field($model, 'image_link')
+    ->imageOne($model->getImageLink())
+    ->label(Yii::t('app', 'Image link') . ' 1650х580px');

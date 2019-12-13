@@ -17,11 +17,22 @@ use backend\modules\banner\models\{
 /**
  * Class BannerItem
  *
+ * @property string $title
+ * @property integer $city_id
+ *
  * @package backend\modules\banner\models\search
  */
 class BannerItemMain extends BannerItemMainModel implements BaseBackendSearchModel
 {
+    /**
+     * @var int
+     */
     public $title;
+
+    /**
+     * @var string
+     */
+    public $city_id;
 
     /**
      * @return array
@@ -30,6 +41,7 @@ class BannerItemMain extends BannerItemMainModel implements BaseBackendSearchMod
     {
         return [
             [['title'], 'string', 'max' => 255],
+            [['id', 'city_id'], 'integer'],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
@@ -69,8 +81,14 @@ class BannerItemMain extends BannerItemMainModel implements BaseBackendSearchMod
             self::tableName() . '.factory_id' => $this->factory_id,
         ]);
 
+        if ($this->city_id) {
+            $query
+                ->innerJoinWith(["cities"])
+                ->andFilterWhere(['IN', 'city_id', $this->city_id]);
+        }
+
         $query->andFilterWhere(['=', 'published', $this->published]);
-        //
+
         $query->andFilterWhere(['like', BannerItemLang::tableName() . '.title', $this->title]);
 
         return $dataProvider;
