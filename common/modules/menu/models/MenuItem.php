@@ -14,6 +14,6 @@ class MenuItem extends \thread\modules\menu\models\MenuItem
      */
     public static function findBase()
     {
-        return self::find()->innerJoinWith(["lang"])->orderBy(['position' => SORT_ASC]);
+        return self::find()->innerJoinWith(['lang'])->orderBy(['position' => SORT_ASC]);
     }
 }

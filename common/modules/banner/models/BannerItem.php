@@ -22,6 +22,7 @@ use common\modules\location\models\City;
  * @property integer $user_id
  * @property integer $factory_id
  * @property string $type
+ * @property string $side
  * @property string $image_link
  * @property integer $position
  * @property integer $created_at
@@ -80,6 +81,7 @@ class BannerItem extends ActiveRecord
             [['user_id', 'factory_id', 'position', 'create_time', 'update_time'], 'integer'],
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['type'], 'in', 'range' => array_keys(static::typeKeyRange())],
+            [['side'], 'in', 'range' => array_keys(static::sideKeyRange())],
             [['image_link'], 'string', 'max' => 255],
             [['position'], 'default', 'value' => 0],
             [
@@ -105,6 +107,7 @@ class BannerItem extends ActiveRecord
                 'user_id',
                 'factory_id',
                 'type',
+                'side',
                 'image_link',
                 'position',
                 'published',
@@ -125,6 +128,7 @@ class BannerItem extends ActiveRecord
             'user_id' => Yii::t('app', 'User'),
             'factory_id' => Yii::t('app', 'Factory'),
             'type',
+            'side' => Yii::t('app', 'Side'),
             'image_link' => Yii::t('app', 'Image link'),
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
@@ -145,6 +149,18 @@ class BannerItem extends ActiveRecord
             'main' => 'main',
             'catalog' => 'catalog',
             'factory' => 'factory',
+            'background' => 'background',
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function sideKeyRange()
+    {
+        return [
+            'left' => Yii::t('app', 'Left side'),
+            'right' => Yii::t('app', 'Right side'),
         ];
     }
 
@@ -153,7 +169,7 @@ class BannerItem extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->with(["lang"])->orderBy('position');
+        return self::find()->joinWith(['lang'])->orderBy('position');
     }
 
     /**

@@ -53,6 +53,7 @@ return [
     'Banners for factories' => 'Баннера сайтов фабрик',
     'Banners for main' => 'Баннера для главной страницы',
     'Banners for catalog' => 'Баннера для каталога',
+    'Background banners' => 'Фоновые баннера',
     'Factory product' => 'Товары фабрики',
     'Factory promotion' => 'Рекламные кампании',
     'Information for partners' => 'Информация для партнеров',

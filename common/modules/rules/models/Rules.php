@@ -97,7 +97,7 @@ class Rules extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->innerJoinWith(["lang"])->orderBy(['position' => SORT_DESC]);
+        return self::find()->innerJoinWith(['lang'])->orderBy(['position' => SORT_DESC]);
     }
 
     /**

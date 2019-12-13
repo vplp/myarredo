@@ -42,6 +42,11 @@ class BannerModule extends \common\modules\banner\BannerModule
                         'position' => 7,
                         'url' => ['/banner/banners-catalog/list'],
                     ],
+                    [
+                        'label' => 'Background banners',
+                        'position' => 7,
+                        'url' => ['/banner/banners-background/list'],
+                    ],
                 ]
             ];
         }

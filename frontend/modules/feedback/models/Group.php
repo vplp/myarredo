@@ -58,7 +58,7 @@ class Group extends \common\modules\feedback\models\Group implements BaseFrontMo
      */
     public static function find()
     {
-        return parent::find()->enabled()->innerJoinWith(["lang"])->orderBy([self::tableName() . '.position' => SORT_ASC]);
+        return parent::find()->enabled()->innerJoinWith(['lang'])->orderBy([self::tableName() . '.position' => SORT_ASC]);
     }
 
     /**

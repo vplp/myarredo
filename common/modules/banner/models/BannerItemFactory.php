@@ -15,7 +15,7 @@ class BannerItemFactory extends BannerItem
     public static function findBase()
     {
         return self::find()
-            ->with(["lang"])
+            ->joinWith(['lang'])
             ->where(['type' => 'factory'])
             ->orderBy('position');
     }

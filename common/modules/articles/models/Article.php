@@ -159,7 +159,7 @@ class Article extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find()->innerJoinWith(["lang"])->orderBy(['published_time' => SORT_DESC]);
+        return self::find()->innerJoinWith(['lang'])->orderBy(['published_time' => SORT_DESC]);
     }
 
     /**

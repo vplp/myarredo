@@ -3,11 +3,11 @@
 namespace common\modules\banner\models;
 
 /**
- * Class BannerItemCatalog
+ * Class BannerItemBackground
  *
  * @package common\modules\banner\models
  */
-class BannerItemCatalog extends BannerItem
+class BannerItemBackground extends BannerItem
 {
     /**
      * @return mixed
@@ -16,7 +16,7 @@ class BannerItemCatalog extends BannerItem
     {
         return self::find()
             ->joinWith(['lang'])
-            ->where(['type' => 'catalog'])
+            ->where(['type' => 'background'])
             ->orderBy('position');
     }
 }

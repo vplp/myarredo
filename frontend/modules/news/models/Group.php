@@ -48,7 +48,7 @@ class Group extends \common\modules\news\models\Group
      */
     public static function findBase()
     {
-        return parent::findBase()->innerJoinWith(["lang"]);
+        return parent::findBase()->innerJoinWith(['lang']);
     }
 
     /**

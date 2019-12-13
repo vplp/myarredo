@@ -15,7 +15,7 @@ class BannerItemMain extends BannerItem
     public static function findBase()
     {
         return self::find()
-            ->joinWith(["lang"])
+            ->joinWith(['lang'])
             ->where(['type' => 'main'])
             ->orderBy('position');
     }
