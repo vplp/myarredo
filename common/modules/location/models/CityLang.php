@@ -8,6 +8,9 @@ use yii\helpers\ArrayHelper;
 /**
  * Class CityLang
  *
+ * @property string $title
+ * @property string $title_where
+ *
  * @package common\modules\location\models
  */
 class CityLang extends \thread\modules\location\models\CityLang
