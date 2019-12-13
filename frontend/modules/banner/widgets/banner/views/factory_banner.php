@@ -18,7 +18,10 @@ if (!empty($items)) { ?>
                 } else {
                     echo Html::img($model->getImageLink());
                 } ?>
-                <span><?= $model['lang']['title']; ?></span>
+
+                <?php if ($model['lang']['description'] != '') {
+                    echo Html::tag('span', $model['lang']['description']);
+                } ?>
             </div>
         <?php } ?>
 
