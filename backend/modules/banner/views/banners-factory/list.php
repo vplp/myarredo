@@ -4,13 +4,13 @@ use backend\widgets\GridView\GridView;
 use backend\modules\catalog\models\Factory;
 use backend\app\bootstrap\ActiveForm;
 use backend\modules\banner\models\{
-    BannerItem, BannerItemLang
+    BannerItemFactory, BannerItemLang
 };
 //
 use thread\widgets\grid\{ActionStatusColumn, GridViewFilter};
 
 /**
- * @var $model BannerItem
+ * @var $model BannerItemFactory
  * @var $modelLang BannerItemLang
  * @var $form ActiveForm
  */

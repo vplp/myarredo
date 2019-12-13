@@ -3,7 +3,7 @@
 use backend\widgets\GridView\GridView;
 use backend\app\bootstrap\ActiveForm;
 use backend\modules\banner\models\{
-    BannerItem, BannerItemLang
+    BannerItemMain, BannerItemLang
 };
 use backend\modules\location\models\{
     Country, City
@@ -12,7 +12,7 @@ use backend\modules\location\models\{
 use thread\widgets\grid\{ActionStatusColumn, GridViewFilter};
 
 /**
- * @var $model BannerItem
+ * @var $model BannerItemMain
  * @var $modelLang BannerItemLang
  * @var $form ActiveForm
  */

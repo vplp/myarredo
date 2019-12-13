@@ -3,11 +3,11 @@
 use backend\widgets\Tabs;
 use backend\app\bootstrap\ActiveForm;
 use backend\modules\banner\models\{
-    BannerItem, BannerItemLang
+    BannerItemMain, BannerItemLang
 };
 
 /**
- * @var $model BannerItem
+ * @var $model BannerItemMain
  * @var $modelLang BannerItemLang
  * @var $form ActiveForm
  */

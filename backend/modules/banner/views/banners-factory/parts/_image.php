@@ -2,11 +2,11 @@
 
 use backend\app\bootstrap\ActiveForm;
 use backend\modules\banner\models\{
-    BannerItem, BannerItemLang
+    BannerItemFactory, BannerItemLang
 };
 
 /**
- * @var $model BannerItem
+ * @var $model BannerItemFactory
  * @var $modelLang BannerItemLang
  * @var $form ActiveForm
  */

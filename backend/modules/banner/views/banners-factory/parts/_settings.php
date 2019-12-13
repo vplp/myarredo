@@ -3,12 +3,12 @@
 use backend\app\bootstrap\ActiveForm;
 use backend\modules\catalog\models\Factory;
 use backend\modules\banner\models\{
-    BannerItem, BannerItemLang
+    BannerItemFactory, BannerItemLang
 };
 use kartik\widgets\Select2;
 
 /**
- * @var $model BannerItem
+ * @var $model BannerItemFactory
  * @var $modelLang BannerItemLang
  * @var $form ActiveForm
  */

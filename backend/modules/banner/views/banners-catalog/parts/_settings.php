@@ -6,11 +6,11 @@ use backend\app\bootstrap\ActiveForm;
 use backend\modules\location\models\City;
 use backend\modules\catalog\models\Category;
 use backend\modules\banner\models\{
-    BannerItem, BannerItemLang
+    BannerItemCatalog, BannerItemLang
 };
 
 /**
- * @var $model BannerItem
+ * @var $model BannerItemCatalog
  * @var $modelLang BannerItemLang
  * @var $form ActiveForm
  */
