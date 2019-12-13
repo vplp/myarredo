@@ -9,7 +9,7 @@ use yii\console\Controller;
 //
 use frontend\modules\sys\models\Language;
 use common\modules\catalog\models\{
-    Product, ProductLang, CategoryLang, TypesLang
+    Product, ProductLang, CategoryLang, TypesLang, SubTypesLang, SpecificationLang, ColorsLang
 };
 
 /**
@@ -375,5 +375,223 @@ class CatalogProductController extends Controller
         }
 
         $this->stdout("Translate Types: finish. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * @param string $lang1
+     * @param string $lang2
+     * @throws Exception
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionTranslateSubTypes($lang1 = 'ru-RU', $lang2 = 'uk-UA')
+    {
+        $this->stdout("Translate SubTypes: start. \n", Console::FG_GREEN);
+
+        Yii::$app->language = $lang1;
+
+        $models = SubTypesLang::find()->all();
+
+        foreach ($models as $modelLang) {
+            Yii::$app->language = $lang2;
+
+            /** @var $modelLang SubTypesLang */
+            /** @var $modelLang2 SubTypesLang */
+
+            $modelLang2 = SubTypesLang::find()
+                ->where([
+                    'rid' => $modelLang->rid,
+                    'lang' => Yii::$app->language,
+                ])
+                ->one();
+
+            if ($modelLang2 == null) {
+                $modelLang2 = new SubTypesLang();
+
+                $modelLang2->rid = $modelLang->rid;
+                $modelLang2->lang = Yii::$app->language;
+            }
+
+            $sourceLanguageCode = substr($lang1, 0, 2);
+            $targetLanguageCode = substr($lang2, 0, 2);
+
+            $title = (string)Yii::$app->yandexTranslation->getTranslate(
+                $modelLang->title,
+                $sourceLanguageCode,
+                $targetLanguageCode
+            );
+
+            $plural_name = (string)Yii::$app->yandexTranslation->getTranslate(
+                $modelLang->plural_name,
+                $sourceLanguageCode,
+                $targetLanguageCode
+            );
+
+            if ($title != '') {
+                $transaction = $modelLang2::getDb()->beginTransaction();
+                try {
+                    $modelLang2->title = $title;
+                    $modelLang2->plural_name = $plural_name;
+
+                    $modelLang2->setScenario('backend');
+
+                    if ($saveLang[] = intval($modelLang2->save())) {
+                        $transaction->commit();
+                        $this->stdout("save " . $targetLanguageCode . " \n", Console::FG_GREEN);
+                    } else {
+                        foreach ($modelLang2->errors as $attribute => $errors) {
+                            $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
+                        }
+                    }
+                } catch (Exception $e) {
+                    $transaction->rollBack();
+                    throw new Exception($e);
+                }
+            }
+        }
+
+        $this->stdout("Translate SubTypes: finish. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * @param string $lang1
+     * @param string $lang2
+     * @throws Exception
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionTranslateColors($lang1 = 'ru-RU', $lang2 = 'uk-UA')
+    {
+        $this->stdout("Translate Colors: start. \n", Console::FG_GREEN);
+
+        Yii::$app->language = $lang1;
+
+        $models = ColorsLang::find()->all();
+
+        foreach ($models as $modelLang) {
+            Yii::$app->language = $lang2;
+
+            /** @var $modelLang ColorsLang */
+            /** @var $modelLang2 ColorsLang */
+
+            $modelLang2 = ColorsLang::find()
+                ->where([
+                    'rid' => $modelLang->rid,
+                    'lang' => Yii::$app->language,
+                ])
+                ->one();
+
+            if ($modelLang2 == null) {
+                $modelLang2 = new ColorsLang();
+
+                $modelLang2->rid = $modelLang->rid;
+                $modelLang2->lang = Yii::$app->language;
+            }
+
+            $sourceLanguageCode = substr($lang1, 0, 2);
+            $targetLanguageCode = substr($lang2, 0, 2);
+
+            $title = (string)Yii::$app->yandexTranslation->getTranslate(
+                $modelLang->title,
+                $sourceLanguageCode,
+                $targetLanguageCode
+            );
+
+            $plural_title = (string)Yii::$app->yandexTranslation->getTranslate(
+                $modelLang->plural_title != '' ? $modelLang->plural_title : $modelLang->title,
+                $sourceLanguageCode,
+                $targetLanguageCode
+            );
+
+            if ($title != '') {
+                $transaction = $modelLang2::getDb()->beginTransaction();
+                try {
+                    $modelLang2->title = $title;
+                    $modelLang2->plural_title = $plural_title;
+
+                    $modelLang2->setScenario('backend');
+
+                    if ($saveLang[] = intval($modelLang2->save())) {
+                        $transaction->commit();
+                        $this->stdout($modelLang->rid . " save " . $targetLanguageCode . " \n", Console::FG_GREEN);
+                    } else {
+                        foreach ($modelLang2->errors as $attribute => $errors) {
+                            $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
+                        }
+                    }
+                } catch (Exception $e) {
+                    $transaction->rollBack();
+                    throw new Exception($e);
+                }
+            }
+        }
+
+        $this->stdout("Translate SubTypes: finish. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * @param string $lang1
+     * @param string $lang2
+     * @throws Exception
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionTranslateSpecification($lang1 = 'ru-RU', $lang2 = 'uk-UA')
+    {
+        $this->stdout("Translate Specification: start. \n", Console::FG_GREEN);
+
+        Yii::$app->language = $lang1;
+
+        $models = SpecificationLang::find()->all();
+
+        foreach ($models as $modelLang) {
+            Yii::$app->language = $lang2;
+
+            /** @var $modelLang SpecificationLang */
+            /** @var $modelLang2 SpecificationLang */
+
+            $modelLang2 = SpecificationLang::find()
+                ->where([
+                    'rid' => $modelLang->rid,
+                    'lang' => Yii::$app->language,
+                ])
+                ->one();
+
+            if ($modelLang2 == null) {
+                $modelLang2 = new SpecificationLang();
+
+                $modelLang2->rid = $modelLang->rid;
+                $modelLang2->lang = Yii::$app->language;
+
+                $sourceLanguageCode = substr($lang1, 0, 2);
+                $targetLanguageCode = substr($lang2, 0, 2);
+
+                $title = (string)Yii::$app->yandexTranslation->getTranslate(
+                    $modelLang->title,
+                    $sourceLanguageCode,
+                    $targetLanguageCode
+                );
+
+                if ($title != '') {
+                    $transaction = $modelLang2::getDb()->beginTransaction();
+                    try {
+                        $modelLang2->title = $title;
+
+                        $modelLang2->setScenario('backend');
+
+                        if ($saveLang[] = intval($modelLang2->save())) {
+                            $transaction->commit();
+                            $this->stdout("save " . $targetLanguageCode . " \n", Console::FG_GREEN);
+                        } else {
+                            foreach ($modelLang2->errors as $attribute => $errors) {
+                                $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
+                            }
+                        }
+                    } catch (Exception $e) {
+                        $transaction->rollBack();
+                        throw new Exception($e);
+                    }
+                }
+            }
+        }
+
+        $this->stdout("Translate Specification: finish. \n", Console::FG_GREEN);
     }
 }
