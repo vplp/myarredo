@@ -84,7 +84,7 @@ class ItalianProductStats extends ActiveRecord
     public function scenarios()
     {
         return [
-            'setMark' => ['mark'],
+            'mark' => ['mark'],
             'frontend' => [
                 'user_id',
                 'product_id',

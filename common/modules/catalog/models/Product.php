@@ -54,11 +54,14 @@ use common\modules\user\models\{
  * @property integer $mark
  * @property string $language_editing
  * @property integer $mark1
+ * @property integer $mark2
+ * @property integer $mark3
  * @property integer $in_stock
  * @property integer $time_promotion_in_catalog
  * @property integer $time_promotion_in_category
  * @property integer $time_vip_promotion_in_catalog
  * @property integer $time_vip_promotion_in_category
+ * @property array $category_ids
  *
  * @property ProductLang $title
  * @property ProductLang $lang
@@ -160,6 +163,8 @@ class Product extends ActiveRecord implements iProduct
                     'moderation',
                     'mark',
                     'mark1',
+                    'mark2',
+                    'mark3',
                     'in_stock'
                 ],
                 'in',
@@ -209,8 +214,10 @@ class Product extends ActiveRecord implements iProduct
             'position' => ['position'],
             'setImages' => ['image_link', 'gallery_image'],
             'setAlias' => ['alias', 'mark'],
-            'setMark' => ['mark'],
-            'setMark1' => ['mark1'],
+            'mark' => ['mark'],
+            'mark1' => ['mark1'],
+            'mark2' => ['mark2'],
+            'mark3' => ['mark3'],
             'time_promotion_in_catalog' => ['time_promotion_in_catalog'],
             'time_promotion_in_category' => ['time_promotion_in_category'],
             'time_vip_promotion_in_catalog' => ['time_vip_promotion_in_catalog'],
@@ -253,7 +260,9 @@ class Product extends ActiveRecord implements iProduct
                 'factory_prices_files_ids',
                 'mark',
                 'language_editing',
-                'mark1'
+                'mark1',
+                'mark2',
+                'mark3',
             ],
         ];
     }
@@ -300,6 +309,8 @@ class Product extends ActiveRecord implements iProduct
             'specification_value_ids',
             'mark',
             'mark1',
+            'mark2',
+            'mark3',
             'language_editing',
             'time_promotion_in_catalog',
             'time_promotion_in_category',

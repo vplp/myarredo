@@ -151,7 +151,7 @@ class Profile extends \thread\modules\user\models\Profile
     public function scenarios()
     {
         return ArrayHelper::merge(parent::scenarios(), [
-            'setMark' => ['mark'],
+            'mark' => ['mark'],
             'ownEdit' => [
                 'first_name',
                 'last_name',

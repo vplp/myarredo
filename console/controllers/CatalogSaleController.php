@@ -20,17 +20,18 @@ use common\modules\catalog\models\{
 class CatalogSaleController extends Controller
 {
     /**
-     * Reset mark
+     * @param string $mark
+     * @throws Exception
      */
-    public function actionResetMark()
+    public function actionResetMark($mark = 'mark')
     {
-        $this->stdout("ResetMark: start. \n", Console::FG_GREEN);
+        $this->stdout("Reset " . $mark . ": start. \n", Console::FG_GREEN);
 
         Yii::$app->db->createCommand()
-            ->update(Sale::tableName(), ['mark' => '0'], "`mark`='1'")
+            ->update(Sale::tableName(), [$mark => '0'], $mark . "='1'")
             ->execute();
 
-        $this->stdout("ResetMark: finish. \n", Console::FG_GREEN);
+        $this->stdout("Reset " . $mark . ": finish. \n", Console::FG_GREEN);
     }
 
     /**
@@ -214,7 +215,7 @@ class CatalogSaleController extends Controller
                 }
             }
 
-            $model->setScenario('setMark');
+            $model->setScenario('mark');
             $model->mark = '1';
 
             if ($model->save() && !in_array(0, array_values($saveLang))) {
@@ -225,5 +226,103 @@ class CatalogSaleController extends Controller
         }
 
         $this->stdout("Translate: finish. \n", Console::FG_GREEN);
+    }
+
+
+    /**
+     * @param string $lang1
+     * @param string $lang2
+     * @param string $mark
+     * @throws Exception
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionTranslateProductFromLangToLang($lang1 = 'ru-RU', $lang2 = 'uk-UA', $mark = 'mark2')
+    {
+        $this->stdout("Translate Sale: start. \n", Console::FG_GREEN);
+
+        $models = Sale::find()
+            ->andFilterWhere([
+                $mark => '0',
+            ])
+            ->limit(50)
+            ->orderBy(Sale::tableName() . '.id ASC')
+            ->all();
+
+        foreach ($models as $model) {
+            /** @var PDO $transaction */
+            /** @var $model Sale */
+
+            Yii::$app->language = $lang1;
+
+            /** @var $modelLang SaleLang */
+            $modelLang = SaleLang::find()
+                ->where([
+                    'rid' => $model->id,
+                    'lang' => $lang1,
+                ])
+                ->one();
+
+            if ($modelLang != null) {
+                Yii::$app->language = $lang2;
+
+                /** @var $modelLang2 SaleLang */
+                $modelLang2 = SaleLang::find()
+                    ->where([
+                        'rid' => $model->id,
+                        'lang' => Yii::$app->language,
+                    ])
+                    ->one();
+
+                if ($modelLang2 == null) {
+                    $modelLang2 = new SaleLang();
+
+                    $modelLang2->rid = $model->id;
+                    $modelLang2->lang = Yii::$app->language;
+
+                    $sourceLanguageCode = substr($lang1, 0, 2);
+                    $targetLanguageCode = substr($lang2, 0, 2);
+
+                    $title = (string)Yii::$app->yandexTranslation->getTranslate(
+                        $modelLang->title,
+                        $sourceLanguageCode,
+                        $targetLanguageCode
+                    );
+
+                    $description = (string)Yii::$app->yandexTranslation->getTranslate(
+                        strip_tags($modelLang->description),
+                        $sourceLanguageCode,
+                        $targetLanguageCode
+                    );
+
+                    if ($title != '') {
+                        $transaction = $modelLang2::getDb()->beginTransaction();
+                        try {
+                            $modelLang2->title = $title;
+                            $modelLang2->description = $description;
+
+                            $modelLang2->setScenario('backend');
+
+                            if ($modelLang2->save()) {
+                                $transaction->commit();
+                                $this->stdout("translate ID = " . $model->id . " " . $lang2 . " \n", Console::FG_GREEN);
+                            } else {
+                                foreach ($modelLang2->errors as $attribute => $errors) {
+                                    $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
+                                }
+                            }
+                        } catch (Exception $e) {
+                            $transaction->rollBack();
+                            throw new Exception($e);
+                        }
+                    }
+                }
+
+                $model->setScenario($mark);
+                $model->$mark = '1';
+                $model->save();
+            }
+        }
+
+        $this->stdout("Translate Sale: finish. \n", Console::FG_GREEN);
     }
 }

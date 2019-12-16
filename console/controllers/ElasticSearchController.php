@@ -89,7 +89,7 @@ class ElasticSearchController extends Controller
                 /** @var PDO $transaction */
                 $transaction = $model::getDb()->beginTransaction();
                 try {
-                    $model->setScenario('setMark1');
+                    $model->setScenario('mark1');
                     $model->mark1 = '1';
 
                     $modelLanguage = new Language();
@@ -119,7 +119,7 @@ class ElasticSearchController extends Controller
                     throw new \Exception($e);
                 }
             } else {
-                $model->setScenario('setMark1');
+                $model->setScenario('mark1');
                 $model->mark1 = '1';
 
                 if ($model->save() && ElasticSearchProduct::deleteRecord($model->id)) {
@@ -154,7 +154,7 @@ class ElasticSearchController extends Controller
                 /** @var PDO $transaction */
                 $transaction = $model::getDb()->beginTransaction();
                 try {
-                    $model->setScenario('setMark1');
+                    $model->setScenario('mark1');
                     $model->mark1 = '1';
 
                     $modelLanguage = new Language();
@@ -184,7 +184,7 @@ class ElasticSearchController extends Controller
                     throw new \Exception($e);
                 }
             } else {
-                $model->setScenario('setMark1');
+                $model->setScenario('mark1');
                 $model->mark1 = '1';
 
                 if ($model->save() && ElasticSearchSale::deleteRecord($model->id)) {
@@ -219,7 +219,7 @@ class ElasticSearchController extends Controller
                 /** @var PDO $transaction */
                 $transaction = $model::getDb()->beginTransaction();
                 try {
-                    $model->setScenario('setMark1');
+                    $model->setScenario('mark1');
                     $model->mark1 = '1';
 
                     $modelLanguage = new Language();
@@ -249,7 +249,7 @@ class ElasticSearchController extends Controller
                     throw new \Exception($e);
                 }
             } else {
-                $model->setScenario('setMark1');
+                $model->setScenario('mark1');
                 $model->mark1 = '1';
 
                 if ($model->save() && ElasticSearchItalianProduct::deleteRecord($model->id)) {

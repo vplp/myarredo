@@ -67,7 +67,7 @@ class Order extends \thread\modules\shop\models\Order
             'published' => ['published'],
             'deleted' => ['deleted'],
             'create_campaign' => ['create_campaign'],
-            'setMark' => ['mark'],
+            'mark' => ['mark'],
             'backend' => [
                 'customer_id',
                 'city_id',

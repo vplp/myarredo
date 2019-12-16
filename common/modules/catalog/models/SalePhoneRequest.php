@@ -84,7 +84,7 @@ class SalePhoneRequest extends ActiveRecord
     public function scenarios()
     {
         return [
-            'setMark' => ['mark'],
+            'mark' => ['mark'],
             'frontend' => [
                 'user_id',
                 'sale_item_id',

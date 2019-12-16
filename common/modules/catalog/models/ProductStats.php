@@ -82,7 +82,7 @@ class ProductStats extends ActiveRecord
     public function scenarios()
     {
         return [
-            'setMark' => ['mark'],
+            'mark' => ['mark'],
             'frontend' => [
                 'user_id',
                 'is_bot',

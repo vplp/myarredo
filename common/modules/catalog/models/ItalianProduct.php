@@ -63,6 +63,8 @@ use common\modules\shop\models\{
  * @property integer $deleted
  * @property integer $mark
  * @property integer $mark1
+ * @property integer $mark2
+ * @property integer $mark3
  * @property string $language_editing
  * @property integer $status
  * @property string $create_mode
@@ -169,6 +171,8 @@ class ItalianProduct extends ActiveRecord
                     'deleted',
                     'mark',
                     'mark1',
+                    'mark2',
+                    'mark3',
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
@@ -235,8 +239,10 @@ class ItalianProduct extends ActiveRecord
             'bestseller' => ['bestseller'],
             'is_sold' => ['is_sold'],
             'setImages' => ['image_link', 'gallery_image', 'file_link'],
-            'setMark' => ['mark'],
-            'setMark1' => ['mark1'],
+            'mark' => ['mark'],
+            'mark1' => ['mark1'],
+            'mark2' => ['mark2'],
+            'mark3' => ['mark3'],
             'setStatus' => ['status'],
             'create_mode' => ['create_mode'],
             'backend' => [
@@ -269,6 +275,8 @@ class ItalianProduct extends ActiveRecord
                 'is_sold',
                 'mark',
                 'mark1',
+                'mark2',
+                'mark3',
                 'language_editing',
                 'create_mode',
                 'status',
@@ -302,6 +310,8 @@ class ItalianProduct extends ActiveRecord
                 'is_sold',
                 'mark',
                 'mark1',
+                'mark2',
+                'mark3',
                 'language_editing',
                 'create_mode',
                 'category_ids',
@@ -351,6 +361,8 @@ class ItalianProduct extends ActiveRecord
             'deleted' => Yii::t('app', 'Deleted'),
             'mark',
             'mark1',
+            'mark2',
+            'mark3',
             'language_editing',
             'create_mode' => Yii::t('app', 'Placement option'),
             'status' => Yii::t('app', 'Status'),

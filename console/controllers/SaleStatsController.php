@@ -99,7 +99,7 @@ class SaleStatsController extends Controller
             $model->views = $model->views + 1;
 
             if ($model->save()) {
-                $item->setScenario('setMark');
+                $item->setScenario('mark');
                 $item->mark = '1';
                 $item->save();
             }
@@ -153,7 +153,7 @@ class SaleStatsController extends Controller
             $model->requests = $model->requests + 1;
             $model->save();
 
-            $item->setScenario('setMark');
+            $item->setScenario('mark');
             $item->mark = '1';
 
             if ($item->save()) {

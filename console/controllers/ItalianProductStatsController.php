@@ -99,7 +99,7 @@ class ItalianProductStatsController extends Controller
             $model->views = $model->views + 1;
 
             if ($model->save()) {
-                $item->setScenario('setMark');
+                $item->setScenario('mark');
                 $item->mark = '1';
                 $item->save();
             }
@@ -160,7 +160,7 @@ class ItalianProductStatsController extends Controller
                 }
             }
 
-            $order->setScenario('setMark');
+            $order->setScenario('mark');
             $order->mark = '1';
 
             if ($order->save()) {

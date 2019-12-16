@@ -47,6 +47,8 @@ use common\modules\user\models\User;
  * @property string $gallery_image
  * @property integer $mark
  * @property integer $mark1
+ * @property integer $mark2
+ * @property integer $mark3
  * @property string $language_editing
  *
  * @property SaleLang $lang
@@ -136,6 +138,8 @@ class Sale extends ActiveRecord
                     'deleted',
                     'mark',
                     'mark1',
+                    'mark2',
+                    'mark3',
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
@@ -184,8 +188,10 @@ class Sale extends ActiveRecord
             'deleted' => ['deleted'],
             'on_main' => ['on_main'],
             'setImages' => ['image_link', 'gallery_image'],
-            'setMark' => ['mark'],
-            'setMark1' => ['mark1'],
+            'mark' => ['mark'],
+            'mark1' => ['mark1'],
+            'mark2' => ['mark2'],
+            'mark3' => ['mark3'],
             'backend' => [
                 'country_id',
                 'city_id',
@@ -212,6 +218,8 @@ class Sale extends ActiveRecord
                 'colors_ids',
                 'mark',
                 'mark1',
+                'mark2',
+                'mark3',
                 'language_editing'
             ],
             'frontend' => [
@@ -240,6 +248,8 @@ class Sale extends ActiveRecord
                 'colors_ids',
                 'mark',
                 'mark1',
+                'mark2',
+                'mark3',
                 'language_editing'
             ]
         ];
@@ -279,6 +289,8 @@ class Sale extends ActiveRecord
             'colors_ids' => Yii::t('app', 'Colors'),
             'mark',
             'mark1',
+            'mark2',
+            'mark3',
             'language_editing'
         ];
     }

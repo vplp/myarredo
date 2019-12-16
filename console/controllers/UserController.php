@@ -216,7 +216,7 @@ class UserController extends Controller
                 }
             }
 
-            $model->profile->setScenario('setMark');
+            $model->profile->setScenario('mark');
             $model->profile->mark = '1';
 
             if ($model->profile->save() && !in_array(0, array_values($saveLang))) {
