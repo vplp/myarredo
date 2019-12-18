@@ -38,7 +38,7 @@ class PartnerOrderController extends BaseController
                         'actions' => [
                             'list',
                             'delivery-italian-orders',
-                            'pjax-save'
+                            'pjax-save-order-answer'
                         ],
                         'roles' => ['partner'],
                     ],
@@ -47,7 +47,7 @@ class PartnerOrderController extends BaseController
                         'actions' => [
                             'list-italy',
                             'delivery-italian-orders',
-                            'pjax-save'
+                            'pjax-save-order-answer'
                         ],
                         'roles' => ['logistician'],
                     ],
@@ -164,7 +164,7 @@ class PartnerOrderController extends BaseController
     /**
      * @return array
      */
-    public function actionPjaxSave()
+    public function actionPjaxSaveOrderAnswer()
     {
         if (Yii::$app->request->isPost &&
             (Yii::$app->request->post('OrderAnswer'))['order_id'] &&

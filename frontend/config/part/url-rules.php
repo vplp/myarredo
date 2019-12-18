@@ -184,7 +184,7 @@ return [
 
     'shop/factory/orders' => 'shop/factory-order/list',
     'shop/factory/orders-from-italy' => 'shop/factory-order/list-from-italy',
-    'shop/factory/pjax-save' => 'shop/factory-order/pjax-save',
+    'shop/factory/pjax-save-order-answer' => 'shop/factory-order/pjax-save-order-answer',
     'shop/factory/orders-italy' => 'shop/factory-order/list-italy',
 
     'admin/orders' => 'shop/admin-order/list',
@@ -193,7 +193,7 @@ return [
     'partner/orders' => 'shop/partner-order/list',
     'partner/orders-italy' => 'shop/partner-order/list-italy',
     'partner/delivery-italian-orders' => 'shop/partner-order/delivery-italian-orders',
-    'partner/orders/pjax-save' => 'shop/partner-order/pjax-save',
+    'partner/orders/pjax-save-order-answer' => 'shop/partner-order/pjax-save-order-answer',
 
     // Module [[Location]]
     'location/location/get-cities' => 'location/location/get-cities',

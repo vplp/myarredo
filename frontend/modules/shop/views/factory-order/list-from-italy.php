@@ -137,7 +137,7 @@ $this->title = $this->context->title;
     </main>
 
 <?php
-$url = Url::toRoute(['/shop/factory-order/pjax-save']);
+$url = Url::toRoute(['/shop/factory-order/pjax-save-order-answer']);
 
 $script = <<<JS
 $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {

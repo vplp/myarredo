@@ -44,7 +44,7 @@ class FactoryOrderController extends BaseController
                 'actions' => [
                     'list' => ['get'],
                     'list-from-italy' => ['get', 'post'],
-                    'pjax-save' => ['get', 'post'],
+                    'pjax-save-order-answer' => ['get', 'post'],
                     'list-italy' => ['get'],
                     'view' => ['get'],
                 ],
@@ -164,7 +164,7 @@ class FactoryOrderController extends BaseController
     /**
      * @return array
      */
-    public function actionPjaxSave()
+    public function actionPjaxSaveOrderAnswer()
     {
         if (Yii::$app->request->isPost &&
             (Yii::$app->request->post('OrderAnswer'))['order_id'] &&

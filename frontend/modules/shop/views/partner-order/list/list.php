@@ -161,7 +161,7 @@ use frontend\modules\shop\models\Order;
 
 <?php
 if (Yii::$app->user->identity->profile->possibilityToAnswer) {
-    $url = Url::toRoute(['/shop/partner-order/pjax-save']);
+    $url = Url::toRoute(['/shop/partner-order/pjax-save-order-answer']);
 
     $script = <<<JS
 $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
