@@ -122,7 +122,7 @@ class FactoryOrderController extends BaseController
 
         $models = $model->search($params);
 
-        $this->title = Yii::t('app', 'Orders');
+        $this->title = Yii::t('app', 'Orders from Italy');
 
         $this->breadcrumbs[] = [
             'label' => $this->title,
