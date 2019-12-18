@@ -183,9 +183,13 @@ return [
     'shop/order-answer-stats/view/<id:[\d\-]+>' => 'shop/order-answer-stats/view',
 
     'shop/factory/orders' => 'shop/factory-order/list',
+    'shop/factory/orders-from-italy' => 'shop/factory-order/list-from-italy',
+    'shop/factory/pjax-save' => 'shop/factory-order/pjax-save',
     'shop/factory/orders-italy' => 'shop/factory-order/list-italy',
+
     'admin/orders' => 'shop/admin-order/list',
     'admin/orders-italy' => 'shop/admin-order/list-italy',
+
     'partner/orders' => 'shop/partner-order/list',
     'partner/orders-italy' => 'shop/partner-order/list-italy',
     'partner/delivery-italian-orders' => 'shop/partner-order/delivery-italian-orders',

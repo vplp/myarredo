@@ -136,6 +136,10 @@ class UserMenu extends Widget
                     'url' => ['/shop/factory-order/list']
                 ],
                 [
+                    'label' => Yii::t('app', 'Orders from Italy'),
+                    'url' => ['/shop/factory-order/list-from-italy']
+                ],
+                [
                     'label' => Yii::t('app', 'Orders italy'),
                     'url' => ['/shop/factory-order/list-italy']
                 ],
