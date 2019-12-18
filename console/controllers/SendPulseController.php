@@ -317,10 +317,13 @@ class SendPulseController extends Controller
                 @Yii::$app
                     ->mailer
                     ->compose(
-                        'letter_new_request_for_factory',
+                        in_array(substr($modelOrder->lang, 0, 2), ['en', 'it'])
+                            ? 'letter_new_order_for_factory_from_italy'
+                            : 'letter_new_order_for_factory',
                         [
                             'order' => $modelOrder,
-                            'item' => $item
+                            'item' => $item,
+                            'isUser' => false
                         ]
                     )
                     ->setTo($senderEmail)
@@ -345,10 +348,13 @@ class SendPulseController extends Controller
                     Yii::$app
                         ->mailer
                         ->compose(
-                            'letter_new_request_for_factory',
+                            in_array(substr($modelOrder->lang, 0, 2), ['en', 'it'])
+                                ? 'letter_new_order_for_factory_from_italy'
+                                : 'letter_new_order_for_factory',
                             [
                                 'order' => $modelOrder,
-                                'item' => $item
+                                'item' => $item,
+                                'isUser' => true
                             ]
                         )
                         ->setTo($senderEmail)

@@ -8,6 +8,7 @@ use frontend\modules\shop\models\Order;
 /* @var $this yii\web\View */
 /* @var $modelOrder Order */
 
+
 ?>
 
 <div class="hidden-order-in">
@@ -24,11 +25,11 @@ use frontend\modules\shop\models\Order;
     <div class="form-wrap">
         <div class="form-group">
 
-            <?php if (in_array(substr($modelOrder->lang, 0, 2), ['en', 'it'])) { ?>
+            <?php /*if (in_array(substr($modelOrder->lang, 0, 2), ['en', 'it'])) { ?>
                 <div><strong><?= $modelOrder->customer->full_name ?></strong></div>
                 <div><?= $modelOrder->customer->phone ?></div>
                 <div><?= $modelOrder->customer->email ?></div><br>
-            <?php } ?>
+            <?php }*/ ?>
 
             <?php if ($modelOrder->orderAnswers) { ?>
                 <div><?= Yii::t('app', 'Response time') ?>:</div>

@@ -3,9 +3,10 @@
 use yii\helpers\{
     Html, Url
 };
+use frontend\modules\shop\models\Order;
 
 /**
- * @var \frontend\modules\shop\models\Order $modelOrder
+ * @var $modelOrder Order
  */
 
 $this->title = $this->context->title;

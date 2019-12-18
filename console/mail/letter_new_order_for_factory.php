@@ -9,6 +9,7 @@ use frontend\modules\shop\models\{
 /* @var $this yii\web\View */
 /* @var $item OrderItem */
 /* @var $order Order */
+/* @var $isUser boolean */
 
 if (in_array($order->lang, ['ru-RU'])) {
     $domain = 'ru';
@@ -63,11 +64,17 @@ if (in_array($order->lang, ['ru-RU'])) {
         $phone = ($order->city->country->alias == 'ua') ? '+39 (0422) 150-02-15' : '+7 968 353 36 36';
         ?>
 
-        <div style="text-align: left; padding-left: 20px;">
-            <?= Yii::$app->param->getByName('LETTER_NEW_REQUEST_FOR_FACTORY') ?>
-        </div>
+        <?php if ($isUser) { ?>
+            <div style="text-align: left; padding-left: 20px;">
+                <?= Yii::t('app', 'Зарегистрируйся и получи контакты клиента') ?>
+            </div>
+        <?php } else { ?>
+            <div style="text-align: left; padding-left: 20px;">
+                <?= Yii::$app->param->getByName('LETTER_NEW_REQUEST_FOR_FACTORY') ?>
+            </div>
+        <?php } ?>
 
-        <a href="https://www.myarredo.<?= $domain ?>/shop/factory-order/list/"
+        <a href="https://www.myarredo.<?= $domain ?>/shop/factory/orders/"
            style="text-decoration: none; color:#fff;">
             <div style="background-color:#00b05a; width: 80%; font-size: 18px; padding:20px; color: #fff; margin: 35px auto 20px; text-align: center;">
                 <span style="display: block;"><?= Yii::t('app', 'Список запросов') ?></span>
