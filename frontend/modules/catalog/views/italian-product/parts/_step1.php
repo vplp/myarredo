@@ -47,6 +47,10 @@ $Specifications = Specification::findBase()->all();
             $model->create_mode = Yii::$app->controller->action->id == 'paid-create' ? 'paid' : 'free';
         }
 
+        $nds = $model->create_mode == 'paid'
+            ? ' ' . Yii::t('app', 'с НДС {nds} %', ['nds' => 22])
+            : '';
+
         echo $form->field($model, 'create_mode')
             ->label(false)
             ->input('hidden');
@@ -296,19 +300,23 @@ $Specifications = Specification::findBase()->all();
             ['template' => "{label}<div class=\"col-sm-4\">{input}</div>\n{hint}\n{error}"]
         ) ?>
 
+        <?php if ($model->create_mode == 'paid') {
+            echo Html::tag('p', Yii::t('app', 'Обращаем внимание, что цена для клиента увеличится на {nds} % с учетом НДС.<br> Из практики это увеличит время продажи.', ['nds' => 22]));
+        } ?>
+
         <?= $form
             ->field(
                 $model,
                 'price',
                 ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
-            ) ?>
+            )->label(Yii::t('app', 'Price') . $nds) ?>
 
         <?= $form
             ->field(
                 $model,
                 'price_without_technology',
                 ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
-            ) ?>
+            )->label(Yii::t('app', 'Price without technology') . $nds) ?>
 
         <div class="form-group row price-row">
             <?= $form
@@ -321,7 +329,7 @@ $Specifications = Specification::findBase()->all();
                             'class' => '',
                         ]
                     ]
-                ) ?>
+                )->label(Yii::t('app', 'New price') . $nds) ?>
 
             <?= $form
                 ->field(
@@ -361,6 +369,14 @@ $Specifications = Specification::findBase()->all();
         <div class="add-itprod-rules-item">
 
             <?= Yii::$app->param->getByName('ITALIAN_PRODUCT_STEP1_TEXT') ?>
+
+            <?php if ($model->create_mode == 'paid') { ?>
+                <?= Html::a(
+                    '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Добавить товар без НДС'),
+                    Url::toRoute(['/catalog/italian-product/free-create']),
+                    ['class' => 'btn-myarredo']
+                ) ?>
+            <?php } ?>
 
         </div>
     </div>

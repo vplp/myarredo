@@ -86,6 +86,8 @@ $this->title = $this->context->title;
 
                                 <?php if ($model->is_sold) { ?>
                                     <div class="prod-is-sold"><?= Yii::t('app', 'Item sold') ?></div>
+                                <?php } else { ?>
+                                    <div class="alert"><?= Yii::t('app', 'Без учета НДС') ?></div>
                                 <?php } ?>
 
                                 <?php if (Yii::$app->controller->id == 'sale-italy' && $model->is_sold == 0) { ?>
