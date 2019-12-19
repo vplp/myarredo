@@ -102,6 +102,23 @@ $lang = substr(Yii::$app->language, 0, 2);
                    value="<?= $params['start_date'] . '-' . $params['end_date'] ?>">
         </button>
         <div class="dropdown-menu datepicker-drop">
+            <div class="range-inputs">
+                <label>
+                    <?= Html::input(
+                        'text',
+                        'start_date',
+                        $params['start_date'],
+                        ['class' => 'input-mini range-a']
+                    ) ?>
+                    -
+                    <?= Html::input(
+                        'text',
+                        'end_date',
+                        $params['end_date'],
+                        ['class' => 'input-mini range-b']
+                    ) ?>
+                </label>
+            </div>
             <div class="flex btns-cont">
                 <button type="button" class="btn btn-success dropdown-toggle change-date"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
