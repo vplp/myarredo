@@ -197,7 +197,7 @@ use frontend\modules\catalog\models\ItalianProduct;
     </div>
 </div>
 
-<?php if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null) {
+<?php if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null && Yii::$app->user->identity->profile->getPossibilityToSaveAnswerPerMonth()) {
     if (!$modelOrderAnswer->id) {
         echo Html::submitButton(
             Yii::t('app', 'Отправить ответ клиенту'),
