@@ -3,10 +3,15 @@
 use yii\helpers\{
     Html, Url
 };
+use yii\data\Pagination;
+use frontend\modules\shop\models\Order;
 
 /**
- * @var $pages \yii\data\Pagination
- * @var $modelOrder \frontend\modules\shop\models\Order
+ * @var $pages Pagination
+ * @var $modelOrder Order
+ * @var $params array
+ * @var $model array
+ * @var $models array
  */
 
 $this->title = $this->context->title;

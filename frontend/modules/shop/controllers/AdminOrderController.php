@@ -60,6 +60,17 @@ class AdminOrderController extends BaseController
 
         $params = Yii::$app->request->get() ?? [];
 
+        $start_date = mktime(0, 0, 0, date("m"), date("d") - 30, date("Y"));
+        $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
+
+        if (!isset($params['start_date'])) {
+            $params['start_date'] = date('d-m-Y', $start_date);
+        }
+
+        if (!isset($params['end_date'])) {
+            $params['end_date'] = date('d-m-Y', $end_date);
+        }
+
         if (isset($params['country_id']) && $params['country_id'] > 0 && $params['city_id'] == 0) {
             $modelCity = City::findAll(['country_id' => $params['country_id']]);
             $params['city_id'] = [];

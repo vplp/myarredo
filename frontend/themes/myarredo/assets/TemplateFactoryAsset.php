@@ -2,9 +2,9 @@
 
 namespace frontend\themes\myarredo\assets;
 
-use yii\web\AssetBundle;
-use yii\web\YiiAsset;
 use yii\web\View;
+use yii\web\YiiAsset;
+use yii\web\AssetBundle;
 use yii\bootstrap\{
     BootstrapAsset,
     BootstrapPluginAsset
@@ -40,7 +40,6 @@ class TemplateFactoryAsset extends AssetBundle
      * @var array
      */
     public $js = [
-        // 'https://use.fontawesome.com/35f65baac5.js',
         'libs/bootstrap-select/js/bootstrap-select.min.js',
         'libs/slick-1.6/slick.min.js',
         'libs/nouislider/nouislider.min.js',
@@ -61,7 +60,6 @@ class TemplateFactoryAsset extends AssetBundle
         BootstrapAsset::class,
         BootstrapPluginAsset::class,
     ];
-
 
     /**
      * @var array
