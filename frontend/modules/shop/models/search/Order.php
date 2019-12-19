@@ -130,7 +130,7 @@ class Order extends OrderModel
         if (Yii::$app->user->identity->group->role == 'partner' &&
             Yii::$app->user->identity->profile->country_id &&
             Yii::$app->user->identity->profile->country_id == 4) {
-            $query->andFilterWhere(['IN', self::tableName() . '.lang', ['it-IT', 'en-EN']]);
+            //$query->andFilterWhere(['IN', self::tableName() . '.lang', ['it-IT', 'en-EN']]);
         } else if (Yii::$app->user->identity->group->role == 'partner') {
             //$query->andFilterWhere(['IN', self::tableName() . '.lang', ['ru-RU']]);
         }

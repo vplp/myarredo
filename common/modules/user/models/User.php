@@ -27,8 +27,6 @@ class User extends \thread\modules\user\models\User
         return $this->hasOne(Group::class, ['id' => 'group_id']);
     }
 
-
-
     /**
      * @return \yii\db\ActiveQuery
      */
