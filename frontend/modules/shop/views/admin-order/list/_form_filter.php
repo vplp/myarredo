@@ -33,6 +33,7 @@ $lang = substr(Yii::$app->language, 0, 2);
     ]
 ]); ?>
 
+<?php /*
     <div class="form-group">
         <?= Select2::widget([
             'name' => 'year',
@@ -44,6 +45,7 @@ $lang = substr(Yii::$app->language, 0, 2);
             ]
         ]); ?>
     </div>
+*/ ?>
 
     <div class="form-group">
         <?= Select2::widget([
