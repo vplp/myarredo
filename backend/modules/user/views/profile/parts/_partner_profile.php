@@ -76,15 +76,18 @@ if (in_array($model['user']['group_id'], [4, 7])) {
     </div>
 
     <?php
-    echo $form
-        ->field($model, 'city_ids')
-        ->widget(Select2::class, [
-            'data' => City::dropDownList($model->country_id),
-            'options' => [
-                'placeholder' => Yii::t('app', 'Select option'),
-                'multiple' => true
-            ],
-        ]);
+    foreach (Country::dropDownList() as $id => $name) {
+        echo $form
+            ->field($model, 'country_cities_' . $id)
+            ->label(Yii::t('app', 'Ответы в городах') . ' (' . $name . ')')
+            ->widget(Select2::class, [
+                'data' => City::dropDownList($id),
+                'options' => [
+                    'placeholder' => Yii::t('app', 'Select option'),
+                    'multiple' => true
+                ],
+            ]);
+    }
 
     echo $form->switcher($model, 'partner_in_city');
 
@@ -99,11 +102,6 @@ if (in_array($model['user']['group_id'], [4, 7])) {
     echo $form->switcher($model, 'show_contacts_on_sale');
 
     echo $form->switcher($model, 'answers_per_month');
-
-    echo $form
-        ->field($model, 'image_link')
-        ->label('Фото салона')
-        ->imageOne($model->getImageLink());
 }
 
 $url = \yii\helpers\Url::toRoute('/location/city/get-cities');

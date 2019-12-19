@@ -58,6 +58,11 @@ use common\modules\catalog\models\Factory;
  */
 class Profile extends \thread\modules\user\models\Profile
 {
+    public $country_cities_1 = [];
+    public $country_cities_2 = [];
+    public $country_cities_3 = [];
+    public $country_cities_4 = [];
+
     /**
      * @return array
      */
@@ -136,6 +141,10 @@ class Profile extends \thread\modules\user\models\Profile
             [
                 [
                     'city_ids',
+                    'country_cities_1',
+                    'country_cities_2',
+                    'country_cities_3',
+                    'country_cities_4',
                 ],
                 'each',
                 'rule' => ['integer']
@@ -246,6 +255,10 @@ class Profile extends \thread\modules\user\models\Profile
                 'show_contacts',
                 'show_contacts_on_sale',
                 'city_ids',
+                'country_cities_1',
+                'country_cities_2',
+                'country_cities_3',
+                'country_cities_4',
                 'cape_index',
                 'image_link',
                 'image_salon',
@@ -300,12 +313,33 @@ class Profile extends \thread\modules\user\models\Profile
     }
 
     /**
+     * @inheritDoc
+     */
+    public function afterFind()
+    {
+        foreach ($this->cities as $city) {
+            $field = 'country_cities_' . $city['country_id'];
+            $this->$field[$city['id']] = $city['id'];
+        }
+
+        parent::afterFind();
+    }
+
+    /**
      * @param bool $insert
      * @return bool
      * @throws \Throwable
      */
     public function beforeSave($insert)
     {
+        if (in_array($this->scenario, ['backend'])) {
+            $this->city_ids = [];
+            $this->city_ids = array_merge($this->city_ids, is_array($this->country_cities_1) ? $this->country_cities_1 : []);
+            $this->city_ids = array_merge($this->city_ids, is_array($this->country_cities_2) ? $this->country_cities_2 : []);
+            $this->city_ids = array_merge($this->city_ids, is_array($this->country_cities_3) ? $this->country_cities_3 : []);
+            $this->city_ids = array_merge($this->city_ids, is_array($this->country_cities_4) ? $this->country_cities_4 : []);
+        }
+
         if (in_array($this->scenario, ['frontend', 'backend', 'basicCreate'])) {
             $this->mark = '0';
             $this->language_editing = Yii::$app->language;
