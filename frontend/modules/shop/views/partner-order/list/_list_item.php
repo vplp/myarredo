@@ -169,7 +169,7 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
     } elseif (Yii::$app->user->identity->profile->getPossibilityToSaveAnswerPerMonth() == false) {
         echo Html::tag('p', Yii::t('app', 'Вы исчерпали бесплатный месячный лимит ответов на заявки. Для продления свяжитесь с оператором сайта.'));
     } else {
-        echo Html::tag('p', Yii::t('app', 'Оплатите возможность отвечать на заявки из этого города!'));
+        echo Html::tag('p', Yii::t('app', 'Для ответа на данные заявки свяжитесь с оператором сайта, тел.:') . ' +7 968 353 36 36, e-mail: help@myarredo.ru');
     } ?>
 
     <?php ActiveForm::end(); ?>

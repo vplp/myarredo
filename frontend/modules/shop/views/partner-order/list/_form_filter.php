@@ -15,6 +15,7 @@ use frontend\modules\catalog\models\Factory;
 <?php $form = ActiveForm::begin([
     'method' => 'get',
     'id' => 'form-stats',
+    'action' => false,
     'options' => [
         'class' => 'form-filter-date-cont flex'
     ]
@@ -22,26 +23,26 @@ use frontend\modules\catalog\models\Factory;
 
     <div class="form-group">
         <?= Select2::widget([
-            'name' => 'factory_id',
-            'value' => (!is_array($params['factory_id'])) ? $params['factory_id'] : 0,
-            'data' => [0 => '--'] + Factory::dropDownList($params['factory_id']),
+            'name' => 'country_id',
+            'value' => $params['country_id'],
+            'data' => [0 => Yii::t('app', 'Все страны')] + Country::dropDownList(),
             'options' => [
-                'id' => 'factory_id',
+                'id' => 'country_id',
                 'multiple' => false,
-                'placeholder' => Yii::t('app', 'Select option')
+                'placeholder' => Yii::t('app', 'Choose the country')
             ]
         ]); ?>
     </div>
 
     <div class="form-group">
         <?= Select2::widget([
-            'name' => 'city_id',
-            'value' => (!is_array($params['city_id'])) ? $params['city_id'] : 0,
-            'data' => [0 => '--'] + City::dropDownList(Yii::$app->user->identity->profile->country_id),
+            'name' => 'factory_id',
+            'value' => (!is_array($params['factory_id'])) ? $params['factory_id'] : 0,
+            'data' => [0 => Yii::t('app', 'Все фабрики')] + Factory::dropDownList($params['factory_id']),
             'options' => [
-                'id' => 'city_id',
+                'id' => 'factory_id',
                 'multiple' => false,
-                'placeholder' => Yii::t('app', 'Select a city')
+                'placeholder' => Yii::t('app', 'Select option')
             ]
         ]); ?>
     </div>

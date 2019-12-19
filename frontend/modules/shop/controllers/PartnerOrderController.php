@@ -69,23 +69,12 @@ class PartnerOrderController extends BaseController
 
         $params = Yii::$app->request->get() ?? [];
 
-        /**
-         * add city_id
-         */
-
         if (!isset($params['city_id'])) {
             $params['city_id'] = 0;
         }
 
-        if (Yii::$app->user->identity->profile->country_id != 4 && isset($params['city_id']) && $params['city_id'] == 0 && Yii::$app->user->identity->profile->country_id) {
-            unset($params['city_id']);
-            $modelCity = City::findAll(['country_id' => Yii::$app->user->identity->profile->country_id]);
-
-            if ($modelCity != null) {
-                foreach ($modelCity as $city) {
-                    $params['city_id'][] = $city['id'];
-                }
-            }
+        if (!isset($params['country_id'])) {
+            $params['country_id'] = Yii::$app->user->identity->profile->country_id ?? 0;
         }
 
         if (!isset($params['factory_id'])) {

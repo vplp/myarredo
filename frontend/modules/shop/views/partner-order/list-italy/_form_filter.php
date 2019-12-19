@@ -25,7 +25,7 @@ use frontend\modules\catalog\models\Factory;
         <?= Select2::widget([
             'name' => 'factory_id',
             'value' => (!is_array($params['factory_id'])) ? $params['factory_id'] : 0,
-            'data' => [0 => '--'] + Factory::dropDownList($params['factory_id']),
+            'data' => [0 => Yii::t('app', 'Все фабрики')] + Factory::dropDownList($params['factory_id']),
             'options' => [
                 'id' => 'factory_id',
                 'multiple' => false,
@@ -38,7 +38,7 @@ use frontend\modules\catalog\models\Factory;
         <?= Select2::widget([
             'name' => 'city_id',
             'value' => (!is_array($params['city_id'])) ? $params['city_id'] : 0,
-            'data' => [0 => '--'] + City::dropDownList(Yii::$app->user->identity->profile->country_id),
+            'data' => [0 => Yii::t('app', 'Все города')] + City::dropDownList(Yii::$app->user->identity->profile->country_id),
             'options' => [
                 'id' => 'city_id',
                 'multiple' => false,
