@@ -297,7 +297,7 @@ console.time('speed falling-snow js');
             if (snowingzone==4) {snow[i].posx=randommaker(marginright/2-snow[i].size)+marginright/2}
             snow[i].posy=randommaker(2*marginbottom-marginbottom-2*snow[i].size);
             snow[i].style.left=snow[i].posx+"px";
-            snow[i].style.top=(snow[i].posy * 20 ) +"px";
+            snow[i].style.top=(snow[i].posy) +"px";
         }
         movesnow();
     }
@@ -318,7 +318,7 @@ console.time('speed falling-snow js');
         var timer=setTimeout("movesnow()",50);
     }
     for (i=0;i<=snowmax;i++) {
-        document.write("<span id='s"+i+"' style='z-index:999999;position:fixed;top:-"+snowmaxsize+"px;'>"+snowletter+"</span>");
+        document.write("<span id='s"+i+"' style='z-index:9999;opacity:0.8;pointer-events:none;position:fixed;top:-"+snowmaxsize+"px;'>"+snowletter+"</span>");
     }
     if (browserok) {
         window.onload=setTimeout(function() {
@@ -338,7 +338,7 @@ console.timeEnd('speed falling-snow js');
 
                     <div class="left-part">
                         <?php if (Yii::$app->city->domain != 'com' && !in_array(Yii::$app->controller->id, ['sale', 'sale-italy'])) { ?>
-                            <a class="phone-num">
+                            <a href="tel:<?= Yii::$app->partner->getPartnerPhone() ?>" class="phone-num">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <div>
                                     <span class="phone"><?= Yii::$app->partner->getPartnerPhone() ?></span>
@@ -512,7 +512,7 @@ console.timeEnd('speed falling-snow js');
                 <img src="<?= $bundle->baseUrl ?>/img/logo.svg" alt="">
             </a>
             <div class="phone-container">
-                <a class="phone-num">
+                <a href="tel:<?= Yii::$app->partner->getPartnerPhone() ?>" class="phone-num">
                     <?= Yii::$app->partner->getPartnerPhone() ?>
                 </a>
             </div>

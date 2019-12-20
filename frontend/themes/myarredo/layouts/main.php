@@ -36,6 +36,19 @@ $this->beginPage();
 
     <?= $this->render('parts/_header', ['bundle' => $bundle]) ?>
 
+    <div class="fone-poster-box" style="background-color:#000000;">
+        <div class="fone-poster-left">
+            <a href="#" class="fone-poster-link">
+                <img src="https://wine-mag.ru/wp-content/uploads/2018/12/Molto-Buono-2.0-960x1200.jpg" alt="мебель в Италии">
+            </a>
+        </div>
+        <div class="fone-poster-right">
+            <a href="#" class="fone-poster-link">
+                <img src="http://d14.cdn.braun634.com/uploads/media/1/8/27181/v1/right_bg.jpg" alt="мебель в Италии">
+            </a>
+        </div>
+    </div>
+
     <?= $content ?>
 
     <?= $this->render('parts/_footer', []) ?>

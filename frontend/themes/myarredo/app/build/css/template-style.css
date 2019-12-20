@@ -317,7 +317,8 @@ h1 {
   .header .logo {
     width: 233px;
     display: block;
-    margin-right: 10px; }
+    margin-right: 10px; 
+  }
     .header .logo img {
       display: block;
       width: 100%;
@@ -438,11 +439,54 @@ h1 {
     color: #FFFFFF; }
   .mobile-header .logo {
     width: 200px;
-    display: block; }
-    .mobile-header .logo img {
-      display: block;
-      width: 100%;
-      height: auto; }
+    display: block; 
+  }
+  .mobile-header .logo img {
+    display: block;
+    width: 100%;
+    height: auto; 
+  }
+
+  /* --------------Стили для новогоднего украшения логотипа-------------- */
+  .header .logo {
+    position: relative;
+  }
+  .header .logo:after {
+    display: inline-block;
+    content: '';
+    width: 233px;
+    height: 60px;
+    background-image: url('../img/wreath-1232x313.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    position: absolute;
+    top: 11px;
+    left: 0;
+    z-index: 1;
+  }
+  .mobile-header .logo {
+    position: relative;
+  }
+  .mobile-header .logo:after {
+    display: inline-block;
+    content: '';
+    width: 200px;
+    height: 35px;
+    background-image: url('../img/wreath-1232x313.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    position: absolute;
+    top: 11px;
+    left: 0;
+    z-index: 1;
+  }
+  .mobile-header .phone-container {
+    margin-top: 10px;
+  }
+   /* ----------------конец Стили для новогоднего украшения логотипа----------------- */
+
   .mobile-header .phone-container {
     padding-left: 35px;
     position: relative; }
@@ -7365,7 +7409,7 @@ h1 {
   max-height: 40px;
   position: fixed;
   right: 0;
-  bottom: 45px;
+  bottom: 10px;
   z-index: 99;
 }
 .totopbox .totop-img {
@@ -7455,6 +7499,10 @@ h1 {
 }
 .factory-tiles {
   justify-content: flex-start;
+}
+/* стили для встроеного виджета - заказать звонок */
+.comagic-o-rack {
+  bottom: 15px;
 }
 
 /* --------------------------------------------------------------------------------------------------------- */
@@ -8912,7 +8960,7 @@ h1 {
   font-family: 'Palatino', sans-serif;
   font-size: 35px;
   color: #f2f2f2;
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 9px rgba(0, 0, 0, 0.8);
   text-transform: uppercase;
   width: 100%;
   text-align: center;
@@ -9105,6 +9153,80 @@ h1 {
   display: block;
   text-align: center;
 }
+
+/* Стили для боковых баннеров */
+.fone-poster-box {
+  /* display: none;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: transparent; */
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  margin: auto;
+  z-index: 0;
+}
+/* .fone-poster-left,
+.fone-poster-right {
+  width: calc(50vw - 800px);
+  height: 100%;
+}
+.fone-poster-left img,
+.fone-poster-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
+.fone-poster-left {
+  position: fixed;
+  display: block;
+  top: 0px;
+  right: auto;
+  bottom: 0;
+  left: 50%;
+  margin: 0px auto auto -1760px;
+  z-index: 1;
+}
+.fone-poster-right {
+  position: fixed;
+  display: block;
+  top: 0px;
+  bottom: 0;
+  left: auto;
+  right: 50%;
+  margin: 0px -1760px auto auto;
+  z-index: 1;
+}
+
+/* min 1900px */
+@media(min-width: 1900px) {
+  .fone-poster-box {
+    display: block;
+  }
+  main {
+    max-width: 1600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  #top.header .container-wrap,
+  .footer .container-wrap,
+  .container-wrap {
+    position: relative;
+    z-index: 2;
+  }
+}
+/* конец Стили для боковых баннеров */
+
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
 /* ---------------------------------------------------------------------------------------------------- */
