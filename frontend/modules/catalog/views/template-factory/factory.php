@@ -5,7 +5,7 @@ use yii\helpers\{
 };
 //
 use frontend\modules\catalog\models\Factory;
-use frontend\modules\banner\widgets\banner\FactoryBanner;
+use frontend\modules\banner\widgets\FactoryBanner;
 
 /**
  * @var \frontend\modules\catalog\models\Factory $model

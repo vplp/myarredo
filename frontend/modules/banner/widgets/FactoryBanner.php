@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\modules\banner\widgets\banner;
+namespace frontend\modules\banner\widgets;
 
 use yii\base\Widget;
 use frontend\modules\banner\models\BannerItem;
@@ -8,7 +8,7 @@ use frontend\modules\banner\models\BannerItem;
 /**
  * Class FactoryBanner
  *
- * @package frontend\modules\banner\widgets\banner
+ * @package frontend\modules\banner\widgets
  */
 class FactoryBanner extends Widget
 {

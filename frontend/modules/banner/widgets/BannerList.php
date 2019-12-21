@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\modules\banner\widgets\banner;
+namespace frontend\modules\banner\widgets;
 
 use yii\base\Widget;
 //
@@ -16,7 +16,7 @@ use frontend\modules\banner\models\{
  * @property integer $city_id
  * @property object $model
  *
- * @package frontend\modules\banner\widgets\banner
+ * @package frontend\modules\banner\widgets
  */
 class BannerList extends Widget
 {

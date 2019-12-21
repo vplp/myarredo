@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\modules\banner\widgets\banner;
+namespace frontend\modules\banner\widgets;
 
 use yii\base\Widget;
 //
@@ -18,7 +18,7 @@ use frontend\modules\banner\models\{
  * @property object $bannerLeft
  * @property object $bannerRight
  *
- * @package frontend\modules\banner\widgets\banner
+ * @package frontend\modules\banner\widgets
  */
 class BackgroundBanner extends Widget
 {

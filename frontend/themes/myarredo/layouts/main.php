@@ -5,7 +5,7 @@ use yii\helpers\{
 };
 //
 use frontend\widgets\Alert;
-use frontend\modules\banner\widgets\banner\BackgroundBanner;
+use frontend\modules\banner\widgets\BackgroundBanner;
 use frontend\themes\myarredo\assets\AppAsset;
 
 $bundle = AppAsset::register($this);

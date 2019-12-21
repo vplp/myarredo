@@ -12,7 +12,7 @@ use frontend\modules\catalog\widgets\{
     sale\SaleOnMainPage,
     sale\SaleItalyOnMainPage
 };
-use frontend\modules\banner\widgets\banner\BannerList;
+use frontend\modules\banner\widgets\BannerList;
 use frontend\modules\articles\widgets\articles\ArticlesList;
 
 $bundle = AppAsset::register($this);
