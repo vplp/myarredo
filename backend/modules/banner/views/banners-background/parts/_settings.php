@@ -1,6 +1,7 @@
 <?php
 
 use kartik\widgets\Select2;
+use kartik\color\ColorInput;
 //
 use backend\app\bootstrap\ActiveForm;
 use backend\modules\location\models\City;
@@ -32,6 +33,19 @@ use backend\modules\banner\models\{
         ],
     ]);
 ?>
+
+<div class="row control-group">
+    <div class="col-md-3">
+        <?= $form
+            ->field($model, 'background_code')
+            ->widget(
+                ColorInput::class,
+                [
+                    'options' => ['placeholder' => 'Select color ...'],
+                ]
+            ) ?>
+    </div>
+</div>
 
 <?= $form->text_line_lang($modelLang, 'link') ?>
 

@@ -30,7 +30,7 @@ echo GridView::widget([
             'format' => 'raw',
             'label' => Yii::t('app', 'Cities'),
             'value' => function ($model) {
-                /** @var $model Directlink */
+                /** @var $model BannerItemBackground */
                 $result = [];
                 foreach ($model->cities as $city) {
                     $result[] = $city->getTitle();
@@ -40,6 +40,18 @@ echo GridView::widget([
             'filter' => GridViewFilter::selectOne($filter, 'city_id', City::dropDownListWithGroup()),
         ],
         'side',
+        [
+            'attribute' => 'background_code',
+            'value' => function ($model) {
+                /** @var $model BannerItemBackground */
+                return Html::tag(
+                    'span',
+                    '&nbsp;&nbsp;&nbsp;',
+                    ['style' => 'background-color: ' . $model->background_code]
+                );
+            },
+            'format' => 'raw',
+        ],
         'position',
         [
             'class' => ActionStatusColumn::class,

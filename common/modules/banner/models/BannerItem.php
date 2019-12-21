@@ -23,6 +23,7 @@ use common\modules\location\models\City;
  * @property integer $factory_id
  * @property string $type
  * @property string $side
+ * @property string $background_code
  * @property string $image_link
  * @property integer $position
  * @property integer $created_at
@@ -83,6 +84,7 @@ class BannerItem extends ActiveRecord
             [['type'], 'in', 'range' => array_keys(static::typeKeyRange())],
             [['side'], 'in', 'range' => array_keys(static::sideKeyRange())],
             [['image_link'], 'string', 'max' => 255],
+            [['background_code'], 'string', 'max' => 32],
             [['position'], 'default', 'value' => 0],
             [
                 [
@@ -108,6 +110,7 @@ class BannerItem extends ActiveRecord
                 'factory_id',
                 'type',
                 'side',
+                'background_code',
                 'image_link',
                 'position',
                 'published',
@@ -129,6 +132,7 @@ class BannerItem extends ActiveRecord
             'factory_id' => Yii::t('app', 'Factory'),
             'type',
             'side' => Yii::t('app', 'Side'),
+            'background_code' => Yii::t('app', 'Background'),
             'image_link' => Yii::t('app', 'Image link'),
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
