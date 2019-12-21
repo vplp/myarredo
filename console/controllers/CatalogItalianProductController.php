@@ -275,6 +275,8 @@ class CatalogItalianProductController extends Controller
                 ])
                 ->one();
 
+            $save = false;
+
             if ($modelLang != null) {
                 Yii::$app->language = $lang2;
 
@@ -315,7 +317,7 @@ class CatalogItalianProductController extends Controller
 
                             $modelLang2->setScenario('backend');
 
-                            if ($modelLang2->save()) {
+                            if ($save = $modelLang2->save()) {
                                 $transaction->commit();
                                 $this->stdout("translate ID = " . $model->id . " " . $lang2 . " \n", Console::FG_GREEN);
                             } else {
@@ -328,11 +330,16 @@ class CatalogItalianProductController extends Controller
                             throw new Exception($e);
                         }
                     }
+                } else {
+                    $save = true;
                 }
 
-                $model->setScenario($mark);
-                $model->$mark = '1';
-                $model->save();
+                if ($save) {
+                    $this->stdout("translate ID = " . $model->id . " \n", Console::FG_GREEN);
+                    $model->setScenario($mark);
+                    $model->$mark = '1';
+                    $model->save();
+                }
             }
         }
 
