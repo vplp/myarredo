@@ -54,7 +54,6 @@ echo GridView::widget([
             },
             'format' => 'raw',
         ],
-        'position',
         [
             'class' => ActionStatusColumn::class,
             'attribute' => 'published',
