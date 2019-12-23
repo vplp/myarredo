@@ -53,7 +53,4 @@ use backend\modules\banner\models\{
     <div class="col-md-2">
         <?= $form->switcher($model, 'published') ?>
     </div>
-    <div class="col-md-2">
-        <?= $form->text_line($model, 'position') ?>
-    </div>
 </div>
