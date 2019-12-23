@@ -5,7 +5,7 @@ namespace frontend\modules\banner\widgets;
 use yii\base\Widget;
 //
 use frontend\modules\banner\models\{
-    BannerItem, BannerItemRelCity
+    BannerItemBackground, BannerItemRelCity
 };
 
 /**
@@ -57,7 +57,8 @@ class BackgroundBanner extends Widget
      */
     public function init()
     {
-        $query = BannerItem::findBase()->andWhere([BannerItem::tableName() . '.type' => $this->type]);
+        // Left
+        $query = BannerItemBackground::findBase();
 
         if ($this->city_id) {
             $query
@@ -65,8 +66,18 @@ class BackgroundBanner extends Widget
                 ->andFilterWhere([BannerItemRelCity::tableName() . '.city_id' => $this->city_id]);
         }
 
-        $this->bannerLeft = $query->andWhere([BannerItem::tableName() . '.side' => 'left'])->one();
-        $this->bannerRight = $query->andWhere([BannerItem::tableName() . '.side' => 'right'])->one();
+        $this->bannerLeft = $query->andWhere([BannerItemBackground::tableName() . '.side' => 'left'])->one();
+
+        // Right
+        $query = BannerItemBackground::findBase();
+
+        if ($this->city_id) {
+            $query
+                ->innerJoinWith(["cities"])
+                ->andFilterWhere([BannerItemRelCity::tableName() . '.city_id' => $this->city_id]);
+        }
+
+        $this->bannerRight = $query->andWhere([BannerItemBackground::tableName() . '.side' => 'right'])->one();
 
         if ($this->bannerLeft) {
             $this->background = $this->bannerLeft['background_code'];

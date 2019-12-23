@@ -16,7 +16,6 @@ class BannerItemBackground extends BannerItem
     {
         return self::find()
             ->joinWith(['lang'])
-            ->where(['type' => 'background'])
-            ->orderBy('position');
+            ->where(['type' => 'background']);
     }
 }
