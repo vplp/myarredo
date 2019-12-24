@@ -7,6 +7,7 @@ use yii\console\Controller;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Console;
 //
+use frontend\modules\catalog\models\Factory;
 use frontend\modules\location\models\{
     Country, City
 };
@@ -50,6 +51,8 @@ class OrderCustomerController extends Controller
         foreach ($models as $model) {
             /** @var $model Order */
 
+            $this->stdout("order ID = " . $model->id . " \n", Console::FG_GREEN);
+
             $email = [
                 'email' => $model->customer->email,
                 'variables' => [
@@ -81,7 +84,41 @@ class OrderCustomerController extends Controller
     {
         $this->stdout("SendPulse: start import italian factories. \n", Console::FG_GREEN);
 
+        $emails = [];
+
         $ItFactoriesBookId = 88958746;
+
+        $modelUsers = User::findBase()
+            ->andWhere([User::tableName() . '.group_id' => Group::FACTORY])
+            ->all();
+
+        foreach ($modelUsers as $model) {
+            /** @var $model User */
+            $emails[$model->email] = [
+                'email' => $model->email,
+                'variables' => [
+                    'name' => $model->profile->factory_id
+                        ? $model->profile->factory->title
+                        : $model->profile->getFullName(),
+                ],
+            ];
+        }
+
+        $modelFactories = Factory::find()
+            ->andFilterWhere(['<>', Factory::tableName() . '.email', ''])
+            ->all();
+
+        foreach ($modelFactories as $model) {
+            /** @var $model Factory */
+            $emails[$model->email] = [
+                'email' => $model->email,
+                'variables' => [
+                    'name' => $model->title,
+                ],
+            ];
+        }
+
+        Yii::$app->sendPulse->addEmails($ItFactoriesBookId, $emails);
 
         $this->stdout("SendPulse: end import italian factories. \n", Console::FG_GREEN);
     }

@@ -72,11 +72,7 @@ class SendPulseController extends Controller
          */
 
         $modelUser = User::findBase()
-            ->andWhere([
-                'or',
-                //User::tableName() . '.group_id = ' . Group::PARTNER,
-                User::tableName() . '.group_id = ' . Group::LOQISTICIAN,
-            ])
+            ->andWhere([User::tableName() . '.group_id' => Group::LOQISTICIAN])
             ->all();
 
         if ($modelUser != null) {
