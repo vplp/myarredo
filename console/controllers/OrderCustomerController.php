@@ -44,7 +44,7 @@ class OrderCustomerController extends Controller
             ->andFilterWhere([
                 $mark => '0',
             ])
-            ->limit(100)
+            ->limit(1000)
             ->orderBy(Order::tableName() . '.id ASC')
             ->all();
 
