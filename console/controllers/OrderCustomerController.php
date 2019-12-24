@@ -94,7 +94,7 @@ class OrderCustomerController extends Controller
 
         foreach ($modelUsers as $model) {
             /** @var $model User */
-            $emails[$model->email] = [
+            $emails[] = [
                 'email' => $model->email,
                 'variables' => [
                     'name' => $model->profile->factory_id
@@ -110,7 +110,7 @@ class OrderCustomerController extends Controller
 
         foreach ($modelFactories as $model) {
             /** @var $model Factory */
-            $emails[$model->email] = [
+            $emails[] = [
                 'email' => $model->email,
                 'variables' => [
                     'name' => $model->title,
