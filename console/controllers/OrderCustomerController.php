@@ -44,7 +44,7 @@ class OrderCustomerController extends Controller
             ->andFilterWhere([
                 $mark => '0',
             ])
-            ->limit(50)
+            ->limit(100)
             ->orderBy(Order::tableName() . '.id ASC')
             ->all();
 
@@ -73,9 +73,17 @@ class OrderCustomerController extends Controller
             $model->save();
         }
 
-        Yii::$app->sendPulse->addEmails($RuCustomerBookId, $RuEmails);
-        Yii::$app->sendPulse->addEmails($UaCustomerBookId, $UaEmails);
-        Yii::$app->sendPulse->addEmails($ByCustomerBookId, $ByEmails);
+        if ($RuEmails) {
+            Yii::$app->sendPulse->addEmails($RuCustomerBookId, $RuEmails);
+        }
+
+        if ($UaEmails) {
+            Yii::$app->sendPulse->addEmails($UaCustomerBookId, $UaEmails);
+        }
+
+        if ($ByEmails) {
+            Yii::$app->sendPulse->addEmails($ByCustomerBookId, $ByEmails);
+        }
 
         $this->stdout("SendPulse: end import customer. \n", Console::FG_GREEN);
     }
