@@ -25,6 +25,21 @@ class OrderCustomerController extends Controller
 {
     /**
      * @param string $mark
+     * @throws \yii\db\Exception
+     */
+    public function actionResetOrderMark($mark = 'mark')
+    {
+        $this->stdout("Reset " . $mark . ": start. \n", Console::FG_GREEN);
+
+        Yii::$app->db->createCommand()
+            ->update(Order::tableName(), [$mark => '0'], $mark . "='1'")
+            ->execute();
+
+        $this->stdout("Reset " . $mark . ": finish. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * @param string $mark
      */
     public function actionImportCustomerToSendPulse($mark = 'mark1')
     {
@@ -88,6 +103,9 @@ class OrderCustomerController extends Controller
         $this->stdout("SendPulse: end import customer. \n", Console::FG_GREEN);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function actionImportItalianFactoriesToSendPulse()
     {
         $this->stdout("SendPulse: start import italian factories. \n", Console::FG_GREEN);

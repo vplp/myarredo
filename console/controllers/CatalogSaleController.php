@@ -23,7 +23,7 @@ class CatalogSaleController extends Controller
      * @param string $mark
      * @throws Exception
      */
-    public function actionResetMark($mark = 'mark')
+    public function actionResetSaleMark($mark = 'mark')
     {
         $this->stdout("Reset " . $mark . ": start. \n", Console::FG_GREEN);
 

@@ -22,7 +22,7 @@ class UserController extends Controller
     /**
      * Reset mark
      */
-    public function actionResetMark()
+    public function actionResetProfileMark()
     {
         $this->stdout("ResetMark: start. \n", Console::FG_GREEN);
 
