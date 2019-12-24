@@ -43,6 +43,7 @@ use common\modules\user\models\User;
  * @property integer $deleted
  * @property integer $position
  * @property integer $on_main
+ * @property integer $is_sold
  * @property string $image_link
  * @property string $gallery_image
  * @property integer $mark
@@ -134,6 +135,7 @@ class Sale extends ActiveRecord
             [
                 [
                     'on_main',
+                    'is_sold',
                     'published',
                     'deleted',
                     'mark',
@@ -187,6 +189,7 @@ class Sale extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'on_main' => ['on_main'],
+            'is_sold' => ['is_sold'],
             'setImages' => ['image_link', 'gallery_image'],
             'mark' => ['mark'],
             'mark1' => ['mark1'],
@@ -213,6 +216,7 @@ class Sale extends ActiveRecord
                 'deleted',
                 'position',
                 'on_main',
+                'is_sold',
                 'category_ids',
                 'subtypes_ids',
                 'colors_ids',
@@ -243,6 +247,7 @@ class Sale extends ActiveRecord
                 'deleted',
                 'position',
                 'on_main',
+                'is_sold',
                 'category_ids',
                 'subtypes_ids',
                 'colors_ids',
@@ -278,7 +283,8 @@ class Sale extends ActiveRecord
             'price_new' => Yii::t('app', 'New price'),
             'currency' => Yii::t('app', 'Currency'),
             'volume' => Yii::t('app', 'Volume'),
-            'on_main' => 'На главную',
+            'on_main' => Yii::t('app', 'On main'),
+            'is_sold' => Yii::t('app', 'Item sold'),
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),

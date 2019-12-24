@@ -31,6 +31,10 @@ $hostInfo = $hostInfo ?? Yii::$app->request->hostInfo;
             ); ?>
         </div>
 
+        <?php if ($model['is_sold']) { ?>
+            <div class="prod-is-sold"><?= Yii::t('app', 'Item sold') ?></div>
+        <?php } ?>
+
         <div class="item-infoblock">
             <div class="tile-brand">
                 <?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name'] ?>

@@ -219,12 +219,33 @@ use frontend\modules\location\models\{
 
         <div class="form-group row">
             <label class="col-sm-3 col-form-label"><?= Yii::t('app', 'Status') ?></label>
-            <div class="col-sm-9">
+            <div class="col-sm-4">
                 <div class="checkbox checkbox-primary">
                     <?= $form
                         ->field(
                             $model,
                             'published',
+                            [
+                                'template' => '{input}{label}{error}{hint}',
+                                'options' => [
+                                    'class' => '',
+                                ]
+                            ]
+                        )
+                        ->checkbox([], false)
+                        ->label() ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-4">
+                <div class="checkbox checkbox-primary">
+                    <?= $form
+                        ->field(
+                            $model,
+                            'is_sold',
                             [
                                 'template' => '{input}{label}{error}{hint}',
                                 'options' => [
@@ -248,7 +269,6 @@ use frontend\modules\location\models\{
         </div>
 
         <?php ActiveForm::end(); ?>
-
 
     </div>
 

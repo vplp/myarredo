@@ -112,10 +112,15 @@ $this->registerJs($script);
 
 <div class="row control-group">
     <div class="col-md-3">
-        <?= $form->switcher($model, 'published') ?>
+        <?= $form->switcher($model, 'on_main') ?>
     </div>
     <div class="col-md-3">
-        <?= $form->switcher($model, 'on_main') ?>
+        <?= $form->switcher($model, 'is_sold') ?>
+    </div>
+</div>
+<div class="row control-group">
+    <div class="col-md-3">
+        <?= $form->switcher($model, 'published') ?>
     </div>
     <div class="col-md-3">
         <?= $form->text_line($model, 'position') ?>

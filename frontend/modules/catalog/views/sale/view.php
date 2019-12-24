@@ -52,7 +52,7 @@ $this->title = $this->context->title;
                                  itemtype="http://schema.org/Offer">
                                 <?= Html::tag('h1', $model->getTitle()); ?>
 
-                                <?php if (Sale::getSavingPrice($model) > 0) { ?>
+                                <?php if (Sale::getSavingPrice($model) > 0 && !$model->is_sold) { ?>
                                     <div class="old-price">
                                         <?= Yii::$app->currency->getValue($model['price'], $model['currency']) . ' ' . Yii::$app->currency->symbol; ?>
                                     </div>
@@ -70,16 +70,18 @@ $this->title = $this->context->title;
                                             <meta itemprop="url" content="<?= Sale::getUrl($model['alias']) ?>"/>
                                     </span>
                                     </div>
-                                    <?php if (Sale::getSavingPrice($model) > 0) { ?>
+                                    <?php if (Sale::getSavingPrice($model) > 0 && !$model->is_sold) { ?>
                                         <div class="price economy">
                                             <?= Yii::t('app', 'Экономия') ?>:
-                                            <span>
-                                            <?= Yii::$app->currency->getValue(Sale::getSavingPrice($model), $model['currency']) . ' ' . Yii::$app->currency->symbol; ?>
-                                        </span>
+                                            <span><?= Yii::$app->currency->getValue(Sale::getSavingPrice($model), $model['currency']) . ' ' . Yii::$app->currency->symbol; ?></span>
                                         </div>
                                     <?php } ?>
                                 </div>
                             </div>
+
+                            <?php if ($model->is_sold) { ?>
+                                <div class="prod-is-sold"><?= Yii::t('app', 'Item sold') ?></div>
+                            <?php } ?>
 
                             <?= Html::a(
                                 Yii::t('app', 'Предложите свою цену'),
