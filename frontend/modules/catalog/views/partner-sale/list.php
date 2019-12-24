@@ -103,6 +103,24 @@ $this->title = $this->context->title;
                                         ),
                                     ],
                                     [
+                                        'format' => 'raw',
+                                        'attribute' => 'is_sold',
+                                        'value' => function ($model) {
+                                            /** @var $model Sale */
+                                            return Html::checkbox(false, $model->published, ['disabled' => true]);
+                                        },
+                                        'headerOptions' => ['class' => 'col-sm-1'],
+                                        'contentOptions' => ['class' => 'text-center'],
+                                        'filter' => GridViewFilter::selectOne(
+                                            $filter,
+                                            'is_sold',
+                                            [
+                                                0 => 'On',
+                                                1 => 'Off'
+                                            ]
+                                        ),
+                                    ],
+                                    [
                                         'label' => Yii::t('app', 'Просмотры товара'),
                                         'format' => 'raw',
                                         'value' => function ($model) {
