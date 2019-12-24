@@ -55,7 +55,8 @@ class OrderCustomerController extends Controller
         $UaCity = ArrayHelper::map(City::findAll(['country_id' => 1]), 'id', 'id');
         $ByCity = ArrayHelper::map(City::findAll(['country_id' => 3]), 'id', 'id');
 
-        $models = Order::findBase()
+        $models = Order::find()
+            ->innerJoinWith(['customer'])
             ->andFilterWhere([
                 $mark => '0',
             ])
