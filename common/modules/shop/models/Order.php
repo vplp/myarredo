@@ -26,6 +26,7 @@ use common\modules\location\models\City;
  * @property integer $deleted
  * @property integer $create_campaign
  * @property integer $mark
+ * @property integer $mark1
  *
  * @property boolean $isArchive
  * @property OrderAnswer[] $orderAnswers
@@ -51,7 +52,11 @@ class Order extends \thread\modules\shop\models\Order
             [['customer_id', 'city_id', 'items_count', 'items_total_count'], 'integer'],
             [['order_status'], 'in', 'range' => array_keys(self::getOrderStatuses())],
             [['product_type'], 'in', 'range' => array_keys(self::productTypeKeyRange())],
-            [['published', 'deleted', 'create_campaign', 'mark'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [
+                ['published', 'deleted', 'create_campaign', 'mark', 'mark1'],
+                'in',
+                'range' => array_keys(self::statusKeyRange())
+            ],
 
             // set default values
             [['delivery_method_id', 'payment_method_id'], 'default', 'value' => 0]
@@ -68,6 +73,7 @@ class Order extends \thread\modules\shop\models\Order
             'deleted' => ['deleted'],
             'create_campaign' => ['create_campaign'],
             'mark' => ['mark'],
+            'mark1' => ['mark1'],
             'backend' => [
                 'customer_id',
                 'city_id',
