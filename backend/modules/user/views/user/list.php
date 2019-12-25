@@ -44,6 +44,13 @@ echo GridView::widget([
             },
         ],
         [
+            'format' => 'raw',
+            'label' => 'Количество авторизаций',
+            'value' => function ($model) {
+                return $model->getCountLogin();
+            },
+        ],
+        [
             'value' => function ($model) {
                 return $model->profile->getCountryTitle();
             },

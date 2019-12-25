@@ -5,6 +5,7 @@ namespace thread\modules\user\models;
 use Yii;
 use yii\web\IdentityInterface;
 //
+use thread\modules\sys\modules\logbook\models\LogbookAuthModel;
 use thread\app\base\models\ActiveRecord;
 use thread\modules\user\User as UserModule;
 
@@ -39,7 +40,8 @@ class User extends ActiveRecord implements IdentityInterface
     public static $commonQuery = query\UserQuery::class;
 
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -328,5 +330,23 @@ class User extends ActiveRecord implements IdentityInterface
         $groups = Group::getIdsByRole($role);
 
         return (!empty($groups)) ? self::find()->select('id')->group_ids($groups)->column() : [];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLogbookAuthModel()
+    {
+        return $this->hasMany(LogbookAuthModel::class, ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCountLogin()
+    {
+        return self::getLogbookAuthModel()
+            ->andFilterWhere(['action' => 'login'])
+            ->count();
     }
 }

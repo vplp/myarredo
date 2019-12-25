@@ -1,26 +1,22 @@
 <?php
 
 use backend\widgets\GridView\GridView;
-//
-use thread\widgets\grid\{
-    ActionCheckboxColumn
-};
+use thread\widgets\grid\{GridViewFilter};
 
+/**
+ * @var $model \backend\modules\sys\modules\logbook\models\Logbook
+ * @var $filter \backend\modules\sys\modules\logbook\models\search\Logbook
+ */
 echo GridView::widget([
-    'dataProvider' => $model->search(Yii::$app->request->queryParams),
+    'dataProvider' => $model->search(Yii::$app->getRequest()->getQueryParams()),
     'filterModel' => $filter,
     'columns' => [
         [
             'attribute' => 'created_at',
             'value' => function ($model) {
-                return date('d.m.Y H:i P', $model['created_at']);
-            }
-        ],
-        [
-            'attribute' => 'type',
-            'value' => function ($model) {
-                return $model::getTypeRange()[$model['type']];
-            }
+                return $model->getModifiedTimeISO();
+            },
+            'filter' => GridViewFilter::datePickerRange($filter, 'date_from', 'date_to'),
         ],
         [
             'attribute' => 'user_id',
@@ -30,14 +26,9 @@ echo GridView::widget([
         [
             'attribute' => 'message',
             'format' => 'raw',
-        ],
-        [
-            'class' => ActionCheckboxColumn::class,
-            'attribute' => 'is_read',
-            'action' => 'is_read'
-        ],
-        [
-            'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
+            'value' => function ($model) {
+                return \yii\helpers\Html::a($model['message'], $model['url']);
+            }
         ],
     ]
 ]);

@@ -1,7 +1,7 @@
 <?php
 
-use yii\db\Migration;
 use thread\modules\sys\Sys;
+use yii\db\Migration;
 
 /**
  * Class m170228_030515_create_fv_system_logbook_table
@@ -11,6 +11,9 @@ use thread\modules\sys\Sys;
  */
 class m170228_030515_create_fv_system_logbook_table extends Migration
 {
+    use \thread\app\base\db\mysql\MySqlExtraTypesTrait;
+    use \thread\app\base\db\mysql\ThreadMySqlExtraTypesTrait;
+
     /**
      * @var string
      */
@@ -34,20 +37,21 @@ class m170228_030515_create_fv_system_logbook_table extends Migration
         $this->createTable($this->tableCronTab, [
             'id' => $this->primaryKey()->unsigned()->comment('ID'),
             'user_id' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('User'),
-            'type' => "enum('notice', 'warning', 'error') NOT NULL DEFAULT 'notice' COMMENT 'Type'",
+            'type' => $this->enum(['notice', 'warning', 'error'], 'notice')->comment('Type'),
+            'url' => $this->string(512)->notNull()->comment('Url'),
             'message' => $this->string(512)->notNull()->comment('Message'),
-            'category' => $this->string(512)->notNull()->comment('Category'),
-            'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Create time'),
-            'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('Update time'),
-            'is_read' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Is read'",
-            'published' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Published'",
-            'deleted' => "enum('0','1') NOT NULL DEFAULT '0' COMMENT 'Deleted'",
+            'category' => $this->string(50)->notNull()->comment('Category'),
+            'created_at' => $this->t_created_at(),
+            'updated_at' => $this->t_updated_at(),
+            'is_read' => $this->enum([0, 1], 0)->comment('is_read'),
+            'published' => $this->enum([0, 1], 0)->comment('Published'),
+            'deleted' => $this->enum([0, 1], 0)->comment('Deleted'),
         ]);
-//
         $this->createIndex('type', $this->tableCronTab, 'type');
         $this->createIndex('is_read', $this->tableCronTab, 'is_read');
         $this->createIndex('user_id', $this->tableCronTab, 'user_id');
         $this->createIndex('published', $this->tableCronTab, 'published');
+        $this->createIndex('category', $this->tableCronTab, 'category');
         $this->createIndex('deleted', $this->tableCronTab, 'deleted');
     }
 
@@ -60,6 +64,7 @@ class m170228_030515_create_fv_system_logbook_table extends Migration
         $this->dropIndex('published', $this->tableCronTab);
         $this->dropIndex('type', $this->tableCronTab);
         $this->dropIndex('is_read', $this->tableCronTab);
+        $this->dropIndex('category', $this->tableCronTab);
         $this->dropIndex('user_id', $this->tableCronTab);
         $this->dropTable($this->tableCronTab);
     }

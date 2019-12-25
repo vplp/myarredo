@@ -8,19 +8,21 @@ use thread\modules\user\models\User;
 use Yii;
 
 /**
- * Class Logbook
+ * Class LogbookAuthModel
  *
  * @package thread\modules\sys\modules\logbook\models
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
- *
- * @property $updated_at int
  */
-class Logbook extends ActiveRecord
+class LogbookAuthModel extends ActiveRecord
 {
     const TYPE_NOTICE = 'notice';
     const TYPE_WARNING = 'warning';
     const TYPE_ERROR = 'error';
+    const ACTIONS_LIST = [
+        'login',
+        'logout'
+    ];
 
     /**
      * @return object|string|\yii\db\Connection|null
@@ -36,7 +38,7 @@ class Logbook extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%system_logbook}}';
+        return '{{%system_logbook_auth}}';
     }
 
     /**
@@ -49,8 +51,9 @@ class Logbook extends ActiveRecord
             [['created_at', 'updated_at', 'user_id'], 'integer'],
             [['published', 'deleted', 'is_read'], 'in', 'range' => \array_keys(static::statusKeyRange())],
             [['type'], 'in', 'range' => \array_keys(static::getTypeRange())],
-            [['message', 'url'], 'string', 'max' => 512],
-            ['category', 'string', 'max' => 50],
+            ['action', 'string', 'max' => 50],
+            ['user_ip', 'string', 'max' => 25],
+            ['user_agent', 'string', 'max' => 255],
             [['type'], 'default', 'value' => self::TYPE_NOTICE],
         ];
     }
@@ -64,8 +67,8 @@ class Logbook extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'is_read' => ['is_read'],
-            'backend' => ['type', 'url', 'message', 'is_read', 'published', 'deleted', 'category', 'user_id'],
-            'send' => ['created_at', 'type', 'url', 'message', 'is_read', 'published', 'deleted', 'category', 'user_id'],
+            'backend' => ['type', 'is_read', 'published', 'deleted', 'action', 'user_id', 'user_ip', 'user_agent'],
+            'send' => ['created_at', 'type', 'is_read', 'published', 'deleted', 'action', 'user_id', 'user_ip', 'user_agent'],
         ];
     }
 
@@ -80,11 +83,13 @@ class Logbook extends ActiveRecord
             'type' => Yii::t('app', 'Type'),
             'is_read' => 'is_read',
             'user_id' => Yii::t('app', 'User'),
-            'category' => Yii::t('app', 'Category'),
+            'action' => Yii::t('app', 'Actions'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Updated at'),
             'published' => Yii::t('app', 'Published'),
             'deleted' => Yii::t('app', 'Deleted'),
+            'user_ip' => 'IP',
+            'user_agent' => 'Agent',
         ];
     }
 
@@ -106,14 +111,5 @@ class Logbook extends ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
-    }
-
-    /**
-     *  ISO8601 = "Y-m-d\TH:i:sO"
-     * @return string
-     */
-    public function getModifiedTimeISO()
-    {
-        return \date('Y-m-d\TH:i:sO', $this->updated_at);
     }
 }

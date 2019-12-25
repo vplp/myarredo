@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\modules\sys\modules\logbook;
 
 /**
@@ -8,11 +9,11 @@ namespace backend\modules\sys\modules\logbook;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class Logbook extends \common\modules\sys\modules\logbook\Logbook
+class Logbook extends \thread\modules\sys\modules\logbook\Logbook
 {
     /**
      * Number of elements in GridView
      * @var int
      */
-    public $itemOnPage = 20;
+    public $itemOnPage = 50;
 }

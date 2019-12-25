@@ -69,6 +69,7 @@ class LoginController extends BackendController
         $model->ONLY_ADMIN = true;
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
+            Yii::$app->logbookAuth->send('login');
             return $this->goHome();
         } else {
             return $this->render('index', [

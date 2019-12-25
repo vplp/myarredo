@@ -2,8 +2,6 @@
 
 namespace thread\modules\sys\modules\logbook;
 
-use Yii;
-//
 use thread\app\base\module\abstracts\Module as aModule;
 use thread\modules\sys\Sys;
 
@@ -16,12 +14,12 @@ use thread\modules\sys\Sys;
  */
 class Logbook extends aModule
 {
-    public $name = 'logbook';
+    public $id = 'sys-logbook';
     public $translationsBasePath = __DIR__ . '/messages';
     public $configPath = __DIR__ . '/config.php';
 
     /**
-     * @return null|object
+     * @return object|string|null
      * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()

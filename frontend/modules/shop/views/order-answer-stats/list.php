@@ -40,10 +40,13 @@ $this->title = $this->context->title;
                             <span><?= Yii::t('app', 'City') ?></span>
                         </li>
                         <li>
-                            <span>количество просмотра PDF</span>
+                            <span>Количество авторизаций</span>
                         </li>
                         <li>
-                            <span>количество ответов</span>
+                            <span>Количество просмотра PDF</span>
+                        </li>
+                        <li>
+                            <span>Количество ответов</span>
                         </li>
                         <li>
                             <span>Общая стоимость товара</span>
@@ -72,6 +75,9 @@ $this->title = $this->context->title;
                                 </li>
                                 <li>
                                     <span><?= isset($model->profile->city) ? $model->profile->city->lang->title : '' ?></span>
+                                </li>
+                                <li>
+                                    <span><?= $model->getCountLogin() ?></span>
                                 </li>
                                 <li>
                                     <span><?= $model->getFactoryFileClickStatsCount() ?></span>

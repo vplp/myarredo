@@ -3,6 +3,7 @@
 namespace backend\modules\sys\modules\logbook\models;
 
 use thread\app\model\interfaces\BaseBackendModel;
+use thread\modules\sys\modules\logbook\models\LogbookAuthModel as ParentModel;
 
 /**
  * Class Logbook
@@ -11,7 +12,7 @@ use thread\app\model\interfaces\BaseBackendModel;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class Logbook extends \thread\modules\sys\modules\logbook\models\Logbook implements BaseBackendModel
+class LogbookAuth extends ParentModel implements BaseBackendModel
 {
     /**
      * @param $params
@@ -19,7 +20,7 @@ class Logbook extends \thread\modules\sys\modules\logbook\models\Logbook impleme
      */
     public function search($params)
     {
-        return (new search\Logbook())->search($params);
+        return (new search\LogbookAuth())->search($params);
     }
 
     /**
@@ -28,6 +29,6 @@ class Logbook extends \thread\modules\sys\modules\logbook\models\Logbook impleme
      */
     public function trash($params)
     {
-        return (new search\Logbook())->trash($params);
+        return (new search\LogbookAuth())->trash($params);
     }
 }

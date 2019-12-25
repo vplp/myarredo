@@ -3,7 +3,7 @@
 namespace backend\modules\sys\modules\logbook\models\search;
 
 use backend\modules\sys\modules\logbook\Logbook as ParentModule;
-use backend\modules\sys\modules\logbook\models\{Logbook as ParentModel};
+use backend\modules\sys\modules\logbook\models\{LogbookAuth as ParentModel};
 use thread\app\base\models\query\ActiveQuery;
 use thread\app\model\interfaces\search\BaseBackendSearchModel;
 use Yii;
@@ -17,7 +17,7 @@ use yii\data\ActiveDataProvider;
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
-class Logbook extends ParentModel implements BaseBackendSearchModel
+class LogbookAuth extends ParentModel implements BaseBackendSearchModel
 {
     public $title, $date_from, $date_to;
 
@@ -28,8 +28,8 @@ class Logbook extends ParentModel implements BaseBackendSearchModel
     {
         return [
             [['created_at'], 'integer'],
-            [['message', 'category'], 'string', 'max' => 512],
-            [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
+            [['action', 'type'], 'string', 'max' => 512],
+            [['published'], 'in', 'range' => \array_keys(self::statusKeyRange())],
             [
                 ['date_from'],
                 'date',
@@ -70,7 +70,6 @@ class Logbook extends ParentModel implements BaseBackendSearchModel
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'is_read' => SORT_ASC,
                     'created_at' => SORT_DESC,
                 ]
             ]
@@ -81,9 +80,9 @@ class Logbook extends ParentModel implements BaseBackendSearchModel
         }
 
         $query->andFilterWhere(['like', 'published', $this->published])
-            ->andFilterWhere(['like', 'category', $this->category])
+            ->andFilterWhere(['like', 'type', $this->type])
             ->andFilterWhere(['like', 'user_id', $this->user_id])
-            ->andFilterWhere(['like', 'message', $this->message]);
+            ->andFilterWhere(['like', 'action', $this->action]);
         //->andFilterWhere(['like', 'created_at', $this->created_at]);$query->andFilterWhere(['>=', 'created_at', $this->date_from]);
         $query->andFilterWhere(['<=', 'created_at', $this->date_to]);
         return $dataProvider;

@@ -4,12 +4,16 @@
  * @author FilamentV <vortex.filament@gmail.com>
  * @copyright (c), Thread
  */
+
 return [
     'param' => [
         'class' => \thread\modules\sys\modules\configs\components\ConfigsParams::class,
     ],
     'growl' => [
         'class' => \thread\modules\sys\modules\growl\components\Growl::class,
+    ],
+    'logbookAuth' => [
+        'class' => \thread\modules\sys\modules\logbook\components\LogbookAuth::class,
     ],
     'languages' => [
         'class' => \thread\app\model\Languages::class,

@@ -51,6 +51,7 @@ class LogoutController extends BaseController
      */
     public function actionIndex()
     {
+        Yii::$app->logbookAuth->send('logout');
         Yii::$app->getUser()->logout();
 
         return $this->redirect(Yii::$app->getRequest()->hostInfo . Url::toRoute(['/']));

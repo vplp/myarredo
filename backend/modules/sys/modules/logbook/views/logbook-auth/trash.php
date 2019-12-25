@@ -7,7 +7,7 @@ use backend\widgets\GridView\GridView;
  * @var $filter \backend\modules\sys\modules\logbook\models\search\Logbook
  */
 echo GridView::widget([
-    'dataProvider' => $model->trash(Yii::$app->getRequest()->getQueryParams()),
+    'dataProvider' => $model->trash(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
         [

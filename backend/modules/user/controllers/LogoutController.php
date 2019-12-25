@@ -47,7 +47,9 @@ class LogoutController extends BackendController
      */
     public function actionIndex()
     {
+        Yii::$app->logbookAuth->send('logout');
         Yii::$app->user->logout();
+
         return $this->goHome();
     }
 }
