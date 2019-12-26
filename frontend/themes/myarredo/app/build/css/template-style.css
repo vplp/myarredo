@@ -4330,11 +4330,16 @@ h1 {
     height: 23px;
     border: 1px solid #f3f2f0;
   }
-  .field-sale-published .jq-checkbox {
+  .field-sale-published .jq-checkbox,
+  .field-sale-is_sold .jq-checkbox {
     position: absolute;
     float: left;
   }
-  .field-sale-published label[for=sale-published]::before {
+  .field-sale-is_sold label[for=sale-is_sold] {
+    min-width: 135px;
+  }
+  .field-sale-published label[for=sale-published]::before,
+  .field-sale-is_sold label[for=sale-is_sold]::before {
     opacity: 0;
   }
   .factory-prom .table .jq-checkbox {
@@ -7443,6 +7448,7 @@ h1 {
   width: 100%;
   top: 288px;
   left: 0;
+  z-index: 1;
 }
 .sale-page .prod-info .alert {
   padding-left: 0;
@@ -9205,6 +9211,9 @@ h1 {
   .container-wrap {
     position: relative;
     z-index: 2;
+  }
+  .footer .container-wrap {
+    z-index: 0;
   }
 }
 /* --------------------конец Стили для боковых баннеров------------------------- */
