@@ -43,6 +43,9 @@ $this->title = $this->context->title;
                             <span>Количество авторизаций</span>
                         </li>
                         <li>
+                            <span>Дата последней авторизации</span>
+                        </li>
+                        <li>
                             <span>Количество просмотра PDF</span>
                         </li>
                         <li>
@@ -78,6 +81,9 @@ $this->title = $this->context->title;
                                 </li>
                                 <li>
                                     <span><?= $model->getCountLogin() ?></span>
+                                </li>
+                                <li>
+                                    <span><?= $model->getLastDateLogin() ?></span>
                                 </li>
                                 <li>
                                     <span><?= $model->getFactoryFileClickStatsCount() ?></span>

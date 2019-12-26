@@ -169,7 +169,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Validates password
-     * @param  string $password password to validate
+     * @param string $password password to validate
      * @return boolean if password provided is valid for current user
      */
     public function validatePassword($password)
@@ -348,5 +348,24 @@ class User extends ActiveRecord implements IdentityInterface
         return self::getLogbookAuthModel()
             ->andFilterWhere(['action' => 'login'])
             ->count();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLastDateLogin()
+    {
+
+        $query = LogbookAuthModel::find()
+            //->select('created_at')
+            ->andFilterWhere(['action' => 'login', 'user_id' => $this->id])
+            ->orderBy(['created_at' => SORT_DESC])
+            ->one();
+
+        if ($query) {
+            return date('d.m.Y H:i', $query['created_at']);
+        } else {
+            return false;
+        }
     }
 }
