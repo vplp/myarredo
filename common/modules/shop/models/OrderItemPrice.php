@@ -16,6 +16,7 @@ use common\modules\user\models\User;
  * @property integer $user_id
  * @property integer $product_id
  * @property float $price
+ * @property integer $out_of_production
  *
  * @package common\modules\shop\models
  */
@@ -43,15 +44,27 @@ class OrderItemPrice extends ActiveRecord
     public function rules()
     {
         return [
-            [['order_id', 'user_id', 'product_id', 'price'], 'required'],
+            [['order_id', 'user_id', 'product_id'], 'required'],
             [['order_id', 'user_id', 'product_id'], 'integer'],
             [['price'], 'double'],
+//            [
+//                'price',
+//                'compare',
+//                'compareValue' => 108,
+//                'operator' => '>=',
+//                'message' => Yii::t('app', 'Ваш ответ должен быть максимально приближен к реальности'),
+//            ],
+            [['out_of_production'], 'in', 'range' => array_keys(self::statusKeyRange())],
             [
-                'price',
-                'compare',
-                'compareValue' => 108,
-                'operator' => '>=',
-                'message' => Yii::t('app', 'Ваш ответ должен быть максимально приближен к реальности'),
+                ['price'],
+                'required',
+                'when' => function ($model) {
+                    return $model->out_of_production === 0;
+                },
+                'whenClient' => "function (attribute, value) {
+                    var product_id = $('#orderitemprice-product_id').val();
+                    return $('input[name=\"OrderItemPrice['+product_id+'][out_of_production]\"]').val() == 0;
+                }"
             ],
         ];
     }
@@ -62,17 +75,20 @@ class OrderItemPrice extends ActiveRecord
     public function scenarios()
     {
         return [
+            'out_of_production' => ['out_of_production'],
             'backend' => [
                 'order_id',
                 'user_id',
                 'product_id',
                 'price',
+                'out_of_production'
             ],
             'frontend' => [
                 'order_id',
                 'user_id',
                 'product_id',
                 'price',
+                'out_of_production'
             ],
         ];
     }
@@ -88,6 +104,7 @@ class OrderItemPrice extends ActiveRecord
             'user_id' => Yii::t('app', 'User'),
             'product_id' => Yii::t('app', 'Product id'),
             'price' => Yii::t('app', 'Price'),
+            'out_of_production' => Yii::t('app', 'Снят с производства'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
         ];

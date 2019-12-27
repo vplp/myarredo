@@ -162,6 +162,7 @@ use frontend\modules\shop\models\Order;
 <?php
 if (Yii::$app->user->identity->profile->possibilityToAnswer) {
     $url = Url::toRoute(['/shop/partner-order/pjax-save-order-answer']);
+    $messagePrice = Yii::t('app', 'Ваш ответ должен быть максимально приближен к реальности');
 
     $script = <<<JS
 $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
@@ -175,13 +176,27 @@ $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
         .find('.help-block')
         .text('');
     
+    var isError = false;
+    
     form.find('.basket-item-info').each(function (index, value) {
-        $(this)
-            .find('.field-orderitemprice-price')
-            .removeClass('has-error')
-            .find('.help-block')
-            .text('');
+        var product_id = $('#orderitemprice-product_id').val();
+        var price = $(this).find('.field-orderitemprice-price');
+        var out_of_production = $('input[name="OrderItemPrice['+product_id+'][out_of_production]"]').val();
+
+        price.removeClass('has-error').find('.help-block').text('');
+        
+        console.log(price.find('#orderitemprice-price').val());
+        console.log(out_of_production);
+        
+        if (out_of_production == 0 && parseFloat(price.find('#orderitemprice-price').val()) < 180) {
+            price.addClass('has-error').find('.help-block').text('$messagePrice');
+            isError = true;
+        }
     });
+    
+    if (isError) {
+        return false;
+    }
     
     // send form
     
@@ -196,7 +211,7 @@ $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
         if (data.OrderItemPrice) {
             $.each(data.OrderItemPrice, function( product_id, error ) {
                 form
-                    .find('input[name="OrderItemPrice['+product_id+']"]')
+                    .find('input[name="OrderItemPrice['+product_id+'][price]"]')
                     .parent()
                     .addClass('has-error')
                     .find('.help-block').text(error.price);

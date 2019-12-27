@@ -183,7 +183,7 @@ class PartnerOrderController extends BaseController
 
                 $dataOrderItemPrice = Yii::$app->request->post('OrderItemPrice');
 
-                foreach ($dataOrderItemPrice as $product_id => $price) {
+                foreach ($dataOrderItemPrice as $product_id => $modelPrice) {
                     $modelOrderItemPrice = OrderItemPrice::findByOrderIdUserIdProductId(
                         $modelOrder->id,
                         Yii::$app->getUser()->getId(),
@@ -198,8 +198,9 @@ class PartnerOrderController extends BaseController
 
                     $modelOrderItemPrice->order_id = $modelOrder->id;
                     $modelOrderItemPrice->user_id = Yii::$app->getUser()->getId();
-                    $modelOrderItemPrice->product_id = $product_id;
-                    $modelOrderItemPrice->price = intval($price);
+                    $modelOrderItemPrice->product_id = $product_id; // intval($modelPrice['product_id']);
+                    $modelOrderItemPrice->price = intval($modelPrice['price']);
+                    $modelOrderItemPrice->out_of_production = $modelPrice['out_of_production'];
 
                     if ($modelOrderItemPrice->load(Yii::$app->request->post()) && $modelOrderItemPrice->validate()) {
                         /** @var PDO $transaction */

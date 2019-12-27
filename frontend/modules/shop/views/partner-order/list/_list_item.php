@@ -78,19 +78,37 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                         <tr>
                             <td colspan="2">
                                 <?= $form
+                                    ->field($orderItem->orderItemPrice, 'product_id')
+                                    ->input('hidden', [
+                                        'name' => 'OrderItemPrice[' . $orderItem->product_id . '][product_id]',
+                                    ])
+                                    ->label(false);
+                                ?>
+                                <?= $form
                                     ->field($orderItem->orderItemPrice, 'price')
                                     ->input('text', [
-                                        'name' => 'OrderItemPrice[' . $orderItem->product_id . ']',
+                                        'name' => 'OrderItemPrice[' . $orderItem->product_id . '][price]',
                                         'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true
                                     ])
                                     ->label(false);
                                 ?>
                             </td>
                         </tr>
+                        <tr>
+                            <td colspan="2">
+                                <?= $form
+                                    ->field($orderItem->orderItemPrice, 'out_of_production')
+                                    ->checkbox([
+                                        'name' => 'OrderItemPrice[' . $orderItem->product_id . '][out_of_production]',
+                                        'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true,
+                                        'class' => 'field-orderitemprice-out_of_production'
+                                    ], false);
+                                ?>
+                            </td>
+                        </tr>
                     </table>
 
-                    <?php if (!Yii::$app->getUser()->isGuest &&
-                        Yii::$app->user->identity->profile->isPdfAccess()) { ?>
+                    <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->isPdfAccess()) { ?>
                         <div class="downloads">
 
                             <?php
