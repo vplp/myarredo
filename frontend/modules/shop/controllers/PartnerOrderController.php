@@ -74,7 +74,7 @@ class PartnerOrderController extends BaseController
         }
 
         if (!isset($params['country_id'])) {
-            $params['country_id'] = Yii::$app->user->identity->profile->country_id ?? 0;
+            $params['country_id'] = 0;
         }
 
         if (!isset($params['factory_id'])) {
