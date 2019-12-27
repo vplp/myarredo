@@ -77,7 +77,7 @@ use frontend\modules\shop\models\Order;
                     </div>
                     <div class="manager-history-list">
 
-                        <?php foreach ($models->getModels() as $modelOrder) { ?>
+                        <?php foreach ($models->getModels() as $one_key => $modelOrder) { ?>
                             <div class="item" data-hash="<?= $modelOrder->id; ?>">
 
                                 <ul class="orders-title-block flex">
@@ -138,6 +138,7 @@ use frontend\modules\shop\models\Order;
                                         ]);
                                     } else {
                                         echo $this->render('_list_item', [
+                                            'one_key' => $one_key,
                                             'modelOrder' => $modelOrder,
                                             'modelOrderAnswer' => $modelOrder->orderAnswer,
                                         ]);
@@ -165,7 +166,7 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) {
     $messagePrice = Yii::t('app', 'Ваш ответ должен быть максимально приближен к реальности');
 
     $script = <<<JS
-$( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
+$(".manager-history-list").on("click", ".action-save-answer", function() {
     var form = $(this).parent();
    
     // clear messages
@@ -179,18 +180,18 @@ $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
     var isError = false;
     
     form.find('.basket-item-info').each(function (index, value) {
-        var product_id = $('#orderitemprice-product_id').val();
-        var price = $(this).find('.field-orderitemprice-price');
-        var out_of_production = $('input[name="OrderItemPrice['+product_id+'][out_of_production]"]').val();
+        var price = $(value).find('.field-orderitemprice-price');
+        var out_of_production = $(value).find('input[type="checkbox"].outof-prod-checkbox').prop('checked');
 
         price.removeClass('has-error').find('.help-block').text('');
         
-        console.log(price.find('#orderitemprice-price').val());
-        console.log(out_of_production);
-        
-        if (out_of_production == 0 && parseFloat(price.find('#orderitemprice-price').val()) < 180) {
-            price.addClass('has-error').find('.help-block').text('$messagePrice');
-            isError = true;
+        // если не выбран чекбокс - Товар снят с производства
+        if (!out_of_production) {
+            // запускаем валидацию поля - цена
+            if (parseFloat(price.find('#orderitemprice-price').val()) < 180) {
+                price.addClass('has-error').find('.help-block').text('$messagePrice');
+                isError = true;
+            }
         }
     });
     
@@ -225,6 +226,23 @@ $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
     }, 'json');
       
     return false;
+});
+
+// Если происходит переключение именно чекбокса - Товар снят с производства
+$(".manager-history-list").on('change', 'input[type="checkbox"].field-orderitemprice-out_of_production', function() {
+    // и если этот чекбокс выбран
+    if ($(this).prop('checked')) {
+        // находим и отключаем поле - цена
+        $(this).closest('tr').siblings('tr.orderlist-price-tr').find('input.orderlist-price-field').prop('disabled', true);
+        // также прячем сообщение об ошибке в поле цена
+        $(this).closest('tr').siblings('tr.orderlist-price-tr').find('.field-orderitemprice-price').find('.help-block').addClass('hidden');
+    }
+    else {
+        // иначе включаем поле цена
+        $(this).closest('tr').siblings('tr.orderlist-price-tr').find('input.orderlist-price-field').prop('disabled', false);
+        // также убыраем скритие сообщения об ошибке в поле цены
+        $(this).closest('tr').siblings('tr.orderlist-price-tr').find('.field-orderitemprice-price').find('.help-block').removeClass('hidden');
+    }
 });
 JS;
 

@@ -26,7 +26,7 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
         <div class="flex-product orderanswer-cont">
 
             <?php
-            foreach ($modelOrder->items as $orderItem) { ?>
+            foreach ($modelOrder->items as $key_numb => $orderItem) { ?>
                 <div class="basket-item-info">
 
                     <div class="img-cont">
@@ -75,12 +75,13 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                             </span>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="orderlist-price-tr">
                             <td colspan="2">
                                 <?= $form
                                     ->field($orderItem->orderItemPrice, 'product_id')
                                     ->input('hidden', [
                                         'name' => 'OrderItemPrice[' . $orderItem->product_id . '][product_id]',
+                                        'class' => 'order-productid-hfield'
                                     ])
                                     ->label(false);
                                 ?>
@@ -88,20 +89,22 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                                     ->field($orderItem->orderItemPrice, 'price')
                                     ->input('text', [
                                         'name' => 'OrderItemPrice[' . $orderItem->product_id . '][price]',
-                                        'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true
+                                        'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true,
+                                        'class' => 'orderlist-price-field'
                                     ])
                                     ->label(false);
                                 ?>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">
+                            <td colspan="2" class="order-list-td">
                                 <?= $form
                                     ->field($orderItem->orderItemPrice, 'out_of_production')
                                     ->checkbox([
+                                        'id' => 'orderitemprice-out_of_production' . $one_key . $key_numb,
                                         'name' => 'OrderItemPrice[' . $orderItem->product_id . '][out_of_production]',
                                         'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true,
-                                        'class' => 'field-orderitemprice-out_of_production'
+                                        'class' => 'field-orderitemprice-out_of_production outof-prod-checkbox'
                                     ], false);
                                 ?>
                             </td>
