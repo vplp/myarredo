@@ -463,7 +463,7 @@ h1 {
     position: absolute;
     top: 11px;
     left: 0;
-    z-index: 1;
+    z-index: 6;
   }
   .mobile-header .logo {
     position: relative;
