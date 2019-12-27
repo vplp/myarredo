@@ -53,8 +53,8 @@ use frontend\modules\catalog\models\Product;
                             <?php
                             foreach ($orderItem->orderItemPrices as $price) {
                                 echo '<div><strong>' . $price['user']['profile']['lang']['name_company'] . '</strong></div>' .
-                                '<div>' . $price['user']['email'] . '</div>' .
-                                '<div><strong>' . $price['out_of_production'] ? Yii::t('app', 'Снят с производства') : $price['price'] . '</strong></div><br>';
+                                    '<div>' . $price['user']['email'] . '</div>' .
+                                    '<div><strong>' . ($price['out_of_production'] == '1' ? Yii::t('app', 'Снят с производства') : $price['price']) . '</strong></div><br>';
                             }
                             ?>
                         </td>

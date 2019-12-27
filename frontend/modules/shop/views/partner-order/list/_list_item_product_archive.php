@@ -52,7 +52,7 @@ use frontend\modules\catalog\models\Product;
         </tr>
         <tr>
             <td colspan="2">
-                <?= $orderItem->orderItemPrice['price'] ?>
+                <?= $orderItem->orderItemPrice['out_of_production'] == '1' ? Yii::t('app', 'Снят с производства') : $orderItem->orderItemPrice['price'] ?>
             </td>
         </tr>
     </table>

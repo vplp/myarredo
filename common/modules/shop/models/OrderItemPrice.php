@@ -47,13 +47,6 @@ class OrderItemPrice extends ActiveRecord
             [['order_id', 'user_id', 'product_id'], 'required'],
             [['order_id', 'user_id', 'product_id'], 'integer'],
             [['price'], 'double'],
-//            [
-//                'price',
-//                'compare',
-//                'compareValue' => 108,
-//                'operator' => '>=',
-//                'message' => Yii::t('app', 'Ваш ответ должен быть максимально приближен к реальности'),
-//            ],
             [['out_of_production'], 'in', 'range' => array_keys(self::statusKeyRange())],
             [
                 ['price'],
@@ -66,6 +59,7 @@ class OrderItemPrice extends ActiveRecord
                     return $('input[name=\"OrderItemPrice['+product_id+'][out_of_production]\"]').val() == 0;
                 }"
             ],
+            [['price'], 'default', 'value' => 0],
         ];
     }
 

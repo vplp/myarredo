@@ -14,6 +14,7 @@ use frontend\modules\catalog\models\Product;
 /* @var $modelOrder Order */
 /* @var $modelOrderAnswer OrderAnswer */
 /* @var $orderItem OrderItem */
+/* @var $one_key integer */
 
 if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
     <?php $form = ActiveForm::begin([
@@ -89,6 +90,7 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                                     ->field($orderItem->orderItemPrice, 'price')
                                     ->input('text', [
                                         'name' => 'OrderItemPrice[' . $orderItem->product_id . '][price]',
+                                        'value' => $orderItem->orderItemPrice->price ?? 0,
                                         'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true,
                                         'class' => 'orderlist-price-field'
                                     ])
