@@ -64,7 +64,7 @@ use frontend\modules\catalog\models\ItalianProduct;
                             foreach ($orderItem->orderItemPrices as $price) {
                                 echo '<div><strong>' . $price['user']['profile']['lang']['name_company'] . '</strong></div>' .
                                     '<div>' . $price['user']['email'] . '</div>' .
-                                    '<div><strong>' . $price['price'] . '</strong></div><br>';
+                                '<div><strong>' . $price['out_of_production'] ? Yii::t('app', 'Снят с производства') : $price['price'] . '</strong></div><br>';
                             }
                             ?>
                         </td>

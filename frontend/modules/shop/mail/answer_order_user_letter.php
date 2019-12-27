@@ -57,7 +57,13 @@ use frontend\modules\shop\models\{
                     <br>
                     <span style="color:#9f8b80; font-size: 14px;"><?= $item->product['factory']['title']; ?></span>
                 </div>
-                <div style="padding-top: 10px; color:#8e3628"><?= $item->orderItemPrice->price; ?> &euro;</div>
+                <div style="padding-top: 10px; color:#8e3628">
+                    <?php if ($item->orderItemPrice->out_of_production) {
+                        echo Yii::t('app', 'Снят с производства');
+                    } else {
+                        echo $item->orderItemPrice->price . ' &euro';
+                    } ?>
+                </div>
             </div>
 
         <?php } ?>
