@@ -3,6 +3,8 @@
 namespace frontend\modules\catalog\models;
 
 use Yii;
+//
+use frontend\modules\catalog\Catalog;
 
 /**
  * Class ProductStats
@@ -16,7 +18,7 @@ class ProductStats extends \common\modules\catalog\models\ProductStats
      */
     public static function create($product_id)
     {
-        /** @var \frontend\modules\catalog\Catalog $module */
+        /** @var $module Catalog */
         $module = Yii::$app->getModule('catalog');
 
         if (!$module->isBot1() && !$module->isBot2()) {
@@ -26,10 +28,6 @@ class ProductStats extends \common\modules\catalog\models\ProductStats
 
             $model->user_id = Yii::$app->getUser()->id ?? 0;
             $model->ip = Yii::$app->request->userIP;
-
-            /** @var \frontend\modules\catalog\Catalog $module */
-            $module = Yii::$app->getModule('catalog');
-
             $model->is_bot = $module->isBot2();
             $model->http_user_agent = $_SERVER['HTTP_USER_AGENT'];
             $model->city_id = Yii::$app->city->getCityId();

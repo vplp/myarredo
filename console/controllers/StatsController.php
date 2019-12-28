@@ -7,7 +7,7 @@ use yii\helpers\Console;
 use yii\console\Controller;
 //
 use frontend\modules\catalog\models\{
-    ProductStats, ProductStatsDays
+    ProductStats, ProductStatsDays, FactoryStatsDays
 };
 use frontend\modules\shop\models\{
     Order, OrderItem
@@ -57,7 +57,7 @@ class StatsController extends Controller
     }
 
     /**
-     *
+     * @inheritDoc
      */
     public function actionViews()
     {
@@ -109,7 +109,7 @@ class StatsController extends Controller
     }
 
     /**
-     *
+     * @inheritDoc
      */
     public function actionRequests()
     {
@@ -165,6 +165,60 @@ class StatsController extends Controller
 
             if ($order->save()) {
                 $this->stdout($order->id . " save \n", Console::FG_GREEN);
+            }
+        }
+
+        $this->stdout("Finish. \n", Console::FG_GREEN);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function actionFactoryStatsDays()
+    {
+        $this->stdout("Start. \n", Console::FG_GREEN);
+
+        $end_date = mktime(23, 59, 0, date("m"), date("d") - 1, date("Y"));
+
+        $data = ProductStatsDays::find()
+            ->andWhere([
+                ProductStatsDays::tableName() . '.mark' => '0',
+            ])
+            ->andWhere([
+                '<=', ProductStatsDays::tableName() . '.date', $end_date
+            ])
+            ->orderBy(ProductStatsDays::tableName() . '.date ASC')
+            ->limit(5000)
+            ->all();
+
+        foreach ($data as $item) {
+            /** @var $item ProductStatsDays */
+
+            $model = FactoryStatsDays::find()
+                ->andWhere([
+                    'city_id' => $item['city_id'],
+                    'factory_id' => $item['factory_id'],
+                    'date' => $item['date'],
+                ])
+                ->one();
+
+            if ($model == null) {
+                $model = new FactoryStatsDays();
+            }
+
+            $model->setScenario('frontend');
+
+            $model->factory_id = $item['factory_id'];
+            $model->country_id = $item['country_id'];
+            $model->city_id = $item['city_id'];
+            $model->date = $item['date'];
+            $model->views = $model->views + $item['views'];
+            $model->requests = $model->requests + $item['requests'];
+
+            if ($model->save()) {
+                $item->setScenario('mark');
+                $item->mark = '1';
+                $item->save();
             }
         }
 

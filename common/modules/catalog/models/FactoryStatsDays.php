@@ -12,10 +12,9 @@ use common\modules\location\models\{
 };
 
 /**
- * Class ItalianProductStatsDays
+ * Class FactoryStatsDays
  *
  * @property integer $id
- * @property integer $product_id
  * @property integer $factory_id
  * @property integer $country_id
  * @property integer $city_id
@@ -27,7 +26,7 @@ use common\modules\location\models\{
  *
  * @package common\modules\catalog\models
  */
-class ItalianProductStatsDays extends ActiveRecord
+class FactoryStatsDays extends ActiveRecord
 {
     public $count;
 
@@ -45,7 +44,7 @@ class ItalianProductStatsDays extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%catalog_italian_item_stats_days}}';
+        return '{{%catalog_factory_stats_days}}';
     }
 
     /**
@@ -64,7 +63,6 @@ class ItalianProductStatsDays extends ActiveRecord
         return [
             [
                 [
-                    'product_id',
                     'factory_id',
                     'country_id',
                     'city_id',
@@ -80,6 +78,7 @@ class ItalianProductStatsDays extends ActiveRecord
         ];
     }
 
+
     /**
      * @return array
      */
@@ -87,7 +86,6 @@ class ItalianProductStatsDays extends ActiveRecord
     {
         return [
             'frontend' => [
-                'product_id',
                 'factory_id',
                 'country_id',
                 'city_id',
@@ -105,7 +103,6 @@ class ItalianProductStatsDays extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'product_id',
             'factory_id',
             'country_id',
             'city_id',
@@ -114,15 +111,8 @@ class ItalianProductStatsDays extends ActiveRecord
             'date',
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
+            'mark',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getItalianProduct()
-    {
-        return $this->hasOne(ItalianProduct::class, ['id' => 'product_id']);
     }
 
     /**
@@ -164,7 +154,7 @@ class ItalianProductStatsDays extends ActiveRecord
     public static function findBase()
     {
         return self::find()
-            ->innerJoinWith(['italianProduct', 'factory'])
+            ->innerJoinWith(['factory'])
             ->orderBy('requests DESC');
     }
 

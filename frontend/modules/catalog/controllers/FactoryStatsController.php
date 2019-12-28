@@ -11,7 +11,7 @@ use yii\web\NotFoundHttpException;
 //
 use frontend\modules\catalog\models\Factory;
 use frontend\modules\catalog\models\{
-    Product, ProductStats, ProductStatsDays
+    Product, ProductStats, ProductStatsDays, FactoryStatsDays
 };
 use frontend\components\BaseController;
 
@@ -72,7 +72,7 @@ class FactoryStatsController extends BaseController
         ini_set("memory_limit", "-1");
         set_time_limit(0);
 
-        $model = new ProductStatsDays();
+        $model = new FactoryStatsDays();
 
         $params = Yii::$app->request->get() ?? [];
 
@@ -110,7 +110,7 @@ class FactoryStatsController extends BaseController
 
         $params['action'] = 'list';
 
-        $models = $model->factorySearch($params);
+        $models = $model->search($params);
 
         $this->title = Yii::t('app', 'Factory statistics');
 
@@ -145,7 +145,6 @@ class FactoryStatsController extends BaseController
 
         $start_date = mktime(0, 0, 0, date("m"), date("d") - 30, date("Y"));
         $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
-
 
         if (!isset($params['start_date'])) {
             $params['start_date'] = date('d-m-Y', $start_date);
