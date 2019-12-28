@@ -883,4 +883,116 @@ $(document).ready(function () {
         });
     });
 
+    // Инициализация виджета - Intl-input
+    // если данное поле существует на странице
+    if ($('.intlinput-field').length > 0) {
+
+        // получаем язык сайта у пользователя
+        var siteLang = $('html').attr('lang');
+
+        // функционал переводов ошибок на италлянский язык
+        var errorMap = [];
+        // если язык сайта италянский
+        if (siteLang == 'it') {
+            // Массив ошибок для поля номер телефона для италянского языка
+            errorMap = ["Numero non valido", "Codice paese non valido", "Troppo corto", "Troppo lungo", "Numero non valido"];
+        }
+        else {
+            // Массив ошибок для поля номер телефона в международном формате
+            errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+        }
+
+        // поле - телефон из нашей формы
+        var intlInputEl = document.querySelector(".intlinput-field");
+        // div, обертка поля - телефон из нашей формы
+        var formGroupBox = $('.intlinput-field').closest('.form-group');
+        // див help-block для показа сообщений об ошибке в поле телефон
+        var errorMsg = formGroupBox.children('.help-block')[0];
+
+        // инициализируем плагин международных телефонных номеров
+        var iti = window.intlTelInput(intlInputEl, {
+            initialCountry: 'it',
+            utilsScript: "/js/utils.js",
+            formatOnDisplay: true
+        });
+
+        // создаем функцию - сброса
+        var reset = function(event) {
+
+            var currentValue = intlInputEl.value;
+
+            if (event) {
+                if (isNaN(parseInt(event.key))) {
+                    intlInputEl.value = currentValue.slice(0, -1);
+                }
+                else {
+                    // если номер не валидный
+                    if (!iti.isValidNumber()) {
+                        // и если номер слишком длинный
+                        if (iti.getValidationError() == 3) {
+                            intlInputEl.value = currentValue.slice(0, -1);
+                        }
+                    }
+                }
+            }
+
+            intlInputEl.classList.remove("error");
+            errorMsg.innerHTML = "";
+            if (iti.isValidNumber()) {
+                errorMsg.classList.add("hide");
+                formGroupBox[0].classList.remove("has-error");
+                formGroupBox[0].classList.add("has-success");
+            }
+            else {
+                errorMsg.classList.remove("hide");
+                var errorCode = iti.getValidationError();
+                errorMsg.innerHTML = errorMap[errorCode];
+                formGroupBox[0].classList.remove("has-success");
+                formGroupBox[0].classList.add("has-error");
+                intlInputEl.setAttribute('aria-invalid', true);
+            }
+          };
+          
+          // on blur: validate
+          intlInputEl.addEventListener('blur', function() {
+            reset();
+            if (intlInputEl.value.trim()) {
+              if (!iti.isValidNumber()) {
+                  setTimeout(function() {
+                    intlInputEl.classList.add("error");
+                    var errorCode = iti.getValidationError();
+                    errorMsg.innerHTML = errorMap[errorCode];
+                    errorMsg.classList.remove("hide");
+                    formGroupBox[0].classList.remove("has-success");
+                    formGroupBox[0].classList.add("has-error");
+                    intlInputEl.setAttribute('aria-invalid', true);
+                  }, 500);
+              }
+            }
+          });
+          
+          // on keyup / change flag: reset
+          intlInputEl.addEventListener('change', reset);
+          intlInputEl.addEventListener('keyup', reset);
+
+        //   Валидация номера телефона при отправке формы
+        $('#checkout-form').on('submit', function(ev) {
+            ev.preventDefault();
+            // если номер телефона не валидный
+            if (!iti.isValidNumber()) {
+                setTimeout(function() {
+                    intlInputEl.setAttribute('aria-invalid', true);
+                    var errorCode = iti.getValidationError();
+                    errorMsg.innerHTML = errorMap[errorCode];
+                    errorMsg.classList.remove("hide");
+                    formGroupBox[0].classList.remove("has-success");
+                    formGroupBox[0].classList.add("has-error");
+                },300);
+            }
+            else {
+                $(this).submit();
+            }
+        });
+    }
+
 });

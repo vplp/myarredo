@@ -9230,6 +9230,21 @@ h1 {
   margin-right: 6px;
 }
 
+/* Стили для intl-input виджета */
+.iti__flag {background-image: url("../img/intl-input/flags.png");}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {background-image: url("../img/intl-input/flags@2x.png");}
+}
+
+#checkout-form .iti {
+  width: 100%;
+  border: 1px solid transparent;
+}
+#checkout-form .form-group.has-error .iti {
+  border: 1px solid #c82333;
+}
+
 /* --------------------------------------------------------------------------------------------------------- */
 /* ---------------------------------------new media queries-------------------------------------- */
 /* ---------------------------------------------------------------------------------------------------- */

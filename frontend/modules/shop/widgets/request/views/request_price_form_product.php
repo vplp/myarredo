@@ -29,7 +29,15 @@ $model->city_id = Yii::$app->city->getCityId();
     ->input('text', ['placeholder' => Yii::t('app', 'Name')])
     ->label(false) ?>
 
-<?= $form
+
+<?php if (true) {
+    echo $form
+    ->field($model, 'phone')
+    ->input('tel', ['placeholder' => Yii::t('app', 'Phone'), 'class' => 'form-control intlinput-field'])
+    ->label(false);
+}
+else {
+    echo $form
     ->field($model, 'phone')
     ->widget(\yii\widgets\MaskedInput::class, [
         'mask' => Yii::$app->city->getPhoneMask(),
@@ -38,7 +46,9 @@ $model->city_id = Yii::$app->city->getCityId();
         ]
     ])
     ->input('text', ['placeholder' => Yii::t('app', 'Phone')])
-    ->label(false) ?>
+    ->label(false);
+}
+  ?>
 
 <?= $form
     ->field($model, 'city_id')
