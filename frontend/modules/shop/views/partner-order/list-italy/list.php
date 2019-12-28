@@ -146,6 +146,7 @@ $this->title = $this->context->title;
 <?php
 
 $url = Url::toRoute(['/shop/partner-order/pjax-save-order-answer']);
+$messagePrice = Yii::t('app', 'Ваш ответ должен быть максимально приближен к реальности');
 
 $script = <<<JS
 $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
@@ -159,14 +160,24 @@ $( ".manager-history-list" ).on( "click", ".action-save-answer", function() {
         .find('.help-block')
         .text('');
     
+   var isError = false;
+       
     form.find('.basket-item-info').each(function (index, value) {
-        $(this)
-            .find('.field-orderitemprice-price')
-            .removeClass('has-error')
-            .find('.help-block')
-            .text('');
+        var price = $(value).find('.field-orderitemprice-price');
+        
+        price.removeClass('has-error').find('.help-block').text('');
+     
+        // запускаем валидацию поля - цена
+        if (parseFloat(price.find('#orderitemprice-price').val()) < 180) {
+            price.addClass('has-error').find('.help-block').text('$messagePrice');
+            isError = true;
+        }
     });
     
+    if (isError) {
+        return false;
+    }
+     
     // send form
     
     $.post('$url', form.serialize()+'&action-save-answer=1').done(function (data) {

@@ -52,7 +52,7 @@ $this->title = $this->context->title;
                                  itemtype="http://schema.org/Offer">
                                 <?= Html::tag('h1', $model->getTitle()); ?>
 
-                                <?php if (Sale::getSavingPrice($model) > 0 && !$model->is_sold) { ?>
+                                <?php if (Sale::getSavingPrice($model) > 0 && $model->is_sold == '0') { ?>
                                     <div class="old-price">
                                         <?= Yii::$app->currency->getValue($model['price'], $model['currency']) . ' ' . Yii::$app->currency->symbol; ?>
                                     </div>

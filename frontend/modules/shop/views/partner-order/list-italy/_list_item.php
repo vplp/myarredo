@@ -162,6 +162,7 @@ use frontend\modules\catalog\models\ItalianProduct;
                                 ->field($orderItem->orderItemPrice, 'price')
                                 ->input('text', [
                                     'name' => 'OrderItemPrice[' . $orderItem->product_id . '][price]',
+                                    'value' => $orderItem->orderItemPrice->price ?? 0,
                                     'disabled' => ($modelOrder->orderAnswer->answer_time == 0) ? false : true
                                 ])
                                 ->label(false);

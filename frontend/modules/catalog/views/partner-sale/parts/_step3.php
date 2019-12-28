@@ -26,6 +26,12 @@ use frontend\modules\catalog\models\{
 
 <div class="buttons-cont">
     <?= Html::a(
+        Yii::t('app', 'Вернуться к списку'),
+        ['/catalog/partner-sale/list'],
+        ['class' => 'btn btn-primary']
+    ) ?>
+
+    <?= Html::a(
         Yii::t('app', 'Edit'),
         ['/catalog/partner-sale/update', 'id' => $model->id],
         ['class' => 'btn btn-primary']

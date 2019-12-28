@@ -24,6 +24,7 @@ use common\modules\location\models\{
  * @property integer $date
  * @property integer $created_at
  * @property integer $updated_at
+ * @property integer $mark
  *
  * @package common\modules\catalog\models
  */
@@ -76,23 +77,9 @@ class ProductStatsDays extends ActiveRecord
                 ],
                 'integer'
             ],
+            [['mark'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['views', 'requests'], 'default', 'value' => 0]
         ];
-    }
-
-    public function validateProductCityDate()
-    {
-        $data = self::find()
-            ->andWhere(['product_id' => $this->product_id])
-            ->andWhere(['city_id' => $this->city_id])
-            ->andWhere(['date' => $this->date])
-            ->one();
-
-        if ($data != null) {
-            $this->addError('product_id', Yii::t('yii', '{attribute} "{value}" has already been taken.'));
-            $this->addError('city_id', Yii::t('yii', '{attribute} "{value}" has already been taken.'));
-            $this->addError('date', Yii::t('yii', '{attribute} "{value}" has already been taken.'));
-        }
     }
 
     /**
@@ -101,6 +88,7 @@ class ProductStatsDays extends ActiveRecord
     public function scenarios()
     {
         return [
+            'mark' => ['mark'],
             'frontend' => [
                 'product_id',
                 'factory_id',
@@ -129,6 +117,7 @@ class ProductStatsDays extends ActiveRecord
             'date',
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
+            'mark',
         ];
     }
 

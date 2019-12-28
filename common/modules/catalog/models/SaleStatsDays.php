@@ -80,21 +80,6 @@ class SaleStatsDays extends ActiveRecord
         ];
     }
 
-    public function validateProductCityDate()
-    {
-        $data = self::find()
-            ->andWhere(['product_id' => $this->product_id])
-            ->andWhere(['city_id' => $this->city_id])
-            ->andWhere(['date' => $this->date])
-            ->one();
-
-        if ($data != null) {
-            $this->addError('product_id', Yii::t('yii', '{attribute} "{value}" has already been taken.'));
-            $this->addError('city_id', Yii::t('yii', '{attribute} "{value}" has already been taken.'));
-            $this->addError('date', Yii::t('yii', '{attribute} "{value}" has already been taken.'));
-        }
-    }
-
     /**
      * @return array
      */

@@ -180,6 +180,8 @@ class Sale extends SaleModel implements BaseBackendSearchModel
                 self::tableName() . '.currency',
                 self::tableName() . '.position',
                 self::tableName() . '.factory_name',
+                self::tableName() . '.is_sold',
+                self::tableName() . '.published',
                 SaleLang::tableName() . '.title'
             ]);
 

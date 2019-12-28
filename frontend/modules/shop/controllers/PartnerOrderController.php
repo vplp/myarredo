@@ -74,7 +74,7 @@ class PartnerOrderController extends BaseController
         }
 
         if (!isset($params['country_id'])) {
-            $params['country_id'] = Yii::$app->user->identity->profile->country_id ?? 0;
+            $params['country_id'] = 0;
         }
 
         if (!isset($params['factory_id'])) {
@@ -199,8 +199,8 @@ class PartnerOrderController extends BaseController
                     $modelOrderItemPrice->order_id = $modelOrder->id;
                     $modelOrderItemPrice->user_id = Yii::$app->getUser()->getId();
                     $modelOrderItemPrice->product_id = $product_id; // intval($modelPrice['product_id']);
-                    $modelOrderItemPrice->price = intval($modelPrice['price']);
-                    $modelOrderItemPrice->out_of_production = $modelPrice['out_of_production'];
+                    $modelOrderItemPrice->price = isset($modelPrice['price']) ? intval($modelPrice['price']) : 0;
+                    $modelOrderItemPrice->out_of_production = $modelPrice['out_of_production'] ?? 0;
 
                     if ($modelOrderItemPrice->load(Yii::$app->request->post()) && $modelOrderItemPrice->validate()) {
                         /** @var PDO $transaction */
