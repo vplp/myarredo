@@ -47,7 +47,7 @@ if (in_array($order->lang, ['ru-RU'])) {
 
             if (ItalianProduct::isImage($item->product['image_link'])) {
                 echo Html::img(
-                    'https://www.myarredo.' . $domain . '/' . ItalianProduct::getImageThumb($item->product['image_link']),
+                    'https://www.myarredo.' . $domain . '/' . ItalianProduct::getImage($item->product['image_link']),
                     ['class' => 'width: 140px; max-height: 100px;']
                 );
             }
