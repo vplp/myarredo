@@ -31,23 +31,23 @@ $model->city_id = Yii::$app->city->getCityId();
 
 
 <?php
-//if (true) {
-//    echo $form
-//    ->field($model, 'phone')
-//    ->input('tel', ['placeholder' => Yii::t('app', 'Phone'), 'class' => 'form-control intlinput-field'])
-//    ->label(false);
-//} else {
-echo $form
-    ->field($model, 'phone')
-    ->widget(\yii\widgets\MaskedInput::class, [
-        'mask' => Yii::$app->city->getPhoneMask(),
-        'clientOptions' => [
-            'clearIncomplete' => true
-        ]
-    ])
-    ->input('text', ['placeholder' => Yii::t('app', 'Phone')])
-    ->label(false);
-//}
+if (Yii::$app->city->domain == 'com' || in_array(substr(Yii::$app->language, 0, 2), ['it', 'en'])) {
+    echo $form
+        ->field($model, 'phone')
+        ->input('tel', ['placeholder' => Yii::t('app', 'Phone'), 'class' => 'form-control intlinput-field'])
+        ->label(false);
+} else {
+    echo $form
+        ->field($model, 'phone')
+        ->widget(\yii\widgets\MaskedInput::class, [
+            'mask' => Yii::$app->city->getPhoneMask(),
+            'clientOptions' => [
+                'clearIncomplete' => true
+            ]
+        ])
+        ->input('text', ['placeholder' => Yii::t('app', 'Phone')])
+        ->label(false);
+}
 ?>
 
 <?= $form
