@@ -29,12 +29,13 @@ $model->city_id = Yii::$app->city->getCityId();
     ->input('text', ['placeholder' => Yii::t('app', 'Name')])
     ->label(false) ?>
 
-
-<?php
-if (Yii::$app->city->domain == 'com' || in_array(substr(Yii::$app->language, 0, 2), ['it', 'en'])) {
+<?php if (Yii::$app->city->domain == 'com' || in_array(substr(Yii::$app->language, 0, 2), ['it', 'en'])) {
     echo $form
         ->field($model, 'phone')
-        ->input('tel', ['placeholder' => Yii::t('app', 'Phone'), 'class' => 'form-control intlinput-field'])
+        ->input('tel', [
+            'placeholder' => Yii::t('app', 'Phone'),
+            'class' => 'form-control intlinput-field'
+        ])
         ->label(false);
 } else {
     echo $form
@@ -47,8 +48,7 @@ if (Yii::$app->city->domain == 'com' || in_array(substr(Yii::$app->language, 0, 
         ])
         ->input('text', ['placeholder' => Yii::t('app', 'Phone')])
         ->label(false);
-}
-?>
+} ?>
 
 <?= $form
     ->field($model, 'city_id')
@@ -67,10 +67,7 @@ if (Yii::$app->city->domain == 'com' || in_array(substr(Yii::$app->language, 0, 
 
 <?= $form
     ->field($model, 'reCaptcha')
-    ->widget(
-        \himiklab\yii2\recaptcha\ReCaptcha2::class
-    //['action' => 'request_price_product']
-    )
+    ->widget(\himiklab\yii2\recaptcha\ReCaptcha2::class)
     ->label(false) ?>
 
 <?= Html::submitButton(
