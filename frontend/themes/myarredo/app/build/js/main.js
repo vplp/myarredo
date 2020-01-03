@@ -917,24 +917,7 @@ $(document).ready(function () {
         });
 
         // создаем функцию - сброса
-        var reset = function(event) {
-
-            var currentValue = intlInputEl.value;
-
-            if (event) {
-                if (isNaN(parseInt(event.key))) {
-                    intlInputEl.value = currentValue.slice(0, -1);
-                }
-                else {
-                    // если номер не валидный
-                    if (!iti.isValidNumber()) {
-                        // и если номер слишком длинный
-                        if (iti.getValidationError() == 3) {
-                            intlInputEl.value = currentValue.slice(0, -1);
-                        }
-                    }
-                }
-            }
+        var reset = function() {
 
             intlInputEl.classList.remove("error");
             errorMsg.innerHTML = "";
@@ -977,9 +960,9 @@ $(document).ready(function () {
 
         //   Валидация номера телефона при отправке формы
         $('#checkout-form').on('submit', function(ev) {
-            ev.preventDefault();
             // если номер телефона не валидный
             if (!iti.isValidNumber()) {
+                ev.preventDefault();
                 setTimeout(function() {
                     intlInputEl.setAttribute('aria-invalid', true);
                     var errorCode = iti.getValidationError();
@@ -988,9 +971,6 @@ $(document).ready(function () {
                     formGroupBox[0].classList.remove("has-success");
                     formGroupBox[0].classList.add("has-error");
                 },300);
-            }
-            else {
-                $(this).submit();
             }
         });
     }
