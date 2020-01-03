@@ -30,7 +30,7 @@ $text = str_replace($search, $replace, $text);
         <div style="clear: both; height: 100px;">
             <div style="float: left;">
                 <?= Html::img(
-                    'https://www.myarredo.' . $model['alias'] . ItalianProduct::getImageThumb($model['image_link']),
+                    'https://www.myarredo.ru' . ItalianProduct::getImageThumb($model['image_link']),
                     ['class' => 'width: 140px; max-height: 100px;']
                 ) ?>
             </div>
