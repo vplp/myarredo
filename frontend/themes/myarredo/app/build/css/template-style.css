@@ -375,7 +375,7 @@ h1 {
       padding-left: 0;
       width: calc( 100% + 2px);
       position: absolute;
-      z-index: 2;
+      z-index: 7;
       top: 100%;
       left: -1px;
       list-style: none;
