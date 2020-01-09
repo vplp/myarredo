@@ -13,7 +13,7 @@ use frontend\components\BaseController;
  */
 class ContactsController extends BaseController
 {
-    public $title = "Партнеры сети MYARREDO";
+    public $title;
 
     /**
      * @return string

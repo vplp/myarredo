@@ -29,32 +29,34 @@ $bundle = AppAsset::register($this);
                             echo $this->render('parts/_no_main_partner', [
                                 'partners' => $partners
                             ]);
-                        }?>
+                        } ?>
 
-                        <?php foreach ($partners as $partner) { ?>
-                            <div class="one-cont">
-                                <?= Html::tag('h2', $partner->profile->getNameCompany()); ?>
-                                <div class="ico">
-                                    <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
-                                </div>
+                        <?php foreach ($partners as $partner) {
+                            if ($partner['profile']['partner_in_city'] == 0) { ?>
+                                <div class="one-cont">
+                                    <?= Html::tag('h2', $partner->profile->getNameCompany()); ?>
+                                    <div class="ico">
+                                        <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
+                                    </div>
 
-                                <?= Html::a(
-                                    $partner->profile->phone,
-                                    'tel:' . $partner->profile->phone,
-                                    []
-                                ) ?>
+                                    <?= Html::a(
+                                        $partner->profile->phone,
+                                        'tel:' . $partner->profile->phone,
+                                        []
+                                    ) ?>
 
-                                <div class="ico">
-                                    <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
+                                    <div class="ico">
+                                        <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
+                                    </div>
+                                    <div class="adres">
+                                        <?= isset($partner->profile->city)
+                                            ? $partner->profile->city->lang->title . '<br>'
+                                            : '' ?>
+                                        <?= $partner->profile->lang->address ?? '' ?>
+                                    </div>
                                 </div>
-                                <div class="adres">
-                                    <?= isset($partner->profile->city)
-                                        ? $partner->profile->city->lang->title . '<br>'
-                                        : '' ?>
-                                    <?= $partner->profile->lang->address ?? '' ?>
-                                </div>
-                            </div>
-                        <?php } ?>
+                            <?php }
+                        } ?>
 
                     </div>
                     <div class="warning">
