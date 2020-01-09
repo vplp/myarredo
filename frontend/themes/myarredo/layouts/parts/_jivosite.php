@@ -7,7 +7,7 @@ use yii\web\View;
 if (Yii::$app->getUser()->isGuest && Yii::$app->city->domain == 'ru' &&
     !in_array(Yii::$app->controller->id, ['sale', 'sale-italy']) &&
     !in_array(Yii::$app->controller->module->id, ['user']) &&
-    in_array(Yii::$app->city->getCityId(), [8, 140, 141, 28, 40])
+    !in_array(Yii::$app->city->getCityId(), [4])
 ) { ?>
     <script src="//code.jivosite.com/widget/bdFHrCDC3S" async></script>
 <?php }
