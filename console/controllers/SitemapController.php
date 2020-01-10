@@ -76,12 +76,12 @@ class SitemapController extends Controller
     {
         if ($city == false) {
             $urls = [];
-            $urlsIt = self::getUrls('it-IT');
+            $urlsIt = self::getUrls('it-IT', 'com');
             foreach ($urlsIt as $url) {
                 $urls[] = array_merge($url, ['loc' => "/it" . $url['loc']]);
             }
 
-            $urlsEn = self::getUrls('en-EN');
+            $urlsEn = self::getUrls('en-EN', 'com');
             foreach ($urlsEn as $url) {
                 $urls[] = array_merge($url, ['loc' => "/en" . $url['loc']]);
             }
@@ -197,9 +197,10 @@ class SitemapController extends Controller
 
     /**
      * @param string $language
+     * @param string $domain
      * @return array
      */
-    private function getUrls($language = 'ru-RU')
+    private function getUrls($language = 'ru-RU', $domain = 'ru')
     {
         $_urls = $this->urls;
 
@@ -245,6 +246,16 @@ class SitemapController extends Controller
                     $model::tableName() . '.url',
                     $model::tableName() . '.updated_at',
                 ]);
+            } elseif ($model::className() == Factory::className() && $domain) {
+                $query
+                    ->select([
+                        $model::tableName() . '.id',
+                        $model::tableName() . '.url',
+                        $model::tableName() . '.updated_at',
+                    ])
+                    ->andFilterWhere([
+                        self::tableName() . '.show_for_' . $domain => '1',
+                    ]);
             } else {
                 $query->select([
                     $model::tableName() . '.id',
