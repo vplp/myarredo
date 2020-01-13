@@ -211,18 +211,18 @@ class ElasticSearchSale extends ActiveRecord
         $lang = substr(Yii::$app->language, 0, 2);
 
         $query = self::find()->with(['product', 'product.factory']);
+/* !!! */ echo  '<pre style="color:red;">'; print_r($params); echo '</pre>'; /* !!! */
+        if (isset($params['country'])) {
+            $query
+                ->innerJoinWith(['product.country']);
+                //->andFilterWhere(['IN', Country::tableName() . '.id', $params['country']]);
+        }
 
-//        if (isset($params['country'])) {
-//            $query
-//                ->innerJoinWith(['product.country'])
-//                ->andFilterWhere(['IN', Country::tableName() . '.id', $params['country']]);
-//        }
-//
-//        if (isset($params['city'])) {
-//            $query
-//                ->innerJoinWith(['product.city'])
-//                ->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
-//        }
+        if (isset($params['city'])) {
+            $query
+                ->innerJoinWith(['product.city']);
+                //->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
+        }
 
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
