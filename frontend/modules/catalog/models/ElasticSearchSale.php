@@ -213,16 +213,16 @@ class ElasticSearchSale extends ActiveRecord
         $query = self::find()->with([
             'product',
             'product.factory',
-            'product.country',
-            'product.city'
+            'product.country productCountry',
+            'product.city productCity'
         ]);
 
         if (isset($params['country'])) {
-            $query->andWhere([Country::tableName() . '.id' => $params['country']]);
+            $query->andWhere(['productCountry.id' => $params['country']]);
         }
 
         if (isset($params['city'])) {
-            $query->andWhere([City::tableName() . '.id' => $params['city']]);
+            $query->andWhere(['productCity.id' => $params['city']]);
         }
 
         /** @var Catalog $module */
