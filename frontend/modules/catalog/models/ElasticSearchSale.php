@@ -210,7 +210,7 @@ class ElasticSearchSale extends ActiveRecord
     {
         $lang = substr(Yii::$app->language, 0, 2);
 
-        $query = self::find()->with(['product', 'product.factory']);
+        $query = self::find()->innerJoinWith(['product', 'product.factory']);
 
         if (isset($params['country'])) {
             $query
