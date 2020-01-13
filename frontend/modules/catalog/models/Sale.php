@@ -61,8 +61,6 @@ class Sale extends \common\modules\catalog\models\Sale
 
         $query->orderBy(implode(',', $order));
 
-        //$query->orderBy(self::tableName() . '.updated_at DESC');
-
         return $query;
     }
 

@@ -195,7 +195,7 @@ class ElasticSearchSale extends ActiveRecord
 
     public function getProduct()
     {
-        return $this->hasOne(Sale::class, ['id' => 'id']);
+        return $this->hasOne(Sale::class, ['id' => 'id'])->enabled();
     }
 
     /**
