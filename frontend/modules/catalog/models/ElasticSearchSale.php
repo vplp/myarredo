@@ -213,8 +213,8 @@ class ElasticSearchSale extends ActiveRecord
         $query = self::find()->with([
             'product',
             'product.factory',
-            'product.country productCountry',
-            'product.city productCity'
+            'product.country',
+            'product.city'
         ]);
 
 //        if (isset($params['country'])) {
