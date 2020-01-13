@@ -310,7 +310,7 @@ class SendPulseController extends Controller
 
                 $this->stdout("Send to factory: " . $senderEmail . " \n", Console::FG_GREEN);
 
-                @Yii::$app
+                Yii::$app
                     ->mailer
                     ->compose(
                         in_array(substr($modelOrder->lang, 0, 2), ['en', 'it'])
