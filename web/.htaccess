@@ -9,7 +9,7 @@ AddDefaultCharset UTF-8
 <IfModule mod_rewrite.c>
     Options +FollowSymlinks
     RewriteEngine On
-
+    
     RewriteRule ^backend(.*)$ backend/$1 [L]
     RewriteRule ^promo1(.*)$ promo1/$1 [L]
 
