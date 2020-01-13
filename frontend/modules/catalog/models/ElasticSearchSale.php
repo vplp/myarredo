@@ -214,13 +214,13 @@ class ElasticSearchSale extends ActiveRecord
 
         if (isset($params['country'])) {
             $query
-                ->innerJoinWith(['country'])
+                ->innerJoinWith(['product.country'])
                 ->andFilterWhere(['IN', Country::tableName() . '.id', $params['country']]);
         }
 
         if (isset($params['city'])) {
             $query
-                ->innerJoinWith(['city'])
+                ->innerJoinWith(['product.city'])
                 ->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
         }
 
