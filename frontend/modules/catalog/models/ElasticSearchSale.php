@@ -217,17 +217,12 @@ class ElasticSearchSale extends ActiveRecord
             'product.city'
         ]);
 
-        /* !!! */
-        echo '<pre style="color:red;">';
-        print_r($params);
-        echo '</pre>'; /* !!! */
-
         if (isset($params['country'])) {
-            $query->andFilterWhere(['IN', Country::tableName() . '.id', $params['country']]);
+            $query->andWhere(['IN', Country::tableName() . '.id', $params['country']]);
         }
 
         if (isset($params['city'])) {
-            $query->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
+            $query->andWhere(['IN', City::tableName() . '.id', $params['city']]);
         }
 
         /** @var Catalog $module */
