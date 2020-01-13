@@ -37,8 +37,12 @@ class ElasticSearchController extends BaseController
         $queryParams = ArrayHelper::merge(['search' => ''], Yii::$app->request->queryParams);
 
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
-        $modelsSale = $modelSale->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
         $modelsItalianProduct = $modelItalianProduct->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+
+        $queryParams['country'] = Yii::$app->city->getCountryId();
+        $queryParams['city'] = Yii::$app->city->getCityId();
+
+        $modelsSale = $modelSale->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         return $this->render('search', [
             'queryParams' => $queryParams,

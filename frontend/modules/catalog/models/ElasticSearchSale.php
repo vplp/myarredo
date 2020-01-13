@@ -6,6 +6,10 @@ use Yii;
 use yii\data\ArrayDataProvider;
 //
 use yii\elasticsearch\ActiveRecord;
+//
+use frontend\modules\location\models\{
+    City, Country
+};
 
 /**
  * Class ElasticSearchSale
@@ -207,6 +211,18 @@ class ElasticSearchSale extends ActiveRecord
         $lang = substr(Yii::$app->language, 0, 2);
 
         $query = self::find()->with(['product', 'product.factory']);
+
+        if (isset($params['country'])) {
+            $query
+                ->innerJoinWith(['country'])
+                ->andFilterWhere(['IN', Country::tableName() . '.id', $params['country']]);
+        }
+
+        if (isset($params['city'])) {
+            $query
+                ->innerJoinWith(['city'])
+                ->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
+        }
 
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');

@@ -118,7 +118,6 @@ class SaleFilter extends Widget
             );
         }
 
-
         /**
          * Types list
          */
