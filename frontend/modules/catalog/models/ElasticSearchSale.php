@@ -218,11 +218,11 @@ class ElasticSearchSale extends ActiveRecord
         ]);
 
         if (isset($params['country'])) {
-            $query->andWhere(Country::tableName() . '.id = ' . $params['country']);
+            $query->andWhere([Country::tableName() . '.id' => $params['country']]);
         }
 
         if (isset($params['city'])) {
-            $query->andWhere(City::tableName() . '.id = ' . $params['city']);
+            $query->andWhere([City::tableName() . '.id' => $params['city']]);
         }
 
         /** @var Catalog $module */
