@@ -195,7 +195,7 @@ class ElasticSearchItalianProduct extends ActiveRecord
 
     public function getProduct()
     {
-        return $this->hasOne(ItalianProduct::class, ['id' => 'id']);
+        return $this->hasOne(ItalianProduct::class, ['id' => 'id'])->enabled();
     }
 
     /**
