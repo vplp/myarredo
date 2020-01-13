@@ -210,18 +210,24 @@ class ElasticSearchSale extends ActiveRecord
     {
         $lang = substr(Yii::$app->language, 0, 2);
 
-        $query = self::find()->with(['product', 'product.factory']);
-/* !!! */ echo  '<pre style="color:red;">'; print_r($params); echo '</pre>'; /* !!! */
+        $query = self::find()->with([
+            'product',
+            'product.factory',
+            'product.country',
+            'product.city'
+        ]);
+
+        /* !!! */
+        echo '<pre style="color:red;">';
+        print_r($params);
+        echo '</pre>'; /* !!! */
+
         if (isset($params['country'])) {
-            $query
-                ->with(['product.country'])
-                ->andFilterWhere(['IN', Country::tableName() . '.id', $params['country']]);
+            $query->andFilterWhere(['IN', Country::tableName() . '.id', $params['country']]);
         }
 
         if (isset($params['city'])) {
-            $query
-                ->with(['product.city'])
-                ->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
+            $query->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
         }
 
         /** @var Catalog $module */
