@@ -81,6 +81,10 @@ class UserMenu extends Widget
                     'label' => Yii::t('app', 'Инструкция партнерам'),
                     'url' => ['/page/page/view', 'alias' => 'instructions']
                 ],
+                [
+                    'label' => Yii::t('app', 'Тарифы'),
+                    'url' => ['/payment/partner-payment/tariffs']
+                ],
             ];
         } elseif (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'admin') {
             $this->menuItems = [

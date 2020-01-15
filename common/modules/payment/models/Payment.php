@@ -23,6 +23,7 @@ use thread\app\base\models\ActiveRecord;
  * @property integer $id
  * @property integer $user_id
  * @property string $type
+ * @property string $tariffs
  * @property integer $promotion_package_id
  * @property boolean $change_tariff
  * @property integer $amount
@@ -93,6 +94,20 @@ class Payment extends ActiveRecord
     }
 
     /**
+     * @inheritDoc
+     */
+    public function beforeSave($insert)
+    {
+        if (is_array($this->tariffs) && !empty($this->tariffs)) {
+            $this->tariffs = implode('; ', $this->tariffs);
+        } else {
+            $this->tariffs = '';
+        }
+
+        return parent::beforeSave($insert);
+    }
+
+    /**
      * @param bool $insert
      * @param array $changedAttributes
      */
@@ -110,7 +125,7 @@ class Payment extends ActiveRecord
             foreach ($this->items as $item) {
                 /** @var $item ItalianProduct */
                 $item->setScenario('create_mode');
-                $item->create_mode = $item->create_mode == 'paid' ? 'free' : 'paid';
+                $item->create_mode = 'paid' ? 'free' : 'paid';
                 $item->save();
             }
         }
@@ -141,6 +156,7 @@ class Payment extends ActiveRecord
                 'each',
                 'rule' => ['integer']
             ],
+            [['tariffs'], 'each', 'rule' => ['string']],
         ];
     }
 
@@ -159,6 +175,7 @@ class Payment extends ActiveRecord
             'backend' => [
                 'user_id',
                 'type',
+                'tariffs',
                 'promotion_package_id',
                 'change_tariff',
                 'amount',
@@ -171,6 +188,7 @@ class Payment extends ActiveRecord
             'frontend' => [
                 'user_id',
                 'type',
+                'tariffs',
                 'promotion_package_id',
                 'change_tariff',
                 'amount',
@@ -191,6 +209,7 @@ class Payment extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User'),
             'type' => Yii::t('app', 'Payment type'),
+            'tariffs' => Yii::t('app', 'Тарифы'),
             'promotion_package_id' => Yii::t('app', 'Promotion package'),
             'change_tariff' => Yii::t('app', 'Смена тарифа'),
             'amount' => Yii::t('app', 'Amount'),
@@ -232,6 +251,8 @@ class Payment extends ActiveRecord
             $desc = 'promotion_sale_item';
         } elseif ($this->type == 'promotion_italian_item') {
             $desc = 'promotion_italian_item';
+        } elseif ($this->type == 'tariffs') {
+            $desc = Yii::t('app', 'Тарифы');
         }
 
         return $desc;
@@ -312,6 +333,7 @@ class Payment extends ActiveRecord
             'promotion_item' => 'promotion_item',
             'promotion_sale_item' => 'promotion_item',
             'promotion_italian_item' => 'promotion_italian_item',
+            'tariffs' => Yii::t('app', 'Тарифы'),
         ];
     }
 }

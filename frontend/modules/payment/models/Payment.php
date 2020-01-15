@@ -147,12 +147,14 @@ class Payment extends \common\modules\payment\models\Payment
                 $url = Url::home(true) . 'backend/catalog/factory-promotion/update?id=' . $this->id;
             } elseif ($this->type == 'italian_item') {
                 $url = Url::home(true) . 'backend/catalog/sale-italy/update?id=' . $this->id;
+            } elseif ($this->type == 'tariffs') {
+                $message .= '<br>' . $this->tariffs;
             }
 
             Yii::$app
                 ->mailer
                 ->compose(
-                    '@app/modules/catalog/mail/letter_notification_for_admin',
+                    'letter_notification_for_admin',
                     [
                         'title' => $title,
                         'message' => $message,

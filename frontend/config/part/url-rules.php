@@ -138,6 +138,7 @@ return [
     'payment/result' => 'payment/payment/result',
     'payment/success' => 'payment/payment/success',
     'payment/fail' => 'payment/payment/fail',
+    'partner-payment/tariffs' => 'payment/partner-payment/tariffs',
     'partner-payment/list' => 'payment/partner-payment/list',
 
     // Module [[News]]

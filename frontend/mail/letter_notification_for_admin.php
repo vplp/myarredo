@@ -16,8 +16,8 @@ use yii\helpers\Html; ?>
             ) ?>
         </div>
         <div>
-            <span style="color: #fff; font:bold 16px Arial,sans-serif;">
-               Мы помогаем купить итальянскую мебель по лучшим ценам.
+               <span style="color: #fff; font:bold 16px Arial,sans-serif;">
+                <?= Yii::t('app', 'Мы помогаем купить итальянскую мебель по лучшим ценам.') ?>
             </span>
         </div>
     </div>

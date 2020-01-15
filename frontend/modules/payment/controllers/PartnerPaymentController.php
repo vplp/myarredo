@@ -67,4 +67,22 @@ class PartnerPaymentController extends BaseController
             'pages' => $models->getPagination(),
         ]);
     }
+
+    /**
+     * @return string
+     */
+    public function actionTariffs()
+    {
+        $modelPayment = new Payment();
+        $modelPayment->setScenario('frontend');
+
+        $modelPayment->user_id = Yii::$app->user->id;
+        $modelPayment->type = 'tariffs';
+        $modelPayment->amount = 0;
+        $modelPayment->currency = 'RUB';
+
+        return $this->render('tariffs', [
+            'modelPayment' => $modelPayment,
+        ]);
+    }
 }

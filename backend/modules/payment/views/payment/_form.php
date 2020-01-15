@@ -27,6 +27,9 @@ use backend\modules\payment\models\Payment;
             <?= $form->field($model, 'change_tariff')->dropDownList(Payment::statusKeyRange()) ?>
         </div>
     </div>
+
+<?= $form->field($model, 'tariffs') ?>
+
     <div class="row control-group">
         <div class="col-md-3">
             <?= $form->field($model, 'amount') ?>
