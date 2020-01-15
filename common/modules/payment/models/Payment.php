@@ -141,7 +141,7 @@ class Payment extends ActiveRecord
             [['type'], 'in', 'range' => array_keys(static::getTypeKeyRange())],
             [['currency'], 'in', 'range' => array_keys(static::getCurrencyKeyRange())],
             [['payment_status'], 'in', 'range' => array_keys(static::paymentStatusRange())],
-            [['amount'], 'double'],
+            [['amount'], 'double', 'min' => 1],
             [
                 ['payment_time'],
                 'date',
