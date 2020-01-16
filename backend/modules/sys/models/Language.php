@@ -17,7 +17,7 @@ class Language extends CommonLanguageModel
      */
     public function getLanguages(): array
     {
-        return self::findBase()->undeleted()->asArray()->all();
+        return self::findBase()->enabled()->asArray()->all();
     }
 
     /**

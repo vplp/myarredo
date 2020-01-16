@@ -55,6 +55,13 @@ class LangSwitch extends Widget
         $items = [];
 
         foreach ($this->items as $lang) {
+            /**
+             * ua only for domain ua
+             */
+            if (Yii::$app->city->domain != 'ua' && in_array($lang['alias'], ['ua'])) {
+                continue;
+            }
+
             $image = Language::isImage($lang['img_flag'])
                 ? Html::img(Language::getImage($lang['img_flag']))
                 : '<i class="fa fa-globe" aria-hidden="true"></i>';
