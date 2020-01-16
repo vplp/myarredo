@@ -28,7 +28,7 @@ $mainPartner = array_shift($partners);
                 <?= isset($mainPartner->profile->city)
                     ? $mainPartner->profile->city->lang->title . '<br>'
                     : '' ?>
-                <?= $mainPartner->profile->lang->address ?>
+                <?= $mainPartner->profile->lang->address ?? '' ?>
             </div>
             <div class="adres">
                 <?= ($mainPartner->profile->working_hours_start && $mainPartner->profile->working_hours_end)
@@ -46,7 +46,7 @@ $mainPartner = array_shift($partners);
         </div>
     </div>
 
-    <?php if ($mainPartner->profile->lang->address2) { ?>
+    <?php if (isset($mainPartner->profile->lang->address2)) { ?>
         <div class="adress-mainpart">
             <div class="partner-adressbox">
 
@@ -55,7 +55,7 @@ $mainPartner = array_shift($partners);
                     <?= isset($mainPartner->profile->city)
                         ? $mainPartner->profile->city->lang->title . '<br>'
                         : '' ?>
-                    <?= $mainPartner->profile->lang->address2 ?>
+                    <?= $mainPartner->profile->lang->address2 ?? '' ?>
 
                 </div>
 
