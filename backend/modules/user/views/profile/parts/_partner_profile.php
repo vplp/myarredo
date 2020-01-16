@@ -101,7 +101,9 @@ if (in_array($model['user']['group_id'], [4, 7])) {
 
     echo $form->switcher($model, 'show_contacts_on_sale');
 
-    echo $form->switcher($model, 'answers_per_month');
+    echo $form->switcher($model, 'three_answers_per_month');
+
+    echo $form->switcher($model, 'one_answer_per_month');
 }
 
 $url = \yii\helpers\Url::toRoute('/location/city/get-cities');

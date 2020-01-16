@@ -47,7 +47,8 @@ use common\modules\catalog\models\Factory;
  * @property string $image_salon2
  * @property integer $mark
  * @property string $language_editing
- * @property boolean $answers_per_month
+ * @property boolean $three_answers_per_month
+ * @property boolean $one_answer_per_month
  *
  * @property Country $country
  * @property City $city
@@ -125,7 +126,8 @@ class Profile extends \thread\modules\user\models\Profile
                     'pdf_access',
                     'show_contacts',
                     'show_contacts_on_sale',
-                    'answers_per_month',
+                    'three_answers_per_month',
+                    'one_answer_per_month',
                     'mark'
                 ],
                 'in',
@@ -265,7 +267,8 @@ class Profile extends \thread\modules\user\models\Profile
                 'image_salon2',
                 'mark',
                 'language_editing',
-                'answers_per_month'
+                'three_answers_per_month',
+                'one_answer_per_month'
             ]
         ]);
     }
@@ -308,7 +311,8 @@ class Profile extends \thread\modules\user\models\Profile
             'image_salon2' => Yii::t('app', 'Image link'),
             'mark',
             'language_editing',
-            'answers_per_month' => Yii::t('app', '{amount} Answers per month', ['amount' => 3])
+            'three_answers_per_month' => Yii::t('app', 'Three answers per month'),
+            'one_answer_per_month' => Yii::t('app', 'One answer per month')
         ]);
     }
 
@@ -497,8 +501,12 @@ class Profile extends \thread\modules\user\models\Profile
     public function getPossibilityToSaveAnswerPerMonth()
     {
         if (in_array(Yii::$app->user->identity->group->role, ['partner']) &&
-            Yii::$app->user->identity->profile->answers_per_month &&
+            Yii::$app->user->identity->profile->three_answers_per_month &&
             Yii::$app->user->identity->getOrderAnswerCountPerMonth() >= 3) {
+            return false;
+        } elseif (in_array(Yii::$app->user->identity->group->role, ['partner']) &&
+            Yii::$app->user->identity->profile->one_answer_per_month &&
+            Yii::$app->user->identity->getOrderAnswerCountPerMonth() >= 1) {
             return false;
         } else {
             return true;
