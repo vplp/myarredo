@@ -58,7 +58,7 @@ class LangSwitch extends Widget
             /**
              * ua only for domain ua
              */
-            if (Yii::$app->city->domain != 'ua' && in_array($lang['alias'], ['ua'])) {
+            if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && Yii::$app->city->domain != 'ua' && in_array($lang['alias'], ['ua'])) {
                 continue;
             }
 
