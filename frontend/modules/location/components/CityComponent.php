@@ -200,7 +200,7 @@ class CityComponent extends Component
             // kiev
             $this->defaultCityId = 1;
         } elseif (in_array($this->domain, ['com'])) {
-            // kiev
+            // rome
             $this->defaultCityId = 159;
         } else {
             // msk

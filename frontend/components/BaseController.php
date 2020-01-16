@@ -43,7 +43,7 @@ abstract class BaseController extends Controller
         } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && in_array(Yii::$app->city->domain, ['ru', 'ua', 'by']) && in_array($lang, ['it', 'en'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.com/it/', 301);
             yii::$app->end();
-        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && Yii::$app->city->domain != 'ua' && in_array($lang, ['ua'])) {
+        } elseif (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && Yii::$app->city->domain != 'ua' && in_array($lang, ['uk'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.ua/ua/', 301);
             yii::$app->end();
         }
