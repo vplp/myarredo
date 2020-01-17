@@ -132,6 +132,12 @@ class SitemapSaleController extends Controller
             // urls
             $urls = self::getUrls($city);
 
+            if ($city['country_id'] == 1) {
+                foreach ($urls as $url) {
+                    $urls[] = array_merge($url, ['loc' => "/ua" . $url['loc']]);
+                }
+            }
+
             // create the sitemap file
             if ($urls) {
                 $filePath = Yii::getAlias($this->filePath . '/sitemap_sale_' . $city['alias'] . '.xml');
@@ -143,6 +149,7 @@ class SitemapSaleController extends Controller
                     PHP_EOL .
                     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL
                 );
+
 
                 for ($i = 0; $i < count($urls); $i++) {
                     $url = $urls[$i];
