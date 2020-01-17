@@ -18,6 +18,10 @@ $hostInfo = $hostInfo ?? Yii::$app->request->hostInfo;
 
     <div class="one-prod-tile-in" itemscope itemtype="http://schema.org/ImageObject">
 
+        <?php if (Sale::getSavingPrice($model)) { ?>
+            <div class="prod-saving-percentage"><?= Sale::getSavingPercentage($model) ?></div>
+        <?php } ?>
+
         <div class="img-cont" data-dominant-color>
             <span class="background"></span>
             <?= Html::img(
