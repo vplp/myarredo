@@ -60,6 +60,9 @@ $('.add-to-notepad').on('click', function () {
             $('.header').find('.my-notebook').find('.for-price').text(+noteBok + 1);
         }, 400);
     }
+    else {
+        return false;
+    }
 });
 
 /**

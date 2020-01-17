@@ -972,6 +972,11 @@ $(document).ready(function () {
                     formGroupBox[0].classList.add("has-error");
                 },300);
             }
+            else {
+                if ($(this).find('.intlinput-field').val() != iti.getNumber()) {
+                    $(this).find('.intlinput-field').val(iti.getNumber());
+                }
+            }
         });
     }
 
