@@ -87,6 +87,12 @@ class SitemapController extends Controller
             }
         }
 
+        if ($city['country_id'] == 1) {
+            foreach ($urls as $url) {
+                $urls[] = array_merge($url, ['loc' => "/ua" . $url['loc']]);
+            }
+        }
+
         $count = count($urls);
         $count_files = ceil($count / $this->countUrlInSitemap);
         $this->stdout("count = " . $count . " \n", Console::FG_GREEN);
