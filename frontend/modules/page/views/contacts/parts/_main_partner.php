@@ -23,16 +23,23 @@ $mainPartner = array_shift($partners);
 
     <div class="adress-mainpart">
         <div class="partner-adressbox">
-            <div class="adres">
-                <span class="for-adress"><?= Yii::t('app', 'Address') ?>:</span>
-                <?= isset($mainPartner->profile->city)
-                    ? $mainPartner->profile->city->lang->title . '<br>'
-                    : '' ?>
-                <?= $mainPartner->profile->lang->address ?? '' ?>
-            </div>
+            <?php if (isset($mainPartner->profile->lang->address) && $mainPartner->profile->lang->address != '') { ?>
+                <div class="adres">
+                    <span class="for-adress"><?= Yii::t('app', 'Address') ?>:</span>
+                    <?= isset($mainPartner->profile->city)
+                        ? $mainPartner->profile->city->lang->title . '<br>'
+                        : '' ?>
+                    <?= $mainPartner->profile->lang->address ?? '' ?>
+                </div>
+            <?php } ?>
+
             <div class="adres">
                 <?= ($mainPartner->profile->working_hours_start && $mainPartner->profile->working_hours_end)
-                    ? '<span class="for-mode">' . Yii::t('app', 'Режим работы салона') . ':</span>' . $mainPartner->profile->working_hours_start . ' - ' . $mainPartner->profile->working_hours_end
+                    ? '<span class="for-mode">' .
+                    Yii::t('app', 'Режим работы салона') .
+                    ':</span>' .
+                    $mainPartner->profile->working_hours_start . ' - ' .
+                    $mainPartner->profile->working_hours_end
                     : '' ?>
             </div>
         </div>
