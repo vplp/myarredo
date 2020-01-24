@@ -87,16 +87,18 @@ $mainPartner = array_shift($partners);
         </div>
     <?php } ?>
 
-    <div class="bottom-mainpart">
-        <div class="partner-sitebox">
-            <span class="for-site"><?= Yii::t('app', 'Адресс сайта') ?>:</span>
-            <?= Html::a(
-                $mainPartner->profile->website,
-                $mainPartner->profile->website,
-                ['target' => '_blank', 'rel' => 'nofollow']
-            ) ?>
+    <?php if (isset($mainPartner->profile->website) && $mainPartner->profile->website != '') { ?>
+        <div class="bottom-mainpart">
+            <div class="partner-sitebox">
+                <span class="for-site"><?= Yii::t('app', 'Адресс сайта') ?>:</span>
+                <?= Html::a(
+                    $mainPartner->profile->website,
+                    $mainPartner->profile->website,
+                    ['target' => '_blank', 'rel' => 'nofollow']
+                ) ?>
+            </div>
         </div>
-    </div>
+    <?php } ?>
 
     <?php if ($mainPartner->profile->getImageLink('image_salon') || $mainPartner->profile->getImageLink('image_salon2')) { ?>
         <div class="partner-imagepart">
