@@ -95,6 +95,34 @@ $this->title = $this->context->title;
                                     <meta itemprop="priceValidUntil" content="<?= date('Y-m-d') ?>"/>
                                     <meta itemprop="url" content="<?= Product::getUrl($model['alias']) ?>"/>
                                 </div>
+
+                                <?php
+                                if (!in_array(Yii::$app->controller->action->id, ['product'])) {
+                                    if (!in_array($model['id'], $products_id)) {
+                                        echo Html::a(
+                                            Yii::t('app', 'Отложить в блокнот'),
+                                            'javascript:void(0);',
+                                            [
+                                                'class' => 'add-to-notepad btn btn-default big',
+                                                'data-id' => $model['id'],
+                                                'data-toggle' => 'modal',
+                                                'data-target' => '#myModal',
+                                                'data-message' => Yii::t('app', 'В блокноте')
+                                            ]
+                                        );
+                                    } else {
+                                        echo Html::a(
+                                            Yii::t('app', 'В блокноте'),
+                                            'javascript:void(0);',
+                                            [
+                                                'class' => 'btn btn-default big',
+                                            ]
+                                        );
+                                    }
+                                } 
+                                ?>
+
+                                
                             </div>
 
                             <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
@@ -250,29 +278,31 @@ $this->title = $this->context->title;
                                 <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
 
                                 <?php
-                                if (!in_array(Yii::$app->controller->action->id, ['product'])) {
-                                    if (!in_array($model['id'], $products_id)) {
-                                        echo Html::a(
-                                            Yii::t('app', 'Отложить в блокнот'),
-                                            'javascript:void(0);',
-                                            [
-                                                'class' => 'add-to-notepad btn btn-default big',
-                                                'data-id' => $model['id'],
-                                                'data-toggle' => 'modal',
-                                                'data-target' => '#myModal',
-                                                'data-message' => Yii::t('app', 'В блокноте')
-                                            ]
-                                        );
-                                    } else {
-                                        echo Html::a(
-                                            Yii::t('app', 'В блокноте'),
-                                            'javascript:void(0);',
-                                            [
-                                                'class' => 'btn btn-default big',
-                                            ]
-                                        );
-                                    }
-                                } ?>
+                                // Кнопка - "добавить в блокнот", 17.01.2020 была перенесена в другое место, здесь закоментирована, со временем этот код можно удалить
+                                // if (!in_array(Yii::$app->controller->action->id, ['product'])) {
+                                //     if (!in_array($model['id'], $products_id)) {
+                                //         echo Html::a(
+                                //             Yii::t('app', 'Отложить в блокнот'),
+                                //             'javascript:void(0);',
+                                //             [
+                                //                 'class' => 'add-to-notepad btn btn-default big',
+                                //                 'data-id' => $model['id'],
+                                //                 'data-toggle' => 'modal',
+                                //                 'data-target' => '#myModal',
+                                //                 'data-message' => Yii::t('app', 'В блокноте')
+                                //             ]
+                                //         );
+                                //     } else {
+                                //         echo Html::a(
+                                //             Yii::t('app', 'В блокноте'),
+                                //             'javascript:void(0);',
+                                //             [
+                                //                 'class' => 'btn btn-default big',
+                                //             ]
+                                //         );
+                                //     }
+                                // } 
+                                ?>
 
                             </div>
 

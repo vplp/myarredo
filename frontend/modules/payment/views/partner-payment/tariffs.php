@@ -26,129 +26,159 @@ $this->title = Yii::t('app', 'Тарифы');
 
                 </div>
 
-                <div class="row">
+                <div class="row accountbox">
 
                     <?php $form = ActiveForm::begin([
                         'action' => Url::toRoute(['/payment/payment/invoice']),
                     ]); ?>
 
-                    <div class="col-md-3 col-lg-3">
-                        <div>Тариф на год</div>
-                        <div>
-                            Получать заявку по России
-                            <br>
-                            * кроме Москвы и Санк-Петербурга
-                            <br>
-                            <?= Html::checkbox('Payment[tariffs][]', false, [
-                                'value' => 'Получать заявку по России (год)',
-                                'data-price' => 60000
-                            ]) . Html::label('60 000 ' . $modelPayment->currency) ?>
-                        </div>
-                        <div>
-                            Получать заявку на Москву
-                            <br>
-                            <?= Html::checkbox('Payment[tariffs][]', false, [
-                                'value' => 'Получать заявку на Москву (год)',
-                                'data-price' => 30000
-                            ]) . Html::label('30 000 ' . $modelPayment->currency) ?>
-                        </div>
-                        <div>
-                            Получать заявку на Санк-Петербург
-                            <br>
-                            <?= Html::checkbox('Payment[tariffs][]', false, [
-                                'value' => 'Получать заявку на Санк-Петербург (год)',
-                                'data-price' => 10000
-                            ]) . Html::label('10 000 ' . $modelPayment->currency) ?>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3">
-                        <div>Тариф на полгода</div>
-                        <div>
-                            Получать заявку по России
-                            <br>
-                            * кроме Москвы и Санк-Петербурга
-                            <br>
-                            <?= Html::checkbox('Payment[tariffs][]', false, [
-                                'value' => 'Получать заявку по России (полгода)',
-                                'data-price' => 40000
-                            ]) . Html::label('40 000 ' . $modelPayment->currency) ?>
-                        </div>
-                        <div>
-                            Получать заявку на Москву
-                            <br>
-                            <?= Html::checkbox('Payment[tariffs][]', false, [
-                                'value' => 'Получать заявку на Москву (полгода)',
-                                'data-price' => 20000
-                            ]) . Html::label('20 000 ' . $modelPayment->currency) ?>
-                        </div>
-                        <div>
-                            Получать заявку на Санк-Петербург
-                            <br>
-                            <?= Html::checkbox('Payment[tariffs][]', false, [
-                                'value' => 'Получать заявку на Санк-Петербург (полгода)',
-                                'data-price' => 8000
-                            ]) . Html::label('8 000 ' . $modelPayment->currency) ?>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3">
-                        <div>Другие страны (год)</div>
-                        <div>
-                            Получать заявку с Беларусии
-                            <br>
-                            <?= Html::checkbox('Payment[tariffs][]', false, [
-                                'value' => 'Получать заявку с Беларусии (год)',
-                                'data-price' => 20000
-                            ]) . Html::label('20 000 ' . $modelPayment->currency) ?>
-                        </div>
-                        <div>
-                            Получать заявку с Италии
-                            <br>
-                            <?= Html::checkbox('Payment[tariffs][]', false, [
-                                'value' => 'Получать заявку с Италии (год)',
-                                'data-price' => 40000
-                            ]) . Html::label('40 000 ' . $modelPayment->currency) ?>
-                        </div>
-                        <div>
-                            Получать заявку с Украины
-                            <br>
-                            <?= Html::checkbox('Payment[tariffs][]', false, [
-                                'value' => 'Получать заявку с Украины (год)',
-                                'data-price' => 25000
-                            ]) . Html::label('25 000 ' . $modelPayment->currency) ?>
-                        </div>
-                    </div>
+                    <!-- tarif col -->
+                    <div class="col-md-4">
 
-                    <div class="col-md-12 col-lg-12">
-                        <div>
-                            <?= Yii::t('app', 'Итого') ?>:
-                            <span class="total-amount">0</span> <?= $modelPayment->currency ?>
+                        <!-- tarifbox -->
+                        <div class="tarifbox">
+                            <div class="tarif-title">Тариф на год</div>
+                            <div class="tarif-subtitle">Получать заявку по России</div>
+                            <div class="tarif-fotnote">* кроме Москвы и Санк-Петербурга</div>
+                            <div class="tarif-checkpanel">
+                                <?= Html::checkbox('Payment[tariffs][]', false, [
+                                        'value' => 'Получать заявку по России (год)',
+                                        'data-price' => 60000
+                                    ]) . Html::label('60 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                            </div>
+                            
+                            <div class="tarif-subtitle">Получать заявку на Москву </div>
+                                
+                            <div class="tarif-checkpanel">
+                                <?= Html::checkbox('Payment[tariffs][]', false, [
+                                    'value' => 'Получать заявку на Москву (год)',
+                                    'data-price' => 30000
+                                ]) . Html::label('30 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                            </div>
+                            
+                            <div class="tarif-subtitle"> Получать заявку на Санк-Петербург </div>
+                            <div class="tarif-checkpanel">
+                                <?= Html::checkbox('Payment[tariffs][]', false, [
+                                    'value' => 'Получать заявку на Санк-Петербург (год)',
+                                    'data-price' => 10000
+                                ]) . Html::label('10 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                            </div>
                         </div>
+                        <!-- end tarifbox -->
+                        
+                    </div>
+                    <!-- end tarif col -->
 
-                        <?php
-                        echo $form
-                                ->field($modelPayment, 'amount')
-                                ->label(false)
-                                ->input('hidden') .
-                            $form
-                                ->field($modelPayment, 'user_id')
-                                ->label(false)
-                                ->input('hidden') .
-                            $form
-                                ->field($modelPayment, 'type')
-                                ->label(false)
-                                ->input('hidden') .
-                            $form
-                                ->field($modelPayment, 'currency')
-                                ->label(false)
-                                ->input('hidden');
-                        ?>
+                    <!-- tarif col -->
+                    <div class="col-md-4">
 
-                        <div class="buttons-cont">
-                            <?= Html::submitButton(
-                                Yii::t('app', 'Оплатить'),
-                                ['class' => 'btn btn-success']
-                            ) ?>
+                        <!-- tarifbox -->
+                        <div class="tarifbox">
+                            <div class="tarif-title">Тариф на полгода</div>
+                            <div class="tarif-subtitle">Получать заявку по России</div>
+                            <div class="tarif-fotnote">* кроме Москвы и Санк-Петербурга</div>
+                            <div class="tarif-checkpanel">
+                                <?= Html::checkbox('Payment[tariffs][]', false, [
+                                    'value' => 'Получать заявку по России (полгода)',
+                                    'data-price' => 40000
+                                ]) . Html::label('40 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                            </div>
+
+                            <div class="tarif-subtitle">Получать заявку на Москву </div>
+                            <div class="tarif-checkpanel">
+                                <?= Html::checkbox('Payment[tariffs][]', false, [
+                                    'value' => 'Получать заявку на Москву (полгода)',
+                                    'data-price' => 20000
+                                ]) . Html::label('20 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                            </div>
+
+                            <div class="tarif-subtitle">Получать заявку на Санк-Петербург</div>
+                            <div class="tarif-checkpanel">
+                                <?= Html::checkbox('Payment[tariffs][]', false, [
+                                    'value' => 'Получать заявку на Санк-Петербург (полгода)',
+                                    'data-price' => 8000
+                                ]) . Html::label('8 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                            </div>
+
                         </div>
+                        <!-- end tarifbox -->
+
+                    </div>
+                    <!-- end tarif col -->
+
+                    <!-- tarif col -->
+                    <div class="col-md-4">
+
+                        <!-- tarifbox -->
+                        <div class="tarifbox">
+                            <div class="tarif-title">Другие страны (год)</div>
+
+                            <div class="tarif-subtitle"> Получать заявку с Беларусии </div>
+                            <div class="tarif-checkpanel">
+                                <?= Html::checkbox('Payment[tariffs][]', false, [
+                                    'value' => 'Получать заявку с Беларусии (год)',
+                                    'data-price' => 20000
+                                ]) . Html::label('20 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                            </div>
+                                
+                            <div class="tarif-subtitle">Получать заявку с Италии</div>
+                            <div class="tarif-checkpanel">
+                                <?= Html::checkbox('Payment[tariffs][]', false, [
+                                    'value' => 'Получать заявку с Италии (год)',
+                                    'data-price' => 40000
+                                ]) . Html::label('40 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                            </div>
+
+                            <div class="tarif-subtitle">Получать заявку с Украины</div>
+                            <div class="tarif-checkpanel">
+                                <?= Html::checkbox('Payment[tariffs][]', false, [
+                                    'value' => 'Получать заявку с Украины (год)',
+                                    'data-price' => 25000
+                                ]) . Html::label('25 000 ' . $modelPayment->currency, false,  ['class' => 'label-check']); ?>
+                            </div>
+                        </div>
+                        <!-- end tarifbox -->
+
+                    </div>
+                    <!-- end tarif col -->
+
+                    <div class="col-xs-12">
+                        
+                        <!-- tarif-total-panel -->
+                        <div class="tarif-total-panel">
+                            <div class="tarif-totlal">
+                                <?= Yii::t('app', 'Итого') ?>:
+                                <span class="total-amount">0</span> <?= $modelPayment->currency ?>
+                            </div>
+
+                            <?php
+                            echo $form
+                                    ->field($modelPayment, 'amount')
+                                    ->label(false)
+                                    ->input('hidden') .
+                                $form
+                                    ->field($modelPayment, 'user_id')
+                                    ->label(false)
+                                    ->input('hidden') .
+                                $form
+                                    ->field($modelPayment, 'type')
+                                    ->label(false)
+                                    ->input('hidden') .
+                                $form
+                                    ->field($modelPayment, 'currency')
+                                    ->label(false)
+                                    ->input('hidden');
+                            ?>
+
+                            <div class="buttons-cont">
+                                <?= Html::submitButton(
+                                    Yii::t('app', 'Оплатить'),
+                                    ['class' => 'btn btn-myarredo']
+                                ) ?>
+                            </div>
+                        </div>
+                        <!-- end tarif-total-panel -->
+
                     </div>
 
                     <?php ActiveForm::end(); ?>

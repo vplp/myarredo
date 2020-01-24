@@ -30,6 +30,24 @@ h1 {
   100% {
     top: 0px; } }
 
+.btn.add-to-notepad, .price-availability .btn.btn-default {
+  font-family: 'Palatino', 'Open Sans', sans-serif;
+  color: #545454;
+  background-color: transparent;
+  border: 1px solid #E3E0D5;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 2px;
+  padding: 4px 8px;
+  transition: 0.3s;
+}
+.btn.add-to-notepad:hover, .price-availability .btn.btn-default:hover {
+  background-color: transparent;
+  border-color: #9e9e9e;
+  color: #232323;
+}
+
 .header {
   background: #F3F2F0; }
   .header .container-wrap {
@@ -447,8 +465,8 @@ h1 {
     height: auto; 
   }
 
-  /* --------------Стили для новогоднего украшения логотипа-------------- */
-  .header .logo {
+  /* --------------Стили для новогоднего украшения логотипа (для применения раскоментировать)-------------- */
+  /* .header .logo {
     position: relative;
   }
   .header .logo:after {
@@ -484,7 +502,7 @@ h1 {
   }
   .mobile-header .phone-container {
     margin-top: 10px;
-  }
+  } */
    /* ----------------конец Стили для новогоднего украшения логотипа----------------- */
 
   .mobile-header .phone-container {
@@ -2109,7 +2127,7 @@ h1 {
     display: inline-flex !important;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
   }
     .field-salerequest-user_agreement .jq-checkbox {
       border: 1px solid #ccc;
@@ -2204,6 +2222,9 @@ h1 {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
  }
   .prod-card-page .price-availability .price-sticker {
     height: 33px;
@@ -2225,7 +2246,9 @@ h1 {
     text-transform: uppercase;
     display: flex;
     align-items: center;
-    padding: 0 15px; }
+    padding: 0 15px; 
+    cursor: help;
+  }
     .prod-card-page .price-availability .availability span {
       text-transform: none;
       font-size: 16px;
@@ -9246,6 +9269,77 @@ h1 {
 }
 #checkout-form .form-group.has-error .iti {
   border: 1px solid #c82333;
+}
+
+.accountbox {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Стили для страницы - Тарифи (16.01.2020) */
+.tarifbox {
+  border: 1px solid #E3E0D5;
+  min-height: 333px;
+}
+.tarif-title {
+  font-size: 26px;
+  padding: 20px;
+  text-align: center;
+  color: #343434;
+  font-weight: 600;
+  background-color: #E3E0D5;
+}
+.tarif-subtitle {
+  font-size: 15px;
+  text-align: center;
+  color: #454545;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 8px 0;
+}
+.tarif-fotnote {
+  font-size: 14px;
+  font-weight: 100;
+  font-style: italic;
+  color: #676767;
+  text-align: center;
+  margin-top: -5px;
+  margin-bottom: 8px;
+}
+.tarif-checkpanel {
+  max-width: 160px;
+  margin: 0px auto 14px;
+}
+.tarif-checkpanel .label-check {
+  margin-left: 6px;
+  font-size: 14px;
+}
+.tarif-total-panel {
+  padding: 20px 0;
+}
+.tarif-totlal {
+  font-family: "Palatino", "Open Sans", sans-serif;
+  font-weight: normal;
+  font-size: 17px;
+  color: #565656;
+  text-transform: uppercase;
+}
+.tarif-totlal .total-amount {
+  color: #343434;
+  font-size: 20px;
+  font-weight: bold;
+}
+/* max 1199px for tarifs page */
+@media(max-width: 1199px) {
+  .tarif-title {
+    font-size: 20px;
+  }
+  .tarif-subtitle {
+    font-size: 13px;
+  }
+  .tarif-fotnote {
+    font-size: 12px;
+  }
 }
 
 /* --------------------------------------------------------------------------------------------------------- */

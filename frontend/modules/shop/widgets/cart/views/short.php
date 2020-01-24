@@ -14,5 +14,5 @@ use yii\helpers\{
     <span class="red-but">
         <i class="fa fa-heart" aria-hidden="true"></i>
     </span>
-    <span class="inscription"><?= Yii::t('app', 'My notebook') ?>: <span class="for-price"><?= $cart['items_count'] ?></span></span>
+    <span class="inscription"><?= Yii::t('app', 'My notebook') ?>: <span class="for-price"><?= count($cart['items']); ?></span></span>
 </a>
