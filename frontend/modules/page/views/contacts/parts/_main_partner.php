@@ -46,7 +46,7 @@ $mainPartner = array_shift($partners);
         </div>
     </div>
 
-    <?php if (isset($mainPartner->profile->lang->address2)) { ?>
+    <?php if (isset($mainPartner->profile->lang->address2) && $mainPartner->profile->lang->address2 != '') { ?>
         <div class="adress-mainpart">
             <div class="partner-adressbox">
 
@@ -66,16 +66,15 @@ $mainPartner = array_shift($partners);
                 </div>
 
                 <?php if ($mainPartner->profile->phone2) { ?>
-                <div class="partner-phonebox">
-                    <span class="for-phone"><?= Yii::t('app', 'Phone') ?>:</span>
-                    <?= Html::a(
-                        $mainPartner->profile->phone2,
-                        'tel:' . $mainPartner->profile->phone2,
-                        []
-                    ); ?>
-                </div>
-
-            <?php } ?>
+                    <div class="partner-phonebox">
+                        <span class="for-phone"><?= Yii::t('app', 'Phone') ?>:</span>
+                        <?= Html::a(
+                            $mainPartner->profile->phone2,
+                            'tel:' . $mainPartner->profile->phone2,
+                            []
+                        ); ?>
+                    </div>
+                <?php } ?>
 
             </div>
         </div>
