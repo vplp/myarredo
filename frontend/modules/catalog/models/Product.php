@@ -228,7 +228,7 @@ class Product extends \common\modules\catalog\models\Product
         $image = null;
 
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-            $image = $url . '/' . $image_link;
+            $image = $_SERVER['REQUEST_SCHEME'] . '://img.myarredo.' . DOMAIN . $url . '/' . $image_link;
         } else {
             $image = 'https://www.myarredo.ru/uploads/images/' . $image_link;
         }
@@ -302,7 +302,7 @@ class Product extends \common\modules\catalog\models\Product
         foreach ($images as $image) {
             if (is_file($path . '/' . $image)) {
                 $imagesSources[] = [
-                    'img' => $url . '/' . $image,
+                    'img' => $_SERVER['REQUEST_SCHEME'] . '://img.myarredo.' . DOMAIN . $url . '/' . $image,
                     'thumb' => self::getImageThumb($image, 600, 600)
                 ];
             }
