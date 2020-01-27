@@ -268,9 +268,9 @@ class Product extends \common\modules\catalog\models\Product
 
             // resize
             $ImageResize = new ImageResize();
-            $image = $ImageResize->getThumb($image, $width, $height);
+            $image = $_SERVER['REQUEST_SCHEME'] . '://img.myarredo.' . DOMAIN . $ImageResize->getThumb($image, $width, $height);
         } else {
-            $image = 'https://www.myarredo.ru/uploads/images/' . $image_link;
+            $image = 'https://img.myarredo.ru/uploads/images/' . $image_link;
         }
 
         return $image;
