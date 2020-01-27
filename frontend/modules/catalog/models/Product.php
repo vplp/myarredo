@@ -10,6 +10,8 @@ use frontend\components\ImageResize;
 /**
  * Class Product
  *
+ * @property Samples[] $samples
+ *
  * @package frontend\modules\catalog\models
  */
 class Product extends \common\modules\catalog\models\Product
@@ -127,12 +129,12 @@ class Product extends \common\modules\catalog\models\Product
      * @return \yii\db\ActiveQuery
      * @throws \yii\base\InvalidConfigException
      */
-    public function getSamples()
-    {
-        return $this
-            ->hasMany(Samples::class, ['id' => 'samples_id'])
-            ->viaTable(ProductRelSamples::tableName(), ['catalog_item_id' => 'id']);
-    }
+//    public function getSamples()
+//    {
+//        return $this
+//            ->hasMany(Samples::class, ['id' => 'samples_id'])
+//            ->viaTable(ProductRelSamples::tableName(), ['catalog_item_id' => 'id']);
+//    }
 
     /**
      * @param $alias

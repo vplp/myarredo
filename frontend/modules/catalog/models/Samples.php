@@ -2,6 +2,8 @@
 
 namespace frontend\modules\catalog\models;
 
+use Yii;
+
 /**
  * Class Samples
  *
@@ -46,7 +48,7 @@ class Samples extends \common\modules\catalog\models\Samples
      */
     public static function findBase()
     {
-        return parent::findBase()->enabled();
+        return parent::findBase();
     }
 
     /**

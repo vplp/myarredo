@@ -65,9 +65,9 @@ use common\modules\user\models\{
  *
  * @property ProductLang $title
  * @property ProductLang $lang
- * @property ProductRelCategory[] $category
- * @property ProductRelSubTypes[] $subTypes
- * @property ProductRelSamples[] $samples
+ * @property Category[] $category
+ * @property SubTypes[] $subTypes
+ * @property Samples[] $samples
  * @property Factory $factory
  * @property ProductRelFactoryCatalogsFiles[] $factoryCatalogsFiles
  * @property ProductRelFactoryPricesFiles[] $factoryPricesFiles

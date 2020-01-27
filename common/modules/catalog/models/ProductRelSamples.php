@@ -16,7 +16,8 @@ use common\modules\catalog\Catalog;
 class ProductRelSamples extends ActiveRecord
 {
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
