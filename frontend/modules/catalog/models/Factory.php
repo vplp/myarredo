@@ -159,7 +159,7 @@ class Factory extends \common\modules\catalog\models\Factory
         $image = null;
 
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-            $image = $url . '/' . $image_link;
+            $image = 'https://img.myarredo.' . DOMAIN . $url . '/' . $image_link;
         }
 
         return $image;
@@ -183,7 +183,7 @@ class Factory extends \common\modules\catalog\models\Factory
 
             // resize
             $ImageResize = new ImageResize();
-            $image = $ImageResize->getThumb($image, 150, 150);
+            $image = 'https://img.myarredo.' . DOMAIN . $ImageResize->getThumb($image, 150, 150);
         }
 
         return $image;

@@ -48,4 +48,24 @@ class Samples extends \common\modules\catalog\models\Samples
     {
         return parent::findBase()->enabled();
     }
+
+    /**
+     * @return null|string
+     */
+    public function getImageLink()
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getSamplesUploadPath();
+        $url = $module->getSamplesUploadUrl();
+
+        $image = null;
+
+        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
+            $image = 'https://img.myarredo.' . DOMAIN . $url . '/' . $this->image_link;
+        }
+
+        return $image;
+    }
 }

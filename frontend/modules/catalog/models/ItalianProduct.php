@@ -168,6 +168,8 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
     /**
      * @param $alias
      * @return bool
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function isPublished($alias)
     {
@@ -213,7 +215,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
         $image = null;
 
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-            $image = $url . '/' . $image_link;
+            $image = 'https://img.myarredo.' . DOMAIN . $url . '/' . $image_link;
         }
 
         return $image;
@@ -251,7 +253,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
 
             // resize
             $ImageResize = new ImageResize();
-            $image = $ImageResize->getThumb($image, $width, $height);
+            $image = 'https://img.myarredo.' . DOMAIN . $ImageResize->getThumb($image, $width, $height);
         }
 
         return $image;
@@ -285,7 +287,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
         foreach ($images as $image) {
             if (is_file($path . '/' . $image)) {
                 $imagesSources[] = [
-                    'img' => $url . '/' . $image,
+                    'img' => 'https://img.myarredo.' . DOMAIN . $url . '/' . $image,
                     'thumb' => self::getImageThumb($image, 600, 600)
                 ];
             }

@@ -146,7 +146,7 @@ class Category extends \common\modules\catalog\models\Category
         $image = null;
 
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-            $image = $url . '/' . $image_link;
+            $image = 'https://img.myarredo.' . DOMAIN . $url . '/' . $image_link;
         }
 
         return $image;
@@ -184,7 +184,7 @@ class Category extends \common\modules\catalog\models\Category
 
             // resize
             $ImageResize = new ImageResize();
-            $image = $ImageResize->getThumb($image, 100, 100);
+            $image = 'https://img.myarredo.' . DOMAIN . $ImageResize->getThumb($image, 100, 100);
         }
 
         return $image;

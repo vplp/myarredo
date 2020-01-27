@@ -29,7 +29,8 @@ use common\actions\upload\UploadBehavior;
 class Samples extends ActiveRecord
 {
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -95,7 +96,7 @@ class Samples extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'factory_id' => Yii::t('app','Factory'),
+            'factory_id' => Yii::t('app', 'Factory'),
             'created_at' => Yii::t('app', 'Create time'),
             'updated_at' => Yii::t('app', 'Update time'),
             'published' => Yii::t('app', 'Published'),
@@ -141,9 +142,8 @@ class Samples extends ActiveRecord
         $url = $module->getSamplesUploadUrl();
 
         $image = null;
-        if (YII_ENV_DEV && !empty($this->image_link)){
-            $image = 'https://www.myarredo.ru/uploads/images/' . $this->image_link;
-        } elseif (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
+
+        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
             $image = $url . '/' . $this->image_link;
         }
 

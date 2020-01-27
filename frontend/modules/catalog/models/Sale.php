@@ -174,7 +174,7 @@ class Sale extends \common\modules\catalog\models\Sale
         $image = null;
 
         if (!empty($image_link) && is_file($path . '/' . $image_link)) {
-            $image = $url . '/' . $image_link;
+            $image = 'https://img.myarredo.' . DOMAIN . $url . '/' . $image_link;
         }
 
         return $image;
@@ -212,7 +212,7 @@ class Sale extends \common\modules\catalog\models\Sale
 
             // resize
             $ImageResize = new ImageResize();
-            $image = $ImageResize->getThumb($image, $width, $height);
+            $image = 'https://img.myarredo.' . DOMAIN . $ImageResize->getThumb($image, $width, $height);
         }
 
         return $image;
@@ -252,7 +252,7 @@ class Sale extends \common\modules\catalog\models\Sale
         foreach ($images as $image) {
             if (is_file($path . '/' . $image)) {
                 $imagesSources[] = [
-                    'img' => $url . '/' . $image,
+                    'img' => 'https://img.myarredo.' . DOMAIN . $url . '/' . $image,
                     'thumb' => self::getImageThumb($image, 600, 600)
                 ];
             }
