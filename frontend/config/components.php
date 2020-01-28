@@ -55,7 +55,7 @@ return [
         //потрібно для верстальника
         //обовязково очистити директорію /frontend/assets
         //'linkAssets' => true,
-        'baseUrl' =>  $_SERVER['REQUEST_SCHEME'] . '://css.myarredo.' . DOMAIN . '/assets',
+        //'baseUrl' =>  $_SERVER['REQUEST_SCHEME'] . '://css.myarredo.' . DOMAIN . '/assets',
         'bundles' => [
             'yii\web\YiiAsset' => [
                 'cssOptions' => [
