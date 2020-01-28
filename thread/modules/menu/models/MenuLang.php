@@ -20,9 +20,9 @@ use thread\app\base\models\ActiveRecordLang;
  */
 class MenuLang extends ActiveRecordLang
 {
-
     /**
-     * @return string
+     * @return object|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -46,7 +46,7 @@ class MenuLang extends ActiveRecordLang
             parent::rules(),
             [
                 [['title'], 'required'],
-                ['rid', 'exist', 'targetClass' => MenuItem::class, 'targetAttribute' => 'id'],
+                ['rid', 'exist', 'targetClass' => Menu::class, 'targetAttribute' => 'id'],
                 ['title', 'string', 'max' => 255],
             ]
         );

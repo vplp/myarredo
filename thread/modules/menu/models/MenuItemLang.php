@@ -20,9 +20,9 @@ use thread\app\base\models\ActiveRecordLang;
  */
 class MenuItemLang extends ActiveRecordLang
 {
-
     /**
-     * @return string
+     * @return object|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
