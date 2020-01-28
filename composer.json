@@ -55,8 +55,7 @@
     "yiisoft/yii2-debug": "~2.0.0",
     "yiisoft/yii2-gii": "*",
     "yiisoft/yii2-faker": "*",
-    "cedx/yii2-mustache": "^0.5.2",
-    "squizlabs/php_codesniffer": "*"
+    "cedx/yii2-mustache": "^0.5.2"
   },
   "config": {
     "fxp-asset": {
@@ -67,12 +66,8 @@
     },
     "process-timeout": 1800
   },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://asset-packagist.org"
-    }
-  ],
+  "extra": {
+  },
   "scripts": {
     "post-install-cmd": "php init --env=Development --overwrite=n"
   }
