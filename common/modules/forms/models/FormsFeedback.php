@@ -6,7 +6,7 @@ use Yii;
 //
 use thread\app\base\models\ActiveRecord;
 //
-use common\modules\forms\Forms as FormsModule;
+use common\modules\forms\FormsModule;
 use common\modules\user\models\User;
 
 /**
@@ -23,6 +23,8 @@ use common\modules\user\models\User;
  * @property integer $published
  * @property integer $deleted
  *
+ * @property string attachment
+ *
  * @property User $partner
  *
  * @package common\modules\forms\models
@@ -30,7 +32,10 @@ use common\modules\user\models\User;
 class FormsFeedback extends ActiveRecord
 {
     public $user_agreement;
+
     public $reCaptcha;
+
+    public $attachment;
 
     /**
      * @return string
@@ -61,6 +66,12 @@ class FormsFeedback extends ActiveRecord
                 'on' => ['frontend'],
                 'requiredValue' => 1,
                 'message' => Yii::t('app', 'Вы должны ознакомиться и согласиться')
+            ],
+            [
+                ['attachment'],
+                'file',
+                'skipOnEmpty' => false,
+                'extensions' => 'rar, zip, doc, docx, xlsx, xls, jpeg, png'
             ],
             [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::class]
         ];
@@ -130,6 +141,6 @@ class FormsFeedback extends ActiveRecord
      */
     public static function findBase()
     {
-        return self::find();
+        return self::find()->orderBy(self::tableName() . '.id DESC');
     }
 }

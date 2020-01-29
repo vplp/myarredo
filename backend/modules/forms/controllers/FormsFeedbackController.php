@@ -3,10 +3,10 @@
 namespace backend\modules\forms\controllers;
 
 use yii\helpers\ArrayHelper;
-
+//
 use thread\actions\Update;
 use thread\app\base\controllers\BackendController;
-
+//
 use backend\modules\forms\models\{
     FormsFeedback, search\FormsFeedback as SearchFormsFeedback
 };
@@ -18,10 +18,10 @@ use backend\modules\forms\models\{
  */
 class FormsFeedbackController extends BackendController
 {
+    public $title = 'Feedback';
+    public $name = 'Feedback';
     public $model = FormsFeedback::class;
-    public $title = 'FormsFeedback';
     public $filterModel = SearchFormsFeedback::class;
-    public $name = 'FormsFeedback';
 
     public function actions()
     {
@@ -29,7 +29,7 @@ class FormsFeedbackController extends BackendController
             parent::actions(),
             [
                 'list' => [
-                    'layout' => "@app/layouts/base"
+                    'layout' => "list"
                 ],
                 'create' => false,
                 'update' => [
@@ -38,5 +38,4 @@ class FormsFeedbackController extends BackendController
             ]
         );
     }
-
 }

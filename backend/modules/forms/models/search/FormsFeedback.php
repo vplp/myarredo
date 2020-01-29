@@ -10,7 +10,7 @@ use thread\app\model\interfaces\search\BaseBackendSearchModel;
 use thread\app\base\models\query\ActiveQuery;
 //
 use backend\modules\forms\models\FormsFeedback as FormsFeedbackModel;
-use backend\modules\forms\Forms as FormsModule;
+use backend\modules\forms\FormsModule;
 
 /**
  * Class FormsFeedback

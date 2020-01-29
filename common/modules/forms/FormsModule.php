@@ -7,11 +7,11 @@ use Yii;
 use thread\app\base\module\abstracts\Module as aModule;
 
 /**
- * Class Forms
+ * Class FormsModule
  *
  * @package common\modules\forms
  */
-class Forms extends aModule
+class FormsModule extends aModule
 {
     public $name = 'forms';
     public $translationsBasePath = __DIR__ . '/messages';

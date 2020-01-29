@@ -3,11 +3,11 @@
 namespace frontend\modules\forms;
 
 /**
- * Class Forms
+ * Class FormsModule
  *
  * @package frontend\modules\forms
  */
-class Forms extends \common\modules\forms\Forms
+class FormsModule extends \common\modules\forms\FormsModule
 {
 
 }

@@ -65,7 +65,8 @@ class SaleOfferPriceForm extends Widget
                                 'modelSale' => $modelSale,
                             ]
                         )
-                        ->setTo([$modelSale->user['email'], 'info@myarredo.ru'])
+                        ->setTo($modelSale->user['email'])
+                        ->setCc('info@myarredo.ru')
                         ->setSubject('Пользователь предложил свою цену на товар')
                         ->send();
 

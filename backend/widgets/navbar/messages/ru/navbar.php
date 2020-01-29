@@ -59,4 +59,6 @@ return [
     'Information for partners' => 'Информация для партнеров',
     'Sale request' => 'Предложения цены',
     'Sale in Italy request' => 'Предложения цены в Италии',
+    'Forms' => 'Формы',
+    'Feedback' => 'Обратная связь'
 ];

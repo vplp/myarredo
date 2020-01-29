@@ -122,14 +122,21 @@ $mainPartner = array_shift($partners);
         </div>
     <?php } ?>
 
-    <div class="partner-formbox hidden">
-        <?= FormFeedback::widget([
-            'partner_id' => $mainPartner->id,
-            'view' => 'form_feedback_partner'
-        ]) ?>
+    <?= Html::a(Yii::t('app', 'Написать салону'), 'javascript:void(0);', [
+        'class' => 'btn btn-success big',
+        'data-toggle' => 'modal',
+        'data-target' => '#modalFormFeedbackPartner'
+    ]); ?>
+
+    <div class="partner-formbox">
     </div>
 </div>
 <div class="one-cont double-cont map-cont contact-mapbox">
     <?= MainPartnerMap::widget(['id' => $mainPartner->id]) ?>
 </div>
 <!-- end main partner -->
+
+<?= FormFeedback::widget([
+    'partner_id' => $mainPartner->id,
+    'view' => 'form_feedback_partner_popup'
+]) ?>

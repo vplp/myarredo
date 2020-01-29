@@ -5,6 +5,7 @@ namespace frontend\modules\forms\controllers;
 use Yii;
 use yii\log\Logger;
 use yii\base\Exception;
+use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
 //
 use frontend\components\BaseController;
@@ -106,16 +107,18 @@ class FormsController extends BaseController
             try {
                 $model->published = '1';
 
+                $model->attachment = UploadedFile::getInstances($model, 'attachment');
+
                 $save = $model->save();
 
                 $save ? $transaction->commit() : $transaction->rollBack();
 
                 if ($save) {
-                    $subject = 'Связаться с салоном';
+                    $subject = Yii::t('app', 'Написать салону');
                     /**
                      * send letter
                      */
-                    Yii::$app
+                    $letter = Yii::$app
                         ->mailer
                         ->compose(
                             '@app/modules/forms/mail/form_feedback_letter.php',
@@ -125,19 +128,36 @@ class FormsController extends BaseController
                             ]
                         )
                         ->setTo($model->partner->email)
-                        ->setSubject($subject)
-                        ->send();
+                        ->setCc('info@myarredo.ru')
+                        ->setSubject($subject);
 
-                    /**
-                     * message
-                     */
-                    Yii::$app->session->setFlash(
-                        'success',
-                        Yii::t('app', 'Отправлено')
-                    );
-
-                    return $this->redirect(Yii::$app->request->referrer);
+                    if ($model->attachment) {
+                        foreach ($model->attachment as $file) {
+                            $filename = Yii::getAlias('@uploads') . '/' . $file->baseName . '.' . $file->extension;
+                            $file->saveAs($filename);
+                            $letter->attach($filename);
+                        }
+                    }
                 }
+
+                $letter->send();
+
+                if ($model->attachment) {
+                    foreach ($model->attachment as $file) {
+                        $filename = Yii::getAlias('@uploads') . '/' . $file->baseName . '.' . $file->extension;
+                        unlink($filename);
+                    }
+                }
+
+                /**
+                 * message
+                 */
+                Yii::$app->session->setFlash(
+                    'success',
+                    Yii::t('app', 'Отправлено')
+                );
+
+                return $this->redirect(Yii::$app->request->referrer);
             } catch (Exception $e) {
                 Yii::getLogger()->log($e->getMessage(), Logger::LEVEL_ERROR);
                 $transaction->rollBack();

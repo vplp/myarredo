@@ -40,6 +40,9 @@ return [
     'banner' => [
         'class' => \backend\modules\banner\BannerModule::class,
     ],
+    'forms' => [
+        'class' => \backend\modules\forms\FormsModule::class,
+    ],
     'payment' => [
         'class' => \backend\modules\payment\PaymentModule::class,
     ],

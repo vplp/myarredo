@@ -1,7 +1,7 @@
 <?php
 
-use \backend\widgets\gridColumns\ActionColumn;
-use \backend\widgets\GridView;
+use backend\widgets\GridView;
+use backend\widgets\gridColumns\ActionColumn;
 
 /**
  * @var \backend\modules\forms\models\FormsFeedback $model

@@ -49,7 +49,7 @@ return [
         'class' => \frontend\modules\banner\BannerModule::class,
     ],
     'forms' => [
-        'class' => \frontend\modules\forms\Forms::class,
+        'class' => \frontend\modules\forms\FormsModule::class,
     ],
     'payment' => [
         'class' => \frontend\modules\payment\PaymentModule::class,

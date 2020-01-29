@@ -14,7 +14,6 @@ use thread\actions\{
     Create, ListModel, Update
 };
 
-
 /**
  * Class ItalianProductRequestController
  *
@@ -56,9 +55,11 @@ class ItalianProductRequestController extends BackendController
         ];
     }
 
+    /**
+     * @return array
+     */
     public function actions()
     {
-
         return ArrayHelper::merge(parent::actions(), [
             'list' => [
                 'class' => ListModel::class,
