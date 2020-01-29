@@ -1,9 +1,6 @@
 <?php
 
-$exp = explode('.', $_SERVER['HTTP_HOST']);
-$host = $exp[2];
-
-defined('DOMAIN') or define('DOMAIN', $host);
+defined('DOMAIN') or define('DOMAIN', 'ru');
 
 use yii\helpers\ArrayHelper;
 use frontend\modules\catalog\models\{
