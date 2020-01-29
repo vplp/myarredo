@@ -1,5 +1,10 @@
 <?php
 
+$exp = explode('.', $_SERVER['HTTP_HOST']);
+$host = $exp[2];
+
+defined('DOMAIN') or define('DOMAIN', $host);
+
 use yii\helpers\ArrayHelper;
 use frontend\modules\catalog\models\{
     Category, Types
