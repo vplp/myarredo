@@ -52,9 +52,10 @@ class Samples extends \common\modules\catalog\models\Samples
     }
 
     /**
-     * @return null|string
+     * @param string $image_link
+     * @return string|null
      */
-    public function getImageLink()
+    public static function getImage($image_link = '')
     {
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
@@ -64,8 +65,8 @@ class Samples extends \common\modules\catalog\models\Samples
 
         $image = null;
 
-        if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
-            $image = 'https://img.myarredo.' . DOMAIN . $url . '/' . $this->image_link;
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = 'https://img.myarredo.' . DOMAIN . $url . '/' . $image_link;
         }
 
         return $image;

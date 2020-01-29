@@ -14,8 +14,8 @@ use frontend\modules\catalog\models\Samples;
         <?php foreach ($samples as $model) { ?>
             <div class="col-md-3">
                 <?= Html::a(
-                    Html::img($model->getImageLink()),
-                    $model->getImageLink(),
+                    Html::img(Samples::getImage($model['image_link'])),
+                    Samples::getImage($model['image_link']),
                     ['class' => 'show-modal']
                 ) ?>
             </div>
