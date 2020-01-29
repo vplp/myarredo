@@ -100,6 +100,12 @@ $mainPartner = array_shift($partners);
         </div>
     <?php } ?>
 
+    <?= Html::a(Yii::t('app', 'Написать салону'), 'javascript:void(0);', [
+        'class' => 'btn btn-success big',
+        'data-toggle' => 'modal',
+        'data-target' => '#modalFormFeedbackPartner'
+    ]); ?>
+
     <?php if ($mainPartner->profile->getImageLink('image_salon') || $mainPartner->profile->getImageLink('image_salon2')) { ?>
         <div class="partner-imagepart">
             <!-- slider container -->
@@ -121,12 +127,6 @@ $mainPartner = array_shift($partners);
             <!-- end slider container -->
         </div>
     <?php } ?>
-
-    <?= Html::a(Yii::t('app', 'Написать салону'), 'javascript:void(0);', [
-        'class' => 'btn btn-success big',
-        'data-toggle' => 'modal',
-        'data-target' => '#modalFormFeedbackPartner'
-    ]); ?>
 
     <div class="partner-formbox">
     </div>
