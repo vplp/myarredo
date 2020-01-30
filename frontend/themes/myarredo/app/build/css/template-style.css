@@ -31,7 +31,7 @@ h1 {
     top: 0px; } }
 
 .btn.add-to-notepad, .price-availability .btn.btn-default {
-  font-family: 'Palatino', 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: #545454;
   background-color: transparent;
   border: 1px solid #E3E0D5;
@@ -2119,7 +2119,8 @@ h1 {
   .field-italianproduct-published  .jq-checkbox,
   .field-cartcustomerform-user_agreement .jq-checkbox,
   .feedback-box .jq-checkbox,
-  .largex-container .jq-checkbox {
+  .largex-container .jq-checkbox,
+  .jq-checkbox {
     width: 24px;
     height: 24px;
     background: #FFFFFF;
@@ -2137,7 +2138,8 @@ h1 {
     .field-italianproduct-published .jq-checkbox.checked .jq-checkbox__div,
     .field-cartcustomerform-user_agreement .jq-checkbox.checked .jq-checkbox__div,
     .feedback-box .jq-checkbox.checked .jq-checkbox__div,
-    .largex-container .jq-checkbox.checked .jq-checkbox__div {
+    .largex-container .jq-checkbox.checked .jq-checkbox__div,
+    .jq-checkbox.checked .jq-checkbox__div  {
       background: none;
       box-shadow: none;
       margin: 0;
@@ -2149,7 +2151,8 @@ h1 {
       .field-italianproduct-published .jq-checkbox.checked .jq-checkbox__div:after,
       .field-cartcustomerform-user_agreement .jq-checkbox.checked .jq-checkbox__div:after,
       .feedback-box .jq-checkbox.checked .jq-checkbox__div:after,
-      .largex-container .jq-checkbox.checked .jq-checkbox__div:after {
+      .largex-container .jq-checkbox.checked .jq-checkbox__div:after,
+      .jq-checkbox.checked .jq-checkbox__div:after {
         content: '\f00c';
         font-family: 'FontAwesome';
         position: absolute;
@@ -3070,6 +3073,17 @@ h1 {
      }
     .concact-page .one-cont.double-cont > div {
       width: 50%; 
+    }
+    .concact-page .one-cont a.btn-myarredo {
+      display: inline-block;
+      color: #ffffff;
+      padding: 7px 16px;
+      text-transform: uppercase;
+    }
+    .concact-page .one-cont.double-cont>div.send-salon-panel {
+      width: 100%;
+      text-align: center;
+      padding: 6px 10px 12px;
     }
     .concact-page .one-cont.double-cont > div.top-mainpart,
     .concact-page .one-cont.double-cont > div.bottom-mainpart,
@@ -7427,6 +7441,9 @@ h1 {
   color: #ffffff;
 } */
 
+#factory-modal .alphabet-tab-cont>div a  {
+  justify-content: flex-start;
+}
 #factory-modal .alphabet-tab-cont>div a:hover {
   color: #37332F;
 }
@@ -9232,6 +9249,9 @@ h1 {
     position: relative;
     z-index: 1;
   }
+  body.modal-open main {
+    z-index: 2;
+  }
   #top.header .container-wrap,
   .footer .container-wrap,
   .container-wrap {
@@ -9274,6 +9294,12 @@ h1 {
 .accountbox {
   max-width: 1400px;
   margin: 0 auto;
+}
+.modal-open .modal {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+body>.modal-backdrop.fade.in{
+  display: none;
 }
 
 /* Стили для страницы - Тарифи (16.01.2020) */

@@ -99,12 +99,14 @@ $mainPartner = array_shift($partners);
             </div>
         </div>
     <?php } ?>
-
-    <?= Html::a(Yii::t('app', 'Написать салону'), 'javascript:void(0);', [
-        'class' => 'btn btn-success big',
-        'data-toggle' => 'modal',
-        'data-target' => '#modalFormFeedbackPartner'
-    ]); ?>
+    
+    <div class="send-salon-panel">
+        <?= Html::a(Yii::t('app', 'Написать салону'), 'javascript:void(0);', [
+            'class' => 'btn btn-myarredo',
+            'data-toggle' => 'modal',
+            'data-target' => '#modalFormFeedbackPartner'
+        ]); ?>
+    </div>
 
     <?php if ($mainPartner->profile->getImageLink('image_salon') || $mainPartner->profile->getImageLink('image_salon2')) { ?>
         <div class="partner-imagepart">
