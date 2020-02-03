@@ -304,6 +304,14 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
     }
 
     /**
+     * @return string
+     */
+    public function getTitleForList()
+    {
+        return (isset($this->lang->title_for_list)) ? $this->lang->title_for_list : "{{-}}";
+    }
+
+    /**
      * Static title
      *
      * @param $model

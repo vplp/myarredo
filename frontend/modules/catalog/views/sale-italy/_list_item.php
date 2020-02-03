@@ -28,7 +28,7 @@ use frontend\modules\catalog\models\ItalianProduct;
             <?= Html::img(
                 '',
                 [
-                    'alt' => $model->getTitle(),
+                    'alt' => $model->getTitleForList(),
                     'itemprop' => 'contentUrl',
                     'class' => 'lazy',
                     'data-src' => ItalianProduct::getImageThumb($model['image_link'])
@@ -41,7 +41,7 @@ use frontend\modules\catalog\models\ItalianProduct;
                 <?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name'] ?>
             </div>
             <div class="tile-prod-name" itemprop="name">
-                <?= $model->getTitle() ?>
+                <?= $model->getTitleForList() ?>
             </div>
         </div>
 
