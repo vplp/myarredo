@@ -845,4 +845,82 @@ class CatalogProductController extends Controller
 
         $this->stdout("Translate Product: finish. \n", Console::FG_GREEN);
     }
+
+    /**
+     * @param string $mark
+     * @throws Exception
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionGenerateTitle($mark = 'mark1')
+    {
+        $this->stdout("GenerateTitle Product: start. \n", Console::FG_GREEN);
+
+        // products
+        $models = Product::find()
+            ->andFilterWhere([
+                $mark => '0',
+            ])
+            ->limit(50)
+            ->orderBy(Product::tableName() . '.id ASC')
+            ->all();
+
+        // languages
+        $modelLanguage = new Language();
+        $languages = $modelLanguage->getLanguages();
+
+        foreach ($models as $model) {
+            /** @var PDO $transaction */
+            /** @var $model Product */
+
+            $saveLang = [];
+
+            $this->stdout("ID = " . $model->id . " \n", Console::FG_GREEN);
+
+            foreach ($languages as $language) {
+                Yii::$app->language = $language['local'];
+                $currentLanguage = Yii::$app->language;
+
+                /** @var $modelLang ProductLang */
+                $modelLang = ProductLang::find()
+                    ->where([
+                        'rid' => $model->id,
+                    ])
+                    ->one();
+
+                if ($modelLang != null) {
+                    $transaction = $modelLang::getDb()->beginTransaction();
+                    try {
+                        $modelLang->setScenario('frontend');
+
+                        $modelLang->title = '';
+                        //$modelLang->title_for_list = '';
+
+                        if ($saveLang[] = intval($modelLang->save())) {
+                            $transaction->commit();
+                            $this->stdout("save " . $modelLang->title_for_list . " \n", Console::FG_GREEN);
+                        } else {
+                            foreach ($modelLang->errors as $attribute => $errors) {
+                                $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
+                            }
+                        }
+                    } catch (Exception $e) {
+                        $transaction->rollBack();
+                        throw new Exception($e);
+                    }
+                }
+            }
+
+//            $model->setScenario($mark);
+//            $model->$mark = '1';
+//
+//            if ($model->save() && !in_array(0, array_values($saveLang))) {
+//                $this->stdout("generate ID = " . $model->id . " \n", Console::FG_GREEN);
+//            }
+//
+//            $this->stdout("-------------------------------" . " \n", Console::FG_GREEN);
+        }
+
+        $this->stdout("GenerateTitle Product: finish. \n", Console::FG_GREEN);
+    }
 }

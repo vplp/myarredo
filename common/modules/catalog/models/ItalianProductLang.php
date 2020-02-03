@@ -65,7 +65,7 @@ class ItalianProductLang extends ActiveRecordLang
     {
         return [
             'setImages' => [],
-            'backend' => ['title', 'title_for_list', 'description', 'content', 'defects', 'material'],
+            'backend' => ['title', 'title_for_list', 'description', 'defects', 'material'],
             'frontend' => ['title', 'title_for_list', 'description', 'defects', 'material'],
         ];
     }
@@ -98,7 +98,7 @@ class ItalianProductLang extends ActiveRecordLang
         }
 
         if ($this->title_for_list == '') {
-            $this->title = (!empty($this->parent->types->lang) ? $this->parent->types->lang->title : '')
+            $this->title_for_list = (!empty($this->parent->types->lang) ? $this->parent->types->lang->title : '')
                 . (($this->parent->article) ? ' ' . $this->parent->article : '');
         }
 
