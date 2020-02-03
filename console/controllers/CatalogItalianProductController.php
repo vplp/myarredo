@@ -361,7 +361,7 @@ class CatalogItalianProductController extends Controller
             ->andFilterWhere([
                 $mark => '0',
             ])
-            ->limit(50)
+            ->limit(200)
             ->orderBy(ItalianProduct::tableName() . '.id ASC')
             ->all();
 
