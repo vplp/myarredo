@@ -269,38 +269,8 @@ $this->title = $this->context->title;
 
                             <?php if (!$model['removed']) { ?>
                                 <div class="best-price-form">
-
                                     <h3><?= Yii::t('app', 'Заполните форму - получите лучшую цену на этот товар') ?></h3>
-
                                     <?= RequestPrice::widget(['product_id' => $model['id']]) ?>
-
-                                    <?php
-                                    // Кнопка - "добавить в блокнот", 17.01.2020 была перенесена в другое место, здесь закоментирована, со временем этот код можно удалить
-                                    // if (!in_array(Yii::$app->controller->action->id, ['product'])) {
-                                    //     if (!in_array($model['id'], $products_id)) {
-                                    //         echo Html::a(
-                                    //             Yii::t('app', 'Отложить в блокнот'),
-                                    //             'javascript:void(0);',
-                                    //             [
-                                    //                 'class' => 'add-to-notepad btn btn-default big',
-                                    //                 'data-id' => $model['id'],
-                                    //                 'data-toggle' => 'modal',
-                                    //                 'data-target' => '#myModal',
-                                    //                 'data-message' => Yii::t('app', 'В блокноте')
-                                    //             ]
-                                    //         );
-                                    //     } else {
-                                    //         echo Html::a(
-                                    //             Yii::t('app', 'В блокноте'),
-                                    //             'javascript:void(0);',
-                                    //             [
-                                    //                 'class' => 'btn btn-default big',
-                                    //             ]
-                                    //         );
-                                    //     }
-                                    // }
-                                    ?>
-
                                 </div>
 
                             <?php } else { ?>
@@ -401,57 +371,14 @@ $this->title = $this->context->title;
                         </div>
                     </div>
 
-                    <?php /*if (!$model['removed']): ?>
-
-                <div class="recommendation">
-                    <div class="container large-container">
-                        <h3 class="offer_title">Выберите любой понравившийся товар и получите на него лучшую цену!</h3>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="img-cont">
-                                    <img src="<?= $bundle->baseUrl ?>/img/pictures/prod_thumb1.png" alt="">
-                                </div>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="feedback-flex flex s-around">
-                                    <div class="metr">Меня заинтересовал товар</div>
-                                    <form role="form" class="flex-form">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="product"
-                                                   value="Буфет Momenti Arte 0114" readonly>
-                                        </div>
-                                        <h4>Мои контактные данные:*</h4>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Имя">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="E-mail">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="+7 (___) ___-__-__">
-                                        </div>
-                                        <button type="submit" class="btn btn-success">Жду лучшую цену</button>
-                                    </form>
-                                </div>
-                                <div class="aft-text">Портал MyArredo гарантирует конфиденциальность личной информации
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            <?php endif; */ ?>
-
-                    <?php
-                    if ($model['collections_id']) {
+                    <?php if ($model['collections_id']) {
                         echo $this->render('parts/_product_by_collection', [
                             'collection' => $model['collection'],
                             'models' => $model->getProductByCollection($model['collections_id'], $model['catalog_type_id'])
                         ]);
                     } ?>
 
-                    <?php
-                    if ($model['collections_id']) {
+                    <?php if ($model['collections_id']) {
                         echo $this->render('parts/_product_by_factory', [
                             'factory' => $model['factory'],
                             'types' => $model['types'],
