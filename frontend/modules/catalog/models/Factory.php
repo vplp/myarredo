@@ -578,7 +578,8 @@ class Factory extends \common\modules\catalog\models\Factory
             return self::getDb()->createCommand("SELECT
                 COUNT(collection.id) as count, 
                 collection.id,
-                collection.title
+                collection.title,
+                collection.year
             FROM
                 " . Collection::tableName() . " collection
             INNER JOIN " . Product::tableName() . " product 

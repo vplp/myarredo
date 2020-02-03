@@ -4,6 +4,14 @@ use yii\helpers\{
     Html, Url
 };
 use backend\app\bootstrap\ActiveForm;
+use backend\modules\catalog\models\{
+    Collection
+};
+
+/**
+ * @var $form ActiveForm
+ * @var $model Collection
+ */
 
 $this->context->actionListLinkStatus = Url::to(
     [
@@ -18,7 +26,8 @@ $this->context->actionListLinkStatus = Url::to(
 <?= $form->submit($model, $this) ?>
 <?= Html::activeHiddenInput($model, 'factory_id', ['value' => $this->context->factory->id]) ?>
 <?= Html::activeHiddenInput($model, 'first_letter') ?>
-<?= $form->text_line_lang($model, 'title') ?>
+<?= $form->text_line($model, 'title') ?>
+<?= $form->text_line($model, 'year') ?>
 <?= $form->switcher($model, 'published') ?>
 <?= $form->submit($model, $this) ?>
 

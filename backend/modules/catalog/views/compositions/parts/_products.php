@@ -8,11 +8,15 @@ use kartik\widgets\Select2;
 use backend\modules\catalog\models\{
     Factory, Types
 };
+use backend\app\bootstrap\ActiveForm;
+use backend\modules\catalog\models\{
+    Composition, CompositionLang
+};
 
 /**
- * @var \backend\modules\catalog\models\Composition $model
- * @var \backend\modules\catalog\models\CompositionLang $modelLang
- * @var \backend\app\bootstrap\ActiveForm $form
+ * @var $form ActiveForm
+ * @var $model Composition
+ * @var $modelLang CompositionLang
  */
 
 ?>

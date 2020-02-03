@@ -25,7 +25,7 @@ class Collection extends CollectionModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
-            [['factory_id'], 'integer'],
+            [['factory_id', 'year'], 'integer'],
             [['title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];

@@ -4,18 +4,20 @@ use backend\modules\catalog\models\{
     ProductRelSpecification, Specification
 };
 use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;
-//
 use backend\widgets\TreeGrid;
+use backend\app\bootstrap\ActiveForm;
+use backend\modules\catalog\models\{
+    Composition, CompositionLang
+};
 
-/* @var $this yii\web\View */
-/* @var $form yii\widgets\ActiveForm */
-/* @var $model backend\modules\catalog\models\Product */
+/**
+ * @var $form ActiveForm
+ * @var $model Composition
+ * @var $modelLang CompositionLang
+ */
 
-?>
-
-<?php if (!$model->isNewRecord): ?>
-
-    <?= TreeGrid::widget([
+if (!$model->isNewRecord) {
+    echo TreeGrid::widget([
         'dataProvider' => (new Specification())->search(Yii::$app->request->queryParams),
         'keyColumnName' => 'id',
         'parentRootValue' => 9,
@@ -37,6 +39,5 @@ use backend\widgets\TreeGrid;
                 'namespace' => ProductRelSpecification::className(),
             ],
         ]
-    ]); ?>
-
-<?php endif; ?>
+    ]);
+}

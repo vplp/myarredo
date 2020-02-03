@@ -4,15 +4,12 @@ use yii\grid\GridView;
 use yii\helpers\{
     Url, Html
 };
-use backend\modules\catalog\models\Collection;
+//
 use backend\app\bootstrap\ActiveForm;
-use backend\modules\catalog\models\{
-    Factory, FactoryLang
-};
+use backend\modules\catalog\models\Collection;
 
 /**
- * @var $model Factory
- * @var $modelLang FactoryLang
+ * @var $model Collection
  * @var $form ActiveForm
  */
 
@@ -25,8 +22,16 @@ echo GridView::widget([
             'label' => Yii::t('app', 'Title'),
         ],
         [
+            'attribute' => 'year',
+            'value' => function ($model) {
+                /** @var $model Collection */
+                return $model->year > 0 ? $model->year : '';
+            },
+        ],
+        [
             'attribute' => 'updated_at',
             'value' => function ($model) {
+                /** @var $model Collection */
                 return date('j.m.Y H:i', $model->updated_at);
             },
             'format' => 'raw',
@@ -35,6 +40,7 @@ echo GridView::widget([
         [
             'class' => \backend\widgets\GridView\gridColumns\ActionColumn::class,
             'updateLink' => function ($model) {
+                /** @var $model Collection */
                 return Url::toRoute([
                     '/catalog/collection/update',
                     'factory_id' => $model['factory_id'],
@@ -42,6 +48,7 @@ echo GridView::widget([
                 ]);
             },
             'deleteLink' => function ($model) {
+                /** @var $model Collection */
                 return Url::toRoute([
                     '/catalog/collection/intrash',
                     'factory_id' => $model['factory_id'],

@@ -107,9 +107,11 @@ $keys = Yii::$app->catalogFilter->keys;
                 $params[$keys['factory']][] = $model['alias'];
                 $params[$keys['collection']][] = $item['id'];
 
+                $title = $item['title'] . ($item['year'] > 0 ? ' (' . $item['year'] . ')' : '');
+
                 echo Html::beginTag('li') .
                     Html::a(
-                        '<span class="for-allprod">' . $item['title'] . '</span>' .
+                        '<span class="for-allprod">' . $title . '</span>' .
                         ' <span>' . $item['count'] . '</span>',
                         Yii::$app->catalogFilter->createUrl($params)
                     ) .

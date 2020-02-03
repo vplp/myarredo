@@ -5,10 +5,11 @@ use yii\helpers\{
 };
 use kartik\grid\GridView;
 use frontend\components\Breadcrumbs;
+use frontend\modules\catalog\models\Collection;
 
 /**
  * @var \yii\data\Pagination $pages
- * @var $model \frontend\modules\catalog\models\Collection
+ * @var $model Collection
  */
 
 $dataProvider = $model->search(Yii::$app->request->queryParams);
@@ -54,11 +55,18 @@ $this->title = $this->context->title;
                                             'label' => Yii::t('app', 'Title'),
                                         ],
                                         [
+                                            'attribute' => 'year',
+                                            'value' => function ($model) {
+                                                /** @var $model Collection */
+                                                return $model->year > 0 ? $model->year : '';
+                                            },
+                                        ],
+                                        [
                                             'class' => yii\grid\ActionColumn::class,
                                             'template' => '{update}',
                                             'buttons' => [
                                                 'update' => function ($url, $model) {
-                                                    /** @var $model \frontend\modules\catalog\models\Collection */
+                                                    /** @var $model Collection */
                                                     return (Yii::$app->user->identity->id == $model['user_id'])
                                                         ? Html::a(
                                                             '<span class="glyphicon glyphicon-pencil"></span>',

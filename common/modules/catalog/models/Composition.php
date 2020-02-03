@@ -12,8 +12,7 @@ use voskobovich\behaviors\ManyToManyBehavior;
  * Class Composition
  *
  * @property CompositionLang $lang
- *
- *  @property ProductRelComposition[] $product
+ * @property ProductRelComposition[] $product
  *
  * @package common\modules\catalog\models
  */

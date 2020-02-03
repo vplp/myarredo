@@ -1,12 +1,21 @@
 <?php
 
-use backend\widgets\GridView\GridView;
+use thread\widgets\grid\GridViewFilter;
 //
+use backend\widgets\GridView\GridView;
 use backend\modules\catalog\models\{
     Category, Factory
 };
-//
-use thread\widgets\grid\GridViewFilter;
+use backend\app\bootstrap\ActiveForm;
+use backend\modules\catalog\models\{
+    Composition, CompositionLang
+};
+
+/**
+ * @var $form ActiveForm
+ * @var $model Composition
+ * @var $modelLang CompositionLang
+ */
 
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
@@ -20,6 +29,7 @@ echo GridView::widget([
         [
             'attribute' => 'category',
             'value' => function ($model) {
+                /** @var $model Composition */
                 $result = [];
                 foreach ($model->category as $category) {
                     $result[] = ($category->lang) ? $category->lang->title : '(не задано)';
@@ -37,6 +47,7 @@ echo GridView::widget([
         [
             'attribute' => 'updated_at',
             'value' => function ($model) {
+                /** @var $model Composition */
                 return date('j.m.Y H:i', $model->updated_at);
             },
             'format' => 'raw',

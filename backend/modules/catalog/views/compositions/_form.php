@@ -3,8 +3,17 @@
 use yii\helpers\{
     Html
 };
-use backend\app\bootstrap\ActiveForm;
 use backend\widgets\Tabs;
+use backend\app\bootstrap\ActiveForm;
+use backend\modules\catalog\models\{
+    Composition, CompositionLang
+};
+
+/**
+ * @var $form ActiveForm
+ * @var $model Composition
+ * @var $modelLang CompositionLang
+ */
 
 ?>
 

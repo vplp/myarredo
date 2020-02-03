@@ -6,7 +6,9 @@ use Yii;
 use yii\helpers\{
     ArrayHelper
 };
+//
 use thread\app\base\models\ActiveRecord;
+//
 use common\modules\catalog\Catalog;
 
 /**
@@ -16,6 +18,7 @@ use common\modules\catalog\Catalog;
  * @property integer $factory_id
  * @property integer $user_id
  * @property string $title
+ * @property integer $year
  * @property string $first_letter
  * @property integer $created_at
  * @property integer $updated_at
@@ -61,7 +64,7 @@ class Collection extends ActiveRecord
     {
         return [
             [['factory_id', 'first_letter'], 'required', 'on' => 'backend'],
-            [['factory_id', 'user_id', 'created_at', 'updated_at', 'position'], 'integer'],
+            [['factory_id', 'user_id', 'year', 'created_at', 'updated_at', 'position'], 'integer'],
             [['published', 'deleted', 'moderation'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['first_letter'], 'string', 'max' => 1],
         ];
@@ -96,6 +99,7 @@ class Collection extends ActiveRecord
             'published' => ['published'],
             'deleted' => ['deleted'],
             'backend' => [
+                'year',
                 'factory_id',
                 'user_id',
                 'title',
@@ -117,6 +121,7 @@ class Collection extends ActiveRecord
             'factory_id' => Yii::t('app', 'Factory'),
             'user_id' => Yii::t('app', 'User'),
             'title' => Yii::t('app', 'Title'),
+            'year' => Yii::t('app', 'Year of creation'),
             'first_letter',
             'position' => Yii::t('app', 'Position'),
             'created_at' => Yii::t('app', 'Create time'),

@@ -4,9 +4,10 @@ use yii\helpers\{
     Html, Url
 };
 use backend\app\bootstrap\ActiveForm;
+use frontend\modules\catalog\models\Collection;
 
 /**
- * @var \frontend\modules\catalog\models\Collection $model
+ * @var $model Collection
  */
 
 $this->title = ($model->isNewRecord)
@@ -43,6 +44,8 @@ $this->title = ($model->isNewRecord)
                         ->label(false) ?>
 
                     <?= $form->field($model, 'title') ?>
+
+                    <?= $form->field($model, 'year') ?>
 
                     <div class="buttons-cont">
                         <?= Html::submitButton(
