@@ -116,6 +116,7 @@ class FormsFeedback extends ActiveRecord
             'deleted' => Yii::t('app', 'Deleted'),
             'user_agreement' => Yii::t('app', 'Подтверждаю <a href="/terms-of-use/" target="_blank">пользовательское соглашение</a>'),
             'reCaptcha' => 'Captcha',
+            'attachment' => Yii::t('app', 'File'),
         ];
     }
 
