@@ -380,7 +380,9 @@ class ItalianProduct extends ActiveRecord
     public function beforeSave($insert)
     {
         if ($this->alias == '') {
-            $this->alias = time();
+            $this->alias = (!empty($this->types) ? $this->types->alias2 : '')
+            . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
+            . (($this->article) ? ' ' . $this->article : '');
         }
 
         if ($this->factory_name) {

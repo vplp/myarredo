@@ -15,10 +15,13 @@ use thread\app\base\models\ActiveRecordLang;
  * @property integer $rid
  * @property string $lang
  * @property string $title
+ * @property string $title_for_list
  * @property string $description
  * @property string $content
  * @property string $defects
  * @property string $material
+ *
+ * @property ItalianProduct $parent
  *
  * @package common\modules\catalog\models
  */
@@ -47,9 +50,8 @@ class ItalianProductLang extends ActiveRecordLang
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            [['title'], 'required'],
             ['rid', 'exist', 'targetClass' => ItalianProduct::class, 'targetAttribute' => 'id'],
-            [['title'], 'string', 'max' => 255],
+            [['title', 'title_for_list'], 'string', 'max' => 255],
             [['defects', 'material'], 'string', 'max' => 1024],
             [['description', 'content'], 'string'],
             [['description', 'content'], 'default', 'value' => '']
@@ -63,8 +65,8 @@ class ItalianProductLang extends ActiveRecordLang
     {
         return [
             'setImages' => [],
-            'backend' => ['title', 'description', 'content', 'defects', 'material'],
-            'frontend' => ['title', 'description', 'defects', 'material'],
+            'backend' => ['title', 'title_for_list', 'description', 'content', 'defects', 'material'],
+            'frontend' => ['title', 'title_for_list', 'description', 'defects', 'material'],
         ];
     }
 
@@ -75,10 +77,39 @@ class ItalianProductLang extends ActiveRecordLang
     {
         return [
             'title' => Yii::t('app', 'Title'),
+            'title_for_list' => Yii::t('app', 'Title for list'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
             'defects' => Yii::t('app', 'Defects'),
             'material' => Yii::t('app', 'Material'),
         ];
+    }
+
+    /**
+     * @param bool $insert
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        if ($this->title == '') {
+            $this->title = (!empty($this->parent->types->lang) ? $this->parent->types->lang->title : '')
+                . (!empty($this->parent->factory) ? ' ' . $this->parent->factory->title : '')
+                . (($this->parent->article) ? ' ' . $this->parent->article : '');
+        }
+
+        if ($this->title_for_list == '') {
+            $this->title = (!empty($this->parent->types->lang) ? $this->parent->types->lang->title : '')
+                . (($this->parent->article) ? ' ' . $this->parent->article : '');
+        }
+
+        return parent::beforeSave($insert);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getParent()
+    {
+        return $this->hasOne(ItalianProduct::class, ['id' => 'rid']);
     }
 }

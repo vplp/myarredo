@@ -13,6 +13,7 @@ use common\modules\catalog\Catalog;
  * @property integer $rid
  * @property string $lang
  * @property string $title
+ * @property string $title_for_list
  * @property string $description
  * @property string $content
  * @property string $comment
@@ -47,7 +48,7 @@ class ProductLang extends ActiveRecordLang
     {
         return ArrayHelper::merge(parent::rules(), [
             ['rid', 'exist', 'targetClass' => Product::class, 'targetAttribute' => 'id'],
-            [['title'], 'string', 'max' => 255],
+            [['title', 'title_for_list'], 'string', 'max' => 255],
             [['description', 'content', 'comment'], 'string'],
             [['description', 'content', 'comment'], 'default', 'value' => ''],
         ]);
@@ -59,8 +60,8 @@ class ProductLang extends ActiveRecordLang
     public function scenarios()
     {
         return [
-            'backend' => ['title', 'description', 'content', 'comment'],
-            'frontend' => ['title', 'description', 'content', 'comment'],
+            'backend' => ['title', 'title_for_list', 'description', 'content', 'comment'],
+            'frontend' => ['title', 'title_for_list', 'description', 'content', 'comment'],
         ];
     }
 
@@ -71,6 +72,7 @@ class ProductLang extends ActiveRecordLang
     {
         return [
             'title' => Yii::t('app', 'Title'),
+            'title_for_list' => Yii::t('app', 'Title for list'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
             'comment' => Yii::t('app', 'Comment'),
@@ -86,7 +88,11 @@ class ProductLang extends ActiveRecordLang
         if ($this->title == '') {
             $this->title = (!empty($this->parent->types->lang) ? $this->parent->types->lang->title : '')
                 . (!empty($this->parent->factory) ? ' ' . $this->parent->factory->title : '')
-                . (!empty($this->parent->collection) ? ' ' . $this->parent->collection->title : '')
+                . (($this->parent->article && $this->parent->is_composition == '0') ? ' ' . $this->parent->article : '');
+        }
+
+        if ($this->title_for_list == '') {
+            $this->title = (!empty($this->parent->types->lang) ? $this->parent->types->lang->title : '')
                 . (($this->parent->article && $this->parent->is_composition == '0') ? ' ' . $this->parent->article : '');
         }
 
