@@ -852,7 +852,7 @@ class CatalogProductController extends Controller
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
-    public function actionGenerateTitle($mark = 'mark1')
+    public function actionGenerateTitle($mark = 'mark3')
     {
         $this->stdout("GenerateTitle Product: start. \n", Console::FG_GREEN);
 
@@ -894,11 +894,11 @@ class CatalogProductController extends Controller
                         $modelLang->setScenario('frontend');
 
                         $modelLang->title = '';
-                        //$modelLang->title_for_list = '';
+                        $modelLang->title_for_list = '';
 
                         if ($saveLang[] = intval($modelLang->save())) {
                             $transaction->commit();
-                            $this->stdout("save " . $modelLang->title_for_list . " \n", Console::FG_GREEN);
+                            $this->stdout("save " . $modelLang->lang . " \n", Console::FG_GREEN);
                         } else {
                             foreach ($modelLang->errors as $attribute => $errors) {
                                 $this->stdout($attribute . ": " . implode('; ', $errors) . " \n", Console::FG_RED);
@@ -911,14 +911,14 @@ class CatalogProductController extends Controller
                 }
             }
 
-//            $model->setScenario($mark);
-//            $model->$mark = '1';
-//
-//            if ($model->save() && !in_array(0, array_values($saveLang))) {
-//                $this->stdout("generate ID = " . $model->id . " \n", Console::FG_GREEN);
-//            }
-//
-//            $this->stdout("-------------------------------" . " \n", Console::FG_GREEN);
+            $model->setScenario($mark);
+            $model->$mark = '1';
+
+            if ($model->save() && !in_array(0, array_values($saveLang))) {
+                $this->stdout("generate ID = " . $model->id . " \n", Console::FG_GREEN);
+            }
+
+            $this->stdout("-------------------------------" . " \n", Console::FG_GREEN);
         }
 
         $this->stdout("GenerateTitle Product: finish. \n", Console::FG_GREEN);
