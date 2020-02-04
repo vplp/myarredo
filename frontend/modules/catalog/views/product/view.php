@@ -164,7 +164,10 @@ $this->title = $this->context->title;
                                                 foreach ($model['specificationValue'] as $item) {
                                                     if ($item['specification']['parent_id'] == 9) {
                                                         $array[] = $item['specification']['lang']['title'];
-                                                        $paramsUrl[$keys['style']][] = $item['specification']['alias'];
+                                                        $alias = Yii::$app->city->domain != 'com'
+                                                            ? $item['specification']['alias']
+                                                            : $item['specification']['alias2'];
+                                                        $paramsUrl[$keys['style']][] = $alias;
                                                     }
                                                 }
 
