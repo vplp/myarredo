@@ -358,7 +358,9 @@ class Product extends \common\modules\catalog\models\Product
      */
     public static function getStaticTitle($model)
     {
-        return $model['lang']['title'] ?? '{{-}}';
+        return $model['lang']['title'] != ''
+            ? $model['lang']['title']
+            : '{{-}}';
     }
 
     /**
@@ -367,7 +369,9 @@ class Product extends \common\modules\catalog\models\Product
      */
     public static function getStaticTitleForList($model)
     {
-        return $model['lang']['title_for_list'] ?? self::getStaticTitle($model);
+        return $model['lang']['title_for_list'] != ''
+            ? $model['lang']['title_for_list']
+            : self::getStaticTitle($model);
     }
 
     /**
