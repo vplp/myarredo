@@ -602,6 +602,19 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
+     * @param int $id
+     * @return array
+     */
+    public static function getFactoryArticles(int $id)
+    {
+        return Product::findBase()
+            ->where([
+                'factory_id' => $id,
+            ])
+            ->all();
+    }
+
+    /**
      * @return int
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException

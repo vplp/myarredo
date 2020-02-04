@@ -6,7 +6,7 @@ use yii\helpers\{
 //
 use frontend\modules\shop\models\Order;
 use frontend\modules\catalog\models\{
-    Factory, FactoryCatalogsFiles, FactoryPricesFiles
+    Product, Factory, FactoryCatalogsFiles, FactoryPricesFiles
 };
 
 /**
@@ -28,6 +28,11 @@ $keys = Yii::$app->catalogFilter->keys;
     <li>
         <a data-toggle="tab" href="#all-collection">
             <?= Yii::t('app', 'Все коллекции') ?>
+        </a>
+    </li>
+    <li>
+        <a data-toggle="tab" href="#all-articles">
+            <?= Yii::t('app', 'Все артикулы') ?>
         </a>
     </li>
 
@@ -114,6 +119,24 @@ $keys = Yii::$app->catalogFilter->keys;
                         '<span class="for-allprod">' . $title . '</span>' .
                         ' <span>' . $item['count'] . '</span>',
                         Yii::$app->catalogFilter->createUrl($params)
+                    ) .
+                    Html::endTag('li');
+
+            }
+            ?>
+        </ul>
+    </div>
+
+    <div id="all-articles" class="tab-pane fade">
+        <ul class="list">
+            <?php
+            $FactoryArticles = Factory::getFactoryArticles($model['id']);
+
+            foreach ($FactoryArticles as $item) {
+                echo Html::beginTag('li') .
+                    Html::a(
+                        '<span class="for-allprod">' . $item['article'] . '</span>',
+                        Product::getUrl($item['alias'])
                     ) .
                     Html::endTag('li');
 
