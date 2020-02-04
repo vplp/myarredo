@@ -164,15 +164,17 @@ $this->title = $this->context->title;
                                                 foreach ($model['specificationValue'] as $item) {
                                                     if ($item['specification']['parent_id'] == 9) {
                                                         $array[] = $item['specification']['lang']['title'];
-                                                        $alias = Yii::$app->city->domain != 'com'
+
+                                                        $paramsUrl[$keys['style']][] = Yii::$app->city->domain != 'com'
                                                             ? $item['specification']['alias']
                                                             : $item['specification']['alias2'];
-                                                        $paramsUrl[$keys['style']][] = $alias;
                                                     }
                                                 }
 
                                                 if ($model['types']) {
-                                                    $paramsUrl[$keys['type']][] = $model['types']['alias'];
+                                                    $paramsUrl[$keys['type']][] = Yii::$app->city->domain != 'com'
+                                                        ? $model['types']['alias']
+                                                        : $model['types']['alias2'];
                                                 }
 
                                                 echo Html::a(
