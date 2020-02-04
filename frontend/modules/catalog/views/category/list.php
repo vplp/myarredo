@@ -23,6 +23,7 @@ use frontend\modules\catalog\widgets\product\ProductsNovelties;
  * @var $subtypes
  * @var $style
  * @var $factory
+ * @var $collection
  * @var $colors
  * @var $price_range
  */
@@ -80,6 +81,7 @@ $params = Yii::$app->catalogFilter->params;
                                 'subtypes' => $subtypes,
                                 'style' => $style,
                                 'factory' => $factory,
+                                'collection' => $collection,
                                 'colors' => $colors,
                                 'price_range' => $price_range,
                             ]); ?>

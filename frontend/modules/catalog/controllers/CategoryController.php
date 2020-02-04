@@ -74,6 +74,13 @@ class CategoryController extends BaseController
         $subtypes = SubTypes::getWithProduct($queryParams);
         $style = Specification::getWithProduct($queryParams);
         $factory = Factory::getWithProduct($queryParams);
+
+        if (isset($queryParams[$keys['factory']]) && count($queryParams[$keys['factory']]) == 1) {
+            $collection = Collection::getWithProduct($queryParams);
+        } else {
+            $collection = [];
+        }
+
         $colors = Colors::getWithProduct($queryParams);
 
         $min = Product::minPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
@@ -117,6 +124,7 @@ class CategoryController extends BaseController
             'subtypes' => $subtypes,
             'style' => $style,
             'factory' => $factory,
+            'collection' => $collection,
             'colors' => $colors,
             'price_range' => $price_range,
             'models' => $models->getModels(),

@@ -50,6 +50,11 @@ class ProductFilter extends Widget
     /**
      * @var object
      */
+    public $collection = [];
+
+    /**
+     * @var object
+     */
     public $price_range = ['min' => 0, 'max' => 99];
 
     /**
@@ -111,9 +116,7 @@ class ProductFilter extends Widget
                 ? $obj['alias']
                 : $obj['alias2'];
 
-            if (!empty($params[$keys['type']]) &&
-                in_array($alias, $params[$keys['type']])
-            ) {
+            if (!empty($params[$keys['type']]) && in_array($alias, $params[$keys['type']])) {
                 $checked = 1;
                 $params[$keys['type']] = array_diff($params[$keys['type']], [$alias]);
             } else {
@@ -145,9 +148,7 @@ class ProductFilter extends Widget
         foreach ($this->subtypes as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (!empty($params[$keys['subtypes']]) &&
-                in_array($obj['alias'], $params[$keys['subtypes']])
-            ) {
+            if (!empty($params[$keys['subtypes']]) && in_array($obj['alias'], $params[$keys['subtypes']])) {
                 $checked = 1;
                 $params[$keys['subtypes']] = array_diff($params[$keys['subtypes']], [$obj['alias']]);
             } else {
@@ -183,9 +184,7 @@ class ProductFilter extends Widget
                 ? $obj['alias']
                 : $obj['alias2'];
 
-            if (!empty($params[$keys['style']]) &&
-                in_array($alias, $params[$keys['style']])
-            ) {
+            if (!empty($params[$keys['style']]) && in_array($alias, $params[$keys['style']])) {
                 $checked = 1;
                 $params[$keys['style']] = array_diff($params[$keys['style']], [$alias]);
             } else {
@@ -217,9 +216,7 @@ class ProductFilter extends Widget
         foreach ($this->factory as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (!empty($params[$keys['factory']]) &&
-                in_array($obj['alias'], $params[$keys['factory']])
-            ) {
+            if (!empty($params[$keys['factory']]) && in_array($obj['alias'], $params[$keys['factory']])) {
                 $checked = 1;
                 $params[$keys['factory']] = array_diff($params[$keys['factory']], [$obj['alias']]);
             } else {
@@ -267,6 +264,38 @@ class ProductFilter extends Widget
         }
 
         /**
+         * COLLECTION LIST
+         */
+
+        $collection = [];
+
+        foreach ($this->collection as $key => $obj) {
+            $params = Yii::$app->catalogFilter->params;
+
+            if (!empty($params[$keys['collection']]) && in_array($obj['id'], $params[$keys['collection']])) {
+                $checked = 1;
+                $params[$keys['collection']] = array_diff($params[$keys['collection']], [$obj['id']]);
+            } else {
+                $checked = 0;
+                $params[$keys['collection']][] = $obj['id'];
+            }
+
+            // sort value
+
+            array_multisort($params[$keys['collection']], SORT_ASC, $params[$keys['collection']]);
+
+            $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
+
+            $collection[$key] = [
+                'checked' => $checked,
+                'link' => $link,
+                'title' => $obj['title'],
+                'count' => $obj['count'],
+                'alias' => $obj['id']
+            ];
+        }
+
+        /**
          * COLORS LIST
          */
 
@@ -275,9 +304,7 @@ class ProductFilter extends Widget
         foreach ($this->colors as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (!empty($params[$keys['colors']]) &&
-                in_array($obj['alias'], $params[$keys['colors']])
-            ) {
+            if (!empty($params[$keys['colors']]) && in_array($obj['alias'], $params[$keys['colors']])) {
                 $checked = 1;
                 $params[$keys['colors']] = array_diff($params[$keys['colors']], [$obj['alias']]);
             } else {
@@ -351,6 +378,7 @@ class ProductFilter extends Widget
             'subtypes' => $subtypes,
             'style' => $style,
             'factory' => $factory,
+            'collection' => $collection,
             'colors' => $colors,
             'factory_first_show' => $factory_first_show,
             'price_range' => $price_range,

@@ -26,6 +26,9 @@ use common\modules\catalog\Catalog;
  * @property integer $deleted
  * @property integer $moderation
  *
+ * @property Product $product
+ * @property Factory $factory
+ *
  * @package common\modules\catalog\models
  */
 class Collection extends ActiveRecord
@@ -146,5 +149,13 @@ class Collection extends ActiveRecord
     public function getFactory()
     {
         return $this->hasOne(Factory::class, ['id' => 'factory_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProduct()
+    {
+        return $this->hasMany(Product::class, ['collections_id' => 'id']);
     }
 }
