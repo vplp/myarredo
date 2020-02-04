@@ -42,7 +42,7 @@ $params = Yii::$app->catalogFilter->params;
 
                     <?= Html::tag('h1', Yii::$app->metatag->seo_h1) ?>
 
-                    <?php if (empty($params) && isset($params[$keys['category']]) && count($params[$keys['factory']]) == 1) {
+                    <?php if (empty($params) && isset($params[$keys['factory']]) && count($params[$keys['factory']]) == 1) {
                         echo Html::a(
                             Yii::t('app', 'Перейти на страницу фабрики'),
                             ['/catalog/factory/view', 'alias' => $params[$keys['factory']][0]]
