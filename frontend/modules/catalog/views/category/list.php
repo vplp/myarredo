@@ -16,9 +16,21 @@ use frontend\modules\catalog\widgets\product\ProductsNovelties;
 /**
  * @var $pages \yii\data\Pagination
  * @var $model Product
+ * @var $models Product[]
+ *
+ * @var $category
+ * @var $types
+ * @var $subtypes
+ * @var $style
+ * @var $factory
+ * @var $colors
+ * @var $price_range
  */
 
 $this->title = $this->context->title;
+
+$keys = Yii::$app->catalogFilter->keys;
+$params = Yii::$app->catalogFilter->params;
 
 ?>
 
@@ -30,17 +42,20 @@ $this->title = $this->context->title;
 
                     <?= Html::tag('h1', Yii::$app->metatag->seo_h1) ?>
 
+                    <?php if (empty($params) && isset($params[$keys['category']]) && count($params[$keys['factory']]) == 1) {
+                        echo Html::a(
+                            Yii::t('app', 'Перейти на страницу фабрики'),
+                            ['/catalog/factory/view', 'alias' => $params[$keys['factory']][0]]
+                        );
+                    } ?>
+
                     <?= Breadcrumbs::widget([
                         'links' => $this->context->breadcrumbs,
                     ]) ?>
 
                 </div>
 
-                <?php
-                $keys = Yii::$app->catalogFilter->keys;
-                $params = Yii::$app->catalogFilter->params;
-
-                if (empty($params) || (count($params) == 1 && isset($params[$keys['category']]))) {
+                <?php if (empty($params) || (count($params) == 1 && isset($params[$keys['category']]))) {
                     echo ProductsNovelties::widget([
                         'modelPromotionItemClass' => Product::class,
                         'modelPromotionItemLangClass' => ProductLang::class,

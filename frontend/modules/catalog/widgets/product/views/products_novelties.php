@@ -57,7 +57,7 @@ if (!empty($products) || !empty($promotions)) { ?>
                             <?php } ?>
 
                             <?php if ($modelClass::getSavingPrice($model)) { ?>
-                                <div class="prod-saving-percentage"><?= $modelClass::getSavingPercentage($model) ?></div>
+                                <div class="prod-saving-percentage">-<?= $modelClass::getSavingPercentage($model) ?></div>
                             <?php } ?>
 
                             <div class="img-cont">
