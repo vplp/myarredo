@@ -554,14 +554,23 @@ class CategoryController extends BaseController
          */
 
         if (!empty($params[$keys['collection']])) {
-            $collection = Collection::findById($params[$keys['collection']][0]);
+            $models = Collection::findByIDs($params[$keys['collection']]);
 
-            $pageTitle[] = Yii::t('app', 'Коллекция мебели') . ' ' . $collection['title'];
-            $pageH1[] = Yii::t('app', 'Коллекция') . ' ' . $collection['title'];
-            $pageDescription[] = Yii::t('app', 'Коллекция') . ' ' . $collection['title'];
+            if (count($params[$keys['collection']]) > 1) {
+                $noIndex = 1;
+            }
+
+            $collections = [];
+            foreach ($models as $model) {
+                $collections[] = $model['title'];
+            }
+
+            $pageTitle[] = Yii::t('app', 'Коллекция мебели') . ' ' . implode(', ', $collections);
+            $pageH1[] = Yii::t('app', 'Коллекция') . ' ' . implode(', ', $collections);
+            $pageDescription[] = Yii::t('app', 'Коллекция') . ' ' . implode(', ', $collections);
 
             $this->breadcrumbs[] = [
-                'label' => Yii::t('app', 'Коллекция') . ' ' . $collection['title'],
+                'label' => Yii::t('app', 'Коллекция') . ' ' . implode(', ', $collections),
                 'url' => Yii::$app->catalogFilter->createUrl([$keys['collection'] => $params[$keys['collection']]])
             ];
         }
@@ -641,13 +650,17 @@ class CategoryController extends BaseController
                 $factory[] = $model['title'];
             }
 
-            $collection = Collection::findById($params[$keys['collection']][0]);
+            $modelCollection = Collection::findByIDs($params[$keys['collection']]);
+            $collections = [];
+            foreach ($modelCollection as $model) {
+                $collections[] = $model['title'];
+            }
 
             $pageH1 = [];
             $pageH1[] = Yii::t('app', 'Итальянская мебель фабрики') .
                 ' ' .
                 implode(', ', $factory) . ' — ' .
-                mb_strtolower(Yii::t('app', 'Коллекция')) . ' ' . $collection['title'];
+                mb_strtolower(Yii::t('app', 'Коллекция')) . ' ' . implode(', ', $collections);
         }
 
         /**

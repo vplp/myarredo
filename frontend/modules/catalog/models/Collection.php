@@ -30,6 +30,15 @@ class Collection extends \common\modules\catalog\models\Collection
     }
 
     /**
+     * @param $ids
+     * @return array
+     */
+    public static function findByIDs($ids): array
+    {
+        return self::findBase()->byId($ids)->all();
+    }
+
+    /**
      * Search
      *
      * @param $params
