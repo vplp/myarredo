@@ -345,28 +345,29 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
-     * Title
-     *
      * @return string
      */
     public function getTitle()
     {
-        $title = $this->lang->title ?? '{{-}}';
-
-        return $title;
+        return $this->lang->title ?? '{{-}}';
     }
 
     /**
-     * Static title
-     *
      * @param $model
      * @return string
      */
     public static function getStaticTitle($model)
     {
-        $title = $model['lang']['title'] ?? '{{-}}';
+        return $model['lang']['title'] ?? '{{-}}';
+    }
 
-        return $title;
+    /**
+     * @param $model
+     * @return string
+     */
+    public static function getStaticTitleForList($model)
+    {
+        return $model['lang']['title_for_list'] ?? self::getStaticTitle($model);
     }
 
     /**

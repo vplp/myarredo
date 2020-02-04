@@ -34,7 +34,7 @@ use frontend\modules\catalog\models\{
             <?= Html::img(
                 '',
                 [
-                    'alt' => Product::getStaticTitle($model),
+                    'alt' => Product::getStaticTitleForList($model),
                     'itemprop' => 'contentUrl',
                     'class' => 'lazy',
                     'data-src' => Product::getImageThumb($model['image_link'])
@@ -50,7 +50,7 @@ use frontend\modules\catalog\models\{
                 ?>
             </div>
             <div class="tile-prod-name" itemprop="name">
-                <?= Product::getStaticTitle($model); ?>
+                <?= Product::getStaticTitleForList($model); ?>
             </div>
         </div>
 

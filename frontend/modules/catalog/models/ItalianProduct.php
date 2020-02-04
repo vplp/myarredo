@@ -300,7 +300,9 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
      */
     public function getTitle()
     {
-        return (isset($this->lang->title)) ? $this->lang->title : "{{-}}";
+        return (isset($this->lang->title))
+            ? $this->lang->title
+            : "{{-}}";
     }
 
     /**
@@ -308,7 +310,9 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
      */
     public function getTitleForList()
     {
-        return (isset($this->lang->title_for_list)) ? $this->lang->title_for_list : "{{-}}";
+        return (isset($this->lang->title_for_list))
+            ? $this->lang->title_for_list
+            : self::getTitle();
     }
 
     /**
