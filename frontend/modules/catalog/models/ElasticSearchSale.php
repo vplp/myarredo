@@ -18,9 +18,11 @@ use frontend\modules\location\models\{
  * @property string $title_ru
  * @property string $title_it
  * @property string $title_en
+ * @property string $title_uk
  * @property string $description_ru
  * @property string $description_it
  * @property string $description_en
+ * @property string $description_uk
  *
  * @property Sale $product
  *
@@ -54,9 +56,11 @@ class ElasticSearchSale extends ActiveRecord
             'title_ru',
             'title_it',
             'title_en',
+            'title_uk',
             'description_ru',
             'description_it',
-            'description_en'
+            'description_en',
+            'description_uk'
         ];
     }
 
@@ -72,9 +76,11 @@ class ElasticSearchSale extends ActiveRecord
                     'title_ru' => ['type' => 'text'],
                     'title_it' => ['type' => 'text'],
                     'title_en' => ['type' => 'text'],
+                    'title_uk' => ['type' => 'text'],
                     'description_ru' => ['type' => 'text'],
                     'description_it' => ['type' => 'text'],
                     'description_en' => ['type' => 'text'],
+                    'description_uk' => ['type' => 'text'],
                 ]
             ],
         ];
@@ -182,7 +188,7 @@ class ElasticSearchSale extends ActiveRecord
         $record->id = $product['id'];
 
         $record->$title = $product['lang']['title'];
-        $record->$description = $product['lang']['description'];
+        $record->$description = ''; //$product['lang']['description'];
 
         try {
             if (!$isExist) {

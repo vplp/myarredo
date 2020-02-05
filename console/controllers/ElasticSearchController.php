@@ -23,45 +23,48 @@ use frontend\modules\sys\models\Language;
 class ElasticSearchController extends Controller
 {
     /**
+     * @param string $mark
      * @throws \yii\db\Exception
      */
-    public function actionResetProductMark()
+    public function actionResetProductMark($mark = 'mark1')
     {
         $this->stdout("ResetProductMark: start. \n", Console::FG_GREEN);
 
         Yii::$app->db->createCommand()
-            ->update(Product::tableName(), ['mark1' => '0'], "`mark1`='1'")
+            ->update(Product::tableName(), [$mark => '0'], $mark . "='1'")
             ->execute();
 
-        $this->stdout("ResetProductMark: finish. \n", Console::FG_GREEN);
+        $this->stdout("ResetProductMark " . $mark . ": finish. \n", Console::FG_GREEN);
     }
 
     /**
+     * @param string $mark
      * @throws \yii\db\Exception
      */
-    public function actionResetSaleMark()
+    public function actionResetSaleMark($mark = 'mark1')
     {
         $this->stdout("ResetSaleMark: start. \n", Console::FG_GREEN);
 
         Yii::$app->db->createCommand()
-            ->update(Sale::tableName(), ['mark1' => '0'], "`mark1`='1'")
+            ->update(Sale::tableName(), [$mark => '0'], $mark . "='1'")
             ->execute();
 
-        $this->stdout("ResetSaleMark: finish. \n", Console::FG_GREEN);
+        $this->stdout("ResetSaleMark " . $mark . ": finish. \n", Console::FG_GREEN);
     }
 
     /**
+     * @param string $mark
      * @throws \yii\db\Exception
      */
-    public function actionResetItalianProductMark()
+    public function actionResetItalianProductMark($mark = 'mark1')
     {
         $this->stdout("ResetItalianProductMark: start. \n", Console::FG_GREEN);
 
         Yii::$app->db->createCommand()
-            ->update(ItalianProduct::tableName(), ['mark1' => '0'], "`mark1`='1'")
+            ->update(ItalianProduct::tableName(), [$mark => '0'], $mark . "='1'")
             ->execute();
 
-        $this->stdout("ResetItalianProductMark: finish. \n", Console::FG_GREEN);
+        $this->stdout("ResetItalianProductMark " . $mark . ": finish. \n", Console::FG_GREEN);
     }
 
     /**
