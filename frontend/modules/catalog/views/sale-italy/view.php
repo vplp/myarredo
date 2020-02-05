@@ -145,8 +145,8 @@ $this->title = $this->context->title;
                                             $params = Yii::$app->catalogFilter->params;
                                             $params[$keys['style']] = Yii::$app->city->domain != 'com' ? $item['specification']['alias'] : $item['specification']['alias2'];
 
-                                            ($model['factory'])
-                                                ? $params[$keys['factory']] = $model['factory']['alias']
+                                            ($model['catalogFactory'])
+                                                ? $params[$keys['factory']] = $model['catalogFactory']['alias']
                                                 : null;
 
                                             $array[] = [

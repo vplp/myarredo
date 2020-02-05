@@ -65,6 +65,17 @@ class Sale extends \common\modules\catalog\models\Sale
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCatalogFactory()
+    {
+        return $this->hasOne(Factory::class, ['id' => 'factory_id'])
+            ->innerJoinWith(["product"], false)
+            ->andWhere([Product::tableName() . '.factory_id' => 'factory_id'])
+            ->cache(7200);
+    }
+
+    /**
      * @param $alias
      * @return mixed
      * @throws \Throwable
