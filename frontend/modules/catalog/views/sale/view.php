@@ -122,13 +122,13 @@ $this->title = $this->context->title;
                                 <tr>
                                     <td><?= Yii::t('app', 'Factory') ?></td>
                                     <td>
-                                        <?= ($model['factory'])
+                                        <?= ($model['catalogFactory'])
                                             ? Html::a(
-                                                $model['factory']['title'],
-                                                Factory::getUrl($model['factory']['alias'])
-                                            ) : $model['factory_name']; ?>
+                                                $model['catalogFactory']['title'],
+                                                Factory::getUrl($model['catalogFactory']['alias'])
+                                            ) : $model['factory']['title'] ?? ''; ?>
                                         <meta itemprop="brand"
-                                              content="<?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name']; ?>"/>
+                                              content="<?= ($model['catalogFactory']) ? $model['catalogFactory']['title'] : $model['factory']['title'] ?? ''; ?>"/>
                                     </td>
                                 </tr>
                                 <?php if (!empty($model['specificationValue'])) {
