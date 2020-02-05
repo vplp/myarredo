@@ -100,7 +100,7 @@ return ArrayHelper::merge(
             'stats' => [
                 'class' => \console\controllers\StatsController::class,
             ],
-            'elasticsearch' => [
+            'elastic-search' => [
                 'class' => \console\controllers\ElasticSearchController::class,
             ],
             'send-pulse' => [
