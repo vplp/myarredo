@@ -19,6 +19,7 @@ use yii\elasticsearch\ActiveRecord;
  * @property string $description_it
  * @property string $description_en
  * @property string $description_uk
+ * @property string $collection
  *
  * @property Product $product
  *
@@ -56,7 +57,8 @@ class ElasticSearchProduct extends ActiveRecord
             'description_ru',
             'description_it',
             'description_en',
-            'description_uk'
+            'description_uk',
+            'collection'
         ];
     }
 
@@ -77,6 +79,7 @@ class ElasticSearchProduct extends ActiveRecord
                     'description_it' => ['type' => 'text'],
                     'description_en' => ['type' => 'text'],
                     'description_uk' => ['type' => 'text'],
+                    'collection' => ['type' => 'text'],
                 ]
             ],
         ];
@@ -180,11 +183,12 @@ class ElasticSearchProduct extends ActiveRecord
 
         $title = 'title_' . $lang;
         $description = 'description_' . $lang;
+        $collection = 'collection';
 
         $record->id = $product['id'];
-
         $record->$title = $product['lang']['title'];
         $record->$description = ''; //$product['lang']['description'];
+        $record->$collection = $product['collection']['title'] ?? '';
 
         try {
             if (!$isExist) {
@@ -240,6 +244,14 @@ class ElasticSearchProduct extends ActiveRecord
                     [
                         'match' => [
                             'description_' . $lang => [
+                                'query' => $params['search'],
+                                'operator' => 'AND'
+                            ]
+                        ]
+                    ],
+                    [
+                        'match' => [
+                            'collection' => [
                                 'query' => $params['search'],
                                 'operator' => 'AND'
                             ]
