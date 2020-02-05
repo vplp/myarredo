@@ -124,15 +124,16 @@ $this->title = $this->context->title;
                                         </td>
                                     </tr>
                                 <?php } ?>
+
                                 <tr>
                                     <td><?= Yii::t('app', 'Factory') ?></td>
                                     <td>
-                                        <?= ($model['factory'])
+                                        <?= ($model['catalogFactory'])
                                             ? Html::a(
-                                                $model['factory']['title'],
-                                                Factory::getUrl($model['factory']['alias'])
+                                                $model['catalogFactory']['title'],
+                                                Factory::getUrl($model['catalogFactory']['alias'])
                                             )
-                                            : $model['factory_name'] ?>
+                                            : $model['factory']['title'] ?? '' ?>
                                     </td>
                                 </tr>
 

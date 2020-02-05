@@ -60,6 +60,17 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCatalogFactory()
+    {
+        return $this->hasOne(Factory::class, ['id' => 'factory_id'])
+            ->innerJoinWith(["product"], false)
+            ->andWhere([Product::tableName() . '.factory_id' => 'factory_id'])
+            ->cache(7200);
+    }
+
+    /**
      * @return mixed
      */
     public static function findBaseArray()
@@ -406,6 +417,6 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
      */
     public static function getSavingPercentage($model)
     {
-        return 100 - ceil(($model['price_new'] * 100) / $model['price']) . '%';
+        return '-' . (100 - ceil(($model['price_new'] * 100) / $model['price'])) . '%';
     }
 }

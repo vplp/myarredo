@@ -311,6 +311,6 @@ class Sale extends \common\modules\catalog\models\Sale
      */
     public static function getSavingPercentage($model)
     {
-        return 100 - ceil(($model['price_new'] * 100) / $model['price']) . '%';
+        return '-' . (100 - ceil(($model['price_new'] * 100) / $model['price'])) . '%';
     }
 }
