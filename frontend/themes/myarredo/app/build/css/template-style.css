@@ -3370,31 +3370,37 @@ h1 {
         border-color: #F3F2F0;
       }
     .factory-page .tab-pane#all-product .list,
-    .factory-page .tab-pane#all-collection .list {
+    .factory-page .tab-pane#all-collection .list,
+    .factory-page .tab-pane#all-articles .list {
       justify-content: flex-start;
     }
     .factory-page .tab-pane#all-product .list li,
-    .factory-page .tab-pane#all-collection .list li {
+    .factory-page .tab-pane#all-collection .list li,
+    .factory-page .tab-pane#all-articles .list li {
       min-width: 30%;
     } 
     .factory-page .tab-pane#all-product .list li>a,
-    .factory-page .tab-pane#all-collection .list li>a {
+    .factory-page .tab-pane#all-collection .list li>a,
+    .factory-page .tab-pane#all-articles .list li>a {
       text-align: left;
     }
     .factory-page .tab-pane#all-product .list li>a>span.for-allprod,
-    .factory-page .tab-pane#all-collection .list li>a>span.for-allprod {
+    .factory-page .tab-pane#all-collection .list li>a>span.for-allprod,
+    .factory-page .tab-pane#all-articles .list li>a>span.for-allprod {
       min-width: 75%;
       color: #535351;
     }
     @media (max-width: 1300px) {
       .factory-page .tab-pane#all-product .list li>a>span.for-allprod,
-      .factory-page .tab-pane#all-collection .list li>a>span.for-allprod {
+      .factory-page .tab-pane#all-collection .list li>a>span.for-allprod,
+      .factory-page .tab-pane#all-articles .list li>a>span.for-allprod {
         min-width: 85%;
       }
     }
     @media (max-width: 991px) {
       .factory-page .tab-pane#all-product .list li,
-      .factory-page .tab-pane#all-collection .list li {
+      .factory-page .tab-pane#all-collection .list li,
+      .factory-page .tab-pane#all-articles .list li {
         min-width: 195px;
         margin-bottom: 3px;
       }

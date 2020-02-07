@@ -166,16 +166,17 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) {
     $messagePrice = Yii::t('app', 'Ваш ответ должен быть максимально приближен к реальности');
 
     $script = <<<JS
+    // Если произошел клик по кнопке - отправить ответ клиенту
 $(".manager-history-list").on("click", ".action-save-answer", function() {
-    var form = $(this).parent();
-   
+    var thisBtn = $(this);
+    var form = thisBtn.parent('form');
+
+    // Отключаем кнопку пока не придет ответ от сервера
+    thisBtn.attr('disabled', true);
+  
     // clear messages
-    
-    form
-        .find('.field-orderanswer-answer')
-        .removeClass('has-error')
-        .find('.help-block')
-        .text('');
+    form.find('.field-orderanswer-answer').removeClass('has-error');
+    form.find('.help-block').text('');
     
     var isError = false;
     
@@ -200,7 +201,6 @@ $(".manager-history-list").on("click", ".action-save-answer", function() {
     }
     
     // send form
-    
     $.post('$url', form.serialize()+'&action-save-answer=1').done(function (data) {
         if (data.OrderAnswer) {
             form
@@ -221,6 +221,10 @@ $(".manager-history-list").on("click", ".action-save-answer", function() {
         
         if (data.success == 1) {
             document.location.reload(true);
+        }
+        else {
+            // Делаем кнопку опять активной
+            thisBtn.attr('disabled', false);
         }
             
     }, 'json');
