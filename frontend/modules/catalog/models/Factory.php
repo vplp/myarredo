@@ -608,8 +608,8 @@ class Factory extends \common\modules\catalog\models\Factory
     public static function getFactoryArticles(int $id)
     {
         return Product::findBase()
-            ->where([
-                'factory_id' => $id,
+            ->andFilterWhere([
+                Product::tableName() . '.factory_id' => $id,
             ])
             ->all();
     }
