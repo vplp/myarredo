@@ -453,13 +453,13 @@ console.timeEnd('speed falling-snow js');
                     Yii::$app->user->identity->profile->country_id == 4) { ?>
                     <div class="header-addprodbox">
                         <?= Html::a(
-                            '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Добавить товар платно'),
+                            '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Paid add'),
                             Url::toRoute(['/catalog/italian-product/paid-create']),
                             ['class' => 'btn-myarredo']
                         ) ?>
 
                         <?= Html::a(
-                            '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Добавить товар бесплатно'),
+                            '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Free add'),
                             Url::toRoute(['/catalog/italian-product/free-create']),
                             ['class' => 'btn-myarredo']
                         ) ?>
