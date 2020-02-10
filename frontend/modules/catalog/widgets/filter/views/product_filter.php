@@ -73,6 +73,136 @@ use frontend\modules\catalog\models\Category;
             </div>
         <?php } ?>
 
+        <?php if (YII_DEBUG) { ?>
+            <div class="one-filter filter-range-slider">
+                <?= Html::a(
+                    Yii::t('app', 'Размеры'),
+                    'javascript:void(0);',
+                    ['class' => 'filt-but']
+                ) ?>
+                <div class="price-slider-cont">
+                    Диаметр
+
+                    <div id="diameter-slider" data-min="3" data-max="6"></div>
+                    <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
+                        <div class="cur">
+                            <?= Html::input(
+                                'text',
+                                'diameter[min]',
+                                1,
+                                ['id' => 'min-diameter']
+                            ) ?>
+                            <span class="for-curicon">см</span>
+                        </div>
+                        <span class="indent"> - </span>
+                        <div class="cur">
+                            <?= Html::input(
+                                'text',
+                                'diameter[max]',
+                                10,
+                                ['id' => 'max-diameter']
+                            ) ?>
+                            <span class="for-curicon">см</span>
+                        </div>
+                    </div>
+
+                    Ширина
+                    <div id="width-slider" data-min="3" data-max="6"></div>
+                    <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
+                        <div class="cur">
+                            <?= Html::input(
+                                'text',
+                                'width[min]',
+                                1,
+                                ['id' => 'min-width']
+                            ) ?>
+                            <span class="for-curicon">см</span>
+                        </div>
+                        <span class="indent"> - </span>
+                        <div class="cur">
+                            <?= Html::input(
+                                'text',
+                                'width[max]',
+                                10,
+                                ['id' => 'max-width']
+                            ) ?>
+                            <span class="for-curicon">см</span>
+                        </div>
+                    </div>
+                    Длина
+                    <div id="length-slider" data-min="3" data-max="6"></div>
+                    <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
+                        <div class="cur">
+                            <?= Html::input(
+                                'text',
+                                'length[min]',
+                                1,
+                                ['id' => 'min-length']
+                            ) ?>
+                            <span class="for-curicon">см</span>
+                        </div>
+                        <span class="indent"> - </span>
+                        <div class="cur">
+                            <?= Html::input(
+                                'text',
+                                'length[max]',
+                                10,
+                                ['id' => 'max-length']
+                            ) ?>
+                            <span class="for-curicon">см</span>
+                        </div>
+                    </div>
+                    Высота
+                    <div id="height-slider" data-min="3" data-max="6"></div>
+                    <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
+                        <div class="cur">
+                            <?= Html::input(
+                                'text',
+                                'height[min]',
+                                1,
+                                ['id' => 'min-height']
+                            ) ?>
+                            <span class="for-curicon">см</span>
+                        </div>
+                        <span class="indent"> - </span>
+                        <div class="cur">
+                            <?= Html::input(
+                                'text',
+                                'height[max]',
+                                10,
+                                ['id' => 'max-height']
+                            ) ?>
+                            <span class="for-curicon">см</span>
+                        </div>
+                    </div>
+                    Раскладка
+                    <div id="apportionment-slider" data-min="3" data-max="6"></div>
+                    <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
+                        <div class="cur">
+                            <?= Html::input(
+                                'text',
+                                'apportionment[min]',
+                                1,
+                                ['id' => 'min-apportionment']
+                            ) ?>
+                            <span class="for-curicon">см</span>
+                        </div>
+                        <span class="indent"> - </span>
+                        <div class="cur">
+                            <?= Html::input(
+                                'text',
+                                'apportionment[max]',
+                                10,
+                                ['id' => 'max-apportionment']
+                            ) ?>
+                            <span class="for-curicon">см</span>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0);" class="submit">OK</a>
+                </div>
+            </div>
+        <?php } ?>
+
         <?php if ($subtypes) { ?>
             <div class="one-filter">
                 <?= Html::a(
