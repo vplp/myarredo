@@ -1,7 +1,7 @@
 <?php
 
-use backend\app\bootstrap\ActiveForm;
 use backend\widgets\Tabs;
+use backend\app\bootstrap\ActiveForm;
 use backend\modules\catalog\models\{
     Factory, FactoryLang
 };
@@ -68,6 +68,15 @@ echo Tabs::widget([
         [
             'label' => Yii::t('app', 'Prices'),
             'content' => $this->render('parts/_prices', [
+                'form' => $form,
+                'model' => $model,
+                'modelLang' => $modelLang
+            ]),
+            'visible' => $visible
+        ],
+        [
+            'label' => Yii::t('app', 'Dealers'),
+            'content' => $this->render('parts/_dealers', [
                 'form' => $form,
                 'model' => $model,
                 'modelLang' => $modelLang

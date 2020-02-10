@@ -109,7 +109,7 @@ class CompositionsController extends BackendController
 
             $response['tovars'] = ArrayHelper::map($model, 'id', function ($item) {
                 return '[' . $item['article'] . '] ' . $item['lang']['title'];
-            });;
+            });
         }
 
         return $response;

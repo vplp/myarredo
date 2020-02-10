@@ -2,6 +2,7 @@
 
 namespace common\modules\catalog\models;
 
+use voskobovich\behaviors\ManyToManyBehavior;
 use Yii;
 use yii\helpers\{
     ArrayHelper
@@ -52,6 +53,7 @@ use common\helpers\Inflector;
  * @property FactoryFile $files
  * @property FactoryCatalogsFiles $catalogsFiles
  * @property FactoryPricesFiles $pricesFiles
+ * @property FactoryRelDealers[] $dealers
  *
  * @package common\modules\catalog\models
  */
@@ -80,6 +82,12 @@ class Factory extends ActiveRecord
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'dealers_ids' => 'dealers',
+                ],
+            ],
             [
                 'class' => AttributeBehavior::className(),
                 'attributes' => [
@@ -129,7 +137,8 @@ class Factory extends ActiveRecord
             [['alias'], 'unique'],
             [['user_id', 'position', 'partner_id', 'product_count'], 'default', 'value' => '0'],
             [['country_code'], 'default', 'value' => '//'],
-            [['url', 'email', 'novelty_url'], 'default', 'value' => '']
+            [['url', 'email', 'novelty_url'], 'default', 'value' => ''],
+            [['dealers_ids'], 'each', 'rule' => ['integer']],
         ];
     }
 
@@ -172,6 +181,7 @@ class Factory extends ActiveRecord
                 'show_for_by',
                 'show_for_ua',
                 'show_for_com',
+                'dealers_ids'
             ],
         ];
     }
@@ -209,6 +219,7 @@ class Factory extends ActiveRecord
             'show_for_ua' => 'Показывать на ua',
             'show_for_com' => 'Показывать на com',
             'product_count' => 'product_count',
+            'dealers_ids' => Yii::t('app', 'Dealers'),
         ];
     }
 
@@ -306,6 +317,17 @@ class Factory extends ActiveRecord
     public function getCollection()
     {
         return $this->hasMany(Collection::class, ['factory_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getDealers()
+    {
+        return $this
+            ->hasMany(User::class, ['id' => 'dealer_id'])
+            ->viaTable(FactoryRelDealers::tableName(), ['factory_id' => 'id']);
     }
 
     /**

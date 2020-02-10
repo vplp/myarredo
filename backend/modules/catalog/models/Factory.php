@@ -9,6 +9,7 @@ use thread\app\model\interfaces\BaseBackendModel;
 //
 use common\modules\catalog\models\Factory as CommonFactoryModel;
 use common\actions\upload\UploadBehavior;
+
 /**
  * Class Factory
  *
