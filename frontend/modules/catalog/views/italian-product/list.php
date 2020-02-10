@@ -36,22 +36,19 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                             null,
                             ['class' => 'btn']
                         ) ?>
-
                         <?= Html::a(
                             '<i class="fa fa-outdent"></i> ' . Yii::t('app', 'Завершенные'),
                             Url::toRoute(['/catalog/italian-product/completed']),
                             ['class' => 'btn']
                         ) ?>
-
-                        <?= Html::a(
-                            '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Paid add'),
-                            Url::toRoute(['/catalog/italian-product/paid-create']),
-                            ['class' => 'btn btn-goods']
-                        ) ?>
-
                         <?= Html::a(
                             '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Free add'),
                             Url::toRoute(['/catalog/italian-product/free-create']),
+                            ['class' => 'btn btn-goods']
+                        ) ?>
+                        <?= Html::a(
+                            '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Paid add'),
+                            Url::toRoute(['/catalog/italian-product/paid-create']),
                             ['class' => 'btn btn-goods']
                         ) ?>
                     </div>
