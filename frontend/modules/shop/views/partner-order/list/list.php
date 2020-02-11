@@ -91,26 +91,24 @@ use frontend\modules\shop\models\Order;
                                         <span><?= $modelOrder->customer->full_name ?></span>
                                     </li>
                                     <li>
-                                            <span>
-                                                <?php
-                                                if ($modelOrder->orderAnswer->id &&
-                                                    $modelOrder->orderAnswer->answer_time != 0) {
-                                                    echo $modelOrder->customer->phone;
-                                                } else {
-                                                    echo '-';
-                                                } ?>
-                                            </span>
+                                        <span>
+                                            <?php if ($modelOrder->orderAnswer->id &&
+                                                $modelOrder->orderAnswer->answer_time != 0) {
+                                                echo $modelOrder->customer->phone;
+                                            } else {
+                                                echo '-';
+                                            } ?>
+                                        </span>
                                     </li>
                                     <li>
-                                            <span>
-                                            <?php
-                                            if ($modelOrder->orderAnswer->id &&
+                                        <span>
+                                            <?php if ($modelOrder->orderAnswer->id &&
                                                 $modelOrder->orderAnswer->answer_time != 0) {
                                                 echo $modelOrder->customer->email;
                                             } else {
                                                 echo '-';
                                             } ?>
-                                            </span>
+                                        </span>
                                     </li>
                                     <li>
                                         <span><?= $modelOrder->orderAnswer->getAnswerTime() ?></span>
@@ -120,9 +118,9 @@ use frontend\modules\shop\models\Order;
                                     </li>
                                     <?php if (Yii::$app->language == 'ru-RU') { ?>
                                         <li>
-                                        <span>
-                                            <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
-                                        </span>
+                                            <span>
+                                                <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
+                                            </span>
                                         </li>
                                     <?php } ?>
                                     <li>
@@ -131,8 +129,7 @@ use frontend\modules\shop\models\Order;
                                 </ul>
 
                                 <div class="hidden-order-info flex">
-                                    <?php
-                                    if ($modelOrder->isArchive()) {
+                                    <?php if ($modelOrder->isArchive()) {
                                         echo $this->render('_list_item_archive', [
                                             'modelOrder' => $modelOrder,
                                         ]);

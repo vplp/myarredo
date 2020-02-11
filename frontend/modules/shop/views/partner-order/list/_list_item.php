@@ -16,7 +16,10 @@ use frontend\modules\catalog\models\Product;
 /* @var $orderItem OrderItem */
 /* @var $one_key integer */
 
-if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
+$user = Yii::$app->user->identity;
+$dealers_can_answer = [];
+
+if ($user->profile->possibilityToAnswer) { ?>
     <?php $form = ActiveForm::begin([
         'id' => 'OrderAnswerForm',
         'options' => ['data' => ['pjax' => true]],
@@ -26,8 +29,11 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
     <div class="hidden-order-in ordersanswer-box">
         <div class="flex-product orderanswer-cont">
 
-            <?php
-            foreach ($modelOrder->items as $key_numb => $orderItem) { ?>
+            <?php foreach ($modelOrder->items as $key_numb => $orderItem) {
+                $dealers_can_answer[] = $orderItem->product->factory
+                    ? $orderItem->product->factory->dealers_can_answer
+                    : 0;
+                ?>
                 <div class="basket-item-info">
 
                     <div class="img-cont">
@@ -113,7 +119,7 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                         </tr>
                     </table>
 
-                    <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->isPdfAccess()) { ?>
+                    <?php if (!Yii::$app->getUser()->isGuest && $user->profile->isPdfAccess()) { ?>
                         <div class="downloads">
 
                             <?php
@@ -178,8 +184,10 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
         </div>
     </div>
 
-    <?php if (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null && Yii::$app->user->identity->profile->getPossibilityToSaveAnswerPerMonth()) {
-        if (!$modelOrderAnswer->id) {
+    <?php if ($user->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null && $user->profile->getPossibilityToSaveAnswerPerMonth()) {
+        if (in_array(1, $dealers_can_answer)) {
+            echo Yii::t('app', 'Чтобы ответить на данный запрос, Вы должны стать дилером данной фабрики.');
+        } elseif (!$modelOrderAnswer->id) {
             echo Html::submitButton(
                 Yii::t('app', 'Отправить ответ клиенту'),
                 [
@@ -189,7 +197,7 @@ if (Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                 ]
             );
         }
-    } elseif (Yii::$app->user->identity->profile->getPossibilityToSaveAnswer($modelOrder->city_id) && Yii::$app->user->identity->profile->getPossibilityToSaveAnswerPerMonth() == false) {
+    } elseif ($user->profile->getPossibilityToSaveAnswer($modelOrder->city_id) && $user->profile->getPossibilityToSaveAnswerPerMonth() == false) {
         echo Html::tag('p', Yii::t('app', 'Вы исчерпали бесплатный месячный лимит ответов на заявки. Для продления свяжитесь с оператором сайта.'));
     } else {
         echo Html::tag('p', Yii::t('app', 'Для ответа на данные заявки свяжитесь с оператором сайта, тел.:') . ' +7 968 353 36 36, e-mail: help@myarredo.ru');

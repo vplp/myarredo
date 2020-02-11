@@ -46,6 +46,7 @@ use common\helpers\Inflector;
  * @property boolean $show_for_ua
  * @property boolean $show_for_com
  * @property integer $product_count
+ * @property boolean $dealers_can_answer
  *
  * @property FactoryLang $lang
  * @property User $user
@@ -123,6 +124,7 @@ class Factory extends ActiveRecord
                     'show_for_by',
                     'show_for_ua',
                     'show_for_com',
+                    'dealers_can_answer'
                 ],
                 'in',
                 'range' => array_keys(static::statusKeyRange())
@@ -181,7 +183,8 @@ class Factory extends ActiveRecord
                 'show_for_by',
                 'show_for_ua',
                 'show_for_com',
-                'dealers_ids'
+                'dealers_ids',
+                'dealers_can_answer'
             ],
         ];
     }
@@ -220,6 +223,7 @@ class Factory extends ActiveRecord
             'show_for_com' => 'Показывать на com',
             'product_count' => 'product_count',
             'dealers_ids' => Yii::t('app', 'Dealers'),
+            'dealers_can_answer' => Yii::t('app', 'Dealers can answer'),
         ];
     }
 

@@ -22,4 +22,4 @@ echo $form
             'placeholder' => Yii::t('app', 'Select option'),
             'multiple' => true
         ],
-    ]);
+    ]) . $form->switcher($model, 'dealers_can_answer') ;

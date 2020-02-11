@@ -80,9 +80,7 @@ $this->title = $this->context->title;
                                     </li>
                                     <li>
                                         <span>
-                                            <?php
-                                            if ($modelOrder->orderAnswer->id &&
-                                                $modelOrder->orderAnswer->answer_time != 0) {
+                                            <?php if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
                                                 echo $modelOrder->customer->phone;
                                             } else {
                                                 echo '-';
@@ -91,9 +89,7 @@ $this->title = $this->context->title;
                                     </li>
                                     <li>
                                         <span>
-                                            <?php
-                                            if ($modelOrder->orderAnswer->id &&
-                                                $modelOrder->orderAnswer->answer_time != 0) {
+                                            <?php if ($modelOrder->orderAnswer->id && $modelOrder->orderAnswer->answer_time != 0) {
                                                 echo $modelOrder->customer->email;
                                             } else {
                                                 echo '-';

@@ -20,8 +20,6 @@ use backend\modules\catalog\models\{
  */
 class Factory extends FactoryModel implements BaseBackendSearchModel
 {
-    public $title;
-
     /**
      * @return array
      */
@@ -67,10 +65,7 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
-        $query
-            ->andFilterWhere(['like', self::tableName() . '.alias', $this->alias])
-            ->andFilterWhere(['=', self::tableName() . '.published', $this->published]);
-
+        $query->andFilterWhere(['=', self::tableName() . '.published', $this->published]);
         $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
@@ -82,7 +77,7 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
      */
     public function search($params)
     {
-        $query = FactoryModel::find()->joinWith(['lang'])->undeleted();
+        $query = FactoryModel::findBase()->undeleted();
         return $this->baseSearch($query, $params);
     }
 
@@ -92,7 +87,7 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
      */
     public function trash($params)
     {
-        $query = FactoryModel::find()->joinWith(['lang'])->deleted();
+        $query = FactoryModel::findBase()->deleted();
         return $this->baseSearch($query, $params);
     }
 }
