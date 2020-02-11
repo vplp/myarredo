@@ -168,11 +168,11 @@ use frontend\modules\catalog\models\{
                     ['class' => 'filt-but']
                 ) ?>
                 <div class="price-slider-cont">
-                    <div id="price-slider"
+                    <div id="price-slider" class="myarredo-slider"
                          data-min="<?= $price_range['min']['current'] ?>"
                          data-max="<?= $price_range['max']['current'] ?>"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
-                        <div class="cur">
+                        <div class="cur min">
                             <?= Html::input(
                                 'text',
                                 'price[min]',
@@ -182,7 +182,7 @@ use frontend\modules\catalog\models\{
                             <span class="for-curicon"><?= Yii::$app->currency->symbol ?></span>
                         </div>
                         <span class="indent"> - </span>
-                        <div class="cur">
+                        <div class="cur max">
                             <?= Html::input(
                                 'text',
                                 'price[max]',

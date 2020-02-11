@@ -74,6 +74,10 @@ use frontend\modules\catalog\models\Category;
         <?php } ?>
 
         <?php if (YII_DEBUG) { ?>
+            <!-- Коммент беку):
+            я сделал слайдер с привязкой к классу (myarredo-slider) а не к id
+            поэтому все id-шники по типу этого - id="diameter-slider" - лучше удалить от греха подальше если они тебе не нужны, мне они точно не нужны
+            также если тебе не нужны id-шники мин и макс полей (http://joxi.ru/52an01JCblMJMA) их я бы тоже удалил, они уже стали ненужны для js -->
             <div class="one-filter filter-range-slider">
                 <?= Html::a(
                     Yii::t('app', 'Размеры'),
@@ -81,118 +85,118 @@ use frontend\modules\catalog\models\Category;
                     ['class' => 'filt-but']
                 ) ?>
                 <div class="price-slider-cont">
-                    Диаметр
+                    <span class="for-filter-text">Диаметр</span> 
 
-                    <div id="diameter-slider" data-min="3" data-max="6"></div>
+                    <div id="diameter-slider" class="myarredo-slider" data-min="50" data-max="250"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
-                        <div class="cur">
+                        <div class="cur min">
                             <?= Html::input(
                                 'text',
                                 'diameter[min]',
-                                1,
+                                50,
                                 ['id' => 'min-diameter']
                             ) ?>
                             <span class="for-curicon">см</span>
                         </div>
                         <span class="indent"> - </span>
-                        <div class="cur">
+                        <div class="cur max">
                             <?= Html::input(
                                 'text',
                                 'diameter[max]',
-                                10,
+                                250,
                                 ['id' => 'max-diameter']
                             ) ?>
                             <span class="for-curicon">см</span>
                         </div>
                     </div>
 
-                    Ширина
-                    <div id="width-slider" data-min="3" data-max="6"></div>
+                    <span class="for-filter-text">Ширина</span>
+                    <div id="width-slider" class="myarredo-slider" data-min="40" data-max="130"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
-                        <div class="cur">
+                        <div class="cur min">
                             <?= Html::input(
                                 'text',
                                 'width[min]',
-                                1,
+                                40,
                                 ['id' => 'min-width']
                             ) ?>
                             <span class="for-curicon">см</span>
                         </div>
                         <span class="indent"> - </span>
-                        <div class="cur">
+                        <div class="cur max">
                             <?= Html::input(
                                 'text',
                                 'width[max]',
-                                10,
+                                130,
                                 ['id' => 'max-width']
                             ) ?>
                             <span class="for-curicon">см</span>
                         </div>
                     </div>
-                    Длина
-                    <div id="length-slider" data-min="3" data-max="6"></div>
+                    <span class="for-filter-text">Длина</span>
+                    <div id="length-slider" class="myarredo-slider" data-min="90" data-max="300"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
-                        <div class="cur">
+                        <div class="cur min">
                             <?= Html::input(
                                 'text',
                                 'length[min]',
-                                1,
+                                90,
                                 ['id' => 'min-length']
                             ) ?>
                             <span class="for-curicon">см</span>
                         </div>
                         <span class="indent"> - </span>
-                        <div class="cur">
+                        <div class="cur max">
                             <?= Html::input(
                                 'text',
                                 'length[max]',
-                                10,
+                                300,
                                 ['id' => 'max-length']
                             ) ?>
                             <span class="for-curicon">см</span>
                         </div>
                     </div>
-                    Высота
-                    <div id="height-slider" data-min="3" data-max="6"></div>
+                    <span class="for-filter-text">Высота</span>
+                    <div id="height-slider" class="myarredo-slider" data-min="45" data-max="355"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
-                        <div class="cur">
+                        <div class="cur min">
                             <?= Html::input(
                                 'text',
                                 'height[min]',
-                                1,
+                                45,
                                 ['id' => 'min-height']
                             ) ?>
                             <span class="for-curicon">см</span>
                         </div>
                         <span class="indent"> - </span>
-                        <div class="cur">
+                        <div class="cur max">
                             <?= Html::input(
                                 'text',
                                 'height[max]',
-                                10,
+                                355,
                                 ['id' => 'max-height']
                             ) ?>
                             <span class="for-curicon">см</span>
                         </div>
                     </div>
-                    Раскладка
-                    <div id="apportionment-slider" data-min="3" data-max="6"></div>
+                    <span class="for-filter-text">Раскладка</span>
+                    <div id="apportionment-slider" class="myarredo-slider" data-min="35" data-max="270"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
-                        <div class="cur">
+                        <div class="cur min">
                             <?= Html::input(
                                 'text',
                                 'apportionment[min]',
-                                1,
+                                35,
                                 ['id' => 'min-apportionment']
                             ) ?>
                             <span class="for-curicon">см</span>
                         </div>
                         <span class="indent"> - </span>
-                        <div class="cur">
+                        <div class="cur max">
                             <?= Html::input(
                                 'text',
                                 'apportionment[max]',
-                                10,
+                                270,
                                 ['id' => 'max-apportionment']
                             ) ?>
                             <span class="for-curicon">см</span>
@@ -373,11 +377,11 @@ use frontend\modules\catalog\models\Category;
                     ['class' => 'filt-but']
                 ) ?>
                 <div class="price-slider-cont">
-                    <div id="price-slider"
+                    <div id="price-slider" class="myarredo-slider"
                          data-min="<?= $price_range['min']['current'] ?>"
                          data-max="<?= $price_range['max']['current'] ?>"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
-                        <div class="cur">
+                        <div class="cur min">
                             <?= Html::input(
                                 'text',
                                 'price[min]',
@@ -387,7 +391,7 @@ use frontend\modules\catalog\models\Category;
                             <span class="for-curicon"><?= Yii::$app->currency->symbol ?></span>
                         </div>
                         <span class="indent"> - </span>
-                        <div class="cur">
+                        <div class="cur max">
                             <?= Html::input(
                                 'text',
                                 'price[max]',

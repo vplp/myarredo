@@ -270,38 +270,46 @@ $(document).ready(function () {
 
     /*--Ползунок каталог--*/
     (function () {
-        var slider = document.getElementById('price-slider');
-        if ($('#min-price').val() == $('#max-price').val()) {
-            $('#max-price').val($('#max-price').val() + 1);
-        }
-        if (slider != null) {
-            noUiSlider.create(slider, {
-                start: [$(slider).attr('data-min'), $(slider).attr('data-max')],
-                connect: true,
-                animate: true,
-                animationDuration: 300,
-                range: {
-                    'min': Number($('#min-price').val()),
-                    'max': Number($('#max-price').val())
-                },
-                format: wNumb({
-                    decimals: 0
-                })
+        // если нужный элемент присутствует на странице
+        if ($('.myarredo-slider').length > 0) {
+            // проходимся по ним
+            var allSlides = document.getElementsByClassName('myarredo-slider');
+            $(allSlides).each(function(i, elem) {
+                var minInput = $(elem).next('.filter-slider-box').children('.cur.min').children('input[type="text"]');
+                var maxInput = $(elem).next('.filter-slider-box').children('.cur.max').children('input[type="text"]');
+                if (minInput.val() == maxInput.val()) {
+                    maxInput.val(maxInput.val() + 1);
+                }
+                if (allSlides[i] != null) {
+                    noUiSlider.create(allSlides[i], {
+                        start: [$(allSlides[i]).attr('data-min'), $(allSlides[i]).attr('data-max')],
+                        connect: true,
+                        animate: true,
+                        animationDuration: 300,
+                        range: {
+                            'min': Number(minInput.val()),
+                            'max': Number(maxInput.val())
+                        },
+                        format: wNumb({
+                            decimals: 0
+                        })
 
-            });
+                    });
 
-            slider.noUiSlider.on('update', function () {
-                var arrResult = slider.noUiSlider.get();
-                $('#min-price').val(arrResult[0]);
-                $('#max-price').val(arrResult[1]);
-            });
+                    allSlides[i].noUiSlider.on('update', function () {
+                        var arrResult = allSlides[i].noUiSlider.get();
+                        minInput.val(arrResult[0]);
+                        maxInput.val(arrResult[1]);
+                    });
 
-            $('#min-price').change(function () {
-                slider.noUiSlider.set([$(this).val(), $('#max-price').val()]);
-            });
+                    minInput.change(function () {
+                        allSlides[i].noUiSlider.set([$(this).val(), maxInput.val()]);
+                    });
 
-            $('#max-price').change(function () {
-                slider.noUiSlider.set([$('#min-price').val(), $(this).val()]);
+                    maxInput.change(function () {
+                        allSlides[i].noUiSlider.set([minInput.val(), $(this).val()]);
+                    });
+                }
             });
         }
 

@@ -1581,6 +1581,10 @@ h1 {
 .price-slider-cont {
   padding: 0 15px 15px;
 }
+.for-filter-text {
+  display: block;
+  padding-bottom: 5px;
+}
   .category-page .filters .one-filter .one-item-check {
     padding: 3px 18px;
     display: flex;
