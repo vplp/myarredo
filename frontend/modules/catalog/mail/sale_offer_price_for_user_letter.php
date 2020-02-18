@@ -32,7 +32,7 @@ use frontend\modules\catalog\models\{
             <div style="float: left;">
                 <?= Html::img(
                     'https://www.myarredo.ru' . Sale::getImageThumb($modelSale['image_link']),
-                    ['class' => 'width: 140px; max-height: 100px;']
+                    ['style' => 'width: 140px; max-height: 100px;']
                 ) ?>
             </div>
             <div style="float: left; margin: 10px 30px;">

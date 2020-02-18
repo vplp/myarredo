@@ -74,10 +74,6 @@ use frontend\modules\catalog\models\Category;
         <?php } ?>
 
         <?php if (YII_DEBUG) { ?>
-            <!-- Коммент беку):
-            я сделал слайдер с привязкой к классу (myarredo-slider) а не к id
-            поэтому все id-шники по типу этого - id="diameter-slider" - лучше удалить от греха подальше если они тебе не нужны, мне они точно не нужны
-            также если тебе не нужны id-шники мин и макс полей (http://joxi.ru/52an01JCblMJMA) их я бы тоже удалил, они уже стали ненужны для js -->
             <div class="one-filter filter-range-slider">
                 <?= Html::a(
                     Yii::t('app', 'Размеры'),
@@ -85,9 +81,8 @@ use frontend\modules\catalog\models\Category;
                     ['class' => 'filt-but']
                 ) ?>
                 <div class="price-slider-cont">
-                    <span class="for-filter-text">Диаметр</span> 
-
-                    <div id="diameter-slider" class="myarredo-slider" data-min="50" data-max="250"></div>
+                    <span class="for-filter-text">Диаметр</span>
+                    <div class="myarredo-slider" data-min="70" data-max="156"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
                         <div class="cur min">
                             <?= Html::input(
@@ -111,7 +106,7 @@ use frontend\modules\catalog\models\Category;
                     </div>
 
                     <span class="for-filter-text">Ширина</span>
-                    <div id="width-slider" class="myarredo-slider" data-min="40" data-max="130"></div>
+                    <div class="myarredo-slider" data-min="60" data-max="120"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
                         <div class="cur min">
                             <?= Html::input(
@@ -133,8 +128,9 @@ use frontend\modules\catalog\models\Category;
                             <span class="for-curicon">см</span>
                         </div>
                     </div>
+
                     <span class="for-filter-text">Длина</span>
-                    <div id="length-slider" class="myarredo-slider" data-min="90" data-max="300"></div>
+                    <div class="myarredo-slider" data-min="120" data-max="200"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
                         <div class="cur min">
                             <?= Html::input(
@@ -156,8 +152,9 @@ use frontend\modules\catalog\models\Category;
                             <span class="for-curicon">см</span>
                         </div>
                     </div>
+
                     <span class="for-filter-text">Высота</span>
-                    <div id="height-slider" class="myarredo-slider" data-min="45" data-max="355"></div>
+                    <div class="myarredo-slider" data-min="67" data-max="278"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
                         <div class="cur min">
                             <?= Html::input(
@@ -179,8 +176,9 @@ use frontend\modules\catalog\models\Category;
                             <span class="for-curicon">см</span>
                         </div>
                     </div>
+
                     <span class="for-filter-text">Раскладка</span>
-                    <div id="apportionment-slider" class="myarredo-slider" data-min="35" data-max="270"></div>
+                    <div class="myarredo-slider" data-min="59" data-max="178"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
                         <div class="cur min">
                             <?= Html::input(
@@ -202,6 +200,7 @@ use frontend\modules\catalog\models\Category;
                             <span class="for-curicon">см</span>
                         </div>
                     </div>
+
                     <a href="javascript:void(0);" class="submit">OK</a>
                 </div>
             </div>
