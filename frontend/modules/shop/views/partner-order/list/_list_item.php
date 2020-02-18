@@ -34,7 +34,9 @@ if ($user->profile->possibilityToAnswer) { ?>
                 $dealers_can_answer[] = $orderItem->product->factory
                     ? $orderItem->product->factory->dealers_can_answer
                     : 0;
-                $factoryDealersId[] = $orderItem->product->factory->getDealersIds();
+                $factoryDealersId[] = $orderItem->product->factory
+                    ? $orderItem->product->factory->getDealersIds()
+                    : 0;
                 ?>
                 <div class="basket-item-info">
 

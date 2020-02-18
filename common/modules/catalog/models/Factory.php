@@ -336,7 +336,7 @@ class Factory extends ActiveRecord
 
     public function getDealersIds()
     {
-        return ArrayHelper::map($this->getDealers(), 'id', 'id');
+        return ArrayHelper::map($this->dealers, 'id', 'id');
     }
 
     /**
