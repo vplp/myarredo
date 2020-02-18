@@ -20,7 +20,9 @@ use frontend\modules\catalog\models\{Product, Factory, Sale, FactoryFileClickSta
 class FactoryController extends BaseController
 {
     public $label = "Factory";
+
     public $title = "Factory";
+
     public $defaultAction = 'list';
 
     /**
@@ -28,15 +30,7 @@ class FactoryController extends BaseController
      */
     public function behaviors()
     {
-        return [
-            [
-                'class' => \yii\filters\HttpCache::class,
-                'only' => ['index'],
-                'lastModified' => function ($action, $params) {
-                    $q = new \yii\db\Query();
-                    return $q->from(Factory::tableName())->max('updated_at');
-                },
-            ],
+        $behaviors = [
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -46,6 +40,37 @@ class FactoryController extends BaseController
                 ],
             ],
         ];
+
+        if (Yii::$app->getUser()->isGuest && YII_DEBUG == false) {
+            $behaviors[] = [
+                'class' => \yii\filters\HttpCache::class,
+                'only' => ['index'],
+                'lastModified' => function ($action, $params) {
+                    return Factory::findBase()->max(Factory::tableName() . '.updated_at');
+                }
+            ];
+
+            $behaviors[] = [
+                'class' => \yii\filters\HttpCache::class,
+                'only' => ['view'],
+                'lastModified' => function ($action, $params) {
+                    return Factory::findBase()
+                        ->byAlias(Yii::$app->request->get('alias'))
+                        ->max(Factory::tableName() . '.updated_at');
+                },
+                'etagSeed' => function ($action, $params) {
+                    $model = Factory::findByAlias(Yii::$app->request->get('alias'));
+                    return serialize(
+                        [
+                            $model['title'],
+                            $model['lang']['content']
+                        ]
+                    );
+                },
+            ];
+        }
+
+        return $behaviors;
     }
 
     /**
