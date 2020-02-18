@@ -495,7 +495,6 @@ class Profile extends \thread\modules\user\models\Profile
     }
 
     /**
-     * @param int $city_id
      * @return bool
      */
     public function getPossibilityToSaveAnswerPerMonth()
@@ -516,7 +515,6 @@ class Profile extends \thread\modules\user\models\Profile
     /**
      * @param int $city_id
      * @return bool
-     * @throws \Exception
      * @throws \Throwable
      */
     public function getPossibilityToSaveAnswer($city_id = 0)

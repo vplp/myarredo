@@ -184,10 +184,10 @@ if ($user->profile->possibilityToAnswer) { ?>
         </div>
     </div>
 
-    <?php if ($user->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null && $user->profile->getPossibilityToSaveAnswerPerMonth()) {
-        if (in_array(1, $dealers_can_answer)) {
-            echo Yii::t('app', 'Чтобы ответить на данный запрос, Вы должны стать дилером данной фабрики.');
-        } elseif (!$modelOrderAnswer->id) {
+    <?php if (in_array(1, $dealers_can_answer)) {
+        echo Yii::t('app', 'Чтобы ответить на данный запрос, Вы должны стать дилером данной фабрики.');
+    } elseif ($user->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != false && $user->profile->getPossibilityToSaveAnswerPerMonth()) {
+        if (!$modelOrderAnswer->id) {
             echo Html::submitButton(
                 Yii::t('app', 'Отправить ответ клиенту'),
                 [
