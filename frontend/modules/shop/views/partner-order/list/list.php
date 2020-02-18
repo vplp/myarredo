@@ -28,18 +28,13 @@ use frontend\modules\shop\models\Order;
                     'models' => $models,
                 ]); ?>
 
-                <?php
-                //* !!! */ echo  '<pre style="color:red;">'; print_r(Yii::$app->user->identity->factoryDealers); echo '</pre>'; /* !!! */
-                $factoryDealers = [];
-                foreach (Yii::$app->user->identity->factoryDealers as $factory) {
-                    $factoryDealers[] = $factory['title'];
-                }
-
-                if (!empty($factoryDealers)) {
+                <?php if (Yii::$app->user->identity->factoryDealers) {
+                    $factoryDealers = [];
+                    foreach (Yii::$app->user->identity->factoryDealers as $factory) {
+                        $factoryDealers[] = $factory['title'];
+                    }
                     echo Yii::t('app', 'Вы можете отвечать на заявки фабрик {factoryDealers}. Для ответа на другие заявки свяжитесь с администратором.', ['factoryDealers' => implode(',', $factoryDealers)]);
-                }
-
-                ?>
+                } ?>
 
                 <?php if (!Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
                     <div style="color:red; font-size: 24px;">
