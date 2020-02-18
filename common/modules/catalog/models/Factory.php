@@ -334,6 +334,11 @@ class Factory extends ActiveRecord
             ->viaTable(FactoryRelDealers::tableName(), ['factory_id' => 'id']);
     }
 
+    public function getDealersIds()
+    {
+        return ArrayHelper::map($this->getDealers(), 'id', 'id');
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

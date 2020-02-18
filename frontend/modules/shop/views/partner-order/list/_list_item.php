@@ -18,6 +18,7 @@ use frontend\modules\catalog\models\Product;
 
 $user = Yii::$app->user->identity;
 $dealers_can_answer = [];
+$factoryDealersId = [];
 
 if ($user->profile->possibilityToAnswer) { ?>
     <?php $form = ActiveForm::begin([
@@ -33,6 +34,7 @@ if ($user->profile->possibilityToAnswer) { ?>
                 $dealers_can_answer[] = $orderItem->product->factory
                     ? $orderItem->product->factory->dealers_can_answer
                     : 0;
+                $factoryDealersId[] = $orderItem->product->factory->getDealersIds();
                 ?>
                 <div class="basket-item-info">
 
@@ -184,10 +186,10 @@ if ($user->profile->possibilityToAnswer) { ?>
         </div>
     </div>
 
-    <?php if (in_array(1, $dealers_can_answer)) {
-        echo Yii::t('app', 'Чтобы ответить на данный запрос, Вы должны стать дилером данной фабрики.');
-    } elseif ($user->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != false && $user->profile->getPossibilityToSaveAnswerPerMonth()) {
-        if (!$modelOrderAnswer->id) {
+    <?php if ($user->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null && $user->profile->getPossibilityToSaveAnswerPerMonth()) {
+        if (in_array(1, $dealers_can_answer) && !in_array(Yii::$app->user->identity->id, $factoryDealersId)) {
+            echo Yii::t('app', 'Чтобы ответить на данный запрос, Вы должны стать дилером данной фабрики.');
+        } elseif (!$modelOrderAnswer->id) {
             echo Html::submitButton(
                 Yii::t('app', 'Отправить ответ клиенту'),
                 [
