@@ -34,9 +34,10 @@ if ($user->profile->possibilityToAnswer) { ?>
                 $dealers_can_answer[] = $orderItem->product->factory
                     ? $orderItem->product->factory->dealers_can_answer
                     : 0;
-                $factoryDealersId[] = $orderItem->product->factory
-                    ? $orderItem->product->factory->getDealersIds()
-                    : 0;
+
+                $factoryDealersId = $orderItem->product->factory
+                    ? array_merge($factoryDealersId, $orderItem->product->factory->getFactoryDealersIds())
+                    : $factoryDealersId;
                 ?>
                 <div class="basket-item-info">
 
@@ -188,7 +189,9 @@ if ($user->profile->possibilityToAnswer) { ?>
         </div>
     </div>
 
-    <?php if ($user->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null && $user->profile->getPossibilityToSaveAnswerPerMonth()) {
+    <?php
+    // Только дилеры Фабрики отвечает на запросы
+    if ($user->profile->getPossibilityToSaveAnswer($modelOrder->city_id) != null && $user->profile->getPossibilityToSaveAnswerPerMonth()) {
         if (in_array(1, $dealers_can_answer) && !in_array(Yii::$app->user->identity->id, $factoryDealersId)) {
             echo Yii::t('app', 'Чтобы ответить на данный запрос, Вы должны стать дилером данной фабрики.');
         } elseif (!$modelOrderAnswer->id) {

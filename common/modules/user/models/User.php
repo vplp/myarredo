@@ -2,6 +2,8 @@
 
 namespace common\modules\user\models;
 
+use common\modules\catalog\models\Factory;
+use common\modules\catalog\models\FactoryRelDealers;
 use common\modules\shop\models\{
     OrderAnswer, OrderItemPrice
 };
@@ -14,6 +16,8 @@ use common\modules\catalog\models\FactoryFileClickStats;
  * @property Group $group
  * @property OrderAnswer $orderAnswer
  * @property OrderItemPrice $orderItemPrice
+ *
+ * @property FactoryRelDealers[] $factoryDealers
  *
  * @package common\modules\user\models
  */
@@ -49,6 +53,17 @@ class User extends \thread\modules\user\models\User
     public function getFactoryFileClickStats()
     {
         return $this->hasMany(FactoryFileClickStats::class, ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getFactoryDealers()
+    {
+        return $this
+            ->hasMany(Factory::class, ['id' => 'factory_id'])
+            ->viaTable(FactoryRelDealers::tableName(), ['dealer_id' => 'id']);
     }
 
     /**

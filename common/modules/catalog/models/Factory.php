@@ -54,7 +54,7 @@ use common\helpers\Inflector;
  * @property FactoryFile $files
  * @property FactoryCatalogsFiles $catalogsFiles
  * @property FactoryPricesFiles $pricesFiles
- * @property FactoryRelDealers[] $dealers
+ * @property FactoryRelDealers[] $factoryDealers
  *
  * @package common\modules\catalog\models
  */
@@ -327,16 +327,16 @@ class Factory extends ActiveRecord
      * @return \yii\db\ActiveQuery
      * @throws \yii\base\InvalidConfigException
      */
-    public function getDealers()
+    public function getFactoryDealers()
     {
         return $this
             ->hasMany(User::class, ['id' => 'dealer_id'])
             ->viaTable(FactoryRelDealers::tableName(), ['factory_id' => 'id']);
     }
 
-    public function getDealersIds()
+    public function getFactoryDealersIds()
     {
-        return ArrayHelper::map($this->dealers, 'id', 'id');
+        return ArrayHelper::map($this->factoryDealers, 'id', 'id');
     }
 
     /**
