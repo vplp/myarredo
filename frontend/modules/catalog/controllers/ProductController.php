@@ -20,6 +20,7 @@ use frontend\components\BaseController;
 class ProductController extends BaseController
 {
     public $title = "Product";
+
     public $defaultAction = 'view';
 
     /**
@@ -27,8 +28,8 @@ class ProductController extends BaseController
      */
     public function behaviors()
     {
-        return [
-            'verbs' => [
+        $behaviors = [
+            [
                 'class' => VerbFilter::class,
                 'actions' => [
                     'view' => ['get'],
@@ -36,6 +37,29 @@ class ProductController extends BaseController
                 ],
             ],
         ];
+
+        if (Yii::$app->getUser()->isGuest && YII_DEBUG == false) {
+            $behaviors[] = [
+                'class' => \yii\filters\HttpCache::class,
+                'only' => ['view'],
+                'lastModified' => function ($action, $params) {
+                    return Product::findBase()
+                        ->byAlias(Yii::$app->request->get('alias'))
+                        ->max(Product::tableName() . '.updated_at');
+                },
+                'etagSeed' => function ($action, $params) {
+                    $model = Product::findByAlias(Yii::$app->request->get('alias'));
+                    return serialize(
+                        [
+                            $model['lang']['title'],
+                            $model['lang']['description']
+                        ]
+                    );
+                },
+            ];
+        }
+
+        return $behaviors;
     }
 
     /**

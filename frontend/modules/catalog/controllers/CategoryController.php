@@ -29,8 +29,8 @@ class CategoryController extends BaseController
      */
     public function behaviors()
     {
-        return [
-            'verbs' => [
+        $behaviors = [
+            [
                 'class' => VerbFilter::class,
                 'actions' => [
                     'list' => ['get'],
@@ -39,15 +39,19 @@ class CategoryController extends BaseController
                     'ajax-get-filter' => ['post'],
                 ],
             ],
-            [
+        ];
+
+        if (Yii::$app->getUser()->isGuest && YII_DEBUG == false) {
+            $behaviors[] = [
                 'class' => \yii\filters\HttpCache::class,
                 'only' => ['list'],
                 'lastModified' => function ($action, $params) {
-                    $q = new \yii\db\Query();
-                    return $q->from(Product::tableName())->max('updated_at');
+                    return Product::findBase()->max(Product::tableName() . '.updated_at');
                 }
-            ],
-        ];
+            ];
+        }
+
+        return $behaviors;
     }
 
     /**

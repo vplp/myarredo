@@ -55,7 +55,7 @@ class SaleController extends BaseController
      */
     public function behaviors()
     {
-        return [
+        $behaviors = [
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -80,8 +80,38 @@ class SaleController extends BaseController
                         'allow' => false,
                     ],
                 ],
-            ],
+            ]
         ];
+
+        if (Yii::$app->getUser()->isGuest && YII_DEBUG == false) {
+            $behaviors[] = [
+                'class' => \yii\filters\HttpCache::class,
+                'only' => ['list'],
+                'lastModified' => function ($action, $params) {
+                    return Sale::findBase()->max(Sale::tableName() . '.updated_at');
+                }
+            ];
+            $behaviors[] = [
+                'class' => \yii\filters\HttpCache::class,
+                'only' => ['view'],
+                'lastModified' => function ($action, $params) {
+                    return Sale::findBase()
+                        ->byAlias(Yii::$app->request->get('alias'))
+                        ->max(Sale::tableName() . '.updated_at');
+                },
+                'etagSeed' => function ($action, $params) {
+                    $model = Sale::findByAlias(Yii::$app->request->get('alias'));
+                    return serialize(
+                        [
+                            $model['lang']['title'],
+                            $model['lang']['description']
+                        ]
+                    );
+                },
+            ];
+        }
+
+        return $behaviors;
     }
 
     /**
