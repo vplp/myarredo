@@ -38,7 +38,7 @@ class ProductController extends BaseController
             ],
         ];
 
-        if (Yii::$app->getUser()->isGuest && YII_DEBUG == false) {
+        if (Yii::$app->getUser()->isGuest && YII_ENV_PROD) {
             $behaviors[] = [
                 'class' => \yii\filters\HttpCache::class,
                 'only' => ['view'],
