@@ -86,7 +86,7 @@ class Factory extends ActiveRecord
             [
                 'class' => ManyToManyBehavior::className(),
                 'relations' => [
-                    'dealers_ids' => 'dealers',
+                    'dealers_ids' => 'factoryDealers',
                 ],
             ],
             [

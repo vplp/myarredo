@@ -87,10 +87,7 @@ class CategoryController extends BaseController
 
         $colors = Colors::getWithProduct($queryParams);
 
-        $price_range = [
-            'min' => Product::minPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams)),
-            'max' => Product::maxPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams))
-        ];
+        //$specification142_range = Specification::getWithProduct(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         $price_range = [
             'min' => Product::minPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams)),
