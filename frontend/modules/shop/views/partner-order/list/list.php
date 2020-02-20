@@ -33,7 +33,7 @@ use frontend\modules\shop\models\Order;
                     foreach (Yii::$app->user->identity->factoryDealers as $factory) {
                         $factoryDealers[] = $factory['title'];
                     }
-                    echo Yii::t('app', 'Вы можете отвечать на заявки фабрик {factoryDealers}. Для ответа на другие заявки свяжитесь с администратором.', ['factoryDealers' => implode(',', $factoryDealers)]);
+                    echo '<div class="partner-info-text">'. Yii::t('app', 'Вы можете отвечать на заявки фабрик {factoryDealers}. Для ответа на другие заявки свяжитесь с администратором.', ['factoryDealers' => implode(',', $factoryDealers)]). '</div>';
                 } ?>
 
                 <?php if (!Yii::$app->user->identity->profile->possibilityToAnswer) { ?>

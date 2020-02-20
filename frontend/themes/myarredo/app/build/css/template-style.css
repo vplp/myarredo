@@ -9311,6 +9311,15 @@ h1 {
 body>.modal-backdrop.fade.in{
   display: none;
 }
+.partner-info-text {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 10px;
+  font-style: italic;
+}
+.partner-info-text:before {
+  content: "*";
+}
 
 /* Стили для страницы - Тарифи (16.01.2020) */
 .tarifbox {
