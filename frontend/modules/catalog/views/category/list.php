@@ -117,9 +117,13 @@ $params = Yii::$app->catalogFilter->params;
                                             $_factory[$item['id']] = $item;
                                         }
 
-                                        foreach ($models as $model) {
-                                            echo $this->render('_list_item', ['model' => $model,
-                                                'factory' => $_factory,]);
+                                        if (!empty($models)) {
+                                            foreach ($models as $model) {
+                                                echo $this->render('_list_item', ['model' => $model,
+                                                    'factory' => $_factory,]);
+                                            }
+                                        } else if (empty($models) && isset($params)) {
+                                            echo Html::tag('p', Yii::t('app', 'По таким параметрам нет товаров'));
                                         } ?>
 
                                     </div>
