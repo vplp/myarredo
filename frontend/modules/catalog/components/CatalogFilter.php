@@ -529,5 +529,101 @@ class CatalogFilter extends Component
 
             self::$_parameters[self::$keys['diameter']] = $_data;
         }
+
+        /** width */
+
+        if (!empty(self::$_structure['width'])) {
+            $data = self::$_structure['width'];
+            if (strpos($data[0], 'width=') === false) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            if (count($data) != 2) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            $_data = [
+                preg_replace("/[^0-9]/", '', $data[0]),
+                preg_replace("/[^0-9]/", '', $data[1])
+            ];
+
+            if ($_data[0] >= $_data[1]) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            self::$_parameters[self::$keys['width']] = $_data;
+        }
+
+        /** length */
+
+        if (!empty(self::$_structure['length'])) {
+            $data = self::$_structure['length'];
+            if (strpos($data[0], 'length=') === false) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            if (count($data) != 2) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            $_data = [
+                preg_replace("/[^0-9]/", '', $data[0]),
+                preg_replace("/[^0-9]/", '', $data[1])
+            ];
+
+            if ($_data[0] >= $_data[1]) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            self::$_parameters[self::$keys['length']] = $_data;
+        }
+
+        /** height */
+
+        if (!empty(self::$_structure['height'])) {
+            $data = self::$_structure['height'];
+            if (strpos($data[0], 'height=') === false) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            if (count($data) != 2) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            $_data = [
+                preg_replace("/[^0-9]/", '', $data[0]),
+                preg_replace("/[^0-9]/", '', $data[1])
+            ];
+
+            if ($_data[0] >= $_data[1]) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            self::$_parameters[self::$keys['height']] = $_data;
+        }
+
+        /** apportionment */
+
+        if (!empty(self::$_structure['apportionment'])) {
+            $data = self::$_structure['apportionment'];
+            if (strpos($data[0], 'apportionment=') === false) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            if (count($data) != 2) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            $_data = [
+                preg_replace("/[^0-9]/", '', $data[0]),
+                preg_replace("/[^0-9]/", '', $data[1])
+            ];
+
+            if ($_data[0] >= $_data[1]) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            self::$_parameters[self::$keys['apportionment']] = $_data;
+        }
     }
 }

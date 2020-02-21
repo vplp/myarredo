@@ -110,15 +110,15 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
         }
 
         //$result = self::getDb()->cache(function ($db) use ($query) {
-        return $query
-            ->select([
-                'max(' . self::tableName() . '.val) as max',
-                'min(' . self::tableName() . '.val) as min'
-            ])
-            ->asArray()
-            ->one();
-        //}, 60 * 60);
-
-        //return $result;
+            return $query
+                ->select([
+                    'max(' . self::tableName() . '.val) as max',
+                    'min(' . self::tableName() . '.val) as min'
+                ])
+                ->asArray()
+                ->one();
+//        }, 60 * 60);
+//
+//        return $result;
     }
 }
