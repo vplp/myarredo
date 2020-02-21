@@ -110,13 +110,6 @@ class CategoryController extends BaseController
         } else {
             Yii::$app->view->registerMetaTag([
                 'name' => 'robots',
-                'content' => 'noindex, follow',
-            ]);
-        }
-
-        if (empty($models->getModels())) {
-            Yii::$app->view->registerMetaTag([
-                'name' => 'robots',
                 'content' => 'noindex, nofollow',
             ]);
         }
@@ -651,6 +644,26 @@ class CategoryController extends BaseController
          */
 
         if (isset($params[$keys['price']])) {
+            $noIndex = 1;
+        }
+
+        if (isset($params[$keys['diameter']])) {
+            $noIndex = 1;
+        }
+
+        if (isset($params[$keys['width']])) {
+            $noIndex = 1;
+        }
+
+        if (isset($params[$keys['length']])) {
+            $noIndex = 1;
+        }
+
+        if (isset($params[$keys['height']])) {
+            $noIndex = 1;
+        }
+
+        if (isset($params[$keys['apportionment']])) {
             $noIndex = 1;
         }
 
