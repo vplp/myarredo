@@ -385,6 +385,26 @@ class CategoryController extends BaseController
             $noIndex = 1;
         }
 
+        if (isset($params[$keys['diameter']])) {
+            $noIndex = 1;
+        }
+
+        if (isset($params[$keys['width']])) {
+            $noIndex = 1;
+        }
+
+        if (isset($params[$keys['length']])) {
+            $noIndex = 1;
+        }
+
+        if (isset($params[$keys['height']])) {
+            $noIndex = 1;
+        }
+
+        if (isset($params[$keys['apportionment']])) {
+            $noIndex = 1;
+        }
+
         $countParams = 0;
         foreach ($params as $arr) {
             $countParams += count($arr);
