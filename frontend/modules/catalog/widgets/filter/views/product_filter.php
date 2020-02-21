@@ -21,6 +21,7 @@ use frontend\modules\catalog\models\Category;
 /** @var  $lengthRange [] */
 /** @var  $heightRange [] */
 /** @var  $apportionmentRange [] */
+/** @var  $sizesLink string */
 /** @var $priceRange [] */
 
 ?>
@@ -110,7 +111,6 @@ use frontend\modules\catalog\models\Category;
                                 <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
                             </div>
                         </div>
-                        <?= Html::input('hidden', 'diameter[link]', $diameterRange['link']) ?>
                     <?php } ?>
 
                     <?php if ($widthRange && $widthRange['min']['default'] != $widthRange['max']['default']) { ?>
@@ -136,7 +136,6 @@ use frontend\modules\catalog\models\Category;
                                 <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
                             </div>
                         </div>
-                        <?= Html::input('hidden', 'width[link]', $widthRange['link']) ?>
                     <?php } ?>
 
                     <?php if ($lengthRange && $lengthRange['min']['default'] != $lengthRange['max']['default']) { ?>
@@ -162,7 +161,6 @@ use frontend\modules\catalog\models\Category;
                                 <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
                             </div>
                         </div>
-                        <?= Html::input('hidden', 'length[link]', $lengthRange['link']) ?>
                     <?php } ?>
 
                     <?php if ($heightRange && $heightRange['min']['default'] != $heightRange['max']['default']) { ?>
@@ -188,7 +186,6 @@ use frontend\modules\catalog\models\Category;
                                 <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
                             </div>
                         </div>
-                        <?= Html::input('hidden', 'height[link]', $heightRange['link']) ?>
                     <?php } ?>
 
                     <?php if ($apportionmentRange && $apportionmentRange['min']['default'] != $apportionmentRange['max']['default']) { ?>
@@ -214,8 +211,9 @@ use frontend\modules\catalog\models\Category;
                                 <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
                             </div>
                         </div>
-                        <?= Html::input('hidden', 'apportionment[link]', $apportionmentRange['link']) ?>
                     <?php } ?>
+
+                    <?= Html::input('hidden', 'sizesLink', $sizesLink) ?>
 
                     <a href="javascript:void(0);" class="submit submit_sizes">OK</a>
                 </div>
@@ -435,8 +433,34 @@ use frontend\modules\catalog\models\Category;
 <?php
 $script = <<<JS
 $('.submit_sizes').on('click', function () {
-// #filter-sizes
+    let link = $('input[name="sizesLink"]').val();
 
+    if ($('input[name="diameter[min]"]').length && $('input[name="diameter[max]"]').length) {
+        link = link.replace('{diameterMin}', $('input[name="diameter[min]"]').val());
+        link = link.replace('{diameterMax}', $('input[name="diameter[max]"]').val());   
+    }
+
+    if ($('input[name="width[min]"]').length && $('input[name="width[max]"]').length) {
+        link = link.replace('{widthMin}', $('input[name="width[min]"]').val());
+        link = link.replace('{widthMax}', $('input[name="width[max]"]').val());   
+    }
+     
+    if ($('input[name="length[min]"]').length && $('input[name="length[max]"]').length) {
+        link = link.replace('{lengthMin}', $('input[name="length[min]"]').val());
+        link = link.replace('{lengthMax}', $('input[name="length[max]"]').val());   
+    }
+    
+    if ($('input[name="height[min]"]').length && $('input[name="height[max]"]').length) {
+        link = link.replace('{heightMin}', $('input[name="height[min]"]').val());
+        link = link.replace('{heightMax}', $('input[name="height[max]"]').val());   
+    }
+    
+    if ($('input[name="apportionment[min]"]').length && $('input[name="apportionment[max]"]').length) {
+        link = link.replace('{apportionmentMin}', $('input[name="apportionment[min]"]').val());
+        link = link.replace('{apportionmentMax}', $('input[name="apportionment[max]"]').val());   
+    }
+    
+    window.location.href = link;
 });
 
 $('.submit_price').on('click', function () {

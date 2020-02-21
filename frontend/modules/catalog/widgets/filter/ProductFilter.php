@@ -333,7 +333,7 @@ class ProductFilter extends Widget
             ];
         }
 
-        if (!empty($priceRange['min']) && !empty($priceRange['max'])) {
+        if ($priceRange && $priceRange['min']['default'] != $priceRange['max']['default']) {
             $params = Yii::$app->catalogFilter->params;
 
             // calculate
@@ -354,6 +354,7 @@ class ProductFilter extends Widget
         /** Diameter range */
 
         $diameterRange = [];
+        $sizesParams = Yii::$app->catalogFilter->params;
 
         // min
         if ($this->diameterRange['min']) {
@@ -375,11 +376,8 @@ class ProductFilter extends Widget
             ];
         }
 
-        if (!empty($diameterRange['min']) && !empty($diameterRange['max'])) {
-            $params = Yii::$app->catalogFilter->params;
-
-            $params[$keys['diameter']] = ['{diameterMin}', '{diameterMax}'];
-            $diameterRange['link'] = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
+        if ($diameterRange && $diameterRange['min']['default'] != $diameterRange['max']['default']) {
+            $sizesParams[$keys['diameter']] = ['{diameterMin}', '{diameterMax}'];
         }
 
         /** Width range */
@@ -406,11 +404,8 @@ class ProductFilter extends Widget
             ];
         }
 
-        if (!empty($widthRange['min']) && !empty($widthRange['max'])) {
-            $params = Yii::$app->catalogFilter->params;
-
-            $params[$keys['width']] = ['{widthMin}', '{widthMax}'];
-            $widthRange['link'] = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
+        if ($widthRange && $widthRange['min']['default'] != $widthRange['max']['default']) {
+            $sizesParams[$keys['width']] = ['{widthMin}', '{widthMax}'];
         }
 
         /** Length range */
@@ -437,11 +432,8 @@ class ProductFilter extends Widget
             ];
         }
 
-        if (!empty($lengthRange['min']) && !empty($lengthRange['max'])) {
-            $params = Yii::$app->catalogFilter->params;
-
-            $params[$keys['length']] = ['{lengthMin}', '{lengthMax}'];
-            $lengthRange['link'] = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
+        if ($lengthRange && $lengthRange['min']['default'] != $lengthRange['max']['default']) {
+            $sizesParams[$keys['length']] = ['{lengthMin}', '{lengthMax}'];
         }
 
         /** Height range */
@@ -468,11 +460,8 @@ class ProductFilter extends Widget
             ];
         }
 
-        if (!empty($heightRange['min']) && !empty($heightRange['max'])) {
-            $params = Yii::$app->catalogFilter->params;
-
-            $params[$keys['height']] = ['{heightMin}', '{heightMax}'];
-            $heightRange['link'] = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
+        if ($heightRange && $heightRange['min']['default'] != $heightRange['max']['default']) {
+            $sizesParams[$keys['height']] = ['{heightMin}', '{heightMax}'];
         }
 
         /** Apportionment range */
@@ -499,12 +488,11 @@ class ProductFilter extends Widget
             ];
         }
 
-        if (!empty($apportionmentRange['min']) && !empty($apportionmentRange['max'])) {
-            $params = Yii::$app->catalogFilter->params;
-
-            $params[$keys['apportionment']] = ['{apportionmentMin}', '{apportionmentMax}'];
-            $apportionmentRange['link'] = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
+        if ($apportionmentRange && $apportionmentRange['min']['default'] != $apportionmentRange['max']['default']) {
+            $sizesParams[$keys['apportionment']] = ['{apportionmentMin}', '{apportionmentMax}'];
         }
+
+        $sizesLink = Yii::$app->catalogFilter->createUrl($sizesParams, [$this->route]);
 
         return $this->render($this->view, [
             'route' => $this->route,
@@ -521,6 +509,7 @@ class ProductFilter extends Widget
             'lengthRange' => $lengthRange,
             'heightRange' => $heightRange,
             'apportionmentRange' => $apportionmentRange,
+            'sizesLink' => $sizesLink,
             'priceRange' => $priceRange,
             'filter' => Yii::$app->catalogFilter->params
         ]);

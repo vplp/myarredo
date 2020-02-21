@@ -189,6 +189,14 @@ class CatalogFilter extends Component
                 $res[$k] = 'price=' . implode(self::AMPERSAND_2, $v);
             } elseif (is_array($v) && $k == self::$keys['diameter']) {
                 $res[$k] = 'diameter=' . implode(self::AMPERSAND_2, $v);
+            } elseif (is_array($v) && $k == self::$keys['width']) {
+                $res[$k] = 'width=' . implode(self::AMPERSAND_2, $v);
+            } elseif (is_array($v) && $k == self::$keys['length']) {
+                $res[$k] = 'length=' . implode(self::AMPERSAND_2, $v);
+            } elseif (is_array($v) && $k == self::$keys['height']) {
+                $res[$k] = 'height=' . implode(self::AMPERSAND_2, $v);
+            } elseif (is_array($v) && $k == self::$keys['apportionment']) {
+                $res[$k] = 'apportionment=' . implode(self::AMPERSAND_2, $v);
             } elseif (is_array($v)) {
                 $res[$k] = implode(self::AMPERSAND_2, $v);
             } else {
