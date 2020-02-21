@@ -16,13 +16,7 @@ use frontend\modules\catalog\models\Category;
 /** @var $collection [] */
 /** @var $factory_first_show [] */
 /** @var $colors [] */
-/** @var  $diameterRange [] */
-/** @var  $widthRange [] */
-/** @var  $lengthRange [] */
-/** @var  $heightRange [] */
-/** @var  $apportionmentRange [] */
-/** @var  $sizesLink string */
-/** @var $priceRange [] */
+/** @var $price_range [] */
 
 ?>
 
@@ -79,144 +73,138 @@ use frontend\modules\catalog\models\Category;
             </div>
         <?php } ?>
 
-        <div id="filter-sizes" class="one-filter filter-range-slider">
-            <?= Html::a(
-                Yii::t('app', 'Размеры'),
-                'javascript:void(0);',
-                ['class' => 'filt-but']
-            ) ?>
-            <div class="price-slider-cont">
-
-                <?php if ($diameterRange && $diameterRange['min']['default'] != $diameterRange['max']['default']) { ?>
-                    <span class="for-filter-text"><?= Yii::t('app', 'Диаметр') ?></span>
-                    <div class="myarredo-slider" data-min="<?= $diameterRange['min']['current'] ?>"
-                         data-max="<?= $diameterRange['max']['current'] ?>"></div>
+        <?php if (YII_DEBUG) { ?>
+            <div class="one-filter filter-range-slider">
+                <?= Html::a(
+                    Yii::t('app', 'Размеры'),
+                    'javascript:void(0);',
+                    ['class' => 'filt-but']
+                ) ?>
+                <div class="price-slider-cont">
+                    <span class="for-filter-text">Диаметр</span>
+                    <div class="myarredo-slider" data-min="70" data-max="156"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
                         <div class="cur min">
                             <?= Html::input(
                                 'text',
                                 'diameter[min]',
-                                $diameterRange['min']['default']
+                                50,
+                                ['id' => 'min-diameter']
                             ) ?>
-                            <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
+                            <span class="for-curicon">см</span>
                         </div>
                         <span class="indent"> - </span>
                         <div class="cur max">
                             <?= Html::input(
                                 'text',
                                 'diameter[max]',
-                                $diameterRange['max']['default']
+                                250,
+                                ['id' => 'max-diameter']
                             ) ?>
-                            <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
+                            <span class="for-curicon">см</span>
                         </div>
                     </div>
-                <?php } ?>
 
-                <?php if ($widthRange && $widthRange['min']['default'] != $widthRange['max']['default']) { ?>
-                    <span class="for-filter-text"><?= Yii::t('app', 'Ширина') ?></span>
-                    <div class="myarredo-slider" data-min="<?= $widthRange['min']['current'] ?>"
-                         data-max="<?= $widthRange['max']['current'] ?>"></div>
+                    <span class="for-filter-text">Ширина</span>
+                    <div class="myarredo-slider" data-min="60" data-max="120"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
                         <div class="cur min">
                             <?= Html::input(
                                 'text',
                                 'width[min]',
-                                $widthRange['min']['default']
+                                40,
+                                ['id' => 'min-width']
                             ) ?>
-                            <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
+                            <span class="for-curicon">см</span>
                         </div>
                         <span class="indent"> - </span>
                         <div class="cur max">
                             <?= Html::input(
                                 'text',
                                 'width[max]',
-                                $widthRange['max']['default']
+                                130,
+                                ['id' => 'max-width']
                             ) ?>
-                            <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
+                            <span class="for-curicon">см</span>
                         </div>
                     </div>
-                <?php } ?>
 
-                <?php if ($lengthRange && $lengthRange['min']['default'] != $lengthRange['max']['default']) { ?>
-                    <span class="for-filter-text"><?= Yii::t('app', 'Длина') ?></span>
-                    <div class="myarredo-slider" data-min="<?= $lengthRange['min']['current'] ?>"
-                         data-max="<?= $lengthRange['max']['current'] ?>"></div>
+                    <span class="for-filter-text">Длина</span>
+                    <div class="myarredo-slider" data-min="120" data-max="200"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
                         <div class="cur min">
                             <?= Html::input(
                                 'text',
                                 'length[min]',
-                                $lengthRange['min']['default']
+                                90,
+                                ['id' => 'min-length']
                             ) ?>
-                            <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
+                            <span class="for-curicon">см</span>
                         </div>
                         <span class="indent"> - </span>
                         <div class="cur max">
                             <?= Html::input(
                                 'text',
                                 'length[max]',
-                                $lengthRange['max']['default']
+                                300,
+                                ['id' => 'max-length']
                             ) ?>
-                            <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
+                            <span class="for-curicon">см</span>
                         </div>
                     </div>
-                <?php } ?>
 
-                <?php if ($heightRange && $heightRange['min']['default'] != $heightRange['max']['default']) { ?>
-                    <span class="for-filter-text"><?= Yii::t('app', 'Высота') ?></span>
-                    <div class="myarredo-slider" data-min="<?= $heightRange['min']['current'] ?>"
-                         data-max="<?= $heightRange['max']['current'] ?>"></div>
+                    <span class="for-filter-text">Высота</span>
+                    <div class="myarredo-slider" data-min="67" data-max="278"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
                         <div class="cur min">
                             <?= Html::input(
                                 'text',
                                 'height[min]',
-                                $heightRange['min']['default']
+                                45,
+                                ['id' => 'min-height']
                             ) ?>
-                            <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
+                            <span class="for-curicon">см</span>
                         </div>
                         <span class="indent"> - </span>
                         <div class="cur max">
                             <?= Html::input(
                                 'text',
                                 'height[max]',
-                                $heightRange['max']['default']
+                                355,
+                                ['id' => 'max-height']
                             ) ?>
-                            <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
+                            <span class="for-curicon">см</span>
                         </div>
                     </div>
-                <?php } ?>
 
-                <?php if ($apportionmentRange && $apportionmentRange['min']['default'] != $apportionmentRange['max']['default']) { ?>
-                    <span class="for-filter-text"><?= Yii::t('app', 'Раскладка') ?></span>
-                    <div class="myarredo-slider" data-min="<?= $apportionmentRange['min']['current'] ?>"
-                         data-max="<?= $apportionmentRange['max']['current'] ?>"></div>
+                    <span class="for-filter-text">Раскладка</span>
+                    <div class="myarredo-slider" data-min="59" data-max="178"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
                         <div class="cur min">
                             <?= Html::input(
                                 'text',
                                 'apportionment[min]',
-                                $apportionmentRange['min']['default']
+                                35,
+                                ['id' => 'min-apportionment']
                             ) ?>
-                            <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
+                            <span class="for-curicon">см</span>
                         </div>
                         <span class="indent"> - </span>
                         <div class="cur max">
                             <?= Html::input(
                                 'text',
                                 'apportionment[max]',
-                                $apportionmentRange['max']['default']
+                                270,
+                                ['id' => 'max-apportionment']
                             ) ?>
-                            <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
+                            <span class="for-curicon">см</span>
                         </div>
                     </div>
-                <?php } ?>
 
-                <?= Html::input('hidden', 'sizesLink', $sizesLink) ?>
-
-                <a href="javascript:void(0);" class="submit submit_sizes">OK</a>
+                    <a href="javascript:void(0);" class="submit">OK</a>
+                </div>
             </div>
-        </div>
+        <?php } ?>
 
         <?php if ($subtypes) { ?>
             <div class="one-filter">
@@ -380,7 +368,7 @@ use frontend\modules\catalog\models\Category;
             </div>
         <?php } ?>
 
-        <?php if ($priceRange && $priceRange['min']['default'] != $priceRange['max']['default']) { ?>
+        <?php if ($price_range && $price_range['min']['default'] != $price_range['max']['default']) { ?>
             <div class="one-filter filter-range-slider">
                 <?= Html::a(
                     Yii::t('app', 'Цена'),
@@ -388,22 +376,31 @@ use frontend\modules\catalog\models\Category;
                     ['class' => 'filt-but']
                 ) ?>
                 <div class="price-slider-cont">
-                    <div class="myarredo-slider"
-                         data-min="<?= $priceRange['min']['current'] ?>"
-                         data-max="<?= $priceRange['max']['current'] ?>"></div>
+                    <div id="price-slider" class="myarredo-slider"
+                         data-min="<?= $price_range['min']['current'] ?>"
+                         data-max="<?= $price_range['max']['current'] ?>"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
                         <div class="cur min">
-                            <?= Html::input('text', 'price[min]', $priceRange['min']['default']) ?>
+                            <?= Html::input(
+                                'text',
+                                'price[min]',
+                                $price_range['min']['default'],
+                                ['id' => 'min-price']
+                            ) ?>
                             <span class="for-curicon"><?= Yii::$app->currency->symbol ?></span>
                         </div>
                         <span class="indent"> - </span>
                         <div class="cur max">
-                            <?= Html::input('text', 'price[max]', $priceRange['max']['default']) ?>
+                            <?= Html::input(
+                                'text',
+                                'price[max]',
+                                $price_range['max']['default'],
+                                ['id' => 'max-price']
+                            ) ?>
                             <span class="for-curicon"><?= Yii::$app->currency->symbol ?></span>
                         </div>
                     </div>
-                    <?= Html::input('hidden', 'price[link]', $priceRange['link']) ?>
-                    <a href="javascript:void(0);" class="submit submit_price">OK</a>
+                    <a href="javascript:void(0);" class="submit">OK</a>
                 </div>
             </div>
         <?php } ?>
@@ -429,61 +426,28 @@ use frontend\modules\catalog\models\Category;
     </div>
 
 <?php
-$script = <<<JS
-$('.submit_sizes').on('click', function () {
-    let link = $('input[name="sizesLink"]').val(),
-    diameterMin = $('input[name="diameter[min]"]'),
-    diameterMax = $('input[name="diameter[max]"]'),
-    widthMin = $('input[name="width[min]"]'),
-    widthMax = $('input[name="width[max]"]'),
-    lengthMin = $('input[name="length[min]"]'),
-    lengthMax = $('input[name="length[max]"]'),
-    heightMin = $('input[name="height[min]"]'),
-    heightMax = $('input[name="height[max]"]'),
-    apportionmentMin = $('input[name="apportionment[min]"]'),
-    apportionmentMax = $('input[name="apportionment[max]"]');
+if (!empty($price_range) && $price_range['link']) {
+    $link_for_price = $price_range['link'];
 
-    if (diameterMin.length && diameterMax.length) {
-        link = link.replace('{diameterMin}', diameterMin.val());
-        link = link.replace('{diameterMax}', diameterMax.val());   
-    }
-
-    if (widthMin.length && widthMax.length) {
-        link = link.replace('{widthMin}', widthMin.val());
-        link = link.replace('{widthMax}', widthMax.val());   
-    }
-     
-    if (lengthMin.length && lengthMax.length) {
-        link = link.replace('{lengthMin}', lengthMin.val());
-        link = link.replace('{lengthMax}', lengthMax.val());   
-    }
-    
-    if (heightMin.length && heightMax.length) {
-        link = link.replace('{heightMin}', heightMin.val());
-        link = link.replace('{heightMax}', heightMax.val());   
-    }
-    
-    if (apportionmentMin.length && apportionmentMax.length) {
-        link = link.replace('{apportionmentMin}', apportionmentMin.val());
-        link = link.replace('{apportionmentMax}', apportionmentMax.val());   
-    }
-
-    window.location.href = link;
-});
-
-$('.submit_price').on('click', function () {
-    let link = $('input[name="price[link]"]').val(),
+    $script = <<<JS
+$('.submit').on('click', function () {
+    var link = '$link_for_price',
         min = $('input[name="price[min]"]').val(),
         max = $('input[name="price[max]"]').val();
     
-    link = link.replace('{priceMin}', min);
-    link = link.replace('{priceMax}', max);
+    link = link.replace('{MIN}', min);
+    link = link.replace('{MAX}', max);
 
     window.location.href = link;
 });
+JS;
 
+    $this->registerJs($script);
+}
+
+$script = <<<JS
 $('.category-filter label').on('click', function () {
-    let checkbox = $(this).parent().find('input[type=checkbox]');  
+    var checkbox = $(this).parent().find('input[type=checkbox]');  
    
     if ($(this).parent().find('input[type=checkbox]:checked').length) {
         checkbox.prop('checked', false);
