@@ -109,7 +109,7 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
             ]);
         }
 
-        //$result = self::getDb()->cache(function ($db) use ($query) {
+        $result = self::getDb()->cache(function ($db) use ($query) {
             return $query
                 ->select([
                     'max(' . self::tableName() . '.val) as max',
@@ -117,8 +117,8 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
                 ])
                 ->asArray()
                 ->one();
-//        }, 60 * 60);
-//
-//        return $result;
+        }, 60 * 60);
+
+        return $result;
     }
 }
