@@ -240,18 +240,18 @@ class CatalogFilter extends Component
             }
         }
 
-        if (count($elements) > 1 && empty(end($elements))) {
-            $key = array_key_last($elements);
-            $labelEmptyKey = array_values($this->getLabelEmptyKey());
-            $url = str_replace(self::AMPERSAND_1 . $labelEmptyKey[$key], '', $url);
-
-            Yii::$app->response->redirect(Url::toRoute(['/catalog/category/list', 'filter' => $url]), 301);
-            Yii::$app->end();
-        } elseif (count($elements) == 1 && empty(end($elements)) && Yii::$app->request->get('filter')) {
-            ///* !!! */ echo  '<pre style="color:red;">'; print_r(end($elements)); echo '</pre>'; /* !!! */
-            Yii::$app->response->redirect(Url::toRoute(['/catalog/category/list']), 301);
-            Yii::$app->end();
-        }
+//        if (count($elements) > 1 && empty(end($elements))) {
+//            $key = array_key_last($elements);
+//            $labelEmptyKey = array_values($this->getLabelEmptyKey());
+//            $url = str_replace(self::AMPERSAND_1 . $labelEmptyKey[$key], '', $url);
+//
+//            Yii::$app->response->redirect(Url::toRoute(['/catalog/category/list', 'filter' => $url]), 301);
+//            Yii::$app->end();
+//        } elseif (count($elements) == 1 && empty(end($elements)) && Yii::$app->request->get('filter')) {
+//            ///* !!! */ echo  '<pre style="color:red;">'; print_r(end($elements)); echo '</pre>'; /* !!! */
+//            Yii::$app->response->redirect(Url::toRoute(['/catalog/category/list']), 301);
+//            Yii::$app->end();
+//        }
 
         $i = 0;
         foreach (self::$keys as $key => $value) {
