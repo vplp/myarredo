@@ -60,7 +60,7 @@ class ArticleForPartners extends \common\modules\news\models\ArticleForPartners
 
         $query = self::findBase()
             ->andFilterWhere([
-                'or',
+                'OR',
                 [self::tableName() . '.show_all' => '1'],
                 ['in', self::tableName() . '.id', $subQueryUser],
                 ['in', self::tableName() . '.id', $subQueryCity]

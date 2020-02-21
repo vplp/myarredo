@@ -557,21 +557,15 @@ class Product extends \common\modules\catalog\models\Product
                 ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
         }
 
-        //$result = self::getDb()->cache(function ($db) use ($query) {
-        return $query
-            ->select([
-                'max(' . self::tableName() . '.price_from) as max',
-                'min(' . self::tableName() . '.price_from) as min'
-            ])
-            ->one();
-        //}, 60 * 60);
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query
+                ->select([
+                    'max(' . self::tableName() . '.price_from) as max',
+                    'min(' . self::tableName() . '.price_from) as min'
+                ])
+                ->one();
+        }, 60 * 60);
 
-        //return $result;
-
-//        $result = self::getDb()->cache(function ($db) use ($query) {
-//            return $query->min(self::tableName() . '.price_from');
-//        }, 60 * 60);
-
-//        return $result;
+        return $result;
     }
 }

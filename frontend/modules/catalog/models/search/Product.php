@@ -175,8 +175,7 @@ class Product extends ProductModel
             $query
                 ->innerJoinWith(["specificationValue height"])
                 ->andFilterWhere(['height.specification_id' => 7])
-                ->andFilterWhere(['BETWEEN', 'height.val', $min, $max
-                ]);
+                ->andFilterWhere(['BETWEEN', 'height.val', $min, $max]);
         }
 
         if (isset($params[$keys['apportionment']])) {

@@ -79,7 +79,7 @@ use frontend\modules\catalog\models\Category;
             </div>
         <?php } ?>
 
-        <?php if (YII_DEBUG) { ?>
+        <?php //if (YII_DEBUG) { ?>
             <div id="filter-sizes" class="one-filter filter-range-slider">
                 <?= Html::a(
                     Yii::t('app', 'Размеры'),
@@ -97,7 +97,8 @@ use frontend\modules\catalog\models\Category;
                                 <?= Html::input(
                                     'text',
                                     'diameter[min]',
-                                    $diameterRange['min']['default']
+                                    $diameterRange['min']['default'],
+                                    ['data-default' => $diameterRange['min']['default']]
                                 ) ?>
                                 <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
                             </div>
@@ -106,7 +107,8 @@ use frontend\modules\catalog\models\Category;
                                 <?= Html::input(
                                     'text',
                                     'diameter[max]',
-                                    $diameterRange['max']['default']
+                                    $diameterRange['max']['default'],
+                                    ['data-default' => $diameterRange['max']['default']]
                                 ) ?>
                                 <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
                             </div>
@@ -122,7 +124,8 @@ use frontend\modules\catalog\models\Category;
                                 <?= Html::input(
                                     'text',
                                     'width[min]',
-                                    $widthRange['min']['default']
+                                    $widthRange['min']['default'],
+                                    ['data-default' => $widthRange['min']['default']]
                                 ) ?>
                                 <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
                             </div>
@@ -131,7 +134,8 @@ use frontend\modules\catalog\models\Category;
                                 <?= Html::input(
                                     'text',
                                     'width[max]',
-                                    $widthRange['max']['default']
+                                    $widthRange['max']['default'],
+                                    ['data-default' => $widthRange['max']['default']]
                                 ) ?>
                                 <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
                             </div>
@@ -147,7 +151,8 @@ use frontend\modules\catalog\models\Category;
                                 <?= Html::input(
                                     'text',
                                     'length[min]',
-                                    $lengthRange['min']['default']
+                                    $lengthRange['min']['default'],
+                                    ['data-default' => $lengthRange['min']['default']]
                                 ) ?>
                                 <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
                             </div>
@@ -156,7 +161,8 @@ use frontend\modules\catalog\models\Category;
                                 <?= Html::input(
                                     'text',
                                     'length[max]',
-                                    $lengthRange['max']['default']
+                                    $lengthRange['max']['default'],
+                                    ['data-default' => $lengthRange['max']['default']]
                                 ) ?>
                                 <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
                             </div>
@@ -172,7 +178,8 @@ use frontend\modules\catalog\models\Category;
                                 <?= Html::input(
                                     'text',
                                     'height[min]',
-                                    $heightRange['min']['default']
+                                    $heightRange['min']['default'],
+                                    ['data-default' => $heightRange['min']['default']]
                                 ) ?>
                                 <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
                             </div>
@@ -181,7 +188,8 @@ use frontend\modules\catalog\models\Category;
                                 <?= Html::input(
                                     'text',
                                     'height[max]',
-                                    $heightRange['max']['default']
+                                    $heightRange['max']['default'],
+                                    ['data-default' => $heightRange['max']['default']]
                                 ) ?>
                                 <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
                             </div>
@@ -197,7 +205,8 @@ use frontend\modules\catalog\models\Category;
                                 <?= Html::input(
                                     'text',
                                     'apportionment[min]',
-                                    $apportionmentRange['min']['default']
+                                    $apportionmentRange['min']['default'],
+                                    ['data-default' => $apportionmentRange['min']['default']]
                                 ) ?>
                                 <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
                             </div>
@@ -206,7 +215,8 @@ use frontend\modules\catalog\models\Category;
                                 <?= Html::input(
                                     'text',
                                     'apportionment[max]',
-                                    $apportionmentRange['max']['default']
+                                    $apportionmentRange['max']['default'],
+                                    ['data-default' => $apportionmentRange['max']['default']]
                                 ) ?>
                                 <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
                             </div>
@@ -218,7 +228,7 @@ use frontend\modules\catalog\models\Category;
                     <a href="javascript:void(0);" class="submit submit_sizes">OK</a>
                 </div>
             </div>
-        <?php } ?>
+        <?php //} ?>
 
         <?php if ($subtypes) { ?>
             <div class="one-filter">
@@ -445,27 +455,43 @@ $('.submit_sizes').on('click', function () {
     apportionmentMin = $('input[name="apportionment[min]"]'),
     apportionmentMax = $('input[name="apportionment[max]"]');
 
-    if (diameterMin.length && diameterMax.length) {
+    if (diameterMin.length && diameterMax.length &&
+        diameterMin.data('default') == diameterMin.val() && diameterMax.data('default') == diameterMax.val()) {
+        link = link.replace('={diameterMin}-{diameterMax}', '');
+    } else if (diameterMin.length && diameterMax.length) {
         link = link.replace('{diameterMin}', diameterMin.val());
         link = link.replace('{diameterMax}', diameterMax.val());   
     }
 
-    if (widthMin.length && widthMax.length) {
+    if (widthMin.length && widthMax.length &&
+        widthMin.data('default') == widthMin.val() && widthMax.data('default') == widthMax.val()) {
+        link = link.replace('={widthMin}-{widthMax}', '');
+    } else if (widthMin.length && widthMax.length) {
         link = link.replace('{widthMin}', widthMin.val());
         link = link.replace('{widthMax}', widthMax.val());   
     }
      
-    if (lengthMin.length && lengthMax.length) {
+    if (lengthMin.length && lengthMax.length &&
+        lengthMin.data('default') == lengthMin.val() && lengthMax.data('default') == lengthMax.val()) {
+        link = link.replace('={lengthMin}-{lengthMax}', '');
+    } else if (lengthMin.length && lengthMax.length) {
         link = link.replace('{lengthMin}', lengthMin.val());
         link = link.replace('{lengthMax}', lengthMax.val());   
     }
-    
-    if (heightMin.length && heightMax.length) {
+
+    if (heightMin.length && heightMax.length &&
+        heightMin.data('default') == heightMin.val() && heightMax.data('default') == heightMax.val()) {
+        console.log(heightMin.data('default'));
+        link = link.replace('={heightMin}-{heightMax}', '');
+    } else if (heightMin.length && heightMax.length) {
         link = link.replace('{heightMin}', heightMin.val());
         link = link.replace('{heightMax}', heightMax.val());   
     }
     
-    if (apportionmentMin.length && apportionmentMax.length) {
+    if (apportionmentMin.length && apportionmentMax.length &&
+        apportionmentMin.data('default') == apportionmentMin.val() && apportionmentMax.data('default') == apportionmentMax.val()) {
+        link = link.replace('={apportionmentMin}-{apportionmentMax}', '');
+    } else if (apportionmentMin.length && apportionmentMax.length) {
         link = link.replace('{apportionmentMin}', apportionmentMin.val());
         link = link.replace('{apportionmentMax}', apportionmentMax.val());   
     }

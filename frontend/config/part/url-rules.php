@@ -40,6 +40,7 @@ return [
     'search/index' => 'catalog/elastic-search/index',
 
     'catalog/<filter:[\=\;\-\w\d]+>' => 'catalog/category/list',
+    'catalog' => 'catalog/category/list',
     'catalog/category/ajax-get-types' => 'catalog/category/ajax-get-types',
     'catalog/category/ajax-get-category' => 'catalog/category/ajax-get-category',
     'catalog/category/ajax-get-novelty' => 'catalog/category/ajax-get-novelty',
@@ -52,7 +53,6 @@ return [
     'product/ajax-get-compositions' => 'catalog/product/ajax-get-compositions',
     'product/<alias:[\w\-]+>' => 'catalog/product/view',
     'sale-product/<alias:[\w\-]+>' => 'catalog/sale/view',
-    'catalog' => 'catalog/category/list',
     'factories/<letter:[\w\-]>' => 'catalog/factory/list',
     'factories' => 'catalog/factory/list',
     'sale' => 'catalog/sale/list',

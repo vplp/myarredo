@@ -102,6 +102,52 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
             $max = Yii::$app->currency->getReversValue($params[$keys['price']][1], Yii::$app->currency->code, 'EUR');
             $query->andFilterWhere(['between', Product::tableName() . '.price_from', $min, $max]);
         }
+//
+//        if (isset($params[$keys['diameter']]) && $specification_id != 42) {
+//            $min = $params[$keys['diameter']][0];
+//            $max = $params[$keys['diameter']][1];
+//            $query
+//                ->innerJoinWith(["product.specificationValue diameter"], false)
+//                ->andFilterWhere(['diameter.specification_id' => 42])
+//                ->andFilterWhere(['BETWEEN', 'diameter.val', $min, $max]);
+//        }
+
+//        if (isset($params[$keys['width']]) && $specification_id != 8) {
+//            $min = $params[$keys['width']][0];
+//            $max = $params[$keys['width']][1];
+//            $query
+//                ->innerJoinWith(["product.specificationValue width"], false)
+//                ->andFilterWhere(['width.specification_id' => 8])
+//                ->andFilterWhere(['BETWEEN', 'width.val', $min, $max]);
+//        }
+//
+//        if (isset($params[$keys['length']]) && $specification_id != 6) {
+//            $min = $params[$keys['length']][0];
+//            $max = $params[$keys['length']][1];
+//            $query
+//                ->innerJoinWith(["product.specificationValue length"], false)
+//                ->andFilterWhere(['length.specification_id' => 6])
+//                ->andFilterWhere(['BETWEEN', 'length.val', $min, $max]);
+//        }
+//
+//        if (isset($params[$keys['height']]) && $specification_id != 7) {
+//            $min = $params[$keys['height']][0];
+//            $max = $params[$keys['height']][1];
+//            $query
+//                ->innerJoinWith(["product.specificationValue height"], false)
+//                ->andFilterWhere(['height.specification_id' => 7])
+//                ->andFilterWhere(['BETWEEN', 'height.val', $min, $max
+//                ]);
+//        }
+//
+//        if (isset($params[$keys['apportionment']]) && $specification_id != 67) {
+//            $min = $params[$keys['apportionment']][0];
+//            $max = $params[$keys['apportionment']][1];
+//            $query
+//                ->innerJoinWith(["product.specification apportionment"], false)
+//                ->andFilterWhere(['apportionment.specification_id' => 67])
+//                ->andFilterWhere(['BETWEEN', 'apportionment.val', $min, $max]);
+//        }
 
         if (Yii::$app->request->get('show') == 'in_stock') {
             $query->andWhere([
