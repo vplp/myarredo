@@ -28,7 +28,7 @@ $this->title = $this->context->title;
                             'subtypes' => $subtypes,
                             'style' => $style,
                             'colors' => $colors,
-                            'price_range' => $price_range,
+                            'priceRange' => $priceRange,
                         ]); ?>
 
                     </div>

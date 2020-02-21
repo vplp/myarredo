@@ -17,7 +17,8 @@ use common\modules\catalog\Catalog;
 class ProductRelSpecification extends ActiveRecord
 {
     /**
-     * @return string
+     * @return object|string|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {
@@ -85,5 +86,13 @@ class ProductRelSpecification extends ActiveRecord
     public function getSpecification()
     {
         return $this->hasOne(Specification::class, ['id' => 'specification_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProduct()
+    {
+        return $this->hasOne(Product::class, ['id' => 'catalog_item_id']);
     }
 }

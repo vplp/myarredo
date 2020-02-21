@@ -59,7 +59,7 @@ class ItalianProductFilter extends Widget
     /**
      * @var object
      */
-    public $price_range = ['min' => 0, 'max' => 99];
+    public $priceRange = ['min' => 0, 'max' => 99];
 
     /**
      * @var object
@@ -317,10 +317,10 @@ class ItalianProductFilter extends Widget
         /**
          * Price range
          */
-        $price_range = [];
+        $priceRange = [];
 
         // min
-        if ($this->price_range['min']) {
+        if ($this->priceRange['min']) {
             $price_range['min'] = [
                 'current' => !empty($params[$keys['price']])
                     ? $params[$keys['price']][0]

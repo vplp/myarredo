@@ -45,7 +45,7 @@ $this->title = $this->context->title;
                                 'style' => $style,
                                 'factory' => $factory,
                                 'colors' => $colors,
-                                'price_range' => $price_range,
+                                'priceRange' => $priceRange,
                             ]); ?>
 
                         </div>

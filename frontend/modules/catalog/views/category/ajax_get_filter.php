@@ -15,7 +15,7 @@ use frontend\modules\catalog\models\Category;
 /** @var $factory [] */
 /** @var $factory_first_show [] */
 /** @var $colors [] */
-/** @var $price_range [] */
+/** @var $priceRange [] */
 
 ?>
 

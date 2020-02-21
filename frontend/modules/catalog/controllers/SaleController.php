@@ -142,7 +142,7 @@ class SaleController extends BaseController
         $min = Sale::minPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
         $max = Sale::maxPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
-        $price_range = [
+        $priceRange = [
             'min' => $min,
             'max' => $max
         ];
@@ -174,7 +174,7 @@ class SaleController extends BaseController
             'countries' => $countries,
             'cities' => $cities,
             'models' => $models->getModels(),
-            'price_range' => $price_range,
+            'priceRange' => $priceRange,
             'pages' => $models->getPagination()
         ]);
     }

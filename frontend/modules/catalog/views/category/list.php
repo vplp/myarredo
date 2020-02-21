@@ -25,7 +25,12 @@ use frontend\modules\catalog\widgets\product\ProductsNovelties;
  * @var $factory
  * @var $collection
  * @var $colors
- * @var $price_range
+ * @var $diameterRange
+ * @var $widthRange
+ * @var $lengthRange
+ * @var $heightRange
+ * @var $apportionmentRange
+ * @var $priceRange
  */
 
 $this->title = $this->context->title;
@@ -83,7 +88,12 @@ $params = Yii::$app->catalogFilter->params;
                                 'factory' => $factory,
                                 'collection' => $collection,
                                 'colors' => $colors,
-                                'price_range' => $price_range,
+                                'diameterRange' => $diameterRange,
+                                'widthRange' => $widthRange,
+                                'lengthRange' => $lengthRange,
+                                'heightRange' => $heightRange,
+                                'apportionmentRange' => $apportionmentRange,
+                                'priceRange' => $priceRange,
                             ]); ?>
 
                         </div>

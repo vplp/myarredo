@@ -151,7 +151,7 @@ class TemplateFactoryController extends BaseController
         $min = Product::minPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
         $max = Product::maxPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
-        $price_range = [
+        $priceRange = [
             'min' => $min,
             'max' => $max
         ];
@@ -169,7 +169,7 @@ class TemplateFactoryController extends BaseController
             'style' => $style,
             'factory' => $factory,
             'colors' => $colors,
-            'price_range' => $price_range,
+            'priceRange' => $priceRange,
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),
         ]);

@@ -16,6 +16,10 @@ use frontend\components\ImageResize;
  */
 class Product extends \common\modules\catalog\models\Product
 {
+    public $min;
+
+    public $max;
+
     /**
      * @return array
      */
@@ -182,26 +186,6 @@ class Product extends \common\modules\catalog\models\Product
     public function search($params)
     {
         return (new search\Product())->search($params);
-    }
-
-    /**
-     * @param $params
-     * @return \yii\data\ActiveDataProvider
-     * @throws \Throwable
-     */
-    public static function minPrice($params)
-    {
-        return search\Product::minPrice($params);
-    }
-
-    /**
-     * @param $params
-     * @return \yii\data\ActiveDataProvider
-     * @throws \Throwable
-     */
-    public static function maxPrice($params)
-    {
-        return search\Product::maxPrice($params);
     }
 
     /**
@@ -506,5 +490,88 @@ class Product extends \common\modules\catalog\models\Product
 
             return [];
         }
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     * @throws \Throwable
+     */
+    public static function getPriceRange($params)
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = self::findBaseWithoutLang();
+
+        if (isset($params[$keys['category']])) {
+            $query
+                ->innerJoinWith(["category"], false)
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
+                    $params[$keys['category']]
+                ]);
+        }
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["types"], false)
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    $params[$keys['type']]
+                ]);
+        }
+
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["subTypes"], false)
+                ->andFilterWhere(['IN', SubTypes::tableName() . '.alias', $params[$keys['subtypes']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["specification"], false)
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Specification::tableName() . '.alias' : Specification::tableName() . '.alias2',
+                    $params[$keys['style']]
+                ]);
+        }
+
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["factory"], false)
+                ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
+        }
+
+        if (isset($params[$keys['collection']])) {
+            $query
+                ->innerJoinWith(["collection"], false)
+                ->andFilterWhere(['IN', Collection::tableName() . '.id', $params[$keys['collection']]]);
+        }
+
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["colors"], false)
+                ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
+        }
+
+        //$result = self::getDb()->cache(function ($db) use ($query) {
+        return $query
+            ->select([
+                'max(' . self::tableName() . '.price_from) as max',
+                'min(' . self::tableName() . '.price_from) as min'
+            ])
+            ->one();
+        //}, 60 * 60);
+
+        //return $result;
+
+//        $result = self::getDb()->cache(function ($db) use ($query) {
+//            return $query->min(self::tableName() . '.price_from');
+//        }, 60 * 60);
+
+//        return $result;
     }
 }

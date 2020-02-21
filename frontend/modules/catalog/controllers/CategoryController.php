@@ -9,7 +9,7 @@ use yii\web\Response;
 //
 use frontend\components\BaseController;
 use frontend\modules\catalog\models\{
-    Collection, Product, Category, Factory, Types, SubTypes, Specification, Colors
+    Collection, Product, Category, Factory, Types, SubTypes, Specification, Colors, ProductRelSpecification
 };
 use frontend\themes\myarredo\assets\AppAsset;
 
@@ -87,12 +87,13 @@ class CategoryController extends BaseController
 
         $colors = Colors::getWithProduct($queryParams);
 
-        //$specification142_range = Specification::getWithProduct(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+        $diameterRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 42);
+        $widthRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 8);
+        $lengthRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 6);
+        $heightRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 7);
+        $apportionmentRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 67);
 
-        $price_range = [
-            'min' => Product::minPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams)),
-            'max' => Product::maxPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams))
-        ];
+        $priceRange = Product::getPriceRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         $queryParams['defaultPageSize'] = 33;
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
@@ -129,7 +130,12 @@ class CategoryController extends BaseController
             'factory' => $factory,
             'collection' => $collection,
             'colors' => $colors,
-            'price_range' => $price_range,
+            'diameterRange' => $diameterRange,
+            'widthRange' => $widthRange,
+            'lengthRange' => $lengthRange,
+            'heightRange' => $heightRange,
+            'apportionmentRange' => $apportionmentRange,
+            'priceRange' => $priceRange,
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),
         ]);

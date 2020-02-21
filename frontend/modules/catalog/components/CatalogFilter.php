@@ -29,14 +29,10 @@ use frontend\modules\location\models\{
  */
 class CatalogFilter extends Component
 {
-    /**
-     * delimiter
-     */
+    /** delimiter */
     const AMPERSAND_1 = '--';
 
-    /**
-     * delimiter
-     */
+    /** delimiter */
     const AMPERSAND_2 = '-';
 
     /**
@@ -68,8 +64,13 @@ class CatalogFilter extends Component
         //'country' => '.60',
         //'city' => '.70',
         'colors' => '.80',
-        'subtypes' => '.81',
-        'price' => '.90',
+        'subtypes' => '.90',
+        'price' => '.91',
+        'diameter' => '.92',
+        'width' => '.93',
+        'length' => '.94',
+        'height' => '.95',
+        'apportionment' => '.96,'
     ];
 
     /**
@@ -90,6 +91,11 @@ class CatalogFilter extends Component
             self::$keys['colors'] => 'colors',
             self::$keys['subtypes'] => 'st',
             self::$keys['price'] => 'price',
+            self::$keys['diameter'] => 'diameter',
+            self::$keys['width'] => 'width',
+            self::$keys['length'] => 'length',
+            self::$keys['height'] => 'height',
+            self::$keys['apportionment'] => 'apportionment',
         ];
     }
 
@@ -181,6 +187,8 @@ class CatalogFilter extends Component
 
             if (is_array($v) && $k == self::$keys['price']) {
                 $res[$k] = 'price=' . implode(self::AMPERSAND_2, $v);
+            } elseif (is_array($v) && $k == self::$keys['diameter']) {
+                $res[$k] = 'diameter=' . implode(self::AMPERSAND_2, $v);
             } elseif (is_array($v)) {
                 $res[$k] = implode(self::AMPERSAND_2, $v);
             } else {
@@ -236,9 +244,7 @@ class CatalogFilter extends Component
             ++$i;
         }
 
-        /**
-         * Category
-         */
+        /** Category */
 
         if (!empty(self::$_structure['category'])) {
             $model = Category::findByAlias(self::$_structure['category'][0]);
@@ -254,9 +260,7 @@ class CatalogFilter extends Component
             self::$_parameters[self::$keys['category']][] = $alias;
         }
 
-        /**
-         * Type
-         */
+        /** Type */
 
         if (!empty(self::$_structure['type'])) {
             $model = Types::findBase()
@@ -288,9 +292,7 @@ class CatalogFilter extends Component
             }
         }
 
-        /**
-         * SubTypes
-         */
+        /** SubTypes */
 
         if (!empty(self::$_structure['subtypes'])) {
             $model = SubTypes::findBase()
@@ -318,9 +320,7 @@ class CatalogFilter extends Component
             }
         }
 
-        /**
-         * Style
-         */
+        /** Style */
 
         if (!empty(self::$_structure['style'])) {
             $aliasField = Yii::$app->city->domain != 'com' ? 'alias' : 'alias2';
@@ -353,9 +353,7 @@ class CatalogFilter extends Component
             }
         }
 
-        /**
-         * Factory
-         */
+        /** Factory */
 
         if (!empty(self::$_structure['factory'])) {
             $model = Factory::findBase()
@@ -382,9 +380,7 @@ class CatalogFilter extends Component
             }
         }
 
-        /**
-         * Collection
-         */
+        /** Collection */
 
         if (!empty(self::$_structure['collection'])) {
             $model = Collection::findBase()
@@ -401,9 +397,7 @@ class CatalogFilter extends Component
             }
         }
 
-        /**
-         * Country
-         */
+        /** Country */
 
         /*
         if (!empty(self::$_structure['country'])) {
@@ -417,9 +411,7 @@ class CatalogFilter extends Component
         }
         */
 
-        /**
-         * City
-         */
+        /** City */
 
         /*
         if (!empty(self::$_structure['city'])) {
@@ -450,9 +442,7 @@ class CatalogFilter extends Component
         }
         */
 
-        /**
-         * Colors
-         */
+        /** Colors */
 
         if (!empty(self::$_structure['colors'])) {
             $model = Colors::findBase()
@@ -479,9 +469,7 @@ class CatalogFilter extends Component
             }
         }
 
-        /**
-         * Price
-         */
+        /** Price */
 
         if (!empty(self::$_structure['price'])) {
             $data = self::$_structure['price'];
@@ -508,6 +496,30 @@ class CatalogFilter extends Component
             }
 
             self::$_parameters[self::$keys['price']] = $_data;
+        }
+
+        /** Diameter */
+
+        if (!empty(self::$_structure['diameter'])) {
+            $data = self::$_structure['diameter'];
+            if (strpos($data[0], 'diameter=') === false) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            if (count($data) != 2) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            $_data = [
+                preg_replace("/[^0-9]/", '', $data[0]),
+                preg_replace("/[^0-9]/", '', $data[1])
+            ];
+
+            if ($_data[0] >= $_data[1]) {
+                throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
+            }
+
+            self::$_parameters[self::$keys['diameter']] = $_data;
         }
     }
 }

@@ -160,7 +160,7 @@ use frontend\modules\catalog\models\{
             </div>
         <?php } ?>
 
-        <?php if ($price_range && $price_range['min']['default'] != $price_range['max']['default']) { ?>
+        <?php if ($priceRange && $priceRange['min']['default'] != $priceRange['max']['default']) { ?>
             <div class="one-filter filter-range-slider">
                 <?= Html::a(
                     Yii::t('app', 'Цена'),
@@ -169,14 +169,14 @@ use frontend\modules\catalog\models\{
                 ) ?>
                 <div class="price-slider-cont">
                     <div id="price-slider" class="myarredo-slider"
-                         data-min="<?= $price_range['min']['current'] ?>"
-                         data-max="<?= $price_range['max']['current'] ?>"></div>
+                         data-min="<?= $priceRange['min']['current'] ?>"
+                         data-max="<?= $priceRange['max']['current'] ?>"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
                         <div class="cur min">
                             <?= Html::input(
                                 'text',
                                 'price[min]',
-                                $price_range['min']['default'],
+                                $priceRange['min']['default'],
                                 ['id' => 'min-price']
                             ) ?>
                             <span class="for-curicon"><?= Yii::$app->currency->symbol ?></span>
@@ -186,7 +186,7 @@ use frontend\modules\catalog\models\{
                             <?= Html::input(
                                 'text',
                                 'price[max]',
-                                $price_range['max']['default'],
+                                $priceRange['max']['default'],
                                 ['id' => 'max-price']
                             ) ?>
                             <span class="for-curicon"><?= Yii::$app->currency->symbol ?></span>
@@ -205,8 +205,8 @@ use frontend\modules\catalog\models\{
     </div>
 
 <?php
-if (!empty($price_range) && $price_range['link']) {
-    $link_for_price = $price_range['link'];
+if (!empty($priceRange) && $priceRange['link']) {
+    $link_for_price = $priceRange['link'];
 
     $script = <<<JS
 $('.submit').on('click', function () {
