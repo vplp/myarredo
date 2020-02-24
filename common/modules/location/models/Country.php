@@ -79,4 +79,12 @@ class Country extends \thread\modules\location\models\Country
     {
         return self::findBase()->byId($id)->one();
     }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return (isset($this->lang->title)) ? $this->lang->title : "{{$this->alias}}";
+    }
 }

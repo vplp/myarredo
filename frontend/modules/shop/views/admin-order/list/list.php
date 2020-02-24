@@ -51,6 +51,9 @@ $this->title = $this->context->title;
                             <span><?= Yii::t('app', 'lang') ?></span>
                         </li>
                         <li>
+                            <span><?= Yii::t('app', 'Country') ?></span>
+                        </li>
+                        <li>
                             <span><?= Yii::t('app', 'City') ?></span>
                         </li>
                         <li>
@@ -86,7 +89,12 @@ $this->title = $this->context->title;
                                 </li>
                                 <li>
                                     <span>
-                                        <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
+                                        <?= ($modelOrder->country) ? $modelOrder->country->getTitle() : ''; ?>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span>
+                                        <?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?>
                                     </span>
                                 </li>
                                 <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>

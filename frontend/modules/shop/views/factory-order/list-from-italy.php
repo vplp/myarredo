@@ -99,7 +99,7 @@ $this->title = $this->context->title;
                                         </li>
                                         <li>
                                         <span>
-                                            <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
+                                            <?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?>
                                         </span>
                                         </li>
                                         <li>

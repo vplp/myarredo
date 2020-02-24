@@ -31,21 +31,21 @@ class CartController extends BaseController
     {
         $this->title = Yii::t('app', 'Мой блокнот');
 
-        $model = new CartCustomerForm();
-        $model->setScenario('frontend');
+        $customerForm = new CartCustomerForm();
+        $customerForm->setScenario('frontend');
 
         if (Yii::$app->getRequest()->get('order') && Yii::$app->getRequest()->get('order') == 'good') {
             return $this->render('order_success');
         }
 
-        if ($model->load(Yii::$app->getRequest()->post(), 'CartCustomerForm') &&
-            $model->validate() &&
+        if ($customerForm->load(Yii::$app->getRequest()->post(), 'CartCustomerForm') &&
+            $customerForm->validate() &&
             !empty(Yii::$app->shop_cart->items)
         ) {
             /**
              * create new order
              */
-            $new_order = SearchOrder::addNewOrder(Yii::$app->shop_cart->cart, $model);
+            $new_order = SearchOrder::addNewOrder(Yii::$app->shop_cart->cart, $customerForm);
 
             /** @var $new_order Order */
             if ($new_order) {
@@ -60,14 +60,14 @@ class CartController extends BaseController
                         '/../mail/new_order_user_letter',
                         [
                             'model' => $new_order,
-                            'customerForm' => $model,
+                            'customerForm' => $customerForm,
                             'order' => $order,
                             'text' => ($new_order->product_type == 'product')
                                 ? Yii::$app->param->getByName('MAIL_SHOP_ORDER_TEXT')
                                 : Yii::$app->param->getByName('MAIL_SHOP_ORDER_TEXT_FOR_SALE_ITALY')
                         ]
                     )
-                    ->setTo($model['email'])
+                    ->setTo($customerForm['email'])
                     ->setSubject(
                         Yii::t('app', 'Your order № {order_id}', ['order_id' => $new_order['id']])
                     )

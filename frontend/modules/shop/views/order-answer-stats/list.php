@@ -77,7 +77,7 @@ $this->title = $this->context->title;
                                     <span><?= $model->profile->getNameCompany() ?></span>
                                 </li>
                                 <li>
-                                    <span><?= isset($model->profile->city) ? $model->profile->city->lang->title : '' ?></span>
+                                    <span><?= isset($model->profile->city) ? $model->profile->city->getTitle() : '' ?></span>
                                 </li>
                                 <li>
                                     <span><?= $model->getCountLogin() ?></span>

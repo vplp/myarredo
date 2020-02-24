@@ -50,7 +50,7 @@ $bundle = AppAsset::register($this);
                                     </div>
                                     <div class="adres">
                                         <?= isset($partner->profile->city)
-                                            ? $partner->profile->city->lang->title . '<br>'
+                                            ? $partner->profile->city->getTitle() . '<br>'
                                             : '' ?>
                                         <?= $partner->profile->lang->address ?? '' ?>
                                     </div>

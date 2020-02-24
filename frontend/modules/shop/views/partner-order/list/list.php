@@ -33,7 +33,7 @@ use frontend\modules\shop\models\Order;
                     foreach (Yii::$app->user->identity->factoryDealers as $factory) {
                         $factoryDealers[] = $factory['title'];
                     }
-                    echo '<div class="partner-info-text">'. Yii::t('app', 'Вы можете отвечать на заявки фабрик {factoryDealers}. Для ответа на другие заявки свяжитесь с администратором.', ['factoryDealers' => implode(',', $factoryDealers)]). '</div>';
+                    echo '<div class="partner-info-text">' . Yii::t('app', 'Вы можете отвечать на заявки фабрик {factoryDealers}. Для ответа на другие заявки свяжитесь с администратором.', ['factoryDealers' => implode(',', $factoryDealers)]) . '</div>';
                 } ?>
 
                 <?php if (!Yii::$app->user->identity->profile->possibilityToAnswer) { ?>
@@ -72,6 +72,9 @@ use frontend\modules\shop\models\Order;
                             </li>
                             <li class="lang-cell">
                                 <span><?= Yii::t('app', 'lang') ?></span>
+                            </li>
+                            <li>
+                                <span><?= Yii::t('app', 'Country') ?></span>
                             </li>
                             <?php if (Yii::$app->language == 'ru-RU') { ?>
                                 <li>
@@ -124,10 +127,15 @@ use frontend\modules\shop\models\Order;
                                     <li class="lang-cell">
                                         <span><?= substr($modelOrder->lang, 0, 2) ?></span>
                                     </li>
+                                    <li>
+                                        <span>
+                                            <?= ($modelOrder->country) ? $modelOrder->country->getTitle() : ''; ?>
+                                        </span>
+                                    </li>
                                     <?php if (Yii::$app->language == 'ru-RU') { ?>
                                         <li>
                                             <span>
-                                                <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
+                                                <?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?>
                                             </span>
                                         </li>
                                     <?php } ?>

@@ -4,6 +4,8 @@ namespace frontend\modules\shop\models;
 
 use Yii;
 use yii\base\Model;
+//
+use frontend\modules\location\models\Country;
 
 /**
  * Class CartCustomerForm
@@ -15,6 +17,8 @@ use yii\base\Model;
  * @property int $user_agreement
  * @property integer $country_code
  * @property integer $city_id
+ *
+ * @property Country $country
  *
  * @package frontend\modules\shop\models
  */
@@ -34,23 +38,22 @@ class CartCustomerForm extends Model
 
     /**
      * @return array
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function rules()
     {
         return [
-            [['full_name', 'email', 'phone', 'reCaptcha', 'city_id'], 'required'],
-            //[['delivery'], 'in', 'range' => array_keys(DeliveryMethods::dropDownList())],
-            //[['pay'], 'in', 'range' => array_keys(PaymentMethods::dropDownList())],
+            [['full_name', 'email', 'phone', 'reCaptcha', 'country_code'], 'required'],
             [['comment'], 'string', 'max' => 2048],
             [['full_name'], 'string', 'max' => 255],
             [['phone'], 'string', 'max' => 50],
             [['email'], 'email'],
-            [['delivery', 'pay'], 'default', 'value' => 0],
             [['user_agreement'], 'in', 'range' => [0, 1]],
             [['comment'], 'default', 'value' => ''],
             [['city_id'], 'integer'],
-            [['country_code'], 'string', 'max' => 2],
-            //[['country_code'], 'in', 'range' => array_keys(PaymentMethods::dropDownList())],
+            [['delivery', 'pay', 'city_id'], 'default', 'value' => 0],
+            [['country_code'], 'in', 'range' => array_keys(Country::dropDownList([], 'alias', 'alias'))],
             [
                 ['user_agreement'],
                 'required',
@@ -99,5 +102,13 @@ class CartCustomerForm extends Model
             'country_code' => Yii::t('app', 'Country'),
             'city_id' => Yii::t('app', 'City'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCountry()
+    {
+        return Country::findOne(['alias' => $this->country_code]);
     }
 }

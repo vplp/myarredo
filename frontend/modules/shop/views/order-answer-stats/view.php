@@ -52,7 +52,7 @@ $this->title = $this->context->title;
                                     <span><?= $model->order_id ?></span>
                                 </li>
                                 <li>
-                                    <span><?= $model->order->city->lang->title ?></span>
+                                    <span><?= $model->order->city->getTitle() ?></span>
                                 </li>
                                 <li>
                                     <span><?= $model->answer ?></span>

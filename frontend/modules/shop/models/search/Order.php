@@ -41,7 +41,7 @@ class Order extends OrderModel
         return [
             ['lang', 'string', 'min' => 5, 'max' => 5],
             [['product_type'], 'in', 'range' => array_keys(self::productTypeKeyRange())],
-            [['id', 'customer_id', 'city_id', 'factory_id', 'year'], 'integer'],
+            [['id', 'customer_id', 'country_id', 'city_id', 'factory_id', 'year'], 'integer'],
             [['start_date', 'end_date'], 'string', 'max' => 10],
         ];
     }
@@ -94,12 +94,12 @@ class Order extends OrderModel
             }
         }
 
-        if (isset($params['city_id']) && is_array($params['city_id'])) {
-            $query->andFilterWhere(['IN', self::tableName() . '.city_id', $params['city_id']]);
-        } elseif (isset($params['city_id']) && $params['city_id'] > 0) {
-            $query->andFilterWhere([
-                self::tableName() . '.city_id' => $params['city_id'],
-            ]);
+        if (isset($params['country_id']) && $params['country_id'] > 0) {
+            $query->andFilterWhere([self::tableName() . '.country_id' => $params['country_id']]);
+        }
+
+        if (isset($params['city_id']) && $params['city_id'] > 0) {
+            $query->andFilterWhere([self::tableName() . '.city_id' => $params['city_id']]);
         }
 
         if (isset($params['lang'])) {
@@ -229,6 +229,10 @@ class Order extends OrderModel
 
         // переносим все атрибуты из заполненой формы в заказ
         $order->setAttributes($customerForm->getAttributes());
+
+        if ($customerForm->country_code) {
+            $order->country_id = $customerForm->country->id;
+        }
 
         $order->product_type = 'product';
 
