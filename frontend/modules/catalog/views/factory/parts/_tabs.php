@@ -258,7 +258,7 @@ $keys = Yii::$app->catalogFilter->keys;
                                             </li>
                                             <li>
                                                 <span>
-                                                    <?= ($modelOrder->city) ? $modelOrder->city->lang->title : ''; ?>
+                                                    <?= ($modelOrder->city) ? $modelOrder->city->getTitle() : ''; ?>
                                                 </span>
                                             </li>
                                             <li><span><?= $modelOrder->getOrderStatus(); ?></span></li>

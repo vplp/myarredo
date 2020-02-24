@@ -27,7 +27,7 @@ $mainPartner = array_shift($partners);
                 <div class="adres">
                     <span class="for-adress"><?= Yii::t('app', 'Address') ?>:</span>
                     <?= isset($mainPartner->profile->city)
-                        ? $mainPartner->profile->city->lang->title . '<br>'
+                        ? $mainPartner->profile->city->getTitle() . '<br>'
                         : '' ?>
                     <?= $mainPartner->profile->lang->address ?? '' ?>
                 </div>
@@ -60,7 +60,7 @@ $mainPartner = array_shift($partners);
                 <div class="adres">
                     <span class="for-adress"><?= Yii::t('app', 'Address') ?>:</span>
                     <?= isset($mainPartner->profile->city)
-                        ? $mainPartner->profile->city->lang->title . '<br>'
+                        ? $mainPartner->profile->city->getTitle() . '<br>'
                         : '' ?>
                     <?= $mainPartner->profile->lang->address2 ?? '' ?>
 

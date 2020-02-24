@@ -71,20 +71,6 @@ class AdminOrderController extends BaseController
             $params['end_date'] = date('d-m-Y', $end_date);
         }
 
-        if (isset($params['country_id']) && $params['country_id'] > 0 && $params['city_id'] == 0) {
-            $modelCity = City::findAll(['country_id' => $params['country_id']]);
-            $params['city_id'] = [];
-            if ($modelCity != null) {
-                foreach ($modelCity as $city) {
-                    $params['city_id'][] = $city['id'];
-                }
-            }
-        }
-
-        /* if (!isset($params['year'])) {
-            $params['year'] = 0;
-        } */
-
         if (!isset($params['country_id'])) {
             $params['country_id'] = 0;
         }

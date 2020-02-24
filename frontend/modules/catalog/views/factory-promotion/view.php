@@ -54,7 +54,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                         <div class="form-group">
                             <?= Html::label($model->getAttributeLabel('country_id')) ?>
                             <div class="input-group">
-                                <?= $model->country->lang->title ?>
+                                <?= $model->country->getTitle() ?>
                             </div>
                         </div>
 
@@ -63,7 +63,7 @@ $this->title = Yii::t('app', 'Рекламировать');
                             <div id="factorypromotion-city_ids-2" class="input-group">
                                 <?php
                                 foreach ($model->cities as $city) {
-                                    echo Html::label($city->lang->title);
+                                    echo Html::label($city->getTitle());
                                 }
                                 ?>
                             </div>

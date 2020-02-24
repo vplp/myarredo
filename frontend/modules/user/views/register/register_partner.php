@@ -51,7 +51,7 @@ $model->user_agreement = 1;
                                  */
                                 echo $form->field($model, 'country_id')
                                     ->dropDownList(
-                                        [null => '--'] + Country::dropDownList(),
+                                        [null => '--'] + Country::dropDownList([1, 2, 3, 4]),
                                         [
                                             'class' => 'selectpicker'
                                         ]

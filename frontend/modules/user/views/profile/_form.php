@@ -109,7 +109,7 @@ $this->title = Yii::t('app', 'Profile');
                             <?= $form
                                 ->field($model, 'country_id')
                                 ->dropDownList(
-                                    [null => '--'] + Country::dropDownList(),
+                                    [null => '--'] + Country::dropDownList([1, 2, 3, 4]),
                                     ['class' => 'selectpicker']
                                 ) ?>
 
@@ -157,7 +157,7 @@ $this->title = Yii::t('app', 'Profile');
                             <?= $form
                                 ->field($model, 'country_id')
                                 ->dropDownList(
-                                    [null => '--'] + Country::dropDownList(),
+                                    [null => '--'] + Country::dropDownList([1, 2, 3, 4]),
                                     ['class' => 'selectpicker']
                                 ) ?>
 

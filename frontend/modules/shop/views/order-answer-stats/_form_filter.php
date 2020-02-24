@@ -28,7 +28,7 @@ use frontend\modules\user\models\User;
         <?= Select2::widget([
             'name' => 'country_id',
             'value' => $params['country_id'],
-            'data' => [0 => Yii::t('app', 'Все страны')] + Country::dropDownList(),
+            'data' => [0 => Yii::t('app', 'Все страны')] + Country::dropDownList([1, 2, 3, 4]),
             'options' => [
                 'id' => 'country_id',
                 'multiple' => false,
