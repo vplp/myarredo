@@ -891,7 +891,7 @@ $(document).ready(function () {
         });
     });
 
-    // Инициализация виджета - Intl-input
+    // Инициализация виджета - Intl-input doc - https://github.com/jackocnr/intl-tel-input.git
     // если данное поле существует на странице
     if ($('.intlinput-field').length > 0) {
 
@@ -967,10 +967,9 @@ $(document).ready(function () {
           intlInputEl.addEventListener('keyup', reset);
 
         //   Валидация номера телефона при отправке формы
-        $('#checkout-form').on('submit', function(ev) {
+        $('#checkout-form').on('beforeSubmit', function(ev) {
             // если номер телефона не валидный
             if (!iti.isValidNumber()) {
-                ev.preventDefault();
                 setTimeout(function() {
                     intlInputEl.setAttribute('aria-invalid', true);
                     var errorCode = iti.getValidationError();
@@ -979,11 +978,14 @@ $(document).ready(function () {
                     formGroupBox[0].classList.remove("has-success");
                     formGroupBox[0].classList.add("has-error");
                 },300);
+                return false;
             }
             else {
                 if ($(this).find('.intlinput-field').val() != iti.getNumber()) {
                     $(this).find('.intlinput-field').val(iti.getNumber());
                 }
+                var countryData = iti.getSelectedCountryData();
+                $(this).find('#cartcustomerform-country_code').val(countryData.iso2);
             }
         });
     }

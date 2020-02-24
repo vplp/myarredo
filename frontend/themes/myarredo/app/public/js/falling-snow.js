@@ -53,7 +53,7 @@ function initsnow() {
         if (snowingzone==4) {snow[i].posx=randommaker(marginright/2-snow[i].size)+marginright/2}
         snow[i].posy=randommaker(2*marginbottom-marginbottom-2*snow[i].size);
         snow[i].style.left=snow[i].posx+"px";
-        snow[i].style.top=(snow[i].posy * 20 ) +"px";
+        snow[i].style.top=(snow[i].posy) +"px";
     }
     movesnow();
 }
@@ -74,7 +74,7 @@ function movesnow() {
     var timer=setTimeout("movesnow()",50);
 }
 for (i=0;i<=snowmax;i++) {
-    document.write("<span id='s"+i+"' style='z-index:999999;position:fixed;top:-"+snowmaxsize+"px;'>"+snowletter+"</span>");
+    document.write("<span id='s"+i+"' style='z-index:9999;opacity:0.8;pointer-events:none;position:fixed;top:-"+snowmaxsize+"px;'>"+snowletter+"</span>");
 }
 if (browserok) {
     window.onload=setTimeout(function() {
