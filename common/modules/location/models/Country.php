@@ -20,6 +20,7 @@ class Country extends \thread\modules\location\models\Country
     {
         $rules = [
             [['bookId'], 'integer'],
+            [['bookId'], 'default', 'value' => 0],
         ];
 
         return ArrayHelper::merge($rules, parent::rules());

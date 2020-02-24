@@ -5,9 +5,10 @@ use backend\widgets\GridView\GridView;
 use thread\widgets\grid\{
     ActionDeleteColumn, ActionRestoreColumn
 };
+use backend\modules\location\models\search\Country;
 
 /**
- * @var \backend\modules\location\models\search\Country $model
+ * @var $model Country
  */
 
 echo GridView::widget([

@@ -1,11 +1,14 @@
 <?php
 
 use backend\app\bootstrap\ActiveForm;
+use backend\modules\location\models\{
+    Country, CountryLang
+};
 
 /**
  * @var ActiveForm $form
- * @var \backend\modules\location\models\Country $model
- * @var \backend\modules\location\models\CountryLang $modelLang
+ * @var Country $model
+ * @var CountryLang $modelLang
  */
 
 ?>

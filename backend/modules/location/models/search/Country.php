@@ -13,12 +13,17 @@ use backend\modules\location\models\{
     Country as CountryModel, CountryLang
 };
 
+/**
+ * Class Country
+ *
+ * @package backend\modules\location\models\search
+ */
 class Country extends CountryModel implements BaseBackendSearchModel
 {
     public $title;
 
     /**
-     * @return array
+     * @return array|mixed
      */
     public function rules()
     {
@@ -31,8 +36,7 @@ class Country extends CountryModel implements BaseBackendSearchModel
     }
 
     /**
-     *
-     * @return array
+     * @return array|mixed
      */
     public function scenarios()
     {
@@ -40,9 +44,9 @@ class Country extends CountryModel implements BaseBackendSearchModel
     }
 
     /**
-     * @param ActiveQuery $query
-     * @param array $params
-     * @return ActiveDataProvider
+     * @param $query
+     * @param $params
+     * @return mixed|ActiveDataProvider
      */
     public function baseSearch($query, $params)
     {
@@ -72,10 +76,8 @@ class Country extends CountryModel implements BaseBackendSearchModel
     }
 
     /**
-     * Search
-     *
-     * @param array $params
-     * @return ActiveDataProvider
+     * @param $params
+     * @return mixed|ActiveDataProvider
      */
     public function search($params)
     {
@@ -84,8 +86,8 @@ class Country extends CountryModel implements BaseBackendSearchModel
     }
 
     /**
-     * @param array $params
-     * @return ActiveDataProvider
+     * @param $params
+     * @return mixed|ActiveDataProvider
      */
     public function trash($params)
     {

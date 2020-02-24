@@ -13,6 +13,7 @@ use yii\base\Model;
  * @property string $phone
  * @property string $comment
  * @property int $user_agreement
+ * @property integer $country_code
  * @property integer $city_id
  *
  * @package frontend\modules\shop\models
@@ -27,6 +28,8 @@ class CartCustomerForm extends Model
     public $delivery;
     public $pay;
     public $user_agreement;
+
+    public $country_code;
     public $city_id;
 
     /**
@@ -46,6 +49,8 @@ class CartCustomerForm extends Model
             [['user_agreement'], 'in', 'range' => [0, 1]],
             [['comment'], 'default', 'value' => ''],
             [['city_id'], 'integer'],
+            [['country_code'], 'string', 'max' => 2],
+            //[['country_code'], 'in', 'range' => array_keys(PaymentMethods::dropDownList())],
             [
                 ['user_agreement'],
                 'required',
@@ -72,6 +77,7 @@ class CartCustomerForm extends Model
                 'pay',
                 'user_agreement',
                 'city_id',
+                'country_code',
                 'reCaptcha'
             ],
         ];
@@ -90,6 +96,7 @@ class CartCustomerForm extends Model
             'delivery' => Yii::t('app', 'Delivery method'),
             'pay' => Yii::t('app', 'Payment method'),
             'user_agreement' => Yii::t('app', 'Подтверждаю <a href="/terms-of-use/" target="_blank">пользовательское соглашение</a>'),
+            'country_code' => Yii::t('app', 'Country'),
             'city_id' => Yii::t('app', 'City'),
         ];
     }

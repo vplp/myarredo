@@ -54,6 +54,14 @@ class CityComponent extends Component
     /**
      * @return integer
      */
+    public function getCountryCode()
+    {
+        return $this->city['country']['alias'];
+    }
+
+    /**
+     * @return integer
+     */
     public function getCityId()
     {
         return $this->city['id'];

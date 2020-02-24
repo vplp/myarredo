@@ -71,7 +71,7 @@ class Collection extends \common\modules\catalog\models\Collection
                 Product::tableName() . '.removed' => '0',
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
-                Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
+                Factory::tableName() . '.show_for_' . c => '1',
             ]);
 
         if (isset($params[$keys['category']])) {

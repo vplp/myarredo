@@ -19,7 +19,8 @@ use thread\modules\location\Location as LocationModule;
 class Country extends ActiveRecord
 {
     /**
-     * @return null|object
+     * @return object|\yii\db\Connection|null
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getDb()
     {

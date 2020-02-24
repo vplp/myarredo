@@ -5,15 +5,18 @@ use backend\widgets\GridView\GridView;
 use thread\widgets\grid\{
     ActionCheckboxColumn
 };
+use backend\modules\location\models\search\Country;
 
 /**
- * @var \backend\modules\location\models\search\Country $model
+ * @var $model Country
  */
 
 echo GridView::widget([
     'dataProvider' => $model->search(Yii::$app->request->queryParams),
     'filterModel' => $filter,
     'columns' => [
+        'id',
+        'alias',
         [
             'label' => Yii::t('app', 'Title'),
             'attribute' => 'title',

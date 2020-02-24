@@ -8,9 +8,10 @@ use yii\widgets\ActiveForm;
 use frontend\modules\shop\models\CartCustomerForm;
 
 /** @var $model CartCustomerForm */
+/** @var $product_id */
 
 $model->user_agreement = 1;
-$model->city_id = Yii::$app->city->getCityId();
+
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -30,6 +31,10 @@ $model->city_id = Yii::$app->city->getCityId();
     ->label(false) ?>
 
 <?php if (Yii::$app->city->domain == 'com' || in_array(substr(Yii::$app->language, 0, 2), ['it', 'en'])) {
+
+    $model->city_id = 0;
+    $model->country_code = Yii::$app->city->getCountryCode();
+
     echo $form
         ->field($model, 'phone')
         ->input('tel', [
@@ -38,6 +43,9 @@ $model->city_id = Yii::$app->city->getCityId();
         ])
         ->label(false);
 } else {
+    $model->city_id = Yii::$app->city->getCityId();
+    $model->country_code = Yii::$app->city->getCountryCode();
+
     echo $form
         ->field($model, 'phone')
         ->widget(\yii\widgets\MaskedInput::class, [
@@ -49,6 +57,11 @@ $model->city_id = Yii::$app->city->getCityId();
         ->input('text', ['placeholder' => Yii::t('app', 'Phone')])
         ->label(false);
 } ?>
+
+<?= $form
+    ->field($model, 'country_code')
+    ->input('hidden', ['value' => $model->country_code])
+    ->label(false) ?>
 
 <?= $form
     ->field($model, 'city_id')

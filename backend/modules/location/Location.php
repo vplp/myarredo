@@ -11,7 +11,7 @@ use Yii;
  */
 class Location extends \common\modules\location\Location
 {
-    public $itemOnPage = 20;
+    public $itemOnPage = 100;
 
     public function getMenuItems()
     {

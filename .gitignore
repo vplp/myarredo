@@ -39,5 +39,6 @@ phpunit.phar
 tests/_output/*
 
 ACCESS.txt
+_DOC
 npm-debug.log
 node_modules/
