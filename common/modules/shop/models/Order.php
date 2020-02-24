@@ -5,7 +5,9 @@ namespace common\modules\shop\models;
 use Yii;
 use yii\helpers\ArrayHelper;
 //
-use common\modules\location\models\City;
+use common\modules\location\models\{
+    City, Country
+};
 
 /**
  * Class Order
@@ -14,6 +16,7 @@ use common\modules\location\models\City;
  * @property string $product_type
  * @property string $lang
  * @property integer $customer_id
+ * @property integer $country_id
  * @property integer $city_id
  * @property string $order_status
  * @property integer $items_count
@@ -32,8 +35,9 @@ use common\modules\location\models\City;
  * @property OrderAnswer[] $orderAnswers
  * @property OrderAnswer $orderAnswer
  * @property OrderItem[] $items
- * @property Customer[] $customer
- * @property City[] $city
+ * @property Customer $customer
+ * @property City $city
+ * @property Country $country
  *
  * @package common\modules\shop\models
  */
@@ -46,10 +50,10 @@ class Order extends \thread\modules\shop\models\Order
     {
         return [
             ['lang', 'string', 'min' => 5, 'max' => 5],
-            [['customer_id', 'city_id'], 'required'],
+            [['customer_id', 'country_id', 'city_id'], 'required'],
             [['comment'], 'string', 'max' => 512],
             [['token'], 'string', 'max' => 255],
-            [['customer_id', 'city_id', 'items_count', 'items_total_count'], 'integer'],
+            [['customer_id', 'country_id', 'city_id', 'items_count', 'items_total_count'], 'integer'],
             [['order_status'], 'in', 'range' => array_keys(self::getOrderStatuses())],
             [['product_type'], 'in', 'range' => array_keys(self::productTypeKeyRange())],
             [
@@ -59,7 +63,7 @@ class Order extends \thread\modules\shop\models\Order
             ],
 
             // set default values
-            [['delivery_method_id', 'payment_method_id'], 'default', 'value' => 0]
+            [['delivery_method_id', 'payment_method_id', 'country_id', 'city_id'], 'default', 'value' => 0]
         ];
     }
 
@@ -76,6 +80,7 @@ class Order extends \thread\modules\shop\models\Order
             'mark1' => ['mark1'],
             'backend' => [
                 'customer_id',
+                'country_id',
                 'city_id',
                 'delivery_method_id',
                 'payment_method_id',
@@ -141,6 +146,14 @@ class Order extends \thread\modules\shop\models\Order
     public function getCity()
     {
         return $this->hasOne(City::class, ['id' => 'city_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCountry()
+    {
+        return $this->hasOne(Country::class, ['id' => 'country_id']);
     }
 
     /**

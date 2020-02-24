@@ -230,6 +230,10 @@ class Order extends OrderModel
         // переносим все атрибуты из заполненой формы в заказ
         $order->setAttributes($customerForm->getAttributes());
 
+        if ($customerForm->country_code) {
+            $order->country_id = $customerForm->country->id;
+        }
+
         $order->product_type = 'product';
 
         foreach ($cart->items as $cartItem) {

@@ -14,6 +14,18 @@ use thread\modules\location\Location as LocationModule;
 /**
  * Class Country
  *
+ * @property integer $id
+ * @property integer $bookId
+ * @property string $alias
+ * @property string $alpha2
+ * @property string $alpha3
+ * @property string $iso
+ * @property integer $published
+ * @property integer $deleted
+ * @property integer $created_at
+ * @property integer $updated_at
+ * @property integer $position
+ *
  * @package thread\modules\location\models
  */
 class Country extends ActiveRecord

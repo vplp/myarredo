@@ -24,11 +24,7 @@ class RequestPrice extends Widget
     {
         $model = new CartCustomerForm();
 
-        if (Yii::$app->city->domain == 'com' || in_array(substr(Yii::$app->language, 0, 2), ['it', 'en'])) {
-            $model->setScenario('frontendForCom');
-        } else {
-            $model->setScenario('frontend');
-        }
+        $model->setScenario('frontend');
 
         $model->load(Yii::$app->getRequest()->post());
 

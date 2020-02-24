@@ -72,10 +72,10 @@ class Country extends \common\modules\location\models\Country
     }
 
     /**
-     * Get by alias
-     *
      * @param string $alias
-     * @return ActiveRecord|null
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findByAlias($alias)
     {
@@ -90,8 +90,10 @@ class Country extends \common\modules\location\models\Country
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findById($id)
     {
@@ -106,12 +108,14 @@ class Country extends \common\modules\location\models\Country
     }
 
     /**
-     * Drop down list
-     *
      * @param array $IDs
+     * @param string $from
+     * @param string $to
      * @return array
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
-    public static function dropDownList($IDs = [])
+    public static function dropDownList($IDs = [], $from = 'id', $to = 'lang.title')
     {
         $data = self::getDb()->cache(function ($db) use ($IDs) {
             $query = self::findBase();
@@ -123,7 +127,7 @@ class Country extends \common\modules\location\models\Country
             return $query->all();
         }, 60 * 60);
 
-        return ArrayHelper::map($data, 'id', 'lang.title');
+        return ArrayHelper::map($data, $from, $to);
     }
 
     /**
@@ -137,6 +141,8 @@ class Country extends \common\modules\location\models\Country
     /**
      * @param array $params
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function getWithSale($params = [])
     {

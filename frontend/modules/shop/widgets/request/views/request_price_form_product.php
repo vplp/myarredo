@@ -31,7 +31,6 @@ $model->user_agreement = 1;
     ->label(false) ?>
 
 <?php if (Yii::$app->city->domain == 'com' || in_array(substr(Yii::$app->language, 0, 2), ['it', 'en'])) {
-
     $model->city_id = 0;
     $model->country_code = Yii::$app->city->getCountryCode();
 
