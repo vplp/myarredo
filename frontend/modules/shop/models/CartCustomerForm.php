@@ -109,6 +109,6 @@ class CartCustomerForm extends Model
      */
     public function getCountry()
     {
-        return $this->hasOne(Country::class, ['alias' => 'country_code']);
+        return Country::findOne(['alias' => $this->country_code]);
     }
 }
