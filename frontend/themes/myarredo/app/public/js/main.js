@@ -287,8 +287,8 @@ $(document).ready(function () {
                         animate: true,
                         animationDuration: 300,
                         range: {
-                            'min': Number(minInput.val()),
-                            'max': Number(maxInput.val())
+                            'min': Number(minInput.attr('data-default')),
+                            'max': Number(maxInput.attr('data-default'))
                         },
                         format: wNumb({
                             decimals: 0
