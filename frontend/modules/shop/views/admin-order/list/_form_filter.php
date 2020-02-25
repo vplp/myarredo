@@ -51,7 +51,7 @@ $lang = substr(Yii::$app->language, 0, 2);
         <?= Select2::widget([
             'name' => 'country_id',
             'value' => $params['country_id'],
-            'data' => [0 => Yii::t('app', 'Все страны')] + Country::dropDownList(),
+            'data' => [0 => Yii::t('app', 'Все страны')] + Country::dropDownListWithOrders(),
             'options' => [
                 'id' => 'country_id',
                 'multiple' => false,

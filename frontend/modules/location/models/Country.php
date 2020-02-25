@@ -131,11 +131,26 @@ class Country extends \common\modules\location\models\Country
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @param array $IDs
+     * @param string $from
+     * @param string $to
+     * @return array
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
-    public function getSale()
+    public static function dropDownListWithOrders($IDs = [], $from = 'id', $to = 'lang.title')
     {
-        return $this->hasMany(Sale::class, ['country_id' => 'id']);
+        $data = self::getDb()->cache(function ($db) use ($IDs) {
+            $query = self::findBase()->innerJoinWith(['order'], false);
+
+            if ($IDs) {
+                $query->byId($IDs);
+            }
+
+            return $query->all();
+        }, 60 * 60);
+
+        return ArrayHelper::map($data, $from, $to);
     }
 
     /**

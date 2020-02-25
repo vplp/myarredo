@@ -3,11 +3,17 @@
 namespace common\modules\location\models;
 
 use yii\helpers\ArrayHelper;
+//
+use common\modules\shop\models\Order;
+use common\modules\catalog\models\Sale;
 
 /**
  * Class Country
  *
  * @property int $bookId
+ *
+ * @property Order[] $order
+ * @property Sale $sale
  *
  * @package common\modules\location\models
  */
@@ -50,6 +56,22 @@ class Country extends \thread\modules\location\models\Country
         ];
 
         return ArrayHelper::merge($attributeLabels, parent::attributeLabels());
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSale()
+    {
+        return $this->hasMany(Sale::class, ['country_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrder()
+    {
+        return $this->hasMany(Order::class, ['country_id' => 'id']);
     }
 
     /**
