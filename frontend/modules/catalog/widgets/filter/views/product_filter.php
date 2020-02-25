@@ -405,12 +405,12 @@ use frontend\modules\catalog\models\Category;
                          data-max="<?= $priceRange['max']['current'] ?>"></div>
                     <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
                         <div class="cur min">
-                            <?= Html::input('text', 'price[min]', $priceRange['min']['default']) ?>
+                            <?= Html::input('text', 'price[min]', $priceRange['min']['default'], ['data-default' => $priceRange['min']['default']]) ?>
                             <span class="for-curicon"><?= Yii::$app->currency->symbol ?></span>
                         </div>
                         <span class="indent"> - </span>
                         <div class="cur max">
-                            <?= Html::input('text', 'price[max]', $priceRange['max']['default']) ?>
+                            <?= Html::input('text', 'price[max]', $priceRange['max']['default'], ['data-default' => $priceRange['max']['default']]) ?>
                             <span class="for-curicon"><?= Yii::$app->currency->symbol ?></span>
                         </div>
                     </div>

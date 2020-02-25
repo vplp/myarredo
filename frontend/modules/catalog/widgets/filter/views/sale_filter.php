@@ -199,7 +199,7 @@ use frontend\modules\catalog\models\{
                                 'text',
                                 'price[min]',
                                 $priceRange['min']['default'],
-                                ['id' => 'min-price']
+                                ['id' => 'min-price', 'data-default' => $priceRange['min']['default']]
                             ) ?>
                             <span class="for-curicon"><?= Yii::$app->currency->symbol ?></span>
                         </div>
@@ -209,7 +209,7 @@ use frontend\modules\catalog\models\{
                                 'text',
                                 'price[max]',
                                 $priceRange['max']['default'],
-                                ['id' => 'max-price']
+                                ['id' => 'max-price', 'data-default' => $priceRange['max']['default']]
                             ) ?>
                             <span class="for-curicon"><?= Yii::$app->currency->symbol ?></span>
                         </div>
