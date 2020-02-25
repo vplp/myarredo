@@ -282,7 +282,7 @@ $(document).ready(function () {
                 }
                 if (allSlides[i] != null) {
                     noUiSlider.create(allSlides[i], {
-                        start: [$(allSlides[i]).attr('data-min'), $(allSlides[i]).attr('data-max')],
+                        start: [Number($(allSlides[i]).attr('data-min')), Number($(allSlides[i]).attr('data-max'))],
                         connect: true,
                         animate: true,
                         animationDuration: 300,
