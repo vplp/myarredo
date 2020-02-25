@@ -87,11 +87,13 @@ class CategoryController extends BaseController
 
         $colors = Colors::getWithProduct($queryParams);
 
+        /*
         $diameterRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 42);
         $widthRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 8);
         $lengthRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 6);
         $heightRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 7);
         $apportionmentRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 67);
+        */
 
         $priceRange = Product::getPriceRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
@@ -123,11 +125,11 @@ class CategoryController extends BaseController
             'factory' => $factory,
             'collection' => $collection,
             'colors' => $colors,
-            'diameterRange' => $diameterRange,
-            'widthRange' => $widthRange,
-            'lengthRange' => $lengthRange,
-            'heightRange' => $heightRange,
-            'apportionmentRange' => $apportionmentRange,
+            'diameterRange' => $diameterRange ?? [],
+            'widthRange' => $widthRange ?? [],
+            'lengthRange' => $lengthRange ?? [],
+            'heightRange' => $heightRange ?? [],
+            'apportionmentRange' => $apportionmentRange ?? [],
             'priceRange' => $priceRange,
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),

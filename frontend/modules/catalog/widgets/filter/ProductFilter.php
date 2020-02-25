@@ -351,145 +351,158 @@ class ProductFilter extends Widget
             $priceRange['link'] = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
         }
 
+
+
+        $sizesParams = Yii::$app->catalogFilter->params;
+
         /** Diameter range */
 
         $diameterRange = [];
-        $sizesParams = Yii::$app->catalogFilter->params;
 
-        // min
-        if ($this->diameterRange['min']) {
-            $diameterRange['min'] = [
-                'current' => !empty($params[$keys['diameter']])
-                    ? $params[$keys['diameter']][0]
-                    : $this->diameterRange['min'],
-                'default' => $this->diameterRange['min'],
-            ];
-        }
+        if ($this->diameterRange) {
+            // min
+            if ($this->diameterRange['min']) {
+                $diameterRange['min'] = [
+                    'current' => !empty($params[$keys['diameter']])
+                        ? $params[$keys['diameter']][0]
+                        : $this->diameterRange['min'],
+                    'default' => $this->diameterRange['min'],
+                ];
+            }
 
-        // max
-        if ($this->diameterRange['max']) {
-            $diameterRange['max'] = [
-                'current' => !empty($params[$keys['diameter']])
-                    ? $params[$keys['diameter']][1]
-                    : $this->diameterRange['max'],
-                'default' => $this->diameterRange['max'],
-            ];
-        }
+            // max
+            if ($this->diameterRange['max']) {
+                $diameterRange['max'] = [
+                    'current' => !empty($params[$keys['diameter']])
+                        ? $params[$keys['diameter']][1]
+                        : $this->diameterRange['max'],
+                    'default' => $this->diameterRange['max'],
+                ];
+            }
 
-        if ($diameterRange && $diameterRange['min']['default'] != $diameterRange['max']['default']) {
-            $sizesParams[$keys['diameter']] = ['{diameterMin}', '{diameterMax}'];
+            if ($diameterRange && $diameterRange['min']['default'] != $diameterRange['max']['default']) {
+                $sizesParams[$keys['diameter']] = ['{diameterMin}', '{diameterMax}'];
+            }
         }
 
         /** Width range */
 
         $widthRange = [];
 
-        // min
-        if ($this->widthRange['min']) {
-            $widthRange['min'] = [
-                'current' => !empty($params[$keys['width']])
-                    ? $params[$keys['width']][0]
-                    : $this->widthRange['min'],
-                'default' => $this->widthRange['min'],
-            ];
-        }
+        if ($this->widthRange) {
+            // min
+            if ($this->widthRange['min']) {
+                $widthRange['min'] = [
+                    'current' => !empty($params[$keys['width']])
+                        ? $params[$keys['width']][0]
+                        : $this->widthRange['min'],
+                    'default' => $this->widthRange['min'],
+                ];
+            }
 
-        // max
-        if ($this->widthRange['max']) {
-            $widthRange['max'] = [
-                'current' => !empty($params[$keys['width']])
-                    ? $params[$keys['width']][1]
-                    : $this->widthRange['max'],
-                'default' => $this->widthRange['max'],
-            ];
-        }
+            // max
+            if ($this->widthRange['max']) {
+                $widthRange['max'] = [
+                    'current' => !empty($params[$keys['width']])
+                        ? $params[$keys['width']][1]
+                        : $this->widthRange['max'],
+                    'default' => $this->widthRange['max'],
+                ];
+            }
 
-        if ($widthRange && $widthRange['min']['default'] != $widthRange['max']['default']) {
-            $sizesParams[$keys['width']] = ['{widthMin}', '{widthMax}'];
+            if ($widthRange && $widthRange['min']['default'] != $widthRange['max']['default']) {
+                $sizesParams[$keys['width']] = ['{widthMin}', '{widthMax}'];
+            }
         }
 
         /** Length range */
 
         $lengthRange = [];
 
-        // min
-        if ($this->lengthRange['min']) {
-            $lengthRange['min'] = [
-                'current' => !empty($params[$keys['length']])
-                    ? $params[$keys['length']][0]
-                    : $this->lengthRange['min'],
-                'default' => $this->lengthRange['min'],
-            ];
-        }
+        if ($this->lengthRange) {
+            // min
+            if ($this->lengthRange['min']) {
+                $lengthRange['min'] = [
+                    'current' => !empty($params[$keys['length']])
+                        ? $params[$keys['length']][0]
+                        : $this->lengthRange['min'],
+                    'default' => $this->lengthRange['min'],
+                ];
+            }
 
-        // max
-        if ($this->lengthRange['max']) {
-            $lengthRange['max'] = [
-                'current' => !empty($params[$keys['length']])
-                    ? $params[$keys['length']][1]
-                    : $this->lengthRange['max'],
-                'default' => $this->lengthRange['max'],
-            ];
-        }
+            // max
+            if ($this->lengthRange['max']) {
+                $lengthRange['max'] = [
+                    'current' => !empty($params[$keys['length']])
+                        ? $params[$keys['length']][1]
+                        : $this->lengthRange['max'],
+                    'default' => $this->lengthRange['max'],
+                ];
+            }
 
-        if ($lengthRange && $lengthRange['min']['default'] != $lengthRange['max']['default']) {
-            $sizesParams[$keys['length']] = ['{lengthMin}', '{lengthMax}'];
+            if ($lengthRange && $lengthRange['min']['default'] != $lengthRange['max']['default']) {
+                $sizesParams[$keys['length']] = ['{lengthMin}', '{lengthMax}'];
+            }
         }
 
         /** Height range */
 
         $heightRange = [];
 
-        // min
-        if ($this->heightRange['min']) {
-            $heightRange['min'] = [
-                'current' => !empty($params[$keys['height']])
-                    ? $params[$keys['height']][0]
-                    : $this->heightRange['min'],
-                'default' => $this->heightRange['min'],
-            ];
-        }
+        if ($this->heightRange) {
+            // min
+            if ($this->heightRange['min']) {
+                $heightRange['min'] = [
+                    'current' => !empty($params[$keys['height']])
+                        ? $params[$keys['height']][0]
+                        : $this->heightRange['min'],
+                    'default' => $this->heightRange['min'],
+                ];
+            }
 
-        // max
-        if ($this->heightRange['max']) {
-            $heightRange['max'] = [
-                'current' => !empty($params[$keys['height']])
-                    ? $params[$keys['height']][1]
-                    : $this->heightRange['max'],
-                'default' => $this->heightRange['max'],
-            ];
-        }
+            // max
+            if ($this->heightRange['max']) {
+                $heightRange['max'] = [
+                    'current' => !empty($params[$keys['height']])
+                        ? $params[$keys['height']][1]
+                        : $this->heightRange['max'],
+                    'default' => $this->heightRange['max'],
+                ];
+            }
 
-        if ($heightRange && $heightRange['min']['default'] != $heightRange['max']['default']) {
-            $sizesParams[$keys['height']] = ['{heightMin}', '{heightMax}'];
+            if ($heightRange && $heightRange['min']['default'] != $heightRange['max']['default']) {
+                $sizesParams[$keys['height']] = ['{heightMin}', '{heightMax}'];
+            }
         }
 
         /** Apportionment range */
 
         $apportionmentRange = [];
 
-        // min
-        if ($this->apportionmentRange['min']) {
-            $apportionmentRange['min'] = [
-                'current' => !empty($params[$keys['apportionment']])
-                    ? $params[$keys['apportionment']][0]
-                    : $this->apportionmentRange['min'],
-                'default' => $this->apportionmentRange['min'],
-            ];
-        }
+        if ($this->apportionmentRange) {
+            // min
+            if ($this->apportionmentRange['min']) {
+                $apportionmentRange['min'] = [
+                    'current' => !empty($params[$keys['apportionment']])
+                        ? $params[$keys['apportionment']][0]
+                        : $this->apportionmentRange['min'],
+                    'default' => $this->apportionmentRange['min'],
+                ];
+            }
 
-        // max
-        if ($this->apportionmentRange['max']) {
-            $apportionmentRange['max'] = [
-                'current' => !empty($params[$keys['apportionment']])
-                    ? $params[$keys['apportionment']][1]
-                    : $this->apportionmentRange['max'],
-                'default' => $this->apportionmentRange['max'],
-            ];
-        }
+            // max
+            if ($this->apportionmentRange['max']) {
+                $apportionmentRange['max'] = [
+                    'current' => !empty($params[$keys['apportionment']])
+                        ? $params[$keys['apportionment']][1]
+                        : $this->apportionmentRange['max'],
+                    'default' => $this->apportionmentRange['max'],
+                ];
+            }
 
-        if ($apportionmentRange && $apportionmentRange['min']['default'] != $apportionmentRange['max']['default']) {
-            $sizesParams[$keys['apportionment']] = ['{apportionmentMin}', '{apportionmentMax}'];
+            if ($apportionmentRange && $apportionmentRange['min']['default'] != $apportionmentRange['max']['default']) {
+                $sizesParams[$keys['apportionment']] = ['{apportionmentMin}', '{apportionmentMax}'];
+            }
         }
 
         $sizesLink = Yii::$app->catalogFilter->createUrl($sizesParams, [$this->route]);

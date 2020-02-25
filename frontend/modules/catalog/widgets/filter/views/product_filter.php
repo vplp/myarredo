@@ -79,7 +79,7 @@ use frontend\modules\catalog\models\Category;
             </div>
         <?php } ?>
 
-        <?php if (YII_DEBUG) { ?>
+        <?php /*if (YII_DEBUG) { ?>
             <div id="filter-sizes" class="one-filter filter-range-slider">
                 <?= Html::a(
                     Yii::t('app', 'Размеры'),
@@ -228,7 +228,7 @@ use frontend\modules\catalog\models\Category;
                     <a href="javascript:void(0);" class="submit submit_sizes">OK</a>
                 </div>
             </div>
-        <?php } ?>
+        <?php }*/ ?>
 
         <?php if ($subtypes) { ?>
             <div class="one-filter">
