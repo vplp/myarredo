@@ -628,7 +628,7 @@ class Product extends ActiveRecord implements iProduct
     {
         return $this
             ->hasMany(Specification::class, ['id' => 'specification_id'])
-            ->viaTable(ProductRelSpecification::tableName(), ['catalog_item_id' => 'id']);
+            ->viaTable(ProductRelSpecification::tableName() . ' ProductRelSpecification', ['catalog_item_id' => 'id']);
     }
 
     /**

@@ -41,7 +41,7 @@ class CategoryController extends BaseController
             ],
         ];
 
-        if (Yii::$app->getUser()->isGuest) {
+        if (!Yii::$app->getUser()->isGuest) {
             $behaviors[] = [
                 'class' => \yii\filters\HttpCache::class,
                 'only' => ['list'],
