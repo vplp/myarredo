@@ -127,25 +127,8 @@ class SaleItalyController extends BaseController
 
         $queryParams = Yii::$app->catalogFilter->params;
 
-        $category = Category::getWithItalianProduct($queryParams);
-        $types = Types::getWithItalianProduct($queryParams);
-        $subtypes = SubTypes::getWithItalianProduct($queryParams);
-        $style = Specification::getWithItalianProduct($queryParams);
-        $factory = Factory::getWithItalianProduct($queryParams);
-        $colors = Colors::getWithItalianProduct($queryParams);
-
-        $params = ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams);
-
-        $min = ItalianProduct::minPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
-        $max = ItalianProduct::maxPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
-
-        $priceRange = [
-            'min' => $min,
-            'max' => $max
-        ];
-
-        $params['defaultPageSize'] = 24;
-        $models = $model->search($params);
+        $queryParams['defaultPageSize'] = 24;
+        $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         Yii::$app->metatag
             ->render()
@@ -162,13 +145,6 @@ class SaleItalyController extends BaseController
         }
 
         return $this->render('list', [
-            'category' => $category,
-            'types' => $types,
-            'subtypes' => $subtypes,
-            'style' => $style,
-            'factory' => $factory,
-            'colors' => $colors,
-            'priceRange' => $priceRange,
             'models' => $models->getModels(),
             'pages' => $models->getPagination()
         ]);

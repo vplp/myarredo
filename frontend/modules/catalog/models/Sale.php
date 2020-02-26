@@ -6,6 +6,12 @@ use Yii;
 use yii\helpers\Url;
 //
 use frontend\components\ImageResize;
+use frontend\modules\catalog\models\{
+    Colors, Sale as SaleModel, SaleLang, SubTypes, Factory
+};
+use frontend\modules\location\models\{
+    Country, City
+};
 
 /**
  * Class Sale
@@ -54,7 +60,7 @@ class Sale extends \common\modules\catalog\models\Sale
 
         $partner = Yii::$app->partner->getPartner();
         if ($partner != null && $partner->id) {
-            $order[] = '(CASE WHEN ' . self::tableName() . '.user_id=' . $partner->id . ' THEN 0 ELSE 1 END), position DESC';
+            $order[] = '(CASE WHEN ' . self::tableName() . '.user_id=' . $partner->id . ' THEN 0 ELSE 1 END), ' . self::tableName() . '.position DESC';
         }
 
         $order[] = self::tableName() . '.updated_at DESC';
@@ -128,26 +134,6 @@ class Sale extends \common\modules\catalog\models\Sale
     public static function findById($id)
     {
         return self::findBase()->byId($id)->one();
-    }
-
-    /**
-     * @param $params
-     * @return \yii\data\ActiveDataProvider
-     * @throws \Throwable
-     */
-    public static function minPrice($params)
-    {
-        return search\Sale::minPrice($params);
-    }
-
-    /**
-     * @param $params
-     * @return \yii\data\ActiveDataProvider
-     * @throws \Throwable
-     */
-    public static function maxPrice($params)
-    {
-        return search\Sale::maxPrice($params);
     }
 
     /**
@@ -346,5 +332,94 @@ class Sale extends \common\modules\catalog\models\Sale
     public static function getSavingPercentage($model)
     {
         return '-' . (100 - ceil(($model['price_new'] * 100) / $model['price'])) . '%';
+    }
+
+    /**
+     * @param $params
+     * @return \yii\data\ActiveDataProvider
+     * @throws \Throwable
+     */
+    public static function getPriceRange($params)
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = self::findBase();
+
+        $query->andFilterWhere([self::tableName() . '.currency' => Yii::$app->currency->code]);
+
+        if (isset($params[$keys['category']])) {
+            $query
+                ->innerJoinWith(["category"])
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Category::tableName() . '.alias' : Category::tableName() . '.alias2',
+                    $params[$keys['category']]
+                ]);
+        }
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["types"])
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Types::tableName() . '.alias' : Types::tableName() . '.alias2',
+                    $params[$keys['type']]
+                ]);
+        }
+
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["subTypes"])
+                ->andFilterWhere(['IN', SubTypes::tableName() . '.alias', $params[$keys['subtypes']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["specification"])
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? Specification::tableName() . '.alias' : Specification::tableName() . '.alias2',
+                    $params[$keys['style']]
+                ]);
+        }
+
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["factory"])
+                ->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
+        }
+
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["colors"])
+                ->andFilterWhere(['IN', Colors::tableName() . '.alias', $params[$keys['colors']]]);
+        }
+
+        if (isset($params['country'])) {
+            $query
+                ->innerJoinWith(["country"])
+                ->andFilterWhere(['IN', Country::tableName() . '.id', $params['country']]);
+        }
+
+        if (isset($params['city'])) {
+            $query
+                ->innerJoinWith(["city"])
+                ->andFilterWhere(['IN', City::tableName() . '.id', $params['city']]);
+        }
+
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.country_id',
+                    self::tableName() . '.city_id',
+                    'max(' . self::tableName() . '.price_new) as max',
+                    'min(' . self::tableName() . '.price_new) as min'
+                ])
+                ->asArray()
+                ->one();
+        }, 60 * 60);
+
+        return $result;
     }
 }
