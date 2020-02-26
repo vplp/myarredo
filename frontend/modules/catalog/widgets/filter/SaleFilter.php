@@ -110,13 +110,7 @@ class SaleFilter extends Widget
         $this->countries = Country::getWithSale($queryParams);
         $this->cities = City::getWithSale($queryParams);
 
-        $min = Sale::minPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
-        $max = Sale::maxPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
-
-        $this->priceRange = [
-            'min' => $min,
-            'max' => $max
-        ];
+        $this->priceRange = Sale::getPriceRange($queryParams);
 
         /**
          * Category list
@@ -165,9 +159,7 @@ class SaleFilter extends Widget
                 ? $obj['alias']
                 : $obj['alias2'];
 
-            if (!empty($params[$keys['type']]) &&
-                in_array($alias, $params[$keys['type']])
-            ) {
+            if (!empty($params[$keys['type']]) && in_array($alias, $params[$keys['type']])) {
                 $checked = 1;
                 $params[$keys['type']] = array_diff($params[$keys['type']], [$alias]);
             } else {
@@ -199,9 +191,7 @@ class SaleFilter extends Widget
         foreach ($this->subtypes as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (!empty($params[$keys['subtypes']]) &&
-                in_array($obj['alias'], $params[$keys['subtypes']])
-            ) {
+            if (!empty($params[$keys['subtypes']]) && in_array($obj['alias'], $params[$keys['subtypes']])) {
                 $checked = 1;
                 $params[$keys['subtypes']] = array_diff($params[$keys['subtypes']], [$obj['alias']]);
             } else {
@@ -237,9 +227,7 @@ class SaleFilter extends Widget
                 ? $obj['alias']
                 : $obj['alias2'];
 
-            if (!empty($params[$keys['style']]) &&
-                in_array($alias, $params[$keys['style']])
-            ) {
+            if (!empty($params[$keys['style']]) && in_array($alias, $params[$keys['style']])) {
                 $checked = 1;
                 $params[$keys['style']] = array_diff($params[$keys['style']], [$alias]);
             } else {
@@ -271,9 +259,7 @@ class SaleFilter extends Widget
         foreach ($this->factory as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (!empty($params[$keys['factory']]) &&
-                in_array($obj['alias'], $params[$keys['factory']])
-            ) {
+            if (!empty($params[$keys['factory']]) && in_array($obj['alias'], $params[$keys['factory']])) {
                 $checked = 1;
                 $params[$keys['factory']] = array_diff($params[$keys['factory']], [$obj['alias']]);
             } else {
@@ -403,9 +389,7 @@ class SaleFilter extends Widget
         foreach ($this->colors as $key => $obj) {
             $params = Yii::$app->catalogFilter->params;
 
-            if (!empty($params[$keys['colors']]) &&
-                in_array($obj['alias'], $params[$keys['colors']])
-            ) {
+            if (!empty($params[$keys['colors']]) && in_array($obj['alias'], $params[$keys['colors']])) {
                 $checked = 1;
                 $params[$keys['colors']] = array_diff($params[$keys['colors']], [$obj['alias']]);
             } else {

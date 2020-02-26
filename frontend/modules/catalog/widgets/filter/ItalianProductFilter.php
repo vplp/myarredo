@@ -4,6 +4,22 @@ namespace frontend\modules\catalog\widgets\filter;
 
 use Yii;
 use yii\base\Widget;
+use yii\helpers\{
+    ArrayHelper
+};
+//
+use frontend\modules\catalog\models\{
+    ItalianProduct,
+    ItalianProductLang,
+    search\ItalianProduct as filterItalianProductModel,
+    ItalianProductStats,
+    Category,
+    Factory,
+    Types,
+    SubTypes,
+    Specification,
+    Colors
+};
 
 /**
  * Class ItalianProductFilter
@@ -73,6 +89,16 @@ class ItalianProductFilter extends Widget
     public function run()
     {
         $keys = Yii::$app->catalogFilter->keys;
+        $queryParams = Yii::$app->catalogFilter->params;
+
+        $this->category = Category::getWithItalianProduct($queryParams);
+        $this->types = Types::getWithItalianProduct($queryParams);
+        $this->subtypes = SubTypes::getWithItalianProduct($queryParams);
+        $this->style = Specification::getWithItalianProduct($queryParams);
+        $this->factory = Factory::getWithItalianProduct($queryParams);
+        $this->colors = Colors::getWithItalianProduct($queryParams);
+
+        $this->priceRange = ItalianProduct::getPriceRange($queryParams);
 
         /**
          * Category list

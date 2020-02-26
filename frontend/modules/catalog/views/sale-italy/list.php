@@ -37,16 +37,7 @@ $this->title = $this->context->title;
                     <div class="row">
                         <div class="col-md-3 col-lg-3">
 
-                            <?= ItalianProductFilter::widget([
-                                'route' => '/catalog/sale-italy/list',
-                                'category' => $category,
-                                'types' => $types,
-                                'subtypes' => $subtypes,
-                                'style' => $style,
-                                'factory' => $factory,
-                                'colors' => $colors,
-                                'priceRange' => $priceRange,
-                            ]); ?>
+                            <?= ItalianProductFilter::widget(['route' => '/catalog/sale-italy/list']) ?>
 
                         </div>
                         <div class="col-md-9 col-lg-9">

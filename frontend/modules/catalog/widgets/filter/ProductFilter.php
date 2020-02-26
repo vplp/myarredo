@@ -86,7 +86,7 @@ class ProductFilter extends Widget
 
         $this->colors = Colors::getWithProduct($queryParams);
 
-        $this->priceRange = Product::getPriceRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+        $this->priceRange = Product::getPriceRange($queryParams);
 
         $this->diameterRange = [];
         $this->widthRange = [];
@@ -95,11 +95,11 @@ class ProductFilter extends Widget
         $this->apportionmentRange = [];
 
         if (YII_DEBUG) {
-            $this->diameterRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 42);
-            $this->widthRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 8);
-            $this->lengthRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 6);
-            $this->heightRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 7);
-            $this->apportionmentRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 67);
+            $this->diameterRange = ProductRelSpecification::getRange($queryParams, 42);
+            $this->widthRange = ProductRelSpecification::getRange($queryParams, 8);
+            $this->lengthRange = ProductRelSpecification::getRange($queryParams, 6);
+            $this->heightRange = ProductRelSpecification::getRange($queryParams, 7);
+            $this->apportionmentRange = ProductRelSpecification::getRange($queryParams, 67);
         }
 
         /** CATEGORY LIST */
