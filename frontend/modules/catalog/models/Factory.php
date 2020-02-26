@@ -79,6 +79,29 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function findLastUpdated()
+    {
+        $result = self::getDb()->cache(function ($db) {
+            return self::findBase()
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.title',
+                    self::tableName() . '.updated_at',
+                    FactoryLang::tableName() . '.content'
+                ])
+                ->orderBy([self::tableName() . '.updated_at' => SORT_DESC])
+                ->limit(1)
+                ->one();
+        });
+
+        return $result;
+    }
+
+    /**
      * @param $id
      * @return mixed
      * @throws \Throwable

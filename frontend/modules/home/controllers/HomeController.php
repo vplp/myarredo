@@ -35,18 +35,16 @@ class HomeController extends BaseController
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
                     // ProductsNoveltiesOnMain widget
-                    $timeLastUpdate[] = Product::findBaseArray()
-                        ->andWhere([Product::tableName() . '.onmain' => '1'])
-                        ->max(Product::tableName() . '.updated_at');
+                    $model = Product::findLastUpdated();
+                    $timeLastUpdate[] = $model['updated_at'];
 
                     // SaleItalyOnMainPage widget
-                    $timeLastUpdate[] = ItalianProduct::findBase()
-                        ->max(ItalianProduct::tableName() . '.updated_at');
+                    $model = ItalianProduct::findLastUpdated();
+                    $timeLastUpdate[] = $model['updated_at'];
 
                     // ArticlesList widget
-                    $timeLastUpdate[] = Article::findBase()
-                        ->limit(3)
-                        ->max(Article::tableName() . '.updated_at');
+                    $model = Article::findLastUpdated();
+                    $timeLastUpdate[] = $model['updated_at'];
 
                     return max($timeLastUpdate);
                 },

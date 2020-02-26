@@ -99,6 +99,29 @@ class Sale extends \common\modules\catalog\models\Sale
     }
 
     /**
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function findLastUpdated()
+    {
+        $result = self::getDb()->cache(function ($db) {
+            return self::findBase()
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.updated_at',
+                    SaleLang::tableName() . '.title',
+                    SaleLang::tableName() . '.description'
+                ])
+                ->orderBy([self::tableName() . '.updated_at' => SORT_DESC])
+                ->limit(1)
+                ->one();
+        });
+
+        return $result;
+    }
+
+    /**
      * @param $id
      * @return mixed
      */

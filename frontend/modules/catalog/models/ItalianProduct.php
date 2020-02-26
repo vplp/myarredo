@@ -79,6 +79,29 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
     }
 
     /**
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function findLastUpdated()
+    {
+        $result = self::getDb()->cache(function ($db) {
+            return self::findBase()
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.updated_at',
+                    ItalianProductLang::tableName() . '.title',
+                    ItalianProductLang::tableName() . '.description'
+                ])
+                ->orderBy([self::tableName() . '.updated_at' => SORT_DESC])
+                ->limit(1)
+                ->one();
+        });
+
+        return $result;
+    }
+
+    /**
      * @param $alias
      * @return mixed
      * @throws \Throwable

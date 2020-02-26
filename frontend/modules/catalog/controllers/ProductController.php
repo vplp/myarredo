@@ -44,9 +44,8 @@ class ProductController extends BaseController
                 'only' => ['view'],
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
-                    return Product::findBase()
-                        ->byAlias(Yii::$app->request->get('alias'))
-                        ->max(Product::tableName() . '.updated_at');
+                    $model = Product::findByAlias(Yii::$app->request->get('alias'));
+                    return $model['updated_at'];
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Product::findByAlias(Yii::$app->request->get('alias'));

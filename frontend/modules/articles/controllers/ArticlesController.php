@@ -46,9 +46,8 @@ class ArticlesController extends BaseController
                 'only' => ['index'],
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
-                    return Article::findBase()
-                        ->alias(Yii::$app->request->get('alias'))
-                        ->max(Article::tableName() . '.updated_at');
+                    $model = Article::findByAlias(Yii::$app->request->get('alias'));
+                    return $model['updated_at'];
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Article::findByAlias(Yii::$app->request->get('alias'));
@@ -64,12 +63,11 @@ class ArticlesController extends BaseController
                 'only' => ['list'],
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
-                    return Article::findBase()->max(Article::tableName() . '.updated_at');
+                    $model = Article::findLastUpdated();
+                    return $model['updated_at'];
                 },
                 'etagSeed' => function ($action, $params) {
-                    $model = Article::findBase()
-                        ->orderBy([Article::tableName() . '.updated_at' => SORT_DESC])
-                        ->one();
+                    $model = Article::findLastUpdated();
                     return serialize([
                         $model['lang']['title'],
                         $model['lang']['content']

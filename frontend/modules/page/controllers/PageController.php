@@ -42,9 +42,8 @@ class PageController extends BaseController
                 'only' => ['view'],
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
-                    return Page::findBase()
-                        ->alias(Yii::$app->request->get('alias'))
-                        ->max(Page::tableName() . '.updated_at');
+                    $model = Page::findByAlias(Yii::$app->request->get('alias'));
+                    return $model['updated_at'];
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Page::findByAlias(Yii::$app->request->get('alias'));

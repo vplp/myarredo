@@ -56,21 +56,56 @@ class Article extends \common\modules\articles\models\Article
     }
 
     /**
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function findLastUpdated()
+    {
+        $result = self::getDb()->cache(function ($db) {
+            return self::findBase()
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.updated_at',
+                    ArticleLang::tableName() . '.title',
+                    ArticleLang::tableName() . '.content'
+                ])
+                ->orderBy([self::tableName() . '.updated_at' => SORT_DESC])
+                ->limit(1)
+                ->one();
+        });
+
+        return $result;
+    }
+
+    /**
      * @param $id
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findById($id)
     {
-        return self::findBase()->byID($id)->one();
+        $result = self::getDb()->cache(function ($db) use ($id) {
+            return self::findBase()->byId($id)->one();
+        }, 60 * 60);
+
+        return $result;
     }
 
     /**
      * @param $alias
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findByAlias($alias)
     {
-        return self::findBase()->byAlias($alias)->one();
+        $result = self::getDb()->cache(function ($db) use ($alias) {
+            return self::findBase()->byAlias($alias)->one();
+        }, 60 * 60);
+
+        return $result;
     }
 
     /**

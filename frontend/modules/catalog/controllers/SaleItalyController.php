@@ -81,12 +81,11 @@ class SaleItalyController extends BaseController
                 'only' => ['list'],
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
-                    return ItalianProduct::findBase()->max(ItalianProduct::tableName() . '.updated_at');
+                    $model = ItalianProduct::findLastUpdated();
+                    return $model['updated_at'];
                 },
                 'etagSeed' => function ($action, $params) {
-                    $model = ItalianProduct::findBase()
-                        ->orderBy([ItalianProduct::tableName() . '.updated_at' => SORT_DESC])
-                        ->one();
+                    $model = ItalianProduct::findLastUpdated();
                     return serialize([
                         $model['lang']['title'],
                         $model['lang']['description']
@@ -99,9 +98,8 @@ class SaleItalyController extends BaseController
                 'only' => ['view'],
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
-                    return ItalianProduct::findBase()
-                        ->byAlias(Yii::$app->request->get('alias'))
-                        ->max(ItalianProduct::tableName() . '.updated_at');
+                    $model = ItalianProduct::findByAlias(Yii::$app->request->get('alias'));
+                    return $model['updated_at'];
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = ItalianProduct::findByAlias(Yii::$app->request->get('alias'));

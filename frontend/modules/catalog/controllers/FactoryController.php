@@ -47,13 +47,11 @@ class FactoryController extends BaseController
                 'only' => ['index'],
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
-                    return Factory::findBase()->max(Factory::tableName() . '.updated_at');
+                    $model = Product::findLastUpdated();
+                    return $model['updated_at'];
                 },
                 'etagSeed' => function ($action, $params) {
-                    $model = Factory::findBase()
-                        ->orderBy([Factory::tableName() . '.updated_at' => SORT_DESC])
-                        ->limit(1)
-                        ->one();
+                    $model = Product::findLastUpdated();
                     return serialize([
                         $model['title'],
                         $model['lang']['content']
@@ -66,9 +64,8 @@ class FactoryController extends BaseController
                 'only' => ['view'],
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
-                    return Factory::findBase()
-                        ->byAlias(Yii::$app->request->get('alias'))
-                        ->max(Factory::tableName() . '.updated_at');
+                    $model = Factory::findByAlias(Yii::$app->request->get('alias'));
+                    return $model['updated_at'];
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Factory::findByAlias(Yii::$app->request->get('alias'));

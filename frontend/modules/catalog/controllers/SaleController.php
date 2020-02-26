@@ -89,13 +89,11 @@ class SaleController extends BaseController
                 'only' => ['list'],
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
-                    return Sale::findBase()->max(Sale::tableName() . '.updated_at');
+                    $model = Sale::findLastUpdated();
+                    return $model['updated_at'];
                 },
                 'etagSeed' => function ($action, $params) {
-                    $model = Sale::findBase()
-                        ->orderBy([Sale::tableName() . '.updated_at' => SORT_DESC])
-                        ->limit(1)
-                        ->one();
+                    $model = Sale::findLastUpdated();
                     return serialize([
                         $model['lang']['title'],
                         $model['lang']['description']
@@ -107,9 +105,8 @@ class SaleController extends BaseController
                 'only' => ['view'],
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
-                    return Sale::findBase()
-                        ->byAlias(Yii::$app->request->get('alias'))
-                        ->max(Sale::tableName() . '.updated_at');
+                    $model = Sale::findByAlias(Yii::$app->request->get('alias'));
+                    return $model['updated_at'];
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Sale::findByAlias(Yii::$app->request->get('alias'));
