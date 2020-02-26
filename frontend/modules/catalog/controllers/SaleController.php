@@ -94,6 +94,7 @@ class SaleController extends BaseController
                 'etagSeed' => function ($action, $params) {
                     $model = Sale::findBase()
                         ->orderBy([Sale::tableName() . '.updated_at' => SORT_DESC])
+                        ->limit(1)
                         ->one();
                     return serialize([
                         $model['lang']['title'],

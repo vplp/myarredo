@@ -52,6 +52,7 @@ class FactoryController extends BaseController
                 'etagSeed' => function ($action, $params) {
                     $model = Factory::findBase()
                         ->orderBy([Factory::tableName() . '.updated_at' => SORT_DESC])
+                        ->limit(1)
                         ->one();
                     return serialize([
                         $model['title'],

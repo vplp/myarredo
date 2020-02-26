@@ -17,20 +17,6 @@ use frontend\modules\catalog\widgets\product\ProductsNovelties;
  * @var $pages \yii\data\Pagination
  * @var $model Product
  * @var $models Product[]
- *
- * @var $category
- * @var $types
- * @var $subtypes
- * @var $style
- * @var $factory
- * @var $collection
- * @var $colors
- * @var $diameterRange
- * @var $widthRange
- * @var $lengthRange
- * @var $heightRange
- * @var $apportionmentRange
- * @var $priceRange
  */
 
 $this->title = $this->context->title;
@@ -79,22 +65,7 @@ $params = Yii::$app->catalogFilter->params;
                     <div class="clearfix">
                         <div class="col-md-3 col-lg-3 js-filter-modal">
 
-                            <?= ProductFilter::widget([
-                                'route' => '/catalog/category/list',
-                                'category' => $category,
-                                'types' => $types,
-                                'subtypes' => $subtypes,
-                                'style' => $style,
-                                'factory' => $factory,
-                                'collection' => $collection,
-                                'colors' => $colors,
-                                'diameterRange' => $diameterRange,
-                                'widthRange' => $widthRange,
-                                'lengthRange' => $lengthRange,
-                                'heightRange' => $heightRange,
-                                'apportionmentRange' => $apportionmentRange,
-                                'priceRange' => $priceRange,
-                            ]); ?>
+                            <?= ProductFilter::widget(['route' => '/catalog/category/list']) ?>
 
                         </div>
                         <div class="col-md-9 col-lg-9">
@@ -102,7 +73,7 @@ $params = Yii::$app->catalogFilter->params;
 
                                 <div class="top-bar flex">
 
-                                    <?= ProductSorting::widget() ?>
+                                    <?= ProductSorting::widget([]) ?>
 
                                     <?= PageChanger::widget(['pages' => $pages]) ?>
 
@@ -110,26 +81,19 @@ $params = Yii::$app->catalogFilter->params;
 
                                 <div class="cat-prod-wrap">
                                     <div class="cat-prod">
-
-                                        <?php
-                                        $_factory = [];
-                                        foreach ($factory as $item) {
-                                            $_factory[$item['id']] = $item;
-                                        }
-
-                                        if (!empty($models)) {
+                                        <?php if (!empty($models)) {
                                             foreach ($models as $model) {
-                                                echo $this->render('_list_item', ['model' => $model,
-                                                    'factory' => $_factory,]);
+                                                echo $this->render('_list_item', [
+                                                    'model' => $model
+                                                ]);
                                             }
                                         } else if (empty($models) && isset($params)) {
                                             echo Html::tag('p', Yii::t('app', 'По таким параметрам нет товаров'));
                                         } ?>
-
                                     </div>
                                     <div class="pagi-wrap">
 
-                                        <?= frontend\components\LinkPager::widget(['pagination' => $pages,]) ?>
+                                        <?= frontend\components\LinkPager::widget(['pagination' => $pages]) ?>
 
                                     </div>
                                 </div>

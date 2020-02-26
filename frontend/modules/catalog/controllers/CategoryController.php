@@ -47,12 +47,11 @@ class CategoryController extends BaseController
                 'only' => ['list'],
                 'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
-                    return Product::findBase()->max(Product::tableName() . '.updated_at');
+                    $model = Product::findLastUpdated();
+                    return $model['updated_at'];
                 },
                 'etagSeed' => function ($action, $params) {
-                    $model = Product::findBase()
-                        ->orderBy([Product::tableName() . '.updated_at' => SORT_DESC])
-                        ->one();
+                    $model = Product::findLastUpdated();
                     return serialize([
                         $model['lang']['title'],
                         $model['lang']['description']
@@ -72,40 +71,10 @@ class CategoryController extends BaseController
     {
         $model = new Product();
 
-        $group = [];
-
         Yii::$app->catalogFilter->parserUrl();
 
         $keys = Yii::$app->catalogFilter->keys;
         $queryParams = Yii::$app->catalogFilter->params;
-
-        if (isset($queryParams[$keys['category']])) {
-            $group = $queryParams[$keys['category']];
-        }
-
-        $category = Category::getWithProduct($queryParams);
-        $types = Types::getWithProduct($queryParams);
-        $subtypes = SubTypes::getWithProduct($queryParams);
-        $style = Specification::getWithProduct($queryParams);
-        $factory = Factory::getWithProduct($queryParams);
-
-        if (isset($queryParams[$keys['factory']]) && count($queryParams[$keys['factory']]) == 1) {
-            $collection = Collection::getWithProduct($queryParams);
-        } else {
-            $collection = [];
-        }
-
-        $colors = Colors::getWithProduct($queryParams);
-
-        /*
-        $diameterRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 42);
-        $widthRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 8);
-        $lengthRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 6);
-        $heightRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 7);
-        $apportionmentRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 67);
-        */
-
-        $priceRange = Product::getPriceRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         $queryParams['defaultPageSize'] = 33;
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
@@ -127,20 +96,6 @@ class CategoryController extends BaseController
         }
 
         return $this->render('list', [
-            'group' => $group,
-            'category' => $category,
-            'types' => $types,
-            'subtypes' => $subtypes,
-            'style' => $style,
-            'factory' => $factory,
-            'collection' => $collection,
-            'colors' => $colors,
-            'diameterRange' => $diameterRange ?? [],
-            'widthRange' => $widthRange ?? [],
-            'lengthRange' => $lengthRange ?? [],
-            'heightRange' => $heightRange ?? [],
-            'apportionmentRange' => $apportionmentRange ?? [],
-            'priceRange' => $priceRange,
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),
         ]);

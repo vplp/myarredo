@@ -4,6 +4,11 @@ namespace frontend\modules\catalog\widgets\filter;
 
 use Yii;
 use yii\base\Widget;
+use yii\helpers\ArrayHelper;
+//
+use frontend\modules\catalog\models\{
+    Collection, Product, Category, Factory, Types, SubTypes, Specification, Colors, ProductRelSpecification
+};
 
 /**
  * Class ProductFilter
@@ -62,7 +67,40 @@ class ProductFilter extends Widget
      */
     public function run()
     {
+        Yii::$app->catalogFilter->parserUrl();
+
         $keys = Yii::$app->catalogFilter->keys;
+        $queryParams = Yii::$app->catalogFilter->params;
+
+        $this->category = Category::getWithProduct($queryParams);
+        $this->types = Types::getWithProduct($queryParams);
+        $this->subtypes = SubTypes::getWithProduct($queryParams);
+        $this->style = Specification::getWithProduct($queryParams);
+        $this->factory = Factory::getWithProduct($queryParams);
+
+        if (isset($queryParams[$keys['factory']]) && count($queryParams[$keys['factory']]) == 1) {
+            $this->collection = Collection::getWithProduct($queryParams);
+        } else {
+            $this->collection = [];
+        }
+
+        $this->colors = Colors::getWithProduct($queryParams);
+
+        $this->priceRange = Product::getPriceRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+
+        $this->diameterRange = [];
+        $this->widthRange = [];
+        $this->lengthRange = [];
+        $this->heightRange = [];
+        $this->apportionmentRange = [];
+
+        if (YII_DEBUG) {
+            $this->diameterRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 42);
+            $this->widthRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 8);
+            $this->lengthRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 6);
+            $this->heightRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 7);
+            $this->apportionmentRange = ProductRelSpecification::getRange(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams), 67);
+        }
 
         /** CATEGORY LIST */
 
@@ -313,45 +351,46 @@ class ProductFilter extends Widget
 
         $priceRange = [];
 
-        // min
-        if ($this->priceRange['min']) {
-            $priceRange['min'] = [
-                'current' => !empty($params[$keys['price']])
-                    ? $params[$keys['price']][0]
-                    : $this->priceRange['min'],
-                'default' => $this->priceRange['min'],
-            ];
-        }
-
-        // max
-        if ($this->priceRange['max']) {
-            $priceRange['max'] = [
-                'current' => !empty($params[$keys['price']])
-                    ? $params[$keys['price']][1]
-                    : $this->priceRange['max'],
-                'default' => $this->priceRange['max'],
-            ];
-        }
-
-        if ($priceRange && $priceRange['min']['default'] != $priceRange['max']['default']) {
-            $params = Yii::$app->catalogFilter->params;
-
-            // calculate
-            if (isset($params[$keys['price']]) && $params[$keys['price']][2] == Yii::$app->currency->code) {
-                $priceRange['min']['default'] = Yii::$app->currency->getValue($priceRange['min']['default'], 'EUR', '');
-                $priceRange['max']['default'] = Yii::$app->currency->getValue($priceRange['max']['default'], 'EUR', '');
-            } else {
-                $priceRange['min']['current'] = Yii::$app->currency->getValue($priceRange['min']['current'], 'EUR', '');
-                $priceRange['max']['current'] = Yii::$app->currency->getValue($priceRange['max']['current'], 'EUR', '');
-                $priceRange['min']['default'] = Yii::$app->currency->getValue($priceRange['min']['default'], 'EUR', '');
-                $priceRange['max']['default'] = Yii::$app->currency->getValue($priceRange['max']['default'], 'EUR', '');
+        if ($this->priceRange) {
+            // min
+            if ($this->priceRange['min']) {
+                $priceRange['min'] = [
+                    'current' => !empty($params[$keys['price']])
+                        ? $params[$keys['price']][0]
+                        : $this->priceRange['min'],
+                    'default' => $this->priceRange['min'],
+                ];
             }
 
-            $params[$keys['price']] = ['{priceMin}', '{priceMax}', Yii::$app->currency->code];
-            $priceRange['link'] = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
+            // max
+            if ($this->priceRange['max']) {
+                $priceRange['max'] = [
+                    'current' => !empty($params[$keys['price']])
+                        ? $params[$keys['price']][1]
+                        : $this->priceRange['max'],
+                    'default' => $this->priceRange['max'],
+                ];
+            }
+
+            if ($priceRange && $priceRange['min']['default'] != $priceRange['max']['default']) {
+                $params = Yii::$app->catalogFilter->params;
+
+                // calculate
+                if (isset($params[$keys['price']]) && $params[$keys['price']][2] == Yii::$app->currency->code) {
+                    $priceRange['min']['default'] = Yii::$app->currency->getValue($priceRange['min']['default'], 'EUR', '');
+                    $priceRange['max']['default'] = Yii::$app->currency->getValue($priceRange['max']['default'], 'EUR', '');
+                } else {
+                    $priceRange['min']['current'] = Yii::$app->currency->getValue($priceRange['min']['current'], 'EUR', '');
+                    $priceRange['max']['current'] = Yii::$app->currency->getValue($priceRange['max']['current'], 'EUR', '');
+                    $priceRange['min']['default'] = Yii::$app->currency->getValue($priceRange['min']['default'], 'EUR', '');
+                    $priceRange['max']['default'] = Yii::$app->currency->getValue($priceRange['max']['default'], 'EUR', '');
+                }
+
+                $params[$keys['price']] = ['{priceMin}', '{priceMax}', Yii::$app->currency->code];
+                $priceRange['link'] = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
+            }
+
         }
-
-
 
         $sizesParams = Yii::$app->catalogFilter->params;
 

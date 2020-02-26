@@ -96,21 +96,77 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
+     * @param $alias
+     * @return mixed
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public static function findByAlias($alias)
+    {
+        $result = self::getDb()->cache(function ($db) use ($alias) {
+            return self::find()
+                ->innerJoinWith(['lang', 'factory'])
+                ->orderBy('position DESC')
+                ->byAlias($alias)
+                ->enabled()
+                ->one();
+        }, 60 * 60);
+
+        return $result;
+    }
+
+    /**
      * @param $id
      * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findByID($id)
     {
-        return self::findBaseArray()->byID($id)->one();
+        $result = self::getDb()->cache(function ($db) use ($id) {
+            return self::findBaseArray()->byId($id)->one();
+        }, 60 * 60);
+
+        return $result;
     }
 
     /**
      * @param $ids
      * @return array
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public static function findByIDs($ids): array
     {
-        return self::findBase()->andWhere(['IN', self::tableName() . '.id', array_unique($ids)])->all();
+        $result = self::getDb()->cache(function ($db) use ($ids) {
+            return self::findBase()->andWhere(['IN', self::tableName() . '.id', array_unique($ids)])->all();
+        }, 60 * 60);
+
+        return $result;
+    }
+
+    /**
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function findLastUpdated()
+    {
+        $result = self::getDb()->cache(function ($db) {
+            return self::findBaseArray()
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.factory_id',
+                    self::tableName() . '.updated_at',
+                    ProductLang::tableName() . '.title',
+                    ProductLang::tableName() . '.description'
+                ])
+                ->orderBy([self::tableName() . '.updated_at' => SORT_DESC])
+                ->limit(1)
+                ->one();
+        });
+
+        return $result;
     }
 
     /**
@@ -139,22 +195,6 @@ class Product extends \common\modules\catalog\models\Product
 //            ->hasMany(Samples::class, ['id' => 'samples_id'])
 //            ->viaTable(ProductRelSamples::tableName(), ['catalog_item_id' => 'id']);
 //    }
-
-    /**
-     * @param $alias
-     * @return mixed
-     * @throws \Exception
-     * @throws \Throwable
-     */
-    public static function findByAlias($alias)
-    {
-        return self::find()
-            ->innerJoinWith(['lang', 'factory'])
-            ->orderBy('position DESC')
-            ->byAlias($alias)
-            ->enabled()
-            ->one();
-    }
 
     /**
      * @return \yii\db\ActiveQuery
@@ -560,9 +600,11 @@ class Product extends \common\modules\catalog\models\Product
         $result = self::getDb()->cache(function ($db) use ($query) {
             return $query
                 ->select([
+                    self::tableName() . '.factory_id',
                     'max(' . self::tableName() . '.price_from) as max',
                     'min(' . self::tableName() . '.price_from) as min'
                 ])
+                ->asArray()
                 ->one();
         }, 60 * 60);
 

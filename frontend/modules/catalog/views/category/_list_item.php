@@ -44,10 +44,7 @@ use frontend\modules\catalog\models\{
 
         <div class="prod-infoblock">
             <div class="tile-brand">
-                <?= (isset($factory[$model['factory_id']]))
-                    ? $factory[$model['factory_id']]['title']
-                    : null;
-                ?>
+                <?= $model['factory']['title'] ?>
             </div>
             <div class="tile-prod-name" itemprop="name">
                 <?= Product::getStaticTitleForList($model); ?>
