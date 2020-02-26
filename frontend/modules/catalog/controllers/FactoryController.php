@@ -41,18 +41,29 @@ class FactoryController extends BaseController
             ],
         ];
 
-        if (Yii::$app->getUser()->isGuest && YII_ENV_PROD) {
+        if (Yii::$app->getUser()->isGuest) {
             $behaviors[] = [
                 'class' => \yii\filters\HttpCache::class,
                 'only' => ['index'],
+                'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
                     return Factory::findBase()->max(Factory::tableName() . '.updated_at');
-                }
+                },
+                'etagSeed' => function ($action, $params) {
+                    $model = Factory::findBase()
+                        ->orderBy([Factory::tableName() . '.updated_at' => SORT_DESC])
+                        ->one();
+                    return serialize([
+                        $model['title'],
+                        $model['lang']['content']
+                    ]);
+                },
             ];
 
             $behaviors[] = [
                 'class' => \yii\filters\HttpCache::class,
                 'only' => ['view'],
+                'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
                     return Factory::findBase()
                         ->byAlias(Yii::$app->request->get('alias'))
@@ -60,12 +71,10 @@ class FactoryController extends BaseController
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Factory::findByAlias(Yii::$app->request->get('alias'));
-                    return serialize(
-                        [
-                            $model['title'],
-                            $model['lang']['content']
-                        ]
-                    );
+                    return serialize([
+                        $model['title'],
+                        $model['lang']['content']
+                    ]);
                 },
             ];
         }

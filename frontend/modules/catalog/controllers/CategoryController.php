@@ -41,12 +41,22 @@ class CategoryController extends BaseController
             ],
         ];
 
-        if (Yii::$app->getUser()->isGuest && YII_ENV_PROD) {
+        if (Yii::$app->getUser()->isGuest) {
             $behaviors[] = [
                 'class' => \yii\filters\HttpCache::class,
                 'only' => ['list'],
+                'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
                     return Product::findBase()->max(Product::tableName() . '.updated_at');
+                },
+                'etagSeed' => function ($action, $params) {
+                    $model = Product::findBase()
+                        ->orderBy([Product::tableName() . '.updated_at' => SORT_DESC])
+                        ->one();
+                    return serialize([
+                        $model['lang']['title'],
+                        $model['lang']['description']
+                    ]);
                 }
             ];
         }

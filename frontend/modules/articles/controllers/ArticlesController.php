@@ -31,7 +31,7 @@ class ArticlesController extends BaseController
      */
     public function behaviors()
     {
-        return [
+        $behaviors = [
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -39,6 +39,46 @@ class ArticlesController extends BaseController
                 ],
             ],
         ];
+
+        if (Yii::$app->getUser()->isGuest) {
+            $behaviors[] = [
+                'class' => \yii\filters\HttpCache::class,
+                'only' => ['index'],
+                'cacheControlHeader' => 'must-revalidate, max-age=86400',
+                'lastModified' => function ($action, $params) {
+                    return Article::findBase()
+                        ->alias(Yii::$app->request->get('alias'))
+                        ->max(Article::tableName() . '.updated_at');
+                },
+                'etagSeed' => function ($action, $params) {
+                    $model = Article::findByAlias(Yii::$app->request->get('alias'));
+                    return serialize([
+                        $model['lang']['title'],
+                        $model['lang']['content']
+                    ]);
+                }
+            ];
+
+            $behaviors[] = [
+                'class' => \yii\filters\HttpCache::class,
+                'only' => ['list'],
+                'cacheControlHeader' => 'must-revalidate, max-age=86400',
+                'lastModified' => function ($action, $params) {
+                    return Article::findBase()->max(Article::tableName() . '.updated_at');
+                },
+                'etagSeed' => function ($action, $params) {
+                    $model = Article::findBase()
+                        ->orderBy([Article::tableName() . '.updated_at' => SORT_DESC])
+                        ->one();
+                    return serialize([
+                        $model['lang']['title'],
+                        $model['lang']['content']
+                    ]);
+                },
+            ];
+        }
+
+        return $behaviors;
     }
 
     /**
@@ -56,7 +96,6 @@ class ArticlesController extends BaseController
                 'class' => RecordView::class,
                 'modelClass' => Article::class,
                 'methodName' => 'findByAlias',
-                //'view' => 'article',
             ],
         ];
     }

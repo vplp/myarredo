@@ -38,10 +38,11 @@ class ProductController extends BaseController
             ],
         ];
 
-        if (Yii::$app->getUser()->isGuest && YII_ENV_PROD) {
+        if (Yii::$app->getUser()->isGuest) {
             $behaviors[] = [
                 'class' => \yii\filters\HttpCache::class,
                 'only' => ['view'],
+                'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
                     return Product::findBase()
                         ->byAlias(Yii::$app->request->get('alias'))
@@ -49,12 +50,10 @@ class ProductController extends BaseController
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = Product::findByAlias(Yii::$app->request->get('alias'));
-                    return serialize(
-                        [
-                            $model['lang']['title'],
-                            $model['lang']['description']
-                        ]
-                    );
+                    return serialize([
+                        $model['lang']['title'],
+                        $model['lang']['description']
+                    ]);
                 },
             ];
         }

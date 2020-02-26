@@ -75,18 +75,29 @@ class SaleItalyController extends BaseController
             ]
         ];
 
-        if (Yii::$app->getUser()->isGuest && YII_ENV_PROD) {
+        if (Yii::$app->getUser()->isGuest) {
             $behaviors[] = [
                 'class' => \yii\filters\HttpCache::class,
                 'only' => ['list'],
+                'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
                     return ItalianProduct::findBase()->max(ItalianProduct::tableName() . '.updated_at');
-                }
+                },
+                'etagSeed' => function ($action, $params) {
+                    $model = ItalianProduct::findBase()
+                        ->orderBy([ItalianProduct::tableName() . '.updated_at' => SORT_DESC])
+                        ->one();
+                    return serialize([
+                        $model['lang']['title'],
+                        $model['lang']['description']
+                    ]);
+                },
             ];
 
             $behaviors[] = [
                 'class' => \yii\filters\HttpCache::class,
                 'only' => ['view'],
+                'cacheControlHeader' => 'must-revalidate, max-age=86400',
                 'lastModified' => function ($action, $params) {
                     return ItalianProduct::findBase()
                         ->byAlias(Yii::$app->request->get('alias'))
@@ -94,12 +105,10 @@ class SaleItalyController extends BaseController
                 },
                 'etagSeed' => function ($action, $params) {
                     $model = ItalianProduct::findByAlias(Yii::$app->request->get('alias'));
-                    return serialize(
-                        [
-                            $model['lang']['title'],
-                            $model['lang']['description']
-                        ]
-                    );
+                    return serialize([
+                        $model['lang']['title'],
+                        $model['lang']['description']
+                    ]);
                 },
             ];
         }

@@ -39,7 +39,7 @@ class ProductsNoveltiesOnMain extends Widget
                 Product::tableName() . '.bestseller',
                 ProductLang::tableName() . '.title',
             ])
-            ->andWhere(['onmain' => '1'])
+            ->andWhere([Product::tableName() . '.onmain' => '1'])
             ->cache(7200)
             ->all();
 

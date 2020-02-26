@@ -2,11 +2,15 @@
 
 namespace frontend\modules\home\controllers;
 
+use frontend\modules\articles\models\Article;
 use Yii;
 use yii\web\ErrorAction;
 //
 use frontend\components\BaseController;
 use frontend\themes\myarredo\assets\AppAsset;
+use frontend\modules\catalog\models\{
+    Product, ItalianProduct
+};
 
 /**
  * Class HomeController
@@ -16,6 +20,41 @@ use frontend\themes\myarredo\assets\AppAsset;
 class HomeController extends BaseController
 {
     public $layout = "@app/layouts/start";
+
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        $behaviors = [];
+
+        if (Yii::$app->getUser()->isGuest) {
+            $behaviors[] = [
+                'class' => \yii\filters\HttpCache::class,
+                'only' => ['index'],
+                'cacheControlHeader' => 'must-revalidate, max-age=86400',
+                'lastModified' => function ($action, $params) {
+                    // ProductsNoveltiesOnMain widget
+                    $timeLastUpdate[] = Product::findBaseArray()
+                        ->andWhere([Product::tableName() . '.onmain' => '1'])
+                        ->max(Product::tableName() . '.updated_at');
+
+                    // SaleItalyOnMainPage widget
+                    $timeLastUpdate[] = ItalianProduct::findBase()
+                        ->max(ItalianProduct::tableName() . '.updated_at');
+
+                    // ArticlesList widget
+                    $timeLastUpdate[] = Article::findBase()
+                        ->limit(3)
+                        ->max(Article::tableName() . '.updated_at');
+
+                    return max($timeLastUpdate);
+                },
+            ];
+        }
+
+        return $behaviors;
+    }
 
     /**
      * @return array
