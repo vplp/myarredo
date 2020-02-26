@@ -137,23 +137,6 @@ class SaleController extends BaseController
         $queryParams['country'] = Yii::$app->city->getCountryId();
         $queryParams['city'] = Yii::$app->city->getCityId();
 
-        $category = Category::getWithSale($queryParams);
-        $types = Types::getWithSale($queryParams);
-        $subtypes = SubTypes::getWithSale($queryParams);
-        $style = Specification::getWithSale($queryParams);
-        $factory = Factory::getWithSale($queryParams);
-        $colors = Colors::getWithSale($queryParams);
-        $countries = Country::getWithSale($queryParams);
-        $cities = City::getWithSale($queryParams);
-
-        $min = Sale::minPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
-        $max = Sale::maxPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
-
-        $priceRange = [
-            'min' => $min,
-            'max' => $max
-        ];
-
         $queryParams['defaultPageSize'] = 24;
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
@@ -172,16 +155,7 @@ class SaleController extends BaseController
         }
 
         return $this->render('list', [
-            'category' => $category,
-            'types' => $types,
-            'subtypes' => $subtypes,
-            'style' => $style,
-            'factory' => $factory,
-            'colors' => $colors,
-            'countries' => $countries,
-            'cities' => $cities,
             'models' => $models->getModels(),
-            'priceRange' => $priceRange,
             'pages' => $models->getPagination()
         ]);
     }

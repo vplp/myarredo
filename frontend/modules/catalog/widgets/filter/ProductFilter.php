@@ -64,11 +64,11 @@ class ProductFilter extends Widget
 
     /**
      * @return string
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function run()
     {
-        Yii::$app->catalogFilter->parserUrl();
-
         $keys = Yii::$app->catalogFilter->keys;
         $queryParams = Yii::$app->catalogFilter->params;
 

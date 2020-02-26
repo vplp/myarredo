@@ -4,8 +4,22 @@ namespace frontend\modules\catalog\widgets\filter;
 
 use Yii;
 use yii\base\Widget;
+use yii\helpers\{
+    ArrayHelper, Html
+};
 //
-use frontend\modules\location\models\City;
+use frontend\modules\location\models\{
+    Country, City
+};
+use frontend\modules\catalog\models\{
+    Sale,
+    Category,
+    Factory,
+    Types,
+    SubTypes,
+    Specification,
+    Colors
+};
 
 /**
  * Class SaleFilter
@@ -77,10 +91,32 @@ class SaleFilter extends Widget
     /**
      * @return string
      * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
     public function run()
     {
         $keys = Yii::$app->catalogFilter->keys;
+        $queryParams = Yii::$app->catalogFilter->params;
+
+        $queryParams['country'] = Yii::$app->city->getCountryId();
+        $queryParams['city'] = Yii::$app->city->getCityId();
+
+        $this->category = Category::getWithSale($queryParams);
+        $this->types = Types::getWithSale($queryParams);
+        $this->subtypes = SubTypes::getWithSale($queryParams);
+        $this->style = Specification::getWithSale($queryParams);
+        $this->factory = Factory::getWithSale($queryParams);
+        $this->colors = Colors::getWithSale($queryParams);
+        $this->countries = Country::getWithSale($queryParams);
+        $this->cities = City::getWithSale($queryParams);
+
+        $min = Sale::minPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+        $max = Sale::maxPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
+
+        $this->priceRange = [
+            'min' => $min,
+            'max' => $max
+        ];
 
         /**
          * Category list
@@ -95,9 +131,7 @@ class SaleFilter extends Widget
                 ? $obj['alias']
                 : $obj['alias2'];
 
-            if (!empty($params[$keys['category']]) &&
-                in_array($alias, $params[$keys['category']])
-            ) {
+            if (!empty($params[$keys['category']]) && in_array($alias, $params[$keys['category']])) {
                 $checked = 1;
                 $params[$keys['category']] = '';
             } else {
