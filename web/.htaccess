@@ -98,12 +98,13 @@ AddDefaultCharset UTF-8
     </filesMatch>
 </IfModule>
 
-# Удалить заголовок ETag (иначе есть проблемы с кешированием при включенном сжатии)
-<IfModule mod_headers.c>
+# Выключаем проверку объектных тегов ETag
+<ifModule mod_headers.c>
+  <filesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
     Header unset ETag
-</IfModule>
-
-FileETag None
+    FileETag None
+ </filesMatch>
+</ifModule>
 
 #Сжимаем элементы с помощью mod_deflate
 <IfModule mod_deflate.c="">
