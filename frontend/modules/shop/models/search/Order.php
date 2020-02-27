@@ -15,7 +15,6 @@ use frontend\modules\shop\models\{
     Order as OrderModel,
     Customer
 };
-use frontend\modules\location\models\City;
 use frontend\modules\catalog\models\ItalianProduct;
 
 /**
@@ -83,17 +82,6 @@ class Order extends OrderModel
             self::tableName() . '.product_type' => $this->product_type,
         ]);
 
-        if (isset($params['country_id']) && $params['country_id'] > 0 && !$params['city_id']) {
-            $model = City::findAll(['country_id' => $params['country_id']]);
-
-            if ($model != null) {
-                foreach ($model as $city) {
-                    $city_id[] = $city['id'];
-                }
-                $query->andFilterWhere(['IN', self::tableName() . '.city_id', $city_id]);
-            }
-        }
-
         if (isset($params['country_id']) && $params['country_id'] > 0) {
             $query->andFilterWhere([self::tableName() . '.country_id' => $params['country_id']]);
         }
@@ -125,14 +113,6 @@ class Order extends OrderModel
             $query
                 ->innerJoinWith(["items.product product"], false)
                 ->andFilterWhere(['IN', 'product.factory_id', Yii::$app->user->identity->profile->factory_id]);
-        }
-
-        if (Yii::$app->user->identity->group->role == 'partner' &&
-            Yii::$app->user->identity->profile->country_id &&
-            Yii::$app->user->identity->profile->country_id == 4) {
-            //$query->andFilterWhere(['IN', self::tableName() . '.lang', ['it-IT', 'en-EN']]);
-        } else if (Yii::$app->user->identity->group->role == 'partner') {
-            //$query->andFilterWhere(['IN', self::tableName() . '.lang', ['ru-RU']]);
         }
 
         if (isset($params['factory_id']) && $params['factory_id'] > 0) {
