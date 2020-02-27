@@ -79,7 +79,7 @@ use frontend\modules\catalog\models\Category;
             </div>
         <?php } ?>
 
-        <?php if (YII_DEBUG) { ?>
+        <?php if (in_array(Yii::$app->request->userIP, ['82.193.124.145', '127.0.0.1'])) { ?>
             <div id="filter-sizes" class="one-filter filter-range-slider">
                 <?= Html::a(
                     Yii::t('app', 'Размеры'),

@@ -94,7 +94,7 @@ class ProductFilter extends Widget
         $this->heightRange = [];
         $this->apportionmentRange = [];
 
-        if (YII_DEBUG) {
+        if (in_array(Yii::$app->request->userIP, ['82.193.124.145', '127.0.0.1'])) {
             $this->diameterRange = ProductRelSpecification::getRange($queryParams, 42);
             $this->widthRange = ProductRelSpecification::getRange($queryParams, 8);
             $this->lengthRange = ProductRelSpecification::getRange($queryParams, 6);
