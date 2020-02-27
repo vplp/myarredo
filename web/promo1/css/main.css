@@ -584,15 +584,27 @@ header.header {
     background-color: #ffffff;
     cursor: help;
 }
-.field-wrap>label.error {
+.field-wrap>label.error,
+.agree-field>label.error {
     font-size: 14px;
     color: #dc3545;
     top: auto;
     bottom: -32px;
     left: 0;
 }
+.agree-field {
+    position: relative;
+    width: 100%;
+    top: -10px;
+}
+.agree-field>label.error {
+    position: absolute;
+    bottom: -20px;
+}
 .field-wrap.name-field,
-.field-wrap.email-field {
+.field-wrap.email-field,
+.field-wrap.region-field,
+.field-wrap.phone-field {
     width: 48%;
 }
 .btn-submit {
@@ -825,6 +837,7 @@ header.header {
 }
 .footer-emailbox a,
 .footer-phonebox a {
+    display: block;
     font-size: 20px;
     color: #535351;
     text-decoration: none;
