@@ -60,6 +60,11 @@ $(document).ready(function () {
         var shortNameMess = 'Минимум 2 символа';
         var reqEmailMess = 'Необходимо заполнить e-mail';
         var correctEmailMess = 'Неккоректный e-mail адресс';
+        var reqRegMess = 'Необходимо заполнить - Регион';
+        var reqPhoneMess = 'Необходимо заполнить - Телефон';
+        var numberMess = "Не корректный номер";
+        var reqSiteMess = 'Необходимо заполнить - Сайт';
+        var urlMess = 'Ссылка на сайт не корректная';
         var reqTextareaMess = 'Укажите текст сообщения';
         var succesSubmitMess = 'Сообщение успешно отправлено! Мы ответим в ближайшее время';
         var errorEmtySubmitMess = 'Сообщение не отправлено! Заполнены не все поля!';
@@ -69,6 +74,11 @@ $(document).ready(function () {
         var shortNameMess = 'Almeno 2 caratteri';
         var reqEmailMess = 'È necessario compilare l e-mail';
         var correctEmailMess = 'Indirizzo e-mail errato';
+        var reqRegMess = 'Richiesto - Regione';
+        var reqPhoneMess = 'Richiesto - Telefono';
+        var numberMess = "Numero non valido";
+        var reqSiteMess = 'Richiesto - Sito';
+        var urlMess = 'Il link al sito non è corretto';
         var reqTextareaMess = 'Inserisci il testo del messaggio';
         var succesSubmitMess = 'Messaggio inviato con successo! Ti risponderemo al più presto';
         var errorEmtySubmitMess = 'Messaggio non inviato Non tutti i campi sono riempiti!';
@@ -90,6 +100,16 @@ $(document).ready(function () {
             },
             textfield: {
                 required: true,
+            },
+            regionfield: {
+                minlength: 2
+            },
+            phonefield: {
+                required: true,
+                number: true
+            },
+            sitefield: {
+                url: true
             }
         },
         // устанавливаем сообщения для ошибок
@@ -104,6 +124,16 @@ $(document).ready(function () {
             },
             textfield: {
                 required: reqTextareaMess,
+            },
+            regionfield: {
+                minlength: shortNameMess
+            },
+            phonefield: {
+                required: reqPhoneMess,
+                number: numberMess
+            },
+            sitefield: {
+                url: urlMess
             }
         },
         // если валидация пройдена
