@@ -1,10 +1,11 @@
 <?php
 
-use yii\helpers\Html;
+use yii\helpers\{
+    Html, Url
+};
 use yii\data\Pagination;
 //
 use frontend\components\Breadcrumbs;
-use frontend\modules\catalog\widgets\filter\SaleFilter;
 use frontend\modules\catalog\models\{
     Sale, SaleLang
 };
@@ -36,11 +37,7 @@ $this->title = $this->context->title;
                 </div>
                 <div class="cat-content">
                     <div class="row">
-                        <div class="col-md-3 col-lg-3">
-
-                            <?= SaleFilter::widget(['route' => '/catalog/sale/list']) ?>
-
-                        </div>
+                        <div class="col-md-3 col-lg-3 ajax-get-filter"></div>
                         <div class="col-md-9 col-lg-9">
                             <div class="cont-area">
 
@@ -87,3 +84,46 @@ $this->title = $this->context->title;
         </div>
     </div>
 </main>
+
+<?php
+
+$url = Url::to(['/catalog/sale/ajax-get-filter']);
+
+$script = <<<JS
+$.post('$url', {_csrf: $('#token').val()}, function(data){
+    $('.ajax-get-filter').html(data.html);
+    
+    setTimeout(function() {
+      
+    }, 100);
+    
+    $('.submit_price').on('click', function () {
+        let link = $('input[name="price[link]"]').val(),
+            min = $('input[name="price[min]"]').val(),
+            max = $('input[name="price[max]"]').val();
+        
+        link = link.replace('{priceMin}', min);
+        link = link.replace('{priceMax}', max);
+    
+        window.location.href = link;
+    });
+    
+    $('.category-filter label').on('click', function () {
+        var checkbox = $(this).parent().find('input[type=checkbox]');  
+       
+        if ($(this).parent().find('input[type=checkbox]:checked').length) {
+            checkbox.prop('checked', false);
+        } else {
+            checkbox.prop('checked', true);
+        }
+    
+        $('#catalog_filter').submit();
+    });
+    
+    $('.category-filter input[type=checkbox]').on( "click", function () {
+        $('#catalog_filter').submit();
+    });
+});
+JS;
+
+$this->registerJs($script);

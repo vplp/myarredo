@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\controllers;
 
+use frontend\modules\catalog\widgets\filter\ProductFilter;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\VerbFilter;
@@ -37,6 +38,7 @@ class CategoryController extends BaseController
                     'ajax-get-types' => ['post'],
                     'ajax-get-category' => ['post'],
                     'ajax-get-filter' => ['post'],
+                    'ajax-get-filter-on-main' => ['post'],
                 ],
             ],
         ];
@@ -206,7 +208,7 @@ class CategoryController extends BaseController
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
-    public function actionAjaxGetFilter()
+    public function actionAjaxGetFilterOnMain()
     {
         if (Yii::$app->request->isAjax) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
@@ -220,6 +222,19 @@ class CategoryController extends BaseController
             ]);
 
             return ['success' => 1, 'html' => $html];
+        }
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function actionAjaxGetFilter()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            return ['success' => 1, 'html' => ProductFilter::widget(['route' => '/catalog/category/list'])];
         }
     }
 

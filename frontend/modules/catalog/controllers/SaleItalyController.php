@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\controllers;
 
+use frontend\modules\catalog\widgets\filter\ItalianProductFilter;
 use Yii;
 use yii\helpers\{
     ArrayHelper
@@ -24,6 +25,7 @@ use frontend\modules\catalog\models\{
     Colors
 };
 use frontend\themes\myarredo\assets\AppAsset;
+use yii\web\Response;
 
 /**
  * Class SaleItalyController
@@ -55,24 +57,9 @@ class SaleItalyController extends BaseController
                 'actions' => [
                     'list' => ['get'],
                     'view' => ['post', 'get'],
+                    'ajax-get-filter' => ['post'],
                 ],
             ],
-            'AccessControl' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'actions' => [
-                            'list',
-                            'view',
-                        ],
-                        'roles' => ['?', '@'],
-                    ],
-                    [
-                        'allow' => false,
-                    ],
-                ],
-            ]
         ];
 
         if (Yii::$app->getUser()->isGuest) {
@@ -264,6 +251,18 @@ class SaleItalyController extends BaseController
         ]);
     }
 
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function actionAjaxGetFilter()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            return ['success' => 1, 'html' => ItalianProductFilter::widget(['route' => '/catalog/sale/list'])];
+        }
+    }
     /**
      * @inheritdoc
      */

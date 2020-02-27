@@ -12,7 +12,7 @@ use yii\helpers\Url;
 
 <?php
 
-$url = Url::to(['/catalog/category/ajax-get-filter']);
+$url = Url::to(['/catalog/category/ajax-get-filter-on-main']);
 $ajax_get_types = Url::to(['/catalog/category/ajax-get-types']);
 $ajax_get_category = Url::to(['/catalog/category/ajax-get-category']);
 

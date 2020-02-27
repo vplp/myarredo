@@ -452,7 +452,7 @@ class SaleFilter extends Widget
                 $priceRange['max']['default'] = Yii::$app->currency->getValue($priceRange['max']['default'], 'EUR', '');
             }
 
-            $params[$keys['price']] = ['{MIN}', '{MAX}', Yii::$app->currency->code];
+            $params[$keys['price']] = ['{priceMin}', '{priceMax}', Yii::$app->currency->code];
             $priceRange['link'] = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
         }
 

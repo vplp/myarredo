@@ -45,6 +45,7 @@ return [
     'catalog/category/ajax-get-category' => 'catalog/category/ajax-get-category',
     'catalog/category/ajax-get-novelty' => 'catalog/category/ajax-get-novelty',
     'catalog/category/ajax-get-filter' => 'catalog/category/ajax-get-filter',
+    'catalog/category/ajax-get-filter-on-main' => 'catalog/category/ajax-get-filter-on-main',
 
     'sale/<filter:[\=\;\-\/\w\d]+>' => 'catalog/sale/list',
     'factory/<alias:(nieri|tomassi_cucine|damiano_latini)>' => 'catalog/template-factory/factory',
@@ -56,6 +57,7 @@ return [
     'factories/<letter:[\w\-]>' => 'catalog/factory/list',
     'factories' => 'catalog/factory/list',
     'sale' => 'catalog/sale/list',
+    'catalog/sale/ajax-get-filter' => 'catalog/sale/ajax-get-filter',
     'catalog/sale/ajax-get-phone' => 'catalog/sale/ajax-get-phone',
 
     'product-stats' => 'catalog/product-stats/list',
@@ -97,6 +99,7 @@ return [
     'sale-italy/<filter:[\=\;\-\/\w\d]+>' => 'catalog/sale-italy/list',
     'sale-italy' => 'catalog/sale-italy/list',
     'sale-italy-product/<alias:[\w\-]+>' => 'catalog/sale-italy/view',
+    'catalog/sale-italy/ajax-get-filter' => 'catalog/sale-italy/ajax-get-filter',
     //
     'italian-product' => 'catalog/italian-product/list',
     'italian-product/completed' => 'catalog/italian-product/completed',

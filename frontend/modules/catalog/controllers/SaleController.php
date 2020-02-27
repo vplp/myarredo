@@ -2,6 +2,7 @@
 
 namespace frontend\modules\catalog\controllers;
 
+use frontend\modules\catalog\widgets\filter\SaleFilter;
 use Yii;
 use yii\helpers\{
     ArrayHelper, Html
@@ -56,29 +57,13 @@ class SaleController extends BaseController
     public function behaviors()
     {
         $behaviors = [
-            'verbs' => [
+            [
                 'class' => VerbFilter::class,
                 'actions' => [
                     'list' => ['get'],
                     'view' => ['post', 'get'],
                     'ajax-get-phone' => ['post'],
-                ],
-            ],
-            'AccessControl' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'actions' => [
-                            'list',
-                            'view',
-                            'ajax-get-phone'
-                        ],
-                        'roles' => ['?', '@'],
-                    ],
-                    [
-                        'allow' => false,
-                    ],
+                    'ajax-get-filter' => ['post'],
                 ],
             ]
         ];
@@ -309,6 +294,19 @@ class SaleController extends BaseController
             }
 
             return ['success' => 0, 'phone' => null];
+        }
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function actionAjaxGetFilter()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            return ['success' => 1, 'html' => SaleFilter::widget(['route' => '/catalog/sale-italy/list'])];
         }
     }
 
