@@ -32,7 +32,6 @@ class ProductRelSpecification extends \common\modules\catalog\models\ProductRelS
 
         $query
             ->innerJoinWith(["product"], false)
-            ->innerJoinWith(["product.lang"], false)
             ->innerJoinWith(["product.factory"], false)
             ->andFilterWhere([
                 Product::tableName() . '.published' => '1',

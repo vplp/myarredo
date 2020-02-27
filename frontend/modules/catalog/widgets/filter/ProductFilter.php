@@ -94,13 +94,13 @@ class ProductFilter extends Widget
         $this->heightRange = [];
         $this->apportionmentRange = [];
 
-        if (YII_DEBUG) {
+        //if (YII_DEBUG) {
             $this->diameterRange = ProductRelSpecification::getRange($queryParams, 42);
             $this->widthRange = ProductRelSpecification::getRange($queryParams, 8);
             $this->lengthRange = ProductRelSpecification::getRange($queryParams, 6);
             $this->heightRange = ProductRelSpecification::getRange($queryParams, 7);
             $this->apportionmentRange = ProductRelSpecification::getRange($queryParams, 67);
-        }
+        //}
 
         /** CATEGORY LIST */
 
