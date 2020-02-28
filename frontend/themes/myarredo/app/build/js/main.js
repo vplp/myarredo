@@ -1,3 +1,52 @@
+// Global Scoupe
+// Функция для инициализации range-sliders для фильтров
+function rangeInit() {
+    // если нужный элемент присутствует на странице
+    if ($('.myarredo-slider').length > 0) {
+        // проходимся по ним
+        var allSlides = document.getElementsByClassName('myarredo-slider');
+        $(allSlides).each(function(i, elem) {
+            var minInput = $(elem).next('.filter-slider-box').children('.cur.min').children('input[type="text"]');
+            var maxInput = $(elem).next('.filter-slider-box').children('.cur.max').children('input[type="text"]');
+            if (minInput.val() == maxInput.val()) {
+                maxInput.val(maxInput.val() + 1);
+            }
+            if (allSlides[i] != null) {
+                noUiSlider.create(allSlides[i], {
+                    start: [Number($(allSlides[i]).attr('data-min')), Number($(allSlides[i]).attr('data-max'))],
+                    connect: true,
+                    animate: true,
+                    animationDuration: 300,
+                    range: {
+                        'min': Number(minInput.attr('data-default')),
+                        'max': Number(maxInput.attr('data-default'))
+                    },
+                    format: wNumb({
+                        decimals: 0
+                    })
+
+                });
+
+                allSlides[i].noUiSlider.on('update', function () {
+                    var arrResult = allSlides[i].noUiSlider.get();
+                    minInput.val(arrResult[0]);
+                    maxInput.val(arrResult[1]);
+                });
+
+                minInput.change(function () {
+                    allSlides[i].noUiSlider.set([$(this).val(), maxInput.val()]);
+                });
+
+                maxInput.change(function () {
+                    allSlides[i].noUiSlider.set([minInput.val(), $(this).val()]);
+                });
+            }
+        });
+    }
+
+
+}
+
 $(document).ready(function () {
 
     // удаляем прелоадер
@@ -269,68 +318,22 @@ $(document).ready(function () {
     /*--конец Изменение вида в каталоге--*/
 
     /*--Ползунок каталог--*/
-    (function () {
-        // если нужный элемент присутствует на странице
-        if ($('.myarredo-slider').length > 0) {
-            // проходимся по ним
-            var allSlides = document.getElementsByClassName('myarredo-slider');
-            $(allSlides).each(function(i, elem) {
-                var minInput = $(elem).next('.filter-slider-box').children('.cur.min').children('input[type="text"]');
-                var maxInput = $(elem).next('.filter-slider-box').children('.cur.max').children('input[type="text"]');
-                if (minInput.val() == maxInput.val()) {
-                    maxInput.val(maxInput.val() + 1);
-                }
-                if (allSlides[i] != null) {
-                    noUiSlider.create(allSlides[i], {
-                        start: [Number($(allSlides[i]).attr('data-min')), Number($(allSlides[i]).attr('data-max'))],
-                        connect: true,
-                        animate: true,
-                        animationDuration: 300,
-                        range: {
-                            'min': Number(minInput.attr('data-default')),
-                            'max': Number(maxInput.attr('data-default'))
-                        },
-                        format: wNumb({
-                            decimals: 0
-                        })
-
-                    });
-
-                    allSlides[i].noUiSlider.on('update', function () {
-                        var arrResult = allSlides[i].noUiSlider.get();
-                        minInput.val(arrResult[0]);
-                        maxInput.val(arrResult[1]);
-                    });
-
-                    minInput.change(function () {
-                        allSlides[i].noUiSlider.set([$(this).val(), maxInput.val()]);
-                    });
-
-                    maxInput.change(function () {
-                        allSlides[i].noUiSlider.set([minInput.val(), $(this).val()]);
-                    });
-                }
-            });
-        }
-
-
-    })();
+    rangeInit();
     /*--конец ползунок--*/
 
     /*--Открыть\закрыть категорию в каталоге--*/
-    (function () {
-        $('.filt-but').click(function () {
-            var parent = $(this).parent('.one-filter');
-            if (parent.hasClass('open')) {
-                parent.removeClass('open');
-                parent.find('.list-item').slideUp();
-            } else {
-                parent.addClass('open');
-                parent.find('.list-item').slideDown();
-            }
-            //parent.find('.list-item').slideToggle();
-        });
-    })();
+    $(document).on('click', '.filt-but', function () {
+        var parent = $(this).parent('.one-filter');
+        if (parent.hasClass('open')) {
+            parent.removeClass('open');
+            parent.find('.list-item').slideUp();
+        } else {
+            parent.addClass('open');
+            parent.find('.list-item').slideDown();
+        }
+        //parent.find('.list-item').slideToggle();
+    });
+
     /*--конец Открыть\закрыть категорию в каталоге--*/
 
     // js for default close filters for mobile and tablets

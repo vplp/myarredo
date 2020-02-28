@@ -93,8 +93,8 @@ $.post('$url', {_csrf: $('#token').val()}, function(data){
     $('.ajax-get-filter').html(data.html);
     
     setTimeout(function() {
-      
-    }, 100);
+        rangeInit();
+    }, 300);
     
     $('.submit_price').on('click', function () {
         let link = $('input[name="price[link]"]').val(),
