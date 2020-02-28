@@ -576,7 +576,7 @@ $(document).ready(function () {
     /*--конец Галерея Карточка товара --*/
 
     /*--модалка варианты отделки*/
-    $(".composition .show-modal").click(function (e) {
+    $(document).on('click', '.composition .show-modal', function(e) {
         e.preventDefault();
         var img = $(this).clone();
         $('#decoration-modal .image-container').html("").append(img);
