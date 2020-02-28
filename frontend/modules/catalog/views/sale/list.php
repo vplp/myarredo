@@ -88,9 +88,10 @@ $this->title = $this->context->title;
 <?php
 
 $url = Url::to(['/catalog/sale/ajax-get-filter']);
+$queryParams = json_encode(Yii::$app->catalogFilter->params);
 
 $script = <<<JS
-$.post('$url', {_csrf: $('#token').val()}, function(data){
+$.post('$url', {_csrf: $('#token').val(), catalogFilterParams:$queryParams}, function(data) {
     $('.ajax-get-filter').html(data.html);
     
     setTimeout(function() {

@@ -234,7 +234,13 @@ class CategoryController extends BaseController
         if (Yii::$app->request->isAjax) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
-            return ['success' => 1, 'html' => ProductFilter::widget(['route' => '/catalog/category/list'])];
+            return [
+                'success' => 1,
+                'html' => ProductFilter::widget([
+                    'route' => '/catalog/category/list',
+                    'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
+                ])
+            ];
         }
     }
 

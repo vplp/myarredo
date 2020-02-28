@@ -79,7 +79,7 @@ use frontend\modules\catalog\models\Category;
         </div>
     <?php } ?>
 
-    <?php if (in_array(Yii::$app->request->userIP, ['82.193.124.145', '127.0.0.1'])) { ?>
+    <?php //if (in_array(Yii::$app->request->userIP, ['82.193.124.145', '127.0.0.1'])) { ?>
         <div id="filter-sizes" class="one-filter filter-range-slider">
             <?= Html::a(
                 Yii::t('app', 'Размеры'),
@@ -87,34 +87,6 @@ use frontend\modules\catalog\models\Category;
                 ['class' => 'filt-but']
             ) ?>
             <div class="price-slider-cont">
-
-                <?php if ($diameterRange && $diameterRange['min']['default'] != $diameterRange['max']['default']) { ?>
-                    <span class="for-filter-text"><?= Yii::t('app', 'Диаметр') ?></span>
-                    <div class="myarredo-slider" data-min="<?= $diameterRange['min']['current'] ?>"
-                         data-max="<?= $diameterRange['max']['current'] ?>"></div>
-                    <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
-                        <div class="cur min">
-                            <?= Html::input(
-                                'text',
-                                'diameter[min]',
-                                $diameterRange['min']['default'],
-                                ['data-default' => $diameterRange['min']['default']]
-                            ) ?>
-                            <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
-                        </div>
-                        <span class="indent"> - </span>
-                        <div class="cur max">
-                            <?= Html::input(
-                                'text',
-                                'diameter[max]',
-                                $diameterRange['max']['default'],
-                                ['data-default' => $diameterRange['max']['default']]
-                            ) ?>
-                            <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
-                        </div>
-                    </div>
-                <?php } ?>
-
                 <?php if ($widthRange && $widthRange['min']['default'] != $widthRange['max']['default']) { ?>
                     <span class="for-filter-text"><?= Yii::t('app', 'Ширина') ?></span>
                     <div class="myarredo-slider" data-min="<?= $widthRange['min']['current'] ?>"
@@ -163,6 +135,33 @@ use frontend\modules\catalog\models\Category;
                                 'length[max]',
                                 $lengthRange['max']['default'],
                                 ['data-default' => $lengthRange['max']['default']]
+                            ) ?>
+                            <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
+                        </div>
+                    </div>
+                <?php } ?>
+
+                <?php if ($diameterRange && $diameterRange['min']['default'] != $diameterRange['max']['default']) { ?>
+                    <span class="for-filter-text"><?= Yii::t('app', 'Диаметр') ?></span>
+                    <div class="myarredo-slider" data-min="<?= $diameterRange['min']['current'] ?>"
+                         data-max="<?= $diameterRange['max']['current'] ?>"></div>
+                    <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
+                        <div class="cur min">
+                            <?= Html::input(
+                                'text',
+                                'diameter[min]',
+                                $diameterRange['min']['default'],
+                                ['data-default' => $diameterRange['min']['default']]
+                            ) ?>
+                            <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
+                        </div>
+                        <span class="indent"> - </span>
+                        <div class="cur max">
+                            <?= Html::input(
+                                'text',
+                                'diameter[max]',
+                                $diameterRange['max']['default'],
+                                ['data-default' => $diameterRange['max']['default']]
                             ) ?>
                             <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
                         </div>
@@ -228,7 +227,7 @@ use frontend\modules\catalog\models\Category;
                 <a href="javascript:void(0);" class="submit submit_sizes">OK</a>
             </div>
         </div>
-    <?php } ?>
+    <?php //} ?>
 
     <?php if ($subtypes) { ?>
         <div class="one-filter">

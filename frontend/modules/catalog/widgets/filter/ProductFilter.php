@@ -62,6 +62,9 @@ class ProductFilter extends Widget
     /** @var object */
     public $colors = [];
 
+    /** @var object */
+    public $catalogFilterParams = [];
+
     /**
      * @return string
      * @throws \Throwable
@@ -70,7 +73,10 @@ class ProductFilter extends Widget
     public function run()
     {
         $keys = Yii::$app->catalogFilter->keys;
-        $queryParams = Yii::$app->catalogFilter->params;
+
+        $this->catalogFilterParams = $this->catalogFilterParams ?? Yii::$app->catalogFilter->params;
+
+        $queryParams = $this->catalogFilterParams;
 
         $this->category = Category::getWithProduct($queryParams);
         $this->types = Types::getWithProduct($queryParams);
@@ -88,26 +94,26 @@ class ProductFilter extends Widget
 
         $this->priceRange = Product::getPriceRange($queryParams);
 
-        $this->diameterRange = [];
-        $this->widthRange = [];
-        $this->lengthRange = [];
-        $this->heightRange = [];
-        $this->apportionmentRange = [];
+//        $this->diameterRange = [];
+//        $this->widthRange = [];
+//        $this->lengthRange = [];
+//        $this->heightRange = [];
+//        $this->apportionmentRange = [];
 
-        if (in_array(Yii::$app->request->userIP, ['82.193.124.145', '127.0.0.1'])) {
+        //if (in_array(Yii::$app->request->userIP, ['82.193.124.145', '127.0.0.1'])) {
             $this->diameterRange = ProductRelSpecification::getRange($queryParams, 42);
             $this->widthRange = ProductRelSpecification::getRange($queryParams, 8);
             $this->lengthRange = ProductRelSpecification::getRange($queryParams, 6);
             $this->heightRange = ProductRelSpecification::getRange($queryParams, 7);
             $this->apportionmentRange = ProductRelSpecification::getRange($queryParams, 67);
-        }
+        //}
 
         /** CATEGORY LIST */
 
         $category = [];
 
         foreach ($this->category as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             $alias = Yii::$app->city->domain != 'com'
                 ? $obj['alias']
@@ -139,7 +145,7 @@ class ProductFilter extends Widget
         $types = [];
 
         foreach ($this->types as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             $alias = Yii::$app->city->domain != 'com'
                 ? $obj['alias']
@@ -173,7 +179,7 @@ class ProductFilter extends Widget
         $subtypes = [];
 
         foreach ($this->subtypes as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             if (!empty($params[$keys['subtypes']]) && in_array($obj['alias'], $params[$keys['subtypes']])) {
                 $checked = 1;
@@ -203,7 +209,7 @@ class ProductFilter extends Widget
         $style = [];
 
         foreach ($this->style as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             $alias = Yii::$app->city->domain != 'com'
                 ? $obj['alias']
@@ -237,7 +243,7 @@ class ProductFilter extends Widget
         $factory = [];
 
         foreach ($this->factory as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             if (!empty($params[$keys['factory']]) && in_array($obj['alias'], $params[$keys['factory']])) {
                 $checked = 1;
@@ -291,7 +297,7 @@ class ProductFilter extends Widget
         $collection = [];
 
         foreach ($this->collection as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             if (!empty($params[$keys['collection']]) && in_array($obj['id'], $params[$keys['collection']])) {
                 $checked = 1;
@@ -321,7 +327,7 @@ class ProductFilter extends Widget
         $colors = [];
 
         foreach ($this->colors as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             if (!empty($params[$keys['colors']]) && in_array($obj['alias'], $params[$keys['colors']])) {
                 $checked = 1;
@@ -373,7 +379,7 @@ class ProductFilter extends Widget
             }
 
             if ($priceRange && $priceRange['min']['default'] != $priceRange['max']['default']) {
-                $params = Yii::$app->catalogFilter->params;
+                $params = $this->catalogFilterParams;
 
                 // calculate
                 if (isset($params[$keys['price']]) && $params[$keys['price']][2] == Yii::$app->currency->code) {
@@ -392,7 +398,7 @@ class ProductFilter extends Widget
 
         }
 
-        $sizesParams = Yii::$app->catalogFilter->params;
+        $sizesParams = $this->catalogFilterParams;
 
         /** Diameter range */
 
@@ -563,7 +569,7 @@ class ProductFilter extends Widget
             'apportionmentRange' => $apportionmentRange,
             'sizesLink' => $sizesLink,
             'priceRange' => $priceRange,
-            'filter' => Yii::$app->catalogFilter->params
+            'filter' => $this->catalogFilterParams
         ]);
     }
 }

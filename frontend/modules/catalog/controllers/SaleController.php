@@ -306,7 +306,13 @@ class SaleController extends BaseController
         if (Yii::$app->request->isAjax) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
-            return ['success' => 1, 'html' => SaleFilter::widget(['route' => '/catalog/sale-italy/list'])];
+            return [
+                'success' => 1,
+                'html' => SaleFilter::widget([
+                    'route' => '/catalog/sale/list',
+                    'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
+                ])
+            ];
         }
     }
 

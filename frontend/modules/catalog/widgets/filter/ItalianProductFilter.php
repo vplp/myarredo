@@ -82,6 +82,9 @@ class ItalianProductFilter extends Widget
      */
     public $colors = [];
 
+    /** @var object */
+    public $catalogFilterParams = [];
+    
     /**
      * @return string
      * @throws \Throwable
@@ -89,7 +92,10 @@ class ItalianProductFilter extends Widget
     public function run()
     {
         $keys = Yii::$app->catalogFilter->keys;
-        $queryParams = Yii::$app->catalogFilter->params;
+
+        $this->catalogFilterParams = $this->catalogFilterParams ?? Yii::$app->catalogFilter->params;
+
+        $queryParams = $this->catalogFilterParams;
 
         $this->category = Category::getWithItalianProduct($queryParams);
         $this->types = Types::getWithItalianProduct($queryParams);
@@ -107,7 +113,7 @@ class ItalianProductFilter extends Widget
         $category = [];
 
         foreach ($this->category as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             $alias = Yii::$app->city->domain != 'com'
                 ? $obj['alias']
@@ -142,7 +148,7 @@ class ItalianProductFilter extends Widget
         $types = [];
 
         foreach ($this->types as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             $alias = Yii::$app->city->domain != 'com'
                 ? $obj['alias']
@@ -180,7 +186,7 @@ class ItalianProductFilter extends Widget
         $subtypes = [];
 
         foreach ($this->subtypes as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             if (!empty($params[$keys['subtypes']]) &&
                 in_array($obj['alias'], $params[$keys['subtypes']])
@@ -214,7 +220,7 @@ class ItalianProductFilter extends Widget
         $style = [];
 
         foreach ($this->style as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             $alias = Yii::$app->city->domain != 'com'
                 ? $obj['alias']
@@ -252,7 +258,7 @@ class ItalianProductFilter extends Widget
         $factory = [];
 
         foreach ($this->factory as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             if (!empty($params[$keys['factory']]) &&
                 in_array($obj['alias'], $params[$keys['factory']])
@@ -312,7 +318,7 @@ class ItalianProductFilter extends Widget
         $colors = [];
 
         foreach ($this->colors as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             if (!empty($params[$keys['colors']]) &&
                 in_array($obj['alias'], $params[$keys['colors']])
@@ -366,7 +372,7 @@ class ItalianProductFilter extends Widget
         }
 
         if (!empty($priceRange['min']) && !empty($priceRange['max'])) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             // calculate
             if (isset($params[$keys['price']]) && $params[$keys['price']][2] == Yii::$app->currency->code) {
@@ -393,7 +399,7 @@ class ItalianProductFilter extends Widget
             'colors' => $colors,
             'factory_first_show' => $factory_first_show,
             'priceRange' => $priceRange,
-            'filter' => Yii::$app->catalogFilter->params
+            'filter' => $this->catalogFilterParams
         ]);
     }
 }

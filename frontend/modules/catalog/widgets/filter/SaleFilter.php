@@ -88,6 +88,9 @@ class SaleFilter extends Widget
      */
     public $colors = [];
 
+    /** @var object */
+    public $catalogFilterParams = [];
+
     /**
      * @return string
      * @throws \Throwable
@@ -96,7 +99,10 @@ class SaleFilter extends Widget
     public function run()
     {
         $keys = Yii::$app->catalogFilter->keys;
-        $queryParams = Yii::$app->catalogFilter->params;
+
+        $this->catalogFilterParams = $this->catalogFilterParams ?? Yii::$app->catalogFilter->params;
+
+        $queryParams = $this->catalogFilterParams;
 
         $queryParams['country'] = Yii::$app->city->getCountryId();
         $queryParams['city'] = Yii::$app->city->getCityId();
@@ -119,7 +125,7 @@ class SaleFilter extends Widget
         $category = [];
 
         foreach ($this->category as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             $alias = Yii::$app->city->domain != 'com'
                 ? $obj['alias']
@@ -153,7 +159,7 @@ class SaleFilter extends Widget
         $types = [];
 
         foreach ($this->types as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             $alias = Yii::$app->city->domain != 'com'
                 ? $obj['alias']
@@ -189,7 +195,7 @@ class SaleFilter extends Widget
         $subtypes = [];
 
         foreach ($this->subtypes as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             if (!empty($params[$keys['subtypes']]) && in_array($obj['alias'], $params[$keys['subtypes']])) {
                 $checked = 1;
@@ -221,7 +227,7 @@ class SaleFilter extends Widget
         $style = [];
 
         foreach ($this->style as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             $alias = Yii::$app->city->domain != 'com'
                 ? $obj['alias']
@@ -257,7 +263,7 @@ class SaleFilter extends Widget
         $factory = [];
 
         foreach ($this->factory as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             if (!empty($params[$keys['factory']]) && in_array($obj['alias'], $params[$keys['factory']])) {
                 $checked = 1;
@@ -315,7 +321,7 @@ class SaleFilter extends Widget
         $countries = [];
         /*
         foreach ($this->countries as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             if (
                 !empty($params[$keys['country']]) &&
@@ -349,7 +355,7 @@ class SaleFilter extends Widget
         $cities = [];
 
         foreach ($this->cities as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             if ($obj['id'] == Yii::$app->city->getCityId()) {
                 $checked = 1;
@@ -387,7 +393,7 @@ class SaleFilter extends Widget
         $colors = [];
 
         foreach ($this->colors as $key => $obj) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             if (!empty($params[$keys['colors']]) && in_array($obj['alias'], $params[$keys['colors']])) {
                 $checked = 1;
@@ -439,7 +445,7 @@ class SaleFilter extends Widget
         }
 
         if (!empty($priceRange['min']) && !empty($priceRange['max'])) {
-            $params = Yii::$app->catalogFilter->params;
+            $params = $this->catalogFilterParams;
 
             // calculate
             if (isset($params[$keys['price']]) && $params[$keys['price']][2] == Yii::$app->currency->code) {
@@ -468,7 +474,7 @@ class SaleFilter extends Widget
             'cities' => $cities,
             'factory_first_show' => $factory_first_show,
             'priceRange' => $priceRange,
-            'filter' => Yii::$app->catalogFilter->params
+            'filter' => $this->catalogFilterParams
         ]);
     }
 }

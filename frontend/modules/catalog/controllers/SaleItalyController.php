@@ -260,9 +260,16 @@ class SaleItalyController extends BaseController
         if (Yii::$app->request->isAjax) {
             Yii::$app->getResponse()->format = Response::FORMAT_JSON;
 
-            return ['success' => 1, 'html' => ItalianProductFilter::widget(['route' => '/catalog/sale/list'])];
+            return [
+                'success' => 1,
+                'html' => ItalianProductFilter::widget([
+                    'route' => '/catalog/sale-italy/list',
+                    'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
+                ])
+            ];
         }
     }
+
     /**
      * @inheritdoc
      */
