@@ -79,7 +79,9 @@ use frontend\modules\catalog\models\Category;
         </div>
     <?php } ?>
 
-    <?php if (in_array(Yii::$app->request->userIP, ['127.0.0.1'])) { ?>
+    <div class="ajax-get-filter-sizes"></div>
+
+    <?php /*if (in_array(Yii::$app->request->userIP, ['127.0.0.1'])) { ?>
         <div id="filter-sizes" class="one-filter filter-range-slider">
             <?= Html::a(
                 Yii::t('app', 'Размеры'),
@@ -227,7 +229,7 @@ use frontend\modules\catalog\models\Category;
                 <a href="javascript:void(0);" class="submit submit_sizes">OK</a>
             </div>
         </div>
-    <?php } ?>
+    <?php }*/ ?>
 
     <?php if ($subtypes) { ?>
         <div class="one-filter">

@@ -2,13 +2,15 @@
 
 namespace frontend\modules\catalog\controllers;
 
-use frontend\modules\catalog\widgets\filter\ProductFilter;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 //
 use frontend\components\BaseController;
+use frontend\modules\catalog\widgets\filter\{
+    ProductFilter, ProductFilterSizes
+};
 use frontend\modules\catalog\models\{
     Collection, Product, Category, Factory, Types, SubTypes, Specification, Colors, ProductRelSpecification
 };
@@ -38,6 +40,7 @@ class CategoryController extends BaseController
                     'ajax-get-types' => ['post'],
                     'ajax-get-category' => ['post'],
                     'ajax-get-filter' => ['post'],
+                    'ajax-get-filter-sizes' => ['post'],
                     'ajax-get-filter-on-main' => ['post'],
                 ],
             ],
@@ -237,6 +240,25 @@ class CategoryController extends BaseController
             return [
                 'success' => 1,
                 'html' => ProductFilter::widget([
+                    'route' => '/catalog/category/list',
+                    'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
+                ])
+            ];
+        }
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function actionAjaxGetFilterSizes()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            return [
+                'success' => 1,
+                'html' => ProductFilterSizes::widget([
                     'route' => '/catalog/category/list',
                     'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
                 ])

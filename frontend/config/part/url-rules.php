@@ -45,6 +45,7 @@ return [
     'catalog/category/ajax-get-category' => 'catalog/category/ajax-get-category',
     'catalog/category/ajax-get-novelty' => 'catalog/category/ajax-get-novelty',
     'catalog/category/ajax-get-filter' => 'catalog/category/ajax-get-filter',
+    'catalog/category/ajax-get-filter-sizes' => 'catalog/category/ajax-get-filter-sizes',
     'catalog/category/ajax-get-filter-on-main' => 'catalog/category/ajax-get-filter-on-main',
 
     'sale/<filter:[\=\;\-\/\w\d]+>' => 'catalog/sale/list',

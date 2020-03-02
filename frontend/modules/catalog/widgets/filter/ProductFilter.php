@@ -100,13 +100,13 @@ class ProductFilter extends Widget
         $this->heightRange = [];
         $this->apportionmentRange = [];
 
-        if (in_array(Yii::$app->request->userIP, ['127.0.0.1'])) {
+        /*if (in_array(Yii::$app->request->userIP, ['127.0.0.1'])) {
             $this->diameterRange = ProductRelSpecification::getRange($queryParams, 42);
             $this->widthRange = ProductRelSpecification::getRange($queryParams, 8);
             $this->lengthRange = ProductRelSpecification::getRange($queryParams, 6);
             $this->heightRange = ProductRelSpecification::getRange($queryParams, 7);
             $this->apportionmentRange = ProductRelSpecification::getRange($queryParams, 67);
-        }
+        }*/
 
         /** CATEGORY LIST */
 
