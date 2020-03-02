@@ -134,7 +134,7 @@ $.post(baseUrl + 'catalog/category/ajax-get-filter/', {_csrf: $('#token').val(),
             
             setTimeout(function() {
                 rangeInit();
-            }, 100);
+            }, 500);
             
             $('.submit_sizes').on('click', function () {
                 let link = $('input[name="sizesLink"]').val(),
@@ -193,7 +193,7 @@ $.post(baseUrl + 'catalog/category/ajax-get-filter/', {_csrf: $('#token').val(),
                 window.location.href = link;
             });
         });
-    }, 2000);
+    }, 1000);
     
     $('.submit_price').on('click', function () {
         let link = $('input[name="price[link]"]').val(),
