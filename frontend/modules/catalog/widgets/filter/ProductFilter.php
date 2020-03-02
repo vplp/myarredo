@@ -398,6 +398,7 @@ class ProductFilter extends Widget
 
         }
 
+
         $sizesParams = $this->catalogFilterParams;
 
         /** Diameter range */
@@ -405,6 +406,8 @@ class ProductFilter extends Widget
         $diameterRange = [];
 
         if ($this->diameterRange) {
+            $params = $this->catalogFilterParams;
+
             // min
             if ($this->diameterRange['min']) {
                 $diameterRange['min'] = [
@@ -435,6 +438,8 @@ class ProductFilter extends Widget
         $widthRange = [];
 
         if ($this->widthRange) {
+            $params = $this->catalogFilterParams;
+
             // min
             if ($this->widthRange['min']) {
                 $widthRange['min'] = [
@@ -465,6 +470,8 @@ class ProductFilter extends Widget
         $lengthRange = [];
 
         if ($this->lengthRange) {
+            $params = $this->catalogFilterParams;
+
             // min
             if ($this->lengthRange['min']) {
                 $lengthRange['min'] = [
@@ -495,6 +502,8 @@ class ProductFilter extends Widget
         $heightRange = [];
 
         if ($this->heightRange) {
+            $params = $this->catalogFilterParams;
+
             // min
             if ($this->heightRange['min']) {
                 $heightRange['min'] = [
@@ -525,6 +534,8 @@ class ProductFilter extends Widget
         $apportionmentRange = [];
 
         if ($this->apportionmentRange) {
+            $params = $this->catalogFilterParams;
+
             // min
             if ($this->apportionmentRange['min']) {
                 $apportionmentRange['min'] = [

@@ -70,8 +70,8 @@ class ProductFilterSizes extends Widget
             // min
             if ($this->diameterRange['min']) {
                 $diameterRange['min'] = [
-                    'current' => !empty($params[$keys['diameter']])
-                        ? $params[$keys['diameter']][0]
+                    'current' => !empty($queryParams[$keys['diameter']])
+                        ? $queryParams[$keys['diameter']][0]
                         : $this->diameterRange['min'],
                     'default' => $this->diameterRange['min'],
                 ];
@@ -80,8 +80,8 @@ class ProductFilterSizes extends Widget
             // max
             if ($this->diameterRange['max']) {
                 $diameterRange['max'] = [
-                    'current' => !empty($params[$keys['diameter']])
-                        ? $params[$keys['diameter']][1]
+                    'current' => !empty($queryParams[$keys['diameter']])
+                        ? $queryParams[$keys['diameter']][1]
                         : $this->diameterRange['max'],
                     'default' => $this->diameterRange['max'],
                 ];
@@ -100,8 +100,8 @@ class ProductFilterSizes extends Widget
             // min
             if ($this->widthRange['min']) {
                 $widthRange['min'] = [
-                    'current' => !empty($params[$keys['width']])
-                        ? $params[$keys['width']][0]
+                    'current' => !empty($queryParams[$keys['width']])
+                        ? $queryParams[$keys['width']][0]
                         : $this->widthRange['min'],
                     'default' => $this->widthRange['min'],
                 ];
@@ -110,8 +110,8 @@ class ProductFilterSizes extends Widget
             // max
             if ($this->widthRange['max']) {
                 $widthRange['max'] = [
-                    'current' => !empty($params[$keys['width']])
-                        ? $params[$keys['width']][1]
+                    'current' => !empty($queryParams[$keys['width']])
+                        ? $queryParams[$keys['width']][1]
                         : $this->widthRange['max'],
                     'default' => $this->widthRange['max'],
                 ];
@@ -130,8 +130,8 @@ class ProductFilterSizes extends Widget
             // min
             if ($this->lengthRange['min']) {
                 $lengthRange['min'] = [
-                    'current' => !empty($params[$keys['length']])
-                        ? $params[$keys['length']][0]
+                    'current' => !empty($queryParams[$keys['length']])
+                        ? $queryParams[$keys['length']][0]
                         : $this->lengthRange['min'],
                     'default' => $this->lengthRange['min'],
                 ];
@@ -140,8 +140,8 @@ class ProductFilterSizes extends Widget
             // max
             if ($this->lengthRange['max']) {
                 $lengthRange['max'] = [
-                    'current' => !empty($params[$keys['length']])
-                        ? $params[$keys['length']][1]
+                    'current' => !empty($queryParams[$keys['length']])
+                        ? $queryParams[$keys['length']][1]
                         : $this->lengthRange['max'],
                     'default' => $this->lengthRange['max'],
                 ];
@@ -160,8 +160,8 @@ class ProductFilterSizes extends Widget
             // min
             if ($this->heightRange['min']) {
                 $heightRange['min'] = [
-                    'current' => !empty($params[$keys['height']])
-                        ? $params[$keys['height']][0]
+                    'current' => !empty($queryParams[$keys['height']])
+                        ? $queryParams[$keys['height']][0]
                         : $this->heightRange['min'],
                     'default' => $this->heightRange['min'],
                 ];
@@ -170,8 +170,8 @@ class ProductFilterSizes extends Widget
             // max
             if ($this->heightRange['max']) {
                 $heightRange['max'] = [
-                    'current' => !empty($params[$keys['height']])
-                        ? $params[$keys['height']][1]
+                    'current' => !empty($queryParams[$keys['height']])
+                        ? $queryParams[$keys['height']][1]
                         : $this->heightRange['max'],
                     'default' => $this->heightRange['max'],
                 ];
@@ -190,8 +190,8 @@ class ProductFilterSizes extends Widget
             // min
             if ($this->apportionmentRange['min']) {
                 $apportionmentRange['min'] = [
-                    'current' => !empty($params[$keys['apportionment']])
-                        ? $params[$keys['apportionment']][0]
+                    'current' => !empty($queryParams[$keys['apportionment']])
+                        ? $queryParams[$keys['apportionment']][0]
                         : $this->apportionmentRange['min'],
                     'default' => $this->apportionmentRange['min'],
                 ];
@@ -200,8 +200,8 @@ class ProductFilterSizes extends Widget
             // max
             if ($this->apportionmentRange['max']) {
                 $apportionmentRange['max'] = [
-                    'current' => !empty($params[$keys['apportionment']])
-                        ? $params[$keys['apportionment']][1]
+                    'current' => !empty($queryParams[$keys['apportionment']])
+                        ? $queryParams[$keys['apportionment']][1]
                         : $this->apportionmentRange['max'],
                     'default' => $this->apportionmentRange['max'],
                 ];
