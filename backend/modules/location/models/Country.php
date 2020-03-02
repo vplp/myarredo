@@ -14,11 +14,20 @@ use thread\app\model\interfaces\BaseBackendModel;
 class Country extends \common\modules\location\models\Country implements BaseBackendModel
 {
     /**
+     * @param array $IDs
      * @return array
      */
-    public static function dropDownList()
+    public static function dropDownList($IDs = [])
     {
-        return ArrayHelper::map(self::findBase()->undeleted()->all(), 'id', 'lang.title');
+        $query = self::findBase();
+
+        if ($IDs) {
+            $query->byId($IDs);
+        }
+
+        $data = $query->undeleted()->all();
+
+        return ArrayHelper::map($data, 'id', 'lang.title');
     }
 
     /**

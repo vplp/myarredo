@@ -76,7 +76,7 @@ if (in_array($model['user']['group_id'], [4, 7])) {
     </div>
 
     <?php
-    foreach (Country::dropDownList() as $id => $name) {
+    foreach (Country::dropDownList([1, 2, 3, 4]) as $id => $name) {
         echo $form
             ->field($model, 'country_cities_' . $id)
             ->label(Yii::t('app', 'Ответы в городах') . ' (' . $name . ')')
