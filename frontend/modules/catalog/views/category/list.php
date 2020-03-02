@@ -193,7 +193,7 @@ $.post(baseUrl + 'catalog/category/ajax-get-filter/', {_csrf: $('#token').val(),
                 window.location.href = link;
             });
         });
-    }, 100);
+    }, 2000);
     
     $('.submit_price').on('click', function () {
         let link = $('input[name="price[link]"]').val(),
