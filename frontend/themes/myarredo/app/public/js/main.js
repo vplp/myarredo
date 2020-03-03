@@ -47,6 +47,28 @@ function rangeInit() {
 
 }
 
+// Функция для отслеживания и открития элементов фильтров в которых выбран хоть один элемент
+function runDesctop() {
+  
+    setTimeout(function () {
+        // Запускаем цыкл по всем элементам всех фильтров
+        $('.filters').find('.one-filter').find('.list-item').children('a').each(function (i, elem) {
+            // Если обнаруживаем выбраный элемент в фильтре
+            if ($(elem).hasClass('selected')) {
+                // оставляем фильтр открытым
+                $(elem).closest('.one-filter').addClass('open');
+            }
+        });
+    }, 500);
+
+    if ($('.js-numbers').hasClass('slick-slider')) {
+        $('.js-numbers').slick('unslick');
+    }
+    if ($('.best-price .right-part').hasClass('slick-slider')) {
+        $('.best-price .right-part').slick('unslick');
+    }
+}
+
 $(document).ready(function () {
 
     // удаляем прелоадер
@@ -188,28 +210,6 @@ $(document).ready(function () {
     function runTablet() {
         //console.log('tablet');
         //$('.filters .one-filter').removeClass('open');
-        if ($('.js-numbers').hasClass('slick-slider')) {
-            $('.js-numbers').slick('unslick');
-        }
-        if ($('.best-price .right-part').hasClass('slick-slider')) {
-            $('.best-price .right-part').slick('unslick');
-        }
-    }
-
-    function runDesctop() {
-
-        // $('.filters .one-filter').addClass('open');    
-        setTimeout(function () {
-            // Запускаем цыкл по всем элементам всех фильтров
-            $('.filters').find('.one-filter').find('.list-item').children('a').each(function (i, elem) {
-                // Если обнаруживаем выбраный элемент в фильтре
-                if ($(elem).hasClass('selected')) {
-                    // оставляем фильтр открытым
-                    $(elem).closest('.one-filter').addClass('open');
-                }
-            });
-        }, 500);
-
         if ($('.js-numbers').hasClass('slick-slider')) {
             $('.js-numbers').slick('unslick');
         }
