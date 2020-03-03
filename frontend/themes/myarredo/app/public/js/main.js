@@ -47,6 +47,35 @@ function rangeInit() {
 
 }
 
+// Функция для отслеживания и открития элементов фильтров в которых выбран хоть один элемент
+function runDesctop() {
+  
+    setTimeout(function () {
+        // Запускаем цыкл по всем элементам всех фильтров
+        $('.filters').find('.one-filter').find('.list-item').children('a').each(function (i, elem) {
+            // Если обнаруживаем выбраный элемент в фильтре
+            if ($(elem).hasClass('selected')) {
+                // оставляем фильтр открытым
+                $(elem).closest('.one-filter').addClass('open');
+            }
+        });
+    }, 500);
+
+    if ($('.js-numbers').hasClass('slick-slider')) {
+        $('.js-numbers').slick('unslick');
+    }
+    if ($('.best-price .right-part').hasClass('slick-slider')) {
+        $('.best-price .right-part').slick('unslick');
+    }
+}
+
+// Функция для открития первого элемента по умолчанию в модалке - показать фабрики 
+function selectFirstFEl() {
+    if ($(".alphabet-tab a").length > 0) {
+        $(".alphabet-tab a").eq(0).trigger("click"); //показываем первый элемент по умолчанию
+    }
+}
+
 $(document).ready(function () {
 
     // удаляем прелоадер
@@ -188,28 +217,6 @@ $(document).ready(function () {
     function runTablet() {
         //console.log('tablet');
         //$('.filters .one-filter').removeClass('open');
-        if ($('.js-numbers').hasClass('slick-slider')) {
-            $('.js-numbers').slick('unslick');
-        }
-        if ($('.best-price .right-part').hasClass('slick-slider')) {
-            $('.best-price .right-part').slick('unslick');
-        }
-    }
-
-    function runDesctop() {
-
-        // $('.filters .one-filter').addClass('open');    
-        setTimeout(function () {
-            // Запускаем цыкл по всем элементам всех фильтров
-            $('.filters').find('.one-filter').find('.list-item').children('a').each(function (i, elem) {
-                // Если обнаруживаем выбраный элемент в фильтре
-                if ($(elem).hasClass('selected')) {
-                    // оставляем фильтр открытым
-                    $(elem).closest('.one-filter').addClass('open');
-                }
-            });
-        }, 500);
-
         if ($('.js-numbers').hasClass('slick-slider')) {
             $('.js-numbers').slick('unslick');
         }
@@ -585,7 +592,7 @@ $(document).ready(function () {
     /*--конец модалка варианты отделки*/
 
     /*--больше фабрик модалка--*/
-    $(".alphabet-tab a").click(function () {
+    $(document).on('click', '.alphabet-tab a', function () {
         $(this).siblings().removeClass("active");
         $(this).addClass("active");
 
@@ -596,7 +603,6 @@ $(document).ready(function () {
             "display": "flex"
         });
     });
-    $(".alphabet-tab a").eq(0).trigger("click"); //показываем первый элемент по умолчанию
     /*--конец Больше фабрик модалка--*/
 
     $(".img-zoom").click(function () {
