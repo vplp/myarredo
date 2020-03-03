@@ -9,7 +9,7 @@ use SimpleXMLElement;
 use yii\helpers\Console;
 use yii\console\Controller;
 //
-use frontend\modules\location\models\Currency;
+use common\modules\location\models\Currency;
 
 /**
  * Class ExchangeRatesController
