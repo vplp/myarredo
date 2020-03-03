@@ -23,12 +23,10 @@ $this->context->actionListLinkStatus = Url::to(
 
 <?= $form->submit($model, $this) ?>
 
-    <?= Html::tag('h2', Yii::t('app', 'Catalogs')); ?>
-    <?= $form->field($model, 'file_link')->fileInputWidget(
-        $model->getFileLink(),
-        ['accept' => '.doc,.docx,.xlsx,application/pdf', 'maxFileSize' => 0],
-        ['pdf', 'doc', 'docx', 'xlsx']
-    ) ?>
+<?= Html::tag('h2', Yii::t('app', 'Catalogs')); ?>
+<?= $form->field($model, 'file_link')->fileInputWidget(
+    $model->getFileLink()
+) ?>
 
 <?= Html::activeHiddenInput($model, 'factory_id', ['value' => $this->context->factory->id]) ?>
 

@@ -14,7 +14,6 @@ use frontend\modules\catalog\models\{
     FactoryCollection, search\Collection as filterCollectionModel
 };
 //
-//
 use thread\actions\{
     Create, Update, ListModel
 };

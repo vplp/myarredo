@@ -57,8 +57,7 @@ class FactoryCatalogsFiles extends FactoryFile
      */
     public static function findBase()
     {
-        return self::find()
-            ->andWhere([self::tableName() . '.file_type' => '1']);
+        return self::find()->andWhere([self::tableName() . '.file_type' => '1']);
     }
 
     /**

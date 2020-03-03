@@ -85,6 +85,20 @@ return [
     'factory-collections/create' => 'catalog/factory-collections/create',
     'factory-collections/update/<id:[\d\-]+>' => 'catalog/factory-collections/update',
 
+    // Factory catalogs files
+    'factory-catalogs-files' => 'catalog/factory-catalogs-files/list',
+    'factory-catalogs-files/one-file-upload' => 'catalog/factory-catalogs-files/one-file-upload',
+    'factory-catalogs-files/one-file-delete' => 'catalog/factory-catalogs-files/one-file-delete',
+    'factory-catalogs-files/create' => 'catalog/factory-catalogs-files/create',
+    'factory-catalogs-files/update/<id:[\d\-]+>' => 'catalog/factory-catalogs-files/update',
+
+    // Factory prices files
+    'factory-prices-files' => 'catalog/factory-prices-files/list',
+    'factory-prices-files/one-file-upload' => 'catalog/factory-prices-files/one-file-upload',
+    'factory-prices-files/one-file-delete' => 'catalog/factory-prices-files/one-file-delete',
+    'factory-prices-files/create' => 'catalog/factory-prices-files/create',
+    'factory-prices-files/update/<id:[\d\-]+>' => 'catalog/factory-prices-files/update',
+
     // Factory product
     'factory-product' => 'catalog/factory-product/list',
     'factory-product/create' => 'catalog/factory-product/create',

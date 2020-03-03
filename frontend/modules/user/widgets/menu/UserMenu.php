@@ -132,6 +132,14 @@ class UserMenu extends Widget
                     'url' => ['/catalog/factory-collections/list']
                 ],
                 [
+                    'label' => Yii::t('app', 'Каталоги'),
+                    'url' => ['/catalog/factory-catalogs-files/list']
+                ],
+                [
+                    'label' => Yii::t('app', 'Прайс листы'),
+                    'url' => ['/catalog/factory-prices-files/list']
+                ],
+                [
                     'label' => Yii::t('app', 'Рекламные кампании'),
                     'url' => ['/catalog/factory-promotion/list']
                 ],
