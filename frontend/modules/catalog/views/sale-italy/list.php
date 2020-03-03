@@ -97,6 +97,7 @@ $.post('$url', {_csrf: $('#token').val(), catalogFilterParams:$queryParams}, fun
         rangeInit();
     }, 300);
     runDesctop();
+    selectFirstFEl();
     
     $('.submit_price').on('click', function () {
         let link = $('input[name="price[link]"]').val(),

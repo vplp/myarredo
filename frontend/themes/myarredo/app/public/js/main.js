@@ -69,6 +69,13 @@ function runDesctop() {
     }
 }
 
+// Функция для открития первого элемента по умолчанию в модалке - показать фабрики 
+function selectFirstFEl() {
+    if ($(".alphabet-tab a").length > 0) {
+        $(".alphabet-tab a").eq(0).trigger("click"); //показываем первый элемент по умолчанию
+    }
+}
+
 $(document).ready(function () {
 
     // удаляем прелоадер
@@ -585,7 +592,7 @@ $(document).ready(function () {
     /*--конец модалка варианты отделки*/
 
     /*--больше фабрик модалка--*/
-    $(".alphabet-tab a").click(function () {
+    $(document).on('click', '.alphabet-tab a', function () {
         $(this).siblings().removeClass("active");
         $(this).addClass("active");
 
@@ -596,7 +603,6 @@ $(document).ready(function () {
             "display": "flex"
         });
     });
-    $(".alphabet-tab a").eq(0).trigger("click"); //показываем первый элемент по умолчанию
     /*--конец Больше фабрик модалка--*/
 
     $(".img-zoom").click(function () {

@@ -136,6 +136,7 @@ $.post(baseUrl + 'catalog/category/ajax-get-filter/', {_csrf: $('#token').val(),
                 rangeInit();
             }, 500);
             runDesctop();
+            selectFirstFEl();
             
             $('.submit_sizes').on('click', function () {
                 let link = $('input[name="sizesLink"]').val(),
