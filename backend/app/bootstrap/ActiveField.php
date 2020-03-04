@@ -167,10 +167,12 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
 
     /**
      * @param string $preview
+     * @param array $options
+     * @param array $pluginOptions
      * @return $this
      * @throws \Exception
      */
-    public function fileInputWidget($preview = '')
+    public function fileInputWidget($preview = '', $options = [], $pluginOptions = [])
     {
         /* @var $class \yii\base\Widget */
         $config['model'] = $this->model;
@@ -191,7 +193,8 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
         $this->parts['{input}'] = Html::activeHiddenInput($this->model, $this->attribute);
         $this->parts['{input}'] .= FileInput::widget([
             'name' => $name,
-            'pluginOptions' => [
+            'options' => ArrayHelper::merge([], $options),
+            'pluginOptions' => ArrayHelper::merge([
                 'uploadUrl' => Url::toRoute(['one-file-upload', 'input_file_name' => $name]),
                 'uploadExtraData' => [
                     '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
@@ -225,7 +228,7 @@ class ActiveField extends \thread\app\bootstrap\ActiveField
                 'maxFileCount' => 1,
                 'append' => true,
                 'maxFileSize' => 200000000
-            ],
+            ], $pluginOptions),
             'pluginEvents' => [
                 'filebatchselected' => 'function(event, files) {
                      $(this).fileinput("upload"); 

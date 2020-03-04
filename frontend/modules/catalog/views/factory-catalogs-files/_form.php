@@ -35,8 +35,11 @@ $this->title = ($model->isNewRecord)
 
                     <?= Html::activeHiddenInput($model, 'factory_id', ['value' => Yii::$app->user->identity->profile->factory_id]) ?>
 
+                    <div><?= Yii::t('app', 'Принимаем только файлы в формате pdf') ?></div>
+
                     <?= $form->field($model, 'file_link')->fileInputWidget(
-                        $model->getFileLink()
+                        $model->getFileLink(),
+                        ['accept' => 'application/pdf', 'maxFileSize' => 0]
                     ) ?>
 
                     <?= $form->field($model, 'title') ?>

@@ -44,8 +44,7 @@ use backend\app\bootstrap\ActiveForm;
             ->field($model, 'file_link')
             ->fileInputWidget(
                 $model->getFileLink(),
-                ['accept' => '.rar,.zip,.jpeg,.png,.doc,.docx,.xlsx,application/pdf', 'maxFileSize' => 0],
-                ['rar', 'zip', 'jpeg', 'png', 'pdf', 'doc', 'docx', 'xlsx']
+                ['accept' => '.rar,.zip,.jpeg,.png,.doc,.docx,.xlsx,application/pdf', 'maxFileSize' => 0]
             );
     } ?>
 

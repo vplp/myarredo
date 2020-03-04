@@ -17,6 +17,5 @@ echo $form->field($model, 'gallery_image')->imageSeveral(['initialPreview' => $m
 
 echo $form->field($model, 'file_link')->fileInputWidget(
     $model->getFileLink(),
-    ['accept' => '.jpeg,.png,.doc,.docx,.xlsx,application/pdf', 'maxFileSize' => 0],
-    ['jpeg', 'png', 'pdf', 'doc', 'docx', 'xlsx']
+    ['accept' => '.jpeg,.png,.doc,.docx,.xlsx,application/pdf', 'maxFileSize' => 0]
 );

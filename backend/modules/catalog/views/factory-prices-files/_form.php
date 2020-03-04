@@ -5,6 +5,8 @@ use yii\helpers\{
 };
 use backend\app\bootstrap\ActiveForm;
 
+use kartik\file\FileInput;
+
 /**
  * @var $form \backend\app\bootstrap\ActiveForm
  * @var $model \backend\modules\catalog\models\FactoryPricesFiles
@@ -19,15 +21,18 @@ $this->context->actionListLinkStatus = Url::to(
 
 ?>
 
-<?php $form = ActiveForm::begin(); ?>
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
 <?= $form->submit($model, $this) ?>
 
-    <?= Html::tag('h2', Yii::t('app', 'Prices')); ?>
-    <?= $form->field($model, 'file_link')->fileInputWidget(
-        $model->getFileLink()
-    ) ?>
-    <?= $form->text_line($model, 'discount') ?>
+<?= Html::tag('h2', Yii::t('app', 'Prices')); ?>
+
+<?= $form->field($model, 'file_link')->fileInputWidget(
+    $model->getFileLink(),
+    ['accept' => 'application/pdf', 'maxFileSize' => 0]
+) ?>
+
+<?= $form->text_line($model, 'discount') ?>
 
 <?= Html::activeHiddenInput($model, 'factory_id', ['value' => $this->context->factory->id]) ?>
 
