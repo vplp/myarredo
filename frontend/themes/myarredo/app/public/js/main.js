@@ -76,6 +76,67 @@ function selectFirstFEl() {
     }
 }
 
+// Функция для инициализации слайдеров - Варианты отделки и Композиции
+function slickInit() {
+    if ($("#panel2 .row").length > 0) {
+        $("#panel2 .row").slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            nextArrow: "<a href=javascript:void(0) class='fa fa-angle-left'></a>",
+            prevArrow: "<a href=javascript:void(0) class='fa fa-angle-right'></a>",
+            responsive: [
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 540,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+    }
+    if ($('#comp-slider').length > 0) {
+        $('#comp-slider').slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            dots: false,
+            prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
+            nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>', responsive: [
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 540,
+                    arrows: false,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+    }
+
+}
+
 $(document).ready(function () {
 
     // удаляем прелоадер
@@ -487,62 +548,6 @@ $(document).ready(function () {
         });
 
     })();
-
-    function slickInit() {
-        $("#panel2 .row").slick({
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            nextArrow: "<a href=javascript:void(0) class='fa fa-angle-left'></a>",
-            prevArrow: "<a href=javascript:void(0) class='fa fa-angle-right'></a>",
-            responsive: [
-                {
-                    breakpoint: 992,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
-                    }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 540,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-            ]
-        });
-        $('#comp-slider').slick({
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            dots: false,
-            prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
-            nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>', responsive: [
-                {
-                    breakpoint: 992,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
-                    }
-                },
-                {
-                    breakpoint: 540,
-                    arrows: false,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-            ]
-        });
-
-    }
 
     slickInit();
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {

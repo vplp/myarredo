@@ -25,22 +25,7 @@ class FactoryPricesFiles extends \common\modules\catalog\models\FactoryPricesFil
      */
     public function rules()
     {
-        return ArrayHelper::merge(parent::rules(), [
-//            [
-//                'file_link', 'file',
-//                'extensions' => ['pdf'],
-//                'wrongExtension' => 'Only PDF files are allowed for {attribute}.',
-//                'wrongMimeType' => 'Only PDF files are allowed for {attribute}.',
-//                'skipOnEmpty' => false,
-//                'mimeTypes' => ['application/pdf']
-//            ],
-//            [
-//                ['file_link'],
-//                'file',
-//                //'skipOnEmpty' => false,
-//                'extensions' => ['pdf'],
-//            ],
-        ]);
+        return ArrayHelper::merge(parent::rules(), []);
     }
 
     /**

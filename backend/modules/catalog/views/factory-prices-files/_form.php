@@ -25,9 +25,7 @@ $this->context->actionListLinkStatus = Url::to(
 
     <?= Html::tag('h2', Yii::t('app', 'Prices')); ?>
     <?= $form->field($model, 'file_link')->fileInputWidget(
-        $model->getFileLink(),
-        ['accept' => '.doc,.docx,.xlsx,application/pdf', 'maxFileSize' => 0],
-        ['pdf', 'doc', 'docx', 'xlsx']
+        $model->getFileLink()
     ) ?>
     <?= $form->text_line($model, 'discount') ?>
 

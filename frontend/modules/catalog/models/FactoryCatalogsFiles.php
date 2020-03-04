@@ -27,14 +27,7 @@ class FactoryCatalogsFiles extends \common\modules\catalog\models\FactoryCatalog
      */
     public function rules()
     {
-        return ArrayHelper::merge(parent::rules(), [
-//            [
-//                ['file_link'],
-//                'file',
-//                //'skipOnEmpty' => false,
-//                'extensions' => ['pdf'],
-//            ],
-        ]);
+        return ArrayHelper::merge(parent::rules(), []);
     }
 
     /**
