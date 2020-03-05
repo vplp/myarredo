@@ -179,7 +179,7 @@ class ItalianProductController extends BaseController
                             [
                                 'title' => $title,
                                 'message' => $message,
-                                'url' => Url::home(true) . 'backend/catalog/sale-italy/update?id=' . $this->id,
+                                'url' => Url::home(true) . 'backend/catalog/sale-italy/update?id=' . $model->id,
                             ]
                         )
                         ->setTo(Yii::$app->params['mailer']['setTo'])
