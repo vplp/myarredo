@@ -86,7 +86,7 @@ $this->title = $this->context->title;
 
 <?php
 
-$url = Url::to(['/catalog/sale/ajax-get-filter']);
+$url = Url::to(['/catalog/sale-italy/ajax-get-filter']);
 $queryParams = json_encode(Yii::$app->catalogFilter->params);
 
 $script = <<<JS
