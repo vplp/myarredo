@@ -27,7 +27,7 @@ $bundle = AppAsset::register($this);
 $h1 = Yii::$app->metatag->seo_h1
     ? Yii::$app->metatag->seo_h1
     : Yii::t('app', 'Мебель') . ' ' . $model['title'];
-$h1 .= Yii::$app->city->domain != 'com'
+$h1 .= !Yii::$app->metatag->seo_h1 && Yii::$app->city->domain != 'com'
     ? ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere()
     : '';
 
