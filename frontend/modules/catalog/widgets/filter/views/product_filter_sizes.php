@@ -48,6 +48,33 @@ use yii\helpers\{
         </div>
     <?php } ?>
 
+    <?php if ($heightRange && $heightRange['min']['default'] != $heightRange['max']['default']) { ?>
+        <span class="for-filter-text"><?= Yii::t('app', 'Высота') ?></span>
+        <div class="myarredo-slider" data-min="<?= $heightRange['min']['current'] ?>"
+             data-max="<?= $heightRange['max']['current'] ?>"></div>
+        <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
+            <div class="cur min">
+                <?= Html::input(
+                    'text',
+                    'height[min]',
+                    $heightRange['min']['default'],
+                    ['data-default' => $heightRange['min']['default']]
+                ) ?>
+                <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
+            </div>
+            <span class="indent"> - </span>
+            <div class="cur max">
+                <?= Html::input(
+                    'text',
+                    'height[max]',
+                    $heightRange['max']['default'],
+                    ['data-default' => $heightRange['max']['default']]
+                ) ?>
+                <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
+            </div>
+        </div>
+    <?php } ?>
+
     <?php if ($lengthRange && $lengthRange['min']['default'] != $lengthRange['max']['default']) { ?>
         <span class="for-filter-text"><?= Yii::t('app', 'Длина') ?></span>
         <div class="myarredo-slider" data-min="<?= $lengthRange['min']['current'] ?>"
@@ -96,33 +123,6 @@ use yii\helpers\{
                     'diameter[max]',
                     $diameterRange['max']['default'],
                     ['data-default' => $diameterRange['max']['default']]
-                ) ?>
-                <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
-            </div>
-        </div>
-    <?php } ?>
-
-    <?php if ($heightRange && $heightRange['min']['default'] != $heightRange['max']['default']) { ?>
-        <span class="for-filter-text"><?= Yii::t('app', 'Высота') ?></span>
-        <div class="myarredo-slider" data-min="<?= $heightRange['min']['current'] ?>"
-             data-max="<?= $heightRange['max']['current'] ?>"></div>
-        <div class="flex s-between filter-slider-box" style="padding: 10px 0;">
-            <div class="cur min">
-                <?= Html::input(
-                    'text',
-                    'height[min]',
-                    $heightRange['min']['default'],
-                    ['data-default' => $heightRange['min']['default']]
-                ) ?>
-                <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
-            </div>
-            <span class="indent"> - </span>
-            <div class="cur max">
-                <?= Html::input(
-                    'text',
-                    'height[max]',
-                    $heightRange['max']['default'],
-                    ['data-default' => $heightRange['max']['default']]
                 ) ?>
                 <span class="for-curicon"><?= Yii::t('app', 'см') ?></span>
             </div>
