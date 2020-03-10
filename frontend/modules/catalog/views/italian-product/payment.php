@@ -78,10 +78,12 @@ $this->title = $this->context->title;
                             <span class="for-total"><?= Yii::t('app', 'В том числе НДС') ?> :</span> <span
                                     class="for-styles"><?= $nds . ' ' . $modelPayment->currency ?></span>
                         </div>
-                        <div>
-                            <span class="for-total"><?= Yii::t('app', 'Скидка') . ' ' . $discount_percent . '%'; ?> :</span>
-                            <span class="for-styles"><?= $discount_money . ' ' . $modelPayment->currency ?></span>
-                        </div>
+                        <?php if ($discount_percent) { ?>
+                            <div>
+                                <span class="for-total"><?= Yii::t('app', 'Скидка') . ' ' . $discount_percent . '%'; ?> :</span>
+                                <span class="for-styles"><?= $discount_money . ' ' . $modelPayment->currency ?></span>
+                            </div>
+                        <?php } ?>
                         <div>
                             <span class="for-total"><?= Yii::t('app', 'Всего к оплате') ?> :</span> <span
                                     class="for-styles"><?= $modelPayment->amount . ' ' . $modelPayment->currency ?></span>

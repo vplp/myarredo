@@ -44,7 +44,7 @@ $Specifications = Specification::findBase()->all();
         <?php
 
         if ($model->isNewRecord) {
-            $model->create_mode = Yii::$app->controller->action->id == 'paid-create' ? 'paid' : 'free';
+            $model->create_mode = 'free';
         }
 
         $nds = $model->create_mode == 'paid'

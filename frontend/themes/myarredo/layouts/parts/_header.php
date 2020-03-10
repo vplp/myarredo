@@ -369,11 +369,6 @@ use frontend\modules\user\widgets\menu\UserMenu;
                             Url::toRoute(['/catalog/italian-product/free-create']),
                             ['class' => 'btn-myarredo']
                         ) ?>
-                        <?= Html::a(
-                            '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Paid add'),
-                            Url::toRoute(['/catalog/italian-product/paid-create']),
-                            ['class' => 'btn-myarredo']
-                        ) ?>
                     </div>
                 <?php } ?>
 

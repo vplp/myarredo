@@ -118,7 +118,6 @@ return [
     //
     'italian-product' => 'catalog/italian-product/list',
     'italian-product/completed' => 'catalog/italian-product/completed',
-    'italian-product/paid-create' => 'catalog/italian-product/paid-create',
     'italian-product/free-create' => 'catalog/italian-product/free-create',
     'italian-product/interest-payment/<id:[\d\-]+>' => 'catalog/italian-product/interest-payment',
     'italian-product/payment' => 'catalog/italian-product/payment',

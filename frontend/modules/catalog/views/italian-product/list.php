@@ -46,11 +46,6 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                             Url::toRoute(['/catalog/italian-product/free-create']),
                             ['class' => 'btn btn-goods']
                         ) ?>
-                        <?= Html::a(
-                            '<i class="fa fa-plus"></i> ' . Yii::t('app', 'Paid add'),
-                            Url::toRoute(['/catalog/italian-product/paid-create']),
-                            ['class' => 'btn btn-goods']
-                        ) ?>
                     </div>
 
                     <?= Breadcrumbs::widget([

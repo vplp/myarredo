@@ -364,7 +364,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
 
         $nds = number_format($total / 100 * 20, 2, '.', '');
 
-        $discount_percent = 50;
+        $discount_percent = 0;
         $discount_money = number_format(($total + $nds) / 100 * $discount_percent, 2, '.', '');
 
         $amount = number_format($total + $nds - $discount_money, 2, '.', '');

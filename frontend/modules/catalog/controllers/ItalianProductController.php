@@ -269,15 +269,6 @@ class ItalianProductController extends BaseController
                         return ['update', 'id' => $this->action->getModel()->id, 'step' => 'photo'];
                     }
                 ],
-                'paid-create' => [
-                    'class' => CreateWithLang::class,
-                    'modelClass' => $this->model,
-                    'modelClassLang' => $this->modelLang,
-                    'scenario' => 'frontend',
-                    'redirect' => function () {
-                        return ['update', 'id' => $this->action->getModel()->id, 'step' => 'photo'];
-                    }
-                ],
                 'update' => [
                     'class' => UpdateWithLang::class,
                     'modelClass' => $this->model,
