@@ -43,7 +43,8 @@ echo GridView::widget([
             'value' => function ($model) {
                 /** @var FactoryPromotion $model */
                 $result = [];
-                foreach ($model->products as $product) {
+                $products = $model->factory_id ? $model->products : $model->italianProducts;
+                foreach ($products as $product) {
                     $result[] = $product->lang->title;
                 }
                 return implode(' | ', $result);

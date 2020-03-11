@@ -51,6 +51,10 @@ class UserMenu extends Widget
                     'url' => ['/catalog/italian-product/list']
                 ],
                 [
+                    'label' => Yii::t('app', 'Рекламные кампании'),
+                    'url' => ['/catalog/italian-promotion/list']
+                ],
+                [
                     'label' => Yii::t('app', 'Orders'),
                     'url' => ['/shop/partner-order/list']
                 ],

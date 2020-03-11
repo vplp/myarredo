@@ -15,7 +15,8 @@ use backend\modules\catalog\models\FactoryPromotion;
     <div class="input-group">
         <?php
         $result = [];
-        foreach ($model->products as $product) {
+        $products = $model->factory_id ? $model->products : $model->italianProducts;
+        foreach ($products as $product) {
             $result[] = $product->lang->title;
         }
         echo implode(' | ', $result);

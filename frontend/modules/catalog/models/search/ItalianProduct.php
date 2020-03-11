@@ -77,14 +77,9 @@ class ItalianProduct extends ItalianProductModel implements BaseBackendSearchMod
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'factory_id' => $this->factory_id,
-            'status' => $this->status,
-        ]);
-
-        $query->andFilterWhere([
-            self::tableName() . '.id' => $this->id,
-            self::tableName() . '.user_id' => $this->user_id
+            self::tableName() . '.user_id' => $this->user_id,
+            self::tableName() . '.factory_id' => $this->factory_id,
+            self::tableName() . '.status' => $this->status,
         ]);
 
         if (isset($params[$keys['category']])) {

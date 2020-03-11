@@ -14,11 +14,11 @@ use backend\modules\catalog\models\{
 };
 
 /**
- * Class FactoryPromotionController
+ * Class PromotionProductController
  *
  * @package backend\modules\catalog\controllers
  */
-class FactoryPromotionController extends BackendController
+class PromotionProductController extends BackendController
 {
     public $model = FactoryPromotion::class;
     public $filterModel = filterFactoryPromotion::class;

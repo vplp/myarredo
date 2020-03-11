@@ -70,8 +70,7 @@ $this->title = Yii::t('app', 'Завершенные');
                                 'panel' => [
                                     'after' => false,
                                     'before' => false,
-                                    'heading' => false,
-                                    'footer' => false
+                                    'heading' => false
                                 ],
                                 'columns' => [
                                     [

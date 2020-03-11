@@ -3,9 +3,11 @@
 use backend\widgets\GridView\GridView;
 //
 use backend\modules\user\models\Group;
+use backend\modules\user\models\User;
 use backend\modules\location\models\{
     Country, City
 };
+use backend\modules\catalog\models\Factory;
 //
 use thread\widgets\grid\{
     ActionCheckboxColumn, GridViewFilter
@@ -20,7 +22,7 @@ if (isset($getUser['country_id'])) {
 }
 
 /**
- * @var $model \backend\modules\user\models\User
+ * @var $model User
  */
 
 echo GridView::widget([
@@ -32,6 +34,16 @@ echo GridView::widget([
             'attribute' => 'group_id',
             'value' => 'group.lang.title',
             'filter' => GridViewFilter::selectOne($filter, 'group_id', Group::dropDownList()),
+        ],
+        [
+            'format' => 'raw',
+            'attribute' => 'factory',
+            'label' => Yii::t('app', 'Factory'),
+            'value' => function ($model) {
+                return $model->profile->factory ? $model->profile->factory->title : '';
+            },
+            'filter' => GridViewFilter::selectOne($filter, 'factory_id', Factory::dropDownList()),
+            'visible' => $filter->group_id == 3 ? '1' : '0'
         ],
         'email',
         [

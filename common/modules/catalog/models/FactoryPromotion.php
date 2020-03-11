@@ -46,6 +46,7 @@ use common\components\YandexKassaAPI\interfaces\OrderInterface;
  * @property Country $country
  * @property FactoryPromotionRelCity[] $cities
  * @property FactoryPromotionRelProduct[] $products
+ * @property FactoryPromotionRelProduct[] $italianProducts
  *
  * @package common\modules\catalog\models
  */
@@ -104,7 +105,7 @@ class FactoryPromotion extends ActiveRecord
     public function rules()
     {
         return [
-            [['factory_id', 'user_id', 'views'], 'required'],
+            [['user_id', 'views'], 'required'],
             [
                 [
                     'factory_id',
@@ -134,7 +135,7 @@ class FactoryPromotion extends ActiveRecord
             [['published', 'deleted'], 'in', 'range' => array_keys(static::statusKeyRange())],
             [['status'], 'in', 'range' => array_keys(static::statusRange())],
             [['payment_status'], 'in', 'range' => array_keys(static::paymentStatusRange())],
-            [['amount', 'amount_with_vat', 'views'], 'default', 'value' => '0'],
+            [['factory_id' => 0, 'amount', 'amount_with_vat', 'views'], 'default', 'value' => '0'],
             [['payment_object'], 'default', 'value' => ''],
             [['city_ids', 'product_ids'], 'each', 'rule' => ['integer']],
         ];
@@ -347,6 +348,17 @@ class FactoryPromotion extends ActiveRecord
     {
         return $this
             ->hasMany(Product::class, ['id' => 'catalog_item_id'])
+            ->viaTable(FactoryPromotionRelProduct::tableName(), ['promotion_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getItalianProducts()
+    {
+        return $this
+            ->hasMany(ItalianProduct::class, ['id' => 'catalog_item_id'])
             ->viaTable(FactoryPromotionRelProduct::tableName(), ['promotion_id' => 'id']);
     }
 

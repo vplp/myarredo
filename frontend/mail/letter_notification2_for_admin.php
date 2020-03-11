@@ -35,8 +35,8 @@ use frontend\modules\catalog\models\{
     </div>
     <div style="background-color:#fff9ea; text-align: left; padding: 10px 0 40px 10px;">
 
-        <p><?= $message ?></p>
         <p><?= $title ?></p>
+        <p><?= $message ?></p>
         <p><?= $url ?></p>
         <p>
             Фабрика: <?= Html::a($model->factory['title'], Factory::getUrl($model->factory['alias'])) ?>

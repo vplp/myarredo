@@ -26,7 +26,7 @@ class Shop extends \common\modules\shop\Shop
                     [
                         'label' => 'Factory promotion',
                         'position' => 1,
-                        'url' => ['/catalog/factory-promotion/list'],
+                        'url' => ['/catalog/promotion-product/list'],
                     ],
                     [
                         'label' => 'Sale request',

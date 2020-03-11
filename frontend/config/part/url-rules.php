@@ -141,6 +141,15 @@ return [
     'factory-promotion/update/<id:[\d\-]+>' => 'catalog/factory-promotion/update',
     'factory-promotion/intrash/<id:[\d\-]+>' => 'catalog/factory-promotion/intrash',
 
+    // Partner promotion
+    'italian-promotion' => 'catalog/italian-promotion/list',
+    'italian-promotion/create' => 'catalog/italian-promotion/create',
+    'italian-promotion/create-payment/<id:[\d\-]+>' => 'catalog/italian-promotion/create-payment',
+    'italian-promotion/notify' => 'catalog/italian-promotion/notify',
+    'italian-promotion/update/<id:[\d\-]+>' => 'catalog/italian-promotion/update',
+    'italian-promotion/intrash/<id:[\d\-]+>' => 'catalog/italian-promotion/intrash',
+
+
     // Partner sale
     'partner/sale' => 'catalog/partner-sale/list',
     'partner/sale/create' => 'catalog/partner-sale/create',

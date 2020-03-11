@@ -21,6 +21,7 @@ class User extends UserModel implements BaseBackendSearchModel
 {
     public $country_id;
     public $city_id;
+    public $factory_id;
 
     /**
      * @return array
@@ -29,7 +30,7 @@ class User extends UserModel implements BaseBackendSearchModel
     {
         return [
             [['username', 'email'], 'string', 'max' => 255],
-            [['group_id', 'country_id', 'city_id'], 'integer'],
+            [['group_id', 'country_id', 'city_id', 'factory_id'], 'integer'],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
     }
@@ -69,6 +70,7 @@ class User extends UserModel implements BaseBackendSearchModel
 
         $query->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', Profile::tableName() . '.factory_id', $this->factory_id])
             ->andFilterWhere(['=', 'published', $this->published]);
 
         return $dataProvider;
