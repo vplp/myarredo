@@ -73,7 +73,7 @@ if ($count) {
     </div>
 
     <?php
-    echo '<form action="' . Url::toRoute(['/catalog/italian-product/payment'], true) . '" method="get">';
+    echo '<form action="' . Url::toRoute(['/catalog/italian-product/payment'], true) . '" method="get" class="payform">';
 
     foreach ($dataProvider->getModels() as $model) {
         if ($model->published == 0) {
