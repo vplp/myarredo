@@ -28,7 +28,7 @@ use frontend\modules\forms\models\FormsFeedback;
             <p><?= $model->getAttributeLabel('partner_id') ?>: <?= $model->partner->profile->getNameCompany() ?></p>
         <?php } ?>
         <p><?= $model->getAttributeLabel('email') ?>: <?= $model->email ?></p>
-        <p><?= $model->getAttributeLabel('user_name') ?>: <?= $model->name ?></p>
+        <p><?= $model->getAttributeLabel('name') ?>: <?= $model->name ?></p>
         <p><?= $model->getAttributeLabel('phone') ?>: <?= $model->phone ?></p>
         <p><?= $model->getAttributeLabel('comment') ?>: <?= $model->comment ?></p>
     </div>
