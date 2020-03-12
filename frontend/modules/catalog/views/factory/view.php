@@ -168,7 +168,7 @@ $h1 .= !Yii::$app->metatag->seo_h1 && Yii::$app->city->domain != 'com'
                         <?php }*/ ?>
 
                         <?php if ($saleProduct) { ?>
-                            <?= Html::tag('h2', Yii::t('app', 'Sale')) ?>
+                            <?= Html::tag('h2', Yii::t('app', 'Sale') . ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere()) ?>
                             <div class="cat-prod catalog-wrap">
                                 <?php foreach ($saleProduct as $key => $item) {
                                     if ($key == 5) { ?>
