@@ -10,7 +10,9 @@ use yii\web\NotFoundHttpException;
 //
 use frontend\components\BaseController;
 use frontend\modules\user\models\User;
-use frontend\modules\catalog\models\{Product, Factory, Sale, FactoryFileClickStats};
+use frontend\modules\catalog\models\{
+    Product, Factory, Sale, FactoryFileClickStats
+};
 
 /**
  * Class FactoryController
@@ -191,6 +193,18 @@ class FactoryController extends BaseController
             ]);
 
             $hostInfoSale = 'https://www.myarredo.ru';
+        }
+
+        if ($saleProduct == null) {
+            $saleProduct = $modelSale->search([
+                'defaultPageSize' => 6,
+                $keys['factory'] => [
+                    $model['alias']
+                ],
+                'city' => Yii::$app->city->getCityId()
+            ]);
+
+            $hostInfoSale = Yii::$app->request->hostInfo;
         }
 
         /*$modelItalianProduct = new ItalianProduct();
