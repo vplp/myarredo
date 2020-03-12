@@ -105,7 +105,7 @@ class FormsFeedback extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'partner_id',
+            'partner_id' => Yii::t('app', 'Partner'),
             'name' => Yii::t('app', 'Name'),
             'email' => Yii::t('app', 'Email'),
             'phone' => Yii::t('app', 'Phone'),
