@@ -52,13 +52,13 @@ $model->user_agreement = 1;
                                 ->input('hidden', ['value' => 0])
                                 ->label(false) ?>
 
-                            <?= $form->field($model, 'phone')
-                                ->widget(\yii\widgets\MaskedInput::class, [
-                                    'mask' => Yii::$app->city->getPhoneMask('it'),
-                                    'clientOptions' => [
-                                        'clearIncomplete' => true
-                                    ]
-                                ]) ?>
+                            <?= $form
+                                ->field($model, 'phone')
+                                ->input('tel', [
+                                    'placeholder' => Yii::t('app', 'Phone'),
+                                    'class' => 'form-control intlinput-field'
+                                ])
+                                ->label(false);?>
 
                             <?= $form->field($model, 'website') ?>
 
