@@ -167,7 +167,19 @@ class FactoryController extends BaseController
         $modelSale = new Sale();
         $saleProduct = null;
 
-        if (isset(Yii::$app->partner->profile) && Yii::$app->partner->profile->partner_in_city_paid) {
+        if ($saleProduct == null) {
+            $saleProduct = $modelSale->search([
+                'defaultPageSize' => 6,
+                $keys['factory'] => [
+                    $model['alias']
+                ],
+                'city' => Yii::$app->city->getCityId()
+            ]);
+
+            $hostInfoSale = Yii::$app->request->hostInfo;
+        }
+
+        if ($saleProduct == null && isset(Yii::$app->partner->profile) && Yii::$app->partner->profile->partner_in_city_paid) {
             $saleProduct = $modelSale->search([
                 'defaultPageSize' => 6,
                 $keys['factory'] => [
@@ -193,18 +205,6 @@ class FactoryController extends BaseController
             ]);
 
             $hostInfoSale = 'https://www.myarredo.ru';
-        }
-
-        if ($saleProduct == null) {
-            $saleProduct = $modelSale->search([
-                'defaultPageSize' => 6,
-                $keys['factory'] => [
-                    $model['alias']
-                ],
-                'city' => Yii::$app->city->getCityId()
-            ]);
-
-            $hostInfoSale = Yii::$app->request->hostInfo;
         }
 
         /*$modelItalianProduct = new ItalianProduct();
