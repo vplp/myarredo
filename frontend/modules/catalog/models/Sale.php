@@ -411,6 +411,7 @@ class Sale extends \common\modules\catalog\models\Sale
             return $query
                 ->select([
                     self::tableName() . '.id',
+                    self::tableName() . '.factory_id',
                     self::tableName() . '.country_id',
                     self::tableName() . '.city_id',
                     'max(' . self::tableName() . '.price_new) as max',

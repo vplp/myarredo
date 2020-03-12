@@ -5,7 +5,7 @@ namespace console\controllers;
 use Yii;
 use yii\helpers\Console;
 use yii\console\Controller;
-
+//
 use frontend\modules\location\models\City;
 
 /**
@@ -98,7 +98,7 @@ class SitemapImageController extends Controller
                         $str = "\t<url>" . PHP_EOL .
                             "\t\t<loc>" . City::getSubDomainUrl($city) . $url['loc'] . "</loc>" . PHP_EOL .
                             "\t\t<image:image>" . PHP_EOL .
-                            "\t\t\t<image:loc>" . City::getSubDomainUrl($city) . $url['image_link'] . "</image:loc>" . PHP_EOL .
+                            "\t\t\t<image:loc>https://img.myarredo." . $city['country']['alias'] . $url['image_link'] . "</image:loc>" . PHP_EOL .
                             "\t\t\t<image:title>" . htmlspecialchars($url['title']) . "</image:title>" . PHP_EOL .
                             "\t\t</image:image>" . PHP_EOL .
                             "\t</url>" . PHP_EOL;
