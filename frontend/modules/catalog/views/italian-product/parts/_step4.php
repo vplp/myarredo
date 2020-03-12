@@ -59,7 +59,7 @@ $modelPayment->currency = $modelCostProduct['currency'];
                                 <th>№</th>
                                 <th><?= Yii::t('app', 'Наименование услуг') ?></th>
                                 <th><?= Yii::t('app', 'Количество') ?></th>
-                                <?php if ($model->create_mode == 'free') { ?>
+                                <?php if ($model->create_mode == 'free' && $modelCostProduct['discount_percent']) { ?>
                                     <th><?= Yii::t('app', 'Цена') ?> 22%</th>
                                 <?php } ?>
                                 <th><?= Yii::t('app', 'Цена') ?></th>
@@ -83,7 +83,7 @@ $modelPayment->currency = $modelCostProduct['currency'];
                                     ) ?>
                                 </td>
                                 <td>1</td>
-                                <?php if ($model->create_mode == 'free') { ?>
+                                <?php if ($model->create_mode == 'free' && $modelCostProduct['discount_percent']) { ?>
                                     <td><?= ItalianProduct::getFreeCostPlacementProduct($model)['amount'] ?></td>
                                 <?php } ?>
                                 <td><?= $modelCostProduct['total'] ?></td>
@@ -105,10 +105,14 @@ $modelPayment->currency = $modelCostProduct['currency'];
                         </span>
                             <span class="for-styles"><?= $modelCostProduct['nds'] . ' ' . $modelCostProduct['currency'] ?></span>
                         </div>
-                        <div>
-                            <span class="for-total"><?= Yii::t('app', 'Скидка') . ' ' . $modelCostProduct['discount_percent'] . '%'; ?> :</span>
-                            <span class="for-styles"><?=  $modelCostProduct['discount_money'] . ' ' . $modelCostProduct['currency'] ?></span>
-                        </div>
+
+                        <?php if ($modelCostProduct['discount_percent']) { ?>
+                            <div>
+                                <span class="for-total"><?= Yii::t('app', 'Скидка') . ' ' . $modelCostProduct['discount_percent'] . '%'; ?> :</span>
+                                <span class="for-styles"><?= $modelCostProduct['discount_money'] . ' ' . $modelCostProduct['currency'] ?></span>
+                            </div>
+                        <?php } ?>
+
                         <div>
                             <span class="for-total">
                                 <?= Yii::t('app', 'Всего к оплате') ?> :
