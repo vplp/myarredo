@@ -932,11 +932,24 @@ $(document).ready(function () {
         var errorMsg = formGroupBox.children('.help-block')[0];
 
         // инициализируем плагин международных телефонных номеров
-        var iti = window.intlTelInput(intlInputEl, {
-            initialCountry: 'it',
-            utilsScript: "/js/utils.js",
-            formatOnDisplay: true
-        });
+        var iti = {};
+        // если по условию нужны только Италия и Россия
+        if ($(intlInputEl).attr('data-conly') == 'yes') {
+            iti = window.intlTelInput(intlInputEl, {
+                onlyCountries: ["it", "ru"],
+                initialCountry: 'it',
+                utilsScript: "/js/utils.js",
+                formatOnDisplay: true
+            });
+        }
+        // иначе инициализируем со всемя странами
+        else {
+            iti = window.intlTelInput(intlInputEl, {
+                initialCountry: 'it',
+                utilsScript: "/js/utils.js",
+                formatOnDisplay: true
+            });
+        }
 
         // создаем функцию - сброса
         var reset = function() {
