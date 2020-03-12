@@ -31,7 +31,7 @@ use frontend\modules\catalog\models\{
         <div style="clear: both;overflow: hidden;">
             <div style="float: left;">
                 <?= Html::img(
-                    'https://www.myarredo.ru' . ItalianProduct::getImageThumb($modelSale['image_link']),
+                    ItalianProduct::getImageThumb($modelSale['image_link']),
                     ['style' => 'width: 140px; max-height: 100px;']
                 ) ?>
             </div>
