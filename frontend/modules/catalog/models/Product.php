@@ -292,11 +292,12 @@ class Product extends \common\modules\catalog\models\Product
             if (is_file($_image_link)) {
                 $image = $_image_link;
             } else {
-                $original = $path . '/' . $image_link;
-                // resize
-                $ImageResize = new ImageResize();
-                $image = 'https://img.myarredo.' . DOMAIN . $ImageResize->getThumb($original, $width, $height);
+                $image = $path . '/' . $image_link;
             }
+
+            // resize
+            $ImageResize = new ImageResize();
+            $image = 'https://img.myarredo.' . DOMAIN . $ImageResize->getThumb($image, $width, $height);
         } else {
             $image = 'https://img.myarredo.ru/uploads/images/' . $image_link;
         }
