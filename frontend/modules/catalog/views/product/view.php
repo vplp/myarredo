@@ -265,21 +265,6 @@ $this->title = $this->context->title;
                                         <?php } ?>
                                     <?php } ?>
 
-                                    <?php if (!empty($model['colors'])) { ?>
-                                        <tr>
-                                            <td><?= $model->getAttributeLabel('colors_ids') ?></td>
-                                            <td>
-                                                <?php
-                                                $array = [];
-                                                foreach ($model['colors'] as $item) {
-                                                    $array[] = $item['lang']['title'];
-                                                }
-                                                echo implode('; ', $array);
-                                                ?>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-
                                 </table>
 
                                 <?= $this->render('parts/_factory_files', [
