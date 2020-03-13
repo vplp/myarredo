@@ -39,6 +39,14 @@ class Product extends \common\modules\catalog\models\Product
     /**
      * @return array
      */
+    public function attributeLabels()
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
     public function rules()
     {
         return [];
