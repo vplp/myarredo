@@ -1,9 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+//
+use frontend\modules\catalog\models\Sale;
 
 /**
- * @var \frontend\modules\catalog\models\Sale $model
+ * @var $model Sale
  */
 
 ?>
@@ -15,25 +17,46 @@ use yii\helpers\Html;
 
         <?php
         foreach ($model->getGalleryImageThumb() as $key => $src) {
-            $class = 'item' . (($key == 0) ? ' active' : '');
-
-            $options = ($key == 0)
-                ? ['itemprop' => 'image', 'alt' => $model->getTitle()]
-                : ['itemprop' => 'image'];
-
-            echo Html::beginTag('div', ['class' => $class, 'data-dominant-color' => '']) .
-                Html::a(
-                    Html::img($src['thumb'], $options),
-                    $src['img'],
-                    [
-                        'class' => 'img-cont fancyimage',
-                        'data-fancybox-group' => 'group',
+            if ($key == 0) {
+                echo Html::beginTag('div', [
+                        'class' => 'item active',
                         'data-dominant-color' => '',
-                        'data-alt' => $model->getTitle()
-                    ]
-                ) .
-                Html::tag('span', '', ['class' => 'background']) .
-                Html::endTag('div');
+                        'itemscope' => '',
+                        'itemtype' => 'http://schema.org/ImageObject'
+                    ]) .
+                    Html::tag('meta', '', ['itemprop' => 'name', 'content' => $model->getTitle()]) .
+                    Html::tag('meta', '', ['itemprop' => 'contentUrl', 'content' => $src['thumb']]) .
+                    Html::tag('meta', '', ['itemprop' => 'description', 'content' =>  strip_tags($model['lang']['description'])]) .
+                    Html::a(
+                        Html::img($src['thumb'], ['itemprop' => 'image', 'alt' => $model->getTitle()]),
+                        $src['img'],
+                        [
+                            'class' => 'img-cont fancyimage',
+                            'data-fancybox-group' => 'group',
+                            'data-dominant-color' => '',
+                            'data-alt' => $model->getTitle()
+                        ]
+                    ) .
+                    Html::tag('span', '', ['class' => 'background']) .
+                    Html::endTag('div');
+            } else {
+                echo Html::beginTag('div', [
+                        'class' => 'item',
+                        'data-dominant-color' => ''
+                    ]) .
+                    Html::a(
+                        Html::img($src['thumb'], ['itemprop' => 'image']),
+                        $src['img'],
+                        [
+                            'class' => 'img-cont fancyimage',
+                            'data-fancybox-group' => 'group',
+                            'data-dominant-color' => '',
+                            'data-alt' => $model->getTitle()
+                        ]
+                    ) .
+                    Html::tag('span', '', ['class' => 'background']) .
+                    Html::endTag('div');
+            }
         } ?>
 
     </div>

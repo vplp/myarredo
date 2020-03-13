@@ -227,12 +227,13 @@ class Sale extends \common\modules\catalog\models\Sale
             if (is_file($_image_link)) {
                 $image = $_image_link;
             } else {
-                $image = $path . '/' . $image_link;
+                $original = $path . '/' . $image_link;
+                // resize
+                $ImageResize = new ImageResize();
+                $image = 'https://img.myarredo.' . DOMAIN . $ImageResize->getThumb($original, $width, $height);
             }
-
-            // resize
-            $ImageResize = new ImageResize();
-            $image = 'https://img.myarredo.' . DOMAIN . $ImageResize->getThumb($image, $width, $height);
+        } else {
+            $image = 'https://img.myarredo.ru/uploads/images/' . $image_link;
         }
 
         return $image;
@@ -274,6 +275,11 @@ class Sale extends \common\modules\catalog\models\Sale
                 $imagesSources[] = [
                     'img' => 'https://img.myarredo.' . DOMAIN . $url . '/' . $image,
                     'thumb' => self::getImageThumb($image, 600, 600)
+                ];
+            } else {
+                $imagesSources[] = [
+                    'img' => 'https://img.myarredo.ru/' . $url . '/' . $image,
+                    'thumb' => 'https://img.myarredo.ru/' . $url . '/' . $image,
                 ];
             }
         }
