@@ -248,14 +248,11 @@ $this->title = $this->context->title;
 
                                             <?php
                                             $array = [];
-                                            $nameSpecification = '';
                                             foreach ($model['specificationValue'] as $item) {
-                                                if ($item['specification']['id'] == 2) {
-                                                    $nameSpecification = $item['specification']['lang']['title'];
-                                                    $array[] = $item['specificationByVal']['lang']['title'];
+                                                if ($item['specification']['parent_id'] == 2) {
+                                                    $array[] = $item['specification']['lang']['title'];
                                                 }
                                             }
-
                                             if (!empty($array)) { ?>
                                                 <tr>
                                                     <td><?= Yii::t('app', 'Материал') ?></td>
@@ -266,6 +263,21 @@ $this->title = $this->context->title;
                                             <?php } ?>
 
                                         <?php } ?>
+                                    <?php } ?>
+
+                                    <?php if (!empty($model['colors'])) { ?>
+                                        <tr>
+                                            <td><?= $model->getAttributeLabel('colors_ids') ?></td>
+                                            <td>
+                                                <?php
+                                                $array = [];
+                                                foreach ($model['colors'] as $item) {
+                                                    $array[] = $item['lang']['title'];
+                                                }
+                                                echo implode('; ', $array);
+                                                ?>
+                                            </td>
+                                        </tr>
                                     <?php } ?>
 
                                 </table>

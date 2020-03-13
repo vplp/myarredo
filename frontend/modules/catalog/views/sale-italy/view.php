@@ -218,8 +218,8 @@ $this->title = $this->context->title;
                                     }
 
                                     foreach ($model['specificationValue'] as $item) {
-                                        if ($item['specification']['id'] == 2 && $item['val']) {
-                                            $array[] = $item['specificationByVal']['lang']['title'];
+                                        if ($item['specification']['parent_id'] == 2 && $item['val']) {
+                                            $array[] = $item['specification']['lang']['title'];
                                         }
                                     }
 
