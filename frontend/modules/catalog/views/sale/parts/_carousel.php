@@ -25,6 +25,7 @@ use frontend\modules\catalog\models\Sale;
                         'itemtype' => 'http://schema.org/ImageObject'
                     ]) .
                     Html::tag('meta', '', ['itemprop' => 'name', 'content' => $model->getTitle()]) .
+                    Html::tag('meta', '', ['itemprop' => 'caption', 'content' => $model->getTitle()]) .
                     Html::tag('meta', '', ['itemprop' => 'contentUrl', 'content' => $src['thumb']]) .
                     Html::tag('meta', '', ['itemprop' => 'description', 'content' =>  strip_tags($model['lang']['description'])]) .
                     Html::a(
