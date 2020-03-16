@@ -68,6 +68,10 @@ function runDesctop() {
         $('.best-price .right-part').slick('unslick');
     }
 }
+// Функция для инициализации слайдера композиций
+function initCompSlider() {
+    
+}
 
 // Функция для открития первого элемента по умолчанию в модалке - показать фабрики 
 function selectFirstFEl() {
@@ -114,8 +118,10 @@ function slickInit() {
             slidesToShow: 4,
             slidesToScroll: 1,
             dots: false,
+            // autoplay: true,
             prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
-            nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>', responsive: [
+            nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>', 
+            responsive: [
                 {
                     breakpoint: 992,
                     settings: {
@@ -133,6 +139,9 @@ function slickInit() {
                 }
             ]
         });
+        setTimeout(function() {
+            $('#comp-slider').slick('slickNext');
+        }, 300);
     }
 
 }
@@ -629,6 +638,14 @@ $(document).ready(function () {
     }
 
     $("[data-toggle='tooltip']").tooltip({html: true});
+
+    $(document).on('click', '.link-composition', function() {
+        if ($('#comp-slider').length > 0) {
+            setTimeout(function() {
+                $('#comp-slider').slick('slickNext');
+            }, 100);
+        }
+    });
 });
 (function () {
     var loaderTemplate =

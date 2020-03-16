@@ -7,7 +7,7 @@
         <?php } ?>
         <?php if (!empty($elementsComposition)) { ?>
             <li>
-                <a data-toggle="tab" href="#panel1"><?= Yii::t('app', 'Предметы композиции') ?></a>
+                <a data-toggle="tab" href="#panel1" class="link-composition"><?= Yii::t('app', 'Предметы композиции') ?></a>
             </li>
         <?php } ?>
     </ul>
