@@ -256,7 +256,7 @@ class SaleController extends BaseController
             'type' => 'article',
             'title' => $pageTitle,
             'description' => $pageDescription,
-            'image' => Yii::$app->request->hostInfo . Sale::getImage($model['image_link']),
+            'image' => Sale::getImage($model['image_link']),
         ]);
 
         /**

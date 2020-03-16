@@ -194,7 +194,7 @@ class ProductController extends BaseController
             'type' => 'article',
             'title' => $pageTitle,
             'description' => $pageDescription,
-            'image' => Yii::$app->request->hostInfo . Product::getImage($model['image_link']),
+            'image' => Product::getImage($model['image_link']),
         ]);
 
         /**
