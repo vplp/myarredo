@@ -109,11 +109,12 @@ class Article extends \common\modules\articles\models\Article
     }
 
     /**
+     * @param bool $schema
      * @return string
      */
-    public function getUrl()
+    public function getUrl($schema = false)
     {
-        return Url::toRoute(['/articles/articles/view', 'alias' => $this->alias]);
+        return Url::toRoute(['/articles/articles/view', 'alias' => $this->alias], $schema);
     }
 
     /**

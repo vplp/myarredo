@@ -239,7 +239,7 @@ class Article extends ActiveRecord
         $image = null;
 
         if (!empty($this->image_link) && is_file($path . '/' . $this->image_link)) {
-            $image = $url . '/' . $this->image_link;
+            $image = Yii::$app->getRequest()->hostInfo . $url . '/' . $this->image_link;
         }
 
         return $image;
