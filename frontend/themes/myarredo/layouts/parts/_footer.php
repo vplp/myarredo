@@ -129,7 +129,7 @@ $bundle = AppAsset::register($this);
     "@type": "Organization",
     "url": "https://www.myarredo.<?= DOMAIN ?>",
     "name": "MyArredoFamily",
-    "email": "mailto:info@myarredo.ru",
+    "email": "info@myarredo.ru",
     "logo": "<?= Yii::$app->request->hostInfo . $bundle->baseUrl ?>/img/logo.svg",
     "sameAs": [
         "https://www.facebook.com/Myarredo/",
