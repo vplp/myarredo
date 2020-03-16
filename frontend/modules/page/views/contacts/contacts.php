@@ -33,11 +33,12 @@ $bundle = AppAsset::register($this);
 
                         <?php foreach ($partners as $partner) {
                             if ($partner['profile']['partner_in_city'] == 0) { ?>
-                                <div class="one-cont" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                                <div class="one-cont" itemscope itemtype="http://schema.org/Organization">
 
                                     <?= Html::tag(
                                         'h2',
-                                        $partner->profile->getNameCompany()
+                                        $partner->profile->getNameCompany(),
+                                        ['itemprop' => 'name']
                                     ); ?>
 
                                     <div class="ico">
@@ -53,7 +54,7 @@ $bundle = AppAsset::register($this);
                                     <div class="ico">
                                         <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
                                     </div>
-                                    <div class="adres">
+                                    <div class="adres" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
                                         <span itemprop="streetAddress"><?= $partner->profile->lang->address ?? '' ?></span><br>
                                         <span itemprop="addressLocality">
                                             <?= isset($partner->profile->city)

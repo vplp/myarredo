@@ -13,18 +13,18 @@ $mainPartner = array_shift($partners);
 ?>
 
 <!-- main partner -->
-<div class="one-cont double-cont">
+<div class="one-cont double-cont" itemscope itemtype="http://schema.org/Organization">
     <div class="top-mainpart">
         <div class="main-sticker">
             <?= Yii::t('app', 'Главный партнер') ?>
         </div>
-        <?= Html::tag('h2', $mainPartner->profile->getNameCompany()); ?>
+        <?= Html::tag('h2', $mainPartner->profile->getNameCompany(), ['itemprop' => 'name']); ?>
     </div>
 
-    <div class="adress-mainpart" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+    <div class="adress-mainpart">
         <div class="partner-adressbox">
             <?php if (isset($mainPartner->profile->lang->address) && $mainPartner->profile->lang->address != '') { ?>
-                <div class="adres">
+                <div class="adres"  itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
                     <span class="for-adress"><?= Yii::t('app', 'Address') ?>:</span>
                     <span itemprop="streetAddress"><?= $mainPartner->profile->lang->address ?? '' ?></span>
                     <br>
@@ -57,10 +57,10 @@ $mainPartner = array_shift($partners);
     </div>
 
     <?php if (isset($mainPartner->profile->lang->address2) && $mainPartner->profile->lang->address2 != '') { ?>
-        <div class="adress-mainpart" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+        <div class="adress-mainpart">
             <div class="partner-adressbox">
 
-                <div class="adres">
+                <div class="adres" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
                     <span class="for-adress"><?= Yii::t('app', 'Address') ?>:</span>
                     <span itemprop="streetAddress"><?= $mainPartner->profile->lang->address2 ?? '' ?></span>
                     <br>
