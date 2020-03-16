@@ -35,8 +35,6 @@ abstract class BaseController extends Controller
     {
         $lang = substr(Yii::$app->language, 0, 2);
 
-        //$current_url = Yii::$app->request->url != '/' ? str_replace('/' . $lang . '/', '', Yii::$app->request->url) : '';
-
         if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) && Yii::$app->city->domain == 'com' && !in_array($lang, ['it', 'en'])) {
             Yii::$app->response->redirect('https://' . 'www.myarredo.com/it/', 301);
             yii::$app->end();
@@ -54,7 +52,9 @@ abstract class BaseController extends Controller
             exit();
         }
 
-        $this->getAlternateHreflang();
+        if (!in_array(Yii::$app->controller->id, ['contacts'])) {
+            $this->getAlternateHreflang();
+        }
 
         $this->setCurrency();
 
