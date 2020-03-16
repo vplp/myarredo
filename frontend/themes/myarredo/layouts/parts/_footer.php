@@ -122,3 +122,17 @@ $bundle = AppAsset::register($this);
     </script>
     <script type="text/javascript" async src="https://app.uiscom.ru/static/cs.min.js"></script>
 <?php } ?>
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "url": "https://www.myarredo.<?= DOMAIN ?>",
+    "email": "mailto:info@myarredo.ru",
+    "logo": "<?= Yii::$app->request->hostInfo . $bundle->baseUrl ?>/img/logo.svg",
+    "sameAs": [
+        "https://www.facebook.com/Myarredo/",
+        "https://www.instagram.com/my_arredo_family/"
+    ],
+}
+</script>
