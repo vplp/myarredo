@@ -133,6 +133,6 @@ $bundle = AppAsset::register($this);
     "sameAs": [
         "https://www.facebook.com/Myarredo/",
         "https://www.instagram.com/my_arredo_family/"
-    ],
+    ]
 }
 </script>
