@@ -27,10 +27,10 @@ use frontend\modules\catalog\models\Sale;
                     Html::tag('meta', '', ['itemprop' => 'name', 'content' => $model->getTitle()]) .
                     Html::tag('meta', '', ['itemprop' => 'caption', 'content' => $model->getTitle()]) .
                     Html::tag('meta', '', ['itemprop' => 'contentUrl', 'content' => $src['img']]) .
-                    Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
+                    //Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
                     Html::tag('meta', '', ['itemprop' => 'description', 'content' =>  strip_tags($model['lang']['description'])]) .
                     Html::a(
-                        Html::img($src['thumb'], ['alt' => $model->getTitle()]),
+                        Html::img($src['thumb'], ['alt' => $model->getTitle(), 'itemprop' => 'image']),
                         $src['img'],
                         [
                             'class' => 'img-cont fancyimage',
