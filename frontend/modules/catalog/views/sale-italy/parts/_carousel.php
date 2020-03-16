@@ -16,6 +16,8 @@ use frontend\modules\catalog\models\ItalianProduct;
         <?php
         foreach ($model->getGalleryImageThumb() as $key => $src) {
             if ($key == 0) {
+                echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]);
+
                 echo Html::beginTag('div', [
                         'class' => 'item active',
                         'data-dominant-color' => '',
@@ -25,10 +27,9 @@ use frontend\modules\catalog\models\ItalianProduct;
                     Html::tag('meta', '', ['itemprop' => 'name', 'content' => $model->getTitle()]) .
                     Html::tag('meta', '', ['itemprop' => 'caption', 'content' => $model->getTitle()]) .
                     Html::tag('meta', '', ['itemprop' => 'contentUrl', 'content' => $src['img']]) .
-                    //Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
                     Html::tag('meta', '', ['itemprop' => 'description', 'content' =>  strip_tags($model['lang']['description'])]) .
                     Html::a(
-                        Html::img($src['thumb'], ['alt' => $model->getTitle(), 'itemprop' => 'image']),
+                        Html::img($src['thumb'], ['alt' => $model->getTitle()]),
                         $src['img'],
                         [
                             'class' => 'img-cont fancyimage',

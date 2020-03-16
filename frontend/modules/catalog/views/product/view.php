@@ -136,6 +136,9 @@ $this->title = $this->context->title;
                                     <meta itemprop="ratingCount" content="1"/>
                                     <meta itemprop="reviewCount" content="1"/>
                                 </div>
+                                <div itemprop="review" itemscope itemtype="http://schema.org/Review">
+                                    <meta itemprop="author" content="user">
+                                </div>
 
                                 <table class="info-table">
                                     <?php if ($model['subTypes'] != null) { ?>
