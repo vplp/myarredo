@@ -33,8 +33,19 @@ $bundle = AppAsset::register($this);
 
                         <?php foreach ($partners as $partner) {
                             if ($partner['profile']['partner_in_city'] == 0) { ?>
-                                <div class="one-cont">
-                                    <?= Html::tag('h2', $partner->profile->getNameCompany()); ?>
+                                <div class="one-cont" itemprop="address" itemscope
+                                     itemtype="http://schema.org/PostalAddress">
+
+                                    <?= Html::tag(
+                                        'h2',
+                                        Html::tag('span', $partner->profile->getNameCompany(), ['itemprop' => 'ContactPoint']),
+                                        [
+                                            'itemscope' => true,
+                                            'itemprop' => 'organization',
+                                            'itemtype' => 'http://schema.org/Organization'
+                                        ]
+                                    ); ?>
+
                                     <div class="ico">
                                         <?= Html::img($bundle->baseUrl . '/img/phone.svg') ?>
                                     </div>
@@ -42,17 +53,19 @@ $bundle = AppAsset::register($this);
                                     <?= Html::a(
                                         $partner->profile->phone,
                                         'tel:' . $partner->profile->phone,
-                                        []
+                                        ['itemprop' => 'telephone']
                                     ) ?>
 
                                     <div class="ico">
                                         <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
                                     </div>
-                                    <div class="adres">
-                                        <?= isset($partner->profile->city)
-                                            ? $partner->profile->city->getTitle() . '<br>'
-                                            : '' ?>
-                                        <?= $partner->profile->lang->address ?? '' ?>
+                                    <div class="adres" itemprop="streetAddress">
+                                        <span itemprop="streetAddress"><?= $partner->profile->lang->address ?? '' ?></span><br>
+                                        <span itemprop="addressLocality">
+                                            <?= isset($partner->profile->city)
+                                                ? $partner->profile->city->getTitle() . ', ' . $partner->profile->country->getTitle()
+                                                : '' ?>
+                                        </span>
                                     </div>
                                 </div>
                             <?php }
