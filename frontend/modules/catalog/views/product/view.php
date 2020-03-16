@@ -89,8 +89,8 @@ $this->title = $this->context->title;
                                     <meta itemprop="priceCurrency" content="EUR"/>
                                 <?php }*/ ?>
 
-                                    <meta itemprop="price" content="0"/>
-                                    <meta itemprop="priceCurrency" content="EUR"/>
+                                    <meta itemprop="price" content="<?= $model['price_from'] ?>"/>
+                                    <meta itemprop="priceCurrency" content="<?= $model['currency'] ?>"/>
 
                                     <div class="availability">
                                         <?= Yii::t('app', 'Наличие') ?>:
