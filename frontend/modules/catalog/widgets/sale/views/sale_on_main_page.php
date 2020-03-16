@@ -29,8 +29,7 @@ use frontend\modules\catalog\models\Sale;
             <?php
             foreach ($models as $k => $level) {
                 foreach ($level as $key => $model) { ?>
-                    <a href="<?= Sale::getUrl($model['alias']) ?>" class="one-sale" data-dominant-color itemscope
-                       itemtype="http://schema.org/ImageObject">
+                    <a href="<?= Sale::getUrl($model['alias']) ?>" class="one-sale" data-dominant-color>
                         <div class="img-cont">
                             <span class="background"></span>
                             <?= Html::img(
@@ -38,12 +37,11 @@ use frontend\modules\catalog\models\Sale;
                                 [
                                     'class' => 'cont lazy',
                                     'alt' => $model['lang']['title'],
-                                    'data-src' => Sale::getImageThumb($model['image_link']),
-                                    'itemprop' => 'contentUrl'
+                                    'data-src' => Sale::getImageThumb($model['image_link'])
                                 ]
                             ) ?>
                         </div>
-                        <div class="prod-title" itemprop="name">
+                        <div class="prod-title">
                             <?= $model['lang']['title'] ?>
                         </div>
                         <div class="price">

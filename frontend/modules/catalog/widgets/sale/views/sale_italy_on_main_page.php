@@ -29,9 +29,7 @@ use frontend\modules\catalog\models\ItalianProduct;
             <?php
             foreach ($models as $k => $level) {
                 foreach ($level as $key => $model) { ?>
-                    <a href="<?= ItalianProduct::getUrl($model['alias']) ?>" class="one-sale" data-dominant-color
-                       itemscope
-                       itemtype="http://schema.org/ImageObject">
+                    <a href="<?= ItalianProduct::getUrl($model['alias']) ?>" class="one-sale" data-dominant-color>
                         <div class="img-cont">
                             <span class="background"></span>
                             <?= Html::img(
@@ -39,12 +37,11 @@ use frontend\modules\catalog\models\ItalianProduct;
                                 [
                                     'class' => 'cont lazy',
                                     'alt' => $model['lang']['title'],
-                                    'data-src' => ItalianProduct::getImageThumb($model['image_link']),
-                                    'itemprop' => 'contentUrl'
+                                    'data-src' => ItalianProduct::getImageThumb($model['image_link'])
                                 ]
                             ) ?>
                         </div>
-                        <div class="prod-title" itemprop="name">
+                        <div class="prod-title">
                             <?= $model['lang']['title'] ?>
                         </div>
                         <div class="price">
