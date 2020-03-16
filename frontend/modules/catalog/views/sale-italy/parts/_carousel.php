@@ -78,8 +78,7 @@ use frontend\modules\catalog\models\ItalianProduct;
                         echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
                             Html::img($src['thumb'], ['alt' => $model->getTitle()]);
                     } else {
-                        echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
-                            Html::img($src['thumb'], ['alt' => $model->getTitle()]);
+                        echo Html::img($src['thumb'], ['alt' => $model->getTitle()]);
                     } ?>
                 </div>
             <?php } ?>
