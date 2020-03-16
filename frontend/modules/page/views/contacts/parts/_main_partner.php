@@ -21,15 +21,18 @@ $mainPartner = array_shift($partners);
         <?= Html::tag('h2', $mainPartner->profile->getNameCompany()); ?>
     </div>
 
-    <div class="adress-mainpart">
+    <div class="adress-mainpart" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
         <div class="partner-adressbox">
             <?php if (isset($mainPartner->profile->lang->address) && $mainPartner->profile->lang->address != '') { ?>
                 <div class="adres">
                     <span class="for-adress"><?= Yii::t('app', 'Address') ?>:</span>
-                    <?= isset($mainPartner->profile->city)
-                        ? $mainPartner->profile->city->getTitle() . '<br>'
-                        : '' ?>
-                    <?= $mainPartner->profile->lang->address ?? '' ?>
+                    <span itemprop="streetAddress"><?= $mainPartner->profile->lang->address ?? '' ?></span>
+                    <br>
+                    <span itemprop="addressLocality">
+                        <?= isset($mainPartner->profile->city)
+                            ? $mainPartner->profile->city->getTitle() . ', ' . $mainPartner->profile->country->getTitle()
+                            : '' ?>
+                    </span>
                 </div>
             <?php } ?>
 
@@ -48,22 +51,24 @@ $mainPartner = array_shift($partners);
             <?= Html::a(
                 $mainPartner->profile->phone,
                 'tel:' . $mainPartner->profile->phone,
-                []
+                ['itemprop' => 'telephone']
             ) ?>
         </div>
     </div>
 
     <?php if (isset($mainPartner->profile->lang->address2) && $mainPartner->profile->lang->address2 != '') { ?>
-        <div class="adress-mainpart">
+        <div class="adress-mainpart" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
             <div class="partner-adressbox">
 
                 <div class="adres">
                     <span class="for-adress"><?= Yii::t('app', 'Address') ?>:</span>
-                    <?= isset($mainPartner->profile->city)
-                        ? $mainPartner->profile->city->getTitle() . '<br>'
-                        : '' ?>
-                    <?= $mainPartner->profile->lang->address2 ?? '' ?>
-
+                    <span itemprop="streetAddress"><?= $mainPartner->profile->lang->address2 ?? '' ?></span>
+                    <br>
+                    <span itemprop="addressLocality">
+                        <?= isset($mainPartner->profile->city)
+                            ? $mainPartner->profile->city->getTitle() . ', ' . $mainPartner->profile->country->getTitle()
+                            : '' ?>
+                    </span>
                 </div>
 
                 <div class="adres">
@@ -78,7 +83,7 @@ $mainPartner = array_shift($partners);
                         <?= Html::a(
                             $mainPartner->profile->phone2,
                             'tel:' . $mainPartner->profile->phone2,
-                            []
+                            ['itemprop' => 'telephone']
                         ); ?>
                     </div>
                 <?php } ?>
@@ -99,7 +104,7 @@ $mainPartner = array_shift($partners);
             </div>
         </div>
     <?php } ?>
-    
+
     <div class="send-salon-panel">
         <?= Html::a(Yii::t('app', 'Написать салону'), 'javascript:void(0);', [
             'class' => 'btn btn-myarredo',

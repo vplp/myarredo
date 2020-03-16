@@ -33,12 +33,11 @@ $bundle = AppAsset::register($this);
 
                         <?php foreach ($partners as $partner) {
                             if ($partner['profile']['partner_in_city'] == 0) { ?>
-                                <div class="one-cont" itemprop="address" itemscope
-                                     itemtype="http://schema.org/PostalAddress">
+                                <div class="one-cont" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 
                                     <?= Html::tag(
                                         'h2',
-                                        $partner->profile->getNameCompany(),
+                                        $partner->profile->getNameCompany()
                                     ); ?>
 
                                     <div class="ico">
