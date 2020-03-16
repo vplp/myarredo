@@ -99,7 +99,7 @@ $mainPartner = array_shift($partners);
                 <?= Html::a(
                     $mainPartner->profile->website,
                     $mainPartner->profile->website,
-                    ['target' => '_blank', 'rel' => 'nofollow']
+                    ['target' => '_blank', 'rel' => 'nofollow', 'itemprop' => 'url']
                 ) ?>
             </div>
         </div>
