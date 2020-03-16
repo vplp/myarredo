@@ -13,7 +13,7 @@ use frontend\modules\catalog\models\ItalianProduct;
     'class' => 'one-prod-tile',
 ]) ?>
 
-    <div class="one-prod-tile-in" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="one-prod-tile-in">
 
         <?php if ($model['bestseller']) { ?>
             <div class="prod-bestseller"><?= Yii::t('app', 'Bestseller') ?></div>
@@ -29,7 +29,6 @@ use frontend\modules\catalog\models\ItalianProduct;
                 '',
                 [
                     'alt' => $model->getTitleForList(),
-                    'itemprop' => 'contentUrl',
                     'class' => 'lazy',
                     'data-src' => ItalianProduct::getImageThumb($model['image_link'])
                 ]
@@ -40,7 +39,7 @@ use frontend\modules\catalog\models\ItalianProduct;
             <div class="tile-brand">
                 <?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name'] ?>
             </div>
-            <div class="tile-prod-name" itemprop="name">
+            <div class="tile-prod-name">
                 <?= $model->getTitleForList() ?>
             </div>
         </div>

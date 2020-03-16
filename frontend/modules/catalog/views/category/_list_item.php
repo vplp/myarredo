@@ -15,7 +15,7 @@ use frontend\modules\catalog\models\{
     'href' => Product::getUrl($model['alias']),
     'class' => 'one-prod-tile',
 ]) ?>
-    <div class="one-prod-tile-in" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="one-prod-tile-in">
 
         <?php
         /*
@@ -35,7 +35,6 @@ use frontend\modules\catalog\models\{
                 '',
                 [
                     'alt' => Product::getStaticTitleForList($model),
-                    'itemprop' => 'contentUrl',
                     'class' => 'lazy',
                     'data-src' => Product::getImageThumb($model['image_link'])
                 ]
@@ -46,7 +45,7 @@ use frontend\modules\catalog\models\{
             <div class="tile-brand">
                 <?= $model['factory']['title'] ?>
             </div>
-            <div class="tile-prod-name" itemprop="name">
+            <div class="tile-prod-name">
                 <?= Product::getStaticTitleForList($model); ?>
             </div>
         </div>

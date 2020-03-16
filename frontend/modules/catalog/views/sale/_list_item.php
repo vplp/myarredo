@@ -16,7 +16,7 @@ $hostInfo = $hostInfo ?? Yii::$app->request->hostInfo;
     'class' => 'one-prod-tile',
 ]) ?>
 
-    <div class="one-prod-tile-in" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="one-prod-tile-in">
 
         <?php if (Sale::getSavingPrice($model)) { ?>
             <div class="prod-saving-percentage"><?= Sale::getSavingPercentage($model) ?></div>
@@ -28,7 +28,6 @@ $hostInfo = $hostInfo ?? Yii::$app->request->hostInfo;
                 '',
                 [
                     'alt' => $model->getTitle(),
-                    'itemprop' => 'contentUrl',
                     'class' => 'lazy',
                     'data-src' => Sale::getImageThumb($model['image_link'])
                 ]
@@ -43,7 +42,7 @@ $hostInfo = $hostInfo ?? Yii::$app->request->hostInfo;
             <div class="tile-brand">
                 <?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name'] ?>
             </div>
-            <div class="tile-prod-name" itemprop="name">
+            <div class="tile-prod-name">
                 <?= $model['lang']['title'] ?>
             </div>
         </div>
