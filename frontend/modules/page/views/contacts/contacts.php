@@ -54,7 +54,7 @@ $bundle = AppAsset::register($this);
                                     <div class="ico">
                                         <?= Html::img($bundle->baseUrl . '/img/marker-map.png') ?>
                                     </div>
-                                    <div class="adres" itemprop="streetAddress">
+                                    <div class="adres">
                                         <span itemprop="streetAddress"><?= $partner->profile->lang->address ?? '' ?></span><br>
                                         <span itemprop="addressLocality">
                                             <?= isset($partner->profile->city)
