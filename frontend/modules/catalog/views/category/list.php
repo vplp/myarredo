@@ -130,12 +130,14 @@ $.post(baseUrl + 'catalog/category/ajax-get-filter/', {_csrf: $('#token').val(),
     
     setTimeout(function() {
         $.post(baseUrl +'catalog/category/ajax-get-filter-sizes/', {_csrf: $('#token').val(), catalogFilterParams:$queryParams}, function(data) {
-            $('body').find('.one-filter').eq(2).html(data.html).addClass('filter-range-slider');
-            
+            $('<div class="one-filter">'+data.html+'</div>').insertAfter('.one-filter:eq(2)').addClass('filter-range-slider');
+
             setTimeout(function() {
                 rangeInit();
             }, 500);
+
             runDesctop();
+
             selectFirstFEl();
             
             $('.submit_sizes').on('click', function () {
