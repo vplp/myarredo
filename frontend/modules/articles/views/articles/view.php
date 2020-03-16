@@ -18,12 +18,13 @@ $this->title = $model['lang']['title'];
         <div class="myarredo-blogartbox">
 
             <!-- Контент старт -->
-            <div class="single-articlebox">
+            <div class="single-articlebox" itemscope itemtype="http://schema.org/Article">
                 <h1 class="article-title"><?= $model['lang']['title'] ?></h1>
-                <article class="article-textbox">
+                <article class="article-textbox" itemprop="articleBody">
                     <?= $model['lang']['content'] ?>
                 </article>
             </div>
+
             <!-- Контент конец -->
 
             <!-- Сайдбар старт -->
