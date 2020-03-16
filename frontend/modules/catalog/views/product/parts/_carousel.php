@@ -18,8 +18,6 @@ use frontend\modules\catalog\models\Product;
         <?php
         foreach ($model->getGalleryImageThumb() as $key => $src) {
             if ($key == 0) {
-                echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]);
-
                 echo Html::beginTag('div', [
                         'class' => 'item active',
                         'data-dominant-color' => '',
@@ -29,7 +27,7 @@ use frontend\modules\catalog\models\Product;
                     Html::tag('meta', '', ['itemprop' => 'name', 'content' => $model->getTitle()]) .
                     Html::tag('meta', '', ['itemprop' => 'caption', 'content' => Product::getStaticTitleForList($model)]) .
                     Html::tag('meta', '', ['itemprop' => 'contentUrl', 'content' => $src['img']]) .
-                    Html::tag('meta', '', ['itemprop' => 'description', 'content' =>  strip_tags($model['lang']['description'])]) .
+                    Html::tag('meta', '', ['itemprop' => 'description', 'content' => strip_tags($model['lang']['description'])]) .
                     Html::a(
                         Html::img($src['thumb'], ['alt' => $model->getTitle()]),
                         $src['img'],
@@ -48,7 +46,7 @@ use frontend\modules\catalog\models\Product;
                         'data-dominant-color' => '',
                     ]) .
                     Html::a(
-                        Html::img($src['thumb'], ['itemprop' => 'image']),
+                        Html::img($src['thumb']),
                         $src['img'],
                         [
                             'class' => 'img-cont fancyimage',
@@ -78,7 +76,13 @@ use frontend\modules\catalog\models\Product;
             <?php foreach ($model->getGalleryImageThumb() as $key => $src) { ?>
                 <div class="thumb-item" data-dominant-color>
                     <span class="background"></span>
-                    <?= Html::img($src['thumb'], ['alt' => $model->getTitle()]); ?>
+                    <?php if ($key == 0) {
+                        echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
+                            Html::img($src['thumb'], ['alt' => $model->getTitle()]);
+                    } else {
+                        echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
+                            Html::img($src['thumb'], ['alt' => $model->getTitle()]);
+                    } ?>
                 </div>
             <?php } ?>
 
