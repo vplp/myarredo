@@ -288,6 +288,10 @@ class CategoryController extends BaseController
         if (!empty($params[$keys['colors']])) {
             $models = Colors::findByAlias($params[$keys['colors']]);
 
+            if (count($params[$keys['colors']]) > 1) {
+                $noIndex = 1;
+            }
+
             $colors = [];
             foreach ($models as $model) {
                 $colors[] = $model['lang']['plural_title'];

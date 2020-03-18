@@ -2,7 +2,6 @@
 
 namespace frontend\modules\catalog\controllers;
 
-use frontend\modules\catalog\widgets\filter\SaleFilter;
 use Yii;
 use yii\helpers\{
     ArrayHelper, Html
@@ -30,6 +29,7 @@ use frontend\modules\catalog\models\{
     Specification,
     Colors
 };
+use frontend\modules\catalog\widgets\filter\SaleFilter;
 use frontend\themes\myarredo\assets\AppAsset;
 
 /**
@@ -120,7 +120,10 @@ class SaleController extends BaseController
         $queryParams = Yii::$app->catalogFilter->params;
 
         $queryParams['country'] = Yii::$app->city->getCountryId();
-        $queryParams['city'] = Yii::$app->city->getCityId();
+
+        if (!in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159])) {
+            $queryParams['city'] = Yii::$app->city->getCityId();
+        }
 
         $queryParams['defaultPageSize'] = 24;
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));

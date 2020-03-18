@@ -105,7 +105,10 @@ class SaleFilter extends Widget
         $queryParams = $this->catalogFilterParams;
 
         $queryParams['country'] = Yii::$app->city->getCountryId();
-        $queryParams['city'] = Yii::$app->city->getCityId();
+
+        if (!in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159])) {
+            $queryParams['city'] = Yii::$app->city->getCityId();
+        }
 
         $this->category = Category::getWithSale($queryParams);
         $this->types = Types::getWithSale($queryParams);
@@ -357,7 +360,7 @@ class SaleFilter extends Widget
         foreach ($this->cities as $key => $obj) {
             $params = $this->catalogFilterParams;
 
-            if ($obj['id'] == Yii::$app->city->getCityId()) {
+            if ($obj['id'] == Yii::$app->city->getCityId() && !in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159])) {
                 $checked = 1;
             } else {
                 $checked = 0;
