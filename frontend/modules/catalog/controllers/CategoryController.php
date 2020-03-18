@@ -240,7 +240,7 @@ class CategoryController extends BaseController
             return [
                 'success' => 1,
                 'html' => ProductFilter::widget([
-                    'route' => '/catalog/category/list',
+                    'route' => Yii::$app->getRequest()->post('link'),
                     'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
                 ])
             ];
@@ -259,7 +259,7 @@ class CategoryController extends BaseController
             return [
                 'success' => 1,
                 'html' => ProductFilterSizes::widget([
-                    'route' => '/catalog/category/list',
+                    'route' => Yii::$app->getRequest()->post('link'),
                     'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
                 ])
             ];

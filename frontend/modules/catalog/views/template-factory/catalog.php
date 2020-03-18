@@ -20,33 +20,34 @@ $params = Yii::$app->catalogFilter->params;
 
 ?>
 
-<main>
-    <div class="page category-page">
-        <div class="container large-container">
-            <div class="cat-content">
-                <div class="row">
+    <main>
+        <div class="page category-page">
+            <div class="container large-container">
+                <div class="cat-content">
+                    <div class="row">
 
-                    <div class="col-md-3 col-lg-3 js-filter-modal ajax-get-filter"></div>
+                        <div class="col-md-3 col-lg-3 js-filter-modal ajax-get-filter"></div>
 
-                    <div class="col-md-9 col-lg-9">
-                        <div class="cont-area">
-                            <div class="cat-prod-wrap">
-                                <div class="cat-prod">
+                        <div class="col-md-9 col-lg-9">
+                            <div class="cont-area">
+                                <div class="cat-prod-wrap">
+                                    <div class="cat-prod">
 
-                                    <?php foreach ($models as $model) {
-                                        echo $this->render('/category/_list_item', [
-                                            'model' => $model,
-                                            'factory' => [$factory->id => $factory],
-                                        ]);
-                                    } ?>
+                                        <?php foreach ($models as $model) {
+                                            echo $this->render('/category/_list_item', [
+                                                'model' => $model,
+                                                'factory' => [$factory->id => $factory],
+                                            ]);
+                                        } ?>
 
-                                </div>
-                                <div class="pagi-wrap">
+                                    </div>
+                                    <div class="pagi-wrap">
 
-                                    <?= frontend\components\LinkPager::widget([
-                                        'pagination' => $pages,
-                                    ]) ?>
+                                        <?= frontend\components\LinkPager::widget([
+                                            'pagination' => $pages,
+                                        ]) ?>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -54,18 +55,25 @@ $params = Yii::$app->catalogFilter->params;
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 
 <?php
 $queryParams = json_encode(Yii::$app->catalogFilter->params);
-
+$link = '/factory/' . $factory['alias'] . '/catalog';
 $script = <<<JS
-$.post('/catalog/category/ajax-get-filter/', {_csrf: $('#token').val(), catalogFilterParams:$queryParams}, function(data) {
+$.post('/catalog/category/ajax-get-filter/', {
+        _csrf: $('#token').val(),
+        catalogFilterParams: $queryParams,
+        link: '$link'
+    }, function(data) {
     $('.ajax-get-filter').html(data.html);
     
     setTimeout(function() {
-        $.post('/catalog/category/ajax-get-filter-sizes/', {_csrf: $('#token').val(), catalogFilterParams:$queryParams}, function(data) {
+        $.post('/catalog/category/ajax-get-filter-sizes/', {
+                _csrf: $('#token').val(),
+                catalogFilterParams:$queryParams,
+                link: '$link'
+            }, function(data) {
             $('<div class="one-filter">'+data.html+'</div>').insertAfter('.one-filter:eq(2)').addClass('filter-range-slider');
 
             setTimeout(function() {
