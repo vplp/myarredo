@@ -284,10 +284,7 @@ class CategoryController extends BaseController
 
         $pageDescription[] = Yii::t('app', 'Хотите купить');
 
-        /**
-         * colors
-         */
-
+        /** colors */
         if (!empty($params[$keys['colors']])) {
             $models = Colors::findByAlias($params[$keys['colors']]);
 
@@ -299,17 +296,9 @@ class CategoryController extends BaseController
             $pageTitle[] = implode(', ', $colors);
             $pageH1[] = implode(', ', $colors);
             $pageDescription[] = implode(', ', $colors);
-
-//            $this->breadcrumbs[] = [
-//                'label' => implode(', ', $colors),
-//                'url' => Yii::$app->catalogFilter->createUrl([$keys['colors'] => $params[$keys['colors']]])
-//            ];
         }
 
-        /**
-         * category
-         */
-
+        /** category */
         if (!empty($params[$keys['category']])) {
             $model = Category::findByAlias($params[$keys['category']][0]);
 
@@ -324,10 +313,21 @@ class CategoryController extends BaseController
         }
 
 
-        /**
-         * factory
-         */
+        /** type */
+        if (!empty($params[$keys['type']])) {
+            if (count($params[$keys['type']]) > 1) {
+                $noIndex = 1;
+            }
+        }
 
+        /** subtypes */
+        if (!empty($params[$keys['subtypes']])) {
+            if (count($params[$keys['subtypes']]) > 1) {
+                $noIndex = 1;
+            }
+        }
+
+        /** factory */
         if (!empty($params[$keys['factory']])) {
             $models = Factory::findAllByAlias($params[$keys['factory']]);
 
@@ -343,21 +343,9 @@ class CategoryController extends BaseController
             if (count($params) == 1 && count($params[$keys['factory']]) == 1) {
                 $noIndex = 1;
             }
-
-//            $pageTitle[] = implode(', ', $factory);
-//            $pageH1[] = implode(', ', $factory);
-//            $pageDescription[] = implode(', ', $factory);
-
-//            $this->breadcrumbs[] = [
-//                'label' => implode(', ', $factory),
-//                'url' => Yii::$app->catalogFilter->createUrl([$keys['factory'] => $params[$keys['factory']]])
-//            ];
         }
 
-        /**
-         * style
-         */
-
+        /** style */
         if (!empty($params[$keys['style']])) {
             $models = Specification::findByAlias($params[$keys['style']]);
 
@@ -380,10 +368,7 @@ class CategoryController extends BaseController
             ];
         }
 
-        /**
-         * price
-         */
-
+        /** price */
         if (isset($params[$keys['price']])) {
             $noIndex = 1;
         }
@@ -486,10 +471,7 @@ class CategoryController extends BaseController
         $noIndex = 0;
         $pageTitle = $pageH1 = $pageDescription = [];
 
-        /**
-         * category
-         */
-
+        /** category */
         if (!empty($params[$keys['category']])) {
             $model = Category::findByAlias($params[$keys['category']][0]);
 
@@ -503,10 +485,7 @@ class CategoryController extends BaseController
             $pageDescription[] = Yii::$app->city->getCityTitle() . ': ' . Yii::t('app', 'Заказать');
         }
 
-        /**
-         * type
-         */
-
+        /** type */
         if (!empty($params[$keys['type']])) {
             $models = Types::findByAlias($params[$keys['type']]);
 
@@ -529,10 +508,7 @@ class CategoryController extends BaseController
             ];
         }
 
-        /**
-         * subtypes
-         */
-
+        /** subtypes */
         if (!empty($params[$keys['subtypes']])) {
             $models = SubTypes::findByAlias($params[$keys['subtypes']]);
 
@@ -555,10 +531,7 @@ class CategoryController extends BaseController
             ];
         }
 
-        /**
-         * style
-         */
-
+        /** style */
         if (!empty($params[$keys['style']])) {
             $models = Specification::findByAlias($params[$keys['style']]);
 
@@ -581,10 +554,7 @@ class CategoryController extends BaseController
             ];
         }
 
-        /**
-         * collection
-         */
-
+        /** collection */
         if (!empty($params[$keys['collection']])) {
             $models = Collection::findByIDs($params[$keys['collection']]);
 
@@ -607,10 +577,7 @@ class CategoryController extends BaseController
             ];
         }
 
-        /**
-         * category
-         */
-
+        /** category */
         if (!empty($params[$keys['category']])) {
             $model = Category::findByAlias($params[$keys['category']][0]);
 
@@ -619,10 +586,7 @@ class CategoryController extends BaseController
             $pageDescription[] = $model['lang']['title'];
         }
 
-        /**
-         * factory
-         */
-
+        /** factory */
         if (!empty($params[$keys['factory']])) {
             $models = Factory::findAllByAlias($params[$keys['factory']]);
 
@@ -649,10 +613,7 @@ class CategoryController extends BaseController
             ];
         }
 
-        /**
-         * price
-         */
-
+        /** price */
         if (isset($params[$keys['price']])) {
             $noIndex = 1;
         }
@@ -688,10 +649,7 @@ class CategoryController extends BaseController
 
         $pageDescription[] = Yii::t('app', 'из Италии');
 
-        /**
-         * factory
-         */
-
+        /** factory */
         if (count($params) == 2 && !empty($params[$keys['factory']]) &&
             count($params[$keys['factory']]) == 1 &&
             !empty($params[$keys['collection']])) {
