@@ -375,6 +375,15 @@ class CategoryController extends BaseController
             if (count($params) == 1 && count($params[$keys['factory']]) == 1) {
                 $noIndex = 1;
             }
+
+            $pageTitle[] = implode(', ', $factory);
+            $pageH1[] = implode(', ', $factory);
+            $pageDescription[] = implode(', ', $factory);
+
+            $this->breadcrumbs[] = [
+                'label' => implode(', ', $factory),
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['factory'] => $params[$keys['factory']]])
+            ];
         }
 
         /** style */
