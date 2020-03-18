@@ -153,7 +153,7 @@ class Sale extends SaleModel implements BaseBackendSearchModel
         /** orderBy */
 
         if (in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159])) {
-            $order[] = self::tableName() . '.is_composition DESC';
+            //$order[] = self::tableName() . '.is_composition DESC';
         }
         $order[] = self::tableName() . '.updated_at DESC';
         $query->orderBy(implode(',', $order));
