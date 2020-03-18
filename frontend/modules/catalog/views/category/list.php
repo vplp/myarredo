@@ -123,13 +123,11 @@ $params = Yii::$app->catalogFilter->params;
 $queryParams = json_encode(Yii::$app->catalogFilter->params);
 
 $script = <<<JS
-let baseUrl = $("base").attr("href");
-
-$.post(baseUrl + 'catalog/category/ajax-get-filter/', {_csrf: $('#token').val(), catalogFilterParams:$queryParams}, function(data) {
+$.post('/catalog/category/ajax-get-filter/', {_csrf: $('#token').val(), catalogFilterParams:$queryParams}, function(data) {
     $('.ajax-get-filter').html(data.html);
     
     setTimeout(function() {
-        $.post(baseUrl +'catalog/category/ajax-get-filter-sizes/', {_csrf: $('#token').val(), catalogFilterParams:$queryParams}, function(data) {
+        $.post('/catalog/category/ajax-get-filter-sizes/', {_csrf: $('#token').val(), catalogFilterParams:$queryParams}, function(data) {
             $('<div class="one-filter">'+data.html+'</div>').insertAfter('.one-filter:eq(2)').addClass('filter-range-slider');
 
             setTimeout(function() {

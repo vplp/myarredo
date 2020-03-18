@@ -142,20 +142,6 @@ class TemplateFactoryController extends BaseController
 
         $queryParams = Yii::$app->catalogFilter->params;
 
-        $category = Category::getWithProduct($queryParams);
-        $types = Types::getWithProduct($queryParams);
-        $subtypes = SubTypes::getWithProduct($queryParams);
-        $style = Specification::getWithProduct($queryParams);
-        $colors = Colors::getWithProduct($queryParams);
-
-        $min = Product::minPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
-        $max = Product::maxPrice(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
-
-        $priceRange = [
-            'min' => $min,
-            'max' => $max
-        ];
-
         $models = $model->search(ArrayHelper::merge(Yii::$app->request->queryParams, $queryParams));
 
         $this->title = Yii::t('app', 'Каталог итальянской мебели') . ' ' .
@@ -163,13 +149,7 @@ class TemplateFactoryController extends BaseController
             (Yii::$app->city->domain != 'com' ? Yii::t('app', 'Купить в') . ' ' . Yii::$app->city->getCityTitleWhere() . ' ' . Yii::t('app', 'по лучшей цене') : '');
 
         return $this->render('catalog', [
-            'category' => $category,
-            'types' => $types,
-            'subtypes' => $subtypes,
-            'style' => $style,
             'factory' => $factory,
-            'colors' => $colors,
-            'priceRange' => $priceRange,
             'models' => $models->getModels(),
             'pages' => $models->getPagination(),
         ]);
