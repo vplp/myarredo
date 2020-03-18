@@ -315,16 +315,48 @@ class CategoryController extends BaseController
 
         /** type */
         if (!empty($params[$keys['type']])) {
+            $models = Types::findByAlias($params[$keys['type']]);
+
             if (count($params[$keys['type']]) > 1) {
                 $noIndex = 1;
             }
+
+            $type = [];
+            foreach ($models as $model) {
+                $type[] = $model['lang']['title'];
+            }
+
+            $pageTitle[] = implode(', ', $type);
+            $pageH1[] = implode(' - ', $type);
+            $pageDescription[] = implode(', ', $type);
+
+            $this->breadcrumbs[] = [
+                'label' => implode(', ', $type),
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['type'] => $params[$keys['type']]])
+            ];
         }
 
         /** subtypes */
         if (!empty($params[$keys['subtypes']])) {
+            $models = SubTypes::findByAlias($params[$keys['subtypes']]);
+
             if (count($params[$keys['subtypes']]) > 1) {
                 $noIndex = 1;
             }
+
+            $subtypes = [];
+            foreach ($models as $model) {
+                $subtypes[] = $model['lang']['title'];
+            }
+
+            $pageTitle[] = implode(', ', $subtypes);
+            $pageH1[] = implode(' - ', $subtypes);
+            $pageDescription[] = implode(', ', $subtypes);
+
+            $this->breadcrumbs[] = [
+                'label' => implode(', ', $subtypes),
+                'url' => Yii::$app->catalogFilter->createUrl([$keys['subtypes'] => $params[$keys['subtypes']]])
+            ];
         }
 
         /** factory */
