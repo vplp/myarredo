@@ -360,7 +360,7 @@ class SaleFilter extends Widget
         foreach ($this->cities as $key => $obj) {
             $params = $this->catalogFilterParams;
 
-            if ($obj['id'] == Yii::$app->city->getCityId() && !in_array(Yii::$app->city->getCityId(), [1, 2, 4, 159])) {
+            if ($obj['id'] == Yii::$app->city->getCityId()) {
                 $checked = 1;
             } else {
                 $checked = 0;
