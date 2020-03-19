@@ -23,11 +23,11 @@ use frontend\modules\catalog\models\{
                     <?= $model['lang']['title']; ?>
                 </div>
                 <?= Html::a(
-                    Html::img("", [
+                    Html::img('/', [
                         'class' => 'lazy',
                         'data-src' => Category::getImage($model['image_link'])
                     ])
-                    . Html::img("", [
+                    . Html::img('/', [
                         'class' => 'is-hover lazy',
                         'data-src' => Category::getImage($model['image_link2'])
                     ]),

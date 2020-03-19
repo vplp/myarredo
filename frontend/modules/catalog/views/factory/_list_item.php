@@ -20,29 +20,32 @@ $keys = Yii::$app->catalogFilter->keys;
     ]
 ); ?>
 
-    <div class="flex column-direction">
-        <div class="logo-img">
-            <?= Html::img('', ['class' => 'lazy', 'data-src' => Factory::getImageThumb($model['image_link'])]); ?>
-        </div>
-        <?= Html::tag('h2', $model['title']); ?>
+<div class="flex column-direction">
+    <div class="logo-img">
+        <?= Html::img('/', [
+            'class' => 'lazy',
+            'data-src' => Factory::getImageThumb($model['image_link'])
+        ]); ?>
     </div>
+    <?= Html::tag('h2', $model['title']); ?>
+</div>
 
-    <object>
-        <ul class="assortment">
-            <?php
-            foreach ($categories as $item) {
-                echo Html::beginTag('li') .
-                    Html::a(
-                        $item['title'],
-                        Yii::$app->catalogFilter->createUrl(
-                            Yii::$app->catalogFilter->params +
-                            [$keys['category'] => Yii::$app->city->domain != 'com' ? $item['alias'] : $item['alias2']] +
-                            [$keys['factory'] => $model['alias']]
-                        )
-                    ) .
-                    Html::endTag('li');
-            } ?>
-        </ul>
-    </object>
+<object>
+    <ul class="assortment">
+        <?php
+        foreach ($categories as $item) {
+            echo Html::beginTag('li') .
+                Html::a(
+                    $item['title'],
+                    Yii::$app->catalogFilter->createUrl(
+                        Yii::$app->catalogFilter->params +
+                        [$keys['category'] => Yii::$app->city->domain != 'com' ? $item['alias'] : $item['alias2']] +
+                        [$keys['factory'] => $model['alias']]
+                    )
+                ) .
+                Html::endTag('li');
+        } ?>
+    </ul>
+</object>
 
 <?= Html::endTag('a'); ?>

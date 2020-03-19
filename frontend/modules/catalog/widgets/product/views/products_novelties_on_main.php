@@ -54,10 +54,11 @@ use frontend\modules\catalog\models\Product;
                                             <?php foreach ($level as $key => $model) {
                                                 if ($key < 4) {
                                                     echo Html::a(
-                                                        Html::img(
-                                                            '',
-                                                            ['alt' => Product::getStaticTitle($model), 'class' => 'lazy', 'data-src' => Product::getImageThumb($model['image_link'])]
-                                                        ),
+                                                        Html::img('/', [
+                                                            'alt' => Product::getStaticTitle($model),
+                                                            'class' => 'lazy',
+                                                            'data-src' => Product::getImageThumb($model['image_link'])
+                                                        ]),
                                                         Product::getUrl($model['alias']),
                                                         ['class' => 'smaller']
                                                     );
@@ -68,10 +69,11 @@ use frontend\modules\catalog\models\Product;
                                             <?php foreach ($level as $key => $model) {
                                                 if ($key >= 4) {
                                                     echo Html::a(
-                                                        Html::img(
-                                                            '',
-                                                            ['alt' => Product::getStaticTitle($model), 'class' => 'lazy', 'data-src' => Product::getImageThumb($model['image_link'])]
-                                                        ),
+                                                        Html::img('/', [
+                                                                'alt' => Product::getStaticTitle($model),
+                                                                'class' => 'lazy',
+                                                                'data-src' => Product::getImageThumb($model['image_link'])
+                                                            ]),
                                                         Product::getUrl($model['alias']),
                                                         ['class' => 'smaller']
                                                     );

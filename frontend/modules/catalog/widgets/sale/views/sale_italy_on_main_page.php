@@ -32,14 +32,11 @@ use frontend\modules\catalog\models\ItalianProduct;
                     <a href="<?= ItalianProduct::getUrl($model['alias']) ?>" class="one-sale" data-dominant-color>
                         <div class="img-cont">
                             <span class="background"></span>
-                            <?= Html::img(
-                                '',
-                                [
-                                    'class' => 'cont lazy',
-                                    'alt' => $model['lang']['title'],
-                                    'data-src' => ItalianProduct::getImageThumb($model['image_link'])
-                                ]
-                            ) ?>
+                            <?= Html::img('/', [
+                                'class' => 'cont lazy',
+                                'alt' => $model['lang']['title'],
+                                'data-src' => ItalianProduct::getImageThumb($model['image_link'])
+                            ]) ?>
                         </div>
                         <div class="prod-title">
                             <?= $model['lang']['title'] ?>

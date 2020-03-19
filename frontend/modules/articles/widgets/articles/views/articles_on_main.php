@@ -35,7 +35,12 @@ use frontend\modules\articles\models\Article;
                                 <div class="article-similar-item">
                                     <div class="article-item-box">
                                         <a class="article-item-imglink" href="<?= $article->getUrl() ?>">
-                                            <div class="article-item-img"><?= Html::img('', ['class' => 'lazy', 'data-src' => $article->getArticleImage()]) ?></div>
+                                            <div class="article-item-img">
+                                                <?= Html::img('/', [
+                                                    'class' => 'lazy',
+                                                    'data-src' => $article->getArticleImage()
+                                                ]) ?>
+                                            </div>
                                         </a>
                                         <div class="article-item-descr">
                                             <div class="article-item-title"><?= $article['lang']['title'] ?></div>

@@ -4,11 +4,14 @@ use yii\helpers\{
     Url, Html
 };
 //
-use frontend\modules\catalog\models\Factory;
+use frontend\modules\catalog\models\{
+    Factory, Product
+};
 use frontend\modules\banner\widgets\FactoryBanner;
 
 /**
- * @var \frontend\modules\catalog\models\Factory $model
+ * @var $model Factory
+ * @var $product Product
  */
 
 $keys = Yii::$app->catalogFilter->keys;
