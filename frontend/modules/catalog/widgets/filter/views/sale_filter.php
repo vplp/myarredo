@@ -56,7 +56,9 @@ use frontend\modules\catalog\models\{
 
                     <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
                     <div class="filter-group">
-                        <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
+                        <div class="my-checkbox"></div><?= $item['title'] ?>
+                    </div>
+                    <span><?= $item['count'] ?></span>
                     <?= Html::endTag('a'); ?>
                 <?php } ?>
             </div>
@@ -96,7 +98,9 @@ use frontend\modules\catalog\models\{
 
                     <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
                     <div class="filter-group">
-                        <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
+                        <div class="my-checkbox"></div><?= $item['title'] ?>
+                    </div>
+                    <span><?= $item['count'] ?></span>
                     <?= Html::endTag('a'); ?>
                 <?php } ?>
             </div>
@@ -117,7 +121,9 @@ use frontend\modules\catalog\models\{
                     echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
                     ?>
                     <div class="filter-group">
-                        <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
+                        <div class="my-checkbox"></div><?= $item['title'] ?>
+                    </div>
+                    <span><?= $item['count'] ?></span>
                     <?php
                     echo Html::endTag('a');
                 } ?>
@@ -188,8 +194,8 @@ use frontend\modules\catalog\models\{
                     echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
                     ?>
                     <div class="filter-group">
-                        <div class="my-checkbox"
-                             style="background-color:<?= $item['color_code'] ?>;"></div><?= $item['title'] ?>
+                        <div class="my-checkbox" style="background-color:<?= $item['color_code'] ?>;"></div>
+                        <?= $item['title'] ?>
                     </div>
                     <span><?= $item['count'] ?></span>
                     <?php
