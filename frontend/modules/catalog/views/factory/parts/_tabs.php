@@ -179,12 +179,14 @@ $keys = Yii::$app->catalogFilter->keys;
             $FactorySamples = Factory::getFactorySamples($model['id']);
 
             foreach ($FactorySamples as $item) {
-                echo Html::beginTag('li') .
-                    Html::a(
-                        Html::img(Samples::getImage($item['image_link'])),
-                        Samples::getImage($item['image_link'])
-                    ) .
-                    Html::endTag('li');
+                if (Samples::isImage($item['image_link'])) {
+                    echo Html::beginTag('li') .
+                        Html::a(
+                            Html::img(Samples::getImage($item['image_link'])),
+                            Samples::getImage($item['image_link'])
+                        ) .
+                        Html::endTag('li');
+                }
             }
             ?>
         </ul>

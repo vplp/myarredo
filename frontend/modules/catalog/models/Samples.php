@@ -53,6 +53,26 @@ class Samples extends \common\modules\catalog\models\Samples
 
     /**
      * @param string $image_link
+     * @return bool
+     */
+    public static function isImage($image_link = '')
+    {
+        /** @var Catalog $module */
+        $module = Yii::$app->getModule('catalog');
+
+        $path = $module->getSamplesUploadPath();
+
+        $image = false;
+
+        if (!empty($image_link) && is_file($path . '/' . $image_link)) {
+            $image = true;
+        }
+
+        return $image;
+    }
+
+    /**
+     * @param string $image_link
      * @return string|null
      */
     public static function getImage($image_link = '')
