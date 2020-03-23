@@ -185,6 +185,7 @@ $keys = Yii::$app->catalogFilter->keys;
                             Html::img(Samples::getImage($item['image_link'])),
                             Samples::getImage($item['image_link'])
                         ) .
+                        Html::tag('span', $item['lang']['title'], ['class' => 'for-catalog-list']),
                         Html::endTag('li');
                 }
             }
