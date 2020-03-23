@@ -6,7 +6,7 @@ use yii\helpers\{
 //
 use frontend\modules\shop\models\Order;
 use frontend\modules\catalog\models\{
-    Product, Factory, FactoryCatalogsFiles, FactoryPricesFiles
+    Product, Factory, FactoryCatalogsFiles, FactoryPricesFiles, Samples
 };
 
 /**
@@ -43,6 +43,12 @@ $keys = Yii::$app->catalogFilter->keys;
             </a>
         </li>
     <?php } ?>
+
+    <li>
+        <a data-toggle="tab" href="#all-samples">
+            <?= Yii::t('app', 'Варианты отделки') ?>
+        </a>
+    </li>
 
     <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->isPdfAccess() && !empty($model->pricesFiles)) { ?>
         <li>
@@ -165,6 +171,24 @@ $keys = Yii::$app->catalogFilter->keys;
             </ul>
         </div>
     <?php } ?>
+
+
+    <div id="all-samples" class="tab-pane fade">
+        <ul class="list">
+            <?php
+            $FactorySamples = Factory::getFactorySamples($model['id']);
+
+            foreach ($FactorySamples as $item) {
+                echo Html::beginTag('li') .
+                    Html::a(
+                        Html::img(Samples::getImage($model['image_link'])),
+                        Samples::getImage($model['image_link'])
+                    ) .
+                    Html::endTag('li');
+            }
+            ?>
+        </ul>
+    </div>
 
     <?php if (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->profile->isPdfAccess() && !empty($model->pricesFiles)) { ?>
         <div id="pricelists" class="tab-pane fade">
