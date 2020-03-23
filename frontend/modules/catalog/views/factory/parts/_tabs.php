@@ -181,8 +181,8 @@ $keys = Yii::$app->catalogFilter->keys;
             foreach ($FactorySamples as $item) {
                 echo Html::beginTag('li') .
                     Html::a(
-                        Html::img(Samples::getImage($model['image_link'])),
-                        Samples::getImage($model['image_link'])
+                        Html::img(Samples::getImage($item['image_link'])),
+                        Samples::getImage($item['image_link'])
                     ) .
                     Html::endTag('li');
             }
