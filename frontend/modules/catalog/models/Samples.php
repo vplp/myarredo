@@ -48,7 +48,7 @@ class Samples extends \common\modules\catalog\models\Samples
      */
     public static function findBase()
     {
-        return parent::findBase();
+        return parent::findBase()->enabled();
     }
 
     /**
