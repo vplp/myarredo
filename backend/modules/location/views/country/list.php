@@ -22,7 +22,16 @@ echo GridView::widget([
             'attribute' => 'title',
             'value' => 'lang.title',
         ],
-        'position',
+        [
+            'class' => ActionCheckboxColumn::class,
+            'attribute' => 'show_for_registration',
+            'action' => 'show-for-registration'
+        ],
+        [
+            'class' => ActionCheckboxColumn::class,
+            'attribute' => 'show_for_filter',
+            'action' => 'show-for-filter'
+        ],
         [
             'class' => ActionCheckboxColumn::class,
             'attribute' => 'published',

@@ -10,7 +10,9 @@ use common\modules\catalog\models\Sale;
 /**
  * Class Country
  *
- * @property int $bookId
+ * @property integer $bookId
+ * @property integer $show_for_registration
+ * @property integer $show_for_filter
  *
  * @property Order[] $order
  * @property Sale $sale
@@ -27,6 +29,7 @@ class Country extends \thread\modules\location\models\Country
         $rules = [
             [['bookId'], 'integer'],
             [['bookId'], 'default', 'value' => 0],
+            [['show_for_registration', 'show_for_filter'], 'in', 'range' => array_keys(static::statusKeyRange())],
         ];
 
         return ArrayHelper::merge($rules, parent::rules());
@@ -40,7 +43,11 @@ class Country extends \thread\modules\location\models\Country
         $scenarios = [
             'backend' => [
                 'bookId',
-            ]
+                'show_for_registration',
+                'show_for_filter'
+            ],
+            'show_for_registration' => ['show_for_registration'],
+            'show_for_filter' => ['show_for_filter'],
         ];
 
         return ArrayHelper::merge($scenarios, parent::scenarios());
@@ -53,6 +60,8 @@ class Country extends \thread\modules\location\models\Country
     {
         $attributeLabels = [
             'bookId' => 'ID Адресной книги в SendPulse',
+            'show_for_registration' => 'Выводим в форму регистрации фабрик',
+            'show_for_filter' => 'Использовать в фильтре по стране',
         ];
 
         return ArrayHelper::merge($attributeLabels, parent::attributeLabels());
