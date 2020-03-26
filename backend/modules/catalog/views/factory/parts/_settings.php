@@ -4,6 +4,7 @@ use backend\app\bootstrap\ActiveForm;
 use backend\modules\catalog\models\{
     Factory, FactoryLang
 };
+use backend\modules\location\models\Country;
 
 /**
  * @var $model Factory
@@ -14,12 +15,13 @@ use backend\modules\catalog\models\{
 $visible = in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEditor'])
     ? true
     : false;
-
 ?>
 
 <?= $form->text_line($model, 'alias', ['readonly' => !$visible]) ?>
 
 <?= $form->text_line_lang($model, 'title', ['readonly' => !$visible]) ?>
+
+<?= $form->field($model, 'producing_country_id')->selectOne(Country::dropDownList()) ?>
 
 <?php if ($visible) { ?>
     <?= $form->text_line($model, 'url') ?>
@@ -38,8 +40,10 @@ $visible = in_array(Yii::$app->user->identity->group->role, ['admin', 'catalogEd
             <?= $form->text_line($model, 'position') ?>
         </div>
     </div>
+
     <?= $form->switcher($model, 'alternative') ?>
     <?= $form->switcher($model, 'new_price') ?>
+
     <div class="row control-group">
         <div class="col-md-3">
             <?= $form->switcher($model, 'novelty') ?>

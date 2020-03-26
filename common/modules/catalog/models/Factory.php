@@ -13,6 +13,7 @@ use thread\app\base\models\ActiveRecord;
 //
 use common\modules\catalog\Catalog;
 use common\modules\user\models\User;
+use common\modules\location\models\Country;
 use common\helpers\Inflector;
 
 /**
@@ -20,6 +21,7 @@ use common\helpers\Inflector;
  *
  * @property integer $id
  * @property integer $user_id
+ * @property integer $producing_country_id
  * @property string $country_code
  * @property string $alias
  * @property string $title
@@ -50,6 +52,7 @@ use common\helpers\Inflector;
  *
  * @property FactoryLang $lang
  * @property User $user
+ * @property Country $producingCountry
  * @property Collection $collection
  * @property FactoryFile $files
  * @property FactoryCatalogsFiles $catalogsFiles
@@ -109,7 +112,18 @@ class Factory extends ActiveRecord
     {
         return [
             [['alias', 'title'], 'required', 'on' => 'backend'],
-            [['user_id', 'created_at', 'updated_at', 'position', 'partner_id', 'product_count'], 'integer'],
+            [
+                [
+                    'user_id',
+                    'producing_country_id',
+                    'created_at',
+                    'updated_at',
+                    'position',
+                    'partner_id',
+                    'product_count'
+                ],
+                'integer'
+            ],
             [
                 [
                     'published',
@@ -137,7 +151,11 @@ class Factory extends ActiveRecord
             ['video', 'string', 'max' => 1024],
             [['first_letter'], 'string', 'max' => 2],
             [['alias'], 'unique'],
-            [['user_id', 'position', 'partner_id', 'product_count'], 'default', 'value' => '0'],
+            [
+                ['user_id', 'producing_country_id', 'position', 'partner_id', 'product_count'],
+                'default',
+                'value' => '0'
+            ],
             [['country_code'], 'default', 'value' => '//'],
             [['url', 'email', 'novelty_url'], 'default', 'value' => ''],
             [['dealers_ids'], 'each', 'rule' => ['integer']],
@@ -160,6 +178,7 @@ class Factory extends ActiveRecord
             'product_count' => ['product_count'],
             'backend' => [
                 'user_id',
+                'producing_country_id',
                 'title',
                 'alias',
                 'country_code',
@@ -197,6 +216,7 @@ class Factory extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User'),
+            'producing_country_id' => Yii::t('app', 'Producing country'),
             'alias' => Yii::t('app', 'Alias'),
             'title' => Yii::t('app', 'Title'),
             'country_code' => 'Показывать для страны',
@@ -289,6 +309,14 @@ class Factory extends ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProducingCountry()
+    {
+        return $this->hasOne(Country::class, ['id' => 'producing_country_id']);
     }
 
     /**

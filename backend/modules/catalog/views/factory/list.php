@@ -1,7 +1,7 @@
 <?php
 
 use thread\widgets\grid\{
-    ActionStatusColumn
+    ActionStatusColumn, GridViewFilter
 };
 //
 use backend\app\bootstrap\ActiveForm;
@@ -11,6 +11,7 @@ use backend\widgets\GridView\{
 use backend\modules\catalog\models\{
     Factory, FactoryLang
 };
+use backend\modules\location\models\Country;
 
 /**
  * @var $model Factory
@@ -31,6 +32,11 @@ echo GridView::widget([
             'attribute' => 'title',
             'value' => 'title',
             'label' => Yii::t('app', 'Title'),
+        ],
+        [
+            'attribute' => Yii::t('app', 'Producing country'),
+            'value' => 'producingCountry.title',
+            'filter' => GridViewFilter::selectOne($filter, 'producing_country_id', Country::dropDownList()),
         ],
         [
             'class' => ActionStatusColumn::class,

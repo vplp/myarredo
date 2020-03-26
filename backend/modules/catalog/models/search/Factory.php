@@ -26,6 +26,7 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
     public function rules()
     {
         return [
+            [['producing_country_id'], 'integer'],
             [['alias', 'title'], 'string', 'max' => 255],
             [['published'], 'in', 'range' => array_keys(self::statusKeyRange())],
         ];
@@ -65,6 +66,7 @@ class Factory extends FactoryModel implements BaseBackendSearchModel
             return $dataProvider;
         }
 
+        $query->andFilterWhere(['=', self::tableName() . '.producing_country_id', $this->producing_country_id]);
         $query->andFilterWhere(['=', self::tableName() . '.published', $this->published]);
         $query->andFilterWhere(['like', 'title', $this->title]);
 
