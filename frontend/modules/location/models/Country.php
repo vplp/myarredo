@@ -138,6 +138,29 @@ class Country extends \common\modules\location\models\Country
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
+    public static function dropDownListForRegistration($IDs = [], $from = 'id', $to = 'lang.title')
+    {
+        $data = self::getDb()->cache(function ($db) use ($IDs) {
+            $query = self::findBase()->andFilterWhere(['show_for_registration' => '1']);
+
+            if ($IDs) {
+                $query->byId($IDs);
+            }
+
+            return $query->all();
+        }, 60 * 60);
+
+        return ArrayHelper::map($data, $from, $to);
+    }
+
+    /**
+     * @param array $IDs
+     * @param string $from
+     * @param string $to
+     * @return array
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
     public static function dropDownListWithOrders($IDs = [], $from = 'id', $to = 'lang.title')
     {
         $data = self::getDb()->cache(function ($db) use ($IDs) {

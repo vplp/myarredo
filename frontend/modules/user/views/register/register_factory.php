@@ -7,6 +7,9 @@ use yii\widgets\ActiveForm;
 //
 use frontend\themes\myarredo\assets\AppAsset;
 use frontend\modules\user\models\form\RegisterForm;
+use frontend\modules\location\models\{
+    Country, City
+};
 
 $bundle = AppAsset::register($this);
 
@@ -44,8 +47,12 @@ $model->user_agreement = 1;
 
                             <?= $form
                                 ->field($model, 'country_id')
-                                ->input('hidden', ['value' => 0])
-                                ->label(false) ?>
+                                ->dropDownList(
+                                    [null => '--'] + Country::dropDownListForRegistration(),
+                                    [
+                                        'class' => 'selectpicker'
+                                    ]
+                                ) ?>
 
                             <?= $form
                                 ->field($model, 'city_id')
@@ -59,7 +66,7 @@ $model->user_agreement = 1;
                                     'class' => 'form-control intlinput-field',
                                     'data-conly' => 'yes'
                                 ])
-                                ->label(false);?>
+                                ->label(false); ?>
 
                             <?= $form->field($model, 'website') ?>
 
@@ -86,7 +93,6 @@ $model->user_agreement = 1;
                                 ->field($model, 'reCaptcha')
                                 ->widget(
                                     \himiklab\yii2\recaptcha\ReCaptcha2::class
-                                //['action' => 'register_factory']
                                 )
                                 ->label(false) ?>
 
