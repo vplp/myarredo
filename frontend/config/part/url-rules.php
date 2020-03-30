@@ -36,6 +36,11 @@ return [
     'user/login/validation' => 'user/login/validation',
 
     // Module [[Catalog]]
+
+    //'furniture/<filter:[\=\;\-\w\d]+>' => 'catalog/countries-furniture/list',
+    'furniture' => 'catalog/countries-furniture/list',
+    'furniture/<alias:[\w\-]+>' => 'catalog/countries-furniture/view',
+
     'search' => 'catalog/elastic-search/search',
     'search/index' => 'catalog/elastic-search/index',
 

@@ -60,5 +60,6 @@ return [
     'Sale request' => 'Предложения цены',
     'Sale in Italy request' => 'Предложения цены в Италии',
     'Forms' => 'Формы',
-    'Feedback' => 'Обратная связь'
+    'Feedback' => 'Обратная связь',
+    'Countries furniture' => 'Мебели стран'
 ];

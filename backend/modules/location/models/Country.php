@@ -31,6 +31,27 @@ class Country extends \common\modules\location\models\Country implements BaseBac
     }
 
     /**
+     * @param array $IDs
+     * @param string $from
+     * @param string $to
+     * @return array
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function dropDownListForRegistration($IDs = [], $from = 'id', $to = 'lang.title')
+    {
+        $query = self::findBase()->andFilterWhere(['show_for_registration' => '1']);
+
+        if ($IDs) {
+            $query->byId($IDs);
+        }
+
+        $data = $query->all();
+
+        return ArrayHelper::map($data, $from, $to);
+    }
+
+    /**
      * @param $params
      * @return \yii\data\ActiveDataProvider
      */

@@ -82,6 +82,11 @@ class Catalog extends \common\modules\catalog\Catalog
                         'position' => 7,
                         'url' => ['/catalog/sale-italy/list'],
                     ],
+                    [
+                        'label' => 'Countries furniture',
+                        'position' => 7,
+                        'url' => ['/catalog/countries-furniture/list'],
+                    ],
                 ]
             ];
         } elseif (in_array(Yii::$app->user->identity->group->role, ['seo'])) {
