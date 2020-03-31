@@ -126,7 +126,8 @@ class SubTypes extends \common\modules\catalog\models\SubTypes
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
                 Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
-            ]);
+            ])
+            ->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
 
         if (isset($params[$keys['category']])) {
             $query

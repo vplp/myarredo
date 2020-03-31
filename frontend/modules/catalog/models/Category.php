@@ -317,6 +317,7 @@ class Category extends \common\modules\catalog\models\Category
                     Factory::tableName() . '.deleted' => '0',
                     Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
                 ])
+                ->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]])
                 ->select([
                     self::tableName() . '.id',
                     self::tableName() . '.alias',

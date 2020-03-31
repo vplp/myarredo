@@ -231,7 +231,7 @@ class Factory extends \common\modules\catalog\models\Factory
     {
         $keys = Yii::$app->catalogFilter->keys;
 
-        $query = self::findBase();
+        $query = self::findBase()->andFilterWhere(['IN', self::tableName() . '.producing_country_id', [4]]);
 
         $query
             ->innerJoinWith(["product"], false)

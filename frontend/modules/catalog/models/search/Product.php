@@ -321,7 +321,8 @@ class Product extends ProductModel
                 self::tableName() . '.price_from',
                 self::tableName() . '.currency',
                 ProductLang::tableName() . '.title',
-            ]);
+            ])
+            ->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
 
         return $this->baseSearch($query, $params);
     }
