@@ -157,8 +157,8 @@ class RegisterController extends BaseController
                     $message .= '<p>Город: ' . $modelUser->profile->city->getTitle() . '</p>';
                 }
 
-                $message .= '<p>телефон: ' . $modelUser->profile->phone . '</p>' .
-                    '<p>е-майл: ' . $modelUser->email . '</p>';
+                $message .= '<p>Телефон: ' . $modelUser->profile->phone . '</p>' .
+                    '<p>Е-майл: ' . $modelUser->email . '</p>';
 
                 Yii::$app
                     ->mailer
@@ -227,8 +227,9 @@ class RegisterController extends BaseController
                 $message = '<p>Название компании: ' . $modelUser->profile->getNameCompany() . '</p>' .
                     '<p>Имя: ' . $modelUser->profile->first_name . '</p>' .
                     '<p>Фамилия: ' . $modelUser->profile->last_name . '</p>' .
-                    '<p>телефон: ' . $modelUser->profile->phone . '</p>' .
-                    '<p>е-майл: ' . $modelUser->email . '</p>';
+                    '<p>Страна: ' . $modelUser->profile->country->getTitle() . '</p>' .
+                    '<p>Телефон: ' . $modelUser->profile->phone . '</p>' .
+                    '<p>Е-майл: ' . $modelUser->email . '</p>';
 
                 Yii::$app
                     ->mailer

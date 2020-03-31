@@ -36,7 +36,7 @@ echo GridView::widget([
         [
             'attribute' => Yii::t('app', 'Producing country'),
             'value' => 'producingCountry.title',
-            'filter' => GridViewFilter::selectOne($filter, 'producing_country_id', Country::dropDownList()),
+            'filter' => GridViewFilter::selectOne($filter, 'producing_country_id', Country::dropDownListForRegistration()),
         ],
         [
             'class' => ActionStatusColumn::class,
