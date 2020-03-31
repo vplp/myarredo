@@ -1,13 +1,13 @@
 <?php
 
-use backend\widgets\GridView\GridView;
-use backend\modules\catalog\models\CountriesFurniture;
-//
-use thread\widgets\grid\{
-    ActionStatusColumn, GridViewFilter
-};
-use backend\modules\location\models\Country;
 use kartik\widgets\Select2;
+//
+use backend\widgets\GridView\GridView;
+use backend\modules\catalog\models\{
+    CountriesFurniture, Category, Factory
+};
+use backend\widgets\GridView\gridColumns\ActionColumn;
+use backend\modules\location\models\Country;
 
 /**
  * @var $model CountriesFurniture
@@ -27,13 +27,12 @@ echo GridView::widget([
 //            'filter' => false,
 //        ],
         [
-            //'attribute' => 'title',
+            'attribute' => 'title',
             'value' => function ($model) {
                 return $model['lang']['title'];
             },
             'label' => Yii::t('app', 'Title'),
-            'format' => 'raw',
-            'filter' => false
+            'format' => 'raw'
         ],
         [
             'attribute' => 'producing_country_id',
@@ -61,11 +60,32 @@ echo GridView::widget([
                 }
                 return implode(', ', $result);
             },
-            'label' => Yii::t('app', 'Category'),
+            'filter' => Select2::widget([
+                'model' => $model,
+                'attribute' => 'category',
+                'data' => Category::dropDownList(),
+                'options' => [
+                    'placeholder' => Yii::t('app', 'Choose'),
+                ],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ])
         ],
         [
-            'attribute' => Yii::t('app', 'Factory'),
+            'attribute' => 'factory',
             'value' => 'factory.title',
+            'filter' => Select2::widget([
+                'model' => $model,
+                'attribute' => 'factory',
+                'data' => Factory::dropDownList(),
+                'options' => [
+                    'placeholder' => Yii::t('app', 'Choose'),
+                ],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ])
         ],
         [
             'label' => Yii::t('app', 'Update time'),
@@ -75,6 +95,19 @@ echo GridView::widget([
             },
             'format' => 'raw',
             'filter' => false
+        ],
+        [
+            'class' => ActionColumn::class,
+            'updateLink' => function ($model) {
+                return isset($model['price_new'])
+                    ? ['/catalog/sale-italy/update', 'id' => $model['id']]
+                    : ['/catalog/product/update', 'id' => $model['id']];
+            },
+            'deleteLink' => function ($model) {
+                return isset($model['price_new'])
+                    ? ['/catalog/sale-italy/intrash', 'id' => $model['id']]
+                    : ['/catalog/product/intrash', 'id' => $model['id']];
+            }
         ],
     ]
 ]);

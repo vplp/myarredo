@@ -15,7 +15,10 @@ use backend\modules\catalog\Catalog;
  */
 class CountriesFurniture extends Model
 {
+    public $title;
     public $producing_country_id;
+    public $category;
+    public $factory;
 
     /**
      * @return array
@@ -23,14 +26,18 @@ class CountriesFurniture extends Model
     public function rules()
     {
         return [
-            [['producing_country_id'], 'integer'],
+            [['title'], 'string', 'max' => 255],
+            [['producing_country_id', 'category', 'factory'], 'integer'],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'producing_country_id' => Yii::t('app', 'Producing country')
+            'title' => Yii::t('app', 'Title'),
+            'producing_country_id' => Yii::t('app', 'Producing country'),
+            'category' => Yii::t('app', 'Category'),
+            'factory' => Yii::t('app', 'Factory'),
         ];
     }
 
@@ -61,7 +68,10 @@ class CountriesFurniture extends Model
             ->undeleted()
             ->asArray();
 
+        $query1->andFilterWhere(['like', ProductLang::tableName() . '.title', $this->title]);
         $query1->andFilterWhere([Factory::tableName() . '.producing_country_id' => $this->producing_country_id]);
+        $query1->andFilterWhere([Product::tableName() . '.factory_id' => $this->factory]);
+        $query1->andFilterWhere([ProductRelCategory::tableName() . '.group_id' => $this->category]);
 
         $data1 = $query1->all();
 
@@ -82,7 +92,10 @@ class CountriesFurniture extends Model
             ->undeleted()
             ->asArray();
 
+        $query2->andFilterWhere(['like', ItalianProductLang::tableName() . '.title', $this->title]);
         $query2->andFilterWhere([Factory::tableName() . '.producing_country_id' => $this->producing_country_id]);
+        $query1->andFilterWhere([ItalianProduct::tableName() . '.factory_id' => $this->factory]);
+        $query1->andFilterWhere([ItalianProductRelCategory::tableName() . '.group_id' => $this->category]);
 
         $data2 = $query2->all();
 
