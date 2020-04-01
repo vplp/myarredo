@@ -232,31 +232,12 @@ $this->title = $this->context->title;
 
                         </div>
 
-                        <?php /*
-                        <div class="col-md-12 sellout-box">
-                            <div class="section-header">
-                                <h2><?= Yii::t('app', 'Распродажа итальянской мебели') ?></h2>
-                                <?= Html::a(
-                            Yii::t('app', 'Вернуться к списку'),
-                            Url::toRoute(['/catalog/sale/list']),
-                            ['class' => 'back']
-                        ); ?>
-                            </div>
-                        </div>
-                        */ ?>
-
                     </div>
 
                     <?= $this->render('@app/modules/catalog/views/product/parts/_product_by_factory', [
                         'factory' => $model['factory'],
                         'types' => $model['types'],
                         'models' => Product::getProductByFactory($model['factory_id'], $model['catalog_type_id'])
-                    ]) ?>
-
-                    <?= ViewedProducts::widget([
-                        'modelClass' => Sale::class,
-                        'modelLangClass' => SaleLang::class,
-                        'cookieName' => 'viewed_sale'
                     ]) ?>
 
                 </div>

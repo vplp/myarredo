@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use frontend\modules\catalog\models\Product;
+use frontend\modules\catalog\models\{
+    Product, CountriesFurniture
+};
 
 /**  @var $model Product */
 
@@ -37,7 +39,7 @@ $keys = Yii::$app->catalogFilter->keys;
                             <?= Html::beginTag(
                                 'a',
                                 [
-                                    'href' => Product::getUrl($model['alias']),
+                                    'href' => CountriesFurniture::getUrl($model['alias']),
                                     'class' => 'tile',
                                     'target' => '_blank'
                                 ]

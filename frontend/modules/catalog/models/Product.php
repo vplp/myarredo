@@ -442,6 +442,7 @@ class Product extends \common\modules\catalog\models\Product
                 ->andWhere([
                     self::tableName() . '.collections_id' => $collections_id,
                 ])
+                ->andFilterWhere(['NOT IN', self::tableName() . '.alias', Yii::$app->request->get('alias')])
                 ->limit(12)
                 ->all();
         }, 60 * 60);
@@ -472,6 +473,7 @@ class Product extends \common\modules\catalog\models\Product
                     self::tableName() . '.factory_id' => $factory_id,
                     self::tableName() . '.catalog_type_id' => $catalog_type_id
                 ])
+                ->andFilterWhere(['NOT IN', self::tableName() . '.alias', Yii::$app->request->get('alias')])
                 ->limit(12)
                 ->all();
         }, 60 * 60);
@@ -480,9 +482,8 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
-     * Products By Composition Id
-     *
      * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getProductsByCompositionId()
     {

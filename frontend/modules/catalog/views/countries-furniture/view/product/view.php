@@ -400,12 +400,6 @@ $this->title = $this->context->title;
                         ]);
                     } ?>
 
-                    <?= ViewedProducts::widget([
-                        'modelClass' => Product::class,
-                        'modelLangClass' => ProductLang::class,
-                        'cookieName' => 'viewed_products'
-                    ]) ?>
-
                 </div>
             </div>
         </div>
