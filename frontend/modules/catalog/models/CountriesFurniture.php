@@ -45,7 +45,6 @@ class CountriesFurniture extends Model
             '/catalog/countries-furniture/view',
             'alias' => $alias
         ], true);
-
     }
 
     /**
@@ -57,12 +56,18 @@ class CountriesFurniture extends Model
         /** @var Catalog $module */
         $module = Yii::$app->getModule('catalog');
 
-        $this->load($params);
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $this->load($params, '');
 
         /**
          * Product
          */
         $query1 = Product::findBase();
+
+        if (isset($params[$keys['factory']])) {
+            $query1->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
+        }
 
         $query1
             ->innerJoinWith([
@@ -82,6 +87,10 @@ class CountriesFurniture extends Model
          * ItalianProduct
          */
         $query2 = ItalianProduct::findBase();
+
+        if (isset($params[$keys['factory']])) {
+            $query2->andFilterWhere(['IN', Factory::tableName() . '.alias', $params[$keys['factory']]]);
+        }
 
         $query2
             ->innerJoinWith([

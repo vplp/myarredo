@@ -204,7 +204,7 @@ $route = $model->producing_country_id == 4
                         <?php } ?>
 
                         <?php if ($countriesFurnitureProduct) { ?>
-                            <?= Html::tag('h2', Yii::t('app', 'Countries furniture')) ?>
+                            <?= Html::tag('h2', Yii::t('app', 'Catalog of furniture')) ?>
                             <div class="cat-prod catalog-wrap">
                                 <?php foreach ($countriesFurnitureProduct as $key => $item) {
                                     if ($key == 5) { ?>
