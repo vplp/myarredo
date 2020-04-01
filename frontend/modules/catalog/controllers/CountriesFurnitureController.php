@@ -3,6 +3,8 @@
 namespace frontend\modules\catalog\controllers;
 
 use frontend\modules\catalog\widgets\filter\ItalianProductFilter;
+use frontend\modules\catalog\widgets\filter\ProductFilter;
+use frontend\modules\catalog\widgets\filter\ProductFilterSizes;
 use Yii;
 use yii\helpers\{
     ArrayHelper
@@ -230,6 +232,44 @@ class CountriesFurnitureController extends BaseController
                 'model' => $model,
             ]
         );
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function actionAjaxGetFilter()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            return [
+                'success' => 1,
+                'html' => ProductFilter::widget([
+                    'route' => Yii::$app->getRequest()->post('link'),
+                    'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
+                ])
+            ];
+        }
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function actionAjaxGetFilterSizes()
+    {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+
+            return [
+                'success' => 1,
+                'html' => ProductFilterSizes::widget([
+                    'route' => Yii::$app->getRequest()->post('link'),
+                    'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
+                ])
+            ];
+        }
     }
 
     /**

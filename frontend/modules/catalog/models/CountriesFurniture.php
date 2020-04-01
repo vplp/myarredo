@@ -105,7 +105,9 @@ class CountriesFurniture extends Model
         return new ArrayDataProvider([
             'allModels' => $data,
             'pagination' => [
-                'pageSize' => $module->itemOnPage,
+                'defaultPageSize' => !empty($params['defaultPageSize'])
+                    ? $params['defaultPageSize']
+                    : $module->itemOnPage,
             ],
             'sort' => [
                 'attributes' => ['id'],

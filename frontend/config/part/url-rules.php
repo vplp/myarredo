@@ -40,6 +40,8 @@ return [
     'furniture/<filter:[\=\;\-\w\d]+>' => 'catalog/countries-furniture/list',
     'furniture' => 'catalog/countries-furniture/list',
     'furniture-product/<alias:[\w\-]+>' => 'catalog/countries-furniture/view',
+    'catalog/countries-furniture/ajax-get-filter' => 'catalog/countries-furniture/ajax-get-filter',
+    'catalog/countries-furniture/ajax-get-filter-sizes' => 'catalog/countries-furniture/ajax-get-filter-sizes',
 
     'search' => 'catalog/elastic-search/search',
     'search/index' => 'catalog/elastic-search/index',

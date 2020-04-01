@@ -6,7 +6,7 @@ use yii\helpers\{
 //
 use frontend\modules\shop\models\Order;
 use frontend\modules\catalog\models\{
-    Product, Factory, FactoryCatalogsFiles, FactoryPricesFiles, Samples
+    Product, Factory, FactoryCatalogsFiles, FactoryPricesFiles, Samples, CountriesFurniture
 };
 
 /**
@@ -16,6 +16,11 @@ use frontend\modules\catalog\models\{
  */
 
 $keys = Yii::$app->catalogFilter->keys;
+
+$route = $model->producing_country_id == 4
+    ? ['/catalog/category/list']
+    : ['/catalog/countries-furniture/list'];
+
 
 ?>
 
@@ -98,7 +103,7 @@ $keys = Yii::$app->catalogFilter->keys;
                     Html::a(
                         '<span class="for-allprod">' . $item['title'] . '</span>' .
                         ' <span>' . $item['count'] . '</span>',
-                        Yii::$app->catalogFilter->createUrl($params)
+                        Yii::$app->catalogFilter->createUrl($params, $route)
                     ) .
                     Html::endTag('li');
 
@@ -124,7 +129,7 @@ $keys = Yii::$app->catalogFilter->keys;
                     Html::a(
                         '<span class="for-allprod">' . $title . '</span>' .
                         ' <span>' . $item['count'] . '</span>',
-                        Yii::$app->catalogFilter->createUrl($params)
+                        Yii::$app->catalogFilter->createUrl($params, $route)
                     ) .
                     Html::endTag('li');
 
@@ -142,7 +147,9 @@ $keys = Yii::$app->catalogFilter->keys;
                 echo Html::beginTag('li') .
                     Html::a(
                         '<span class="for-allprod">' . $item['article'] . '</span>',
-                        Product::getUrl($item['alias'])
+                        $model->producing_country_id == 4
+                            ? Product::getUrl($item['alias'])
+                            : CountriesFurniture::getUrl($item['alias'])
                     ) .
                     Html::endTag('li');
 

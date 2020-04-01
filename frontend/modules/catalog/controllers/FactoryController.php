@@ -11,7 +11,7 @@ use yii\web\NotFoundHttpException;
 use frontend\components\BaseController;
 use frontend\modules\user\models\User;
 use frontend\modules\catalog\models\{
-    Product, Factory, Sale, FactoryFileClickStats
+    Product, Factory, Sale, FactoryFileClickStats, CountriesFurniture
 };
 
 /**
@@ -91,7 +91,7 @@ class FactoryController extends BaseController
     {
         $model = new Factory();
 
-        $params = [];
+        $params['producing_country_id'] = 4;
 
         $pageTitle[] = Yii::t('app', 'Итальянские фабрики мебели - производители из Италии');
         $pageDescription[] = Yii::t('app', 'Каталог итальянских производителей мебели - продукция лучших фабрик из Италии: кухни, гостиные, мягкая мебель. Заказать мебель итальянских фабрик');
@@ -215,6 +215,14 @@ class FactoryController extends BaseController
             ]
         ]);*/
 
+        $modelCountriesFurniture = new CountriesFurniture();
+        $countriesFurnitureProduct = $modelCountriesFurniture->search([
+            'defaultPageSize' => 6,
+            $keys['factory'] => [
+                $model['alias']
+            ]
+        ]);
+
         $this->breadcrumbs[] = [
             'label' => Yii::t('app', 'Итальянские фабрики мебели'),
             'url' => ['/catalog/factory/list']
@@ -247,6 +255,7 @@ class FactoryController extends BaseController
             'saleProduct' => $saleProduct->getModels(),
             'hostInfoSale' => $hostInfoSale,
             //'italianProduct' => $italianProduct->getModels(),
+            'countriesFurnitureProduct' => $countriesFurnitureProduct->getModels(),
         ]);
     }
 

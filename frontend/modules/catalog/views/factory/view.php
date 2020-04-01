@@ -14,6 +14,7 @@ use frontend\modules\catalog\models\{
  * @var $model Factory
  * @var $italianProduct array
  * @var $saleProduct array
+ * @var $countriesFurnitureProduct array
  * @var $product array
  * @var $hostInfoSale string
  */
@@ -30,6 +31,10 @@ $h1 = Yii::$app->metatag->seo_h1
 $h1 .= !Yii::$app->metatag->seo_h1 && Yii::$app->city->domain != 'com'
     ? ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere()
     : '';
+
+$route = $model->producing_country_id == 4
+    ? ['/catalog/category/list']
+    : ['/catalog/countries-furniture/list'];
 
 ?>
 
@@ -119,7 +124,7 @@ $h1 .= !Yii::$app->metatag->seo_h1 && Yii::$app->city->domain != 'com'
 
                                     ?>
                                     <li>
-                                        <a href="<?= Yii::$app->catalogFilter->createUrl($params) ?>">
+                                        <a href="<?= Yii::$app->catalogFilter->createUrl($params, $route) ?>">
                                             <div class="left-group">
                                                 <div class="img-cont">
                                                     <?= Html::img(Category::getImage($item['image_link3'])) ?>
@@ -198,6 +203,40 @@ $h1 .= !Yii::$app->metatag->seo_h1 && Yii::$app->city->domain != 'com'
                             </div>
                         <?php } ?>
 
+                        <?php if ($countriesFurnitureProduct) { ?>
+                            <?= Html::tag('h2', Yii::t('app', 'Sale') . ' ' . Yii::t('app', 'в') . ' ' . Yii::$app->city->getCityTitleWhere()) ?>
+                            <div class="cat-prod catalog-wrap">
+                                <?php foreach ($countriesFurnitureProduct as $key => $item) {
+                                    if ($key == 5) { ?>
+                                        <div class="one-prod-tile last">
+                                            <div class="img-cont">
+                                                <?= Html::img($bundle->baseUrl . '/img/factory.svg') ?>
+                                            </div>
+
+                                            <?= Html::a(
+                                                Yii::t('app', 'Смотреть полный каталог'),
+                                                Yii::$app->catalogFilter->createUrl(
+                                                    Yii::$app->catalogFilter->params +
+                                                    [$keys['factory'] => $model['alias']],
+                                                    '/catalog/countries-furniture/list'
+                                                ),
+                                                ['class' => 'view-all', 'rel' => 'nofollow']
+                                            ) ?>
+                                        </div>
+                                    <?php } else {
+                                        echo $this->render(
+                                            isset($model['price_new'])
+                                                ? '/countries-furniture/list/_list_item_sale'
+                                                : '/countries-furniture/list/_list_item',
+                                            [
+                                                'model' => $item,
+                                            ]
+                                        );
+                                    }
+                                } ?>
+                            </div>
+                        <?php } ?>
+
                         <?php if ($product) { ?>
                             <?= Html::tag('h2', Yii::t('app', 'Catalog of furniture')) ?>
                             <div class="cat-prod catalog-wrap">
@@ -215,7 +254,8 @@ $h1 .= !Yii::$app->metatag->seo_h1 && Yii::$app->city->domain != 'com'
                                         Yii::t('app', 'Смотреть полный каталог'),
                                         Yii::$app->catalogFilter->createUrl(
                                             Yii::$app->catalogFilter->params +
-                                            [$keys['factory'] => $model['alias']]
+                                            [$keys['factory'] => $model['alias']],
+                                            $route
                                         ),
                                         ['class' => 'view-all', 'rel' => 'nofollow']
                                     ) ?>

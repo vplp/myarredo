@@ -117,3 +117,45 @@ $params = Yii::$app->catalogFilter->params;
         </div>
     </div>
 </main>
+
+<?php
+$queryParams = json_encode(Yii::$app->catalogFilter->params);
+$link = '/catalog/countries-furniture/list';
+$script = <<<JS
+//$.post('/catalog/countries-furniture/ajax-get-filter/', {
+//        _csrf: $('#token').val(),
+//        catalogFilterParams: $queryParams,
+//        link: '$link'
+//    }, function(data) {
+//    $('.ajax-get-filter').html(data.html);
+//    
+//    $('.submit_price').on('click', function () {
+//        let link = $('input[name="price[link]"]').val(),
+//            min = $('input[name="price[min]"]').val(),
+//            max = $('input[name="price[max]"]').val();
+//        
+//        link = link.replace('{priceMin}', min);
+//        link = link.replace('{priceMax}', max);
+//    
+//        window.location.href = link;
+//    });
+//    
+//    $('.category-filter label').on('click', function () {
+//        let checkbox = $(this).parent().find('input[type=checkbox]');  
+//       
+//        if ($(this).parent().find('input[type=checkbox]:checked').length) {
+//            checkbox.prop('checked', false);
+//        } else {
+//            checkbox.prop('checked', true);
+//        }
+//    
+//        $('#catalog_filter').submit();
+//    });
+//    
+//    $('.category-filter input[type=checkbox]').on( "click", function () {
+//        $('#catalog_filter').submit();
+//    });
+//});
+JS;
+
+$this->registerJs($script);

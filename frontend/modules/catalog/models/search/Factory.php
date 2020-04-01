@@ -23,6 +23,7 @@ class Factory extends FactoryModel
     public function rules()
     {
         return [
+            [['producing_country_id'], 'integer'],
             [['letter'], 'string', 'max' => 1],
             [['alias', 'title'], 'string', 'max' => 255],
         ];
@@ -61,9 +62,13 @@ class Factory extends FactoryModel
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'alias', $this->alias]);
-        $query->andFilterWhere(['like', 'title', $this->title]);
-        $query->andFilterWhere(['like', 'first_letter', $this->letter]);
+        $query->andFilterWhere(['like', self::tableName() . '.alias', $this->alias]);
+        $query->andFilterWhere(['like', self::tableName() . '.title', $this->title]);
+        $query->andFilterWhere(['like', self::tableName() . '.first_letter', $this->letter]);
+
+        if (isset($params['producing_country_id'])) {
+            $query->andFilterWhere(['IN', self::tableName() . '.producing_country_id', $params['producing_country_id']]);
+        }
 
         self::getDb()->cache(function ($db) use ($dataProvider) {
             $dataProvider->prepare();
