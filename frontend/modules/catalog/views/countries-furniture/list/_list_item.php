@@ -32,7 +32,7 @@ use frontend\modules\catalog\models\{
     <div class="img-cont" data-dominant-color>
         <span class="background"></span>
         <?= Html::img('/', [
-            'alt' => Product::getStaticTitleForList($model),
+            'alt' => $model['lang']['title'],
             'class' => 'lazy',
             'data-src' => Product::getImageThumb($model['image_link'])
         ]) ?>
@@ -43,7 +43,7 @@ use frontend\modules\catalog\models\{
             <?= $model['factory']['title'] ?>
         </div>
         <div class="tile-prod-name">
-            <?= Product::getStaticTitleForList($model); ?>
+            <?= $model['lang']['title'] ?>
         </div>
     </div>
 
