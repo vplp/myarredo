@@ -541,14 +541,16 @@ class Factory extends \common\modules\catalog\models\Factory
     }
 
     /**
+     * @param array $producing_country_id
      * @return mixed
      */
-    public static function getListLetters()
+    public static function getListLetters($producing_country_id = [4])
     {
         return self::findBase()
             ->select([self::tableName() . '.first_letter'])
             ->groupBy(self::tableName() . '.first_letter')
             ->orderBy(self::tableName() . '.first_letter')
+            ->andFilterWhere(['IN', self::tableName() . '.producing_country_id', $producing_country_id])
             ->all();
     }
 
