@@ -37,9 +37,9 @@ return [
 
     // Module [[Catalog]]
 
-    //'furniture/<filter:[\=\;\-\w\d]+>' => 'catalog/countries-furniture/list',
+    'furniture/<filter:[\=\;\-\w\d]+>' => 'catalog/countries-furniture/list',
     'furniture' => 'catalog/countries-furniture/list',
-    'furniture/<alias:[\w\-]+>' => 'catalog/countries-furniture/view',
+    'furniture-product/<alias:[\w\-]+>' => 'catalog/countries-furniture/view',
 
     'search' => 'catalog/elastic-search/search',
     'search/index' => 'catalog/elastic-search/index',

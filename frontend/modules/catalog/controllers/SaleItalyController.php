@@ -170,7 +170,7 @@ class SaleItalyController extends BaseController
 
             $this->breadcrumbs[] = [
                 'label' => $model['category'][0]['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale-italy/list')
+                'url' => Yii::$app->catalogFilter->createUrl($params, ['/catalog/sale-italy/list'])
             ];
         }
 
@@ -180,7 +180,7 @@ class SaleItalyController extends BaseController
 
             $this->breadcrumbs[] = [
                 'label' => $model['types']['lang']['title'],
-                'url' => Yii::$app->catalogFilter->createUrl($params, '/catalog/sale-italy/list')
+                'url' => Yii::$app->catalogFilter->createUrl($params, ['/catalog/sale-italy/list'])
             ];
         }
 

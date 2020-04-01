@@ -28,7 +28,7 @@ use frontend\modules\catalog\models\{
     <div class="img-cont" data-dominant-color>
         <span class="background"></span>
         <?= Html::img('/', [
-            'alt' => $model->getTitleForList(),
+            'alt' => $model['lang']['title'],
             'class' => 'lazy',
             'data-src' => ItalianProduct::getImageThumb($model['image_link'])
         ]) ?>
@@ -39,7 +39,7 @@ use frontend\modules\catalog\models\{
             <?= ($model['factory']) ? $model['factory']['title'] : $model['factory_name'] ?>
         </div>
         <div class="tile-prod-name">
-            <?= $model->getTitleForList() ?>
+            <?= $model['lang']['title'] ?>
         </div>
     </div>
 
