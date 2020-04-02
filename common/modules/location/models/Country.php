@@ -5,7 +5,9 @@ namespace common\modules\location\models;
 use yii\helpers\ArrayHelper;
 //
 use common\modules\shop\models\Order;
-use common\modules\catalog\models\Sale;
+use common\modules\catalog\models\{
+    Sale, Factory
+};
 
 /**
  * Class Country
@@ -65,6 +67,14 @@ class Country extends \thread\modules\location\models\Country
         ];
 
         return ArrayHelper::merge($attributeLabels, parent::attributeLabels());
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFactory()
+    {
+        return $this->hasMany(Factory::class, ['producing_country_id' => 'id']);
     }
 
     /**

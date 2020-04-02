@@ -5,7 +5,9 @@ namespace frontend\modules\location\models;
 use Yii;
 use yii\helpers\ArrayHelper;
 //
-use frontend\modules\catalog\models\Sale;
+use frontend\modules\catalog\models\{
+    Sale, Product, ItalianProduct, Factory
+};
 
 /**
  * Class Country
@@ -178,6 +180,165 @@ class Country extends \common\modules\location\models\Country
 
     /**
      * @param array $params
+     * @param bool $isCountriesFurniture
+     * @return mixed
+     * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getWithProduct($params = [], $isCountriesFurniture = false)
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = self::findBase();
+
+        $query
+            ->innerJoinWith(["factory"], false)
+            ->innerJoinWith(["factory.product"], false)
+            ->innerJoinWith(["factory.product.lang"], false)
+            ->andFilterWhere([
+                Product::tableName() . '.published' => '1',
+                Product::tableName() . '.deleted' => '0',
+                Product::tableName() . '.removed' => '0',
+                Factory::tableName() . '.published' => '1',
+                Factory::tableName() . '.deleted' => '0',
+                Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
+            ]);
+
+        if ($isCountriesFurniture) {
+            $query->andFilterWhere(['NOT IN', Factory::tableName() . '.producing_country_id', [4]]);
+        } else {
+            $query->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
+        }
+
+        if (isset($params[$keys['category']])) {
+            $query
+                ->innerJoinWith(["factory.product.category productCategory"], false)
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'productCategory.alias' : 'productCategory.alias2',
+                    $params[$keys['category']]
+                ]);
+        }
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["factory.product.types productTypes"], false)
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'productTypes.alias' : 'productTypes.alias2',
+                    $params[$keys['type']]
+                ]);
+        }
+
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["factory.product.subTypes productSubTypes"], false)
+                ->andFilterWhere(['IN', 'productSubTypes.alias', $params[$keys['subtypes']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["factory.product.specification productSpecification"], false)
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'productSpecification.alias' : 'productSpecification.alias2',
+                    $params[$keys['style']]
+                ]);
+        }
+
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["factory.product.factory productFactory"], false)
+                ->andFilterWhere(['IN', 'productFactory.alias', $params[$keys['factory']]]);
+        }
+
+        if (isset($params[$keys['collection']])) {
+            $query
+                ->innerJoinWith(["factory.product.collection productCollection"], false)
+                ->andFilterWhere(['IN', 'productCollection.id', $params[$keys['collection']]]);
+        }
+
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["factory.product.colors as productColors"], false)
+                ->andFilterWhere(['IN', 'productColors.alias', $params[$keys['colors']]]);
+        }
+
+        if (isset($params[$keys['price']])) {
+            $min = Yii::$app->currency->getReversValue($params[$keys['price']][0], Yii::$app->currency->code, 'EUR');
+            $max = Yii::$app->currency->getReversValue($params[$keys['price']][1], Yii::$app->currency->code, 'EUR');
+            $query->andFilterWhere(['between', Product::tableName() . '.price_from', $min, $max]);
+        }
+
+        if (isset($params[$keys['diameter']])) {
+            $min = $params[$keys['diameter']][0];
+            $max = $params[$keys['diameter']][1];
+            $query
+                ->innerJoinWith(["factory.product.specificationValue diameter"], false)
+                ->andFilterWhere(['diameter.specification_id' => 42])
+                ->andFilterWhere(['BETWEEN', 'diameter.val', $min, $max]);
+        }
+
+        if (isset($params[$keys['width']])) {
+            $min = $params[$keys['width']][0];
+            $max = $params[$keys['width']][1];
+            $query
+                ->innerJoinWith(["factory.product.specificationValue width"], false)
+                ->andFilterWhere(['width.specification_id' => 8])
+                ->andFilterWhere(['BETWEEN', 'width.val', $min, $max]);
+        }
+
+        if (isset($params[$keys['length']])) {
+            $min = $params[$keys['length']][0];
+            $max = $params[$keys['length']][1];
+            $query
+                ->innerJoinWith(["factory.product.specificationValue length"], false)
+                ->andFilterWhere(['length.specification_id' => 6])
+                ->andFilterWhere(['BETWEEN', 'length.val', $min, $max]);
+        }
+
+        if (isset($params[$keys['height']])) {
+            $min = $params[$keys['height']][0];
+            $max = $params[$keys['height']][1];
+            $query
+                ->innerJoinWith(["factory.product.specificationValue height"], false)
+                ->andFilterWhere(['height.specification_id' => 7])
+                ->andFilterWhere(['BETWEEN', 'height.val', $min, $max
+                ]);
+        }
+
+        if (isset($params[$keys['apportionment']])) {
+            $min = $params[$keys['apportionment']][0];
+            $max = $params[$keys['apportionment']][1];
+            $query
+                ->innerJoinWith(["factory.product.specification apportionment"], false)
+                ->andFilterWhere(['apportionment.specification_id' => 67])
+                ->andFilterWhere(['BETWEEN', 'apportionment.val', $min, $max]);
+        }
+
+        if (Yii::$app->request->get('show') == 'in_stock') {
+            $query->andWhere([
+                Product::tableName() . '.in_stock' => '1'
+            ]);
+        }
+
+        $result = self::getDb()->cache(function ($db) use ($query) {
+            return $query
+                ->select([
+                    self::tableName() . '.id',
+                    self::tableName() . '.alias',
+                    CountryLang::tableName() . '.title',
+                    'count(' . self::tableName() . '.id) as count'
+                ])
+                ->groupBy(self::tableName() . '.id')
+                ->all();
+        }, 60 * 60);
+
+        return $result;
+    }
+
+    /**
+     * @param array $params
      * @return mixed
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
@@ -256,5 +417,97 @@ class Country extends \common\modules\location\models\Country
         }, 60 * 60);
 
         return $result;
+    }
+
+    /**
+     * @param array $params
+     * @param bool $isCountriesFurniture
+     * @return mixed
+     */
+    public static function getWithItalianProduct($params = [], $isCountriesFurniture = false)
+    {
+        $keys = Yii::$app->catalogFilter->keys;
+
+        $query = self::findBase();
+
+        $query
+            ->innerJoinWith(["factory"], false)
+            ->innerJoinWith(["factory.italianProduct"], false)
+            ->innerJoinWith(["factory.italianProduct.lang"], false)
+            ->andFilterWhere([
+                ItalianProduct::tableName() . '.published' => '1',
+                ItalianProduct::tableName() . '.deleted' => '0',
+            ]);
+
+        if (isset($params[$keys['category']])) {
+            $query
+                ->innerJoinWith(["factory.italianProduct.category italianProductCategory"], false)
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'italianProductCategory.alias' : 'italianProductCategory.alias2',
+                    $params[$keys['category']]
+                ]);
+        }
+
+
+        if (isset($params[$keys['type']])) {
+            $query
+                ->innerJoinWith(["factory.italianProduct.types italianProductTypes"], false)
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'italianProductTypes.alias' : 'italianProductTypes.alias2',
+                    $params[$keys['type']]
+                ]);
+        }
+
+        if (isset($params[$keys['subtypes']])) {
+            $query
+                ->innerJoinWith(["factory.italianProduct.subTypes italianProductSubTypes"], false)
+                ->andFilterWhere(['IN', 'italianProductSubTypes.alias', $params[$keys['subtypes']]]);
+        }
+
+        if (isset($params[$keys['style']])) {
+            $query
+                ->innerJoinWith(["factory.italianProduct.specification italianProductSpecification"], false)
+                ->andFilterWhere([
+                    'IN',
+                    Yii::$app->city->domain != 'com' ? 'italianProductSpecification.alias' : 'italianProductSpecification.alias2',
+                    $params[$keys['style']]
+                ]);
+        }
+
+        if (isset($params[$keys['factory']])) {
+            $query
+                ->innerJoinWith(["factory.italianProduct.factory italianProductFactory"], false)
+                ->andFilterWhere(['IN', 'italianProductFactory.alias', $params[$keys['factory']]]);
+        }
+
+        if (isset($params[$keys['colors']])) {
+            $query
+                ->innerJoinWith(["factory.italianProduct.colors as italianProductColors"], false)
+                ->andFilterWhere(['IN', 'italianProductColors.alias', $params[$keys['colors']]]);
+        }
+
+        if (isset($params[$keys['price']])) {
+            $min = Yii::$app->currency->getReversValue($params[$keys['price']][0], Yii::$app->currency->code, 'EUR');
+            $max = Yii::$app->currency->getReversValue($params[$keys['price']][1], Yii::$app->currency->code, 'EUR');
+            $query->andFilterWhere(['between', ItalianProduct::tableName() . '.price_new', $min, $max]);
+        }
+
+        if ($isCountriesFurniture) {
+            $query->andFilterWhere(['NOT IN', Factory::tableName() . '.producing_country_id', [4]]);
+        } else {
+            $query->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
+        }
+
+        return $query
+            ->select([
+                self::tableName() . '.id',
+                self::tableName() . '.alias',
+                CountryLang::tableName() . '.title',
+                'count(' . self::tableName() . '.id) as count'
+            ])
+            ->groupBy(self::tableName() . '.id')
+            ->all();
     }
 }

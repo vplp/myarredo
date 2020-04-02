@@ -28,64 +28,40 @@ use frontend\modules\catalog\models\{
  */
 class SaleFilter extends Widget
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     public $view = 'sale_filter';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $route;
 
-    /**
-     * @var object
-     */
+    /** @var object */
     public $category = [];
 
-    /**
-     * @var object
-     */
+    /** @var object */
     public $category_counts = [];
 
-    /**
-     * @var object
-     */
+    /** @var object */
     public $types = [];
 
-    /**
-     * @var object
-     */
+    /** @var object */
     public $subtypes = [];
 
-    /**
-     * @var object
-     */
+    /** @var object */
     public $style = [];
 
-    /**
-     * @var object
-     */
+    /** @var object */
     public $factory = [];
 
-    /**
-     * @var object
-     */
+    /** @var object */
     public $countries = [];
 
-    /**
-     * @var object
-     */
+    /** @var object */
     public $cities = [];
 
-    /**
-     * @var object
-     */
-    public $priceRange = ['min' => 0, 'max' => 99];
+    /** @var object */
+    public $priceRange = ['min' => ['default' => 0], 'max' => ['default' => 0]];
 
-    /**
-     * @var object
-     */
+    /**  @var object */
     public $colors = [];
 
     /** @var object */

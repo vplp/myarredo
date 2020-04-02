@@ -6,6 +6,10 @@ use Yii;
 use yii\base\Widget;
 use yii\helpers\ArrayHelper;
 //
+//
+use frontend\modules\location\models\{
+    Country, City
+};
 use frontend\modules\catalog\models\{
     Collection,
     Product,
@@ -20,7 +24,7 @@ use frontend\modules\catalog\models\{
 };
 
 /**
- * Class CountriesFurniture
+ * Class CountriesFurnitureFilter
  *
  * @package frontend\modules\catalog\widgets\filter
  */
@@ -74,6 +78,12 @@ class CountriesFurnitureFilter extends Widget
     /** @var object */
     public $catalogFilterParams = [];
 
+    /** @var object */
+    public $countries = [];
+
+    /** @var object */
+    public $cities = [];
+
     /**
      * @return string
      * @throws \Throwable
@@ -86,6 +96,8 @@ class CountriesFurnitureFilter extends Widget
         $this->catalogFilterParams = $this->catalogFilterParams ?? Yii::$app->catalogFilter->params;
 
         $queryParams = $this->catalogFilterParams;
+
+        $this->countries = Country::getWithProduct($queryParams, true) + Country::getWithItalianProduct($queryParams, true);
 
         $this->category = Category::getWithProduct($queryParams, true) + Category::getWithItalianProduct($queryParams, true);
         $this->types = Types::getWithProduct($queryParams, true) + Types::getWithItalianProduct($queryParams, true);
@@ -108,6 +120,35 @@ class CountriesFurnitureFilter extends Widget
         $this->lengthRange = [];
         $this->heightRange = [];
         $this->apportionmentRange = [];
+
+        /** Countries list */
+
+        $countries = [];
+
+        foreach ($this->countries as $key => $obj) {
+            $params = $this->catalogFilterParams;
+
+            if (
+                !empty($params[$keys['country']]) &&
+                in_array($obj['alias'], $params[$keys['country']])
+            ) {
+                $checked = 1;
+                $params[$keys['country']] = '';
+            } else {
+                $checked = 0;
+                $params[$keys['country']] = $obj['alias'];
+            }
+
+            $link = Yii::$app->catalogFilter->createUrl($params, [$this->route]);
+
+            $countries[$key] = array(
+                'checked' => $checked,
+                'link' => $link,
+                'title' => $obj['lang']['title'],
+                'count' => $obj['count'],
+                'alias' => $obj['alias'],
+            );
+        }
 
         /** CATEGORY LIST */
 
@@ -566,6 +607,7 @@ class CountriesFurnitureFilter extends Widget
 
         return $this->render($this->view, [
             'route' => $this->route,
+            'countries' => $countries,
             'category' => $category,
             'types' => $types,
             'subtypes' => $subtypes,

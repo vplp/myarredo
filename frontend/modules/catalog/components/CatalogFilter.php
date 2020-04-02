@@ -61,7 +61,7 @@ class CatalogFilter extends Component
         'style' => '.30',
         'factory' => '.40',
         'collection' => '.50',
-        //'country' => '.60',
+        'country' => '.60',
         //'city' => '.70',
         'colors' => '.80',
         'subtypes' => '.90',
@@ -87,7 +87,7 @@ class CatalogFilter extends Component
             self::$keys['factory'] => 'f',
             self::$keys['collection'] => 'c',
             //self::$keys['city'] => 'city',
-            //self::$keys['country'] => 'country',
+            self::$keys['country'] => 'country',
             self::$keys['colors'] => 'colors',
             self::$keys['subtypes'] => 'st',
             self::$keys['price'] => 'price',
@@ -416,7 +416,6 @@ class CatalogFilter extends Component
 
         /** Country */
 
-        /*
         if (!empty(self::$_structure['country'])) {
             $model = Country::findByAlias(self::$_structure['country'][0]);
 
@@ -426,7 +425,6 @@ class CatalogFilter extends Component
 
             self::$_parameters[self::$keys['country']][0] = $model['alias'];
         }
-        */
 
         /** City */
 

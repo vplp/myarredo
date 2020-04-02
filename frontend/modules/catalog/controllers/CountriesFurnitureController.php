@@ -78,8 +78,6 @@ class CountriesFurnitureController extends BaseController
 
         Yii::$app->catalogFilter->parserUrl();
 
-        Yii::$app->catalogFilter->parserUrl();
-
         $keys = Yii::$app->catalogFilter->keys;
         $queryParams = Yii::$app->catalogFilter->params;
 
@@ -254,24 +252,24 @@ class CountriesFurnitureController extends BaseController
         }
     }
 
-    /**
-     * @return array
-     * @throws \Exception
-     */
-    public function actionAjaxGetFilterSizes()
-    {
-        if (Yii::$app->request->isAjax) {
-            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
-
-            return [
-                'success' => 1,
-                'html' => ProductFilterSizes::widget([
-                    'route' => Yii::$app->getRequest()->post('link'),
-                    'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
-                ])
-            ];
-        }
-    }
+//    /**
+//     * @return array
+//     * @throws \Exception
+//     */
+//    public function actionAjaxGetFilterSizes()
+//    {
+//        if (Yii::$app->request->isAjax) {
+//            Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+//
+//            return [
+//                'success' => 1,
+//                'html' => ProductFilterSizes::widget([
+//                    'route' => Yii::$app->getRequest()->post('link'),
+//                    'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
+//                ])
+//            ];
+//        }
+//    }
 
     /**
      * @inheritdoc

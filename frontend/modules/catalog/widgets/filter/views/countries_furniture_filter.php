@@ -8,7 +8,8 @@ use yii\helpers\{
 use frontend\modules\catalog\models\Category;
 
 /** @var $route string */
-/** @var $category Category */
+/** @var $countries [] */
+/** @var $category [] */
 /** @var $types [] */
 /** @var $subtypes [] */
 /** @var $style [] */
@@ -34,6 +35,28 @@ use frontend\modules\catalog\models\Category;
         'id' => 'catalog_filter',
         'action' => Url::toRoute([$route])
     ]); ?>
+
+    <?php if ($countries) { ?>
+        <div class="one-filter">
+            <?= Html::a(
+                Yii::t('app', 'Country'),
+                'javascript:void(0);',
+                ['class' => 'filt-but']
+            ) ?>
+            <div class="list-item">
+                <?php foreach ($countries as $item) { ?>
+                    <?php $class = $item['checked'] ? 'one-item-check selected' : 'one-item-check' ?>
+
+                    <?= Html::beginTag('a', ['href' => $item['link'], 'class' => $class]); ?>
+                    <div class="filter-group">
+                        <div class="my-checkbox"></div><?= $item['title'] ?>
+                    </div>
+                    <span><?= $item['count'] ?></span>
+                    <?= Html::endTag('a'); ?>
+                <?php } ?>
+            </div>
+        </div>
+    <?php } ?>
 
     <div class="one-filter">
         <?= Html::a(

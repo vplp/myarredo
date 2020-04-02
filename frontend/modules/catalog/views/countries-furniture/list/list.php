@@ -47,15 +47,6 @@ $params = Yii::$app->catalogFilter->params;
 
                     </div>
 
-                    <?php if (empty($params) || (count($params) == 1 && isset($params[$keys['category']]))) {
-                        echo ProductsNovelties::widget([
-                            'modelPromotionItemClass' => Product::class,
-                            'modelPromotionItemLangClass' => ProductLang::class,
-                            'modelClass' => ItalianProduct::class,
-                            'modelLangClass' => ItalianProductLang::class,
-                        ]);
-                    } ?>
-
                     <div class="cat-content">
                         <?= Html::a(
                             Yii::t('app', 'Фильтры'),
@@ -119,7 +110,7 @@ $params = Yii::$app->catalogFilter->params;
     </main>
 
 <?php
-$queryParams = json_encode(Yii::$app->catalogFilter->params);
+$queryParams = json_encode($params);
 $link = '/catalog/countries-furniture/list';
 $script = <<<JS
 $.post('/catalog/countries-furniture/ajax-get-filter/', {
