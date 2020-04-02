@@ -51,11 +51,12 @@ class Collection extends \common\modules\catalog\models\Collection
 
     /**
      * @param array $params
+     * @param bool $isCountriesFurniture
      * @return mixed
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getWithProduct($params = [])
+    public static function getWithProduct($params = [], $isCountriesFurniture = false)
     {
         $keys = Yii::$app->catalogFilter->keys;
 
@@ -72,8 +73,13 @@ class Collection extends \common\modules\catalog\models\Collection
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
                 Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
-            ])
-            ->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
+            ]);
+
+        if ($isCountriesFurniture) {
+            $query->andFilterWhere(['NOT IN', Factory::tableName() . '.producing_country_id', [4]]);
+        } else {
+            $query->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
+        }
 
         if (isset($params[$keys['category']])) {
             $query

@@ -192,11 +192,12 @@ class Category extends \common\modules\catalog\models\Category
 
     /**
      * @param array $params
+     * @param bool $isCountriesFurniture
      * @return mixed
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getWithProduct($params = [])
+    public static function getWithProduct($params = [], $isCountriesFurniture = false)
     {
         $keys = Yii::$app->catalogFilter->keys;
 
@@ -304,6 +305,12 @@ class Category extends \common\modules\catalog\models\Category
             ]);
         }
 
+        if ($isCountriesFurniture) {
+            $query->andFilterWhere(['NOT IN', Factory::tableName() . '.producing_country_id', [4]]);
+        } else {
+            $query->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
+        }
+
         $result = self::getDb()->cache(function ($db) use ($query) {
             return $query
                 ->innerJoinWith(["product"], false)
@@ -317,7 +324,6 @@ class Category extends \common\modules\catalog\models\Category
                     Factory::tableName() . '.deleted' => '0',
                     Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
                 ])
-                ->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]])
                 ->select([
                     self::tableName() . '.id',
                     self::tableName() . '.alias',
@@ -432,11 +438,12 @@ class Category extends \common\modules\catalog\models\Category
 
     /**
      * @param array $params
+     * @param bool $isCountriesFurniture
      * @return mixed
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getWithItalianProduct($params = [])
+    public static function getWithItalianProduct($params = [], $isCountriesFurniture = false)
     {
         $keys = Yii::$app->catalogFilter->keys;
 
@@ -463,7 +470,9 @@ class Category extends \common\modules\catalog\models\Category
                 ->innerJoinWith(["italianProduct.specification italianProductSpecification"], false)
                 ->andFilterWhere([
                     'IN',
-                    Yii::$app->city->domain != 'com' ? 'italianProductSpecification.alias' : 'italianProductSpecification.alias2',
+                    Yii::$app->city->domain != 'com'
+                        ? 'italianProductSpecification.alias'
+                        : 'italianProductSpecification.alias2',
                     $params[$keys['style']]
                 ]);
         }
@@ -486,9 +495,16 @@ class Category extends \common\modules\catalog\models\Category
             $query->andFilterWhere(['between', ItalianProduct::tableName() . '.price_new', $min, $max]);
         }
 
+        if ($isCountriesFurniture) {
+            $query->andFilterWhere(['NOT IN', Factory::tableName() . '.producing_country_id', [4]]);
+        } else {
+            $query->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
+        }
+
         $result = self::getDb()->cache(function ($db) use ($query) {
             return $query
                 ->innerJoinWith(["italianProduct"], false)
+                ->innerJoinWith(["italianProduct.factory"], false)
                 ->andFilterWhere([
                     ItalianProduct::tableName() . '.published' => '1',
                     ItalianProduct::tableName() . '.deleted' => '0',

@@ -7,7 +7,16 @@ use yii\base\Widget;
 use yii\helpers\ArrayHelper;
 //
 use frontend\modules\catalog\models\{
-    Collection, Product, Category, Factory, Types, SubTypes, Specification, Colors, ProductRelSpecification, CountriesFurniture
+    Collection,
+    Product,
+    Category,
+    Factory,
+    Types,
+    SubTypes,
+    Specification,
+    Colors,
+    ProductRelSpecification,
+    CountriesFurniture
 };
 
 /**
@@ -57,7 +66,7 @@ class CountriesFurnitureFilter extends Widget
     public $apportionmentRange = ['min' => 0, 'max' => 1];
 
     /** @var array */
-    public $priceRange = ['min' => 0, 'max' => 1];
+    public $priceRange = ['min' => ['default' => 0], 'max' => ['default' => 0]];
 
     /** @var object */
     public $colors = [];
@@ -78,35 +87,27 @@ class CountriesFurnitureFilter extends Widget
 
         $queryParams = $this->catalogFilterParams;
 
-        $this->category = Category::getWithProduct($queryParams);
-        $this->types = Types::getWithProduct($queryParams);
-        $this->subtypes = SubTypes::getWithProduct($queryParams);
-        $this->style = Specification::getWithProduct($queryParams);
-        $this->factory = Factory::getWithProduct($queryParams);
+        $this->category = Category::getWithProduct($queryParams, true) + Category::getWithItalianProduct($queryParams, true);
+        $this->types = Types::getWithProduct($queryParams, true) + Types::getWithItalianProduct($queryParams, true);
+        $this->subtypes = SubTypes::getWithProduct($queryParams, true) + SubTypes::getWithItalianProduct($queryParams, true);
+        $this->style = Specification::getWithProduct($queryParams, true) + Specification::getWithItalianProduct($queryParams, true);
+        $this->factory = Factory::getWithProduct($queryParams, true) + Factory::getWithItalianProduct($queryParams, true);
 
         if (isset($queryParams[$keys['factory']]) && count($queryParams[$keys['factory']]) == 1) {
-            $this->collection = Collection::getWithProduct($queryParams);
+            $this->collection = Collection::getWithProduct($queryParams, true);
         } else {
             $this->collection = [];
         }
 
-        $this->colors = Colors::getWithProduct($queryParams);
+        $this->colors = Colors::getWithProduct($queryParams, true) + Colors::getWithItalianProduct($queryParams, true);
 
-        $this->priceRange = Product::getPriceRange($queryParams);
+        //$this->priceRange = Product::getPriceRange($queryParams, true);
 
         $this->diameterRange = [];
         $this->widthRange = [];
         $this->lengthRange = [];
         $this->heightRange = [];
         $this->apportionmentRange = [];
-
-        /*if (in_array(Yii::$app->request->userIP, ['127.0.0.1'])) {
-            $this->diameterRange = ProductRelSpecification::getRange($queryParams, 42);
-            $this->widthRange = ProductRelSpecification::getRange($queryParams, 8);
-            $this->lengthRange = ProductRelSpecification::getRange($queryParams, 6);
-            $this->heightRange = ProductRelSpecification::getRange($queryParams, 7);
-            $this->apportionmentRange = ProductRelSpecification::getRange($queryParams, 67);
-        }*/
 
         /** CATEGORY LIST */
 

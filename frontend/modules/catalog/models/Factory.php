@@ -223,15 +223,16 @@ class Factory extends \common\modules\catalog\models\Factory
 
     /**
      * @param array $params
+     * @param bool $isCountriesFurniture
      * @return mixed
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getWithProduct($params = [])
+    public static function getWithProduct($params = [], $isCountriesFurniture = false)
     {
         $keys = Yii::$app->catalogFilter->keys;
 
-        $query = self::findBase()->andFilterWhere(['IN', self::tableName() . '.producing_country_id', [4]]);
+        $query = self::findBase();
 
         $query
             ->innerJoinWith(["product"], false)
@@ -241,6 +242,12 @@ class Factory extends \common\modules\catalog\models\Factory
                 Product::tableName() . '.deleted' => '0',
                 Product::tableName() . '.removed' => '0',
             ]);
+
+        if ($isCountriesFurniture) {
+            $query->andFilterWhere(['NOT IN', Factory::tableName() . '.producing_country_id', [4]]);
+        } else {
+            $query->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
+        }
 
         if (isset($params[$keys['category']])) {
             $query
@@ -464,9 +471,10 @@ class Factory extends \common\modules\catalog\models\Factory
 
     /**
      * @param array $params
+     * @param bool $isCountriesFurniture
      * @return mixed
      */
-    public static function getWithItalianProduct($params = [])
+    public static function getWithItalianProduct($params = [], $isCountriesFurniture = false)
     {
         $keys = Yii::$app->catalogFilter->keys;
 
@@ -525,6 +533,12 @@ class Factory extends \common\modules\catalog\models\Factory
             $min = Yii::$app->currency->getReversValue($params[$keys['price']][0], Yii::$app->currency->code, 'EUR');
             $max = Yii::$app->currency->getReversValue($params[$keys['price']][1], Yii::$app->currency->code, 'EUR');
             $query->andFilterWhere(['between', ItalianProduct::tableName() . '.price_new', $min, $max]);
+        }
+
+        if ($isCountriesFurniture) {
+            $query->andFilterWhere(['NOT IN', Factory::tableName() . '.producing_country_id', [4]]);
+        } else {
+            $query->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
         }
 
         return $query

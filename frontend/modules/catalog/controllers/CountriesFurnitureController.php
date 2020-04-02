@@ -2,8 +2,7 @@
 
 namespace frontend\modules\catalog\controllers;
 
-use frontend\modules\catalog\widgets\filter\ItalianProductFilter;
-use frontend\modules\catalog\widgets\filter\ProductFilter;
+use frontend\modules\catalog\widgets\filter\CountriesFurnitureFilter;
 use frontend\modules\catalog\widgets\filter\ProductFilterSizes;
 use Yii;
 use yii\helpers\{
@@ -14,7 +13,8 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 //
 use frontend\components\BaseController;
-use frontend\modules\catalog\models\{Collection,
+use frontend\modules\catalog\models\{
+    Collection,
     Product,
     ItalianProduct,
     ItalianProductLang,
@@ -26,7 +26,8 @@ use frontend\modules\catalog\models\{Collection,
     SubTypes,
     Specification,
     Colors,
-    CountriesFurniture};
+    CountriesFurniture
+};
 use frontend\themes\myarredo\assets\AppAsset;
 use yii\web\Response;
 
@@ -245,7 +246,7 @@ class CountriesFurnitureController extends BaseController
 
             return [
                 'success' => 1,
-                'html' => ProductFilter::widget([
+                'html' => CountriesFurnitureFilter::widget([
                     'route' => Yii::$app->getRequest()->post('link'),
                     'catalogFilterParams' => Yii::$app->getRequest()->post('catalogFilterParams')
                 ])

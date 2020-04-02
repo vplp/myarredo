@@ -148,11 +148,12 @@ class Specification extends \common\modules\catalog\models\Specification
 
     /**
      * @param array $params
+     * @param bool $isCountriesFurniture
      * @return mixed
      * @throws \Throwable
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getWithProduct($params = [])
+    public static function getWithProduct($params = [], $isCountriesFurniture = false)
     {
         $keys = Yii::$app->catalogFilter->keys;
 
@@ -171,8 +172,13 @@ class Specification extends \common\modules\catalog\models\Specification
                 Factory::tableName() . '.published' => '1',
                 Factory::tableName() . '.deleted' => '0',
                 Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
-            ])
-            ->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
+            ]);
+
+        if ($isCountriesFurniture) {
+            $query->andFilterWhere(['NOT IN', Factory::tableName() . '.producing_country_id', [4]]);
+        } else {
+            $query->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
+        }
 
         if (isset($params[$keys['category']])) {
             $query
@@ -382,10 +388,11 @@ class Specification extends \common\modules\catalog\models\Specification
     }
 
     /**
-     * @param $params
+     * @param array $params
+     * @param bool $isCountriesFurniture
      * @return mixed
      */
-    public static function getWithItalianProduct($params = [])
+    public static function getWithItalianProduct($params = [], $isCountriesFurniture = false)
     {
         $keys = Yii::$app->catalogFilter->keys;
 
@@ -444,7 +451,14 @@ class Specification extends \common\modules\catalog\models\Specification
             $query->andFilterWhere(['between', ItalianProduct::tableName() . '.price_new', $min, $max]);
         }
 
+        if ($isCountriesFurniture) {
+            $query->andFilterWhere(['NOT IN', Factory::tableName() . '.producing_country_id', [4]]);
+        } else {
+            $query->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
+        }
+
         return $query
+            ->innerJoinWith(["italianProduct.factory"], false)
             ->select([
                 self::tableName() . '.id',
                 self::tableName() . '.alias',

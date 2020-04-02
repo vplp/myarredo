@@ -539,15 +539,23 @@ class Product extends \common\modules\catalog\models\Product
     }
 
     /**
-     * @param $params
-     * @return \yii\data\ActiveDataProvider
+     * @param array $params
+     * @param bool $isCountriesFurniture
+     * @return mixed
      * @throws \Throwable
+     * @throws \yii\base\InvalidConfigException
      */
-    public static function getPriceRange($params)
+    public static function getPriceRange($params = [], $isCountriesFurniture = false)
     {
         $keys = Yii::$app->catalogFilter->keys;
 
         $query = self::findBaseWithoutLang();
+
+        if ($isCountriesFurniture) {
+            $query->andFilterWhere(['NOT IN', Factory::tableName() . '.producing_country_id', [4]]);
+        } else {
+            $query->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]]);
+        }
 
         if (isset($params[$keys['category']])) {
             $query
