@@ -357,13 +357,16 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
      */
     public static function getCostPlacementProduct($count = 1)
     {
-        /**
-         * cost 1 product = 100 EUR
-         * conversion to RUB
-         */
-        $currency = Currency::findByCode2('EUR');
-
-        $cost = 100 * $currency['course'];
+        if (Yii::$app->user->identity->profile->factory->producing_country_id == 2) {
+            $cost = 1000;
+        } else {
+            /**
+             * cost 1 product = 100 EUR
+             * conversion to RUB
+             */
+            $currency = Currency::findByCode2('EUR');
+            $cost = 100 * $currency['course'];
+        }
 
         $amount = $cost + ($cost * 0.02);
         $amount = number_format($amount, 2, '.', '');

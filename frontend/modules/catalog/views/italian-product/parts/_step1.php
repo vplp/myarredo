@@ -270,14 +270,16 @@ $Specifications = Specification::findBase()->all();
             ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
         ) ?>
 
-        <?= $form
-            ->field($model, 'region_id')
-            ->widget(Select2::class, [
-                'data' => [0 => '--'] + Region::dropDownList(4),
-                'options' => [
-                    'placeholder' => Yii::t('app', 'Select option'),
-                ],
-            ]) ?>
+        <?php if (Yii::$app->user->identity->profile->factory->producing_country_id == 4) {
+            echo $form
+                ->field($model, 'region_id')
+                ->widget(Select2::class, [
+                    'data' => [0 => '--'] + Region::dropDownList(4),
+                    'options' => [
+                        'placeholder' => Yii::t('app', 'Select option'),
+                    ],
+                ]);
+        } ?>
 
         <?php
         $model->phone = $model->isNewRecord
