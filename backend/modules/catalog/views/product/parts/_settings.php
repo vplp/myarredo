@@ -140,6 +140,9 @@ $this->registerJs($script);
     <div class="col-md-3">
         <?= $form->text_line($model, 'price_from') ?>
     </div>
+    <div class="col-md-3">
+        <?= $form->field($model, 'currency')->dropDownList($model::currencyRange()); ?>
+    </div>
 </div>
 
 <?= $form->text_line($model, 'country_code') ?>

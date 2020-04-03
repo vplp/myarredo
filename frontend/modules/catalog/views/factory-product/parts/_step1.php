@@ -110,6 +110,8 @@ use backend\modules\catalog\widgets\grid\ManyToManySpecificationValueDataColumn;
 
         <?= $form->text_line($model, 'factory_price') ?>
 
+        <?= $form->field($model, 'currency')->dropDownList($model::currencyRange()); ?>
+
         <div class="buttons-cont">
             <?= Html::submitButton(
                 Yii::t('app', 'Save'),
