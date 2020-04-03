@@ -9412,6 +9412,12 @@ body>.modal-backdrop.fade.in{
     padding: 0 20px;
   }
 }
+/* min 1279px */
+@media (min-width: 1279px) {
+  #comp-slider.mw-item .item {
+    min-width: 22.8%;
+  }
+}
 
 @media (min-width: 1200px) and (max-width: 1300px) {
   .profile-quadrlink {

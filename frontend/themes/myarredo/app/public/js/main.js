@@ -640,10 +640,9 @@ $(document).ready(function () {
     $("[data-toggle='tooltip']").tooltip({html: true});
 
     $(document).on('click', '.link-composition', function() {
-        if ($('#comp-slider').length > 0) {
-            setTimeout(function() {
-                $('#comp-slider').slick('slickNext');
-            }, 100);
+        if ($('#comp-slider').length > 0) { 
+            $('#comp-slider').addClass('mw-item');
+            $('#comp-slider').slick('slickNext');
         }
     });
 });
