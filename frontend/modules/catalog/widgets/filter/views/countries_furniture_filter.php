@@ -94,7 +94,9 @@ use frontend\modules\catalog\models\Category;
                     echo Html::beginTag('a', ['href' => $item['link'], 'class' => $class]);
                     ?>
                     <div class="filter-group">
-                        <div class="my-checkbox"></div><?= $item['title'] ?></div><span><?= $item['count'] ?></span>
+                        <div class="my-checkbox"></div><?= $item['title'] ?>
+                    </div>
+                    <span><?= $item['count'] ?></span>
                     <?php
                     echo Html::endTag('a');
                 } ?>
