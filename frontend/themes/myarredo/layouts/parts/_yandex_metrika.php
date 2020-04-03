@@ -50,7 +50,7 @@ JS;
     $this->registerJs($script, View::POS_END);
     ?>
     <noscript>
-        <div><img src="https://mc.yandex.ru/watch/24814823" style="position:absolute; left:-9999px;" alt=""/></div>
+        <div><img src="https://mc.yandex.ru/watch/24814823" alt=""/></div>
     </noscript>
 <?php } elseif (Yii::$app->city->domain == 'by') {
     $script = <<<JS
@@ -93,7 +93,7 @@ JS;
     $this->registerJs($script, View::POS_END);
     ?>
     <noscript>
-        <div><img src="https://mc.yandex.ru/watch/24880844" style="position:absolute; left:-9999px;" alt=""/></div>
+        <div><img src="https://mc.yandex.ru/watch/24880844" alt=""/></div>
     </noscript>
 <?php } elseif (Yii::$app->city->domain == 'ua') {
     $script = <<<JS
@@ -136,7 +136,7 @@ JS;
     $this->registerJs($script, View::POS_END);
     ?>
     <noscript>
-        <div><img src="https://mc.yandex.ru/watch/39354035" style="position:absolute; left:-9999px;" alt=""/></div>
+        <div><img src="https://mc.yandex.ru/watch/39354035" alt=""/></div>
     </noscript>
 <?php } elseif (Yii::$app->city->domain == 'com') {
     $script = <<<JS
@@ -155,12 +155,11 @@ JS;
             })
             (window, document, "script", "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js", "ym");
     
-            ym(54688942, "init", {
-                clickmap: true,
-                trackLinks: true,
-                accurateTrackBounce: true,
-                webvisor: true
-            });           
+           ym(54688942, "init", {
+                clickmap:true,
+                trackLinks:true,
+                accurateTrackBounce:true
+           });        
         }, 5000);
     }
 
@@ -179,6 +178,6 @@ JS;
     $this->registerJs($script, View::POS_END);
     ?>
     <noscript>
-        <div><img src="https://mc.yandex.ru/watch/39354035" style="position:absolute; left:-9999px;" alt=""/></div>
+        <div><img src="https://mc.yandex.ru/watch/54688942" alt="" /></div>
     </noscript>
 <?php }
