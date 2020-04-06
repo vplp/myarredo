@@ -534,6 +534,7 @@ class ItalianProduct extends ActiveRecord
     {
         return [
             'EUR' => 'EUR',
+            'RUB' => 'RUB'
         ];
     }
 

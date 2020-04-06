@@ -370,7 +370,9 @@ $Specifications = Specification::findBase()->all();
     <div class="add-itprod-rules">
         <div class="add-itprod-rules-item">
 
-            <?= Yii::$app->param->getByName('ITALIAN_PRODUCT_STEP1_TEXT') ?>
+            <?php if (Yii::$app->user->identity->profile->factory->producing_country_id == 4) {
+                echo Yii::$app->param->getByName('ITALIAN_PRODUCT_STEP1_TEXT');
+            } ?>
 
             <?php if ($model->create_mode == 'paid') { ?>
                 <?= Html::a(

@@ -155,11 +155,14 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                             'label' => Yii::t('app', 'Amount to pay'),
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
-                                                if ($model->create_mode == 'paid') {
+                                                if (Yii::$app->user->identity->profile->factory->producing_country_id != 4) {
+                                                    $modelCostProduct = ItalianProduct::getCostPlacementProduct();
+                                                } elseif ($model->create_mode == 'paid') {
                                                     $modelCostProduct = ItalianProduct::getCostPlacementProduct();
                                                 } elseif ($model->create_mode == 'free') {
                                                     $modelCostProduct = ItalianProduct::getFreeCostPlacementProduct($model);
                                                 }
+
                                                 return $modelCostProduct['amount'] . ' ' . $modelCostProduct['currency'];
                                             },
                                         ],
@@ -294,7 +297,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
 
                                                 if ($model->create_mode == 'free') {
                                                     $status .= Html::a(
-                                                        Yii::t('app', 'Смена тарифа'),
+                                                        Yii::t('app', 'Оплатить'),
                                                         ['/catalog/italian-product/payment'],
                                                         [
                                                             'data-method' => 'GET',
@@ -308,7 +311,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                                     );
                                                 } elseif ($model->create_mode == 'paid' && $model->published == 0) {
                                                     $status .= Html::a(
-                                                        Yii::t('app', 'Смена тарифа'),
+                                                        Yii::t('app', 'Оплатить'),
                                                         ['/catalog/italian-product/change-tariff', 'id' => $model->id],
                                                         [
 //                                                            'data-method' => 'GET',
@@ -392,9 +395,11 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                                     ],
                                 ]) ?>
 
-                                <?= $this->render('parts/_list_block_pay_for_all', [
-                                    'dataProvider' => $dataProvider
-                                ]) ?>
+                                <?php if (Yii::$app->user->identity->profile->factory->producing_country_id == 4) {
+                                    echo $this->render('parts/_list_block_pay_for_all', [
+                                        'dataProvider' => $dataProvider
+                                    ]);
+                                } ?>
 
                             </div>
                         </div>

@@ -127,6 +127,10 @@ class UserMenu extends Widget
                     'label' => Yii::t('app', 'Furniture in Italy'),
                     'url' => ['/catalog/italian-product/list']
                 ],
+//                [
+//                    'label' => Yii::t('app', 'Stock availability in {country}', ['country' => Yii::$app->user->identity->profile->factory->producingCountry->lang->title]),
+//                    'url' => ['/catalog/italian-product/list']
+//                ],
                 [
                     'label' => Yii::t('app', 'My goods'),
                     'url' => ['/catalog/factory-product/list']
@@ -152,20 +156,12 @@ class UserMenu extends Widget
                     'url' => ['/shop/factory-order/list']
                 ],
                 [
-                    'label' => Yii::t('app', 'Orders from Italy'),
-                    'url' => ['/shop/factory-order/list-from-italy']
-                ],
-                [
                     'label' => Yii::t('app', 'Orders italy'),
                     'url' => ['/shop/factory-order/list-italy']
                 ],
                 [
                     'label' => Yii::t('app', 'Product statistics'),
                     'url' => ['/catalog/product-stats/list']
-                ],
-                [
-                    'label' => Yii::t('app', 'Sale statistics'),
-                    'url' => ['/catalog/sale-stats/list']
                 ],
                 [
                     'label' => Yii::t('app', 'Sale in Italy statistics'),

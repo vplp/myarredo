@@ -217,7 +217,6 @@ return [
     'shop/order-answer-stats/view/<id:[\d\-]+>' => 'shop/order-answer-stats/view',
 
     'shop/factory/orders' => 'shop/factory-order/list',
-    'shop/factory/orders-from-italy' => 'shop/factory-order/list-from-italy',
     'shop/factory/pjax-save-order-answer' => 'shop/factory-order/pjax-save-order-answer',
     'shop/factory/orders-italy' => 'shop/factory-order/list-italy',
 

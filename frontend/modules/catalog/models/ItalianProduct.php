@@ -359,6 +359,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
     {
         if (Yii::$app->user->identity->profile->factory->producing_country_id == 2) {
             $cost = 1000;
+            $amount = $cost;
         } else {
             /**
              * cost 1 product = 100 EUR
@@ -366,9 +367,9 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
              */
             $currency = Currency::findByCode2('EUR');
             $cost = 100 * $currency['course'];
+            $amount = $cost + ($cost * 0.02);
         }
 
-        $amount = $cost + ($cost * 0.02);
         $amount = number_format($amount, 2, '.', '');
         $total = $count * $amount;
 
@@ -401,7 +402,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
          * cost 1 product = 100 EUR
          * conversion to RUB
          */
-        $currency = Currency::findByCode2('EUR');
+        $currency = Currency::findByCode2($model['currency']);
 
         $cost = ($model['price_new'] / 100) * 22 * $currency['course'];
 
@@ -409,7 +410,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
 
         return [
             'amount' => $amount,
-            'currency' => 'RUB',
+            'currency' => $model['currency'],
         ];
     }
 

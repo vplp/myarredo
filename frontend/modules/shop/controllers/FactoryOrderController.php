@@ -43,7 +43,6 @@ class FactoryOrderController extends BaseController
                 'class' => VerbFilter::class,
                 'actions' => [
                     'list' => ['get'],
-                    'list-from-italy' => ['get', 'post'],
                     'pjax-save-order-answer' => ['get', 'post'],
                     'list-italy' => ['get'],
                     'view' => ['get'],
@@ -86,43 +85,6 @@ class FactoryOrderController extends BaseController
         ];
 
         return $this->render('list', [
-            'models' => $models->getModels(),
-            'pages' => $models->getPagination()
-        ]);
-    }
-
-    /**
-     * @return string
-     * @throws \Exception
-     * @throws \Throwable
-     */
-    public function actionListFromItaly()
-    {
-        $model = new Order();
-
-        $params = Yii::$app->request->post() ?? [];
-
-        $params['product_type'] = 'product';
-
-        $params['country_id'] = 4;
-
-        if (!isset($params['city_id'])) {
-            $params['city_id'] = 0;
-        }
-
-        if (!isset($params['country_id'])) {
-            $params['country_id'] = 0;
-        }
-
-        $models = $model->search($params);
-
-        $this->title = Yii::t('app', 'Orders from Italy');
-
-        $this->breadcrumbs[] = [
-            'label' => $this->title,
-        ];
-
-        return $this->render('list-from-italy', [
             'models' => $models->getModels(),
             'pages' => $models->getPagination()
         ]);
