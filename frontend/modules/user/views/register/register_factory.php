@@ -50,7 +50,7 @@ $model->user_agreement = 1;
                                 ->dropDownList(
                                     [null => '--'] + Country::dropDownListForRegistration(),
                                     [
-                                        'class' => 'selectpicker'
+                                        'class' => 'selectpicker rcountry-sct'
                                     ]
                                 ) ?>
 
