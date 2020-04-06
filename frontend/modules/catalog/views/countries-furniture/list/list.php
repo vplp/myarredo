@@ -111,9 +111,10 @@ $params = Yii::$app->catalogFilter->params;
 
 <?php
 $queryParams = json_encode($params);
+$url = Url::toRoute('/catalog/countries-furniture/ajax-get-filter');
 $link = '/catalog/countries-furniture/list';
 $script = <<<JS
-$.post('/catalog/countries-furniture/ajax-get-filter/', {
+$.post('$url', {
         _csrf: $('#token').val(),
         catalogFilterParams: $queryParams,
         link: '$link'

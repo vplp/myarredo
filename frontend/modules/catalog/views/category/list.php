@@ -121,9 +121,11 @@ $params = Yii::$app->catalogFilter->params;
 
 <?php
 $queryParams = json_encode(Yii::$app->catalogFilter->params);
+$url = Url::toRoute('/catalog/category/ajax-get-filter');
+$url2 = Url::toRoute('/catalog/category/ajax-get-filter-sizes');
 $link = '/catalog/category/list';
 $script = <<<JS
-$.post('/catalog/category/ajax-get-filter/', {
+$.post('$url', {
         _csrf: $('#token').val(),
         catalogFilterParams: $queryParams,
         link: '$link'
@@ -131,7 +133,7 @@ $.post('/catalog/category/ajax-get-filter/', {
     $('.ajax-get-filter').html(data.html);
     
     setTimeout(function() {
-        $.post('/catalog/category/ajax-get-filter-sizes/', {
+        $.post('$url2', {
                 _csrf: $('#token').val(),
                 catalogFilterParams:$queryParams,
                 link: '$link'
