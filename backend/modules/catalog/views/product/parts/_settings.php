@@ -141,7 +141,7 @@ $this->registerJs($script);
         <?= $form->text_line($model, 'price_from') ?>
     </div>
     <div class="col-md-3">
-        <?= $form->field($model, 'currency')->dropDownList($model::currencyRange()); ?>
+        <?= $form->field($model, 'currency')->dropDownList($model::currencyRange(), ['disabled' => true]); ?>
     </div>
 </div>
 
