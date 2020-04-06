@@ -928,16 +928,38 @@ $(document).ready(function () {
         // получаем язык сайта у пользователя
         var siteLang = $('html').attr('lang');
 
-        // функционал переводов ошибок на италлянский язык
+        // функционал переводов ошибок на языки сайта
+        // для массива с текстами ошибок
         var errorMap = [];
-        // если язык сайта италянский
-        if (siteLang == 'it') {
-            // Массив ошибок для поля номер телефона для италянского языка
-            errorMap = ["Numero non valido", "Codice paese non valido", "Troppo corto", "Troppo lungo", "Numero non valido"];
-        }
-        else {
-            // Массив ошибок для поля номер телефона в международном формате
-            errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+        // для кода страны по дефолту при инициализации плагина 
+        var diCode = '';
+
+        // Переключатель-котроллер (В зависимости какой язык выбран на сайте)
+        switch(siteLang) {
+            case 'it':
+                // Массив ошибок для поля номер телефона для италянского языка
+                errorMap = ["Numero non valido", "Codice paese non valido", "Troppo corto", "Troppo lungo", "Numero non valido"];
+                diCode = 'it';
+            break;
+            case 'en':
+                // Массив ошибок для поля номер телефона в международном формате
+                errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+                diCode = 'it';
+            break;
+            case 'ru':
+                // Массив ошибок для поля номер телефона для русского языка
+                errorMap = ["Некорректный номер", "Некорректный код страны", "Номер короткий", "Номер длинный", "Некорректный номер"];
+                diCode = 'ru';
+            break;
+            case 'uk':
+                // Массив ошибок для поля номер телефона для украинского языка
+                errorMap = ["Некоректний номер", "Некоректний код країни", "Номер короткий", "Номер довгий", "Некоректний номер"];
+                diCode = 'ru';
+            break;
+            default:
+                // Массив ошибок для поля номер телефона в международном формате
+                errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"]; 
+                diCode = 'it';  
         }
 
         // поле - телефон из нашей формы
@@ -953,7 +975,7 @@ $(document).ready(function () {
         if ($(intlInputEl).attr('data-conly') == 'yes') {
             iti = window.intlTelInput(intlInputEl, {
                 onlyCountries: ["it", "ru"],
-                initialCountry: 'it',
+                initialCountry: diCode,
                 utilsScript: "/js/utils.js",
                 formatOnDisplay: true
             });
@@ -1031,6 +1053,38 @@ $(document).ready(function () {
                 $(this).find('#cartcustomerform-country_code').val(countryData.iso2);
             }
         });
+
+        // Привязка виджета к выбору страны в выпадающем списке
+        var changeIndicator = false;
+        var changeCCode = '';
+        // Если пользователь изменил страну
+        $('select.rcountry-sct').on('change', function() {
+            // Если новая выбранная страна это рашка)
+            if ($(this).val() == '2') {
+                changeIndicator = true;
+                changeCCode = 'ru';
+            }
+            // Иначе если выбранная страна это Италия
+            else if ($(this).val() == '4') {
+                changeIndicator = true;
+                changeCCode = 'it';
+            }
+            // иначе не выбрана ни одна из стран
+            else {
+                changeIndicator = false;
+            }
+
+            // Если индикатор разрешает изменить код страны
+            if (changeIndicator) {
+                // Переинициализируем виджет с выбраной нужной страной по дефолту
+                iti = window.intlTelInput(intlInputEl, {
+                    onlyCountries: ["it", "ru"],
+                    initialCountry: changeCCode,
+                    utilsScript: "/js/utils.js",
+                    formatOnDisplay: true
+                });
+            }
+        });
     }
 
     (function() {
@@ -1045,7 +1099,7 @@ $(document).ready(function () {
                     }
                 });
             }
-        }, 500);
+        }, 800);
     })();
 
 });
