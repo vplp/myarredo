@@ -250,7 +250,9 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Html::img($bundle->baseUrl . '/img/my_products.png') ?>
                                     </div>
                                     <div class="profile-quadrlink-text">
-                                        <?= Yii::t('app', 'Furniture in Italy') ?>
+                                        <?= Yii::$app->user->identity->profile->factory->producing_country_id == 4
+                                            ? Yii::t('app', 'Наличие на складе в Италии')
+                                            : Yii::t('app', 'Наличие на складе') ?>
                                     </div>
                                 </a>
                                 <a href="<?= Url::toRoute(['/catalog/product-stats/list'], true) ?>"

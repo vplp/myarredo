@@ -32,7 +32,7 @@ use thread\actions\{
  */
 class ItalianProductController extends BaseController
 {
-    public $title = "Furniture in Italy";
+    public $title = "";
 
     public $defaultAction = 'list';
 
@@ -195,6 +195,15 @@ class ItalianProductController extends BaseController
                 }
 
                 $transaction->commit();
+
+                return $this->redirect(
+                    Url::toRoute([
+                        '/catalog/italian-product/payment',
+                        '_csrf' => Yii::$app->getRequest()->getCsrfToken(),
+                        'id[]' => $model->id,
+                        'change_tariff' => 1
+                    ])
+                );
             } catch (\Exception $e) {
                 $transaction->rollBack();
             }
@@ -240,6 +249,7 @@ class ItalianProductController extends BaseController
      */
     public function actions()
     {
+
         if (Yii::$app->request->get('step') == 'photo') {
             $scenario = 'setImages';
             $link = function () {
@@ -342,6 +352,11 @@ class ItalianProductController extends BaseController
                 throw new ForbiddenHttpException('Access denied');
             }
         }
+
+
+        $this->title = Yii::$app->user->identity->profile->factory && Yii::$app->user->identity->profile->factory->producing_country_id == 4
+            ? Yii::t('app', 'Наличие на складе в Италии')
+            : Yii::t('app', 'Наличие на складе');
 
         return parent::beforeAction($action);
     }

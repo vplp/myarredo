@@ -141,20 +141,20 @@ $modelPayment->currency = $modelCostProduct['currency'];
                     ?>
 
                     <div class="buttons-cont">
-                        <?php if ($model->create_mode == 'free' && $model->published == 0) { ?>
-                            <?= Html::a(
+                        <?php if ($model->status == 'not_considered' && $model->create_mode == 'free' && $model->published == 0) {
+                            echo Html::a(
                                 Yii::t('app', 'Опубликовать'),
                                 Url::toRoute(
                                     ['/catalog/italian-product/on-moderation', 'id' => $model->id]
                                 ),
                                 ['class' => 'btn btn-success',]
-                            ) ?>
-                        <?php } else if ($model->create_mode == 'paid' && $model->published == 0) { ?>
-                            <?= Html::submitButton(
+                            );
+                        } else if ($model->create_mode == 'paid' && $model->published == 0) {
+                            echo Html::submitButton(
                                 Yii::t('app', 'Оплатить'),
                                 ['class' => 'btn btn-success']
-                            ) ?>
-                        <?php } ?>
+                            );
+                        } ?>
 
                         <?= Html::a(
                             Yii::t('app', 'Cancel'),

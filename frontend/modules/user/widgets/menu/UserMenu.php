@@ -124,13 +124,11 @@ class UserMenu extends Widget
         } elseif (!Yii::$app->getUser()->isGuest && Yii::$app->user->identity->group->role == 'factory') {
             $this->menuItems = [
                 [
-                    'label' => Yii::t('app', 'Furniture in Italy'),
+                    'label' => Yii::$app->user->identity->profile->factory->producing_country_id == 4
+                        ? Yii::t('app', 'Наличие на складе в Италии')
+                        : Yii::t('app', 'Наличие на складе'),
                     'url' => ['/catalog/italian-product/list']
                 ],
-//                [
-//                    'label' => Yii::t('app', 'Stock availability in {country}', ['country' => Yii::$app->user->identity->profile->factory->producingCountry->lang->title]),
-//                    'url' => ['/catalog/italian-product/list']
-//                ],
                 [
                     'label' => Yii::t('app', 'My goods'),
                     'url' => ['/catalog/factory-product/list']
@@ -156,7 +154,9 @@ class UserMenu extends Widget
                     'url' => ['/shop/factory-order/list']
                 ],
                 [
-                    'label' => Yii::t('app', 'Orders italy'),
+                    'label' => Yii::$app->user->identity->profile->factory->producing_country_id == 4
+                        ? Yii::t('app', 'Orders italy')
+                        : Yii::t('app', 'Заявки на наличие на складе'),
                     'url' => ['/shop/factory-order/list-italy']
                 ],
                 [
@@ -164,7 +164,9 @@ class UserMenu extends Widget
                     'url' => ['/catalog/product-stats/list']
                 ],
                 [
-                    'label' => Yii::t('app', 'Sale in Italy statistics'),
+                    'label' => Yii::$app->user->identity->profile->factory->producing_country_id == 4
+                        ? Yii::t('app', 'Sale in Italy statistics')
+                        : Yii::t('app', 'Статистка на наличие на складе'),
                     'url' => ['/catalog/sale-italy-stats/list']
                 ],
                 [

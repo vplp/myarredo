@@ -21,7 +21,7 @@ use frontend\modules\catalog\models\{
 $dataProvider = $model->search(Yii::$app->request->queryParams);
 $dataProvider->sort = false;
 
-$this->title = Yii::t('app', 'Furniture in Italy');
+$this->title = $this->context->title;
 
 ?>
 
@@ -31,7 +31,7 @@ $this->title = Yii::t('app', 'Furniture in Italy');
                 <div class="row title-cont">
 
 
-                    <?= Html::tag('h1', Yii::t('app', 'Furniture in Italy')); ?>
+                    <?= Html::tag('h1', $this->title); ?>
                     <div class="itprod-panel-add">
                         <?= Html::a(
                             '<i class="fa fa-list"></i> ' . Yii::t('app', 'Активные'),

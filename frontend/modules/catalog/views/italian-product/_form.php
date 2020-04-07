@@ -14,7 +14,7 @@ use frontend\modules\catalog\models\{
 $this->title = (($model->isNewRecord)
         ? Yii::t('app', 'Add')
         : Yii::t('app', 'Edit')) .
-    ' ' . Yii::t('app', 'Furniture in Italy');
+    '. ' . $this->context->title;
 
 ?>
 <main>

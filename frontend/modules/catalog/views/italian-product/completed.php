@@ -25,7 +25,7 @@ use thread\widgets\grid\{
 $dataProvider = $model->completed(Yii::$app->request->queryParams);
 $dataProvider->sort = false;
 
-$this->title = Yii::t('app', 'Завершенные');
+$this->title = Yii::t('app', 'Завершенные') . '. ' . $this->context->title;;
 
 ?>
 
@@ -34,7 +34,7 @@ $this->title = Yii::t('app', 'Завершенные');
         <div class="largex-container itprod-box">
             <div class="row title-cont">
 
-                <?= Html::tag('h1', Yii::t('app', 'Furniture in Italy')); ?>
+                <?= Html::tag('h1', $this->title); ?>
                 <div class="itprod-panel-add">
                     <?= Html::a(
                         '<i class="fa fa-list"></i> ' . Yii::t('app', 'Активные'),
