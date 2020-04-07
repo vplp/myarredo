@@ -41,7 +41,7 @@ $replace = [
         </div>
         <div>
             <span style="color: #fff; font:bold 16px Arial,sans-serif;">
-                <?= Yii::t('app', 'Мы помогаем купить итальянскую мебель по лучшим ценам.') ?>
+                <?= Yii::t('app', 'Мы помогаем купить мебель по лучшим ценам.') ?>
             </span>
         </div>
     </div>

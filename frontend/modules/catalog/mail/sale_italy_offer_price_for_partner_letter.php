@@ -21,7 +21,7 @@ use frontend\modules\catalog\models\{
         </div>
         <div>
             <p style="color: #fff; font:bold 16px Arial,sans-serif;">
-                <?= Yii::t('app', 'Мы помогаем купить итальянскую мебель по лучшим ценам.') ?>
+                <?= Yii::t('app', 'Мы помогаем купить мебель по лучшим ценам.') ?>
             </p>
         </div>
     </div>

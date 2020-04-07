@@ -22,7 +22,7 @@ if (in_array($order->lang, ['ru-RU'])) {
 <div style="width:540px; font: 18px Arial,sans-serif;">
     <div style="background:#c4c0b8 url(https://www.myarredo.ru/uploads/mailer/logo_note.png) center 10px no-repeat; height: 35px;  padding-top:45px; text-align:center;">
         <span style="color: #fff; font:bold 18px Arial,sans-serif;">
-            <?= Yii::t('app', 'Мы помогаем продавать итальянскую мебель') ?>
+            <?= Yii::t('app', 'Мы помогаем продавать мебель') ?>
         </span>
     </div>
     <div style="text-align:center;">

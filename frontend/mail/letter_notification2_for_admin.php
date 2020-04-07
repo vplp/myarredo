@@ -29,7 +29,7 @@ use frontend\modules\catalog\models\{
         </div>
         <div>
             <span style="color: #fff; font:bold 16px Arial,sans-serif;">
-                Мы помогаем купить итальянскую мебель по лучшим ценам.
+                Мы помогаем купить мебель по лучшим ценам.
             </span>
         </div>
     </div>
