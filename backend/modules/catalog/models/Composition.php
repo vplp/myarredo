@@ -27,19 +27,6 @@ class Composition extends CommonCompositionModel implements BaseBackendModel
     }
 
     /**
-     * @param bool $insert
-     * @return bool
-     */
-    public function beforeSave($insert)
-    {
-        if ($this->id) {
-            $this->alias = $this->id . ' ' . $this->alias;
-        }
-
-        return parent::beforeSave($insert);
-    }
-
-    /**
      * Backend form drop down list
      * @return array
      */

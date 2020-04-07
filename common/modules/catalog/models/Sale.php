@@ -308,14 +308,14 @@ class Sale extends ActiveRecord
      */
     public function beforeSave($insert)
     {
-        if ($this->alias == '') {
-            $this->alias = (!empty($this->types) ? $this->types->alias : '')
-                . (!empty($this->factory) ? ' ' . $this->factory->alias : '')
-                . (($this->article) ? ' ' . $this->article : '');
-        }
+        if (in_array($this->scenario, ['backend', 'frontend'])) {
+            $this->alias = (!empty($this->types) ? $this->types->alias : '') .
+                (!empty($this->factory) ? ' ' . $this->factory->alias : '') .
+                (($this->article) ? ' ' . $this->article : '');
 
-        if ($this->id) {
-            $this->alias = $this->id . ' ' . $this->alias;
+            if ($this->id) {
+                $this->alias = $this->id . ' ' . $this->alias;
+            }
         }
 
         if ($this->factory_name) {

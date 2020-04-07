@@ -132,6 +132,20 @@ class Composition extends Product
     }
 
     /**
+     * @param bool $insert
+     * @return bool
+     * @throws \Throwable
+     */
+    public function beforeSave($insert)
+    {
+        if (in_array($this->scenario, ['backend']) && $this->id) {
+            $this->alias = $this->id . ' ' . $this->alias;
+        }
+
+        return parent::beforeSave($insert);
+    }
+
+    /**
      * @return array
      */
     public function attributeLabels()
