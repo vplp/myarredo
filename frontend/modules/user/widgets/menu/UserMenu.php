@@ -125,7 +125,7 @@ class UserMenu extends Widget
             $this->menuItems = [
                 [
                     'label' => Yii::$app->user->identity->profile->factory->producing_country_id == 4
-                        ? Yii::t('app', 'Наличие на складе в Италии')
+                        ? Yii::t('app', 'Furniture in Italy')
                         : Yii::t('app', 'Наличие на складе'),
                     'url' => ['/catalog/italian-product/list']
                 ],
