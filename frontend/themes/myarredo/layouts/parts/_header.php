@@ -477,10 +477,15 @@ use frontend\modules\user\widgets\menu\UserMenu;
                 );
             } ?>
 
-            <a class="back-call">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-                <?= Yii::t('app', 'Feedback form') ?>
-            </a>
+            <?= Html::a(
+                '<i class="fa fa-phone" aria-hidden="true"></i>' . Yii::t('app', 'Feedback form'),
+                'javascript:void(0);',
+                [
+                    'class' => 'back-call',
+                    'data-toggle' => 'modal',
+                    'data-target' => '#formFeedbackModal'
+                ]
+            ) ?>
 
             <a href="javascript:void(0);" class="close-mobile-menu js-close-mobile-menu">
                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
