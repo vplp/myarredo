@@ -182,40 +182,9 @@ use frontend\modules\location\models\{
                 ->label(false) ?>
 
         </div>
-        <div class="form-group row">
-            <?= $form
-                ->field(
-                    $model,
-                    'country_id',
-                    [
-                        'template' => "{label}<div class=\"col-sm-4\">{input}</div>\n{hint}\n{error}",
-                        'options' => [
-                            'class' => '',
-                        ]
-                    ]
-                )
-                ->dropDownList(
-                    [null => Yii::t('app', 'Все страны')] + Country::dropDownList([2, 3, 1]),
-                    ['class' => 'selectpicker']
-                ); ?>
-        </div>
-        <div class="form-group row">
-            <?= $form
-                ->field(
-                    $model,
-                    'city_id',
-                    [
-                        'template' => "{label}<div class=\"col-sm-4\">{input}</div>\n{hint}\n{error}",
-                        'options' => [
-                            'class' => '',
-                        ]
-                    ]
-                )
-                ->dropDownList(
-                    [null => '--'] + ($model->country_id ? City::dropDownList($model->country_id) : []),
-                    ['class' => 'selectpicker']
-                ); ?>
-        </div>
+
+        <?= Html::activeHiddenInput($model, 'country_id', ['value' => Yii::$app->user->identity->profile->country_id]) ?>
+        <?= Html::activeHiddenInput($model, 'city_id', ['value' => Yii::$app->user->identity->profile->city_id]) ?>
 
         <div class="form-group row">
             <label class="col-sm-3 col-form-label"><?= Yii::t('app', 'Status') ?></label>
