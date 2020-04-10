@@ -1972,7 +1972,7 @@ h1 {
     height: 23px;
     cursor: not-allowed;
   }
-  .cont-goods .jq-checkbox.checked .jq-checkbox__div {
+  /* .cont-goods .jq-checkbox.checked .jq-checkbox__div {
     width: 14px;
     height: 9px;
     margin: 4px 0 0 3px;
@@ -1982,7 +1982,7 @@ h1 {
     transform: rotate(-50deg);
     background-color: transparent;
     box-shadow: none;
-  }
+  } */
   .cont-goods .summary {
     text-align: right;
     margin-bottom: 15px;
