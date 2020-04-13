@@ -72,7 +72,34 @@ class FactoryOrderController extends BaseController
     {
         $model = new Order();
 
-        $params = Yii::$app->request->post() ?? [];
+        $params = Yii::$app->request->get() ?? [];
+
+        $start_date = mktime(0, 0, 0, date("m"), date("d") - 30, date("Y"));
+        $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
+
+        if (!isset($params['start_date'])) {
+            $params['start_date'] = date('d-m-Y', $start_date);
+        }
+
+        if (!isset($params['end_date'])) {
+            $params['end_date'] = date('d-m-Y', $end_date);
+        }
+
+        if (!isset($params['country_id'])) {
+            $params['country_id'] = 0;
+        }
+
+        if (!isset($params['city_id'])) {
+            $params['city_id'] = 0;
+        }
+
+        if (!isset($params['factory_id'])) {
+            $params['factory_id'] = 0;
+        }
+
+        if (!isset($params['lang'])) {
+            $params['lang'] = null;
+        }
 
         $params['product_type'] = 'product';
 
@@ -85,8 +112,9 @@ class FactoryOrderController extends BaseController
         ];
 
         return $this->render('list', [
-            'models' => $models->getModels(),
-            'pages' => $models->getPagination()
+            'models' => $models,
+            'model' => $model,
+            'params' => $params
         ]);
     }
 
@@ -101,6 +129,33 @@ class FactoryOrderController extends BaseController
 
         $params = Yii::$app->request->post() ?? [];
 
+        $start_date = mktime(0, 0, 0, date("m"), date("d") - 30, date("Y"));
+        $end_date = mktime(23, 59, 0, date("m"), date("d"), date("Y"));
+
+        if (!isset($params['start_date'])) {
+            $params['start_date'] = date('d-m-Y', $start_date);
+        }
+
+        if (!isset($params['end_date'])) {
+            $params['end_date'] = date('d-m-Y', $end_date);
+        }
+
+        if (!isset($params['country_id'])) {
+            $params['country_id'] = 0;
+        }
+
+        if (!isset($params['city_id'])) {
+            $params['city_id'] = 0;
+        }
+
+        if (!isset($params['factory_id'])) {
+            $params['factory_id'] = 0;
+        }
+
+        if (!isset($params['lang'])) {
+            $params['lang'] = null;
+        }
+
         $params['product_type'] = 'sale-italy';
 
         $models = $model->search($params);
@@ -112,8 +167,9 @@ class FactoryOrderController extends BaseController
         ];
 
         return $this->render('list', [
-            'models' => $models->getModels(),
-            'pages' => $models->getPagination()
+            'models' => $models,
+            'model' => $model,
+            'params' => $params,
         ]);
     }
 

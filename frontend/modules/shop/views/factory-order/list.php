@@ -6,7 +6,11 @@ use yii\helpers\{
 use frontend\modules\shop\models\Order;
 
 /**
+ * @var $pages Pagination
  * @var $modelOrder Order
+ * @var $params array
+ * @var $model array
+ * @var $models array
  */
 
 $this->title = $this->context->title;
@@ -18,6 +22,12 @@ $this->title = $this->context->title;
         <div class="largex-container">
 
             <?= Html::tag('h1', $this->context->title); ?>
+
+            <?= $this->render('/admin-order/list/_form_filter', [
+                'model' => $model,
+                'params' => $params,
+                'models' => $models,
+            ]); ?>
 
             <div class="manager-history">
 
@@ -43,7 +53,7 @@ $this->title = $this->context->title;
                     </div>
                     <div class="manager-history-list">
 
-                        <?php foreach ($models as $modelOrder) {
+                        <?php foreach ($models->getModels() as $modelOrder) {
                             $is = false;
                             foreach ($modelOrder->items as $orderItem) {
                                 if ($orderItem->product['factory_id'] == Yii::$app->user->identity->profile->factory_id) {
@@ -94,7 +104,7 @@ $this->title = $this->context->title;
             </div>
 
             <?= frontend\components\LinkPager::widget([
-                'pagination' => $pages,
+                'pagination' => $models->getPagination(),
             ]) ?>
 
         </div>
