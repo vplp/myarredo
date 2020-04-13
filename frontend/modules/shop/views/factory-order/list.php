@@ -43,9 +43,17 @@ $this->title = $this->context->title;
                     </div>
                     <div class="manager-history-list">
 
-                        <?php foreach ($models as $modelOrder) { ?>
+                        <?php foreach ($models as $modelOrder) {
+                            $is = false;
+                            foreach ($modelOrder->items as $orderItem) {
+                                if ($orderItem->product['factory_id'] == Yii::$app->user->identity->profile->factory_id) {
+                                    $is = true;
+                                    continue;
+                                }
+                            }
+                            ?>
                             <div class="item" data-hash="<?= $modelOrder->id; ?>">
-                                <ul class="orders-title-block flex">
+                                <ul class="orders-title-block flex" <?= $is ? 'style="background-color: #ecffe7;"' : ''; ?>>
                                     <li class="order-id">
                                         <span>
                                             <?= $modelOrder->id ?>

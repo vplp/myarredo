@@ -109,11 +109,11 @@ class Order extends OrderModel
 
         $query->groupBy(self::tableName() . '.id');
 
-        if (Yii::$app->user->identity->group->role == 'factory') {
+        /*if (Yii::$app->user->identity->group->role == 'factory') {
             $query
                 ->innerJoinWith(["items.product product"], false)
                 ->andFilterWhere(['IN', 'product.factory_id', Yii::$app->user->identity->profile->factory_id]);
-        }
+        }*/
 
         if (isset($params['factory_id']) && $params['factory_id'] > 0) {
             $subQueryFactory = OrderModel::find()
