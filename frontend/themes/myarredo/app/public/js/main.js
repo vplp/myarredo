@@ -68,10 +68,6 @@ function runDesctop() {
         $('.best-price .right-part').slick('unslick');
     }
 }
-// Функция для инициализации слайдера композиций
-function initCompSlider() {
-    
-}
 
 // Функция для открития первого элемента по умолчанию в модалке - показать фабрики 
 function selectFirstFEl() {
@@ -558,43 +554,60 @@ $(document).ready(function () {
 
     })();
 
-    slickInit();
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         $("#panel2 .row").slick('unslick');
         $('#comp-slider').slick('unslick');
         slickInit();
     });
 
-    $('.std-slider').slick({
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        dots: false,
-        prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
-        nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>',
-        responsive: [
-            {
-                breakpoint: 992,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                }
-            },
-            {
-                breakpoint: 540,
-                arrows: false,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
-    });
-
+    
     /*--Галерея Карточка товара--*/
-    $(document).ready(function () {
+    (function() {
         $("a.fancyimage").fancybox();
-    });
+    })();
     /*--конец Галерея Карточка товара --*/
+
+    slickInit();
+
+    if ($('.std-slider').length > 0) {
+        // если ширина экрана меньше 540px (это мобильный)
+        if (window.screen.width <= 540) {
+            // показываем слайдер с одним кадром
+            $('.std-slider').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: false,
+                prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
+                nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>'
+            });
+        }
+        else {
+            $('.std-slider').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                dots: false,
+                prevArrow: '<a href=javascript:void(0) class="slick-prev fa fa-angle-left"></a>',
+                nextArrow: '<a href=javascript:void(0) class="slick-next fa fa-angle-right"></a>',
+                responsive: [
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                        }
+                    },
+                    {
+                        breakpoint: 540,
+                        arrows: false,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+        }
+    }
 
     /*--модалка варианты отделки*/
     $(document).on('click', '.composition .show-modal', function(e) {
@@ -646,6 +659,8 @@ $(document).ready(function () {
         }
     });
 });
+// end ready
+
 (function () {
     var loaderTemplate =
         '<div class="loader" style="display: none;">' +
@@ -827,6 +842,9 @@ $(document).ready(function () {
     /*--конец Фиксированый хедер--*/
 
     $('.home-main .categories-sect .one-cat').on('click', function () {
+        $(this).toggleClass('opened');
+    });
+    $('.mobcat').on('click', '.one-cat', function () {
         $(this).toggleClass('opened');
     });
 

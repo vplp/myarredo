@@ -9,6 +9,7 @@ use frontend\modules\catalog\models\{Product, ItalianProduct, ItalianProductLang
 use frontend\modules\catalog\widgets\filter\{
     ProductSorting
 };
+use frontend\modules\catalog\widgets\category\CategoryOnMainPage;
 use frontend\modules\catalog\widgets\paginator\PageChanger;
 use frontend\modules\catalog\widgets\product\ViewedProducts;
 use frontend\modules\catalog\widgets\product\ProductsNovelties;
@@ -56,6 +57,9 @@ $params = Yii::$app->catalogFilter->params;
                     ]);
                 } ?>
 
+                <div class="only-mob mobcat">
+                    <?= CategoryOnMainPage::widget(); ?>
+                </div>
                 <div class="cat-content">
                     <?= Html::a(
                         Yii::t('app', 'Фильтры'),
