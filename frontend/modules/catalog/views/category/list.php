@@ -4,6 +4,7 @@ use yii\helpers\{
     Html, Url
 };
 use frontend\components\Breadcrumbs;
+
 //
 use frontend\modules\catalog\models\{Product, ItalianProduct, ItalianProductLang, ProductLang};
 use frontend\modules\catalog\widgets\filter\{
@@ -27,101 +28,104 @@ $params = Yii::$app->catalogFilter->params;
 
 ?>
 
-<main>
-    <div class="page category-page">
-        <div class="container-wrap">
-            <div class="container large-container">
-                <div>
+    <main>
+        <div class="page category-page">
+            <div class="container-wrap">
+                <div class="container large-container">
+                    <div>
 
-                    <?= Html::tag('h1', Yii::$app->metatag->seo_h1) ?>
+                        <?= Html::tag('h1', Yii::$app->metatag->seo_h1) ?>
 
-                    <?php if (isset($params[$keys['factory']]) && count($params[$keys['factory']]) == 1) {
-                        echo Html::a(
-                            Yii::t('app', 'Перейти на страницу фабрики'),
-                            ['/catalog/factory/view', 'alias' => $params[$keys['factory']][0]]
-                        );
+                        <?php if (isset($params[$keys['factory']]) && count($params[$keys['factory']]) == 1) {
+                            echo Html::a(
+                                Yii::t('app', 'Перейти на страницу фабрики'),
+                                ['/catalog/factory/view', 'alias' => $params[$keys['factory']][0]]
+                            );
+                        } ?>
+
+                        <?= Breadcrumbs::widget([
+                            'links' => $this->context->breadcrumbs,
+                        ]) ?>
+
+                    </div>
+
+                    <?php if (empty($params) || (count($params) == 1 && isset($params[$keys['category']]))) {
+                        echo ProductsNovelties::widget([
+                            'modelPromotionItemClass' => Product::class,
+                            'modelPromotionItemLangClass' => ProductLang::class,
+                            'modelClass' => ItalianProduct::class,
+                            'modelLangClass' => ItalianProductLang::class,
+                        ]);
                     } ?>
 
-                    <?= Breadcrumbs::widget([
-                        'links' => $this->context->breadcrumbs,
-                    ]) ?>
+                    <?php if (empty($params)) { ?>
+                        <div class="only-mob mobcat">
+                            <?= CategoryOnMainPage::widget(); ?>
+                        </div>
+                    <?php } ?>
 
-                </div>
+                    <div class="cat-content">
+                        <?= Html::a(
+                            Yii::t('app', 'Фильтры'),
+                            'javascript:void(0);',
+                            ['class' => 'js-filter-btn']
+                        ) ?>
+                        <div class="clearfix">
+                            <div class="col-md-3 col-lg-3 js-filter-modal ajax-get-filter"></div>
+                            <div class="col-md-9 col-lg-9">
+                                <div class="cont-area">
 
-                <?php if (empty($params) || (count($params) == 1 && isset($params[$keys['category']]))) {
-                    echo ProductsNovelties::widget([
-                        'modelPromotionItemClass' => Product::class,
-                        'modelPromotionItemLangClass' => ProductLang::class,
-                        'modelClass' => ItalianProduct::class,
-                        'modelLangClass' => ItalianProductLang::class,
-                    ]);
-                } ?>
+                                    <div class="top-bar flex">
 
-                <div class="only-mob mobcat">
-                    <?= CategoryOnMainPage::widget(); ?>
-                </div>
-                <div class="cat-content">
-                    <?= Html::a(
-                        Yii::t('app', 'Фильтры'),
-                        'javascript:void(0);',
-                        ['class' => 'js-filter-btn']
-                    ) ?>
-                    <div class="clearfix">
-                        <div class="col-md-3 col-lg-3 js-filter-modal ajax-get-filter"></div>
-                        <div class="col-md-9 col-lg-9">
-                            <div class="cont-area">
+                                        <?= ProductSorting::widget([]) ?>
 
-                                <div class="top-bar flex">
-
-                                    <?= ProductSorting::widget([]) ?>
-
-                                    <?= PageChanger::widget(['pages' => $pages]) ?>
-
-                                </div>
-
-                                <div class="cat-prod-wrap">
-                                    <div class="cat-prod">
-                                        <?php if (!empty($models)) {
-                                            foreach ($models as $model) {
-                                                echo $this->render('_list_item', [
-                                                    'model' => $model
-                                                ]);
-                                            }
-                                        } else if (empty($models) && isset($params)) {
-                                            echo Html::tag('p', Yii::t('app', 'По таким параметрам нет товаров'));
-                                        } ?>
-                                    </div>
-                                    <div class="pagi-wrap">
-
-                                        <?= frontend\components\LinkPager::widget(['pagination' => $pages]) ?>
+                                        <?= PageChanger::widget(['pages' => $pages]) ?>
 
                                     </div>
-                                </div>
 
+                                    <div class="cat-prod-wrap">
+                                        <div class="cat-prod">
+                                            <?php if (!empty($models)) {
+                                                foreach ($models as $model) {
+                                                    echo $this->render('_list_item', [
+                                                        'model' => $model
+                                                    ]);
+                                                }
+                                            } else if (empty($models) && isset($params)) {
+                                                echo Html::tag('p', Yii::t('app', 'По таким параметрам нет товаров'));
+                                            } ?>
+                                        </div>
+                                        <div class="pagi-wrap">
+
+                                            <?= frontend\components\LinkPager::widget(['pagination' => $pages]) ?>
+
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="clearfix">
-                        <div class="comp-advanteges">
+                        <div class="clearfix">
+                            <div class="comp-advanteges">
 
-                            <?php if (!Yii::$app->request->get('page')) { ?>
-                                <?= Yii::$app->metatag->seo_content ?>
-                            <?php } ?>
+                                <?php if (!Yii::$app->request->get('page')) { ?>
+                                    <?= Yii::$app->metatag->seo_content ?>
+                                <?php } ?>
+                            </div>
                         </div>
+
+                        <?= ViewedProducts::widget([
+                            'modelClass' => Product::class,
+                            'modelLangClass' => ProductLang::class,
+                            'cookieName' => 'viewed_products'
+                        ]) ?>
+
                     </div>
-
-                    <?= ViewedProducts::widget([
-                        'modelClass' => Product::class,
-                        'modelLangClass' => ProductLang::class,
-                        'cookieName' => 'viewed_products'
-                    ]) ?>
-
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 
 <?php
 $queryParams = json_encode(Yii::$app->catalogFilter->params);
