@@ -234,6 +234,16 @@ $(".drop-date-picker").click(function(){
 
 $(".ui-daterangepickercontain").prependTo($(".datepicker-drop")); // переносим datepicker в выпадающий список
 
+// fix datepicker links
+if ($('.ui-state-default').length > 0) {
+    $('.ui-state-default').attr('href', 'javascript:void(0)');
+}
+if ($('.ui-datepicker-next').length > 0) {
+    $('.ui-datepicker-next').attr('href', 'javascript:void(0)');
+}
+if ($('.ui-datepicker-prev').length > 0) {
+    $('.ui-datepicker-prev').attr('href', 'javascript:void(0)');
+}
 JS;
 
 $this->registerJs($script);
