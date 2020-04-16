@@ -208,6 +208,10 @@ class Product extends ProductModel
             $order[] = self::tableName() . '.price_from DESC';
         }
 
+        if (isset($params[$keys['category']]) && count($params) == 3) {
+            $order[] = self::tableName() . '.is_composition DESC';
+        }
+
         if (isset($params['object']) && $params['object'] == 'composition') {
             $order[] = self::tableName() . '.is_composition DESC';
         }
