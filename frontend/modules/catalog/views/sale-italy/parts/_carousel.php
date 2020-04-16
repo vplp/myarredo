@@ -1,10 +1,13 @@
 <?php
 
 use yii\helpers\Html;
+
 //
 use frontend\modules\catalog\models\ItalianProduct;
 
 /** @var $model ItalianProduct */
+
+$images = $model->getGalleryImageThumb();
 
 ?>
 
@@ -13,8 +16,7 @@ use frontend\modules\catalog\models\ItalianProduct;
     <!-- Carousel items -->
     <div class="carousel-inner">
 
-        <?php
-        foreach ($model->getGalleryImageThumb() as $key => $src) {
+        <?php foreach ($images as $key => $src) {
             if ($key == 0) {
                 echo Html::beginTag('div', [
                         'class' => 'item active',
@@ -25,7 +27,7 @@ use frontend\modules\catalog\models\ItalianProduct;
                     Html::tag('meta', '', ['itemprop' => 'name', 'content' => $model->getTitle()]) .
                     Html::tag('meta', '', ['itemprop' => 'caption', 'content' => $model->getTitle()]) .
                     Html::tag('meta', '', ['itemprop' => 'contentUrl', 'content' => $src['img']]) .
-                    Html::tag('meta', '', ['itemprop' => 'description', 'content' =>  strip_tags($model['lang']['description'])]) .
+                    Html::tag('meta', '', ['itemprop' => 'description', 'content' => strip_tags($model['lang']['description'])]) .
                     Html::a(
                         Html::img($src['thumb'], ['alt' => $model->getTitle()]),
                         $src['img'],
@@ -66,24 +68,25 @@ use frontend\modules\catalog\models\ItalianProduct;
         ['class' => 'img-zoom']
     ) ?>
 
-    <!-- Carousel nav -->
+    <?php if (count($images) > 1) { ?>
+        <!-- Carousel nav -->
+        <div class="nav-cont">
+            <div class="carousel-indicators">
 
-    <div class="nav-cont">
-        <div class="carousel-indicators">
+                <?php foreach ($images as $key => $src) { ?>
+                    <div class="thumb-item" data-dominant-color>
+                        <span class="background"></span>
+                        <?php if ($key == 0) {
+                            echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
+                                Html::img($src['thumb'], ['alt' => $model->getTitle()]);
+                        } else {
+                            echo Html::img($src['thumb'], ['alt' => $model->getTitle()]);
+                        } ?>
+                    </div>
+                <?php } ?>
 
-            <?php foreach ($model->getGalleryImageThumb() as $key => $src) { ?>
-                <div class="thumb-item" data-dominant-color>
-                    <span class="background"></span>
-                    <?php if ($key == 0) {
-                        echo Html::tag('meta', '', ['itemprop' => 'image', 'content' => $src['img']]) .
-                            Html::img($src['thumb'], ['alt' => $model->getTitle()]);
-                    } else {
-                        echo Html::img($src['thumb'], ['alt' => $model->getTitle()]);
-                    } ?>
-                </div>
-            <?php } ?>
-
+            </div>
         </div>
-    </div>
+    <?php } ?>
 
 </div>
