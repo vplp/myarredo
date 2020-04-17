@@ -21,7 +21,7 @@ $bundle = AppAsset::register($this);
                     <?= Html::tag('h1', $this->context->title); ?>
                     <div class="of-conts">
                         <?php
-                        if (isset($partners[0]['profile']['partner_in_city'])) {
+                        if ($partners[0]['profile']['partner_in_city']) {
                             echo $this->render('parts/_main_partner', [
                                 'partners' => $partners
                             ]);
