@@ -6,8 +6,6 @@ use yii\helpers\{
 //
 use frontend\modules\user\widgets\partner\PartnerMap;
 
-/** @var $partners array */
-
 ?>
 
 <!-- main partner -->

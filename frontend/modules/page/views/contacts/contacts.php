@@ -26,9 +26,7 @@ $bundle = AppAsset::register($this);
                                 'partners' => $partners
                             ]);
                         } else {
-                            echo $this->render('parts/_no_main_partner', [
-                                'partners' => $partners
-                            ]);
+                            echo $this->render('parts/_no_main_partner', []);
                         } ?>
 
                         <?php foreach ($partners as $partner) {
