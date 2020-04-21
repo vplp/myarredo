@@ -31,8 +31,8 @@ class ProductSorting extends Widget
      * @var array
      */
     public $objectList = [
-        'null' => 'Все товары',
-        'composition' => 'Все композиции',
+        'all' => 'Все товары',
+        'null' => 'Все композиции',
     ];
 
     /**
@@ -46,8 +46,8 @@ class ProductSorting extends Widget
             'desc' => Yii::t('app', 'По убыванию'),
         ];
         $this->objectList = [
-            'null' => Yii::t('app', 'Все товары'),
-            'composition' => Yii::t('app', 'Все композиции'),
+            'all' => Yii::t('app', 'Все товары'),
+            'null' => Yii::t('app', 'Все композиции'),
         ];
 
         return $this->render($this->view, [

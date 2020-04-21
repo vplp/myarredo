@@ -5,6 +5,7 @@ namespace frontend\modules\catalog\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+
 //
 use frontend\modules\catalog\models\{
     Category,
@@ -208,11 +209,7 @@ class Product extends ProductModel
             $order[] = self::tableName() . '.price_from DESC';
         }
 
-        if (isset($params[$keys['category']]) && count($params) == 3) {
-            $order[] = self::tableName() . '.is_composition DESC';
-        }
-
-        if (isset($params['object']) && $params['object'] == 'composition') {
+        if (!isset($params['object'])) {
             $order[] = self::tableName() . '.is_composition DESC';
         }
 
