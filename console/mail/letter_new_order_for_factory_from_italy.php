@@ -27,65 +27,38 @@ if (in_array($order->lang, ['ru-RU'])) {
     </div>
     <div style="text-align:center;">
         <p style="font-weight:bold;">
-            <?= Html::a(
-                Yii::t('app', 'Новая заявка'),
-                'https://www.myarredo.' . $domain . '/partner/orders/'
-            ) . ' ' .
-            Yii::t('app', 'на сайте') . ' ' . 'MYARREDO.' . $domain ?>
-
-            <?php if (in_array($order->lang, ['ru-RU'])) { ?>
-                <span style="display:block;">
-                    <?= Yii::t('app', 'Клиент из г.') . $order->city->lang->title ?>
-                </span>
-            <?php } ?>
+            Buongiorno,
         </p>
+        <p style="font-weight:bold;">
+            Il cliente è interessato al seguente mobile:
+        </p>
+        <p style="font-weight:bold;">
+            <?php
+            if (Product::isImage($item->product['image_link'])) {
+                echo Html::img(
+                    Product::getImageThumb($item->product['image_link']),
+                    ['class' => 'width: 140px; max-height: 100px;']
+                );
+            }
 
-        <p><?= Yii::t('app', 'Клиента интересует следующая мебель') ?>:</p>
-
-        <?php
-        echo Html::beginTag('p');
-
-        if (Product::isImage($item->product['image_link'])) {
-            echo Html::img(
-                Product::getImageThumb($item->product['image_link']),
-                ['class' => 'width: 140px; max-height: 100px;']
+            echo Html::a(
+                $item->product['lang']['title'],
+                'https://www.myarredo.' . $domain . '/product/' . $item->product['alias'] . '/',
+                ['style' => 'font-weight:bold; display: block; color: #000; text-transform: uppercase; text-decoration: underline;']
             );
-        }
-
-        echo Html::a(
-            $item->product['lang']['title'],
-            'https://www.myarredo.' . $domain . '/product/' . $item->product['alias'] . '/',
-            ['style' => 'font-weight:bold; display: block; color: #000; text-transform: uppercase; text-decoration: underline;']
-        );
-
-        echo Html::endTag('p');
-
-        // phone
-        $phone = ($order->city->country->alias == 'ua') ? '+39 (0422) 150-02-15' : '+7 968 353 36 36';
-        ?>
-
-        <?php if ($isUser) { ?>
-            <div style="text-align: left; padding-left: 20px;">
-                <?= Yii::t('app', 'Зарегистрируйся и получи контакты клиента') ?>
-            </div>
-        <?php } else { ?>
-            <div style="text-align: left; padding-left: 20px;">
-                <?= Yii::$app->param->getByName('LETTER_NEW_REQUEST_FOR_FACTORY') ?>
-            </div>
-        <?php } ?>
-
-        <a href="https://www.myarredo.<?= $domain ?>/shop/factory/orders-from-italy/"
-           style="text-decoration: none; color:#fff;">
-            <div style="background-color:#00b05a; width: 80%; font-size: 18px; padding:20px; color: #fff; margin: 35px auto 20px; text-align: center;">
-                <span style="display: block;"><?= Yii::t('app', 'Список запросов') ?></span>
-            </div>
-        </a>
-
-    </div>
-    <div style="background-color:#c4c0b8; padding:15px 60px;">
-        <span style="display: block; color: #000; font-style: italic; padding-bottom: 10px;">
-            <?= Yii::t('app', 'Телефон для связи с администрацией проекта') ?>
-        </span>
-        <span style="text-align: left; color: #0077ca; border-bottom: 1px dotted #0077ca;"><?= $phone ?></span>
+            ?>
+        </p>
+        <p style="font-weight:bold;">
+            Abbiamo ricevuto la richiesta da <?= $order->country->getTitle() ?>.<br>
+            Per elaborare le richieste e trasformarli in un ordine potete collegare vostri<br>
+            diller oppure saloni di vendita al portale myarredo.com, per rispondere a<br>
+            queste richieste e lavorare ulteriormente con il cliente.<br>
+            In questo momento e attiva la PROMOZIONE:<br>
+            Registrazione e elaborazione delle richieste gratuita!!!
+        </p>
+        <p style="font-weight:bold;">
+            <a href="https://www.myarredo.<?= $domain ?>/factory/registration/">registrazione per la fabbrica</a><br>
+            <a href="https://www.myarredo.<?= $domain ?>/partner/registration/">registrazione per salone</a><br>
+        </p>
     </div>
 </div>

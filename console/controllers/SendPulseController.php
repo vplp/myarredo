@@ -5,6 +5,7 @@ namespace console\controllers;
 use Yii;
 use yii\console\Controller;
 use yii\helpers\Console;
+
 //
 use frontend\modules\location\models\Country;
 use frontend\modules\user\models\{
@@ -298,7 +299,7 @@ class SendPulseController extends Controller
     /**
      * @param $modelOrder
      */
-    private function sendNewRequestForFactory($modelOrder)
+    private function sendNewRequestForFactory(Order $modelOrder)
     {
         $currentLanguage = Yii::$app->language;
         Yii::$app->language = $modelOrder->lang;
@@ -313,7 +314,7 @@ class SendPulseController extends Controller
                 Yii::$app
                     ->mailer
                     ->compose(
-                        in_array(substr($modelOrder->lang, 0, 2), ['en', 'it'])
+                        !in_array($modelOrder->country_id, [1, 2, 3])
                             ? 'letter_new_order_for_factory_from_italy'
                             : 'letter_new_order_for_factory',
                         [
@@ -344,7 +345,7 @@ class SendPulseController extends Controller
                     Yii::$app
                         ->mailer
                         ->compose(
-                            in_array(substr($modelOrder->lang, 0, 2), ['en', 'it'])
+                            !in_array($modelOrder->country_id, [1, 2, 3])
                                 ? 'letter_new_order_for_factory_from_italy'
                                 : 'letter_new_order_for_factory',
                             [
