@@ -44,7 +44,7 @@ use frontend\modules\catalog\models\{
 
                     $link = Yii::$app->catalogFilter->createUrl($params, ['/catalog/category/list']);
 
-                    echo '<li>' . Html::a($model['lang']['title'], $link) . '</li>';
+                    echo '<li>' . Html::a($model['lang']['title'], $link) . '<span>' . $model['count'] . '</span></li>';
 
                     $types = Types::getWithProduct($params);
 

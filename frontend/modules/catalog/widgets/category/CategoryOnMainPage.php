@@ -2,9 +2,10 @@
 
 namespace frontend\modules\catalog\widgets\category;
 
+use Yii;
 use yii\base\Widget;
 //
-use frontend\modules\catalog\models\Category;
+use frontend\modules\catalog\models\{Category, CategoryLang, Factory, Product};
 
 /**
  * Class CategoryOnMainPage
@@ -29,7 +30,33 @@ class CategoryOnMainPage extends Widget
     public function init()
     {
         $this->models = Category::getDb()->cache(function ($db) {
-            return Category::findBase()->andWhere(['popular' => '1'])->all();
+            return Category::findBase()
+                ->innerJoinWith(["product"], false)
+                ->innerJoinWith(["product.lang"], false)
+                ->innerJoinWith(["product.factory"], false)
+                ->andFilterWhere([
+                    Product::tableName() . '.published' => '1',
+                    Product::tableName() . '.deleted' => '0',
+                    Product::tableName() . '.removed' => '0',
+                    Factory::tableName() . '.published' => '1',
+                    Factory::tableName() . '.deleted' => '0',
+                    Factory::tableName() . '.show_for_' . Yii::$app->city->getDomain() => '1',
+                ])
+                ->andWhere([Category::tableName() . '.popular' => '1'])
+                ->andFilterWhere(['IN', Factory::tableName() . '.producing_country_id', [4]])
+                ->select([
+                    Category::tableName() . '.id',
+                    Category::tableName() . '.alias',
+                    Category::tableName() . '.alias2',
+                    Category::tableName() . '.image_link',
+                    Category::tableName() . '.image_link2',
+                    Category::tableName() . '.image_link3',
+                    Category::tableName() . '.position',
+                    CategoryLang::tableName() . '.title',
+                    'count(' . Category::tableName() . '.id) as count'
+                ])
+                ->groupBy(Category::tableName() . '.id')
+                ->all();
         }, 60 * 60);
     }
 
