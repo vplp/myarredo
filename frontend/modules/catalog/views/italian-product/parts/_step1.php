@@ -270,7 +270,7 @@ $Specifications = Specification::findBase()->all();
             ['template' => "{label}<div class=\"col-sm-2\">{input}</div>\n{hint}\n{error}"]
         ) ?>
 
-        <?php if (Yii::$app->user->identity->profile->factory->producing_country_id == 4) {
+        <?php if (isset(Yii::$app->user->identity->profile->factory) && Yii::$app->user->identity->profile->factory->producing_country_id == 4) {
             echo $form
                 ->field($model, 'region_id')
                 ->widget(Select2::class, [
@@ -370,7 +370,7 @@ $Specifications = Specification::findBase()->all();
     <div class="add-itprod-rules">
         <div class="add-itprod-rules-item">
 
-            <?php if (Yii::$app->user->identity->profile->factory->producing_country_id == 4) {
+            <?php if (isset(Yii::$app->user->identity->profile->factory) && Yii::$app->user->identity->profile->factory->producing_country_id == 4) {
                 echo Yii::$app->param->getByName('ITALIAN_PRODUCT_STEP1_TEXT');
             } ?>
 

@@ -155,7 +155,7 @@ $this->title = $this->context->title;
                                             'label' => Yii::t('app', 'Amount to pay'),
                                             'value' => function ($model) {
                                                 /** @var $model ItalianProduct */
-                                                if (Yii::$app->user->identity->profile->factory->producing_country_id != 4) {
+                                                if (isset(Yii::$app->user->identity->profile->factory) && Yii::$app->user->identity->profile->factory->producing_country_id != 4) {
                                                     $modelCostProduct = ItalianProduct::getCostPlacementProduct();
                                                 } elseif ($model->create_mode == 'paid') {
                                                     $modelCostProduct = ItalianProduct::getCostPlacementProduct();
@@ -395,7 +395,7 @@ $this->title = $this->context->title;
                                     ],
                                 ]) ?>
 
-                                <?php if (Yii::$app->user->identity->profile->factory->producing_country_id == 4) {
+                                <?php if (isset(Yii::$app->user->identity->profile->factory) && Yii::$app->user->identity->profile->factory->producing_country_id == 4) {
                                     echo $this->render('parts/_list_block_pay_for_all', [
                                         'dataProvider' => $dataProvider
                                     ]);

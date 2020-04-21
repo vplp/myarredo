@@ -250,7 +250,7 @@ $this->title = Yii::t('app', 'Profile');
                                         <?= Html::img($bundle->baseUrl . '/img/my_products.png') ?>
                                     </div>
                                     <div class="profile-quadrlink-text">
-                                        <?= Yii::$app->user->identity->profile->factory->producing_country_id == 4
+                                        <?= isset(Yii::$app->user->identity->profile->factory) && Yii::$app->user->identity->profile->factory->producing_country_id == 4
                                             ? Yii::t('app', 'Furniture in Italy')
                                             : Yii::t('app', 'Наличие на складе') ?>
                                     </div>
