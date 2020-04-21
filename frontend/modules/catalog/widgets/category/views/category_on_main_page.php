@@ -3,6 +3,7 @@
 use yii\helpers\{
     Html, Url
 };
+
 //
 use frontend\modules\catalog\models\{
     Category, Types
@@ -40,6 +41,10 @@ use frontend\modules\catalog\models\{
                     $params = Yii::$app->catalogFilter->params;
 
                     $params[$keys['category']] = Yii::$app->city->domain != 'com' ? $model['alias'] : $model['alias2'];
+
+                    $link = Yii::$app->catalogFilter->createUrl($params, ['/catalog/category/list']);
+
+                    echo '<li>' . Html::a($model['lang']['title'], $link) . '</li>';
 
                     $types = Types::getWithProduct($params);
 
