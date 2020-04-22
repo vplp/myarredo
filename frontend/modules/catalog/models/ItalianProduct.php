@@ -357,7 +357,7 @@ class ItalianProduct extends \common\modules\catalog\models\ItalianProduct
      */
     public static function getCostPlacementProduct($count = 1)
     {
-        if (Yii::$app->user->identity->profile->factory->producing_country_id == 2) {
+        if (isset(Yii::$app->user->identity->profile->factory) && Yii::$app->user->identity->profile->factory->producing_country_id == 2) {
             $cost = 1000;
             $amount = $cost;
         } else {
