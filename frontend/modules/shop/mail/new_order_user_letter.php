@@ -19,6 +19,12 @@ $replace = [
 
 $text = str_replace($search, $replace, $text);
 
+if (in_array($order->lang, ['ru-RU'])) {
+    $domain = 'ru';
+} else if (in_array($order->lang, ['en-EN', 'it-IT'])) {
+    $domain = 'com/it';
+}
+
 ?>
 
 <div style="width:540px; font: 16px Arial,sans-serif;">
@@ -49,7 +55,7 @@ $text = str_replace($search, $replace, $text);
                 <div style="float: left;">
 
                     <?= Html::img(
-                        'https://www.myarredo.ru' . Product::getImageThumb($item->product['image_link']),
+                        Product::getImageThumb($item->product['image_link']),
                         ['class' => 'width: 140px; max-height: 100px;']
                     ) ?>
 
@@ -58,9 +64,9 @@ $text = str_replace($search, $replace, $text);
 
                     <?= Html::a(
                         $item->product['lang']['title'],
-                        Product::getUrl($item->product['alias']),
+                        'https://www.myarredo.' . $domain . '/product/' . $item->product['alias'] . '/',
                         ['style' => 'font-weight:bold; color: #000; text-transform: uppercase; text-decoration: underline;']
-                    ) ?>
+                    ); ?>
 
                     <br>
                     <span style="color:#9f8b80; font-size: 14px;"><?= $item->product['factory']['title']; ?></span>
